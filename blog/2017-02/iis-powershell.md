@@ -1,6 +1,11 @@
 ---
 title: "PowerShell and IIS: 40 Practical Examples"
 description: Examples showing how to do everything with IIS and PowerShell. Creating new websites, installing IIS, stopping and restarting, etc.
+author: paul.stovell@octopus.com
+tags: 
+ - Walkthrough
+ - Scripting
+ - Ecosystem
 ---
 
 At Octopus Deploy, we do a ton of work with IIS. If you add up the deployment telemetry from all of our customers, we've done over a million deployments of web sites and services. We've learned a lot along the way, about both how to use the PowerShell IIS modules and how they work under the hood, as well as how to use them reliably. My goal in this post is to share that knowledge and build a single place that we can point people to when they need to use the PowerShell IIS modules. 
@@ -8,22 +13,14 @@ At Octopus Deploy, we do a ton of work with IIS. If you add up the deployment te
 This post covers:
 
 - The `applicationHost.config` file and how IIS configuration works
-- The new IISAdministration PowerShell module introduced in Windows Server 2016/Windows 10
-- The older WebAdministration PowerShell module used since Windows 2008
+- The new `IISAdministration` PowerShell module introduced in Windows Server 2016/Windows 10
+- The older `WebAdministration` PowerShell module used since Windows 2008
 - What we've learned from millions of real-world deployments using the PowerShell IIS modules
-- Lots and lots of practical examples, tested on different OS's
+- Lots and lots of practical examples, tested on all Windows Server OS's from 2008 to 2016 & Nano Server
 
-​The source for all of these examples lives in a [GitHub repository](https://github.com/OctopusDeploy/PowerShell-IIS-Examples), and we run the examples automatically against test machines running each of the different Windows Server OS's, so I'm fairly confident that they work. Of course, if you run into any trouble, post an issue to the GitHub repository's issue list - or send us a pull request! :smile: 
+​The source for all of these examples lives in a [GitHub repository](https://github.com/OctopusDeploy/PowerShell-IIS-Examples), and we run the examples automatically against test machines running each of the different Windows Server OS's, so I'm fairly confident that they work. Of course, if you run into any trouble, post an issue to the GitHub repository's issue list - or send us a pull request! ​:smile:​ 
 
-The operating systems we test against are:
-
-- Windows Server 2008
-- Windows Server 2008 R2
-- Windows Server 2012
-- Windows Server 2012 R2
-- Windows Server 2016
-
-We also cover Windows Nano Server 2016 in the article, and the examples for the IISAdministration module should work on Nano Server. 
+!toc
 
 ## How IIS Configuration is stored
 
