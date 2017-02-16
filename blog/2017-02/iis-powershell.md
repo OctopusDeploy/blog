@@ -2,6 +2,7 @@
 title: "PowerShell and IIS: 40 Practical Examples"
 description: Examples showing how to do everything with IIS and PowerShell. Creating new websites, installing IIS, stopping and restarting, etc.
 author: paul.stovell@octopus.com
+visibility: private
 tags: 
  - Walkthrough
  - Scripting
