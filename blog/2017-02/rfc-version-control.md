@@ -132,7 +132,7 @@ In your `Program.cs`, you could loop over your customer database and new up this
 
 This is similar to the approach taken by the [Kotlin DSL for TeamCity](https://confluence.jetbrains.com/display/TCD10/Kotlin+DSL), except that you get a lot more choice around how and when you run it. 
 
-To make this feature truly shine and get people using it, I think we'd need a two extra features. 
+To make this feature truly shine and get people using it, I think we'd need a few extra features. 
 
 ### Drift detection
 
