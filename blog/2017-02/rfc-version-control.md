@@ -2,7 +2,7 @@
 title: "RFC: Version Control of Octopus configuration with Octopus Declarative"
 description: We want to build a great experience for people who want to store their Octopus configuration in Git. 
 author: paul.stovell@octopus.com
-published: 2017-02-13
+published: 2017-02-22
 tags: 
  - RFC
 ---
