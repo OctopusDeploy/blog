@@ -17,6 +17,8 @@ We said we would do something about this in our [2017 roadmap](https://octopus.c
 
 I think we've come up with an alternative approach to this problem that's much simpler, and could satisfy the majority of use-cases, and that could be more flexible and powerful than the default assumption of "sync Octopus settings to version control". I'm calling it "**Octopus Declarative**" for now, and in this post I want to make the case why it's a superior approach, and get your feedback on whether it's the right direction. 
 
+!toc
+
 ## What are we trying to solve?
 
 Octopus stores a lot of different data, and not all of it makes sense to store in Git. The primary things people are asking for are:
