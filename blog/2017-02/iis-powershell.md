@@ -19,7 +19,9 @@ This post covers:
 - What we've learned from millions of real-world deployments using the PowerShell IIS modules
 - Lots and lots of practical examples, tested on all Windows Server OS's from 2008 to 2016 & Nano Server
 
-​The source for all of these examples lives in a [GitHub repository](https://github.com/OctopusDeploy/PowerShell-IIS-Examples), and we run the examples automatically against test machines running each of the different Windows Server OS's, so I'm fairly confident that they work. Of course, if you run into any trouble, post an issue to the GitHub repository's issue list - or send us a pull request! ​:smile:​ 
+​The source for all of these examples lives in a [GitHub repository](https://github.com/OctopusDeploy/PowerShell-IIS-Examples), and we run the examples automatically against test machines running each of the different Windows Server OS's, so I'm fairly confident that they work. Of course, if you run into any trouble, post an issue to the GitHub repository's issue list - or send us a pull request! :smile: 
+
+There's quite a bit of theory at the start of this post before we get into the practical examples. There are plenty of sites that show how to do basic IIS tasks; my goal by the end of this post is to **make you an expert at automated IIS configuration**, and the examples just put that into context. 
 
 !toc
 
@@ -146,7 +148,13 @@ Why the change? The diagram below explains how each of the modules are built.
 Back when IIS 7 shipped, to make it easier to work with `applicationHost.config` from managed code, Microsoft created a .NET library called `Microsoft.Web.Administration.dll`. You'll find it in the GAC, and you can reference it and [use it from C# code](https://www.iis.net/learn/manage/scripting/how-to-use-microsoftwebadministration): 
 
 ```csharp
-Code sample here
+using (var manager = new ServerManager())
+{
+    foreach (var site in manager.Sites)
+    {
+        Console.WriteLine("Site: " + site.Name);
+    }
+}
 ```
 
 If you look through the class library documentation, you'll see that it's very much a wrapper around the XML configuration file - for example, the `Application` class inherits from a `ConfigurationElement` base class. 
@@ -202,7 +210,122 @@ If you want to be sure you've loaded at least one of the modules (IIS may not be
 
 A script written this way should be portable between OS's, unless you are running it on Nano Server. In that case, you'll need to use the new module, and the `IIS*` CmdLets instead. 
 
-## `IIS` drive provider vs. CmdLets
+## Recap IIS Theory
+
+### Sites, Applications and Virtual Directories
+
+We're going to use these terms a lot throughout this post, so I think it's worth a slight recap. Let's take this IIS server:
+
+![IIS server with many sites, applications and virtual directories](iis-powershell-sites-apps-vdirs.png)
+
+
+
+Here we have one IIS server, which serves multiple **web sites** (Website1 and Website2). Each website has bindings that specify what protocol (HTTP/HTTPS, sometimes others), port (80/443/other) and host headers it listens on. 
+
+Website2 also has many **applications** (App1, App1.1, App1.2, App2), and **virtual directories** (App.1.1.vdir1, Vdir1, Vdir1.1, Vdir2). 
+
+Don't let that screenshot from IIS Manager fool you. Under the hood, IIS thinks about the relationship between these sites, applications and virtual directories quite differently. From [the IIS team](https://www.iis.net/learn/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis):
+
+> Briefly, a site contains one or more applications, an application contains one or more virtual directories, and a virtual directory maps to a physical directory on a computer.
+
+This may take a few minutes to wrap your head around, but it's important. IIS Manager presents the tree above because that's how users think of their sites, apps and vdirs, but here's how IIS *actually* models the data:
+
+- Site: **Website1**
+   - Application: **/**
+     - Virtual directory: **/**
+- Site: **Website2**
+   - Application: **/**
+     - Virtual directory: **/**
+     - Virtual directory: **/Vdir1**
+     - Virtual directory: **/Vdir1/Vdir1.1**
+     - Virtual directory: **/Vdir2**
+   - Application: **/App1**
+     - Virtual directory: **/**
+   - Application: **/App1/App1.1**
+     - Virtual directory: **/**
+     - Virtual directory: **/App1.1.vdir1**
+   - Application: **/App1/App1.1/App1.2**
+     - Virtual directory: **/**
+   - Application: **/App2**
+     - Virtual directory: **/**
+   - Application: **/Vdir1/Vdir1.App3**
+     - Virtual directory: **/**
+
+This is the object model that the Microsoft.Web.Administration .NET assembly presents, but it's also the model used by the XML in `applicationHost.config`:
+
+```xml
+<sites>
+    <site name="Website2" id="2">
+        <application path="/" applicationPool="MyAppPool">
+            <virtualDirectory path="/" physicalPath="..." />
+            <virtualDirectory path="/Vdir1" physicalPath="..." />
+            <virtualDirectory path="/Vdir1/Vdir1.1" physicalPath="..." />
+            <virtualDirectory path="/Vdir2" physicalPath="..." />
+        </application>
+        <application path="/App1" applicationPool="MyAppPool">
+            <virtualDirectory path="/" physicalPath="..." />
+        </application>
+        <application path="/App1/App1.1" applicationPool="MyAppPool">
+            <virtualDirectory path="/" physicalPath="..." />
+            <virtualDirectory path="/App1.1.vdir1" physicalPath="..." />
+        </application>
+        <application path="/App1/App1.1/App1.2" applicationPool="MyAppPool">
+            <virtualDirectory path="/" physicalPath="..." />
+        </application>
+        <application path="/App2" applicationPool="MyAppPool">
+            <virtualDirectory path="/" physicalPath="..." />
+        </application>
+        <application path="/Vdir1/Vdir1.App3" applicationPool="MyAppPool">
+            <virtualDirectory path="/" physicalPath="..." />
+        </application>
+        ...
+```
+
+Some notes:
+
+- In IIS, the object model isn't as crazy as the tree in IIS Manager presents - Sites have Applications. Applications have virtual directories. That's that. Deeply nested relationships are modelled by storing the paths. 
+- Even though IIS Manager shows VDir1 as having an application inside it, the reality is that the application belongs to the site. 
+- Website1 is just a site, without any applications or virtual directories - but that's just IIS Manager making life easy for us again. There's actually an application and a virtual directory - they just use "/" as the path. 
+- The physical path for all these things is actually defined by the virtual directory. 
+
+The **WebAdministration** PowerShell module actually goes to quite some effort to hide this - you navigate IIS similar to IIS Manager. But the new **IISAdministration** module gives up on that leaky abstraction, and presents the world to you this way. 
+
+### Location sections
+
+One of the confusing behaviors of IIS configuration is that as you make changes in IIS Manager, different settings get stored in different places:
+
+- In the `<sites>` element shown above
+- In `<location>` sections inside applicationHost.config
+- In your own web.config file
+
+For example, when you change the physical path or bindings of a website, that's stored in `<sites>`. 
+
+When you change settings like whether directory browsing is enabled, that goes to the `web.config` file in the physical path of whatever virtual directory (and remember, sites and apps all have virtual directories!). 
+
+When you change what authentication modes (anonymous, basic, Windows, etc.) should apply, that's written to a `<location>` section at the bottom of `applicationHost.config`. 
+
+```xml
+<location path="Website2/Vdir1">
+    <system.webServer>
+        <security>
+            <authentication>
+                <anonymousAuthentication enabled="false" />
+            </authentication>
+        </security>
+    </system.webServer>
+</location> 
+```
+The rule that seems to apply is:
+
+1. If it's a setting that should be "local" to the thing it applies to, it's stored in `<sites>`. For example, when I change the application pool of **Website2**, I wouldn't expect it to also change the application pool assigned to the applications inside it. 
+2. If it's a setting that app developers are likely to want to set themselves, it goes to web.config.
+3. If it's a setting that would be set by IIS administrators, and not by app developers, but it's something they would expect to *inherit down the paths*, then it's set with the `<location>` in `applicationHost.config`. For example, if I disable anonymous authentication at the root website, I would expect that to apply to everything underneath it. If I then re-enable it for one virtual directory, I'd expect other apps and virtual directories under that path to inherit the new value.  
+
+It's worth noting that you actually have some control over rule #3. IIS "locks" certain settings - the authentication settings for example - so that they can't be overridden by a naughty application developer. But you can [unlock them yourself and allow individual apps to override them in their own web.config files](https://www.iis.net/learn/get-started/planning-for-security/how-to-use-locking-in-iis-configuration#Task1). 
+
+The easiest thing to do is: make the change in IIS Manager, then go looking for whether it was applicationHost.config or your web.config that changed. 
+
+## IIS:\ drive provider vs. CmdLets
 
 There are two supported paradigms for working with the PowerShell IIS modules:
 
@@ -274,18 +397,6 @@ Execute-WithRetry {
 }
 ```
 
-### Delayed Commits
-
-If you are going to be making lots of changes to IIS, each change can potentially write to the `applicationHost.config` file. If you like, to speed up the script and to add a kind of "transaction" around the change, you can use the Start/Stop `WebCommitDelay` pair of cmdlets. 
-
-```powershell
-Import-Module WebAdministration
-Start-WebCommitDelay
-Set-ItemProperty "IIS:\Sites\Production" -name physicalPath -value "C:\MyApp\1.2"
-Set-ItemProperty "IIS:\Sites\Rollback" -name physicalPath -value "C:\MyApp\1.1"
-Stop-WebCommitDelay -Commit $true
-```
-
 ## Examples
 
 The rest of this post will be used to show lots of real-world examples of how to use the PowerShell IIS modules. 
@@ -294,13 +405,29 @@ Creating sites
 
 Creating application pools
 
-Associating sites with application pools
+Creating virtual directories
+
+Assigning application pools to sites and applications
+
+Changing the physical path of a site, app or virtual directory
+
+Setting application pool options
+
+Check if a site, application pool or virtual directory exists
 
 Changing authentication methods
 
-Changing logging settings
+Changing HTTP request logging settings
 
 Changing application pool recycling settings
 
 Changing auto start mode
+
+Setting web site ID's
+
+Starting, stopping and restarting IIS
+
+Starting, stopping and restarting application pools
+
+
 
