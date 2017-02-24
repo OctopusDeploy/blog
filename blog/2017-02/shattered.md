@@ -147,11 +147,11 @@ foreach ($site in Get-ChildItem IIS:\Sites)
 
 You can easily run this in the [Octopus Script Console](https://octopus.com/docs/administration/script-console) across all of your machines: 
 
-![Running the IIS SHA1 binding detection in the Octopus script console](shattered-console.png "500px")
+![Running the IIS SHA1 binding detection in the Octopus script console](shattered-console.png "width=500")
 
 ## Certificates feature in Octopus
 
 This is a good time to give a shout out to the [new certificates feature](https://octopus.com/blog/certificates-feature) in Octopus 3.11. If you're going to be updating your web site certificates anyway, why not use Octopus to manage them? 
 
-![Certificates feature](https://i.octopus.com/blog/201702-certificate_list-BR7P.png)
+![Certificates feature](https://i.octopus.com/blog/201702-certificate_list-BR7P.png "width=500")
  
