@@ -10,7 +10,7 @@ tags:
 
 ![SHA1ttered logo](shattered-logo.png)
 
-If you've been following technology news recently, you'll have seen that [Google announced](https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html) a new attack that makes it [practically possible to generate SHA1 hash collisions](http://shattered.io/). 
+If you've been following technology news recently, you will have seen that [Google announced](https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html) a new attack that makes it [practically possible to generate SHA1 hash collisions](http://shattered.io/). 
 
 The risk seems to focus on areas where certificates are used for digital signatures, not encryption. So far we haven't seen any clear reports that this applies to SSL/TLS - my understanding is that there's a risk someone could make a fake certificate and it could be "trusted" as if it were a real one, but not that SSL/TLS data could be decrypted. Of course, I'm no expert! 
 
