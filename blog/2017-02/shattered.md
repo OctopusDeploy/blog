@@ -112,7 +112,7 @@ $sites | ForEach-Object {
     $site = $_
     $cert = Get-RemoteSSLCertificate -Uri $site
     if (Test-CertificateIsSha1 -Certificate $cert) {
-        Write-Host "Site: $site uses SHA1"
+        Write-Warning "Site: $site uses SHA1"
     }
 }
 ```
@@ -137,7 +137,7 @@ foreach ($site in Get-ChildItem IIS:\Sites)
             {
                 if (Test-CertificateIsSha1 -Certificate $cert) 
                 {
-                    Write-Host "Site: $site.Name uses SHA1"
+                    Write-Warning "Site: $site.Name uses SHA1"
                 }
             } 
         }
