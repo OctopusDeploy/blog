@@ -1,8 +1,9 @@
 ---
 title: SHA1 "Shattered" Collision 
-visibility: public
 description: "How recent SHA1 collision attack discoveries impact Octopus, and PowerShell scripts to detect if you use SHA1 certificates"
 published: 2017-02-24
+visibility: public
+author: paul.stovell@octopus.com
 tags: 
  - Security
 ---
