@@ -1,6 +1,6 @@
 ---
 title: SHA1 "Shattered" Collision 
-visibility: private
+visibility: public
 description: "How recent SHA1 collision attack discoveries impact Octopus, and PowerShell scripts to detect if you use SHA1 certificates"
 published: 2017-02-24
 tags: 
@@ -144,6 +144,10 @@ foreach ($site in Get-ChildItem IIS:\Sites)
     }
 }
 ```
+
+You can easily run this in the [Octopus Script Console](https://octopus.com/docs/administration/script-console) across all of your machines: 
+
+![Running the IIS SHA1 binding detection in the Octopus script console](shattered-console.png "500px")
 
 ## Certificates feature in Octopus
 
