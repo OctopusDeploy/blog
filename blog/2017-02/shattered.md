@@ -29,7 +29,7 @@ Mitigations:
  - **Very soon**  
    We'll soon release an update that changes the algorithm to SHA256. This will apply to new installations, but for older installations you'll have to regenerate the certificates and update the trust between all the machines. 
  - **Later**  
-   We'll add some features in Octopus to automatically regenerate the certificates on the Octopus server and all Tentacles, and update them all for you. If you have many machines to manage, you might want to wait for this. There's a bit more work invovled in this, but we'll try to have it done with time to spare before Google publish the details of the technique in 90 days. 
+   We'll add some features in Octopus to automatically regenerate the certificates on the Octopus server and all Tentacles, and update them all for you. If you have many machines to manage, you might want to wait for this. There's a bit more work involved in this, but we'll try to have it done with time to spare before Google publish the details of the technique in 90 days. 
 
 ## Other things you should check
 
