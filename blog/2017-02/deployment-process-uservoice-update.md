@@ -1,6 +1,6 @@
 ---
-title: "Project deployment process enhancements update"
-description: 
+title: "Deployment process enhancements update"
+description: A quick overview of some of the enhancements that have been shipped over the last few months to make configuring your deployment process a little bit easier
 author: henrik.andersson@octopus.com
 visibility: private
 tags: 
