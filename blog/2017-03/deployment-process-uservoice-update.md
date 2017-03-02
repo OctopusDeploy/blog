@@ -7,27 +7,27 @@ tags:
  - New releases
 ---
 
-One of the big parts of our [2017 roadmap](https://octopus.com/blog/roadmap-2017) was our goal for UserVoice:
+One of the big parts of our [2017 roadmap](https://octopus.com/blog/roadmap-2017) is our goal for UserVoice:
 
 > By the end of 2017:
 > - Octopus will have implemented all UserVoice items with over 200 votes
 
-To kick the year off, the project modelling team (with contributions of a few inter-team members) implemented and shipped the following 3 UserVoice items since that we hope should make configuring your deployment process a little bit easier:
+To kick the year off, the project modelling team (with contributions of a few inter-team members) implemented and shipped the following 3 UserVoice items that we hope should make configuring your deployment process a little bit easier:
 
 - [Allow steps to be 'disabled' or 'inactive'](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6324610-allow-steps-to-be-disabled-or-inactive) 
   - **649** votes
-  - shipped in version `3.5.5`
+  - Shipped in version `3.5.5`
 - [Cloning of steps](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6470009-cloning-of-steps) 
   - **282** votes
-  - shipped in version `3.7.16`
+  - Shipped in version `3.7.16`
 - [Allow the Run Condition of a step to be based on a variable](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6594872-allow-the-run-condition-of-a-step-to-be-based-on-a) 
   - **245** votes
-  - shipped in version `3.7.13`
+  - Shipped in version `3.7.13`
 
 ## Allow steps to be 'disabled' or 'inactive'
 While this feature actually shipped in November 2016 we wanted to mention it in this post as it was one of the highest customer requested features. 
 
-This feature allows you to do is to disable any step that might be causing issues with a deployment while configuring the project deployment process or you might just want to prevent the step from being run at deployment time temporarily. Previously you would either have to delete the step, assign the step to a role that doesn't do anything or skip the step at deployment time, not the cleanest or most user friendly solution!
+This feature allows to disable any step that might be causing issues with a deployment while configuring the project deployment process or you might just want to prevent the step from being run at deployment time temporarily. Previously you would either have to delete the step, assign it to a role that doesn't do anything or skip it at deployment time, not the cleanest or most user friendly solution!
 
 Now, we've added an option to the context menu of the step that allows you to disable the step so that deployments can still be performed while ironing out any kinks with the new step.
 
@@ -72,15 +72,15 @@ To run a step based on the *falsy* value of a variable:
 `#{VariableToCheck != "ValueToCheckAgainst"}`
 
 
-To run a step based on the *truthy* value of a variable, and only if all previous steps were successful:
+To run a step only if all previous steps were successful, and based on the *truthy* value of a variable:
 
 `#{unless Octopus.Deployment.Error}#{VariableToCheck}#{/unless}`
 
-To run a step based on the *truthy* value of a variable, and if any of the previous steps have failed:
+To run a step if any of the previous steps have failed, and based on the *truthy* value of a variable:
 
 `#{if Octopus.Deployment.Error}#{VariableToCheck}#{/if}`
 
 ## In closing
-We're off to a good start to the year, and we've have a long list of other great value add features ahead of us and we're really excited and looking forward to tackling these highly requested features.
+We're off to a good start to the year, and we have a long list of other great value add features ahead of us. We're really excited and looking forward to tackling these highly requested features.
 
-We really do appreciate all our customers input - so make sure you add your votes to you favourite feature requests!
+We really do appreciate all our customers input - so make sure you add your votes to your favourite feature requests!
