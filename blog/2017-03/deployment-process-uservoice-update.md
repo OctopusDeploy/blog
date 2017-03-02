@@ -80,3 +80,7 @@ To run a step based on the *truthy* value of a variable, and if any of the previ
 
 `#{if Octopus.Deployment.Error}#{VariableToCheck}#{/if}`
 
+## In closing
+We're off to a good start to the year, and we've have a long list of other great value add features ahead of us and we're really excited and looking forward to tackling these highly requested features.
+
+We really do appreciate all our customers input - so make sure you add your votes to you favourite feature requests!
