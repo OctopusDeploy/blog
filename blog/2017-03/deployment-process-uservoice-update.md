@@ -7,12 +7,12 @@ tags:
  - New releases
 ---
 
-As part of our [2017 roadmap](https://octopus.com/blog/roadmap-2017) we have set us a goal for UserVoice:
+One of the big parts of our [2017 roadmap](https://octopus.com/blog/roadmap-2017) was our goal for UserVoice:
 
 > By the end of 2017:
 > - Octopus will have implemented all UserVoice items with over 200 votes
 
-So to kick the year off the project modelling team (with contributions of a few inter-team members) we have implemented and shipped the following 3 UserVoice items since we started the new year that we hope should make configuring your deployment process a little bit easier:
+To kick the year off, the project modelling team (with contributions of a few inter-team members) implemented and shipped the following 3 UserVoice items since that we hope should make configuring your deployment process a little bit easier:
 
 - [Allow steps to be 'disabled' or 'inactive'](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6324610-allow-steps-to-be-disabled-or-inactive) 
   - **649** votes
@@ -25,9 +25,9 @@ So to kick the year off the project modelling team (with contributions of a few 
   - shipped in version `3.7.13`
 
 ## Allow steps to be 'disabled' or 'inactive'
-This feature was actually shipped in November 2016 but we wanted to mention it in this post as it was one of the highest customer requested features. 
+While this feature actually shipped in November 2016 but we wanted to mention it in this post as it was one of the highest customer requested features. 
 
-What this feature allows you to do is to disable any step that might be causing issues with a deployment while configuring the project deployment process or you might just want to prevent the step from being run at deployment time temporarily. Previously you would either have to delete the step, assign the step to a role that doesn't do anything or skip the step at deployment time, not the cleanest or most user friendly solution!
+This feature allows you to do is to disable any step that might be causing issues with a deployment while configuring the project deployment process or you might just want to prevent the step from being run at deployment time temporarily. Previously you would either have to delete the step, assign the step to a role that doesn't do anything or skip the step at deployment time, not the cleanest or most user friendly solution!
 
 Now, we've added an option to the context menu of the step that allows you to disable the step so that deployments can still be performed while ironing out any kinks with the new step.
 
@@ -44,7 +44,7 @@ To enable a disabled step again, simply select the `Enable` option from the step
 ![New Enable option in step context menu when step is disabled](deployment-process-uservoice-update-enable-step.png)
 
 ## Cloning of steps
-This is a feature that was available in the BlueFin Chrome extension, but as not all organizations allow installation of browser extensions/plugins we decided to bring the feature into Octopus so that all our customers can take advantage of this functionality.
+This is a feature that is available in the [BlueFin](http://bluefin.teapotcoder.com/) Chrome extension, but as not all organizations allow installation of browser extensions/plugins, or maybe you are not using Chrome, we decided to bring the feature into Octopus so that all our customers can take advantage of this functionality.
 
 To clone a step, you simply select the `Clone` option from the step context menu
 
@@ -59,6 +59,7 @@ This feature allows you to tailor your deployment process **at runtime** by givi
 
 ![New Variable based Run Condition option](deployment-process-uservoice-update-variable-run-condition.png)
 
+Once you've selected the `Variable: only run when then variable expression is true` option, you will get an additional field where you would enter the `Octopus Variable Expression`
 
 ![New field for entering the variable expression to evaluate](deployment-process-uservoice-update-variable-run-condition-selected.png)
 
@@ -78,3 +79,4 @@ To run a step based on the *truthy* value of a variable, and only if all previou
 To run a step based on the *truthy* value of a variable, and if any of the previous steps have failed:
 
 `#{if Octopus.Deployment.Error}#{VariableToCheck}#{/if}`
+
