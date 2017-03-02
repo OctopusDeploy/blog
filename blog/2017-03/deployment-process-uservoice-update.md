@@ -27,7 +27,7 @@ To kick the year off, the project modelling team (with contributions of a few in
 ## Allow steps to be 'disabled' or 'inactive'
 While this feature actually shipped in November 2016 we wanted to mention it in this post as it was one of the highest customer requested features. 
 
-This feature allows to disable any step that might be causing issues with a deployment while configuring the project deployment process or you might just want to prevent the step from being run at deployment time temporarily. Previously you would either have to delete the step, assign it to a role that doesn't do anything or skip it at deployment time, not the cleanest or most user friendly solution!
+This feature allows you to disable any step that might be causing issues with a deployment while configuring the project deployment process or you might just want to prevent the step from being run at deployment time temporarily. Previously you would either have to delete the step, assign it to a role that doesn't do anything or skip it at deployment time, not the cleanest or most user friendly solution!
 
 Now, we've added an option to the context menu of the step that allows you to disable the step so that deployments can still be performed while ironing out any kinks with the new step.
 
