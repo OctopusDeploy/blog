@@ -32,29 +32,35 @@ What this feature allows you to do is to disable any step that might be causing 
 Now, we've added an option to the context menu of the step that allows you to disable the step so that deployments can still be performed while ironing out any kinks with the new step.
 
 To disable a step, select the `Disable` option from the step context menu
-![](deployment-process-uservoice-update-disable-step.png)
+
+![New Disable option in step context menu](deployment-process-uservoice-update-disable-step.png)
 
 Once a step has been disabled it will not be included in the deployment plan for any releases created while the step is disabled
-![](deployment-process-uservoice-update-disabled-step.png)
+
+![Disabled step in deployment process](deployment-process-uservoice-update-disabled-step.png)
 
 To enable a disabled step again, simply select the `Enable` option from the step context menu 
-![](deployment-process-uservoice-update-enable-step.png)
+
+![New Enable option in step context menu when step is disabled](deployment-process-uservoice-update-enable-step.png)
 
 ## Cloning of steps
 This is a feature that was available in the BlueFin Chrome extension, but as not all organizations allow installation of browser extensions/plugins we decided to bring the feature into Octopus so that all our customers can take advantage of this functionality.
 
 To clone a step, you simply select the `Clone` option from the step context menu
-![](deployment-process-uservoice-update-clone-step.png)
+
+![New Clone option in step context menu](deployment-process-uservoice-update-clone-step.png)
 
 This will copy the step you want cloned and add it below the step being cloned
-![](deployment-process-uservoice-update-cloned-step.png)
+
+![Cloned step added to deployment process](deployment-process-uservoice-update-cloned-step.png)
 
 ## Allow the Run Condition of a step to be based on a variable
 This feature allows you to tailor your deployment process **at runtime** by giving you the option to conditionally **run** or **skip** an action based on the **boolean** result of an [Octopus Variable Expression](http://docs.octopusdeploy.com/display/OD/Binding+syntax).
 
-![](deployment-process-uservoice-update-variable-run-condition.png)
+![New Variable based Run Condition option](deployment-process-uservoice-update-variable-run-condition.png)
 
-![](deployment-process-uservoice-update-variable-run-condition-selected.png)
+
+![New field for entering the variable expression to evaluate](deployment-process-uservoice-update-variable-run-condition-selected.png)
 
 To run a step based on the *truthy* value of a variable:
 
