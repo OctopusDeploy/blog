@@ -15,13 +15,13 @@ Intro new release candence and highlight this month's new features.
 
 Octopus has always helped make it easy to get started with deployment automation but it can still be a long and complicated road to complete automation nirvana.  Setting up a new Octopus server to deploy an ASP.NET web app can involve creating environments, adding machines, packaging your application, creating a project and definiting its deployment process and finally creating and deploying a release.  Our [getting started guide](https://octopus.com/docs/getting-started) walks you through this process but it can still be a bit dauting and the Octopus web portal didn’t really help you with this process after you first logged in.
 
-![](OctopusEmptyState.png)
+![](octopus-empty-state.png)
 
 We had little tidbits of help spread throughout the app but nothing to  actively help you reach that first automated deployment.
 
 This changes in Octopus 3.12 where the new Octopus Dashboard now welcomes you and displays an interactive walkthrough to get started.  You can following the links to create your first environment or project, add machines, configure tentacles as well as define your deployment process.  We also include links to provide more help as every company/team’s projects are different.  
 
-![](OctopusDashboardSketch.JPG)
+![](octopus-dashboard-sketch.jpg)
 
 The dashboard automatically shows you your progress and it can be dismissed if you’re experience user.  The projects and environments dashboard have also been updated to help guide you through the process of setting up each respective area.  
 
