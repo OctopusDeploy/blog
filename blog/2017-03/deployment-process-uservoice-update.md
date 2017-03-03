@@ -66,11 +66,11 @@ Once you've selected the `Variable: only run when then variable expression is tr
 
 To run a step based on the *truthy* value of a variable:
 
-`#{VariableToCheck == "ValueToCheckAgainst"}`
+`#{VariableToCheck}` or `#{if VariableToCheck == "ValueToCheckAgainst"}true{/if}` (if you want to check for a specific value)
 
 To run a step based on the *falsy* value of a variable:
 
-`#{VariableToCheck != "ValueToCheckAgainst"}`
+`#{if VariableToCheck != "ValueToCheckAgainst"}true{/if}`
 
 
 To run a step only if all previous steps were successful, and based on the *truthy* value of a variable:
