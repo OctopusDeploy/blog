@@ -9,8 +9,6 @@ tags:
 
 TODO: Add blog post illustration
 
-# Octopus March Release (3.12)
-
 Intro new release candence and highlight this month's new features.
 
 ## Getting started with Octopus is now even easier
