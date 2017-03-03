@@ -56,7 +56,7 @@ This will copy the step you want cloned and add it below the step being cloned
 ![Cloned step added to deployment process](deployment-process-uservoice-update-cloned-step.png)
 
 ## Allow the Run Condition of a step to be based on a variable
-This feature allows you to tailor your deployment process **at runtime** by giving you the option to conditionally **run** or **skip** an action based on the **boolean** result of an [Octopus Variable Expression](http://docs.octopusdeploy.com/display/OD/Binding+syntax).
+This feature allows you to tailor your deployment process **at runtime** by giving you the option to conditionally **run** or **skip** an action based on the **boolean** result of an [Octopus Variable Expression](https://octopus.com/docs/deploying-applications/variables/binding-syntax).
 
 ![New Variable based Run Condition option](deployment-process-uservoice-update-variable-run-condition.png)
 
@@ -66,7 +66,7 @@ Once you've selected the `Variable: only run when then variable expression is tr
 
 To run a step based on the *truthy* value of a variable:
 
-`#{VariableToCheck}` or `#{if VariableToCheck == "ValueToCheckAgainst"}true{/if}` (if you want to check for a specific value)
+`#{VariableToCheck}` (if you want to check for any value that isn't `undefined`, empty, `0` or `False`) or `#{if VariableToCheck == "ValueToCheckAgainst"}true{/if}` (if you want to check for a specific value)
 
 To run a step based on the *falsy* value of a variable:
 
