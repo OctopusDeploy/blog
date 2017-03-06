@@ -38,8 +38,12 @@ Our goal with this work is to help new and experienced users get to deploy their
 
 ## Substitude in files - glob pattern matching for json config files
 
-## Octopus license alerts and renewal notifications
+## Improved license notifications
 
+Our final update this month is a minor improvement to help show your Octopus License status.   We’ve updated our license page to show you an alert if your license is expiring soon or expired and we added a very subtle reminder so Octopus users are aware of their license status.  We’ve found that the developers who use Octopus are often unaware of their company/team’s license status and therefore cannot always take advantage of new features or enhancements so we’ve made it easier to know when it’s time to renew.  We worked hard to make sure this is very sutble and doesn’t annoy you.  
 
+It’s worth pointing out that this currently only shows license expiring notifications and new release notifcations (as per your preferences) but we will build upon it in the future.  
 
-Wrap Up
+## Wrap Up
+
+That’s it for this month.  We hope you enjoy the latest features and our new release candence.  Feel free to leave us a comment and let us know what you think!  Happy deployments!  
