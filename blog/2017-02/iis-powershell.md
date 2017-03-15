@@ -401,33 +401,3 @@ Execute-WithRetry {
 
 The rest of this post will be used to show lots of real-world examples of how to use the PowerShell IIS modules. 
 
-Creating sites
-
-Creating application pools
-
-Creating virtual directories
-
-Assigning application pools to sites and applications
-
-Changing the physical path of a site, app or virtual directory
-
-Setting application pool options
-
-Check if a site, application pool or virtual directory exists
-
-Changing authentication methods
-
-Changing HTTP request logging settings
-
-Changing application pool recycling settings
-
-Changing auto start mode
-
-Setting web site ID's
-
-Starting, stopping and restarting IIS
-
-Starting, stopping and restarting application pools
-
-
-
