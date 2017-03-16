@@ -195,7 +195,7 @@ Maybe that's a bit harsh, but there's some truth to it. It goes like this:
 
 This means that if your script needs to run on Nano Server, you're limited to only using the `IISAdministration` module - the old `WebAdministration` module that we've come to know and love no longer works. 
 
-IMAGE - Screenshot from Nano Server
+![Nano Server supports IISAdministration, but not WebAdministration](iis-powershell-nano.png)
 
 ### Writing scripts that run on multiple OS's
 
