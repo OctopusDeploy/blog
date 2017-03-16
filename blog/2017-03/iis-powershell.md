@@ -1,12 +1,13 @@
 ---
-title: "PowerShell and IIS: 40 Practical Examples"
-description: Examples showing how to do everything with IIS and PowerShell. Creating new websites, installing IIS, stopping and restarting, etc.
+title: "PowerShell and IIS: 20 Practical Examples"
+description: Real-world examples tested on Windows 2008 R2 through to 2016. Creating sites, configuring application pools, and examples in both the old WebAdministration module and the newer IISAdministration module.   
 author: paul.stovell@octopus.com
-visibility: private
+visibility: public
 tags: 
  - Walkthrough
  - Scripting
  - Ecosystem
+published: 2017-03-16
 ---
 
 At Octopus Deploy, we do a ton of work with IIS. If you add up the deployment telemetry from all of our customers, we've done over a million deployments of web sites and services. We've learned a lot along the way, about both how to use the PowerShell IIS modules and how they work under the hood, as well as how to use them reliably. My goal in this post is to share that knowledge and build a single place that we can point people to when they need to use the PowerShell IIS modules. 
@@ -17,7 +18,7 @@ This post covers:
 - The new `IISAdministration` PowerShell module introduced in Windows Server 2016/Windows 10
 - The older `WebAdministration` PowerShell module used since Windows 2008
 - What we've learned from millions of real-world deployments using the PowerShell IIS modules
-- Lots and lots of practical examples, tested on all Windows Server OS's from 2008 to 2016 & Nano Server
+- Lots and lots of practical examples, tested on all Windows Server OS's from 2008 to 2016, as well as information about Nano Server
 
 ​The source for all of these examples lives in a [GitHub repository](https://github.com/OctopusDeploy/PowerShell-IIS-Examples), and we run the examples automatically against test machines running each of the different Windows Server OS's, so I'm fairly confident that they work. Of course, if you run into any trouble, post an issue to the GitHub repository's issue list - or send us a pull request! :smile: 
 
@@ -400,4 +401,10 @@ Execute-WithRetry {
 ## Examples
 
 The rest of this post will be used to show lots of real-world examples of how to use the PowerShell IIS modules. 
+
+!partial <examples>
+
+## Summary
+
+If you're setting out to automate your IIS deployments for the first time, I hope you'll find the background information as well as the examples in this post useful. As I mentioned, you'll find all of these examples in [a GitHub repository](https://github.com/OctopusDeploy/PowerShell-IIS-Examples), and we run them against Windows 2008 R2 up to Windows Server 2016. If you find any problems or have ideas on other examples this post should include, let me know in the comments or send a pull request! 
 
