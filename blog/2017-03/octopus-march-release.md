@@ -31,8 +31,13 @@ The new onboarding is benefitial for experienced Octopus users as well.  It can 
 
 Our goal with this work is to help new and experienced users get to deploy their first release as quickly and easily as possible and then continue to automate other projects.  It’s a pleasent side effect that everything looks a little bit nicer. :)  We think we’ve achieve this goal and we’d love your feedback.  Spin up a virtual machine and start a fresh new instance or simply have a play with your existing Octopus server.  
 
-## Step update
+## Update steps across all project 
 
+Updating steps across multiple projects requires a lot of work and you have let us know about that [laud and clear](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6072178-when-updating-a-step-template-update-across-all). Today we happy to announce that we have automated [that process](https://octopus.com/docs/deploying-applications/step-templates#StepTemplates-Updatingsteptemplates) and all it requires from you is a single click.
+
+![Step Template Usage](step-templates-usage.png "width=500")
+
+ 
 
 ## VM Extension
 
