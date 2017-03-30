@@ -38,9 +38,6 @@ Updating steps across multiple projects requires a lot of work because each step
 ![Step Template Usage](step-templates-usage.png "width=500")
 
 
-
-## VM Extension
-
 ## Substitute variables in files now supports extended wildcard pattern matching
 
 A popular feature on package steps is the ability for Octopus to do [variable substitution](https://octopus.com/docs/deploying-applications/substitute-variables-in-files) in configuration and JSON files. Which lets you make use of the [embedded template syntax](https://octopus.com/docs/reference/variable-substitution-syntax).
