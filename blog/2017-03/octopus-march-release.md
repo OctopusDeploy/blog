@@ -33,7 +33,7 @@ Our goal with this work is to help new and experienced users get to deploy their
 
 ## Update steps across all projects
 
-Updating steps across multiple projects requires a lot of work because each step needs to be updated manually. You have let us know about that [laud and clear](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6072178-when-updating-a-step-template-update-across-all) in the past. Today we are happy to announce that we have automated [that process](https://octopus.com/docs/deploying-applications/step-templates/updating-step-templates) and all it requires from you is a single click.
+Updating steps across multiple projects requires a lot of work because each step needs to be updated manually. You have let us know about that [loud and clear](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6072178-when-updating-a-step-template-update-across-all) in the past. Today we are happy to announce that we have automated [that process](https://octopus.com/docs/deploying-applications/step-templates/updating-step-templates) and in most cases, all it requires from you is a single click.
 
 ![Step Template Usage](step-templates-usage.png "width=500")
 
@@ -42,7 +42,7 @@ Updating steps across multiple projects requires a lot of work because each step
 
 A popular feature on package steps is the ability for Octopus to do [variable substitution](https://octopus.com/docs/deploying-applications/substitute-variables-in-files) in configuration and JSON files. Which lets you make use of the [embedded template syntax](https://octopus.com/docs/reference/variable-substitution-syntax).
 
-The way these extra configuration actions worked was on a fixed set of files, 1 line per file. This was a rigid configuration, if the file was missing it would fail the deploy. This may be desirable if you've got a handful of files, but there was 90 user voice votes for this to be more flexible. The issue was with larger deployments there would be an unknown and changing amount of configuration files that needed to be transformed. The breaking of a build because of moved configuration files was a terrible experience.
+The way these extra configuration actions worked was on a fixed set of files, 1 line per file. This was a rigid configuration, if the file was missing it would fail the deploy. This may be desirable if you've got a handful of files, but there were 90 user voice votes for this to be more flexible. The issue was with larger deployments there would be an unknown and changing amount of configuration files that needed to be transformed. The breaking of a build because of moved configuration files was a terrible experience.
 
 To the rescue comes extended wildcard pattern matching for these configuration options. With this enhancement you can use patterns to specify sets of filenames with wildcard characters to determine the set of files that will be modified. Here's two examples: `**/*.config` which will match any file that ends in `.config` in any depth of nesting, and `Area1/**/*.config` will match only `*.config` files any folder in `Area1` and deeper.
 
