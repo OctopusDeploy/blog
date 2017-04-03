@@ -19,7 +19,7 @@ Octopus 3.12 is now available to download and we’re trying a new monthly relea
 
 ## Getting started with Octopus is now even easier
 
-Octopus has always helped make it easy to get started with deployment automation but it can still be a long and complicated road to  automation nirvana.  Setting up a new Octopus server to deploy an ASP.NET web app can involve creating environments, adding machines, packaging your application, creating a project and its deployment process and finally creating and deploying a release.  Our [getting started guide](https://octopus.com/docs/getting-started) walks you through this process but it can still be a bit daunting if you’re doing it for the first time.
+Octopus has always helped make it easy to get started with deployment automation but it can still be a long and complicated road to automation nirvana.  Setting up a new Octopus server to deploy an ASP.NET web app can involve creating environments, adding machines, packaging your application, creating a project and its deployment process and finally creating and deploying a release.  Our [getting started guide](https://octopus.com/docs/getting-started) walks you through this process but it can still be a bit daunting if you’re doing it for the first time.
 
 ![](octopus-empty-state.png)
 
@@ -27,7 +27,7 @@ Octopus has always helped make it easy to get started with deployment automation
 
 ![](octopus-dashboard-sketch.jpg)
 
-The new onboarding is beneficial for experienced Octopus users as well.  It can help you set up a new instance for a new project or team and can be very beneficial for consultants setting up a deployment pipeline at new clients.  The new features can help you set up common environment structures as well as bootstrap common projects to deploy APS.NET web apps or windows services.  Also, the new interactive  dashboard can be toggled on or off as you desire.
+The new onboarding is beneficial for experienced Octopus users as well.  It can help you set up a new instance for a new project or team and can be very beneficial for consultants setting up a deployment pipeline at new clients.  The new features can help you set up common environment structures as well as bootstrap common projects to deploy APS.NET web apps or windows services.  Also, the new interactive dashboard can be toggled on or off as you desire.
 
 Our goal with this work is to help new and experienced users get to deploy their first release as quickly and easily as possible and then continue to automate other projects.  It’s a pleasant side effect that everything looks a little bit nicer. :)  We think we’ve achieve this goal and we’d love your feedback.  Spin up a virtual machine and start a fresh new instance or simply have a play with your existing Octopus server.
 
@@ -48,7 +48,7 @@ To the rescue comes extended wildcard pattern matching for these configuration o
 
 ## PowerShell debugging support
 
-If you've ever written a Step Template or Script Step for Octopus that was more than a few lines long, I'm sure you've run into issues where you've had to tweak things and re-run until you've made it work the way you want. Maybe you've even resorted to `write-host` based debugging. Well, now you can use a fully fledged debugger (such as PowerShell ISE) to your PowerShell scripts to debug issues. You can even debug remotely via PSRemoting! Take a look at our [guide to remote debugging](/docs/guides/debugging-powershell-scripts) or our [documentation](/docs/deploying-applications/custom-scripts/debugging-powershell-scripts) to get started.
+If you've ever written a Step Template or Script Step for Octopus that was more than a few lines long, I'm sure you've run into issues where you've had to tweak things and re-run until you've made it work the way you want. Maybe you've even resorted to `write-host` based debugging. Well, now you can use a fully fledged debugger (such as PowerShell ISE) with your PowerShell scripts to debug issues. You can even debug remotely via PSRemoting! Take a look at our [guide to remote debugging](/docs/guides/debugging-powershell-scripts) or our [documentation](/docs/deploying-applications/custom-scripts/debugging-powershell-scripts) to get started.
 
 ## Improved license notifications
 
