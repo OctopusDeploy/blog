@@ -15,7 +15,9 @@ Octopus 3.12 is now available to download and we’re trying a new monthly relea
 - Make it easier for you to plan when and how to upgrade
 - Improve the quality and predictability of each monthly release by having a structured delivery schedule and quality gates
 
-**NOTE**: We’ll still continue to ship small enhancements and bug fixes in patches as soon as they’re ready.  We want to get those changes in your hands as soon as possible so that won’t change.  
+**NOTE**: We’ll still continue to ship small enhancements and bug fixes in patches as soon as they’re ready.  We want to get those changes in your hands as soon as possible so that won’t change.
+
+!toc
 
 ## Getting started with Octopus is now even easier
 
@@ -55,6 +57,16 @@ If you've ever written a Step Template or Script Step for Octopus that was more 
 Our final update this month is a minor improvement to help show your Octopus License status.   We’ve updated our license page to show you an alert if your license is expiring soon or expired and we added a very subtle reminder so Octopus users are aware of their license status.  We’ve found that the developers who use Octopus are often unaware of their company/team’s license status and therefore cannot always take advantage of new features or enhancements so we’ve made it easier to know when it’s time to renew.  We worked hard to make sure this is very subtle and doesn’t annoy you.
 
 It’s worth pointing out that this currently only shows license expiring notifications and new release notifications (as per your preferences) but we will build upon it in the future.
+
+## Performance improvements
+
+We have put in a lot of effort over this release to make Octopus perform better than ever for large and small scale deployments alike. The notable improvements are:
+
+- 60-90% reduction in deployment time, especially for deployments with lots of steps or machines. In our load test scenario a 3h deployment reduced to 6m from end-to-end!
+- 10X improvement when working with large task logs. In our test scenario an 18MB task log went from a parse time of 5,000ms down to 500ms.
+- CPU, RAM, and SQL Database usage have all been reduced for the vast majority of normal workloads meaning Octopus will scale better for harder workloads and more users.
+
+We highly recommend upgrading to Octopus 3.12 just so you can benefit from these performance improvements. All of these performance improvements are also available in the latest patch of Octopus 3.11, just in case you can't upgrade to Octopus 3.12 right now.
 
 ## Upgrading
 
