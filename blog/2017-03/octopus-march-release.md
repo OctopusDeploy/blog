@@ -53,6 +53,14 @@ Our final update this month is a minor improvement to help show your Octopus Lic
 
 It’s worth pointing out that this currently only shows license expiring notifications and new release notifications (as per your preferences) but we will build upon it in the future.  
 
+## Upgrading
+
+All of the usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. In this release we have introduced some security enhancements. If any of your users have problems after the upgrade please try the following steps:
+
+1. Refresh the Octopus Deploy portal in the web browser
+2. Sign out of the Octopus Deploy web portal
+3. Sign in again
+
 ## Wrap Up
 
 That’s it for this month.  We hope you enjoy the latest features and our new release cadence.  Feel free to leave us a comment and let us know what you think!  Happy deployments!  
