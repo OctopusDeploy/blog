@@ -9,13 +9,13 @@ tags:
 
 ![Octopus 3.12 release announcement](shipping-3-12_blogimage.png)
 
-Octopus 3.12 is now available to download and we’re trying a new monthly release cadence.  This means we’ll ship a new release on a predictable schedule that you can count on.  We’re doing this experiment with the following goals in mind:
+Octopus 3.12 is now available to download and we’re trying a new monthly release cadence.  This means we’ll ship a new release on a predictable schedule that you can count on.  These releases will include new features, and a roll-up of all the patches from that month.  We are doing this experiment with the following goals in mind:
 
-- Easier to stay across new features and enhancements
-- Easier to coordinate the deliver of multiple new features and manage a single new release
-- Improve quality by having a structured delivery schedule, bug bashes and fixes
+- Make it easier for you to stay across new features and enhancements in Octopus Deploy
+- Make it easier for you to plan when and how to upgrade
+- Improve the quality and predictability of each monthly release by having a structured delivery schedule and quality gates
 
-**NOTE**: We’ll still continue to ship small enhancements and bug fixes as soon as they’re ready.  We want to get those changes in your hands as soon as possible so that won’t change.  
+**NOTE**: We’ll still continue to ship small enhancements and bug fixes in patches as soon as they’re ready.  We want to get those changes in your hands as soon as possible so that won’t change.  
 
 ## Getting started with Octopus is now even easier
 
