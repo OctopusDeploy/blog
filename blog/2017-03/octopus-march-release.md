@@ -50,11 +50,18 @@ To the rescue comes extended wildcard pattern matching for these configuration o
 
 If you've ever written a Step Template or Script Step for Octopus that was more than a few lines long, I'm sure you've run into issues where you've had to tweak things and re-run until you've made it work the way you want. Maybe you've even resorted to `write-host` based debugging. Well, now you can use a fully fledged debugger (such as PowerShell ISE) with your PowerShell scripts to debug issues. You can even debug remotely via PSRemoting! Take a look at our [guide to remote debugging](/docs/guides/debugging-powershell-scripts) or our [documentation](/docs/deploying-applications/custom-scripts/debugging-powershell-scripts) to get started.
 
+## Certificate-Chain support
+
+Octopus version 3.11 delivered the [Certificates feature](https://octopus.com/blog/certificates-feature), and we have been refining it over the past weeks.  3.12 continues this by adding support for [PFX files containing certificate-chains](https://octopus.com/docs/deploying-applications/certificates/certificate-chains).  
+
+![Certificate Chain Icon](certificate-chain-card.png "width=500")
+
 ## Improved license notifications
 
 Our final update this month is a minor improvement to help show your Octopus License status.   We’ve updated our license page to show you an alert if your license is expiring soon or expired and we added a very subtle reminder so Octopus users are aware of their license status.  We’ve found that the developers who use Octopus are often unaware of their company/team’s license status and therefore cannot always take advantage of new features or enhancements so we’ve made it easier to know when it’s time to renew.  We worked hard to make sure this is very subtle and doesn’t annoy you.
 
 It’s worth pointing out that this currently only shows license expiring notifications and new release notifications (as per your preferences) but we will build upon it in the future.
+
 
 ## Upgrading
 
