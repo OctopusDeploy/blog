@@ -46,6 +46,9 @@ The way these extra configuration actions worked was on a fixed set of files, 1 
 
 To the rescue comes extended wildcard pattern matching for these configuration options. With this enhancement you can use patterns to specify sets of filenames with wildcard characters to determine the set of files that will be modified. Here's two examples: `**/*.config` which will match any file that ends in `.config` in any depth of nesting, and `Area1/**/*.config` will match only `*.config` files any folder in `Area1` and deeper.
 
+## PowerShell debugging support
+
+If you've ever written a Step Template or Script Step for Octopus that was more than a few lines long, I'm sure you've run into issues where you've had to tweak things and re-run until you've made it work the way you want. Maybe you've even resorted to `write-host` based debugging. Well, now you can use a fully fledged debugger (such as PowerShell ISE) to your PowerShell scripts to debug issues. You can even debug remotely via PSRemoting! Take a look at our [guide to remote debugging](/docs/guides/debugging-powershell-scripts) or our [documentation](/docs/deploying-applications/custom-scripts/debugging-powershell-scripts) to get started.
 
 ## Improved license notifications
 
