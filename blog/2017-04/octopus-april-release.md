@@ -1,12 +1,13 @@
 ---
 title: "Octopus April Release 3.12"
-description: Octopus 3.12 is the start of the monthly release cadence, getting started is easier, update steps across all projects, wildcard patterns file matching for variable substitution, PowerShell debugging support, improved license notifications.
+description: Octopus 3.12 is the start of the monthly release cadence, getting started is easier, update steps across all projects, wildcard patterns file matching for variable substitution, PowerShell debugging support, certificate-chain support, improved license notifications.
 author: rob.pearson@octopus.com
 visibility: private
 tags:
  - New Releases
  - Step Templates
  - PowerShell Debugging
+ - Certificates
 ---
 
 ![Octopus 3.12 release announcement](shipping-3-12_blogimage.png)
