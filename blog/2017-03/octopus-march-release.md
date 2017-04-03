@@ -7,7 +7,7 @@ tags:
  - New Releases
 ---
 
-TODO: Add blog post illustration by Jess!
+![Octopus 3.12 release announcement](shipping-3-12_blogimage.png)
 
 Octopus 3.12 is now available to download and we’re trying a new monthly release cadence.  This means we’ll ship a new release on a predictable schedule that you can count on.  We’re doing this experiment with the following goals in mind:
 
