@@ -20,11 +20,11 @@ Octopus 3.12 is now available to download and we’re trying a new monthly relea
 
 **NOTE**: We’ll still continue to ship small enhancements and bug fixes in patches as soon as they’re ready.  We want to get those changes in your hands as soon as possible so that won’t change.  
 
+!toc
+
 ## Release Tour
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZswEEN4pMVM" frameborder="0" allowfullscreen></iframe>
-
-!toc
 
 ## Getting started with Octopus is now even easier
 
