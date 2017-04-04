@@ -24,17 +24,17 @@ Octopus 3.12 is now available to download and we’re trying a new monthly relea
 
 ## Getting started with Octopus is now even easier
 
-Octopus has always helped make it easy to get started with deployment automation but it can still be a long and complicated road to automation nirvana.  Setting up a new Octopus server to deploy an ASP.NET web app can involve creating environments, adding machines, packaging your application, creating a project and its deployment process and finally creating and deploying a release.  Our [getting started guide](https://octopus.com/docs/getting-started) walks you through this process but it can still be a bit daunting if you’re doing it for the first time.
+Octopus Deploy has always aimed to help make it easy for new users to automate their deployments, but it can still be a long and complicated road to automation nirvana. 
 
-![](octopus-empty-state.png)
+![Octopus getting started guide](getting-started-guide.png)
 
-	⁃	This changes in Octopus 3.12 where the new Octopus dashboard now welcomes you and displays an interactive walkthrough to get started.  Our new walkthrough helps you to create your first environments and project, add machines, configure tentacles as well as define your deployment process.  We also include links to provide more help as every company/team’s projects are different.  The dashboard automatically shows you your progress and helps you celebrate at major milestones as you get up and running!  We’ve also updated our Projects, Environments and Configuration pages to be a bit more friendly too.
+The new onboarding experience introduces the concepts of Octopus and guides new users to their first successful deployment. When a new instance of Octopus server is installed, the dashboard displays a getting started guide that outlines the basic steps required to complete a deployment. For experienced users, the guide can be accessed from the help menu at anytime.  It can helpful to refer to if you are setting up a new instance for a project, conducting training or for consultants setting up a deployment pipeline for a new client. 
 
-![](octopus-dashboard-sketch.jpg)
+![Getting started guide progress bar](empty-state-progress-bar.png)
 
-The new onboarding is beneficial for experienced Octopus users as well.  It can help you set up a new instance for a new project or team and can be very beneficial for consultants setting up a deployment pipeline at new clients.  The new features can help you set up common environment structures as well as bootstrap common projects to deploy APS.NET web apps or windows services.  Also, the new interactive dashboard can be toggled on or off as you desire.
-
-Our goal with this work is to help new and experienced users get to deploy their first release as quickly and easily as possible and then continue to automate other projects.  It’s a pleasant side effect that everything looks a little bit nicer. :)  We think we’ve achieve this goal and we’d love your feedback.  Spin up a virtual machine and start a fresh new instance or simply have a play with your existing Octopus server.
+The step by step process is what we think is the easiest way to make your first deployment and realise the awesomeness of Octopus. To help you keep track of your progress, we have included a progress bar at the bottom of the screen. This will give you hints and links to what the next step is in the process and disappears after your first deployment.
+ 
+Our goal with this work is to help new and experienced users get to deploy their first release as quickly and easily as possible and then continue to automate their other projects. It’s a pleasant side effect that makes everything look a little bit nicer :) We think we’ve achieve this goal and we’d love your feedback. Spin up a virtual machine and start a fresh new instance or simply have a play with your existing Octopus server.
 
 ## Update steps across all projects
 
