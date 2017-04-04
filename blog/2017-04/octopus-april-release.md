@@ -28,17 +28,17 @@ Octopus 3.12 is now available to download and we’re trying a new monthly relea
 
 ## Getting started with Octopus is now even easier
 
-Octopus Deploy has always aimed to help make it easy for new users to automate their deployments, but it can still be a long and complicated road to automation nirvana. 
+Octopus Deploy has always aimed to help make it easy for new users to automate their deployments, but it can still be a long and complicated road to automation nirvana.
 
 ![Octopus getting started guide](getting-started-guide.png)
 
-The new onboarding experience introduces the concepts of Octopus and guides new users to their first successful deployment. When a new instance of Octopus server is installed, the dashboard displays a getting started guide that outlines the basic steps required to complete a deployment. For experienced users, the guide can be accessed from the help menu at anytime.  It can helpful to refer to if you are setting up a new instance for a project, conducting training or for consultants setting up a deployment pipeline for a new client. 
+The new onboarding experience introduces the concepts of Octopus and guides new users to their first successful deployment. When a new instance of Octopus server is installed, the dashboard displays a getting started guide that outlines the basic steps required to complete a deployment. For experienced users, the guide can be accessed from the help menu at anytime.  It can be helpful to refer to it if you are setting up a new instance for a project, conducting training, or for consultants setting up a deployment pipeline for a new client.
 
 ![Getting started guide progress bar](empty-state-progress-bar.png)
 
-The step by step process is what we think is the easiest way to make your first deployment and realise the awesomeness of Octopus. To help you keep track of your progress, we have included a progress bar at the bottom of the screen. This will give you hints and links to what the next step is in the process and disappears after your first deployment.
- 
-Our goal with this work is to help new and experienced users get to deploy their first release as quickly and easily as possible and then continue to automate their other projects. It’s a pleasant side effect that makes everything look a little bit nicer :) We think we’ve achieve this goal and we’d love your feedback. Spin up a virtual machine and start a fresh new instance or simply have a play with your existing Octopus server.
+The step by step process is what we think is the easiest way to make your first deployment and realize the awesomeness of Octopus. To help you keep track of your progress, we have included a progress bar at the bottom of the screen. This will give you hints and links to what the next step is in the process and it disappears after your first deployment.
+
+Our goal with this work is to help new and experienced users get to deploy their first release as quickly and easily as possible and then continue to automate their other projects. It’s a pleasant side effect that makes everything look a little bit nicer :) We think we’ve achieve this goal and we’d love your feedback. Spin up a virtual machine and start a fresh new instance or simply have a play with your existing Octopus installation.
 
 ## Update steps across all projects
 
@@ -63,7 +63,7 @@ If you've ever written a Step Template or Script Step for Octopus that was more 
 
 We have put in a lot of effort over this release to make Octopus perform better than ever for large and small scale deployments alike. The notable improvements are:
 
-- 60-90% reduction in deployment time, especially for deployments with lots of steps or machines. In our load test scenario a 3h deployment reduced to 6m from end-to-end!
+- 60-90% reduction in deployment time, especially for deployments with lots of steps or machines. In our load test scenario a 3 hour deployment was reduced to 6 minutes from end-to-end!
 - 10X improvement when working with large task logs. In our test scenario an 18MB task log went from a parse time of 5,000ms down to 500ms.
 - CPU, RAM, and SQL Database usage have all been reduced for the vast majority of normal workloads meaning Octopus will scale better for harder workloads and more users.
 
