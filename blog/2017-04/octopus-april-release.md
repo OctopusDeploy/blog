@@ -73,7 +73,7 @@ Octopus version 3.11 delivered the [Certificates feature](https://octopus.com/bl
 
 ## Improved license notifications
 
-Our final update this month is a minor improvement to help show your Octopus License status.   We’ve updated our license page to show you an alert if your license is expiring soon or expired and we added a very subtle reminder so Octopus users are aware of their license status.  We’ve found that the developers who use Octopus are often unaware of their company/team’s license status and therefore cannot always take advantage of new features or enhancements so we’ve made it easier to know when it’s time to renew.  We worked hard to make sure this is very subtle and doesn’t annoy you.
+Our final update this month is a minor improvement to help show your Octopus License status.   We’ve updated our license page to show you an alert if your license is expiring soon or expired and we added a very subtle reminder so Octopus users are aware of their license status.  We’ve found that the developers who use Octopus are often unaware of their company's license status and therefore cannot always take advantage of new features or enhancements so we’ve made it easier to know when it’s time to renew.  That said, we've worked hard to make sure that it is very subtle and doesn’t annoy you.
 
 It’s worth pointing out that this currently only shows license expiring notifications and new release notifications (as per your preferences) but we will build upon it in the future.
 
