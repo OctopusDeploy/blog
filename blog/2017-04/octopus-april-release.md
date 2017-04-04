@@ -16,7 +16,7 @@ Octopus 3.12 is now available to download and we’re trying a new monthly relea
 
 - Make it easier for you to stay across new features and enhancements in Octopus Deploy
 - Make it easier for you to plan when and how to upgrade
-- Improve the quality and predictability of each monthly release by having a structured delivery schedule and quality gates
+- Improve the quality and predictability of each monthly release by having a structured delivery schedule.
 
 **NOTE**: We’ll still continue to ship small enhancements and bug fixes in patches as soon as they’re ready.  We want to get those changes in your hands as soon as possible so that won’t change.  
 
