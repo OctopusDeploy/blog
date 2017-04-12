@@ -22,8 +22,6 @@ You can do this via the [Azure Portal](https://octopus.com/docs/installation/ins
 
 ## Using the new Azure Portal
 
-TODO: Update once ui package out of preview
-
 In the Azure Portal, select your VM, click on `Extensions` and click the `+ Add` button. Fill in the fields as required, click `OK` and the extension will be installed.
 
 ![Azure Portal - Add Tentacle VM Extension](azure-vm-extension.png)
