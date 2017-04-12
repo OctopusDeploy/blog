@@ -22,7 +22,7 @@ You can do this via the [Azure Portal](https://octopus.com/docs/installation/ins
 
 ## Using the new Azure Portal
 
-In the Azure Portal, select your VM, click on `Extensions` and click the `+ Add` button. Fill in the fields as required, click `OK` and the extension will be installed.
+In the Azure Portal, select your VM, click on `Extensions` and click the `+ Add` button. Select the `Octopus Deploy Tentacle Agent` extension and click `Create`. Fill in the fields as required, click `OK` and the extension will be deployed.
 
 ![Azure Portal - Add Tentacle VM Extension](azure-vm-extension.png)
 
