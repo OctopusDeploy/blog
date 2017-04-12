@@ -1,5 +1,5 @@
 ---
-title: "Octopus TL;DR - Performance Improvements - 2017-04-12"
+title: "Octopus TL;DR - Performance Improvements"
 description: Once a week we have a short "TL;DR" meeting where team members present things that are interesting. We're going to start recording and posting portions of them to YouTube each week. This first one was about some performance improvements.  
 author: paul.stovell@octopus.com
 visibility: public
