@@ -2,7 +2,7 @@
 title: "Azure Virtual Machine Extension"
 description: "Announcing the re-release of the Azure Virtual Machine extension to install Tentacle's on your Cloud VMs"
 author: matt.richardson@octopus.com
-visibility: private
+visibility: public
 tags:
  - New Releases
  - Azure
@@ -10,9 +10,9 @@ tags:
 
 Back in October 2014, we were pretty excited to [announce](https://octopus.com/blog/azure-vm-extension) a Virtual Machine extension for Azure that would allow you to install the Tentacle agent, and wire it up to your Octopus Server.
 
-Unfortunately, in the world of software (and with the Cloud especially) things move on. Microsoft made substantial updates the Azure portal and the infrastructure that makes these extensions available; unfortunately our extension was no longer compatible and was removed from the portal.
+However, in the world of software (and with the Cloud especially) things move on. Microsoft made substantial updates to the Azure portal and the infrastructure that makes these extensions available - our extension was no longer compatible and was removed from the portal.
 
-Today, I'm happy to announce that we've re-written the extension from scratch, and its now available for your delectation.
+Today, I'm happy to announce that we've re-written the extension from scratch, and it's now available for your delectation.
 
 ## What can I do with it?
 
