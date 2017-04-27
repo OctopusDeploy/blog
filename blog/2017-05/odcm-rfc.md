@@ -94,19 +94,15 @@ If you're responsible for a Space, you can add groups from ODCM to a Team contro
 ![ODCM Groups](odcm-groups.png "width=500")
 
 ### Switching Spaces
-The features so far have focused on the management side of having multiple instances. Let's talk now about one of the friction points for the end users, remembering where all of the Octopus installations are that they have access to and signing in to each one separately.
 
-Each user currently has to remember/bookmark the list of server Urls for themselves. This is cumbersome and makes discovery difficult, and we want to address both of those.
+So now you have access to a few spaces, that's great. So how do you get between them quickly and easily? How good is your memory for all those different URLs or do you like to use browser bookmarks?
 
-Within a Space, we are aiming to keep the changes to Octopus Deploy itself to a minimum. One change we do see is a UI update to help the user change Spaces rapidly.
-
-We're thinking that something similar to the following may be what the user will see.
+How about a handy little switcher inside Octopus that knows all the spaces you have access to? We're thinking it will look like this.
 
 ![ODCM Space Switching](odcm-space-switch.png "width=500")
 
-The new control would appear if the user has access to more than one Space and would might have a user experience something like when you're changing boards in Trello.
+The switching mechanism will make use of Single Sign On (SSO) will allow you to move between spaces effortlessly, with minimal impact to the current Octopus Deploy experience.
 
-Single Sign On (SSO) will be enabled across the Spaces, so switching will not require the user to log in again.
 
 ### Sharing
 When you only have a single installation of Octopus, sharing of information is a none issue. Once you have lots of smaller installations there is an increased likelihood you'll want/need to share information between them.
