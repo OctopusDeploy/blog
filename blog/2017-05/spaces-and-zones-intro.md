@@ -1,10 +1,9 @@
 ---
 title: "Introducing Spaces and Zones"
-description: Octopus 4.0 will focus on making it easier to manage multiple Octopus instances. As part of that, we are introducing two new concepts: 'Spaces' and 'Zones' 
+description: "Octopus 4.0 will focus on making it easier to manage multiple Octopus instances. As part of that, we are introducing two new concepts: Spaces and Zones" 
 author: michael.richardson@octopus.com
 visibility: private
 ---
-
 
 There are scenarios where it makes sense to have multiple Octopus Servers. These reasons can be broadly categorized as:
 
