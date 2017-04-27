@@ -7,9 +7,9 @@ visibility: private
 
 There are scenarios where it makes sense to have multiple Octopus Servers. These reasons can be broadly categorized as:
 
-1. **Isolation:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus Servers ensures your peas and carrots stay on their own sides of the plate. 
+1. **Isolation:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus Servers ensure your peas and carrots stay on their own sides of the plate. 
 
-2. **Scale:** A single server has finite resources. While High Available allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impact performance and usability.    
+2. **Scale:** A single server has finite resources. While High Available allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.    
 
 3. **Geography:** 
  - **3a. Teams:** Many organizations have teams that are geographically dispersed. Octopus Servers located in each region can be used to address network latency. 
@@ -21,7 +21,7 @@ There are scenarios where it makes sense to have multiple Octopus Servers. These
 
 A primary focus for Octopus 4.0 will be making it easier to manage multiple Octopus instances.
 
-To do this, we are planning to introduce two new concepts: Spaces and Zones. 
+To do this, we are planning to introduce two new concepts: _Spaces_ and _Zones_. 
 
 We are going to talk about these in _much_ more detail in coming posts (you can expect RFC's on each in the next couple of weeks). 
 
