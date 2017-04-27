@@ -95,13 +95,13 @@ If you're responsible for a Space, you can add groups from ODCM to a Team contro
 
 ### Switching Spaces
 
-So now you have access to a few spaces, that's great. So how do you get between them quickly and easily? How good is your memory for all those different URLs or do you like to use browser bookmarks?
+So now you have access to a few spaces, that's great. But how do you get between them quickly and easily? How good is your memory for all those different URLs or do you like to use browser bookmarks?
 
 How about a handy little switcher inside Octopus that knows all the spaces you have access to? We're thinking it will look like this.
 
 ![ODCM Space Switching](odcm-space-switch.png "width=500")
 
-The switching mechanism will make use of Single Sign On (SSO) will allow you to move between spaces effortlessly, with minimal impact to the current Octopus Deploy experience.
+The switching mechanism will make use of Single Sign On (SSO) and will allow you to move between spaces effortlessly, with minimal impact to the current Octopus Deploy experience.
 
 
 ### Sharing
