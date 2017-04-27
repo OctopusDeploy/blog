@@ -12,6 +12,7 @@ tags:
 - Security/PCI
 - Geographic Regions
 
+
 # Proposed solution
 
  - High-level architecture diagram (pretty picture) (Vanessa)
