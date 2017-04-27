@@ -7,13 +7,13 @@ tags:
  - RFC 
 ---
 
-# The problem (Michael)
+## The problem (Michael)
 
 - Security/PCI
 - Geographic Regions
 
 
-# Proposed solution
+## Proposed solution
 
  - High-level architecture diagram (pretty picture) (Vanessa)
  - Release lifecycle (showing promotion through environments, then zones) (Vanessa)
@@ -45,7 +45,7 @@ tags:
 
 - Environment Variable Templates
 
-# Super nitty gritty
+## Super nitty gritty
 
 - Disconnected mode (we won’t force you to use connected)
 - Version tolerance/message schema
@@ -59,7 +59,7 @@ tags:
 ## Security Concerns
 - Two-way trust using PKI (like Octopus and Tentacle)
 
-# Superseded Solutions (Vanessa)
+## Superseded Solutions (Vanessa)
 
 - Octopus Migrator
 - Offline Drops
@@ -67,9 +67,9 @@ tags:
 - Custom scripting using the Octopus REST API
 - Manually migrating everything
 
-# Rollout
+## Rollout
 
 - Phases
 - Octopus v4?
 
-# Feedback
+## Feedback
