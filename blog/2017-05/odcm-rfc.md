@@ -91,7 +91,7 @@ If you're responsible for administering ODCM, you can control which groups of us
 
 If you're responsible for a Space, you can add groups from ODCM to a Team control permissions.
 
-<img src="https://i.octopus.com/blog/201704-odcm-groups-947H.png" style="width:500px"/>
+![ODCM Groups](odcm-groups.png "width=500")
 
 ### Switching Spaces
 The features so far have focused on the management side of having multiple instances. Let's talk now about one of the friction points for the end users, remembering where all of the Octopus installations are that they have access to and signing in to each one separately.
@@ -102,7 +102,7 @@ Within a Space, we are aiming to keep the changes to Octopus Deploy itself to a 
 
 We're thinking that something similar to the following may be what the user will see.
 
-<img src="https://i.octopus.com/blog/201704-space-switch-6HZ4.png" style="width:500px"/>
+![ODCM Space Switching](odcm-space-switch.png "width=500")
 
 The new control would appear if the user has access to more than one Space and would might have a user experience something like when you're changing boards in Trello.
 
@@ -158,7 +158,7 @@ We don't see all of the dashboard, reports etc being essential for the initial r
 ### ODCM installation topology
 To help visualize what an ODCM installation might look like, the following diagram shows a scenario where there are two server instances (A and B) that have been registered as Spaces.  ODCM is shown on the right of the diagram, and is illustrated in a HA style configuration (like Octopus Deploy itself, it will support single node and HA configuration depending on your requirements).
 
-<img src="https://i.octopus.com/blog/201704-spaces-arch-Z87V.png" style="width:500px"/>
+![ODCM Architecture](odcm-arcitecture.png "width=500")
 
 ## Feedback
 What we've talked about above is what we think will be the minimum viable product for releasing ODCM, save for the couple of caveats mentioned on the way through.
