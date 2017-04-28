@@ -93,7 +93,7 @@ When you have multiple Spaces, access control operates at two levels:
 
 If you're responsible for administering ODCM, you can control which groups of users have access to which Spaces. A group may consist of Users and/or external groups (i.e. those sourced from Active Directory or Azure AD).
 
-If you're responsible for a Space, you can add groups from ODCM to a Team control permissions.
+If you're responsible for a Space, you can add groups from ODCM to a Team, to control permissions.
 
 ![ODCM Groups](odcm-groups.png "width=500")
 
