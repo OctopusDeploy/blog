@@ -1,6 +1,6 @@
 ---
 title: "Octopuses"
-description: "Octopus 4.0 will focus on making it easier to manage multiple Octopus instances." 
+description: "There are some compelling reasons to use multiple Octopus Server instances, but managing multiple instances is problemmatic. We want to make managing multiple related Octopus Server instances a first-class citizen of the Octopus world." 
 author: michael.richardson@octopus.com
 visibility: private
 ---
