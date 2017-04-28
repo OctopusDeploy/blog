@@ -9,7 +9,7 @@ When we first built Octopus, we imagined it would be used by small teams to depl
 
 One great big Octopus server isn't always a great idea though.
 
-You may have a large number of teams that don't share a lot in common. That was the case at Accenture, who [standardized on Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) across the organization, and had many hundreds of teams on a handful of very large Octopus servers. For their scenario, it made much more sense to split the big Octopus servers into lots of small ones, effectively giving each team or handful of teams their own small, isolated Octopus servers.
+You may have a large number of teams that have little in common. That was the case at Accenture, who [standardized on Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) across the organization, and had many hundreds of teams on a handful of very large Octopus servers. For their scenario, it made much more sense to split the big Octopus servers into lots of small ones, effectively giving each team or handful of teams their own small, isolated Octopus servers.
 
 Or perhaps your organization is [PCI compliant](https://octopus.com/docs/reference/pci-compliance-and-octopus-deploy), and requires a strict separation between your development and production environments. Customers in this situation often [manage an Octopus instance in each security zone](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers) and synchronize projects across the two.
 
