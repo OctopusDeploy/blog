@@ -73,4 +73,7 @@ Can you imagine promoting a release from one Octopus server to another, and seei
 
 ![Octopus Remote Release Promotions](octopus-instances-promoting-releases.png)
 
-Watch this space for some RFC posts as we dig a little bit deeper into our ideas.
+We are going to delve into _much_ more detail in future posts (stay tuned for some RFC's in the next few weeks).
+
+For now we just wanted to introduce the class of problems we are hoping to address with Octopus 4.0. 
+
