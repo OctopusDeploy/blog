@@ -19,7 +19,7 @@ The more we thought about it, the more we realized there are a few compelling re
 
 1. **Scale:** A single server has finite resources. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.
 
-1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
+1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each security zone.
 
 1. **Distributed Environments:** Many organizations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
 
