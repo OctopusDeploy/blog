@@ -29,6 +29,8 @@ For example, you can use one of our federated [authentication providers](https:/
 
 Likewise, to promote a release to a disconnected environment, you could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move data around, but this is complex, it's an all-or-nothing solution, and there is no good way to handle conflicts.
 
+Finally, how do you apply upgrades to all of these independent Octopus Server instances? You might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix.
+
 We want to make all of this easier, as first-class citizens of the Octopus world.
 
 Here is an example of the architecture we want to support.
