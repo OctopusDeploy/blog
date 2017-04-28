@@ -13,8 +13,6 @@ You may have a large number of teams that don't share a lot in common. That was 
 
 Or perhaps your organization is [PCI compliant](https://octopus.com/docs/reference/pci-compliance-and-octopus-deploy), and requires a strict separation between your development and production environments. Customers in this situation often [manage an Octopus instance in each security zone](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers) and synchronize projects across the two.
 
-## Why would I split up my Octopus servers?
-
 The more we thought about it, the more we realized there are a few compelling reasons why might split up your Octopus servers:
 
 1. **Independent teams:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus servers ensure your peas and carrots stay on their own sides of the plate.
