@@ -1,6 +1,6 @@
 ---
 title: "Octopuses"
-description: "There are some compelling reasons to use multiple Octopus Server instances, but managing multiple instances is problemmatic. We want to make managing multiple related Octopus Server instances a first-class citizen of the Octopus world." 
+description: "There are some compelling reasons to use multiple Octopus Server instances, but managing multiple instances is problematic. We want to make managing multiple related Octopus Server instances a first-class citizen of the Octopus world." 
 author: michael.richardson@octopus.com
 visibility: private
 ---
@@ -13,7 +13,7 @@ Another scenario where it makes sense to split into multiple Octopus Servers is 
 
 The more we thought about it, the more we realised there are quite a few compelling reasons why might split up your Octopus Servers:
 
-1. **Independent teams:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus Servers ensure your peas and carrots stay on their own sides of the plate.
+1. **Independent teams:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus servers ensure your peas and carrots stay on their own sides of the plate.
 
 1. **Scale:** A single server has finite resources. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.
 
@@ -21,18 +21,13 @@ The more we thought about it, the more we realised there are quite a few compell
 
 1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
 
-Now, based on some of these reasons, you go ahead and split your single Octopus Server instances, only to realise just how difficult it can be to manage them all! How should you manage user identies and access control across your Octopus Servers? How do you promote a release of a project between your network security zones, and then share the results of the deployments?
+Currently, based on some of these reasons, you go ahead and split your single Octopus Server instances, only to realise just how difficult it can be to manage them all! How should you manage user identies and access control across your Octopus Servers? How do you promote a release of a project between your network security zones, and then share the results of the deployments?
 
 In each of these cases we have found ways to get the job done, but it still doesn't feel like we've solved any of those problems in a "first-class" way.
 
 For example, you can use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus Servers can be painful.
 
 Likewise, to promote a release to a disconnected environment, you could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move data around, but this is complex, it's an all-or-nothing solution, and there is no good way to handle conflicts.
-
-
-You can work around all these difficulties using Octopus today, but there are a lot of trade offs.
-
-- Offline drops (no output variables nor deployment logs or dashboard updates)
 
 We want to make all of this easier, as first-class citizens of the Octopus world.
 

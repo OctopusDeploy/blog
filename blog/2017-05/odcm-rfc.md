@@ -109,7 +109,7 @@ The switching mechanism will make use of Single Sign On (SSO) and will allow you
 ### Sharing
 When you only have a single installation of Octopus, sharing of information is a none issue. Once you have lots of smaller installations there is an increased likelihood you'll want/need to share information between them.
 
-In our current vision for Spaces, they should be collections of related things, so the need for sharing should be minimal. We think the most likely things to need sharing are:
+Our vision for Spaces is that they should be collections of related things, so the need for sharing should be minimal. We thought about which things are likely to need sharing, and think they'll be things like:
 
 - Step Templates
 - Server Extensions
@@ -120,10 +120,10 @@ We're thinking that ODCM will have the ability to host a version of the Communit
 
 Sharing of Variable Sets is a little more complicated, primarily because they are owned by a Space and could contain sensitive information. We have a model in mind where ODCM will broker the exchange of the Variables Sets. In this model, the Space that owns the variables receives the request and can decide whether it wants to allow sharing with the Space who made the request.
 
-A Tentacle can already be used by more than one Octopus server, so this still applies and they can be used by more than one Space.
+A Tentacle can already be used by more than one Octopus server, so this still applies and it can be used by more than one Space.
 
 ### Multiple Octopus Deploy versions
-On to sharing of a different kind. The current Octopus Deploy MSI installer only allows a single version to be installed on a machine, by virtue of "c:\Program Files". You can use Octopus Server Manager to configure multiple instances on a single machine, but they are all sharing the same binaries and are therefore the same version. So if you want to have multiple Spaces on the same machine using different Octopus Deploy versions, this presents a problem.
+On to sharing of a different kind. The current Octopus Deploy MSI installer only allows a single version to be installed on a machine, by virtue of "c:\Program Files". You can use Octopus Server Manager to configure multiple instances on a single machine, but they are all sharing the same binaries and are therefore the same version. If you want to have multiple Spaces on the same machine using different Octopus Deploy versions, this presents a problem.
 
 As we mentioned earlier, you can already work around this today but it takes some effort. We want to make it easy. How we're thinking we'll do that is to include an agent on the Space host machines and automate the deployment of Octopus server itself.
 
