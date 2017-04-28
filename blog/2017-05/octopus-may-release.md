@@ -20,6 +20,7 @@ This month's release brings some exciting new features including support for Azu
     <li class='toc-h2'><a href='#optional-lifecycles'>Optional lifecycles</a></li>
     <li class='toc-h2'><a href='#browser-caching'>Browser caching</a></li>
     <li class='toc-h2'><a href='#failing-a-script-with-a-message'>Failing a script with a message</a></li>
+    <li class='toc-h2'><a href='#modify-task-state'>Modify task state</a></li>    
     <li class='toc-h2'><a href='#upgrading'>Upgrading</a></li>
     <li class='toc-h2'><a href='#wrap-up'>Wrap Up</a></li>
   </ul>
@@ -66,6 +67,9 @@ TODO
 <h2 id="failing-a-script-with-a-message">Failing a script with a message</h2>
 
 The message on the deployment overview can now be customised, refer to [failing a script with a message](https://octopus.com/docs/deploying-applications/custom-scripts#failing-a-script-with-a-message)
+
+<h2 id="modify-task-state">Modify Task State</h2>
+Have you ever deployed to Production only to have your last step "Email release party invites!" fail?  Or maybe you deployed sucessfully but after some QA decided to roll back. Now you can modify the state of a task.  When a task has completed with the state `Success`, `Failed` or `Canceled` you can edit the state from the task screen by providing the new task state and the reason for the change.  Once submitted, the task state will be updated and an entry in the task history will contain an audit entry with the change.  A new permission called `TaskEdit` is required to perform this action.  By default the `TaskEdit` permission has only been granted to the built-in Administrators team.
 
 <h2 id="upgrading">Upgrading</h2>
 
