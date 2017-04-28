@@ -17,9 +17,22 @@ The more we thought about it, the more we realised there are quite a few compell
 
 1. **Scale:** A single server has finite resources. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.
 
+1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
+
 1. **Distributed Environments:** Many organisations deploy to environments in multiple geographic regions. Deployment times (particularly package transfers) can be dramatically reduced by hosting an Octopus Server instance in each location.
 
-1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
+
+All of these are real-world scenarios, and our customers are dealing with them right now. 
+
+The _independent teams_ and _scale_ scenarios are typically dealt with by simply having many Octopus instances, spread across one or more machines. i.e. 
+
+![Isolated Octopus instances](octopus-instances-isolated.png)
+
+The problem with this is there is no coordination between the Octopus instances. There is no single authentication point. Upgrades must be handled for every instance. And there is no way to share entities between the instances.
+
+The _security_ and _distributed environments_ scenarios are likewise often dealt with by multiple Octopus instances, but with the added complication of having to move artifacts between the instances. This is accomplished either through using the Octopus Migrator to migrate a project, or by copying packages to the remote instance. 
+
+_INSERT DIAGRAM HERE_
 
 Currently, based on some of these reasons, you go ahead and split your single Octopus Server instances, only to realise just how difficult it can be to manage them all! How should you manage user identies and access control across your Octopus Servers? How do you promote a release of a project between your network security zones, and then share the results of the deployments?
 
@@ -31,6 +44,4 @@ Likewise, to promote a release to a disconnected environment, you could use an [
 
 We want to make all of this easier, as first-class citizens of the Octopus world.
 
-Here is an example of the architecture we want to support.
-
-![Spaces and Zones example architecture](spaces-and-zones-architecture.png)
+![Octopus Data Center Manager](octopus-instances-odcm.png)
