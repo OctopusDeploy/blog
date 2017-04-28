@@ -123,7 +123,7 @@ Sharing of Variable Sets is a little more complicated, primarily because they ar
 A Tentacle can already be used by more than one Octopus server, so this still applies and it can be used by more than one Space.
 
 ### Multiple Octopus Deploy versions
-On to sharing of a different kind. The current Octopus Deploy MSI installer only allows a single version to be installed on a machine, by virtue of "c:\Program Files". You can use Octopus Server Manager to configure multiple instances on a single machine, but they are all sharing the same binaries and are therefore the same version. If you want to have multiple Spaces on the same machine using different Octopus Deploy versions, this presents a problem.
+On to sharing of a different kind. The current Octopus Deploy MSI installer only allows a single version to be installed on a machine, by virtue of "*C:\Program Files*". You can use Octopus Server Manager to configure multiple instances on a single machine, but they are all sharing the same binaries and are therefore the same version. If you want to have multiple Spaces on the same machine using different Octopus Deploy versions, this presents a problem.
 
 As we mentioned earlier, you can already work around this today but it takes some effort. We want to make it easy. How we're thinking we'll do that is to include an agent on the Space host machines and automate the deployment of Octopus server itself.
 
