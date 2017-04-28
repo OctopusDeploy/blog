@@ -13,7 +13,7 @@ Another very common scenario is [security isolation](https://octopus.com/docs/pa
 
 ## Why would I split up my Octopus servers?
 
-The more we thought about it, the more we realised there are a few compelling reasons why might split up your Octopus servers:
+The more we thought about it, the more we realized there are a few compelling reasons why might split up your Octopus servers:
 
 1. **Independent teams:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus servers ensure your peas and carrots stay on their own sides of the plate.
 
@@ -21,7 +21,7 @@ The more we thought about it, the more we realised there are a few compelling re
 
 1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
 
-1. **Distributed Environments:** Many organisations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
+1. **Distributed Environments:** Many organizations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
 
 ## You can do all this with Octopus right now, but it hurts
 
@@ -39,7 +39,7 @@ OK, now let's figure out how you want to manage identity and access control acro
 
 To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
 
-You can share data betwen Octopus servers using [data migration](https://octopus.com/docs/administration/data-migration), but this is complex and there is no good way to handle conflicts.
+You can share data between Octopus servers using [data migration](https://octopus.com/docs/administration/data-migration), but this is complex and there is no good way to handle conflicts.
 
 Finally, regarding Octopus upgrades, you might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix. Some customers like Accenture have gone to the lengths of [using Octopus to manage Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) which is cool, but a lot of extra work.
 
@@ -51,6 +51,12 @@ _INSERT DIAGRAM HERE_
 
 Let's look briefly at the _security_ scenario in particular. How are you going to promote a release of a project between your network security zones, and then share the results of the deployments? You could do it all manually... (please don't do it all manually). You could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move your project and release data around, but like we said before, this is complex and comes with a whole host of other problems.
 
-We want to make all of this easier, as first-class citizens of the Octopus world.
+## We want to make all of this easier
+
+Can you imagine a tool which lets you manage identity, access control, upgrades, and information sharing across an entire farm of Octopus servers? We can!
 
 ![Octopus Data Center Manager](octopus-instances-odcm.png)
+
+Can you imagine promoting a release from one Octopus server to another, and seeing the deployment results flow back across, even if the servers are completely disconnected? We can imagine that too!
+
+_INSERT DIAGRAM HERE_
