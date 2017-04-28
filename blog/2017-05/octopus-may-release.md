@@ -75,7 +75,7 @@ Have you ever deployed to Production only to have your last step "Email release 
 
 <h2 id="upgrading">Upgrading</h2>
 
-<p>All of the usual <a href="https://octopus.com/docs/administration/upgrading">steps for upgrading Octopus Deploy</a> apply. Please note there is a minor breaking change in this release around the `show-configuration` command. Please see the [release notes](https://octopus.com/downloads/compare?from=3.12.8&to=3.13.0) for further information.
+<p>All of the usual <a href="https://octopus.com/docs/administration/upgrading">steps for upgrading Octopus Deploy</a> apply. Please note there is a minor breaking change in this release around the `show-configuration` command. Please see the <a href="https://octopus.com/downloads/compare?to=3.13.0">release notes</a> for further information.
 
 <h2 id="wrap-up">Wrap Up</h2>
 
