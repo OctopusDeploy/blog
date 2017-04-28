@@ -37,7 +37,7 @@ The _independent teams_ and _scale_ scenarios are typically dealt with by spread
 
 OK, now you've decided to shard across multiple servers, let's figure out how you want to manage identity and access control across your servers. And how would you like to manage Octopus upgrades across you servers? Oh, and what if you wanted to share some things like [step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
 
-To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
+To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single sign-on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
 
 You can share data between Octopus servers using [data migration](https://octopus.com/docs/administration/data-migration), but this is complex and there is no good way to handle conflicts.
 
@@ -47,7 +47,7 @@ Finally, regarding Octopus upgrades, you might have some teams who want to stay 
 
 The _security_ and _distributed environments_ scenarios are similar, but different.
 
-Generally, what is desired is a way to promote a release between Octopus instances.  Ideally, retaining all the Octopus goodness, like viewing the progression on the dashboard and deployments being as simple as clicking a button.
+Generally, what is desired is a way to promote a release between Octopus instances. Ideally, retaining all the Octopus goodness, like viewing the progression on the dashboard and deployments being as simple as clicking a button.
 
 Today, this is generally tackled via a few approaches:
 
