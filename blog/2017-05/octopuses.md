@@ -43,9 +43,9 @@ You can share data betwen Octopus servers using [data migration](https://octopus
 
 Finally, regarding Octopus upgrades, you might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix. Some customers like Accenture have gone to the lengths of [using Octopus to manage Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) which is cool, but a lot of extra work.
 
-### Deploying releases across security boundaries
+### Deploying releases across multiple Octopus servers
 
-The _security_ and _distributed environments_ scenarios are similarly dealt with by installing multiple, [isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers).
+The _security_ and _distributed environments_ scenarios are predominantly dealt with by installing multiple, [isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers).
 
 _INSERT DIAGRAM HERE_
 
