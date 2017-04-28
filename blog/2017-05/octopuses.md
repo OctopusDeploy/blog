@@ -21,25 +21,29 @@ The more we thought about it, the more we realised there are a few compelling re
 
 1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
 
-1. **Distributed Environments:** Many organisations deploy to environments in multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
+1. **Distributed Environments:** Many organisations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
 
-## You can do this with Octopus right now
+## You can do all this with Octopus right now, but it hurts
 
 All of these are real-world scenarios, and our customers are dealing with them right now. And in each of these cases we have found ways to get the job done, but it still doesn't feel like we've solved all of these problems in a "first-class" way.
 
 Let's take a look at some examples.
 
+### Scaling out across multiple Octopus servers
+
 The _independent teams_ and _scale_ scenarios are typically dealt with by spreading many Octopus servers across one or more machines, often using [high availability clusters](https://octopus.com/docs/administration/high-availability) somewhere in the mix.
 
 ![Isolated Octopus instances](octopus-instances-isolated.png)
 
-OK, so now let's figure out how you want to manage identity and access control across your servers. And how you want to manage Octopus upgrades across you servers. Oh, and what if you wanted to share some things[step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
+OK, now let's figure out how you want to manage identity and access control across your servers. And how you want to manage Octopus upgrades across you servers. Oh, and what if you wanted to share some things like [step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
 
 To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
 
-Right now there is no really good way to share data between Octopus servers, apart from [data migration](https://octopus.com/docs/administration/data-migration), but this is complex, it's an all-or-nothing solution, and there is no good way to handle conflicts.
+You can share data betwen Octopus servers using [data migration](https://octopus.com/docs/administration/data-migration), but this is complex and there is no good way to handle conflicts.
 
-Finally, how do you apply upgrades to all of these independent Octopus servers? You might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix. Some customers like Accenture have gone to the lengths of [using Octopus to manage Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady).
+Finally, regarding Octopus upgrades, you might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix. Some customers like Accenture have gone to the lengths of [using Octopus to manage Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) which is cool, but a lot of extra work.
+
+### Deploying releases across security boundaries
 
 The _security_ and _distributed environments_ scenarios are similarly dealt with by installing multiple, [isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers).
 
