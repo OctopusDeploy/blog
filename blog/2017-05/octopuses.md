@@ -17,7 +17,7 @@ The more we thought about it, the more we realized there are a few compelling re
 
 1. **Independent teams:** Your organization, like Accenture, has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus servers ensure your peas and carrots stay on their own sides of the plate.
 
-1. **Scale:** A single server has finite resources, and it's all backed by the same database server. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability to a point where continuing to scale up becomes undesirable.
+1. **Scale:** A single server has finite resources. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.
 
 1. **Security:** For security and compliance reasons your organization requires strict separation between your development and production environments. Many customers address this by having an Octopus Server in each security zone.
 
@@ -45,7 +45,7 @@ Finally, regarding Octopus upgrades, you might have some teams who want to stay 
 
 ### Promoting releases across multiple Octopus servers
 
-The _security_ and _distributed environments_ scenarios are similar, but different.
+The _security_ and _distributed environments_ scenarios are similar to _independent teams_ and _scale_, but different.
 
 Generally, what is desired is a way to promote a release between Octopus instances. Ideally, retaining all the Octopus goodness, like viewing the progression on the dashboard and deployments being as simple as clicking a button.
 
