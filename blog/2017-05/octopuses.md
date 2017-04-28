@@ -17,8 +17,6 @@ The more we thought about it, the more we realised there are quite a few compell
 
 1. **Scale:** A single server has finite resources. While High Available allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.
 
-1. **Distributed Teams:** Many organizations have teams that are located in different parts of the world. Octopus Servers located in each region can be used to address network latency.
-
 1. **Distributed Environments:** Similarly to 3, many organisations deploy to environments in multiple geographic regions.  Deployment times (particularly package transfers) can be dramatically reduced by hosting an Octopus instance in each location.
 
 1. **Security:** For security (for example PCI DSS compliance) your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each zone.
