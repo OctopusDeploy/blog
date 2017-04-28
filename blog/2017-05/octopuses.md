@@ -21,7 +21,7 @@ The more we thought about it, the more we realized there are a few compelling re
 
 1. **Scale:** A single server has finite resources. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.
 
-1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
+1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each security zone.
 
 1. **Distributed Environments:** Many organizations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
 
@@ -49,24 +49,30 @@ Finally, regarding Octopus upgrades, you might have some teams who want to stay 
 
 The _security_ and _distributed environments_ scenarios are similar, but different.
 
-Generally, what is desired is a way to promote a release between Octopus instances.  Ideally, retaining all the Octopus goodness, like viewing the progression on the dashboard and deployments being as simple as clicking a button. 
+Generally, what is desired is a way to promote a release between Octopus instances.  Ideally, retaining all the Octopus goodness, like viewing the progression on the dashboard and deployments being as simple as clicking a button.
 
 Today, this is generally tackled via a few approaches:
 
 - [Isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers): placing an Octopus instance in each zone.
 - [Offline-Drop deployment targets](https://octopus.com/docs/deployment-targets/offline-package-drop): to deploy your release to machines that can't communicate with an Octopus instance.
-- The [Octopus Migrator utility](https://octopus.com/docs/api-and-integration/octopus.migrator.exe-command-line): to migrate entities between Octopus instances. 
+- The [Octopus Migrator utility](https://octopus.com/docs/api-and-integration/octopus.migrator.exe-command-line): to migrate entities between Octopus instances.
 
-These all work; there are many customers using them every day. But they all have downsides. Offline-drop deployments have to be executed manually on each target machine, and don't allow you to view the results of the deployment or the task logs.  The Migrator utility was never designed for promoting a single release between environments.  And isolated Octopus servers suffers from all the management headaches mentioned above. 
+These all work; there are many customers using them every day. But they all have downsides:
+
+- Offline-drop deployments have to be executed manually on each target machine, and don't allow you to view the results of the deployment or the task logs.
+- The Migrator utility was never designed for promoting a single release between environments.
+- Isolated Octopus servers suffer from all the management headaches we mentioned earlier.
 
 In short, they don't solve the root problem in a way that we are happy with.
+
+## Let's solve these problems once and for all
 
 Can you imagine a tool which lets you manage identity, access control, upgrades, and information sharing across an entire farm of Octopus servers? We can!
 
 ![Octopus Data Center Manager](octopus-instances-odcm.png)
 
-![Octopus Remote Release Promotions](octopus-instances-promoting-releases.png)
-
 Can you imagine promoting a release from one Octopus server to another, and seeing the deployment results flow back across, even if the servers are completely disconnected? We can imagine that too!
 
-_INSERT DIAGRAM HERE_
+![Octopus Remote Release Promotions](octopus-instances-promoting-releases.png)
+
+Watch this space for some RFC posts as we dig a little bit deeper into our ideas.
