@@ -93,7 +93,7 @@ When you have multiple Spaces, access control operates at two levels:
 
 If you're responsible for administering ODCM, you can control which groups of users have access to which Spaces. A group may consist of Users and/or external groups (i.e. those sourced from Active Directory or Azure AD).
 
-If you're responsible for a Space, you can add groups from ODCM to a Team, to control permissions.
+If you're responsible for a Space, you can add groups from ODCM to a Team control permissions.
 
 ![ODCM Groups](odcm-groups.png "width=500")
 
@@ -125,7 +125,7 @@ A Tentacle can already be used by more than one Octopus server, so this still ap
 ### Multiple Octopus Deploy versions
 On to sharing of a different kind. The current Octopus Deploy MSI installer only allows a single version to be installed on a machine, by virtue of "*C:\Program Files*". You can use Octopus Server Manager to configure multiple instances on a single machine, but they are all sharing the same binaries and are therefore the same version. If you want to have multiple Spaces on the same machine using different Octopus Deploy versions, this presents a problem.
 
-As we mentioned earlier, you can already work around this today but it takes some effort. We want to make it easy. How we're thinking we'll do that is to include an agent on the Space host machines and automate the deployment of Octopus server itself.
+As we mentioned earlier, you can already work around this today but it takes some effort. We want to make it easy. Our current idea is that we'll include an agent on the host machines of the Spaces and automate the deployment of Octopus server itself.
 
 If you are responsible for a Space, you can then control (via ODCM) which version your Space is using and if/when you want to upgrade to newer versions.
 
