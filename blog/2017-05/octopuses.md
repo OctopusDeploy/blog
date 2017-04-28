@@ -17,12 +17,11 @@ The more we thought about it, the more we realised there are quite a few compell
 
 2. **Scale:** A single server has finite resources. While High Available allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.    
 
-3. **Geography:** 
-    - 3a. **Teams:** Many organizations have teams that are geographically dispersed. Octopus Servers located in each region can be used to address network latency. 
+3. **Distributed Teams:** Many organizations have teams that are located in different parts of the world. Octopus Servers located in each region can be used to address network latency. 
 
-     - 3b. **Environments:** Similarly to 3a, many organisations deploy to environments in multiple georgraphic regions.  Deployment times (particularly package transfers) can be dramatically reduced by hosting an Octopus instance in each location. 
+4. **Distributed Environments:** Similarly to 3, many organisations deploy to environments in multiple geographic regions.  Deployment times (particularly package transfers) can be dramatically reduced by hosting an Octopus instance in each location. 
 
-4. **Security:** For security (for example PCI DSS compliance) your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each zone. 
+5. **Security:** For security (for example PCI DSS compliance) your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each zone. 
 
 
 A primary focus for Octopus 4.0 will be making it easier to manage multiple Octopus instances.
