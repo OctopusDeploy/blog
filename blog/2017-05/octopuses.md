@@ -24,8 +24,14 @@ The more we thought about it, the more we realised there are quite a few compell
 
 4. **Security:** For security (for example PCI DSS compliance) your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each zone. 
 
+Now, based on some of these reasons, you go ahead and split your single Octopus Server instances, only to realise just how difficult it can be to manage them all.
 
 
+You can work around all these difficulties using Octopus today, but there are a lot of trade offs.
+
+- Offline drops (no output variables nor deployment logs or dashboard updates)
+
+We want to make all of this easier, as first-class citizens of the Octopus world.
 
 Here is an example of the architecture we want to support.
 
