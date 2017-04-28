@@ -43,13 +43,21 @@ You can share data betwen Octopus servers using [data migration](https://octopus
 
 Finally, regarding Octopus upgrades, you might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix. Some customers like Accenture have gone to the lengths of [using Octopus to manage Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) which is cool, but a lot of extra work.
 
-### Deploying releases across multiple Octopus servers
+### Promoting releases across multiple Octopus servers
 
-The _security_ and _distributed environments_ scenarios are predominantly dealt with by installing multiple, [isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers).
+The _security_ and _distributed environments_ scenarios are similar, but different.
 
-_INSERT DIAGRAM HERE_
+Generally, what is desired is a way to promote a release between Octopus instances.  Ideally, retaining all the Octopus goodness, like viewing the progression on the dashboard and deployments being as simple as clicking a button. 
 
-In this scenario, how are you going to promote a release of a project between your network security zones, and then share the results of the deployments? You could do it all manually... (please don't do it all manually). You could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move your project and release data around, but like we said before, this is complex and comes with a whole host of other problems.
+Today, this is generally tackled via a few approaches:
+
+- [Isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers): placing an Octopus instance in each zone.
+- [Offline-Drop deployment targets](https://octopus.com/docs/deployment-targets/offline-package-drop): to deploy your release to machines that can't communicate with an Octopus instance.
+- The [Octopus Migrator utility](https://octopus.com/docs/api-and-integration/octopus.migrator.exe-command-line): to migrate entities between Octopus instances. 
+
+These all work; there are many customers using them every day. But they all have downsides. Offline-drop deployments have to be executed manually on each target machine, and don't allow you to view the results of the deployment or the task logs.  The Migrator utility was never designed for promoting a single release between environments.  And isolated Octopus servers suffers from all the management headaches mentioned above. 
+
+In short, they don't solve the root problem in a way that we are happy with.
 
 We want to make all of this easier, as first-class citizens of the Octopus world.
 
