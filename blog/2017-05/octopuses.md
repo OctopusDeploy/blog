@@ -13,7 +13,7 @@ Another very common scenario is [security isolation](https://octopus.com/docs/pa
 
 ## Why would I split up my Octopus servers?
 
-The more we thought about it, the more we realised there are a few compelling reasons why might split up your Octopus servers:
+The more we thought about it, the more we realized there are a few compelling reasons why might split up your Octopus servers:
 
 1. **Independent teams:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus servers ensure your peas and carrots stay on their own sides of the plate.
 
@@ -21,7 +21,7 @@ The more we thought about it, the more we realised there are a few compelling re
 
 1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
 
-1. **Distributed Environments:** Many organisations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
+1. **Distributed Environments:** Many organizations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
 
 ## You can do all this with Octopus right now, but it hurts
 
@@ -39,7 +39,7 @@ OK, now let's figure out how you want to manage identity and access control acro
 
 To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
 
-You can share data betwen Octopus servers using [data migration](https://octopus.com/docs/administration/data-migration), but this is complex and there is no good way to handle conflicts.
+You can share data between Octopus servers using [data migration](https://octopus.com/docs/administration/data-migration), but this is complex and there is no good way to handle conflicts.
 
 Finally, regarding Octopus upgrades, you might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix. Some customers like Accenture have gone to the lengths of [using Octopus to manage Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) which is cool, but a lot of extra work.
 
@@ -59,6 +59,12 @@ These all work; there are many customers using them every day. But they all have
 
 In short, they don't solve the root problem in a way that we are happy with.
 
-We want to make all of this easier, as first-class citizens of the Octopus world.
+Can you imagine a tool which lets you manage identity, access control, upgrades, and information sharing across an entire farm of Octopus servers? We can!
 
 ![Octopus Data Center Manager](octopus-instances-odcm.png)
+
+![Octopus Remote Release Promotions](octopus-instances-promoting-releases.png)
+
+Can you imagine promoting a release from one Octopus server to another, and seeing the deployment results flow back across, even if the servers are completely disconnected? We can imagine that too!
+
+_INSERT DIAGRAM HERE_
