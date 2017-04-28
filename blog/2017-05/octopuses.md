@@ -1,6 +1,6 @@
 ---
-title: "Introducing Spaces and Zones"
-description: "Octopus 4.0 will focus on making it easier to manage multiple Octopus instances. As part of that, we are introducing two new concepts: Spaces and Zones" 
+title: "Octopuses"
+description: "Octopus 4.0 will focus on making it easier to manage multiple Octopus instances." 
 author: michael.richardson@octopus.com
 visibility: private
 ---
