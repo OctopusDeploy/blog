@@ -21,7 +21,7 @@ The more we thought about it, the more we realised there are a few compelling re
 
 1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus Server in each security zone.
 
-1. **Distributed Environments:** Many organisations deploy to environments in multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
+1. **Distributed Environments:** Many organisations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
 
 ## You can do this with Octopus right now
 
