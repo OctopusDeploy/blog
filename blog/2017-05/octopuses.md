@@ -15,11 +15,11 @@ Or perhaps your organization is [PCI compliant](https://octopus.com/docs/referen
 
 The more we thought about it, the more we realized there are a few compelling reasons why you might split up your Octopus servers:
 
-1. **Independent teams:** Your organization has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus servers ensure your peas and carrots stay on their own sides of the plate.
+1. **Independent teams:** Your organization, like Accenture, has multiple teams that work independently. Currently Octopus has many entities that are shared between Projects (e.g. Lifecycles, Variable Sets, Step Templates, etc). Separate Octopus servers ensure your peas and carrots stay on their own sides of the plate.
 
-1. **Scale:** A single server has finite resources. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability.
+1. **Scale:** A single server has finite resources, and it's all backed by the same database server. Whilst a [high availability cluster](https://octopus.com/high-availability) allows you to scale work across multiple servers, there are many situations where having large numbers of entities (Environments, Machines, Projects, etc) impacts performance and usability to a point where continuing to scale up becomes undesirable.
 
-1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each security zone.
+1. **Security:** For security and compliance reasons your organization requires strict separation between your development and production environments. Many customers address this by having an Octopus Server in each security zone.
 
 1. **Distributed Environments:** Many organizations deploy to environments across multiple geographic regions. Deployment performance (particularly package transfers) can be dramatically improved by hosting an Octopus Server instance in each location.
 
