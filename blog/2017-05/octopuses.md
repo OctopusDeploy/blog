@@ -25,22 +25,8 @@ The more we thought about it, the more we realised there are quite a few compell
 4. **Security:** For security (for example PCI DSS compliance) your organization doesn't allow network communication between development and production environments. Many customers address this by having an Octopus Server in each zone. 
 
 
-A primary focus for Octopus 4.0 will be making it easier to manage multiple Octopus instances.
 
-To do this, we are planning to introduce two new concepts: _Spaces_ and _Zones_. 
 
-We are going to talk about these in _much_ more detail in coming posts (you can expect RFC's on each in the next couple of weeks). 
-
-The two concepts are orthogonal, but complementary. As a (very) brief introduction, Spaces are designed to address points **1**, **2**, and **3a** above, while Zones address points **3b** and **4**.
-
-Both are essentially just an Octopus Server instance. The difference is in how they interact. 
-
-Spaces are an isolated set of related entities (Projects, LifeCycles, Variable Sets, etc), managed by a central component to allow for authentication and easy navigation between Spaces. 
-
-Zones will effectively allow you to split a Project across multiple Octopus instances, defining some Environments, Variables, Tenants etc on one instance, some on another. Releases will be able to promoted across Zones (manually if there is no network access). 
-
-As mentioned, both will be covered in much more detail soon. 
-
-In the meantime, below is an example of the architecture we want to support.
+Here is an example of the architecture we want to support.
 
 ![Spaces and Zones example architecture](spaces-and-zones-architecture.png)
