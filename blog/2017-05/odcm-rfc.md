@@ -4,7 +4,7 @@ description: We are designing a new product to manage Octopus Servers at scale. 
 author: shannon.lewis@octopus.com
 visibility: private
 tags:
- - RFC 
+ - RFC
 ---
 
 When we first built Octopus, we imagined it would be used by small teams to deploy applications to a dozen or so machines. Over time, we've [seen customers scale Octopus up to many thousands of machines](https://octopus.com/blog/octostats), deploying hundreds of different projects. At that scale, customers need their Octopus instances to be online at all times, so we support running a single [Octopus server across a multi-node, high availability cluster](https://octopus.com/high-availability).
@@ -17,7 +17,7 @@ When it comes to rolling out Octopus at scale, we want to offer more choices:
 2. Lots of teeny, tiny Octopus instances (which might also be highly available)
 3. Some mix of the above
 
-While we've had a great story for a while now for scenario #1, we haven't had great solutions for #2 and #3. In this post, we're going to outline a new product offering that we're working on for enterprise-wide adoption of Octopus, that's designed to make all of these scenarios easier. 
+While we've had a great story for a while now for scenario #1, we haven't had great solutions for #2 and #3. In this post, we're going to outline a new product offering that we're working on for enterprise-wide adoption of Octopus, that's designed to make all of these scenarios easier.
 
 ## The case for lots of small instances
 A large, single HA Octopus makes sense when you have a team that share a lot of projects and machines - imagine something like a team building an ecommerce platform that runs across hundreds of machines, deploying often and rolling back if something goes wrong. The existing Octopus HA solution is perfect for this.
@@ -29,10 +29,11 @@ Here are some problems to having one big Octopus instance when so many different
 - Maintaining permissions for each team on specific projects is tedious
 - It is not possible to restrict many concepts to specific teams, e.g. NuGet feeds, variable sets and machine policies
 - Large numbers of projects, environments and tenants cause queries to run slowly, e.g. Dashboard
-- Deployments for other teams that the user may have no control over (or access to) impact the deployment of their projects
-- Upgrading an Octopus instance impacts everyone. This causes a tension between leading-edge teams that want the latest Octopus features, and more stable teams that might be in a freeze or undergoing an audit. 
-- It’s not possible to delegate permissions - e.g., the manager of a dev team can’t add a new developer to a team, they have to ask an Octopus administrator to do it.
+- Deployments for other teams that you may have no control over (or access to) impact the deployment of your projects
+- Upgrading an Octopus instance impacts everyone. This causes a tension between leading-edge teams that want the latest Octopus features, and more stable teams that might be in a freeze or undergoing an audit
+- It’s not possible to delegate permissions - e.g., the manager of a dev team can’t add a new developer to a team, they have to ask an Octopus administrator to do it
 - Backup and restore of an individual team is practically impossible. What do you do if one team makes a big mistake and needs a backup restored, while other teams have moved forward? How does this impact on your compliance obligations?
+
 For these reasons, we've been recommending that customers run lots of small instances, perhaps one for each team or each department.
 
 **You can already do this today.** We have customers, like Accenture in the video linked above, but also others, who are doing this in production at scale with lots of small Octopus instances.
@@ -43,7 +44,6 @@ For these reasons, we've been recommending that customers run lots of small inst
 The best part about this is that you gain so much more ability to scale - you can effectively "shard" your Octopus across many machines and many database servers.
 
 ## Points of friction
-
 While it can be done today, the major downside is that we don't currently provide any tooling to help mange all those little Octopus servers - the experience for end users and Octopus administrators just isn't great.
 
 - If the instances are installed on the same VM, they all have to be upgraded together
@@ -52,7 +52,7 @@ While it can be done today, the major downside is that we don't currently provid
 - When a new user joins, they need to be added to teams on every instance
 
 ## Addressing the friction
-To make it easier to more customers move towards this model of having lots of smaller instances, we want to address these friction points. To do that, we want to make the following easier:
+To make it easier for customers to move towards this model of having lots of smaller instances, we want to address these friction points. To do that, we want to make the following easier:
 
 - For administrators to manage multiple smaller instances of Octopus Deploy, including configuration and upgrades
 - For administrators to manage users and groups across those instances of Octopus Deploy
@@ -61,16 +61,16 @@ To make it easier to more customers move towards this model of having lots of sm
 - For administrators and managers to be able to view reports and information across all of the instances
 
 ## Octopus Data Center Manager
-When we looked at the friction points outlined above, they're all a direct result of working across Octopus Deploy installation boundaries. The answer we're looking for seems to be a layer above Octopus Deploy itself, and so we're  building a new product called **Octopus Data Center Manager** (ODCM).
+When we looked at the friction points outlined above, they're all a direct result of working across Octopus Deploy installation boundaries. The answer we're looking for seems to be a layer above Octopus Deploy itself, and so we're building a new product called **Octopus Data Center Manager** (ODCM).
 
 Let's have a look through what we see as some of the key features for ODCM, and look at how they address the points above.
 
-To help visualize what an ODCM installation might look like, and to help illustrate some of the points we'll talk about below, the following diagram shows a scenario where there are two server instances (A and B) and an ODCM installation.  ODCM is shown in a Highly Available style configuration (like Octopus Deploy itself, it will support single node and HA configuration depending on your requirements).
+To help visualize what an ODCM installation might look like, and to help illustrate some of the points we'll talk about below, the following diagram shows a scenario where there are two server instances (A and B) and an ODCM installation. ODCM is shown in a Highly Available style configuration (like Octopus Deploy itself, it will support single node and HA configuration depending on your requirements).
 
 ![ODCM Architecture](odcm-arcitecture.png "width=500")
 
 ### Spaces
-When you first start using Octopus Deploy you will likely start with a standard installation and over time it grows. As the installation grows, you will reach a point where your Octopus feels cluttered. When you reach that point you will also probably be able to identify collections of related things that could be grouped together and separated from everything else. What you would like to do is move those into their own Space, i.e. their own smaller Octopus Deploy.
+When you first start using Octopus Deploy you will likely start with a standard installation and over time, it grows. As the installation grows, you will reach a point where your Octopus feels cluttered. When you reach that point you will also probably be able to identify collections of related things that could be grouped together and separated from everything else. What you would like to do is move those into their own Space, i.e. their own smaller Octopus Deploy.
 
 We can help you manage this using ODCM. It allows you to:
 
@@ -107,7 +107,7 @@ How about a handy little switcher inside Octopus that knows all the spaces you h
 The switching mechanism will make use of Single Sign On (SSO) and will allow you to move between spaces effortlessly, with minimal impact to the current Octopus Deploy experience.
 
 ### Sharing
-When you only have a single installation of Octopus, sharing of information is a none issue. Once you have lots of smaller installations there is an increased likelihood you'll want/need to share information between them.
+When you only have a single installation of Octopus, sharing of information is a non-issue. Once you have lots of smaller installations, there is an increased likelihood you'll want/need to share information between them.
 
 Our vision for Spaces is that they should be collections of related things, so the need for sharing should be minimal. We thought about which things are likely to need sharing, and think they'll be things like:
 
@@ -118,7 +118,7 @@ Our vision for Spaces is that they should be collections of related things, so t
 
 We're thinking that ODCM will have the ability to host a version of the Community Step Template library, to share Step Templates between Spaces. We may also introduce a similar concept for Octopus Deploy server extensions, so they can be shared between Spaces.
 
-Sharing of Variable Sets is a little more complicated, primarily because they are owned by a Space and could contain sensitive information. We have a model in mind where ODCM will broker the exchange of the Variables Sets. In this model, the Space that owns the variables receives the request and can decide whether it wants to allow sharing with the Space who made the request.
+Sharing of Variable Sets is a little more complicated, primarily because they are owned by a Space and could contain sensitive information. We have a model in mind where ODCM will broker the exchange of the Variables Sets. In this model, the Space that owns the variables receives the request and can decide whether it wants to allow sharing with the Space that made the request.
 
 A Tentacle can already be used by more than one Octopus server, so this still applies and it can be used by more than one Space.
 
@@ -131,24 +131,23 @@ If you are responsible for a Space, you can then control (via ODCM) which versio
 
 If you are responsible for a Space that is Highly Available, you will also be able to control versions and upgrades across your Node Set.
 
-Once there are multiple Spaces, and even versions, of Octopus Deploy server running on a machine maintain isolation will be important.  We haven’t settled on exactly how we'll ensure this, but expect there will some changes required to the way Server Side scripts operate.
+Once there are multiple Spaces, and even versions, of Octopus Deploy server running on a machine, maintaining isolation will be important. We haven’t settled on exactly how we'll ensure this, but expect there will some changes required to the way Server Side scripts operate.
 
 ### Octopus Deploy Server monitoring and reporting
-If you are managing a single installation of Octopus getting consolidated information across projects/teams is relatively easy. Once you have lots of installations, it's not easy.
+If you are managing a single installation of Octopus, getting consolidated information across projects/teams is relatively easy. Once you have lots of installations, it's not easy.
 
-ODCM will help you with this.  It will be in communication with the Spaces, so can request information and statistics that can be collated centrally. You'll be able to access this information through a dashboard and some reports in ODCM.
+ODCM will help you with this. It will be in communication with the Spaces, so it can request information and statistics that can be collated centrally. You'll be able to access this information through a dashboard and some reports in ODCM.
 
-We don't except that all of the dashboard and reports will make it into the initial release. We will focus on a minimal set and build on this over subsequent releases. The initial release may contain something like:
+We don't expect that all of the dashboard and reports will make it into the initial release. We will focus on a minimal set and build on this over subsequent releases. The initial release may contain something like:
 
 - a dashboard showing Spaces, with their server version and current status (online/offline)
 - a report showing project count and target count per Space
 - a report showing deployment counts (number of successful and failed deployments) per Space over a give timeframe
 
-If there are other metrics you think would be valuable please let us know.
+If there are other metrics you think would be valuable, please let us know.
 
 ### Licensing
-ODCM will be a separate product to Octopus Deploy itself, and will have a different licence model. The model is still under discussion and we’ll share more details as they become available, the pricing will be friendly in regards to running lots of Spaces.
+ODCM will be a separate product to Octopus Deploy itself, and will have a different licence model. The model is still under discussion and we’ll share more details as they become available. The pricing will be friendly in regards to running lots of Spaces.
 
 ## Feedback
-What we've talked about above is what we think will be the minimum viable product for ODCM. As always we're keen to get your feedback, and from there we'll be looking to start the implementation in the next couple of weeks.
-
+What we've talked about above is what we think will be the minimum viable product for ODCM. As always, we're keen to get your feedback and from there we'll be looking to start the implementation in the next couple of weeks.
