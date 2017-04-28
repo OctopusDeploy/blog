@@ -4,7 +4,7 @@ description: We are designing a new product to manage Octopus Servers at scale. 
 author: shannon.lewis@octopus.com
 visibility: private
 tags:
- - RFC 
+ - RFC
 ---
 
 When we first built Octopus, we imagined it would be used by small teams to deploy applications to a dozen or so machines. Over time, we've [seen customers scale Octopus up to many thousands of machines](https://octopus.com/blog/octostats), deploying hundreds of different projects. At that scale, customers need their Octopus instances to be online at all times, so we support running a single [Octopus server across a multi-node, high availability cluster](https://octopus.com/high-availability).
@@ -17,7 +17,7 @@ When it comes to rolling out Octopus at scale, we want to offer more choices:
 2. Lots of teeny, tiny Octopus instances (which might also be highly available)
 3. Some mix of the above
 
-While we've had a great story for a while now for scenario #1, we haven't had great solutions for #2 and #3. In this post, we're going to outline a new product offering that we're working on for enterprise-wide adoption of Octopus, that's designed to make all of these scenarios easier. 
+While we've had a great story for a while now for scenario #1, we haven't had great solutions for #2 and #3. In this post, we're going to outline a new product offering that we're working on for enterprise-wide adoption of Octopus, that's designed to make all of these scenarios easier.
 
 ## The case for lots of small instances
 A large, single HA Octopus makes sense when you have a team that share a lot of projects and machines - imagine something like a team building an ecommerce platform that runs across hundreds of machines, deploying often and rolling back if something goes wrong. The existing Octopus HA solution is perfect for this.
@@ -29,7 +29,7 @@ Here are some problems to having one big Octopus instance when so many different
 - Maintaining permissions for each team on specific projects is tedious
 - It is not possible to restrict many concepts to specific teams, e.g. NuGet feeds, variable sets and machine policies
 - Large numbers of projects, environments and tenants cause queries to run slowly, e.g. Dashboard
-- Deployments for other teams that the user may have no control over (or access to) impact the deployment of their projects
+- Deployments for other teams that you may have no control over (or access to) impact the deployment of your projects
 - Upgrading an Octopus instance impacts everyone. This causes a tension between leading-edge teams that want the latest Octopus features, and more stable teams that might be in a freeze or undergoing an audit
 - It’s not possible to delegate permissions - e.g., the manager of a dev team can’t add a new developer to a team, they have to ask an Octopus administrator to do it
 - Backup and restore of an individual team is practically impossible. What do you do if one team makes a big mistake and needs a backup restored, while other teams have moved forward? How does this impact on your compliance obligations?
@@ -151,4 +151,3 @@ ODCM will be a separate product to Octopus Deploy itself, and will have a differ
 
 ## Feedback
 What we've talked about above is what we think will be the minimum viable product for ODCM. As always, we're keen to get your feedback and from there we'll be looking to start the implementation in the next couple of weeks.
-
