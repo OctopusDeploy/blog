@@ -45,7 +45,7 @@ Finally, regarding Octopus upgrades, you might have some teams who want to stay 
 
 ### Deploying releases across security boundaries
 
-The _security_ and _distributed environments_ scenarios are similarly dealt with by installing multiple, [isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers).
+The _security_ and _distributed environments_ scenarios are predominantly dealt with by installing multiple, [isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers).
 
 _INSERT DIAGRAM HERE_
 
