@@ -33,19 +33,13 @@ Now you just need to figure out how you want to manage identity and access contr
 
 To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
 
-For example, how do you promote a release of a project between your network security zones, and then share the results of the deployments? You could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move data around, but this is complex, it's an all-or-nothing solution, and there is no good way to handle conflicts.
-
-Finally, how do you apply upgrades to all of these independent Octopus servers? You might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix.
-
-
-
-The _security_ and _distributed environments_ scenarios are likewise often dealt with by multiple Octopus instances, but with the added complication of having to move artifacts between the instances. This is accomplished either through using the Octopus Migrator to migrate a project, or by copying packages to the remote instance. 
+The _security_ and _distributed environments_ scenarios are similarly dealt with by installing multiple, [isolated Octopus servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers).
 
 _INSERT DIAGRAM HERE_
 
-Currently, based on some of these reasons, you go ahead and split your single Octopus server, only to realise 
+Now, how do you promote a release of a project between your network security zones, and then share the results of the deployments? You could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move data around, but this is complex, it's an all-or-nothing solution, and there is no good way to handle conflicts.
 
-
+And in both cases, how do you apply upgrades to all of these independent Octopus servers? You might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix.
 
 We want to make all of this easier, as first-class citizens of the Octopus world.
 
