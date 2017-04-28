@@ -52,9 +52,11 @@ You can learn more about these new features from our main [Deploying to Service 
 
 We also have a new guide explaining [Continuous Integration for Service Fabric](https://octopus.com/docs/guides/service-fabric) where you can learn how Octopus Deploy fits into a Continuous Deployment pipeline for you Service Fabric applications.
 
-<h2 id="hsts-support">HSTS</h2>
+<h2 id="hsts-support">HTTP Strict-Transport-Security (HSTS)</h2>
 
-TODO
+HTTP Strict Transport Security is an HTTP header that can be used to tell the web browser that it should only ever communicate with the website using HTTPS, even if the user tries to use HTTP. This can substantially lessen your attack surface, and is frequently recommended by security professionals. 
+
+We can now send this header on demand, but as there are some potential complexations, it is not enabled by default. If you have your Octopus Server exposed on the internet, we recommend [reading up on and enabling HSTS](https://octopus.com/docs/how-to/expose-the-octopus-web-portal-over-https#HSTS) if you can.
 
 <h2 id="optional-lifecycles">Optional lifecycles</h2>
 
