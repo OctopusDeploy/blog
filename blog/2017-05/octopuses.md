@@ -21,28 +21,31 @@ The more we thought about it, the more we realised there are quite a few compell
 
 1. **Distributed Environments:** Many organisations deploy to environments in multiple geographic regions. Deployment times (particularly package transfers) can be dramatically reduced by hosting an Octopus Server instance in each location.
 
+All of these are real-world scenarios, and our customers are dealing with them right now. And in each of these cases we have found ways to get the job done, but it still doesn't feel like we've solved all of these problems in a "first-class" way.
 
-All of these are real-world scenarios, and our customers are dealing with them right now. 
+Let's take a look at some examples.
 
-The _independent teams_ and _scale_ scenarios are typically dealt with by simply having many Octopus instances, spread across one or more machines. i.e. 
+The _independent teams_ and _scale_ scenarios are typically dealt with by spreading many Octopus servers across one or more machines, often using [high availability clusters](https://octopus.com/docs/administration/high-availability) somewhere in the mix.
 
 ![Isolated Octopus instances](octopus-instances-isolated.png)
 
-The problem with this is there is no coordination between the Octopus instances. There is no single authentication point. Upgrades must be handled for every instance. And there is no way to share entities between the instances.
+Now you just need to figure out how you want to manage identity and access control, installing upgrades across your Octopus servers, and how can you share things like [step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
+
+To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
+
+For example, how do you promote a release of a project between your network security zones, and then share the results of the deployments? You could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move data around, but this is complex, it's an all-or-nothing solution, and there is no good way to handle conflicts.
+
+Finally, how do you apply upgrades to all of these independent Octopus servers? You might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix.
+
+
 
 The _security_ and _distributed environments_ scenarios are likewise often dealt with by multiple Octopus instances, but with the added complication of having to move artifacts between the instances. This is accomplished either through using the Octopus Migrator to migrate a project, or by copying packages to the remote instance. 
 
 _INSERT DIAGRAM HERE_
 
-Currently, based on some of these reasons, you go ahead and split your single Octopus server, only to realise just how difficult it can be to manage them all! How should you manage user identies and access control across your Octopus servers? How do you promote a release of a project between your network security zones, and then share the results of the deployments?
+Currently, based on some of these reasons, you go ahead and split your single Octopus server, only to realise 
 
-In each of these cases we have found ways to get the job done, but it still doesn't feel like we've solved any of those problems in a "first-class" way.
 
-For example, you can use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single-sign on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
-
-Likewise, to promote a release to a disconnected environment, you could use an [offline package drop](https://octopus.com/docs/deployment-targets/offline-package-drop) but [they have some important limitations](https://octopusdeploy.uservoice.com/search?filter=ideas&query=offline%20drop) including the fact you [cannot use output variables in offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops) and [the dashboard can get confusing](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/13066998-offline-drop-specific-dashboard-status). You could take it a step further and use [data migration](https://octopus.com/docs/administration/data-migration) to move data around, but this is complex, it's an all-or-nothing solution, and there is no good way to handle conflicts.
-
-Finally, how do you apply upgrades to all of these independent Octopus servers? You might have some teams who want to stay on a specific version during a period of stability, and other teams who want to install a newer version in order to access a new feature or bug fix.
 
 We want to make all of this easier, as first-class citizens of the Octopus world.
 
