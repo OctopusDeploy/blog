@@ -21,7 +21,7 @@ The more we thought about it, the more we realised there are quite a few compell
 
 1. **Security:** For security and compliance reasons your organization doesn't allow network communication between development and production environments. In most cases, you also need strict controls around which people can access your production environment. Many customers address this by having an Octopus server in each security zone.
 
-Currently, based on some of these reasons, you go ahead and split your single Octopus server instances, only to realise just how difficult it can be to manage them all! How should you manage user identies and access control across your Octopus servers? How do you promote a release of a project between your network security zones, and then share the results of the deployments?
+Currently, based on some of these reasons, you go ahead and split your single Octopus server, only to realise just how difficult it can be to manage them all! How should you manage user identies and access control across your Octopus servers? How do you promote a release of a project between your network security zones, and then share the results of the deployments?
 
 In each of these cases we have found ways to get the job done, but it still doesn't feel like we've solved any of those problems in a "first-class" way.
 
