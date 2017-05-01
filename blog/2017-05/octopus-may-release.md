@@ -21,6 +21,7 @@ This month's release brings some exciting new features including support for Azu
     <li class='toc-h2'><a href='#browser-caching'>Browser caching</a></li>
     <li class='toc-h2'><a href='#failing-a-script-with-a-message'>Failing a script with a message</a></li>
     <li class='toc-h2'><a href='#modify-task-state'>Modify task state</a></li>    
+    <li class='toc-h2'><a href='#channel-indexed-version-templates'>Channel-indexed version-template variables</a></li>    
     <li class='toc-h2'><a href='#upgrading'>Upgrading</a></li>
     <li class='toc-h2'><a href='#wrap-up'>Wrap Up</a></li>
   </ul>
@@ -72,6 +73,51 @@ The message on the deployment overview can now be customised, refer to [failing 
 
 <h2 id="modify-task-state">Modify Task State</h2>
 Have you ever deployed to Production only to have your last step "Email release party invites!" fail?  Or maybe you deployed sucessfully but after some QA decided to roll back. Now you can modify the state of a task.  When a task has completed with the state `Success`, `Failed` or `Canceled` you can edit the state from the task screen by providing the new task state and the reason for the change.  Once submitted, the task state will be updated and an entry in the task history will contain an audit entry with the change.  A new permission called `TaskEdit` is required to perform this action.  By default the `TaskEdit` permission has only been granted to the built-in Administrators team.
+
+<h2 id="channel-indexed-version-templates">Channel-indexed version-template variables</h2>
+
+e.g.
+```
+#{Octopus.Version.Channel[MyChannel].LastMajor
+```
+
+Currently, when using a template for calculating release versions many variables are made available. e.g. 
+
+```
+#{Octopus.Version.LastMajor}
+#{Octopus.Version.NextMajor}
+#{Octopus.Version.LastMinor}
+...
+``` 
+
+When using Channels, corresponding variables are made available for the _current_ channel. e.g.
+
+```
+#{Octopus.Version.Channel.LastMajor}
+#{Octopus.Version.Channel.NextMajor}
+#{Octopus.Version.Channel.LastMinor}
+...
+``` 
+
+The piece that had been missing was the inability to reference the version components of _other_ channels (i.e. not the channel of the release being created).
+
+For example, you may have three channels: `Release`, `PreRelease`, and `HotFix`. You will now be able to define a version template such as:
+
+```
+#{if IsRelease}
+  #{Octopus.Version.Channel.LastMajor}.#{Octopus.Version.Channel.NextMinor}.0
+#{/if}
+#{if IsPreRelease}
+  #{Octopus.Version.Channel[Release].LastMajor}.#{Octopus.Version.Channel[Release].NextMinor}.0#{Octopus.Version.Channel.NextSuffix}
+#{/if}
+#{if IsHotFix}
+  #{Octopus.Version.Channel[Release].LastMajor}.#{Octopus.Version.Channel[Release].LastMinor}.#{Octopus.Version.Channel.NextPatch}
+#{/if}
+``` 
+
+Note the use of the channel-indexed variables such as `#{Octopus.Version.Channel[Release].LastMajor`.
+This template depends on defining the channel-scoped variables `IsRelease`, `IsPreRelease`, and `IsHotFix`.  
+
 
 <h2 id="upgrading">Upgrading</h2>
 
