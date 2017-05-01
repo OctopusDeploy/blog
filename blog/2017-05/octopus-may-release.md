@@ -31,6 +31,7 @@ This month's release brings some exciting new features including support for Azu
 <iframe width="560" height="315" src="#TODO" frameborder="0" allowfullscreen></iframe>
 
 <h2 id="introducing-azure-service-fabric-support">Introducing Azure Service Fabric support</h2>
+
 We are excited to announce that Octopus now includes first-class support for [Deploying Azure Service Fabric applications](https://octopus.com/docs/deploying-applications/deploying-to-service-fabric).
 
 Since the [RFC](https://octopus.com/blog/rfc-azure-service-fabric) earlier this year, we've been busy creating new step templates to help you connect to and deploy your Service Fabric cluster applications.
