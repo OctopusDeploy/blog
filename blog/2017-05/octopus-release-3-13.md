@@ -72,7 +72,7 @@ Have you ever deployed to Production only to have your last step "Email release 
 
 e.g.
 ```
-#{Octopus.Version.Channel[MyChannel].LastMajor
+#{Octopus.Version.Channel[MyChannel].LastMajor}
 ```
 
 Currently, when using a template for calculating release versions many variables are made available. e.g. 
@@ -84,7 +84,7 @@ Currently, when using a template for calculating release versions many variables
 ...
 ``` 
 
-When using Channels, corresponding variables are made available for the _current_ channel. e.g.
+When using [Channels](https://octopus.com/docs/key-concepts/projects/channels), corresponding variables are made available for the _current_ channel. e.g.
 
 ```
 #{Octopus.Version.Channel.LastMajor}
@@ -93,9 +93,9 @@ When using Channels, corresponding variables are made available for the _current
 ...
 ``` 
 
-The piece that had been missing was the inability to reference the version components of _other_ channels (i.e. not the channel of the release being created).
+The piece that had been missing was the ability to reference the version components of _other_ channels (i.e. not the channel of the release being created).
 
-For example, you may have three channels: `Release`, `PreRelease`, and `HotFix`. You will now be able to define a version template such as:
+For example, your project may have the channels: `Release`, `PreRelease`, and `HotFix`. You will now be able to define a version template such as:
 
 ```
 #{if IsRelease}
@@ -109,8 +109,9 @@ For example, you may have three channels: `Release`, `PreRelease`, and `HotFix`.
 #{/if}
 ``` 
 
-Note the use of the channel-indexed variables such as `#{Octopus.Version.Channel[Release].LastMajor`.
-This template depends on defining the channel-scoped variables `IsRelease`, `IsPreRelease`, and `IsHotFix`.  
+The use of the channel-indexed variables such as `#{Octopus.Version.Channel[Release].LastMajor` allows you to reference the previous\next version components of other channels.
+
+N.B. This template depends on defining the channel-scoped variables `IsRelease`, `IsPreRelease`, and `IsHotFix`.  
 
 ## Upgrading
 
