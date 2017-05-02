@@ -54,8 +54,7 @@ We can now send this header on demand, but as there are some potential complexat
 Knocking off another high ranking [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/8475958-lifecycle-optional-phase-or-optional-environment), you can now create optional phases in your lifecycle that can be skipped during progression. This feature will help for those cases where you want to have the freedom to deploy your release to a set of environments, without holding up the deployment from continuing. [Channels](https://octopus.com/docs/patterns/branching) work well when this behaviour is known up-front and is part of a standard release pipeline, for example always pushing a hotfix release straight to UAT, but this approach is too rigid for the more fluid set of rules that optional phases functionality brings.
 
 ## Browser caching
-
-TODO
+Loading the the dashboard can be quite a data intensive operation for the Octopus Server to perform. It potentially needs to extract all the releases and deployments for your projects, compare, sort and filter them, then serialize and return to the browser to render. On large instances this can take many seconds to complete. Each time this request is made from the client this ties up server resources for something that more often than not (considering it currently updates every 5 seconds or so) may not have even changed. Instead the portal will now cache responses for some high cost queries and only reload the data if new events have taken place on the Server. Although this feature can be disabled, it is expected that this will make the Server more responsive for all users.
 
 ## Failing a script with a message
 
