@@ -31,7 +31,7 @@ Malcolm is another team lead, who heads up a team responsible for some software 
 Barry is responsible for the company's Octopus infrastructure. Some critical projects rely on this infrastructure and it's important he knows when any Octopus servers go offline.
 
 ## Features
-The following diagram shows what we think a typical ODCM installation might look like, and we'll refer back to it as we go through some of the features. ODCM is shown in a Highly Available style configuration (like Octopus Deploy itself, it will support single node and HA configuration depending on your requirements). A HA configuration will be important for Barry, to ensure he can always get reliable feedback on the rest of the Octopus servers.
+The following diagram shows what we think a typical ODCM installation might look like. ODCM is shown in a Highly Available style configuration (like Octopus Deploy itself, it will support single node and HA configuration depending on your requirements). A HA configuration will be important for Barry, to ensure he can always get reliable feedback on the rest of the Octopus servers.
 
 ![ODCM Architecture](odcm-arcitecture.png "width=500")
 
