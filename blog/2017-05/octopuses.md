@@ -35,7 +35,7 @@ The _independent teams_ and _scale_ scenarios are typically dealt with by spread
 
 ![Isolated Octopus instances](octopus-instances-isolated.png)
 
-OK, now you've decided to shard across multiple servers, let's figure out how you want to manage identity and access control across your servers. And how would you like to manage Octopus upgrades across you servers? Oh, and what if you wanted to share some things like [step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
+OK, now you've decided to shard across multiple servers, let's figure out how you want to manage identity and access control across your servers. And how would you like to manage Octopus upgrades across your servers? Oh, and what if you wanted to share some things like [step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
 
 To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single sign-on (SSO), but managing the rights each user is granted on your Octopus servers can be painful.
 
@@ -75,5 +75,5 @@ Can you imagine promoting a release from one Octopus server to another, and seei
 
 We are going to delve into _much_ more detail in future posts (stay tuned for some RFC's in the next few weeks).
 
-For now we just wanted to introduce the class of problems we are hoping to address with Octopus 4.0. 
+For now we just wanted to introduce the class of problems we are hoping to address with Octopus 4.0.
 
