@@ -7,28 +7,32 @@ tags:
  - RFC
 ---
 
-In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. One of the things we left off with was imagining a tool to centrally manage a number of Octopus servers. In this post we're going to talk more about what we think that might look like.
+In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. One of the things we left off with was imagining a tool to centrally manage a number of Octopus servers.
+
+![Octopus Data Center Manager](octopus-instances-odcm.png)
+
+In this post we're going to talk more about what that might look like and how it might work.
 
 ## Octopus Data Center Manager
-Our thinking is that this new tool will actually be a new product. Its working name is **Octopus Data Center Manager** (ODCM).
+Central to our thinking is a new product, whose working name is **Octopus Data Center Manager** (ODCM).
 
-## Scenarios
-We'll outline some specific usage scenarios in this section, and in the next we'll look at the ODCM features that will enable them.
+To help set the scene we'll go through some specific usage scenarios, and then look at the ODCM features that will enable them.
 
-### Scenario 1: Lisa
+## Usage Scenarios
+
+### Scenario 1: Lisa Lead
 Lisa is responsible for a team who are delivering some new internal software. They are nearing their first delivery milestone and don't want any surprises. They have been working happily with a specific version of Octopus, they aren't experiencing any issues, and they want to keep it that way.
 
-### Scenario 2: Bob
+### Scenario 2: Bob Specialist
 Bob is a developer who has some specialist skills and is going to do some work with Lisa's team. He also works on another team who are using Octopus and he doesn't want new credentials or to have to remember a new Url.
 
-### Scenario 3: Geoff
+### Scenario 3: Geoff Consultant
 Geoff is a consultant from an external company who is also joining Lisa's team. He already has an Azure AD login managed by his company, and would really prefer to not have another set of credentials to manage.
 
-### Scenario 4: Malcolm
-Malcolm is another team lead, who heads up a team responsible for some software that Lisa's team will need to integrate with. He has a set of variables defined in his Octopus server that Lisa's team will need access to to make there job easier. It's important that this information doesn't spread too far though, so he wants to be able to control who has access.
-
-### Scenario 5: Barry
+### Scenario 4: Barry Infrastructure
 Barry is responsible for the company's Octopus infrastructure. Some critical projects rely on this infrastructure and it's important he knows when any Octopus servers go offline.
+
+Barry also manages sets of variables that define various organization level values the teams may need when deploying their projects.
 
 ## Features
 The following diagram shows what we think a typical ODCM installation might look like. ODCM is shown in a Highly Available style configuration (like Octopus Deploy itself, it will support single node and HA configuration depending on your requirements). A HA configuration will be important for Barry, to ensure he can always get reliable feedback on the rest of the Octopus servers.
@@ -42,30 +46,32 @@ As an example, we started talking about splitting out Octopus _instances_. But w
 
 What we were talking about is what's represented by the URL that the users use to access Octopus. Not physically, but conceptually. What we were talking about was the ability to split that so teams had their own Space in which to work. And so we started talking about Spaces.
 
-ODCM therefore manages Spaces, and Barry will be able to use it to do things like:
+Of the users we talked about in the usage scenarios, only Barry Infrastructure will actually need to know much about Spaces directly. The others are all operating within a Space, but it will be fairly transparent.
 
-- enlist existing "Octopus servers" as Spaces,
-- separate things out of an existing Space into a new one,
+ODCM will be where Barry spends his time managing Octopus. It will provide features to do things like:
+
+- enlist an existing "Octopus servers" as a Space,
+- separating things out of an existing Space into a new one,
 - create a new blank Space
-- monitor Spaces
+- monitor Spaces, via a dashboard and alerts
 - report across Spaces
 
 ### Identity management
-One of the keys to working across multiple Spaces is to deal with user identity and access control. We can solve these problems by having ODCM take responsibility for them.
+One of the keys to working across multiple Spaces is dealing with user identity and access control. We can solve these problems by having ODCM take responsibility for them.
 
 When a Space is enlisted with ODCM its authentication will be configured to point to ODCM, which will centralize identity management and allow SSO across Spaces.
 
 This helps in a number of the scenarios:
 
-- Bob can move team and doesn't need a new identity or need to find a new URL
-- Lisa can locate Bob's existing identity to easily allow him access to her team's Space
-- Lisa can create an external identity for Geoff, who can then log in with his existing credentials.
+- Bob Specialist can move team and doesn't need a new identity or need to find a new URL
+- Barry Infrastructure can locate Bob's existing identity to grant him access to Lisa Lead's Space
+- Barry can create an external identity for Geoff Consultant, who can then log in with his existing credentials.
 
 Once Bob has access to multiple Spaces, his user experience in Octopus will change slightly to allow him to switch Spaces quickly and effortlessly. We're thinking it'll look something like this.
 
 ![ODCM Space Switching](odcm-space-switch.png "width=500")
 
-ODCM will support all of the external providers currently supported by Octopus Deploy. We are considering support federated authentication across organizations at some point in the future, but this isn't targetted for our initial release.
+ODCM will support all of the external providers currently supported by Octopus Deploy. We are considering support for federated authentication across organizations at some point in the future, but this isn't targetted for our initial release.
 
 ### Access control
 We picture access control operating across Spaces at two levels:
@@ -73,9 +79,9 @@ We picture access control operating across Spaces at two levels:
 1. who can access a Space?
 1. what can a user do within a Space?
 
-If you're Barry administering ODCM, you will be able to control which groups of users have access to which Spaces. A group may consist of Users and/or external groups (i.e. those sourced from Active Directory or Azure AD).
+If you're Barry Infrastructure, you will be able to control which groups of users have access to which Spaces. A group may consist of Users and/or external groups (i.e. those sourced from Active Directory or Azure AD).
 
-Similarly, if you're Lisa you'll be able to manage which groups of users have access to your Space and exactly what permissions they have in your Space. So for example, you could specify a Team which permits Developers to deploy things to the Dev environment. If Bob is a member of the Developer group in ODCM then when he is given access to the Space he'll be able to deploy to Dev immediately.
+If you're Lisa Lead you'll be able to use Teams to manage which groups of users have which permissions in your Space, just like you would in Octopus today. For example, you could specify a Team which permits Developers to deploy things to the Dev environment. If Bob Specialist is a member of the Developer group in ODCM then when he is given access to the Space he'll be able to deploy to Dev immediately.
 
 ![ODCM Groups](odcm-groups.png "width=500")
 
@@ -89,27 +95,23 @@ Our vision for Spaces is that they should be collections of related things, so t
 - Variables
 - Tentacles
 
-ODCM will most likely have the ability to host a version of the Community Step Template library, to share Step Templates between Spaces. We may also introduce a similar concept for Octopus Deploy server extensions, so they can be shared.
-
-Sharing of Variable Sets is a little more complicated, because they could contain sensitive information, like in Malcolm's scenario. You will be able to specify which Variable Sets are shared and with which Spaces.
+With the exception of Tentacles, we think all of these will be shared from ODCM. We expect it will have the ability to host a version of the Community Step Template library, something similar for hosting Server Extensions and provide variable sets that the Spaces can access. ODCM won't have knowledge of Environments, Targets, Tenants or many of the other scoping concepts in Octopus Deploy itself, so there  may only be support for Unscoped variables.
 
 A Tentacle can already be used by more than one Octopus server, so this still applies and it can be used by more than one Space.
 
 ### Multiple Octopus Deploy versions
-Let's now consider what happens when another team starts up and Barry gets a request for a new Space. He looks across the current machines and sees that one has capacity to host another Space. It happens to be the machine that's hosting Lisa's Space. So whilst the machine has capacity, the Octopus version being used by Lisa's Space must not change.
+Let's now consider what happens when another team starts up and Barry Infrastructure gets a request for a new Space. He looks across the current machines and sees that one has capacity to host another Space. It happens to be the machine that's hosting Lisa Lead's Space. So whilst the machine has capacity, the Octopus version being used by Lisa's Space must not change.
 
 The current Octopus Deploy MSI installer creates a problem here because it only allows a single version to be installed on a machine, by virtue of "*C:\Program Files*". You can use Octopus Server Manager to configure multiple instances on a single machine, but they are all sharing the same binaries and are therefore the same version.
 
-You can work around this today but it takes some effort. We want to make it easy. Our current idea is that we'll include an agent on the machines hosting Spaces and automate the deployment of Octopus server itself.
+You can work around this today but it takes some effort. We want to make it easy. Our current idea is that we'll include an agent on the machines hosting Spaces and automate the deployment of Octopus  itself.
 
-Once there are multiple Spaces, and even versions, of Octopus Deploy server running on a machine, maintaining isolation will be important. We haven’t settled on exactly how we'll ensure this, but expect there will be some changes required to the way Server Side scripts operate.
+Each Space will be an isolated copy of Octopus, and maintaining that isolation will be important. This is easier on some levels than on others. For example, isolation of versions based on binaries is fairly straightforward. Isolation across shared resources like CPU, RAM and disk is more problemmatic. We're investigating options at the moment and we'll share more once that's done.
 
-### Octopus Deploy Server monitoring and reporting
-If you're Barry and you are managing a single installation of Octopus, getting consolidated information across projects/teams is relatively easy. Once you have lots of installations, it's not easy.
+### Octopus Deploy monitoring and reporting
+ODCM will monitor the Spaces under its control, much like Octopus monitors Tentacles. It will collect information from each of the Spaces and aggregate it. Administrators like Barry Infrastructure can then view the information via ODCM's dashboard and reporting features.
 
-ODCM is well positioned to help with this. It will be in communication with the Spaces, so it can request information and statistics that can be collated centrally. A dashboard and some reports will provide access to this information.
-
-We don't expect that all of the dashboard and reports will make it into the initial release. We will focus on a minimal set and build on this over subsequent releases. The initial release may contain something like:
+We don't expect that all of the dashboard functionality and reports will make it into the initial release. We will focus on a minimal set and build on this over subsequent releases. The initial release may contain something like:
 
 - a dashboard showing Spaces, with their server version and current status (online/offline)
 - a report showing project count and target count per Space
@@ -122,3 +124,5 @@ ODCM will be a separate product to Octopus Deploy itself, and will have a differ
 
 ## Feedback
 What we've talked about above is what we think will be the minimum viable product for ODCM. As always, we're keen to get your feedback and from there we'll be looking to start the implementation in the next couple of weeks.
+
+We'd like to try something new for collecting feedback. We've created a [new repository](https://github.com/OctopusDeploy/Specs) on GitHub and in there you'll find a [TODO Spec document for ODCM](). The Spec is initially based off what we've shared here, and our plan is to use Issues and PRs to gather feedback and evolve it over the coming weeks and months. It will be a living document and we're hoping that through the Issues and PRs there'll be a good story around tracking how features came to be.
