@@ -7,10 +7,7 @@ tags:
  - RFC
 ---
 
-In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. One of the things we left off with was imagining a tool to centrally manage a number of Octopus servers. In this post we're going to talk more about what we think that might look like.
-
-## Octopus Data Center Manager
-Our thinking is that this new tool will actually be a new product. Its working name is **Octopus Data Center Manager** (ODCM).
+In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. In that post we floated the idea of a tool that centrally manage a number of Octopus servers. In this post we are going to talk more about what this tool, provisionally named **Octopus Data Center Manager** (ODCM) would look like.
 
 ## Scenarios
 We'll outline some specific usage scenarios in this section, and in the next we'll look at the ODCM features that will enable them.
