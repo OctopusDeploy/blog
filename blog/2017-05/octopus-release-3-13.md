@@ -2,7 +2,7 @@
 title: "Octopus May Release 3.13"
 description: This month's release brings some exciting new features including support for Azure Service Fabric, HSTS, optional lifecycles and performance improvements, among other things!
 author: mark.siedle@octopus.com
-visibility: private
+visibility: public
 tags:
  - New Release
  - Azure Service Fabric
@@ -18,7 +18,7 @@ This month's release brings some exciting new features including support for Azu
 
 ## Release Tour
 
-<iframe width="560" height="315" src="#" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LljoIA8wtHQ" frameborder="0" allowfullscreen></iframe>
 
 ## Introducing Azure Service Fabric support
 
