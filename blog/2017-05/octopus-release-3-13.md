@@ -1,8 +1,8 @@
 ---
 title: "Octopus May Release 3.13"
-description: TODO
+description: This month's release brings some exciting new features including support for Azure Service Fabric, HSTS, optional lifecycles and performance improvements, among other things!
 author: mark.siedle@octopus.com
-visibility: private
+visibility: public
 tags:
  - New Release
  - Azure Service Fabric
@@ -18,7 +18,7 @@ This month's release brings some exciting new features including support for Azu
 
 ## Release Tour
 
-<iframe width="560" height="315" src="shipping-3-13-blogimage.png" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LljoIA8wtHQ" frameborder="0" allowfullscreen></iframe>
 
 ## Introducing Azure Service Fabric support
 
@@ -50,26 +50,29 @@ HTTP Strict Transport Security is an HTTP header that can be used to tell the we
 
 We can now send this header on demand, but as there are some potential complexations, it is not enabled by default. If you have your Octopus Server exposed on the internet, we recommend [reading up on and enabling HSTS](https://octopus.com/docs/how-to/expose-the-octopus-web-portal-over-https#HSTS) if you can.
 
-## Optional lifecycles
+## Optional lifecycle Phases
 
-TODO
+Knocking off another high ranking [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/8475958-lifecycle-optional-phase-or-optional-environment) from our backlog, you can now create optional phases in your lifecycle that can be skipped during progression. This feature will help for those cases where you want to have the freedom to deploy your release to a set of environments, without holding up the deployment from continuing. [Channels](https://octopus.com/docs/patterns/branching) work well when this behaviour is known up-front and is part of a standard release pipeline, for example always pushing a hotfix release straight to UAT, but this approach is too rigid for the more fluid set of rules that optional phases functionality brings.
+
+Learn more about [optional lifecycle phases](https://octopus.com/docs/key-concepts/lifecycles#Lifecycles-OptionalPhases).
 
 ## Browser caching
 
-TODO
+Loading the the dashboard can be quite a data intensive operation for the Octopus Server to perform. It potentially needs to extract all the releases and deployments for your projects, compare, sort and filter them, then serialize and return to the browser to render. On large instances this can take many seconds to complete. Each time this request is made from the client this ties up server resources for something that more often than not (considering it currently updates every 5 seconds or so) may not have even changed. Instead the portal will now cache responses for some high cost queries and only reload the data if new events have taken place on the Server. Although this feature can be disabled, it is expected that this will make the Server more responsive for all users.
 
 ## Failing a script with a message
 
 The message on the deployment overview can now be customised, refer to [failing a script with a message](https://octopus.com/docs/deploying-applications/custom-scripts#failing-a-script-with-a-message)
 
 ## Modify Task State
+
 Have you ever deployed to Production only to have your last step "Email release party invites!" fail?  Or maybe you deployed sucessfully but after some QA decided to roll back. Now you can modify the state of a task.  When a task has completed with the state `Success`, `Failed` or `Canceled` you can edit the state from the task screen by providing the new task state and the reason for the change.  Once submitted, the task state will be updated and an entry in the task history will contain an audit entry with the change.  A new permission called `TaskEdit` is required to perform this action.  By default the `TaskEdit` permission has only been granted to the built-in Administrators team.
 
 ## Channel-indexed version-template variables
 
 e.g.
 ```
-#{Octopus.Version.Channel[MyChannel].LastMajor
+#{Octopus.Version.Channel[MyChannel].LastMajor}
 ```
 
 Currently, when using a template for calculating release versions many variables are made available. e.g. 
@@ -81,7 +84,7 @@ Currently, when using a template for calculating release versions many variables
 ...
 ``` 
 
-When using Channels, corresponding variables are made available for the _current_ channel. e.g.
+When using [Channels](https://octopus.com/docs/key-concepts/projects/channels), corresponding variables are made available for the _current_ channel. e.g.
 
 ```
 #{Octopus.Version.Channel.LastMajor}
@@ -90,9 +93,9 @@ When using Channels, corresponding variables are made available for the _current
 ...
 ``` 
 
-The piece that had been missing was the inability to reference the version components of _other_ channels (i.e. not the channel of the release being created).
+The piece that had been missing was the ability to reference the version components of _other_ channels (i.e. not the channel of the release being created).
 
-For example, you may have three channels: `Release`, `PreRelease`, and `HotFix`. You will now be able to define a version template such as:
+For example, your project may have the channels: `Release`, `PreRelease`, and `HotFix`. You will now be able to define a version template such as:
 
 ```
 #{if IsRelease}
@@ -106,8 +109,9 @@ For example, you may have three channels: `Release`, `PreRelease`, and `HotFix`.
 #{/if}
 ``` 
 
-Note the use of the channel-indexed variables such as `#{Octopus.Version.Channel[Release].LastMajor`.
-This template depends on defining the channel-scoped variables `IsRelease`, `IsPreRelease`, and `IsHotFix`.  
+The use of the channel-indexed variables such as `#{Octopus.Version.Channel[Release].LastMajor` allows you to reference the previous\next version components of other channels.
+
+N.B. This template depends on defining the channel-scoped variables `IsRelease`, `IsPreRelease`, and `IsHotFix`.  
 
 ## Upgrading
 
