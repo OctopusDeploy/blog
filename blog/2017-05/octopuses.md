@@ -33,7 +33,7 @@ Let's take a look at some examples.
 
 The _independent teams_ and _scale_ scenarios are typically dealt with by spreading many Octopus servers across one or more machines, often using [high availability clusters](https://octopus.com/docs/administration/high-availability) somewhere in the mix.
 
-![Isolated Octopus instances](octopus-instances-isolated.png)
+![Isolated Octopus instances](octopus-instances-isolated.png "width=500")
 
 OK, now you've decided to shard across multiple servers, let's figure out how you want to manage identity and access control across your servers. And how would you like to manage Octopus upgrades across your servers? Oh, and what if you wanted to share some things like [step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
 
@@ -67,11 +67,11 @@ In short, they don't solve the root problem in a way that we are happy with.
 
 Can you imagine a tool which lets you manage identity, access control, upgrades, and information sharing across an entire farm of Octopus servers? We can!
 
-![Octopus Data Center Manager](octopus-instances-odcm.png)
+![Octopus Data Center Manager](octopus-instances-odcm.png "width=500")
 
 Can you imagine promoting a release from one Octopus server to another, and seeing the deployment results flow back across, even if the servers are completely disconnected? We can imagine that too!
 
-![Octopus Remote Release Promotions](octopus-instances-promoting-releases.png)
+![Octopus Remote Release Promotions](octopus-instances-promoting-releases.png "width=500")
 
 We are going to delve into _much_ more detail in future posts (stay tuned for some RFC's in the next few weeks).
 
