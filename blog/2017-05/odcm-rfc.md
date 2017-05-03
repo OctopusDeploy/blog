@@ -15,17 +15,17 @@ Our thinking is that this new tool will actually be a new product. Its working n
 ## Scenarios
 We'll outline some specific usage scenarios in this section, and in the next we'll look at the ODCM features that will enable them.
 
-### Scenario 1: Tina
-Tina is responsible for a team who are delivering some new internal software. They are nearing their first delivery milestone and don't want any surprises. They have been working happily with a specific version of Octopus, they aren't experiencing any issues, and they want to keep it that way.
+### Scenario 1: Lisa
+Lisa is responsible for a team who are delivering some new internal software. They are nearing their first delivery milestone and don't want any surprises. They have been working happily with a specific version of Octopus, they aren't experiencing any issues, and they want to keep it that way.
 
 ### Scenario 2: Bob
-Bob is a developer who has some specialist skills and is going to do some work with Tina's team. He also works on another team who are using Octopus and he doesn't want new credentials or to have to remember a new Url.
+Bob is a developer who has some specialist skills and is going to do some work with Lisa's team. He also works on another team who are using Octopus and he doesn't want new credentials or to have to remember a new Url.
 
 ### Scenario 3: Geoff
-Geoff is a consultant from an external company who is also joining Tina's team. He already has an Azure AD login managed by his company, and would really prefer to not have another set of credentials to manage.
+Geoff is a consultant from an external company who is also joining Lisa's team. He already has an Azure AD login managed by his company, and would really prefer to not have another set of credentials to manage.
 
 ### Scenario 4: Malcolm
-Malcolm is another team lead, who heads up a team responsible for some software that Tina's team will need to integrate with. He has a set of variables defined in his Octopus server that Tina's team will need access to to make there job easier. It's important that this information doesn't spread too far though, so he wants to be able to control who has access.
+Malcolm is another team lead, who heads up a team responsible for some software that Lisa's team will need to integrate with. He has a set of variables defined in his Octopus server that Lisa's team will need access to to make there job easier. It's important that this information doesn't spread too far though, so he wants to be able to control who has access.
 
 ### Scenario 5: Barry
 Barry is responsible for the company's Octopus infrastructure. Some critical projects rely on this infrastructure and it's important he knows when any Octopus servers go offline.
