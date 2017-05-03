@@ -1,7 +1,7 @@
 ---
 title: "Octopuses"
 description: "There are some compelling reasons to use multiple Octopus Servers, but managing multiple Servers is problematic. We want to make managing multiple related Octopus servers a first-class citizen of the Octopus world." 
-author: michael.richardson@octopus.com
+author: Team Octopus 
 visibility: private
 ---
 
