@@ -7,26 +7,23 @@ tags:
  - RFC
 ---
 
-In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. One of the things we left off with was imagining a tool to centrally manage a number of Octopus servers.
+In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. In that post we floated the idea of a tool that centrally manages a number of Octopus servers.
 
-![Octopus Data Center Manager](octopus-instances-odcm.png)
+![Octopus Data Center Manager](octopus-instances-odcm.png "width=500")
 
-In this post we're going to talk more about what that might look like and how it might work.
-
-## Octopus Data Center Manager
-Central to our thinking is a new product, whose working name is **Octopus Data Center Manager** (ODCM).
-
-To help set the scene we'll go through some specific usage scenarios, and then look at the ODCM features that will enable them.
+In this post we are going to talk more about what this tool, provisionally named **Octopus Data Center Manager** (ODCM), would look like.
 
 ## Usage Scenarios
 
-### Scenario 1: Lisa Lead
+To help set the scene we'll go through some specific usage scenarios, and then look at the ODCM features that will enable them.
+
+### Scenario 1: Lisa Shipping
 Lisa is responsible for a team who are delivering some new internal software. They are nearing their first delivery milestone and don't want any surprises. They have been working happily with a specific version of Octopus, they aren't experiencing any issues, and they want to keep it that way.
 
 ### Scenario 2: Bob Specialist
 Bob is a developer who has some specialist skills and is going to do some work with Lisa's team. He also works on another team who are using Octopus and he doesn't want new credentials or to have to remember a new Url.
 
-### Scenario 3: Geoff Consultant
+### Scenario 3: Geoff Outsider
 Geoff is a consultant from an external company who is also joining Lisa's team. He already has an Azure AD login managed by his company, and would really prefer to not have another set of credentials to manage.
 
 ### Scenario 4: Barry Infrastructure
@@ -37,7 +34,7 @@ Barry also manages sets of variables that define various organization level valu
 ## Features
 The following diagram shows what we think a typical ODCM installation might look like. ODCM is shown in a Highly Available style configuration (like Octopus Deploy itself, it will support single node and HA configuration depending on your requirements). A HA configuration will be important for Barry, to ensure he can always get reliable feedback on the rest of the Octopus servers.
 
-![ODCM Architecture](odcm-arcitecture.png "width=500")
+![ODCM Architecture](odcm-architecture.png "width=500")
 
 ### Giving teams their own Space
 When we started talking about ODCM and its functionality internally something became apparent pretty quickly that some of the terminology can be overloaded and/or confusing. This was within our team, and we're living this stuff every day, so how do we avoid confusing everyone else?
@@ -64,8 +61,8 @@ When a Space is enlisted with ODCM its authentication will be configured to poin
 This helps in a number of the scenarios:
 
 - Bob Specialist can move team and doesn't need a new identity or need to find a new URL
-- Barry Infrastructure can locate Bob's existing identity to grant him access to Lisa Lead's Space
-- Barry can create an external identity for Geoff Consultant, who can then log in with his existing credentials.
+- Barry Infrastructure can locate Bob's existing identity to grant him access to Lisa Shipping's Space
+- Barry can create an external identity for Geoff Outsider, who can then log in with his existing credentials.
 
 Once Bob has access to multiple Spaces, his user experience in Octopus will change slightly to allow him to switch Spaces quickly and effortlessly. We're thinking it'll look something like this.
 
@@ -81,7 +78,7 @@ We picture access control operating across Spaces at two levels:
 
 If you're Barry Infrastructure, you will be able to control which groups of users have access to which Spaces. A group may consist of Users and/or external groups (i.e. those sourced from Active Directory or Azure AD).
 
-If you're Lisa Lead you'll be able to use Teams to manage which groups of users have which permissions in your Space, just like you would in Octopus today. For example, you could specify a Team which permits Developers to deploy things to the Dev environment. If Bob Specialist is a member of the Developer group in ODCM then when he is given access to the Space he'll be able to deploy to Dev immediately.
+If you're Lisa Shipping you'll be able to use Teams to manage which groups of users have which permissions in your Space, just like you would in Octopus today. For example, you could specify a Team which permits Developers to deploy things to the Dev environment. If Bob Specialist is a member of the Developer group in ODCM then when he is given access to the Space he'll be able to deploy to Dev immediately.
 
 ![ODCM Groups](odcm-groups.png "width=500")
 
@@ -100,7 +97,7 @@ With the exception of Tentacles, we think all of these will be shared from ODCM.
 A Tentacle can already be used by more than one Octopus server, so this still applies and it can be used by more than one Space.
 
 ### Multiple Octopus Deploy versions
-Let's now consider what happens when another team starts up and Barry Infrastructure gets a request for a new Space. He looks across the current machines and sees that one has capacity to host another Space. It happens to be the machine that's hosting Lisa Lead's Space. So whilst the machine has capacity, the Octopus version being used by Lisa's Space must not change.
+Let's now consider what happens when another team starts up and Barry Infrastructure gets a request for a new Space. He looks across the current machines and sees that one has capacity to host another Space. It happens to be the machine that's hosting Lisa Shipping's Space. So whilst the machine has capacity, the Octopus version being used by Lisa's Space must not change.
 
 The current Octopus Deploy MSI installer creates a problem here because it only allows a single version to be installed on a machine, by virtue of "*C:\Program Files*". You can use Octopus Server Manager to configure multiple instances on a single machine, but they are all sharing the same binaries and are therefore the same version.
 
