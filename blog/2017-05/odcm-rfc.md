@@ -87,12 +87,19 @@ When you only have a single Space, sharing of information is a non-issue. Once y
 
 Our vision for Spaces is that they should be collections of related things, so the need for sharing should be minimal. We thought about which things are likely to need sharing, and think they'll be things like:
 
+- Users (as discussed above)
 - Step Templates
 - Server Extensions
 - Variables
 - Tentacles
 
-With the exception of Tentacles, we think all of these will be shared from ODCM. We expect it will have the ability to host a version of the Community Step Template library, something similar for hosting Server Extensions and provide variable sets that the Spaces can access. ODCM won't have knowledge of Environments, Targets, Tenants or many of the other scoping concepts in Octopus Deploy itself, so there  may only be support for Unscoped variables.
+Barry Infrastructure will be the one who is primarily concerned with managing these things, so it seems a natural fit that they be managed and shared centrally through ODCM. We expect it will:
+
+- have the ability to host a version of the Community Step Template library,
+- have something similar for hosting Server Extensions and
+- provide variable sets that the Spaces can access.
+
+ODCM won't have knowledge of Environments, Targets, Tenants or many of the other scoping concepts in Octopus Deploy itself, so there may only be support for Unscoped variables.
 
 A Tentacle can already be used by more than one Octopus server, so this still applies and it can be used by more than one Space.
 
@@ -106,7 +113,7 @@ You can work around this today but it takes some effort. We want to make it easy
 Each Space will be an isolated copy of Octopus, and maintaining that isolation will be important. This is easier on some levels than on others. For example, isolation of versions based on binaries is fairly straightforward. Isolation across shared resources like CPU, RAM and disk is more problemmatic. We're investigating options at the moment and we'll share more once that's done.
 
 ### Octopus Deploy monitoring and reporting
-ODCM will monitor the Spaces under its control, much like Octopus monitors Tentacles. It will collect information from each of the Spaces and aggregate it. Administrators like Barry Infrastructure can then view the information via ODCM's dashboard and reporting features.
+ODCM will monitor the Spaces under its control, much like Octopus monitors Tentacles. It will collect information from each of the Spaces and aggregate it. Administrators, like Barry Infrastructure, can then view the information via ODCM's dashboard and reporting features.
 
 We don't expect that all of the dashboard functionality and reports will make it into the initial release. We will focus on a minimal set and build on this over subsequent releases. The initial release may contain something like:
 
@@ -122,4 +129,6 @@ ODCM will be a separate product to Octopus Deploy itself, and will have a differ
 ## Feedback
 What we've talked about above is what we think will be the minimum viable product for ODCM. As always, we're keen to get your feedback and from there we'll be looking to start the implementation in the next couple of weeks.
 
-We'd like to try something new for collecting feedback. We've created a [new repository](https://github.com/OctopusDeploy/Specs) on GitHub and in there you'll find a [TODO Spec document for ODCM](). The Spec is initially based off what we've shared here, and our plan is to use Issues and PRs to gather feedback and evolve it over the coming weeks and months. It will be a living document and we're hoping that through the Issues and PRs there'll be a good story around tracking how features came to be.
+We've created a [new repository](https://github.com/OctopusDeploy/Specs) and in there you'll find a [Spec document for ODCM](https://github.com/OctopusDeploy/Specs/blob/master/ODCM/index.md). The Spec is initially based off what we've shared here, and our plan is to use Issues and PRs to gather feedback and evolve it over the coming weeks and months. It will be a living document and will evolve into a spec for the features and how they're implemented. We're hoping that through the Issues and PRs there'll then be a good story around tracking how features came to be.
+
+What we'd like to ask is that if you just want to provide some quick feedback then do that below as always. If there's something bigger that warrants a more detailed conversation we'd like to do that over in GitHub, so head over there and create an Issue.
