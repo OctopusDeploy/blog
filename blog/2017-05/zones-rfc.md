@@ -7,32 +7,36 @@ tags:
  - RFC 
 ---
 
-## The problem 
+## The problem
 
 There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to.
 
-For example: 
+For example:
 
 - Octopus Server 1 deploys to Development and Testing environments
 - Octopus Server 2 deploys to Staging and Production environments
 
 The two most common reasons for this are:
+
 - Security
 - Geography
+- Teams who share services
 
 ### Security
-For security purposes many organizations separate their production and development environments. A common driver for this is achieving PCI DSS compliance. 
 
-The secure zone may even be completely disconncted (aka air-gap).
+For security purposes many organizations separate their production and development environments. A common driver for this is achieving PCI DSS compliance.
 
-These organisations still want all of the Octopus-goodness, like promoting the same release through the environments, and seeing the progression on the dashboard.  But they don't want the development Octopus server to be able to connect to the production environment.  They also likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus instance.
+The secure zone may even be completely disconnected (aka air-gap).
+
+These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, and seeing the progression on the dashboard.  But they don't want the development Octopus server to be able to connect to the production environment.  They also likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus instance.
 
 *TODO: INSERT PRETTY PICTURE*
 
 ### Geography
-Other organisations may deploy to geographically-distant environments. 
 
-For example, their development environment may be located in Brisbane, while their production environments live in data centers in the US and Europe. 
+Other organizations may deploy to geographically-distant environments.
+
+For example, their development environment may be located in Brisbane, while their production environments live in data centers in the US and Europe.
 
 The problem with this currently, is that the packages are transferred at deployment time.  These customers would like to be able to promote the release at a time of their choosing (including transferring the packages), then perform the deployment with the packages already located in the appropriate Octopus instance, close to the target machines.
 
@@ -46,12 +50,10 @@ Like SOA or Microservice teams. "I want to deploy an instance of your services i
 
 ## Proposed solution
 
- - High-level architecture diagram (pretty picture) (Vanessa)
- - Release lifecycle (showing promotion through environments, then zones) (Vanessa)
- - A day-in-the-life of a release (so people can identify with it) (Mike)
-   - Nothing much changes for project contributors
-
-Let's explore this 
+- High-level architecture diagram (pretty picture) (Vanessa)
+- Release lifecycle (showing promotion through environments, then zones) (Vanessa)
+- A day-in-the-life of a release (so people can identify with it) (Mike)
+  - Nothing much changes for project contributors
 
 ## Zones (introduce the concept)
 
@@ -90,6 +92,7 @@ Let's explore this
 - Lifecycles won’t span zones
 
 ## Security Concerns
+
 - Two-way trust using PKI (like Octopus and Tentacle)
 
 ## Superseded Solutions (Vanessa)
