@@ -81,7 +81,7 @@ _IMAGE: Show two spaces, indicating where project, and each environment is owned
 
 Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
-### Project contributor
+### Persona: Project contributor
 
 Project contributors are people who configure the deployment process and variables of a project. Typically these are your software developers who are also writing the source code and building your packages. In this case we don't see very much changing - life will pretty much go on just like before.
 
@@ -113,6 +113,33 @@ In some cases you want certain steps to be executed in the `Production` environm
 Imagine if you could add a **Remote Environment** to your space, as a placeholder for the real `Production` environment. Now you would be able to and scope steps to that remote environment, and those steps will be run when a release is eventually deployed to that remote environment.
 
 We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret) - now you would be able to set those values in your `DevTest Space`, and they will be used when deploying to the `Production` environment in the `Prod Space`.
+
+## Persona: Release bundler
+
+- Bundles the release to be promoted to a specific remote space
+- Could be the same person as Project Contributor, or could be the same person as Release Acceptor/Approver/Deployer depending on your security model
+
+## Persona: Release acceptor
+
+- Imports the release bundle
+- Adds the missing variable values
+- Has permissions to create projects, edit variables, add packages, etc
+
+## Persona: Release approver(s)
+
+- Idea for multi-team sign off on a release before it is allowed to be deployed
+
+## Persona: Release deployer
+
+- Actually deploys the release to the environment(s)
+
+## Persona: Project manager
+
+- Wants to see an aggregated overview of the deployments for the entire lifecycle
+
+## Persona: Operations
+
+- Has to set up the connection/trust/relationship between the two spaces, potentially over an air gap
 
 ## Release bundle
 
