@@ -2,7 +2,7 @@
 title: "Octopuses"
 description: "There are some compelling reasons to use multiple Octopus Servers.  In Octopus Deploy 4.0 we want to add first-class support for these scenarios." 
 metaImage: 4.0-kickoff-metaimage.png 
-visibility: private
+visibility: public
 tags:
  - Architecture
  - Performance
