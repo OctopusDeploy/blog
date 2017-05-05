@@ -1,6 +1,6 @@
 ---
 title: "Octopuses"
-description: "There are some compelling reasons to use multiple Octopus Servers, but managing multiple Servers is problematic. We want to make managing multiple related Octopus servers a first-class citizen of the Octopus world." 
+description: "There are some compelling reasons to use multiple Octopus Servers.  In Octopus Deploy 4.0 we want to add first-class support for these scenarios." 
 visibility: private
 ---
 
