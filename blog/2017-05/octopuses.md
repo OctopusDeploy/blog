@@ -1,11 +1,18 @@
 ---
 title: "Octopuses"
 description: "There are some compelling reasons to use multiple Octopus Servers.  In Octopus Deploy 4.0 we want to add first-class support for these scenarios." 
-visibility: private
+metaImage: 4.0-kickoff-metaimage.png 
+visibility: public
+tags:
+ - Architecture
+ - Performance
 ---
 
-![Overloaded Octopus](4.0-kickoff-blogimage.png)
+<div style="background-color:#e9edf2;">
+<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Overloaded Octopus" src="https://i.octopus.com/blog/2017-05/4.0-kickoff-blogimage.png"  />
+</div>
 
+---
 When we first built Octopus, we imagined it would be used by small teams to deploy applications to a dozen or so machines. Over time, we've [seen customers scale Octopus up to many thousands of machines](https://octopus.com/blog/octostats), deploying hundreds of different projects. At that scale, customers need their Octopus Servers to be online at all times, so we support running a single [Octopus Server across a multi-node, high availability cluster](https://octopus.com/high-availability).
 
 One great big Octopus Server isn't always a great idea though.
@@ -75,11 +82,9 @@ Can you imagine promoting a release from one Octopus Server to another, and seei
 
 ![Octopus Remote Release Promotions](octopus-instances-promoting-releases.png "width=500")
 
-At Octopus HQ we have been thinking about the next major release of Octopus Deploy: version 4.0.
+At Octopus HQ we have been thinking about the next major release of Octopus Deploy: version 4.0
 
-A primary focus of this release will be addressing the scenarios introduced above.
-
-We are going to delve into _much_ more detail in posts in the coming weeks.
+A primary focus of this release will be addressing the scenarios introduced above, and we are going to delve into _much_ more detail in posts in the coming weeks.
 
 Stay tuned.
 
