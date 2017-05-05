@@ -18,11 +18,11 @@ For example:
 
 The two most common reasons for this are:
 
-- Security
-- Geography
+- Secure Environments
+- Geographically distant environments
 - Teams who share services
 
-### Security
+### Secure environments
 
 For security purposes many organizations separate their production and development environments. A common driver for this is achieving PCI DSS compliance.
 
@@ -32,7 +32,7 @@ These organizations still want all of the Octopus-goodness, like promoting the s
 
 *TODO: INSERT PRETTY PICTURE*
 
-### Geography
+### Geographically distant environments
 
 Other organizations may deploy to geographically-distant environments.
 
@@ -44,7 +44,7 @@ The problem with this currently, is that the packages are transferred at deploym
 
 ### Teams who share services
 
-Like SOA or Microservice teams. "I want to deploy an instance of your services in my environment so I can test my service against yours."
+TODO: Like SOA or Microservice teams. "I want to deploy an instance of your services in my environment so I can test my service against yours."
 
 *TODO: INSERT PRETTY PICTURE*
 
@@ -55,9 +55,35 @@ Like SOA or Microservice teams. "I want to deploy an instance of your services i
 - A day-in-the-life of a release (so people can identify with it) (Mike)
   - Nothing much changes for project contributors
 
-## Zones (introduce the concept)
+Our proposed solution leverages the idea of Spaces, where each Space has its own set of Users, Projects, Environments, Lifecycles, etc. Now imagine if you could add Spaces to your Lifecycles. When you promote a release to another Space, Octopus could bundle up everything required to deploy that Release of your Project to the Environments in the other Space.
 
-- Promoting a release to a zone (separate lifecycles)?
+## Definitions
+
+In the rest of this RFC we are going to introduce some new terms so we don't all get horribly confused.
+
+- Space: Learn more in the [RFC](/blog/2017-05/odcm-rfc.md)
+- Release Bundle: A package containing everything required to deploy a specific Release of a Project.
+- Deployment Receipt: A package containing everything required to show the result of deploying a specific Release of a Project.
+- Source Space: The Space that owns the Project and its Releases, and where Release Bundles are created if you decide to cross Space boundaries.
+- Target Space: The Space where a Release Bundle will be imported. The Release extracted from the Release Bundle can then be deployed to Environments in this Space.
+- Remote Environment: A reference to an Environment owned by another Space.
+- Remote Project: A reference to a Project owned by another Space.
+- Variable Template: We introduced this concept with multi-tenant deployments. In this context you could express that a variable value is required for each Environment a Project can be deployed into.
+
+## Example: Secure Environments
+
+Let's explore this concept using the Secure Environments example we mentioned earlier, where you want strict separation between your development and production environments. In this case we will model this separation using two Spaces:
+
+- `DevTest`: where your application is deployed for development and testing purposes
+- `Secure`: where the production deployments of your application will be deployed and strict compliance controls are required
+
+_IMAGE: Show two spaces, indicating where project, and each environment is owned, and how the bundle flows_
+
+Let's explore this scenario by looking at how each different person might interact with Octopus to promote a release across these two Spaces all the way to production.
+
+### Project contributor
+
+Project contributors are people who configure variables
 
 ## Remote Environments
 
