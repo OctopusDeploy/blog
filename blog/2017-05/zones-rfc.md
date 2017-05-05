@@ -74,16 +74,22 @@ In the rest of this RFC we are going to introduce some new terms so we don't all
 
 Let's explore this concept using the Secure Environments example we mentioned earlier, where you want strict separation between your development and production environments. In this case we will model this separation using two Spaces:
 
-- `DevTest`: where your application is deployed for development and testing purposes
-- `Secure`: where the production deployments of your application will be deployed and strict compliance controls are required
+- `DevTest Space`: where your application is deployed for development and testing purposes
+- `Prod Space`: where the production deployments of your application will be deployed and strict compliance controls are required
 
 _IMAGE: Show two spaces, indicating where project, and each environment is owned, and how the bundle flows_
 
-Let's explore this scenario by looking at how each different person might interact with Octopus to promote a release across these two Spaces all the way to production.
+Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
 ### Project contributor
 
-Project contributors are people who configure variables
+Project contributors are people who configure the deployment process and variables of a project. Typically these are your software developers who are also writing the source code and building your packages. In this case we don't see very much changing - life will pretty much go on just like before.
+
+However, the `Production` environment is owned by the `Prod Space`, meaning the `DevTest Space` has no concept of this environment:
+
+- How do you provide variable values scoped to the Production environment?
+- How do you configure special steps of your deployment process so they only execute when deploying to the Production environment?
+
 
 ## Remote Environments
 
