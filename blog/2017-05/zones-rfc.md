@@ -87,11 +87,32 @@ Project contributors are people who configure the deployment process and variabl
 
 However, the `Production` environment is owned by the `Prod Space`, meaning the `DevTest Space` has no concept of this environment:
 
-- How do you provide variable values scoped to the Production environment?
-- How do you configure special steps of your deployment process so they only execute when deploying to the Production environment?
+- How do you provide variable values that will be used when deploying to the `Production` environment?
+- How do you configure special steps of your deployment process so they only execute when deploying to the `Production` environment?
 
+Please welcome variable templates and remote environments!
 
-## Remote Environments
+#### Variable templates
+
+Imagine if you are the person importing a Release Bundle - how do you know which variables need values? And even if you know which variables you need to set, what should you set the value to?
+
+Now imagine as a project contributor, you could express that a variable value is required for each environment a project can be deployed into. And imagine you could define a data type for the variable, provide help text, decide whether the value is mandatory or optional, or even provide a default value.
+
+Variable templates could make it much easier for a person importing a Release Bundle into their space to "fill in the blanks".
+
+:::hint
+This would also be really handy even if you are only promoting releases within your own space. Using variable templates, if you introduce a new environment into your own space, Octopus will prompt you for those variable values.
+:::
+
+We introduced the concept of [variable templates](https://octopus.com/docs/deploying-applications/variables/variable-templates) for multi-tenant deployments in Octopus 3.4. We would like to build on this concept further as part of this set of features.
+
+#### Remote Environments
+
+In some cases you want certain steps to be executed in the `Production` environment. But now that the `Production` environment is owned by the `Prod Space`, your `DevTest` space doesn't know the `Production` environment exists! How can you tailor your deployment process for environments owned by other spaces?
+
+Imagine if you could add a **Remote Environment** to your space, as a placeholder for the real `Production` environment. Now you would be able to and scope steps to that remote environment, and those steps will be run when a release is eventually deployed to that remote environment.
+
+We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret) - now you would be able to set those values in your `DevTest Space`, and they will be used when deploying to the `Production` environment in the `Prod Space`.
 
 ## Release bundle
 
