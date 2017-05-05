@@ -77,7 +77,7 @@ Can you imagine promoting a release from one Octopus Server to another, and seei
 
 At Octopus HQ we have been thinking about the next major release of Octopus Deploy: version 4.0.
 
-A primary focus of this release will be addressing the class of problem introduced above.
+A primary focus of this release will be addressing the scenarios introduced above.
 
 We are going to delve into _much_ more detail in posts in the coming weeks.
 
