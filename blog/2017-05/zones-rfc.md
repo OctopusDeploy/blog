@@ -38,7 +38,11 @@ The problem with this currently, is that the packages are transferred at deploym
 
 *TODO: INSERT PRETTY PICTURE*
 
+### Teams who share services
 
+Like SOA or Microservice teams. "I want to deploy an instance of your services in my environment so I can test my service against yours."
+
+*TODO: INSERT PRETTY PICTURE*
 
 ## Proposed solution
 
@@ -46,6 +50,8 @@ The problem with this currently, is that the packages are transferred at deploym
  - Release lifecycle (showing promotion through environments, then zones) (Vanessa)
  - A day-in-the-life of a release (so people can identify with it) (Mike)
    - Nothing much changes for project contributors
+
+Let's explore this 
 
 ## Zones (introduce the concept)
 
