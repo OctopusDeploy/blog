@@ -43,12 +43,17 @@ As an example, we started talking about splitting out Octopus _instances_. But w
 
 What we were talking about is what's represented by the URL that the users use to access Octopus. Not physically, but conceptually. What we were talking about was the ability to split that so teams had their own Space in which to work. And so we started talking about Spaces.
 
-Of the users we talked about in the usage scenarios, only Barry Infrastructure will actually need to know much about Spaces directly. The others are all operating within a Space, but it will be fairly transparent.
+:::hint
+Space (noun)
+    A bounded context for Lifecycles/Environments, Source/Target, X509 Certificate for [PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure), as bounded by a single API endpoint/URL and SQL database instance.
+:::
 
-ODCM will be where Barry spends his time managing Octopus. It will provide features to do things like:
+Now, back to our friend Barry Infrastructure. He will deal directly with Spaces in his day to day management of Octopus. The other users all operate within a Space, but it will be fairly transparent.
+
+ODCM will provide Barry with features like:
 
 - enlist an existing "Octopus servers" as a Space,
-- separating things out of an existing Space into a new one,
+- separate things out of an existing Space into a new one,
 - create a new blank Space
 - monitor Spaces, via a dashboard and alerts
 - report across Spaces
