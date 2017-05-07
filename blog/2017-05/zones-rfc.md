@@ -63,7 +63,7 @@ In the rest of this RFC we are going to introduce some new terms so we don't all
 
 - Space: Learn more in the [RFC](/blog/2017-05/odcm-rfc.md)
 - Release Bundle: A package containing everything required to deploy a specific Release of a Project.
-- Deployment Receipt: A package containing everything required to show the result of deploying a specific Release of a Project.
+- Deployment Receipt: A document containing everything required to show the result of deploying a specific Release of a Project.
 - Source Space: The Space that owns the Project and its Releases, and where Release Bundles are created if you decide to cross Space boundaries.
 - Target Space: The Space where a Release Bundle will be imported. The Release extracted from the Release Bundle can then be deployed to Environments in this Space.
 - Remote Environment: A reference to an Environment owned by another Space.
