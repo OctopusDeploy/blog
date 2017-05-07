@@ -43,10 +43,8 @@ As an example, we started talking about splitting out Octopus _instances_. But w
 
 What we were talking about is what's represented by the URL that the users use to access Octopus. Not physically, but conceptually. What we were talking about was the ability to split that so teams had their own Space in which to work. And so we started talking about Spaces.
 
-:::hint
-Space (noun)
-    A bounded context for Lifecycles/Environments, Source/Target, X509 Certificate for [PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure), as bounded by a single API endpoint/URL and SQL database instance.
-:::
+Space
+:   A bounded context for Lifecycles/Environments, Source/Target, X509 Certificate for [PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure), as bounded by a single API endpoint/URL and SQL database instance.
 
 Now, back to our friend Barry Infrastructure. He will deal directly with Spaces in his day to day management of Octopus. The other users all operate within a Space, but it will be fairly transparent.
 
