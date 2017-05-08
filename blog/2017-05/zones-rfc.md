@@ -57,6 +57,10 @@ TODO: Like SOA or Microservice teams. "I want to deploy an instance of your serv
 
 Our proposed solution leverages the idea of Spaces, where each Space has its own set of Users, Projects, Environments, Lifecycles, etc. Now imagine if you could add Spaces to your Lifecycles. When you promote a release to another Space, Octopus could bundle up everything required to deploy that Release of your Project to the Environments in the other Space.
 
+### Lifecyles
+
+At its heart this feature is about spreading your entire deployment lifecycle across multiple Spaces.
+
 ## Definitions
 
 In the rest of this RFC we are going to introduce some new terms so we don't all get horribly confused.
@@ -116,24 +120,36 @@ Learn more: _LINK: Variable Template GitHub Issue_
 
 **Variable values for Remote Environments**: We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret). Now you would be able to set those values in your `DevTest Space`, scope them to `Prod Space: Production` and they will be used when a release is eventually deployed to that environment.
 
-## Persona: Release bundler
+### Persona: Release bundler
 
 - Bundles the release to be promoted to a specific remote space
 - Could be the same person as Project Contributor, or could be the same person as Release Acceptor/Approver/Deployer depending on your security model
 
-## Persona: Release acceptor
+### Persona: Release acceptor
 
 - Imports the release bundle
 - Adds the missing variable values
 - Has permissions to create projects, edit variables, add packages, etc
 
-## Persona: Release approver(s)
+### Persona: Release approver(s)
 
 - Idea for multi-team sign off on a release before it is allowed to be deployed
 
-## Persona: Release deployer
+### Persona: Release deployer
 
 - Actually deploys the release to the environment(s)
+
+Now the release has been accepted it can be deployed to the environments in the `Prod Space`. For all intents and purposes this would work just like the release was created in the `Prod Space`: all the same rules would apply for promoting this release including:
+
+- Project permissions: teams could be restricted to **Remote Projects** just like normal projects - after all, they are just normal projects but owned by another space, and namespaced just like **Remote Environments**
+- Environment permissions: teams could be granted permissions to environments in the `Prod Space` just like normal
+- Lifecycle progression: the release should be deployed to a `Staging` environment before being deployed to the `Production` environment
+
+
+
+#### Lifecycles
+
+
 
 ## Persona: Project manager
 
