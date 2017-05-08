@@ -85,7 +85,7 @@ A number of the users benefit from this centralization.
 
 Let's imagine Bob now has his access to multiple Spaces, how does he switch between them quickly and effortlessly? We're thinking it'll look something like this.
 
-![ODCM Space Switching](odcm-space-switch-menu.png "width=500")
+![ODCM Space Switching](odcm-space-switching-menu.png "width=500")
 
 The user experience might be something like Trello uses for managing and switching boards. You might be able to do things like:
 
