@@ -145,10 +145,9 @@ Now the release has been accepted it can be deployed to the environments in the 
 - Environment permissions: teams could be granted permissions to environments in the `Prod Space` just like normal
 - Lifecycle progression: the release should be deployed to a `Staging` environment before being deployed to the `Production` environment
 
-
-
 #### Lifecycles
 
+We talked earlier about lifecycles, but it's worth mentioning again: Lifecycles will be self-contained within a Space. This gives the teams in each space the ability to manage their own environments and lifecycles how they see fit. For example, you might decide to introduce a `Staging` environment into the `Prod Space` as a pre-requisite to deploy a release into `Production` - just like a normal lifecycle. And it would be nice if the decision to introduce `Staging` had minimal impact (if any) on the `DevTest Space`.
 
 
 ## Persona: Project manager
