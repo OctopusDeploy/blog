@@ -8,7 +8,7 @@ tags:
  - TODO
 ---
 
-![Octopus 3.14 release announcement](shipping-3-14-blogimage.png)
+![Octopus 3.14 release announcement] TODO: shipping-3-14-blogimage.png
 
 This month's release brings some exciting new features including **TODO**, among other things!
 
