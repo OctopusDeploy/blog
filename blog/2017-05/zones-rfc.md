@@ -108,11 +108,9 @@ We introduced the concept of [variable templates](https://octopus.com/docs/deplo
 
 #### Remote Environments
 
-In some cases you want certain steps to be executed in the `Production` environment. But now that the `Production` environment is owned by the `Prod Space`, your `DevTest` space doesn't know the `Production` environment exists! How can you tailor your deployment process for environments owned by other spaces?
+**Steps for Remote Environments**: In some cases you want certain steps to be executed in the `Production` environment. But now that the `Production` environment is owned by the `Prod Space`, your `DevTest Space` doesn't know the `Production` environment exists! How can you tailor your deployment process for environments owned by other spaces? Imagine if you could add a **Remote Environment** to the `DevTest Space`. This remote environment would be like a placeholder for the real `Production` environment, and Octopus could name it `Prod Space: Production` so we are all clear about the ownership of this environment. _Think of this like namespaces: so you can have a `Production` environment in multiple spaces._ Now you would be able to scope steps to `Prod Space: Production`, and those steps will be run when a release is eventually deployed to that environment.
 
-Imagine if you could add a **Remote Environment** to your space, as a placeholder for the real `Production` environment. Now you would be able to and scope steps to that remote environment, and those steps will be run when a release is eventually deployed to that remote environment.
-
-We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret) - now you would be able to set those values in your `DevTest Space`, and they will be used when deploying to the `Production` environment in the `Prod Space`.
+**Variable values for Remote Environments**: We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret). Now you would be able to set those values in your `DevTest Space`, scope them to `Prod Space: Production` and they will be used when a release is eventually deployed to that environment.
 
 ## Persona: Release bundler
 
