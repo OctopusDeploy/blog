@@ -85,7 +85,7 @@ A number of the users benefit from this centralization.
 
 Let's imagine Bob now has his access to multiple Spaces, how does he switch between them quickly and effortlessly? We're thinking it'll look something like this.
 
-![ODCM Space Switching](odcm-space-switch.png "width=500")
+![ODCM Space Switching](odcm-space-switch-menu.png "width=500")
 
 The user experience might be something like Trello uses for managing and switching boards. You might be able to do things like:
 
@@ -146,7 +146,7 @@ You can work around the MSI today but it takes some effort. We want to make it e
 Each Space will be an isolated copy of Octopus, and maintaining that isolation will be important. This is easier on some levels than others. For example, isolation of instance versions based on binaries is fairly straightforward. Isolation across shared resources like CPU, RAM and disk is more problematic. We're investigating options at the moment and we'll share more once that's done.
 
 ### Octopus Deploy monitoring and reporting
-A key part of Barry Infrastructure's role is monitoring Octopus servers and reporting on usage across them. We see ODCM facilitating this, given it's perfectly placed to collect and aggregate this information. We're imagining it will have a dashboard for real-time monitoring and a number of page to report statistics and usage information. 
+A key part of Barry Infrastructure's role is monitoring Octopus servers and reporting on usage across them. We see ODCM facilitating this, given it's perfectly placed to collect and aggregate this information. We're imagining it will have a dashboard for real-time monitoring and a number of page to report statistics and usage information.
 
 We don't expect that all of the dashboard functionality and reports will make it into the initial release. We will focus on a minimal set and build on this over subsequent releases. The initial release may contain something like:
 
