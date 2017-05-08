@@ -34,7 +34,7 @@ TODO
 
 ## Upgrading
 
-All of the usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please note there is a minor breaking change in this release around the `show-configuration` command. Please see the [release notes](https://octopus.com/downloads/compare?to=3.14.0) for further information.
+All of the usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=3.14.0) for further information.
 
 ## Wrap Up
 
