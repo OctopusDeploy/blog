@@ -1,14 +1,14 @@
 ---
 title: "Octopus June Release 3.14"
 description: TODO
-author: TODO
+author: nick.josevski@octopus.com
 visibility: private
 tags:
  - New Release
  - TODO
 ---
 
-![Octopus 3.14 release announcement](shipping-3-14-blogimage.png)
+![Octopus 3.14 release announcement] TODO: shipping-3-14-blogimage.png
 
 This month's release brings some exciting new features including **TODO**, among other things!
 
