@@ -58,7 +58,7 @@ Node Set
 :   a number of nodes that share an Octopus database and work together to provide High Availability
 
 Space
-:   a bounded context for Octopus Deploy concerns (e.g. Lifecycles/Environments, Source/Target, X509 Certificate for [PKI](https://en.wikipedia.org/wiki/Public_key_infrastructure)), as bounded by a single Octopus database.
+:   a container for Octopus Deploy concerns (e.g. Projects, Environments, Variables, Deployment Targets), as bounded by a single Octopus database. (i.e. it's Octopus as you know it today)
 
 The key new definition here is Space. The concept came from the idea of one big Octopus being split so that projects/teams had their own independent space in which to work.
 
@@ -115,25 +115,29 @@ Our vision for Spaces is that they should be collections of related things, so t
 - Releases
 - Tentacles
 
+#### Step Templates and Server Extensions
 Barry Infrastructure will again be the one primarily responsible for managing these things, and again we're thinking he'll do that through ODCM. It will:
 
-- have the ability to host a version of the Community Step Template library,
-- have something similar for hosting Server Extensions and
-- allow definition of Trusts between Spaces
+- have the ability to host a version of the Community Step Template library
+- have something similar for hosting Server Extensions
 
+#### Variables
+Now, Barry is responsible for standardization and as part of that he'd like to define/manage some variables for the teams to use. We're imagining he could do that along the following lines:
+
+- He creates a Space for managing variables
+- He adds a Trust between this Space and those he wants to share with (e.g. Lisa's)
+- He creates a Variable Set in the Space and specifies the Spaces he wants to share it with
+
+We're considering support for two modes of synchronization in the sharing. The first mode let's the publisher specify that updates must be automatically pushed to the subscribers and the second let's the subscribers chose whether updates are automatically pushed to them or synchronised on demand. In our scenario above, Barry could then ensure that all Spaces stay up to date by specifying that automatic pushes are required. Lisa would have to accept this if she subscribes the Variable Set into her Space.
+
+The Variable Set will appear as read-only in a subscribers Space, regardless of the synchronization mode, and can be added to the projects like any other Variable Set.
+
+We considered a few options for how this might work and landed on this model for a few reasons. One key reason is consistency, ODCM broking information from a publisher to a subscriber fits all of the sharing scenarios outlined above. It doesn't have to understand any of the information, it just helps get it to where it needs to go.
+
+#### Releases
 Sharing of Releases is the subject of an upcoming RFC, so we won't talk too much about it here.  In the context of this discussion (ODCM management) we think it will hold a lot in common with variables.
 
-Now, let's imagine that Barry has some common variables as part of the standardization he's responsible for encouraging. What he'd like is to be able to define/manage them in one place and share them with teams, like Lisa Shipping's. We're imagining this might work along the following lines:
-
-- Barry creates a Space for managing variables
-- He adds a Trust between this Space and Lisa's
-- He creates a Variable Set in the Space and specifies that it can be shared with Lisa's Space (he could also wildcard to all trusted spaces)
-- Lisa "subscribes" to the Variable Set in her Space. It will appear as a read-only Variable Set in her Space and can be added to the projects like any other Variable Set
-
-From here ODCM will manage (broker) updates between the Spaces when Barry publishes them from the source Space.
-
-We considered a few options for how this might work and landed on this model for a few reasons. One key reason is consistency, ODCM broking information from a source to a consumer (subscriber) fits all of the sharing scenarios outlined above. It doesn't have to understand any of the information, it just helps get it to where it needs to go.
-
+#### Tentacles
 On a final note about sharing, Tentacles can already be used by more than one Octopus server, so this still applies and it can be used by more than one Space.
 
 ### Multiple Octopus Deploy versions
