@@ -9,7 +9,7 @@ line of Java development roles, starting in Red Hat in 2010. I've published book
 [3D web development](http://www.packtpub.com/away3d-36-essentials/book) and released some 
 open source projects for [end to end testing of web applications](https://autogeneral.gitbooks.io/iridiumapplicationtesting-gettingstartedguide/content/).
 
-On the weekends you'll find me motorbiking around the hills with friends, or catching up on some DotNet study.
+On the weekends you'll find me motorbiking around the hills with friends, or catching up on some .Net study.
 
 You can find me on [LinkedIn](https://www.linkedin.com/in/mattcasperson/), [Twitter](https://twitter.com/mcasperson)
 and [DZone](https://dzone.com/users/343648/mcasperson.html).
