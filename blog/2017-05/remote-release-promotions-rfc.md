@@ -48,6 +48,12 @@ Imagine if you could add a space to your lifecycle and then promote a release to
 - High-level architecture diagram (pretty picture) (Vanessa)
 - Release lifecycle (showing promotion through environments, then zones) (Vanessa)
 
+### Lifecycles
+
+We think lifecycles should be self-contained within a space. This gives the teams in each space the ability to manage their own environments and lifecycles how they see fit. For example, a member of one space might decide to introduce an environment into their lifecycle. We don't want the decision to introduce an environment into a lifecycle in one space to have any impact on any other spaces.
+
+We also think lifecycles should be able to model interesting progressions 
+
 ## Definitions
 
 In the rest of this RFC we are going to introduce some new terms so we don't all get horribly confused.
@@ -128,11 +134,7 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 - Project permissions: teams could be restricted to **Remote Projects** just like normal projects - after all, they are just normal projects but owned by another space, and namespaced in the same way **Remote Environments** will be namespaced
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
-- Lifecycle progression: Octopus will ensure each release progresses through the appropriate lifecycle, just like normal
-
-#### Lifecycles
-
-Lifecycles will be self-contained within a Space. This gives the teams in each space the ability to manage their own environments and lifecycles how they see fit. For example, a member of the `Prod Space` might decide to introduce a `Staging` environment as a pre-requisite to deploy a release into `Production`. The decision to introduce `Staging` should have minimal impact (if any) on the `DevTest Space`.
+- Lifecycle progression: Octopus will ensure each release progresses through the appropriate lifecycle in the `Prod Space`, just like normal
 
 ## Persona: Project manager
 
