@@ -123,7 +123,7 @@ Barry Infrastructure will again be the one primarily responsible for managing th
 
 Sharing of Releases is the subject of an upcoming RFC, so we won't talk too much about it here.  In the context of this discussion (ODCM management) we think it will hold a lot in common with variables.
 
-Now, let's imagine that Barry has some common variables that apply across the organization, as part of the standardization he's responsible for encouraging. What he'd like is to be able to define/manage them in one place and share them with teams, like Lisa Shipping's. We're imagining this might work along the following lines:
+Now, let's imagine that Barry has some common variables as part of the standardization he's responsible for encouraging. What he'd like is to be able to define/manage them in one place and share them with teams, like Lisa Shipping's. We're imagining this might work along the following lines:
 
 - Barry creates a Space for managing variables
 - He adds a Trust between this Space and Lisa's
