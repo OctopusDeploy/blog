@@ -8,7 +8,7 @@ tags:
 ---
 
 <div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Manager" src="odcm-blogimage.png"  />
+![Octopus Manager](odcm-blogimage.png "display:block; margin: 0 auto; padding: 20px 0 20px 20px;")
 </div>
 
 ---
