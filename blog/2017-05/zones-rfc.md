@@ -65,7 +65,7 @@ At its heart this feature is about spreading your entire deployment lifecycle ac
 
 In the rest of this RFC we are going to introduce some new terms so we don't all get horribly confused.
 
-- Space: Learn more in the [RFC](/blog/2017-05/odcm-rfc.md)
+- Space: Contains a set of Projects, Environments, Variables, Deployment Targets, etc, bounded by a single Octopus database. Learn more in our recent [RFC](/blog/2017-05/odcm-rfc.md).
 - Release Bundle: A package containing everything required to deploy a specific Release of a Project.
 - Deployment Receipt: A document containing everything required to show the result of deploying a specific Release of a Project.
 - Source Space: The Space that owns the Project and its Releases, and where Release Bundles are created if you decide to cross Space boundaries.
