@@ -1,6 +1,6 @@
 ---
-title: "Zones RFC"
-description: We are designing a new feature to allow promoting Releases between Octopus Servers (e.g. for security or geographic reasons). This is a request-for-comments.  
+title: "Remote Release Promotions RFC"
+description: We are designing a new feature to allow promoting Releases between different Octopus Servers (Spaces). You may want to do this for for security, geographic, or other reasons. This is a request-for-comments.  
 author: michael.richardson@octopus.com
 visibility: private
 tags:
@@ -18,9 +18,8 @@ For example:
 
 The two most common reasons for this are:
 
-- Secure Environments
+- Secure environments
 - Geographically distant environments
-- Teams who share services
 
 ### Secure environments
 
@@ -40,26 +39,14 @@ For example, their development environment may be located in Brisbane, while the
 
 The problem with this currently, is that the packages are transferred at deployment time.  These customers would like to be able to promote the release at a time of their choosing (including transferring the packages), then perform the deployment with the packages already located in the appropriate Octopus instance, close to the target machines.
 
-*TODO: INSERT PRETTY PICTURE*
-
-### Teams who share services
-
-TODO: Like SOA or Microservice teams. "I want to deploy an instance of your services in my environment so I can test my service against yours."
-
-*TODO: INSERT PRETTY PICTURE*
-
 ## Proposed solution
+
+Our proposed solution will enable you to spread your entire deployment lifecycle across multiple "Spaces". A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
+
+Imagine if you could add a space to your lifecycle and then promote a release to another space, just like you can to an environment. When you promote a release to another space, Octopus could bundle up everything required to deploy that release into the environments in the **other** space. That's why we're calling this feature **Remote Release Promotions**.
 
 - High-level architecture diagram (pretty picture) (Vanessa)
 - Release lifecycle (showing promotion through environments, then zones) (Vanessa)
-- A day-in-the-life of a release (so people can identify with it) (Mike)
-  - Nothing much changes for project contributors
-
-Our proposed solution leverages the idea of Spaces, where each Space has its own set of Users, Projects, Environments, Lifecycles, etc. Now imagine if you could add Spaces to your Lifecycles. When you promote a release to another Space, Octopus could bundle up everything required to deploy that Release of your Project to the Environments in the other Space.
-
-### Lifecyles
-
-At its heart this feature is about spreading your entire deployment lifecycle across multiple Spaces.
 
 ## Definitions
 
