@@ -167,12 +167,14 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 - Disconnected mode (we won’t force you to use connected)
 - Version tolerance/message schema
-- Snapshots (how to update on the source zone and re-promote to remote zone)
-- What will be locked on the target zone?
+- Snapshots (how to update on the source space and re-promote to remote space)
+- What will be locked on the target space?
 - Matching on names, not IDs
 - We want to use delta compression
-- Tenants could span zones
-- Lifecycles won’t span zones
+- Tenants could span spaces
+- Lifecycles won’t span spaces
+- Channels in remote spaces
+- ARC in remote spaces
 
 ## Security Concerns
 
