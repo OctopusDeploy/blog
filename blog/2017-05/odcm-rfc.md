@@ -49,7 +49,7 @@ ODCM is shown in a Highly Available configuration (it will support single node a
 When we started talking about ODCM and its functionality internally something became apparent pretty quickly, some of the terminology can be overloaded and confusing. This was within our team, and we're living this stuff every day, so let's go through some definitions to try to avoid confusion.
 
 Instance
-:   a running [instance of Octopus Server or Tentacle EXE](https://octopus.com/docs/administration/managing-multiple-instances)
+:   a running [instance of Octopus server or Tentacle EXE](https://octopus.com/docs/administration/managing-multiple-instances)
 
 Server
 :   a machine on which an instance runs
