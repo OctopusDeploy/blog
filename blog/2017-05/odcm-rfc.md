@@ -34,7 +34,7 @@ Geoff is a consultant from an external organization who is also joining Lisa's t
 ### User 4: Barry Infrastructure
 Barry is responsible for the organization's Octopus infrastructure. Some critical projects rely on this infrastructure and it's important he knows when any Octopus servers go offline.
 
-He is also responsible for helping the teams standardize on Octopus practises and share that knowledge within the organization.
+He is also responsible for helping the teams standardize on Octopus practices and share that knowledge within the organization.
 
 ## Features
 Now let's talk about some of the challenges these users face when dealing with multiple Octopus servers and look at the ODCM features that will help them.
@@ -93,7 +93,7 @@ Let's imagine Bob now has his access to multiple Spaces, how does he switch betw
 The user experience might be something like Trello uses for managing and switching boards. You might be able to do things like:
 
 - quickly see and select a Space you've recently visited
-- "favourite" a Space so it always appears near the top
+- "favorite" a Space so it always appears near the top
 - link to a page that shows the Spaces as tiles and allows searching
 
 ### Access control
