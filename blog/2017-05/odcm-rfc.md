@@ -131,7 +131,7 @@ Now, Barry is responsible for standardization and as part of that he'd like to d
 - He adds a Trust between this Space and those he wants to share with (e.g. Lisa's)
 - He creates a Variable Set in the Space and specifies the Spaces he wants to share it with
 
-We're considering support for two modes of synchronization in the sharing. The first mode let's the publisher specify that updates must be automatically pushed to the subscribers and the second let's the subscribers chose whether updates are automatically pushed to them or synchronised on demand. In our scenario above, Barry could then ensure that all Spaces stay up to date by specifying that automatic pushes are required. Lisa would have to accept this if she subscribes the Variable Set into her Space.
+We're considering support for two modes of synchronization in the sharing. The first mode let's the publisher specify that updates must be automatically pushed to the subscribers and the second let's the subscribers chose whether updates are automatically pushed to them or synchronized on demand. In our scenario above, Barry could then ensure that all Spaces stay up to date by specifying that automatic pushes are required. Lisa would have to accept this if she subscribes the Variable Set into her Space.
 
 The Variable Set will appear as read-only in a subscribers Space, regardless of the synchronization mode, and can be added to the projects like any other Variable Set.
 
