@@ -1,15 +1,18 @@
 ---
 title: "Managing Spaces with Octopus Data Center Manager RFC"
 description: We are designing a new product to manage Octopus Servers at scale. This is a request-for-comments.
-author: shannon.lewis@octopus.com
+metaImage: odcm-metaimage.png 
 visibility: private
 tags:
  - RFC
 ---
 
-In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. In that post we floated the idea of a tool that centrally manages a number of Octopus servers.
+<div style="background-color:#e9edf2;">
+<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Manager" src="odcm-blogimage.png"  />
+</div>
 
-![Octopus Data Center Manager](octopus-instances-odcm.png "width=500")
+---
+In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. In that post we floated the idea of a tool that centrally manages a number of Octopus servers.
 
 In this post we are going to talk more about what this tool, provisionally named **Octopus Data Center Manager** (ODCM), would look like.
 
