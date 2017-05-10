@@ -43,7 +43,7 @@ The ODCM installation for the organization might look something like the followi
 
 ![ODCM Architecture](odcm-architecture.png "width=500")
 
-ODCM is shown in a Highly Available configuration (it will support single node and HA configuration), which is important to Barry. Projects are depending on these Octopus servers and he wants to ensure reliable and responsive feedback.
+ODCM is shown in a [Highly Available](https://g.octopushq.com/HighAvailability) configuration (it will support single node and HA configuration), which is important to Barry. Projects are depending on these Octopus servers and he wants to ensure reliable and responsive feedback.
 
 ### Giving teams their own Space
 When we started talking about ODCM and its functionality internally something became apparent pretty quickly, some of the terminology can be overloaded and confusing. This was within our team, and we're living this stuff every day, so let's go through some definitions to try to avoid confusion.
@@ -78,7 +78,7 @@ ODCM will provide Barry with features like:
 ### Identity management
 One of the keys to working across multiple Spaces is dealing with user identity and access control. We can solve these problems by having ODCM take responsibility for them.
 
-When a Space is enlisted with ODCM its authentication will be configured to point to ODCM, which will centralize identity management and allow SSO across Spaces. ODCM will support all of the authentication providers currently supported by Octopus Deploy.
+When a Space is enlisted with ODCM its authentication will be configured to point to ODCM, which will centralize identity management and allow SSO across Spaces. ODCM will support all of the [authentication providers](https://g.octopushq.com/AuthenticationProviders) currently supported by Octopus Deploy (i.e. UsernamePassword, Active Directory, Azure AD, GoogleApps).
 
 A number of the users benefit from this centralization.
 
@@ -112,9 +112,9 @@ Lisa Shipping, as a Space administrator, will be able to use teams to manage whi
 Our vision for Spaces is that they should be collections of related things, so the need for sharing should be minimal. We thought about which things are likely to need sharing, and think they'll be things like:
 
 - Users (as discussed above)
-- Step templates
-- Server extensions
-- Variables
+- [Step templates](https://g.octopushq.com/CommunityContributedStepTemplates)
+- [Server extensions](https://g.octopushq.com/ServerExtensions)
+- [Variables](https://g.octopushq.com/LibraryVariableSets)
 - Releases
 - Tentacles
 
@@ -127,7 +127,7 @@ Barry Infrastructure will again be the one primarily responsible for managing th
 #### Variables
 Now, Barry is responsible for standardization and as part of that he'd like to define/manage some variables for the teams to use. We're imagining he could do that along the following lines:
 
-- He creates a Space for managing variables
+- He creates a Space to contain the variables he wants to share
 - He adds a trust between this Space and those he wants to share with (e.g. Lisa's)
 - He creates a variable set in the Space and specifies the Spaces he wants to share it with
 
