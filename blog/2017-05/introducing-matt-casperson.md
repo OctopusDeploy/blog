@@ -1,7 +1,7 @@
 ---
 title: "Introducing Matt Casperson"
 visibility: public
-description: "New employee welcome"
+description: "Hi - I've just started with Octopus Deploy. Let me tell you a bit about myself."
 tags:
  - Company
 ---
