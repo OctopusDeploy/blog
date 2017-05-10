@@ -1,6 +1,7 @@
 ---
 title: "Introducing Matt Casperson"
 visibility: public
+description: "New employee welcome"
 tags:
  - Company
 ---
