@@ -82,7 +82,7 @@ When a Space is enlisted with ODCM its authentication will be configured to poin
 
 A number of the users benefit from this centralization.
 
-- Bob Specialist can move team and doesn't need a new identity or need to find a new URL
+- Bob Specialist can move teams and doesn't need a new identity or need to find a new URL
 - Barry Infrastructure can locate Bob's existing identity to grant him access to Lisa Shipping's Space
 - Barry can create an external identity for Geoff Outsider, who can then log in with his existing credentials.
 
@@ -131,7 +131,7 @@ Now, Barry is responsible for standardization and as part of that he'd like to d
 - He adds a trust between this Space and those he wants to share with (e.g. Lisa's)
 - He creates a variable set in the Space and specifies the Spaces he wants to share it with
 
-We're considering support for two modes of synchronization in the sharing. The first mode let's the publisher specify that updates must be automatically pushed to the subscribers and the second let's the subscribers chose whether updates are automatically pushed to them or synchronized on demand. In our scenario above, Barry could then ensure that all Spaces stay up to date by specifying that automatic pushes are required. Lisa would have to accept this if she subscribes the Variable Set into her Space.
+We're considering support for two modes of synchronization in the sharing. The first mode lets the publisher specify that updates must be automatically pushed to the subscribers and the second lets the subscribers chose whether updates are automatically pushed to them or synchronized on demand. In our scenario above, Barry could then ensure that all Spaces stay up to date by specifying that automatic pushes are required. Lisa would have to accept this if she subscribes the Variable Set into her Space.
 
 The variable set will appear as read-only in a subscribers Space, regardless of the synchronization mode, and can be added to the projects like any other variable set.
 
