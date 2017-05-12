@@ -54,9 +54,9 @@ Imagine if you could add a Space to your Lifecycle and then promote a release to
 
 ### Lifecycles
 
-We think Lifecycles should be self-contained within a Space, but give you the ability to compose your overall lifecycle across multiple Spaces. This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
+We think Lifecycles should be self-contained within a Space. This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
 
-We also think Lifecycles should be able to model interesting progressions that cross Space boundaries:
+We also think Lifecycles should be able to model interesting progressions that cross Space boundaries. Think of it like building your overall deployment lifecycle by composing multiple Octopus Lifecycles together:
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
 1. You might want to promote a release through your dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the dev team to promote that same release to yet another Space that manages your production environments.
@@ -123,25 +123,25 @@ Learn more: _LINK: Variable Template GitHub Issue_
 
 **Variable values for Remote Environments**: We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret). Now you would be able to set those values in your `DevTest Space`, scope them to `Prod Space: Production` and they will be used when a release is eventually deployed to that environment.
 
-### Publishing releases to other Spaces
+### Publishing releases to other Spaces (Mike N)
 
 - Bundles the release to be promoted to a specific remote Space
 - Could be the same person as Project Contributor, or could be the same person as Release Acceptor/Approver/Deployer depending on your security model
 
-### Subscribing to releases from other Spaces
+### Subscribing to releases from other Spaces (Mike N)
 
-### Importing releases into your Space
+### Importing releases into your Space (Mike N)
 
 - Import the release bundle
 - Choose a lifecycle
 - Add the missing variable values
 - Person must have permissions to create projects, edit variables, add packages, etc
 
-### Approving a release
+### Approving a release (Mike N)
 
 - Idea for multi-team sign off on a release before it is allowed to be deployed - no need for manual intervention steps for this purpose
 
-### Deploying releases
+### Deploying releases (Mike N)
 
 Now the release has been accepted it can be deployed to the environments in the `Prod Space`. For all intents and purposes this would work just like the release was created in the `Prod Space`: all the same rules would apply for deploying this release including:
 
@@ -149,39 +149,37 @@ Now the release has been accepted it can be deployed to the environments in the 
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
 - Lifecycle progression: Octopus will ensure each release progresses through the appropriate Lifecycle in the `Prod Space`, just like normal
 
-### Aggregated dashboard
+### Aggregated dashboard (Mike N)
 
 - Wants to see an aggregated overview of the deployments for the entire lifecycle
 
-## Release bundle
+## Release bundle (Michael R)
 
 - What goes across?
 - Packages (hash)
 
-## Release Acceptance
+## Release Acceptance (Michael R)
 
 - Review and accept diffs?
 - Provide variable values
 
-## Flowing deployment results back across
+## Flowing deployment results back across (Michael R)
 
 - Deployment receipts
 - Updating the source dashboard
 
-## Variables
+## Variables (Michael R)
 
 - Environment Variable Templates
 
-## Super nitty gritty
+## Super nitty gritty (Michael R)
 
-- Disconnected mode (we won’t force you to use connected)
+- Disconnected mode - details on how we see this working.
 - Version tolerance/message schema
 - Snapshots (how to update on the source Space and re-promote to remote Space)
 - What will be locked on the target Space?
-- Matching on names, not IDs
 - We want to use delta compression
 - Tenants could span Spaces
-- Lifecycles won’t span Spaces
 - Channels in remote Spaces
 - ARC in remote Spaces
 
