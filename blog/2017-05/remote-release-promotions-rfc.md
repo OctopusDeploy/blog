@@ -47,16 +47,16 @@ The problem with this currently, is that the packages are transferred at deploym
 
 Our proposed solution will enable you to spread your entire deployment lifecycle across multiple "Spaces". A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
-Imagine if you could add a Space to your lifecycle and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're calling this feature **Remote Release Promotions**.
+Imagine if you could add a Space to your Lifecycle and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're calling this feature **Remote Release Promotions**.
 
 - High-level architecture diagram (pretty picture) (Vanessa)
-- Release lifecycle (showing promotion through environments, then zones) (Vanessa)
+- Release Lifecycle (showing promotion through environments, then zones) (Vanessa)
 
 ### Lifecycles
 
-We think lifecycles should be self-contained within a Space, but give you the ability to compose your overall lifecycle across multiple Spaces. This gives the teams in each Space the ability to manage their own environments and lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their lifecycle. We don't want the decision to introduce an environment into a lifecycle in one Space to have any impact on any other Spaces.
+We think Lifecycles should be self-contained within a Space, but give you the ability to compose your overall lifecycle across multiple Spaces. This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
 
-We also think lifecycles should be able to model interesting progressions that cross Space boundaries:
+We also think Lifecycles should be able to model interesting progressions that cross Space boundaries:
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
 1. You might want to promote a release through your dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the dev team to promote that same release to yet another Space that manages your production environments.
@@ -147,7 +147,7 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 - Project permissions: teams could be restricted to **Remote Projects** just like normal projects - after all, they are just normal projects but owned by another Space, and namespaced in the same way **Remote Environments** will be namespaced
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
-- Lifecycle progression: Octopus will ensure each release progresses through the appropriate lifecycle in the `Prod Space`, just like normal
+- Lifecycle progression: Octopus will ensure each release progresses through the appropriate Lifecycle in the `Prod Space`, just like normal
 
 ### Aggregated dashboard
 
