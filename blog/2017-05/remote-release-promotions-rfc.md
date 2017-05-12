@@ -9,12 +9,16 @@ tags:
 
 ## The problem
 
-There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to.
-
-For example:
+There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to. For example:
 
 - Octopus Server 1 deploys to Development and Testing environments
 - Octopus Server 2 deploys to Staging and Production environments
+
+### Elevator pitch
+
+We are planning a feature which enables you to promote releases across multiple Octopus Servers... in a nice way. :) If you are trying to do this today, you know it hurts real good.
+
+*TODO: INSERT PRETTY PICTURE HERE*
 
 The two most common reasons for this are:
 
@@ -43,14 +47,14 @@ The problem with this currently, is that the packages are transferred at deploym
 
 Our proposed solution will enable you to spread your entire deployment lifecycle across multiple "Spaces". A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
-Imagine if you could add a Space to your lifecycle and then promote a release to another Space, just like you can to an environment. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. That's why we're calling this feature **Remote Release Promotions**.
+Imagine if you could add a Space to your lifecycle and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're calling this feature **Remote Release Promotions**.
 
 - High-level architecture diagram (pretty picture) (Vanessa)
 - Release lifecycle (showing promotion through environments, then zones) (Vanessa)
 
 ### Lifecycles
 
-We think lifecycles should be self-contained within a Space. This gives the teams in each Space the ability to manage their own environments and lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their lifecycle. We don't want the decision to introduce an environment into a lifecycle in one Space to have any impact on any other Spaces.
+We think lifecycles should be self-contained within a Space, but give you the ability to compose your overall lifecycle across multiple Spaces. This gives the teams in each Space the ability to manage their own environments and lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their lifecycle. We don't want the decision to introduce an environment into a lifecycle in one Space to have any impact on any other Spaces.
 
 We also think lifecycles should be able to model interesting progressions that cross Space boundaries:
 
