@@ -31,7 +31,7 @@ For security purposes many organizations separate their production and developme
 
 The secure zone may even be completely disconnected (aka air-gap).
 
-These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, and seeing the progression on the dashboard.  But they don't want the development Octopus server to be able to connect to the production environment.  They also likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus instance.
+These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also likely likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus Server.
 
 *TODO: INSERT PRETTY PICTURE*
 
@@ -39,32 +39,34 @@ These organizations still want all of the Octopus-goodness, like promoting the s
 
 Other organizations may deploy to geographically-distant environments.
 
-For example, their development environment may be located in Brisbane, while their production environments live in data centers in the US and Europe.
+For example, their development environment may be located in Brisbane (it's a great place to live!), while their production environment is hosted at data centers in the US and Europe.
 
-The problem with this currently, is that the packages are transferred at deployment time.  These customers would like to be able to promote the release at a time of their choosing (including transferring the packages), then perform the deployment with the packages already located in the appropriate Octopus instance, close to the target machines.
+The problem with this currently, is that the packages are transferred at deployment time. These customers would like to promote the release at a time of their choosing (including transferring the packages), then perform the deployment with the packages already located in the appropriate data center, close to the target machines.
 
 ## Proposed solution
 
 Our proposed solution will enable you to spread your entire deployment lifecycle across multiple "Spaces". A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
-Imagine if you could add a Space to your Lifecycle and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're calling this feature **Remote Release Promotions**.
+Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're currently calling this feature **Remote Release Promotions**.
 
 - High-level architecture diagram (pretty picture) (Vanessa)
 - Release Lifecycle (showing promotion through environments, then zones) (Vanessa)
 
 ### Lifecycles
 
-We think Lifecycles should be self-contained within a Space. This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
+We think Lifecycles should be **defined** within a Space and **composable** across multiple Spaces.
 
-We also think Lifecycles should be able to model interesting progressions that cross Space boundaries. Think of it like building your overall deployment lifecycle by composing multiple Octopus Lifecycles together:
+**Defined within a Space:** This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
+
+**Composable across Spaces:** Thid gives you the ability to model your overall deployment pipeline by composing Lifecycles from multiple Spaces together. For example:
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
-1. You might want to promote a release through your dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the dev team to promote that same release to yet another Space that manages your production environments.
-1. You might want to do the same as #2, but once the QA team is finished they are responsible to promote the release to the production Space without going back through the dev team.
+1. You might want to promote a release through your Dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the Dev team to promote that same release to yet another Space where the Operations team manages your production environments.
+1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
 
 ## Definitions
 
-In the rest of this RFC we are going to introduce some new terms so we don't all get horribly confused.
+In the rest of this RFC we are going to introduce some new terms. Let's define them here so we don't all get horribly confused.
 
 - Space: Contains a set of projects, environments, variables, teams, permissions, etc, bounded by a single Octopus database. Learn more in our recent [RFC](/blog/2017-05/odcm-rfc.md).
 - Release Bundle: A package containing everything required to deploy a specific release of a project.
