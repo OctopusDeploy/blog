@@ -54,11 +54,11 @@ Imagine if you could add a Space to your Lifecycle, just like you can add enviro
 
 ### Lifecycles
 
-We think Lifecycles should be **defined** within a Space and **composable** across multiple Spaces.
+We think Lifecycles should be **defined** within a Space and able to be **composed** across multiple Spaces.
 
-**Defined within a Space:** This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
+**Define within a Space:** This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
 
-**Composable across Spaces:** Thid gives you the ability to model your overall deployment pipeline by composing Lifecycles from multiple Spaces together. For example:
+**Compose across Spaces:** This gives you the ability to model your overall deployment pipeline as a **Composite Lifecycle** made by connecting together Lifecycles which are defined in different Spaces. For example:
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
 1. You might want to promote a release through your Dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the Dev team to promote that same release to yet another Space where the Operations team manages your production environments.
