@@ -43,20 +43,20 @@ The problem with this currently, is that the packages are transferred at deploym
 
 Our proposed solution will enable you to spread your entire deployment lifecycle across multiple "Spaces". A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
-Imagine if you could add a space to your lifecycle and then promote a release to another space, just like you can to an environment. When you promote a release to another space, Octopus could bundle up everything required to deploy that release into the environments in the **other** space. That's why we're calling this feature **Remote Release Promotions**.
+Imagine if you could add a Space to your lifecycle and then promote a release to another Space, just like you can to an environment. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. That's why we're calling this feature **Remote Release Promotions**.
 
 - High-level architecture diagram (pretty picture) (Vanessa)
 - Release lifecycle (showing promotion through environments, then zones) (Vanessa)
 
 ### Lifecycles
 
-We think lifecycles should be self-contained within a space. This gives the teams in each space the ability to manage their own environments and lifecycles how they see fit. For example, a member of one space might decide to introduce an environment into their lifecycle. We don't want the decision to introduce an environment into a lifecycle in one space to have any impact on any other spaces.
+We think lifecycles should be self-contained within a Space. This gives the teams in each Space the ability to manage their own environments and lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their lifecycle. We don't want the decision to introduce an environment into a lifecycle in one Space to have any impact on any other Spaces.
 
-We also think lifecycles should be able to model interesting progressions that cross space boundaries:
+We also think lifecycles should be able to model interesting progressions that cross Space boundaries:
 
-1. You might want to promote a release through your test environments, then promote the release to one or more spaces that manage the production environments.
-1. You might want to promote a release through your dev team's test environments, then promote the release to another space managed by a QA team. When they are finished testing you want the dev team to promote that same release to yet another space that manages your production environments.
-1. You might want to do the same as #2, but once the QA team is finished they are responsible to promote the release to the production space without going back through the dev team.
+1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
+1. You might want to promote a release through your dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the dev team to promote that same release to yet another Space that manages your production environments.
+1. You might want to do the same as #2, but once the QA team is finished they are responsible to promote the release to the production Space without going back through the dev team.
 
 ## Definitions
 
@@ -65,26 +65,26 @@ In the rest of this RFC we are going to introduce some new terms so we don't all
 - Space: Contains a set of projects, environments, variables, teams, permissions, etc, bounded by a single Octopus database. Learn more in our recent [RFC](/blog/2017-05/odcm-rfc.md).
 - Release Bundle: A package containing everything required to deploy a specific release of a project.
 - Deployment Receipt: A document containing everything required to show the result of deploying a specific release of a project.
-- Source Space: The space that owns the project and its releases, and where release bundles are created if you decide to cross space boundaries.
-- Target Space: The space where a release bundle will be imported. The release extracted from the release bundle can then be deployed to environments in this space.
-- Remote Environment: A reference to an environment owned by another space.
-- Remote Project: A reference to a project owned by another space.
+- Source Space: The Space that owns the project and its releases, and where release bundles are created if you decide to cross Space boundaries.
+- Target Space: The Space where a release bundle will be imported. The release extracted from the release bundle can then be deployed to environments in this Space.
+- Remote Environment: A reference to an environment owned by another Space.
+- Remote Project: A reference to a project owned by another Space.
 - Variable Template: We introduced this concept with multi-tenant deployments. In this context you could express that a variable value is required for each environment a project can be deployed into.
 
-### Trusting other spaces
+### Trusting other Spaces
 
-- Has to set up the connection/trust/relationship between the two spaces, potentially over an air gap
+- Has to set up the connection/trust/relationship between the two Spaces, potentially over an air gap
 
 ## Example: Secure Environments
 
-Let's explore this concept using the **Secure Environments** example we mentioned earlier, where you want strict separation between your development and production environments. In this case we will model this separation using two spaces:
+Let's explore this concept using the **Secure Environments** example we mentioned earlier, where you want strict separation between your development and production environments. In this case we will model this separation using two Spaces:
 
 - `DevTest Space`: where your application is deployed for development and testing purposes
 - `Prod Space`: where the production deployments of your application will be deployed and strict compliance controls are required
 
-_IMAGE: Show two spaces, indicating where project, and each environment is owned, and how the bundle flows_
+_IMAGE: Show two Spaces, indicating where project, and each environment is owned, and how the bundle flows_
 
-Let's consider how each different person in your organization might interact with Octopus to promote a release across these two spaces all the way to production.
+Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
 ### Working with projects
 
@@ -97,14 +97,14 @@ Please welcome variable templates and remote environments!
 
 #### Variable templates
 
-Imagine if you are the person importing a release bundle into your space - how do you know which variables need values? And even if you know which variables you need to set, what should you set the value to?
+Imagine if you are the person importing a release bundle into your Space - how do you know which variables need values? And even if you know which variables you need to set, what should you set the value to?
 
 Now imagine as a project contributor, you could express that a variable value is required for each environment a project can be deployed into. And imagine you could define a data type for the variable, provide help text, decide whether the value is mandatory or optional, or even provide a default value.
 
-Variable templates could make it much easier for a person importing a release bundle into their space to "fill in the blanks".
+Variable templates could make it much easier for a person importing a release bundle into their Space to "fill in the blanks".
 
 :::hint
-This would also be really handy even if you are only promoting releases within your own space. Using variable templates, if you introduce a new environment into your own space, Octopus will prompt you for those variable values.
+This would also be really handy even if you are only promoting releases within your own Space. Using variable templates, if you introduce a new environment into your own Space, Octopus will prompt you for those variable values.
 :::
 
 We introduced the concept of [variable templates](https://octopus.com/docs/deploying-applications/variables/variable-templates) for multi-tenant deployments in Octopus 3.4. We would like to build on this concept further as part of this set of features.
@@ -115,18 +115,18 @@ Learn more: _LINK: Variable Template GitHub Issue_
 
 #### Remote Environments
 
-**Steps for Remote Environments**: In some cases you want certain steps to be executed in the `Production` environment. But now that the `Production` environment is owned by the `Prod Space`, your `DevTest Space` doesn't know the `Production` environment exists! How can you tailor your deployment process for environments owned by other spaces? Imagine if you could add a **Remote Environment** to the `DevTest Space`. This remote environment would be like a placeholder for the real `Production` environment. Octopus could even name it `Prod Space: Production` so we are all clear about the ownership of this environment. _Think of this like namespaces: so you can have a `Production` environment in multiple spaces._ Now you would be able to scope steps to `Prod Space: Production`, and those steps will be run when a release is eventually deployed to that environment.
+**Steps for Remote Environments**: In some cases you want certain steps to be executed in the `Production` environment. But now that the `Production` environment is owned by the `Prod Space`, your `DevTest Space` doesn't know the `Production` environment exists! How can you tailor your deployment process for environments owned by other Spaces? Imagine if you could add a **Remote Environment** to the `DevTest Space`. This remote environment would be like a placeholder for the real `Production` environment. Octopus could even name it `Prod Space: Production` so we are all clear about the ownership of this environment. _Think of this like nameSpaces: so you can have a `Production` environment in multiple Spaces._ Now you would be able to scope steps to `Prod Space: Production`, and those steps will be run when a release is eventually deployed to that environment.
 
 **Variable values for Remote Environments**: We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret). Now you would be able to set those values in your `DevTest Space`, scope them to `Prod Space: Production` and they will be used when a release is eventually deployed to that environment.
 
-### Publishing releases to other spaces
+### Publishing releases to other Spaces
 
-- Bundles the release to be promoted to a specific remote space
+- Bundles the release to be promoted to a specific remote Space
 - Could be the same person as Project Contributor, or could be the same person as Release Acceptor/Approver/Deployer depending on your security model
 
-### Subscribing to releases from other spaces
+### Subscribing to releases from other Spaces
 
-### Importing releases into your space
+### Importing releases into your Space
 
 - Import the release bundle
 - Choose a lifecycle
@@ -141,7 +141,7 @@ Learn more: _LINK: Variable Template GitHub Issue_
 
 Now the release has been accepted it can be deployed to the environments in the `Prod Space`. For all intents and purposes this would work just like the release was created in the `Prod Space`: all the same rules would apply for deploying this release including:
 
-- Project permissions: teams could be restricted to **Remote Projects** just like normal projects - after all, they are just normal projects but owned by another space, and namespaced in the same way **Remote Environments** will be namespaced
+- Project permissions: teams could be restricted to **Remote Projects** just like normal projects - after all, they are just normal projects but owned by another Space, and nameSpaced in the same way **Remote Environments** will be nameSpaced
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
 - Lifecycle progression: Octopus will ensure each release progresses through the appropriate lifecycle in the `Prod Space`, just like normal
 
@@ -172,14 +172,14 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 - Disconnected mode (we won’t force you to use connected)
 - Version tolerance/message schema
-- Snapshots (how to update on the source space and re-promote to remote space)
-- What will be locked on the target space?
+- Snapshots (how to update on the source Space and re-promote to remote Space)
+- What will be locked on the target Space?
 - Matching on names, not IDs
 - We want to use delta compression
-- Tenants could span spaces
-- Lifecycles won’t span spaces
-- Channels in remote spaces
-- ARC in remote spaces
+- Tenants could span Spaces
+- Lifecycles won’t span Spaces
+- Channels in remote Spaces
+- ARC in remote Spaces
 
 ## Security Concerns
 
