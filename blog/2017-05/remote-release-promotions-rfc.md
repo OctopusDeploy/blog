@@ -52,7 +52,11 @@ Imagine if you could add a space to your lifecycle and then promote a release to
 
 We think lifecycles should be self-contained within a space. This gives the teams in each space the ability to manage their own environments and lifecycles how they see fit. For example, a member of one space might decide to introduce an environment into their lifecycle. We don't want the decision to introduce an environment into a lifecycle in one space to have any impact on any other spaces.
 
-We also think lifecycles should be able to model interesting progressions 
+We also think lifecycles should be able to model interesting progressions that cross space boundaries:
+
+1. You might want to promote a release through your test environments, then promote the release to one or more spaces that manage the production environments.
+1. You might want to promote a release through your dev team's test environments, then promote the release to another space managed by a QA team. When they are finished testing you want the dev team to promote that same release to yet another space that manages your production environments.
+1. You might want to do the same as #2, but once the QA team is finished they are responsible to promote the release to the production space without going back through the dev team.
 
 ## Definitions
 
@@ -67,6 +71,10 @@ In the rest of this RFC we are going to introduce some new terms so we don't all
 - Remote Project: A reference to a project owned by another space.
 - Variable Template: We introduced this concept with multi-tenant deployments. In this context you could express that a variable value is required for each environment a project can be deployed into.
 
+### Trusting other spaces
+
+- Has to set up the connection/trust/relationship between the two spaces, potentially over an air gap
+
 ## Example: Secure Environments
 
 Let's explore this concept using the **Secure Environments** example we mentioned earlier, where you want strict separation between your development and production environments. In this case we will model this separation using two spaces:
@@ -78,11 +86,9 @@ _IMAGE: Show two spaces, indicating where project, and each environment is owned
 
 Let's consider how each different person in your organization might interact with Octopus to promote a release across these two spaces all the way to production.
 
-### Persona: Project contributor
+### Working with projects
 
-Project contributors are people who configure the deployment process and variables of a project. Typically these are your software developers who are also writing the source code and building your packages. In this case we don't see very much changing - life will pretty much go on just like before.
-
-However, the `Production` environment is owned by the `Prod Space`, meaning the `DevTest Space` has no concept of this environment:
+We don't see very much changing - life will pretty much go on just like before. You will still be able to change the deployment process, manage variables, and create and deploy releases to environments in the `DevTest Space` just like normal. However in this example the `Production` environment is owned by the `Prod Space`, meaning the `DevTest Space` has no concept of this environment:
 
 - How do you provide variable values that will be used when deploying to the `Production` environment?
 - How do you configure special steps of your deployment process so they only execute when deploying to the `Production` environment?
@@ -113,22 +119,25 @@ Learn more: _LINK: Variable Template GitHub Issue_
 
 **Variable values for Remote Environments**: We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret). Now you would be able to set those values in your `DevTest Space`, scope them to `Prod Space: Production` and they will be used when a release is eventually deployed to that environment.
 
-### Persona: Release bundler
+### Publishing releases to other spaces
 
 - Bundles the release to be promoted to a specific remote space
 - Could be the same person as Project Contributor, or could be the same person as Release Acceptor/Approver/Deployer depending on your security model
 
-### Persona: Release acceptor
+### Subscribing to releases from other spaces
 
-- Imports the release bundle
-- Adds the missing variable values
-- Has permissions to create projects, edit variables, add packages, etc
+### Importing releases into your space
 
-### Persona: Release approver(s)
+- Import the release bundle
+- Choose a lifecycle
+- Add the missing variable values
+- Person must have permissions to create projects, edit variables, add packages, etc
 
-- Idea for multi-team sign off on a release before it is allowed to be deployed
+### Approving a release
 
-### Persona: Release deployer
+- Idea for multi-team sign off on a release before it is allowed to be deployed - no need for manual intervention steps for this purpose
+
+### Deploying releases
 
 Now the release has been accepted it can be deployed to the environments in the `Prod Space`. For all intents and purposes this would work just like the release was created in the `Prod Space`: all the same rules would apply for deploying this release including:
 
@@ -136,13 +145,9 @@ Now the release has been accepted it can be deployed to the environments in the 
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
 - Lifecycle progression: Octopus will ensure each release progresses through the appropriate lifecycle in the `Prod Space`, just like normal
 
-## Persona: Project manager
+### Aggregated dashboard
 
 - Wants to see an aggregated overview of the deployments for the entire lifecycle
-
-## Persona: Operations
-
-- Has to set up the connection/trust/relationship between the two spaces, potentially over an air gap
 
 ## Release bundle
 
