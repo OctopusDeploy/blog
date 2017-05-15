@@ -52,9 +52,11 @@ Imagine if you could add a Space to your Lifecycle, just like you can add enviro
 - High-level architecture diagram (pretty picture) (Vanessa)
 - Release Lifecycle (showing promotion through environments, then zones) (Vanessa)
 
+We think there are two major concepts at play here: **Lifecycles** and **Trusts**.
+
 ### Lifecycles
 
-We think Lifecycles should be **defined** within a Space and able to be **composed** across multiple Spaces.
+We think Lifecycles should be **defined** within a Space and able to be **composed** across multiple Spaces - you can think of it like chaining Lifecycles from different Spaces together.
 
 **Define within a Space:** This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
 
@@ -64,22 +66,24 @@ We think Lifecycles should be **defined** within a Space and able to be **compos
 1. You might want to promote a release through your Dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the Dev team to promote that same release to yet another Space where the Operations team manages your production environments.
 1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
 
+### Trusting other Spaces
+
+We already have the concept of establishing trust between Octopus Server and Tentacle: it will only trust commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like "everything required to deploy a release" and "the results of deploying a release". We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
+
+We think you could manage the trust relationships between your different Spaces using ODCM. This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
+
 ## Definitions
 
 In the rest of this RFC we are going to introduce some new terms. Let's define them here so we don't all get horribly confused.
 
-- Space: Contains a set of projects, environments, variables, teams, permissions, etc, bounded by a single Octopus database. Learn more in our recent [RFC](/blog/2017-05/odcm-rfc.md).
-- Release Bundle: A package containing everything required to deploy a specific release of a project.
-- Deployment Receipt: A document containing everything required to show the result of deploying a specific release of a project.
-- Source Space: The Space that owns the project and its releases, and where release bundles are created if you decide to cross Space boundaries.
-- Target Space: The Space where a release bundle will be imported. The release extracted from the release bundle can then be deployed to environments in this Space.
-- Remote Environment: A reference to an environment owned by another Space.
-- Remote Project: A reference to a project owned by another Space.
-- Variable Template: We introduced this concept with multi-tenant deployments. In this context you could express that a variable value is required for each environment a project can be deployed into.
-
-### Trusting other Spaces
-
-- Has to set up the connection/trust/relationship between the two Spaces, potentially over an air gap
+- **Space:** Contains a set of projects, environments, variables, teams, permissions, etc, bounded by a single Octopus database. Learn more in our recent [RFC](/blog/2017-05/odcm-rfc.md).
+- **Release Bundle:** A package containing everything required to deploy a specific release of a project.
+- **Deployment Receipt:** A document containing everything required to show the result of deploying a specific release of a project.
+- **Source Space:** The Space that owns the project and its releases, and where release bundles are created if you decide to cross Space boundaries.
+- **Target Space:** The Space where a release bundle will be imported. The release extracted from the release bundle can then be deployed to environments in this Space.
+- **Remote Environment:** A reference to an environment owned by another Space.
+- **Remote Project:** A reference to a project owned by another Space.
+- **Variable Template:** We introduced this concept with multi-tenant deployments. In this context you could express that a variable value is required for each environment a project can be deployed into.
 
 ## Example: Secure Environments
 
