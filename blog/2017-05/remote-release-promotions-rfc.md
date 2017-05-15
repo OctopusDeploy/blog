@@ -177,7 +177,7 @@ In order to promote a release to the `Production` environment, you will need to 
 
 What if you wanted to create a more complex Lifecycle? For example, you promote releases to a `QA Space` for testing by the QA team, and wait for them to finish testing it before Octopus will allow you to promote that release to the `Prod Space`? We think you should be able to add **Remote Environments** to your Lifecycles making Octopus behave just like that environment was part of the same Space.
 
-### Publishing releases to other Spaces (Mike N)
+### Promoting releases to other Spaces (Mike N)
 
 Eventually you want to deploy a release to the `Production` environment! Since you have added the `Prod Space` to your Lifecycle, you could promote your release to the `Prod Space`. At this point Octopus could create a **Release Bundle** including everything required to deploy that release to environments owned by other Spaces. Octopus could digitally sign the **Release Bundle** so any target Spaces can validate the source and integrity of the bundle before importing it.
 
