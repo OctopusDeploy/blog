@@ -70,7 +70,9 @@ We think Lifecycles should be **defined** within a Space and able to be **compos
 
 We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like "everything required to deploy a release" and "the results of deploying a release". We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
 
-We think you could manage the trust relationships between your different Spaces using ODCM. This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
+At its core this relationship will consist of a **Name** and an **X.509 Public Key Certificate**. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using ODCM since its core capability is managing Spaces.
+
+This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
 ## Definitions
 
@@ -131,16 +133,20 @@ Learn more: _LINK: Variable Template GitHub Issue_
 
 ### Establishing trust between Spaces (Mike N)
 
-Before you will be able to promote a release to the `Prod Space` you will need to configure a trust relationship between the `DevTest Space` and `Prod Space`. At its core this relationship will consist of a **Name** and an **X509 Certificate public key**. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using ODCM since it is responsible for Spaces in the first place.
+Before you will be able to promote a Release Bundle to the `Prod Space` you will need to configure a trust relationship between the `DevTest Space` and `Prod Space`.
 
-In cases like the Secure Environments scenario, where there should be strict separation, we think you will end up installing an independent ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each secure network zone.
+:::hint
+In cases like the Secure Environments scenario, we think you will end up installing an instance of ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each zone, and configure trusts between Spaces in the same zone or across different zones as required.
+:::
 
-Going back to our example, ODCM could provide a way for you to trust **Remote Spaces** managed by an ODCM in an entirely different secure network zone. In this case you would:
+Going back to our example, you would have to configure two **Remote Spaces** to trust each other manually, by exchanging the X.509 Public Key Certificates for each Space:
 
-1. Go to the ODCM in your development zone, create a new **Remote Space** called `Prod Space` giving it the X.509 Certificate for the `Prod Space`.
-1. Go to the ODCM in your production zone, create a new **Remote Space** called `DevTest Space` giving it the X.509 Certificate for the `DevTest Space`.
+1. Go to the ODCM in your **development zone** and download the X.509 Public Key Certificate for the `DevTest Space`.
+1. Go to the ODCM in your **production zone**, create a new **Remote Space** called `DevTest Space` giving it the X.509 Public Key Certificate you downloaded for the `DevTest Space`.
+1. Go to the ODCM in your **production zone** and download the X.509 Public Key Certificate for the `Prod Space`.
+1. Go to the ODCM in your **development zone**, create a new **Remote Space** called `Prod Space` giving it the X.509 Public Key Certificate you downloaded for the `Prod Space`.
 
-
+Now that you have exchanged public keys the `Prod Space` can trust Release Bundles promoted from the `DevTest Space`, and `DevTest Space` can trust Deployment Receipts from the `Prod Space`!
 
 ### Publishing releases to other Spaces (Mike N)
 
