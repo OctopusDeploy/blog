@@ -68,7 +68,7 @@ We think Lifecycles should be **defined** within a Space and able to be **compos
 
 ### Trusting other Spaces
 
-We already have the concept of establishing trust between Octopus Server and Tentacle: it will only trust commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like "everything required to deploy a release" and "the results of deploying a release". We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
+We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like "everything required to deploy a release" and "the results of deploying a release". We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
 
 We think you could manage the trust relationships between your different Spaces using ODCM. This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
@@ -128,6 +128,19 @@ Learn more: _LINK: Variable Template GitHub Issue_
 **Steps for Remote Environments**: In some cases you want certain steps to be executed in the `Production` environment. But now that the `Production` environment is owned by the `Prod Space`, your `DevTest Space` doesn't know the `Production` environment exists! How can you tailor your deployment process for environments owned by other Spaces? Imagine if you could add a **Remote Environment** to the `DevTest Space`. This remote environment would be like a placeholder for the real `Production` environment. Octopus could even name it `Prod Space: Production` so we are all clear about the ownership of this environment. _Think of this like namespaces: so you can have a `Production` environment in multiple Spaces._ Now you would be able to scope steps to `Prod Space: Production`, and those steps will be run when a release is eventually deployed to that environment.
 
 **Variable values for Remote Environments**: We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret). Now you would be able to set those values in your `DevTest Space`, scope them to `Prod Space: Production` and they will be used when a release is eventually deployed to that environment.
+
+### Establishing trust between Spaces (Mike N)
+
+Before you will be able to promote a release to the `Prod Space` you will need to configure a trust relationship between the `DevTest Space` and `Prod Space`. At its core this relationship will consist of a **Name** and an **X509 Certificate public key**. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using ODCM since it is responsible for Spaces in the first place.
+
+In cases like the Secure Environments scenario, where there should be strict separation, we think you will end up installing an independent ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each secure network zone.
+
+Going back to our example, ODCM could provide a way for you to trust **Remote Spaces** managed by an ODCM in an entirely different secure network zone. In this case you would:
+
+1. Go to the ODCM in your development zone, create a new **Remote Space** called `Prod Space` giving it the X.509 Certificate for the `Prod Space`.
+1. Go to the ODCM in your production zone, create a new **Remote Space** called `DevTest Space` giving it the X.509 Certificate for the `DevTest Space`.
+
+
 
 ### Publishing releases to other Spaces (Mike N)
 
