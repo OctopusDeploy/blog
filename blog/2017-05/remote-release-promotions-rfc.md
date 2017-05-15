@@ -171,14 +171,17 @@ Now that you have configured the `Prod Space: Production` environment:
 - you could set variable values in your `DevTest Space`, scope them to `Prod Space: Production`, and they will be used when a release is eventually deployed to that environment.
 - Octopus could show the `Prod Space: Production` environment on the dashboard in the `DevTest Space`.
 
+### Configuring a Lifecycle including other Spaces
+
+In order to promote a release to the `Production` environment, you will need to configure a Lifecycle with the ability to target the `Prod Space`. We think you should be able to add Spaces into the Phases of your Lifecycle just like you can add environments in Octopus today. This would work quite nicely for our example scenario where you just want the release promoted to the `Prod Space`.
+
+What if you wanted to create a more complex Lifecycle? For example, you promote releases to a `QA Space` for testing by the QA team, and wait for them to finish testing it before Octopus will allow you to promote that release to the `Prod Space`? We think you should be able to add **Remote Environments** to your Lifecycles making Octopus behave just like that environment was part of the same Space.
+
 ### Publishing releases to other Spaces (Mike N)
 
+Eventually you want to deploy a release to the `Production` environment! Since you have added the `Prod Space` to your Lifecycle, you could promote your release to the `Prod Space`. At this point Octopus could create a **Release Bundle** including everything required to deploy that release to environments owned by other Spaces. Octopus could digitally sign the **Release Bundle** so any target Spaces can validate the source and integrity of the bundle before importing it.
 
-
-- Bundles the release to be promoted to a specific remote Space
-- Could be the same person as Project Contributor, or could be the same person as Release Acceptor/Approver/Deployer depending on your security model
-
-### Subscribing to releases from other Spaces (Mike N)
+In our example somebody would have to manually transfer the **Release Bundle** to the `Prod Space` and import it. If your Spaces are able to be connected, Octopus could automate a lot of this process for you.
 
 ### Importing releases into your Space (Mike N)
 
