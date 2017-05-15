@@ -85,6 +85,7 @@ In the rest of this RFC we are going to introduce some new terms. Let's define t
 - **Target Space:** The Space where a release bundle will be imported. The release extracted from the release bundle can then be deployed to environments in this Space.
 - **Remote Environment:** A reference to an environment owned by another Space.
 - **Remote Project:** A reference to a project owned by another Space.
+- **Remote Space:** A Space managed by a different ODCM, usually in a different secure network zone. The concept of a **Remote Space** will enable you to promote releases across secure network boundaries.
 - **Variable Template:** We introduced this concept with multi-tenant deployments. In this context you could express that a variable value is required for each environment a project can be deployed into.
 
 ## Example: Secure Environments
@@ -98,20 +99,42 @@ _IMAGE: Show two Spaces, indicating where project, and each environment is owned
 
 Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
+### Configuring Spaces (Mike N)
+
+A good place to start is by configuring your Spaces and establishing a trust relationship between them. In cases like the Secure Environments scenario, we think you will end up installing an instance of ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each zone, and configure trusts between Spaces in the same zone or across different zones as required.
+
+We think the overall process will look something like this:
+
+1. Configure your secure network zones
+1. Configure an instance of ODCM in each zone for managing the Space in that zone
+1. Use ODCM in the **production zone** to create the `Prod Space`
+1. Use ODCM in the **development zone** to create the `DevTest Space`
+1. Use ODCM in each zone to configure a trust relationship between your Spaces
+
+Since there is strict separation between the zones you will have to configure two **Remote Spaces** to trust each other manually, by exchanging the X.509 Public Key Certificates for each Space:
+
+1. Use ODCM in your **development zone** to download the X.509 Public Key Certificate for the `DevTest Space`.
+1. Go to the ODCM in your **production zone** and create a new **Remote Space** called `DevTest Space` giving it the X.509 Public Key Certificate you downloaded for the `DevTest Space`.
+1. Use ODCM in your **production zone** and download the X.509 Public Key Certificate for the `Prod Space`.
+1. Go to the ODCM in your **development zone**, create a new **Remote Space** called `Prod Space` giving it the X.509 Public Key Certificate you downloaded for the `Prod Space`.
+
+Now the `DevTest Space` knows about the existence of the `Prod Space` you will be able to promote releases to that Space. Additionally, since you've exchanged public keys, the `Prod Space` can trust Release Bundles promoted from the `DevTest Space`, and `DevTest Space` can trust Deployment Receipts from the `Prod Space`!
+
 ### Working with projects
 
 We don't see very much changing - life will pretty much go on just like before. You will still be able to change the deployment process, manage variables, and create and deploy releases to environments in the `DevTest Space` just like normal. However in this example the `Production` environment is owned by the `Prod Space`, meaning the `DevTest Space` has no concept of this environment:
 
 - How do you provide variable values that will be used when deploying to the `Production` environment?
 - How do you configure special steps of your deployment process so they only execute when deploying to the `Production` environment?
+- How do you show the result of deployments to the `Production` environment on your dashboards?
 
-Please welcome variable templates and remote environments!
+Please welcome **Variable Templates** and **Remote Environments**!
 
-#### Variable templates
+#### Variable Templates
 
-Imagine if you are the person importing a release bundle into your Space - how do you know which variables need values? And even if you know which variables you need to set, what should you set the value to?
+Imagine if you are the person importing a release bundle into your Space - how do you know which variables need values for each environment in your Space? And even if you know which variables you need to set, what should you set the value to?
 
-Now imagine as a project contributor, you could express that a variable value is required for each environment a project can be deployed into. And imagine you could define a data type for the variable, provide help text, decide whether the value is mandatory or optional, or even provide a default value.
+Now imagine as a project contributor if you could express that a variable value is required for each environment a project can be deployed into. And imagine you could define a data type for the variable, provide help text, decide whether the value is mandatory or optional, or even provide a default value.
 
 Variable templates could make it much easier for a person importing a release bundle into their Space to "fill in the blanks".
 
@@ -119,7 +142,7 @@ Variable templates could make it much easier for a person importing a release bu
 This would also be really handy even if you are only promoting releases within your own Space. Using variable templates, if you introduce a new environment into your own Space, Octopus will prompt you for those variable values.
 :::
 
-We introduced the concept of [variable templates](https://octopus.com/docs/deploying-applications/variables/variable-templates) for multi-tenant deployments in Octopus 3.4. We would like to build on this concept further as part of this set of features.
+We introduced the concept of [Variable Templates](https://octopus.com/docs/deploying-applications/variables/variable-templates) for multi-tenant deployments in Octopus 3.4. We would like to build on this concept further as part of this set of features.
 
 _IMAGE: Variable Template Editor?_
 
@@ -127,28 +150,30 @@ Learn more: _LINK: Variable Template GitHub Issue_
 
 #### Remote Environments
 
-**Steps for Remote Environments**: In some cases you want certain steps to be executed in the `Production` environment. But now that the `Production` environment is owned by the `Prod Space`, your `DevTest Space` doesn't know the `Production` environment exists! How can you tailor your deployment process for environments owned by other Spaces? Imagine if you could add a **Remote Environment** to the `DevTest Space`. This remote environment would be like a placeholder for the real `Production` environment. Octopus could even name it `Prod Space: Production` so we are all clear about the ownership of this environment. _Think of this like namespaces: so you can have a `Production` environment in multiple Spaces._ Now you would be able to scope steps to `Prod Space: Production`, and those steps will be run when a release is eventually deployed to that environment.
+We want to enable scenarios where you promote releases to other Spaces without needing to know anything about the environments in that Space. However, we can see scenarios where you will want to know about environments in other Spaces:
 
-**Variable values for Remote Environments**: We can also imagine a case where you already know a handful of the variable values required for the `Production` environment (perhaps they aren't secret). Now you would be able to set those values in your `DevTest Space`, scope them to `Prod Space: Production` and they will be used when a release is eventually deployed to that environment.
+- you want certain steps to be executed when deploying a release to the `Production` environment
+- you already know a handful of variable values required when deploying a release to the `Production` environment (perhaps they aren't secret)
+- you want to see the results of deploying a release to the `Production` environment on your own dashboard
 
-### Establishing trust between Spaces (Mike N)
+The problem here is that the `Production` environment is owned by the `Prod Space`, so your `DevTest Space` doesn't know the `Production` environment exists! Imagine if you could add a **Remote Environment** to the `DevTest Space`. This remote environment would be like a placeholder for the real `Production` environment. Octopus could even name it `Prod Space: Production` so we are all clear about the ownership of this environment. _Think of this like namespaces: so you can have a `Production` environment in multiple Spaces._
 
-Before you will be able to promote a Release Bundle to the `Prod Space` you will need to configure a trust relationship between the `DevTest Space` and `Prod Space`.
+We think the process would be something like this:
 
-:::hint
-In cases like the Secure Environments scenario, we think you will end up installing an instance of ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each zone, and configure trusts between Spaces in the same zone or across different zones as required.
-:::
+1. Go to the Environments page and click the `Add environment` button
+1. Octopus could show a list of Spaces it knows about, in this case the `Prod Space`
+1. Select `Prod Space` as the owner of the environment (indicating this is a remote environment)
+1. Name the environment `Production` so it matches
 
-Going back to our example, you would have to configure two **Remote Spaces** to trust each other manually, by exchanging the X.509 Public Key Certificates for each Space:
+Now that you have configured the `Prod Space: Production` environment:
 
-1. Go to the ODCM in your **development zone** and download the X.509 Public Key Certificate for the `DevTest Space`.
-1. Go to the ODCM in your **production zone**, create a new **Remote Space** called `DevTest Space` giving it the X.509 Public Key Certificate you downloaded for the `DevTest Space`.
-1. Go to the ODCM in your **production zone** and download the X.509 Public Key Certificate for the `Prod Space`.
-1. Go to the ODCM in your **development zone**, create a new **Remote Space** called `Prod Space` giving it the X.509 Public Key Certificate you downloaded for the `Prod Space`.
-
-Now that you have exchanged public keys the `Prod Space` can trust Release Bundles promoted from the `DevTest Space`, and `DevTest Space` can trust Deployment Receipts from the `Prod Space`!
+- you could scope steps to `Prod Space: Production`, and those steps will be run when a release is eventually deployed to that environment.
+- you could set variable values in your `DevTest Space`, scope them to `Prod Space: Production`, and they will be used when a release is eventually deployed to that environment.
+- Octopus could show the `Prod Space: Production` environment on the dashboard in the `DevTest Space`.
 
 ### Publishing releases to other Spaces (Mike N)
+
+
 
 - Bundles the release to be promoted to a specific remote Space
 - Could be the same person as Project Contributor, or could be the same person as Release Acceptor/Approver/Deployer depending on your security model
