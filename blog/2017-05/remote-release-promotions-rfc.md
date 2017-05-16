@@ -179,16 +179,66 @@ What if you wanted to create a more complex Lifecycle? For example, you promote 
 
 ### Promoting releases to other Spaces (Mike N)
 
-Eventually you want to deploy a release to the `Production` environment! Since you have added the `Prod Space` to your Lifecycle, you could promote your release to the `Prod Space`. At this point Octopus could create a **Release Bundle** including everything required to deploy that release to environments owned by other Spaces. Octopus could digitally sign the **Release Bundle** so any target Spaces can validate the source and integrity of the bundle before importing it.
+Eventually you want to deploy a release to the `Production` environment! Since you have added the `Prod Space` to your Lifecycle, you could promote your release to the `Prod Space`. At this point Octopus would create what we are calling a **Release Bundle**: a set of files including everything required to deploy that release to environments owned by other Spaces.
 
 In our example somebody would have to manually transfer the **Release Bundle** to the `Prod Space` and import it. If your Spaces are able to be connected, Octopus could automate a lot of this process for you.
 
+#### Release bundles
+
+Up to this point we've talked about a Release Bundle but we haven't gone into too much detail. This is some of our thinking and certainly an area where we would like your feedback:
+
+1. You could click a button in the **Source Space** called something like `Promote 3.2.5 to Prod Space` to start the process
+1. The **Source Space** will build a Release Bundle specifically crafted to transport the required information the **Target Space**.
+1. The Release Bundle will not include the packages themselves, but instead it will include a manifest of all the packages required by the release, including the ID, Version, and Hash:
+
+    - This will enable the packages to be transferred or replicated to the other Spaces in the most efficient manner possible, perhaps using delta compression, or you might want to take care of this yourself.
+    - This will also enable the **Target Space** to validate the identity and integrity of the packages being deployed - they are guaranteed to be the same ones that were tested.
+
+1. The Release Bundle will include essential details of the **Source Project**, the release, the deployment process snapshot, and the project variable snapshot:
+
+    - Any variable values and parts of the deployment process that would never apply to the **Target Space** will be omitted from the bundle
+    - Any variable values and parts of the deployment process that would never apply for releases in this channel
+
+1. The Release Bundle will include summary details of the deployments up to this point in time so they can be optionally displayed on the dashboard in the **Target Space**.
+1. When building the Release Bundle the **Source Space** will encrypt any sensitive information with the X.509 Public Key Certificate of the **Target Space** so it can only be decrypted by the **Target Space**.
+1. When building the Release Bundle the **Source Space** will digitally sign a manifest with the X.509 Private Key Certificate of the **Source Space** so the **Target Space** can validate the source and integrity of the bundle before importing it.
+
 ### Importing releases into your Space (Mike N)
 
-- Import the release bundle
-- Choose a lifecycle
-- Add the missing variable values
-- Person must have permissions to create projects, edit variables, add packages, etc
+Once the **Release Bundle** has been transferred to the `Prod Space` you will need to import it. There will be a lot of details to figure out, but at the highest level we expect the process to look something like this:
+
+1. You could be shown a list of **Release Bundles** ready to be imported and you choose to import one
+1. You could be shown a display of all the things that will be created or modified when you import the release, which would be a really good opportunity to review and approve any changes from the previous release
+
+    - The project will be imported as a **Remote Project**. Similar to a **Remote Environment** your project would be namespaced like `DevTest Space: My Project`. We also think the **Remote Project** should be largely read-only, and will probably use a fairly different UI to normal projects.
+    - The release itself will be imported along with the deployment process snapshot and variable snapshot that were frozen when the release was created.
+    - If you are using the built-in feed, the packages for this release would be imported.
+
+1. You will need to choose the Lifecycle you want to use for promoting this release through the environments in the `Prod Space`
+1. Octopus will prompt you to set any missing variable values for your environments and tenants before the release can be deployed
+
+:::hint
+The person importing **Release Bundles** will need to be granted all the permissions to create and edit projects, variables, packages, etc.
+:::
+
+#### Mostly read-only
+
+We think it's worth calling out: almost everything that will be imported will be read-only, and some concepts won't even be transferred across Space boundaries. The end goal is to reliably deploy a release into your environments avoiding as much manual intervention as possible. There are still a lot of details to sort out, but we think a good rule of thumb will be:
+
+- Anything used to build a release will be read-only in remote Spaces
+- Anything used to customize a deployment will be editable in remote Spaces
+
+For example, we expect you will want the deployment to use the process as it was when the release was created (repeatability) but have the chance to set the correct database connection string for your environments/tenants (variability). Here are some other examples:
+
+- **Project Triggers** are all about automatically triggering deployments - they should be configured where the deployments are happening
+- **Tenants** are about allocating deployment targets and defining deployment variable values - they should be configured where the deployments are happening
+- **Channels** only really matter up to the point where you create a release, and you will need to choose a Lifecycle when importing - channels should be configured where the releases are created
+
+#### Deployment process and variable snapshots
+
+We think an important part of this feature will be the ability to view and understand the deployment process and project variables that were frozen into a snapshot when the release was created. Imagine trying to import and approve a release for deployment without being able to see the process and variable values that will be used during deployment?
+
+This is actually a problem we've wanted to solve for quite some time: in Octopus today, you can see the variable snapshot (if you can find the correct link) but you cannot see the deployment process as it was defined when the release was created.
 
 ### Approving a release (Mike N)
 
