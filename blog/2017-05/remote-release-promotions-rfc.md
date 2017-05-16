@@ -207,15 +207,12 @@ Up to this point we've talked about a Release Bundle but we haven't gone into to
 
 Once the **Release Bundle** has been transferred to the `Prod Space` you will need to import it. There will be a lot of details to figure out, but at the highest level we expect the process to look something like this:
 
-1. You could be shown a list of **Release Bundles** ready to be imported and you choose to import one
-1. You could be shown a display of all the things that will be created or modified when you import the release, which would be a really good opportunity to review and approve any changes from the previous release
-
-    - The project will be imported as a **Remote Project**. Similar to a **Remote Environment** your project would be namespaced like `DevTest Space: My Project`. We also think the **Remote Project** should be largely read-only, and will probably use a fairly different UI to normal projects.
-    - The release itself will be imported along with the deployment process snapshot and variable snapshot that were frozen when the release was created.
-    - If you are using the built-in feed, the packages for this release would be imported.
-
-1. You will need to choose the Lifecycle you want to use for promoting this release through the environments in the `Prod Space`
-1. Octopus will prompt you to set any missing variable values for your environments and tenants before the release can be deployed
+1. You could be shown a list of **Release Bundles** ready to be imported and you choose to import one.
+1. You could be shown a display including the packages required for the release, bundled variable values, variable templates, and the deployment process.
+1. The project will be imported as a **Remote Project**. Similar to a **Remote Environment** your project would be namespaced like `DevTest Space: My Project`. We also think the **Remote Project** should be largely read-only, and will probably use a fairly different UI to normal projects.
+1. The release itself will be imported along with the deployment process snapshot and variable snapshot that were frozen when the release was created.
+1. You will need to choose the Lifecycle you want to use for promoting this release through the environments in the `Prod Space`.
+1. Octopus will prompt you to set any missing variable values for your environments and tenants before the release can be deployed.
 
 :::hint
 The person importing **Release Bundles** will need to be granted all the permissions to create and edit projects, variables, packages, etc.
@@ -238,7 +235,7 @@ For example, we expect you will want the deployment to use the process as it was
 
 We think an important part of this feature will be the ability to view and understand the deployment process and project variables that were frozen into a snapshot when the release was created. Imagine trying to import and approve a release for deployment without being able to see the process and variable values that will be used during deployment?
 
-This is actually a problem we've wanted to solve for quite some time: in Octopus today, you can see the variable snapshot (if you can find the correct link) but you cannot see the deployment process as it was defined when the release was created.
+This is actually a problem we've wanted to solve for quite some time: in Octopus today, you can see the variable snapshot (if you can find the correct link) but you cannot see the deployment process as it was defined when the release was created. Imagine if you could even view releases side-by-side to compare them with each other!
 
 ### Approving a release (Mike N)
 
@@ -248,7 +245,7 @@ This is actually a problem we've wanted to solve for quite some time: in Octopus
 
 Now the release has been accepted it can be deployed to the environments in the `Prod Space`. For all intents and purposes this would work just like the release was created in the `Prod Space`: all the same rules would apply for deploying this release including:
 
-- Project permissions: teams could be restricted to **Remote Projects** just like normal projects - after all, they are just normal projects but owned by another Space, and namespaced in the same way **Remote Environments** will be namespaced
+- Project permissions: teams could be restricted to **Remote Projects** just like normal projects - after all, they are just normal projects but owned by another Space
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
 - Lifecycle progression: Octopus will ensure each release progresses through the appropriate Lifecycle in the `Prod Space`, just like normal
 
