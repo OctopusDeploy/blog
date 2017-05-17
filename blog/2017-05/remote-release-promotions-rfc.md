@@ -273,11 +273,15 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 ## Superseded Solutions (Vanessa)
 
-- Octopus Migrator
+- Octopus Migrator export/import
 - Offline Drops
 - Octo.exe export/import
 - Custom scripting using the Octopus REST API
 - Manually migrating everything
+
+The intention of this feature is to supersede the current methods used to migrate or deploy to remote machines. If you have used either the migrator or octo.exe import/export to move releases between Octopus instances you know that there are benefits for both methods, but also that it still requires a fair amount of scripting or interaction to use either for your purposes. Both of these will be deprecated and replaced by Remote Release Promotions. We are aware of customers that instead of either of these features wrote their own migration to avoid all the limitations they found in either feature. We have tried to address anything we knew about in the remote releases feature, so please let us know if you think anything was missed that you currently do via your own process.
+
+It was also decided that we will be replacing Offline Drops with this feature. While it may not seem a direct correlation, and you will require an Octopus Server on the other side to catch the release bundle, many of the suggestions and limitations around Offline Drops are the missing pieces that are provided by Octopus Server. These include basic orchestration, output variables, logging, and deployment status to name a few. It will allow you to move the release to a centralized Octopus Server within the network boundary and make use of the extended orchestration by deploying to the local Tentacles.
 
 ## Rollout (Michael R)
 
