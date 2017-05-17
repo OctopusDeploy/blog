@@ -177,6 +177,12 @@ In order to promote a release to the `Production` environment, you will need to 
 
 What if you wanted to create a more complex Lifecycle? For example, you promote releases to a `QA Space` for testing by the QA team, and wait for them to finish testing it before Octopus will allow you to promote that release to the `Prod Space`? We think you should be able to add **Remote Environments** to your Lifecycles making Octopus behave just like that environment was part of the same Space.
 
+#### Aggregated dashboard (Mike N)
+
+- Wants to see an aggregated overview of the deployments for the entire lifecycle
+- Deployment receipts
+- Updating the source dashboard
+
 ### Promoting releases to other Spaces (Mike N)
 
 Eventually you want to deploy a release to the `Production` environment! Since you have added the `Prod Space` to your Lifecycle, you could promote your release to the `Prod Space`. At this point Octopus would create what we are calling a **Release Bundle**: a set of files including everything required to deploy that release to environments owned by other Spaces.
@@ -251,27 +257,14 @@ Now the release has been accepted it can be deployed to the environments in the 
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
 - Lifecycle progression: Octopus will ensure each release progresses through the appropriate Lifecycle in the `Prod Space`, just like normal
 
-### Aggregated dashboard (Mike N)
-
-- Wants to see an aggregated overview of the deployments for the entire lifecycle
-
-## Flowing deployment results back across (Michael R)
-
-- Deployment receipts
-- Updating the source dashboard
-
-## Variables (Michael R)
-
-- Environment Variable Templates
-
-## Super nitty gritty (Michael R)
+## Super nitty gritty
 
 - Snapshots (how to update on the source Space and re-promote to remote Space)
 - Tenants could span Spaces (Mike N)
 - Channels in remote Spaces (Mike N)
 - ARC in remote Spaces (Mike N)
 
-## Superseded Solutions (Vanessa)
+## Superseded Solutions
 
 - Octopus Migrator export/import
 - Offline Drops
