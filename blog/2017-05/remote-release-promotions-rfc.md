@@ -286,12 +286,36 @@ Now the release has been accepted it can be deployed to the environments in the 
 - Environment permissions: teams in the `Prod Space` could be granted appropriate permissions to environments in the `Prod Space`, just like normal
 - Lifecycle progression: Octopus will ensure each release progresses through the appropriate Lifecycle in the `Prod Space`, just like normal
 
-## Super nitty gritty
+## Ownership
+
+We have been using a rule-of-thumb to guide our design process when thinking about which things are owned by which Spaces. Mostly our concern is about minimizing conflicts between Spaces. Our rule-of-thumb has been:
+
+1. Things that are owned by another Space will be namespaced, and will be (primarily) read-only.
+1. Try to minimize the number of things that cross over Space boundaries.
+1. Things that are concerned primarily with deployment design through to creating a release: owned by the **Source Space**.
+
+    - Projects, channels, project and library variable sets
+
+1. Things that are concerned primarily with deployment: owned by the Space performing the deployment.
+
+    - Environments, deployment targets, roles, tenants, tenant variable values, lifecycles, accounts, project deployment triggers
+
+## Tenants
+
+> TLDR: Tenants are a deployment-time concern and will not cross over Space boundaries.
+
+We wanted to call out tenants specifically because they could arguably be treated similarly to environments. At this point we are not 100% certain about how we will handle tenants, but our current thinking is:
+
+- Tenants will be owned by the Space where their deployments will be performed.
+- Tenants in one Space cannot be connected to environments owned by another Space.
+
+## Updating release snapshots
 
 - Snapshots (how to update on the source Space and re-promote to remote Space)
-- Tenants could span Spaces (Mike N)
-- Channels in remote Spaces (Mike N)
-- ARC in remote Spaces (Mike N)
+
+## Automatic release creation (ARC)
+
+ARC is concerned with creating releases. You will not be able to configure ARC for a Remote Project (a project owned by another Space). Instead, the release created in the owning Space will be promoted to your Space.
 
 ## Superseded Solutions
 
