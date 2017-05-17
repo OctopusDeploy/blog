@@ -185,6 +185,8 @@ In our example somebody would have to manually transfer the **Release Bundle** t
 
 #### Release bundles
 
+- Version tolerance/message schema (Michael R)
+
 Up to this point we've talked about a Release Bundle but we haven't gone into too much detail. This is some of our thinking and certainly an area where we would like your feedback:
 
 1. You could click a button in the **Source Space** called something like `Promote 3.2.5 to Prod Space` to start the process
@@ -253,16 +255,6 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 - Wants to see an aggregated overview of the deployments for the entire lifecycle
 
-## Release bundle (Michael R)
-
-- What goes across?
-- Packages (hash)
-
-## Release Acceptance (Michael R)
-
-- Review and accept diffs?
-- Provide variable values
-
 ## Flowing deployment results back across (Michael R)
 
 - Deployment receipts
@@ -274,18 +266,10 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 ## Super nitty gritty (Michael R)
 
-- Disconnected mode - details on how we see this working.
-- Version tolerance/message schema
 - Snapshots (how to update on the source Space and re-promote to remote Space)
-- What will be locked on the target Space?
-- We want to use delta compression
-- Tenants could span Spaces
-- Channels in remote Spaces
-- ARC in remote Spaces
-
-## Security Concerns
-
-- Two-way trust using PKI (like Octopus and Tentacle)
+- Tenants could span Spaces (Mike N)
+- Channels in remote Spaces (Mike N)
+- ARC in remote Spaces (Mike N)
 
 ## Superseded Solutions (Vanessa)
 
@@ -295,7 +279,7 @@ Now the release has been accepted it can be deployed to the environments in the 
 - Custom scripting using the Octopus REST API
 - Manually migrating everything
 
-## Rollout
+## Rollout (Michael R)
 
 - Phases
 - Octopus v4?
