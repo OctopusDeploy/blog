@@ -45,7 +45,7 @@ The problem with this currently, is that the packages are transferred at deploym
 
 ## Proposed solution
 
-Our proposed solution will enable you to spread your entire deployment lifecycle across multiple "Spaces". A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
+Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
 Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're currently calling this feature **Remote Release Promotions**.
 
@@ -99,7 +99,9 @@ _IMAGE: Show two Spaces, indicating where project, and each environment is owned
 
 Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
-### Configuring Spaces (Mike N)
+### Configuring Spaces
+
+> TLDR: Use ODCM to configure relationships between Spaces, both connected and disconnected.
 
 A good place to start is by configuring your Spaces and establishing a trust relationship between them. In cases like the Secure Environments scenario, we think you will end up installing an instance of ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each zone, and configure trusts between Spaces in the same zone or across different zones as required.
 
@@ -122,6 +124,8 @@ Now the `DevTest Space` knows about the existence of the `Prod Space` you will b
 
 ### Working with projects
 
+> TLDR: Nothing much changes - everything will feel very familiar.
+
 We don't see very much changing - life will pretty much go on just like before. You will still be able to change the deployment process, manage variables, and create and deploy releases to environments in the `DevTest Space` just like normal. However in this example the `Production` environment is owned by the `Prod Space`, meaning the `DevTest Space` has no concept of this environment:
 
 - How do you provide variable values that will be used when deploying to the `Production` environment?
@@ -131,6 +135,8 @@ We don't see very much changing - life will pretty much go on just like before. 
 Please welcome **Variable Templates** and **Remote Environments**!
 
 #### Variable Templates
+
+> TLDR: Extending variable templates to enable per-environment variable values.
 
 Imagine if you are the person importing a release bundle into your Space - how do you know which variables need values for each environment in your Space? And even if you know which variables you need to set, what should you set the value to?
 
@@ -149,6 +155,8 @@ _IMAGE: Variable Template Editor?_
 Learn more: _LINK: Variable Template GitHub Issue_
 
 #### Remote Environments
+
+> TLDR: Optionally add environments owned by other Spaces for scoping deployment steps and variable values, and display on the dashboards.
 
 We want to enable scenarios where you promote releases to other Spaces without needing to know anything about the environments in that Space. However, we can see scenarios where you will want to know about environments in other Spaces:
 
@@ -169,15 +177,18 @@ Now that you have configured the `Prod Space: Production` environment:
 
 - you could scope steps to `Prod Space: Production`, and those steps will be run when a release is eventually deployed to that environment.
 - you could set variable values in your `DevTest Space`, scope them to `Prod Space: Production`, and they will be used when a release is eventually deployed to that environment.
-- Octopus could show the `Prod Space: Production` environment on the dashboard in the `DevTest Space`.
 
 ### Configuring a Lifecycle including other Spaces
+
+> TLDR: Other Spaces and Remote Environments can be added to Lifecycles.
 
 In order to promote a release to the `Production` environment, you will need to configure a Lifecycle with the ability to target the `Prod Space`. We think you should be able to add Spaces into the Phases of your Lifecycle just like you can add environments in Octopus today. This would work quite nicely for our example scenario where you just want the release promoted to the `Prod Space`.
 
 What if you wanted to create a more complex Lifecycle? For example, you promote releases to a `QA Space` for testing by the QA team, and wait for them to finish testing it before Octopus will allow you to promote that release to the `Prod Space`? We think you should be able to add **Remote Environments** to your Lifecycles making Octopus behave just like that environment was part of the same Space.
 
 #### Dashboards and Remote Environments
+
+> TLDR: Remote Environments can be displayed on dashboards.
 
 By adding a **Remote Environment** to your Lifecycle, Octopus could add that environment to your dashboards. We are planning a way to flow the result of your deployments back to their Source Space. This means you could see a summary of the deployments across your entire deployment lifecycle even if it crosses multiple Space boundaries.
 
@@ -190,6 +201,8 @@ Eventually you want to deploy a release to the `Production` environment! Since y
 In our example somebody would have to manually transfer the **Release Bundle** to the `Prod Space` and import it. If your Spaces are able to be connected, Octopus could automate a lot of this process for you.
 
 #### Release bundles
+
+> TLDR: Contains everything required to deploy a release into the environments owned by another Space. Sensitive parts encrypted. Signed to validate integrity and trust.
 
 - Version tolerance/message schema (Michael R)
 
@@ -211,7 +224,9 @@ Up to this point we've talked about a Release Bundle but we haven't gone into to
 1. When building the Release Bundle the **Source Space** will encrypt any sensitive information with the X.509 Public Key Certificate of the **Target Space** so it can only be decrypted by the **Target Space**.
 1. When building the Release Bundle the **Source Space** will digitally sign a manifest with the X.509 Private Key Certificate of the **Source Space** so the **Target Space** can validate the source and integrity of the bundle before importing it.
 
-### Importing releases into your Space (Mike N)
+### Importing releases into your Space
+
+> TLDR: Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
 
 Once the **Release Bundle** has been transferred to the `Prod Space` you will need to import it. There will be a lot of details to figure out, but at the highest level we expect the process to look something like this:
 
@@ -219,7 +234,7 @@ Once the **Release Bundle** has been transferred to the `Prod Space` you will ne
 1. You could be shown a display including the packages required for the release, bundled variable values, variable templates, and the deployment process.
 1. The project will be imported as a **Remote Project**. Similar to a **Remote Environment** your project would be namespaced like `DevTest Space: My Project`. We also think the **Remote Project** should be largely read-only, and will probably use a fairly different UI to normal projects.
 1. The release itself will be imported along with the deployment process snapshot and variable snapshot that were frozen when the release was created.
-1. You will need to choose the Lifecycle you want to use for promoting this release through the environments in the `Prod Space`.
+1. You will need to choose the Lifecycle you want to use for promoting this release through the environments in the `Prod Space`. If your project only uses a single Lifecycle it could be chosen automatically.
 1. Octopus will prompt you to set any missing variable values for your environments and tenants before the release can be deployed.
 
 :::hint
@@ -227,6 +242,8 @@ The person importing **Release Bundles** will need to be granted all the permiss
 :::
 
 #### Mostly read-only
+
+> TLDR: Things owned by other Spaces will generally be read-only.
 
 We think it's worth calling out: almost everything that will be imported will be read-only, and some concepts won't even be transferred across Space boundaries. The end goal is to reliably deploy a release into your environments avoiding as much manual intervention as possible. There are still a lot of details to sort out, but we think a good rule of thumb will be:
 
@@ -241,15 +258,27 @@ For example, we expect you will want the deployment to use the process as it was
 
 #### Deployment process and variable snapshots
 
+> TLDR: View the deployment process and project variables for specific releases, and even view the differences between two releases.
+
 We think an important part of this feature will be the ability to view and understand the deployment process and project variables that were frozen into a snapshot when the release was created. Imagine trying to import and approve a release for deployment without being able to see the process and variable values that will be used during deployment?
 
 This is actually a problem we've wanted to solve for quite some time: in Octopus today, you can see the variable snapshot (if you can find the correct link) but you cannot see the deployment process as it was defined when the release was created. Imagine if you could even view releases side-by-side to compare them with each other!
 
-### Approving a release (Mike N)
+_INSERT PICTURE_
 
-- Idea for multi-team sign off on a release before it is allowed to be deployed - no need for manual intervention steps for this purpose
+### Approving releases
 
-### Deploying releases (Mike N)
+> TLDR: Approve releases as part of your lifecycle.
+
+Depending on your scenario you may require a multi-team approval before a specific release can be deployed to an environment. In Octopus today you can configure your deployment process to use a [manual intervention step](https://octopus.com/docs/deploying-applications/manual-intervention-and-approvals) as a way of approving the *deployment of a release to an environment*.
+
+As an alternative, imagine if you could add an **Approval Phase** to your Lifecycles? In this way you could configure Octopus to require approval for a specific *release* before it can progress to the next phase of the Lifecycle. This way the approval becomes a key component of your Lifecycle, and once a release has been approved you could deploy it as many times as you want without manual intervention in your deployment process.
+
+_INSERT PICTURE_
+
+### Deploying releases
+
+> TLDR: Deploy the release just like it was created in this Space.
 
 Now the release has been accepted it can be deployed to the environments in the `Prod Space`. For all intents and purposes this would work just like the release was created in the `Prod Space`: all the same rules would apply for deploying this release including:
 
