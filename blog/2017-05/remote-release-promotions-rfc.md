@@ -263,8 +263,6 @@ Up to this point we've talked about a Release Bundle but we haven't gone into to
 
 > TLDR: Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
 
-![Import release](rrp-import-release.png "width=500")
-
 Once the **Release Bundle** has been transferred to the `Prod Space` you will need to import it. There will be a lot of details to figure out, but at the highest level we expect the process to look something like this:
 
 1. You could be shown a list of **Release Bundles** ready to be imported and you choose to import one.
@@ -273,6 +271,8 @@ Once the **Release Bundle** has been transferred to the `Prod Space` you will ne
 1. The release itself will be imported along with the deployment process snapshot and variable snapshot that were frozen when the release was created.
 1. You will need to choose the Lifecycle you want to use for promoting this release through the environments in the `Prod Space`. If your project only uses a single Lifecycle it could be chosen automatically.
 1. Octopus will prompt you to set any missing variable values for your environments and tenants before the release can be deployed.
+
+![Import release](rrp-import-release.png "width=500")
 
 :::hint
 The person importing **Release Bundles** will need to be granted all the permissions to create and edit projects, variables, packages, etc.
