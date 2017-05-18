@@ -331,7 +331,7 @@ We have been using a rule-of-thumb to guide our design process when thinking abo
 1. Try to minimize the number of things that cross over Space boundaries.
 1. Things that are concerned primarily with deployment design through to creating a release: owned by the **Source Space**.
 
-    - Projects, channels, project and library variable sets
+    - Projects, deployment process, channels, project and library variable sets
 
 1. Things that are concerned primarily with deployment: owned by the Space performing the deployment.
 
