@@ -65,6 +65,8 @@ Some of our customers decide to manage their deployments across multiple Octopus
 
 ## Proposed solution
 
+!toc
+
 Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each Space has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
 ![Space](rrp-space.png)
