@@ -57,7 +57,7 @@ These customers would like to promote the release at a time of their choosing, h
 Some of our customers decide to manage their deployments across multiple Octopus Servers for a variety of other reasons. We think our proposed solution will help customers who are:
 
 - Working as distributed teams
-- Using a Service Oriented (SOA) or Micro-services architecture
+- Using a Service Oriented (SOA) or Microservices architecture
 - Using Octopus to deploy your software directly into your customer's networks
 - Combination of all these examples
 
