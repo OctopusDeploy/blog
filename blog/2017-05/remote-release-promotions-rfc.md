@@ -311,7 +311,7 @@ Depending on your scenario you may require a multi-team approval before a specif
 
 As an alternative, imagine if you could add an **Approval Phase** to your Lifecycles? In this way you could configure Octopus to require approval for a specific *release* before it can progress to the next phase of the Lifecycle. This way the approval becomes a key component of your Lifecycle, and once a release has been approved you could deploy it as many times as you want without manual intervention in your deployment process.
 
-_INSERT PICTURE_
+![Approving Releases](rrp-approving-releases.png)
 
 ### Deploying releases
 
