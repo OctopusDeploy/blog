@@ -1,10 +1,15 @@
 ---
 title: "Remote Release Promotions RFC"
 description: We are designing a new feature to allow promoting Releases between different Octopus Servers (Spaces). You may want to do this for for security, geographic, or other reasons. This is a request-for-comments.  
+metaImage: releasepromotions-metaimage.png 
 visibility: private
 tags:
  - RFC 
 ---
+
+<div style="background-color:#e9edf2;">
+<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Release Promotions" src="https://i.octopus.com/blog/2017-05/releasepromotions-blogimage.png"  />
+</div>
 
 ## The problem
 
