@@ -41,7 +41,7 @@ These organizations still want all of the Octopus-goodness, like promoting the s
 
 Other organizations may deploy to geographically-distant environments.
 
-For example, their development environment may be located in Brisbane (it's a great place to live!), while their production environment is hosted at data centers in the US and Europe.
+For example, their development environment may be located in [Brisbane, Australia](http://www.visitbrisbane.com.au/) (it's a great place to live!), while their production environment is hosted at data centers in the US and Europe.
 
 ![Geographically distant environments](rrp-geographically-distant-environments.png "width=500")
 
