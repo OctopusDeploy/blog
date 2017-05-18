@@ -301,7 +301,7 @@ We think an important part of this feature will be the ability to view and under
 
 This is actually a problem we've wanted to solve for quite some time: in Octopus today, you can see the variable snapshot (if you can find the correct link) but you cannot see the deployment process as it was defined when the release was created. Imagine if you could even view releases side-by-side to compare them with each other!
 
-![Comparing releases](rrp-compare-releases.png)
+![Comparing releases](rrp-compare-releases.png "width=500")
 
 ### Approving releases
 
