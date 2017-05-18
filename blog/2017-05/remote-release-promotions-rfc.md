@@ -29,7 +29,7 @@ The two most common reasons for this are:
 
 ### Secure environments
 
-For security purposes many organizations separate their production and development environments. A common driver for this is achieving PCI DSS compliance.
+For security purposes many organizations separate their production and development environments. A common driver for this is achieving [PCI DSS](https://octopus.com/docs/reference/pci-compliance-and-octopus-deploy) compliance.
 
 The secure zone may even be completely disconnected (aka air-gap).
 
@@ -46,7 +46,7 @@ For example, their development environment may be located in [Brisbane, Australi
 There are two main problems with this, both related to performance:
 
 1. Packages are transferred at deployment time. If packages are large this can take quite a long time.
-1. Information has to be shipped back and forth between the Octopus Server and deployment targets for every step. High latency can introduce artificial delays in long running deployments.
+1. Information has to be shipped back and forth between the Octopus Server and deployment targets during deployments. High latency in these communications can have a significant impact on deployment durations.
 
 These customers would like to promote the release at a time of their choosing, have packages automatically transferred efficiently to the appropriate data center, and then perform the deployment as quickly as possible.
 
@@ -65,7 +65,7 @@ Some of our customers decide to manage their deployments across multiple Octopus
 
 ## Proposed solution
 
-Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
+Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each Space has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
 ![Space](rrp-space.png)
 
@@ -99,7 +99,7 @@ We think Lifecycles should be _defined_ within a Space and able to be _composed_
 
 ### Trusting other Spaces
 
-We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like "everything required to deploy a release" and "the results of deploying a release". We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
+We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like _everything required to deploy a release_ and _the results of deploying a release_. We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
 
 At its core this relationship will consist of a _Name_ and an _X.509 Certificate_. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using [ODCM](https://octopus.com/blog/odcm-rfc) since its core capability is managing Spaces.
 
@@ -233,7 +233,7 @@ By adding a **Remote Environment** to your Lifecycle, Octopus could add that env
 
 Eventually you want to deploy a release to the `Production` environment! Since you have added the `Prod Space` to your Lifecycle, you could promote your release to the `Prod Space`. At this point Octopus would create what we are calling a **Release Bundle**: a set of files including everything required to deploy that release to environments owned by other Spaces.
 
-In our example somebody would have to manually transfer the **Release Bundle** to the `Prod Space` and import it. If your Spaces are able to be connected, Octopus could automate a lot of this process for you.
+In our example somebody would have to manually transfer the Release Bundle to the `Prod Space` and import it. If your Spaces are connected, Octopus could automate a lot of this process for you.
 
 #### Release bundles
 
