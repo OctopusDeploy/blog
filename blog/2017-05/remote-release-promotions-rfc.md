@@ -11,14 +11,12 @@ tags:
 
 There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to. For example:
 
-- Octopus Server 1 deploys to Development and Testing environments
-- Octopus Server 2 deploys to Staging and Production environments
+- Octopus Server 1 deploys to `Development` and `Test` environments
+- Octopus Server 2 deploys to `Staging` and `Production` environments
 
 ### Elevator pitch
 
 We are planning a feature which enables you to promote releases across multiple Octopus Servers... in a nice way. :) If you are trying to do this today, you know it hurts real good.
-
-*TODO: INSERT PRETTY PICTURE HERE*
 
 The two most common reasons for this are:
 
@@ -31,9 +29,9 @@ For security purposes many organizations separate their production and developme
 
 The secure zone may even be completely disconnected (aka air-gap).
 
-These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also likely likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus Server.
+![Secure Environments](rrp-secure-environments.png)
 
-*TODO: INSERT PRETTY PICTURE*
+These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, overall orchestration, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also likely likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus Server.
 
 ### Geographically distant environments
 
@@ -41,16 +39,35 @@ Other organizations may deploy to geographically-distant environments.
 
 For example, their development environment may be located in Brisbane (it's a great place to live!), while their production environment is hosted at data centers in the US and Europe.
 
-The problem with this currently, is that the packages are transferred at deployment time. These customers would like to promote the release at a time of their choosing (including transferring the packages), then perform the deployment with the packages already located in the appropriate data center, close to the target machines.
+![Geographically distant environments](rrp-geographically-distant-environments.png)
+
+There are two main problems with this, both related to performance:
+
+1. Packages are transferred at deployment time. If packages are large this can take quite a long time.
+1. Information has to be shipped back and forth between the Octopus Server and deployment targets for every step. High latency can introduce artificial delays in long running deployments.
+
+These customers would like to promote the release at a time of their choosing, have packages automatically transferred efficiently to the appropriate data center, and then perform the deployment as quickly as possible.
+
+### Other examples
+
+Some of our customers decide to manage their deployments across multiple Octopus Servers for a variety of other reasons. We think our proposed solution will help customers who are:
+
+- Working as distributed teams
+- Using a Service Oriented (SOA) or Micro-services architecture
+- Using Octopus to deploy your software directly into your customer's networks
+- Combination of all these examples
+
+![Other examples](rrp-other-examples.png)
 
 ## Proposed solution
 
 Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
+![Space](rrp-space.png)
+
 Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're currently calling this feature **Remote Release Promotions**.
 
-- High-level architecture diagram (pretty picture) (Vanessa)
-- Release Lifecycle (showing promotion through environments, then zones) (Vanessa)
+![Basic Idea](rrp-basic-idea.png)
 
 We think there are two major concepts at play here: **Lifecycles** and **Trusts**.
 
@@ -63,6 +80,9 @@ We think Lifecycles should be **defined** within a Space and able to be **compos
 **Compose across Spaces:** This gives you the ability to model your overall deployment pipeline as a **Composite Lifecycle** made by connecting together Lifecycles which are defined in different Spaces. For example:
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
+
+    ![](rrp-basic-idea.png)
+
 1. You might want to promote a release through your Dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the Dev team to promote that same release to yet another Space where the Operations team manages your production environments.
 1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
 
