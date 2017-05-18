@@ -33,7 +33,7 @@ For security purposes many organizations separate their production and developme
 
 The secure zone may even be completely disconnected (aka air-gap).
 
-![Secure Environments](rrp-secure-environments.png "width=500")
+![Secure Environments](rrp-secure-environments.png)
 
 These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, overall orchestration, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also common to want a different set of users (possibly from a distinct Active Directory domain) to have permissions to the production Octopus Server.
 
@@ -67,7 +67,7 @@ Some of our customers decide to manage their deployments across multiple Octopus
 
 Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
-![Space](rrp-space.png "width=500")
+![Space](rrp-space.png)
 
 Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the _other_ Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're calling this feature **Remote Release Promotions**.
 
@@ -85,13 +85,13 @@ We think Lifecycles should be _defined_ within a Space and able to be _composed_
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
 
-    ![](rrp-composed-lifecycle-basic.png "width=500")
+    ![](rrp-composed-lifecycle-basic.png)
 
-    ![](rrp-composed-lifecycle-geo.png "width=500")
+    ![](rrp-composed-lifecycle-geo.png)
 
 1. You might want to promote a release through your Dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the Dev team to promote that same release to yet another Space where the Operations team manages your production environments.
 
-    ![](rrp-composed-lifecycle-there-and-back-again.png "width=500")
+    ![](rrp-composed-lifecycle-there-and-back-again.png)
 
 1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
 
