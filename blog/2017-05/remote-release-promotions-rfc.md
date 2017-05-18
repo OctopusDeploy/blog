@@ -253,7 +253,7 @@ Up to this point we've talked about a Release Bundle but we haven't gone into to
 1. The Release Bundle will include essential details of the **Source Project**, the release, the deployment process snapshot, and the project variable snapshot:
 
     - Any variable values and parts of the deployment process that would never apply to the **Target Space** will be omitted from the bundle
-    - Any variable values and parts of the deployment process that would never apply for releases in this channel
+    - Same for the channel assigned to the release
 
 1. The Release Bundle will include summary details of the deployments up to this point in time so they can be optionally displayed on the dashboard in the **Target Space**.
 1. When building the Release Bundle the **Source Space** will encrypt any sensitive information with the X.509 Public Key Certificate of the **Target Space** so it can only be decrypted by the **Target Space**.
