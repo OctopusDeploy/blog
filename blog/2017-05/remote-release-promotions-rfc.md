@@ -81,16 +81,25 @@ We think Lifecycles should be **defined** within a Space and able to be **compos
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
 
-    ![](rrp-basic-idea.png)
+    ![](rrp-composed-lifecycle-basic.png)
+
+    ![](rrp-composed-lifecycle-geo.png)
 
 1. You might want to promote a release through your Dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the Dev team to promote that same release to yet another Space where the Operations team manages your production environments.
+
+    ![](rrp-composed-lifecycle-there-and-back-again.png)
+
 1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
+
+    ![](rrp-composed-lifecycle-through-spaces.png)
 
 ### Trusting other Spaces
 
 We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like "everything required to deploy a release" and "the results of deploying a release". We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
 
 At its core this relationship will consist of a **Name** and an **X.509 Public Key Certificate**. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using ODCM since its core capability is managing Spaces.
+
+![Trusts](rrp-trusts.png)
 
 This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
@@ -115,7 +124,7 @@ Let's explore this concept using the **Secure Environments** example we mentione
 - `DevTest Space`: where your application is deployed for development and testing purposes
 - `Prod Space`: where the production deployments of your application will be deployed and strict compliance controls are required
 
-_IMAGE: Show two Spaces, indicating where project, and each environment is owned, and how the bundle flows_
+![Solution - Secure Environments](rrp-solution-secure-environments.png)
 
 Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
@@ -206,13 +215,15 @@ In order to promote a release to the `Production` environment, you will need to 
 
 What if you wanted to create a more complex Lifecycle? For example, you promote releases to a `QA Space` for testing by the QA team, and wait for them to finish testing it before Octopus will allow you to promote that release to the `Prod Space`? We think you should be able to add **Remote Environments** to your Lifecycles making Octopus behave just like that environment was part of the same Space.
 
+![Lifecycles with Spaces](rrp-lifecycles-with-spaces.png)
+
 #### Dashboards and Remote Environments
 
 > TLDR: Remote Environments can be displayed on dashboards.
 
 By adding a **Remote Environment** to your Lifecycle, Octopus could add that environment to your dashboards. We are planning a way to flow the result of your deployments back to their Source Space. This means you could see a summary of the deployments across your entire deployment lifecycle even if it crosses multiple Space boundaries.
 
-_INSERT DASHBOARD PICTURE_
+![Dashboards with Spaces](rrp-dashboards-with-spaces.png)
 
 ### Promoting releases to other Spaces
 
@@ -247,6 +258,8 @@ Up to this point we've talked about a Release Bundle but we haven't gone into to
 ### Importing releases into your Space
 
 > TLDR: Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
+
+![Import release](rrp-import-release.png)
 
 Once the **Release Bundle** has been transferred to the `Prod Space` you will need to import it. There will be a lot of details to figure out, but at the highest level we expect the process to look something like this:
 
@@ -284,7 +297,7 @@ We think an important part of this feature will be the ability to view and under
 
 This is actually a problem we've wanted to solve for quite some time: in Octopus today, you can see the variable snapshot (if you can find the correct link) but you cannot see the deployment process as it was defined when the release was created. Imagine if you could even view releases side-by-side to compare them with each other!
 
-_INSERT PICTURE_
+![Comparing releases](rrp-compare-releases.png)
 
 ### Approving releases
 
