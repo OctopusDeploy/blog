@@ -11,6 +11,12 @@ tags:
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Release Promotions" src="https://i.octopus.com/blog/2017-05/releasepromotions-blogimage.png"  />
 </div>
 
+We are currently designing a feature we are calling _Remote Release Promotions_.
+
+This post is a request-for-comments on our thoughts at this stage, and follows on from two earlier posts:
+- [Octopuses](https://octopus.com/blog/octopuses): Introduced the general class of problems this feature will address 
+- [Spaces & Octopus Data Center Manager](https://octopus.com/blog/odcm-rfc): Another new feature we are working on which complements Remote Release Promotions.  
+
 !toc
 
 ## The problem
