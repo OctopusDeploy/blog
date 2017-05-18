@@ -256,6 +256,8 @@ Once the **Release Bundle** has been transferred to the `Prod Space` you will ne
 1. You will need to choose the Lifecycle you want to use for promoting this release through the environments in the `Prod Space`. If your project only uses a single Lifecycle it could be chosen automatically.
 1. Octopus will prompt you to set any missing variable values for your environments and tenants before the release can be deployed.
 
+![Accept Release Bundle](accept-release.png "width=500")
+
 :::hint
 The person importing **Release Bundles** will need to be granted all the permissions to create and edit projects, variables, packages, etc.
 :::
