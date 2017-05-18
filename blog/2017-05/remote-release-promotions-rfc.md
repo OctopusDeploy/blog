@@ -239,26 +239,20 @@ In our example somebody would have to manually transfer the Release Bundle to th
 
 > TLDR: Contains everything required to deploy a release into the environments owned by another Space. Sensitive parts encrypted. Signed to validate integrity and trust.
 
-- Version tolerance/message schema (Michael R)
+Up to this point we've talked about a Release Bundle but we haven't gone into much detail. We are still figuring out the details, and would welcome your feedback.  Here are a few of our current thoughts:
 
-Up to this point we've talked about a Release Bundle but we haven't gone into too much detail. This is some of our thinking and certainly an area where we would like your feedback:
-
-1. You could click a button in the **Source Space** called something like `Promote 3.2.5 to Prod Space` to start the process
-1. The **Source Space** will build a Release Bundle specifically crafted to transport the required information the **Target Space**.
-1. The Release Bundle will not include the packages themselves, but instead it will include a manifest of all the packages required by the release, including the ID, Version, and Hash:
-
+- Essentially, the Release Bundle will contain everything required to promote the release to the remote Space.  This will include:
+    - Release Details: Version, Notes, Channel 
+    - Deployment Process
+    - Variables
+- The Release Bundle will _not_ include the packages themselves, but instead it will include a manifest of all the packages required by the release, including the ID, Version, and Hash:
     - This will enable the packages to be transferred or replicated to the other Spaces in the most efficient manner possible, perhaps using delta compression, or you might want to take care of this yourself.
-    - This will also enable the **Target Space** to validate the identity and integrity of the packages being deployed - they are guaranteed to be the same ones that were tested.
-
-1. The Release Bundle will include essential details of the **Source Project**, the release, the deployment process snapshot, and the project variable snapshot:
-
-    - Any variable values and parts of the deployment process that would never apply to the **Target Space** will be omitted from the bundle
-    - Same for the channel assigned to the release
-
-1. The Release Bundle will include summary details of the deployments up to this point in time so they can be optionally displayed on the dashboard in the **Target Space**.
-1. When building the Release Bundle the **Source Space** will encrypt any sensitive information with the X.509 Public Key Certificate of the **Target Space** so it can only be decrypted by the **Target Space**.
-1. When building the Release Bundle the **Source Space** will digitally sign a manifest with the X.509 Private Key Certificate of the **Source Space** so the **Target Space** can validate the source and integrity of the bundle before importing it.
-
+    - This will also enable the _Target Space_ to validate the identity and integrity of the packages being deployed - they are guaranteed to be the same ones that were tested.
+- The Release Bundle will contain a summary of the completed deployments in previous Spaces, allowing them to be optionally displayed on the dashboard in the remote Space. 
+- When building the Release Bundle the _Source Space_ will encrypt any sensitive information with the certificate of the _Target Space_ so it can only be decrypted by the _Target Space_.
+- When building the Release Bundle the _Source Space_ will digitally sign the bundle with the private-key of the _Source Space_ so the _Target Space_ can validate the source and integrity of the bundle before importing it.
+- The Release Bundle will have a schema version. Bundles will be able to be transferred between Spaces with compatible schema versions. Our hope is that the Release Bundle schema version will rev far less frequently than Octopus Server versions, allowing compatibility between a range of Octopus Server versions.
+ 
 ### Importing releases into your Space
 
 > TLDR: Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
