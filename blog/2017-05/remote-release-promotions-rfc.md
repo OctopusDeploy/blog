@@ -170,9 +170,9 @@ This would also be really handy even if you are only promoting releases within y
 
 We introduced the concept of [Variable Templates](https://octopus.com/docs/deploying-applications/variables/variable-templates) for multi-tenant deployments in Octopus 3.4. We would like to build on this concept further as part of this set of features.
 
-_IMAGE: Variable Template Editor?_
+![Variable Template](variable-template-editor.png "width=500")
 
-Learn more: _LINK: Variable Template GitHub Issue_
+_Note_: This will also allow tenant variables to vary per environment (a [much requested feature](https://github.com/OctopusDeploy/Issues/issues/2710)).
 
 #### Remote Environments
 
