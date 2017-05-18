@@ -103,7 +103,7 @@ We already have the concept of establishing trust between [Octopus Server and Te
 
 At its core this relationship will consist of a _Name_ and an _X.509 Certificate_. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using [ODCM](https://octopus.com/blog/odcm-rfc) since its core capability is managing Spaces.
 
-![Trusts](rrp-trusts.png "width=500")
+![Trusts](rrp-trusts.png)
 
 This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
