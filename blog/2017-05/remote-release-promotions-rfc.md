@@ -35,7 +35,7 @@ The secure zone may even be completely disconnected (aka air-gap).
 
 ![Secure Environments](rrp-secure-environments.png)
 
-These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, overall orchestration, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also likely likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus Server.
+These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, overall orchestration, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also common to want a different set of users (possibly from a distinct Active Directory domain) to have permissions to the production Octopus Server.
 
 ### Geographically distant environments
 
@@ -65,7 +65,7 @@ Some of our customers decide to manage their deployments across multiple Octopus
 
 ## Proposed solution
 
-Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
+Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
 ![Space](rrp-space.png)
 
