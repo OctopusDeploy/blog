@@ -1,11 +1,15 @@
 ---
 title: "Remote Release Promotions RFC"
 description: We are designing a new feature to allow promoting Releases between different Octopus Servers (Spaces). You may want to do this for for security, geographic, or other reasons. This is a request-for-comments.  
-author: michael.richardson@octopus.com
+metaImage: releasepromotions-metaimage.png 
 visibility: private
 tags:
  - RFC 
 ---
+
+<div style="background-color:#e9edf2;">
+<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Release Promotions" src="https://i.octopus.com/blog/2017-05/releasepromotions-blogimage.png"  />
+</div>
 
 ## The problem
 
@@ -29,9 +33,9 @@ For security purposes many organizations separate their production and developme
 
 The secure zone may even be completely disconnected (aka air-gap).
 
-![Secure Environments](rrp-secure-environments.png)
+![Secure Environments](rrp-secure-environments.png "width=500")
 
-These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, overall orchestration, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also likely likely want a different set of users (possibly from a distinct Active Directory domain) to be have permissions to the production Octopus Server.
+These organizations still want all of the Octopus-goodness, like promoting the same release through the environments, overall orchestration, and seeing the progression on the dashboard. But they don't want the development Octopus Server to be connected to the production environment. It's also common to want a different set of users (possibly from a distinct Active Directory domain) to have permissions to the production Octopus Server.
 
 ### Geographically distant environments
 
@@ -39,7 +43,7 @@ Other organizations may deploy to geographically-distant environments.
 
 For example, their development environment may be located in Brisbane (it's a great place to live!), while their production environment is hosted at data centers in the US and Europe.
 
-![Geographically distant environments](rrp-geographically-distant-environments.png)
+![Geographically distant environments](rrp-geographically-distant-environments.png "width=500")
 
 There are two main problems with this, both related to performance:
 
@@ -57,17 +61,17 @@ Some of our customers decide to manage their deployments across multiple Octopus
 - Using Octopus to deploy your software directly into your customer's networks
 - Combination of all these examples
 
-![Other examples](rrp-other-examples.png)
+![Other examples](rrp-other-examples.png "width=500")
 
 ## Proposed solution
 
-Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we are [planning to introduce](/blog/2017-05/odcm-rfc.md), where each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
+Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each "Space" has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
-![Space](rrp-space.png)
+![Space](rrp-space.png "width=500")
 
 Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're currently calling this feature **Remote Release Promotions**.
 
-![Basic Idea](rrp-basic-idea.png)
+![Basic Idea](rrp-basic-idea.png "width=500")
 
 We think there are two major concepts at play here: **Lifecycles** and **Trusts**.
 
@@ -81,17 +85,17 @@ We think Lifecycles should be **defined** within a Space and able to be **compos
 
 1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
 
-    ![](rrp-composed-lifecycle-basic.png)
+    ![](rrp-composed-lifecycle-basic.png "width=500")
 
-    ![](rrp-composed-lifecycle-geo.png)
+    ![](rrp-composed-lifecycle-geo.png "width=500")
 
 1. You might want to promote a release through your Dev team's test environments, then promote the release to another Space managed by a QA team. When they are finished testing you want the Dev team to promote that same release to yet another Space where the Operations team manages your production environments.
 
-    ![](rrp-composed-lifecycle-there-and-back-again.png)
+    ![](rrp-composed-lifecycle-there-and-back-again.png "width=500")
 
 1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
 
-    ![](rrp-composed-lifecycle-through-spaces.png)
+    ![](rrp-composed-lifecycle-through-spaces.png "width=500")
 
 ### Trusting other Spaces
 
@@ -99,7 +103,7 @@ We already have the concept of establishing trust between [Octopus Server and Te
 
 At its core this relationship will consist of a **Name** and an **X.509 Public Key Certificate**. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using ODCM since its core capability is managing Spaces.
 
-![Trusts](rrp-trusts.png)
+![Trusts](rrp-trusts.png "width=500")
 
 This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
@@ -124,7 +128,7 @@ Let's explore this concept using the **Secure Environments** example we mentione
 - `DevTest Space`: where your application is deployed for development and testing purposes
 - `Prod Space`: where the production deployments of your application will be deployed and strict compliance controls are required
 
-![Solution - Secure Environments](rrp-solution-secure-environments.png)
+![Solution - Secure Environments](rrp-solution-secure-environments.png "width=500")
 
 Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
@@ -215,7 +219,7 @@ In order to promote a release to the `Production` environment, you will need to 
 
 What if you wanted to create a more complex Lifecycle? For example, you promote releases to a `QA Space` for testing by the QA team, and wait for them to finish testing it before Octopus will allow you to promote that release to the `Prod Space`? We think you should be able to add **Remote Environments** to your Lifecycles making Octopus behave just like that environment was part of the same Space.
 
-![Lifecycles with Spaces](rrp-lifecycles-with-spaces.png)
+![Lifecycles with Spaces](rrp-lifecycles-with-spaces.png "width=500")
 
 #### Dashboards and Remote Environments
 
@@ -223,7 +227,7 @@ What if you wanted to create a more complex Lifecycle? For example, you promote 
 
 By adding a **Remote Environment** to your Lifecycle, Octopus could add that environment to your dashboards. We are planning a way to flow the result of your deployments back to their Source Space. This means you could see a summary of the deployments across your entire deployment lifecycle even if it crosses multiple Space boundaries.
 
-![Dashboards with Spaces](rrp-dashboards-with-spaces.png)
+![Remote Environment on Dashboard](promote-dashboard.png "width=500")
 
 ### Promoting releases to other Spaces
 
@@ -259,7 +263,7 @@ Up to this point we've talked about a Release Bundle but we haven't gone into to
 
 > TLDR: Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
 
-![Import release](rrp-import-release.png)
+![Import release](rrp-import-release.png "width=500")
 
 Once the **Release Bundle** has been transferred to the `Prod Space` you will need to import it. There will be a lot of details to figure out, but at the highest level we expect the process to look something like this:
 
@@ -354,17 +358,19 @@ ARC is concerned with creating releases. You will not be able to configure ARC f
 
 - Octopus Migrator import
 - Offline Drops
-- Octo.exe export/import
+- `octo.exe` export/import
 - Custom scripting using the Octopus REST API
 - Manually migrating everything
 
-The intention of this feature is to superseed the current methods used to migrate or deploy to remote machines. If you have used either the migrator or octo.exe import/export to move releases between Octopus instances you know that there are benefits for both methods, but also that it still requires a fair amount of scripting or interaction to use either for your purposes. Both of these will be deprecated and replaced by Remote Release Promotions. We are aware of customers who instead of either of these features wrote their own migration to avoid all the limitations they found in either feature. We have tried to address anything we knew about in the remote releases feature, so please let us know if you think anything was missed that you currently do via your own process. Migrator export will still exist for those using the JSON files in source control to detect changes and backup processes.
+The intention of this feature is to supersede the current methods used to migrate or deploy to remote machines. If you have used either the migrator or `octo.exe` import/export to move releases between Octopus instances you know that there are benefits for both methods, but also that it still requires a fair amount of scripting or interaction to use either for your purposes. Both of these will be deprecated and replaced by Remote Release Promotions. We are aware of customers who instead of either of these features wrote their own migration to avoid all the limitations they found in either feature. We have tried to address anything we knew about in the remote releases feature, so please let us know if you think anything was missed that you currently do via your own process. Migrator export will still exist for those using the JSON files in source control to detect changes and backup processes.
 
 It was also decided that we will be replacing Offline Drops with this feature. While it may not seem a direct correlation, and you will require an Octopus Server on the other side to catch the release bundle, many of the suggestions and limitations around Offline Drops are the missing pieces that are provided by Octopus Server. These include basic orchestration, output variables, logging, and deployment status to name a few. It will allow you to move the release to a centralized Octopus Server within the network boundary and make use of the extended orchestration by deploying to the local Tentacles.
 
-## Rollout (Michael R)
+## Roll-out
 
-- Phases
-- Octopus v4?
+Remote Release Promotions will form part of Octopus 4.0, along with the [Spaces/ODCM feature](https://octopus.com/blog/odcm-rfc) (and likely a bunch of other goodies too).
+
+Some components of this feature are quite independent, and we feel they will add value outside of Remote Promotions. For example: per-environment variable-templates and comparing releases. 
+Wherever possible, we intend to implement these and get them into your hands as quickly as we can.  You can expect to see them trickling out in the coming months.
 
 ## Feedback
