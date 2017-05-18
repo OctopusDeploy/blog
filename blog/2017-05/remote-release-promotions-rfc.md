@@ -118,7 +118,7 @@ In the rest of this RFC we are going to introduce some new terms. Let's define t
 - **Target Space:** The Space where a release bundle will be imported. The release extracted from the release bundle can then be deployed to environments in this Space.
 - **Remote Environment:** A reference to an environment owned by another Space.
 - **Remote Project:** A reference to a project owned by another Space.
-- **Remote Space:** A Space managed by a different ODCM, usually in a different secure network zone. The concept of a **Remote Space** will enable you to promote releases across secure network boundaries.
+- **Remote Space:** A reference to a Space managed by a different ODCM, usually in a different secure network zone. The concept of a **Remote Space** will enable you to promote releases across secure network boundaries.
 - **Variable Template:** We introduced this concept with multi-tenant deployments. In this context you could express that a variable value is required for each environment a project can be deployed into.
 
 ## Example: Secure Environments
