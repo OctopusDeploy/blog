@@ -43,14 +43,14 @@ Other organizations may deploy to geographically-distant environments.
 
 For example, their development environment may be located in [Brisbane, Australia](http://www.visitbrisbane.com.au/) (it's a great place to live!), while their production environment is hosted at data centers in the US and Europe.
 
-![Geographically distant environments](rrp-geographically-distant-environments.png "width=500")
-
 There are two main problems with this, both related to performance:
 
 1. Packages are transferred at deployment time. If packages are large this can take quite a long time.
 1. Information has to be shipped back and forth between the Octopus Server and deployment targets for every step. High latency can introduce artificial delays in long running deployments.
 
 These customers would like to promote the release at a time of their choosing, have packages automatically transferred efficiently to the appropriate data center, and then perform the deployment as quickly as possible.
+
+![Geographically distant environments](rrp-geographically-distant-environments.png "width=500")
 
 ### Other examples
 
