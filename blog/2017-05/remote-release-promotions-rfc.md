@@ -11,6 +11,8 @@ tags:
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Release Promotions" src="https://i.octopus.com/blog/2017-05/releasepromotions-blogimage.png"  />
 </div>
 
+!toc
+
 ## The problem
 
 There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to. For example:
@@ -64,8 +66,6 @@ Some of our customers decide to manage their deployments across multiple Octopus
 ![Other examples](rrp-other-examples.png "width=500")
 
 ## Proposed solution
-
-!toc
 
 Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each Space has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
