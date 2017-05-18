@@ -69,7 +69,7 @@ Our proposed solution will enable you to **spread your entire deployment lifecyc
 
 ![Space](rrp-space.png)
 
-Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the **other** Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're currently calling this feature **Remote Release Promotions**.
+Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the _other_ Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're calling this feature **Remote Release Promotions**.
 
 ![Basic Idea](rrp-basic-idea.png)
 
@@ -77,7 +77,7 @@ We think there are two major concepts at play here: **Lifecycles** and **Trusts*
 
 ### Lifecycles
 
-We think Lifecycles should be **defined** within a Space and able to be **composed** across multiple Spaces - you can think of it like chaining Lifecycles from different Spaces together.
+We think Lifecycles should be _defined_ within a Space and able to be _composed_ across multiple Spaces - you can think of it like chaining Lifecycles from different Spaces together.
 
 **Define within a Space:** This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
 
@@ -94,7 +94,7 @@ We think Lifecycles should be **defined** within a Space and able to be **compos
 
 We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like "everything required to deploy a release" and "the results of deploying a release". We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
 
-At its core this relationship will consist of a **Name** and an **X.509 Public Key Certificate**. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using ODCM since its core capability is managing Spaces.
+At its core this relationship will consist of a _Name_ and an _X.509 Certificate_. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using [ODCM](https://octopus.com/blog/odcm-rfc) since its core capability is managing Spaces.
 
 This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
