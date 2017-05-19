@@ -249,7 +249,7 @@ What if you wanted to create a more complex Lifecycle? For example, you promote 
 
 By adding a **Remote Environment** to your Lifecycle, Octopus could add that environment to your dashboards. We are planning a way to flow the result of your deployments back to their Source Space. This means you could see a summary of the deployments across your entire deployment lifecycle even if it crosses multiple Space boundaries.
 
-![Remote Environment on Dashboard](promote-dashboard.png "width=500")
+![Remote Environment on Dashboard](rrp-dashboards.png "width=500")
 
 ### Promoting releases to other Spaces
 
@@ -264,13 +264,15 @@ In our example somebody would have to manually transfer the Release Bundle to th
 Up to this point we've talked about a Release Bundle but we haven't gone into much detail. We are still figuring out the details, and would welcome your feedback.  Here are a few of our current thoughts:
 
 - Essentially, the Release Bundle will contain everything required to promote the release to the remote Space.  This will include:
-    - Release Details: Version, Notes, Channel 
-    - Deployment Process
-    - Variables
+  - Release Details: Version, Notes, Channel
+  - Deployment Process
+  - Variables
+
 - The Release Bundle will _not_ include the packages themselves, but instead it will include a manifest of all the packages required by the release, including the ID, Version, and Hash:
     - This will enable the packages to be transferred or replicated to the other Spaces in the most efficient manner possible, perhaps using delta compression, or you might want to take care of this yourself.
     - This will also enable the _Target Space_ to validate the identity and integrity of the packages being deployed - they are guaranteed to be the same ones that were tested.
-- The Release Bundle will contain a summary of the completed deployments in previous Spaces, allowing them to be optionally displayed on the dashboard in the remote Space. 
+
+- The Release Bundle will contain a summary of the completed deployments in previous Spaces, allowing them to be optionally displayed on the dashboard in the remote Space.
 - When building the Release Bundle the _Source Space_ will encrypt any sensitive information with the certificate of the _Target Space_ so it can only be decrypted by the _Target Space_.
 - When building the Release Bundle the _Source Space_ will digitally sign the bundle with the private-key of the _Source Space_ so the _Target Space_ can validate the source and integrity of the bundle before importing it.
 - The Release Bundle will have a schema version. Bundles will be able to be transferred between Spaces with compatible schema versions. Our hope is that the Release Bundle schema version will rev far less frequently than Octopus Server versions, allowing compatibility between a range of Octopus Server versions.
@@ -359,6 +361,22 @@ We wanted to call out tenants specifically because they could arguably be treate
 The intention of this feature is to supersede the current methods used to migrate or deploy to remote machines. If you have used either the migrator or `octo.exe` import/export to move releases between Octopus instances you know that there are benefits for both methods, but also that it still requires a fair amount of scripting or interaction to use either for your purposes. Both of these will be deprecated and replaced by Remote Release Promotions. We are aware of customers who instead of either of these features wrote their own migration to avoid all the limitations they found in either feature. We have tried to address anything we knew about in the remote releases feature, so please let us know if you think anything was missed that you currently do via your own process. Migrator export will still exist for those using the JSON files in source control to detect changes and backup processes.
 
 It was also decided that we will be replacing Offline Drops with this feature. While it may not seem a direct correlation, and you will require an Octopus Server on the other side to catch the release bundle, many of the suggestions and limitations around Offline Drops are the missing pieces that are provided by Octopus Server. These include basic orchestration, output variables, logging, and deployment status to name a few. It will allow you to move the release to a centralized Octopus Server within the network boundary and make use of the extended orchestration by deploying to the local Tentacles.
+
+## Octopus 4.0 architectures
+
+In a post-Octopus 4.0 world you will be able to model lots of interesting scenarios using multiple Spaces with releases flowing between them, even if the Spaces are connected or disconnected.
+
+### Example: Connected architecture
+
+This is an example architecture where you have multiple teams working in their own Spaces, then pushing releases to production Spaces that are hosted on-premises in the US, and in the public cloud in Australia and Europe. All of the Spaces are managed by the same ODCM which makes it easy to manage teams and trusts across everything. Since all of the Spaces are connected you can achieve a high level of automation for your deployments, even across multiple Spaces.
+
+![Octopus 4.0 Connected Architecture](rrp-OD4-connected-architecture.png)
+
+### Example: Disconnected architecture
+
+This is an example architecture where you have multiple teams working in their own Spaces, then pushing releases to production Spaces hosted in other data centers. The important difference here is that the Spaces in each data center are managed by their own ODCM. You can still have the exact same end result as the connected architecture, the only downside being you won't be able to achieve the same level of automation across the disconnected Spaces.
+
+![Octopus 4.0 Disconnected Architecture](rrp-OD4-disconnected-architecture.png)
 
 ## Roll-out
 
