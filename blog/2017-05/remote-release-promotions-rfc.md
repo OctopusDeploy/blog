@@ -169,7 +169,7 @@ A good place to start is by configuring your Spaces and establishing a trust rel
 We think the overall process will look something like this:
 
 1. Configure your secure network zones
-1. Configure an instance of ODCM in each zone for managing the Space in that zone
+1. Configure an instance of ODCM in each zone for managing the Spaces in that zone
 1. Use ODCM in the **production zone** to create the `Prod Space`
 1. Use ODCM in the **development zone** to create the `DevTest Space`
 1. Use ODCM in each zone to configure a trust relationship between your Spaces
