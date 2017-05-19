@@ -77,25 +77,39 @@ Some of our customers decide to manage their deployments across multiple Octopus
 
 ## Proposed solution
 
-Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple "Spaces"**. A "Space" is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each Space has its own set of projects, environments, lifecycles, teams, permissions, etc.
-
-![Space](rrp-space.png)
+Our proposed solution will enable you to **spread your entire deployment lifecycle across multiple Spaces**, allowing you to **promote releases to other Spaces**, and **flow deployment results back again** to be displayed on dashboards.
 
 Imagine if you could add a Space to your Lifecycle, just like you can add environments, and then promote a release to another Space. When you promote a release to another Space, Octopus could bundle up everything required to deploy that release into the environments in the _other_ Space. We will also cater for scenarios where there is strict separation between your Spaces (think PCI DSS). That's why we're calling this feature **Remote Release Promotions**.
 
 ![Basic Idea](rrp-basic-idea.png "width=500")
 
-This feature will support two modes: **Connected** and **Disconnected**.
+We think there are three major concepts at play to make all of this come together: **Spaces**, **Trusts**, and **Lifecycles**.
 
-### Connected Spaces
+### Spaces
 
-If you are happy for your Spaces to communicate, then we will be able to add a lot of sugar. Promoting a release to a remote Space will be as simple as pushing a button (or hitting the API). 
+A **Space** is a concept we introduced in our [previous RFC](https://octopus.com/blog/odcm-rfc). Each Space has its own set of projects, environments, lifecycles, teams, permissions, etc.
 
-### Disconnected Spaces
+![Space](rrp-space.png)
 
-As mentioned, we will also support isolated Spaces, as this is a common security scenario. Things will by necessity have to be more manual; you may have to do a little more typing (and even some walking!).
+This feature will support two modes: **Connected** and **Disconnected**:
 
-We think there are two major concepts at play here: **Lifecycles** and **Trusts**.
+#### Connected Spaces
+
+If you are happy for your Spaces to communicate, then we will be able to add a lot of sugar. Promoting a release to a remote Space will be as simple as pushing a button (or hitting the API).
+
+#### Disconnected Spaces
+
+We will also support isolated Spaces, as this is a common security scenario. Things will by necessity have to be more manual; you may have to do a little more typing (and even some walking!).
+
+### Trusting other Spaces
+
+We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like _everything required to deploy a release_ and _the results of deploying a release_. We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
+
+At its core this relationship will consist of a _Name_ and an _X.509 Certificate_. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using [ODCM](https://octopus.com/blog/odcm-rfc) since its core capability is managing Spaces.
+
+![Trusts](rrp-trusts.png)
+
+This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
 ### Lifecycles
 
@@ -118,16 +132,6 @@ We think Lifecycles should be _defined_ within a Space and able to be _composed_
 1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
 
     ![](rrp-composed-lifecycle-through-spaces.png "width=500")
-
-### Trusting other Spaces
-
-We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like _everything required to deploy a release_ and _the results of deploying a release_. We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
-
-At its core this relationship will consist of a _Name_ and an _X.509 Certificate_. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using [ODCM](https://octopus.com/blog/odcm-rfc) since its core capability is managing Spaces.
-
-![Trusts](rrp-trusts.png)
-
-This means you are in control of which information flows between different Spaces, and you can audit it all in one place.
 
 ## Definitions
 
