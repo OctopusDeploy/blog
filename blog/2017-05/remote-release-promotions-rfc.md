@@ -70,10 +70,10 @@ These customers would like to promote the release at a time of their choosing, h
 
 Some of our customers decide to manage their deployments across multiple Octopus Servers for a variety of other reasons. We think our proposed solution will help customers who are:
 
-- Working as distributed teams
-- Using a Service Oriented (SOA) or Microservices architecture
-- Using Octopus to deploy your software directly into your customer's networks
-- Combination of all these examples
+- dividing their work amongst multiple teams, possibly distributed around the world
+- using a Service Oriented (SOA) or Microservices architecture
+- using Octopus to deploy their software directly into their customer's networks
+- depending on a combination of all these examples
 
 ![Other examples](rrp-other-examples.png "width=500")
 
