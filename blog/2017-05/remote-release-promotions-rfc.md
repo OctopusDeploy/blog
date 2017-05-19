@@ -122,9 +122,11 @@ We think Lifecycles should be _defined_ within a Space and able to be _composed_
 
 **Compose across Spaces:** This gives you the ability to model your overall deployment pipeline as a **Composite Lifecycle** made by connecting together Lifecycles which are defined in different Spaces. For example:
 
-1. You might want to promote a release through your test environments, then promote the release to one or more Spaces that manage the production environments.
+1. You might want to promote a release through your test environments, then promote the release to a different Space to manage your production environment.
 
     ![](rrp-composed-lifecycle-basic.png)
+
+1. You might do the same thing but host your production environment across different geographic locations.
 
     ![](rrp-composed-lifecycle-geo.png)
 
@@ -132,7 +134,7 @@ We think Lifecycles should be _defined_ within a Space and able to be _composed_
 
     ![](rrp-composed-lifecycle-there-and-back-again.png)
 
-1. You might want to do the same as #2, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
+1. You might want to do the same thing, but once the QA team is finished they promote the release directly to the Operations team's Space without going back through the Dev team.
 
     ![](rrp-composed-lifecycle-through-spaces.png "width=500")
 
