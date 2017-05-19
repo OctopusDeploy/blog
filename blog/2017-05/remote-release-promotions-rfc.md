@@ -165,7 +165,7 @@ Let's consider how each different person in your organization might interact wit
 
 ### Configuring Spaces {#configuring-spaces}
 
-> TL;DR Use ODCM to configure relationships between Spaces, both connected and disconnected.
+> TL;DR Use ODCM to configure relationships between Spaces.
 
 A good place to start is by configuring your Spaces and establishing a trust relationship between them. In cases like the Secure Environments scenario, we think you will end up installing an instance of ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each zone, and configure trusts between Spaces in the same zone or across different zones as required.
 
@@ -183,6 +183,8 @@ Since there is strict separation between the zones you will have to configure tw
 1. Go to the ODCM in your **production zone** and create a new **Remote Space** called `DevTest Space` giving it the X.509 Public Key Certificate you downloaded for the `DevTest Space`.
 1. Use ODCM in your **production zone** and download the X.509 Public Key Certificate for the `Prod Space`.
 1. Go to the ODCM in your **development zone**, create a new **Remote Space** called `Prod Space` giving it the X.509 Public Key Certificate you downloaded for the `Prod Space`.
+
+![Configuring Spaces](rrp-configuring-spaces.png)
 
 Now the `DevTest Space` knows about the existence of the `Prod Space` you will be able to promote releases to that Space. Additionally, since you've exchanged public keys, the `Prod Space` can trust Release Bundles promoted from the `DevTest Space`, and `DevTest Space` can trust Deployment Receipts from the `Prod Space`!
 
