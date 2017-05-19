@@ -146,7 +146,7 @@ Let's consider how each different person in your organization might interact wit
 
 ### Configuring Spaces
 
-> TLDR: Use ODCM to configure relationships between Spaces, both connected and disconnected.
+> TL;DR Use ODCM to configure relationships between Spaces, both connected and disconnected.
 
 A good place to start is by configuring your Spaces and establishing a trust relationship between them. In cases like the Secure Environments scenario, we think you will end up installing an instance of ODCM inside each secure network zone. This will allow your teams to independently manage the Spaces inside each zone, and configure trusts between Spaces in the same zone or across different zones as required.
 
@@ -169,7 +169,7 @@ Now the `DevTest Space` knows about the existence of the `Prod Space` you will b
 
 ### Working with projects
 
-> TLDR: Nothing much changes - everything will feel very familiar.
+> TL;DR Nothing much changes - everything will feel very familiar.
 
 We don't see very much changing - life will pretty much go on just like before. You will still be able to change the deployment process, manage variables, and create and deploy releases to environments in the `DevTest Space` just like normal. However in this example the `Production` environment is owned by the `Prod Space`, meaning the `DevTest Space` has no concept of this environment:
 
@@ -181,7 +181,7 @@ Please welcome **Variable Templates** and **Remote Environments**!
 
 #### Variable Templates
 
-> TLDR: Extending variable templates to enable per-environment variable values.
+> TL;DR Extending variable templates to enable per-environment variable values.
 
 Imagine if you are the person importing a release bundle into your Space - how do you know which variables need values for each environment in your Space? And even if you know which variables you need to set, what should you set the value to?
 
@@ -201,7 +201,7 @@ _Note_: This will also allow tenant variables to vary per environment (a [much r
 
 #### Remote Environments
 
-> TLDR: Optionally add environments owned by other Spaces for scoping deployment steps and variable values, and display on the dashboards.
+> TL;DR Optionally add environments owned by other Spaces for scoping deployment steps and variable values, and display on the dashboards.
 
 We want to enable scenarios where you promote releases to other Spaces without needing to know anything about the environments in that Space. However, we can see scenarios where you will want to know about environments in other Spaces:
 
@@ -225,7 +225,7 @@ Now that you have configured the `Prod Space: Production` environment:
 
 ### Configuring a Lifecycle including other Spaces
 
-> TLDR: Other Spaces and Remote Environments can be added to Lifecycles.
+> TL;DR Other Spaces and Remote Environments can be added to Lifecycles.
 
 In order to promote a release to the `Production` environment, you will need to configure a Lifecycle with the ability to target the `Prod Space`. We think you should be able to add Spaces into the Phases of your Lifecycle just like you can add environments in Octopus today. This would work quite nicely for our example scenario where you just want the release promoted to the `Prod Space`.
 
@@ -235,7 +235,7 @@ What if you wanted to create a more complex Lifecycle? For example, you promote 
 
 #### Dashboards and Remote Environments
 
-> TLDR: Remote Environments can be displayed on dashboards.
+> TL;DR Remote Environments can be displayed on dashboards.
 
 By adding a **Remote Environment** to your Lifecycle, Octopus could add that environment to your dashboards. We are planning a way to flow the result of your deployments back to their Source Space. This means you could see a summary of the deployments across your entire deployment lifecycle even if it crosses multiple Space boundaries.
 
@@ -249,7 +249,7 @@ In our example somebody would have to manually transfer the Release Bundle to th
 
 #### Release bundles
 
-> TLDR: Contains everything required to deploy a release into the environments owned by another Space. Sensitive parts encrypted. Signed to validate integrity and trust.
+> TL;DR Contains everything required to deploy a release into the environments owned by another Space. Sensitive parts encrypted. Signed to validate integrity and trust.
 
 Up to this point we've talked about a Release Bundle but we haven't gone into much detail. We are still figuring out the details, and would welcome your feedback.  Here are a few of our current thoughts:
 
@@ -267,7 +267,7 @@ Up to this point we've talked about a Release Bundle but we haven't gone into mu
  
 ### Importing releases into your Space
 
-> TLDR: Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
+> TL;DR Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
 
 Once the **Release Bundle** has been transferred to the `Prod Space` you will need to import it. There will be a lot of details to figure out, but at the highest level we expect the process to look something like this:
 
@@ -286,7 +286,7 @@ The person importing **Release Bundles** will need to be granted all the permiss
 
 #### Mostly read-only
 
-> TLDR: Things owned by other Spaces will generally be read-only.
+> TL;DR Things owned by other Spaces will generally be read-only.
 
 We think it's worth calling out: almost everything that will be imported will be read-only, and some concepts won't even be transferred across Space boundaries. The end goal is to reliably deploy a release into your environments avoiding as much manual intervention as possible. There are still a lot of details to sort out, but we think a good rule of thumb will be:
 
@@ -301,7 +301,7 @@ For example, we expect you will want the deployment to use the process as it was
 
 #### Deployment process and variable snapshots
 
-> TLDR: View the deployment process and project variables for specific releases, and even view the differences between two releases.
+> TL;DR View the deployment process and project variables for specific releases, and even view the differences between two releases.
 
 We think an important part of this feature will be the ability to view and understand the deployment process and project variables that were frozen into a snapshot when the release was created. Imagine trying to import and approve a release for deployment without being able to see the process and variable values that will be used during deployment?
 
@@ -311,7 +311,7 @@ This is actually a problem we've wanted to solve for quite some time: in Octopus
 
 ### Approving releases
 
-> TLDR: Approve releases as part of your lifecycle.
+> TL;DR Approve releases as part of your lifecycle.
 
 Depending on your scenario you may require a multi-team approval before a specific release can be deployed to an environment. In Octopus today you can configure your deployment process to use a [manual intervention step](https://octopus.com/docs/deploying-applications/manual-intervention-and-approvals) as a way of approving the *deployment of a release to an environment*.
 
@@ -321,7 +321,7 @@ As an alternative, imagine if you could add an **Approval Phase** to your Lifecy
 
 ### Deploying releases
 
-> TLDR: Deploy the release just like it was created in this Space.
+> TL;DR Deploy the release just like it was created in this Space.
 
 Now the release has been accepted it can be deployed to the environments in the `Prod Space`. For all intents and purposes this would work just like the release was created in the `Prod Space`: all the same rules would apply for deploying this release including:
 
@@ -331,7 +331,7 @@ Now the release has been accepted it can be deployed to the environments in the 
 
 ## Tenants
 
-> TLDR: Tenants are a deployment-time concern and will not cross over Space boundaries.
+> TL;DR Tenants are a deployment-time concern and will not cross over Space boundaries.
 
 We wanted to call out tenants specifically because they could arguably be treated similarly to environments. At this point we are not 100% certain about how we will handle tenants, but our current thinking is:
 
