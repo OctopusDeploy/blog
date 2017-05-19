@@ -115,7 +115,7 @@ This means you are in control of which information flows between different Space
 
 ### Lifecycles
 
-We think Lifecycles should be _defined_ within a Space and able to be _composed_ across multiple Spaces - you can think of it like chaining Lifecycles from different Spaces together.
+We think Lifecycles should be _defined_ within a Space and able to be _composed_ across multiple Spaces - you can think of it like chaining together Lifecycles from different Spaces.
 
 **Define within a Space:** This gives the teams in each Space the ability to manage their own environments and Lifecycles how they see fit. For example, a member of one Space might decide to introduce an environment into their Lifecycle. We don't want the decision to introduce an environment into a Lifecycle in one Space to have any impact on any other Spaces.
 
