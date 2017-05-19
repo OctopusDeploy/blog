@@ -280,8 +280,8 @@ Up to this point we've talked about a Release Bundle but we haven't gone into mu
 - The Release Bundle will contain a summary of the completed deployments in previous Spaces, allowing them to be optionally displayed on the dashboard in the remote Space.
 - When building the Release Bundle the _Source Space_ will encrypt any sensitive information with the certificate of the _Target Space_ so it can only be decrypted by the _Target Space_.
 - When building the Release Bundle the _Source Space_ will digitally sign the bundle with the private-key of the _Source Space_ so the _Target Space_ can validate the source and integrity of the bundle before importing it.
-- The Release Bundle will have a schema version. Bundles will be able to be transferred between Spaces with compatible schema versions. Our hope is that the Release Bundle schema version will rev far less frequently than Octopus Server versions, allowing compatibility between a range of Octopus Server versions.
- 
+- The Release Bundle will have a schema version. Bundles can be transferred between Spaces with compatible schema versions. Our hope is that the Release Bundle schema version will change far less frequently than Octopus Server versions, allowing compatibility between a range of Octopus Server versions.
+
 ### Importing releases into your Space
 
 > TL;DR Imports remote project, release, process and variable snapshot. You choose the Lifecycle for the release.
