@@ -390,3 +390,9 @@ Some components of this feature are quite independent, and we feel they will add
 Wherever possible, we intend to implement these and get them into your hands as quickly as we can.  You can expect to see them trickling out in the coming months.
 
 ## Feedback
+
+Hopefully you can tell we have put a lot of thought into this set of features. We have tried to cover all of the scenarios and nuances we've encountered in our relationship with a variety of customers. There is a lot to digest here, but if you are in one of these kinds of scenarios it's quite likely you very quickly associated with parts of this RFC.
+
+**We would really like to hear from you!** Which features resonate with you and will make your situation better? Perhaps there are some pieces of the puzzle we are missing for your scenario?
+
+Feel free to leave a comment below, or if you really want to get involved in the nitty gritty of the design, head over [here](https://github.com/OctopusDeploy/specs) to join in the conversation!
