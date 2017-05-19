@@ -313,7 +313,7 @@ Once the **Release Bundle** has been transferred to the `Prod Space` you will ne
 The person importing **Release Bundles** will need to be granted all the permissions to create and edit projects, variables, packages, etc.
 :::
 
-#### Mostly read-only
+#### Imported things will be read-only
 
 > TL;DR Things owned by other Spaces will generally be read-only.
 
