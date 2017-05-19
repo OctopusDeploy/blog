@@ -338,10 +338,6 @@ We wanted to call out tenants specifically because they could arguably be treate
 - Tenants will be owned by the Space where their deployments will be performed.
 - Tenants in one Space cannot be connected to environments owned by another Space.
 
-## Automatic release creation (ARC)
-
-ARC is concerned with creating releases. You will not be able to configure ARC for a Remote Project (a project owned by another Space). Instead, the release created in the owning Space will be promoted to your Space.
-
 ## Superseded Solutions
 
 - Octopus Migrator import
