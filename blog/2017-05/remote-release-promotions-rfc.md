@@ -93,8 +93,6 @@ A **Space** is a concept we introduced in our [previous RFC](https://octopus.com
 
 ![Space](rrp-space.png)
 
-This feature will support two modes: **Connected** and **Disconnected**:
-
 #### Connected Spaces
 
 If you are happy for your Spaces to communicate, then we will be able to add a lot of sugar. Promoting a release to a remote Space will be as simple as pushing a button (or hitting the API). Likewise you could have the deployment results flow back automatically so your dashboard is always up to date.
