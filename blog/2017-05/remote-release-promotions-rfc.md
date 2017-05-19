@@ -94,6 +94,8 @@ A **Space** is a concept we introduced in our [previous RFC](https://octopus.com
 
 ![Space](rrp-space.png)
 
+We will talk more about [configuring Spaces](#configuring-spaces) later on, but in the meantime we want to be clear: we will support Spaces that **can** communicate with each other, and Spaces which **should not** communicate with each other.
+
 #### Connected Spaces
 
 If you are happy for your Spaces to communicate, then we will be able to add a lot of sugar. Promoting a release to a remote Space will be as simple as pushing a button (or hitting the API). Likewise you could have the deployment results flow back automatically so your dashboard is always up to date.
@@ -159,7 +161,7 @@ Let's explore this concept using the **Secure Environments** example we mentione
 
 Let's consider how each different person in your organization might interact with Octopus to promote a release across these two Spaces all the way to production.
 
-### Configuring Spaces
+### Configuring Spaces {#configuring-spaces}
 
 > TL;DR Use ODCM to configure relationships between Spaces, both connected and disconnected.
 
