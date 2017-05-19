@@ -374,13 +374,13 @@ In a post-Octopus 4.0 world you will be able to model lots of interesting scenar
 
 This is an example architecture where you have multiple teams working in their own Spaces, then pushing releases to production Spaces that are hosted on-premises in the US, and in the public cloud in Australia and Europe. All of the Spaces are managed by the same ODCM which makes it easy to manage teams and trusts across everything. Since all of the Spaces are connected you can achieve a high level of automation for your deployments, even across multiple Spaces.
 
-![Octopus 4.0 Connected Architecture](rrp-OD4-connected-architecture.png)
+![Octopus 4.0 Connected Architecture](rrp-connected-architecture.png)
 
 ### Example: Disconnected architecture
 
 This is an example architecture where you have multiple teams working in their own Spaces, then pushing releases to production Spaces hosted in other data centers. The important difference here is that the Spaces in each data center are managed by their own ODCM. You can still have the exact same end result as the connected architecture, the only downside being you won't be able to achieve the same level of automation across the disconnected Spaces.
 
-![Octopus 4.0 Disconnected Architecture](rrp-OD4-disconnected-architecture.png)
+![Octopus 4.0 Disconnected Architecture](rrp-disconnected-architecture.png)
 
 ## Roll-out
 
