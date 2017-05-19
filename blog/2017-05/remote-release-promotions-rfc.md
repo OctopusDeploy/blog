@@ -186,7 +186,13 @@ Since there is strict separation between the zones you will have to configure tw
 
 ![Configuring Spaces](rrp-configuring-spaces.png)
 
-Now the `DevTest Space` knows about the existence of the `Prod Space` you will be able to promote releases to that Space. Additionally, since you've exchanged public keys, the `Prod Space` can trust Release Bundles promoted from the `DevTest Space`, and `DevTest Space` can trust Deployment Receipts from the `Prod Space`!
+Now that you've configured your Spaces and exchanged public keys, you can:
+
+- configure your Lifecycle in the `DevTest Space` to promote releases to the `Prod Space`
+- configure the `Prod Space` to trust releases promoted from the `DevTest Space`
+- configure the `DevTest Space` to trust deployment results from the `Prod Space`
+
+You will be in complete control of the flow of information between Spaces!
 
 ### Working with projects
 
