@@ -340,7 +340,7 @@ This is actually a problem we've wanted to solve for quite some time: in Octopus
 
 ### Approving releases
 
-> TL;DR Approve releases as part of your lifecycle.
+> TL;DR Approve releases as a first-class part of your lifecycle.
 
 Depending on your scenario you may require some kind of approval before a specific release can be deployed to an environment. You may even require multiple teams to approve a release. In Octopus today you can configure your deployment process to use a [manual intervention step](https://octopus.com/docs/deploying-applications/manual-intervention-and-approvals) as a way of approving the *deployment* of a release to an environment.
 
