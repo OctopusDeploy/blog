@@ -85,6 +85,16 @@ Imagine if you could add a Space to your Lifecycle, just like you can add enviro
 
 ![Basic Idea](rrp-basic-idea.png "width=500")
 
+This feature will support two modes: **Connected** and **Disconnected**.
+
+### Connected Spaces
+
+If you are happy for your Spaces to communicate, then we will be able to add a lot of sugar. Promoting a release to a remote Space will be as simple as pushing a button (or hitting the API). 
+
+### Disconnected Spaces
+
+As mentioned, we will also support isolated Spaces, as this is a common security scenario. Things will by necessity have to be more manual; you may have to do a little more typing (and even some walking!).
+
 We think there are two major concepts at play here: **Lifecycles** and **Trusts**.
 
 ### Lifecycles
