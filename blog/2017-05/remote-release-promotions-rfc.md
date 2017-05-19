@@ -239,7 +239,7 @@ What if you wanted to create a more complex Lifecycle? For example, you promote 
 
 By adding a **Remote Environment** to your Lifecycle, Octopus could add that environment to your dashboards. We are planning a way to flow the result of your deployments back to their Source Space. This means you could see a summary of the deployments across your entire deployment lifecycle even if it crosses multiple Space boundaries.
 
-![Remote Environment on Dashboard](promote-dashboard.png "width=500")
+![Remote Environment on Dashboard](rrp-dashboards.png "width=500")
 
 ### Promoting releases to other Spaces
 
