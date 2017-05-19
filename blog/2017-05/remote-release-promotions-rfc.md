@@ -344,7 +344,7 @@ This is actually a problem we've wanted to solve for quite some time: in Octopus
 
 Depending on your scenario you may require some kind of approval before a specific release can be deployed to an environment. You may even require multiple teams to approve a release. In Octopus today you can configure your deployment process to use a [manual intervention step](https://octopus.com/docs/deploying-applications/manual-intervention-and-approvals) as a way of approving the *deployment* of a release to an environment.
 
-As an alternative, imagine if you could approve a _release_ as part of progressing through a Lifecycle? You could configure a Lifecycle phase to require the approval of certain teams, and Octopus would prevent a release from entering that phase until it has been approved by members of those teams.
+As an alternative, imagine if you could approve a _release_ as part of progressing through a Lifecycle? You could configure a Lifecycle phase to require approval by certain teams, and Octopus would prevent a release from entering that phase until it has been approved by a member from each of those teams.
 
 This way the approval becomes a key component of your Lifecycle, and once a _release has been approved_ you could deploy it as many times as you want without manual intervention in your deployment process.
 
