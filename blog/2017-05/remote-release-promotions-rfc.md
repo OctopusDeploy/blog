@@ -342,11 +342,19 @@ This is actually a problem we've wanted to solve for quite some time: in Octopus
 
 > TL;DR Approve releases as part of your lifecycle.
 
-Depending on your scenario you may require a multi-team approval before a specific release can be deployed to an environment. In Octopus today you can configure your deployment process to use a [manual intervention step](https://octopus.com/docs/deploying-applications/manual-intervention-and-approvals) as a way of approving the *deployment of a release to an environment*.
+Depending on your scenario you may require some kind of approval before a specific release can be deployed to an environment. You may even require multiple teams to approve a release. In Octopus today you can configure your deployment process to use a [manual intervention step](https://octopus.com/docs/deploying-applications/manual-intervention-and-approvals) as a way of approving the *deployment* of a release to an environment.
 
-As an alternative, imagine if you could add an **Approval Phase** to your Lifecycles? In this way you could configure Octopus to require approval for a specific *release* before it can progress to the next phase of the Lifecycle. This way the approval becomes a key component of your Lifecycle, and once a release has been approved you could deploy it as many times as you want without manual intervention in your deployment process.
+As an alternative, imagine if you could approve a _release_ as part of progressing through a Lifecycle? You could configure a Lifecycle phase to require the approval of certain teams, and Octopus would prevent a release from entering that phase until it has been approved by members of those teams.
 
-![Approving Releases](rrp-approving-releases.png)
+This way the approval becomes a key component of your Lifecycle, and once a _release has been approved_ you could deploy it as many times as you want without manual intervention in your deployment process.
+
+Here is an example of this concept where the entire deployment lifecycle happens in a single Space, from Development to Production.
+
+![Approving Releases](rrp-approving-releases-single-space.png)
+
+Let's expand this concept across multiple Spaces. Here is an example where a release must be approved by some teams in the `DevTest Space` before it can be promoted across to the `Prod Space`. The Lifecycle in the `Prod Space` requires releases to be deployed successfully to the Staging environment, then approved by a member of the Ops team before being deployed to the Production environment.
+
+![Approving Releases - Multi-Space](rrp-approving-releases-multi-space.png)
 
 ### Deploying releases
 
