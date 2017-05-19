@@ -32,7 +32,9 @@ There are scenarios where it makes sense for different Octopus Server instances 
 
 ### Elevator pitch
 
-We are planning a feature which enables you to promote releases across multiple Octopus Servers... in a nice way. :) If you are trying to do this today, you know it hurts real good.
+We are planning a feature which enables you to promote releases across multiple Octopus Servers... in a nice way. :)
+
+If you are trying to do this today, you know it hurts real good.
 
 The two most common reasons for this are:
 
