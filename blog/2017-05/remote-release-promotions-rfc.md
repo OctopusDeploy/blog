@@ -142,7 +142,7 @@ In the rest of this RFC we are going to introduce some new terms. Let's define t
 - **Release Bundle:** A package containing everything required to deploy a specific release of a project.
 - **Deployment Receipt:** A document containing everything required to show the result of deploying a specific release of a project.
 - **Source Space:** The Space that owns the project and its releases, and where release bundles are created if you decide to cross Space boundaries.
-- **Target Space:** The Space where a release bundle will be imported. The release extracted from the release bundle can then be deployed to environments in this Space.
+- **Target Space:** The Space where a release bundle will be imported. The release can then be deployed to environments in this Space.
 - **Remote Environment:** A reference to an environment owned by another Space.
 - **Remote Project:** A reference to a project owned by another Space.
 - **Remote Space:** A reference to a Space managed by a different ODCM, usually in a different secure network zone. The concept of a **Remote Space** will enable you to promote releases across secure network boundaries.
