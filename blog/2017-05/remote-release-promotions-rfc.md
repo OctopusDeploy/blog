@@ -204,7 +204,7 @@ Please welcome **Variable Templates** and **Remote Environments**!
 
 #### Variable Templates
 
-> TL;DR Extending variable templates to enable per-environment variable values.
+> TL;DR We will extend variable templates to enable per-environment variable values. 
 
 Imagine if you are the person importing a release bundle into your Space - how do you know which variables need values for each environment in your Space? And even if you know which variables you need to set, what should you set the value to?
 
