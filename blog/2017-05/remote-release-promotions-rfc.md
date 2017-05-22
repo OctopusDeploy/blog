@@ -40,7 +40,7 @@ The two most common reasons for this are:
 
 ### Secure environments
 
-For security purposes many organizations separate their production and development environments. A common driver for this is achieving [PCI DSS](https://octopus.com/docs/reference/pci-compliance-and-octopus-deploy) compliance.
+For security purposes many organizations separate their production and development environments. For example, this is a common way to achieve [PCI DSS](https://octopus.com/docs/reference/pci-compliance-and-octopus-deploy) compliance.
 
 The secure zone may even be completely disconnected (aka air-gap).
 
@@ -65,7 +65,7 @@ These customers would like to promote the release at a time of their choosing, h
 
 ### Other examples
 
-Some of our customers decide to manage their deployments across multiple Octopus Servers for a variety of other reasons. We think our proposed solution will help customers who are:
+Some of our customers decide to manage their deployments across multiple Octopus Servers for a variety of other reasons. We think our proposed solution will also help customers who are:
 
 - dividing their work amongst multiple teams, possibly distributed around the world
 - using a Service Oriented (SOA) or Microservices architecture
@@ -90,15 +90,15 @@ A **Space** is a concept we introduced in our [previous RFC](https://octopus.com
 
 ![Space](rrp-space.png)
 
-We will talk more about [configuring Spaces](#configuring-spaces) later on, but in the meantime we want to be clear: we will support Spaces that **can** communicate with each other, and Spaces which **should not** communicate with each other.
+We will talk more about [configuring Spaces](#configuring-spaces) later on, but in the meantime we want to be clear: we will support Spaces that **can** communicate with each other, and Spaces which **cannot** communicate with each other.
 
 #### Connected Spaces
 
-If you are happy for your Spaces to communicate, then we will be able to add a lot of sugar. Promoting a release to a remote Space will be as simple as pushing a button (or hitting the API). Likewise you could have the deployment results flow back automatically so your dashboard is always up to date.
+If you are happy for your Spaces to communicate, then we will aim to provide a super smooth experience. Promoting a release to a remote Space will be as simple as pushing a button (or hitting the API). Likewise you could have the deployment results flow back automatically so your dashboard is always up to date.
 
 #### Disconnected Spaces
 
-We will also support isolated Spaces, as this is a common security scenario. Things will by necessity have to be more manual; you may have to do a little more typing (and even some walking!).
+We will also support isolated Spaces, as this is a common security scenario. Things will by necessity have to be more manual; you may have to do a little more typing (and maybe even some walking!).
 
 ### Trusting other Spaces
 
