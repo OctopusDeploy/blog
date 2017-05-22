@@ -21,8 +21,6 @@ This post follows on from two earlier posts:
 - [Spaces & Octopus Data Center Manager](https://octopus.com/blog/odcm-rfc): Another new feature we are working on which complements Remote Release Promotions.  
 :::
 
-!toc
-
 ## The problem
 
 There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to. For example:
