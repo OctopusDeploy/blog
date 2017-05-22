@@ -106,7 +106,7 @@ We will also support isolated Spaces, as this is a common security scenario. Thi
 
 We already have the concept of establishing trust between [Octopus Server and Tentacle](https://octopus.com/docs/reference/octopus-tentacle-communication): it will only execute commands sent from a trusted Octopus Server. We also think it's important that a trust relationship is established between two Spaces before they start sharing things like _everything required to deploy a release_ and _the results of deploying a release_. We talked about [sharing](/blog/2017-05/odcm-rfc.md#sharing) in our recent blog post introducing the concept of spaces and the Octopus Data Center Manager (ODCM).
 
-At its core this relationship will consist of a _Name_ and an _X.509 Public Key Certificate_. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using [ODCM](https://octopus.com/blog/odcm-rfc) since its core capability is managing Spaces.
+At its core this relationship will consist of a _Name_ and a _Certificate_. This will enable each Space to uniquely identify the source of information, and validate the integrity of the information, just like [Octopus Server and Tentacle do today](https://octopus.com/docs/reference/octopus-tentacle-communication). We think the best way to configure this relationship is using [ODCM](https://octopus.com/blog/odcm-rfc) since its core capability is managing Spaces.
 
 ![Trusts](rrp-trusts.png)
 
@@ -393,7 +393,7 @@ Disconnected networks have multiple teams working in their own Spaces, then push
 
 Remote Release Promotions will form part of Octopus 4.0, along with the [Spaces/ODCM feature](https://octopus.com/blog/odcm-rfc) (and likely a bunch of other goodies too).
 
-Some components of this feature are quite independent, and we feel they will add value outside of Remote Promotions. For example: per-environment variable-templates and comparing releases. Wherever possible, we intend to implement these and get them into your hands as quickly as we can. You can expect to see them trickling out in the coming months.
+Some components of this feature are quite independent, and we feel they will add value outside of Remote Promotions. For example: per-environment variable-templates and comparing releases. Wherever possible we intend to implement these and get them into your hands as quickly as we can. You can expect to see them trickling out in the coming months.
 
 ## Feedback
 
