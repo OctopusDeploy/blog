@@ -151,7 +151,7 @@ A `Custom install directory` section will be added to the screen. Set the `Insta
 folder e.g. `/opt/apache-tomcat-8.5.15/webapps`.
  
 You most likely want to leave the `Purge` option unselected, as Tomcat may be hosting other WAR files that you do not 
-want to delete when extracting the `Demo##<timetstamp>.war` file.
+want to delete when extracting the `demo##<timetstamp>.war` file.
  
 ![Deploy Package Configuration](deployPackageConfigurationScreenshot.png)
  
