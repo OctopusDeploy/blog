@@ -104,17 +104,17 @@ communication that we will use to deploy the WAR file.
  
 ![SSH Connection](deployment-target-screenshot.png)
  
-Octopus Deploy works by deploying a [Tentacle](https://octopus.com/docs/installation/installing-tentacles) onto the Linux box where the deployment is taking place. Unlike the CLI tool, 
-which runs on .NET Core, Octopus Deploy Tentacles require a complete version of .NET to be available. In Linux the 
-[Mono project](http://www.mono-project.com/) provides a .NET environment that Tentacles can use. You will need to install 
-Mono onto the Tomcat server to allow the Tentacles to run.
+Octopus Deploy works by deploying [Calamari](https://octopus.com/docs/installation/installing-tentacles) onto the Linux 
+box where the deployment is taking place. Unlike the CLI tool, which runs on .NET Core, Octopus Deploy Calamari require 
+a complete version of .NET to be available. In Linux the [Mono project](http://www.mono-project.com/) provides a .NET 
+environment that Calamari can use. You will need to install Mono onto the Tomcat server to allow the Calamari to run.
  
 This split between .NET Core, .NET and Mono and which environment runs what is one of the more confusing aspects of using 
 Octopus Deploy with Linux. You just need to know that:
 
 * The Octopus Deploy CLI tool uses .NET Core, and is self contained, although you may need to install additional dependencies. 
 The CLI tool is run either on your own PC or on a CI server like TeamCity or Bamboo.
-* Octopus Deploy Tentacles use .NET, and .NET is provided by Mono under Linux. Tentacle are run on the host you are deploying to, 
+* Octopus Deploy Calamari use .NET, and .NET is provided by Mono under Linux. Calamari are run on the host you are deploying to, 
 like the Tomcat Server, which means the Tomcat Server also needs to have Mono installed.
  
 :::hint
@@ -122,6 +122,11 @@ One thing to keep in mind with SSH deployment targets is that the user that make
 to deploy to the Tomcat `webapps` directory. Later on we’ll define some deployment steps that will copy the WAR file from the 
 package that was uploaded earlier into the webapps directory, and this step will fail if the SSH user does not have the correct 
 permissions to copy files into this location.
+:::
+
+:::hint
+It is possible to deploy to a Linux server from Octopus Deploy without installing Mono. See 
+[Trying Raw Octopus](https://octopus.com/blog/trying-raw-octopus) for more information.
 :::
 
 ## Creating a Octopus Deploy Project
@@ -165,8 +170,8 @@ A deployment is the execution of the steps to deploy a release to an environment
 numerous times to different environments. The [Getting Started](https://octopus.com/docs/getting-started#deploy-a-release) 
 documentation details the process of deploying a new release in Octopus Deploy.
  
-In our case deploying the release means taking the package that was pushed to Octopus Deploy, installing a Tentacle on the 
-Tomcat server, sending the package to the Tomcat server, and using the Tentacle to extract the WAR file in the package 
+In our case deploying the release means taking the package that was pushed to Octopus Deploy, installing Calamari on the 
+Tomcat server, sending the package to the Tomcat server, and using the Calamari to extract the WAR file in the package 
 into the Tomcat `webapps` directory.
  
 ## Summary
