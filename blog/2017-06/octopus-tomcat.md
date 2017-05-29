@@ -84,7 +84,7 @@ You can find information on API keys at [How to create an API key](https://octop
 
 This adds the package to the Octopus Deploy library.
 
-![Library](LibraryScreenshot.png)
+![Library](libraryScreenshot.png)
 
 ## Creating the Octopus Deploy Environment
 In Octopus, an environment is a group of machines that you will deploy to at the same time; common examples of 
@@ -102,7 +102,7 @@ servers run SSH as a means of remote administration, and
 [Octopus Deploy supports SSH natively](https://octopus.com/docs/deployment-targets/ssh-targets), so this is the means of 
 communication that we will use to deploy the WAR file.
  
-![SSH Connection](DeploymentTargetScreenshot.png)
+![SSH Connection](deploymentTargetScreenshot.png)
  
 Octopus Deploy works by deploying a [Tentacle](https://octopus.com/docs/installation/installing-tentacles) onto the Linux box where the deployment is taking place. Unlike the CLI tool, 
 which runs on .NET Core, Octopus Deploy Tentacles require a complete version of .NET to be available. In Linux the 
@@ -131,7 +131,7 @@ of creating a new deployment target in Octopus Deploy.
  
 Inside the project we need to open the Process section, and add the `Deploy a package` step.
  
-![Deploy Package](DeployPackageScreenshot.png)
+![Deploy Package](deployPackageScreenshot.png)
 
 The `Deploy a package` step provides a way for us to take a package and extract it to the desired location on the deployment targets. 
 In our case, we are taking the ZIP package and extracting the WAR file to the Tomcat `webapps` directory.
@@ -153,7 +153,7 @@ folder e.g. `/opt/apache-tomcat-8.5.15/webapps`.
 You most likely want to leave the `Purge` option unselected, as Tomcat may be hosting other WAR files that you do not 
 want to delete when extracting the `Demo##<timetstamp>.war` file.
  
-![Deploy Package Configuration](DeployPackageConfigurationScreenshot.png)
+![Deploy Package Configuration](deployPackageConfigurationScreenshot.png)
  
 ## Create an Octopus Deploy Release
 A release captures all the project and package details so it be deployed over and over in a safe and repeatable way. The 
