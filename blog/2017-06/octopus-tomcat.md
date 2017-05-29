@@ -104,7 +104,7 @@ communication that we will use to deploy the WAR file.
  
 ![SSH Connection](deployment-target-screenshot.png)
  
-Octopus Deploy works by deploying [Calamari](https://octopus.com/docs/installation/installing-tentacles) onto the Linux 
+Octopus Deploy works by deploying [Calamari](https://octopus.com/docs/api-and-integration/calamari) onto the Linux 
 box where the deployment is taking place. Unlike the CLI tool, which runs on .NET Core, Octopus Deploy Calamari require 
 a complete version of .NET to be available. In Linux the [Mono project](http://www.mono-project.com/) provides a .NET 
 environment that Calamari can use. You will need to install Mono onto the Tomcat server to allow the Calamari to run.
