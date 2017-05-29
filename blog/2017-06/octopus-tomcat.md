@@ -41,10 +41,10 @@ This is where some of the conventions implemented by Octopus Deploy for .NET app
  
 To upload a package to Octopus Deploy, it must follow a number of 
 [versioning rules](https://octopus.com/docs/packaging-applications/versioning-in-octopus-deploy). In practice this means 
-creating a zip or tar.gz archive with a filename like `demo.0.0.1.zip`.
+creating a zip or tar.gz archive with a file name like `demo.0.0.1.zip`.
  
 In Java, versioning is mostly done by way of [Maven](https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855). 
-Additionally the WAR file created above embeds a timestamp version into the WAR filename itself that is recognised by Tomcat. 
+Additionally the WAR file created above embeds a timestamp version into the WAR file name itself that is recognised by Tomcat. 
 Octopus Deploy on the other hand uses [SemVer](http://semver.org/). All these versioning scheme are mostly incompatible, 
 which means we can’t upload the WAR file as is. And even if we could, despite the fact that a WAR file is just a ZIP file 
 with a different extension, Octopus Deploy does not recognise the WAR extension.
@@ -57,14 +57,14 @@ To package up the WAR file, use the
 [.NET Core](https://github.com/dotnet/core) application that exposes a number of common operations that can be performed 
 in Octopus Deploy, along with some handy features like creating ZIP archives with the correct naming conventions.
  
-If you are not familiar with .NET Core, for the purposes of this tutorial it is enough to know that it allows .NET 
+If you are not familiar with .NET Core, for the purposes of this blog post it is enough to know that it allows .NET 
 applications to be run across operating systems, including Linux. The Octopus Deploy CLI tool is a self contained package that 
 includes the .NET Core runtime, and so when you [download](https://octopus.com/downloads) the version for your Linux distribution, 
 you get (almost) everything you need to run the CLI.
  
 I say almost because you may need to install a few additional dependencies. I found that I needed to install these 
-additional packages when running the CLI tool from Linux environments installed using “minimal” installation options. 
-The documentation at the [Get Started with .NET Core](https://www.microsoft.com/net/core#linuxcentos) lists the packages 
+additional dependencies when running the CLI tool from Linux environments installed using “minimal” installation options. 
+The documentation at the [Get Started with .NET Core](https://www.microsoft.com/net/core#linuxcentos) page lists the packages 
 required for various Linux distributions.
  
 To create the package, run the command:
@@ -79,7 +79,9 @@ To push the package, use the [push command](https://octopus.com/docs/api-and-int
 ```
 Octo push --package Demo.1.0.0.zip --replace-existing --server http://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
 ```
- 
+
+You can find information on API keys at [How to create an API key](https://octopus.com/docs/how-to/how-to-create-an-api-key).
+
 This adds the package to the Octopus Deploy library.
 
 ![Library](LibraryScreenshot.png)
@@ -102,7 +104,7 @@ communication that we will use to deploy the WAR file.
  
 ![SSH Connection](DeploymentTargetScreenshot.png)
  
-Octopus Deploy works by deploying a Tentacle onto the Linux box where the deployment is taking place. Unlike the CLI tool, 
+Octopus Deploy works by deploying a [Tentacle](https://octopus.com/docs/installation/installing-tentacles) onto the Linux box where the deployment is taking place. Unlike the CLI tool, 
 which runs on .NET Core, Octopus Deploy Tentacles require a complete version of .NET to be available. In Linux the 
 [Mono project](http://www.mono-project.com/) provides a .NET environment that Tentacles can use. You will need to install 
 Mono onto the Tomcat server to allow the Tentacles to run.
@@ -127,17 +129,17 @@ Projects define a set of deployment steps that you want Octopus to perform, and 
 [Getting Started](https://octopus.com/docs/getting-started#Gettingstarted-Createaproject) documentation details the process 
 of creating a new deployment target in Octopus Deploy.
  
-Inside the project we need to open the Process section, and add the Deploy a package step.
+Inside the project we need to open the Process section, and add the `Deploy a package` step.
  
 ![Deploy Package](DeployPackageScreenshot.png)
 
-The Deploy a package step provides a way for us to take a package and extract it to the desired location on the deployment targets. 
+The `Deploy a package` step provides a way for us to take a package and extract it to the desired location on the deployment targets. 
 In our case, we are taking the ZIP package and extracting the WAR file to the Tomcat `webapps` directory.
 
 :::hint
 The `Configuration Variables` and `Configuration transforms` sections provide a lot of power that unfortunately we can’t use while
 deploying a Java application. These options assume that certain XML files are available directly inside the package. This is 
-not the case when the package contains a WAR file, and any configuration files held by the WAR file are not available to be 
+not the case when the package contains a WAR file, and any configuration files contained in the WAR file are not available to be 
 modified during deployment. This is a limitation of using Octopus Deploy with Java artifacts, but is something that the 
 Octopus Deploy team is looking into in order to better support Java in future releases.
 :::
@@ -149,7 +151,7 @@ A `Custom install directory` section will be added to the screen. Set the `Insta
 folder e.g. `/opt/apache-tomcat-8.5.15/webapps`.
  
 You most likely want to leave the `Purge` option unselected, as Tomcat may be hosting other WAR files that you do not 
-want to delete when extracting the Demo.war file.
+want to delete when extracting the `Demo##<timetstamp>.war` file.
  
 ![Deploy Package Configuration](DeployPackageConfigurationScreenshot.png)
  
