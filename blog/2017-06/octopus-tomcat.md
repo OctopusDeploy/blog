@@ -7,7 +7,7 @@ tags:
  - Tomcat
 ---
 
-Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to 
+Octopus Deploy has a large collection of useful steps (both built-in and community provided) that can be used to 
 deploy packages to a variety of different destinations and via different methods.
  
 Fortunately these same deployment steps can be used to deploy Java packages to Java web servers running in Linux out of 
@@ -55,7 +55,7 @@ in repository currently does not support WAR files, which means we can't upload 
  
 The solution is to pack the WAR file into an appropriately named ZIP file, which can then be uploaded to Octopus Deploy. 
 This “WAR in a ZIP” package allows us to have the WAR file managed by Octopus Deploy, but does have some drawbacks, which 
-I will call out later.
+I will mention later.
  
 To package up the WAR file, use the 
 [Octopus Deploy CLI tool](https://octopus.com/docs/api-and-integration/octo.exe-command-line). The CLI tool is a 
@@ -66,9 +66,8 @@ If you are not familiar with .NET Core, for the purposes of this blog post it is
 applications to be run across operating systems, including Linux. The Octopus Deploy CLI tool is a self contained package that 
 includes the .NET Core runtime, and so when you [download](https://octopus.com/downloads) the version for your Linux distribution, 
 you get (almost) everything you need to run the CLI.
- 
-I say almost because you may need to install a few additional dependencies. I found that I needed to install these 
-additional dependencies when running the CLI tool from Linux environments installed using “minimal” installation options. 
+
+You may need to install a few additional dependencies to run the CLI tool from Linux environments installed using “minimal” installation options. 
 The documentation at the [Get Started with .NET Core](https://www.microsoft.com/net/core#linuxcentos) page lists the packages 
 required for various Linux distributions.
  
@@ -94,7 +93,7 @@ Octo push --package Demo.1.0.0.zip --server http://my.octopus.url --apiKey API-X
 
 You can find information on API keys at [How to create an API key](https://octopus.com/docs/how-to/how-to-create-an-api-key).
 
-This adds the package to the Octopus Deploy library.
+This adds the package to the Octopus Deploy built-in package repository so it can be used in deployments.  See [Package repositories](https://octopus.com/docs/packaging-applications/package-repositories) for more information.
 
 ![Library](library-screenshot.png)
 
@@ -116,17 +115,15 @@ communication that we will use to deploy the WAR file.
  
 ![SSH Connection](deployment-target-screenshot.png)
  
-Octopus Deploy works by deploying [Calamari](https://octopus.com/docs/api-and-integration/calamari) onto the Linux 
-box where the deployment is taking place. Unlike the CLI tool, which runs on .NET Core, Octopus Deploy Calamari require 
-a complete version of .NET to be available. In Linux the [Mono project](http://www.mono-project.com/) provides a .NET 
-environment that Calamari can use. You will need to install Mono onto the Tomcat server to allow the Calamari to run.
+Octopus uses a component called [Calamari](https://octopus.com/docs/api-and-integration/calamari) as the engine to execute deployments on deployment targets.
+Calamari currently requires [Mono](http://www.mono-project.com/) as a dependency to provide a .NET environment to operate on Linux. 
+You will need to install Mono onto the Tomcat server to allow the Calamari to run.  In the future, this will be simplified to use .NET Core without needing an additional dependency.
  
-This split between .NET Core, .NET and Mono and which environment runs what is one of the more confusing aspects of using 
-Octopus Deploy with Linux. You just need to know that:
+This can be confusing to people new to Octopus so I'll review this.  You just need to know that:
 
 * The Octopus Deploy CLI tool uses .NET Core, and is self contained, although you may need to install additional dependencies. 
 The CLI tool is run either on your own PC or on a CI server like TeamCity or Bamboo.
-* Octopus Deploy Calamari use .NET, and .NET is provided by Mono under Linux. Calamari are run on the host you are deploying to, 
+* Calamari, the Octopus deployment execution engine, uses .NET, and .NET is provided by Mono under Linux. Calamari is run on the host you are deploying to, 
 like the Tomcat Server, which means the Tomcat Server also needs to have Mono installed.
  
 :::hint
@@ -137,7 +134,7 @@ permissions to copy files into this location.
 :::
 
 :::hint
-It is possible to deploy to a Linux server from Octopus Deploy without installing Mono. See 
+It is possible to deploy to a Linux server from Octopus Deploy without installing Mono.  This is handy however the tradeoff is that you lose a lot of the power that Calamari provides in executing deployments.  See 
 [Trying Raw Octopus](https://octopus.com/blog/trying-raw-octopus) for more information.
 :::
 
@@ -158,7 +155,7 @@ The `Configuration Variables` and `Configuration transforms` sections provide a 
 deploying a Java application. These options assume that certain XML files are available directly inside the package. This is 
 not the case when the package contains a WAR file, and any configuration files contained in the WAR file are not available to be 
 modified during deployment. This is a limitation of using Octopus Deploy with Java artifacts, but is something that the 
-Octopus Deploy team is looking into in order to better support Java in future releases.
+Octopus team is looking into in order to better support Java in future releases.
 :::
  
 In order to define the location where the WAR file is extracted, click the `Configure features` link. Select the `Custom 
