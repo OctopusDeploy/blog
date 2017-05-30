@@ -79,6 +79,13 @@ Octo pack --id=Demo --version=1.0.0 --basePath=target --include=*.war --format=z
  
 This will create the file `Demo.1.0.0.zip` which contains the WAR file.
 
+:::hint
+Using the CLI tool is not required for creating the ZIP file. Any ZIP tool will do. However the tools provided by Octopus 
+Deploy are designed to yield high size reductions based on the actual content of your packaged files. See
+[Delta compression for package transfers](https://octopus.com/docs/deploying-applications/delta-compression-for-package-transfers#OptimizingDeltaCompression)
+for more information.
+:::
+
 ## Pushing the Package
 To push the package, use the [push command](https://octopus.com/docs/api-and-integration/octo.exe-command-line/pushing-packages):
 ```
