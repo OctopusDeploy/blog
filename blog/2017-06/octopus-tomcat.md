@@ -7,13 +7,18 @@ tags:
  - Tomcat
 ---
 
-Octopus Deploy was designed to deploy .NET packages, and has built up a collection of useful steps (both included and 
-community provided) that can be used to deploy these packages to a variety of different destinations and via different methods.
+Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to 
+deploy packages to a variety of different destinations and via different methods.
  
 Fortunately these same deployment steps can be used to deploy Java packages to Java web servers running in Linux out of 
-the box. However, there are some caveats, which I will call out.
+the box. 
+
+There are some caveats, which I will call out. The Octopus Deploy team is actively investigating how to improve
+support for Java, so expect to see improvements for Java developers in coming releases.
  
-The following steps provide an example of the process that can be implemented with Octopus Deploy to deploy a WAR file to a Tomcat server running in Linux.
+The following steps provide an example of the process that can be implemented with Octopus Deploy to deploy a WAR file 
+to a Tomcat server running in Linux.
+
  
 ## Building the WAR file
 First, I am going to assume that you have a Maven project building a WAR file handy. If not, there is a small demo 
@@ -37,7 +42,7 @@ The timestamp component of the WAR file is used by the
 It allows Tomcat to drain connections to old versions of the web application, while directing new traffic to the latest version.
  
 ## Packaging the WAR file
-This is where some of the conventions implemented by Octopus Deploy for .NET applications differs from those used by Java.
+This is where some of the conventions required by Octopus Deploy differs from those typically used by Java.
  
 To upload a package to Octopus Deploy, it must follow a number of 
 [versioning rules](https://octopus.com/docs/packaging-applications/versioning-in-octopus-deploy). In practice this means 
@@ -46,11 +51,11 @@ creating a zip or tar.gz archive with a file name like `demo.0.0.1.zip`.
 In Java, versioning is mostly done by way of [Maven](https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855). 
 Additionally the WAR file created above embeds a timestamp version into the WAR file name itself that is recognised by Tomcat. 
 Octopus Deploy on the other hand uses [SemVer](http://semver.org/). All these versioning scheme are mostly incompatible, 
-which means we can’t upload the WAR file as is. And even if we could, despite the fact that a WAR file is just a ZIP file 
-with a different extension, Octopus Deploy does not recognise the WAR extension.
+which means we can’t upload the WAR file as is.
  
 The solution is to pack the WAR file into an appropriately named ZIP file, which can then be uploaded to Octopus Deploy. 
-This “WAR in a ZIP” package allows us to have the WAR file managed by Octopus Deploy, but does have some drawbacks, which I will call out later.
+This “WAR in a ZIP” package allows us to have the WAR file managed by Octopus Deploy, but does have some drawbacks, which 
+I will call out later.
  
 To package up the WAR file, use the 
 [Octopus Deploy CLI tool](https://octopus.com/docs/api-and-integration/octo.exe-command-line). The CLI tool is a 
@@ -77,7 +82,7 @@ This will create the file `Demo.1.0.0.zip` which contains the WAR file.
 ## Pushing the Package
 To push the package, use the [push command](https://octopus.com/docs/api-and-integration/octo.exe-command-line/pushing-packages):
 ```
-Octo push --package Demo.1.0.0.zip --replace-existing --server http://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
+Octo push --package Demo.1.0.0.zip --server http://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
 ```
 
 You can find information on API keys at [How to create an API key](https://octopus.com/docs/how-to/how-to-create-an-api-key).
