@@ -7,7 +7,7 @@ tags:
  - Tomcat
 ---
 
-Octopus Deploy has a large collection of useful steps (both built-in and community provided) that can be used to 
+Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to 
 deploy packages to a variety of different destinations and via different methods.
  
 Fortunately these same deployment steps can be used to deploy Java packages to Java web servers running in Linux out of 
@@ -22,7 +22,7 @@ to a Tomcat server running in Linux.
  
 ## Building the WAR file
 First, I am going to assume that you have a Maven project building a WAR file handy. If not, there is a small demo 
-application at [https://github.com/mcasperson/ThymeleafSpringDemo](https://github.com/mcasperson/ThymeleafSpringDemo) 
+application at [https://github.com/OctopusDeploy/ThymeleafSpringDemo](https://github.com/OctopusDeploy/ThymeleafSpringDemo) 
 that will be used for this example.
  
 This project uses the [Maven wrapper](https://github.com/takari/maven-wrapper), so all Maven commands are passed through 
