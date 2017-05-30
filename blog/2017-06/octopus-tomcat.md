@@ -50,8 +50,8 @@ creating a zip or tar.gz archive with a file name like `demo.0.0.1.zip`.
  
 In Java, versioning is mostly done by way of [Maven](https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855). 
 Additionally the WAR file created above embeds a timestamp version into the WAR file name itself that is recognised by Tomcat. 
-Octopus Deploy on the other hand uses [SemVer](http://semver.org/). All these versioning scheme are mostly incompatible, 
-which means we can’t upload the WAR file as is.
+Octopus Deploy on the other hand uses [SemVer](http://semver.org/). All these versioning scheme are mostly incompatible, and the built 
+in repository currently does not support WAR files, which means we can't upload the WAR file as is.
  
 The solution is to pack the WAR file into an appropriately named ZIP file, which can then be uploaded to Octopus Deploy. 
 This “WAR in a ZIP” package allows us to have the WAR file managed by Octopus Deploy, but does have some drawbacks, which 
