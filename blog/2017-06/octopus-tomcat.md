@@ -1,11 +1,14 @@
 ---
 title: "Deploying to Tomcat from Octopus Deploy"
 visibility: private
+author: matthew.casperson@octopus.com
 description: "Learn how to deploy to Tomcat hosted on a Linux server with Octopus Deploy"
 tags:
  - Linux
  - Tomcat
 ---
+
+![Octopus 3.12 release announcement](java-octopus.png)
 
 Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to 
 deploy packages to a variety of different destinations and via different methods.
