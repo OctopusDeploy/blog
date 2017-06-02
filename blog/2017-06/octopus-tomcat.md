@@ -5,8 +5,7 @@ author: matthew.casperson@octopus.com
 description: "Learn how to deploy to Tomcat hosted on a Linux server with Octopus Deploy"
 metaImage: java-octopus-meta.png
 tags:
- - java
- - linux
+ - Java
 ---
 
 <div style="background-color:#e9edf2;">
