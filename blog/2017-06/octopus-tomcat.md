@@ -129,15 +129,11 @@ The CLI tool is run either on your own PC or on a CI server like TeamCity or Bam
 like the Tomcat Server, which means the Tomcat Server also needs to have Mono installed.
  
 :::hint
-One thing to keep in mind with SSH deployment targets is that the user that makes the SSH connection needs to have permissions 
-to deploy to the Tomcat `webapps` directory. Later on we’ll define some deployment steps that will copy the WAR file from the 
-package that was uploaded earlier into the webapps directory, and this step will fail if the SSH user does not have the correct 
-permissions to copy files into this location.
+One thing to keep in mind with SSH deployment targets is that the user that makes the SSH connection needs to have permissions to deploy to the Tomcat `webapps` directory. Later on we’ll define some deployment steps that will copy the WAR file from the package that was uploaded earlier into the webapps directory, and this step will fail if the SSH user does not have the correct permissions to copy files into this location.
 :::
 
 :::hint
-It is possible to deploy to a Linux server from Octopus Deploy without installing Mono.  This is handy however the tradeoff is that you lose a lot of the power that Calamari provides in executing deployments.  See 
-[Trying Raw Octopus](https://octopus.com/blog/trying-raw-octopus) for more information.
+It is possible to deploy to a Linux server from Octopus Deploy without installing Mono.  This is handy however the tradeoff is that you lose a lot of the power that Calamari provides in executing deployments.  See [Trying Raw Octopus](https://octopus.com/blog/trying-raw-octopus) for more information.
 :::
 
 ## Creating a Octopus Deploy Project
@@ -153,11 +149,7 @@ The `Deploy a package` step provides a way for us to take a package and extract 
 In our case, we are taking the ZIP package and extracting the WAR file to the Tomcat `webapps` directory.
 
 :::hint
-The `Configuration Variables` and `Configuration transforms` sections provide a lot of power that unfortunately we can’t use while
-deploying a Java application. These options assume that certain XML files are available directly inside the package. This is 
-not the case when the package contains a WAR file, and any configuration files contained in the WAR file are not available to be 
-modified during deployment. This is a limitation of using Octopus Deploy with Java artifacts, but is something that the 
-Octopus team is looking into in order to better support Java in future releases.
+The `Configuration Variables` and `Configuration transforms` sections provide a lot of power that unfortunately we can’t use whiledeploying a Java application. These options assume that certain XML files are available directly inside the package. This is not the case when the package contains a WAR file, and any configuration files contained in the WAR file are not available to be modified during deployment. This is a limitation of using Octopus Deploy with Java artifacts, but is something that the Octopus team is looking into in order to better support Java in future releases.
 :::
  
 In order to define the location where the WAR file is extracted, click the `Configure features` link. Select the `Custom 
