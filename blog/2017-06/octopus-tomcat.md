@@ -3,9 +3,10 @@ title: "Deploying to Tomcat from Octopus Deploy"
 visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy to Tomcat hosted on a Linux server with Octopus Deploy"
+metaImage: java-octopus-meta.png
 tags:
- - Linux
- - Tomcat
+ - java
+ - linux
 ---
 
 <div style="background-color:#e9edf2;">
