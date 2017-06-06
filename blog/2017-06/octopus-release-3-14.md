@@ -49,6 +49,16 @@ Less Tentacle upgrades! Since the release of Octopus 3.0 there have been a few s
 
 We aim to give Tentacle and some of our other open source repositories their own release notes to save you having to sift through the Octopus Server release notes to find items of interest. We will also give you the ability to automatically upgrade your Tentacles as soon as a new Tentacle version is released rather than having to wait for the next Octopus Server release.
 
+## Performance improvements
+
+In this release we have made further improvements to the general performance of Octopus:
+
+- Each HTTP request now allocates 86% less memory (down from 1.44MB to 256KB on average) resulting in a 45% improvement in the number of requests Octopus can handle each second over a sustained period of time. This means Octopus can spend less time cleaning up after itself, and more time being productive on your behalf.
+- We have added some built-in SQL indexes to the Releases table to reduce some of the most common query costs by 92%.
+- Writing Task Logs is now 10% faster leading to less lock contention and faster/smoother deployments.
+
+Every Octopus customer should benefit from these improvements, but especially those with larger installations.
+
 ## Improved upgrade experience
 
 Whenever we needed to change the database schema, those changes would be applied when the Octopus Server started up, somewhat invisibly to any users. This hasn't provided the best experience for customers with large installations or those using [Octopus High Availability](http://g.octopushq.com/HighAvailability) clusters. Now when you upgrade Octopus to 3.14.0, or newer, the database schema upgrade will be performed immediately after the software upgrade, clearly showing the progress of the schema changes.
