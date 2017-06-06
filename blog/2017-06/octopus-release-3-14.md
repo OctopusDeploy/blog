@@ -25,9 +25,9 @@ This month's release brings some exciting new features including **TODO**, among
 
 TODO
 
-## B
+## Certificates are now generated using SHA256
 
-TODO
+As promised in our blog post on [shattered](http://octopus.com/blog/shattered), we have updated our certificate generation to use SHA256, rather than the previous SHA1. This ensures any new installations or regenerated certificates will use SHA256, but will not affect any existing certificates. We will be rolling out features in the near future to make it easier to replace older certificates.
 
 ## Tentacle split
 
