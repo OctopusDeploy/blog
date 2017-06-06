@@ -34,15 +34,19 @@ As promised in our blog post on [shattered](http://octopus.com/blog/shattered), 
 Until now we have always released a new version of Tentacle with every version of Octopus Server. Today we split the Tentacle!
 
 ### Previous Tentacle cadence
+
 With each release of Octopus Server we also released a version of Tentacle. As a result, every time you upgrade your Octopus Server you have been prompted to upgrade all of your Tentacles. In the majority of our releases we have made no changes to Tentacle.
 
 ### The new Tentacle cadence
+
 A new version of Tentacle will only be released when the Tentacle has changed. At this stage changes will be signified by a bump in the Tentacle version. Octopus Server will bundle the version of Tentacle that was most recently released and use it for Tentacle upgrades.
 
 ### What does this mean for you?
+
 Less Tentacle upgrades! Since the release of Octopus 3.0 there have been a few small tweaks to Tentacle, mostly adding new commands and minor changes to the communication stack. Octopus Server v3.x is compatible with all Tentacle 3.x versions. We hope splitting the Tentacle helps relieve some of the hassle and friction involved with upgrading Octopus and provides better communcation about changes to Tentacle.
 
 ### Coming soon
+
 We aim to give Tentacle and some of our other open source repositories their own release notes to save you having to sift through the Octopus Server release notes to find items of interest. We will also give you the ability to automatically upgrades your Tentacles as soon as a new Tentacle version is released rather than having to wait for the next Octopus Server release.
 
 ## Upgrading
