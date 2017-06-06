@@ -55,6 +55,7 @@ In this release we have made further improvements to the general performance of 
 
 - Each HTTP request now allocates 86% less memory (down from 1.44MB to 256KB on average) resulting in a 45% improvement in the number of requests Octopus can handle each second over a sustained period of time. This means Octopus can spend less time cleaning up after itself, and more time being productive on your behalf.
 - We have added some built-in SQL indexes to the Releases table to reduce some of the most common query costs by 92%.
+- We have improved the performance of the task scheduler and retention policies, leading to reduced contention and query cost on the SQL database.
 - Writing Task Logs is now 10% faster leading to less lock contention and faster/smoother deployments.
 
 Every Octopus customer should benefit from these improvements, but especially those with larger installations.
