@@ -49,6 +49,10 @@ Less Tentacle upgrades! Since the release of Octopus 3.0 there have been a few s
 
 We aim to give Tentacle and some of our other open source repositories their own release notes to save you having to sift through the Octopus Server release notes to find items of interest. We will also give you the ability to automatically upgrade your Tentacles as soon as a new Tentacle version is released rather than having to wait for the next Octopus Server release.
 
+## Retention policy improvements
+
+In rare cases a retention policy will fail during deployment, usually due to locked files or virus scanners. In the past this failure would cause your deployment to appear as if it had failed, when in fact the deployment was actually successful - we just couldn't clean up properly afterwards. Now, if a retention policy fails during deployment we will still log the details of the failure, but the deployment itself will be displayed as successful (with warnings).
+
 ## Performance improvements
 
 In this release we have made further improvements to the general performance of Octopus:
