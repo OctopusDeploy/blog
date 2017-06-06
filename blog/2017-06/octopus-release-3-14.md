@@ -43,11 +43,11 @@ A new version of Tentacle will only be released when the Tentacle has changed. A
 
 ### What does this mean for you?
 
-Less Tentacle upgrades! Since the release of Octopus 3.0 there have been a few small tweaks to Tentacle, mostly adding new commands and minor changes to the communication stack. Octopus Server v3.x is compatible with all Tentacle 3.x versions. We hope splitting the Tentacle helps relieve some of the hassle and friction involved with upgrading Octopus and provides better communcation about changes to Tentacle.
+Less Tentacle upgrades! Since the release of Octopus 3.0 there have been a few small tweaks to Tentacle, mostly adding new commands and minor changes to the communication stack. Octopus Server v3.x is compatible with all Tentacle 3.x versions. We hope splitting the Tentacle helps relieve some of the hassle and friction involved with upgrading Octopus and provides better communication about changes to Tentacle.
 
 ### Coming soon
 
-We aim to give Tentacle and some of our other open source repositories their own release notes to save you having to sift through the Octopus Server release notes to find items of interest. We will also give you the ability to automatically upgrades your Tentacles as soon as a new Tentacle version is released rather than having to wait for the next Octopus Server release.
+We aim to give Tentacle and some of our other open source repositories their own release notes to save you having to sift through the Octopus Server release notes to find items of interest. We will also give you the ability to automatically upgrade your Tentacles as soon as a new Tentacle version is released rather than having to wait for the next Octopus Server release.
 
 ## Upgrading
 
