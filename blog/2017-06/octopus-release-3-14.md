@@ -70,7 +70,7 @@ Every Octopus customer should benefit from these improvements, but especially th
 
 Whenever we needed to change the database schema, those changes would be applied when the Octopus Server started up, somewhat invisibly to any users. This hasn't provided the best experience for customers with large installations or those using [Octopus High Availability](http://g.octopushq.com/HighAvailability) clusters. Now when you upgrade Octopus to 3.14.0, or newer, the database schema upgrade will be performed immediately after the software upgrade, clearly showing the progress of the schema changes.
 
-![Improved upgrade experience](octopus-release-3-14-improved-upgrade-experience.gif)
+![Improved upgrade experience](octopus-release-3-14-improved-upgrade-experience.gif "width=500")
 
 ## Upgrading
 
