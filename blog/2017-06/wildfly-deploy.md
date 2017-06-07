@@ -22,7 +22,7 @@ However there are cases where simple file copies won't work in WildFly. In parti
 
 When deploying a WAR file from Octopus Deploy, ideally we want the steps to be idempotent. Idempotent is just a fancy way of saying that the deployment can be run any number of times, and the end result is the same.
 
-This is not how the JBoss CLI tool works out of the box. You can not execute a CLI command like
+This is not how the deployment operations in the JBoss CLI tool work out of the box. You can not execute a CLI command like
 
 ```
 deploy myApplication.war --all-server-groups
@@ -40,25 +40,25 @@ What this means is that if you want to be able to deploy and redeploy an applica
 
 ## A Groovy Solution
 
-When we talk about deploying to a WildFly domain, we want to do a few simple tasks:
+When we talk about deploying to a WildFly domain, we want to do two tasks:
 
-* Create or update the contents of the WAR file in the WildFly content repository
-* Optionally assign the WAR file to a server group in either an enabled or disabled state
+* Create or update the contents of the WAR file in the WildFly content repository.
+* Optionally assign the WAR file to a server group in either an enabled or disabled state.
 
-[This Groovy script](https://github.com/OctopusDeploy/JBossDeployment) exposes these tasks via a few simple command line arguments. Behind the scenes a lot of work is done to ensure that deployments can be rerun as many times as necessary, as well as making use of the Spring retry framework to ensure that the deployment really does make it to the WildFly server.
+[This Groovy script](https://github.com/OctopusDeploy/JBossDeployment/blob/master/deploy-app.groovy) exposes these tasks via a few command line arguments. Behind the scenes a lot of work is done to allow deployments to be rerun as many times as necessary, as well as making use of the Spring retry framework to ensure that the deployment really does make it to the WildFly server.
 
 ## Leveraging the Power of Octopus Deploy
 
 There are two approaches we can use to get files into a WildFly domain controller.
 
-The first approach is to upload the files to the WildFly server directly. In this scenario the WildFly server would expose its management port on a public IP address, and Octopus Deploy server itself would run scripts that uploaded files to the WildFly server.
+The first approach is to upload the files to the WildFly server directly via the management interface. In this scenario the WildFly server would expose its management port on a public IP address, and Octopus Deploy server itself would run scripts that uploaded files to the WildFly server.
 
 This solution has some drawbacks.
-* HTTP files uploads are not optimized, meaning when you upload a 100 MB WAR file, you will have to send every byte of that data each time you redeploy.
+* These files uploads are not optimized, meaning when you upload a 100 MB WAR file, you will have to send every byte of that data each time you redeploy.
 * Your WildFly server needs to have the management interface exposed on a public IP address.
 * The burden of running scripts is placed on the Octopus Deploy server
 
-The second approach is to distribute the files to the WildFly server via the Octopus deploy package step, and then upload the files using a local copy of the CLI tool to the instance of WildFly running on the same instance.
+The second approach is to distribute the files to the WildFly server via the Octopus deploy package step, and then upload the files using a local copy of the CLI tool to the WildFly server running on the same instance.
 
 This solution addresses the drawbacks of the first scenario.
 * Files distributed via Octopus Deploy can take advantage of [delta copying](https://octopus.com/docs/deploying-applications/delta-compression-for-package-transfers). This means that potentially only the parts of the package that have changed are copied, reducing network traffic and improving deployment times.
@@ -70,8 +70,8 @@ Given the clear benefits of the second approach, this is how we will proceed.
 ## Prerequisites
 
 The WildFly domain controller server needs to have the following packages installed:
-* Groovy, used by the script that will deploy the WAR file
-* Mono, used by the Octopus Deploy Calamari
+* Groovy, used by the script that will deploy the WAR file.
+* Mono, used by the Octopus Deploy Calamari.
 
 :::hint
 Use [SDKMAN](http://sdkman.io/) to install Groovy. It will often do a better job than the packages that come with your Linux distribution.
@@ -110,7 +110,7 @@ cd /opt/JBossDeployment
 ./deploy-app.groovy --controller=localhost --user=user --password=password --application=/var/deployments/demo.war --enabled-server-group=main-server-group
 ```
 
-It might a few minutes for the script to run the first time, as it will download the Maven dependencies (referenced by the `@Grab` annotations in the Groovy script) and store them in a local cache.
+It might take a few minutes for the script to run the first time, as it will download the Maven dependencies (referenced by the `@Grab` annotations in the Groovy script) and store them in a local cache.
 
 :::hint
 If you want to see the download progress, run the script like this:
