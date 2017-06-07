@@ -53,6 +53,8 @@ We aim to give Tentacle and some of our other open source repositories their own
 
 In rare cases a retention policy will fail during deployment, usually due to locked files or virus scanners. In the past this failure would cause your deployment to appear as if it had failed, when in fact the deployment was actually successful - we just couldn't clean up properly afterwards. Now, if a retention policy fails during deployment we will still log the details of the failure, but the deployment itself will be displayed as successful (with warnings).
 
+![Retention error as warning](octopus-release-3-14-retention-error-as-warning.png)
+
 ## Performance improvements
 
 In this release we have made further improvements to the general performance of Octopus:
@@ -67,6 +69,8 @@ Every Octopus customer should benefit from these improvements, but especially th
 ## Improved upgrade experience
 
 Whenever we needed to change the database schema, those changes would be applied when the Octopus Server started up, somewhat invisibly to any users. This hasn't provided the best experience for customers with large installations or those using [Octopus High Availability](http://g.octopushq.com/HighAvailability) clusters. Now when you upgrade Octopus to 3.14.0, or newer, the database schema upgrade will be performed immediately after the software upgrade, clearly showing the progress of the schema changes.
+
+![Improved upgrade experience](octopus-release-3-14-improved-upgrade-experience.gif)
 
 ## Upgrading
 
