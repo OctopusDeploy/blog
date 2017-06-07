@@ -53,7 +53,7 @@ We aim to give Tentacle and some of our other open source repositories their own
 
 In rare cases a retention policy will fail during deployment, usually due to locked files or virus scanners. In the past this failure would cause your deployment to appear as if it had failed, when in fact the deployment was actually successful - we just couldn't clean up properly afterwards. Now, if a retention policy fails during deployment we will still log the details of the failure, but the deployment itself will be displayed as successful (with warnings).
 
-![Retention error as warning](octopus-release-3-14-retention-error-as-warning.png)
+![Retention error as warning](octopus-release-3-14-retention-error-as-warning.png "width=500")
 
 ## Performance improvements
 
