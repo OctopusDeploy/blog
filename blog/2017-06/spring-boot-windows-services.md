@@ -83,5 +83,5 @@ Once deployed, the service will appear like any other Windows service.
 
 ![Windows Service](spring-boot-windows-service.png)
 
-# Conclusion
+## Conclusion
 Start the service up, and open a browser to http://localhost:8080/greeting. Your Spring Boot application is now running as a Windows service!
