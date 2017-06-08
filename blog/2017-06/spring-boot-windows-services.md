@@ -52,7 +52,7 @@ These settings define what the winsw executable will run when the Windows servic
 Since there is no authentication and no SSL on the JMX port, as a security measure the port should be blocked by the firewall.
 :::
 
-We then has some additional settings to define what the winsw executable will run when the Windows service is stopped.
+We then have some additional settings to define what the winsw executable will run when the Windows service is stopped.
 
 ```
 <stopexecutable>java</stopexecutable>
