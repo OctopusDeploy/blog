@@ -1,6 +1,6 @@
 ---
 title: "Octopus June Release 3.14"
-description: This month's release brings some exciting new features including support for our new Octopus plugin for Atlassian's bamboo as well as easier upgrades, security improvements and better performance.
+description: This month's release brings some exciting new features including our new Octopus plugin for Atlassian's Bamboo build server as well as easier upgrades, security improvements and better performance.
 author: nick.josevski@octopus.com
 visibility: private
 metaImage: metaimage-release3-14.png
@@ -10,7 +10,7 @@ tags:
 
 ![Octopus 3.14 release announcement](blogimage-release-3-14.png)
 
-This month's release brings some exciting new features including support for our new Octopus plugin for Atlassian's bamboo as well as easier upgrades, security improvements and better performance.
+This month's release brings some exciting new features including our new Octopus Deploy plugin for Atlassian's Bamboo build server as well as easier upgrades, security improvements and better performance.
 
 ## In this post
 
