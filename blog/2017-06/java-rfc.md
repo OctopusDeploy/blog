@@ -1,6 +1,6 @@
 ---
 title: "Octopus Deploy Java Support RFC"
-visibility: private
+visibility: public
 author: matthew.casperson@octopus.com
 description: "Our plans to support Java as a first class citizen in Octopus Deploy"
 metaImage: java-octopus-meta.png

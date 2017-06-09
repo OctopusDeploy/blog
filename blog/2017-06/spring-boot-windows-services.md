@@ -1,6 +1,6 @@
 ---
 title: "Deploying Spring Boot Applications as Windows Services"
-visibility: private
+visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy a Spring Boot application as a Windows service with Octopus Deploy"
 metaImage: java-octopus-meta.png

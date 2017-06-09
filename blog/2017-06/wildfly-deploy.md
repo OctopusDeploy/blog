@@ -1,6 +1,6 @@
 ---
 title: "Deploying to WildFly from Octopus Deploy"
-visibility: private
+visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy to WildFly hosted on a Linux server with Octopus Deploy"
 metaImage: java-octopus-meta.png
