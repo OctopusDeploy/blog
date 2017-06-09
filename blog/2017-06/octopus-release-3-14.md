@@ -22,18 +22,21 @@ This month's release brings some exciting new features including support for our
 
 ## Octopus Bamboo Plugin
 
-![Octopus bamboo plugin build tasks](bamboo02.png "width=500")
+We are shipping a native Octopus Deploy plugin for Atlassian's Bamboo build/continuous integration server.   This new add-on allows you to easily configure your build plan to pack applications for deployment, push packages to Octopus, create, deploy and promote releases in a first class way. This makes it easy to integrate Bamboo and Octopus to build your deployment pipeline and take advantage of the great features in both products!
 
-We are shipping a native Octopus Deploy plugin for Atlassian's Bamboo build/continuous integration server.  This new add-on allows you to easily configure your build plan to pack applications for deployment, push packages to Octopus, create, deploy and promote releases in a first class way. This makes it easy to integrate Bamboo and Octopus to build your deployment pipeline and take advantage of the great features in both products!
+![Octopus bamboo plugin build tasks](bamboo01.png "width=500")
 
-![Bamboo build plan with Octopus tasks](bamboo01.png "width=500")
+![Bamboo build plan with Octopus tasks](bamboo02.png "width=500")
 
 The plugin is available on [Atlassian's Marketplace](https://marketplace.atlassian.com/plugins/com.octopus.bamboo/server/overview) and we high
 
-
 ## 'Deploy to IIS' step improvements
 
-We've updated our ‘Deploy to IIS’ step to add support to control how your web apps and app pools are started after a successful deployment.  This is a great addition to one of most popular steps.  
+We've updated our ‘Deploy to IIS’ step to add support to control how your web apps and app pools are started after a successful deployment.  This is available when configuring `Web sites` as well as `Web applications`.  This is a great addition to one of most popular steps.  
+
+![Octopus bamboo plugin build tasks](iis-step01.png "width=500")
+
+![Octopus bamboo plugin build tasks](iis-step02.png "width=500")
 
 ## Certificates are now generated using SHA256
 
