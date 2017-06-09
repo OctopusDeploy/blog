@@ -1,12 +1,11 @@
 ---
 title: "Octopus June Release 3.14"
-description: TODO
+description: This month's release brings some exciting new features including support for our new Octopus plugin for Atlassian's bamboo as well as easier upgrades, security improvements and better performance.
 author: nick.josevski@octopus.com
 visibility: private
 metaImage: metaimage-release3-14.png
 tags:
  - New Release
- - TODO
 ---
 
 ![Octopus 3.14 release announcement](blogimage-release-3-14.png)
@@ -24,6 +23,10 @@ This month's release brings some exciting new features including **TODO**, among
 ## Introducing A
 
 TODO
+
+## 'Deploy to IIS' step improvements
+
+We've updated our ‘Deploy to IIS’ step to add support to control how your web apps and app pools are started after a successful deployment.  This is a great addition to one of most popular steps.  
 
 ## Certificates are now generated using SHA256
 
