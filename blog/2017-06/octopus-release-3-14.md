@@ -32,9 +32,12 @@ The plugin is available on [Atlassian's Marketplace](https://marketplace.atlassi
 
 ## 'Deploy to IIS' step improvements
 
-We've updated our ‘Deploy to IIS’ step to add support to control how your web apps and app pools are started after a successful deployment.  This is available when configuring `Web sites` as well as `Web applications`.  This is a great addition to one of most popular steps.  
+We've updated our ‘Deploy to IIS’ step to add support to control how your web apps and app pools are started after a successful deployment.  This is available when configuring `Web Sites` as well as `Web Applications`.  This is a great addition to one of most popular steps.  
+New option for `Web Site`:
 
 ![Octopus bamboo plugin build tasks](iis-step01.png "width=500")
+
+New option for `Web Application`:
 
 ![Octopus bamboo plugin build tasks](iis-step02.png "width=500")
 
