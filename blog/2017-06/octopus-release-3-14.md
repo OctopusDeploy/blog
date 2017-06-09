@@ -10,7 +10,7 @@ tags:
 
 ![Octopus 3.14 release announcement](blogimage-release-3-14.png)
 
-This month's release brings some exciting new features including **TODO**, among other things!
+This month's release brings some exciting new features including support for our new Octopus plugin for Atlassian's bamboo as well as easier upgrades, security improvements and better performance.
 
 ## In this post
 
@@ -20,9 +20,16 @@ This month's release brings some exciting new features including **TODO**, among
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
-## Introducing A
+## Octopus Bamboo Plugin
 
-TODO
+![Octopus bamboo plugin build tasks](bamboo02.png "width=500")
+
+We are shipping a native Octopus Deploy plugin for Atlassian's Bamboo build/continuous integration server.  This new add-on allows you to easily configure your build plan to pack applications for deployment, push packages to Octopus, create, deploy and promote releases in a first class way. This makes it easy to integrate Bamboo and Octopus to build your deployment pipeline and take advantage of the great features in both products!
+
+![Bamboo build plan with Octopus tasks](bamboo01.png "width=500")
+
+The plugin is available on [Atlassian's Marketplace](https://marketplace.atlassian.com/plugins/com.octopus.bamboo/server/overview) and we high
+
 
 ## 'Deploy to IIS' step improvements
 
