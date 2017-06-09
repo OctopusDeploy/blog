@@ -28,7 +28,7 @@ We are shipping a native Octopus Deploy plugin for Atlassian's Bamboo build/cont
 
 ![Bamboo build plan with Octopus tasks](bamboo02.png "width=500")
 
-The plugin is available on [Atlassian's Marketplace](https://marketplace.atlassian.com/plugins/com.octopus.bamboo/server/overview) and we high
+The plugin is available on [Atlassian's Marketplace](https://marketplace.atlassian.com/plugins/com.octopus.bamboo/server/overview) and if you use Bamboo with Octopus, we highly recommended checking it out.
 
 ## 'Deploy to IIS' step improvements
 
