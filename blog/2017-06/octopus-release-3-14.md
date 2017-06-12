@@ -84,9 +84,26 @@ Every Octopus customer should benefit from these improvements, but especially th
 
 ## Improved upgrade experience
 
-Whenever we needed to change the database schema, those changes would be applied when the Octopus Server started up, somewhat invisibly to any users. This hasn't provided the best experience for customers with large installations or those using [Octopus High Availability](http://g.octopushq.com/HighAvailability) clusters. Now when you upgrade Octopus to 3.14.0, or newer, the database schema upgrade will be performed immediately after the software upgrade, clearly showing the progress of the schema changes.
+Whenever we needed to change the database schema, those changes would be applied when the Octopus Server started up, by the Octopus Server account, somewhat invisibly to any users. This hasn't provided the best experience for customers with large installations or those using [Octopus High Availability](http://g.octopushq.com/HighAvailability) clusters, or those who want a different security model. Now when you upgrade Octopus to 3.14.x, or newer, the database schema upgrade will be performed automatically after the installer completes, clearly showing the progress of the schema changes.
 
 ![Improved upgrade experience](octopus-release-3-14-improved-upgrade-experience.gif "width=500")
+
+You can now choose **when** to run the SQL database schema upgrades, and the **user account** you want to perform the schema upgrades:
+
+1. Automatically after the installer completes (new behavior) - this runs the schema upgrades as the user account who started the installer
+1. Automatically during the Octopus Server startup (just like before) - this runs the schema upgrade as the user account who started the Octopus Server
+1. Automatically when executing the `Octopus.Server.exe configure` command for a setting which is stored in the database (just like before) - this runs the schema upgrade as the user account who started the Octopus Server
+1. Manually by executing the brand new `Octopus.Server.exe database --upgrade` command - this will run the schema upgrades as the user account who started the command
+
+This may not affect many customers, but enables some advanced scenarios where you can grant limited privileges to the Octopus Server account, and grant schema change privileges to a special account used for installation.
+
+## Breaking changes
+
+There are no breaking changes in this release, but it may be worth noting we have adjusted the SQL database schema upgrades as we discussed above.
+
+`SQL Error 4060 - Cannot open database "OctopusDeploy" requested by the login. The login failed.`
+
+If you see an error message like this after the installer completes, you can start the Octopus Server just like before and let it perform the schema upgrades.
 
 ## Upgrading
 
