@@ -18,7 +18,7 @@ This month's release brings some exciting new features including our new Octopus
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=CWf5Y-dk14c" frameborder="0" allowfullscreen></iframe>
 
 ## Octopus Bamboo Plugin
 
