@@ -2,7 +2,7 @@
 title: "Octopus June Release 3.14"
 description: This month's release brings some exciting new features including our new Octopus plugin for Atlassian's Bamboo build server as well as easier upgrades, security improvements and better performance.
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-release3-14.png
 tags:
  - New Release
@@ -22,13 +22,13 @@ This month's release brings some exciting new features including our new Octopus
 
 ## Octopus Bamboo Plugin
 
-We are shipping a native Octopus Deploy plugin for Atlassian's [Bamboo build/continuous integration server](https://www.atlassian.com/software/bamboo).   This new add-on allows you to easily configure your build plan to pack applications for deployment, push packages to Octopus, create, deploy and promote releases in a first class way. This makes it easy to integrate Bamboo and Octopus to build your deployment pipeline and take advantage of the great features in both products!
+We are shipping a native Octopus Deploy plugin for Atlassian's [Bamboo build/continuous integration server](https://www.atlassian.com/software/bamboo).  This new add-on allows you to easily configure your build plan to pack applications for deployment, push packages to Octopus, create, deploy and promote releases in a first class way. This makes it easy to integrate Bamboo and Octopus to build your deployment pipeline and take advantage of the great features in both products!
 
 ![Octopus bamboo plugin build tasks](bamboo01.png "width=500")
 
 ![Bamboo build plan with Octopus tasks](bamboo02.png "width=500")
 
-The plugin is available on [Atlassian's Marketplace](https://marketplace.atlassian.com/plugins/com.octopus.bamboo/server/overview) and if you use Bamboo with Octopus, we highly recommended checking it out.
+The plugin is available on [Atlassian's Marketplace](https://marketplace.atlassian.com/plugins/com.octopus.bamboo/server/overview) and if you use Bamboo with Octopus, we highly recommend checking it out.
 
 ## 'Deploy to IIS' step improvements
 
