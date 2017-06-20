@@ -34,7 +34,7 @@ To create the private key and certificate, run the following command:
 ```
 openssl req -x509 -newkey rsa:2048 -keyout private.pem -out certificate.pem -days 356
 ```
-You will be prompted to supply a password and fill in some information, after which two files will be created: `private.pem` and `certificate.pem`. These files are the private key and certificate.
+You will be prompted to supply a password and fill in some personal information, after which two files will be created: `private.pem` and `certificate.pem`. These files are the private key and certificate.
 
 We then need to combine these two files into a PKCS12 keystore, which we can do with the following command:
 ```
@@ -58,7 +58,7 @@ Creating this variable gives us access to a [number of different representations
 The script below saves the certificate and private key back on the target server as PEM files, merges them into a combined PKCS12 keystore, and then imports the PKCS12 keystore into a Java keystore.
 
 :::hint
-As part of our [Java RFC](https://octopus.com/blog/java-rfc), exposing this certificate as a Java keystore directly is a feature that we’re aiming to include directly within Octopus, but today we have a manual script that will extract the certificate details and import it into a Java keystore.
+As part of our [Java RFC](https://octopus.com/blog/java-rfc), exposing this certificate as a Java keystore directly is a feature that we’re aiming to include directly within Octopus, but today we have to use a manual script that will extract the certificate details and import it into a Java keystore.
 :::
 
 The end result of this script is a file called `c:\keystore.jks`, which is the Java keystore that we can reference from WildFly to enable HTTPS support.
@@ -73,6 +73,8 @@ if ([String]::IsNullOrWhiteSpace($OctopusParameters["Certificate.PrivateKeyPem"]
 
 $OctopusParameters["Certificate.CertificatePem"] | Out-File -Encoding ASCII "C:\certificate.pem"
 $OctopusParameters["Certificate.PrivateKeyPem"] |  Out-File -Encoding ASCII "C:\private.pem"
+# Fix the error
+# WARNING: can't open config file: /usr/local/ssl/openssl.cnf
 $env:OPENSSL_CONF="C:\OpenSSL-Win64\bin\openssl.cfg"
 C:\OpenSSL-Win64\bin\openssl.exe pkcs12 -export -inkey C:\private.pem -in C:\certificate.pem -name octopus -out C:\keystore.pfx -password pass:Password01
 if (Test-Path C:\keystore.jks) {
@@ -88,7 +90,7 @@ WildFly has two web interfaces: the interface that clients use to view the deplo
 
 In addition, WildFly can be deployed in a standalone mode, or as a domain. Again there are subtle differences between configuring HTTPS support for standalone servers and domain servers.
 
-While the WildFly CLI tool is powerful and exposes all the functionality required to configure HTTPS support, it is a low level tool and does not expose functions like `configureHTTPS()`. One of the drawbacks to the CLI tool is that it is not idempotent, which means configuring a WildFly instance using the CLI often requires a different sequence of steps depending on the current state of the WildFly server.
+While the [WildFly CLI tool](https://docs.jboss.org/author/display/WFLY10/CLI+Recipes) is powerful and exposes all the functionality required to configure HTTPS support, it operates at a low level and does not expose functions like `configureHTTPS()`. One of the drawbacks to the CLI tool is that it is not idempotent, which means configuring a WildFly instance using the CLI tool often requires a different sequence of steps depending on the current state of the WildFly server.
 
 This is not ideal when you are deploying from a platform like Octopus. What you want is to have a way to describe the desired state you wish to achieve (like “have HTTPS configured”) without having to know what the current state of the server is.
 
@@ -104,7 +106,7 @@ groovy deploy-certificate.groovy --controller localhost --port 9990 --user admin
 The username and password need to match those that you have already configured with the [adduser script](https://docs.jboss.org/author/display/WFLY10/add-user+utility). You can verify that these credentials work by opening http://localhost:9990 and entering them when prompted to log in.
 :::
 
-Behind the scenes the script starts by creating a security realm called octopus-ssl-realm which references the keystore:
+Behind the scenes the script starts by creating a security realm called `octopus-ssl-realm` which references the keystore:
 ```
 <management>
    <security-realms>
@@ -119,7 +121,7 @@ Behind the scenes the script starts by creating a security realm called octopus-
    </security-realms>
 </management>
 ```
-It will then configure a https listener that references the security realm:
+It will then configure a https-listener that references the security realm:
 ```
 <subsystem xmlns="urn:jboss:domain:undertow:4.0">
    <server name="default-server">
@@ -144,7 +146,7 @@ It is worth noting that since WildFly 10.1.0, [HTTPS support for the web interfa
 :::
 
 ## Securing the Standalone Management Interface
-Securing the management interface can be done simply by adding the ``--management-interface` parameter.
+Securing the management interface can be done simply by adding the `--management-interface` parameter.
 ```
 groovy deploy-certificate.groovy --controller localhost --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --management-interface
 ```
@@ -182,8 +184,8 @@ If you are running WildFly as part of a domain, the command to secure the web in
 However, there are some important things to keep in mind about configuring members of a WildFly domain.
 
 The first thing is that the controller you are running the script against is the domain controller. Behind the scenes two files are being updated by the domain controller:
- * The host.xml file (or whatever you have passed into the `--host-config` option when WildFly was started), which is located on the host/slave server filesystem.
- * The `domain.xml` file, which is located on the domain server filesystem.
+ * The `host.xml` file (or whatever you have passed into the `--host-config` [option](https://docs.jboss.org/author/display/WFLY8/Command+line+parameters) when the WildFly slave was started), which is located on the host/slave server filesystem.
+ * The `domain.xml` file (or whatever you have passed to the `--domain-config` [option](https://docs.jboss.org/author/display/WFLY8/Command+line+parameters) when WildFly domain controller was started), which is located on the domain server filesystem.
 
 The second thing is that the keystore path is relative to the host/slave server. So it is important to have copied the keystore.jks file to the slave server before running this command.
 ```
@@ -201,7 +203,7 @@ groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --use
 ```
 
 ## Securing the Domain Management Interface
-The command for securing the domain management interface is almost the same as the one used to secure the standalone management interface. The only change is the `--management-port` parameter, which defines the https port that the management console will be exposed on.
+The command for securing the domain management interface is almost the same as the one used to secure the standalone management interface. The only change is the addition of the `--management-port` parameter, which defines the https port that the management console will be exposed on.
 ```
 groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --management-interface --management-port 9993
 ```
@@ -228,4 +230,6 @@ groovy deploy-certificate.groovy --controller domaincontroller --port 9993 --pro
 ```
 
 ## Next Steps
-These Groovy scripts are being developed as a proof of concept for what will eventually be steps provided directly in Octopus Deploy as we move towards implementing first class support for Java. If you have any questions about the script, please leave a comment. And if there are some Java features that you would like to see Octopus Deploy  support in future, join the discussion on the [Java RFC post](https://octopus.com/blog/java-rfc).
+These Groovy scripts are being developed as a proof of concept for what will eventually be migrated into steps provided directly in Octopus Deploy.
+
+If you have any questions about the script, please leave a comment. And if there are some Java features that you would like to see Octopus Deploy  support in future, join the discussion on the [Java RFC post](https://octopus.com/blog/java-rfc).
