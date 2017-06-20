@@ -229,6 +229,13 @@ Once the management interface has been secured with HTTPS, you need to specify t
 groovy deploy-certificate.groovy --controller domaincontroller --port 9993 --protocol remote+https --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --profiles ha,default
 ```
 
+## Known Issues
+It seems that occasionally the Domain Controller host will not restart properly. You can prevent the restart with the `--no-restart` option.
+
+```
+groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --management-interface --management-port 9993 --no-restart
+```
+
 ## Next Steps
 These Groovy scripts are being developed as a proof of concept for what will eventually be migrated into steps provided directly in Octopus Deploy.
 
