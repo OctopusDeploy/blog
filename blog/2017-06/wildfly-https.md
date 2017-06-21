@@ -38,7 +38,7 @@ You will be prompted to supply a password and fill in some personal information,
 
 We then need to combine these two files into a PKCS12 keystore, which we can do with the following command:
 ```
-openssl pkcs12 -export -in certificate.pem -inkey private.pem -out combined.pfx
+openssl pkcs12 -export -in certificate.pem -inkey private.pem -out combined.pfx -name octopus
 ```
 The `combined.pfx` file now contains both the certificate and private key, and can be uploaded to Octopus Deploy.
 
