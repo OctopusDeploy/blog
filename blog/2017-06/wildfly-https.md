@@ -230,7 +230,9 @@ groovy deploy-certificate.groovy --controller domaincontroller --port 9993 --pro
 ```
 
 ## Known Issues
-It seems that occasionally the Domain Controller host will not restart properly. You can prevent the restart with the `--no-restart` option.
+It seems that occasionally the Domain Controller host will not restart properly. See [https://issues.jboss.org/browse/WFLY-8975](https://issues.jboss.org/browse/WFLY-8975) for more details.
+
+You can prevent the restart with the `--no-restart` option.
 
 ```
 groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --management-interface --management-port 9993 --no-restart
