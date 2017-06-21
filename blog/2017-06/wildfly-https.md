@@ -58,7 +58,7 @@ Creating this variable gives us access to a [number of different representations
 The script below saves the certificate and private key back on the target server as PEM files, merges them into a combined PKCS12 keystore, and then imports the PKCS12 keystore into a Java keystore.
 
 :::hint
-As part of our [Java RFC](https://octopus.com/blog/java-rfc), exposing this certificate as a Java keystore directly is a feature that we’re aiming to include directly within Octopus. Today though we have to use a manual script that will extract the certificate details and import it into a Java keystore.
+As part of our [Java RFC](https://octopus.com/blog/java-rfc), exposing this certificate as a Java keystore directly is a feature that we’re aiming to include within Octopus. Today though we have to use a manual script that will extract the certificate details and import it into a Java keystore.
 :::
 
 The end result of this script is a file called `c:\keystore.jks`, which is the Java keystore that we can reference from WildFly to enable HTTPS support.
@@ -90,7 +90,7 @@ WildFly has two web interfaces: the interface that clients use to view the deplo
 
 In addition, WildFly can be deployed in a standalone mode, or as a domain. Again there are subtle differences between configuring HTTPS support for standalone servers and domain servers.
 
-While the [WildFly CLI tool](https://docs.jboss.org/author/display/WFLY10/CLI+Recipes) is powerful and exposes all the functionality required to configure HTTPS support, it operates at a low level and does not include functions like `configureHTTPS()`. One of the drawbacks to the CLI tool is that it is not idempotent, which means configuring a WildFly instance using the CLI tool often requires a different sequence of steps depending on the current state of the WildFly server.
+While the [WildFly CLI tool](https://docs.jboss.org/author/display/WFLY10/CLI+Recipes) is powerful and exposes all the functionality required to configure HTTPS support, it operates at a low level and does not include functions like `configureHTTPS()`. One of the drawbacks to the CLI tool is that it is not idempotent, which means configuring a WildFly instance using the CLI tool often requires a different sequence of steps depending on the current state of the server.
 
 This is not ideal when you are deploying from a platform like Octopus. What you want is to have a way to describe the desired state you wish to achieve (like “have HTTPS configured”) without having to know what the current state of the server is.
 
