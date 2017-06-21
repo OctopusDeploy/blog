@@ -62,7 +62,7 @@ As part of our [Java RFC](https://octopus.com/blog/java-rfc), exposing this cert
 :::
 
 The end result of this script is a file called `c:\keystore.jks`, which is the Java keystore that we can reference from WildFly to enable HTTPS support.
-```
+```powershell
 if ([String]::IsNullOrWhiteSpace($OctopusParameters["Certificate.CertificatePem"])) {
     Write-Error "Certificate is empty"
 }
@@ -98,7 +98,7 @@ To facilitate this we have created a [Groovy script](https://github.com/OctopusD
 
 ## HTTPS Support in Standalone Mode
 To configure a standalone WildFly instance with HTTPS support, run the following command:
-```
+```bash
 groovy deploy-certificate.groovy --controller localhost --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01
 ```
 
@@ -107,7 +107,7 @@ The username and password need to match those that you have already configured w
 :::
 
 Behind the scenes the script starts by creating a security realm called `octopus-ssl-realm` which references the keystore:
-```
+```xml
 <management>
    <security-realms>
       <security-realm name="octopus-ssl-realm">
@@ -122,7 +122,7 @@ Behind the scenes the script starts by creating a security realm called `octopus
 </management>
 ```
 It will then configure a https-listener that references the security realm:
-```
+```xml
 <subsystem xmlns="urn:jboss:domain:undertow:4.0">
    <server name="default-server">
       <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true" />
@@ -147,13 +147,13 @@ It is worth noting that since WildFly 10.1.0, [HTTPS support for the web interfa
 
 ## Securing the Standalone Management Interface
 Securing the management interface can be done simply by adding the `--management-interface` parameter.
-```
+```bash
 groovy deploy-certificate.groovy --controller localhost --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --management-interface
 ```
 Although this is only a single parameter change from the previous command, the actual work being done is a bit different.
 
 First the keystore is referenced from the `ManagementRealm`:
-```
+```xml
 <security-realm name="ManagementRealm">
    <server-identities>
       <ssl>
@@ -164,7 +164,7 @@ First the keystore is referenced from the `ManagementRealm`:
 </security-realm>
 ```
 Then the management interface is updated to include a https socket binding:
-```
+```xml
 <management-interfaces>
    <http-interface security-realm="ManagementRealm">
       <http-upgrade enabled="true" />
@@ -188,27 +188,27 @@ The first thing is that the controller you are running the script against is the
  * The `domain.xml` file (or whatever you have passed to the `--domain-config` [option](https://docs.jboss.org/author/display/WFLY8/Command+line+parameters) when WildFly domain controller was started), which is located on the domain server filesystem.
 
 The second thing is that the keystore path is relative to the slave server. So it is important to have copied the `keystore.jks` file to the slave server before running this command.
-```
+```bash
 groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01
 ```
 As with the standalone server, running this command in a domain will configure a security realm, however this time in the `host.xml` file for all slaves currently in the domain.
 
 If you only want to update specific hosts, pass them into the `--hosts` option. For example, this command would update the security realm for the hosts slave1 and slave2.
-```
+```bash
 groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --hosts slave1,slave2
 ```
 It then configures the https-listener inside each profile managed by the domain. WildFly comes with 4 profiles out of the box: default, ha, full and full-ha. If you only want to update specific profiles, pass them into the `--profiles` option. For example, this command would update the https-listener in the default and ha profiles.
-```
+```bash
 groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --profiles ha,default
 ```
 
 ## Securing the Domain Management Interface
 The command for securing the domain management interface is almost the same as the one used to secure the standalone management interface. The only change is the addition of the `--management-port` parameter, which defines the https port that the management console will be exposed on.
-```
+```bash
 groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --management-interface --management-port 9993
 ```
 This will set the `secure-port` attribute on the socket interface.
-```
+```xml
 <management>
    <management-interfaces>
       <native-interface security-realm="ManagementRealm">
@@ -225,7 +225,7 @@ This will set the `secure-port` attribute on the socket interface.
 
 ## Using the HTTPS Management Interface
 Once the management interface has been secured with HTTPS, you need to specify the `remote+https` protocol when running the script, which is done via the `--protocol` parameter. For example, this command configures the ha and default profiles on a domain controller that has a HTTPS secured management interface.
-```
+```bash
 groovy deploy-certificate.groovy --controller domaincontroller --port 9993 --protocol remote+https --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --profiles ha,default
 ```
 
@@ -234,7 +234,7 @@ It seems that occasionally the Domain Controller host will not restart properly.
 
 You can prevent the restart with the `--no-restart` option.
 
-```
+```bash
 groovy deploy-certificate.groovy --controller domaincontroller --port 9990 --user admin --password password --keystore-file C:\keystore.jks --keystore-password Password01 --management-interface --management-port 9993 --no-restart
 ```
 
