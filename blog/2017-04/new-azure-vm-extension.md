@@ -40,6 +40,7 @@ Set-AzureRmVMExtension -ResourceGroupName "resource-group-name" `
     -TypeHandlerVersion "2.0" `
     -Settings $publicSettings `
     -ProtectedSettings $privateSettings
+    -ExtensionType "OctopusDeployWindowsTentacle"
 ```
 
 ## Using an ARM Template
