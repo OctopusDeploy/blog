@@ -1,6 +1,6 @@
 ---
 title: "Deploying Certificates to WildFly"
-visibility: public
+visibility: private
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy certificates from Octopus to WildFly to enable HTTPS support"
 metaImage: java-octopus-meta.png
