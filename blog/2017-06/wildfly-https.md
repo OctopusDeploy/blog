@@ -1,6 +1,6 @@
 ---
 title: "Deploying Certificates to WildFly"
-visibility: private
+visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy certificates from Octopus to WildFly to enable HTTPS support"
 metaImage: java-octopus-meta.png
@@ -12,9 +12,7 @@ tags:
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Depoloy Certificates with WildFly" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
 </div>
 
-A recent feature added to Octopus Deploy is the ability to [manage and deploy certificates](https://octopus.com/blog/certificates-feature) within your infrastructure. While some of the steps regarding the deployment of certificates are limited to Windows, it is not difficult to export certificates so they can be used by Java.
-
-In this blog post I’ll show you how to export certificates from Octopus into a Java keystore, and then use that keystore to secure a WildFly standalone or domain instance running on Windows.
+A recent feature added to Octopus Deploy is the ability to [manage and deploy certificates](https://octopus.com/blog/certificates-feature) within your infrastructure. In this blog post I’ll show you how to export certificates from Octopus into a Java keystore, and then use that keystore to secure a WildFly standalone or domain instance running on Windows.
 
 ## Prerequisites
 To run the commands and scripts in this blog post, you will need install some tools.
