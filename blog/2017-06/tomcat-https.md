@@ -67,7 +67,7 @@ To update Tomcat with HTTPS support, run the script like this:
 groovy tomcat-deploy-certificate.groovy --tomcat-dir C:\apache-tomcat-8.5.15 --https-port 8443 --http-port 8080 --keystore-file C:\keystore.jks --keystore-password Password01
 ```
 
-And that is it! Restart Tomcat and you will be able to access it over a secure connection at http://localhost:8443.
+And that is it! Restart Tomcat and you will be able to access it over a secure connection at https://localhost:8443.
 
 ![Tomcat HTTPS](tomcat-https.png)
 
