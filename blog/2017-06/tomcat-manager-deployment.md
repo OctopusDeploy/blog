@@ -21,7 +21,7 @@ In this post I'll show you how to deploy WAR files in Tomcat via the Tomcat Mana
 Before we can start uploading WAR files some initial configuration needs to be done.
 
 ### Configuring Users
-We need to define some credentials to be used when interacting with the manager. The manager distinguishes between two types of users: those that will use the web interface through a browser, and those that will use the API.
+We need to define the credentials to be used when interacting with the manager. The manager distinguishes between two types of users: those that will use the web interface through a browser, and those that will use the API.
 
 To define these users, we need to edit the `conf/tomcat-users.xml` file.
 
