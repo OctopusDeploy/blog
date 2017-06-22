@@ -1,6 +1,6 @@
 ---
 title: "Deploying Certificates to Tomcat"
-visibility: private
+visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy certificates from Octopus to Tomcat to enable HTTPS support"
 metaImage: java-octopus-meta.png
