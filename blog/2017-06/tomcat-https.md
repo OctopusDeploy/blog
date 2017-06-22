@@ -14,7 +14,7 @@ tags:
 
 In a [previous post](https://octopus.com/blog/wildfly-https) I showed you how to export a certificate managed by Octopus Deploy into a Java keystore, and then configure WildFly to make use of the keystore to provide HTTPS access to web applications and management ports.
 
-In this post I am going to show you how to do the same for Tomcat.
+In this post I am going to show you how to do the same for Tomcat in Windows.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ The second is the Groovy SDK. You can download installers from the [Groovy downl
 
 These steps were tested with [Tomcat 8](https://tomcat.apache.org/download-80.cgi), but should work with all versions of Tomcat over 6.
 
-Finally you will also need Java 8 JDK installed.
+Finally you will also need [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed.
 
 ## Creating and Distributing Certificates
 
@@ -70,3 +70,8 @@ groovy tomcat-deploy-certificate.groovy --tomcat-dir C:\apache-tomcat-8.5.15 --h
 And that is it! Restart Tomcat and you will be able to access it over a secure connection at http://localhost:8443.
 
 ![Tomcat HTTPS](tomcat-https.png)
+
+## Next Steps
+These Groovy scripts are being developed as a proof of concept for what will eventually be migrated into steps provided directly in Octopus Deploy.
+
+If you have any questions about the script, please leave a comment. And if there are some Java features that you would like to see Octopus Deploy  support in future, join the discussion on the [Java RFC post](https://octopus.com/blog/java-rfc).
