@@ -36,18 +36,14 @@ Some new concepts introduced are the advanced filter and being able to filter by
 
 By default the project variables will be displayed first and the advanced filter will be open with the ability to be toggled off by the filter icon.
 
-<insert screenshot of the project variables>
+![Octopus variable editor - project variables](project-variables.png "width=500")
 
-<insert screenshot of the project variables templates>
-
-<insert screenshot of the common variable templates>
-
-<insert screenshot of the library variables sets>
-
-<insert screenshot of the all variables view>
+![Octopus variable editor - project variable templates](project-variable-templates.png "width=500")
+![Octopus variable editor - common variable templates](common-variable-templates.png "width=500")
+![Octopus variable editor - library variable sets](library-variable-sets.png "width=500")
+![Octopus variable editor - all variables](all-variables.png "width=500")
 
 **Maybe smaller images that when clicked can be viewed larger.***
-
 
 ##Adding a new variable
 The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows a new variable being added.
@@ -109,7 +105,8 @@ Creates a new variable
 ##Row actions
 Row actions will appear on hover as an overflow menu at the end of a row. This will replace the current right click function on the first cell.
 
-<insert screenshot of row actions>
+![Octopus variable editor - row actions](EditMode-overflow.png "width=500")
+
 
 
 ##The modal editor
@@ -121,7 +118,9 @@ Large code editor
 Prompted value
 Tenant tag sets
 
-<insert screenshot or modal>
+![Octopus variable modal editor](modal.png "width=500")
+![Octopus variable modal editor - define scope](modal-scope.png "width=500")
+
 
 ##Feedback
 We think what we have outlined above will definitely improve the way we add variables and provide a better platform for us to add more advance features to the editor.
