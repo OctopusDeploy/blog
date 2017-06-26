@@ -89,7 +89,7 @@ cd C:\Apps\JBossDeployment
   --password password `
   --keystore-file C:\wildfly_dc\wildfly-11.0.0.Alpha1\domain\configuration\keystore.vault `
   --keystore-password $OctopusParameters["Octopus.Action[Create Vault].Output.VaultPassword"] `
-  --enc-dir C:\wildfly_dc\wildfly-11.0.0.Alpha1\domain\configuration\vault `
+  --enc-dir C:\wildfly_dc\wildfly-11.0.0.Alpha1\domain\configuration\vault
 ```
 
 ## Accessing the Vault Passwords
