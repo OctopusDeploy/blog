@@ -1,6 +1,6 @@
 ---
 title: "Deploying a Vault to WildFly"
-visibility: public
+visibility: private
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy a vault from Octopus to WildFly to secure passwords in configuration files"
 metaImage: java-octopus-meta.png
