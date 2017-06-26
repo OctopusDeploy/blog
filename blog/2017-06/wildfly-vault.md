@@ -14,7 +14,7 @@ tags:
 
 When dealing with sensitive information like passwords, [Octopus Deploy provides you with the ability to encrypt and save these values](https://octopus.com/docs/deploying-applications/variables/sensitive-variables) to ensure they remain secure.
 
-If these passwords are for external systems like database servers, it is not uncommon to have to decrypt the passwords and store them in plain text in a configuration file somewhere to allow the password to be used to make an actual connection. But saving sensitive information in plain text is not ideal, because it makes it vulnerable to a host of unsophisticated attacks like looking over someone's shoulder as they edit the configuration file, or catching the contents of the contents file as it is shared in a chat system, email or posted to a help forum.
+If these passwords are for external systems like database servers, it is not uncommon to have to decrypt the passwords and store them in plain text in a configuration file somewhere to allow the password to actually be used. But saving sensitive information in plain text is not ideal, because it makes it vulnerable to a host of unsophisticated attacks like looking over someone's shoulder as they edit the configuration file, or catching the contents of the contents file as it is shared in a chat system, email or posted to a help forum, or checked into the history of a version control system.
 
 WildFly mitigates a number of these vulnerabilities by placing sensitive information into a [vault](https://developer.jboss.org/wiki/JBossAS7SecuringPasswords).
 
@@ -22,13 +22,13 @@ WildFly mitigates a number of these vulnerabilities by placing sensitive informa
 While a vault is considered security by obscurity, it is still worthwhile placing sensitive information into a vault as it means a casual observer of the configuration files won't be able to extract a password.
 :::
 
-As part of the move to provide first class support for Java, we are planning to provide the ability to export Octopus varibales into a WildFly vault. In this blog post I'll run you through how this can be achieved today.
+As part of the move to provide first class support for Java, we are planning to provide the ability to export Octopus variables into a WildFly vault. In this blog post I'll run you through how this can be achieved today.
 
 ## Exporting Variables
 
 If you have ever used the `vault` script that comes with WildFly, you will know that each value to be stored in the vault has to be added one at a time. This is tedious and can be hard to maintain. To provide a faster way to get secure values into a vault, we have written a [Groovy script](https://github.com/OctopusDeploy/JBossDeployment/blob/master/create-vault.groovy) that takes the values from a CSV file.
 
-But first we need to get the secure values out of Octopus and into a CSV file. Fortunately Powershell comes with the `Export-Csv` command which makes this trivial. The code below can be defined in a script step in Octopus to export a bunch of key/value pairs to a CSV file. It then calles the `create-vault.groovy` script to turn the CSV file into a WildFly vault. The vault password is saved into an output variable called `VaultPassword`, and the CSV file is deleted.
+But first we need to get the secure values out of Octopus and into a CSV file. Fortunately Powershell comes with the `Export-Csv` command which makes this trivial. The code below can be defined in a script step in Octopus to export a bunch of key/value pairs to a CSV file. It then calls the `create-vault.groovy` script to turn the CSV file into a WildFly vault. The vault password is saved into an output variable called `VaultPassword`, and the CSV file is deleted.
 
 ```powershell
 try {
@@ -94,13 +94,17 @@ cd C:\Apps\JBossDeployment
 
 ## Accessing the Vault Passwords
 
-Passwords contained in the vault are accessed with through a special variable in the WildFly configuration files. Here we have referenced the `wildfly_slave_password` variable from the `vault` alias in the out vault.
+Passwords contained in the vault are accessed with through a special variable in the WildFly configuration files. Here we have referenced the `wildfly_slave_password` variable from the `vault` alias in the our vault.
 
 ```xml
 <server-identities>
   <secret value="${VAULT::vault::wildfly_slave_password::1}"/>
 </server-identities>
 ```
+
+:::hint
+As you can see, the actual password is no longer saved in plain text, and even if this configuration file were leaked, it would not reveal a compromising password.
+:::
 
 You can also access these passwords from code. See [Utilising masked passwords via the vault](https://developer.jboss.org/wiki/AS7UtilisingMaskedPasswordsViaTheVault) for an example.
 
