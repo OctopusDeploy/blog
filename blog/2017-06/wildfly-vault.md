@@ -28,7 +28,7 @@ As part of the move to provide first class support for Java, we are planning to 
 
 If you have ever used the `vault` script that comes with WildFly, you will know that each value to be stored in the vault has to be added one at a time. This is tedious and can be hard to maintain. To provide a faster way to get secure values into a vault, we have written a [Groovy script](https://github.com/OctopusDeploy/JBossDeployment/blob/master/create-vault.groovy) that takes the values from a CSV file.
 
-But first we need to get the secure values out of Octopus and into a CSV file. Fortunately Powershell comes with the `Export-Csv` command which makes this trivial. The code below can be defined in a script step in Octopus to export a bunch of key/value pairs to a CSV file. It then called the `create-vault.groovy` script to turn the CSV file into a WildFly vault. The vault password is saved into an output varibale called `VaultPassword`, and the CSV file is deleted.
+But first we need to get the secure values out of Octopus and into a CSV file. Fortunately Powershell comes with the `Export-Csv` command which makes this trivial. The code below can be defined in a script step in Octopus to export a bunch of key/value pairs to a CSV file. It then calles the `create-vault.groovy` script to turn the CSV file into a WildFly vault. The vault password is saved into an output variable called `VaultPassword`, and the CSV file is deleted.
 
 ```powershell
 try {
@@ -76,7 +76,7 @@ To make this process easy, there is another [Groovy script](https://github.com/O
 
 The Powershell below is used to run the Groovy script and add the vault configuration to the hosts.
 
-You'll only need to run this script on the domain controller, and not the domain slaves, because the domain controller will push out the vault configuration to the slaves. However, the domain controller does not push out the actual vault file, which is why we create the vault file on all hosts before adding this configuration.
+You'll only need to run this script on the domain controller, and not the domain slaves, because the domain controller will push out the vault configuration to the slaves. However, the domain controller does not push out the actual vault file, which is why we created the vault file on all hosts before adding this configuration.
 
 If you have standalone instances, then this script will be run on all of them.
 
