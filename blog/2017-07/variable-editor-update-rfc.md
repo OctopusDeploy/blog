@@ -165,3 +165,8 @@ We think what we have outlined above will improve the way we add variables and p
 We would love to hear your feedback on our plans for the first release of the variable editor. Feel free to comment on the blog post here or leave detailed feedback on our Specs page **Include link**
 
 
+<script>
+  window.onload = function() {
+    $('.gifplayer').gifplayer();
+  };
+</script>
