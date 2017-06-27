@@ -28,7 +28,7 @@ We have focused on providing a solution for four user scenarios for the first re
 
 - A user wants to see what values have been scoped to a particular scope configuration to see if there are any duplicates.
 
-**Note**There were some great additional feature suggestions too. But we can’t include them all at once and see that the first release of the variable editor should focus on improving the basics and creating a solid platform for more advanced features.
+**Note** There were some great additional feature suggestions too. But we can’t include them all at once and see that the first release of the variable editor should focus on improving the basics and creating a solid platform for more advanced features.
 
 ## The new variable editor look
 
@@ -68,7 +68,7 @@ Our goal for the new variable editor is for it to be a seamless table editing ex
 
 The following are convention keyboard controls and shortcuts we are planning to use.
 
-**Keyboard control**
+#### Keyboard control
 
 <dl>
 <dt>Tab </dt>
@@ -76,19 +76,19 @@ The following are convention keyboard controls and shortcuts we are planning to 
 - Moves the selector controls focus from top to bottom</dd>
 
 <dt>Enter</dt>
-<dd>- Adds another variable
-- Performs the action of a selected button
-- Selects item in dropdown list </dd>
+<dd>- Adds another variable</dd>
+<dd>- Performs the action of a selected button</dd>
+<dd>- Selects item in dropdown list</dd>
 
 <dt>Arrow up and down </dt>
-<dd>- Moves the focus through a dropdown list
-- Moves the focus from the form field to the Open editor link in the edit dialog
-- Moves the focus of the rows in the variable table </dd>
+<dd>- Moves the focus through a dropdown list</dd>
+<dd>- Moves the focus from the form field to the Open editor link in the edit dialog</dd>
+<dd>- Moves the focus of the rows in the variable table</dd>
 
 <dt>esc</dt>
-<dd>- collapses dropdown and puts cell in selected state
-- exist edit/add mode if a cell is in a selected state
-- Esc moves through the states until out of edit mode </dd>
+<dd>- collapses dropdown and puts cell in selected state</dd>
+<dd>- exist edit/add mode if a cell is in a selected state</dd>
+<dd>- Esc moves through the states until out of edit mode </dd>
 
 <dt>Typing</dt>
 <dd>Will activate any selectors/dropdowns</dd>
@@ -97,7 +97,8 @@ The following are convention keyboard controls and shortcuts we are planning to 
 <dd>selects multiple items in a drop down</dd>
 </dl>
 
-Shortcuts
+#### Shortcuts
+
 <dl>
 <dt>ctl+e</dt>
 <dd>Opens editor modal</dd>
