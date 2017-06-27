@@ -37,10 +37,9 @@ Some new concepts introduced are the advanced filter and being able to filter by
 By default the project variables will be displayed first and the advanced filter will be open with the ability to be toggled off by the filter icon.
 
 ![Octopus variable editor - project variables](project-variables.png "width=500")
-
 ![Octopus variable editor - project variable templates](project-variable-templates.png "width=500")
 ![Octopus variable editor - common variable templates](common-variable-templates.png "width=500")
-![Octopus variable editor - library variable sets](library-variable-sets.png "width=500")
+![Octopus variable editor - library variable sets](library-variable-set.png "width=500")
 ![Octopus variable editor - all variables](all-variables.png "width=500")
 
 **Maybe smaller images that when clicked can be viewed larger.***
@@ -94,13 +93,13 @@ Shortcuts
 | ctl+o | Creates a new variable |
 
 
-![Octopus variable editor](Edit-video.gif "width=500")
+![Octopus variable editor](editing-variable.gif "width=500")
 
 
 ##Row actions
 Row actions will appear on hover as an overflow menu at the end of a row. This will replace the current right click function on the first cell.
 
-![Octopus variable editor - row actions](EditMode-overflow.png "width=500")
+![Octopus variable editor - row actions](edit-overflow.png "width=500")
 
 
 
