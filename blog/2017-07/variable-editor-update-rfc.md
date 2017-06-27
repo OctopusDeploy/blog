@@ -72,6 +72,8 @@ The current variable editor table has the new variable row at the bottom of the 
 
 ![Octopus variable editor - editing variables](adding-variables.gif "width=500")
 
+<img class="gifplayer" src="https://i.octopus.com/blog/2017-07/adding-variables.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/adding-variables.gif">
+
 
 ## Adding multiple values to a scope
 
