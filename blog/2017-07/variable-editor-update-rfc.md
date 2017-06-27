@@ -17,6 +17,7 @@ Based on the feedback received our goal for the first release of the variable ed
 - Ability to enter multiple values to a scope when adding a variable.
 
 ##User scenarios
+
 We have focused on providing a solution for four user scenarios for the first release. These cover the common themes from the Octopus team and our users suggestions.
 
 - A user is inputting hundreds of single text variables scoped to one or two environments. They need to do this quickly all by using the keyboard.
@@ -37,9 +38,13 @@ Some new concepts introduced are the advanced filter and being able to filter by
 By default the project variables will be displayed first and the advanced filter will be open with the ability to be toggled off by the filter icon.
 
 ![Octopus variable editor - project variables](project-variables.png "width=500")
+
 ![Octopus variable editor - project variable templates](project-variable-templates.png "width=500")
+
 ![Octopus variable editor - common variable templates](common-variable-templates.png "width=500")
+
 ![Octopus variable editor - library variable sets](library-variable-set.png "width=500")
+
 ![Octopus variable editor - all variables](all-variables.png "width=500")
 
 **Maybe smaller images that when clicked can be viewed larger.***
@@ -51,6 +56,7 @@ The current variable editor table has the new variable row at the bottom of the 
 
 
 ##Adding multiple values to a scope
+
 We are planning to include the ability to add multiple values to one scope. This action would appear as a dropdown on the add new variable button as “Add multiple values”. The adding experience would take place in the modal with the user defining the scope first.
 
 ![Octopus variable editor - editing variables](add-multi-values.gif "width=500")
@@ -63,6 +69,7 @@ Our goal for the new variable editor is for it to be a seamless table editing ex
 The following are convention keyboard controls and shortcuts we are planning to use.
 
 Keyboard control
+
 | Key        | Action           |
 | ------------- | -------------|
 
@@ -97,6 +104,7 @@ Shortcuts
 
 
 ##Row actions
+
 Row actions will appear on hover as an overflow menu at the end of a row. This will replace the current right click function on the first cell.
 
 ![Octopus variable editor - row actions](edit-overflow.png "width=500")
@@ -104,20 +112,24 @@ Row actions will appear on hover as an overflow menu at the end of a row. This w
 
 
 ##The modal editor
+
 The modal editor is used to show advanced options and larger text fields for adding or editing variables. The modal editor can be opened at any time when editing an existing variable and there is the option to close the editor and keep entering data via the table. We want to make sure that if a user is only using the keyboard to enter variables that the modal was still accessible via a link and a keyboard shortcut (ctl+o). The same keyboard commands are used to navigate through the modal editor as the table.
 
 The advanced settings in modal editor include:
-Description
-Large code editor
-Prompted value
-Tenant tag sets
+
+- Description
+- Large code editor
+- Prompted value
+- Tenant tag sets
 
 ![Octopus variable modal editor](modal.png "width=500")
+
 ![Octopus variable modal editor - define scope](modal-scope.png "width=500")
 
 
 ##Feedback
-We think what we have outlined above will definitely improve the way we add variables and provide a better platform for us to add more advance features to the editor.
+
+We think what we have outlined above will improve the way we add variables and provide a better platform for us to add more advance features to the editor.
 
 We would love to hear your feedback on our plans for the first release of the variable editor.
 
