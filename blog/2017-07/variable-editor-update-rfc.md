@@ -70,8 +70,6 @@ When viewing all variables it is in view only mode. Source icons help distinguis
 ## Adding a new variable
 The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows a new variable being added.
 
-![Octopus variable editor - editing variables](adding-variables.gif "width=500")
-
 <img class="gifplayer" src="https://i.octopus.com/blog/2017-07/adding-variables.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/adding-variables.gif">
 
 
@@ -79,7 +77,8 @@ The current variable editor table has the new variable row at the bottom of the 
 
 We are planning to include the ability to add multiple values to one scope. This action would appear as a dropdown on the add new variable button as “Add multiple values”. The adding experience would take place in the modal with the user defining the scope first.
 
-![Octopus variable editor - editing variables](add-multi-values.gif "width=500")
+<img class="gifplayer" src="https://i.octopus.com/blog/2017-07/add-multi-values.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/add-multi-values.gif">
+
 
 
 ## Table editing experience
@@ -127,7 +126,8 @@ The following are convention keyboard controls and shortcuts we are planning to 
 <dd>Creates a new variable</dd>
 </dl>
 
-![Octopus variable editor](editing-variable.gif "width=500")
+<img class="gifplayer" src="https://i.octopus.com/blog/2017-07/editing-variable.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/editing-variable.gif">
+
 
 
 ## Row actions
