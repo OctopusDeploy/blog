@@ -36,15 +36,33 @@ The variable editor will inherit the new 4.0 UI and maintain high-level concepts
 
 Some new concepts introduced are the advanced filter and being able to filter by warning, and expanding panels so you can now see what variables belong to a variable set and what variable set common variable templates belong to.
 
+#### Project variables
+
 By default the project variables will be displayed first and the advanced filter will be open with the ability to be toggled off by the filter icon.
 
 ![Octopus variable editor - project variables](project-variables.png "width=500")
 
+#### Project variable templates
+
+Project variable templates can still be created and edited in the variable editor. This UI layout shows what the variable table would look like if the advanced filter was toggled off.
+
 ![Octopus variable editor - project variable templates](project-variable-templates.png "width=500")
+
+#### Common variable templates
+
+Common variable templates are still edited in the Library but expanding panels let's you see what variable set it belongs to.
 
 ![Octopus variable editor - common variable templates](common-variable-templates.png "width=500")
 
+#### Library variable sets
+
+Library variable sets include a list of the variables it includes which can still only be edited in the Library.
+
 ![Octopus variable editor - library variable sets](library-variable-set.png "width=500")
+
+#### View all variables
+
+When viewing all variables it is in view only mode. Source icons help distinguish between the variable types.
 
 ![Octopus variable editor - all variables](all-variables.png "width=500")
 
@@ -133,11 +151,15 @@ The advanced settings in modal editor include:
 
 ![Octopus variable modal editor - define scope](modal-scope.png "width=500")
 
+## Performance
+
+In 4.0 we are focusing on the ability to load lots of data quickly. This will greatly benefit users with many of variables and fast filtering.
+
 
 ## Feedback
 
 We think what we have outlined above will improve the way we add variables and provide a better platform for us to add more advance features to the editor.
 
-We would love to hear your feedback on our plans for the first release of the variable editor.
+We would love to hear your feedback on our plans for the first release of the variable editor. Feel free to comment on the blog post here or leave detailed feedback on our Specs page **Include link**
 
 
