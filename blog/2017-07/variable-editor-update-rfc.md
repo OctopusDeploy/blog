@@ -48,13 +48,14 @@ By default the project variables will be displayed first and the advanced filter
 ##Adding a new variable
 The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows a new variable being added.
 
-<insert video of adding variable>
+![Octopus variable editor - editing variables](adding-variables.gif "width=500")
 
 
 ##Adding multiple values to a scope
 We are planning to include the ability to add multiple values to one scope. This action would appear as a dropdown on the add new variable button as “Add multiple values”. The adding experience would take place in the modal with the user defining the scope first.
 
-<insert video of adding multiple values>
+![Octopus variable editor - editing variables](add-multi-values.gif "width=500")
+
 
 ##Table editing experience
 
@@ -63,43 +64,37 @@ Our goal for the new variable editor is for it to be a seamless table editing ex
 The following are convention keyboard controls and shortcuts we are planning to use.
 
 Keyboard control
+| Key        | Action           |
+| ------------- | -------------|
 
-Tab
-Moves the cell focus through the row from left to right, top to bottom
-Moves the selector controls focus from top to bottom
+| Tab | - Moves the cell focus through the row from left to right, top to bottom
+- Moves the selector controls focus from top to bottom|
 
-Enter
-Adds another variable
-Performs the action of a selected button
-Selects item in dropdown list
+| Enter | - Adds another variable
+- Performs the action of a selected button
+- Selects item in dropdown list |
 
-Arrow up and down
-Moves the focus through a dropdown list
-Moves the focus from the form field to the Open editor link in the edit dialog
-Moves the focus of the rows in the variable table
+| Arrow up and down | - Moves the focus through a dropdown list
+- Moves the focus from the form field to the Open editor link in the edit dialog
+- Moves the focus of the rows in the variable table |
 
-esc
-collapses dropdown and puts cell in selected state
-exist edit/add mode if a cell is in a selected state
-Esc moves through the states until out of edit mode.
+| esc | - collapses dropdown and puts cell in selected state
+- exist edit/add mode if a cell is in a selected state
+- Esc moves through the states until out of edit mode |
 
-Typing
-Will activate any selectors/dropdowns
+| Typing | Will activate any selectors/dropdowns |
 
- ctl+enter
-select multiple items in a drop down
+| ctl+enter | selects multiple items in a drop down |
 
 
 Shortcuts
-
-ctl+e
-Opens editor modal
-
-ctl+o
-Creates a new variable
+| Shortcut        | Action     |
+| ------------- | -------------|
+| ctl+e | Opens editor modal |
+| ctl+o | Creates a new variable |
 
 
-<insert video of editing a variable>
+![Octopus variable editor](Edit-video.gif "width=500")
 
 
 ##Row actions
