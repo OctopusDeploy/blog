@@ -20,9 +20,13 @@ This month's release ...
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
-## Feature 1
+## Let's Encrypt Integration
+
+We're a bit fan of security here at Octopus, and we want to make it easy for you to be secure too. To that end, we've added support for automatically managing the SSL certificate used by the Octopus Portal, using [Let's Encrypt](https://letsencrypt.org). With a few simple steps, you can configure Octopus to register, request a certificate, and apply it to the Portal. Even better, it will automatically be renewed when the certificate approaches its expiry date, so you wont have to worry about manual renewals and manually re-configurating your Octopus Server.
 
 ## Feature 2
+
+## OctoWatch iOS App
 
 ## Breaking changes
 
