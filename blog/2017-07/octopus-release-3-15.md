@@ -3,12 +3,12 @@ title: "Octopus June Release 3.15"
 description: This month's release ... 
 author: matt.richardson@octopus.com
 visibility: private
-metaImage: 
+metaImage: metaimage-release3-15.png
 tags:
  - New Release
 ---
 
-## TODO: Add Header Image
+![Octopus 3.14 release announcement](blogimage-release-3-15.png)
 
 This month's release ...
 
@@ -22,7 +22,7 @@ This month's release ...
 
 ## Let's Encrypt Integration
 
-We're a bit fan of security here at Octopus, and we want to make it easy for you to be secure too. To that end, we've added support for automatically managing the SSL certificate used by the Octopus Portal, using [Let's Encrypt](https://letsencrypt.org). With a few simple steps, you can configure Octopus to register, request a certificate, and apply it to the Portal. Even better, it will automatically be renewed when the certificate approaches its expiry date, so you wont have to worry about manual renewals and manually re-configurating your Octopus Server.
+We're a big fan of security here at Octopus, and we want to make it easy for you to be secure too. To that end, we've added support for automatically managing the SSL certificate used by the Octopus Portal, using [Let's Encrypt](https://letsencrypt.org). With a few simple steps, you can configure Octopus to register, request a certificate, and apply it to the Portal. Even better, it will automatically be renewed when the certificate approaches its expiry date, so you wont have to worry about manual renewals and manually re-configurating your Octopus Server.
 
 ## Feature 2
 
