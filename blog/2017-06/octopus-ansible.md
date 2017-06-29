@@ -22,6 +22,10 @@ Before we get into the details of running Ansible scripts in Octopus, a natural 
 * The Ansible logs are saved by Octopus, and are easy to review at a later date.
 * Your infrastructure deployments can take advantage of the Octopus security features, making it easy to define who can deploy what infrastructure where.
 
+## Getting the Source Code
+
+The Ansible code used in this blog post can be found in [GitHub](https://github.com/OctopusDeploy/AnsibleDemo).
+
 ## Preparing the AWS Resources
 
 While Ansible has support for configuring Windows targets, it is not designed to be run from a Windows host. The [documentation says that](http://docs.ansible.com/ansible/intro_windows.html):
@@ -83,7 +87,7 @@ Replace `accountid` in the policy below with your AWS account ID.
 }
 ```
 
-Finally the role will need to trust itself in order for the STS tokens to be generated. You can configure this trust by clicking the `Trust relationships` tab in the IAM role and allowing the role trust itself to run the `sts:AssumeRole` action.
+Finally the role will need to trust itself in order for the STS tokens to be generated. You can configure this trust via the AWS web console by clicking the `Trust relationships` tab in the IAM role and allowing the role trust itself to run the `sts:AssumeRole` action.
 
 ```
 {
@@ -118,21 +122,17 @@ To work around this we will be running the Ansible script that creates the Ansib
 Although the Windows Linux Subsystem (i.e. Bash on Windows) is not officially supported by either Microsoft or Ansible, I have used it pretty extensively with Ansible without any issues.
 :::
 
-First you will need to install the [AWS CLI tools](https://aws.amazon.com/cli/).
+You will also need to install the [AWS CLI tools](https://aws.amazon.com/cli/).
 
-Then you will need to make sure that you have configured your AWS credentials with an account that has permissions to create EC2 instances using the command:
+Ensure that you have configured your AWS credentials with an account that has permissions to create EC2 instances using the command:
 
 ```
 aws configure
 ```
 
-### Getting the Source Code
-
-The Ansible code used in this blog post can be found in [GitHub](https://github.com/OctopusDeploy/AnsibleDemo).
-
 ## Creating the Worker
 
-The role YML file shown below will create a Centos 7 EC2 instance in AWS and configure it with everything we need to run Ansible scripts.
+The Ansible YML file shown below defines the tasks run by a role that will create a Centos 7 EC2 instance in AWS and configure it with everything we need to run Ansible scripts.
 
 In this example I am placing the EC2 instance into the default VPC. If you have a custom VPC, you'll need to set the `vpc_subnet_id` option, and maybe also add the `assign_public_ip` option.
 
@@ -306,7 +306,9 @@ The end result of this Ansible script will be an EC2 instance running Centos tha
 
 ## Creating a Windows EC2 Instance
 
-We'll start by creating a Windows 2016 server EC2 instance. The process here is much the same as creating a Centos EC2 instance, but the user data has some interesting steps that make using the Windows instance easier.
+For the purposes of this demo we will use Octopus and Ansible to construct a Windows 2016 server EC2 instance.
+
+The process here is much the same as creating a Centos EC2 instance, but the user data has some interesting steps that make using the Windows instance easier.
 
 ```
 ---
@@ -352,7 +354,7 @@ We'll start by creating a Windows 2016 server EC2 instance. The process here is 
       timeout: 6000
 ```
 
-The `userdata.txt.j2` template contains a Powershell script that is run by the Windows instance as a it is being created. We use this script to prepare the Windows instance to be managed by Ansible, and set the initial Administrator password.
+The `userdata.txt.j2` template contains a Powershell script that is run by the Windows instance as it is being created. We use this script to prepare the Windows instance to be managed by Ansible, and set the initial Administrator password.
 
 You can find more details about the preparation of a Windows system for Anisble [here](http://docs.ansible.com/ansible/intro_windows.html#windows-system-prep).
 
@@ -396,7 +398,7 @@ We'll install Chrome onto this server, because I really hate trying to get anyth
     state: present
 ```
 
-This role is run with the `windows-server` playbook.
+This role is run with the `windows-server.yml` playbook.
 
 ```
 ---
@@ -481,4 +483,6 @@ ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook windows-server.yml
 
 ## Conclusion
 
-I've showed you how to run a very simple Ansible script to create and initalize a Windows server in AWS. I hope you can see how easy it is to deploy your infrastructure as code, taking advantage of all the management features in Octopus that developers take for granted.
+The end result of this process is a EC2 "worker" instance that can be used to run Ansible scripts on behalf of Octopus, and an example of an Ansible script that deploys a Windows server instance.
+
+I hope you can see how easy it is to deploy your infrastructure as code, and how you can then build on this to take advantage of all the management features in Octopus that developers take for granted.
