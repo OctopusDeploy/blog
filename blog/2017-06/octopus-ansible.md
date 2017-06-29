@@ -8,7 +8,7 @@ tags:
  - Linux
 ---
 
-Chances are you are familiar with the features Octopus provides to manage and deploy your code. These days cloud services like AWS and tools like Ansible turn your infrastructure into code too, so why not deploy your Ansible scripts with Octopus?
+Chances are you are familiar with the features Octopus provides to manage and deploy your code. These days cloud services like AWS and tools like Ansible turn your infrastructure into code too, so why not deploy your Ansible, Chef or Puppet scripts with Octopus?
 
 In this blog post I'll run you through the process of creating a simple Windows instance in AWS using Ansible and Octopus Deploy.
 
@@ -196,7 +196,7 @@ ssh-keygen -f ansible_rsa -t rsa -N ''
 Keep both the `ansible_rsa` and `ansible_rsa.pub` files, because we'll need them later on.
 
 :::hint
-The example GIT repo includes the `ansible_rsa.pub` file, but this is no use to you because it doesn't include the `ansible_rsa` file. You'll need to generate your own key pair.
+The example GIT repo includes the `ansible_rsa.pub` file, but you won't actually be able to use this public key as doesn't include the `ansible_rsa` private key file. You'll need to generate your own key pair and replace the public key to log into the Linux instance.
 :::
 
 ```
