@@ -164,7 +164,7 @@ In 4.0 we are focusing on the ability to load lots of data quickly. This will gr
 
 We think what we have outlined above will improve the way we add variables and provide a better platform for us to add more advanced features to the editor.
 
-We would love to hear your feedback on our plans for the first release of the variable editor. Feel free to comment on the blog post here or leave detailed feedback on our Specs page **Include link**
+We would love to hear your feedback on our plans for the release of the variable editor. What we'd like to ask is that if you just want to provide some quick feedback then do that below as always. If there's something bigger that warrants a more detailed conversation we'd like you to do that over in our GitHub <a href="https://github.com/OctopusDeploy/Specs/blob/master/VariableEditorRedesign/index.md" target="_blank">Variable Editor Redesign SPEC document.
 
 
 <script>
