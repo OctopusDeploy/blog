@@ -1,6 +1,6 @@
 ---
 title: "Managing Ansible Deployments with Octopus"
-visibility: public
+visibility: private
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy Ansible scripts from Octopus"
 metaImage: java-octopus-meta.png
@@ -357,6 +357,11 @@ The `userdata.txt.j2` template contains a Powershell script that is run by the W
 You can find more details about the preparation of a Windows system for Anisble [here](http://docs.ansible.com/ansible/intro_windows.html#windows-system-prep).
 
 We've also enabled server-side SSP for winrm (i.e. [CredSSP for second-hop remoting](https://blogs.msdn.microsoft.com/powershell/2008/06/05/credssp-for-second-hop-remoting/)), which is required when installing applications like SQL Server.
+
+
+:::hint
+Change `TheWindowsPassword` to something that conforms to the required password complexity rules. If you leave the password as this default, the Powershell script won't work as expected.
+:::
 
 ```
 <powershell>
