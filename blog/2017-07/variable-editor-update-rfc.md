@@ -1,5 +1,5 @@
 ---
-title: "Variable Editor update - RFC"
+title: "Variable Editor Redesign - RFC"
 description: Updates to the variable editor ... 
 author: jessica.ross@octopus.com
 visibility: private
@@ -8,7 +8,7 @@ tags:
  - RFC
 ---
 
-In the 4.0 release we plan to overhaul the variable editor. This has be one of our top <a href="https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui" target="_blank">User Voice</a> suggestions and thank you to all our users who provided ideas on how to improve the variable editor.
+In the 4.0 release, we plan to overhaul the variable editor. This has been one of our top <a href="https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui" target="_blank">User Voice</a> suggestions and thanks to all our users who provided ideas on how to improve the variable editor.
 
 Based on the feedback received our goal for the first release of the variable editor is to make a table editing experience work as expected with the inclusion of some new features:
 
@@ -18,13 +18,13 @@ Based on the feedback received our goal for the first release of the variable ed
 
 ## User scenarios
 
-We have focused on providing a solution for four user scenarios for the first release. These cover the common themes from the Octopus team and our users suggestions.
+We have focused on providing a solution for four user scenarios for the first release. These cover the common themes from the Octopus team and our user's suggestions.
 
 - A user is inputting hundreds of single text variables scoped to one or two environments. They need to do this quickly all by using the keyboard.
 
 - A user has large amounts of code to add as a variable and needs to copy and paste it into a large text field. They have been asked to give each variable a description and scope it to tenant tag sets.
 
-- A user has been given a list of usernames and passwords for each environment. Rather than adding each value one at a time and scoping them individually the user wants to be able to select the environment first and add multiple values to that environment. 
+- A user has been given a list of usernames and passwords for each environment. Rather than adding each value one at a time and scoping them individually, the user wants to be able to select the environment first and add multiple values to that environment. 
 
 - A user wants to see what values have been scoped to a particular scope configuration to see if there are any duplicates.
 
@@ -34,11 +34,11 @@ We have focused on providing a solution for four user scenarios for the first re
 
 The variable editor will inherit the new 4.0 UI and maintain high-level concepts like switching between variable types, ability to filter, and view only library variable sets and common templates which are only editable in the Library.
 
-Some new concepts introduced are the advanced filter and being able to filter by warning, and expanding panels so you can now see what variables belong to a variable set and what variable set common variable templates belong to.
+Some new concepts introduced are the advanced filter and being able to filter by warning, and expanding panels so you can now see what variables and common variable templates belong to which variable set.
 
 ### Project variables
 
-By default the project variables will be displayed first and the advanced filter will be open with the ability to be toggled off by the filter icon.
+By default, the project variables will be displayed first and the advanced filter will be open with the ability to be toggled off by the filter icon.
 
 ![Octopus variable editor - project variables](project-variables.png "width=500")
 
@@ -50,7 +50,7 @@ Project variable templates can still be created and edited in the variable edito
 
 ### Common variable templates
 
-Common variable templates are still edited in the Library but expanding panels let's you see what variable set it belongs to.
+Common variable templates are still edited in the Library but expanding panels lets you see what variable set it belongs to.
 
 ![Octopus variable editor - common variable templates](common-variable-templates.png "width=500")
 
@@ -68,14 +68,16 @@ When viewing all variables it is in view only mode. Source icons help distinguis
 
 
 ## Adding a new variable
-The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows a new variable being added.
+The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows adding new variable.
 
 <img class="gifplayer" src="https://i.octopus.com/blog/2017-07/adding-variables.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/adding-variables.gif">
 
 
 ## Adding multiple values to a scope
 
-We are planning to include the ability to add multiple values to one scope. This action would appear as a dropdown on the add new variable button as “Add multiple values”. The adding experience would take place in the modal with the user defining the scope first.
+We are planning to include the ability to add multiple values to one scope. This new function will make it easier to add a set of variables for a new environment.
+
+This action would appear as a dropdown on the add new variable button as “Add multiple values”. The adding experience will take place in the modal with the user defining the scope first.
 
 <img class="gifplayer" src="https://i.octopus.com/blog/2017-07/add-multi-values.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/add-multi-values.gif">
 
@@ -105,7 +107,7 @@ The following are convention keyboard controls and shortcuts we are planning to 
 <dd>- Moves the focus of the rows in the variable table</dd>
 
 <dt>esc</dt>
-<dd>- collapses dropdown and puts cell in selected state</dd>
+<dd>- collapses dropdown and puts a cell in selected state</dd>
 <dd>- exist edit/add mode if a cell is in a selected state</dd>
 <dd>- Esc moves through the states until out of edit mode </dd>
 
@@ -160,7 +162,7 @@ In 4.0 we are focusing on the ability to load lots of data quickly. This will gr
 
 ## Feedback
 
-We think what we have outlined above will improve the way we add variables and provide a better platform for us to add more advance features to the editor.
+We think what we have outlined above will improve the way we add variables and provide a better platform for us to add more advanced features to the editor.
 
 We would love to hear your feedback on our plans for the first release of the variable editor. Feel free to comment on the blog post here or leave detailed feedback on our Specs page **Include link**
 
