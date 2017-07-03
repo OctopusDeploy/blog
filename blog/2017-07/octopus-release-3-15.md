@@ -24,7 +24,19 @@ This month's release ...
 
 We're a big fan of security here at Octopus, and we want to make it easy for you to be secure too. To that end, we've added support for automatically managing the SSL certificate used by the Octopus Portal, using [Let's Encrypt](https://letsencrypt.org). With a few simple steps, you can configure Octopus to register, request a certificate, and apply it to the Portal. Even better, it will automatically be renewed when the certificate approaches its expiry date, so you wont have to worry about manual renewals and re-configurating your Octopus Server. If you've currently got your server on the internet over HTTP, it couldn't be easier - [move to HTTPS](https://octopus.com/docs/v/3.15/administration/lets-encrypt-integration) today.
 
-## Improved multi-tenant deployments
+## Allow un-tenanted projects to be deployed to tenanted machines
+
+During the development of multi-tenancy we decided to make a clear distinction between tenanted and un-tenanted deployment targets. As such we prevented un-tenanted projects from being deployed to tenanted machines. Our reasoning was essentially safety-first; we didn't want to ever leak tenanted deployments or variables.
+
+However this prevented a number of valid scenarios. For example deploying a common component (e.g. a telemetry service) to tenanted machines, or simply sharing a development server between tenanted and un-tenanted projects.
+
+_Note: this also applies to accounts and certificates, as they can also be scoped to tenants._
+
+You let us know that we got this decision wrong (or at least incomplete). You told us via our support, via [UserVoice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/16616209-allow-non-tenant-and-multi-tenant-deployments-to-t) and via the [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/2722).
+
+So, as of Octopus 3.15, how machines, accounts, and certificates participate in tenanted-deployments is explicitly configurable.
+
+![Tenanted deployment configuration](tenanted-deployments-ui.png "width=500")
 
 ## OctoWatch iOS app
 
