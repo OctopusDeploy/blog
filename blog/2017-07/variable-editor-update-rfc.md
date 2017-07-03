@@ -41,29 +41,25 @@ New UI patterns have been introduced to help filter and display information bett
 - Expanding panels so you can now see what variables and common variable templates belong to which variable set
 - Source icons help distinguish between the variable types.
 
-<table>
-<tr>
-<th>Project variables</th>
-<th>Project variable templates</th></tr>
-<tr>
-<td><img src="https://i.octopus.com/blog/2017-07/project-variables.png" alt="Octopus variable editor - project variables" width="200px"/></td>
-<td><img src="https://i.octopus.com/blog/2017-07/project-variable-templates.png" alt="Octopus variable editor - project variable templates with filter hidden" width="200px"/></td>
-</tr>
-<tr>
-<th>Common variable templates</th>
-<th>Library variable sets</th>
-</tr>
-<tr>
-<td><img src="https://i.octopus.com/blog/2017-07/common-variable-templates.png" alt="Octopus variable editor - common variable templates" width="200px"/></td>
-<td><img src="https://i.octopus.com/blog/2017-07/library-variable-set.png" alt="Octopus variable editor - library variable sets" width="200px"/></td>
-</tr>
-<tr>
-<th>View all variables</th>
-</tr>
-<tr>
-<td><img src="https://i.octopus.com/blog/2017-07/all-variables.png" alt="Octopus variable editor - all variables" width="200px"/></td>
-</tr>
-</table>
+**Project variables**
+
+![Octopus variable editor - project variables](project-variables.png "width=500")
+
+**Project variable templates**
+
+![Octopus variable editor - project variable templates](project-variable-templates.png "width=500")
+
+**Common variable templates**
+
+![Octopus variable editor - common variable templates](common-variable-templates.png "width=500")
+
+**Library variable sets**
+
+![Octopus variable editor - library variable sets](library-variable-set.png "width=500")
+
+**View all variables**
+
+![Octopus variable editor - all variables](all-variables.png "width=500")
 
 ## Adding a new variable
 The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows adding new variable.
