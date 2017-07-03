@@ -34,32 +34,34 @@ We have focused on providing a solution for four user scenarios for the first re
 
 The variable editor will inherit the new 4.0 UI and maintain high-level concepts like switching between variable types, ability to filter, and view only library variable sets and common templates which are only editable in the Library.
 
-Some new concepts introduced are the advanced filter and being able to filter by warning, and expanding panels so you can now see what variables and common variable templates belong to which variable set.
+New UI patterns have been introduced to help filter and display information better:
 
-By default, the project variables will be displayed first and the advanced filter will be open with the ability to be hidden.
-When viewing all variables it is in view only mode. Source icons help distinguish between the variable types.
+- An advanced filter which is displayed by default and can be hidden
+- Being able to filter by variables with a warning
+- Expanding panels so you can now see what variables and common variable templates belong to which variable set
+- Source icons help distinguish between the variable types.
 
 <table>
 <tr>
-<th>**Project variables**</th>
-<th>**Project variable templates**</th></tr>
+<th>Project variables</th>
+<th>Project variable templates</th></tr>
 <tr>
-<td>![Octopus variable editor - project variables](project-variables.png "width=200")</td>
-<td>![Octopus variable editor - project variable templates with filter hidden](project-variable-templates.png "width=200")</td>
+<td><img src="https://i.octopus.com/blog/2017-07/project-variables.png" alt="Octopus variable editor - project variables" width="200px"/></td>
+<td><img src="https://i.octopus.com/blog/2017-07/project-variable-templates.png" alt="Octopus variable editor - project variable templates with filter hidden" width="200px"/></td>
 </tr>
 <tr>
-<th>**Common variable templates**</th>
-<th>**Library variable sets**</th>
+<th>Common variable templates</th>
+<th>Library variable sets</th>
 </tr>
 <tr>
-<td>![Octopus variable editor - common variable templates](common-variable-templates.png "width=200")</td>
-<td>![Octopus variable editor - library variable sets](library-variable-set.png "width=200")</td>
+<td><img src="https://i.octopus.com/blog/2017-07/common-variable-templates.png" alt="Octopus variable editor - common variable templates" width="200px"/></td>
+<td><img src="https://i.octopus.com/blog/2017-07/library-variable-set.png" alt="Octopus variable editor - library variable sets" width="200px"/></td>
 </tr>
 <tr>
-<th>**View all variables**</th>
+<th>View all variables</th>
 </tr>
 <tr>
-<td>![Octopus variable editor - all variables](all-variables.png "width=200")</td>
+<td><img src="https://i.octopus.com/blog/2017-07/all-variables.png" alt="Octopus variable editor - all variables" width="200px"/></td>
 </tr>
 </table>
 
