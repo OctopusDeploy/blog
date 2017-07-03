@@ -28,7 +28,7 @@ We have focused on providing a solution for four user scenarios for the first re
 
 - A user wants to see what values have been scoped to a particular scope configuration to see if there are any duplicates.
 
-**Note** There were some great additional feature suggestions too. But we can’t include them all at once and see that the first release of the variable editor should focus on improving the basics and creating a solid platform for more advanced features.
+**Note** There were some great additional feature suggestions too. But we can’t include them all at once as we want the first release of the variable editor to focus on improving basic usability and create a solid platform for more advanced features.
 
 ## The new variable editor look
 
@@ -36,36 +36,32 @@ The variable editor will inherit the new 4.0 UI and maintain high-level concepts
 
 Some new concepts introduced are the advanced filter and being able to filter by warning, and expanding panels so you can now see what variables and common variable templates belong to which variable set.
 
-### Project variables
-
-By default, the project variables will be displayed first and the advanced filter will be open with the ability to be toggled off by the filter icon.
-
-![Octopus variable editor - project variables](project-variables.png "width=500")
-
-### Project variable templates
-
-Project variable templates can still be created and edited in the variable editor. This UI layout shows what the variable table would look like if the advanced filter was toggled off.
-
-![Octopus variable editor - project variable templates](project-variable-templates.png "width=500")
-
-### Common variable templates
-
-Common variable templates are still edited in the Library but expanding panels lets you see what variable set it belongs to.
-
-![Octopus variable editor - common variable templates](common-variable-templates.png "width=500")
-
-### Library variable sets
-
-Library variable sets include a list of the variables it includes which can still only be edited in the Library.
-
-![Octopus variable editor - library variable sets](library-variable-set.png "width=500")
-
-### View all variables
-
+By default, the project variables will be displayed first and the advanced filter will be open with the ability to be hidden.
 When viewing all variables it is in view only mode. Source icons help distinguish between the variable types.
 
-![Octopus variable editor - all variables](all-variables.png "width=500")
-
+<table>
+<tr>
+<th>**Project variables**</th>
+<th>**Project variable templates**</th></tr>
+<tr>
+<td>![Octopus variable editor - project variables](project-variables.png "width=200")</td>
+<td>![Octopus variable editor - project variable templates with filter hidden](project-variable-templates.png "width=200")</td>
+</tr>
+<tr>
+<th>**Common variable templates**</th>
+<th>**Library variable sets**</th>
+</tr>
+<tr>
+<td>![Octopus variable editor - common variable templates](common-variable-templates.png "width=200")</td>
+<td>![Octopus variable editor - library variable sets](library-variable-set.png "width=200")</td>
+</tr>
+<tr>
+<th>**View all variables**</th>
+</tr>
+<tr>
+<td>![Octopus variable editor - all variables](all-variables.png "width=200")</td>
+</tr>
+</table>
 
 ## Adding a new variable
 The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows adding new variable.
@@ -75,9 +71,9 @@ The current variable editor table has the new variable row at the bottom of the 
 
 ## Adding multiple values to a scope
 
-We are planning to include the ability to add multiple values to one scope. This new function will make it easier to add a set of variables for a new environment.
+We are planning to include the ability to add multiple values to a scope of environments, roles, targets, steps or tenant tag sets. This new function will make it easier to add a set of variables for a new environment or a new role.
 
-This action would appear as a dropdown on the add new variable button as “Add multiple values”. The adding experience will take place in the modal with the user defining the scope first.
+This action would appear as a dropdown on the add new variable button as “Add multiple values”. The adding experience will take place in the popup editor with the user defining the scope first then adding multiple values.
 
 <img class="gifplayer" src="https://i.octopus.com/blog/2017-07/add-multi-values.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/add-multi-values.gif">
 
@@ -122,7 +118,7 @@ The following are convention keyboard controls and shortcuts we are planning to 
 
 <dl>
 <dt>ctl+e</dt>
-<dd>Opens editor modal</dd>
+<dd>Opens editor popup</dd>
 
 <dt>ctl+o</dt>
 <dd>Creates a new variable</dd>
@@ -140,31 +136,30 @@ Row actions will appear on hover as an overflow menu at the end of a row. This w
 
 
 
-## The modal editor
+## The popup editor
 
-The modal editor is used to show advanced options and larger text fields for adding or editing variables. The modal editor can be opened at any time when editing an existing variable and there is the option to close the editor and keep entering data via the table. We want to make sure that if a user is only using the keyboard to enter variables that the modal was still accessible via a link and a keyboard shortcut (ctl+o). The same keyboard commands are used to navigate through the modal editor as the table.
+The popup editor is used to show advanced options and larger text fields for adding or editing variables. The popup editor can be opened at any time when editing an existing variable. We want to make sure that if a user is only using the keyboard to enter variables that the popup is still accessible via a link and a keyboard shortcut (ctl+o). The same keyboard commands are used to navigate through the popup editor as the table editor.
 
-The advanced settings in modal editor include:
+The advanced settings in popup editor include:
 
-- Description
-- Large code editor
+- The ability to add a description to variables
+- Larger value text field for adding  code editor
 - Prompted value
 - Tenant tag sets
 
-![Octopus variable modal editor](modal.png "width=500")
+![Octopus variable popup editor](modal.png "width=500")
 
-![Octopus variable modal editor - define scope](modal-scope.png "width=500")
+![Octopus variable popup editor - define scope](modal-scope.png "width=500")
 
-## Performance
+## Performance and browser support
 
-In 4.0 we are focusing on the ability to load lots of data quickly. This will greatly benefit users with many of variables and fast filtering.
-
+As part of 4.0 we want to take full advantage of the progress the Web has made since our last redesign in 2013. This means that Octopus 4 will only support Internet Explorer (IE) 11 and up. The 4.0 re-write will also improve the performance, allowing large amounts of data to be loaded and filtered quickly. Please read our GitHub issue for more information on <a href="https://github.com/OctopusDeploy/Issues/issues/3457">Octopus 4.0 browser support</a>.
 
 ## Feedback
 
 We think what we have outlined above will improve the way we add variables and provide a better platform for us to add more advanced features to the editor.
 
-We would love to hear your feedback on our plans for the release of the variable editor. What we'd like to ask is that if you just want to provide some quick feedback then do that below as always. If there's something bigger that warrants a more detailed conversation we'd like you to do that over in our GitHub <a href="https://github.com/OctopusDeploy/Specs/blob/master/VariableEditorRedesign/index.md" target="_blank">Variable Editor Redesign SPEC document.
+We'd love to hear your feedback on the plans for the release of the variable editor. What we'd like to ask is that if you just want to provide some quick feedback then do that below in the comments. If there's something bigger that warrants a more detailed conversation please comment over on our GitHub <a href="https://github.com/OctopusDeploy/Specs/blob/master/VariableEditorRedesign/index.md" target="_blank">Variable Editor Redesign SPEC document.
 
 
 <script>
