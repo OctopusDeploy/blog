@@ -2,7 +2,7 @@
 title: "Octopus July Release 3.15"
 description: This month's release includes multi-tenant deployment improvements, Octopus Server Let's Encrypt integration, the OctoWatch mobile app and more!
 author: matt.richardson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-release3-15.png
 tags:
  - New Release
@@ -18,7 +18,7 @@ This month's release includes a big improvement to multi-tenant deployments, Oct
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=mPhwHndEEzk" frameborder="0" allowfullscreen></iframe>
 
 ## Let's Encrypt Integration
 
