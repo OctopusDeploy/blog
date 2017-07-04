@@ -1,6 +1,6 @@
 ---
 title: "Octopus June Release 3.15"
-description: This month's release ... 
+description: This month's release includes multi-tenant deployment improvements, Octopus Server Let's Encrypt integration, the OctoWatch mobile app and more!
 author: matt.richardson@octopus.com
 visibility: private
 metaImage: metaimage-release3-15.png
@@ -10,7 +10,7 @@ tags:
 
 ![Octopus 3.14 release announcement](blogimage-release-3-15.png)
 
-This month's release ...
+This month's release includes a big improvement to multi-tenant deployments, Octopus Server Let's Encrypt integration, the OctoWatch mobile app and some great smaller improvements! 
 
 ## In this post
 
@@ -26,9 +26,9 @@ We're a big fan of security here at Octopus, and we want to make it easy for you
 
 ## Allow un-tenanted projects to be deployed to tenanted machines
 
-During the development of multi-tenancy we decided to make a clear distinction between tenanted and un-tenanted deployment targets. As such we prevented un-tenanted projects from being deployed to tenanted machines. Our reasoning was essentially safety-first; we didn't want to ever leak tenanted deployments or variables.
+During the development of multi-tenant deployments, we decided to make a clear distinction between tenanted and un-tenanted deployment targets. As such we prevented un-tenanted projects from being deployed to tenanted machines. Our reasoning was essentially safety-first; we didn't want to ever leak tenanted deployments or variables.
 
-However this prevented a number of valid scenarios. For example deploying a common component (e.g. a telemetry service) to tenanted machines, or simply sharing a development server between tenanted and un-tenanted projects.
+However this prevented a number of valid scenarios. For example, deploying a common component (e.g. a telemetry service) to tenanted machines, or simply sharing a development server between tenanted and un-tenanted projects.
 
 _Note: this also applies to accounts and certificates, as they can also be scoped to tenants._
 
