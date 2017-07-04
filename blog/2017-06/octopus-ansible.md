@@ -1,6 +1,6 @@
 ---
 title: "Managing Ansible Deployments with Octopus"
-visibility: private
+visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy Ansible scripts from Octopus"
 metaImage: linux-metaimage.png
