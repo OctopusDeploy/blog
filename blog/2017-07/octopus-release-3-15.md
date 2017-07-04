@@ -1,5 +1,5 @@
 ---
-title: "Octopus June Release 3.15"
+title: "Octopus July Release 3.15"
 description: This month's release includes multi-tenant deployment improvements, Octopus Server Let's Encrypt integration, the OctoWatch mobile app and more!
 author: matt.richardson@octopus.com
 visibility: private
