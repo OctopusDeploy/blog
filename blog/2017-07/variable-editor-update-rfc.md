@@ -13,7 +13,7 @@ In the 4.0 release, we plan to overhaul the variable editor. This has been one o
 Based on the feedback received our goal for the first release of the variable editor is to make a table editing experience work as expected with the inclusion of some new features:
 
 - Provide multiple values with different scopes to one variable
-- Add a description to a variable
+- Add a description to a variable in the popup editor and hover over the comment icon ![Octopus variable editor - description icon](description.png "width=16") in the table to view
 - Ability to enter multiple values to a scope when adding a variable.
 
 ## User scenarios
@@ -36,7 +36,8 @@ The variable editor will inherit the new 4.0 UI and maintain high-level concepts
 
 New UI patterns have been introduced to help filter and display information better:
 
-- An advanced filter which is displayed by default and can be hidden
+- An advanced filter which is displayed by default and can be hidden by the filter icon ![Octopus variable editor - filter icon](filter.png "width=16")
+
 - Being able to filter by variables with a warning
 - Expanding panels so you can now see what variables and common variable templates belong to which variable set
 - Source icons help distinguish between the variable types.
@@ -62,7 +63,7 @@ New UI patterns have been introduced to help filter and display information bett
 ![Octopus variable editor - all variables](all-variables.png "width=500")
 
 ## Adding a new variable
-The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which cause this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows adding new variable.
+The current variable editor table has the new variable row at the bottom of the table. Many users have can have lots of entries which causes this empty row to appear off the screen. We have moved the empty add row to the top of the table to make adding a variable quick and easy, no matter how many variables you have. You can click in the name cell to start adding a value or click the “Add new variable button” to create a new row. The video below shows adding new variable.
 
 <img class="gifplayer" src="https://i.octopus.com/blog/2017-07/adding-variables.png"  height="auto" width="100%" alt="Octopus Deploy adding variables" data-gif="https://i.octopus.com/blog/2017-07/adding-variables.gif">
 
@@ -151,7 +152,7 @@ The advanced settings in popup editor include:
 
 ## Performance and browser support
 
-As part of 4.0 we want to take full advantage of the progress the Web has made since our last redesign in 2013. This means that Octopus 4 will only support Internet Explorer (IE) 11 and up. The 4.0 re-write will also improve the performance, allowing large amounts of data to be loaded and filtered quickly. Please read our GitHub issue for more information on <a href="https://github.com/OctopusDeploy/Issues/issues/3457">Octopus 4.0 browser support</a>.
+As part of 4.0 we want to take full advantage of the progress the Web has made since our last redesign in 2013. This means that Octopus 4.0 will only support Internet Explorer (IE) 11 and up. The 4.0 re-write will also improve the performance, allowing large amounts of data to be loaded and filtered quickly. Please read our GitHub issue for more information on <a href="https://github.com/OctopusDeploy/Issues/issues/3457">Octopus 4.0 browser support</a>.
 
 ## Feedback
 
