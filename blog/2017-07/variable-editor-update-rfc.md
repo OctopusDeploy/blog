@@ -2,7 +2,7 @@
 title: "Variable Editor Redesign - RFC"
 description: Updates to the variable editor ... 
 author: jessica.ross@octopus.com
-visibility: private
+visibility: public
 metaImage: 
 tags:
  - RFC
