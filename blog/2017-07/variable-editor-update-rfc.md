@@ -161,6 +161,7 @@ We think what we have outlined above will improve the way we add variables and p
 We'd love to hear your feedback on the plans for the release of the variable editor. What we'd like to ask is that if you just want to provide some quick feedback then do that below in the comments. If there's something bigger that warrants a more detailed conversation please comment over on our GitHub <a href="https://github.com/OctopusDeploy/Specs/blob/master/VariableEditorRedesign/index.md" target="_blank">Variable Editor Redesign SPEC document.
 
 
+
 <script>
   window.onload = function() {
     $('.gifplayer').gifplayer();
