@@ -158,7 +158,7 @@ As part of 4.0 we want to take full advantage of the progress the Web has made s
 
 We think what we have outlined above will improve the way we add variables and provide a better platform for us to add more advanced features to the editor.
 
-We'd love to hear your feedback on the plans for the release of the variable editor. What we'd like to ask is that if you just want to provide some quick feedback then do that below in the comments. If there's something bigger that warrants a more detailed conversation please raise an issue over on our GitHub <a href="https://github.com/OctopusDeploy/Specs/blob/master/VariableEditorRedesign/index.md" target="_blank">Variable Editor Redesign SPEC document.
+We'd love to hear your feedback on the plans for the release of the variable editor. What we'd like to ask is that if you just want to provide some quick feedback then do that below in the comments. If there's something bigger that warrants a more detailed conversation please raise an issue over on our GitHub SPEC repo <a href="https://github.com/OctopusDeploy/Specs/blob/master/VariableEditorRedesign/index.md" target="_blank">Variable Editor Redesign SPEC repo.
 
 
 
