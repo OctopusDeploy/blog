@@ -22,4 +22,4 @@ I am excited as a member of Octopus Deploy as it means working with great people
 
 In my spare time, I love learning new technologies, doing open source projects, fishing and Go Karting.
 
-You can find me ([Twitter](https://twitter.com/nmolecule/), [GitHub](https://github.com/mayuanyang/)), and my personal page is at [https://mayuanyang.github.io/).
+You can find me ([Twitter](https://twitter.com/nmolecule/), [GitHub](https://github.com/mayuanyang/)), and my personal page  [here](https://mayuanyang.github.io/).
