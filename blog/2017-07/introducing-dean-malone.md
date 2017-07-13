@@ -16,4 +16,4 @@ I've been developing software for quite a few years now, and have worked in a va
 
 I work with a range of technologies, and I particularly enjoy product development and building quality software that genuinely makes life easier for others. 
 
-Although I live in Melbourne I am still a country lad at heart and love the great outdoors. I'm an avid DIYer and enjoy building/fixing all sorts of things.
+I live in Melbourne however I'm still a country lad at heart, and love being in the great outdoors with family and friends. I'm also an avid DIYer and in my spare time enjoy building and fixing all sorts of things, especially if it means buying more tools.
