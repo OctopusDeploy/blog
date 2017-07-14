@@ -7,13 +7,13 @@ tags:
 ---
 
 <div style="float: right; margin: 30px; margin-top: 0">
-<img alt="Profile Pic" src="https://i.octopus.com/site/team/avatar-alexr-140.png" height="140" width="140" />
+<img alt="Profile Pic" src="https://i.octopus.com/site/team/avatar-alexr-140.jpg" height="140" width="140" />
 </div>
 
-Hi, I'm Dean and I have just joined the Octopus team.
+Hi, I'm Alex and I have just joined the Octopus #teamawesome, aka the Octopus Support Team.
 
-I've been developing software for quite a few years now, and have worked in a variety of industries including education, health care, insurance and defence.
+I've been professionally supporting people in IT for almost 16 years [oh hey [Windows XP](https://en.wikipedia.org/wiki/Windows_XP)], starting as a lowly support person for a small IT retailer and working my way up to be a support team lead at Sullivan Nicolaides Pathology.
 
-I work with a range of technologies, and I particularly enjoy product development and building quality software that genuinely makes life easier for others. 
+During that span of time I have first hand seen the affects of bad releases and release processes and I am very invested in supporting you so that it never happens again!
 
-I live in Melbourne however I'm still a country lad at heart, and love being in the great outdoors with family and friends. I'm also an avid DIYer and in my spare time enjoy building and fixing all sorts of things, especially if it means buying more tools.
+When I'm not loving you with quality support I can generally be found providing friends with there own IT support (and experimenting with VLAN routing) with coffee in hand. At night I will be found watching [anything](http://www.supercars.com/) [on](http://www.fiawec.com/) [four](https://www.imsa.com/) [wheels](https://www.formula1.com/) [that](http://www.indycar.com/) [races](http://europeanlemansseries.com/). My loving wife and 3 small girls put up with my flights of motorsport fancy and support me in my general nerdery/coffee addiction.
