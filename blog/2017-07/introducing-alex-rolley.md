@@ -12,7 +12,7 @@ tags:
 
 Hi, I'm Alex and I have just joined the Octopus #teamawesome, aka the Octopus Support Team.
 
-I've been professionally supporting people in IT for almost 16 years [oh hey [Windows XP](https://en.wikipedia.org/wiki/Windows_XP)], starting as a lowly support person for a small IT retailer and working my way up to be a support team lead at Sullivan Nicolaides Pathology.
+I've been professionally supporting people in IT for almost 16 years [oh hey [Windows XP](https://en.wikipedia.org/wiki/Windows_XP)], starting as a lowly support person for a small IT retailer and working my way up to be a support team lead at [Sullivan Nicolaides Pathology](http://snp.com.au).
 
 During that span of time I have first hand seen the affects of bad releases and release processes and I am very invested in supporting you so that it never happens again!
 
