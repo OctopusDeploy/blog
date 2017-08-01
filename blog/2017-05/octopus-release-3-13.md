@@ -4,7 +4,7 @@ description: This month's release brings some exciting new features including su
 author: mark.siedle@octopus.com
 visibility: public
 tags:
- - New Release
+ - New Releases
  - Azure Service Fabric
 ---
 

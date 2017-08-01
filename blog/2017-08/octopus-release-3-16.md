@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: private
 metaImage: metaimage-release3-16.png
 tags:
- - New Release
+ - New Releases
 ---
 
 ![Octopus 3.16 release announcement](blogimage-release-3-16.png)

@@ -5,7 +5,7 @@ author: matt.richardson@octopus.com
 visibility: public
 metaImage: metaimage-release3-15.png
 tags:
- - New Release
+ - New Releases
 ---
 
 ![Octopus 3.14 release announcement](blogimage-release-3-15.png)
