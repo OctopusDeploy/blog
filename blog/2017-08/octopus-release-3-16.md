@@ -1,5 +1,5 @@
 ---
-title: "Octopus July Release 3.16"
+title: "Octopus August Release 3.16"
 description: This month's release includes ...
 author: rob.pearson@octopus.com
 visibility: private
