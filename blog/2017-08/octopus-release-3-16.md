@@ -39,9 +39,9 @@ Because .NET Core 2.0 is currently a preview release, we felt obliged to mark th
 
 ## Feature 2
 
-## Feature 3
+## Let's Encrypt required update
 
-
+Let's Encrypt recently deployed an update, returning more data from a specific API call. Unfortunately the library we use to communicate with Let's Encrypt was unable to handle this, meaning both new registrations and renewals were unable to complete successfully. If you have setup the Let's Encrypt integration, please upgrade to ensure that your Portal certificate renews correctly.
 
 ## Breaking changes
 
