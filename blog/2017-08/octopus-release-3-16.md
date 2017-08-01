@@ -10,9 +10,7 @@ tags:
 
 ![Octopus 3.16 release announcement](blogimage-release-3-16.png)
 
-This month's release is a bit smaller but it still has some awesome features. We've made it far easier to deploy to SSH deployment targets, like Ubuntu, CentOS or macOS, without the need to install Mono.  We've also upgraded 
-
-
+This month's release is a bit smaller but it still has some awesome features. We've made it far easier to deploy to SSH deployment targets, like Ubuntu, Red Hat Enterprise Linux or macOS, without the need to install Mono. This make is a lot easier to deploy to these other platforms!  We've also upgraded ScriptCS for better scripting with C#, added a new authentication provider for the Okta identity management service and include numerous other minor enhancements and fixes.  Read on for the full details.
 
 ## In this post
 
@@ -20,11 +18,11 @@ This month's release is a bit smaller but it still has some awesome features. We
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FmyE4v68MPQ" frameborder="0" allowfullscreen></iframe>
 
 ## SSH Targets sans Mono 
 
-Octopus Deploy supports deploying to Linux and MacOS via [SSH Targets](https://octopus.com/docs/deployment-targets/ssh-targets).
+Octopus Deploy supports deploying to Linux and macOS via [SSH Targets](https://octopus.com/docs/deployment-targets/ssh-targets).
 
 Because [Calamari](https://octopus.com/docs/api-and-integration/calamari) (the Octopus deployment executable) is built with .NET, [Mono](http://www.mono-project.com/) was required to be installed on SSH Target servers.
 
