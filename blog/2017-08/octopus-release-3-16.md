@@ -10,7 +10,7 @@ tags:
 
 ![Octopus 3.16 release announcement](blogimage-release-3-16.png)
 
-This month's release is a bit smaller but it still has some awesome features. We've made it far easier to deploy to SSH deployment targets, like Ubuntu, Red Hat Enterprise Linux or macOS, without the need to install Mono. This make is a lot easier to deploy to these other platforms!  We've also upgraded ScriptCS for better scripting with C#, added a new authentication provider for the Okta identity management service and include numerous other minor enhancements and fixes.  Read on for the full details.
+This month's release is a bit smaller but it still has some awesome features. The biggest change is that we've made it far easier to deploy to SSH deployment targets, like Ubuntu, Red Hat Enterprise Linux or macOS, by making the requirement for the Mono framework optional. This make is a lot easier to deploy to these other platforms!  We've also upgraded ScriptCS for better scripting with C#, added a new authentication provider for the Okta identity management service and include numerous other minor enhancements and fixes. Read on for the full details.
 
 ## In this post
 
