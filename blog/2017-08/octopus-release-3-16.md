@@ -40,7 +40,7 @@ Because .NET Core 2.0 is currently a preview release, we felt obliged to mark th
 
 Octopus supports customs scripts written in C# and this is powered by [ScriptCS](http://scriptcs.net/).  In this release, we've upgraded the library so you get the most modern ScriptCS support available.  
 
-Our [custom scripts}(https://octopus.com/docs/deploying-applications/custom-scripts) documentation covers everything you need to get up and running with writing C# scripts or any of our other supported languages.
+Our [custom scripts](https://octopus.com/docs/deploying-applications/custom-scripts) documentation covers everything you need to get up and running with writing C# scripts or any of our other supported languages.
 
 ## Okta authentication provider
 
