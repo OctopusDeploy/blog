@@ -2,7 +2,7 @@
 title: "Octopus August Release 3.16"
 description: This month's release includes Mono-less deployments to Linux and Mac, updated ScriptCS support, bug fixes and more.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-release3-16.png
 tags:
  - New Releases
