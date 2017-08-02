@@ -10,7 +10,7 @@ tags:
 
 ![Octopus 3.16 release announcement](blogimage-release-3-16.png)
 
-This month's release is a bit smaller but it still has some awesome features. The biggest change is that we've made it far easier to deploy to SSH deployment targets, like Ubuntu, Red Hat Enterprise Linux or macOS, by making the requirement for the Mono framework optional. This make is a lot easier to deploy to these other platforms!  We've also upgraded ScriptCS for better scripting with C#, added a new authentication provider for the Okta identity management service and include numerous other minor enhancements and fixes. Read on for the full details.
+While this month's release is a bit smaller than usual (we've been busy beavering away on some super exciting stuff) it still has some awesome features. The biggest change is that we've made it far easier to deploy to SSH deployment targets, like Ubuntu, Red Hat Enterprise Linux or macOS, by removing the requirement for the Mono framework. This makes it a lot easier to deploy to these platforms.  We've also upgraded ScriptCS for better scripting with C#, added a new authentication provider for the [Okta identity management service](https://okta.com) and include numerous other minor enhancements and fixes. Read on for the full details.
 
 ## In this post
 
@@ -22,31 +22,27 @@ This month's release is a bit smaller but it still has some awesome features. Th
 
 ## SSH Targets sans Mono 
 
-Octopus Deploy supports deploying to Linux and macOS via [SSH Targets](https://octopus.com/docs/deployment-targets/ssh-targets).
-
-Because [Calamari](https://octopus.com/docs/api-and-integration/calamari) (the Octopus deployment executable) is built with .NET, [Mono](http://www.mono-project.com/) was required to be installed on SSH Target servers.
+Octopus Deploy supports deploying to Linux and macOS via [SSH Targets](https://octopus.com/docs/deployment-targets/ssh-targets). Because [Calamari](https://octopus.com/docs/api-and-integration/calamari) (the Octopus deployment executable) is built with .NET, [Mono](http://www.mono-project.com/) was a pre-requisite on SSH Target servers.
 
 As of Octopus 3.16, Mono is no longer required!
 
-SSH Targets now provide an option to use a self-contained Calamari.   
+SSH Targets now provide an option to use a self-contained Calamari.
 
 ![SSH Target .NET Settings](ssh-mono-not-installed.png "width=500")
 
-The self-contained Calamari is built with .NET Core 2.0.
-
-Because .NET Core 2.0 is currently a preview release, we felt obliged to mark this feature as _beta_.  But be assured, this is a fully supported feature.  We believe that .NET Core will provide the foundation of Octopus Deploy's cross-platform support in the future, and we will likely at some point deprecate the Mono-based option. 
+The self-contained Calamari is built with .NET Core 2.0. Because .NET Core 2.0 is currently a preview release, we felt obliged to mark this feature as _beta_. But be assured, this is fully supported. We believe that .NET Core will provide the foundation of Octopus Deploy's cross-platform support in the future, and we will likely deprecate the Mono-based option at some point. 
 
 ## ScriptCS upgraded to 0.17.1
 
-Octopus supports customs scripts written in C# and this is powered by [ScriptCS](http://scriptcs.net/).  In this release, we've upgraded the library so you get the most modern ScriptCS support available.  
+Octopus supports custom scripts written in C# and this is powered by [ScriptCS](http://scriptcs.net/). In this release, we've upgraded the library so you get the most modern ScriptCS support available. There are some breaking changes in this ScriptCS release - read more below.
 
-Our [custom scripts](https://octopus.com/docs/deploying-applications/custom-scripts) documentation covers everything you need to get up and running with writing C# scripts or any of our other supported languages.
+Our [custom scripts documentation](https://octopus.com/docs/deploying-applications/custom-scripts) covers everything you need to get up and running with writing C# scripts or any of our other supported languages. 
 
 ## Okta authentication provider
 
-Octopus now includes an Okta authentication provider so you can easily authenitcate with this service.  Thanks to [Brent Montague](https://github.com/brentm5) for submitting a PR to add this support.  
+Octopus now includes an Okta authentication provider so you can easily authenticate with this service. Big thanks to [Brent Montague](https://github.com/brentm5) for being awesome and submitting a PR for this.
 
-Our [authentication providers](https://octopus.com/docs/administration/authentication-providers) documentation, provides more information on how to get up and running with this new provider or any of the existing ones.
+Our [authentication providers documentation](https://octopus.com/docs/administration/authentication-providers) provides more information on how to get up and running with this new provider or any of the existing ones.
 
 ## Let's Encrypt required update
 
@@ -54,7 +50,7 @@ Let's Encrypt recently deployed an update, returning more data from a specific A
 
 ## Breaking changes
 
-We need to point out that the latest ScriptCS has introduced some breaking changes so it's important to review their [release notes](https://github.com/scriptcs/scriptcs/releases/tag/v0.17.0) before upgrade.  This only affects projects with script steps written using C# which are powered by ScriptCS under the hood.  
+We need to point out that the latest ScriptCS has introduced some breaking changes so it's important to review their [release notes](https://github.com/scriptcs/scriptcs/releases/tag/v0.17.0) before upgrading. This only affects projects with script steps written using C#, which are powered by ScriptCS under the hood.
 
 ## Upgrading
 
@@ -64,4 +60,4 @@ All of the usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/a
 
 ## Wrap up
 
-That’s it for this month. We hope you enjoy the latest features and our new release. Feel free to leave us a comment and let us know what you think!  Happy deployments!
+That’s it for this month. We hope you enjoy the new features and our latest release. Feel free to leave us a comment and let us know what you think! Happy deployments!
