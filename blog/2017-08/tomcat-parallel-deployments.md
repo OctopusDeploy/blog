@@ -1,6 +1,6 @@
 ---
 title: "Enabling Parallel Deployments in Tomcat with Octopus Deploy"
-visibility: private
+visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy multiple versions of your web applications to Tomcat through Octopus Deploy"
 metaImage: java-octopus-meta.png
