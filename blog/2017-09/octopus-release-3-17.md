@@ -22,15 +22,15 @@ This months release is big and we're very proud to announce ... `Rob to finish i
 
 ## First-class Java deployments
 
-TODO: Matt/Michael
+`TODO: Matt/Michael`
 
 ## Octopus API Swagger Support
 
-TODO: Cam
+`TODO: Cam`
 
-## Authentication administration and performance improvements
+## User administration and authentication performance improvements
 
-TODO: Shannon
+`TODO: Shannon`
 
 ## Breaking changes
 
