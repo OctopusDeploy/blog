@@ -22,7 +22,11 @@ This months release is big and we're very proud to announce ... `Rob to finish i
 
 ## First-class Java deployments
 
-`TODO: Matt/Michael`
+3.17 introduces a number of new steps for deploying and managing applications against Java application servers, as well as providing support for managing `jar`, `war`, `ear` and `rar` files in the built-in Octopus library.
+
+![Java Steps](java-steps.png)
+
+These new steps allow Java applications to be deployed to WildFly 10+ and Red Hat JBoss EAP 6+ application servers, as well as Tomcat 7+. In addition, the `Deploy Java Archive` step allows Java applications to be copied to a custom location on the target machine, allowing Java applications to be sent to any server capable of using file copy deployments.
 
 ## Octopus API Swagger Support
 
