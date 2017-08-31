@@ -30,7 +30,7 @@ These new steps allow Java applications to be deployed to WildFly 10+ and Red Ha
 
 See the [documentation](http://g.octopushq.com/JavaAppDeploy) for more information on these new steps.
 
-## Octopus API Swagger Support
+## Swagger support for the Octopus API
 
 `TODO: Cam`
 
