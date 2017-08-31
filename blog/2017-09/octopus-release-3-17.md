@@ -26,7 +26,9 @@ This months release is big and we're very proud to announce ... `Rob to finish i
 
 ![Java Steps](java-steps.png)
 
-These new steps allow Java applications to be deployed to WildFly 10+ and Red Hat JBoss EAP 6+ application servers, as well as Tomcat 7+. In addition, the `Deploy Java Archive` step allows Java applications to be copied to a custom location on the target machine, allowing Java applications to be sent to any server capable of using file copy deployments.
+These new steps allow Java applications to be deployed to WildFly 10+ and Red Hat JBoss EAP 6+ application servers, as well as Tomcat 7+. In addition, the `Deploy Java Archive` step allows Java applications to be copied to a custom location on the target machine, allowing Java applications to be deployed in any Java application server capable of using file copy deployments.
+
+See the [documentation](http://g.octopushq.com/JavaAppDeploy) for more information on these new steps.
 
 ## Octopus API Swagger Support
 
