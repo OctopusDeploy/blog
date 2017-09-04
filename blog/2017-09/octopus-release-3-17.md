@@ -32,7 +32,13 @@ See the [documentation](http://g.octopushq.com/JavaAppDeploy) for more informati
 
 ## Swagger support for the Octopus API
 
-`TODO: Cam`
+Swagger (also called OpenApi) is a standard for describing a REST API. Many companies have adopted it for describing their public API. Now in 3.17 Octopus Deploy has started documenting it's API using Swagger.
+
+There are 2 variants of the swagger document, a JSON formatted one available at `[server]/api/swagger.json`, and a YAML formatted version at `[server]/api/swagger.yaml`.
+
+3.17 also now includes the default Swagger UI for displaying the Swagger document in a nice human readable way. That UI is available at `[server]/swaggerui/`
+
+![Swagger UI](swagger.png)
 
 ## User administration and authentication performance improvements
 
