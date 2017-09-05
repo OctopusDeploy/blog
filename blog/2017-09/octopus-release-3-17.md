@@ -42,7 +42,13 @@ There are 2 variants of the swagger document, a JSON formatted one available at 
 
 ## User administration and authentication performance improvements
 
-`TODO: Shannon`
+We are introducing several changes around user administration to fix some performance issues and better model users within Octopus. The key performance fix relates to when the security groups are checked when the Active Directory provider is in use. In previous versions the groups were retrieved when the user logged in. In large/complex directory scenarios this could take a while and the user would experience a long delay when logging in. To fix this we now check the groups in the background on an hourly schedule (it initially runs shortly after startup, so a restart can be used to force it to run if you need). This change also fixes an issue where groups previously wouldn't be loaded for service account users, because they don't log in.
+
+The other big change related to user modelling is the introduction of Logins, which allows multiple Logins to be associated with a given user. For example, you could now create a user and associate an Active Directory account and a GoogleApps account (assuming you had them both enabled). It also removes the need to force the username to be UPN for the Active Directory provider (it will default to UPN if a user is automatically created on login, but doesn't have to be if creating users manually). To add a Active Directory login for a user there is also no need to guess UPNs anymore, you go through a search dialog similar to when editing a team and looking for security groups.
+
+And one final note, automatic user creation can now be disabled. It still defaults to being enabled, but you can now chose to disable it. Enabling/disabling is done via the `configure` command line and can be set per authentication provider.
+
+See the updated [documentation](http://g.octopushq.com/AuthenticationProviders) for more information.
 
 ## Breaking changes
 
