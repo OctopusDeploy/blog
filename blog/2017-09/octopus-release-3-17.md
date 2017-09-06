@@ -18,7 +18,7 @@ This months release is big and we're very happy to ship Octopus 3.17 with first-
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2vpxRy2yXAI" frameborder="0" allowfullscreen></iframe>
 
 ## First-class Java deployments
 
