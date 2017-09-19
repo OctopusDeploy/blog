@@ -1,0 +1,25 @@
+---
+title: "Porting Octopus.com to ASP.NET Core 2.0"
+description: This month we ported our website to ASP.NET Core 2.0. This blog post shares some of the learnings along the way. 
+author: paul.stovell@octopus.com
+visibility: private
+tags:
+ - Lessons
+ - Ecosystem
+---
+
+This week we shipped a new version of this website - Octopus.com - which is now running in production on ASP.NET Core 2.0. In this blog post I'd like to share some ...
+
+Like many .NET developers, I've been following the progress of .NET Core since the early days of `K` and `DNU`. I built throwaway projects, and even started writing a [short book to help explain some of the architectural differences](https://leanpub.com/aspnetdeployment/read) in ASP.NET Core. .... Couldn't do much with .NET Core 1 blah blah, 2.0 finally makes it useful. 
+
+First, a quick overview of blah
+
+ - Static marketing/content pages
+ - Blog posts and documentation
+
+Some stats that may or may not be useful. 
+
+ - 
+
+ - Two websites (public, and backend administration for e.g., orders) 
+
