@@ -16,5 +16,5 @@ I've done a pretty diverse range of things.  I've spent time as a developer for 
 
 Now, I'm keen to find out how much .NET and C# I can squeeze into my head and deploy back out again.
 
-When not at the keyboard, I'm likely to be found outside.  I like running, sports that involve running and also running arround - walking is a bit like slow running, so it's alright too.  My kids ensure that I get lots of running, and my sheep and chickens also encourage me out often enough.
+When not at the keyboard, I'm likely to be found outside.  I like running, sports that involve running and also running around - walking is a bit like slow running, so it's alright too.  My kids ensure that I get lots of running, and my sheep and chickens also encourage me out often enough.
 
