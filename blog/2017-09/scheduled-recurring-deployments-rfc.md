@@ -11,6 +11,7 @@ tags:
 
 This post is a request-for-comments on our thoughts at this stage.
 
+!toc
 
 ## What are we trying to solve?
 
