@@ -1,0 +1,120 @@
+---
+title: "Scheduled Recurring Deployments RFC"
+description: "Scheduled recurring deployments is something that many other CI/CD tools provide out-of-the-box, and we think Octopus should support this functionality as well! This is a request-for-comments."
+author: henrik.andersson@octopus.com
+visibility: private
+tags:
+ - RFC
+---
+
+> The #5 highest voted item in our UserVoice is to be able to [schedule recurring deployments](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments).
+
+This post is a request-for-comments on our thoughts at this stage.
+
+
+## What are we trying to solve?
+
+We have had a lot of customers tell us that they want to be able to setup a schedule where Octopus would automatically promote, or deploy, a release to an environment.
+
+There are, of course, ways to do this at the moment by using our excellent API. But it involves setting up a scheduled task that calls a script, or creating an Azure Function, that calls the Octopus API to promote, or deploy, the release in question. This can be quite a cumbersome solution for something that many other CI/CD tools provides out-of-the-box.
+
+From the customers that have commented on the UserVoice item, we've determined that we have a couple of options on how we can implement this feature.
+
+### Project triggers
+
+The advantage of project triggers is that you can specify which channel should be used when determining which release to promote, or deploy, and the available environments would also be determined by the lifecycle used in the channel.
+Project triggers come with a downside though in that you would have to specify the trigger on each of your projects.
+
+The scheduled recurring deployments configuration would live under the `Triggers` tab of your project:
+
+![](srd-triggers-tab.png)
+
+Creating a new scheduled deployment trigger will take you to a new page where you configure the schedule details and what action should take place when the trigger is run.
+
+![](srd-new-scheduled-trigger.png)
+
+### Lifecycle triggers
+
+The advantage of lifecycle triggers is that you can share the same schedule across many projects, instead of having to specify it on each project.
+Lifecycle triggers come with a downside though in that you won't be able to use channels when configuring the trigger.
+
+The scheduled recurring deployments configuration would live in the right sidebar of your lifecycle.
+
+![](srd-triggers-on-lifecycle.png)
+
+Creating a new scheduled deployment trigger will open up a dialog where you configure the schedule details and what action should take place when the trigger is run.
+
+![](srd-add-trigger-on-lifecycle.png)
+
+
+### Trigger schedules
+
+From the customers that have commented on the UserVoice item, we will provide the following trigger schedules to configure when a trigger should be run.
+
+The daily and days per week schedules allow for an interval to be chosen, and the available intervals are:
+- Once per day
+- Every 3 hours
+- Every 2 hours
+- Every hour
+- Every 30 minutes
+- Every 15 minutes
+
+#### Daily schedule
+
+Run using the interval chosen every day starting from the specified start time.
+
+![](srd-new-daily-trigger.png)
+
+
+#### Days per week schedule
+
+Run using the interval chosen on the days specified starting from the specified start time.
+
+![](srd-new-days-per-week-trigger.png)
+
+
+#### Days per month schedule
+
+Run on a specific day of the month or the 1st, 2nd, 3rd, 4th or last day of the week in the month at the specified start time.
+
+![](srd-new-days-per-month-trigger.png)
+
+#### Custom `CRON` expression
+
+Run according to a [CRON expression](https://en.wikipedia.org/wiki/Cron#CRON_expression).
+
+> A CRON expression is a string comprising five or six fields separated by white space that represents a set of times, normally as a schedule to execute some routine.
+
+![](srd-new-cron-trigger.png)
+
+
+### Trigger actions
+
+From the customers that have commented on the UserVoice item, we will provide the following trigger actions to configure what should happen when the scheduled deployment is run.
+
+#### Promote latest release
+
+Promotes the latest **successful** release in the chosen source environment to the chosen destination environment.
+
+![](srd-promote-latest-release.png)
+
+
+#### Deploy latest release
+
+Deploys the latest **successful** release in a project to the chosen environment.
+
+![](srd-deploy-latest-release.png)
+
+
+#### Create and deploy new release
+
+Creates a new release and deploys this to the chosen environment.
+
+![](srd-create-and-deploy-release.png)
+
+
+## Feedback
+
+**We would really like to hear from you!** Perhaps there are some pieces of the puzzle we've missed for your scenario?
+
+If you have any other thoughts or opinions on how scheduled recurring deployments should look, add your comments below or comment on and follow the open [GitHub ticket #3363](https://github.com/OctopusDeploy/Issues/issues/3633).
