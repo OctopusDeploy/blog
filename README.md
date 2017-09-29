@@ -1,7 +1,6 @@
-This repository contains the documentation for [Octopus Deploy](https:/octopus.com/docs).
+This repository contains the [Octopus.com/blog](https://octopus.com/blog/) posts.
 
 To contribute to documentation, read the following guide.
-
 
 # Conventions
 ## Lower case  and `-` delimited
@@ -19,9 +18,15 @@ For example:
 
 ```md
 ---
-title: Getting started
-description: From 0 to deployed, this guide walks you through getting started with Octopus.
-position: 0
+title: "Octopus September Release 3.17"
+description: This month's release includes first-class Java deployment support, Swagger support for the Octopus API bug fixes and more.
+author: rob.pearson@octopus.com
+visibility: public
+metaImage: metaimage-release3-17.png
+bannerImage: blogimage-release3-17.png
+tags:
+ - New Releases
+
 ---
 ```
 
