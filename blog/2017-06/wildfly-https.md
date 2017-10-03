@@ -3,7 +3,7 @@ title: "Deploying Certificates to WildFly"
 visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy certificates from Octopus to WildFly to enable HTTPS support"
-published: 2017-06-26
+published: 2017-06-22
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -14,14 +14,14 @@ tags:
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Depoloy Certificates with WildFly" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
 </div>
 
-A recent feature added to Octopus Deploy is the ability to [manage and deploy certificates](https://octopus.com/blog/certificates-feature) within your infrastructure.  In this blog post I’ll show you how to export certificates from Octopus into a Java keystore, and then use that keystore to secure a WildFly standalone or domain instance running on Windows.
+A recent feature added to Octopus Deploy is the ability to [manage and deploy certificates](https://octopus.com/blog/certificates-feature) within your infrastructure. In this blog post I’ll show you how to export certificates from Octopus into a Java keystore, and then use that keystore to secure a WildFly standalone or domain instance running on Windows.
 
 ## Prerequisites
 To run the commands and scripts in this blog post, you will need install some tools.
 
-The first is an OpenSSL client. I have used the Windows OpenSSL binaries made available from [Shining Light Productions](https://slproweb.com/products/Win32OpenSSL.html).
+The first is an OpenSSL client.  I have used the Windows OpenSSL binaries made available from [Shining Light Productions](https://slproweb.com/products/Win32OpenSSL.html).
 
-The second is the Groovy SDK. You can download installers from the [Groovy downloads page](http://groovy-lang.org/download.html).
+The second is the Groovy SDK.  You can download installers from the [Groovy downloads page](http://groovy-lang.org/download.html).
 
 These steps were tested with [WildFly 11.0.0.Alpha1](http://wildfly.org/downloads/).
 

@@ -3,7 +3,9 @@ title: "Deploying Certificates to Tomcat"
 visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy certificates from Octopus to Tomcat to enable HTTPS support"
+published: 2017-06-22
 metaImage: java-octopus-meta.png
+bannerImage: java-octopus.png
 tags:
  - Java
 ---
@@ -20,9 +22,9 @@ In this post I am going to show you how to do the same for Tomcat in Windows.
 
 To run the commands and scripts in this blog post, you will need install some tools.
 
-The first is an OpenSSL client. I have used the Windows OpenSSL binaries made available from [Shining Light Productions](https://slproweb.com/products/Win32OpenSSL.html).
+The first is an OpenSSL client.  I have used the Windows OpenSSL binaries made available from [Shining Light Productions](https://slproweb.com/products/Win32OpenSSL.html).
 
-The second is the Groovy SDK. You can download installers from the [Groovy downloads page](http://groovy-lang.org/download.html).
+The second is the Groovy SDK.  You can download installers from the [Groovy downloads page](http://groovy-lang.org/download.html).
 
 These steps were tested with [Tomcat 8](https://tomcat.apache.org/download-80.cgi), but should work with all versions of Tomcat over 6.
 
