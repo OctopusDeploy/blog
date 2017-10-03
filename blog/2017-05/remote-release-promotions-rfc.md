@@ -27,7 +27,7 @@ This post follows on from two earlier posts:
 
 ## The problem
 
-There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to. For example:
+There are scenarios where it makes sense for different Octopus Server instances to perform deployments depending on which environment is being deployed to.  For example:
 
 - Octopus Server 1 deploys to `Development` and `Test` environments
 - Octopus Server 2 deploys to `Staging` and `Production` environments

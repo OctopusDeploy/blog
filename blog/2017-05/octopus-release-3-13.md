@@ -3,6 +3,8 @@ title: "Octopus May Release 3.13"
 description: This month's release brings some exciting new features including support for Azure Service Fabric, HSTS, optional lifecycles and performance improvements, among other things!
 author: mark.siedle@octopus.com
 visibility: public
+published: 2017-05-03
+bannerImage: shipping-3-13-blogimage.png
 tags:
  - New Releases
  - Azure Service Fabric
@@ -35,7 +37,7 @@ Both steps require connection to a cluster. As such, we've included support for 
 
 :::hint
 **Service Fabric SDK**
-Due to Service Fabric dependencies, you will need to manually install the [Service Fabric SDK](https://g.octopushq.com/ServiceFabricSdkDownload) onto your Octopus Server. Then you can then start using Octopus to help orchestrate your Service Fabric application deployments.
+Due to Service Fabric dependencies, you will need to manually install the [Service Fabric SDK](https://g.octopushq.com/ServiceFabricSdkDownload) onto your Octopus Server.  Then you can then start using Octopus to help orchestrate your Service Fabric application deployments.
 :::
 
 ## Want to learn more?

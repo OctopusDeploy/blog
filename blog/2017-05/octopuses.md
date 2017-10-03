@@ -1,7 +1,9 @@
 ---
 title: "Octopuses"
 description: "There are some compelling reasons to use multiple Octopus Servers.  In Octopus Deploy 4.0 we want to add first-class support for these scenarios." 
+published: 2017-05-05
 metaImage: 4.0-kickoff-metaimage.png 
+bannerImage: 4.0-kickoff-blogimage.png
 visibility: public
 tags:
  - Architecture
@@ -13,7 +15,7 @@ tags:
 </div>
 
 ---
-When we first built Octopus, we imagined it would be used by small teams to deploy applications to a dozen or so machines. Over time, we've [seen customers scale Octopus up to many thousands of machines](https://octopus.com/blog/octostats), deploying hundreds of different projects. At that scale, customers need their Octopus Servers to be online at all times, so we support running a single [Octopus Server across a multi-node, high availability cluster](https://octopus.com/high-availability).
+When we first built Octopus, we imagined it would be used by small teams to deploy applications to a dozen or so machines.  Over time, we've [seen customers scale Octopus up to many thousands of machines](https://octopus.com/blog/octostats), deploying hundreds of different projects.  At that scale, customers need their Octopus Servers to be online at all times, so we support running a single [Octopus Server across a multi-node, high availability cluster](https://octopus.com/high-availability).
 
 One great big Octopus Server isn't always a great idea though.
 

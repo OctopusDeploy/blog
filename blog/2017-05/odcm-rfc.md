@@ -14,7 +14,7 @@ tags:
 </div>
 
 ---
-In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0. In that post we floated the idea of a tool that centrally manages a number of Octopus servers.
+In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0.  In that post we floated the idea of a tool that centrally manages a number of Octopus servers.
 
 In this post we are going to talk more about what this tool, provisionally named **Octopus Data Center Manager** (ODCM), would look like.
 
