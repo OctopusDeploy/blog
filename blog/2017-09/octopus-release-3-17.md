@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 published: 11/09/2017
 visibility: public
 metaImage: metaimage-release3-17.png
-bannerImage: blogimage-release3-17.png
+bannerImage: blogimage-release-3-17.png
 tags:
  - New Releases
 ---
