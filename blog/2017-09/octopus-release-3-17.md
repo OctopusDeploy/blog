@@ -2,7 +2,7 @@
 title: "Octopus September Release 3.17"
 description: This month's release includes first-class Java deployment support, Swagger support for the Octopus API bug fixes and more.
 author: rob.pearson@octopus.com
-published: 11/09/2017
+published: 2017-09-11
 visibility: public
 metaImage: metaimage-release3-17.png
 bannerImage: blogimage-release-3-17.png
