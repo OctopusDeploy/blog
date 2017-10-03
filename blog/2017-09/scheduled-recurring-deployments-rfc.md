@@ -111,8 +111,10 @@ Deploys the latest **successful** release in a project to the chosen environment
 
 Creates a new release and deploys this to the chosen environment.
 
-![](srd-create-and-deploy-release.png)
+![](srd-new-scheduled-trigger-deploy-new-release.png)
 
+**Deploying a new release with prompted values (such as package versions and prompted variables)**
+![](srd-new-scheduled-trigger-deploy-new-release-prompted-vars.png)
 
 ## Feedback
 
