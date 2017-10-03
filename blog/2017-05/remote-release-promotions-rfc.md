@@ -1,7 +1,9 @@
 ---
 title: "Remote Release Promotions RFC"
 description: We are designing a new feature to allow promoting Releases between different Octopus Servers (Spaces). You may want to do this for for security, geographic, or other reasons. This is a request-for-comments.  
+published: 2017-05-30
 metaImage: releasepromotions-metaimage.png 
+bannerImage: releasepromotions-blogimage.png
 visibility: public
 tags:
  - RFC 
