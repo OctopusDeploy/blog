@@ -3,7 +3,9 @@ title: "Deploying to Tomcat from Octopus Deploy"
 visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy to Tomcat hosted on a Linux server with Octopus Deploy"
+published: 2017-06-02
 metaImage: java-octopus-meta.png
+bannerImage: java-octopus.png
 tags:
  - Java
 ---
@@ -12,19 +14,14 @@ tags:
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Depoloy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
 </div>
 
-Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to 
-deploy packages to a variety of different destinations and via different methods.
+Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to deploy packages to a variety of different destinations and via different methods.
  
-Fortunately these same deployment steps can be used to deploy Java packages to Java web servers running in Linux out of 
-the box. 
+Fortunately these same deployment steps can be used to deploy Java packages to Java web servers running in Linux out of the box. 
 
-There are some caveats, which I will call out. The Octopus Deploy team is actively investigating how to improve
-support for Java, so expect to see improvements for Java developers in coming releases.
+There are some caveats, which I will call out. The Octopus Deploy team is actively investigating how to improve support for Java, so expect to see improvements for Java developers in coming releases.
  
-The following steps provide an example of the process that can be implemented with Octopus Deploy to deploy a WAR file 
-to a Tomcat server running in Linux.
+The following steps provide an example of the process that can be implemented with Octopus Deploy to deploy a WAR file to a Tomcat server running in Linux.
 
- 
 ## Building the WAR file
 First, I am going to assume that you have a Maven project building a WAR file handy. If not, there is a small demo 
 application at [https://github.com/OctopusDeploy/ThymeleafSpringDemo](https://github.com/OctopusDeploy/ThymeleafSpringDemo) 
