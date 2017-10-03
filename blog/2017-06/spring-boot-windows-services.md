@@ -3,7 +3,9 @@ title: "Deploying Spring Boot Applications as Windows Services"
 visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy a Spring Boot application as a Windows service with Octopus Deploy"
+published: 2017-09-13
 metaImage: java-octopus-meta.png
+bannerImage: java-octopus.png
 tags:
  - Java
 ---
@@ -12,13 +14,13 @@ tags:
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
 </div>
 
-A customer recently asked if it was possible to deploy a Spring Boot application as a Windows Service using Octopus Deploy. The [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-windows) does briefly mention a method for running Spring Boot applications as Windows services, but a lot of the details are left to the reader to figure out. So in this blog post I'll show you how to quickly run a standard Spring Boot application as a service.
+A customer recently asked if it was possible to deploy a Spring Boot application as a Windows Service using Octopus Deploy. The [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-windows) does briefly mention a method for running Spring Boot applications as Windows services, but a lot of the details are left to the reader to figure out.  So in this blog post I'll show you how to quickly run a standard Spring Boot application as a service.
 
 ## Java and Windows services
 
 There are two things we need to run a Spring Boot UberJAR as a Windows service.
 
-The first thing is an executable that Windows can actually run as the service. This is provided by the [winsw](https://github.com/kohsuke/winsw) project. Winsw is not specifically tied to Java, but it can be used to execute `java.exe`, which is all we need in order to start our Spring Boot JAR file.
+The first thing is an executable that Windows can actually run as the service. This is provided by the [winsw](https://github.com/kohsuke/winsw) project.  Winsw is not specifically tied to Java, but it can be used to execute `java.exe`, which is all we need in order to start our Spring Boot JAR file.
 
 The second thing is some way to gracefully shutdown a Java application running in the background. For that we have a simple project called the [Spring Boot Stopper](https://github.com/OctopusDeploy/SpringBootStopper) (based on the [Spring Boot Daemon](https://github.com/snicoll-scratches/spring-boot-daemon) project linked to from the Spring documentation). This application will communicate with a Spring Boot application via JMX and instruct it to shut down.
 
