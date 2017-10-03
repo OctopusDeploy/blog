@@ -12,7 +12,7 @@ tags:
 
 ![Octopus 3.17 release announcement](blogimage-release-3-17.png)
 
-This months release is big and we're very happy to ship Octopus 3.17 with first-class Java support! This is exciting because it enables teams building apps with the Java platform to deploy their applications in a safe, reliable and repeatable way.  We’re also shipping Swagger support for the Octopus API. Octopus is an API first system so anything you can do via our web portal or command line tools, you can do via our REST API.  Now, we’ve added Swagger support so it’s more discoverable and easier to work with. Finally, we’ve improved user administration and authentication performance.  Read on for all the exciting details!
+This months release is big and we're very happy to ship Octopus 3.17 with first-class Java support! This is exciting because it enables teams building apps with the Java platform to deploy their applications in a safe, reliable and repeatable way. We’re also shipping Swagger support for the Octopus API. Octopus is an API first system so anything you can do via our web portal or command line tools, you can do via our REST API. Now, we’ve added Swagger support so it’s more discoverable and easier to work with. Finally, we’ve improved user administration and authentication performance. Read on for all the exciting details!
 
 ## In this post
 
