@@ -1,7 +1,9 @@
 ---
 title: "Managing Spaces with Octopus Data Center Manager RFC"
 description: "We are designing a new product to manage Octopus Servers at scale. This is a request-for-comments."
+published: 2017-05-10
 metaImage: odcm-metaimage.png 
+bannerImage: odcm-blogimage.png
 visibility: public
 tags:
  - RFC
