@@ -3,7 +3,9 @@ title: "Deploying a Vault to WildFly"
 visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy a vault from Octopus to WildFly to secure passwords in configuration files"
+published: 2017-06-26
 metaImage: java-octopus-meta.png
+bannerImage: java-octopus.png
 tags:
  - Java
 ---
@@ -14,7 +16,7 @@ tags:
 
 When dealing with sensitive information like passwords, [Octopus Deploy provides you with the ability to encrypt and save these values](https://octopus.com/docs/deploying-applications/variables/sensitive-variables) to ensure they remain secure.
 
-If these passwords are for external systems like database servers, it is not uncommon to have to decrypt the passwords and store them in plain text in a configuration file somewhere to allow the password to actually be used. But saving sensitive information in plain text is not ideal, because it makes it vulnerable to a host of unsophisticated attacks like looking over someone's shoulder as they edit the configuration file, or catching the contents of the contents file as it is shared in a chat system, email or posted to a help forum, or checked into the history of a version control system.
+If these passwords are for external systems like database servers, it is not uncommon to have to decrypt the passwords and store them in plain text in a configuration file somewhere to allow the password to actually be used.  But saving sensitive information in plain text is not ideal, because it makes it vulnerable to a host of unsophisticated attacks like looking over someone's shoulder as they edit the configuration file, or catching the contents of the contents file as it is shared in a chat system, email or posted to a help forum, or checked into the history of a version control system.
 
 WildFly mitigates a number of these vulnerabilities by placing sensitive information into a [vault](https://developer.jboss.org/wiki/JBossAS7SecuringPasswords).
 
