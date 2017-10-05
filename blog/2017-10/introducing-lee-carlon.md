@@ -1,6 +1,6 @@
 ---
 title: Introducing Lee Carlon
-visibility: private
+visibility: public
 description: A brief introduction to Lee Carlon
 tags:
  - Company
