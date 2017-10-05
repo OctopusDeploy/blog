@@ -5,6 +5,7 @@ description: A brief introduction to Lee Carlon
 tags:
  - Company
 ---
+
 <div style="float: right; margin: 30px; margin-top: 0">
 <img alt="Profile Pic" src="https://i.octopus.com/site/team/avatar-leec.jpg" height="140" width="140" />
 </div>
