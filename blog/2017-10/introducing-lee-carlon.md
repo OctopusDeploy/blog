@@ -1,7 +1,7 @@
 ---
-title: "Introducing Lee Carlon“
+title: Introducing Lee Carlon
 visibility: private
-description: “A brief introduction to Lee Carlon“
+description: A brief introduction to Lee Carlon
 tags:
  - Company
 ---
