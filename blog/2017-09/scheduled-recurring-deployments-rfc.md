@@ -17,9 +17,9 @@ This post is a request-for-comments on our thoughts at this stage.
 
 We have had a lot of customers tell us that they want to be able to setup a schedule where Octopus would automatically promote, or deploy, a release to an environment.
 
-There are, of course, ways to do this at the moment by using our excellent API. But it involves setting up a scheduled task that calls a script, or creating an Azure Function, that calls the Octopus API to promote, or deploy, the release in question. This can be quite a cumbersome solution for something that many other CI/CD tools provides out-of-the-box.
+There are ways to do this at the moment by using our comprehensive API. But it involves setting up a scheduled task that calls a script (or creating an Azure Function) that calls the Octopus API to promote/deploy the release in question. This can be quite a cumbersome solution for something that many other CI/CD tools provides out-of-the-box.
 
-From the customers that have commented on the UserVoice item, we've determined that we have a couple of options on how we can implement this feature.
+From our internal discussions and the customers that have commented on the UserVoice item, we've determined that we have a couple of options on how we can implement this feature.
 
 ### Project triggers
 
@@ -34,10 +34,13 @@ Creating a new scheduled deployment trigger will take you to a new page where yo
 
 ![](srd-new-scheduled-trigger.png)
 
+Once you've added your new trigger it will show up in the list of configured triggers and allow you to edit, disable, clone or delete the trigger.
+
+![](srd-scheduled-triggers-list.png)
+
 ### Lifecycle triggers
 
-The advantage of lifecycle triggers is that you can share the same schedule across many projects, instead of having to specify it on each project.
-Lifecycle triggers come with a downside though in that you won't be able to use channels when configuring the trigger.
+If your projects use channels, lifecycle triggers will only be able to deploy to the default channel (as channels are project specific). On the other hand, the advantage of lifecycle triggers is that you can share the same schedule across many projects, instead of having to specify it on each project.
 
 The scheduled recurring deployments configuration would live in the right sidebar of your lifecycle.
 
@@ -50,15 +53,16 @@ Creating a new scheduled deployment trigger will open up a dialog where you conf
 
 ### Trigger schedules
 
-From the customers that have commented on the UserVoice item, we will provide the following trigger schedules to configure when a trigger should be run.
+The following trigger schedules to configure when a trigger should be run
+- Daily
+- Days per week
+- Days per month
+- Custom `CRON` expression
 
 The daily and days per week schedules allow for an interval to be chosen, and the available intervals are:
 - Once per day
-- Every 3 hours
-- Every 2 hours
-- Every hour
-- Every 30 minutes
-- Every 15 minutes
+- Every x hour(s)
+- Every x minute(s)
 
 #### Daily schedule
 
@@ -91,7 +95,10 @@ Run according to a [CRON expression](https://en.wikipedia.org/wiki/Cron#CRON_exp
 
 ### Trigger actions
 
-From the customers that have commented on the UserVoice item, we will provide the following trigger actions to configure what should happen when the scheduled deployment is run.
+The following trigger actions will be available to configure what should happen when the scheduled deployment is run:
+- Promote latest release
+- Deploy latest release
+- Deploy new release
 
 #### Promote latest release
 
@@ -120,4 +127,4 @@ Creates a new release and deploys this to the chosen environment.
 
 **We would really like to hear from you!** Perhaps there are some pieces of the puzzle we've missed for your scenario?
 
-If you have any other thoughts or opinions on how scheduled recurring deployments should look, add your comments below or comment on and follow the open [GitHub ticket #3363](https://github.com/OctopusDeploy/Issues/issues/3633).
+If you have any other thoughts or opinions on how scheduled recurring deployments should look, please add your comments below or comment on and follow the open [GitHub ticket #3363](https://github.com/OctopusDeploy/Issues/issues/3633).
