@@ -80,7 +80,7 @@ Run using the interval chosen on the days specified starting from the specified 
 
 #### Days per month schedule
 
-Run on a specific day of the month or the 1st, 2nd, 3rd, 4th or last day of the week in the month at the specified start time.
+Run on a specific day of the month, or the Nth particular weekday of the month, at the specified start time.
 
 ![](srd-new-days-per-month-trigger.png)
 
