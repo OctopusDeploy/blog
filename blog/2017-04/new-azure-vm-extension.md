@@ -29,8 +29,15 @@ In the Azure Portal, select your VM, click on `Extensions` and click the `+ Add`
 ## Using PowerShell (Azure Resource Manager (ARM) mode)
 
 ```powershell
-$publicSettings = "{`"OctopusServerUrl`": `"https://octopus.example.com`", `"Environments`": [ `"Env1`", `"Env2`" ], `"Roles`": [ `"app-server`", `"web-server`" ], `"CommunicationMode`": `"Listen`", `"Port`": 10933 }"
-$privateSettings = "{`"ApiKey`": `"MY SECRET API KEY`"}"
+$publicSettings = @{
+  OctopusServerUrl = "https://octopus.example.com";
+  Environments = @("Env1", "Env2");
+  Roles = @("app-server", "web-server");
+  CommunicationMode = "Listen";
+  Port = 10933
+}
+
+$privateSettings = @{"ApiKey" = "<MY SECRET API KEY>"}
 
 Set-AzureRmVMExtension -ResourceGroupName "resource-group-name" `
     -Location "Australia East" `
