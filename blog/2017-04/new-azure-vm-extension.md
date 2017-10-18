@@ -3,6 +3,7 @@ title: "Azure Virtual Machine Extension"
 description: "Announcing the re-release of the Azure Virtual Machine extension to install Tentacle's on your Cloud VMs"
 author: matt.richardson@octopus.com
 visibility: public
+published: 2017-06-21
 tags:
  - New Releases
  - Azure
@@ -10,7 +11,7 @@ tags:
 
 Back in October 2014, we were pretty excited to [announce](https://octopus.com/blog/azure-vm-extension) a Virtual Machine extension for Azure that would allow you to install the Tentacle agent, and wire it up to your Octopus Server.
 
-However, in the world of software (and with the Cloud especially) things move on. Microsoft made substantial updates to the Azure portal and the infrastructure that makes these extensions available - our extension was no longer compatible and was removed from the portal.
+However, in the world of software (and with the Cloud especially) things move on.  Microsoft made substantial updates to the Azure portal and the infrastructure that makes these extensions available - our extension was no longer compatible and was removed from the portal.
 
 Today, I'm happy to announce that we've re-written the extension from scratch, and it's now available for your delectation.
 
@@ -22,7 +23,7 @@ You can do this via the [Azure Portal](https://octopus.com/docs/installation/ins
 
 ## Using the new Azure Portal
 
-In the Azure Portal, select your VM, click on `Extensions` and click the `+ Add` button. Select the `Octopus Deploy Tentacle Agent` extension and click `Create`. Fill in the fields as required, click `OK` and the extension will be deployed.
+In the Azure Portal, select your VM, click on `Extensions` and click the `+ Add` button.  Select the `Octopus Deploy Tentacle Agent` extension and click `Create`. Fill in the fields as required, click `OK` and the extension will be deployed.
 
 ![Azure Portal - Add Tentacle VM Extension](azure-vm-extension.png)
 
