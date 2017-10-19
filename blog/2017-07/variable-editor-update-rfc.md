@@ -9,7 +9,7 @@ tags:
  - RFC
 ---
 
-In the 4.0 release, we plan to overhaul the variable editor.  This has been one of our top <a href="https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui" target="_blank">User Voice</a> suggestions and thanks to all our users who provided ideas on how to improve the variable editor.
+In the 4.0 release, we plan to overhaul the variable editor. This has been one of our top <a href="https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui" target="_blank">User Voice</a> suggestions and thanks to all our users who provided ideas on how to improve the variable editor.
 
 Based on the feedback received our goal for the first release of the variable editor is to make a table editing experience work as expected with the inclusion of some new features:
 
@@ -19,7 +19,7 @@ Based on the feedback received our goal for the first release of the variable ed
 
 ## User scenarios
 
-We have focused on providing a solution for four user scenarios for the first release.  These cover the common themes from the Octopus team and our user's suggestions.
+We have focused on providing a solution for four user scenarios for the first release. These cover the common themes from the Octopus team and our user's suggestions.
 
 - A user is inputting hundreds of single text variables scoped to one or two environments. They need to do this quickly all by using the keyboard.
 
