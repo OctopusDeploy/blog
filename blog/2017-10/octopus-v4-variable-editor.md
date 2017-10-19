@@ -7,7 +7,7 @@ tags:
  - New Releases
 ---
 
-We recently released an [RFC](https://octopus.com/blog/variable-editor-update-rfc) on the redesign of the variable editor. This topic has generated a lot of interest, and it remains our most popular suggestion on [User Voice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui). 
+We recently released an [RFC](https://octopus.com/blog/variable-editor-update-rfc) on the redesign of the variable editor. This topic has generated a lot of interest, and it is our most popular suggestion on [User Voice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui). 
 
 The revamped variable editor will be released in our upcoming Octopus Deploy 4.0 release. Let's dive in to some of the changes we have made!
 
@@ -43,7 +43,7 @@ Sometimes you want to annotate a variable with some extra information. Maybe thi
 
 **Filtering**
 
-We have also made significant changes to variable filtering. Filtering did exist in the old variable editor, but it was not very discoverable and a lot of users did not even know that it existed! It is more prominent in the new variable editor and allows you to filter your variables in even more ways. For example, you can chose to only show variables that do not yet have a value.
+We have also made significant changes to variable filtering. Filtering did exist in the version 3 and earlier variable editor, but it was not very discoverable and a lot of users did not even know that it existed! It is more prominent in the new variable editor and allows you to filter your variables in even more ways. For example, you can chose to only show variables that do not yet have a value.
 
 ![Variable editor filter](variable-editor-filter.png "width=500")
 
@@ -61,7 +61,7 @@ Some users have very large variable sets, so we have made sure that the variable
 
 **Feedback**
 
-Thanks to everyone that has provided suggestions and feedback. Unfortunately, we could not address all of these issues in the first release of the variable editor. Instead, we have focused on making a solid foundation on which we can easily iterate and improve in upcoming releases of Octopus.
+Thanks to everyone that has provided suggestions and feedback. Unfortunately, we could not address all of these issues in the first release of the variable editor. Instead, we have focused on making a solid foundation on which we can easily iterate and improve upon in upcoming releases of Octopus.
 
 We look forward to getting this in your hands to see what you think!
 
