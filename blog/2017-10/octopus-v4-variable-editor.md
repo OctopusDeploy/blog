@@ -7,7 +7,7 @@ tags:
  - New Releases
 ---
 
-We recently released an [RFC](https://octopus.com/blog/variable-editor-update-rfc) on the redesign of the variable editor. This topic has generated a lot of interest, and it is our most popular suggestion on [User Voice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui). 
+We previously released an [RFC](https://octopus.com/blog/variable-editor-update-rfc) on the redesign of the variable editor. This topic has generated a lot of interest, and it is our most popular suggestion on [User Voice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui). 
 
 The revamped variable editor will be released in our upcoming Octopus Deploy 4.0 release. Let's dive in to some of the changes we have made!
 
