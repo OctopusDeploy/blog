@@ -24,41 +24,46 @@ So we had a high-level checklist of things we wanted to improve, namely:
 - Switching to a list layout, to make things easier to find at a glance
 - Adding an overview page that provides a useful summary of your infrastructure, so you can get to what you want, fast
 
-We were also aware of the distinction between wanting to manage environments (and deployment targets that may exist within multiple environments) and just wanting to manage deployment targets. The point is, different customers have differing needs, and trying to condense all requirements into one screen was just not feasible, so we decided to give our users options, and do both :)
+We were also aware of the distinction between wanting to manage environments (and deployment targets _within_ those environments) and just wanting to manage deployment targets. The point is, different customers have differing needs, and trying to condense all requirements into one screen was just not proving feasible, so we decided to give our users options, and do both :)
 
 ## Understanding the problem
 
 To get into this mindset, we wrote a script and loaded up 2000+ deployment targets with randomised data and opened up the (current) web-portal...
 
-![Octopus v3 environments at scale](v3-environments-screen-at-scale.jpg "width=500")
+![Octopus v3 environments at scale](v3-environments-screen-at-scale.jpg "width=400")
 
 Yes, that's a long-and-wrapped version of what the environments page was rendering (each of those little blue dots is a machine icon). To put this into perspective, my “full-screen screenshot” plugin ran out of memory and crashed when trying to capture all of them on my retina iMac, so I had to capture that from a VM with lesser dpi settings :)
 
-Obviously, the first thing we noticed was a significant amount of time being spent on rendering. No paging is implemented on this screen, so if you have 2000 deployment targets, that's 2000 HTML line-items that your web-browser needs to generate and render (not to mention all the grouping of environments and health statuses that also needs to happen).
+Obviously the first thing we noticed was a significant amount of time being spent on rendering. No paging is implemented on this screen, so if you have say, over 9000 deployment targets, that's over 9000 HTML line-items that your web-browser needs to generate and render (not to mention all the grouping of environments and health statuses that also needs to happen).
 
 The second thing we noticed is how difficult it is to find anything. You're left with having to Ctrl-F in your browser, because the grid-layout makes it very difficult to scan and find things quickly.
 
-What's worse is, if you clicked through to a machine then clicked back, you had to wait for everything to load all over again (the rendering, the Ctrl-F to find your place again … you just wanted to scream or cry, often both). After some time of living in this state, you learned to `right-click > open deployment target in new tab` to avoid having to reload the environments page…
+What's worse is, if you clicked through to a machine then clicked back, you have to wait for everything to load all over again (the rendering, the Ctrl-F to find your place again ... you just wanted to scream or cry, often both). After some time of living in this state, you learn to adapt and `right-click > open deployment target in new tab` to avoid having to reload the environments page...
 
-![Roll Safe meme](browser-cant-rerender-if-i-never.jpg "width=300")
+![Roll Safe meme](browser-cant-rerender-if-i-never.jpg "width=400")
 
-But this was actually a really good start, because we were experiencing the pain first-hand. Now we had a problem to solve and the motivation to solve it :)
+But this is exactly what we wanted by scripting so many machines, because now we were experiencing the pain first-hand. Now we had a problem to solve and the motivation to see what we could come up with :)
 
 ## The 4.0 Solution
 
 ### Introducing the new Infrastructure Overview
 
-Previously, all environments and deployment targets were located in an area called “Environments”. This environments area also had links to machine policies, proxies and accounts in the top-menu, which always felt a bit tacked on and not really related to environments at all. So firstly we decided to clean house and create a brand new area called Infrastructure, where all things infrastructure would now live (and don't worry if you have any environment-related bookmarks, we've added redirects from the old v3 routes).
+Previously, all environments and deployment targets were located in an area called “Environments”. This environments area also had links to machine policies, proxies and accounts in the top-menu, which always felt a bit tacked on and not really related to environments at all. So firstly we decided to clean house and create a brand new area called **Infrastructure** where all things infrastructure would now live (and don't worry if you have any environment-related bookmarks, we've added redirects from the old v3 routes ;) ).
 
 ![Octopus v4 infrastructure](v4-infra-overview.png "width=500")
 
-At a glance, you now get a summary of your environments and deployment targets and how they're being used with combinations of roles and tenants. We've found this view to be incredibly useful for knowing when some machines may be unhealthy or unavailable, and it's made the process of getting to specific types of deployment targets much easier. Eg. Want to quickly click through to your targets tagged with a "docker-server" role? Click the link and it'll take you right to them. Want to only see your Polling Tentacles, or maybe just your Disabled targets? That's very easy now.
+At a glance, you now get a summary of your environments and deployment targets and how they're being used with combinations of roles and tenants. We've found this view to be incredibly useful for knowing when some machines may be unhealthy or unavailable, and it's made the process of getting to specific types of deployment targets much easier.
 
-And for customers working with multi-tenancy, we've got you covered. You can now very quickly find deployment targets by tenant or tenant tag set.
+For example:
+
+- Want to quickly click through to your targets tagged with a "docker-server" role? Click the link and it'll take you right to them.
+- Want to only see your Polling Tentacles, or maybe just your Disabled targets? That's very easy now.
+
+Also, for customers working with multi-tenancy, we've got you covered. You can now very quickly find deployment targets by tenant or tenant tag set.
 
 ### Introducing the new Environments screen
 
-The new environments screen takes advantage of the advanced filters available with the Octopus 4.0 redesign (and then adds even more filters per environment), making it much faster to load environments and see a summary of the deployment targets contained within.
+The new environments screen takes advantage of the advanced filters available with the Octopus 4.0 redesign (and then adds even more filters per environment "We have ~~fake doors~~ filters like you wouldn't believe!"), making it much faster to load environments and see a summary of the deployment targets contained within. 
 
 ![Octopus v4 infrastructure](v4-infra-environments.png "width=500")
 
