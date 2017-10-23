@@ -1,6 +1,6 @@
 ---
 title: Installing Tomcat From Scratch
-description: Learn the steps you'll need after you download and extract Tomcat
+description: Learn the steps you'll need to configure a working instance of Tomcat.
 author: matthew.casperson@octopus.com
 visibility: private
 metaImage: java-octopus-meta.png
@@ -9,7 +9,11 @@ tags:
  - Java
 ---
 
-Tomcat is the most popular Java web server available today, and is a solid choice for anyone looking to host their Java web applications. One of the nice things about Tomcat is that it is quite easy to get started, often requiring little more than downloading and extracting the deployment archive. But there are a few steps that every Tomcat administrator should know to get the most out of their Tomcat installation.
+Tomcat is [the most popular Java web server available today](https://www.jetbrains.com/research/devecosystem-2017/java/), and is a solid choice for anyone looking to host their Java web applications.
+
+![Server stats](server-stats.png "width=500")
+
+One of the nice things about Tomcat is that it is quite easy to get started, often requiring little more than downloading and extracting the deployment archive. But there are a few steps that every Tomcat administrator should know to get the most out of their Tomcat installation.
 
 In this blog post we'll walk through the process of setting up a Tomcat server.
 
@@ -97,7 +101,7 @@ For more information on how to use Powershell with PSDrives like `env`, check ou
 
 There are multiple ways to define environment variables in Linux. The most common is to add the environment variable to the `/etc/environment` file.
 
-For example, in Ubuntu you can configure the `JAVA_HOME` environment variable to reference the Oracle JRE 8 installation with the line:
+For example, you can configure the `JAVA_HOME` environment variable to reference the Oracle JRE 8 installation with the line:
 
 ```
 JAVA_HOME="/usr/lib/jvm/java-8-oracle/jre"
@@ -110,6 +114,8 @@ The location of the Java installation depends on the Linux distribution you are 
 ## Manually Running Tomcat
 
 To manually launch Tomcat, you will need to run the `bin\startup.bat` batch file for Windows, or the `bin/startup.sh` shell script for Linux.
+
+![Tomcat running in Windows](tomcat-windows-running.png)
 
 ## Installing Tomcat as a Service
 
@@ -195,7 +201,7 @@ exit 0
 
 Tomcat comes with a number of administration tools built in. Links to these administration tools are provided as links called `Server Status`, `Manager App` and `Host Manager` on the default Tomcat welcome page. By default, the welcome page can be viewed at [http://localhost:8080](http://localhost:8080).
 
-![Tomcat Welcome](tomcat-welcome.png)
+![Tomcat Welcome](tomcat-welcome.png "width=500")
 
 Before you can use these administration tools, you must first configure users within Tomcat.
 
