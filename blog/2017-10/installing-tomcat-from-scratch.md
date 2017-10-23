@@ -47,7 +47,7 @@ Tomcat can be downloaded as a zip, tar.gz, Windows zip or Windows exe.
 If you are hosting Tomcat in Linux, then the tar.gz package are what you need. This is preferred over the zip package because the tar.gz format retains the executable flag on startup scripts. If you download the zip package in Linux, you will need to manually set the executable flag on scripts like `bin/startup.sh` and `bin/shutdown.sh` with the command `chmod +x <scriptname>`.
 
 ### Download Tomcat for Windows
-If you are running in Windows then you can download any of the formats. However, I would recommend that Windows users download either the Windows zip or exe packages.
+If you are running Tomcat in Windows then you can download any of the formats. However, I would recommend that Windows users download either the Windows zip or exe packages.
 
 These packages include the `tcnative-1.dll` library, which is part of the [Tomcat Native](https://tomcat.apache.org/native-doc/) library. Tomcat Native is used to give Tomcat access to the [Apache Portable Runtime](https://apr.apache.org/) (APR). APR in turn is used for features like providing HTTPS via OpenSSL, which can provide much better performance than using the native Java HTTPS implementations (otherwise known as the JSSE implementation).
 
@@ -85,6 +85,10 @@ Click the `OK` button to save your changes.
 
 Open up Powershell and type `Write-Host $env:JAVA_HOME` to see the value of the environment variable.
 
+:::hint
+For more information on how to use Powershell with PSDrives like `env`, check out [Learn How to Use the PowerShell Env: PSDrive](https://blogs.technet.microsoft.com/heyscriptingguy/2013/03/06/learn-how-to-use-the-powershell-env-psdrive/).
+:::
+
 ![Windows Environment Variables 6](windows-system-settings-6.png)
 
 ### Configuring the JAVA_HOME Environment Variable in Linux
@@ -114,6 +118,7 @@ Production Tomcat instances are typically started as service. This allows Tomcat
 The easiest way to install Tomcat as a Windows service is to run the `Windows Service Installer` exe, which is one of the Tomcat download package options. This installer provides a wizard that will configure Tomcat as a Windows service.
 
 ![Tomcat Windows Install 1](tomcat-windows-install-1.png)
+
 ![Tomcat Windows Install 2](tomcat-windows-install-2.png)
 
 Alternatively you can use the `bin\service.bat` file to manually configure Tomcat as a Windows service. For example, running the command `service.bat install MyService` will configure Tomcat under a Windows service called `MyService`.
