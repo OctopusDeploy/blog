@@ -11,8 +11,6 @@ tags:
 
 Tomcat is [the most popular Java web server available today](https://www.jetbrains.com/research/devecosystem-2017/java/), and is a solid choice for anyone looking to host their Java web applications.
 
-![Server stats](server-stats.png "width=500")
-
 One of the nice things about Tomcat is that it is quite easy to get started, often requiring little more than downloading and extracting the deployment archive. But there are a few steps that every Tomcat administrator should know to get the most out of their Tomcat installation.
 
 In this blog post we'll walk through the process of setting up a Tomcat server.
@@ -21,7 +19,7 @@ In this blog post we'll walk through the process of setting up a Tomcat server.
 
 Being a Java web server, Tomcat requires Java to be installed before it can be run.
 
-Tomcat 7 requires at least Java 6, Tomcat 8 requires Java 7, and Tomcat 9 requires Java 8.
+[Tomcat 7 requires at least Java 6, Tomcat 8 requires Java 7, and Tomcat 9 requires Java 8](http://tomcat.apache.org/whichversion.html).
 
 Keep in mind that you will need to install a version of Java that supports both Tomcat itself and the applications that Tomcat will host. If your applications are compiled for Java 8, then Tomcat will need to be run with Java 8 as well.
 
@@ -41,7 +39,7 @@ OpenJDK is the name of the project, and while it includes the acronym "JDK" in i
 
 The Oracle JDK is an implementation of Java provided by Oracle. Typically you have to download and install the Oracle JDK manually from the Oracle website.
 
-Wether you use OpenJDK or Oracle JDK is a matter of personal choice. I'll typically use OpenJDK in Linux distributions for the ease of installation using the package manager. In Windows or MacOS I'll typically download the Oracle JDK.
+Wether you use OpenJDK or Oracle JDK is a matter of personal choice. I'll use OpenJDK in Linux distributions because of the ease of installation using the package manager. In Windows or MacOS I'll install the Oracle JDK.
 
 ## Download Tomcat
 
@@ -49,8 +47,12 @@ Tomcat can be downloaded from [Apache Tomcat](https://tomcat.apache.org/index.ht
 
 Tomcat can be downloaded as a zip, tar.gz, Windows zip or Windows exe.
 
+At the time this blog post was written, Tomcat 8.5 was the latest official release, with Tomcat 9 being close to a final release. Tomcat 7 is still supported, and all previous versions are considered to be obsolete.
+
 ### Download Tomcat for Linux
-If you are hosting Tomcat in Linux, then the tar.gz package are what you need. This is preferred over the zip package because the tar.gz format retains the executable flag on startup scripts. If you download the zip package in Linux, you will need to manually set the executable flag on scripts like `bin/startup.sh` and `bin/shutdown.sh` with the command `chmod +x <scriptname>`.
+If you are hosting Tomcat in Linux, then the tar.gz package are what you need. This is preferred over the zip package because the tar.gz format retains the executable flag on shell scripts.
+
+If you download the zip package in Linux, you will need to manually set the executable flag on scripts like `bin/startup.sh` and `bin/shutdown.sh` with the command `chmod +x <scriptname>`.
 
 ### Download Tomcat for Windows
 If you are running Tomcat in Windows then you can download any of the formats. However, I would recommend that Windows users download either the Windows zip or exe packages.
@@ -59,7 +61,7 @@ These packages include the `tcnative-1.dll` library, which is part of the [Tomca
 
 In addition, the Windows packages also include executables that are used to install Tomcat as a Windows service.
 
-![Tomcat Windows Files](tomcat-native-windows.png)
+![Tomcat Windows Files](tomcat-native-windows.png "width=500")
 
 ## Configuring the JAVA_HOME Environment Variable
 
@@ -71,23 +73,23 @@ Windows defines environment variables in the system properties.
 
 Open the `Advanced System Settings`.
 
-![Windows Environment Variables 1](windows-system-settings-1.png)
+![Windows Environment Variables 1](windows-system-settings-1.png "width=500")
 
 Click the `Environment Variables` button.
 
-![Windows Environment Variables 2](windows-system-settings-2.png)
+![Windows Environment Variables 2](windows-system-settings-2.png "width=500")
 
 Under `System Variables`, click the `New` button.
 
-![Windows Environment Variables 3](windows-system-settings-3.png)
+![Windows Environment Variables 3](windows-system-settings-3.png "width=500")
 
 Enter `JAVA_HOME` as the `Variable name`, and enter the Java installation directory as the `Variable value`.
 
-![Windows Environment Variables 4](windows-system-settings-4.png)
+![Windows Environment Variables 4](windows-system-settings-4.png "width=500")
 
 Click the `OK` button to save your changes.
 
-![Windows Environment Variables 5](windows-system-settings-5.png)
+![Windows Environment Variables 5](windows-system-settings-5.png "width=500")
 
 Open up Powershell and type `Write-Host $env:JAVA_HOME` to see the value of the environment variable.
 
@@ -95,7 +97,7 @@ Open up Powershell and type `Write-Host $env:JAVA_HOME` to see the value of the 
 For more information on how to use Powershell with PSDrives like `env`, check out [Learn How to Use the PowerShell Env: PSDrive](https://blogs.technet.microsoft.com/heyscriptingguy/2013/03/06/learn-how-to-use-the-powershell-env-psdrive/).
 :::
 
-![Windows Environment Variables 6](windows-system-settings-6.png)
+![Windows Environment Variables 6](windows-system-settings-6.png "width=500")
 
 ### Configuring the JAVA_HOME Environment Variable in Linux
 
@@ -115,7 +117,7 @@ The location of the Java installation depends on the Linux distribution you are 
 
 To manually launch Tomcat, you will need to run the `bin\startup.bat` batch file for Windows, or the `bin/startup.sh` shell script for Linux.
 
-![Tomcat running in Windows](tomcat-windows-running.png)
+![Tomcat running in Windows](tomcat-windows-running.png "width=500")
 
 ## Installing Tomcat as a Service
 
@@ -125,9 +127,9 @@ Production Tomcat instances are typically started as service. This allows Tomcat
 
 The easiest way to install Tomcat as a Windows service is to run the `Windows Service Installer` exe, which is one of the Tomcat download package options. This installer provides a wizard that will configure Tomcat as a Windows service.
 
-![Tomcat Windows Install 1](tomcat-windows-install-1.png)
+![Tomcat Windows Install 1](tomcat-windows-install-1.png "width=500")
 
-![Tomcat Windows Install 2](tomcat-windows-install-2.png)
+![Tomcat Windows Install 2](tomcat-windows-install-2.png "width=500")
 
 Alternatively you can use the `bin\service.bat` file to manually configure Tomcat as a Windows service. For example, running the command `service.bat install MyService` will configure Tomcat under a Windows service called `MyService`.
 
