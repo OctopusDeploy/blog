@@ -131,9 +131,9 @@ The easiest way to install Tomcat as a Windows service is to run the `Windows Se
 
 ![Tomcat Windows Install 2](tomcat-windows-install-2.png "width=500")
 
-Alternatively you can use the `bin\service.bat` file to manually configure Tomcat as a Windows service. For example, running the command `service.bat install MyService` will configure Tomcat under a Windows service called `MyService`.
+Alternatively you can use the `bin\service.bat` script to manually configure Tomcat as a Windows service. For example, running the command `service.bat install MyService` will configure Tomcat under a Windows service called `MyService`.
 
-See this [documentation](https://tomcat.apache.org/tomcat-9.0-doc/windows-service-howto.html#Installing_services) for more information on manually configuring a Tomcat Windows service.
+See the [documentation](https://tomcat.apache.org/tomcat-9.0-doc/windows-service-howto.html#Installing_services) for more information on manually configuring a Tomcat Windows service.
 
 :::hint
 The `service.bat` file that comes with the versions of Tomcat I tested didn't work well with the Java 9 JDK. I received the error `The JAVA_HOME environment variable is not defined correctly` when running `service.bat` against the Java 9 JDK.
@@ -157,7 +157,7 @@ There are too many Linux distributions to provide service scripts for all of the
 
 The script assumes that a user called `tomcat` has been configured in Linux, and that Tomcat has been extracted into the `/opt/apache-tomcat-9` directory. You will need to tweak the script to match your local environment.
 
-This file would be saved under `/etc/init.d/tomcat`. You will also need to ensure that the file is executable by running the command `chmod +x /etc/init.d/tomcat`. If your Linux OS uses systemd, then this legacy initd script can be enabled with the command `systemctl enable tomcat`.
+This file would be saved under `/etc/init.d/tomcat`. You will also need to ensure that the file is executable by running the command `chmod +x /etc/init.d/tomcat`. If your Linux distribution uses systemd, then this legacy initd script can be enabled with the command `systemctl enable tomcat`.
 
 ```
 #!/bin/bash
@@ -198,6 +198,12 @@ esac
 
 exit 0
 ```
+
+:::hint
+The Linux Standards Base (LSB) defines the conventions that are used in initd scripts. The comments between `### BEGIN INIT INFO` and `### END INIT INFO` are documented in [Comment Conventions for Init Scripts](http://refspecs.linuxbase.org/LSB_2.0.1/LSB-PDA/LSB-PDA/initscrcomconv.html).
+
+The comments `# chkconfig:` and `# description:` are required by [chkconfig](https://linux.die.net/man/8/chkconfig), which is typically found in RedHat based Linux distributions.
+:::
 
 ## Configuring users
 
