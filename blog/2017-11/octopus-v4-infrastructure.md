@@ -85,7 +85,9 @@ For customers who just want to quickly get to their deployment targets (and don'
 
 This screen contains the same search and filtering mechanisms that the environments screen has, but it loads and shows you your deployment targets straight away.
 
-Whichever way to choose, we have added paging support on the client to cut down on rendering thousands of unnecessary machines :)
+Whichever way to choose, we have added paging support on the client to cut down on rendering thousands of unnecessary machines and client-side caching support on selected endpoints to make loading as fast as possible. 
+
+The filtering on these screen also includes deep links, so when you click through to a machine and click back, those filters will still be applied when you return to the list #NoMoreTableFlipping.
 
 ## Summary
 
