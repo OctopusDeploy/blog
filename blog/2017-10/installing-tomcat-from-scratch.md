@@ -153,11 +153,11 @@ However, it is quite easy to provide your own services.
 
 To start with I like to extract Tomcat into the `/opt` directory. The `/opt` directory ["is reserved for all the software and add-on packages that are not part of the default installation"](http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html), which describes our Tomcat installation nicely.
 
-There are too many Linux distributions to provide service scripts for all of them. However I have provided a initd script that I have personally used for Tomcat installations in Linux. This script is based on examples I have found around the web.
+There are too many Linux distributions to provide service scripts for all of them. However I have provided a initd script that is based on examples I have found around the web.
 
 The script assumes that a user called `tomcat` has been configured in Linux, and that Tomcat has been extracted into the `/opt/apache-tomcat-9` directory. You will need to tweak the script to match your local environment.
 
-This file would be saved under `/etc/init.d/tomcat`. You will also need to ensure that the file is executable by running the command `chmod +x /etc/init.d/tomcat`.
+This file would be saved under `/etc/init.d/tomcat`. You will also need to ensure that the file is executable by running the command `chmod +x /etc/init.d/tomcat`. If your Linux OS uses systemd, then this legacy initd script can be enabled with the command `systemctl enable tomcat`.
 
 ```
 #!/bin/bash
@@ -224,4 +224,12 @@ The following is an example of the `conf/tomcat-users.xml` file which defines a 
 </tomcat-users>
 ```
 
+When you attempt to open one of the administration tools, you will be prompted for a username and password. This prompt is where you would enter the `tomcat` username and `adminpass` prompt.
+
 To learn more about the groups used by Tomcat to manage access to the administration tools, see the [Tomcat manager documentation](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html#Configuring_Manager_Application_Access) under the heading "Configuring Manager Application Access".
+
+## Conclusion
+
+In this blog post we've looked at a number of decisions that need be made around what version of Java to run, how to configure Tomcat as a service, and how to add users to the stock Tomcat installation.
+
+If you are interested in automating the deployment of your Java applications to Tomcat, [download a trail copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
