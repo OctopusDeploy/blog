@@ -161,10 +161,6 @@ This file would be saved under `/etc/init.d/tomcat`. You will also need to ensur
 
 ```
 #!/bin/bash
-#
-# chkconfig: 345 96 30
-# description:  Start up the Tomcat servlet engine.
-#
 ### BEGIN INIT INFO
 # Provides:          tomcat
 # Required-Start:    $local_fs $remote_fs $network
@@ -181,6 +177,7 @@ This file would be saved under `/etc/init.d/tomcat`. You will also need to ensur
 TOMCAT_USER=tomcat
 
 export CATALINA_HOME="/opt/apache-tomcat-9"
+export CATALINA_PID="$CATALINA_HOME/bin/tomcat.pid"
 
 start() {
  echo "Starting Tomcat..."
@@ -188,7 +185,7 @@ start() {
 }
 stop() {
  echo "Stopping Tomcat..."
- /bin/su -s /bin/bash ${TOMCAT_USER} -c $CATALINA_HOME/bin/shutdown.sh
+ /bin/su -s /bin/bash ${TOMCAT_USER} -c "$CATALINA_HOME/bin/shutdown.sh -force"
 }
 case $1 in
   start|stop) $1;;
@@ -201,8 +198,6 @@ exit 0
 
 :::hint
 The Linux Standards Base (LSB) defines the conventions that are used in initd scripts. The comments between `### BEGIN INIT INFO` and `### END INIT INFO` are documented in [Comment Conventions for Init Scripts](http://refspecs.linuxbase.org/LSB_2.0.1/LSB-PDA/LSB-PDA/initscrcomconv.html).
-
-The comments `# chkconfig:` and `# description:` are required by [chkconfig](https://linux.die.net/man/8/chkconfig), which is typically found in RedHat based Linux distributions.
 :::
 
 ## Configuring users
