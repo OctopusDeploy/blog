@@ -3,6 +3,8 @@ title: Installing Tomcat From Scratch
 description: Learn the steps you'll need after you download and extract Tomcat
 author: matthew.casperson@octopus.com
 visibility: private
+metaImage: java-octopus-meta.png
+bannerImage: java-octopus.png
 tags:
  - Java
 ---
