@@ -27,7 +27,7 @@ Keep in mind that you will need to install a version of Java that supports both 
 
 Java installations are provided either as the Java Runtime Environment (JRE) or the Java Development Kit (JDK).
 
-The JRE provides all the functionality required to run Java applications, including Tomcat. The JDK provides the JRE, as well as some additional tools that developers used to compile and manage Java applications.
+The JRE provides all the functionality required to run Java applications, including Tomcat. The JDK provides the JRE, as well as some additional tools that developers use to compile and manage Java applications.
 
 Tomcat will work with either the JRE or JDK. Typically the JDK is used by developers, and is a larger package, so if you are in doubt install the JRE.
 
@@ -37,7 +37,7 @@ OpenJDK is an open source implementation of the Java platform. It is often inclu
 
 OpenJDK is the name of the project, and while it includes the acronym "JDK" in its name, the OpenJDK project provides both a JRE and a JDK.
 
-The Oracle JDK is an implementation of Java provided by Oracle. Typically you have to download and install the Oracle JDK manually from the Oracle website.
+The Oracle JDK is an implementation of Java provided by Oracle. Typically you have to download and install the Oracle JDK manually from the [Oracle website](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
 Wether you use OpenJDK or Oracle JDK is a matter of personal choice. I'll use OpenJDK in Linux distributions because of the ease of installation using the package manager. In Windows or MacOS I'll install the Oracle JDK.
 
