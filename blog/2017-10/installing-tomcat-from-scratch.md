@@ -2,7 +2,7 @@
 title: Installing Tomcat From Scratch
 description: Learn the steps you'll need to configure a working instance of Tomcat.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -19,7 +19,7 @@ In this blog post we'll walk through the process of setting up a Tomcat server.
 
 Being a Java web server, Tomcat requires Java to be installed before it can be run.
 
-[Tomcat 7 requires at least Java 6, Tomcat 8 requires Java 7, and Tomcat 9 requires Java 8](http://tomcat.apache.org/whichversion.html).
+[Tomcat 7 requires at least Java 6, Tomcat 8 requires at least Java 7, and Tomcat 9 requires at least Java 8](http://tomcat.apache.org/whichversion.html).
 
 Keep in mind that you will need to install a version of Java that supports both Tomcat itself and the applications that Tomcat will host. If your applications are compiled for Java 8, then Tomcat will need to be run with Java 8 as well.
 
@@ -50,14 +50,14 @@ Tomcat can be downloaded as a zip, tar.gz, Windows zip or Windows exe.
 At the time this blog post was written, Tomcat 8.5 was the latest official release, with Tomcat 9 being close to a final release. Tomcat 7 is still supported, and all previous versions are considered to be obsolete.
 
 ### Download Tomcat for Linux
-If you are hosting Tomcat in Linux, then the tar.gz package are what you need. This is preferred over the zip package because the tar.gz format retains the executable flag on shell scripts.
+If you are hosting Tomcat in Linux, then the tar.gz package is what you need. This is preferred over the zip package because the tar.gz format retains the executable flag on shell scripts.
 
 If you download the zip package in Linux, you will need to manually set the executable flag on scripts like `bin/startup.sh` and `bin/shutdown.sh` with the command `chmod +x <scriptname>`.
 
 ### Download Tomcat for Windows
-If you are running Tomcat in Windows then you can download any of the formats. However, I would recommend that Windows users download either the Windows zip or exe packages.
+If you are hosting Tomcat in Windows then you can download any of the formats. However, I would recommend that Windows users download either the Windows zip or exe packages.
 
-These packages include the `tcnative-1.dll` library, which is part of the [Tomcat Native](https://tomcat.apache.org/native-doc/) library. Tomcat Native is used to give Tomcat access to the [Apache Portable Runtime](https://apr.apache.org/) (APR). APR in turn is used for features like providing HTTPS via OpenSSL, which can provide much better performance than using the native Java HTTPS implementations (otherwise known as the JSSE implementation).
+These packages include the `tcnative-1.dll` library, which is part of the [Tomcat Native](https://tomcat.apache.org/native-doc/) library. Tomcat Native is used to give Tomcat access to the [Apache Portable Runtime](https://apr.apache.org/) (APR). APR in turn is used for features like providing HTTPS via OpenSSL, which can provide much better performance than using the native Java HTTPS implementation (otherwise known as the JSSE implementation).
 
 In addition, the Windows packages also include executables that are used to install Tomcat as a Windows service.
 
@@ -71,15 +71,15 @@ The `JAVA_HOME` environment variable is used by Tomcat scripts to find the Java 
 
 Windows defines environment variables in the system properties.
 
-Open the `Advanced System Settings`.
+Open the `Advanced System Settings` inside the `System` control panel applet.
 
 ![Windows Environment Variables 1](windows-system-settings-1.png "width=500")
 
-Click the `Environment Variables` button.
+Click the `Environment Variables...` button.
 
 ![Windows Environment Variables 2](windows-system-settings-2.png "width=500")
 
-Under `System Variables`, click the `New` button.
+Under `System Variables`, click the `New...` button.
 
 ![Windows Environment Variables 3](windows-system-settings-3.png "width=500")
 
@@ -121,7 +121,7 @@ To manually launch Tomcat, you will need to run the `bin\startup.bat` batch file
 
 ## Installing Tomcat as a Service
 
-Production Tomcat instances are typically started as service. This allows Tomcat to be started when the operating system boots, shutdown when the OS is shutdown, and managed with the service management tools built into the OS.
+Production Tomcat instances are typically started as a service. This allows Tomcat to be started when the operating system boots, shutdown when the OS is shutdown, and managed with the service management tools built into the OS.
 
 ### Installing Tomcat as a Windows Service
 
@@ -149,11 +149,11 @@ The workaround is to install the Java 8 JDK alongside Java 9 and override the `J
 
 Unfortunately Tomcat does not provide service definition files for Linux operating systems. These service definition files differ depending on which Linux distribution you are running, and whether or not you are using init.d or systemd.
 
-However, it is quite easy to provide your own services.
+However, it is quite easy to define your own services.
 
 To start with I like to extract Tomcat into the `/opt` directory. The `/opt` directory ["is reserved for all the software and add-on packages that are not part of the default installation"](http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html), which describes our Tomcat installation nicely.
 
-There are too many Linux distributions to provide service scripts for all of them. However I have provided a initd script that is based on examples I have found around the web.
+There are too many Linux distributions to provide service scripts for all of them. However I have provided an example initd script that is based on examples I have found around the web.
 
 The script assumes that a user called `tomcat` has been configured in Linux, and that Tomcat has been extracted into the `/opt/apache-tomcat-9` directory. You will need to tweak the script to match your local environment.
 
@@ -202,7 +202,7 @@ The Linux Standards Base (LSB) defines the conventions that are used in initd sc
 
 ## Configuring users
 
-Tomcat comes with a number of administration tools built in. Links to these administration tools are provided as links called `Server Status`, `Manager App` and `Host Manager` on the default Tomcat welcome page. By default, the welcome page can be viewed at [http://localhost:8080](http://localhost:8080).
+Tomcat comes with a number of administration tools built in. Links to these administration tools are provided as links called `Server Status`, `Manager App` and `Host Manager` on the default Tomcat welcome page. By default, once Tomcat has been started either manually with the `bin\startup.bat` or `bin/startup.sh` scripts or by starting the service, the welcome page can be viewed at [http://localhost:8080](http://localhost:8080).
 
 ![Tomcat Welcome](tomcat-welcome.png "width=500")
 
