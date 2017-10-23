@@ -7,8 +7,6 @@ tags:
  - Java
 ---
 
-TODO: Verify init.d script
-
 Tomcat is the most popular Java web server available today, and is a solid choice for anyone looking to host their Java web applications. One of the nice things about Tomcat is that it is quite easy to get started, often requiring little more than downloading and extracting the deployment archive. But there are a few steps that every Tomcat administrator should know to get the most out of their Tomcat installation.
 
 In this blog post we'll walk through the process of setting up a Tomcat server.
@@ -55,6 +53,8 @@ These packages include the `tcnative-1.dll` library, which is part of the [Tomca
 
 In addition, the Windows packages also include executables that are used to install Tomcat as a Windows service.
 
+![Tomcat Windows Files](tomcat-native-windows.png)
+
 ## Configuring the JAVA_HOME Environment Variable
 
 The `JAVA_HOME` environment variable is used by Tomcat scripts to find the Java executable that will be used to launch the Tomcat web server.
@@ -62,6 +62,30 @@ The `JAVA_HOME` environment variable is used by Tomcat scripts to find the Java 
 ### Configuring the JAVA_HOME Environment Variable in Windows
 
 Windows defines environment variables in the system properties.
+
+Open the `Advanced System Settings`.
+
+![Windows Environment Variables 1](windows-system-settings-1.png)
+
+Click the `Environment Variables` button.
+
+![Windows Environment Variables 2](windows-system-settings-2.png)
+
+Under `System Variables`, click the `New` button.
+
+![Windows Environment Variables 3](windows-system-settings-3.png)
+
+Enter `JAVA_HOME` as the `Variable name`, and enter the Java installation directory as the `Variable value`.
+
+![Windows Environment Variables 4](windows-system-settings-4.png)
+
+Click the `OK` button to save your changes.
+
+![Windows Environment Variables 5](windows-system-settings-5.png)
+
+Open up Powershell and type `Write-Host $env:JAVA_HOME` to see the value of the environment variable.
+
+![Windows Environment Variables 6](windows-system-settings-6.png)
 
 ### Configuring the JAVA_HOME Environment Variable in Linux
 
@@ -89,6 +113,9 @@ Production Tomcat instances are typically started as service. This allows Tomcat
 
 The easiest way to install Tomcat as a Windows service is to run the `Windows Service Installer` exe, which is one of the Tomcat download package options. This installer provides a wizard that will configure Tomcat as a Windows service.
 
+![Tomcat Windows Install 1](tomcat-windows-install-1.png)
+![Tomcat Windows Install 2](tomcat-windows-install-2.png)
+
 Alternatively you can use the `bin\service.bat` file to manually configure Tomcat as a Windows service. For example, running the command `service.bat install MyService` will configure Tomcat under a Windows service called `MyService`.
 
 See this [documentation](https://tomcat.apache.org/tomcat-9.0-doc/windows-service-howto.html#Installing_services) for more information on manually configuring a Tomcat Windows service.
@@ -115,14 +142,13 @@ There are too many Linux distributions to provide service scripts for all of the
 
 The script assumes that a user called `tomcat` has been configured in Linux, and that Tomcat has been extracted into the `/opt/apache-tomcat-9` directory. You will need to tweak the script to match your local environment.
 
+This file would be saved under `/etc/init.d/tomcat`. You will also need to ensure that the file is executable by running the command `chmod +x /etc/init.d/tomcat`.
+
 ```
 #!/bin/bash
 #
 # chkconfig: 345 96 30
 # description:  Start up the Tomcat servlet engine.
-#
-# processname: java
-# pidfile: /var/run/tomcat.pid
 #
 ### BEGIN INIT INFO
 # Provides:          tomcat
@@ -161,6 +187,8 @@ exit 0
 ## Configuring users
 
 Tomcat comes with a number of administration tools built in. Links to these administration tools are provided as links called `Server Status`, `Manager App` and `Host Manager` on the default Tomcat welcome page. By default, the welcome page can be viewed at [http://localhost:8080](http://localhost:8080).
+
+![Tomcat Welcome](tomcat-welcome.png)
 
 Before you can use these administration tools, you must first configure users within Tomcat.
 
