@@ -63,7 +63,7 @@ Also, for customers working with multi-tenancy, we've got you covered. You can n
 
 ### Introducing the new Environments screen
 
-The new environments screen takes advantage of the advanced filters available with the Octopus 4.0 redesign (and then adds even more filters per environment "We have ~~fake doors~~ filters like you wouldn't believe!"), making it much faster to load environments and see a summary of the deployment targets contained within. 
+The new environments screen takes advantage of the advanced filters available with the Octopus 4.0 redesign (and then adds even more filters per environment _"We have ~~fake doors~~ filters like you wouldn't believe!"_), making it much faster to load environments and see a summary of the deployment targets contained within. 
 
 ![Octopus v4 infrastructure](v4-infra-environments.png "width=500")
 
@@ -79,13 +79,13 @@ You can then click an environment to expand and see the deployment targets that 
 
 ### Introducing the new Deployment Targets screen
 
-For customers who just want to quickly get to their deployment targets (and don't want to go through an extra click through environments to get there), we've made a Deployment Targets area just for you :)
+For customers who just want to quickly get to their deployment targets (and don't want to go through an extra click via the environments screen to get there), we've made a Deployment Targets area just for you :)
 
 ![Octopus v4 infrastructure](v4-infra-deployment-targets.png "width=500")
 
-This screen contains the same search and filtering mechanisms that the environments screen has, however it shows you your deployment targets straight away.
+This screen contains the same search and filtering mechanisms that the environments screen has, but it loads and shows you your deployment targets straight away.
 
-And whichever way to choose, we have added paging support to cut down on rendering thousands of unnecessary machines :)
+Whichever way to choose, we have added paging support on the client to cut down on rendering thousands of unnecessary machines :)
 
 ## Summary
 
