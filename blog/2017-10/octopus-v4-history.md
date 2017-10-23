@@ -25,9 +25,11 @@ TypeScript let us make our JavaScript strongly typed which helped eliminate bunc
 
 TypeScript compiler is [a transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) which means we can use modern JavaScript (e.g. `arrow functions`, `async/await`) without worrying about browsers that don't yet support it. 
 
-Our move from Angular to React requires a post on its own but I should provide at least a high level summary here. We've picked React because it's conceptually simple and it heavily uses modern JavaScript (e.g. `Array.map`) instead of relying on custom syntax (e.g. `ng-repeat`  in Angular `v1` or `*ngFor` Angular `v2`) .  [React makes you a better JavaScript developer and Angular makes you a better Angular developer](http://merrickchristensen.com/articles/react-vs-angular-2.html#my-conclusion). I think it nicely summarises the main difference between those two. 
+Our move from Angular to React requires a post on its own but I should provide at least a high level summary here. We've picked React because it's conceptually simple and it heavily uses modern JavaScript (e.g. `Array.map`) instead of relying on custom syntax (e.g. `ng-repeat`  in Angular `v1` or `*ngFor` Angular `v2`) .  [React makes you a better JavaScript developer and Angular makes you a better Angular developer](http://merrickchristensen.com/articles/react-vs-angular-2.html#my-conclusion). The paragraph I linked to nicely summarises the main difference between these two. 
 
-CSS Modules let us keep styling of components fully isolated from each other. We could go all in and specify our CSS in JavaScript but we were happy with LESS and the only missing thing was isolation. 
+CSS Modules let us keep styling of our components fully isolated from each other. We could go all in and specify our CSS in JavaScript but we were happy with LESS and the only missing thing was isolation. 
+
+
 
 
 As you can see we've decided to tackle quite a few large problems at the same time which required a lot of coordinated effort but we treat Octopus UI as an essential part of Octopus Deploy ecosystem and are willing to invest in it. 
