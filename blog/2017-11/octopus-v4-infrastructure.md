@@ -86,8 +86,8 @@ Whichever way to choose, we've added paging support on the client to cut down on
 
 The filtering on these screen also includes deep links, so when you click through to a machine and click back, those filters will still be applied when you return to the list #NoMoreTableFlipping.
 
-## Summary
+## That's all, folks!
 
-TODO: mark.siedle
+We're really excited to get this in your hands soon. Feel free to leave us a comment and let us know what you think!
 
-
+Thanks for reading, and happy deployments!
