@@ -5,10 +5,7 @@ author: mark.siedle@octopus.com
 visibility: private
 tags:
  - New Releases
- - Environments
- - Deployment targets
  - Infrastructure
- - Octopus at scale
 ---
 
 For those who've used Octopus with more than a few hundred deployment targets, you'll know the frustrations of the current environments screen all too well :)
@@ -32,7 +29,7 @@ To get into this mindset, we wrote a script and loaded up 2000+ deployment targe
 
 ![Octopus v3 environments at scale](v3-environments-screen-at-scale.jpg "width=400")
 
-Yes, that's a long-and-wrapped version of what the environments page was rendering (each of those little blue dots is a machine icon). To put this into perspective, my “full-screen screenshot” plugin ran out of memory and crashed when trying to capture all of them on my retina iMac, so I had to capture that from a VM with lesser dpi settings :)
+Yes, that's a long-and-wrapped version of what the environments page was rendering (each of those little blue dots is a machine icon). To put this into perspective, my “full-screen screenshot” plugin ran out of memory and crashed when trying to capture all of them on my retina iMac, so I had to capture that from a VM with lesser DPI settings :)
 
 Obviously the first thing we noticed was a significant amount of time being spent on rendering. No paging is implemented on this screen, so if you have, say, over 9000 deployment targets, that's over 9000 HTML line-items that your web-browser needs to generate and render (not to mention all the grouping of environments and health statuses that also needs to happen).
 
