@@ -3,8 +3,6 @@ title: Octopus Deploy 4.0 - Variable Editor Redesign
 description: The variable editor has been revamped for our upcoming Octopus 4.0 release.
 author: tom.peters@octopus.com
 visibility: private
-metaImage: 4.0History_metaimage.png
-bannerImage: 4.0History_blogimage.png
 tags:
  - New Releases
 ---

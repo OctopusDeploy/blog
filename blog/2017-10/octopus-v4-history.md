@@ -3,8 +3,14 @@ title: Octopus Deploy 4.0 - History
 description: The history of how Ocotpus 4.0 was born.
 author: pawel.pabich@octopus.com
 visibility: private
+metaImage: 4.0History_metaimage.png
+bannerImage: 4.0History_blogimage.png
 tags:
  - New Releases
+---
+
+This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
+
 ---
 
 I know that some of you wonder why we've decided to rewrite Octopus UI and this blog post tries to provide a high level answer to this question. We will explain the details of each significant change in future blog posts.
