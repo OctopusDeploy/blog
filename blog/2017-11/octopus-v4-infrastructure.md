@@ -88,6 +88,6 @@ The filtering on these screen also includes deep links, so when you click throug
 
 ## That's all, folks!
 
-We're really excited to get this in your hands soon. Feel free to leave us a comment and let us know what you think!
+We're really excited to get this in your hands soon. Feel free to leave us a comment and let us know what you think :)
 
 Thanks for reading, and happy deployments!
