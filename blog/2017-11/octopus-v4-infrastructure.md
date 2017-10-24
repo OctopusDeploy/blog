@@ -10,7 +10,7 @@ tags:
 
 For those who've used Octopus with more than a few hundred deployment targets, you'll know the frustrations of the current environments screen all too well :)
 
-Some customers use Octopus with thousands of deployment targets, some with tens of thousands of deployments targets. The rendering time to present all those machines is not great, it's not even good ... it's table-flipping material (and often the page will time-out during rendering once it reaches a certain memory limit). Add to that an inability to search, filter or page through results, and it simply does not scale.
+Some customers use Octopus with thousands of deployment targets, some with tens of thousands of deployments targets. The rendering time to present all those targets is not great, it's not even good ... it's table-flipping material (and often the page will time-out during rendering once it reaches a certain memory limit). Add to that an inability to search, filter or page through results, and it simply does not scale.
 
 There are also customers who only have the need for a handful of deployment targets, who do not want to be crippled by a solution that caters _only_ for customers operating at scale.
 
@@ -35,11 +35,11 @@ Obviously the first thing we noticed was a significant amount of time being spen
 
 The second thing we noticed is how difficult it is to find anything. You're left with having to Ctrl-F in your browser, because the grid-layout makes it very difficult to scan and find things quickly.
 
-What's worse is, if you clicked through to a machine then clicked back, you have to wait for everything to load all over again (the rendering, the Ctrl-F to find your place again ... you just wanted to scream or cry, often both). After some time of living in this state, you learn to adapt and `right-click > open deployment target in new tab` to avoid having to reload the environments page...
+What's worse is, if you clicked through to a target then clicked back, you have to wait for everything to load all over again (the rendering, the Ctrl-F to find your place again ... you just wanted to scream or cry, often both). After some time of living in this state, you learn to adapt and `right-click > open deployment target in new tab` to avoid having to reload the environments page...
 
 ![Roll Safe meme](browser-cant-rerender-if-i-never.jpg "width=400")
 
-But this is exactly what we wanted by scripting so many machines, because now we were experiencing the pain first-hand. Now we had a problem to solve and the motivation to see what we could come up with :)
+But this is exactly what we wanted by scripting so many deployment targets, because now we were experiencing the pain first-hand. Now we had a problem to solve and the motivation to see what we could come up with :)
 
 ## The 4.0 Solution
 
@@ -64,7 +64,7 @@ The new environments screen takes advantage of the advanced filters available wi
 
 ![Octopus v4 infrastructure](v4-infra-environments.png "width=500")
 
-This screen will be especially useful for customers operating at scale, who don't want Octopus to start loading and rendering thousands of machines until they've specified exactly what they're looking for.
+This screen will be especially useful for customers operating at scale, who don't want Octopus to start loading and rendering thousands of targets until they've specified exactly what they're looking for.
 
 For example, if you're looking for Cloud Region targets with specific roles, simply expand and assign your filters and the list will refresh with the relevant environments.
 
@@ -82,12 +82,12 @@ For customers who just want to quickly get to their deployment targets (and don'
 
 This screen contains the same search and filtering mechanisms that the environments screen has, but it shows you your deployment targets straight away.
 
-Whichever way to choose, we've added paging support on the client to cut down on rendering thousands of unnecessary machines and client-side caching support on selected endpoints to make loading as fast as possible. 
+Whichever way to choose, we've added paging support on the client to cut down on rendering thousands of unnecessary targets and client-side caching support on selected endpoints to make loading as fast as possible. 
 
-The filtering on these screen also includes deep links, so when you click through to a machine and click back, those filters will still be applied when you return to the list #NoMoreTableFlipping.
+The filtering on these screen also includes deep links, so when you click through to a deployment target and click back, those filters will still be applied when you return to the list #NoMoreTableFlipping.
 
-## Summary
+## That's all, folks!
 
-TODO: mark.siedle
+We're really excited to get this in your hands soon. Feel free to leave us a comment and let us know what you think :)
 
-
+Thanks for reading, and happy deployments!
