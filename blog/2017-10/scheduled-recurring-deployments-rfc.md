@@ -2,7 +2,8 @@
 title: "Scheduled Recurring Deployments RFC"
 description: "Scheduled recurring deployments is something that many other CI/CD tools provide out-of-the-box, and we think Octopus should support this functionality as well! This is a request-for-comments."
 author: henrik.andersson@octopus.com
-visibility: private
+published: 2017-10-24
+visibility: public
 tags:
  - RFC
 ---
