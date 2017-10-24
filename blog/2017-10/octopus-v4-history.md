@@ -3,8 +3,8 @@ title: Octopus Deploy 4.0 - History
 description: The history of how Octopus 4.0 was born.
 author: pawel.pabich@octopus.com
 visibility: private
-metaImage: 4.0History_metaimage.png
-bannerImage: 4.0History_blogimage.png
+metaImage: 4.0_history_metaimage.png
+bannerImage: 4.0_history_blogimage.png
 tags:
  - New Releases
 ---
