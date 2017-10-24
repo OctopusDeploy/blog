@@ -15,7 +15,7 @@ WildFly and Red Hat JBoss Enterprise Application Platform are [amongst the most 
 
 WildFly and Red Hat JBoss Enterprise Application Platform (JBoss EAP for short) are both open source Java EE application servers.
 
-WildFly is made freely available with community support from the [WildFly website](http://wildfly.org/). WildFly releases major updates quite frequently, and old releases have a short support window.
+WildFly is made freely available with community support from the [WildFly website](http://wildfly.org/). WildFly releases major updates quite frequently, and releases have a short support window.
 
 JBoss EAP is made available as part of a subscription with Red Hat. JBoss EAP is based on the same technology that goes into WildFly, although there is not a one-to-one mapping between JBoss EAP versions and WildFly versions. JBoss EAP releases have much longer support windows than WildFly, and are supported by Red Hat.
 
@@ -57,7 +57,7 @@ WildFly can be run in two different modes: standalone or domain.
 
 Standalone mode is used when running a WildFly instance that manages its own configuration and deployments.
 
-Domain mode is used to configure and deploy applications to multiple WildFly instances. In Domain mode the Domain Controller distributes configuration and applications to Domain Slaves.
+Domain mode is used to configure and deploy applications to multiple WildFly instances. In domain mode the Domain Controller distributes configuration and applications to Domain Slaves.
 
 :::hint
 A domain should not be confused with a cluster. Domains exist only to distribute settings and applications, and those settings may or may not build a clustered environment. Likewise standalone instances can participate in a cluster if they are individually configured with the required settings.
@@ -173,7 +173,7 @@ When you first load the admin console, you will be required to enter the credent
 For reasons I have not yet uncovered, Chrome will not prompt you to save the credentials used to access the admin console unless you refresh the page.
 :::
 
-![WildFly Admin Console](wildfly-admin-console.png)
+![WildFly Admin Console](wildfly-admin-console.png "width=500")
 
 The admin console provides features for deploying web applications, changing settings, monitoring performance, viewing log files and more.
 
