@@ -3,6 +3,7 @@ title: Installing Tomcat From Scratch
 description: Learn the steps you'll need to configure a working instance of Tomcat.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-10-23
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -39,7 +40,7 @@ OpenJDK is the name of the project, and while it includes the acronym "JDK" in i
 
 The Oracle JDK is an implementation of Java provided by Oracle. Typically you have to download and install the Oracle JDK manually from the [Oracle website](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
-Wether you use OpenJDK or Oracle JDK is a matter of personal choice. I'll use OpenJDK in Linux distributions because of the ease of installation using the package manager. In Windows or MacOS I'll install the Oracle JDK.
+Whether you use OpenJDK or Oracle JDK is a matter of personal choice. I'll use OpenJDK in Linux distributions because of the ease of installation using the package manager. In Windows or MacOS I'll install the Oracle JDK.
 
 ## Download Tomcat
 
@@ -233,4 +234,4 @@ To learn more about the groups used by Tomcat to manage access to the administra
 
 In this blog post we've looked at a number of decisions that need be made around what version of Java to run, how to configure Tomcat as a service, and how to add users to the stock Tomcat installation.
 
-If you are interested in automating the deployment of your Java applications to Tomcat, [download a trail copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications to Tomcat, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
