@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy 4.0 - History
-description: The history of how Ocotpus 4.0 was born.
+description: The history of how Octopus 4.0 was born.
 author: pawel.pabich@octopus.com
 visibility: private
 metaImage: 4.0History_metaimage.png
@@ -25,17 +25,17 @@ When you visit Octopus UI for the very first time you need to wait for over 1MB 
 
 ## Developer experience
 
-From development perspective we wanted an environment where we can use modern JavaScript that we can safely maintain and extend in the future. There is more than one technology stack that satisfies these requirements and we've experimented with quite a few of them. At the end of that exercise we've picked [TypeScript](https://www.typescriptlang.org/), , [React](https://reactjs.org/) and [CSS Modules](https://github.com/css-modules/css-modules) as our basic building blocks.
+From a development perspective we wanted an environment where we could use modern JavaScript that we can safely maintain and extend in the future. There is more than one technology stack that satisfies these requirements and we've experimented with quite a few of them. At the end of that exercise we've picked [TypeScript](https://www.typescriptlang.org/), [React](https://reactjs.org/) and [CSS Modules](https://github.com/css-modules/css-modules) as our basic building blocks.
 
-TypeScript let us make our JavaScript strongly typed which helped eliminate bunch of manual refactorings that can now be done safely by our code editors.  TypeScript also converted several common runtime errors into compile time errors. I don't remember the last time I saw an error caused by a typo :). 
+TypeScript let us make our JavaScript strongly typed which helped eliminate many manual refactorings that can now be done safely by our code editors.  TypeScript also converted several common runtime errors into compile time errors. I don't remember the last time I saw an error caused by a typo :). 
 
-TypeScript compiler is [a transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) which means we can use modern JavaScript (e.g. `arrow functions`, `async/await`) without worrying about browsers that don't yet support it. 
+The TypeScript compiler is [a transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) which means we can use modern JavaScript (e.g. `arrow functions`, `async/await`) without worrying about browsers that don't yet support it. 
 
-Our move from Angular to React requires a post on its own but I should provide at least a high level summary here. We've picked React because it's conceptually simple and it heavily uses modern JavaScript (e.g. `Array.map`) instead of relying on custom syntax (e.g. `ng-repeat`  in Angular `v1` or `*ngFor` Angular `v2`) .  [React makes you a better JavaScript developer and Angular makes you a better Angular developer](http://merrickchristensen.com/articles/react-vs-angular-2.html#my-conclusion). The paragraph I linked to nicely summarises the main difference between these two. 
+Our move from Angular to React requires a post on its own but I should provide at least a high level summary here. We've picked React because it's conceptually simple and it heavily uses modern JavaScript (e.g. `Array.map`) instead of relying on custom syntax (e.g. `ng-repeat`  in Angular `v1` or `*ngFor` Angular `v2`) .  The conclusion of the [React vs Angular 2](http://merrickchristensen.com/articles/react-vs-angular-2.html#my-conclusion) post by Merrick Christensen nicely summarises the main difference between these two. Effectively, React makes you a better JavaScript developer and Angular makes you a better Angular developer.
 
 CSS Modules let us keep styling of our components fully isolated from each other. We could go all in and specify our CSS in JavaScript but we were happy with LESS and the only missing thing was isolation. 
 
 
 
 
-As you can see we've decided to tackle quite a few large problems at the same time which required a lot of coordinated effort but we treat Octopus UI as an essential part of Octopus Deploy ecosystem and are willing to invest in it. 
+As you can see we've decided to tackle quite a few complex problems at the same time which required a lot of coordinated effort but we treat Octopus UI as an essential part of Octopus Deploy ecosystem and are willing to invest in it. 
