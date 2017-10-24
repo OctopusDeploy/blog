@@ -126,7 +126,7 @@ Finally, make sure that the `wildfly` user is the owner of the `/opt/wildfly` di
 The following steps will configure WildFly to be managed by systemd.
 
 1. Copy the `launch.sh` script into the `bin` directory with the command `cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin`.
-2. Copy the WildFly system unit into `/etc/systemd/system` with the command `sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system`.
+2. Copy the WildFly systemd unit into `/etc/systemd/system` with the command `sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system`.
 3. Create the `/etc/wildfly` directory with the command `sudo mkdir /etc/wildfly`.
 4. Copy the config file into `/etc/wildfly` with the command `sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly`.
 5. Enable the WildFly service with the command `sudo systemctl enable wildfly`.
@@ -152,6 +152,10 @@ Oct 24 16:48:53 matthew-VirtualBox systemd[1]: Started The WildFly Application S
 ## Configuring Admin Users
 
 In order to log into the admin console, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
+
+:::hint
+You can run the add-user script will WildFly is running. New users will be picked up automatically.
+:::
 
 Once the script is run you will be asked a number of questions:
 
@@ -204,7 +208,7 @@ When WildFly has been launched, either manually or as a service, the admin conso
 When you first load the admin console, you will be required to enter the credentials you created with the `add-user` script.
 
 :::hint
-For reasons I have not yet uncovered, Chrome will not prompt you to save the credentials used to access the admin console unless you refresh the page.
+For reasons I do not understand, Chrome will not prompt you to save the credentials used to access the admin console unless you refresh the page.
 :::
 
 ![WildFly Admin Console](wildfly-admin-console.png "width=500")
@@ -216,3 +220,7 @@ The admin user we created earlier has access to all aspects of the admin console
 :::
 
 ## Conclusion
+
+In this post we have seen how to run WildFly manually and as a service in both Windows and Linux, configured an admin user, and opened the admin console.
+
+If you are interested in automating the deployment of your Java applications to WildFly, [download a trail copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
