@@ -115,10 +115,70 @@ Production WildFly instances are typically started as a service. This allows Wil
 
 WildFly ships with init.d and systemd service definition files in the `docs/contrib/scripts/init.d` and `docs/contrib/scripts/systemd` directories.
 
-
-
 ## Configuring Admin Users
 
+In order to log into the admin console, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
+
+Once the script is run you will be asked a number of questions:
+
+* What type of user to add - Management User
+* The username
+* The password
+* What groups the user will belong to - Leave this blank
+* Whether the user is used for AS process interconnection - no
+
+I've pasted the output of the `add-user` script below. Notice that I updated the existing disabled user of `admin` with a new password.
+
+```
+$ ./add-user.sh
+
+What type of user do you wish to add?
+ a) Management User (mgmt-users.properties)
+ b) Application User (application-users.properties)
+(a): a
+
+Enter the details of the new user to add.
+Using realm 'ManagementRealm' as discovered from the existing property files.
+Username : admin
+User 'admin' already exists and is disabled, would you like to...
+ a) Update the existing user password and roles
+ b) Enable the existing user
+ c) Type a new username
+(a): a
+Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+ - The password should be different from the username
+ - The password should not be one of the following restricted values {root, admin, administrator}
+ - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+Password : <enter password>
+Re-enter Password : <enter password>
+What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
+Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-users.properties'
+Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-users.properties'
+Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-groups.properties'
+Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-groups.properties'
+Is this new user going to be used for one AS process to connect to another AS process?
+e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+yes/no? no
+```
+
+This script will modify the `mgmt-users.properties` and `mgmt-groups.properties` files for both the domain and standalone modes. This means that regardless of which mode you intend to use WildFly in, the user will be available.
+
 ## Opening the Admin Console
+
+When WildFly has been launched, either manually or as a service, the admin console is available from http://localhost:9990.
+
+When you first load the admin console, you will be required to enter the credentials you created with the `add-user` script.
+
+:::hint
+For reasons I have not yet uncovered, Chrome will not prompt you to save the credentials used to access the admin console unless you refresh the page.
+:::
+
+![WildFly Admin Console](wildfly-admin-console.png)
+
+The admin console provides features for deploying web applications, changing settings, monitoring performance, viewing log files and more.
+
+:::hint
+The admin user we created earlier has access to all aspects of the admin console. If you need fine grained control, consider using Role Based Access Controls (RBAC). The [documentation](https://docs.jboss.org/author/display/WFLY/RBAC) has more details on enabling RBAC.
+:::
 
 ## Conclusion
