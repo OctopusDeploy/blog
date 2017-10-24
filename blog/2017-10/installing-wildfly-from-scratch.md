@@ -115,6 +115,40 @@ Production WildFly instances are typically started as a service. This allows Wil
 
 WildFly ships with init.d and systemd service definition files in the `docs/contrib/scripts/init.d` and `docs/contrib/scripts/systemd` directories.
 
+Before we configure any Linux services, we need to add a user that will run WildFly. This user will be called `wildfly`, and can be created by running the command `sudo useradd wildfly`.
+
+Next make sure that WildFly has been extracted to `/opt/wildfly`. The `/opt` directory ["is reserved for all the software and add-on packages that are not part of the default installation"](http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html), which describes our WildFly installation nicely (and is the default path in the supplied service scripts too).
+
+Finally, make sure that the `wildfly` user is the owner of the `/opt/wildfly` directory with the command `sudo chown wildfly:wildfly -R /opt/wildfly`.
+
+#### Configuring the Systemd Service
+
+The following steps will configure WildFly to be managed by systemd.
+
+1. Copy the `launch.sh` script into the `bin` directory with the command `cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin`.
+2. Copy the WildFly system unit into `/etc/systemd/system` with the command `sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system`.
+3. Create the `/etc/wildfly` directory with the command `sudo mkdir /etc/wildfly`.
+4. Copy the config file into `/etc/wildfly` with the command `sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly`.
+5. Enable the WildFly service with the command `sudo systemctl enable wildfly`.
+6. Start the WildFly service with the command `sudo systemctl start wildfly`.
+
+At this point WildFly will be running, which you can verify with the command `sudo systemctl status wildfly`.
+
+```
+$sudo systemctl status wildfly
+● wildfly.service - The WildFly Application Server
+   Loaded: loaded (/etc/systemd/system/wildfly.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2017-10-24 16:48:53 AEST; 1min 38s ago
+ Main PID: 5448 (launch.sh)
+    Tasks: 68 (limit: 4915)
+   CGroup: /system.slice/wildfly.service
+           ├─5448 /bin/bash /opt/wildfly/bin/launch.sh standalone standalone.xml 0.0.0.0
+           ├─5449 /bin/sh /opt/wildfly/bin/standalone.sh -c standalone.xml -b 0.0.0.0
+           └─5502 java -D[Standalone] -server -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.
+
+Oct 24 16:48:53 matthew-VirtualBox systemd[1]: Started The WildFly Application Server.
+```
+
 ## Configuring Admin Users
 
 In order to log into the admin console, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
