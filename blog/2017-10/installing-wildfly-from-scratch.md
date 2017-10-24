@@ -149,6 +149,30 @@ $sudo systemctl status wildfly
 Oct 24 16:48:53 matthew-VirtualBox systemd[1]: Started The WildFly Application Server.
 ```
 
+#### Configuring the init.d Service
+
+The following steps will configure WildFly to be managed by init.d.
+
+1. Copy the appropriate init script from either `wildfly-init-redhat.sh` or `wildfly-init-debian.sh` to `/etc/init.d/wildfly`. For example, if you have a Red Hat based distribution, you can copy the file with the command `sudo cp /opt/wildfly/docs/contrib/scripts/init.d/wildfly-init-redhat.sh /etc/init.d/wildfly`. If you have a Debian based distribution, copy the file with the command `sudo cp /opt/wildfly/docs/contrib/scripts/init.d/wildfly-init-debian.sh /etc/init.d/wildfly`.
+2. Copy the file `wildfly.conf` to `/etc/default` with the command `sudo cp /opt/wildfly/docs/contrib/scripts/init.d/wildfly.conf /etc/default`.
+3. Start the service with the command `sudo service wildfly start`.
+
+At this point WildFly will be running, which you can verify with the command `sudo service wildfly status`. In this example, taken from Centos 7, the init.d script is being managed by systemd.
+
+```
+$ sudo service wildfly status
+● wildfly.service - LSB: WildFly Application Server
+   Loaded: loaded (/etc/rc.d/init.d/wildfly; bad; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-24 19:34:44 AEST; 8min ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 3071 ExecStart=/etc/rc.d/init.d/wildfly start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/wildfly.service
+           ├─3102 /bin/sh /opt/wildfly/bin/standalone.sh -c standalone.xml
+           └─3151 java -D[Standalone] -server -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256...
+
+Oct 24 19:34:40 localhost.localdomain systemd[1]: Starting LSB: WildFly Application Server...
+```
+
 ## Configuring Admin Users
 
 In order to log into the admin console, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
