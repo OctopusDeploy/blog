@@ -29,6 +29,8 @@ I have not been able to find any official documentation around the support windo
 
 ## Java EE Terminology
 
+The terminology around the enterprise Java platform has changed over the years, and is a source of much confusions, especially for those non-developers.
+
 Java 2 Platform, Enterprise Edition (J2EE) was introduced in 1999 with J2EE 1.2, and the J2EE name was used until 2003 with J2EE 1.4.
 
 In 2005 the name was changed to Java Enterprise Edition (Java EE) with the release of Java EE 5. The Java EE name has been used until 2017 with Java EE 8.
@@ -95,13 +97,13 @@ A domain should not be confused with a cluster. Domains exist only to distribute
 
 WildFly can be started in either domain or standalone mode. Each mode is launched with a separate script.
 
-To start WildFly in standalone mode, run the `bin\standalone.bat` script in Windows and `bin/standalone.sh` script for Linux.
+To start WildFly in standalone mode, run the `bin\standalone.bat` script in Windows and `bin/standalone.sh` script in Linux.
 
-To start WildFly in domain mode, run the `bin\domain.bat` script in Windows and `bin/domain.sh` script for Linux.
+To start WildFly in domain mode, run the `bin\domain.bat` script in Windows and `bin/domain.sh` script in Linux.
 
 ## Configuring WildFly Memory Settings
 
-The memory settings used by WildFly are defined in the `JAVA_OPTS` environment variable. In the absence of this environment variable, default values are defined in the `bin/standalone.conf.bat` and `bin/domain.conf.bat` files for Windows, and the  `bin/standalone.conf` or `bin/domain.conf` files for Linux.
+The memory settings used by WildFly are defined in the `JAVA_OPTS` environment variable. In the absence of this environment variable, default values are defined in the `bin/standalone.conf.bat` and `bin/domain.conf.bat` files for Windows, or the  `bin/standalone.conf` and `bin/domain.conf` files for Linux.
 
 In the Windows configuration files you will see commands like this:
 
@@ -139,21 +141,21 @@ Production WildFly instances are typically started as a service. This allows Wil
 
 ### Installing Tomcat as a Windows Service
 
-WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the cerednetials that were created with the `adduser.bat` script.
+WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the credentials that were created with the `adduser.bat` script.
 
-This command will add a standalone instance as a Windows service.
+This command will configure a standalone instance as a Windows service.
 
 ```
 bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /name "WildFly 11 Standalone"
 ```
 
-This command will add a domain controller as a Windows service.
+This command will configure a domain controller as a Windows service.
 
 ```
 bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-master.xml /name "WildFly 11 Domain Controller"
 ```
 
-This command will add a domain controller as a Windows service.
+This command will configure a domain slave as a Windows service.
 
 ```
 bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-slave.xml /name "WildFly 11 Domain Slave"
@@ -169,7 +171,7 @@ Next make sure that WildFly has been extracted to `/opt/wildfly`. The `/opt` dir
 
 Finally, make sure that the `wildfly` user is the owner of the `/opt/wildfly` directory with the command `sudo chown wildfly:wildfly -R /opt/wildfly`.
 
-#### Configuring the Systemd Service
+#### Configuring the systemd Service
 
 The following steps will configure WildFly to be managed by systemd.
 
