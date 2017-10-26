@@ -17,6 +17,10 @@ WildFly and Red Hat JBoss Enterprise Application Platform (JBoss EAP for short) 
 
 WildFly is made freely available with community support from the [WildFly website](http://wildfly.org/). WildFly releases major updates quite frequently, and releases have a short support window.
 
+:::hint
+WildFly has typically seen a major release every year, and after WildFly 11 is planning [to move to a faster, more incremental release model, starting with WildFly 12](http://wildfly.org/news/2017/10/23/WildFly11-Final-Released/).
+:::
+
 JBoss EAP is made available as part of a subscription with Red Hat. JBoss EAP is based on the same technology that goes into WildFly, although there is not a one-to-one mapping between JBoss EAP versions and WildFly versions. JBoss EAP releases have much longer support windows than WildFly, and are supported by Red Hat.
 
 :::hint
@@ -45,11 +49,35 @@ Older Java EE app servers incurred a memory cost from loading libraries that may
 
 For this blog post we'll be using the full application server distribution.
 
+## Install Java
+
+Being a Java web server, WildFly requires Java to be installed before it can be run.
+
+WildFly 11 requires at least Java 8 to run.
+
+### JRE or JDK?
+
+Java installations are provided either as the Java Runtime Environment (JRE) or the Java Development Kit (JDK).
+
+The JRE provides all the functionality required to run Java applications, including Tomcat. The JDK provides the JRE, as well as some additional tools that developers use to compile and manage Java applications.
+
+Tomcat will work with either the JRE or JDK. Typically the JDK is used by developers, and is a larger package, so if you are in doubt install the JRE.
+
+### OpenJDK or Oracle JDK?
+
+OpenJDK is an open source implementation of the Java platform. It is often included in Linux package managers with package names like `openjdk-8-jre` or `openjdk-8-jdk`.
+
+OpenJDK is the name of the project, and while it includes the acronym "JDK" in its name, the OpenJDK project provides both a JRE and a JDK.
+
+The Oracle JDK is an implementation of Java provided by Oracle. Typically you have to download and install the Oracle JDK manually from the [Oracle website](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+
+Wether you use OpenJDK or Oracle JDK is a matter of personal choice. I'll use OpenJDK in Linux distributions because of the ease of installation using the package manager. In Windows or MacOS I'll install the Oracle JDK.
+
 ## Downloading WildFly
 
 WildFly is made available as a zip or tar.gz package. Either is fine for Windows users. For Linux users, the tar.gz package is preferred as it will retain the executable flag for shell scripts.
 
-At the time this blog post was written, WildFly 10.1.0 was the last major release. However, we'll use WildFly 11 CR1 as it is going to be very close to the final WildFly 11 release, which is due any time now.
+At the time this blog post was written, WildFly 11.0.0 was the last major release, and this is the version that will be referenced in this blog.
 
 ## Standalone vs Domain
 
@@ -110,6 +138,26 @@ Some Java settings are version specific. Be sure to use settings that are specif
 Production WildFly instances are typically started as a service. This allows WildFly to be started when the operating system boots, shutdown when the OS is shutdown, and managed with the service management tools built into the OS.
 
 ### Installing Tomcat as a Windows Service
+
+WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the cerednetials that were created with the `adduser.bat` script.
+
+This command will add a standalone instance as a Windows service.
+
+```
+bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /name "WildFly 11 Standalone"
+```
+
+This command will add a domain controller as a Windows service.
+
+```
+bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-master.xml /name "WildFly 11 Domain Controller"
+```
+
+This command will add a domain controller as a Windows service.
+
+```
+bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-slave.xml /name "WildFly 11 Domain Slave"
+```
 
 ### Installing Tomcat as a Linux Service
 
