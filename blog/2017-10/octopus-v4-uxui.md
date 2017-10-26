@@ -35,6 +35,7 @@ Hierarchy for focus and flow
 Colour, size and position helped 4.0 achieve a level of hierarchy, within the layout and components.
 
 The button component uses colour to determine primary actions, secondary actions and ternary actions which usually appear inline. Any action that users don’t use often or we don’t want accidentally clicked, is now in an overflow menu.
+
 ![Octopus 4.0 coming soon](4.0_buttons_blogimage.png "width=500")
 
 Using a page layout hierarchy allowed us to use patterns that helped visually represent a flow from high level summary, detailed summary to detailed data view. There were some cases where this didn’t work due to purpose of the data but most sections start with a card view and go to lists or table and then to forms and detailed data.
