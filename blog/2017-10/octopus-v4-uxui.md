@@ -3,8 +3,8 @@ title: Octopus Deploy 4.0 - UX and UI
 description: The details behind the biggest change to the Octopus user interface and user experience since it's original launch! 
 author: jessica.ross@octopus.com
 visibility: private
-metaImage:
-bannerImage:
+metaImage: 4.0uxui_metaimage.png
+bannerImage: 4.0uxui_blogimage.png
 tags:
  - New Releases
 ---
@@ -23,6 +23,7 @@ The purpose of Octopus 4.0 UI was to update to a modern interface, reduce cognit
 It was decided to use an existing CSS and pattern library so we could focus on building a great deployment tool experience. We really liked what Google's’ Material guidelines offered but were conscious not to lose some of the iconic Octopus styling, for example, the task details style. The Material-UI library had most of the patterns that were needed and we have adapted them to our own brand. By using an existing library, we utilize pre-existing patterns that most people already use so when you do upgrade to Octopus 4.0 it’s a familiar experience.
 
 **Dashboard before**
+![Octopus 4.0 coming soon](4.0_dashboard-before_blogimage.png "width=500")
 
 **Dashboard after**
 
@@ -56,7 +57,7 @@ Using a page layout hierarchy allowed us to use patterns that helped visually re
 
 ![Octopus 4.0 coming soon](4.0_detailedview_blogimage.png "width=500")
 
-#### Keeping useful actions in close proximity
+#### Keeping useful actions together
 
 The interface was designed to have the action buttons positioned within the content area and visible at all times with a sticky section header. No more scrolling to get to the save button!
 ![Octopus 4.0 coming soon](4.0_sticky-header_blogimage.png "width=500")
