@@ -9,6 +9,8 @@ tags:
  - New Releases
 ---
 
+![Octopus 4.0 coming soon](4.0uxui_blogimage.png)
+
 This post is a part of our Octopus 4.0 blog series.  Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
 
 ---
