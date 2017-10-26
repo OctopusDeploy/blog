@@ -2,7 +2,7 @@
 title: Octopus Deploy 4.0 - UX and UI
 description: The details behind the biggest change to the Octopus user interface and user experience since it's original launch! 
 author: jessica.ross@octopus.com
-visibility: private
+visibility: public
 metaImage: 4.0uxui_metaimage.png
 bannerImage: 4.0uxui_blogimage.png
 tags:
@@ -32,6 +32,7 @@ It was decided to use an existing CSS and pattern library so we could focus on b
 
 ![Octopus 4.0 coming soon](4.0_dashboard-after_blogimage.png "width=500")
 
+
 #### Reducing cognitive load
 
 The goal for each page is to be intuitive, for a user to immediately know where they are, what to do, and how to do it. We recognized some pages were busy, with text explaining what each section was and buttons that looked the same. To reduce the amount of mental effort required we applied some simple design principles:
@@ -60,17 +61,20 @@ Using a page layout hierarchy allowed us to use patterns that helped visually re
 
 ![Octopus 4.0 coming soon](4.0_detailedview_blogimage.png "width=500")
 
+
 #### Keeping useful actions together
 
 The interface was designed to have the action buttons positioned within the content area and visible at all times with a sticky section header. No more scrolling to get to the save button!
 
 ![Octopus 4.0 coming soon](4.0_sticky-header_blogimage.png "width=500")
 
+
 #### Consistency
 
 By creating a design layout based on hierarchy and proximity, we immediately addressed the layout consistency issues. To make sure everyone was using the same components we developed a detailed style guide where our developers could easily find the right component.
 
 ![Octopus 4.0 coming soon](4.0_styleguide_blogimage.png "width=500")
+
 
 #### Summary views to provide clarity
 
@@ -84,6 +88,7 @@ One of the biggest changes in Octopus 4.0 UI is the expanding form sections. Whe
 
 ![Octopus 4.0 coming soon](4.0_detailed-view_blogimage.png "width=500")
 
+
 ### Designing for scale
 
 The previous Octopus UI didn’t display large amounts of data very well so Octopus 4.0 needed to make sure patterns, like the expanding panels and tables, were used to show as much data on the screen as possible. The expanding panels also assist reducing load times on pages like the redesigned environments page. An issue Octopus users face, with lots of data, is finding things. So to help we went a little crazy with filters, advanced filters, and pre-defined filters.
@@ -95,5 +100,6 @@ The previous Octopus UI didn’t display large amounts of data very well so Octo
 **Environments page after**
 
 ![Octopus 4.0 coming soon](4.0_environments-after_blogimage.png "width=500")
+
 
 We understand that getting used to something new can be a challenge, but we believe our decision to redesign and restructure areas, like the variable editor and deployment page, has produced an awesome Octopus 4.0 release. This is thanks to the ongoing User Voice suggestions and most recently our users, who provided valuable feedback when testing Octopus 4.0 Alpha.
