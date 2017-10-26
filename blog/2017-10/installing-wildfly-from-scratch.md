@@ -29,7 +29,7 @@ I have not been able to find any official documentation around the support windo
 
 ## Java EE Terminology
 
-The terminology around the enterprise Java platform has changed over the years, and is a source of much confusions, especially for those non-developers.
+The terminology around the enterprise Java platform has changed over the years, and is a source of much confusion, especially for non-developers.
 
 Java 2 Platform, Enterprise Edition (J2EE) was introduced in 1999 with J2EE 1.2, and the J2EE name was used until 2003 with J2EE 1.4.
 
