@@ -193,7 +193,7 @@ Production WildFly instances are typically started as a service. This allows Wil
 
 ### Installing WildFly as a Windows Service
 
-WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the credentials that were created with the `adduser.bat` script.
+WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the credentials that were created with the `add-user.bat` script.
 
 This command will configure a standalone instance as a Windows service.
 
