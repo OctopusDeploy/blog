@@ -2,7 +2,7 @@
 title: Installing WildFly From Scratch
 description: Learn the steps you'll need to configure a working instance of WildFly.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -61,9 +61,9 @@ WildFly 11 requires at least Java 8 to run.
 
 Java installations are provided either as the Java Runtime Environment (JRE) or the Java Development Kit (JDK).
 
-The JRE provides all the functionality required to run Java applications, including Tomcat. The JDK provides the JRE, as well as some additional tools that developers use to compile and manage Java applications.
+The JRE provides all the functionality required to run Java applications, including WildFly. The JDK provides the JRE, as well as some additional tools that developers use to compile and manage Java applications.
 
-Tomcat will work with either the JRE or JDK. Typically the JDK is used by developers, and is a larger package, so if you are in doubt install the JRE.
+WildFly will work with either the JRE or JDK. Typically the JDK is used by developers, and is a larger package, so if you are in doubt install the JRE.
 
 ### OpenJDK or Oracle JDK?
 
@@ -191,9 +191,9 @@ This script will modify the `mgmt-users.properties` and `mgmt-groups.properties`
 
 Production WildFly instances are typically started as a service. This allows WildFly to be started when the operating system boots, shutdown when the OS is shutdown, and managed with the service management tools built into the OS.
 
-### Installing Tomcat as a Windows Service
+### Installing WildFly as a Windows Service
 
-WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the credentials that were created with the `adduser.bat` script.
+WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the credentials that were created with the `add-user.bat` script.
 
 This command will configure a standalone instance as a Windows service.
 
@@ -213,7 +213,7 @@ This command will configure a domain slave as a Windows service.
 bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-slave.xml /name "WildFly 11 Domain Slave"
 ```
 
-### Installing Tomcat as a Linux Service
+### Installing WildFly as a Linux Service
 
 WildFly ships with init.d and systemd service definition files in the `docs/contrib/scripts/init.d` and `docs/contrib/scripts/systemd` directories.
 
