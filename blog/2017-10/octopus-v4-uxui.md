@@ -61,11 +61,13 @@ Using a page layout hierarchy allowed us to use patterns that helped visually re
 #### Keeping useful actions together
 
 The interface was designed to have the action buttons positioned within the content area and visible at all times with a sticky section header. No more scrolling to get to the save button!
+
 ![Octopus 4.0 coming soon](4.0_sticky-header_blogimage.png "width=500")
 
 #### Consistency
 
 By creating a design layout based on hierarchy and proximity, we immediately addressed the layout consistency issues. To make sure everyone was using the same components we developed a detailed style guide where our developers could easily find the right component.
+
 ![Octopus 4.0 coming soon](4.0_styleguide_blogimage.png "width=500")
 
 #### Summary views to provide clarity
