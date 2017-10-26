@@ -21,8 +21,11 @@ The purpose of Octopus 4.0 UI was to update to a modern interface, reduce cognit
 ### Modern UI
 
 It was decided to use an existing CSS and pattern library so we could focus on building a great deployment tool experience. We really liked what Google's’ Material guidelines offered but were conscious to not lose some of the iconic Octopus styling, for example, the task details style. The Material-ui library had most of the patterns that was needed and have adapted them to be our own brand. By using an existing library we utilise pre-existing patterns that most people already use so when you do upgrade to Octopus 4.0 it’s a familiar experience.
+
 **Dashboard before**
+
 **Dashboard after**
+
 ![Octopus 4.0 coming soon](4.0_dashboard-after_blogimage.png "width=500")
 
 #### Reducing cognitive load
@@ -35,13 +38,21 @@ The button component uses colour to determine primary actions, secondary actions
 ![Octopus 4.0 coming soon](4.0_buttons_blogimage.png "width=500")
 
 Using a page layout hierarchy allowed us to use patterns that helped visually represent a flow from high level summary, detailed summary to detailed data view. There were some cases where this didn’t work due to purpose of the data but most sections start with a card view and go to lists or table and then to forms and detailed data.
+
 **Card view**
+
 ![Octopus 4.0 coming soon](4.0_cardview_blogimage.png "width=500")
+
 **List view**
+
 ![Octopus 4.0 coming soon](4.0_listview_blogimage.png "width=500")
+
 **Summary form view**
+
 ![Octopus 4.0 coming soon](4.0_summaryview_blogimage.png "width=500")
+
 **Detailed form view**
+
 ![Octopus 4.0 coming soon](4.0_detailedview_blogimage.png "width=500")
 
 #### Keeping useful actions in close proximity
@@ -57,17 +68,25 @@ By creating a design layout based on hierarchy and proximity, we immediately add
 #### Summary views to provide clarity
 
 One of the biggest changes in Octopus 4.0 UI is the expanding form sections. The expanding sections allows the interface to display a summary of the configuration of a step or project settings, without the noise of the other settings and as a result reducing the cognitive load for the user.
+
 **Summary form view**
+
 ![Octopus 4.0 coming soon](4.0_summary-view_blogimage.png "width=500")
+
 **Detailed form view**
+
 ![Octopus 4.0 coming soon](4.0_detailed-view_blogimage.png "width=500")
 
 ### Designing for scale
 
 The previous Octopus UI didn’t display larges amount of data very well so Octopus 4.0 needed to make sure patterns, like the expanding panels and tables, were used to show as much data on the screen as possible. An area addressed for scale issues was the environments page and the introduction of the infrastructure overview page. An issue Octopus users face, with lots of data, is finding things. So to help we went a little crazy with filters, advanced filters and pre-defined filters. I think we have some filters left to use ;)
+
 **Environments page before**
+
 ![Octopus 4.0 coming soon](4.0_environments-before_blogimage.png "width=500")
+
 **Environments page after**
+
 ![Octopus 4.0 coming soon](4.0_environments-after_blogimage.png "width=500")
 
 We understand that getting used to something new can be a challenge but we believe our decision to redesign and restructure areas, like the variable editor and deployment page, has produced an awesome Octopus 4.0 release. This is thanks to the ongoing User Voice suggestions and most recently our users, who provided valuable feedback when testing Octopus 4.0 Alpha.
