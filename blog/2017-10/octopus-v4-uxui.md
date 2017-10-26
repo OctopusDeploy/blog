@@ -23,6 +23,7 @@ The purpose of Octopus 4.0 UI was to update to a modern interface, reduce cognit
 It was decided to use an existing CSS and pattern library so we could focus on building a great deployment tool experience. We really liked what Google's’ Material guidelines offered but were conscious not to lose some of the iconic Octopus styling, for example, the task details style. The Material-UI library had most of the patterns that were needed and we have adapted them to our own brand. By using an existing library, we utilize pre-existing patterns that most people already use so when you do upgrade to Octopus 4.0 it’s a familiar experience.
 
 **Dashboard before**
+
 ![Octopus 4.0 coming soon](4.0_dashboard-before_blogimage.png "width=500")
 
 **Dashboard after**
