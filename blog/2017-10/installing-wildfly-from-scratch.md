@@ -29,6 +29,8 @@ I have not been able to find any official documentation around the support windo
 
 ## Java EE Terminology
 
+The terminology around the enterprise Java platform has changed over the years, and is a source of much confusions, especially for those non-developers.
+
 Java 2 Platform, Enterprise Edition (J2EE) was introduced in 1999 with J2EE 1.2, and the J2EE name was used until 2003 with J2EE 1.4.
 
 In 2005 the name was changed to Java Enterprise Edition (Java EE) with the release of Java EE 5. The Java EE name has been used until 2017 with Java EE 8.
@@ -95,13 +97,13 @@ A domain should not be confused with a cluster. Domains exist only to distribute
 
 WildFly can be started in either domain or standalone mode. Each mode is launched with a separate script.
 
-To start WildFly in standalone mode, run the `bin\standalone.bat` script in Windows and `bin/standalone.sh` script for Linux.
+To start WildFly in standalone mode, run the `bin\standalone.bat` script in Windows and `bin/standalone.sh` script in Linux.
 
-To start WildFly in domain mode, run the `bin\domain.bat` script in Windows and `bin/domain.sh` script for Linux.
+To start WildFly in domain mode, run the `bin\domain.bat` script in Windows and `bin/domain.sh` script in Linux.
 
 ## Configuring WildFly Memory Settings
 
-The memory settings used by WildFly are defined in the `JAVA_OPTS` environment variable. In the absence of this environment variable, default values are defined in the `bin/standalone.conf.bat` and `bin/domain.conf.bat` files for Windows, and the  `bin/standalone.conf` or `bin/domain.conf` files for Linux.
+The memory settings used by WildFly are defined in the `JAVA_OPTS` environment variable. In the absence of this environment variable, default values are defined in the `bin/standalone.conf.bat` and `bin/domain.conf.bat` files for Windows, or the  `bin/standalone.conf` and `bin/domain.conf` files for Linux.
 
 In the Windows configuration files you will see commands like this:
 
@@ -133,27 +135,79 @@ You can find more information on the settings shown here by viewing the Oracle d
 Some Java settings are version specific. Be sure to use settings that are specific to the version of Java you are running WildFly with.
 :::
 
+## Configuring Admin Users
+
+In order to log into the admin console or configure WildFly as a Windows service, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
+
+:::hint
+You can run the add-user script will WildFly is running. New users will be picked up automatically.
+:::
+
+Once the script is run you will be asked a number of questions:
+
+* What type of user to add - Management User
+* The username
+* The password
+* What groups the user will belong to - Leave this blank
+* Whether the user is used for AS process interconnection - no
+
+I've pasted the output of the `add-user` script below. Notice that I updated the existing disabled user of `admin` with a new password.
+
+```
+$ ./add-user.sh
+
+What type of user do you wish to add?
+ a) Management User (mgmt-users.properties)
+ b) Application User (application-users.properties)
+(a): a
+
+Enter the details of the new user to add.
+Using realm 'ManagementRealm' as discovered from the existing property files.
+Username : admin
+User 'admin' already exists and is disabled, would you like to...
+ a) Update the existing user password and roles
+ b) Enable the existing user
+ c) Type a new username
+(a): a
+Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+ - The password should be different from the username
+ - The password should not be one of the following restricted values {root, admin, administrator}
+ - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+Password : <enter password>
+Re-enter Password : <enter password>
+What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
+Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-users.properties'
+Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-users.properties'
+Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-groups.properties'
+Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-groups.properties'
+Is this new user going to be used for one AS process to connect to another AS process?
+e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+yes/no? no
+```
+
+This script will modify the `mgmt-users.properties` and `mgmt-groups.properties` files for both the domain and standalone modes (i.e. the properties files under the `standalone\configuration` and `domain\configuration` directories). This means that regardless of which mode you intend to use WildFly in, the user will be available.
+
 ## Installing WildFly as a Service
 
 Production WildFly instances are typically started as a service. This allows WildFly to be started when the operating system boots, shutdown when the OS is shutdown, and managed with the service management tools built into the OS.
 
 ### Installing Tomcat as a Windows Service
 
-WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the cerednetials that were created with the `adduser.bat` script.
+WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the credentials that were created with the `adduser.bat` script.
 
-This command will add a standalone instance as a Windows service.
+This command will configure a standalone instance as a Windows service.
 
 ```
 bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /name "WildFly 11 Standalone"
 ```
 
-This command will add a domain controller as a Windows service.
+This command will configure a domain controller as a Windows service.
 
 ```
 bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-master.xml /name "WildFly 11 Domain Controller"
 ```
 
-This command will add a domain controller as a Windows service.
+This command will configure a domain slave as a Windows service.
 
 ```
 bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-slave.xml /name "WildFly 11 Domain Slave"
@@ -169,7 +223,7 @@ Next make sure that WildFly has been extracted to `/opt/wildfly`. The `/opt` dir
 
 Finally, make sure that the `wildfly` user is the owner of the `/opt/wildfly` directory with the command `sudo chown wildfly:wildfly -R /opt/wildfly`.
 
-#### Configuring the Systemd Service
+#### Configuring the systemd Service
 
 The following steps will configure WildFly to be managed by systemd.
 
@@ -220,58 +274,6 @@ $ sudo service wildfly status
 
 Oct 24 19:34:40 localhost.localdomain systemd[1]: Starting LSB: WildFly Application Server...
 ```
-
-## Configuring Admin Users
-
-In order to log into the admin console, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
-
-:::hint
-You can run the add-user script will WildFly is running. New users will be picked up automatically.
-:::
-
-Once the script is run you will be asked a number of questions:
-
-* What type of user to add - Management User
-* The username
-* The password
-* What groups the user will belong to - Leave this blank
-* Whether the user is used for AS process interconnection - no
-
-I've pasted the output of the `add-user` script below. Notice that I updated the existing disabled user of `admin` with a new password.
-
-```
-$ ./add-user.sh
-
-What type of user do you wish to add?
- a) Management User (mgmt-users.properties)
- b) Application User (application-users.properties)
-(a): a
-
-Enter the details of the new user to add.
-Using realm 'ManagementRealm' as discovered from the existing property files.
-Username : admin
-User 'admin' already exists and is disabled, would you like to...
- a) Update the existing user password and roles
- b) Enable the existing user
- c) Type a new username
-(a): a
-Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
- - The password should be different from the username
- - The password should not be one of the following restricted values {root, admin, administrator}
- - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
-Password : <enter password>
-Re-enter Password : <enter password>
-What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
-Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-users.properties'
-Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-users.properties'
-Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-groups.properties'
-Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-groups.properties'
-Is this new user going to be used for one AS process to connect to another AS process?
-e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
-yes/no? no
-```
-
-This script will modify the `mgmt-users.properties` and `mgmt-groups.properties` files for both the domain and standalone modes. This means that regardless of which mode you intend to use WildFly in, the user will be available.
 
 ## Opening the Admin Console
 
