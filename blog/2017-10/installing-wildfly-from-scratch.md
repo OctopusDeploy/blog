@@ -2,7 +2,7 @@
 title: Installing WildFly From Scratch
 description: Learn the steps you'll need to configure a working instance of WildFly.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -17,6 +17,10 @@ WildFly and Red Hat JBoss Enterprise Application Platform (JBoss EAP for short) 
 
 WildFly is made freely available with community support from the [WildFly website](http://wildfly.org/). WildFly releases major updates quite frequently, and releases have a short support window.
 
+:::hint
+WildFly has typically seen a major release every year, and after WildFly 11 is planning [to move to a faster, more incremental release model, starting with WildFly 12](http://wildfly.org/news/2017/10/23/WildFly11-Final-Released/).
+:::
+
 JBoss EAP is made available as part of a subscription with Red Hat. JBoss EAP is based on the same technology that goes into WildFly, although there is not a one-to-one mapping between JBoss EAP versions and WildFly versions. JBoss EAP releases have much longer support windows than WildFly, and are supported by Red Hat.
 
 :::hint
@@ -24,6 +28,8 @@ I have not been able to find any official documentation around the support windo
 :::
 
 ## Java EE Terminology
+
+The terminology around the enterprise Java platform has changed over the years, and is a source of much confusion, especially for non-developers.
 
 Java 2 Platform, Enterprise Edition (J2EE) was introduced in 1999 with J2EE 1.2, and the J2EE name was used until 2003 with J2EE 1.4.
 
@@ -45,11 +51,35 @@ Older Java EE app servers incurred a memory cost from loading libraries that may
 
 For this blog post we'll be using the full application server distribution.
 
+## Install Java
+
+Being a Java web server, WildFly requires Java to be installed before it can be run.
+
+WildFly 11 requires at least Java 8 to run.
+
+### JRE or JDK?
+
+Java installations are provided either as the Java Runtime Environment (JRE) or the Java Development Kit (JDK).
+
+The JRE provides all the functionality required to run Java applications, including WildFly. The JDK provides the JRE, as well as some additional tools that developers use to compile and manage Java applications.
+
+WildFly will work with either the JRE or JDK. Typically the JDK is used by developers, and is a larger package, so if you are in doubt install the JRE.
+
+### OpenJDK or Oracle JDK?
+
+OpenJDK is an open source implementation of the Java platform. It is often included in Linux package managers with package names like `openjdk-8-jre` or `openjdk-8-jdk`.
+
+OpenJDK is the name of the project, and while it includes the acronym "JDK" in its name, the OpenJDK project provides both a JRE and a JDK.
+
+The Oracle JDK is an implementation of Java provided by Oracle. Typically you have to download and install the Oracle JDK manually from the [Oracle website](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+
+Wether you use OpenJDK or Oracle JDK is a matter of personal choice. I'll use OpenJDK in Linux distributions because of the ease of installation using the package manager. In Windows or MacOS I'll install the Oracle JDK.
+
 ## Downloading WildFly
 
 WildFly is made available as a zip or tar.gz package. Either is fine for Windows users. For Linux users, the tar.gz package is preferred as it will retain the executable flag for shell scripts.
 
-At the time this blog post was written, WildFly 10.1.0 was the last major release. However, we'll use WildFly 11 CR1 as it is going to be very close to the final WildFly 11 release, which is due any time now.
+At the time this blog post was written, WildFly 11.0.0 was the last major release, and this is the version that will be referenced in this blog.
 
 ## Standalone vs Domain
 
@@ -67,13 +97,13 @@ A domain should not be confused with a cluster. Domains exist only to distribute
 
 WildFly can be started in either domain or standalone mode. Each mode is launched with a separate script.
 
-To start WildFly in standalone mode, run the `bin\standalone.bat` script in Windows and `bin/standalone.sh` script for Linux.
+To start WildFly in standalone mode, run the `bin\standalone.bat` script in Windows and `bin/standalone.sh` script in Linux.
 
-To start WildFly in domain mode, run the `bin\domain.bat` script in Windows and `bin/domain.sh` script for Linux.
+To start WildFly in domain mode, run the `bin\domain.bat` script in Windows and `bin/domain.sh` script in Linux.
 
 ## Configuring WildFly Memory Settings
 
-The memory settings used by WildFly are defined in the `JAVA_OPTS` environment variable. In the absence of this environment variable, default values are defined in the `bin/standalone.conf.bat` and `bin/domain.conf.bat` files for Windows, and the  `bin/standalone.conf` or `bin/domain.conf` files for Linux.
+The memory settings used by WildFly are defined in the `JAVA_OPTS` environment variable. In the absence of this environment variable, default values are defined in the `bin/standalone.conf.bat` and `bin/domain.conf.bat` files for Windows, or the  `bin/standalone.conf` and `bin/domain.conf` files for Linux.
 
 In the Windows configuration files you will see commands like this:
 
@@ -105,13 +135,85 @@ You can find more information on the settings shown here by viewing the Oracle d
 Some Java settings are version specific. Be sure to use settings that are specific to the version of Java you are running WildFly with.
 :::
 
+## Configuring Admin Users
+
+In order to log into the admin console or configure WildFly as a Windows service, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
+
+:::hint
+You can run the add-user script will WildFly is running. New users will be picked up automatically.
+:::
+
+Once the script is run you will be asked a number of questions:
+
+* What type of user to add - Management User
+* The username
+* The password
+* What groups the user will belong to - Leave this blank
+* Whether the user is used for AS process interconnection - no
+
+I've pasted the output of the `add-user` script below. Notice that I updated the existing disabled user of `admin` with a new password.
+
+```
+$ ./add-user.sh
+
+What type of user do you wish to add?
+ a) Management User (mgmt-users.properties)
+ b) Application User (application-users.properties)
+(a): a
+
+Enter the details of the new user to add.
+Using realm 'ManagementRealm' as discovered from the existing property files.
+Username : admin
+User 'admin' already exists and is disabled, would you like to...
+ a) Update the existing user password and roles
+ b) Enable the existing user
+ c) Type a new username
+(a): a
+Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+ - The password should be different from the username
+ - The password should not be one of the following restricted values {root, admin, administrator}
+ - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+Password : <enter password>
+Re-enter Password : <enter password>
+What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
+Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-users.properties'
+Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-users.properties'
+Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-groups.properties'
+Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-groups.properties'
+Is this new user going to be used for one AS process to connect to another AS process?
+e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
+yes/no? no
+```
+
+This script will modify the `mgmt-users.properties` and `mgmt-groups.properties` files for both the domain and standalone modes (i.e. the properties files under the `standalone\configuration` and `domain\configuration` directories). This means that regardless of which mode you intend to use WildFly in, the user will be available.
+
 ## Installing WildFly as a Service
 
 Production WildFly instances are typically started as a service. This allows WildFly to be started when the operating system boots, shutdown when the OS is shutdown, and managed with the service management tools built into the OS.
 
-### Installing Tomcat as a Windows Service
+### Installing WildFly as a Windows Service
 
-### Installing Tomcat as a Linux Service
+WildFly ships with a script called `service.bat` that can be used to add Windows services. The services are managed via the WildFly management interface, which is listening on port `9990` by default. The `jbossuser` and `jbosspass` fields need to match the credentials that were created with the `add-user.bat` script.
+
+This command will configure a standalone instance as a Windows service.
+
+```
+bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /name "WildFly 11 Standalone"
+```
+
+This command will configure a domain controller as a Windows service.
+
+```
+bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-master.xml /name "WildFly 11 Domain Controller"
+```
+
+This command will configure a domain slave as a Windows service.
+
+```
+bin\service\service.bat install /jbossuser admin /jbosspass password /controller localhost:9990 /startup /host /hostconfig host-slave.xml /name "WildFly 11 Domain Slave"
+```
+
+### Installing WildFly as a Linux Service
 
 WildFly ships with init.d and systemd service definition files in the `docs/contrib/scripts/init.d` and `docs/contrib/scripts/systemd` directories.
 
@@ -121,7 +223,7 @@ Next make sure that WildFly has been extracted to `/opt/wildfly`. The `/opt` dir
 
 Finally, make sure that the `wildfly` user is the owner of the `/opt/wildfly` directory with the command `sudo chown wildfly:wildfly -R /opt/wildfly`.
 
-#### Configuring the Systemd Service
+#### Configuring the systemd Service
 
 The following steps will configure WildFly to be managed by systemd.
 
@@ -172,58 +274,6 @@ $ sudo service wildfly status
 
 Oct 24 19:34:40 localhost.localdomain systemd[1]: Starting LSB: WildFly Application Server...
 ```
-
-## Configuring Admin Users
-
-In order to log into the admin console, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
-
-:::hint
-You can run the add-user script will WildFly is running. New users will be picked up automatically.
-:::
-
-Once the script is run you will be asked a number of questions:
-
-* What type of user to add - Management User
-* The username
-* The password
-* What groups the user will belong to - Leave this blank
-* Whether the user is used for AS process interconnection - no
-
-I've pasted the output of the `add-user` script below. Notice that I updated the existing disabled user of `admin` with a new password.
-
-```
-$ ./add-user.sh
-
-What type of user do you wish to add?
- a) Management User (mgmt-users.properties)
- b) Application User (application-users.properties)
-(a): a
-
-Enter the details of the new user to add.
-Using realm 'ManagementRealm' as discovered from the existing property files.
-Username : admin
-User 'admin' already exists and is disabled, would you like to...
- a) Update the existing user password and roles
- b) Enable the existing user
- c) Type a new username
-(a): a
-Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
- - The password should be different from the username
- - The password should not be one of the following restricted values {root, admin, administrator}
- - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
-Password : <enter password>
-Re-enter Password : <enter password>
-What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
-Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-users.properties'
-Updated user 'admin' to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-users.properties'
-Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/standalone/configuration/mgmt-groups.properties'
-Updated user 'admin' with groups  to file '/Users/matthewcasperson/Downloads/wildfly-11.0.0.CR1/domain/configuration/mgmt-groups.properties'
-Is this new user going to be used for one AS process to connect to another AS process?
-e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
-yes/no? no
-```
-
-This script will modify the `mgmt-users.properties` and `mgmt-groups.properties` files for both the domain and standalone modes. This means that regardless of which mode you intend to use WildFly in, the user will be available.
 
 ## Opening the Admin Console
 
