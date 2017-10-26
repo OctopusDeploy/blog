@@ -10,7 +10,7 @@ tags:
 
 For those who've used Octopus with more than a few hundred deployment targets, you'll know the frustrations of the current environments screen all too well :)
 
-Some customers use Octopus with thousands of deployment targets, some with tens of thousands of deployments targets. The rendering time to present all those targets is not great, it's not even good ... it's table-flipping material (and often the page will time-out during rendering once it reaches a certain memory limit). Add to that an inability to search, filter or page through results, and it simply does not scale.
+Some customers use Octopus with thousands of deployment targets, some with tens of thousands of deployments targets. For customers operating at this scale, the rendering time to present all those targets is not great, it's not even good ... it's table-flipping material (as the page will often time-out during rendering once it reaches a certain memory limit). Add to that an inability to search, filter or page through results, and it simply does not scale.
 
 There are also customers who only have the need for a handful of deployment targets, who do not want to be crippled by a solution that caters _only_ for customers operating at scale.
 
@@ -47,7 +47,7 @@ But this is exactly what we wanted by scripting so many deployment targets, beca
 
 Previously, all environments and deployment targets were located in an area called “Environments”. This environments area also had links to machine policies, proxies and accounts in the top-menu, which always felt a bit "tacked on" and not really related to environments at all. So firstly we decided to clean house and create a brand new area called **Infrastructure** where all things infrastructure would now live (and don't worry if you have any environment-related bookmarks, we've added redirects from the old v3 routes ;) ).
 
-![Octopus v4 infrastructure](v4-infra-overview.png "width=500")
+![Octopus v4 infrastructure](v4-infra-overview.png "width=600")
 
 At a glance, you now get a summary of your environments, deployment targets and how they're being used with combinations of things like roles and tenants. We've found this view to be incredibly useful for knowing when some targets may be unhealthy or unavailable, and it's made the process of getting to specific _types_ of deployment targets much easier.
 
@@ -62,23 +62,23 @@ Also, for customers working with multi-tenancy, we've got you covered. You can n
 
 The new environments screen takes advantage of the advanced filters available with the Octopus 4.0 redesign (and then adds even more filters per environment _"We have ~~fake doors~~ filters like you wouldn't believe!"_), making it much faster to load environments and see a summary of the deployment targets contained within. 
 
-![Octopus v4 infrastructure](v4-infra-environments.png "width=500")
+![Octopus v4 infrastructure](v4-infra-environments.png "width=600")
 
 This screen will be especially useful for customers operating at scale, who don't want Octopus to start loading and rendering thousands of targets until they've specified exactly what they're looking for.
 
 For example, if you're looking for Cloud Region targets with specific roles, simply expand and assign your filters and the list will refresh with the relevant environments.
 
-![Octopus v4 infrastructure](v4-infra-environments-filter.png "width=500")
+![Octopus v4 infrastructure](v4-infra-environments-filter.png "width=600")
 
 You can then click an environment to expand and see the deployment targets that match the criteria.
 
-![Octopus v4 infrastructure](v4-infra-environments-filter-expanded.png "width=500")
+![Octopus v4 infrastructure](v4-infra-environments-filter-expanded.png "width=600")
 
 ### Introducing the new Deployment Targets screen
 
 For customers who just want to quickly get to their deployment targets (and don't want to go through an extra click via the environments screen to get there), we've made a Deployment Targets area just for you :)
 
-![Octopus v4 infrastructure](v4-infra-deployment-targets.png "width=500")
+![Octopus v4 infrastructure](v4-infra-deployment-targets.png "width=600")
 
 This screen contains the same search and filtering mechanisms that the environments screen has, but it shows you your deployment targets straight away.
 
