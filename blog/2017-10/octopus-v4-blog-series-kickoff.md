@@ -5,6 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 metaImage: 4.0_blogimage.png
 bannerImage: 4.0_metaimage.png
+published: 2017-10-24
 tags:
  - New Releases
 ---
@@ -16,3 +17,10 @@ Octopus Deploy 4.0 is nearing completion! Everyone at Octopus HQ is super excite
 We’re kicking off this short blog series to highlight some of the new features that we will be shipping with Octopus 4.0. Our aim is to provide some behind the scenes insight into our journey from concept to production.  
 
 There's some great posts coming so be sure to check out our blog each week.  
+
+---
+
+Blog series posts:
+
+* [Octopus Deploy 4.0 - History](/blog/2017-10/octopus-v4-history.md)
+* [Octopus Deploy 4.0 - UX and UI](/blog/2017-10/octopus-v4-uxui.md)
