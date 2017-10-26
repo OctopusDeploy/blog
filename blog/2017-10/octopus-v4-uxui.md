@@ -32,7 +32,7 @@ It was decided to use an existing CSS and pattern library so we could focus on b
 
 The goal for each page is to be intuitive, for a user to immediately know where they are, what to do, and how to do it. We recognized some pages were busy, with text explaining what each section was and buttons that looked the same. To reduce the amount of mental effort required we applied some simple design principles:
 Hierarchy for focus and flow
-Color, size, and position helped 4.0 achieve a level of hierarchy, within the layout and components.
+Color, size, and position helped 4.0 achieve a level of hierarchy within the layout and components.
 
 The button component uses color to determine primary actions, secondary actions, and ternary actions which usually appear inline. Any action that users don’t use often or we don’t want accidentally clicked is now in an overflow menu.
 
@@ -68,7 +68,7 @@ By creating a design layout based on hierarchy and proximity, we immediately add
 
 #### Summary views to provide clarity
 
-One of the biggest changes in Octopus 4.0 UI is the expanding form sections. The expanding sections allows the interface to display a summary of the configuration of a step or project settings, without the noise of the other settings and as a result reducing the cognitive load for the user.
+One of the biggest changes in Octopus 4.0 UI is the expanding form sections. The expanding sections allow the interface to display a summary of the configuration of a step or project settings, without the noise of the other settings and as a result reducing the cognitive load for the user.
 
 **Summary form view**
 
