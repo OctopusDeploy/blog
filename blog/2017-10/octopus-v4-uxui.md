@@ -3,21 +3,18 @@ title: Octopus Deploy 4.0 - UX and UI
 description: ?.
 author: jessica.ross@octopus.com
 visibility: private
-metaImage: 4.0_uxui_metaimage.png
-bannerImage: 4.0_uxui_blogimage.png
+metaImage:
+bannerImage:
 tags:
  - New Releases
 ---
-
-![Octopus 4.0 coming soon](4.0_uxui_blogimage.png)
 
 This post is a part of our Octopus 4.0 blog series.  Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
 
 ---
 #Octopus 4.0 UX and UI
 
-We want Octopus to grow and become a robust industry leading deployment tool, even more than it is today. But we recognise to give our users the best experience, we needed to rewrite and redesign to make sure we using the right libraries that delivered future growth and capabilities for new features. The new UI may be very different but there are a lot of pages that haven’t had the layout or content changed so you should find most areas familiar.
-
+We want Octopus to grow and become a robust industry leading deployment tool, even more than it is today. But we recognise to give our users the best experience, we needed to rewrite and redesign to accommodate future growth and capabilities for new features. The new UI may be very different but there are a lot of pages that haven’t had the layout or content changed so you should find most areas familiar.
 The purpose of Octopus 4.0 UI was to update to a modern interface, reduce cognitive load for users, redesign to accommodate for growth and above all keep providing a great user experience.
 
 ##Modern UI
@@ -49,10 +46,11 @@ The interface was designed to have the action buttons positioned within the cont
 ![Octopus 4.0 coming soon](4.0_sticky-header_blogimage.png)
 
 ###Consistency
-By using the design layout based on hierarchy and proximity immediately addresses the issues we had on layout consistency. But we also addressed pattern inconsistency as well by using the Material-ui pattern library we were able to make sure components were reused and not recreated.
+By creating a design layout based on hierarchy and proximity, we immediately addressed the layout consistency issues. To make sure everyone was using the same components we developed a detailed style guide where our developers could easily find the right component.
+![Octopus 4.0 coming soon](4.0_styleguide_blogimage.png)
 
 ###Summary views to provide clarity
-One of the biggest changes in Octopus 4.0 UI is the expanding form sections. The expanding sections allows the interface to display a summary of the configuration of a step or project settings, without the noise of the other settings.
+One of the biggest changes in Octopus 4.0 UI is the expanding form sections. The expanding sections allows the interface to display a summary of the configuration of a step or project settings, without the noise of the other settings and as a result reducing the cognitive load for the user.
 **Summary form view**
 ![Octopus 4.0 coming soon](4.0_summary-view_blogimage.png)
 **Detailed form view**
@@ -65,4 +63,4 @@ The previous Octopus UI didn’t display larges amount of data very well so Octo
 **Environments page after**
 ![Octopus 4.0 coming soon](4.0_environments-after_blogimage.png)
 
-We understand that getting used to something new can be a challenge but we believe our decision to redesign and restructure has produced an awesome Octopus 4.0 release. One that has been based on our user feedback and business goals. <This needs another sentence, will have a think about it>
+We understand that getting used to something new can be a challenge but we believe our decision to redesign and restructure areas, like the variable editor and deployment page, has produced an awesome Octopus 4.0 release. This is thanks to the ongoing User Voice suggestions and most recently our users, who provided valuable feedback when testing Octopus 4.0 Alpha.
