@@ -10,7 +10,7 @@ tags:
 
 For those who've used Octopus with more than a few hundred deployment targets, you'll know the frustrations of the current environments screen all too well :)
 
-Some customers use Octopus with thousands of deployment targets, some with tens of thousands of deployments targets. The rendering time to present all those targets is not great, it's not even good ... it's table-flipping material (and often the page will time-out during rendering once it reaches a certain memory limit). Add to that an inability to search, filter or page through results, and it simply does not scale.
+Some customers use Octopus with thousands of deployment targets, some with tens of thousands of deployments targets. For customers operating at this scale, the rendering time to present all those targets is not great, it's not even good ... it's table-flipping material (as the page will often time-out during rendering once it reaches a certain memory limit). Add to that an inability to search, filter or page through results, and it simply does not scale.
 
 There are also customers who only have the need for a handful of deployment targets, who do not want to be crippled by a solution that caters _only_ for customers operating at scale.
 
