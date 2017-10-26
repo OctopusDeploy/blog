@@ -74,7 +74,7 @@ By creating a design layout based on hierarchy and proximity, we immediately add
 
 #### Summary views to provide clarity
 
-One of the biggest changes in Octopus 4.0 UI is the expanding form sections. The expanding sections allow the interface to display a summary of the configuration of a step or project settings, without the noise of the other settings and as a result reducing the cognitive load for the user.
+One of the biggest changes in Octopus 4.0 UI is the expanding form sections. When collapsed, the panels display a summary of the configuration of a step or project settings, without the noise of the other settings and as a result reducing the cognitive load for the user.
 
 **Summary form view**
 
@@ -86,7 +86,7 @@ One of the biggest changes in Octopus 4.0 UI is the expanding form sections. The
 
 ### Designing for scale
 
-The previous Octopus UI didn’t display large amounts of data very well so Octopus 4.0 needed to make sure patterns, like the expanding panels and tables, were used to show as much data on the screen as possible. An area addressed for scale issues was the environments page and the introduction of the infrastructure overview page. An issue Octopus users face, with lots of data, is finding things. So to help we went a little crazy with filters, advanced filters, and pre-defined filters. I think we have some filters left to use ;)
+The previous Octopus UI didn’t display large amounts of data very well so Octopus 4.0 needed to make sure patterns, like the expanding panels and tables, were used to show as much data on the screen as possible. The expanding panels also assist reducing load times on pages like the redesigned environments page. An issue Octopus users face, with lots of data, is finding things. So to help we went a little crazy with filters, advanced filters, and pre-defined filters.
 
 **Environments page before**
 
