@@ -137,7 +137,7 @@ Some Java settings are version specific. Be sure to use settings that are specif
 
 ## Configuring Admin Users
 
-In order to log into the admin console, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
+In order to log into the admin console or configure WildFly as a Windows service, you first need to define a management user. Users are added with the `bin\add-user.bat` script for Windows, or the `bin/add-user.sh` script for Linux.
 
 :::hint
 You can run the add-user script will WildFly is running. New users will be picked up automatically.
@@ -185,7 +185,7 @@ e.g. for a slave host controller connecting to the master or for a Remoting conn
 yes/no? no
 ```
 
-This script will modify the `mgmt-users.properties` and `mgmt-groups.properties` files for both the domain and standalone modes. This means that regardless of which mode you intend to use WildFly in, the user will be available.
+This script will modify the `mgmt-users.properties` and `mgmt-groups.properties` files for both the domain and standalone modes (i.e. the properties files under the `standalone\configuration` and `domain\configuration` directories). This means that regardless of which mode you intend to use WildFly in, the user will be available.
 
 ## Installing WildFly as a Service
 
