@@ -7,7 +7,11 @@ tags:
  - New Releases
 ---
 
-While working on Octopus v4, many pages were essentially a direct port to the new look-and-feel.    
+This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
+
+---
+
+While working on the UI-refresh for Octopus 4.0, many pages were essentially a direct port to the new look-and-feel.    
 But there were a few where we took the opportunity to re-think the design. 
 
 One of the latter was the page to create a deployment.
@@ -17,6 +21,7 @@ The existing page was originally created to deploy a release to a single environ
 If we're honest, it was overdue for a re-design.
 
 ![Create Deployment Page - v3 design](octopus-v4-create-deployment-v3.png "width=500")
+
 
 ## Introducing the new create deployment page
 
