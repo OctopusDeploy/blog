@@ -13,13 +13,13 @@ One of the latter was the page to create a deployment.
 
 The existing page was originally created to deploy a release to a single environment.  It was later extended to allow deploying to multiple environments. Then the multi-tenancy feature came along, and we bolted on the ability to create deployments for one or more tenants. 
 
-**TODO: INSERT IMAGE**
-
 If we're honest, it was overdue for a re-design.
 
-**TODO: INSERT IMAGE**
+![Create Deployment Page - v3 design](octopus-v4-create-deployment-v3.png "width=500")
 
 ## Introducing the new create deployment page
+
+![Create Deployment Page - Basic](octopus-v4-create-deployment-basic.png "width=500")
 
 The most significant changes are seen when deploying a release to multiple environments or tenants. 
 
@@ -41,6 +41,8 @@ The _Show Advanced_ button reveals additional options, such as:
 
 - Scheduling the deployments for a future time  
 - Excluding steps from the deployment
+
+![Create Deployment Page - Advanced](octopus-v4-create-deployment-advanced.png "width=500")
 
 ### South
 
