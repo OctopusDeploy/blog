@@ -14,16 +14,18 @@ This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](http
 While working on the UI-refresh for Octopus 4.0, many pages were essentially a direct port to the new look-and-feel.    
 But there were a few where we took the opportunity to re-think the design. 
 
-One of the latter was the page to create a deployment.
+One of the latter was the page to deploy a release.
 
-The existing page was originally created to deploy a release to a single environment.  It was later extended to allow deploying to multiple environments. Then the multi-tenancy feature came along, and we bolted on the ability to create deployments for one or more tenants. 
+The existing page was originally created to deploy a release to a single environment.   
+It was later extended to allow deploying to multiple environments.   
+Then the multi-tenancy feature came along, and we bolted on the ability to create deployments for one or more tenants. 
 
 If we're honest, it was overdue for a re-design.
 
 ![Create Deployment Page - v3 design](octopus-v4-create-deployment-v3.png "width=500")
 
 
-## Introducing the new create deployment page
+## Introducing the new Deploy Release page
 
 ![Create Deployment Page - Basic](octopus-v4-create-deployment-basic.png "width=500")
 
