@@ -2,14 +2,14 @@
 title: Defining Tomcat Context Paths
 description: Learn how Tomcat defines the context path of your web application.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
 ---
 
-The context path of a web application defines the URL that end users will access the application from. A simple context path like `myapp` means the web app can be accessed for http://localhost:8080/myapp. A nested context path like `myapp/v1` means the web app can be accessed for http://localhost:8080/myapp/v1.
+The context path of a web application defines the URL that end users will access the application from. A simple context path like `myapp` means the web app can be accessed from a URL like http://localhost:8080/myapp. A nested context path like `myapp/v1` means the web app can be accessed from a URL like http://localhost:8080/myapp/v1.
 
 Tomcat provides a number of ways to define the context path of a web app, although the configuration is not quite as straight forward as you might expect.
 
@@ -17,9 +17,9 @@ In this blog post we'll explore the various options Tomcat provides for deployin
 
 ## The `<Host>` Configuration Element
 
-Many of the options available in Tomcat for deploying application deployments are defined in the `<Host>` element in the `config/server.xml` file.
+Many of the options available in Tomcat for deploying applications are defined in the `<Host>` element in the `config/server.xml` file.
 
-The default `<Host>` in Tomcat 9.01 looks like this:
+The default `<Host>` element in Tomcat 9.01 looks like this:
 
 ```xml
 <Host name="localhost"  appBase="webapps"
@@ -34,7 +34,7 @@ There are two ways to deploy Java web applications.
 
 The first way is to deploy a WAR file. A WAR file is just a ZIP archive with a directory structure that is recognised by Java application servers like Tomcat. WAR files are convenient because they are a single package that is easy to copy, and the contents of the WAR file are compressed making it quite a compact package.
 
-The second way is to deploy all the individual files that make up a web application. This is called an exploded deployment, or an exploded WAR. This kind of deployment can be very useful during development, as files like HTML pages and CSS files can be edited while the application is deployed and reloaded on the fly.
+The second way is to deploy all the individual files that make up a web application. This is called an exploded deployment, or an exploded WAR. This kind of deployment can be very useful during development, as files like HTML pages and CSS files can be edited while the application is deployed, and reloaded on the fly.
 
 By default when you deploy a WAR file to Tomcat, it will be extracted into an exploded deployment for you. In the screenshot below you can see that the end result of deploying a file called `demo.war` is a directory called `demo` with the context of the `demo.war` archive extracted into it.
 
@@ -50,7 +50,7 @@ The `webapps` directory is the default deployment location, but this can be conf
 
 If Tomcat is set to autodeploy applications (and it is set to do this by default) then any WAR file or exploded deployment copied into the `webapps` folder will be deployed automatically while Tomcat is running.
 
-The autodeployment of applications behaviour can be disabled by setting the `autoDeploy` attribute on the `<Host>` element to `false`. In this case applications will de deployed on startup.
+The autodeployment of applications can be disabled by setting the `autoDeploy` attribute on the `<Host>` element to `false`. In this case applications will de deployed on startup.
 
 In turn the deployment of applications on startup can be disabled by setting the `deployOnStartup` attribute on the `<Host>` element to `false`.
 
@@ -64,7 +64,7 @@ When an application is deployed from the `webapps` directory, it will be made av
 
 For example, if you deploy an WAR file called `demo.war`, it will be made available under the `demo` context. Likewise if you deploy an exploded war to `webapps/demo`, it too will be made available under the context of `demo`.
 
-Tomcat supports nested context paths. These are embedded in the WAR filename as after a single hash character. For example, if you deploy a WAR file called `demo#v1.war`, it will be made available under the `demo/v1` context. Contexts can be multiple levels deep, so if you deploy a WAR file called `demo#v1#myfeature.war` it will be made available under the `demo/v1/myfeature` context.
+Tomcat supports nested context paths. These are embedded in the WAR filename after a single hash character. For example, if you deploy a WAR file called `demo#v1.war`, it will be made available under the `demo/v1` context. Contexts can be multiple levels deep, so if you deploy a WAR file called `demo#v1#myfeature.war` it will be made available under the `demo/v1/myfeature` context.
 
 The same pattern applies to the directories holding exploded deployments. For example, if you deploy an exploded war to `webapps/demo#v1` it will be made available under the `demo/v1` context.
 
@@ -120,7 +120,7 @@ When the `demo#v1.war` file is placed in the `webapps` folder and deployed by To
 
 Likewise if that same XML context was saved to the `conf/Catalina/localhost/demo#v1.xml` file, the application would still be made available under the `demo/v1` context.
 
-This is a little ccounter-intuitive, but is clearly spelled out in the [documentation](https://tomcat.apache.org/tomcat-9.0-doc/config/context.html):
+This is a little counter-intuitive, but is clearly spelled out in the [documentation](https://tomcat.apache.org/tomcat-9.0-doc/config/context.html):
 
 >[The path] attribute must only be used when statically defining a Context in server.xml. In all other circumstances, the path will be inferred from the filenames used for either the .xml context file or the docBase.
 
@@ -170,3 +170,5 @@ This table summaries the various context paths that will be assigned to web appl
 | `<Context path="/mydemo/version1" docBase="/apps/demo#v1.war"/>` in `conf/server.xml` | `/mydemo/version1` |
 | `<Context path="path/is/ignored" docBase="/apps/myapp#v1.war"/>` in `conf/Catalina/localhost/mydemo#version1.xml` (i.e. config for `/apps/myapp#v1.war`) | `/mydemo/version1` |
 | `<Context path="/path/is/ignored"/>` in `conf/Catalina/localhost/mydemo#version1.xml` (i.e. config for `webapps/mydemo#version1.war`) | `/mydemo/version1` |
+
+If you are interested in automating the deployment of your Java applications to Tomcat, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
