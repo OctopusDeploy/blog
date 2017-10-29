@@ -36,13 +36,13 @@ The first way is to deploy a WAR file. A WAR file is just a ZIP archive with a d
 
 The second way is to deploy all the individual files that make up a web application. This is called an exploded deployment, or an exploded WAR. This kind of deployment can be very useful during development, as files like HTML pages and CSS files can be edited while the application is deployed and reloaded on the fly.
 
-By default when you deploy a WAR file to Tomcat, it will be extracted into an exploded deployment for you. In the screenshot below you can see that the end result of deploying a file called `demo.war` is a directory called demo with the context of the `demo.war` archive extracted into it.
+By default when you deploy a WAR file to Tomcat, it will be extracted into an exploded deployment for you. In the screenshot below you can see that the end result of deploying a file called `demo.war` is a directory called `demo` with the context of the `demo.war` archive extracted into it.
 
 ![Tomcat Exploded Deployment](tomcat-exploded-deployment.png)
 
 This behaviour can be disabled by setting the `unpackWARs` attribute on the `<Host>` element to `false`, in which case the WAR file will not be unpacked as part of the deployment process.
 
-## The webapps Directory
+## The `webapps` Directory
 
 The `webapps` directory is where deployed applications reside in Tomcat.
 
@@ -55,12 +55,12 @@ The autodeployment of applications behaviour can be disabled by setting the `aut
 In turn the deployment of applications on startup can be disabled by setting the `deployOnStartup` attribute on the `<Host>` element to `false`.
 
 :::hint
-If both `autoDeploy` and `deployOnStartup` are false, then you can deploy applications by manually adding a `<Context>` element inside the `<Host>` element in the `conf/server.xml` file. See the section "Defining the Context in the server.xml File" for an example.
+If both `autoDeploy` and `deployOnStartup` are false, then you can deploy applications by manually adding a `<Context>` element inside the `<Host>` element in the `conf/server.xml` file. See the section "Defining the Context in the `server.xml` File" for an example.
 :::
 
 ## Embedding the Path in the (Exploded) WAR Filename
 
-When an application is deployed from the `webapps` directory, it be made available under a context path that matches the name of the WAR file, or the name of the directory under `webapps` that the exploded deployment was copied to.
+When an application is deployed from the `webapps` directory, it will be made available under a context path that matches the name of the WAR file, or the name of the directory under `webapps` that the exploded deployment was copied to.
 
 For example, if you deploy an WAR file called `demo.war`, it will be made available under the `demo` context. Likewise if you deploy an exploded war to `webapps/demo`, it too will be made available under the context of `demo`.
 
@@ -68,9 +68,9 @@ Tomcat supports nested context paths. These are embedded in the WAR filename as 
 
 The same pattern applies to the directories holding exploded deployments. For example, if you deploy an exploded war to `webapps/demo#v1` it will be made available under the `demo/v1` context.
 
-## Defining the Context Path from the server.xml File
+## Defining the Context Path from the `server.xml` File
 
-It is possible to configure WAR files or exploded deployment directories by adding a `<Context>` element to the `<Host>` element in the `conf/server.xml` file.
+It is possible to configure WAR files or exploded deployment directories by adding a `<Context>` element to the `<Host>` element in the `conf/server.xml` file. Here is an example:
 
 ```xml
 <Host name="localhost"  appBase="webapps"
@@ -82,7 +82,7 @@ It is possible to configure WAR files or exploded deployment directories by addi
 
 The `docBase` attribute is a path to the WAR file or exploded deployment directory. It is relative to the `webapps` directory, although an absolute path can be used.
 
-The `path` attribute is the one that we are most interested in, as it defines the context path of the application.
+The `path` attribute is the one that we are most interested in, as it defines the context path of the application. In this case we have exposed the web app under the `/mydemo/version1` context.
 
 :::warning
 The `path` attribute can only be defined if the WAR or exploded deployment directory is not under the `webapps` directory, or if the `autoDeploy` and `deployOnStartup` attributes on the `<Host>` element are `false`.
@@ -95,18 +95,18 @@ To quote from the [documentation](https://tomcat.apache.org/tomcat-9.0-doc/confi
 :::
 
 :::warning
-Defining `<Context>` elements in the `server.xml` file is not considered best practice. This information should be defined in files saved under `conf/Catalina/localhost/`. See "The Confusing Case of the context.xml File" for more information.
+Defining `<Context>` elements in the `server.xml` file is not considered best practice. This information should be defined in files saved under `conf/Catalina/localhost/`. See "The Confusing Case of the `context.xml` File" for more information.
 :::
 
-## The Confusing Case of the context.xml File
+## The Confusing Case of the `context.xml` File
 
 So far we have seen two ways of defining the context path:
 1. From the name of the WAR file or the exploded deployment directory.
-2. From the `path` attribute on the `<Context>` element in the `server.xml` file (with the caveat that the application being deployed is not located under the `webapps` directory, or if it is under the `webapps` directory that the the `autoDeploy` and `deployOnStartup` attributes on the `<Host>` element are `false`).
+2. From the `path` attribute on the `<Context>` element in the `server.xml` file (with the caveat that the application being deployed is not located under the `webapps` directory, or if it is under the `webapps` directory that the `autoDeploy` and `deployOnStartup` attributes on the `<Host>` element are `false`).
 
-Tomcat also allows us to include a file in our web app called `META-INF/context.xml`, or to create the file `conf/Catalina/localhost/<context>.xml` in the Tomcat directory. These files contains the same `<Context>` element as the `<Host>` element in the `server.xml` file.
+Tomcat also allows us to include a file in our web app called `META-INF/context.xml`, or to create the file `conf/Catalina/localhost/<context>.xml` under the Tomcat directory. These files contains the same `<Context>` element as the `<Host>` element in the `server.xml` file.
 
-This naturally leads you to assume that you can define the `path` attribute on the `<Context>` element in these app specific XML files, and Tomcat will deploy the application to the defined context path.
+This naturally leads you to assume that you can define the `path` attribute on the `<Context>` element in these XML files, and Tomcat will deploy the application to the defined context path.
 
 However, this is not the case.
 
@@ -132,7 +132,7 @@ For example, if you have a file called `webapps\demo#v1.war`, then the correspon
 
 When configuring the context for a deployment outside of the `webapps` directory, the `docBase` attribute has to be defined. This attribute points to the WAR file or exploded deployment.
 
-In this case it is still the name of the XML file that defines the context. For example, if the XML below is saved to `conf/Catalina/localhost/application#version1.xml`, the application from `/apps/myapp#v1.war` will be made available under the context `application/version1`.
+In this case it is still the name of the XML file that defines the context. For example, if the XML below is saved to `conf/Catalina/localhost/application#version1.xml`, the application from `/apps/myapp#v1.war` will be made available under the context `application/version1`. The WAR filename is not used to generate the context in this case.
 
 ```xml
 <Context docBase="/apps/myapp#v1.war"/>
@@ -156,6 +156,8 @@ Just because you have a user that can access the Manager application via a brows
 This file upload will result in a deployment with context path embedded in the file name inside the `webapps` folder. So actually uploading a file via the Manager app is not a new way to define the context of an application, it is just a convenient way to ensure a correctly named web application is copied into the `webapps` directory.
 
 ## Conclusion
+
+This table summaries the various context paths that will be assigned to web applications deployed from `webapps`, referenced in the `server.xml` file, or referenced from a file under `conf/Catalina/localhost/`.
 
 | Configuration | Context |
 |-|-|
