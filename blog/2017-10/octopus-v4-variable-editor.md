@@ -53,7 +53,7 @@ We have also made significant changes to variable filtering. Filtering did exist
 
 **Keyboard**
 
-A lot of users like to stay on the keyboard when editing variables. For this first release, we have focused on the tabbing experience. You can easily tab around the variable editor and change the name, value or scope of any of your variables without touching your mouse! Of course, if you prefer to use your mouse, that works well too.
+A lot of users like to stay on the keyboard when editing variables. For this first release, we have primarily focused on the navigation experience. You can easily navigate around the variable editor using tab, shift + tab, and the up and down arrow keys. You can change the name, value or scope of any of your variables without touching your mouse! Of course, if you prefer to use your mouse, that works well too.
 
 Here is an example of adding a new variable with multiple values without leaving the keyboard.
 
