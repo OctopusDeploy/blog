@@ -17,4 +17,4 @@ I have been working as a developer in the Microsoft world for just over 8 years 
 
 Over the past 24 months I have also worked with my wife to build a online maternity clothing business.
 
-When not at the computer, I can be found doing renovations on the house, wranging my 2 year old or working on one of my thousands of side projects.
+When not at the computer, I can be found doing renovations on the house, wrangling my 2 year old or working on one of my thousands of side projects.
