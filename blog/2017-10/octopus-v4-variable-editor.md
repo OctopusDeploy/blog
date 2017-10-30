@@ -3,11 +3,15 @@ title: Octopus Deploy 4.0 - Variable Editor Redesign
 description: The variable editor has been revamped for our upcoming Octopus 4.0 release.
 author: tom.peters@octopus.com
 visibility: private
+metaImage: 4.0variables_metaimage.png
+bannerImage: 4.0variables_blogimage.png
 tags:
  - New Releases
 ---
 
-This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
+![Octopus 4.0's new variable editor rocks](4.0variables_blogimage.png)
+
+This post is a part of our Octopus 4.0 blog series.  Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
 
 ---
 
