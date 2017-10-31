@@ -7,6 +7,7 @@ tags:
  - New Releases
  - Portal
 ---
+As part of our big portal overhaul in Octopus 4.0, we made the move from Angular to React. A lot of users have asked us for details on why we moved, so this post aims to go over some key points about the transition with some choices we made along the way.
 
 ## Decision Points ##
 ### A Maturing Codebase ###
@@ -64,7 +65,7 @@ We found that in porting over some old code to the new portal, introducing TS ac
 TypeScript might not be for everyone, but from my experience being able to confidently reason about what is being passed into your functions or components, saves an immense amount of time when refactoring or trying to work with another developer's code. It may be feasible to go without some sort of typing system when there is only 1 or 2 developers on a JS project but when you have over 20, working across hundreds of files, thats when it really starts to speak for itself (and I have even found myself using it on my own personal projects). As a replacement for Babel it allows us to write JavaScript that pollyfills features in older browsers using a soon-to-be-standardized native syntax and minor issues dealing with 3rd party library typings were able to be overcome with little effort. On the contrary I found TS was able increase productivity as compared with other projects of this size by eliminating some of the need to test minor things, like checks for input handling in functions that would previously ensure valid types are passed in (I said we were able to get by with _less_ tests, don't quote me as saying _none_). Sometimes the compiler would pick up silly enough mistakes like property capitalization that may have otherwise gone unnoticed. 
 
 In addition, and I can't state this highly enough, 
-> TypeScript reduced the amount of time needed to deconstruct and follow the call stack in my head, of code written by other developers. And with much better accuracy.
+> TypeScript reduced the amount of time needed to deconstruct and follow the call stack in my head, of code written by other developers. This it did with much better accuracy.
 
 ## What are your experiences? ##
-We are lucky enough that our customers are basically just like ourseleves. We speak the same language and tend to seek the same goals. While this means that we can use our experience in the software industry to build a product that _we_ would love to use, it also means that the experiences of our users can teach us a thing or two. Let us know if you have made the move to or from React. What did you find the be the biggest lessons or pitfalls to watch out for?
+We are lucky enough that our customers are basically just like ourselves. We speak the same language and tend to seek the same goals. While this means that we can use our experience in the software industry to build a product that _we_ would love to use, it also means that the experiences of our users can teach us a thing or two. Let us know if you have made the move to or from React. What did you find the be the biggest lessons or pitfalls to watch out for?
