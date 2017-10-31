@@ -1,6 +1,6 @@
 ---
-title: Octopus Deploy 4.0 - Create Deployment Page 
-description: The Create Deployment page has been remodelled as part of Octopus version 4.0  
+title: Octopus Deploy 4.0 - Deploy Release Page Redesign 
+description: The Deploy Release page has been redesigned as part of Octopus version 4.0  
 author: michael.richardson@octopus.com
 visibility: private
 tags:
