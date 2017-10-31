@@ -83,11 +83,13 @@ Description : Tomcat can use the Apache Portable Runtime to provide superior
             : provides support for using APR in Tomcat.
 ```
 
-So we have access to packages providing APR 1.4.8 and Tomcat Native version 1.1.34, but with these packages installed, Tomcat 9.01 reports the following error:
+So we have access to packages providing APR version 1.4.8 and Tomcat Native version version 1.1.34. But with these packages installed, Tomcat 9.01 reports the following error:
 
 ```
 org.apache.catalina.core.AprLifecycleListener.init An incompatible version [1.1.34] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
 ```
+
+This means the version we can install from a package manager is not up to date enough for the later versions of Tomcat.
 
 The solution is to compile these libraries for yourself. This sounds complicated, but is actually quite easy.
 
