@@ -2,14 +2,14 @@
 title: Building the Apache Portable Runtime (APR)
 description: Depending on your Linux distro, you may have to build the APR from scratch to take advantage of the higher performance of the OpenSSL library in Tomcat.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
 ---
 
-The Apache Portable Runtime (APR) is used by Tomcat to provide a number of enhanced features and performance. For example, the APR needs to be present in order to get the increased performance provided by OpenSSL for HTTPS.
+The [Apache Portable Runtime (APR)](https://tomcat.apache.org/tomcat-9.0-doc/apr.html) is used by Tomcat to provide a number of enhanced features and performance. For example, the APR needs to be present in order to get the increased performance provided by OpenSSL for HTTPS.
 
 Tomcat provides a precompiled copy of the APR with for Windows users, but Linux users are often directed to install the APR from their OS distribution package repositories.
 
