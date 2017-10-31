@@ -9,7 +9,7 @@ tags:
  - Java
 ---
 
-The Apache Portable Runtime (APR) is used by Tomcat to provide a number of enhanced features and performance. For example, the APR needs to be present in order to get the increased performance provided by OpenSSL while providing HTTPS.
+The Apache Portable Runtime (APR) is used by Tomcat to provide a number of enhanced features and performance. For example, the APR needs to be present in order to get the increased performance provided by OpenSSL for HTTPS.
 
 Tomcat provides a precompiled copy of the APR with for Windows users, but Linux users are often directed to install the APR from their OS distribution package repositories.
 
@@ -83,24 +83,24 @@ Description : Tomcat can use the Apache Portable Runtime to provide superior
             : provides support for using APR in Tomcat.
 ```
 
-So we have access to packages providing APR version 1.4.8 and Tomcat Native version version 1.1.34. But with these packages installed, Tomcat 9.01 reports the following error:
+So we have access to packages providing APR version 1.4.8 and Tomcat Native version 1.1.34. But with these packages installed, Tomcat 9.01 reports the following error:
 
 ```
 org.apache.catalina.core.AprLifecycleListener.init An incompatible version [1.1.34] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
 ```
 
-This means the version we can install from a package manager is not up to date enough for the later versions of Tomcat.
+This means the version we can install from the Centos package manager is not up to date enough for later versions of Tomcat.
 
 The solution is to compile these libraries for yourself. This sounds complicated, but is actually quite easy.
 
-First, you will need to install the development tools and the JDK. In Centos, this is done with the command:
+First, you will need to install the development tools and the Java Development Kit. In Centos, this is done with the commands:
 
 ```
 sudo yum groupinstall "Development Tools"
 sudo yum install java-1.8.0-openjdk-devel
 ```
 
-Next you run this script, which will download, extract, compile and install the various libraries required by Tomcat.
+Next you run the following script script, which will download, extract, compile and install the various libraries required by Tomcat.
 
 :::hint
 The URLs in this script point to mirrors for the [https://tomcat.apache.org/download-native.cgi](Tomcat Native) library and the [APR](https://apr.apache.org/download.cgi) library. You can change these URLs to point to a closer server, or a different server if the ones listed here are down.
