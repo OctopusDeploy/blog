@@ -6,7 +6,7 @@ tags:
  - Company
 ---
 
-<div style="float: right; margin: 30px; margin-top: 0">
+<div style="float: right;  margin: 30px;  margin-top: 0">
     <img alt="Profile Pic" src="https://i.octopus.com/site/team/avatar-chris-van-dal-140.png" height="140" width="140" />
 </div>
 
