@@ -12,7 +12,7 @@ tags:
 
 Hi!
 
-My name is Chris van Dal and I have joined Octopus as a Windows and Linux Systems Engineer. I have been working in this space for over 10 years and I am very excited about starting my new journey at Octopus.
+My name is Chris van Dal and I have just joined Octopus as a Windows and Linux Systems Engineer. I have been working in this space for over 10 years and I am very excited about starting my new journey at Octopus.
 
 I am passionate about automation, infrastructure as code, continuous integration, and continuous delivery.
 
