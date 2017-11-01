@@ -36,6 +36,10 @@ Required. Used for the web page title tag `<head><title>`, displayed in the page
 ### Description
 Optional. Used for the meta description tag (`<meta name="description" />`).
 
+### Visibility
+
+Visibility controls if the blog post is public or not.  **NOTE** There is currently a gotcha if you update a blog post to make it public with no other changes to the content, it will not be published. Just add a space somewhere and that'll trigger it until this is fixed.
+
 ### Position
 Optional. Used for the position in the menu.
 
