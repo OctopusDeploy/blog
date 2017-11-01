@@ -2,7 +2,7 @@
 title: Octopus Deploy 4.0 - Infrastructure Redesign
 description: The environments are has been revamped into a new Infrastructure area for our upcoming Octopus 4.0 release.
 author: mark.siedle@octopus.com
-visibility: private
+visibility: public
 metaImage: 4.0infrastructure_metaimage.png
 bannerImage: 4.0infrastructure_blogimage.png
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus 4.0 new infrastructure page can help you find a needle in a haystack](4.0infrastructure_blogimage.png)
 
-This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
+This post is a part of our Octopus 4.0 blog series.  Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
 
 ---
 
