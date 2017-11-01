@@ -1,6 +1,6 @@
 ---
 title: "Introducing Chris van Dal"
-visibility: private
+visibility: public
 description: "A brief introduction to Chris van Dal"
 tags:
  - Company
