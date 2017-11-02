@@ -81,6 +81,12 @@ So, generally speaking, a Java EE application server provides an environment whe
 
 Importantly, Java EE application servers usually host multiple applications side by side. For example, you may deploy multiple websites, each compiled as a separate WAR file, side by side in an app server. The individual applications can be deployed, started, stopped and undeployed independently without having to start and stop the application server itself.
 
+## What is a WAR?
+
+A Web ARchive (WAR) is a archive format used by Java web applications.
+
+Take a look at [Exploded Deployments vs WAR Packages](https://octopus.com/blog/defining-tomcat-context-paths#exploded-deployments-vs-war-packages) for a discussion around WARs and Exploded WARs.
+
 ## What is an UberJAR?
 
 UberJAR is not an official term, and has other names like FatJAR and ShadowJAR. All these terms refer to a single JAR file that contains all the classes and resources necessary to run an application.
