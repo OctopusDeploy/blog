@@ -162,13 +162,13 @@ UberJAR files are similar to WAR files in that both are single, self contained f
 
 ### What is WildFly Swarm?
 
-WildFly Swarm is a project that provides the ability to bundle the same Java EE libraries provided by the WildFly application server into an UberJAR. The end result is a single JAR file that, when executed, will start a web server and run the Java EE application.
+[WildFly Swarm](http://wildfly-swarm.io/) is a project that provides the ability to bundle the same Java EE libraries provided by the WildFly application server into an UberJAR. The end result is a single JAR file that, when executed, will start a web server and run the Java EE application.
 
 The actual mechanics of how WildFly Swarm embeds the required classes and resources into an UberJAR is a more complicated than the example I gave above, but the end result is the same: you get a single, executable JAR file that can be run from any JRE.
 
 The WildFly Swarm team provide a bunch of examples, and they [JAX-RS example](https://github.com/wildfly-swarm/wildfly-swarm-examples/tree/master/jaxrs/jaxrs) is quite similar to the hello world example I showed above.
 
-Once compiled, the UberJAR file can be executed from the command line using the standard `java` executable.
+Once compiled, the WildFly Swarm UberJAR file can be executed from the command line using the standard `java` executable.
 
 ```
 $ java -jar example-jaxrs-war-swarm.jar
@@ -229,6 +229,6 @@ All PaaS solutions that support Java will support running an UberJAR, because Ub
 
 UberJARs also have the effect of moving infrastructure into a Java build tool. For example, when building an UberJAR, the developer is responsible for adding the database connection drivers and configuration instead of relying on the configuration held by the application server.
 
-UberJARs have no management layer though. It is up to you to deploy, start and shutdown the application; you do not get the kind of management tools that an application server provides. PaaS solutions will often provide tools for managing UberJARs though.
+UberJARs have no management layer though. It is up to you to deploy, start and shutdown the application; you do not get the kind of native management tools that an application server provides. PaaS solutions will often provide tools for managing UberJARs though.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
