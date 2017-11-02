@@ -133,7 +133,7 @@ To run this "traditional" JAR file, both it and its library JAR files need to be
 
 The UberJAR version of this application creates a single JAR file that is the merged result of all the individual dependencies. UberJAR files can be quite large, but since they are a single file they are easy to distribute.
 
-If we list the contents of the UberJAR we can see that our Main.class file is present, along with the classes that make up the Apache Commons library.
+If we list the contents of the UberJAR we can see that our `Main.class` file is present, along with the classes that make up the Apache Commons library.
 
 ```
 $ jar tf target/uberjardemo-1.0-SNAPSHOT.jar
@@ -216,6 +216,8 @@ Building the WildFly Swarm JAX-RS example project actually produces both the Ube
 The differences between these approaches lies more in how the applications are deployed and managed once they are compiled.
 
 Application servers have evolved over the years to provide rich management tools, allowing applications to be deployed, started, stopped, undeployed and upgraded through web interfaces or from the command line.
+
+![WildFly Admin Console](wildfly-admin-console.png "width=500")
 
 Application servers can also provide centralised configuration of resources like database connections and message queues. This separation of resources and applications works well in environments where the ops personnel control things like database threads and credentials.
 
