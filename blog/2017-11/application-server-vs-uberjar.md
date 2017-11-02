@@ -2,7 +2,7 @@
 title: Application Server vs UberJAR
 description: A high level look at the differences between WildFly and WildFly Swarm.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
