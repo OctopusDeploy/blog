@@ -9,6 +9,10 @@ tags:
  - Java
 ---
 
+Not too long ago if you wanted to deploy a Java web application, you compiled a WAR file and hosted it in an application server. Today though Java web applications can just as easily be deployed as self contained UberJARs.
+
+What is an application server like [WildFly](http://wildfly.org/), what is an UberJAR, and how to projects like [WildFly Swarm](http://wildfly-swarm.io/) change how Java deployments are performed?
+
 ## What is a Java EE Application Server?
 
 Consider the following code:
@@ -21,7 +25,7 @@ public class HelloWorld {
 }
 ```
 
-This is your traditional "Hello World" application written in Java. As a developer I can run this code anywhere a Java Runtime Environment (JRE) is available. I also don’t need to bundle any additional class libraries because all of the classes referenced here are all provided by any JRE, whether it is from Oracle, the OpenJDK project, Zulu, IBM etc.
+This is your traditional "Hello World" application written in Java. As a developer I can run this code anywhere a Java Runtime Environment (JRE) is available. I also don’t need to bundle any additional class libraries because all of the classes referenced here are provided by any JRE, whether it is from Oracle, OpenJDK, Zulu, IBM etc.
 
 It doesn’t matter what vendor supplied the JRE, nor does it matter what OS the Java application is eventually run on. Because this code uses the standard Java classes, it will run anywhere.
 
@@ -59,9 +63,9 @@ public class MyResource {
 }
 ```
 
-What we have here is a simple REST API based on the JAX-RS standard. JAX-RS is part of the Java EE specification, which means that as a developer I can deploy this application to any Java EE application server.
+What we have here is a simple REST API based on the [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services) standard. JAX-RS is part of the Java EE specification, which means that as a developer I can deploy this application to any Java EE application server.
 
-More importantly I don’t need to bundle any of the libraries that implement the JAX-RS standard. Depending on the application server, the JAX-RS standard may be provided by libraries like [RESTEasy](http://resteasy.jboss.org/) or [Jersy](https://jersey.github.io/). But as long as the underlying libraries confirm to the specification, my application will function as expected.
+More importantly I don’t need to bundle any of the libraries that implement the JAX-RS standard. Depending on the application server, the JAX-RS standard may be provided by libraries like [RESTEasy](http://resteasy.jboss.org/) or [Jersy](https://jersey.github.io/). But as long as the underlying libraries conform to the specification, my application will function as expected.
 
 Of course Java EE provides far more than just specifications for creating RESTful services. It includes specifications for database access, messaging, mailing, MVC frameworks, management APIs and [much more](http://www.oracle.com/technetwork/java/javaee/tech/index.html).
 
@@ -70,10 +74,10 @@ Multiple vendors provide implementations for the Java EE specification, with Wil
 But it doesn’t matter which vendor’s application server I deploy to. As long as my code and the app server conform to the Java EE specification, I can run my code in any app server.
 
 :::hint
-In practice with real world situations it is not this easy to build Java EE apps that can be deployed multiple Java EE application servers. But for the sake of this discussion we’ll assume this is the case.
+In practice with real world situations it is not this easy to build Java EE apps that can be deployed to multiple Java EE application servers. But for the sake of this discussion we’ll assume this is the case.
 :::
 
-So, generally speaking, a Java EE application server provides an environment where Java EE applications can be deployed and run.
+So, generally speaking, a Java EE application server provides an environment where applications written using the Java EE specifications can be deployed and run.
 
 Importantly, Java EE application servers usually host multiple applications side by side. For example, you may deploy multiple websites, each compiled as a separate WAR file, side by side in an app server. The individual applications can be deployed, started, stopped and undeployed independently without having to start and stop the application server itself.
 
@@ -149,7 +153,7 @@ org/apache/
 org/apache/commons/
 org/apache/commons/lang3/
 org/apache/commons/lang3/BitField.class
-...
+... and many more apache classes
 ```
 
 :::hint
@@ -162,9 +166,9 @@ WildFly Swarm is a project that provides the ability to bundle the same Java EE 
 
 The actual mechanics of how WildFly Swarm embeds the required classes and resources into an UberJAR is a more complicated than the example I gave above, but the end result is the same: you get a single, executable JAR file that can be run from any JRE.
 
-The WildFly Swarm team provide a bunch of examples, and they JAX-RS example (https://github.com/wildfly-swarm/wildfly-swarm-examples/tree/master/jaxrs/jaxrs) is quite similar to the hello world example I showed above.
+The WildFly Swarm team provide a bunch of examples, and they [JAX-RS example](https://github.com/wildfly-swarm/wildfly-swarm-examples/tree/master/jaxrs/jaxrs) is quite similar to the hello world example I showed above.
 
-Once compiled, the UberJAR file can be executed from the command line using the standard java executable.
+Once compiled, the UberJAR file can be executed from the command line using the standard `java` executable.
 
 ```
 $ java -jar example-jaxrs-war-swarm.jar
@@ -201,12 +205,12 @@ $ java -jar example-jaxrs-war-swarm.jar
 
 ### Application Server or UberJAR?
 
-From the point of view of the application, there is little difference between deploying it to an application server or running it as a standalone UberJAR. You get access to the same libraries and can expose the same functionality. In fact you may be able to take a project that builds a traditional Java EE WAR file and convert it to an UberJAR without touching the code and only adding a few lines to the Maven or Gradle project files.
+From the point of view of the application, there is little difference between deploying to an application server or running as a standalone UberJAR. You get access to the same libraries and can expose the same functionality. In fact you may be able to take a project that builds a traditional Java EE WAR file and convert it to an WildFly Swarm UberJAR without touching the code and only adding a few lines to the Maven or Gradle project files.
 
 :::hint
-Building the WildFly Swarm example project actually produces both the UberJAR and WAR files. The WAR file could be deployed to a WildFly application server, and would run the same code as the UberJAR. This highlights that the code doesn’t change when building a WAR file for deployment to an application server, or an UberJAR that can be run standalone.
+Building the WildFly Swarm JAX-RS example project actually produces both the UberJAR and WAR files. The WAR file could be deployed to a WildFly application server, and would run the same code as the UberJAR. This highlights the fact that the code doesn’t change when building a WAR file for deployment to an application server or an UberJAR that can be run standalone.
 
-![UberJAR and WAR](uberjar-and-war.png)
+![UberJAR and WAR](uberjar-and-war.png "width=500")
 :::
 
 The differences between these approaches lies more in how the applications are deployed and managed once they are compiled.
