@@ -233,7 +233,7 @@ However, application servers have fallen out of fashion as paradigms like micros
 
 Scaling applications deployed as UberJARs is easy, as each individual application can be deployed to new instances as demand increases and shut down as demand fades.
 
-All PaaS solutions that support Java will support running an UberJAR, because UberJARs only require the presence of a JRE. While some PaaS solutions support application servers, they tend to only support one or two vendors, or rely on community contributes to build the application server environment.
+All PaaS solutions that support Java will support running an UberJAR, because UberJARs only require the presence of a JRE. While some PaaS solutions support application servers, they tend to only support one or two vendors, or rely on community contributions to build the application server environment.
 
 UberJARs also have the effect of moving infrastructure into a Java build tool. For example, when building an UberJAR, the developer is responsible for adding the database connection drivers and configuration instead of relying on the configuration held by the application server.
 
