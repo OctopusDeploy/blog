@@ -62,6 +62,8 @@ Knowing the right place in the object graph also requires knowing something abou
 
 We responded by stripping back our usage of Redux and _only using them where the component-level state mechanism no longer made sense or was impractical_. Yes the sub heading is a bit of click bait, we still use Redux, however we only bring in state on a case-by-case bases when it is needed. Parts of our app that need to communicate or deal with non-localized state makes sense to live in the non-localized state management that Redux provides. For example where we want the page title and sidebar to display the Project name, which itself might need update in response to someone updating it's value down deep in the component tree. Contrary to some initial concerns, we found this to be no worse off a development and debugging experience than what the "whole app state in Redux" approach purports to be. The only downside is that this can make testing that little bit more complex since the data isn't injected through Redux but loaded by the component itself during the `componentDidMount` life cycle phase.
 
+[![Example Redux](example-redux.png "width=500")]
+
 The key lesson for this is to understand your problems and limitations before looking for a solution, and to use that solution only where it makes sense, not just because everyone else is doing it.
 
 Dave Ceddia summed it up in ["What Does Redux Do"](https://daveceddia.com/what-does-redux-do/)  by saying
