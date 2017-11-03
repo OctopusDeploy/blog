@@ -32,7 +32,8 @@ No it's not an example of how to build a dynamic website pre JQuery days, it's t
 Originally, Octopus 2.0 was written with Bootstrap 2.3.2 base with custom Octopus CSS layered on top (and at times, even inside the bootstrap styles!). In `3.0` a new custom design was added to the mix, right in between an updated version Bootstrap and the custom Octopus styles. Like adding a new 2nd floor to a building, sure its doable but there are going to be a lot of pipes and wires that need to line up _just right_. On top of all that were additional styles provided for various components like [Angular UI](https://angular-ui.github.io/bootstrap/), [select2](https://select2.org/) etc. That is more than 3 different design structures interacting with (and against) each other. I'm not going to add the [Family Guy CSS GIF](https://imgur.com/gallery/Q3cUg29) that im sure we have all seen, but just say that the emergence of `!important` all through your css is usually a sign that something is wrong. Our build process even needed to split up the concatenated css files in order to get around IE's limitation on a [maximum of 4095 rules per stylesheet!](https://blogs.msdn.microsoft.com/ieinternals/2011/05/14/stylesheet-limits-in-internet-explorer/) With the goal to provide a [fresh new design](../2017-10/octopus-v4-uxui.md) to improve useability, a full site-wide rebuild felt like in many ways the most reasonable solution.
 
 ![Something important](something-important.png "width=500")
-These styles must be really important! (Ok, this is a particular bad example)
+
+_These styles must be really important! (Ok, this is a particularly bad example)_
 
 ## Still... why React? ##
 With the Angular 1.4 version of our portal clearly outgrowing itself it was decided that to better scale for the future, both in terms of ease of development and performance for the end user, rebuilding the front end was critical. Going from Angular 1.x to 2.0 would be seen as almost a full rewrite so what better opportunity to evaluate what other options were available. 
@@ -80,7 +81,8 @@ We found that in porting over some old code to the new portal, introducing TS ac
 TypeScript might not be for everyone, but from my experience being able to confidently reason about what is being passed into your functions or components, saves an immense amount of time when refactoring or trying to work with another developer's code. It may be feasible to go without some sort of typing system when there is only 1 or 2 developers on a JS project but when you have over 20, working across hundreds of files, that's when it really starts to speak for itself (and I have even found myself using it on my own personal projects). As a replacement for Babel it allows us to write JavaScript that pollyfills features in older browsers using a soon-to-be-standardized native syntax and minor issues dealing with 3rd party library typings were able to be overcome with little effort. On the contrary I found TS was able increase productivity as compared with other projects of this size by eliminating some of the need to test minor things, like checks for input handling in functions that would previously ensure valid types are passed in (I said we were able to get by with _less_ tests, don't quote me as saying _none_). Sometimes the compiler would pick up silly enough mistakes like property capitalization that may have otherwise gone unnoticed. 
 
 ![TypeScript](typescript.png "width=500")
-Useful intellisense (notice it picked up that the props also has children) and caught my capitalization error.
+
+_Useful intellisense (notice it picked up that the props also has children) and caught my capitalization error._
 
 I can't state this highly enough,
 > TypeScript reduced the amount of time needed to deconstruct and follow the call stack in my head, of code written by other developers. This it did with much better accuracy.
