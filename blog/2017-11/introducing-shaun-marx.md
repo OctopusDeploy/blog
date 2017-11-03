@@ -1,6 +1,6 @@
 ---
 title: "Introducing Shaun Marx"
-visibility: private
+visibility: public
 description: "A brief introduction to Shaun Marx"
 tags:
  - Company
@@ -13,8 +13,8 @@ Hi, my name is Shaun Marx and have recently joined Octopus as a developer.
 
 I have been working as a developer using .NET for the past 10 years while having fun keeping up with
 the javascript ecosystem. I have mainly worked on systems that deal with the safety
-of people in electrical transmission where I have also gone through the pain of trying to automate everything without
-a tool such as Octopus Deploy.
+of people in electrical transmission where I have also gone through the pain of trying to automate releases without
+tools such as Octopus Deploy.
 
 I am passionate about learning and constantly improving and I can't think of a better company for that to happen.
 
