@@ -136,7 +136,7 @@ public void testQualifierOnly() {
 }
 ```
 
-#Separators
+## Separators
 
 When transitioning from a digit to a qualifier, the use of a separator like a dash or period is optional.
 
@@ -189,7 +189,7 @@ public void testLongVersions() {
 }
 ```
 
-### The Complete Test
+## The Complete Test
 
 This is the complete test class that was used to generate the examples above.
 
