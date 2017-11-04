@@ -2,7 +2,7 @@
 title: Maven Versions Explained
 description: There is more than meets the eye when it comes to Maven versions.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -109,7 +109,7 @@ public void testDifferentFinalReleases() {
 
 Note that the shorthand aliases must have a number after them, while their complete equivalents do not. If you look closely at the list of sorted versions introduced at the start of this post, you will see that versions `1.0-alpha` and `1.0a1-SNAPSHOT` are two of the earliest versions, while `1.0-a` is towards the end of the list.
 
-All qualifiers are case insensitive.
+All qualifiers are case insensitive, as this test demonstrates.
 
 ```java
 @Test
@@ -126,12 +126,14 @@ public void testCase() {
 }
 ```
 
-Where version stings can not be parsed as major.minor.patch.build and the qualifier is not recognised, the entire string is considered to be a qualifier, and the qualifiers are compared as case insensitive strings.
+Where version stings can not be parsed as major.minor.patch.build and the qualifier is not recognised, the entire string is considered to be a qualifier. These qualifiers are then compared as case insensitive strings.
 
 ```java
 @Test
 public void testQualifierOnly() {
     assertTrue(new ComparableVersion("SomeRandomVersionOne").compareTo(
+            new ComparableVersion("SOMERANDOMVERSIONTWO")) < 0);
+    assertTrue(new ComparableVersion("SomeRandomVersionThree").compareTo(
             new ComparableVersion("SOMERANDOMVERSIONTWO")) < 0);
 }
 ```
@@ -256,6 +258,8 @@ public class VersionTest {
     @Test
     public void testQualifierOnly() {
         assertTrue(new ComparableVersion("SomeRandomVersionOne").compareTo(
+                new ComparableVersion("SOMERANDOMVERSIONTWO")) < 0);
+        assertTrue(new ComparableVersion("SomeRandomVersionThree").compareTo(
                 new ComparableVersion("SOMERANDOMVERSIONTWO")) < 0);
     }
 
