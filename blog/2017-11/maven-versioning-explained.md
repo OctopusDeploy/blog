@@ -19,7 +19,7 @@ By writing some tests against this class, we can explore how Maven versions work
 
 ## A Sorted List of Versions
 
-We'll start with a test that takes an of `ComparableVersion` objects, clones the array, sorts it, and compares it back to the original list. The fact that the test passes proves that the original list is in order from the earliest to the latest version.
+We'll start with a test that takes an array of `ComparableVersion` objects, clones the array, sorts it, and compares it back to the original list. The fact that the test passes proves that the original list is in order from the earliest to the latest version.
 
 ```java
 private static final ComparableVersion[] VERSIONS = new ComparableVersion[]{
