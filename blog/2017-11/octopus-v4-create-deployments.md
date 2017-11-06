@@ -34,7 +34,7 @@ If we're honest, it was overdue for a re-design.
 
 The most significant changes are seen when deploying a release to multiple environments or tenants. 
 
-We conceptually split the page into two sections: the **North** and the **South**.
+We conceptually split the page into two sections: the **North** and the **South** (OK, perhaps some of us were watching too much Game of Thrones at the time).
 
 In the image below, the _Preview and Customize_ separator forms the Equator.
 
