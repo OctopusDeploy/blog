@@ -3,9 +3,13 @@ title: Octopus Deploy 4.0 - Deploy Release Page Redesign
 description: The Deploy Release page has been redesigned as part of Octopus version 4.0  
 author: michael.richardson@octopus.com
 visibility: private
+metaImage: 4.0deployments_metaimage.png
+bannerImage: 4.0deployments_blogimage.png
 tags:
  - New Releases
 ---
+
+![Octopus 4.0 new create release page](4.0deployments_blogimage.png)
 
 This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
 
