@@ -18,11 +18,10 @@ This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](http
 While working on the UI-refresh for Octopus 4.0, many pages were essentially a direct port to the new look-and-feel.    
 But there were a few where we took the opportunity to re-think the design. 
 
-One of the latter was the page to deploy a release.
+One of these was the page to deploy a release.
 
 The existing page was originally created to deploy a release to a single environment.   
-It was later extended to allow deploying to multiple environments.   
-Then the multi-tenancy feature came along, and we bolted on the ability to create deployments for one or more tenants. 
+It was later extended to allow deploying to multiple environments.  Then the multi-tenancy feature came along, and we bolted on the ability to create deployments for one or more tenants. 
 
 If we're honest, it was overdue for a re-design.
 
@@ -75,7 +74,7 @@ You can also include\exclude specific deployment targets here.
 
 Sometimes creating a deployment fails.
 
-You may not have any matching targets in an environment.  You may be missing a required variable.
+You may not have any matching targets in an environment, or you may be missing a required variable.
 
 If you are deploying to a single environment (or a single tenant), then this wasn't a problem:  The error message would be displayed, you would resolve it, and try again.
 
