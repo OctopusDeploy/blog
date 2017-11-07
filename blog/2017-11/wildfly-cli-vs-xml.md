@@ -29,7 +29,7 @@ Some of the XML files used by WildFly are not static. For example, WildFly will 
 
 Without some forethought you may also find yourself in a situation where is it quite difficult to see what changes have been made to the XML files. These configuration files are quite long, and without a diff tool it would be nearly impossible to spot the changes made in a customized template.
 
-For the same reason, applying your customizations to the configuration files in a new version of WildFly can be challenging. Given that WildFly does a major release every year or so (and this release schedule is set to be accelerated starting with WildFly 12), you really want to be able to apply your easily customizations to the next version, if only to take advantage of security patches in later WildFly releases.
+For the same reason, applying your customizations to the configuration files in a new version of WildFly can be challenging. Given that WildFly does a major release every year or so (and this release schedule is set to be accelerated starting with WildFly 12), you really want to be able to easily apply your customizations to the next version, if only to take advantage of security patches in later WildFly releases.
 
 My recommendation for those applying changes to the XML configuration files directly is to add clear comments for each change. For example, you may change the configuration to bind to any network adaptor with code like this:
 
