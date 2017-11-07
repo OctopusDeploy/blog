@@ -2,7 +2,7 @@
 title: Configuring WildFly via XML Templates or CLI Scripts
 description: Configuring a WildFly server can be done either by editing the XML files directly, or by running CLI script. But which is the best choice?
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -46,7 +46,7 @@ My recommendation for those applying changes to the XML configuration files dire
 </interfaces>
 ```
 
-The comments will be discarded by WildFly when it boots up (WildFly overwriting XML files at runtime is the reason why you can’t edit these files while WildFly is running), but with a simple search string you can find all the changes you have made. This makes it easy to port the changes to a new version, or to simply understand how your customized version differs from the stock download.
+The comments will be discarded by WildFly when it boots up (WildFly overwriting XML files at runtime is the reason why you can’t edit these files while WildFly is running), but with a simple search string you can find all the changes you have made in your template. This makes it easy to port the changes to a new version, or to simply understand how your customized version differs from the stock download.
 
 ## Updating with the CLI
 
@@ -129,7 +129,7 @@ The script can be run with:
 
 Running CLI scripts does have drawbacks though.
 
-Typically you will need to have a running instance of WildFly in order to run your CLI scripts. This can be tricky when the server is not configured correctly in order to boot in order to run CLI scripts against. For example, the interface bindings might not be correct, ports may not be correct, or a slave instance may not be able to connect to the domain master.
+Typically you will need to have a running instance of WildFly in order to run your CLI scripts. This can be tricky when the server is not configured correctly in order to boot, and in turn be available to run CLI scripts against. For example, the interface bindings might not be correct, ports may not be correct, or a slave instance may not be able to connect to the domain master.
 
 This situation can be mitigated by running the [embed-server](http://www.mastertheboss.com/jbossas/wildfly9/configuring-wildfly-9-from-the-cli-in-offline-mode), which is a kind of "offline" mode that gives you access to the CLI without necessarily having a running server.
 
