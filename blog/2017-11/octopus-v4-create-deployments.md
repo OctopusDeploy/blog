@@ -38,9 +38,9 @@ We conceptually split the page into two sections: the **North** and the **South*
 
 In the image below, the _Preview and Customize_ separator forms the Equator.
 
-The North is where you select _where_ the release will be deployed (Environments and Tenants). It also allows you to configure some options which apply to _all_ the deployments that will be created.
+- The North is where you select _where_ the release will be deployed (Environments and Tenants). It also allows you to configure some options which apply to _all_ the deployments that will be created.
 
-The South displays the deployments that will be created, and provides the ability for additional _per-deployment_ configuration.
+- The South displays the deployments that will be created, and provides the ability for additional _per-deployment_ configuration.
 
 ![Create Deployment Page - North and South](octopus-v4-create-deployment-north-south.png "width=500")
 
@@ -59,7 +59,7 @@ The _Show Advanced_ button reveals additional options, such as:
 
 The South section hopefully clearly shows the deployments which will be created. This was something the existing design did not communicate effectively.
 
-This becomes particularly important if tenant-tags are used as the target  in the North.  In this case the South will resolve the tags, and display exactly which tenants will be deployed to.
+This becomes particularly important when using a complex tenant-tag expression in the North. In this case, the South will evaluate the tag expression and display exactly which tenanted deployments will be created.
 
 ![Create Deployment Page - Tenant Tags](octopus-v4-create-deployment-tenant-tags.png "width=500")
 
@@ -72,17 +72,16 @@ You can also include\exclude specific deployment targets here.
 
 ### When it's not rainbows and lollipops 
 
-Sometimes creating a deployment fails.
-
+Sometimes creating a deployment fails.  
 You may not have any matching targets in an environment, or you may be missing a required variable.
 
-If you are deploying to a single environment (or a single tenant), then this wasn't a problem:  The error message would be displayed, you would resolve it, and try again.
+#### The old 
 
-When deploying to many environments\tenants, and some deployments failed to be created while others succeeeded, it gets more complicated. 
+When deploying to many environments or tenants, and some deployments were successfully created while others failed, this left the user in an akward position. After resolving the errors, the deployment options needed to be reconfigured to ensure that the successfully created deployments were not redeployed. 
 
-The previous version of this page would display the error messages, but left it to the user to reconfigure their deployment options so that the deployments that were successfully created would not be re-created. 
+#### The new
 
-The new version provides a _Retry Unsuccessful_ button.  
+In the new version we have provided a _Retry Unsuccessful_ button.  
 
 For example, in the image below, the deployment to the _Intel_ tenant failed to be created.  Clicking _Retry Unsuccessful_ will re-attempt for only that tenant (there is also a _Deploy All_ button).   
 
@@ -93,7 +92,7 @@ For example, in the image below, the deployment to the _Intel_ tenant failed to 
 
 We always love your feedback. 
 
-Tell us what you think about the new design?  We'd especially love for you to leave a comment if you had issues with the previous version.  Did we address them? 
+Please tell us what you think about the new design.  We'd especially love for you to leave a comment if you had issues with the previous version.  Did we address them? 
 
 Happy Deployments!   
 _(Hopefully created via Octopus v4)_
