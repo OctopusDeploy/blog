@@ -358,3 +358,13 @@ It can then be run using the `--file` command line option.
 :::hint
 In this test script we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
 :::
+
+## Running the CLI GUI
+
+The CLI has a GUI mode which provides a file browser like interface for navigating around the WildFly settings directory structure.
+
+```
+./jboss-cli.sh --gui
+```
+
+![WildFly CLI GUI](wildfly-cli-gui.png)
