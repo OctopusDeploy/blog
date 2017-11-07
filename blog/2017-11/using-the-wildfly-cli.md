@@ -29,9 +29,9 @@ WARNING: All illegal access operations will be denied in a future release
 
 From the example output above we can see three important things have happened.
 
-First, Java 9 has reported some “Illegal reflective access” warnings. This sounds dire, but is because of some changes introduced with the Java 9 module system (known as [Jigsaw](http://www.baeldung.com/project-jigsaw-java-modularity)). I expect that over time these warnings will be resolved, but for now they can be ignored.
+First, Java 9 has reported some “Illegal reflective access” warnings. This sounds dire, but is because of some intentional changes introduced with the Java 9 module system (known as [Jigsaw](http://www.baeldung.com/project-jigsaw-java-modularity)). I expect that over time these warnings will be resolved, but for now they can be ignored.
 
-Second, we have connected to the default host (localhost) and port using the default protocol. These could be specified manually with the --controller option.
+Second, we have connected to the default host (localhost) and port (9990) using the default protocol (remote+http). These could be specified manually with the `--controller` option.
 
 ```
 ./jboss-cli.sh --connect --controller=remote+http://localhost:9990
@@ -45,11 +45,11 @@ Older versions of WildFly exposed a native management port on `9999` by default,
 
 Third, we managed to log in without supplying any credentials. This is courtesy of a feature called [silent authentication](https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/how_to_configure_server_security/#silent_authentication).
 
-Silent authentication relies on access to the standalone/tmp/auth or domain/tmp/auth directory. The idea is that if a user has access to this directory, they probably have access to create new users, and so silent authentication will give you access.
+Silent authentication relies on access to the `standalone/tmp/auth` or `domain/tmp/auth directory`. The idea is that if a user has access to this directory, they probably have access to create new users, and so silent authentication will give you access.
 
 ![auth directory permissions](auth-permissions.png)
 
-If you deny write access to the auth directory (the screenshot above is from a Mac), silent authentication will fail and you will be prompted for credentials.
+If you deny write access to the `auth` directory (the screenshot above is from a Mac), silent authentication will fail and you will be prompted for credentials.
 
 :::hint
 See [Configuring Admin Users](https://octopus.com/blog/installing-wildfly-from-scratch#configuring-admin-users) for details on creating an admin user that can be used to log into the CLI.
@@ -172,10 +172,14 @@ The `:read-operation-names` operation shows the same list as the tab completion.
 }
 ```
 
+:::hint
+Operations can be performed in the current directory (as we have done in the example above), or on a specific directory with a command like `/:read-operation-names` or `/subsystem=undertow:read-operation-names`.
+:::
+
 The `:read-resource` operation is a common way to list the details of the current directory.
 
 :::hint
-WildFly represents objects using the Dynamic Model Representation (DMR) format.
+WildFly represents objects using the [Dynamic Model Representation (DMR)](http://ksoong.org/jboss/2015/04/01/jboss-dmr/) format.
 :::
 
 ```
@@ -277,4 +281,80 @@ The `:reload` operation will reload the server.
 
 ## Batching Operations
 
+Some operations in WildFly need to be run as an atomic unit, or you may want all commands to succeed or fail as one. The `batch` and `run-batch` commands provide this functionality.
+
+:::hint
+When in batch mode, a `#` character will appear prompt.
+:::
+
+```
+[standalone@localhost:9990 /] batch
+[standalone@localhost:9990 / #] /subsystem=undertow/server=default-server/http-listener=default:undefine-attribute(name=write-timeout)
+[standalone@localhost:9990 / #] /subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enabled, value=false)
+[standalone@localhost:9990 / #] run-batch
+The batch executed successfully
+```
+
+The `discard-batch` command will discard any batched commands and exit the batch mode.
+
+```
+[standalone@localhost:9990 /] batch
+[standalone@localhost:9990 / #] /subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enabled, value=false)
+[standalone@localhost:9990 / #] discard-batch
+[standalone@localhost:9990 /]
+```
+
+The `list-batch` command will show the pending batched commands, and the `clear-batch` command will clear any batched commands but leave you in batched mode.
+
+```
+[standalone@localhost:9990 /] batch
+[standalone@localhost:9990 / #] /subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enabled, value=false)
+[standalone@localhost:9990 / #] list-batch
+#1 /subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enabled, value=false)
+[standalone@localhost:9990 / #] clear-batch
+[standalone@localhost:9990 / #] list-batch
+The batch is empty.
+[standalone@localhost:9990 / #] discard-batch
+```
+
+For more information on using batches in WildFly, see [CLI Batch Mode](https://developer.jboss.org/wiki/CLIBatchMode).
+
 ## Backing up the Configuration
+
+You may wish to backup the current configuration before making any changes. This can as be done with the `:take-snapshot` operation.
+
+The result of this operation tells you where the backup was saved.
+
+```
+[standalone@localhost:9990 /] :take-snapshot
+{
+    "outcome" => "success",
+    "result" => "C:\\Users\\matth\\Downloads\\wildfly-11.0.0.Final\\wildfly-11.0.0.Final\\standalone\\configuration\\standalone_xml_history\\snapshot\\20171108-082107378standalone.xml"
+}
+```
+
+## Flow Control Statements
+
+## Running CLI Scripts
+
+CLI commands can be added to a script file and run non-interactively.
+
+For example, save this script to a file called `test.cli`.
+
+```
+connect
+batch
+/subsystem=undertow/server=default-server/http-listener=default:undefine-attribute(name=write-timeout)
+/subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=enabled, value=false)
+run-batch
+```
+
+It can then be run using the `--file` command line option.
+
+```
+./jboss-cli.sh --file=test.cli
+```
+
+:::hint
+In this test script we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
+:::
