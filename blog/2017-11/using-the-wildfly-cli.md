@@ -333,8 +333,6 @@ The result of this operation tells you where the backup was saved.
 }
 ```
 
-## Flow Control Statements
-
 ## Running CLI Scripts
 
 CLI commands can be added to a script file and run non-interactively.
@@ -358,6 +356,52 @@ It can then be run using the `--file` command line option.
 :::hint
 In this test script we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
 :::
+
+## Flow Control Statements
+
+CLI supports flow control statements like if/else if/else and try/catch/finally.
+
+For example, you can add the following code to a CLI script, and it will set the system property `test` to `true` if it has not been defined.
+
+```
+if (outcome != success) of /system-property=test:read-resource
+    /system-property=test:add(value=true)
+end-if
+```
+
+You can run the same commands in an interactive mode as well.
+
+```
+[standalone@localhost:9990 /] if (outcome != success) of /system-property=test:read-resource
+[standalone@localhost:9990 /] /system-property=test:add(value=true)
+[standalone@localhost:9990 /] end-if
+{"outcome" => "success"}
+```
+
+The try/catch/finally flow control works much the same as in Java. The following will attempt to add a data source, and will remove and add the data source if there was an exception. Finally the data source is enabled.
+
+```
+try
+  /subsystem=datasources/data-source=myds:add(connection-url=xxx,jndi-name=java:/myds,driver-name=h2)
+catch
+  /subsystem=datasources/data-source=myds:remove
+  /subsystem=datasources/data-source=myds:add(connection-url=xxx,jndi-name=java:/myds,driver-name=h2)
+finally
+  /subsystem=datasources/data-source=myds:enable
+end-try
+```
+
+## Multiline Commands
+
+Commands can be split over multiple lines by ending each line with a `\` character.
+
+```
+[standalone@localhost:9990 /] /subsystem=datasources/data-source=myds:add( \
+>   connection-url=xxx, \
+>   jndi-name=java:/myds, \
+>   driver-name=h2)
+{"outcome" => "success"}
+```
 
 ## Running the CLI GUI
 
