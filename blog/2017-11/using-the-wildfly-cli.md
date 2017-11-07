@@ -47,9 +47,7 @@ Third, we managed to log in without supplying any credentials. This is courtesy 
 
 Silent authentication relies on access to the `standalone/tmp/auth` or `domain/tmp/auth directory`. The idea is that if a user has access to this directory, they probably have access to create new users, and so silent authentication will give you access.
 
-![auth directory permissions](auth-permissions.png)
-
-If you deny write access to the `auth` directory (the screenshot above is from a Mac), silent authentication will fail and you will be prompted for credentials.
+If you deny write access to the `auth` directory, silent authentication will fail and you will be prompted for credentials.
 
 :::hint
 See [Configuring Admin Users](https://octopus.com/blog/installing-wildfly-from-scratch#configuring-admin-users) for details on creating an admin user that can be used to log into the CLI.
@@ -412,3 +410,9 @@ The CLI has a GUI mode which provides a file browser like interface for navigati
 ```
 
 ![WildFly CLI GUI](wildfly-cli-gui.png)
+
+## Conclusion
+
+In this post we have taken a high level look at how the CLI works and what you can do with it. You can find more resources on the [JBoss Wiki](https://developer.jboss.org/wiki/CommandLineInterface) that goes into more detail and provides examples of administrative tasks.
+
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
