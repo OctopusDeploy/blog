@@ -2,7 +2,7 @@
 title: Octopus Deploy 4.0 - Deploy Release Page Redesign 
 description: The Deploy Release page has been redesigned as part of Octopus version 4.0  
 author: michael.richardson@octopus.com
-visibility: private
+visibility: public
 metaImage: 4.0deployments_metaimage.png
 bannerImage: 4.0deployments_blogimage.png
 tags:
@@ -59,7 +59,7 @@ The _Show Advanced_ button reveals additional options, such as:
 
 The South section hopefully clearly shows the deployments which will be created. This was something the existing design did not communicate effectively.
 
-This becomes particularly important when using a complex tenant-tag expression in the North. In this case, the South will evaluate the tag expression and display exactly which tenanted deployments will be created.
+This becomes particularly important when using a complex tenant-tag expression in the North.  In this case, the South will evaluate the tag expression and display exactly which tenanted deployments will be created.
 
 ![Create Deployment Page - Tenant Tags](octopus-v4-create-deployment-tenant-tags.png "width=500")
 
