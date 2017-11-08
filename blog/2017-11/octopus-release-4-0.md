@@ -33,6 +33,11 @@ TODO
 
 TODO: List all breaking changes!
 
+Trello:
+https://trello.com/c/TCFZ70MY/442-breaking-changes
+
+Github issue filter: https://github.com/OctopusDeploy/Issues/issues?utf8=%E2%9C%93&q=label%3Abreaking-change%20milestone%3A4.0.0
+
 ## Upgrading
 
 All of the usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=3.17.0) for further information.
