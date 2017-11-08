@@ -3,10 +3,18 @@ title: Octopus Deploy 4.0 - Moving from Angular to React
 description: One of the biggest changes in Octopus Deploy 4.0 is a complete portal rewrite in React.
 author: robert.erez@octopus.com
 visibility: private
+metaImage: 4.0react_metaimage.png
+bannerImage: 4.0react_blogimage.png
 tags:
  - New Releases
- - Portal
 ---
+
+![Octopus 4.0 was rewritten in React](4.0react_blogimage.png)
+
+This post is a part of our Octopus 4.0 blog series.  Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
+
+---
+
 As part of our big portal overhaul in Octopus 4.0, we made the move from Angular to React. A lot of users have asked us for details on why we moved, so this post aims to go over some key points about the transition with some of the choices we made along the way.
 
 ## Decision Points ##
