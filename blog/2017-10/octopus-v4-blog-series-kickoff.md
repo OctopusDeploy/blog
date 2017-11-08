@@ -26,4 +26,4 @@ Blog series posts:
 * [Octopus Deploy 4.0 - UX and UI](/blog/2017-10/octopus-v4-uxui.md)
 * [Variable Editor Redesign](/blog/2017-10/octopus-v4-variable-editor.md)
 * [Infrastructure Redesign](/blog/2017-11/octopus-v4-infrastructure.md)
-* [Deploy Release Page Redesign](/blog/2017-11/octopus-v4-angular-to-react/index.md)
+* [Deploy Release Page Redesign](/blog/2017-11/octopus-v4-create-deployments.md)
