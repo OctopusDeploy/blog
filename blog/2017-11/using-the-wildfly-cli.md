@@ -395,6 +395,15 @@ It can then be run using the `--file` command line option.
 In this test script we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
 :::
 
+To disable the `Press any key to continue ...` prompt when you run the `jboss-cli.bat` file win Windows, set the `NOPAUSE` environment variable to `true`.
+
+```
+PS C:\Users\matth\Downloads\wildfly-11.0.0.Final\bin> $env:NOPAUSE="true"
+PS C:\Users\matth\Downloads\wildfly-11.0.0.Final\bin> .\jboss-cli.bat --connect
+[standalone@localhost:9990 /] quit
+PS C:\Users\matth\Downloads\wildfly-11.0.0.Final\bin>
+```
+
 ## Flow Control Statements
 
 CLI supports flow control statements like if/else and try/catch/finally.
