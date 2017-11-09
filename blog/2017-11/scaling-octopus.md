@@ -27,7 +27,7 @@ We are _not_ going to implement (or rather not right now):
 
 - **Octopus Data Center Manager (ODCM):** We are not planning to implement this in the short-term future. We feel the above features will provide most of the benefits that ODCM would have, but in a more accessible way. 
 
-We'll talk about each of these in more detail.
+We'll talk about each of these in more detail, and we'll also [look at it from the perspective of the specific problems](#pivot-on-the-problems) we are hoping to solve.
 
 ## Spaces
 
@@ -83,3 +83,20 @@ But we realized that rather than addressing both scenarios, ODCM wasn't quite th
 If you simply want to segregate your data, and your server is otherwise under no stress, then creating an entire new instance feels rather like cracking a nut with a sledge-hammer. And in the reverse, if you don't want to segregate your teams\projects, but rather simply to add more task-running capacity, then you don't need another Octopus Server (including a separate database), you need more worker processes. 
 
 We are not saying we will never build ODCM.  In fact, there is a good chance we will need something similar for building our hosted solution.  It is just no longer an immediate priority as a customer-facing feature.
+
+## Pivot on the Problems
+
+Hopefully that gives some clarity regarding the features we will (and won't) implement. To look at it from another angle, we will pivot and focus on the customer pain-points we are hoping to address. 
+
+> We now have so many projects\environments\tenants\etc that the Octopus UI has become difficult to use 
+
+We are betting that [Spaces](#spaces) will be the balm for your ailments. 
+
+> We now often run many deployments concurrently, and our Octopus server is struggling.  We've thrown as much hardware in that machine as we can ... 
+
+The ability to add machines to the [Octopus Worker Pool](#octopus-worker-pool) will be the silver bullet for your performance werewolves.
+
+> For security reasons we have our productions environments deployed by an Octopus server which is phsically segregated from our development Octopus server. Moving releases between the is painful.
+
+[Remote Release Promotions](#remote-release-promotions) will be the present under the tree with your name on it.
+
