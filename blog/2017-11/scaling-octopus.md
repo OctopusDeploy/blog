@@ -50,6 +50,8 @@ In general, an organization is far more likely to nudge the limits for executing
 
 Our solution is to introduce the Octopus Worker Pool. We will split the worker process out from the Octopus Server. By default a single worker will be installed on the same machine as the Octopus Server, and for most customers this will be all they ever need. But larger customers will have the ability to add additional machines to the pool, allowing them to scale their capacity as required. 
 
+![Octopus Worker Pool](scaling-octopus/worker-pool.png "width=500")
+
 This approach should be familiar, as it is probably similar to your build server. For example TeamCity has the concept of Agents, which are responsible for executing jobs. 
 
 As we build a hosted Octopus SAAS offering, this is something we require.  It makes sense to expose the same feature to our existing customers. 
