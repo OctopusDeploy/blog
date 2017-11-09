@@ -29,7 +29,11 @@ We introduced the concept of Spaces in our [Managing Spaces with ODCM](https://o
 
 The general idea is better segration for teams within Octopus. For example, currently Environments are global within an Octopus instance; they are shared between all projects. As are Lifecycles, Accounts, Certificates, and just about everything else. 
 
+![Spaces conceptual diagram](scaling-octopus/spaces-conceptual.png "width=500")
+
 We believe this is not ideal, as in our experience disparate teams within an organization typically share very little. Even where Environments are shared (e.g. two teams may both have a Test environment), it is often simply a shared name rather than shared infrastructure. By pushing everything down a level, we believe it will improve the usability of the UI, and improve performance. 
+
+![Space Switching Menu](scaling-octopus/space-switching-menu.png "width=500")
 
 **Note:** In the ODCM post, Spaces were synonymous with an Octopus server instance. This will not be the case. Spaces will exist within an Octopus server instance.   
 
