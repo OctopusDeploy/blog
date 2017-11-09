@@ -9,7 +9,7 @@ tags:
  - Java
 ---
 
-The WildFly CLI is a powerful administration tool, exposing both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this blog post we’ll take a look at how to use the console and configure some common customizations of the WildFly server.
+The WildFly CLI is a powerful administration tool, exposing both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this blog post we’ll take a high level look at how to use the CLI.
 
 ## Logging In
 
@@ -296,7 +296,7 @@ Backslashes are themselves escaped with a backslash.
 
 ## Reloading the Server
 
-Changing some settings require the server to be reloaded. You can check the state of the server by reading the `server-state` attribute in the root directory. In this example we have some settings that require a reload.
+Changing some settings requires the server to be reloaded. You can check the state of the server by reading the `server-state` attribute in the root directory. In this example we have some settings that require a reload.
 
 ```
 [standalone@localhost:9990 /] :read-attribute(name=server-state)
@@ -322,7 +322,7 @@ The `:reload` operation will reload the server.
 Some operations in WildFly need to be run as an atomic unit, or you may want all commands to succeed or fail as one. The `batch` and `run-batch` commands provide this functionality.
 
 :::hint
-When in batch mode, a `#` character will appear prompt.
+When in batch mode, a `#` character will appear in the prompt.
 :::
 
 ```
@@ -395,7 +395,7 @@ It can then be run using the `--file` command line option.
 In this test script we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
 :::
 
-To disable the `Press any key to continue ...` prompt when you run the `jboss-cli.bat` file win Windows, set the `NOPAUSE` environment variable to `true`.
+To disable the `Press any key to continue ...` prompt when you run the `jboss-cli.bat` file in Windows, set the `NOPAUSE` environment variable to `true`.
 
 ```
 PS C:\Users\matth\Downloads\wildfly-11.0.0.Final\bin> $env:NOPAUSE="true"
