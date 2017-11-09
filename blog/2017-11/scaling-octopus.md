@@ -96,7 +96,11 @@ We are betting that [Spaces](#spaces) will be the balm for your ailments.
 
 The ability to add machines to the [Octopus Worker Pool](#octopus-worker-pool) will be the silver bullet for your performance werewolves.
 
-> For security reasons we have our productions environments deployed by an Octopus server which is phsically segregated from our development Octopus server. Moving releases between the is painful.
+> For security reasons we have our productions environments deployed by an Octopus server which is phsically segregated from our development Octopus server. Moving releases between them is painful.
 
 [Remote Release Promotions](#remote-release-promotions) will be the present under the tree with your name on it.
+
+## When
+
+**2018**. We plan to release all of these features over the course of 2018. 
 
