@@ -45,7 +45,7 @@ Older versions of WildFly exposed a native management port on `9999` by default,
 
 Third, we managed to log in without supplying any credentials. This is courtesy of a feature called [silent authentication](https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/how_to_configure_server_security/#silent_authentication).
 
-Silent authentication relies on access to the `standalone/tmp/auth` or `domain/tmp/auth directory`. The idea is that if a user has access to this directory, they probably have access to create new users, and so silent authentication will give you access.
+Silent authentication relies on access to the `standalone/tmp/auth` or `domain/tmp/auth` directory. The idea is that if a user has access to this directory, they probably have access to create new users, and so silent authentication will give you access.
 
 If you deny write access to the `auth` directory, silent authentication will fail and you will be prompted for credentials.
 
@@ -112,6 +112,8 @@ Usage:
 ```
 
 The `quit` command will exit the CLI.
+
+## Tab Completion
 
 These commands also have a number of options. The easiest way to see these options is to use tab complete. Here we have typed `ls ` (the space on the end is important) and pressed tab to see what additional options are available.
 
@@ -252,6 +254,44 @@ Attributes can be undefined with the `:undefine-attribute` operation.
 ```
 [standalone@localhost:9990 http-listener=default] :undefine-attribute(name=write-timeout)
 {"outcome" => "success"}
+```
+
+## Special Characters
+
+To define a value with a space, wrap the string up in quotes.
+
+```
+[standalone@localhost:9990 /] /system-property=test:write-attribute(name=value, value="value with space")
+{"outcome" => "success"}
+[standalone@localhost:9990 /] /system-property=test:read-attribute(name=value)
+{
+    "outcome" => "success",
+    "result" => "value with space"
+}
+```
+
+To use quotes, escape them with a backslash.
+
+```
+[standalone@localhost:9990 /] /system-property=test:write-attribute(name=value, value="\"quoted value with space\"")
+{"outcome" => "success"}
+[standalone@localhost:9990 /] /system-property=test:read-attribute(name=value)
+{
+    "outcome" => "success",
+    "result" => "\"quoted value with space\""
+}
+```
+
+Backslashes are themselves escaped with a backslash.
+
+```
+[standalone@localhost:9990 /] /system-property=test:write-attribute(name=value, value="\"quoted value with space and a backslash \\\"")
+{"outcome" => "success"}
+[standalone@localhost:9990 /] /system-property=test:read-attribute(name=value)
+{
+    "outcome" => "success",
+    "result" => "\"quoted value with space and a backslash \\\""
+}
 ```
 
 ## Reloading the Server
