@@ -397,7 +397,7 @@ In this test script we have connected to the WildFly instance from inside the sc
 
 ## Flow Control Statements
 
-CLI supports flow control statements like if/else if/else and try/catch/finally.
+CLI supports flow control statements like if/else and try/catch/finally.
 
 For example, you can add the following code to a CLI script, and it will set the system property `test` to `true` if it has not been defined.
 
