@@ -1,6 +1,7 @@
 ---
 title: Scaling Octopus 
 description: Outlines the changes we are going to make to better allow Octopus to scale with your organization 
+author: michael.richardson@octopus.com
 visibility: private
 tags:
  - Architecture
@@ -8,17 +9,22 @@ tags:
 ---
 
 A key focus of our thoughts over the past year has been how to best allow Octopus to scale, to gracefully cater for our biggest customers.
-We spent some time designing; we published a few posts to get your feedback (Octopuses, Spaces\ODCM, Remote Release Promotions); and we experimented with some ideas.   
+We spent some time designing; we published a few posts to get your feedback ([Octopuses](https://octopus.com/blog/octopuses), [Managing Spaces with ODCM](https://octopus.com/blog/odcm-rfc), [Remote Release Promotions](https://octopus.com/blog/remote-release-promotions-rfc)); and we experimented with some ideas.   
 
 But we also made a mistake. We left our customers unsure of our direction. 
 
-Hopefully this post will rectify that.  It will outline the changes we plan to make in the immediate future to better allow Octopus to ... 
+Hopefully this post will rectify that.  It will outline the features we plan to implement in the immediate future to better allow Octopus to scale as it's adoption increases within an organization.  
 
 ## Summary
+
+We are going to implement:
 
 - **Spaces:** Provide a better ability for teams to have their own space within Octopus.  This means less will be at the global level. For example, environments, projects and lifecycles will live within a space. 
 - **Octopus Worker Pool:** Your build server probably has the concept of build agents\workers.  In a similar concept, Octopus will have a pool of workers for executing tasks.  
 - **Remote Release Promotions:** This will allow a release to be promoted between Octopus servers.
+
+We are _not_ going to implement (or rather not right now): 
+
 - **Octopus Data Center Manager (ODCM):** We are not planning to implement this in the short-term future. We feel the above features will provide most of the benefits that ODCM would have, but in a more accessible way. 
 
 We'll talk about each of these in more detail.
@@ -58,6 +64,10 @@ As we build a hosted Octopus SAAS offering, this is something we require.  It ma
 
 ## Remote Release Promotions
 
+Remote Release Promotions is a feature which will allow promoting a release between Octopus servers.
+
+![Remote Release Promotions](scaling-octopus/rrp-solution-secure-environments.png "width=500")
+
 We published a [detailed design for this feature](https://octopus.com/blog/remote-release-promotions-rfc) earlier this year, and we plan to implement this pretty much as specified. 
 
 ## ODCM
@@ -66,10 +76,10 @@ Earlier this year, our proposed solution for scaling was to faciliate the instal
 
 We originally felt this was killing two birds with one stone:
 
-- Need to add a new space to better segregate your server: Spin up a new instance with ODCM. 
+- Need to add a new space to better segregate teams on your server: Spin up a new instance with ODCM. 
 - Is your server struggling with the amount of tasks it has to run: Spin up a new instance with ODCM. 
 
 But we realized that rather than addressing both scenarios, ODCM wasn't quite the right tool for either.
-If you simply want to segregate your data, and your server is otherwise under no stress, then creating an entire new instance feels rather like cracking a nut with a sledge-hammer. And in the reverse, if you don't want to segregate your teams\projects, but rather simply to add more task-running capacity, then you don't need another Octopus Server, you need more workers. 
+If you simply want to segregate your data, and your server is otherwise under no stress, then creating an entire new instance feels rather like cracking a nut with a sledge-hammer. And in the reverse, if you don't want to segregate your teams\projects, but rather simply to add more task-running capacity, then you don't need another Octopus Server (including a separate database), you need more worker processes. 
 
-We are not saying we will never build ODCM.  In fact, there is a good chance we will need something similar for building our hosted solution.  It is just no longer an immediate priority as a feature to offer to customers.
+We are not saying we will never build ODCM.  In fact, there is a good chance we will need something similar for building our hosted solution.  It is just no longer an immediate priority as a customer-facing feature.
