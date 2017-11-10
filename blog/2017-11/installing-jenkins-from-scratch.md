@@ -125,6 +125,10 @@ Although the Octopus CLI tool is not available natively in Jenkins, the Custom T
 
 Under the `Custom Tools` section, create a new tool called `Octo CLI` and enter the URL to the Ubuntu CLI in the `Download URL for binary archive` field. You can get the download link for Octo CLI from the [Octopus download page](https://octopus.com/downloads).
 
+:::hint
+Although the latest version of Ubuntu supported by the Octo CLI is 16.10, I had no trouble pushing packages and creating releases using it in 17.10.
+:::
+
 ![Octo CLI Download](octo-cli-download.png)
 
 :::hint
@@ -132,3 +136,9 @@ Make sure you leave the `Label` field blank.
 :::
 
 ![Octo CLI Tool](octo-cli-tool.png)
+
+## Conclusion
+
+At this point we have a basic installation of Jenkins configured with all the tools we will need to build a deploy a Java application.
+
+In the next blog post we'll look at how to use [Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/) to configure a Java application to be built and pushed to Octopus.
