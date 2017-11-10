@@ -26,21 +26,21 @@ Octopus.Server.exe start --instance=master
 
 Now we know that world is beautiful to some, but it can present a couple of problems.
 
-# Understanding the problems
+## Understanding the problems
 
-## There are how many configuration options?
+### There are how many configuration options?
 
 For those who've never had the pleasure of using the `configure` command, take a minute to either run `Octopus.Server.exe configure --help` (you may want to bump up the height of your Screen Buffer before running the command ;) ) or check out our [documentation page](https://g.octopushq.com/ConfigureCommand).
 
 Understanding which of those options relate to each other is sometimes decipherable through the naming, but not always. Wading through all of those options can be a harrowing and frustrating experience.
 
-## Console
+### Console
 
 So to change the Octopus server configuration you need access to the server's console. This usually involves physical access to the server, Remote Desktop or Remote PowerShell or something similar that will let you run commands remotely.
 
 But what about API first?
 
-## Desired State Configuration
+### Desired State Configuration
 
 What if you're trying to automate the deployment of Octopus server? You can use something like the following to describe the state you want the Azure AD configuration to be, for example
 
@@ -55,7 +55,7 @@ What about if you wanted to do something like drift detection? Well in v3.5 we i
 
 This was a great step forward, but you can read the configuration in this nice JSON format that's easy to work with then when you find a value that has drifted you need to generate a call to the command line to make the correction, which again feels cumbersome. In other words, the reads and writes are very different shapes and are clumsy to work between.
 
-## Extensions
+### Extensions
 
 In the section above the Azure AD configuration options were used as illustration. The interesting part about those configuration settings is that they don't come from the core Octopus server, we have an extension point and they are provided by the Azure AD Authentication Provider extension.
 
@@ -63,19 +63,19 @@ The nature of the way the configure command had originally been written made thi
 
 We started thinking about what it would take to allow access to the configuration settings in the portal. Due to the nature of the Angular app at the time, providing a read only view was all we could easily manage. If you haven't seen the configuration settings, it's available via a **Server settings** button on the Configuration -> Nodes page.
 
-# The solution
+## The solution
 
 We've had a number of these problems on our mind for a while now, and allowing editing of the configuration through an API seems like the obvious answer. So in 4.0 that's what we're doing.
 
-## API first
+### API first
 
 Allowing reading and writing of the configuration through an API is core to making all of the problems we discussed above easier to solve. It means that we can surface the values in a more meaningful way in the UI and also allow editing like any other resource (more on that below).
 
 Configuration via API also means that all of the data for reads and writes is exactly the same shape. If you're doing drift detection you can call the GET, look at the values in the document, change any that have drifted, POST it back and you're done. If you're setting up a new server, just POST the JSON and you're done.
 
-## Getting things together
+### Getting things together
 
-Earlier we mentioned that the settings are treated as a list, and working out which things in the list relate to each other can be difficult. Having an API helps us address this too. 
+Earlier we mentioned that the settings are treated as a list, and working out which things in the list relate to each other can be difficult. Having an API helps us address this too.
 
 Given it uses a JSON document, it can use objects to represent configuration sections and related values. For example, Web Portal configuration can be represented something like this
 
@@ -95,7 +95,7 @@ Given it uses a JSON document, it can use objects to represent configuration sec
 }
 ```
 
-## A new UI
+### A new UI
 
 This was a big one. With the updates that are being made to the portal, it is now considerably easier for us to dynamically generate the forms for editing the configuration.
 
@@ -103,17 +103,17 @@ Why's that important? In a word, Extensions. We wanted a way to allow the extens
 
 So we're moving away from that model and instead using a model based on how we handle Step Templates. I.e. we describe the UI we want using some metadata and then generate it. This means there are actually 2 new APIs, one for getting/setting the values and one for getting the metadata related to the values.
 
-#  The fine print
+##  The fine print
 
 There are some caveats to these configuration changes and all relate to when you're using Octopus in a HA configuration.
 
-## Node specifics
+### Node specifics
 
 The only configuration settings you can see and edit via the API and UI are those that relate to every node in a HA node set.
 
 Settings like ListenPrefixes, ForceSSL and RequestLoggingEnabled are node specific, for a variety of reasons, and therefore cannot be edited via the API.
 
-## Performance and caches
+### Performance and caches
 
 One of the reasons those node specific settings are problematic is that changing them requires a restart of the Octopus service. In a single node configuration this isn't too hard to manage, but in a load balanced HA configuration it's a much trickier proposition and tackling that is beyond the scope of what we are aiming for at the moment.
 
@@ -129,10 +129,10 @@ Lastly, if you do edit the configuration using the `configure` command line, you
 
 
 
-# Feedback welcome
+## Feedback welcome
 
 As always, we're keen for your feedback so please leave comments below.
 
 
 
-Happy Deployments! 
+Happy Deployments!
