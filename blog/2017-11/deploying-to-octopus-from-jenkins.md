@@ -47,7 +47,7 @@ Select `Secret Text` from the `Kind` list, paste in the API key in the `Secret` 
 
 ## Creating the Jenkinsfile
 
-A `Jenkinsfile` is used to describe the process that Jenkins will use to build and deploy a project. In our case the `Jenkinsfile` will describe how to build a project with Maven, how to push the resulting WAR file to Octopus, and then how to create and deploy a release in Octopus.
+A `Jenkinsfile` describes the process that Jenkins will follow to build and deploy a project. In our case the `Jenkinsfile` will describe how to build a project with Maven, how to push the resulting WAR file to Octopus, and then how to create and deploy a release in Octopus.
 
 Let's take a look at the complete `Jenkinsfile`.
 
