@@ -11,7 +11,7 @@ tags:
 
 In the [previous blog post](/blog/2017-11/installing-jenkins-from-scratch.md) I showed you how to get a basic instance of Jenkins up and running with the tools required to build a Maven project and publish it to Octopus.
 
-In this blog post we'll take a look at how to use [Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/)  to construct a Jenkinsfile that will use these tools to build a WAR file, push it to Octopus, and deploy it to a Tomcat server.
+In this blog post we'll take a look at how to use [Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/)  to construct a `Jenkinsfile` that will use these tools to build a WAR file, push it to Octopus, and deploy it to a Tomcat server.
 
 ## Creating a Tomcat Deployment Project in Octopus
 
@@ -89,7 +89,7 @@ pipeline {
 }
 ```
 
-First we need to expose the tools that our build will make use of. In our case we need to use the Java and Maven tools that were defined in the previous blog post.
+First we need to expose the tools that our build will make use of. In our case we need to use the Java and Maven tools that were defined in the [previous blog post](/blog/2017-11/installing-jenkins-from-scratch.md).
 
 :::hint
 The names used in the `Jenkinsfile` need to match the names we gave the tools in Jenkins.
@@ -163,7 +163,7 @@ withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]) {
 
 Inside the `withCredentials` block we execute three commands against the Octo CLI: `push`, `create-release` and `deploy-release`.
 
-If you will recall from the previous blog post, the Octo CLI was defined as a custom tool. We can reference that tool by calling `${tool('Octo CLI')}/Octo`.
+If you will recall from the [previous blog post](/blog/2017-11/installing-jenkins-from-scratch.md), the Octo CLI was defined as a custom tool. We can reference that tool by calling `${tool('Octo CLI')}/Octo`.
 
 With this `Jenkinsfile` checked in alongside our Java code, we are ready to create a Jenkins project to use it.
 
