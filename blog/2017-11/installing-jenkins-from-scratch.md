@@ -56,7 +56,7 @@ And you’re done!
 
 ## Installing Additional Plugins
 
-We'll need some additional plugins to allows us to build a Maven project and deploy it with Octopus.
+We'll need some additional plugins to allow us to build a Maven project and deploy it with Octopus.
 
 Click {{Manage Jenkins>Manage}} Plugins.
 
