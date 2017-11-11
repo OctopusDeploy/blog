@@ -86,7 +86,7 @@ Click {{Manage Jenkins>Configure System}}, and under the `Theme` section add the
 
 I think you'll agree that these themes greatly improve the appearance of Jenkins.
 
-![Jenkins themed](jenkins-themed.png)
+![Jenkins themed](jenkins-themed.png "width=500")
 
 ## Preparing Jenkins
 
