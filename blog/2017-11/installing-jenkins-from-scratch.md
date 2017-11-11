@@ -58,7 +58,7 @@ And you’re done!
 
 We'll need some additional plugins to allow us to build a Maven project and deploy it with Octopus.
 
-Click {{`Manage Jenkins`>`Manage`}} Plugins.
+Click {{Manage Jenkins>Manage}} Plugins.
 
 Click the `Available` tab.
 
@@ -92,7 +92,7 @@ I think you'll agree that these themes greatly improve the appearance of Jenkins
 
 We need to configure a number of tools that we’ll make use of when building our projects. In particular, we want to add a Maven installation to use in our builds, a Java installation to run Maven, and an Octopus CLI custom tool for pushing and deploying files.
 
-I find it easier to let Jenkins download and install these tools for me, which can be configured under {{Manage Jenkins>Global Tool Configuration}}.
+I find it easier to let Jenkins download and install these tools for me, which can be configured under {{`Manage Jenkins`>`Global Tool Configuration`}}.
 
 ### Configuring Java
 
