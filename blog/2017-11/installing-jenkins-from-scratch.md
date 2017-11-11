@@ -86,11 +86,11 @@ Click {{Manage Jenkins>Configure System}}, and under the `Theme` section add the
 
 I think you'll agree that these themes greatly improve the appearance of Jenkins.
 
-![Jenkins themed](jenkins-themed.png) 
+![Jenkins themed](jenkins-themed.png)
 
 ## Preparing Jenkins
 
-On this page, we can install a number of tools that we’ll make use of when building our projects. In particular, we want to add a Maven installation to use in our builds, a Java installation to run Maven, and an Octopus CLI custom tool for pushing and deploying files. I find it easier to let Jenkins download and install these tools for me.
+We need to configure a number of tools that we’ll make use of when building our projects. In particular, we want to add a Maven installation to use in our builds, a Java installation to run Maven, and an Octopus CLI custom tool for pushing and deploying files. I find it easier to let Jenkins download and install these tools for me.
 
 To configure the tools, click {{Manage Jenkins>Global Tool Configuration}}.
 
