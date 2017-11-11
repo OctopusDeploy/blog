@@ -177,7 +177,7 @@ The only setting we need to change in this project is the `Project Repository`, 
 
 ![Java Demo](java-demo.png)
 
-This is the result of our `Jenkinsfile`.
+This is the result of our `Jenkinsfile` once a build has completed.
 
 ![Pipeline Build](pipeline-build.png "width=500")
 
