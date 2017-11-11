@@ -103,7 +103,7 @@ We need a copy of Java in order to build our application. Under the `JDK` sectio
 Give the tool a name (I went with `Java 9`) and select the version of the JDK to install.
 
 :::hint
-We'll refer to the name of these tools in the [next blog post](/blog/2017-11/deploying-to-octopus-from-jenkins.md) where we build and deploy a Java app using a Jenkinsfile.
+We'll refer to the name of these tools in the [next blog post](/blog/2017-11/deploying-to-octopus-from-jenkins.md) where we build and deploy a Java app using a `Jenkinsfile`.
 :::
 
 ![Java tool configured](java-tool-configured.png "width=500")
