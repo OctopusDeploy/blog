@@ -146,6 +146,6 @@ Although the latest version of Ubuntu supported by the Octo CLI is 16.04, I had 
 
 At this point we have a basic installation of Jenkins configured with all the tools we will need to build a deploy a Java application.
 
-In the [next blog post](/blog/deploying-to-octopus-from-jenkins) we'll look at how to use [Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/) to configure a Java application to be built and pushed to Octopus.
+In the [next blog post](/blog/2017-11/deploying-to-octopus-from-jenkins.md) we'll look at how to use [Jenkins Pipelines](https://jenkins.io/doc/book/pipeline/) to configure a Java application to be built and pushed to Octopus.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).

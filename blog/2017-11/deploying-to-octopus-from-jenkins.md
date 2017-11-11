@@ -171,7 +171,7 @@ With this `Jenkinsfile` checked in alongside our Java code, we are ready to crea
 
 To make use of our Java project and its associated `Jenkinsfile`, we need to create a new `Multibranch pipeline` project in Jenkins.
 
-![Multibranch pipeline](multibranch-pipeline.ong "width=500")
+![Multibranch pipeline](multibranch-pipeline.png "width=500")
 
 The only setting we need to change in this project is the `Project Repository`, which I have set to `https://github.com/OctopusDeploy/ThymeleafSpringDemo`. That repo holds a demo Spring Java web application, and has a copy of the `Jenkinsfile` described above.
 
@@ -185,7 +185,7 @@ This is the result of our `Jenkinsfile` once a build has completed.
 
 In Octopus, the WAR file has been pushed to the built in library.
 
-![Octopus library](octopus-library "width=500")
+![Octopus library](octopus-library.png "width=500")
 
 And a release has been created and deployed.
 
