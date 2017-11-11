@@ -9,7 +9,7 @@ tags:
  - Java
 ---
 
-In the previous blog post I showed you how to get a basic instance of Jenkins up and running with the tools required to build a Maven project and publish it to Octopus.
+In the [previous blog post](/blog/installing-jenkins-from-scratch) I showed you how to get a basic instance of Jenkins up and running with the tools required to build a Maven project and publish it to Octopus.
 
 In this blog post we'll take a look at how to use Jenkins Pipelines to construct a Jenkinsfile that will use these tools to build a WAR file, push it to Octopus, and deploy it to a Tomcat server.
 
