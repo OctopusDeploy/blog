@@ -177,12 +177,26 @@ The only setting we need to change in this project is the `Project Repository`, 
 
 ![Java Demo](java-demo.png)
 
+## Building and Deploying
+
 This is the result of our `Jenkinsfile` once a build has completed.
 
 ![Pipeline Build](pipeline-build.png "width=500")
 
 In Octopus, the WAR file has been pushed to the built in library.
 
-![Octopus library](octopus-library)
+![Octopus library](octopus-library "width=500")
 
 And a release has been created and deployed.
+
+![Octopus Release](octopus-release.png "width=500")
+
+Which in turn deploys the application to Tomcat.
+
+![Tomcat manager](tomcat-manager.png "width=500")
+
+## Conclusion
+
+Jenkins Pipelines are a powerful way to describe your build process, and by using the Octo CLI as a custom tool it is quite easy to integrate Octopus into your build pipeline.
+
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
