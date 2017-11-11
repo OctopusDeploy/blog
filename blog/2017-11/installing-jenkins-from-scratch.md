@@ -64,9 +64,9 @@ Click the `Available` tab.
 
 Tick the following plugins:
 
-* Maven Integration Plugin
-* Simple Theme Plugin
-* Custom Tools Plugin
+* [Maven Integration Plugin](https://wiki.jenkins.io/display/JENKINS/Maven+Project+Plugin)
+* [Simple Theme Plugin](https://wiki.jenkins.io/display/JENKINS/Simple+Theme+Plugin)
+* [Custom Tools Plugin](https://wiki.jenkins.io/display/JENKINS/Custom+Tools+Plugin)
 
 Click `Download now and install after restart`.
 
@@ -103,7 +103,7 @@ We need a copy of Java in order to build our application. Under the `JDK` sectio
 Give the tool a name (I went with `Java 9`) and select the version of the JDK to install.
 
 :::hint
-We'll refer to the name of these tools in the next blog post where we build and deploy a Java app using a Jenkinsfile.
+We'll refer to the name of these tools in the [next blog post](/blog/2017-11/deploying-to-octopus-from-jenkins.md) where we build and deploy a Java app using a Jenkinsfile.
 :::
 
 ![Java tool configured](java-tool-configured.png "width=500")
@@ -124,7 +124,7 @@ Give the tool a name, and select the latest version of Maven.
 
 ### Configuring the Octopus CLI
 
-Although the Octopus CLI tool is not available natively in Jenkins, the Custom Tools Plugin we installed does allow us to expose the CLI as a Jenkins tool quite easily.
+Although the Octopus CLI tool is not available natively in Jenkins, the [Custom Tools Plugin](https://wiki.jenkins.io/display/JENKINS/Custom+Tools+Plugin) we installed does allow us to expose the CLI as a Jenkins tool quite easily.
 
 Under the `Custom Tools` section, create a new tool called `Octo CLI` and enter the URL to the Ubuntu CLI in the `Download URL for binary archive` field.
 
