@@ -169,7 +169,7 @@ With this `Jenkinsfile` checked in alongside our Java code, we are ready to crea
 
 ## Creating a Jenkins Pipeline Project
 
-To make use of our Java project and its associated `Jenkinsfile`, we need to create a new `Multibranch pipeline` project in Jenkins.
+To make use of our Java project and its associated `Jenkinsfile`, we need to create a new `Multibranch Pipeline` project in Jenkins.
 
 ![Multibranch pipeline](multibranch-pipeline.png "width=500")
 
