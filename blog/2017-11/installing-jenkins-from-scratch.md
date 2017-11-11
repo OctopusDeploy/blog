@@ -78,11 +78,15 @@ After Jenkins restarts, you’ll have all the plugins you’ll need.
 
 ## Applying a Custom Jenkins Theme
 
-The Simple Theme Plugin we installed earlier allows us to modernize the look of Jenkins with a simple CSS file.
+The Simple Theme Plugin we installed earlier allows us to modernize the look of Jenkins with a single CSS file.
 
-Click {{Manage Jenkins>Configure System}}, and add the URL `http://afonsof.com/jenkins-material-theme/dist/material-<color>.css` to the URL of theme CSS field. You can find a list of colors on the [Jenkins Material Themes website](http://afonsof.com/jenkins-material-theme/) to replace the <color> marker with. I went with blue, so the URL I entered was `http://afonsof.com/jenkins-material-theme/dist/material-blue.css`
+Click {{Manage Jenkins>Configure System}}, and under the `Theme` section add the URL `http://afonsof.com/jenkins-material-theme/dist/material-<color>.css` to the `URL of theme CSS` field. You can find a list of colors on the [Jenkins Material Themes website](http://afonsof.com/jenkins-material-theme/) to replace the <color> marker with. I went with blue, so the URL I entered was `http://afonsof.com/jenkins-material-theme/dist/material-blue.css`
 
 ![Jenkins CSS theme](jenkins-theme-css.png "width=500")
+
+I think you'll agree that these themes greatly improve the appearance of Jenkins.
+
+![Jenkins themed](jenkins-themed.png) 
 
 ## Preparing Jenkins
 
@@ -96,7 +100,7 @@ We need a copy of Java in order to build our application. Under the `JDK` sectio
 
 ![Java tool](java-tool.png "width=500")
 
-Give the tool a name.
+Give the tool a name. I went with `Java 9`.
 
 :::hint
 We'll refer to the name of these tools in the next blog post where we build and deploy a Java app using a Jenkinsfile.
@@ -122,19 +126,21 @@ Give the tool a name, and select the latest version of Maven.
 
 Although the Octopus CLI tool is not available natively in Jenkins, the Custom Tools Plugin we installed does allow us to expose the CLI as a Jenkins tool quite easily.
 
-Under the `Custom Tools` section, create a new tool called `Octo CLI` and enter the URL to the Ubuntu CLI in the `Download URL for binary archive` field. You can get the download link for Octo CLI from the [Octopus download page](https://octopus.com/downloads).
-
-:::hint
-Although the latest version of Ubuntu supported by the Octo CLI is 16.10, I had no trouble pushing packages and creating releases using it in 17.10.
-:::
-
-![Octo CLI Download](octo-cli-download.png "width=500")
+Under the `Custom Tools` section, create a new tool called `Octo CLI` and enter the URL to the Ubuntu CLI in the `Download URL for binary archive` field.
 
 :::hint
 Make sure you leave the `Label` field blank.
 :::
 
 ![Octo CLI Tool](octo-cli-tool.png "width=500")
+
+You can get the download link for Octo CLI from the [Octopus download page](https://octopus.com/downloads).
+
+![Octo CLI Download](octo-cli-download.png "width=500")
+
+:::hint
+Although the latest version of Ubuntu supported by the Octo CLI is 16.10, I had no trouble pushing packages and creating releases using it in 17.10.
+:::
 
 ## Conclusion
 
