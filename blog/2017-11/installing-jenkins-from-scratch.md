@@ -82,7 +82,7 @@ The Simple Theme Plugin we installed earlier allows us to modernize the look of 
 
 Click {{Manage Jenkins>Configure System}}, and add the URL `http://afonsof.com/jenkins-material-theme/dist/material-<color>.css` to the URL of theme CSS field. You can find a list of colors on the [Jenkins Material Themes website](http://afonsof.com/jenkins-material-theme/) to replace the <color> marker with. I went with blue, so the URL I entered was `http://afonsof.com/jenkins-material-theme/dist/material-blue.css`
 
-[Jenkins CSS theme](jenkins-theme-css.png "width=500")
+![Jenkins CSS theme](jenkins-theme-css.png "width=500")
 
 ## Preparing Jenkins
 
