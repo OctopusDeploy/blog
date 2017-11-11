@@ -2,7 +2,7 @@
 title: Installing Jenkins From Scratch
 description: Learn how to setup a basic Jenkins instance on Ubuntu.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

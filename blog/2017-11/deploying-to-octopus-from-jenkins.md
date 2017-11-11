@@ -2,7 +2,7 @@
 title: Deploying to Octopus from Jenkins Using Pipelines
 description: Learn how to craft a Jenkins Pipeline that builds a Java project and deploys it to Octopus.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -115,7 +115,7 @@ stage ('Initialize') {
 }
 ```
 
-These `echo` commands display the following text in the output when the build is executed.
+These `echo` commands display the following text in the output when the build is executed. You can see how the `Java 9` and `Maven 3.5.2` tools have been added to the `PATH` environment variable.
 
 ```
 [Java_Demo_master-MGS2PX56MOUS3SDGT4NCJIWUFLV7GTCUYZIZ6SVGHQVXJPBCSCFA] Running shell script
@@ -163,7 +163,7 @@ withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]) {
 
 Inside the `withCredentials` block we execute three commands against the Octo CLI: `push`, `create-release` and `deploy-release`.
 
-If you will recall from the [previous blog post](/blog/2017-11/installing-jenkins-from-scratch.md), the Octo CLI was defined as a custom tool. We can reference that tool by calling `${tool('Octo CLI')}/Octo`.
+If you will recall from the [previous blog post](/blog/2017-11/installing-jenkins-from-scratch.md), `Octo CLI` was defined as a custom tool. We can reference that tool by calling `${tool('Octo CLI')}/Octo`.
 
 With this `Jenkinsfile` checked in alongside our Java code, we are ready to create a Jenkins project to use it.
 
@@ -175,7 +175,7 @@ To make use of our Java project and its associated `Jenkinsfile`, we need to cre
 
 The only setting we need to change in this project is the `Project Repository`, which I have set to `https://github.com/OctopusDeploy/ThymeleafSpringDemo`. That repo holds a demo Spring Java web application, and has a copy of the `Jenkinsfile` described above.
 
-![Java Demo](java-demo.png)
+![Java Demo](java-demo.png "width=500")
 
 ## Building and Deploying
 
