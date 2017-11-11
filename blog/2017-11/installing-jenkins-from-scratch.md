@@ -100,7 +100,7 @@ We need a copy of Java in order to build our application. Under the `JDK` sectio
 
 ![Java tool](java-tool.png "width=500")
 
-Give the tool a name. I went with `Java 9`.
+Give the tool a name (I went with `Java 9`) and select the version of the JDK to install.
 
 :::hint
 We'll refer to the name of these tools in the next blog post where we build and deploy a Java app using a Jenkinsfile.
