@@ -56,7 +56,9 @@ And you’re done!
 
 ## Installing Additional Plugins
 
-Click Manage Jenkins > Manage Plugins.
+We'll need some additional plugins to allows us to build a Maven project and deploy it with Octopus.
+
+Click {{Manage Jenkins>Manage}} Plugins.
 
 Click the Available tab.
 
@@ -78,13 +80,13 @@ After Jenkins restarts, you’ll have all the plugins you’ll need.
 
 The Simple Theme Plugin we installed earlier allows us to modernize the look of Jenkins with a simple CSS file.
 
-Click Manage Jenkins > Configure System, and add the URL `http://afonsof.com/jenkins-material-theme/dist/material-<color>.css` to the URL of theme CSS field. You can find a list of colors on the [Jenkins Material Themes website](http://afonsof.com/jenkins-material-theme/) to replace the <color> marker with. I went with blue, so the URL I entered was `http://afonsof.com/jenkins-material-theme/dist/material-blue.css`
+Click {{Manage Jenkins>Configure System}}, and add the URL `http://afonsof.com/jenkins-material-theme/dist/material-<color>.css` to the URL of theme CSS field. You can find a list of colors on the [Jenkins Material Themes website](http://afonsof.com/jenkins-material-theme/) to replace the <color> marker with. I went with blue, so the URL I entered was `http://afonsof.com/jenkins-material-theme/dist/material-blue.css`
 
 [Jenkins CSS theme](jenkins-theme-css.png "width=500")
 
 ## Preparing Jenkins
 
-Open up http://localhost:8080 in the browser. Then click Manage Jenkins > Global Tool Configuration.
+Open up http://localhost:8080 in the browser. Then click {{Manage Jenkins>Global Tool Configuration}}.
 
 On this page, we can install a number of tools that we’ll make use of when building our projects. In particular, we want to add a Maven installation to use in our builds, a Java installation to run Maven, and an Octopus CLI custom tool for pushing and deploying files. I find it easier to let Jenkins download and install these tools for me.
 
