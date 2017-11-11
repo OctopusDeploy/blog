@@ -19,7 +19,7 @@ The first step will be to create a new project in Octopus that deploys a Java we
 
 For this we will have an Octopus project called `Thymeleaf Demo` with a single `Deploy to Tomcat via Manager` step.
 
-![Deploy to Tomcat step](deploy-to-tomcat.png)
+![Deploy to Tomcat step](deploy-to-tomcat.png "width=500")
 
 This step will deploy a package called `demo` from the built in feed to a Tomcat instance found at `http://localhost:38080/manager`.
 
@@ -29,7 +29,7 @@ Note that at this point we may or may not actually have a package called `demo` 
 The `Tomcat Manager URL` is relative to the tentacle that is performing the deployment. Since the tentacle will usually be installed on the machine hosting Tomcat, the URL hostname is usually `localhost`.
 :::
 
-![Tomcat step](tomcat-step.png)
+![Tomcat step](tomcat-step.png "width=500")
 
 ## Saving API Keys
 
