@@ -139,7 +139,7 @@ You can get the download link for Octo CLI from the [Octopus download page](http
 ![Octo CLI Download](octo-cli-download.png "width=500")
 
 :::hint
-Although the latest version of Ubuntu supported by the Octo CLI is 16.10, I had no trouble pushing packages and creating releases using it in 17.10.
+Although the latest version of Ubuntu supported by the Octo CLI is 16.04, I had no trouble pushing packages and creating releases using it in 17.10.
 :::
 
 ## Conclusion
