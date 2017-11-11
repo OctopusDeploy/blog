@@ -23,39 +23,36 @@ sudo apt-get install htop vim iftop git openssh-server openjdk-8-jdk
 
 ## Installing Jenkins
 
-To install Jenkins, we’ll use the custom repo documented [here](https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Ubuntu).
+To install Jenkins, we’ll use the custom repo documented [here](https://pkg.jenkins.io/debian-stable/).
 
 ```
-wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
-
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+deb https://pkg.jenkins.io/debian-stable binary/
 sudo apt-get update
-
 sudo apt-get install jenkins
 ```
 
 ## Initial Jenkins Configuration
 
-Open up http://localhost:9080 in your web browser. You’ll see a message from Jenkins asking you to enter a password found in the file `/var/lib/jenkins/secrets/initialAdminPassword`.
+Open up http://localhost:8080 in your web browser. You’ll see a message from Jenkins asking you to enter a password found in the file `/var/lib/jenkins/secrets/initialAdminPassword`.
 
-![Unlock Jenkins](unlock-jenkins.png)
+![Unlock Jenkins](unlock-jenkins.png "width=500")
 
 You’ll then be prompted for the plugins that you want to install. At this point, I install the suggested plugins. We’ll add some more later.
 
-![Install suggested plugins](install-suggested-plugins.png)
+![Install suggested plugins](install-suggested-plugins.png "width=500")
 
 Give Jenkins a few minutes to install the suggested plugins.
 
-![Installing plugins](installing-plugins.png)
+![Installing plugins](installing-plugins.png "width=500")
 
 Create your first admin user.
 
-![Create admin user](create-admin-user.png)
+![Create admin user](create-admin-user.png "width=500")
 
 And you’re done!
 
-![Jenkins done](jenkins-done.png)
+![Jenkins done](jenkins-done.png "width=500")
 
 ## Installing Additional Plugins
 
@@ -75,7 +72,7 @@ Tick the Restart Jenkins when installation is complete and no jobs are running o
 
 After Jenkins restarts, you’ll have all the plugins you’ll need.
 
-![Additional plugins](additional-plugins.png)
+![Additional plugins](additional-plugins.png "width=500")
 
 ## Applying a Custom Jenkins Theme
 
@@ -83,7 +80,7 @@ The Simple Theme Plugin we installed earlier allows us to modernize the look of 
 
 Click Manage Jenkins > Configure System, and add the URL `http://afonsof.com/jenkins-material-theme/dist/material-<color>.css` to the URL of theme CSS field. You can find a list of colors on the [Jenkins Material Themes website](http://afonsof.com/jenkins-material-theme/) to replace the <color> marker with. I went with blue, so the URL I entered was `http://afonsof.com/jenkins-material-theme/dist/material-blue.css`
 
-[Jenkins CSS theme](jenkins-theme-css.png)
+[Jenkins CSS theme](jenkins-theme-css.png "width=500")
 
 ## Preparing Jenkins
 
@@ -95,7 +92,7 @@ On this page, we can install a number of tools that we’ll make use of when bui
 
 We need a copy of Java in order to build our application. Under the `JDK` section click the `ADD JDK` button.
 
-![Java tool](java-tool.png)
+![Java tool](java-tool.png "width=500")
 
 Give the tool a name.
 
@@ -103,21 +100,21 @@ Give the tool a name.
 We'll refer to the name of these tools in the next blog post where we build and deploy a Java app using a Jenkinsfile.
 :::
 
-![Java tool configured](java-tool-configured.png)
+![Java tool configured](java-tool-configured.png "width=500")
 
 Enter in your Oracle credentials, which are required to download the JDK.
 
-![Oracle credentials](oracle-credentials.png)
+![Oracle credentials](oracle-credentials.png "width=500")
 
 ### Configuring Maven
 
 Our Java project will be configured to use Maven, so we need an instance of Maven available to build the Maven project. Under the `Maven` section click the `ADD MAVEN` button.
 
-![Maven tool](maven-tool.png)
+![Maven tool](maven-tool.png "width=500")
 
 Give the tool a name, and select the latest version of Maven.
 
-![Maven configured](maven-configured.png)
+![Maven configured](maven-configured.png "width=500")
 
 ### Configuring the Octopus CLI
 
@@ -129,13 +126,13 @@ Under the `Custom Tools` section, create a new tool called `Octo CLI` and enter 
 Although the latest version of Ubuntu supported by the Octo CLI is 16.10, I had no trouble pushing packages and creating releases using it in 17.10.
 :::
 
-![Octo CLI Download](octo-cli-download.png)
+![Octo CLI Download](octo-cli-download.png "width=500")
 
 :::hint
 Make sure you leave the `Label` field blank.
 :::
 
-![Octo CLI Tool](octo-cli-tool.png)
+![Octo CLI Tool](octo-cli-tool.png "width=500")
 
 ## Conclusion
 
