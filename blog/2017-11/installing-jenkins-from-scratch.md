@@ -86,9 +86,9 @@ Click {{Manage Jenkins>Configure System}}, and add the URL `http://afonsof.com/j
 
 ## Preparing Jenkins
 
-Open up http://localhost:8080 in the browser. Then click {{Manage Jenkins>Global Tool Configuration}}.
-
 On this page, we can install a number of tools that we’ll make use of when building our projects. In particular, we want to add a Maven installation to use in our builds, a Java installation to run Maven, and an Octopus CLI custom tool for pushing and deploying files. I find it easier to let Jenkins download and install these tools for me.
+
+To configure the tools, click {{Manage Jenkins>Global Tool Configuration}}.
 
 ### Configuring Java
 
