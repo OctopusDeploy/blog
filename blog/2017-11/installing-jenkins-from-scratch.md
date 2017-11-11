@@ -114,7 +114,7 @@ Enter in your Oracle credentials, which are required to download the JDK.
 
 ### Configuring Maven
 
-Our Java project will be configured to use Maven, so we need an instance of Maven available to build the Maven project. Under the `Maven` section click the `ADD MAVEN` button.
+Our Java project will be configured to use Maven, so we need an instance of Maven available to complete the build. Under the `Maven` section click the `ADD MAVEN` button.
 
 ![Maven tool](maven-tool.png "width=500")
 
