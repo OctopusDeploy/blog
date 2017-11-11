@@ -78,9 +78,9 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]) {
                     sh """
-                        ${tool('Octo CLI')}/Octo push --package target/demo.0.0.1-SNAPSHOT.war --replace-existing --server https://java-certs-version-change.octopushq.com --apiKey ${APIKey}
-                        ${tool('Octo CLI')}/Octo create-release --project "Thymeleaf Demo" --server https://java-certs-version-change.octopushq.com --apiKey ${APIKey}
-                        ${tool('Octo CLI')}/Octo deploy-release --project "Thymeleaf Demo" --version latest --deployto Integration --server https://java-certs-version-change.octopushq.com --apiKey ${APIKey}
+                        ${tool('Octo CLI')}/Octo push --package target/demo.0.0.1-SNAPSHOT.war --replace-existing --server https://youroctopusserver --apiKey ${APIKey}
+                        ${tool('Octo CLI')}/Octo create-release --project "Thymeleaf Demo" --server https://youroctopusserver --apiKey ${APIKey}
+                        ${tool('Octo CLI')}/Octo deploy-release --project "Thymeleaf Demo" --version latest --deployto Integration --server https://youroctopusserver --apiKey ${APIKey}
                     """
                 }
             }
