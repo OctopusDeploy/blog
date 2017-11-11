@@ -58,9 +58,9 @@ And you’re done!
 
 We'll need some additional plugins to allow us to build a Maven project and deploy it with Octopus.
 
-Click {{Manage Jenkins>Manage}} Plugins.
+Click {{`Manage Jenkins`>`Manage`}} Plugins.
 
-Click the Available tab.
+Click the `Available` tab.
 
 Tick the following plugins:
 
@@ -68,9 +68,9 @@ Tick the following plugins:
 * Simple Theme Plugin
 * Custom Tools Plugin
 
-Click Download now and install after restart.
+Click `Download now and install after restart`.
 
-Tick the Restart Jenkins when installation is complete and no jobs are running option.
+Tick the `Restart Jenkins when installation is complete and no jobs are running` option.
 
 After Jenkins restarts, you’ll have all the plugins you’ll need.
 
