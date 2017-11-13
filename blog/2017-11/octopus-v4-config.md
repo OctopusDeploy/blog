@@ -46,7 +46,7 @@ To change the Octopus configuration you need access to the server's console. Thi
 
 This one is a particular pain point when we're doing things like testing releases before they go out. We have automation in place to spin up a test environment in the cloud, using a base configuration. Now let's say I've been working on something like an authentication related fix and I want to enable the Azure AD authentication provider to test my change.
 
-The instance is up and running, I can log in with username/password, but the first thing I actually have to do is look up the details for the VM that got spun up, then I need to get the address of that server and it's admin credentials so I can Remote Desktop to it. Once I'm eventually connected, I have to get to the installation folder and run something like the following
+The instance is up and running, I can log in with username/password, but the first thing I actually have to do is look up the details for the VM that got spun up, then I need to get the address of that server and its admin credentials so I can Remote Desktop to it. Once I'm eventually connected, I have to get to the installation folder and run something like the following
 
 ```bash
 Octopus.Server.exe configure --instance=xyz --azureADIsEnabled=true --azureADIssuer=https://login.microsoftonline.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --azureADClientId=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz
@@ -122,11 +122,11 @@ Settings like ListenPrefixes, ForceSSL and RequestLoggingEnabled are node specif
 
 ### Performance and caches
 
-One of the reasons those node specific settings are problematic is that changing them requires a restart of the Octopus service. In a single node configuration this isn't too hard to manage, but in a load balanced HA configuration it's a much trickier proposition and tackling that is beyond the scope of what we are aiming for at the moment.
+One of the reasons those node specific settings are problematic is that changing them requires a restart of the Octopus service. In a single node configuration this isn't too hard to manage but in a load balanced HA configuration it's a much trickier proposition and tackling that is beyond the scope of what we are aiming for at the moment.
 
 Of the values we are going to allow editing of, some are being cached by all of the nodes for performance reasons. In v3.x any change to those values would also require a service restart, but we're working to avoid that in 4.0.
 
-In 4.0, the node that receives the API request for the update will immediately reset it's in-memory cache. All other nodes will reset the next time they heartbeat (which can be between 5 and 30s depending on whether they are the leader node or not). So it could take up to 30s for some changes to propagate across the nodes. We'd love for this to be more immediate across the cluster, but introducing a distributed cache is again beyond the scope of what we're aiming for.
+In 4.0, the node that receives the API request for the update will immediately reset its in-memory cache. All other nodes will reset the next time they heartbeat (which can be between 5 and 30s depending on whether they are the leader node or not). So it could take up to 30s for some changes to propagate across the nodes. We'd love for this to be more immediate across the cluster, but introducing a distributed cache is again beyond the scope of what we're aiming for at the moment.
 
 In a non-HA configuration you are really just running a single node, so will get the immediate reset behavior.
 
@@ -135,7 +135,5 @@ One final point, if you do use the command line to change these settings, HA or 
 ## Feedback welcome
 
 We've certainly been finding life easier during our testing of these changes and we're hoping you do too. As always, we're keen for your feedback so please leave any comments below.
-
-
 
 Happy configuring and Happy Deployments!
