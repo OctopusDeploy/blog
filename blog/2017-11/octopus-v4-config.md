@@ -112,7 +112,7 @@ So we're moving away from that model and instead using a model based on how we h
 
 ##  Some fine print
 
-There are some caveats to these changes and almost all of them relate to when you're using Octopus in a HA configuration.
+There are some things to note with these changes when you're using Octopus in a HA configuration.
 
 ### Node specifics
 
@@ -130,7 +130,7 @@ In 4.0, the node that receives the API request for the update will immediately r
 
 In a non-HA configuration you are really just running a single node, so will get the immediate reset behavior.
 
-One final point, if you do use the command line to change these settings, HA or not, you aren't in the same process as the actual Octopus service so the cache can't be immediately reset and you have to wait for the next heartbeat for the change to come in effect. Best way around this is to configure via the new API ;)
+One final point, the command line implementation isn't being changed. It still supports all of the settings it used to, including the node specific ones. This means that it also still runs in a separate process to the Octopus service and cannot trigger the cache reset immediately. HA or not, you have to wait for the next heartbeat for the changes to come into effect. This may get changed in a future update, but for now the best way around it is to configure via the new API ;)
 
 ## Feedback welcome
 
