@@ -108,7 +108,7 @@ Why's that important? In a word, Extensions. We wanted a way to allow the extens
 
 So we're moving away from that model and instead using a model based on how we handle Step Templates. I.e. we describe the UI we want using some metadata and then generate it. This means there are actually 2 new APIs, one for getting/setting the values and one for getting the metadata related to the values.
 
-![Web portal configuration](C:\Source\Octopus\blog\blog\2017-11\octopus-v4-config-webportal.png "width=500")
+![Web portal configuration](octopus-v4-config-webportal.png "width=500")
 
 ##  Some fine print
 
