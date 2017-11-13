@@ -104,15 +104,15 @@ Or for Azure AD, something like this
 
 With the updates that are being made to the portal, it is now considerably easier for us to dynamically generate the forms for editing the configuration.
 
-Why's that important? In a word, Extensions. We wanted a way to allow the extensions to contribute UI to the portal without it having to understand the technology involved. In v3.5+, the extensions were able to contribute Angular modules and this worked for what we needed at the time, but always felt risky.
+Why's that important? In a word, Extensions. We wanted a way to allow the extensions to contribute UI to the portal without them having to understand the technology involved. In v3.5+, the extensions were able to contribute Angular modules and this worked for what we needed at the time, but always felt risky.
 
 So we're moving away from that model and instead using a model based on how we handle Step Templates. I.e. we describe the UI we want using some metadata and then generate it. This means there are actually 2 new APIs, one for getting/setting the values and one for getting the metadata related to the values.
 
 ![Web portal configuration](C:\Source\Octopus\blog\blog\2017-11\octopus-v4-config-webportal.png "width=500")
 
-##  The fine print
+##  Some fine print
 
-There are some caveats to these configuration changes and all relate to when you're using Octopus in a HA configuration.
+There are some caveats to these changes and almost all of them relate to when you're using Octopus in a HA configuration.
 
 ### Node specifics
 
@@ -124,22 +124,18 @@ Settings like ListenPrefixes, ForceSSL and RequestLoggingEnabled are node specif
 
 One of the reasons those node specific settings are problematic is that changing them requires a restart of the Octopus service. In a single node configuration this isn't too hard to manage, but in a load balanced HA configuration it's a much trickier proposition and tackling that is beyond the scope of what we are aiming for at the moment.
 
-So the settings we're going to allow editing of are stored centrally and applicable to all nodes. What could go wrong? Yeah, ok the section title gave it away. A number of the configuration settings, especially the Web Portal ones mentioned earlier, are cached on each node for performance. Now we have a distributed cache problem.
+Of the values we are going to allow editing of, some are being cached by all of the nodes for performance reasons. In v3.x any change to those values would also require a service restart, but we're working to avoid that in 4.0.
 
-At this point, I'll point out that in v3.x that cache is loaded at server start and any changes to these values require a server restart. The goal in making this change was to both allow the values to be edited and update the cache without requiring a restart when they are edited.
+In 4.0, the node that receives the API request for the update will immediately reset it's in-memory cache. All other nodes will reset the next time they heartbeat (which can be between 5 and 30s depending on whether they are the leader node or not). So it could take up to 30s for some changes to propagate across the nodes. We'd love for this to be more immediate across the cluster, but introducing a distributed cache is again beyond the scope of what we're aiming for.
 
-Ok, so we have a distributed cache with no timeout. Step 1, make the cache expire. We looked at a couple of options around this, but settled on utilizing the server's heartbeat mechanism as the simplest answer. Every time the server heartbeats, reset the cache. The caveat is therefore that changes take effect without requiring a restart but may take a few seconds to actually come into effect.
+In a non-HA configuration you are really just running a single node, so will get the immediate reset behavior.
 
-Two final points on this, on the node that receives the API request we do actually reset the cache instantly. In a non-HA installation, where there is by definition only 1 node, this instance reset will be the behavior you get.
-
-Lastly, if you do edit the configuration using the `configure` command line, you aren't in the same process as the actual Octopus service, so the cache can't be instantly reset and you have to wait for the next heartbeat. You will see a warning appear on the command line to let you know when you've changed one of these values and have to wait for the cache reset. Best way around this is to configure via the new API ;)
-
-
+One final point, if you do use the command line to change these settings, HA or not, you aren't in the same process as the actual Octopus service so the cache can't be immediately reset and you have to wait for the next heartbeat for the change to come in effect. Best way around this is to configure via the new API ;)
 
 ## Feedback welcome
 
-As always, we're keen for your feedback so please leave comments below.
+We've certainly been finding life easier during our testing of these changes and we're hoping you do too. As always, we're keen for your feedback so please leave any comments below.
 
 
 
-Happy Deployments!
+Happy configuring and Happy Deployments!
