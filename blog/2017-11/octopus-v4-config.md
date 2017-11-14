@@ -50,7 +50,7 @@ To change the Octopus configuration, you need access to the server's console. Th
 
 This one is a particular pain point when we're doing things like testing releases before they go out. We have automation in place to spin up a test environment in the cloud, using a base configuration. Now let's say I've been working on something like an authentication related fix and I want to enable the Azure AD authentication provider to test my change.
 
-The instance is up and running, I can log in with username/password, but the first thing I actually have to do is look up the details for the VM that got spun up, then I need to get the address of that server and its admin credentials so I can Remote Desktop to it. Once I'm eventually connected, I have to get to the installation folder and run something like the following
+The instance is up and running, I can log in with username/password, but the first thing I actually have to do is look up the details for the VM that got spun up, then I need to get the address of that server and its admin credentials so I can Remote Desktop to it. Once I'm eventually connected, I have to get to the installation folder and run something like the following:
 
 ```bash
 Octopus.Server.exe configure --instance=xyz --azureADIsEnabled=true --azureADIssuer=https://login.microsoftonline.com/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --azureADClientId=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz
