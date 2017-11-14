@@ -2,7 +2,7 @@
 title: Octopus Deploy 4.0 - Configuration
 description: Server configuration is getting a whole lot easier, and more visual.
 author: shannon.lewis@octopus.com
-visibility: private
+visibility: public
 metaImage: 4.0config_metaimage.png
 bannerImage: 4.0config_blogimage.png
 tags:
@@ -128,7 +128,7 @@ Settings like ListenPrefixes, ForceSSL, and RequestLoggingEnabled are node speci
 
 One of the reasons those node specific settings are problematic is that changing them requires a restart of the Octopus service. In a single node configuration this isn't too hard to manage but in a load balanced HA configuration it's a much trickier proposition, and tackling that is beyond the scope of what we are aiming for at the moment.
 
-Of the values we are going to allow editing of, some are being cached by all of the nodes for performance reasons. In v3.x any change to those values would also require a service restart, but we're working to avoid that in 4.0.
+Of the values we are making editable, some are being cached by all of the nodes for performance reasons. In v3.x any change to those values would also require a service restart, but we're working to avoid that in 4.0.
 
 In 4.0, the node that receives the API request for the update will immediately reset its in-memory cache. All other nodes will reset the next time they heartbeat (which can be between 5 and 30s depending on whether they are the leader node or not). So it could take up to 30s for some changes to propagate across the nodes. We'd love for this to be more immediate across the cluster, but introducing a distributed cache is again beyond the scope of what we're aiming for at the moment.
 
