@@ -3,10 +3,14 @@ title: Octopus Deploy 4.0 - Configuration
 description: Server configuration is getting a whole lot easier, and more visual.
 author: shannon.lewis@octopus.com
 visibility: private
+metaImage: 4.0config_metaimage.png
+bannerImage: 4.0config_blogimage.png
 tags:
  - New Releases
  - Configuration
 ---
+
+![Octopus 4.0 new configuration API and UI](4.0config_blogimage.png)
 
 This post is a part of our Octopus 4.0 blog series.  Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
 
