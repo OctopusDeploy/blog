@@ -2,7 +2,7 @@
 title: WildFly S3 Domain Discovery
 description: Learn how to use S3 buckets as a domain discovery mechanism in AWS.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -40,7 +40,7 @@ With this policy in place we need to create the [access keys](http://docs.aws.am
 
 ## Create the Bucket
 
-The S3 bucket itself is nothing special. It requires no special features to be enabled. Simply create a bucket with the name referenced in the security policy (`wildfly-domain` in our case).
+The S3 bucket itself is nothing special. It requires no special features to be enabled, so simply create a bucket with the name referenced in the security policy (`wildfly-domain` in our case).
 
 ## Configuring the Domain Controller
 
@@ -92,7 +92,7 @@ Take a note of the line
 To represent the user add the following to the server-identities definition <secret value="UGFzc3dvcmQwMSE=" />
 ```
 
-We'll need this t configure the slave instance later on.
+We'll need this to configure the slave instance later on.
 
 ### Configure the S3 Bucket
 
@@ -114,9 +114,11 @@ In the `domain/configuration/host-master.xml` file, replace the default contents
 
 ### Running the Domain Controller
 
-By default the management interface is bound to localhost, and in this case the domain controller will dutifully save configuration in the S3 bucket that it can be reached on 127.0.0.1, which is obviously not useful information when the slave is running on another instance.
+By default the management interface is bound to localhost, and in this situation the domain controller will dutifully save configuration in the S3 bucket indicating that it can be reached on 127.0.0.1, which is obviously not useful information when the slave is running on another instance.
 
-To fix this the domain controller must bind its management port to the external interface. Here I have started the domain controller with the `-bmanagement=<ip>` argument, which instructs WildFly to bind the management port to the IP address of the external NIC.
+To fix this the domain controller must bind its management port to the external interface. Here we have started the domain controller with the `-bmanagement=<ip>` argument, which instructs WildFly to bind the management port to the IP address of the external NIC.
+
+We have also supplied the name of the host configuration file via the `--host-config` parameter.
 
 ```
 [ec2-user@ip-172-30-0-89 bin]$ ./domain.sh --host-config=host-master.xml -bmanagement=172.30.0.89
@@ -126,7 +128,7 @@ To fix this the domain controller must bind its management port to the external 
 
 Once the domain controller has booted you will find new files created in the S3 bucket.
 
-![s3 domain config](s3-domain-config.png)
+![s3 domain config](s3-domain-config.png "width=500")
 
 ## Configuring the Domain Slave
 
@@ -169,7 +171,7 @@ With the domain controller and slave both running, we can use the management con
 
 Under the `Runtime` tab we can see that the master and slave hosts are indeed connected as expected.
 
-![wildfly domain management](wildfly-domain-management.png)
+![wildfly domain management](wildfly-domain-management.png "width=500")
 
 ## Conclusion
 
