@@ -69,7 +69,7 @@ Query OK, 1 row affected (0.04 sec)
 
 ### Adding the MySQL Drivers
 
-On each WildFly slaves we need to add a module that contains the MySQL drivers. A module is just a collection of JAR files and some metadata WildFly can use to load them.
+On each WildFly slave we need to add a module that contains the MySQL drivers. A module is just a collection of JAR files and some metadata WildFly can use to load them.
 
 Start by creating a directory called `modules/system/layers/base/com/mysql/driver/main`. Inside this directory create a file called `module.xml` with the following contents.
 
