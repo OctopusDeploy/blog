@@ -289,7 +289,7 @@ However if we look closely at the value of the cookie, we can see the IP address
 We can use this information to shutdown the slave that is hosting our session, forcing traffic onto the second slave.
 
 :::hint
-Leaking this information can be avoided by defining the `name` attribute of the `<host>` element in the `host-slave.xml` file.
+Leaking the ip address of the slave can be avoided by defining the `name` attribute of the `<host>` element in the `host-slave.xml` file.
 
 ```xml
 <host name="Slave Name" xmlns="urn:jboss:domain:5.0">
