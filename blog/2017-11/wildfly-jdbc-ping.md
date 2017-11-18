@@ -249,6 +249,54 @@ At this point we now have a domain that configures a cluster. The WildFly slave 
 
 In order to actually take advantage of the cluster, we need a centralized load balancer to distribute requests between the slaves. This is important because the cookie that represents the session will be bound to the address of the load balancer and not the address of any individual node. In this way a single session, represented by a single cookie, is shared amongst members of the cluster.
 
+AWS provides a load balancer that will do the job.
+
+Our load balancer will target the `WildFly` target group.
+
+![AWS Load Balancer Listener](aws-load-balancer-listener.png)
+
+This target group has two WildFly slave instances, and will direct traffic to port `8080` (the default HTTP port for WildFly).
+
+![AWS Target Targets](aws-target-targets.png)
+
+We'll just use the default WildFly welcome page as a the health check.
+
+![AWS Target Health Check](aws-target-health-checks.png)
+
+## Deploying a Distributable Web Application
+
+In order to take advantaged of a replication session state, our Java web app needs to be marked as distributable. This is done in the `web.xml` file with the `<distributable/>` element. This [example web app](https://github.com/OctopusDeploy/ThymeleafSpringDemo/blob/master/src/main/webapp/WEB-INF/web.xml#L6) has been configured to be distributable.
+
+This example app maintains a page count in the session storage, and we can use this value to ensure that our session data is in fact replicated across the cluster.
+
+We'll build this app and deploy it across the domain.
+
+![Deployed App](deployed-app.png)
+
+## Opening the App
+
+With the app deployed and our load balancer in place, we can open the app. Each time we refresh the page, the `Page count` will increase. This is done by incrementing a value in the session storage, which is the storage that our cluster is replicating.
+
+![Deployed App](deployed-app.png)
+
+If we look at the `JSESSIONID` cookie, we can see that it is bound to the load balancer domain. This is important, because this cookie is how we track our session, and because of the way browsers work this cookie will only be sent to the domain that created it. So by hiding the WildFly servers behind a load balancer, the browser is unaware of which instance of the cluster is responding to the request.
+
+However if we look closely at the value of the cookie, we can see the IP address of the slave instance that initiated the session. This value only represents the cluster member that started the session, and does not change if different cluster members respond to subsequent requests.
+
+![JSESSIONID](jsessionid.png)
+
+We can use this information to shutdown the slave that is hosting our session, forcing traffic onto the second slave.
+
+:::hint
+Leaking this information can be avoided by defining the name of the host in the `host-slave.xml` file.
+
+```xml
+<host name="Slave Name" xmlns="urn:jboss:domain:5.0">
+```
+:::
+
+With the cluster node that initiated the session now shutdown, all traffic moves to another member of the cluster. But the page count will continue to climb from its previous value, and not reset to 1, because the replicated session means the end user can continue on like nothing happened.
+
 ## Conclusion
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
