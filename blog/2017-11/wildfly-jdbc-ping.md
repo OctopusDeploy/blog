@@ -278,7 +278,7 @@ We'll build this app and deploy it across the domain.
 
 With the app deployed and our load balancer in place, we can open the app. Each time we refresh the page, the `Page count` will increase. This is done by incrementing a value in the session storage, which is the storage that our cluster is replicating.
 
-![Deployed App](deployed-app.png "width=500")
+![Load Balanced Request](load-balanced-request.png "width=500")
 
 If we look at the `JSESSIONID` cookie, we can see that it is bound to the load balancer domain. This is important, because this cookie is how we track our session, and because of the way browsers work this cookie will only be sent to the domain that created it. So by hiding the WildFly servers behind a load balancer, the browser is unaware of which instance of the cluster is responding to the request.
 
