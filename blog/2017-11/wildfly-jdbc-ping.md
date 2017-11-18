@@ -243,6 +243,11 @@ We are not binding to the public IP address of the EC2 instance (if it even has 
 [ec2-user@ip-172-30-0-88 bin]$ ./domain.sh --host-config host-slave.xml -bprivate=172.30.0.88 -b=172.30.0.88
 ```
 
+## Creating a Load Balancer
+
+At this point we now have a domain that configures a cluster. The WildFly slave instances will take their configuration from the domain controller (discovered via a shared S3 bucket), and that configuration includes a JGroups stack that will allow a cluster to be formed (by querying a shared database).
+
+In order to actually take advantage of the cluster, we need a centralized load balancer to distribute requests between the slaves. This is important because the cookie that represents the session will be bound to the address of the load balancer and not the address of any individual node. In this way a single session, represented by a single cookie, is shared amongst members of the cluster.
 
 ## Conclusion
 
