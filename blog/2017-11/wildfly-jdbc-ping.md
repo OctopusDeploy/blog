@@ -2,7 +2,7 @@
 title: Creating a WildFly Cluster
 description: Learn how to use a shared database to create a WildFly cluster in AWS.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
