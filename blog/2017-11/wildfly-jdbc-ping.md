@@ -299,4 +299,8 @@ With the cluster node that initiated the session now shutdown, all traffic moves
 
 ## Conclusion
 
+In this post we have seen how to configure a domain to create a cluster, and how to allow that cluster to identify peers via a shared database. This cluster is then exposed via an AWS load balancer.
+
+We've then deployed a distributable web app to the domain, and forced traffic onto a new cluster node by shutting down the instance that created the original session.
+
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
