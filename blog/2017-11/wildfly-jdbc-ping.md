@@ -1,6 +1,6 @@
 ---
-title: WildFly S3 Domain Discovery
-description: Learn how to use S3 buckets as a domain discovery mechanism in AWS.
+title: Creating a WildFly Cluster
+description: Learn how to use a shared database to create a WildFly cluster in AWS.
 author: matthew.casperson@octopus.com
 visibility: private
 metaImage: java-octopus-meta.png
@@ -49,6 +49,7 @@ Using the MySQL client tools, log into the RDS instance and create a schema call
 
 ```
 [ec2-user@ip-172-30-0-89 configuration]$ mysql -ujgroups -p -hyour-rds-hostname.cluster-c1ufrgizkeyf.us-east-1.rds.amazonaws.com
+Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 15
 Server version: 5.6.10 MySQL Community Server (GPL)
@@ -88,7 +89,7 @@ Then save the [MySQL driver JAR file](https://mvnrepository.com/artifact/mysql/m
 
 ### Adding the DataSource
 
-The RDS instance will be accessed via a datasource. This is defined in the `domain/confguration/domain.xml` file under the `ha` profile. All the XML elements under the `<profile name="ha">` element make up the `ha` profile.
+The RDS instance will be accessed via a datasource. This is defined in the `domain/confguration/domain.xml` file under the `ha` profile. All the children of the `<profile name="ha">` element make up the `ha` profile.
 
 To define our datasource we need both a `<datasource>` element (to define the database connection) and a `<driver>` element (to define the MySQL JDBC driver details).
 
@@ -119,7 +120,7 @@ In this case we are pointing the datasource to a schema called `jgroups`, and co
 
 ### Define the JGroups Stack
 
-[JGroups](http://www.jgroups.org/) is the library used by WildFly to connect members of a cluster. By default JGroups is configured to use UDP and multicasting, but neither UDP nor multicasting is supported by Amazon.
+[JGroups](http://www.jgroups.org/) is the library used by WildFly to connect members of a cluster. By default JGroups is configured to use UDP and multicasting, but neither UDP nor multicasting are supported by Amazon.
 
 So instead we need to configure WildFly to use TCP and make use of the central database as a way of discovering peers.
 
@@ -165,7 +166,7 @@ This is what the complete stack now looks like.
         </stack>
         <stack name="tcp">
             <transport type="TCP" socket-binding="jgroups-tcp"/>
-            <!-- MPING has been replaced with JDBS_PING -->
+            <!-- MPING has been replaced with JDBC_PING -->
             <protocol type="org.jgroups.protocols.JDBC_PING">
                 <property name="datasource_jndi_name">
                     java:jboss/datasources/JGroups
@@ -235,13 +236,13 @@ And because these slave instances will need to serve traffic to the outside worl
 
 For example, this command starts a slave on an EC2 instance with the IP address of `172.30.0.88`.
 
-:::hint
-We are not binding to the public IP address of the EC2 instance (if it even has a public IP address). A load balancer will take public internet traffic and direct it to the local subnet IP addresses that WildFly has been bound to.
-:::
-
 ```
 [ec2-user@ip-172-30-0-88 bin]$ ./domain.sh --host-config host-slave.xml -bprivate=172.30.0.88 -b=172.30.0.88
 ```
+
+:::hint
+We are not binding to the public IP address of the EC2 instance (if it even has a public IP address). A load balancer will take public internet traffic and direct it to the local subnet IP addresses that WildFly has been bound to.
+:::
 
 ## Creating a Load Balancer
 
@@ -253,15 +254,15 @@ AWS provides a load balancer that will do the job.
 
 Our load balancer will target the `WildFly` target group.
 
-![AWS Load Balancer Listener](aws-load-balancer-listener.png)
+![AWS Load Balancer Listener](aws-load-balancer-listener.png "width=500")
 
 This target group has two WildFly slave instances, and will direct traffic to port `8080` (the default HTTP port for WildFly).
 
-![AWS Target Targets](aws-target-targets.png)
+![AWS Target Targets](aws-target-targets.png "width=500")
 
 We'll just use the default WildFly welcome page as a the health check.
 
-![AWS Target Health Check](aws-target-health-checks.png)
+![AWS Target Health Check](aws-target-health-checks.png "width=500")
 
 ## Deploying a Distributable Web Application
 
@@ -271,24 +272,24 @@ This example app maintains a page count in the session storage, and we can use t
 
 We'll build this app and deploy it across the domain.
 
-![Deployed App](deployed-app.png)
+![Deployed App](deployed-app.png "width=500")
 
 ## Opening the App
 
 With the app deployed and our load balancer in place, we can open the app. Each time we refresh the page, the `Page count` will increase. This is done by incrementing a value in the session storage, which is the storage that our cluster is replicating.
 
-![Deployed App](deployed-app.png)
+![Deployed App](deployed-app.png "width=500")
 
 If we look at the `JSESSIONID` cookie, we can see that it is bound to the load balancer domain. This is important, because this cookie is how we track our session, and because of the way browsers work this cookie will only be sent to the domain that created it. So by hiding the WildFly servers behind a load balancer, the browser is unaware of which instance of the cluster is responding to the request.
 
-However if we look closely at the value of the cookie, we can see the IP address of the slave instance that initiated the session. This value only represents the cluster member that started the session, and does not change if different cluster members respond to subsequent requests.
+However if we look closely at the value of the cookie, we can see the IP address of the slave instance that initiated the session: 172.30.0.88. This value only represents the cluster member that started the session, and does not change if different cluster members respond to subsequent requests.
 
-![JSESSIONID](jsessionid.png)
+![JSESSIONID](jsessionid.png "width=500")
 
 We can use this information to shutdown the slave that is hosting our session, forcing traffic onto the second slave.
 
 :::hint
-Leaking this information can be avoided by defining the name of the host in the `host-slave.xml` file.
+Leaking this information can be avoided by defining the `name` attribute of the `<host>` element in the `host-slave.xml` file.
 
 ```xml
 <host name="Slave Name" xmlns="urn:jboss:domain:5.0">
