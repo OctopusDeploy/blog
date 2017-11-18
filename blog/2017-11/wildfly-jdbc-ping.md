@@ -298,6 +298,44 @@ Leaking the ip address of the slave can be avoided by defining the `name` attrib
 
 With the cluster node that initiated the session now shutdown, all traffic moves to another member of the cluster. But the page count will continue to climb from its previous value, and not reset to 1, because the replicated session means the end user can continue on like nothing happened.
 
+## Verifying the Cluster Configuration
+
+Once a distributable app has been deployed, JGroups will start registering information in the shared database. Using the MySQL client we can log back int the database and list the tables in out `jgroups` schema with the `show tables;` command.
+
+Here we ca see that the `JGROUPSPING` table has been created.
+
+```
+[ec2-user@ip-172-30-0-88 log]$ mysql -u jgroups -p -hyour-rds-hostname.cluster-c1ufrgizkeyf.us-east-1.rds.amazonaws.com
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 22
+Server version: 5.6.10 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use jgroups;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_jgroups |
++-------------------+
+| JGROUPSPING       |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+```
+
 ## Conclusion
 
 In this post we have seen how to configure a domain to create a cluster, and how to allow that cluster to identify peers via a shared database. This cluster is then exposed via an AWS load balancer.
