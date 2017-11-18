@@ -1,0 +1,249 @@
+---
+title: WildFly S3 Domain Discovery
+description: Learn how to use S3 buckets as a domain discovery mechanism in AWS.
+author: matthew.casperson@octopus.com
+visibility: private
+metaImage: java-octopus-meta.png
+bannerImage: java-octopus.png
+tags:
+ - Java
+---
+
+In the [previous blog post](https://octopus.com/blog/wildfly-s3-domain-discovery) we looked at how WildFly domains could be configured in an AWS environment with no fixed IP addresses or network broadcasts by centralizing configuration settings in an S3 bucket.
+
+In this blog post we'll take this configuration one step further by configuring a cluster of WildFly instances in AWS.
+
+## Domain vs Cluster
+
+Before we start configuring a cluster, it is worth spending some time discussing the difference between a domain and a cluster.
+
+A domain is made up of a domain controller and one or more domain slaves. The domain controller will distribute settings and applications to the domain slaves, as well as providing a way to start, stop and restart slave instances.
+
+A domain is simply a management tool. You do not get any additional functionality, beyond simplified management, because instances are part of domain. In fact you can replace a domain using tools like the [JBoss Operations Network (JON)](https://www.redhat.com/en/technologies/jboss-middleware/operations-network).
+
+The term cluster can be a little ambiguous, so for the purpose of this blog post a cluster means two or more WildFly instances that share Servlet session state. Sharing this state means that server side web applications can be provided by any node in the cluster, and if one of those nodes goes down, requests will be fulfilled by another node that has a copy of the session state.
+
+:::hint
+Although in theory a cluster allows for any node to respond to a request for a stateful web application, in practice you'll usually implement sticky sessions to direct traffic from a session to a single server (as long as it is available). The [Infinispan documentation](http://infinispan.org/docs/8.2.x/user_guide/user_guide.html#asynchronous_options) talks about the performance benefits of using sticky sessions.
+:::
+
+A domain can be used to configure slave instances as part of a cluster, or a domain can be comprised of multiple independent nodes that do not form a cluster. Likewise multiple standalone instances of WildFly can be configured to form a cluster.
+
+So while both a domain and a cluster are groups of WildFly instances coordinated in some way, the two terms refer to different things.
+
+## Configuring a Cluster
+
+Although we don't need a domain to configure a cluster, a domain is a convenient way to distribute common settings to multiple WildFly slaves, so we will utilize a domain to build our cluster. We'll build on the work already done as part of the [previous blog post](https://octopus.com/blog/wildfly-s3-domain-discovery) to build a WildFly domain.
+
+Extending the domain to support a cluster requires a number of steps.
+
+### Define a Central Configuration Database
+
+When building the domain we used a shared S3 bucket to facilitate the discovery of the domain controller. In a similar fashion we will use a shared database to facilitate the discovery of cluster nodes.
+
+Since we are deploying our WildFly instances in AWS, we'll use an Aurora database as our central point of cluster configuration. Aurora is MySQL compatible, which means we'll configure WildFly as if it is communicating with a MySQL database.
+
+### Adding the Schema
+
+Using the MySQL client tools, log into the RDS instance and create a schema called `jgroups`. This is done with the command `create database jgroups;`.
+
+```
+[ec2-user@ip-172-30-0-89 configuration]$ mysql -ujgroups -p -hyour-rds-hostname.cluster-c1ufrgizkeyf.us-east-1.rds.amazonaws.com
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 5.6.10 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database jgroups;
+
+Query OK, 1 row affected (0.04 sec)
+```
+
+### Adding the MySQL Drivers
+
+On each WildFly slaves we need to add a module that contains the MySQL drivers. A module is just a collection of JAR files and some metadata WildFly can use to load them.
+
+Start by creating a directory called `modules/system/layers/base/com/mysql/driver/main`. Inside this directory create a file called `module.xml` with the following contents.
+
+```xml
+<module xmlns="urn:jboss:module:1.3" name="com.mysql.driver">
+    <resources>
+        <resource-root path="mysql-connector-java-5.1.44.jar" />
+    </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.transaction.api"/>
+    </dependencies>
+</module>
+```
+
+Then save the [MySQL driver JAR file](https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.44) `mysql-connector-java-5.1.44.jar` to the directory.
+
+### Adding the DataSource
+
+The RDS instance will be accessed via a datasource. This is defined in the `domain/confguration/domain.xml` file under the `ha` profile. All the XML elements under the `<profile name="ha">` element make up the `ha` profile.
+
+To define our datasource we need both a `<datasource>` element (to define the database connection) and a `<driver>` element (to define the MySQL JDBC driver details).
+
+In this case we are pointing the datasource to a schema called `jgroups`, and connecting with a user called `jgroups` (although these two values don't need to be the same).
+
+```xml
+<subsystem xmlns="urn:jboss:domain:datasources:5.0">
+  <datasources>
+      <datasource jndi-name="java:jboss/datasources/JGroups" pool-name="JGroupsDS">
+          <connection-property name="url">
+              jdbc:mysql://your-rds-hostname.cluster-c1ufrgizkeyf.us-east-1.rds.amazonaws.com/jgroups
+          </connection-property>
+          <driver>mysql</driver>
+          <security>
+              <user-name>jgroups</user-name>
+              <password>yourpassword</password>
+          </security>
+      </datasource>
+      <drivers>
+          <driver name="mysql" module="com.mysql.driver">
+              <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+              <datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlDataSource</datasource-class>
+          </driver>
+      </drivers>
+  </datasources>
+</subsystem>
+```
+
+### Define the JGroups Stack
+
+[JGroups](http://www.jgroups.org/) is the library used by WildFly to connect members of a cluster. By default JGroups is configured to use UDP and multicasting, but neither UDP nor multicasting is supported by Amazon.
+
+So instead we need to configure WildFly to use TCP and make use of the central database as a way of discovering peers.
+
+In the jgroups subsystem we will be switching to the `tcp` stack by changing the `stack` attribute on the `<channel>` element.
+
+```xml
+<channel name="ee" stack="tcp" cluster="ejb"/>
+```
+
+We then need to replace the `MPING` protocol with `JDBC_PING`.
+
+```xml
+<protocol type="org.jgroups.protocols.JDBC_PING">
+    <property name="datasource_jndi_name">
+        java:jboss/datasources/JGroups
+    </property>
+</protocol>
+```
+
+This is what the complete stack now looks like.
+
+```xml
+<subsystem xmlns="urn:jboss:domain:jgroups:5.0">
+    <channels default="ee">
+        <!-- We are now using the tcp stack -->
+        <channel name="ee" stack="tcp" cluster="ejb"/>
+    </channels>
+    <stacks>
+        <stack name="udp">
+            <transport type="UDP" socket-binding="jgroups-udp"/>
+            <protocol type="PING"/>
+            <protocol type="MERGE3"/>
+            <protocol type="FD_SOCK"/>
+            <protocol type="FD_ALL"/>
+            <protocol type="VERIFY_SUSPECT"/>
+            <protocol type="pbcast.NAKACK2"/>
+            <protocol type="UNICAST3"/>
+            <protocol type="pbcast.STABLE"/>
+            <protocol type="pbcast.GMS"/>
+            <protocol type="UFC"/>
+            <protocol type="MFC"/>
+            <protocol type="FRAG2"/>
+        </stack>
+        <stack name="tcp">
+            <transport type="TCP" socket-binding="jgroups-tcp"/>
+            <!-- MPING has been replaced with JDBS_PING -->
+            <protocol type="org.jgroups.protocols.JDBC_PING">
+                <property name="datasource_jndi_name">
+                    java:jboss/datasources/JGroups
+                </property>
+            </protocol>
+            <protocol type="MERGE3"/>
+            <protocol type="FD_SOCK"/>
+            <protocol type="FD_ALL"/>
+            <protocol type="VERIFY_SUSPECT"/>
+            <protocol type="pbcast.NAKACK2"/>
+            <protocol type="UNICAST3"/>
+            <protocol type="pbcast.STABLE"/>
+            <protocol type="pbcast.GMS"/>
+            <protocol type="MFC"/>
+            <protocol type="FRAG2"/>
+        </stack>
+    </stacks>
+</subsystem>
+```
+
+### Use the `ha` Profile
+
+In order to take advantage of our changes to the `ha` profile, the slave instances need to be configured to use it. This is configured in the `<server-groups>` element.
+
+Change the `main-server-group` to use the `ha` profile.
+
+```xml
+<server-group name="main-server-group" profile="ha">
+```
+
+Also change the server group to use the `full-ha-scokets` socket binding group.
+
+```xml
+<socket-binding-group ref="full-ha-sockets"/>
+```
+
+The complete `<server-groups>` element now looks like this.
+
+```xml
+<server-groups>
+    <!-- main-server-group uses the ha profile -->
+     <server-group name="main-server-group" profile="ha">
+         <jvm name="default">
+             <heap size="64m" max-size="512m"/>
+         </jvm>
+         <!-- main-server-group uses the full-ha-sockets socket binding group -->
+         <socket-binding-group ref="full-ha-sockets"/>
+     </server-group>
+     <server-group name="other-server-group" profile="full-ha">
+         <jvm name="default">
+             <heap size="64m" max-size="512m"/>
+         </jvm>
+         <socket-binding-group ref="full-ha-sockets"/>
+     </server-group>
+ </server-groups>
+```
+
+## Open the Firewall
+
+The `full-ha-sockets` socket binding group uses port `7600` for JGroups, so this port will need to be opened on our firewall.
+
+## Starting the Slaves
+
+In order to register the correct address in the database, the WildFly slave instances need to bind the `private` interface to the IP address of the external NIC. This is done by passing the `-bprivate=<ip address>` argument to `domain.sh`.
+
+And because these slave instances will need to serve traffic to the outside world, we also need to bind the `public` interface to the IP address of the external NIC. This is done by passing the `-b=<ip address>` argument to `domain.sh`.
+
+For example, this command starts a slave on an EC2 instance with the IP address of `172.30.0.88`.
+
+:::hint
+We are not binding to the public IP address of the EC2 instance (if it even has a public IP address). A load balancer will take public internet traffic and direct it to the local subnet IP addresses that WildFly has been bound to.
+:::
+
+```
+[ec2-user@ip-172-30-0-88 bin]$ ./domain.sh --host-config host-slave.xml -bprivate=172.30.0.88 -b=172.30.0.88
+```
+
+
+## Conclusion
+
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
