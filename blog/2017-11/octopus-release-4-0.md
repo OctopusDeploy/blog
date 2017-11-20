@@ -13,9 +13,9 @@ tags:
 
 ---
 
-We’re very happy to ship Octopus Deploy 4.0 and the entire team is thrilled to share it with the world! In this release, the biggest change is that we [improved the overall UI and user experience](/blog/2017-10/octopus-v4-uxui.md). Octopus now has a modern look and feel and we redesigned some key areas of the app. From a technical perspective, this involved a complete re-write of our frontend migrating from [Angular 1.4 to React and Redux](/blog/2017-11/octopus-v4-angular-to-react/index.md).
+We’re very happy to ship Octopus Deploy 4.0, and the entire team is thrilled to share it with the world! In this release, the biggest change is the [improved UI and user experience](/blog/2017-10/octopus-v4-uxui.md). Octopus now has a modern look and feel, and we redesigned some key areas of the app. From a technical perspective, this involved a complete re-write of our frontend, migrating from [Angular 1.4 to React and Redux](/blog/2017-11/octopus-v4-angular-to-react/index.md).
 
-We [kicked off this process for technical reasons](/blog/2017-10/octopus-v4-history.md) but there were two themes that emerged as we progressed. The first was to make Octopus easier to use and more consistent and the second was designing for scale.
+We [kicked off this process for technical reasons](/blog/2017-10/octopus-v4-history.md), but two themes emerged as we progressed. The first was to make Octopus easier to use and more consistent, and the second was designing for scale.
 
 ## In this post
 
@@ -27,34 +27,34 @@ We [kicked off this process for technical reasons](/blog/2017-10/octopus-v4-hist
 
 ## Ease of use
 
-Octopus has always been easy to use but now it’s better than ever. We worked hard to make sure each page was as intuitive and consistent as possible. 
+Octopus has always been easy to use, but now it’s better than ever. We worked hard to make sure each page was as intuitive and consistent as possible. 
 
 ![Octopus web portal modern look and feel](octopus-v4-modern-look.png "width=500")  
-We refreshed our look to use Google's material design guidelines but we also made sure to keep things simple and retain the Octopus personality. 
+We refreshed our look using Google's material design guidelines, but we also kept things simple to retain Octopus's personality. 
 
 ![Octopus web portal filters and search](octopus-v4-filters-search.png "width=500")  
-We added filters and search conrtrols throughout the user interface so you can focus on what's important to you and get your work done quickly and easily.
+We added filters and search controls throughout the user interface so that you can focus on what's important to you and get your work done quickly and easily.
 
 ![Octopus web portal actions](octopus-v4-actions.png "width=500")  
-Octopus actions and buttons are very consistent so you shouldn't have to hunt for that save button anymore!
+Octopus actions and buttons are consistent, so you shouldn't have to hunt for that save button anymore!
 
 ![Octopus redesigned variable editor](octopus-v4-variable-editor.png "width=500")  
-We completely [redesigned and rewrote our variable editor](/blog/2017-10/octopus-v4-variable-editor.md) so it's simpler and easier to manage large numbers of variables including full keyboard support.
+We completely [redesigned and rewrote our variable editor](/blog/2017-10/octopus-v4-variable-editor.md) so it's simpler and easier to manage large numbers of variables. We also included full keyboard support.
 
 ![Octopus redesigned deployment page](octopus-v4-deploy.png "width=500")  
 We [redesigned and simplified our deployment release page](/blog/2017-11/octopus-v4-create-deployments.md) to allow you to specify when and where you want to deploy your projects as well as see a preview and customize it further. 
 
 ## Designing for scale
 
-We want Octopus to be a great experience whether you’re a small team with a single instance or a large enterprise with high availability nodes! Some of our largest customers have thousands of projects and thousands of machienes. In the past, we’ve made targeted change to Octopus server to improve performance but in Octopus 4, we rethought the UI to give a better experience to customers with large installs.  
+We want Octopus to be a great experience whether you’re a small team with a single instance or a large enterprise with high availability nodes! Some of our largest customers have thousands of projects and thousands of machines. In the past, we’ve made targeted changes to Octopus server to improve performance, but in Octopus 4, we rethought the UI to give customers with large installs a better experience.  
 
 ![Octopus redesigned deployment page](octopus-v4-projects-scale.png "width=500")  
 
-We updated our Project page now has a card layout and combined with the filters and fast project switcher, you access your favourite projects quickly as easily!
+The updated project page now has a card layout, and you can access your favorite projects quickly and easily using filters and the project switcher.
 
 ![Octopus redesigned deployment page](octopus-v4-infrastructure-scale.png "width=500")  
 
-We [redesigned our environments page](/blog/2017-11/octopus-v4-infrastructure.md) and it's now called infrastructure to better suit its purpose and intent. It's far simpler to work with hundreds or thousands of environments and deployment targets. The new overview page gives you a summary of your infrastructure and selecting a summary item takes you to a filter view of the relevant deployment targets.
+We [redesigned our environments page](/blog/2017-11/octopus-v4-infrastructure.md) and it's now called the infrastructure page to better suit its purpose and intent. It's far simpler to work with hundreds or thousands of environments and deployment targets. The new overview page gives you a summary of your infrastructure and selecting a summary item takes you to a filtered view of the relevant deployment targets.
 
 ## Breaking changes
 
@@ -64,7 +64,7 @@ We [redesigned our environments page](/blog/2017-11/octopus-v4-infrastructure.md
 * [The `--thumbprint-only` option has been removed from the `Octopus.Server.exe show-thumbprint` command since it is no longer needed](https://github.com/OctopusDeploy/Issues/issues/3833)
 * [`Octopus.Server.exe regenerate-certificate` has been replaced with `Octopus.Server.exe new-certificate`](https://github.com/OctopusDeploy/Issues/issues/3832)
 * [Removed previously deprecated `Octopus.Server.exe configure`  options `--masterKey`, `--storageConnectionString` and `--webAuthenticationMode`.](https://github.com/OctopusDeploy/Issues/issues/3831)
-* [Authentication provider information is now treated as a resource and served through it's own API](https://github.com/OctopusDeploy/Issues/issues/3803)
+* [Authentication provider information is now treated as a resource and served through its own API](https://github.com/OctopusDeploy/Issues/issues/3803)
 * [The `get_octopusvariable` bash function now returns an empty string if the variable does not exist](https://github.com/OctopusDeploy/Issues/issues/3747)
 * [Removed the `/api/letsencryptconfiguration/disable` API](https://github.com/OctopusDeploy/Issues/issues/3720)
 * [Removed `ResourceCollection.IsStale`](https://github.com/OctopusDeploy/Issues/issues/3658)
