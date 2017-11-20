@@ -23,7 +23,7 @@ We [kicked off this process for technical reasons](/blog/2017-10/octopus-v4-hist
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2vpxRy2yXAI" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/i-NdrYnmhNU" frameborder="0" allowfullscreen></iframe>
 
 ## Ease of use
 
