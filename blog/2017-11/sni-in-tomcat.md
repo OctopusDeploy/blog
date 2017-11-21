@@ -1,15 +1,15 @@
 ---
 title: SNI in Tomcat
-description: SNI allows a Tomcat to respond with multiple HTTPS certificates on on single port. This blog post looks at how to configure SNI.
+description: SNI allows Tomcat to respond with multiple HTTPS certificates on on single port. This blog post looks at how to configure SNI.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
 ---
 
-Server Name Indication (SNI) is a feature available in Tomcat 8.5 and 9 that allows certificates to be mapped to the hostname of the incoming request. This allows Tomcat to respond with different certificates on a single HTTPS port.
+Server Name Indication (SNI) has been implemented in Tomcat 8.5 and 9, and it means certificates can be mapped to the hostname of the incoming request. This allows Tomcat to respond with different certificates on a single HTTPS port.
 
 This blog post looks at how to configure SNI in Tomcat 9.
 
@@ -116,7 +116,7 @@ The `certificateFile="${catalina.base}/conf/acme.crt"` and `certificateKeyFile="
 
 Since we don't actually own the `acme.com` or `widgets.com` domains, we'll edit the `hosts` file to resolve these addresses to `localhost`. On a Mac and Linux OSs, this file is found under `/etc/hosts`.
 
-Adding the following lines to the `hosts` file will direct these domains to localhost. We'll throw in the `somethingelse.com` hostname to see which certificate an unmapped host returns.
+Adding the following lines to the `hosts` file will direct these domains to localhost. We'll also throw in the `somethingelse.com` hostname to see which certificate an unmapped host returns.
 
 ```
 127.0.0.1 acme.com
@@ -138,6 +138,6 @@ Now open up [https://somethingelse.com:62000](https://somethingelse.com:62000). 
 
 ## Conclusion
 
-So we can see that a single instance of Tomcat on a single port can respond with multiple different certificates depending on the host that was requested.
+So we can see that a single instance of Tomcat on a single port can respond with multiple different certificates depending on the host that was requested. This is the benefit that SNI provides to web servers.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
