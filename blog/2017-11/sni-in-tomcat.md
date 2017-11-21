@@ -136,4 +136,8 @@ Now open up [https://somethingelse.com:62000](https://somethingelse.com:62000). 
 
 ![somethingelse.com certificate](somethingelse-com.png "width=500")
 
+## Conclusion
+
 So we can see that a single instance of Tomcat on a single port can respond with multiple different certificates depending on the host that was requested.
+
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
