@@ -2,7 +2,7 @@
 title: "Octopus Deploy Release 4.0"
 description: Octopus Deploy 4.0 includes a great new UI refresh and a great user experience!
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-4.png
 bannerImage: blogimage-shipping-4.png
 tags:
@@ -13,7 +13,7 @@ tags:
 
 ---
 
-We’re very happy to ship Octopus Deploy 4.0, and the entire team is thrilled to share it with the world! In this release, the biggest change is the [improved UI and user experience](/blog/2017-10/octopus-v4-uxui.md). Octopus now has a modern look and feel, and we redesigned some key areas of the app. From a technical perspective, this involved a complete re-write of our frontend, migrating from [Angular 1.4 to React and Redux](/blog/2017-11/octopus-v4-angular-to-react/index.md).
+We’re very happy to ship Octopus Deploy 4.0, and the entire team is thrilled to share it with the world! [Download](https://octopus.com/downloads) it today! In this release, the biggest change is the [improved UI and user experience](/blog/2017-10/octopus-v4-uxui.md). Octopus now has a modern look and feel, and we redesigned some key areas of the app. From a technical perspective, this involved a complete re-write of our frontend, migrating from [Angular 1.4 to React and Redux](/blog/2017-11/octopus-v4-angular-to-react/index.md).
 
 We [kicked off this process for technical reasons](/blog/2017-10/octopus-v4-history.md), but two themes emerged as we progressed. The first was to make Octopus easier to use and more consistent, and the second was designing for scale.
 
@@ -58,6 +58,9 @@ We [redesigned our environments page](/blog/2017-11/octopus-v4-infrastructure.md
 
 ## Breaking changes
 
+There are breaking changes in this release and we recommend you review the following list to see if anything is relevant.
+
+* [Octopus UI supports the latest versions of major web browsers](https://github.com/OctopusDeploy/Issues/issues/3938)
 * [By default Octopus will only attempt to run a step on up to `10` deployment targets at the same time, instead of attempting to run on every matching deployment target simultaneously](https://github.com/OctopusDeploy/Issues/issues/3861)
 * [Removed the `SynchronizationStatus` and `IndexingStatus` properties returned by the `/api/serverstatus/nuget` API](https://github.com/OctopusDeploy/Issues/issues/3842)
 * [The `NancyCookie AuthCookieService.CreateAuthCookie()` used by custom authentication providers has been replaced with `NancyCookie[] AuthCookieService.CreateAuthCookies()`](https://github.com/OctopusDeploy/Issues/issues/3834)
@@ -81,4 +84,4 @@ As always, read the [upgrade guide](https://octopus.com/docs/administration/upgr
 
 ## Wrap up
 
-We're very proud to ship Octopus 4.0 to all of our customers and we hope you enjoy it as much as we do.
+We're very proud to ship Octopus 4.0 to all of our customers and we hope you enjoy it as much as we do.  [Download](https://octopus.com/downloads) it today!
