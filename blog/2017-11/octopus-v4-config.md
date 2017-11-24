@@ -141,3 +141,7 @@ One final point, the command line implementation isn't being changed. It still s
 We've certainly been finding life easier during our testing of these changes and we're hoping you do too. As always, we're keen for your feedback so please leave any comments below.
 
 Happy configuring and Happy Deployments!
+
+
+
+UPDATE (24 Nov 2017): We've added some examples of how to interact with the new API programmatically over in our [administration documentation](https://g.octopushq.com/ManagingConfig).
