@@ -5,6 +5,7 @@ author: michael.richardson@octopus.com
 visibility: public
 metaImage: 4.0deployments_metaimage.png
 bannerImage: 4.0deployments_blogimage.png
+published: 2017-11-07
 tags:
  - New Releases
 ---
@@ -12,6 +13,8 @@ tags:
 ![Octopus 4.0 new create release page](4.0deployments_blogimage.png)
 
 This post is a part of our Octopus 4.0 blog series. Follow it on our [blog](https://octopus.com/blog) or our [twitter](https://twitter.com/octopusdeploy) feed.
+
+**Octopus Deploy 4.0 has shipped! Read the [blog post](/blog/2017-11/octopus-release-4-0.md) and [download](https://octopus.com/downloads) it today!**
 
 ---
 
