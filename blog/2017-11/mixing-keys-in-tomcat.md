@@ -74,7 +74,7 @@ This snippet uses the APR protocol, which accepts the PEM files that were create
 
 [High-Tech Bridge](https://www.htbridge.com/ssl/) has an online service for verifying the security configuration of a web server.
 
-In this screenshot we can see that the Tomcat server has exposed both he RSA and the ECDSA certificates.
+In this screenshot we can see that the Tomcat server has exposed both the RSA and the ECDSA certificates.
 
 ![Cert Info](cert-info.png "width=500")
 
