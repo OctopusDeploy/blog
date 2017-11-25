@@ -1,8 +1,8 @@
 ---
 title: Mixing Keys in Tomcat
-description: Learn how to configure Tomcat to support both RSA and ECDSA keys on a single HTTPS port.
+description: Learn how to configure Tomcat to support both RSA and ECDSA certificates on a single HTTPS port.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -11,9 +11,9 @@ tags:
 
 In a [previous blog post](/blog/2017-11/sni-in-tomcat.md) we looked at how Tomcat 8.5+ uses SNI to map certificates to the hostname of a request.
 
-Tomcat 8.5+ can go one step further and supports multiple key types for each host. This is most useful for supporting RSA keys with older browsers, while supporting the newer ECDSA keys with compatible browsers.
+Tomcat 8.5+ can go one step further and supports multiple certificate types for each host. This is most useful for supporting RSA with older browsers, while supporting ECDSA with compatible browsers.
 
-In this blog post we'll take a look at how to configure Tomcat with multiple key types.
+In this blog post we'll take a look at how to configure Tomcat with multiple certificate types.
 
 ## Creating Self Signed RSA Keys
 
@@ -25,11 +25,13 @@ openssl req -x509 -newkey rsa:4096 -keyout rsa.key -out rsa.crt -days 365
 
 ## Creating Self Signed ECDSA Keys
 
+To create a ECDSA private key, use the following command:
+
 ```
 openssl ecparam -genkey -out ecdsa.key -name prime256v1
 ```
 
-The `name` parameter is one from the list returned by
+The `name` parameter is one from the list returned by the command:
 
 ```
 openssl ecparam -list_curves
@@ -43,7 +45,7 @@ OpenSSL supports a large number of curves, but browsers typically only support a
 ![Firefox Named Groups](firefox-named-groups.png "width=500")
 :::
 
-A certificate is then created with the private key with the command
+A certificate is then created from the private key with the command:
 
 ```
 openssl req -x509 -new -key ecdsa.key -out ecdsa.crt
@@ -51,7 +53,7 @@ openssl req -x509 -new -key ecdsa.key -out ecdsa.crt
 
 ## Configuring Tomcat with Multiple keys
 
-To support both key types, multiple `<Certificate>` elements can be added to a `<SSLHostConfig>` element. When multiple `<Certificate>` elements are defined, each must have a unique `type` attribute. The RSA keys have the `RSA` type, and the ECDSA keys have the `EC` type.
+To support both certificate types, multiple `<Certificate>` elements can be added to a `<SSLHostConfig>` element. When multiple `<Certificate>` elements are defined, each must have a unique `type` attribute. The RSA certificates have the `RSA` type, and the ECDSA certificates have the `EC` type.
 
 This is a snippet of the Tomcat `server.xml` configuration file with the two self signed certificates and private keys created using the OpenSSL commands above.
 
@@ -65,7 +67,7 @@ This is a snippet of the Tomcat `server.xml` configuration file with the two sel
 ```
 
 :::hint
-This snippet uses the APR protocol, which accepts the PEM files that were created by OpenSSL. See (Building the Apache Portable Runtime)[/blog/2017-11/building-apr-for-tomcat.md] for more information on enabling APR in Tomcat.
+This snippet uses the APR protocol, which accepts the PEM files that were created by OpenSSL. See [Building the Apache Portable Runtime](/blog/2017-11/building-apr-for-tomcat.md) for more information on enabling APR in Tomcat.
 :::
 
 ## Verifying the Configuration
@@ -78,6 +80,6 @@ In this screenshot we can see that the Tomcat server has exposed both he RSA and
 
 ## Conclusion
 
-Tomcat is quite unique in its ability to support both RSA and ECDSA certificates for a single HTTPS port. This allows Tomcat to provide HTTPS to a wide range of clients without sacrificing security.
+Tomcat is quite unique in its ability to support both RSA and ECDSA certificates for a single HTTPS port. This allows Tomcat to provide HTTPS to a wide range of clients without sacrificing security. This configuration can be achieved simply by defining two `<Connector>` elements with different `type` attributes.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
