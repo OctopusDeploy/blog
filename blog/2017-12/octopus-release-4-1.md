@@ -42,11 +42,11 @@ Maven repositories are extremely popular with Java developers, and with this rel
 
 This means that Maven artifacts can now be downloaded as part of a deployment like any other feed.
 
-![Maven Artifact](maven-artifact.png)
+![Maven Artifact](maven-artifacts.png "width=500")
 
 All your favorite features like channels and version rules also work with Maven feeds, and you can use the standard [Maven version range syntax](https://g.octopushq.com/MavenVersioning) too!
 
-![Maven version ranges](maven-version-ranges.png)
+![Maven version ranges](maven-version-ranges.png "width=500")
 
 ## Breaking changes
 
