@@ -17,7 +17,7 @@ TODO:
 * Are there breaking changes?
 :::
 
-This December release of Octopus continues the support for Java that was [introduced back in 3.17](/blog/2017/09/octopus-release3-17.md), with the ability to export certificates as Java KeyStores, as well as configuring certificates directly with Tomcat 7+, WildFly 10+ and Red Hat JBoss EAP 6+. This release also allows Maven repositories to be configured as external Octopus feeds, meaning Octopus can now consume Maven artifacts as part of a deployment. Read on for all the exciting details!
+This December release of Octopus continues the support for Java that was [introduced back in 3.17](/blog/2017/09/octopus-release3-17.md), with the ability to export certificates as Java KeyStores, as well as configuring certificates directly within existing Tomcat 7+, WildFly 10+ and Red Hat JBoss EAP 6+ application servers. This release also allows Maven repositories to be configured as external Octopus feeds, meaning Octopus can now consume Maven artifacts as part of a deployment. Read on for all the exciting details!
 
 ## In this post
 
@@ -37,7 +37,7 @@ You can find out more by viewing the documentation for these steps:
 
 * [Exporting a Certificate to a Java Keystore](https://octopus.com/docs/v/4.1/deploying-applications/certificates/java-keystore-export)
 * [Importing Certificates into Tomcat](https://octopus.com/docs/v/4.1/deploying-applications/certificates/tomcat-certificate-import)
-* [Importing Certificates into WildFly and JBoss EAP]https://octopus.com/docs/v/4.1/deploying-applications/certificates/wildfly-certificate-import
+* [Importing Certificates into WildFly and JBoss EAP](https://octopus.com/docs/v/4.1/deploying-applications/certificates/wildfly-certificate-import)
 
 ## Maven Repositories as External Feeds
 
