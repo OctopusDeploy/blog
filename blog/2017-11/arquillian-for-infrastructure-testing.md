@@ -335,7 +335,7 @@ Here is the compete `arquillian.xml` file.
 
 ## Configuring Arquillian Chameleon
 
-Chameleon doesn't normally require much configuration, although with the version we am using here (1.0.0.Final-SNAPSHOT) we do have to provide a custom `containers.yaml` file that configured Tomcat 8. This version was based on the version from the [Chameleon GitHub repo](https://github.com/arquillian/arquillian-container-chameleon/blob/58f36a281721d8ce8776fa60275d322e7c3b9b24/arquillian-chameleon-container-model/src/main/resources/chameleon/default/containers.yaml).
+Chameleon doesn't normally require much configuration, although with the version we are using here (1.0.0.Final-SNAPSHOT) we do have to provide a custom `containers.yaml` file that configures Tomcat 8. This version was based on the version from the [Chameleon GitHub repo](https://github.com/arquillian/arquillian-container-chameleon/blob/58f36a281721d8ce8776fa60275d322e7c3b9b24/arquillian-chameleon-container-model/src/main/resources/chameleon/default/containers.yaml).
 
 Chameleon provides [documentation](https://github.com/arquillian/arquillian-container-chameleon#development) on the `containers.yaml` file, so I won't go into much detail here.
 
