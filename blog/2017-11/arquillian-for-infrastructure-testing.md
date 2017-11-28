@@ -23,6 +23,10 @@ One of the challenges writing a tool like [Octopus](https://octopus.com) is that
 
 And not only that, but we support WildFly and JBoss EAP in standalone or domain mode. This gives us over 10 different application server configurations to test our code against.
 
+:::hint
+Octopus also supports [deploying Java artifacts](https://octopus.com/docs/deploying-applications/deploy-java-applications) like JAR and WAR files directly to the filesystem, which means application servers like WebSphere, WebLogic, GlassFish, Payara etc can also be integrated into an Octopus deployment process.
+:::
+
 We could have created virtual machines with the various application servers and run tests against those, but Arquillian's ability to spin up real application servers and integrate those servers into unit tests means that we can test our code with standard unit test libraries like JUnit and run those tests directly from Maven.
 
 In this blog post we'll take a look at how to use Arquillian to do infrastructure testing.
