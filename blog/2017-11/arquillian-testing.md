@@ -263,7 +263,7 @@ There are few important aspects to this test.
 
 The `@RunWith(Arquillian.class)` annotation enriches the JUnit test with the functionality provided by Arquillian.
 
-The `createDeployment()` method with the `@Deployment` annotation is used to create the artifact which is deployed as the test environment. In this case we are constructing an jar file that includes the `EnterpriseJavaBean` class. This is done using the [ShrinkWrap](http://arquillian.org/guides/shrinkwrap_introduction/) library, which allows us to create Java artifact in code in much the same way a build tool like Maven would at build time.
+The `createDeployment()` method with the `@Deployment` annotation is used to create the artifact which is deployed as the test environment. In this case we are constructing an jar file that includes the `EnterpriseJavaBean` class. This is done using the [ShrinkWrap](http://arquillian.org/guides/shrinkwrap_introduction/) library, which allows us to create Java artifacts in code in much the same way a build tool like Maven would at build time.
 
 Inside the test we have injected an instance of the `EnterpriseJavaBean` class using the `@EJB` annotation. The object that this variable references when the test is run is a real, live EJB. This means that instead of testing a POJO with EJB annotations that are ignored (and therefore testing an object with none of the functionality of an EJB), we are testing an object that behaves in the same way that it would when deployed to an application server.
 
