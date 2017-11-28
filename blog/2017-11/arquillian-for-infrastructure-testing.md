@@ -1,8 +1,8 @@
 ---
 title: Arquillian for Infrastructure Testing
-description: Arquillian's ability to spin up real application servers and meld them with unit tests makes it a powerful solution for infrastructure testing.
+description: Arquillian's ability to spin up real application servers and integrate them with unit tests makes it a powerful solution for infrastructure testing.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -11,7 +11,7 @@ tags:
 
 In a [previous blog post](/blog/2017-11/arquillian-testing.md) we had a look at how Arquillian solves the problem of testing real objects as they exist in a real application server. While this is perhaps the more traditional way Arquillian is used, it is not the only way.
 
-One of the challenges writing a tool like Octopus is that it has to support a huge range of Java application servers. Right now we support:
+One of the challenges writing a tool like [Octopus](https://octopus.com) is that it has to support a huge range of Java application servers. Right now we support:
 
 * WildFly 10
 * WildFly 11
@@ -89,7 +89,7 @@ We then need the Arquillian, JUnit and Apache HTTP Client dependencies.
 </dependencies>
 ```
 
-We'll define two profiles: Tomcat8 and WildFly 9. These profiles define the `arquillian.launch` system property, which is used to select the application server that Chameleon will download for us, and set the path to the tests that will be run. In the `WildFly9` profile, we will be running the `wildfly9` container, and running tests in the `src/test/java/wildfly9` directory.
+We'll define two Maven profiles: `Tomcat8` and `WildFly9`. These profiles define the `arquillian.launch` system property, which is used to select the application server that Chameleon will download for us, and set the path to the tests that will be run. In the `WildFly9` profile, we will be running the `wildfly9` container, and running tests in the `src/test/java/wildfly9` directory.
 
 ```xml
 <profile>
@@ -137,7 +137,7 @@ The `Tomcat8` profile will run the `tomcat8` container, and run tests from the `
 </profile>
 ```
 
-We use profiles because only one application server can be run at a time. Profiles allow us to select the kind of server to test with some command line parameters. We also split up the test class files to ensure that only tests for a given server are run with the selected profile.
+We use profiles because only one application server can be run at a time. Profiles allow us to select the kind of server to test with Maven command line parameters. We also split up the test class files to ensure that only tests for a given server are run with the selected profile.
 
 Here is the complete POM file.
 
@@ -239,11 +239,13 @@ Here is the complete POM file.
 
 Arquillian needs a file called `arquillian.xml` which defines the containers (or application servers) that it can run. In our case we need to define two containers to match the values assigned to the `arquillian.launch` system properties by the Maven profiles.
 
+### Tomcat 8 Container
+
 The `tomcat8` container downloads Tomcat 8.0.47 from the [binary distribution published to Maven](http://central.maven.org/maven2/org/apache/tomcat/tomcat/8.0.47/).
 
-We also need to define the username and password that Arquillian can use to access the manager application provided with Tomcat. In this case we use `arquillian` for both.
+We also need to define the username and password that Arquillian will use to access the manager application provided with Tomcat. In this case we use `arquillian` for both.
 
-To actually define the user `arquillian`, we configure Tomcat with a custom server.xml file called `tomcat8-server.xml`.
+To actually define the user `arquillian`, we configure Tomcat with a custom configuration file called `tomcat8-server.xml`.
 
 ```xml
 <container qualifier="tomcat8">
@@ -285,8 +287,10 @@ And finally in the `tomcat-users.xml` file, we define the user `arquillian`.
 ```
 
 :::hint
-CATALINE_BASE and CATALINA_HOME (referenced by `${catalina.home}` in the `tomcat-server.xml` file and the relative location of the `serverConfig` setting in the `arquillian.xml` file is `target/server/tomcat_8.0.47/apache-tomcat-8.0.47`, which is the location where Arquillian Chameleon downloads Tomcat to. The long string of parent directory references go from this directory back to the test `resources` directory.)
+CATALINE_BASE and CATALINA_HOME (referenced by `${catalina.home}` in the `tomcat-server.xml` file and the relative location of the `serverConfig` setting in the `arquillian.xml` file) is `target/server/tomcat_8.0.47/apache-tomcat-8.0.47`, which is the location where Arquillian Chameleon downloads Tomcat to. The long string of parent directory references go from this directory back to the test `resources` directory.
 :::
+
+### WildFly 9 Container
 
 The WildFly container is less complicated. It too downloads WildFly from the [binary distribution published to Maven](http://central.maven.org/maven2/org/wildfly/wildfly-dist/9.0.0.Final/). The only other setting is the name of the server configuration file, which we set to `standalone.xml`.
 
@@ -298,6 +302,8 @@ The WildFly container is less complicated. It too downloads WildFly from the [bi
     </configuration>
 </container>
 ```
+
+### Complete Arquillian Configuration File
 
 Here is the compete `arquillian.xml` file.
 
@@ -329,7 +335,7 @@ Here is the compete `arquillian.xml` file.
 
 ## Configuring Arquillian Chameleon
 
-Chameleon doesn't normally require much configuration, although with the version I am using (1.0.0.Final-SNAPSHOT) I did have to provide a custom `containers.yaml` file that configured Tomcat 8. My version was based on the version from the [Chameleon GitHub repo](https://github.com/arquillian/arquillian-container-chameleon/blob/58f36a281721d8ce8776fa60275d322e7c3b9b24/arquillian-chameleon-container-model/src/main/resources/chameleon/default/containers.yaml).
+Chameleon doesn't normally require much configuration, although with the version we am using here (1.0.0.Final-SNAPSHOT) we do have to provide a custom `containers.yaml` file that configured Tomcat 8. This version was based on the version from the [Chameleon GitHub repo](https://github.com/arquillian/arquillian-container-chameleon/blob/58f36a281721d8ce8776fa60275d322e7c3b9b24/arquillian-chameleon-container-model/src/main/resources/chameleon/default/containers.yaml).
 
 Chameleon provides [documentation](https://github.com/arquillian/arquillian-container-chameleon#development) on the `containers.yaml` file, so I won't go into much detail here.
 
@@ -791,13 +797,13 @@ By the time you read this post, Chameleon may be shipping with a version that ha
 
 ## Running Tests
 
-For the sake of simplicity the tests we run against Tomcat and WildFly will simply be a HTTP GET request against their home pages. Normally in these tests you would making API calls, deploying applications or anything else your application needs to do against these application servers.
+For the sake of simplicity the tests we run against Tomcat and WildFly will simply be a HTTP GET request against their root directories. Normally in these tests you would be making API calls, deploying applications or anything else your application needs to do against these application servers.
 
 The format of these tests is much the same as those presented in the [previous blog post](/blog/2017-11/arquillian-testing.md). There are 2 big differences though.
 
 First, we don't have a `@Deployment` method, because we are not running any code inside the application servers.
 
-Second, the test method we do have has the `@RunAsClient` annotation, which means this code is run outside the application servers. Essentially we consider these tests to be clients of the application server, not testing code that was deployed to them. By looking from the outside in, we can test our code as if it were an external application working with the application servers managed by Arquillian.
+Second, the test method we do have has the `@RunAsClient` annotation, which means this code is run outside the application servers. We consider these tests to be clients of the application server, not testing code that was deployed to them. By looking from the outside in, we can test our code as if it were an external application working with the application servers managed by Arquillian.
 
 ```java
 package tomcat8;
@@ -833,7 +839,7 @@ public class TomcatTest {
 
 ## Running the Tests
 
-To ru a test against a specific Maven profile, supply the `-P` argument, like so:
+To run a test against a specific Maven profile, supply the `-P` argument, like so:
 
 ```
 mvn clean verify -PTomcat8
@@ -944,7 +950,7 @@ Process finished with exit code 0
 
 ## Conclusion
 
-By utilizing Arquillian to download, initialize and clean up the various application servers it supports, we can quite easily test code that interacts with these servers as clients. This means that with a little effort to set up Maven and configure the Aqruillian containers, tests can be run against many different application servers and many different versions of those servers. This approach has work out quite well for us with the Java code that serves as the glue between Octopus and Java application servers.
+By utilizing Arquillian to download, initialize and clean up the various application servers it supports, we can quite easily test code that interacts with these servers as clients. This means that with a little effort to set up Maven and configure the Arquillian containers, tests can be run against many different application servers and many different versions of those servers. This approach has work out quite well for us with the Java code that serves as the glue between Octopus and Java application servers.
 
 You can download the source code to this blog post from [GitHub](https://github.com/OctopusDeploy/ArquillianInfrastructureTesting).
 
