@@ -2,14 +2,14 @@
 title: An Introduction to Arquillian Testing
 description: Testing Java EE code requires more than just a unit test. This blog post looks at how Arquillian solves the problem of testing Java EE apps.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
 ---
 
-Let's create a simple EJB application with two classes. The first called `EnterpriseJavaBean` writes a UUID to the console, sleeps for a period of time, and writes the same UUID to the console again.
+Let's create a simple EJB application with two classes. The first, called `EnterpriseJavaBean`, writes a UUID to the console, sleeps for a period of time, and writes the same UUID to the console again.
 
 ```java
 package org.example.arquilliantest;
@@ -37,7 +37,7 @@ public class EnterpriseJavaBean {
 }
 ```
 
-The second class is constructed on startup, and after construction calls `EnterpriseJavaBean.writeToConsole()` 10 times.
+The second class, called `StartupService`, is constructed on startup, and after construction calls `EnterpriseJavaBean.writeToConsole()` 10 times.
 
 ```java
 package org.example.arquilliantest;
@@ -151,7 +151,7 @@ afa3d953-0599-4f8d-8e58-c22f79a7c789
 All Done
 ```
 
-A keen observer would note though the the `All Done` message is always printed at the end of the unit test output, but is printed at random points during the execution of the `EnterpriseJavaBean` class when deployed to a server.
+A keen observer would note that the `All Done` message is always printed at the end of the unit test output, but is printed at random points during the execution of the `EnterpriseJavaBean` class when deployed to a server.
 
 This behavior is due to the fact that the `writeToConsole()` method has been marked as `@Asynchronous`.
 
@@ -210,7 +210,7 @@ c2fa0677-291a-4066-8dcb-13f4a6896489
 3ed6dc3a-590e-4350-a6a4-fc0e3e799505
 ```
 
-Now we are calling the `writeToConsole()` method from a thread pool, which gets us closer to the way EJBs would call `@Asynchronous` methods. The `All Done` message is now no longer always at the end of the output, but the UUIDs are all jumbled up. This is not the behavior that we see when executing the `writeToConsole()` on the server, which will always print UUID pairs one after the other.
+Now we are calling the `writeToConsole()` method from a thread pool, which gets us closer to the way EJBs would call `@Asynchronous` methods. The `All Done` message is now no longer always at the end of the output, but the UUIDs are all jumbled up. This is not the behavior that we see when executing the `writeToConsole()` on the server, which will always print matching UUID pairs one after the other.
 
 The issue here is that when the methods on the `EnterpriseJavaBean` class are called when it is injected as an EJB, the methods default to the semantics defined by the `@Lock(WRITE)` annotation. This means methods can only be called one at a time, which ensures the UUID pairs are always printed one after the other.
 
@@ -222,7 +222,7 @@ We could then go ahead and try to add some synchronization around the `writeToCo
 
 This situation is resolved by the [Arquillian](http://arquillian.org/) project. Arquillian allows you to write tests against EJBs (or any kind of enhanced object) taking advantage of any functionality bestowed on the objects by the server environment.
 
-It is actually quite easy to write an Arquillian test. Here is an example that replicates the behavior of the `EnterpriseJavaBean`  and `StartupService` classes.
+It is actually quite easy to write an Arquillian test. Here is an example that replicates the behavior of the `EnterpriseJavaBean` class.
 
 ```java
 package org.example.arquilliantest;
@@ -259,7 +259,7 @@ public class ArquillianTest {
 }
 ```
 
-There are few important pieces to this test.
+There are few important aspects to this test.
 
 The `@RunWith(Arquillian.class)` annotation enriches the JUnit test with the functionality provided by Arquillian.
 
@@ -271,7 +271,7 @@ Finally the `@Test` method itself runs the same test code that we originally tri
 
 ## Conclusion
 
-By running tests with Arquillian, it is possible to test the actual functionality of an object as it would behave when deployed to an application server. This frees you from trying to replicate the functionality provided by an application server, and means your tests reflect your production code.
+By running tests with Arquillian, it is possible to test the actual functionality of an object as it would provide when deployed to an application server. This frees you from trying to replicate the functionality bestowed by an application server, and means your tests reflect your production code.
 
 You can get the source code to this project from [GitHub](https://github.com/OctopusDeploy/ArquillianTest).
 
