@@ -797,7 +797,7 @@ By the time you read this post, Chameleon may be shipping with a version that ha
 
 ## Running Tests
 
-For the sake of simplicity the tests we run against Tomcat and WildFly will simply be a HTTP GET request against their root directories. Normally in these tests you would be making API calls, deploying applications or anything else your application needs to do against these application servers.
+For the sake of simplicity the tests we run against Tomcat and WildFly will be a HTTP GET request against their root directories. Normally in these tests you would be making API calls, deploying applications or anything else your application needs to do against these application servers.
 
 The format of these tests is much the same as those presented in the [previous blog post](/blog/2017-11/arquillian-testing.md). There are 2 big differences though.
 
