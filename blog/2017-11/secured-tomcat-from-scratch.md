@@ -2,7 +2,7 @@
 title: Deploying a Secured Web App to Tomcat with Octopus
 description: Learn how to go from a fresh Tomcat download to a secured web app deployment using the new features in Octopus 4.1
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -25,7 +25,7 @@ Octopus 4.1 is currently in beta, so if it is not available from the downloads p
 
 ## Configure Maven Central as an External Feed
 
-Maven central is the default repository for Maven builds, and is where most public Maven artifacts are eventually deployed. It can be found at [http://repo1.maven.org/maven2](http://repo1.maven.org/maven2). We'll add this repository as an external feed called `Maven Central` in Octopus to allow us to consume its artifacts in a deployment process.
+Maven central is the default repository for Maven builds, and is where most public Maven artifacts are eventually deployed. It can be found at [https://repo.maven.apache.org/maven2/](https://repo.maven.apache.org/maven2/). We'll add this repository as an external feed called `Maven Central` in Octopus to allow us to consume its artifacts in a deployment process.
 
 ![Maven Central External Feed](maven-central-external-feed.png "width=500")
 
@@ -47,12 +47,14 @@ Then upload the PFX file to Octopus.
 
 ![Self Signed Certificate](self-signed-certificate.png "width=500")
 
+Read the blog post [Mixing Keys in Tomcat](https://octopus.com/blog/mixing-keys-in-tomcat) for more information on how these keys work in Tomcat.
+
 
 ## Creating the Deployment Project
 
 Create a new project in Octopus, and add the `Deploy to Tomcat via Manager` step.
 
-In this step we'll be deploying the `com.github.gwtmaterialdesign:gwt-material-demo` WAR file. This web application is a demo of the [GWT Material](https://github.com/GwtMaterialDesign/gwt-material) project, who has conveniently published a sample application into the central Maven repository. We'll take advantage of this to demonstrate how web applications hosted in a Maven repository can be deployed directly to Tomcat.
+In this step we'll be deploying the `com.github.gwtmaterialdesign:gwt-material-demo` WAR file. This web application is a demo of the [GWT Material](https://github.com/GwtMaterialDesign/gwt-material) project, which has conveniently published a sample application as a WAR file into the central Maven repository. We'll take advantage of this to demonstrate how web applications hosted in a Maven repository can be deployed directly to Tomcat.
 
 Set the `Context path` to `/demoapp`. This is the path that we will use to open the application on Tomcat.
 
@@ -69,7 +71,7 @@ Next add the `Deploy a certificate to Tomcat` step. Select the certificate varia
 ![Deploy Certificate](deploy-certificate.png "width=500")
 
 :::hint
-In a production scenario you would not be redeploying a certificate along with an application. Once a certificate is deployed, it usually only needs to be redeployed once a year as the certificate is renewed. We have included the certificate deployment in the same Project simply to demonstrate how these steps are configured.
+In a production scenario you would not be redeploying a certificate along with an application. Once a certificate is deployed, it usually only needs to be redeployed once a year as the certificate is renewed. We have included the certificate deployment in the same project simply to demonstrate how these steps are configured.
 :::
 
 ## Restart the Service
@@ -89,7 +91,7 @@ Restart-Service Tomcat9
 ![Tomcat Service](tomcat-service.png "width=500")
 
 :::hint
-Tomcat does not need to be restarted after an application is deployed. This script is run to allow Tomcat to pick up the certificate, and would not be found in a production deployment project that only deploys an application.
+Tomcat does not need to be restarted after an application is deployed. This script is run to allow Tomcat to pick up the certificate.
 :::
 
 ## Run the Deployment
@@ -98,7 +100,7 @@ When the deployment is run, Octopus will automatically determine that the Maven 
 
 ![Deploy App From Maven](deploy-app-from-maven.png "width=500")
 
-Once the deployment is finished, you find the following XML has been added to the Tomcat `conf/server.xml` file.
+Once the deployment is finished, you find the following XML has been added to the Tomcat `conf/server.xml` file. This is how Tomcat is configured to support HTTPS.
 
 ```xml
 <Connector SSLEnabled="true" port="8443" protocol="org.apache.coyote.http11.Http11Nio2Protocol">
@@ -124,6 +126,6 @@ Click the `View certificate` to confirm that Tomcat is now configured with the s
 
 ## Conclusion
 
-With Octopus 4.1 you can manage your application and certificate deployment lifecycles, while seamlessly consuming artifacts from Maven repositories.
+With Octopus 4.1 you can now manage your application and certificate deployment lifecycles with built in steps, while seamlessly consuming artifacts from Maven repositories.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
