@@ -19,7 +19,7 @@ By default Tomcat 9 will install to `C:\Program Files\Apache Software Foundation
 
 ## Download Octopus Deploy 4.1
 
-Grab a copy of Octopus Deploy 4.1 from the [downloads page](https://octopus.com/downloads). Version 4.1 has includes a number of new steps and features for integrating with Maven repos and deploying certificates. You can find more information on installing Octopus from the [documentation](https://octopus.com/docs/installation).
+Grab a copy of Octopus Deploy 4.1 from the [downloads page](https://octopus.com/downloads). Version 4.1 includes a number of new steps and features for integrating with Maven repos and deploying certificates. You can find more information on installing Octopus from the [documentation](https://octopus.com/docs/installation).
 
 :::hint
 Octopus 4.1 is currently in beta, so if it is not available from the downloads page now, it will be soon. Watch this space!
