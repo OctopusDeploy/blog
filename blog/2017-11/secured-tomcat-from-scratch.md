@@ -9,6 +9,8 @@ tags:
  - Java
 ---
 
+With Octopus 4.1 you can now deploy applications from Maven repositories and configure certificates managed by Octopus. In this blog post we'll look at how some of these new steps can be used to deploy and secure a web application in Tomcat.
+
 ## Download Tomcat 9
 
 For this demo we'll use Tomcat 9 on Windows 2016. You can download Tomcat 9 from [here](https://tomcat.apache.org/download-90.cgi). Grab the Windows installer, as this is the easiest way to configure Tomcat as a Windows service.
