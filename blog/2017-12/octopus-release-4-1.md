@@ -14,7 +14,7 @@ TODO:
 
 * Add release video
 * Are there breaking changes?
-:::
+  :::
 
 This December release of Octopus continues the support for Java that was [introduced back in 3.17](/blog/2017-09/octopus-release-3-17.md), with the ability to export certificates as Java KeyStores, as well as configuring certificates directly within existing Tomcat 7+, WildFly 10+ and Red Hat JBoss EAP 6+ application servers. This release also allows Maven repositories to be configured as external Octopus feeds, meaning Octopus can now consume Maven artifacts as part of a deployment. Read on for all the exciting details!
 
@@ -53,6 +53,14 @@ All your favorite features like channels and version rules also work with Maven 
 ![Maven version ranges](maven-version-ranges.png "width=500")
 
 Get more details about using Maven repositories as external feeds in our [documentation](https://octopus.com/docs/v/4.1/deploying-applications/maven-feeds).
+
+## More configuration enhancements
+
+Building on the configuration enhancements we made in 4.0, we've added a couple of new features in this release.
+
+First up is an adjustment to how the directory paths for task logs, artifacts and the package repository are handled. These were previously being defaulted to paths relative to the server's HomeDirectory, but were stored as the absolute paths. This made it difficult if you needed to move the entire folder structure for some reason because you had to change all of the paths individually. We now store the paths as relative values by default and calculate the absolute path at runtime. If you override any of the paths and they aren't relative to the HomeDirectory, e.g. like you would when using a shared location for HA, then we store them as the absolute values.
+
+The second new feature also relates to these paths. You can now see them in the Settings UI and in the output of the `show-configuration` command.
 
 ## Breaking changes
 
