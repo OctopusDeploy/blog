@@ -15,7 +15,7 @@ In this blog post we'll take a look at how to use some simple scripting to updat
 
 ## Download Octopus Deploy 4.1
 
-Start by grabbing a copy of Octopus Deploy 4.1 from the [downloads page](https://octopus.com/downloads). Version 4.1 has includes the ability to integrate with Maven repos. You can find more information on installing Octopus from the [documentation](https://octopus.com/docs/installation).
+Start by grabbing a copy of Octopus Deploy 4.1 from the [downloads page](https://octopus.com/downloads). Version 4.1 includes the ability to integrate with Maven repos. You can find more information on installing Octopus from the [documentation](https://octopus.com/docs/installation).
 
 :::hint
 Octopus 4.1 is currently in beta, so if it is not available from the downloads page now, it will be soon. Watch this space!
