@@ -2,7 +2,7 @@
 title: Configuring the web.xml file during deployment
 description: Learn how a Java web.xml file can be customized during an Octopus deployment
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -11,11 +11,11 @@ tags:
 
 A typical deployment of a package with Octopus gives you the ability to replace markup in template file. This is great when you control the source package and can embed the required markup statements into configuration files, but what happens when you are deploying a package you don't control?
 
-In this blog post we'll take a look at how to use some simple scripting to update the web.xml file of a Java application sourced from Maven central and which we don't have any control over.
+In this blog post we'll take a look at how to use some simple scripting to update the `web.xml` file in a Java web application sourced from Maven central and which we don't have any control over.
 
 ## Download Octopus Deploy 4.1
 
-Start by grabbing a copy of Octopus Deploy 4.1 from the [downloads page](https://octopus.com/downloads). Version 4.1 has includes a number of new steps and features for integrating with Maven repos. You can find more information on installing Octopus from the [documentation](https://octopus.com/docs/installation).
+Start by grabbing a copy of Octopus Deploy 4.1 from the [downloads page](https://octopus.com/downloads). Version 4.1 has includes the ability to integrate with Maven repos. You can find more information on installing Octopus from the [documentation](https://octopus.com/docs/installation).
 
 :::hint
 Octopus 4.1 is currently in beta, so if it is not available from the downloads page now, it will be soon. Watch this space!
@@ -33,9 +33,9 @@ The next step is to setup Maven central as an external feed. You can refer to th
 
 ## Adding an Application User
 
-We'll be updating the Hawtio `WEB-INF/web.xml` file during deployment to configure the authentication. But before we do this, WildFly needs to be configured with the credentials that Hawtio users will log in with.
+We'll be updating the Hawtio `WEB-INF/web.xml` file during deployment to enable authentication. But before we do this, WildFly needs to be configured with the credentials that Hawtio users will log in with.
 
-Run the `bin/add-user.sh` (for Linux and Mac) or `bin\add-user.bat` (for Windows) scripts to add a new `Application User` to the `admin` group. In the example below I have created a user called `monitor`.
+Run the `bin/add-user.sh` (for Linux and Mac) or `bin\add-user.bat` (for Windows) script to add a new `Application User` to the `admin` group. In the example below we have created a user called `monitor`.
 
 ```
 PS C:\wildfly11_standalone\wildfly-11.0.0.Beta1\bin> .\add-user.bat
@@ -120,7 +120,7 @@ To make these changes we need to enable the `Custom deployment scripts` feature.
 
 ![Custom Deployment Scripts](configure-features.png "width=500")
 
-We'll use a c# Pre-Deployment Script to update the `web.xml` file before it is repacked and deployed to WildFly.
+We'll use a C# Pre-Deployment Script to update the `web.xml` file before it is repacked and deployed to WildFly.
 
 ![Pre-Deployment Script](pre-deployment-script.png "width=500")
 
@@ -186,6 +186,6 @@ Once logged in using the `monitor` user we created earlier, the welcome page wil
 
 ## Conclusion
 
-With some simple C# scripting we can make whatever changes are required to XML files that we don't otherwise control. This is an example of the powerful customiZations that can be applied to Java applications when being deployed by Octopus.
+With some simple C# scripting we can make whatever changes are required to XML files that we don't otherwise control. This is an example of the powerful customizations that can be applied to Java applications when being deployed by Octopus.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
