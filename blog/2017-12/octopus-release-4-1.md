@@ -2,14 +2,14 @@
 title: "Octopus December Release 4.1"
 description: This month's release of Octopus expands support for Java with Maven feeds and certificate deployments to WildFly and Tomcat.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-4-1.png
 bannerImage: blogimage-shipping-4-1.png
 tags:
  - New Releases
 ---
 
-This December release of Octopus continues the support for Java that was [introduced back in 3.17](/blog/2017-09/octopus-release-3-17.md), with the ability to export certificates as Java KeyStores, as well as configuring certificates directly within existing Tomcat 7+, WildFly 10+ and Red Hat JBoss EAP 6+ application servers. This release also allows Maven repositories to be configured as external Octopus feeds, meaning Octopus can now consume Maven artifacts as part of a deployment. Read on for all the exciting details!
+This December release of Octopus continues the support for Java that was [introduced back in 3.17](/blog/2017-09/octopus-release-3-17.md), with the ability to export certificates as Java KeyStores, as well as configuring certificates directly within existing Tomcat 7+, WildFly 10+ and Red Hat JBoss EAP 6+ application servers. This release also allows Maven repositories to be configured as external Octopus feeds, meaning Octopus can now consume Maven artifacts as part of a deployment.  Read on for all the exciting details!
 
 ## In this post
 
