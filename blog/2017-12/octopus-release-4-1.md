@@ -2,7 +2,7 @@
 title: "Octopus December Release 4.1"
 description: This month's release of Octopus expands support for Java with Maven feeds and certificate deployments to WildFly and Tomcat.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-4-1.png
 bannerImage: blogimage-shipping-4-1.png
 tags:
