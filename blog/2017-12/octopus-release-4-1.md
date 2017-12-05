@@ -17,9 +17,7 @@ This December release of Octopus continues the support for Java that was [introd
 
 ## Release Tour
 
-:::warning
-Need to add release video here.
-:::
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vKwv56oYSyY" frameborder="0" allowfullscreen></iframe>
 
 ## Export Certificates as Java KeyStores and to WildFly, JBoss EAP and Tomcat
 
