@@ -13,13 +13,13 @@ This January release of Octopus provides a number of security enhancements such 
 an additional level of security ensuring tasks can't do anything they aren't supposed to. In addition there are a number of changes which we
 are including as part of this update in preparation for [Octopus in the cloud](https://octopus.com/cloud/register-interest).
 
-# In this post
+## In this post
 !toc
 
-# Run on Server account
+## Run on Server account
 
 
-# Breaking Changes
+## Breaking Changes
 
 * [Package acquisition can sometimes be too parallel](https://github.com/OctopusDeploy/Issues/issues/3974)
 * [Auto machine removal timing does not take into account if Octopus Server is offline](https://github.com/OctopusDeploy/Issues/issues/3924)
