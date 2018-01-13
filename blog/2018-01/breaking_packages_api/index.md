@@ -7,7 +7,7 @@ tags:
  - New Releases
  - Architecture
 ---
-Building APIs are hard and in our case, _all_ user interaction with Octopus is through our API. Whether that's through the built-in web portal, the `Octopus.Client` libraries, the various 3rd party CI plugins or even directly through a curl request, the Octopus Server API is the common language that all these clients speak. Designs for the endpoint that searches for packages were made back when the built-in feed and NuGet feeds were the only options available. This structure becomes less applicable as we expand our support and as such this particular API endpoint need to be redesigned.
+Building APIs are hard and in our case, _all_ user interaction with Octopus is through our API. Whether that's through the built-in web portal, the `Octopus.Client` libraries, the various 3rd party CI plugins or even directly through a curl request, the Octopus Server API is the common language that all these clients speak. The endpoints that search for packages were made back when the built-in feed and NuGet feeds were the only options available in Octopus. This design has becomes a sub-optimal fit as we expand our support to other feed types and as such this particular API endpoint need to be redesigned.
 
 ## Monolith API endpoint
 Our old API for searching for packages or versions looked like
@@ -16,7 +16,7 @@ Our old API for searching for packages or versions looked like
 Take a look at that list of query string parameters. Thats because the old packages API was used for two different things.
 
 1. Searching For Package
-    * Package autocomplete input field for package steps.
+    * Package autocomplete input field while designing package steps.
     * Testing external feeds
 
 2. Searching For Package Version
@@ -27,9 +27,9 @@ Although we decided to expose the results of these two operations with a resourc
 
 * Searching for a package involves using a search term and looking up a package index for packages that partially match that name. The intended result of that is to find and use the relevant package name.
 
-* When searching for a package version on the other hand you (typically) have the package name that is of interest, and you want to search through all the versions available for that specific package, potentially filtering using a version range or pre-release prefix. The expected result of _this_ search is information about the _specific version instances_ which could include publish dates, release notes, descriptions, etc depending on the package type.
+* When searching for a package version on the other hand you (typically) have the package name that is of interest. You want to search through all the versions available for that specific package, potentially filtering using a version range or pre-release prefix. The expected result of _this_ search is information about the _specific version instances_ which could include publish dates, release notes, descriptions, etc depending on the package type.
 
-From the implementation point of view however, all we know is that we need to return an `IPackage` resource for either case regardless of what information needs to come back. So even if we are just looking to find package names to populate an auto-complete drop down, we still expect to return objects with deep version information. This was ok in the past when we only supported NuGet feeds, since our APIs largely just sat on top of their existing ones, however as we start providing support for more feed types this pattern is unsustainable.
+From inside the server during the API call all we know is that we need to return an `IPackage` resource for either case regardless of what information needs to come back. So even if we are just looking to find package names to populate an auto-complete drop down, it is still expected to return objects with deep version information. This was ok in the past when we only supported NuGet feeds, since our APIs largely just sat on top of their existing ones, however as we start providing support for more feed types this pattern is unsustainable.
 
 Adding support for Docker and Maven feeds (and soon a GitHub feed) means that these package search API calls need to potentially perform N+1 calls to the external providers to get all the information to properly populate the `IPackage` DTO. When performing a package search request one request will retrieve the packages that match that name, and another will need to go out and get the latest version number _for each package_.
 
@@ -44,9 +44,9 @@ When sharing a common entry point but using query string parameters to overload 
 ## The Break up
 Given that we are effectively already treating the two different types of requests as two different API calls internally it makes sense to actually break the single monolith API endpoint into two separate endpoints. This way the code internally can be a bit more confident about what information the consumer really _needs_ given the operation. Likewise the consumer can be confident that the shape of the return type doesn't change as a result of changes to the query string.
 ![External Split](external_split.png)
-Another result of this split is that the actual data being passed over the wire will be much smaller since we no longer need to return a whole bunch of version specific information when just looking for a list of package names.
+Another side effect of this split is that the actual data being passed over the wire will be much smaller since we no longer need to return a whole bunch of version specific information when just looking for a list of package names.
 
-## Nothing to see here
-The old API will remain largely as-is for the time being until the next major bump in the future to ensure backwards compatibility for anyone using the HTTP API directly. For anyone not calling these HTTP endpoints or if your interaction takes place through the portal then you should notice no change at all and this whole post will ideally be meaningless to you. Since these package search APIs are effectively just wrappers that sit on top of the user-provided external feed APIs, if these changes do not suit user's requirements a better solution may be to interact with those external feeds directly.
+## What does that mean for you?
+The old API will remain largely as-is for the time being until the next major bump in the future to ensure backwards compatibility for anyone using the HTTP API directly. For anyone not calling these HTTP endpoints or if your interaction takes place through the portal then **you should notice no change at all** and this whole post will ideally be meaningless to you. Since these package search APIs are effectively just wrappers that sit on top of the user-provided external feed APIs, if these changes do not suit user's requirements a better solution may be to interact with those external feeds directly.
 
 ![Nothing To see](nothing_to_see.jpg)
