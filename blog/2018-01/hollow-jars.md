@@ -2,7 +2,7 @@
 title: An Introduction to Hollow JARs
 description: Learn what Hollow JARs are and how you can create them from you existing WAR files.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -37,7 +37,7 @@ First, clone the Ticket Monster source code from https://github.com/jboss-develo
 
 There are two changes we need to make to the `pom.xml` file under the `demo` subfolder to accommodate Java 9 and SwarmTool.
 
-First, we need to add a dependency on `javax.xml.bind:jaxb-api`. This is because the java.xml package is no longer part of [Java 9](https://stackoverflow.com/a/43574427/157605). If you try to compile the application under Java 9 without this additional dependency, you will receive the error:
+First, we need to add a dependency on `javax.xml.bind:jaxb-api`. This is because the `java.xml` package is no longer part of [Java 9](https://stackoverflow.com/a/43574427/157605). If you try to compile the application under Java 9 without this additional dependency, you will receive the error:
 
 ```
 java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
@@ -96,9 +96,9 @@ java -jar swarmtool-2017.12.1-standalone.jar -d com.h2database:h2:1.4.196 --holl
 
 The `-d com.h2database:h2:1.4.196` arguments instruct SwarmTool to add the H2 in memory database dependencies to the Hollow JAR. SwarmTool can detect most of the dependencies required to boot the WAR file by scanning the classes referenced by the application code. However it can not detect dependencies like database drivers, so we need to manually tell SwarmTool to include this dependency.
 
-The `–hollow` argument instructs SwarmTool to build a Hollow JAR that does not embed the WAR file. If we left this argument off, the WAR file would be embedded in the resulting JAR file, creating an UberJAR instead of a Hollow JAR.
+The `--hollow` argument instructs SwarmTool to build a Hollow JAR that does not embed the WAR file. If we left this argument off, the WAR file would be embedded in the resulting JAR file, creating an UberJAR instead of a Hollow JAR.
 
-At this point we have the two files that make up our Hollow JAR deployment. The WAR file at target/ticket-monster.war contains our application, while the ticket-monster-swarm.jar file is our Hollow JAR.
+At this point we have the two files that make up our Hollow JAR deployment. The WAR file at `target/ticket-monster.war` contains our application, while the `ticket-monster-swarm.jar` file is our Hollow JAR.
 
 ## Executing a Hollow JAR
 
