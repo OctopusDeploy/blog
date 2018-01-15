@@ -3,8 +3,8 @@ title: "Reflections on 2017"
 description: "A recap of 2017, including progress on our roadmap and a general company update"
 author: paul.stovell@octopus.com
 visibility: private
-metaImage: metaimage-shipping-4-2.png
-bannerImage: blogimage-shipping-4-2.png
+metaImage: reflections-2017-blogimage.png
+bannerImage: reflections-2017-blogimage.png
 tags:
  - Company
 ---
@@ -90,7 +90,7 @@ Unfortunately, we didn't make any progress on this in 2017. When we split up the
 
 In 2018 we'll be focusing heavily on this, but that's a subject for another post. 
 
-###Octopus Slack App 
+### Octopus Slack App 
 
 In the 2017 roadmap we planned to build a first-class "ChatOps" experience for Octopus with Slack. Bots were all the rage in 2017, and we have one that we use internally for our own deployments with Octopus. Unfortunately again, there was no owner for this, so it fell through the cracks. 
 
@@ -138,7 +138,7 @@ A few months ago we realized just how much our procrastination on this was sendi
 
 We also made progress in a number of areas not directly related to our roadmap. 
 
-###Frontend refactor - Angular to React
+### Frontend refactor - Angular to React
 
 Octopus 4.0 was a complete UI overhaul, as we converted it from an aging AngularJS (1.0) UI to React. We started it in earnest with a smaller team in around April/May, and didn't ship it until early November - and by then half the developers at the company were involved in it. 
 
@@ -164,6 +164,10 @@ At the start of 2017 I hadn't planned for Octopus to do much in the way of Java 
 - Added a number of Java deployment steps to Octopus
 - (4.1) Added Maven feeds and certificate support for Java deployments
 
+### Stability
+
+This isn't as exciting as other topics, but much of our focus in early 2017 went into stability. We fixed a large number of small bugs and issues, and we made some big performance improvements and security enhancements. 
+
 ## Business progress
 
 Stepping away from the product for a bit, I want to reflect on the progress Octopus Deploy made as a business in 2017, and some of the challenges we're facing. If you mostly follow this blog for technical/product content, this might not be so interesting, but it might give you some context that will help you to understand our decisions to date. 
@@ -185,46 +189,11 @@ Most of these were so big, that we convinced themselves they had dependencies on
 
 Something I've learned is that we at Octopus are at our best when we focus on smaller projects that improve the product bit by bit in an agile, iterative way. That's how we did the onboarding work, that's how we added Java support. When it comes to bigger projects like this, we tended to drift and lose our way, and as a result wasted a lot of time. In previous years we might not have even attempted such projects; in 2017 we were confident we could, but it seems like we're just not quite there yet. 
 
-Our biggest external challenge in 2017, I'd say, came from our relationship with Microsoft. 
+The biggest external challenge we've faced in 2017 comes from Microsoft and the VSTS Release Management product. While I think Octopus is still far ahead of RM for complex deployments, RM is clearly catching up with us for simpler, Azure-heavy deployments. We've enjoyed the competition as far as product innovation goes, and VSTS have made a solid cloud offering which we've been far too slow to catch up on. 
 
-### Competition with Microsoft
+What made it more difficult this year is that Microsoft have begun to leverage other parts of their ecosystem to support RM. RM is essentially now free, and they've bundled a right-click, "Configure Continuous Delivery" option into Visual Studio. The combination of built into TFS, free, and promoted from within VS puts Octopus at significant disadvantage in such a Microsoft-centric ecosystem. "Where does an 800-lb. gorilla sit? Wherever he pleases," as the saying goes.
 
-If you build software in the Microsoft ecosystem, Microsoft are clearly the 800-lb. gorilla. For Octopus it's a complex relationship:
-
-- We integrate heavily with Microsoft services, like Azure
-- Our customers today are primarily in the Microsoft ecosystem
-- Our product is built on the Microsoft stack
-- Microsoft are also our biggest competition
-
-The last point really hit home this year, and has defined most of our strategy over the last 6 months. 
-
-Octopus helps customers to automate their deployments. A few customers use Octopus with Jenkins. Many use it with TeamCity. The majority - I'd guess about 60% - use it with Team Foundation Server. In 2013 Microsoft acquired a release management product called InRelease from InCycle software, and bundled it with TFS. It didn't gain much traction - it was overly complicated, had a big workflow editor, and didn't actually do a lot to help people actually deploy things. 
-
-Around 2015, they began to rewrite the build pipeline in TFS/VSTS, and eventually rewrote much of both the build and release aspects - I doubt there's much of the original InRelease code left behind. 
-
-It's not conventional wisdom as a CEO to mention a competitor, but VSTS today has a release management story that's gaining ground on Octopus. I think that for more complex deployments, Octopus still has a strong lead, but for simpler cloud-focused deployments I'm not surprised to VSTS RM gaining traction. 
-
-Here's a summary of where we find ourselves:
-
-- We're competing with Microsoft in an ecosystem that largely prefers Microsoft tooling
-- VSTS RM is essentially free. Technically they charge for concurrent deployments; in reality even for very large enterprises, it's essentially free or in the very low digits. They know this. 
-- Visual Studio 2017 introduced a right-click, "Configure Continuous Delivery..." option in the solution explorer that sets your project up with VSTS build and release management. Octopus isn't an option. 
-- VSTS RM was in the keynote at Build this year, and they're doing a lot of work to promote it.
-
-As an ISV, when you partner with Microsoft, there are a few upsides - you can get to the product teams a little more easily, as an example. And teams that have very little traction of their own - like an esoteric new Azure service that isn't getting a lot of usage - will be eager to reach out and help you build integrations. Some teams at Microsoft were kind enough to invite us to exhibit at Build, which was fantastic.  That partnership wasn't enough to insulate us when Octopus came into the VSTS crosshairs though. 
-
-For the record, I think healthy competition is great. VSTS have a roadmap that brings it into closer competition to Octopus, and that's fine. Bring it on!
-
-We've seen our new customer growth stall heavily over the last 6 months, and I think a big part of that is the competition with VSTS. And I'm reminded that the product is free, integrated with Visual Studio, and keynoting conferences with it, and I realize that we're in trouble. 
-
-That might help to explain some of our direction in 2017/2018:
-
-- We'll keep competing head-on with VSTS, starting with our own cloud-hosted service. I think my team is just as clever and technically brilliant as the teams at Microsoft, and I think we can beat them head on. 
-- You'll see us diversifying outside of the Microsoft ecosystem quite a bit. Particularly, by supporting Java and other platforms, and integrating with AWS. It's simply too dangerous to be tied to the Microsoft stack. 
-- We'll focus on our enterprise offering. For large enterprises and complex deployments, Octopus still has a very strong lead over VSTS, and we'll need to extend that lead in order to find ways to grow. 
-- We'll continue to work with technical folks at Microsoft when it comes to adding new features that our users are asking for. But we're no longer partnered with Microsoft in a marketing/ecosystem sense, and we won't be going out of our way to add support for Microsoft solutions that our customers aren't asking for. 
-
-I love what Microsoft are doing with .NET Core and the general openness Microsoft have been improving over the last few years (now that Azure makes it in their interests to play nicely with others). I have tremendous respect for many of the people I know at Microsoft and really want to do the right thing by customers. But as an ISV, I'm pretty disappointed with Microsoft as a partner. 
+We'll continue to compete with Microsoft in 2018, and together we'll push the whole industry forward as a result, but don't be surprised if you see us focusing equally on Java/AWS as we do on .NET/Azure. 
 
 ## Wrap up
 
