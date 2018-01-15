@@ -25,7 +25,7 @@ One decision we made midway through the year was to expand towards hiring people
 
 The result is that we were able to hire a good number of incredibly smart and professional people throughout 2017, many of which weren't based in Brisbane. Here's a photo from our 2018 Kick Off event with everyone together. It makes me so proud to work with such a fantastic group of folks. 
 
-![reflections-2017-kickoff.JPG](reflections-2017-kickoff.JPG)
+![Octopus team at Kick Off](reflections-2017-team-kickoff.jpg)
 
 If you're curious, here's how the roles break down. 
 
