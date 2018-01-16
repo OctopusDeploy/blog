@@ -27,9 +27,9 @@ Octopus already has the ability to [manage your certificates](https://octopus.co
 
 You can find out more by viewing the documentation for these steps:
 
-* [Exporting a Certificate to a Java Keystore](https://octopus.com/docs/v/4.1/deploying-applications/certificates/java-keystore-export)
-* [Importing Certificates into Tomcat](https://octopus.com/docs/v/4.1/deploying-applications/certificates/tomcat-certificate-import)
-* [Importing Certificates into WildFly and JBoss EAP](https://octopus.com/docs/v/4.1/deploying-applications/certificates/wildfly-certificate-import)
+* [Exporting a Certificate to a Java Keystore](https://octopus.com/docs/deploying-applications/certificates/java-keystore-export)
+* [Importing Certificates into Tomcat](https://octopus.com/docs/deploying-applications/certificates/tomcat-certificate-import)
+* [Importing Certificates into WildFly and JBoss EAP](https://octopus.com/docs/deploying-applications/certificates/wildfly-certificate-import)
 
 ## Maven Repositories as External Feeds
 
@@ -45,7 +45,7 @@ All your favorite features like channels and version rules also work with Maven 
 
 ![Maven version ranges](maven-version-ranges.png "width=500")
 
-Get more details about using Maven repositories as external feeds in our [documentation](https://octopus.com/docs/v/4.1/deploying-applications/maven-feeds).
+Get more details about using Maven repositories as external feeds in our [documentation](https://octopus.com/docs/deploying-applications/maven-feeds).
 
 ## More configuration enhancements
 
