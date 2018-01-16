@@ -16,7 +16,7 @@ Yesterday I posted our reflections on 2017. I wrote about some of the things we 
 
 ## Themes
 
-There are five key themes to the work we'll be doing in 2018. 
+There are four key themes to the work we'll be doing in 2018. 
 
 1. Bringing a cloud-hosted version of Octopus to market
 2. Expanding Octopus outside of the Microsoft ecosystem
