@@ -5,6 +5,7 @@ author: shaun.marx@octopus.com
 visibility: private
 metaImage: metaimage-shipping-4-2.png
 bannerImage: blogimage-shipping-4-2.png
+published: 2018-01-18
 tags:
  - New Releases
 ---

@@ -5,6 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 metaImage: metaimage-shipping-4-1.png
 bannerImage: blogimage-shipping-4-1.png
+published: 2017-12-05
 tags:
  - New Releases
 ---

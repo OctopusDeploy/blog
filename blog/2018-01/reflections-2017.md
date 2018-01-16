@@ -5,6 +5,7 @@ author: paul.stovell@octopus.com
 visibility: public
 metaImage: metaImage-reflection2017.png
 bannerImage: blogImage-reflection2017.png
+published: 2018-01-15
 tags:
  - Company
 ---
