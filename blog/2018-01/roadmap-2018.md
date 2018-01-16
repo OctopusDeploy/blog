@@ -64,7 +64,7 @@ With all of this at our fingertips, we can do so much more than deploying.
 - We can run processes other than deployment. Any kind of "maintenance" or "operations" process or run book could be modelled in Octopus:
   - Disaster recovery failover processes 
   - Health check & compliance check processes 
-  - Restoring a production database backup your test environment
+  - Restoring a production database backup to your test environment
   - Running automated UI tests against a recently deployed environment
 - Running these on a schedule, manually with parameters, or as a hook when an alert is raised by a monitoring tool
 
