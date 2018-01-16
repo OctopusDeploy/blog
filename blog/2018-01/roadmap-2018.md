@@ -2,7 +2,7 @@
 title: "Octopus Deploy 2018 Roadmap"
 description: "This post outlines our roadmap for 2018, and all of the improvements we're planning to make to Octopus over the next year."
 author: paul.stovell@octopus.com
-visibility: private
+visibility: public
 metaImage: metaImage-roadmap2018.png
 bannerImage: blogImage-roadmap2018.png
 published: 2018-01-16
