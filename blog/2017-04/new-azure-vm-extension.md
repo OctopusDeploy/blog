@@ -96,4 +96,4 @@ Create your ARM template as normal, and add a `resources` element under your `Mi
 ]
 ```
 
-For further information and examples, including instructions for Azure Service Management (ASM) mode, Azure CLI and more, please [checkout out our documentation](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines).
+For further information and examples, including instructions for Azure Service Management (ASM) mode, Azure CLI and more, please [checkout out our documentation](https://octopus.com/docs/installation).
