@@ -22,7 +22,7 @@ This December release of Octopus continues the support for Java that was [introd
 
 ## Export Certificates as Java KeyStores and to WildFly, JBoss EAP and Tomcat
 
-Octopus already has the ability to [manage your certificates](https://octopus.com/docs/deploying-applications/certificates), and now those certificates can be directly configured within an existing WildFly 10+ or Red Hat JBoss EAP 6+ application server with the `Configure certificate for WildFly or EAP` step, or within an existing Tomcat 7+ application server with the `Deploy a certificate to Tomcat` step. For those wishing to configure their certificates manually, the new `Deploy a keystore to the filesystem` step allows a certificate managed by Octopus to be saved as a Java KeyStore.
+Octopus already has the ability to [manage your certificates](https://octopus.com/docs/deploying-applications/certificates), and now those certificates can be directly configured within an existing WildFly 10+ or Red Hat JBoss EAP 6+ application server with the `Configure certificate for WildFly or EAP` step, or, within an existing Tomcat 7+ application server with the `Deploy a certificate to Tomcat` step. For those wishing to configure their certificates manually, the new `Deploy a keystore to the filesystem` step allows a certificate managed by Octopus to be saved as a Java KeyStore.
 
 ![New Java Steps](java-steps.png "width=500")
 
