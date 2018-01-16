@@ -19,7 +19,7 @@ Today, I'm happy to announce that we've re-written the extension from scratch, a
 
 The new extension allows you to install or uninstall a Tentacle, as well as update the Tentacle's configuration on an Azure Virtual Machine.
 
-You can do this via the [Azure Portal](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines/via-the-azure-portal), [PowerShell](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines/via-powershell), [Azure CLI](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines/via-the-azure-cli) or [ARM Template](https://octopus.com/docs/installation/installing-tentacles/azure-virtual-machines/via-an-arm-template). (I'm told that this even works via [Terraform](https://www.terraform.io/docs/providers/azurerm/r/virtual_machine_extension.html), but thats a tad outside the scope of this post!)
+You can do this via the [Azure Portal](https://octopus.com/docs/infrastructure/windows-targets/azure-virtual-machines/via-the-azure-portal), [PowerShell](https://octopus.com/docs/infrastructure/windows-targets/azure-virtual-machines/via-powershell), [Azure CLI](https://octopus.com/docs/infrastructure/windows-targets/azure-virtual-machines/via-the-azure-cli) or [ARM Template](https://octopus.com/docs/infrastructure/windows-targets/azure-virtual-machines/via-an-arm-template). (I'm told that this even works via [Terraform](https://www.terraform.io/docs/providers/azurerm/r/virtual_machine_extension.html), but thats a tad outside the scope of this post!)
 
 ## Using the new Azure Portal
 
