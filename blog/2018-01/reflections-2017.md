@@ -3,8 +3,8 @@ title: "Reflections on 2017"
 description: "A recap of 2017, including progress on our roadmap and a general company update"
 author: paul.stovell@octopus.com
 visibility: public
-metaImage: reflections-2017-blogimage.png
-bannerImage: reflections-2017-blogimage.png
+metaImage: metaImage-reflection2017.png
+bannerImage: blogImage-reflection2017.png
 tags:
  - Company
 ---
