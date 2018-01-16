@@ -94,6 +94,7 @@ Octopus is becoming the standard deployment tool at more and more companies, and
 ## Wrapping up
 
 > "No battle plan ever survives first contact with the enemy"
+>
 >  &mdash; <cite>Helmuth von Moltke</cite>
 
 We may not accomplish everything on this list in 2018, and we may do other things that aren't on this list as the year evolves. I'm sure everyone reading this will understand that that's the nature of a roadmap - this is our attempt to outline our plans and goals for the year, and it is likely to change. That said, I hope there's something on this list for everyone. Happy deployments!
