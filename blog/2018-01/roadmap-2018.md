@@ -76,7 +76,7 @@ Octopus is becoming the standard deployment tool at more and more companies, and
 
 - A new "Spaces" feature will let you split up your Octopus server by teams or departments, giving each their own isolated projects, environments, delegated permissions, and so on. 
 - "Workers" will allow scripts that are today marked "Run on Octopus" to run somewhere else (like a build agent). This will make it easier to isolate your Octopus server from side effects. 
-- We'll be making big improvements to the scalability and performance of Octopus. This is necessary for ourselves with hosted Octopus, but will benefit Octopus customers greatly too. 
+- We'll be making big improvements to the scalability and performance of Octopus. This is necessary for ourselves with cloud-hosted Octopus, but will benefit Octopus customers greatly too. Managing cloud-hosted Octopus will give us much deeper insight into what it looks like to run Octopus at scale.
 - We'll continue to hunt for improvements to performance, quality and user experience. 
 - We'll build [Remote release promotions](https://octopus.com/blog/remote-release-promotions-rfc).
 - We'll continue to address UserVoice suggestions, and we'll ensure we do something about anything that makes it into the top 10 (or, clearly decide we aren't going to do them). Today those are:
@@ -93,7 +93,7 @@ Octopus is becoming the standard deployment tool at more and more companies, and
 
 ## Wrapping up
 
-> "N battle plan ever survives first contact with the enemy"
+> "No battle plan ever survives first contact with the enemy"
 >  - Helmuth von Moltke
 
 We may not accomplish everything on this list in 2018, and we may do other things that aren't on this list as the year evolves. I'm sure everyone reading this will understand that that's the nature of a roadmap - this is our attempt to outline our plans and goals for the year, and it is likely to change. That said, I hope there's something on this list for everyone. Happy deployments!
