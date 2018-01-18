@@ -18,7 +18,7 @@ This January release of Octopus Deploy provides a number of security enhancement
 
 ## We've changed our versioning strategy
 
-Read more about [why we changed](/blog/2018-01/version-change-2018.md) which also dives into our evolution as a software product company.
+Read more about [why we changed](version-change-2018.md) which also dives into our evolution as a software product company.
 
 ## History: Running tasks on the Octopus Server
 
@@ -44,7 +44,7 @@ We outline these requirements and how to configure your Octopus Server in our do
 
 ## Future: External workers
 
-We [talked about workers briefly in our 2018 roadmap](roadmap-2018#scalability-and-continual-improvements) and will be talking in more detail with you all about this in the near future. In summary, workers will be an evolution of `Run on Server` which will let you delegate tasks in a deployment to a worker which may be external to your Octopus Server. We still plan to ship a built-in worker which you can configure as we described earlier, or disable it altogether as you see fit.
+We [talked about workers briefly in our 2018 roadmap](roadmap-2018.md#scalability-and-continual-improvements) and will be talking in more detail with you all about this in the near future. In summary, workers will be an evolution of `Run on Server` which will let you delegate tasks in a deployment to a worker which may be external to your Octopus Server. We still plan to ship a built-in worker which you can configure as we described earlier, or disable it altogether as you see fit.
 
 ## Breaking Changes
 
