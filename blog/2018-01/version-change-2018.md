@@ -12,7 +12,7 @@ tags:
 
 A few days ago Paul posted a [retrospective on Octopus Deploy in 2017](reflections-2017.md) followed by our [roadmap for 2018](roadmap-2018.md). In this post I'll discuss why we've decided to align our versioning strategy for Octopus Deploy with our monthly release cadence.
 
-But rather than [spend too many keystrokes](http://keysleft.com/) on the describing the reasons and benefits, I would like to describe how we arrived at this point - maybe it will help you too?
+But rather than [spend too many keystrokes](http://keysleft.com/) on describing the reasons and benefits, I would like to describe how we arrived at this point - maybe it will help you too?
 
 ![Roadmap for 2018](blogimage-shipping-2018-1.png)
 
