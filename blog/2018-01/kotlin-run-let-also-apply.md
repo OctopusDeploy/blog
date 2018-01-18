@@ -70,7 +70,7 @@ fun letExample2 () {
 
 `also` and `apply` are typically used when the value of the object they are called against needs to be used for some mutating operation. Any return value from the `also` and `apply` blocks is ignored, and the value of the original object is returned.
 
-In this way we can make use of the original value to perform some mutating logic (whose return value is not consumed by our own code), while retaining for the original value.
+In this way we can make use of the original value to perform some mutating logic (whose return value is not consumed by our own code), while retaining the original value.
 
 Like the `run` function, `apply` exposes the value of the object it is called against as `this`.
 
