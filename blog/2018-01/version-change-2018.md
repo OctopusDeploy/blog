@@ -36,6 +36,10 @@ We like to take an experimental approach to how we run our company. Rather than 
 
 > Before you pull down a fence, first understand why it was put there in the first place.
 
+If G. K. Chesterton was a developer in 2018 he would probably have said:
+
+> Don't pull down a fence until you've read the git history!
+
 Maybe part of our story will help you with your own scenario?
 
 ### Versioning things
@@ -101,6 +105,6 @@ Each of our teams are still working with a high level of autonomy, but we have i
 
 ## Conclusion
 
-Not too much is changing, we're just aligning our version number with our monthly and yearly cadence, and the pricing and licensing stays the same. This means we won't be using our major version number to communicate inferred meaning anymore, and that's about it. Now we are forced to make smaller, more incremental changes to the product, which is good for everyone.
+Not too much is changing. **The pricing and licensing stays the same.** We're simply aligning our version number with our monthly and yearly cadence. This means we won't be using our major version number to communicate inferred meaning anymore, and that's about it. Now we are forced to make smaller, more incremental changes to the product, which is good for everyone.
 
-I think the real conclusion of this post is: **continuous delivery is a highly effective agent of change**. By continuing to embrace one of our company's own core values, we revisited our versioning strategy several times, and fundamentally changed the way we plan, design, build, and ship our own software.
+With the boring bits over, I think the real conclusion of this post is: **continuous delivery is a highly effective agent of change**. By continuing to embrace one of our company's own core values, we revisited our versioning strategy several times, and fundamentally changed the way we plan, design, build, and ship our own software.
