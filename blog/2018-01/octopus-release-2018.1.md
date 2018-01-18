@@ -10,17 +10,41 @@ tags:
  - New Releases
 ---
 
-This January release of Octopus Deploy provides a number of security enhancements such as being able to run tasks on on the Octopus Server as a different user account. You'll also notice our new versioning strategy: what would normally have been Octopus `4.2` is actually `2018.1`.
+This January release of Octopus Deploy is primarily a security release driven by [Octopus Cloud](https://octopus.com/cloud/register-interest) and will also benefit all of our customers. We highly recommend upgrading.
+
+You'll also notice our new versioning strategy: what would normally have been Octopus `4.2` is actually `2018.1`.
 
 ## In this post
 
 !toc
 
+## Octopus Cloud alpha
+
+One of our big drivers for this year is to bring our hosted Octopus offering to market, called **Octopus Cloud**. If you are interested in being part of our closed alpha program, you can [register your interest today](https://octopus.com/cloud/register-interest)! The closed alpha will kick off very soon, followed by an open beta, the official launch, and later in the year we will be launching our Data Centre edition.
+
+Learn more about [Octopus Cloud](https://octopus.com/purchase).
+
 ## We've changed our versioning strategy
 
 Read more about [why we changed](version-change-2018.md) which also dives into our evolution as a software product company.
 
-## History: Running tasks on the Octopus Server
+## Security enhancements
+
+BLAH BLAH
+
+## New built-in roles and permissions
+
+BLAH BLAH
+
+## Actively preventing escalation of privileges
+
+BLAH BLAH
+
+### Running tasks on the Octopus Server as a different user
+
+BLAH BLAH
+
+#### History: Running tasks on the Octopus Server
 
 Prior to Octopus `3.0` you required a Tentacle somewhere to do work as part of a deployment. If you wanted to deploy a web site to Azure, you would need to configure a Tentacle as a deployment target and use it as a jump box, when all you needed to do was push your package to Azure and call some APIs. That Tentacle wasn't really a deployment target at all.
 
@@ -30,7 +54,7 @@ In Octopus `3.3` we added a feature which lets you [run deployment steps on the 
 
 However, this convenience came at a cost: security. By default Octopus Server runs as the highly privileged `Local System` account on Windows. We typically recommend running Octopus Server as a different account, either a User or Managed Service Account (MSA), so you can grant specific privileges to that account.
 
-## Now: Running tasks on the Octopus Server as a different user
+## Now: Built-in worker as a different user
 
 In Octopus `2018.1` you can configure the built-in worker to execute tasks as a different user account. This user account can be a down-level account with very restricted privileges.
 
