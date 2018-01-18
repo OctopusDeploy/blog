@@ -2,7 +2,7 @@
 title: Why you should take a look at Kotlin's standard library
 description: See how run, let, also and apply can improve your Kotlin code.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -23,9 +23,9 @@ So what are the differences between these standard functions? To demonstrate the
 
 `run` and `let` are transformation functions. They take the value of the object they are called against, and return a new value.
 
-The difference between these function are the variables they expose to their block functions.
+The most visible difference between these function are the variables they expose to their block functions.
 
-The `run` function exposes the object that it was called from as `this` inside the block.
+The `run` function exposes the value of the object that it was called from as `this` inside the block.
 
 ```java
 @Test
@@ -38,7 +38,7 @@ fun runExample () {
 }
 ```
 
-The `let` function exposes the object that it was called from as `it` inside the block, while `this` is retained from the outer scope.
+The `let` function exposes the value of the object that it was called from as `it` inside the block, while `this` is retained from the outer scope.
 
 ```java
 @Test
@@ -117,7 +117,7 @@ fun alsoExample2() {
 
 I've described `run` and `let` as transformation functions, and `also` and `apply` as mutation functions.
 
-As you can see by the previous examples, `run` and `let` will also happily let you mutate state in their blocks (as we have done by writing to the console), so the distinction between transformation and mutation is conceptual rather than enforced by the language.
+As you can see by the previous examples, `run` and `let` will also happily let you mutate state in their function blocks (as we have done by writing to the console), so the distinction between transformation and mutation is conceptual rather than enforced by the language.
 
 However, this conceptual distinction is useful, as it allows you to describe the intention of your code, allowing you to gain an understanding of what the code does simply from its "shape".
 
@@ -238,9 +238,11 @@ Because the standard functions allow us to reduce the scope of some variables do
 
 Compare that to the original code, where each of the 6 variables could make use of any combination of those that proceed it. Just looking at the shape of the first code example gives us no idea how all the variables are related.
 
-Reducing variables also makes the code much easier to reason about. The [magical number](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) describes the limit of people's memory capacity as somewhere between 5 and 9. The 6 variables from the first version of the code means that function is pushing the limits of what an average person can hold in their memory. The 3 variables from the second version, plus one or two additional ones as we move in and out of the `let` and `also` function, places this code nicely within the average person's memory capacity.
+Reducing variables also makes the code much easier to reason about. The [magical number](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) describes the limit of people's memory capacity as somewhere between 5 and 9. Although this number is not a hard and fast rule, it rings true in my own experience.
 
-We have also been able to quickly identity two mutating functions thanks to the calls to `also`. This gives us an idea of how much work it would be to test this code, as mutating functions often indicate the presence of external state that will need to be mocked and validated in a testing environment.
+The 6 variables from the first version of the code mean that function is pushing the limits of what an average person can hold in their memory. The 3 variables from the second version, plus one or two additional ones as we move in and out of the `let` and `also` function, places this code nicely within the average person's memory capacity.
+
+We have also been able to quickly identity two mutating functions thanks to the calls to `also`. This gives us an idea of how much additional work it would be to test this code, as mutating functions often indicate the presence of external state that will need to be mocked and validated in a testing environment.
 
 In our case the first mutation function is setting parameters on an object that doesn't have a builder interface, and doesn't accept the properties in the constructor. This doesn't require external state to be tracked.
 
