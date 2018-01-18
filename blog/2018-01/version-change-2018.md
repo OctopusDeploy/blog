@@ -3,8 +3,8 @@ title: "Octopus Deploy version changes for 2018"
 description: "This post outlines our decision to change versioning strategy for Octopus Deploy to a style matching our iterative, monthly release cadence. It also describes how we arrived at our decision and how continuous delivery has fundamentally changed the way we plan, build, and release our software."
 author: michael.noonan@octopus.com
 visibility: private
-metaImage: metaImage-roadmap2018.png
-bannerImage: blogImage-roadmap2018.png
+metaImage: metaimage-shipping-2018-1.png
+bannerImage: blogimage-shipping-2018-1.png
 published: 2018-01-19
 tags:
  - Company
@@ -14,7 +14,7 @@ A few days ago Paul posted a [retrospective on Octopus Deploy in 2017](reflectio
 
 But rather than [spend too many keystrokes](http://keysleft.com/) on the describing the reasons and benefits, I would like to describe how we arrived at this point - maybe it will help you too?
 
-![Roadmap for 2018](blogImage-roadmap2018.png)
+![Roadmap for 2018](blogimage-shipping-2018-1.png)
 
 ## What are we changing?
 
