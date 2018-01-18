@@ -11,9 +11,9 @@ tags:
 
 I recently completed Dave Fancher's [Functional Programming with C#](https://app.pluralsight.com/library/courses/functional-programming-csharp/table-of-contents) course on Pluralsite. I enjoyed the course, because it provides some clear and practical advice on how to approach function programming in C#. In it Dave provides two extension methods, `Map` and `Tee`, which allow you to transform objects and pass them onto other mutating methods, along with examples on how and why you would use them.
 
-I'd recommend the course, even for Kotlin developers, because the ideas presented by Dave map nicely to similar methods Kotlin provides as part of its [standard library](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/util/Standard.kt).
+I'd recommend the course, even for Kotlin developers, because the ideas presented by Dave map nicely (no pun intended) to similar methods Kotlin provides as part of its [standard library](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/util/Standard.kt).
 
-The `run` and `let` methods are roughly equivalent to the `Map` method, while the `also` and `apply` methods are roughly equivalent to the `Tee` method.
+The Kotlin `run` and `let` methods are roughly equivalent to the C# `Map` method, while the Kotlin `also` and `apply` methods are roughly equivalent to the C# `Tee` method.
 
 So what are the differences between these standard functions? To demonstrate the differences I have created a simple Kotlin project, which you can find on [GitHub](https://github.com/mcasperson/kotlin-demo).
 
@@ -244,4 +244,4 @@ In our case the first mutation function is setting parameters on an object that 
 
 ## Conclusion
 
-While they are quite simple, the standard functions in Kotlin provide a powerful way to express the intention of your code. They will reduce variable counts, make code much easier to reason about, and highlight mutation. 
+While they are quite simple, the standard functions in Kotlin provide a powerful way to describe the intention of your code. They will reduce variable counts, make code much easier to reason about, and highlight mutation.
