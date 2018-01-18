@@ -77,7 +77,7 @@ This wasn't a versioning problem, this was a **planning** problem! We were shipp
 
 ### Starting the cadence
 
-In April of 2017 we committed to shipping a new "feature" release of Octopus Deploy each month, starting with Octopus Deploy 3.12](/blog/2017-04/octopus-april-release.md). From that post:
+In April of 2017 we committed to shipping a new "feature" release of Octopus Deploy each month, starting with [Octopus Deploy 3.12](/blog/2017-04/octopus-april-release.md). From that post:
 
 > This means we’ll ship a new release on a predictable schedule that you can count on. These releases will include new features, and a roll-up of all the patches from that month.  We are doing this experiment with the following goals in mind:
 
