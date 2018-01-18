@@ -19,9 +19,9 @@ So what are the differences between these standard functions? To demonstrate the
 
 ## run vs let
 
-`run` and `let` are transformation functions. They take the value of the object they are called against, and return a new object.
+`run` and `let` are transformation functions. They take the value of the object they are called against, and return a new value.
 
-The difference is they expose different variables to their block functions.
+The difference between these function are the variables they expose to their block functions.
 
 The `run` function exposes the object that it was called from as `this` inside the block.
 
@@ -68,7 +68,9 @@ fun letExample2 () {
 
 `also` and `apply` are typically used when the value of the object they are called against need to be used for some mutating operation. Any return value from the `also` and `apply` blocks are ignored, and the value of the original object is returned.
 
-Like the `run` function, `apply` exposes the value of the object it is called against as `this`. The result of `apply` is the same as the original object.
+Like the `run` function, `apply` exposes the value of the object it is called against as `this`.
+
+The value returned by `apply` is the same as the object that `apply` was called on. In this way we can make use of the original value to perform some mutating logic (whose return value is not consumed by our own code), and then retain the original value.
 
 ```java
 @Test
@@ -115,7 +117,7 @@ I've described `run` and `let` as transformation functions, and `also` and `appl
 
 As you can see by the previous examples, `run` and `let` will also happily let you mutate state in their blocks (as we have done by writing to the console), so the distinction between transformation and mutation is conceptual rather than enforced by the language.
 
-However, this conceptual distinction is useful, as it allows you to describe the intention of your code, allowing you to get a good understanding of what the code does simply from its "shape".
+However, this conceptual distinction is useful, as it allows you to describe the intention of your code, allowing you to gain an understanding of what the code does simply from its "shape".
 
 ## What is the shape of code?
 
@@ -143,7 +145,7 @@ fun createCloudFormationStack(newStackName: String) {
 }
 ```
 
-Now lets take out all the function calls, and see what the shape of the code is.
+Now let's take out all the function calls, and see what the shape of the code is.
 
 ```java
 val credentialsProvider = ...
@@ -163,7 +165,7 @@ The variable names give us some indication as to the kinds of objects we are cre
 
 Otherwise though there is not a lot of indication as to what this code is doing.
 
-Lets take a look at a version using the standard library functions.
+Let's take a look at a version using the standard library functions.
 
 ```java
 fun createCloudFormationStack2(newStackName: String) {
@@ -192,7 +194,7 @@ fun createCloudFormationStack2(newStackName: String) {
 }
 ```
 
-Stripping out all the function calls (leaving in the standard functions), we get this "shape" of the code.
+Stripping out all the function calls (leaving in the standard functions), we get this shape of the code.
 
 ```java
 val client = ... .let { credentials ->
@@ -225,17 +227,21 @@ What does this shape tell us?
 
 We can extract a lot more context from the code.
 
-The transformations of objects are clearly described:
+The transformations of objects are clearly described as:
 * `credentials` -> `client`
 * `path` -> `templateFile` -> `template`
 * `request` -> `response`
 
-Because the standard functions allow us to reduce the scope of some variables down to a single block, there are exponentially fewer combinations of objects that could possibly be used. The construction of the `template` variable could make use of the `client` (even though we don't, the shape of the code doesn't prevent it), and `client` and `template` could be used in the final block creating the `request` (which they are).
+Because the standard functions allow us to reduce the scope of some variables down to a single block, there are significantly fewer combinations of objects that could be used. The construction of the `template` variable could make use of the `client` (even though we don't, the shape of the code doesn't prevent it), and `client` and `template` could be used in the final block creating the `request` (which they are).
 
 Compare that to the original code, where each of the 6 variables could make use of any combination of those that proceed it. Just looking at the shape of the code gives us no idea how all the variables are related.
 
-Reducing variables also makes the code much easier to reason about. The [magical number](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) describes the limit of people's memory capacity. The 6 variables from the first version of the code means that function is pushing the limits of what an average person can hold in their memory. The 3 variables from the second version, plus one or two additional ones as we move in and out of the `let` and `also` function, places this code nicely within the average persons memory capacity.
+Reducing variables also makes the code much easier to reason about. The [magical number](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) describes the limit of people's memory capacity as somewhere between 5 and 9. The 6 variables from the first version of the code means that function is pushing the limits of what an average person can hold in their memory. The 3 variables from the second version, plus one or two additional ones as we move in and out of the `let` and `also` function, places this code nicely within the average person's memory capacity.
 
-We have also been able to quickly identity two mutating functions thanks to the calls to `also`. This gives us a quick idea of how much work it would be to test this code, as mutating functions often indicate external state that will need to be mocked up in a testing environment.
+We have also been able to quickly identity two mutating functions thanks to the calls to `also`. This gives us an idea of how much work it would be to test this code, as mutating functions often indicate external state that will need to be mocked and validated in a testing environment.
 
-In our case the first mutation function is setting parameters on an object that doesn't have a builder interface, and doesn't accept the properties in the constructor. This doesn't require external state to be tracked. However the second mutating function writes to the console, which may or may not be important to test depending on the content of the application.
+In our case the first mutation function is setting parameters on an object that doesn't have a builder interface, and doesn't accept the properties in the constructor. This doesn't require external state to be tracked. However the second mutating function writes to the console, which may or may not be important to test depending on the context of the application.
+
+## Conclusion
+
+While they are quite simple, the standard functions in Kotlin provide a powerful way to express the intention of your code. They will reduce variable counts, make code much easier to reason about, and highlight mutation. 
