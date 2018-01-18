@@ -66,11 +66,11 @@ fun letExample2 () {
 
 ## also vs apply
 
-`also` and `apply` are typically used when the value of the object they are called against need to be used for some mutating operation. Any return value from the `also` and `apply` blocks are ignored, and the value of the original object is returned.
+`also` and `apply` are typically used when the value of the object they are called against needs to be used for some mutating operation. Any return value from the `also` and `apply` blocks is ignored, and the value of the original object is returned.
+
+In this way we can make use of the original value to perform some mutating logic (whose return value is not consumed by our own code), while retaining for the original value.
 
 Like the `run` function, `apply` exposes the value of the object it is called against as `this`.
-
-The value returned by `apply` is the same as the object that `apply` was called on. In this way we can make use of the original value to perform some mutating logic (whose return value is not consumed by our own code), and then retain the original value.
 
 ```java
 @Test
@@ -234,13 +234,15 @@ The transformations of objects are clearly described as:
 
 Because the standard functions allow us to reduce the scope of some variables down to a single block, there are significantly fewer combinations of objects that could be used. The construction of the `template` variable could make use of the `client` (even though we don't, the shape of the code doesn't prevent it), and `client` and `template` could be used in the final block creating the `request` (which they are).
 
-Compare that to the original code, where each of the 6 variables could make use of any combination of those that proceed it. Just looking at the shape of the code gives us no idea how all the variables are related.
+Compare that to the original code, where each of the 6 variables could make use of any combination of those that proceed it. Just looking at the shape of the first code example gives us no idea how all the variables are related.
 
 Reducing variables also makes the code much easier to reason about. The [magical number](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) describes the limit of people's memory capacity as somewhere between 5 and 9. The 6 variables from the first version of the code means that function is pushing the limits of what an average person can hold in their memory. The 3 variables from the second version, plus one or two additional ones as we move in and out of the `let` and `also` function, places this code nicely within the average person's memory capacity.
 
-We have also been able to quickly identity two mutating functions thanks to the calls to `also`. This gives us an idea of how much work it would be to test this code, as mutating functions often indicate external state that will need to be mocked and validated in a testing environment.
+We have also been able to quickly identity two mutating functions thanks to the calls to `also`. This gives us an idea of how much work it would be to test this code, as mutating functions often indicate the presence of external state that will need to be mocked and validated in a testing environment.
 
-In our case the first mutation function is setting parameters on an object that doesn't have a builder interface, and doesn't accept the properties in the constructor. This doesn't require external state to be tracked. However the second mutating function writes to the console, which may or may not be important to test depending on the context of the application.
+In our case the first mutation function is setting parameters on an object that doesn't have a builder interface, and doesn't accept the properties in the constructor. This doesn't require external state to be tracked.
+
+However the second mutating function writes to the console, which may or may not be important to test depending on the context of the application.
 
 ## Conclusion
 
