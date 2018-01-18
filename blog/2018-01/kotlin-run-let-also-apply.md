@@ -1,6 +1,6 @@
 ---
 title: Why you should take a look at Kotlin's standard library
-description: See how run, let, also and apply can improve your Kotlin code
+description: See how run, let, also and apply can improve your Kotlin code.
 author: matthew.casperson@octopus.com
 visibility: private
 metaImage: java-octopus-meta.png
@@ -9,7 +9,9 @@ tags:
  - Java
 ---
 
-I recently completed Dave Fancher's [Functional Programming with C#](https://app.pluralsight.com/library/courses/functional-programming-csharp/table-of-contents) course on Pluralsite. I enjoyed the course, because it provides some clear and practical advice on how to approach function programming in C#. In it Dave provides two extension methods, `Map` and `Tee`, which allow you to transform objects and pass them onto other mutating methods, along with examples on how and why you would use them.
+As we add support for Java deployments at [Octopus](https://octopus.com/download), more integration code is being written in Kotlin. As a long time Java developer, I took the opportunity to learn some of the improvements that the Kotlin language designers added to their language over Java.
+
+About the same time I completed Dave Fancher's [Functional Programming with C#](https://app.pluralsight.com/library/courses/functional-programming-csharp/table-of-contents) course on Pluralsite. I enjoyed the course, because it provides some clear and practical advice on how to approach function programming in C#. In it Dave provides two extension methods, `Map` and `Tee`, which allow you to transform objects and pass them onto other mutating methods, along with examples on how and why you would use them.
 
 I'd recommend the course, even for Kotlin developers, because the ideas presented by Dave map nicely (no pun intended) to similar methods Kotlin provides as part of its [standard library](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/util/Standard.kt).
 
