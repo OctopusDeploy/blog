@@ -25,7 +25,7 @@ Not much, really. Here's a quick summary of what we are planning to change:
 - **Pricing and licensing stays the same**
 - We are still planning to ship on a monthly cadence
 - We will bump the **major** part of the version (the first number) on the first release of each calendar year
-- We will bump the **minor** part of the version (the second number) for each feature release through the year, which won't necessarily reflect the month it was shipped in if we end up skipping a month for some reason
+- We will bump the **minor** part of the version (the second number) on our monthly release cadence; unless we end up skipping a month for some reason
 - We will still ship **patches** throughout the month with small enhancements and bug fixes
 
 ## There and back again
