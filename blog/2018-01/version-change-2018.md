@@ -32,11 +32,11 @@ Not much, really. Here's a quick summary of what we are planning to change:
 
 The decision to change our versioning strategy is really a byproduct of our evolution as a software product company, and I think it's worth sharing some of that story in case it helps in your scenario.
 
-We like to take an experimental approach to how we run our company. Rather than making decisions purely assuming the new way will be better than the old way, or blindly following in the footsteps of others, we take time to reflect on the changes we made in the past and decide how to iterate organically from there. Preferably we'd do this with some kind of quantifiable metric. It may take a while longer to find the best fit for us, but the big win: **we understand _why_ we do things the way we do them**. A common saying at Octopus is:
+We like to take an experimental approach to how we run our company. Rather than making decisions purely assuming the new way will be better than the old way, or blindly following in the footsteps of others, we take time to reflect on the changes we made in the past and decide how to iterate organically from there. Preferably we'd do this with some kind of quantifiable metric. It may take a while longer to find the best fit for us, but the big win: **we understand _why_ we do things the way we do them**. Paraphrasing the principal of [Chesterton's fence](https://en.wikipedia.org/wiki/Wikipedia:Chesterton%27s_fence):
 
-> Before you pull down a fence, try to understand why it it was put there in the first place.
+> Before you pull down a fence, first understand why it was put there in the first place.
 
-Maybe part of our story will help you with your own versioning strategy?
+Maybe part of our story will help you with your own scenario?
 
 ### Versioning things
 
