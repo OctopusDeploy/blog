@@ -27,15 +27,13 @@ In this blog post I would like to share why those of us who maintain and interac
 
 ## Background
 
-Permissions in this context is authorization. The ability to see data and perform specific actions. 
-
-There's a long history of how the current system has evolved to what it is now, what is present now wasn't the first approach, it was initially modeled like a firewall with attempts to block access to restricted items. It soon after evolved to a set of actions a user can do which are scoped to a set of projects, environments and tenants. At the time a user attempts to perform an action we calculate if they have the suitable permission for the resource they're attempting to act on, e.g. Deploy, Project ABC to Staging.
+There's a long history of how the current system has evolved to what it is now, what is present now wasn't the first approach. It was initially modeled like a firewall with attempts to block access to restricted items. It soon after evolved to a set of actions a user can do which are scoped to a set of projects, environments and tenants. At the time a user attempts to perform an action we calculate if they have the suitable permission for the resource they're attempting to act on, e.g. Deploy, Project ABC to Staging.
 
 Did I lose you? I hope not. 
 
-The key take away is the current system in Octopus has a significant learning curve, has nuances and most importantly is in wide usage.
+The key take away is the current system in Octopus has a significant learning curve, has nuances and most importantly is in wide usage with a lot of investment from our customers.
 
-Many customers have spent significant effort fine tuning it for their large user bases. This means there is significant value in what it's currently capable of and it also means we can't drastically change it, or reduce it to read and write access as we like to dream.
+Many customers have spent significant effort fine tuning permissions for their large user bases. This means there is significant value in what the permission system is currently capable of and it also means we can't drastically change it, or reduce it to read and write access as we like to dream.
 
 Our dream of a very simple permission system comes from a desire to not have to maintain some aspects of the permission code base. Having ruled out removing it entirely, and we also ruled out a major disruption in what it can do. This left us with a safe and reasonable third option.
 
@@ -70,7 +68,7 @@ The third category, was the most time consuming, in a few cases it involved a sp
 
 ## UI Permission Code
 
-The canonical example is you're accessing a Project. You arrive on the overview screen and we show you releases for each associated an Environment, and when Tenanted deployments are enabled we also show the Tenant. For each component in the hierarchy of the page, we need to factor in the Project, Environment, and (possibly) the Tenant.
+The canonical example is you're accessing a Project. You arrive on the overview screen and we show you releases for each associated an Environment, and when [Tenanted deployments](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments) are enabled we also show the Tenant. For each component in the hierarchy of the page, we need to factor in the Project, Environment, and (possibly) the Tenant.
 
 This is our wrapping React component, to check if you can deploy:
 
@@ -93,7 +91,7 @@ A benefit we gained in the 4.0 by having this code everywhere, is we can clearly
 			<Callout type={CalloutType.Information}>
 				 The {Permission.LifecycleView} permission is required to view the deployments
 			</Callout>
-		  } />
+		} />
 ```
 
 
@@ -106,9 +104,9 @@ This leads into the plan...
 
 ## Going Forward
 
-We're undertaking some work to make configuring permissions better, to ensure our customers fall into the pit of success when trying to make use of permissions to manage what their users can see and do. This work lines up with some with the Spaces feature that was discussed on our [2018 road map](https://octopus.com/blog/roadmap-2018). 
+We're undertaking some work to make configuring permissions better, to ensure our customers fall into the pit of success when trying to make use of permissions to manage what their users can see and do, and of course not break or cause a lot of new effort for existing customers. This work lines up with some with the Spaces feature that was discussed on our [2018 road map](https://octopus.com/blog/roadmap-2018). 
 
-First part of the plan is the permission code server-side cleaning that up ensuring we can leverage it better to help drive the UI. The objective there is to define what actions can be done on the resources that are returned from the API, so we can do away with the need for a large portion of the extra code in React. Less code there means more safety, less maintenance and more time for us to work on more important features.
+First part of the plan is to clean up and make testing the server-side permission coder, making it more robust and easier to leverage in driving the UI. The objective there is to define what actions can be done on the resources that are returned from the API, so we can do away with the need for a large portion of the extra code in React. Less code there means more safety, less maintenance and more time for us to work on more important features.
 
 Another beneficiary from permissions driven by the API would be other applications that leverage our API like the iOS [OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?mt=8) if you're curious about it, here's one of our [TL;DR videos](https://www.youtube.com/watch?v=mxKBxHNDLzc)) covering it's creation.
 
@@ -117,5 +115,5 @@ Another beneficiary from permissions driven by the API would be other applicatio
 
 To return to the focus of making Octopus API driven, we'll be removing as much of the client side permissions checking we can, in favor of driving the UI via the data returned from the API.
 
-Stay tuned for more posts about Spaces and Permissions as we get stuck into it over the next few weeks. 
+Stay tuned for more posts about Spaces and Permissions as we get stuck into it over the next few weeks.
 
