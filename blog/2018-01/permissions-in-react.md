@@ -9,9 +9,15 @@ tags:
  - React
 ---
 
-As part of our big portal overhaul in Octopus 4.0, we made the move from Angular to React, some great background and details is covered in that that post. https://octopus.com/blog/octopus-v4-angular-to-react
+As part of our big portal overhaul in Octopus 4.0, we made the move [from Angular to React](https://octopus.com/blog/octopus-v4-angular-to-react), some great background and detail is covered in that that post. 
 
-An important part of the React code is the client-side permission checks. Octopus has a rich and large feature set. It also has a complex permission system to match those features that's evolved over time to support restricting users. For many customers permissions stay out of their way, but there are many customers who have opted into fine grained control of what teams and team members can see and do.
+Octopus has an extensive feature set. To accompany the wide range of features there's a complex permission system that has evolved over time to support restricting what users can see and do. Many customers choose to avoid tuning permissions and operate as a set of administrators with full access. For many organizations, that's not suitable and they have opted into fine grained control of what teams and team members can see and do.
+
+We half-jokingly, half-seriously, wanted to completely remove the fine-grained permissions and push customers to a simplified read and write model inside Octopus. With some exceptions like  providing security around sensitive data passwords, private keys, etc. 
+
+But... that would have enraged thousands of customers.
+
+In this blog post I would like to share why those of us who maintain and interact with the permission system like to dream of a world where permissions are far simpler in Octopus.
 
 
 ## In this post
@@ -21,19 +27,50 @@ An important part of the React code is the client-side permission checks. Octopu
 
 ## Background
 
-The Angular portal had evolved with client-side code to check for permissions, the permissions developed out of a firewall style approach and the code essentially does asserts that the user has sufficient privilege to see something. At the same time the API asserts the same and will return 401 responses if the user lacks it.
+Permissions in this context is authorization. The ability to see data and perform specific actions. 
+
+There's a long history of how the current system has evolved to what it is now, what is present now wasn't the first approach, it was initially modeled like a firewall with attempts to block access to restricted items. It soon after evolved to a set of actions a user can do which are scoped to a set of projects, environments and tenants. At the time a user attempts to perform an action we calculate if they have the suitable permission for the resource they're attempting to act on, e.g. Deploy, Project ABC to Staging.
+
+Did I lose you? I hope not. 
+
+The key take away is the current system in Octopus has a significant learning curve, has nuances and most importantly is in wide usage.
+
+Many customers have spent significant effort fine tuning it for their large user bases. This means there is significant value in what it's currently capable of and it also means we can't drastically change it, or reduce it to read and write access as we like to dream.
+
+Our dream of a very simple permission system comes from a desire to not have to maintain some aspects of the permission code base. Having ruled out removing it entirely, and we also ruled out a major disruption in what it can do. This left us with a safe and reasonable third option.
+
+Make what it currently does easier to reason about, make the code better to maintain and reduce duplicated code.
 
 
-## Porting to React
+## From Angular to React
 
-It was out of scope to have major changes to the way we work with permissions for the work associated with Octopus 4.0, so it would be a close one-to-one port of the logic in the Angular code. A side effect in the Angular code was if we didn't do the permission assert correctly and we tried to render some UI with data we didn't have, it would silently just not render, including silence in the console.
+The Angular portal had evolved with client-side code to check for permissions, the code essentially asserts that the user has sufficient privilege to see something. At the same time the API asserts the same thing with it's own code, and will return 401 responses if the user requests data they can't access or attempts to perform an action they can't.
 
-This feature of Angular doesn't exist in the React + TypeScript world, if we made a mistake by not catering for the right permission check inputs, the UI will crash as child components attempt to render and operate on data and properties expected to be there.
+It was out of scope to have major changes to the way we work with permissions as part of Octopus 4.0, so it was a close one-to-one port of the logic in the Angular code. The Angular code would fail silently and invisibly if we didn't write the permission assert correctly. This meant it was more forgiving, it just wouldn't do anything in that case.
 
+In the world of React and TypeScript, if we made a mistake by not catering for the right permission check inputs, the UI will crash as child components attempt to render and operate on data and properties expected to be there.
+
+The true guard of the data and capabilities of Octopus is the API. There were no significant changes there in 4.0, as a result we knew we weren't going to expose information or allow users to perform actions they could not. The worst thing that would happen (and did) was the UI would break in a way where it couldn't be used. This meant we had to get it right and it was a lot of work in bug fixing.
+
+## Patch, Patch and Patch
+
+In the first few patch releases of 4.0 with the help of the early adopters we found the edge cases we had missed in alpha and beta testing. If you check the release notes half of first 11 patches in the 4.0.x branch had a permission related fix. For the customers impacted we provided workarounds or fast patches but often they were show stopper bugs. As with all major changes and especially with a brand new UI we expected to have bugs we missed as we shipped, and by 4.0.11 the UI was as stable as it was in version 3 when considering complex permission combinations and catering for them in the UI.
+
+## The bugs
+
+These bugs fell into 3 categories:
+
+ - Old mistake we ported over
+ - Brand new mistakes
+ - The new UI meant permissions needed more thought
+ 
+The first 2 were straight forward, on closer inspection and with customer reports we could find the bug in the old code and ensure it was right in the new one. The new mistakes were similar, in that we just made a mistake in how we did the permission check and reports form customers were key there too.
+
+The third category, was the most time consuming, in a few cases it involved a specific set of permissions we hadn't encountered in our testing and how the different structure in displaying data and actions couldn't cope. This involved adjusting how and when API calls and rethinking the different layout in 4.0 that lead to this becoming a problem.
 
 ## UI Permission Code
 
-The canonical example case is you're accessing a Project. You arrive on the overview screen and we show you releases for each associated an Environment, and when Tenanted deployments are enabled we also show the Tenant. For each component in the hierarchy of the page, we need to factor in the Project, Environment (and Tenant).
+The canonical example is you're accessing a Project. You arrive on the overview screen and we show you releases for each associated an Environment, and when Tenanted deployments are enabled we also show the Tenant. For each component in the hierarchy of the page, we need to factor in the Project, Environment, and (possibly) the Tenant.
 
 This is our wrapping React component, to check if you can deploy:
 
@@ -59,30 +96,21 @@ A benefit we gained in the 4.0 by having this code everywhere, is we can clearly
 		  } />
 ```
 
-## Problems
-
-In the first few patch releases of 4.0 with the help of the early adopters we found the edge cases we had missed in alpha and beta testing. If you check the release notes half of first 11 patches in the 4.0.x branch had a permission related fix. For the customers impacted we provided workarounds or fast patches but often they were show stopper bugs. As with all major changes and especially with a brand new UI we expected to have bugs we missed as we shipped, and by 4.0.11 the UI was as stable as it was in version 3 when considering permission check impact on crashes.
-
-These bugs fell into 3 categories:
-
- - Old mistake we ported over
- - A brand new mistake
- - The new UI meant permissions needed more thought
- 
-The first 2 were for the most part straight forward, on closer inspection let us find the bug in the old code and ensure it was right in the new one. The new mistakes were similar, in that we just made a mistake in how we did the permission check.
-
-The third category, was the most time consuming, in a few cases it involved a specific set of permissions we hadn't encountered in our testing and how the different structure in displaying data and actions couldn't cope.
-
-It's quite a substantial amount of code in the UI that repeats something we have to check server side for the API calls. I did a search for this blog post in our code, and we have 96 uses of `<PermissionCheck />` across 61 tsx files, and 137 `isAllowed()` in 45 tsx and ts files.git
 
 
-## The Plan
+It's ok, once you get used to it, but it has significant room for error, the inputs are document ids and are strings, they could easily be applied to the wrong filter. Some better type safety could mitigate that. If that's out of the way the next major challenge is still there; actually writing that code and ensuring it's in the right place.
 
-We're undertaking some work to make configuring permissions better, to ensure our customers fall into the pit of success when trying to make use of permissions to manage what their users can see and do. This work lines up with some with the Spaces feature that was discussed on our 2018 road map. https://octopus.com/blog/roadmap-2018
+It's quite a substantial amount of code in the UI that repeats something we must check server side. I did a search for this blog post in our code, and we have 96 uses of `<PermissionCheck />` across 61 TSX files, and 137 `isAllowed()` in 45 TSX and TS files.
 
-First part of the plan is the permission code server-side cleaning that up ensuring we can leverage it better to help drive the UI. The objective there is to define what actions can be done on the resources that are returned from the API, so we can remove a large portion of the extra code in React.
+This leads into the plan...
 
-If there were to be more Octopus related applications on other platforms such as this one: https://www.youtube.com/watch?v=mxKBxHNDLzc they also can benefit and leverage the API to drive their UI.
+## Going Forward
+
+We're undertaking some work to make configuring permissions better, to ensure our customers fall into the pit of success when trying to make use of permissions to manage what their users can see and do. This work lines up with some with the Spaces feature that was discussed on our [2018 road map](https://octopus.com/blog/roadmap-2018). 
+
+First part of the plan is the permission code server-side cleaning that up ensuring we can leverage it better to help drive the UI. The objective there is to define what actions can be done on the resources that are returned from the API, so we can do away with the need for a large portion of the extra code in React. Less code there means more safety, less maintenance and more time for us to work on more important features.
+
+Another beneficiary from permissions driven by the API would be other applications that leverage our API like the iOS [OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?mt=8) if you're curious about it, here's one of our [TL;DR videos](https://www.youtube.com/watch?v=mxKBxHNDLzc)) covering it's creation.
 
 
 ## Wrap up
