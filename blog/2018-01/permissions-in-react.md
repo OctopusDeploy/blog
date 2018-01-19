@@ -94,8 +94,6 @@ A benefit we gained in the 4.0 by having this code everywhere, is we can clearly
 		} />
 ```
 
-
-
 It's ok, once you get used to it, but it has significant room for error, the inputs are document ids and are strings, they could easily be applied to the wrong filter. Some better type safety could mitigate that. If that's out of the way the next major challenge is still there; actually writing that code and ensuring it's in the right place.
 
 It's quite a substantial amount of code in the UI that repeats something we must check server side. I did a search for this blog post in our code, and we have 96 uses of `<PermissionCheck />` across 61 TSX files, and 137 `isAllowed()` in 45 TSX and TS files.
@@ -106,7 +104,7 @@ This leads into the plan...
 
 We're undertaking some work to make configuring permissions better, to ensure our customers fall into the pit of success when trying to make use of permissions to manage what their users can see and do, and of course not break or cause a lot of new effort for existing customers. This work lines up with some with the Spaces feature that was discussed on our [2018 road map](https://octopus.com/blog/roadmap-2018). 
 
-First part of the plan is to clean up and make testing the server-side permission coder, making it more robust and easier to leverage in driving the UI. The objective there is to define what actions can be done on the resources that are returned from the API, so we can do away with the need for a large portion of the extra code in React. Less code there means more safety, less maintenance and more time for us to work on more important features.
+First part of the plan is to clean up and make testing the server-side permission easier, making it more robust and easier to leverage in driving the UI. The objective there is to define what actions can be done on the resources that are returned from the API, so we can do away with the need for a large portion of the extra code in React. Less code there means more safety, less maintenance and more time for us to work on more important features.
 
 Another beneficiary from permissions driven by the API would be other applications that leverage our API like the iOS [OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?mt=8) if you're curious about it, here's one of our [TL;DR videos](https://www.youtube.com/watch?v=mxKBxHNDLzc)) covering it's creation.
 
