@@ -36,7 +36,7 @@ In preparation for [Octopus Cloud](https://octopus.com/purchase) we've performed
 
 Octopus ships with several built-in [teams and user roles](https://octopus.com/docs/administration/managing-users-and-teams), one of which is the `Octopus Administrators` team with the `System Administrator` role granting the rights to do anything and everything in your Octopus installation.
 
-In Octopus `2018.1` we have affectively split the `Octopus Administrators` team and its `System Administrator` user role into two parts:
+In Octopus `2018.1` we have effectively split the `Octopus Administrators` team and its `System Administrator` user role into two parts:
 
 - We've kept the existing `Octopus Administrators` team and `System Administrator` role which is all about configuring the Octopus Server and how it is hosted
 - We've added a new `Octopus Managers` team and `System Manager` role which is all about configuring your users, teams, projects, environments, etc
