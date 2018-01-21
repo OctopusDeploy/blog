@@ -118,7 +118,7 @@ The new `Package requirement` allows a more explicit configuration of when a ste
 
 This option is hidden when it does not make sense, for example, when a script step is configured to run after a package step (packages must be acquired by this point).
 
-These options provide more flexibility when configuring complex parallel deployment processes to ensure that packages are acquired at the desired time. You can now configure a parallel block of steps that generate packages and use the option `Before package acquisition` to ensure that the packages can be consumed by subsequent parallel package steps.
+These options provide more flexibility when configuring complex parallel deployment processes to ensure that packages are acquired at the desired time. You can now configure a parallel block of steps that generate packages and use the option `Before package acquisition` to ensure that the packages can be consumed by subsequent package steps.
 
 ## Breaking Changes
 
