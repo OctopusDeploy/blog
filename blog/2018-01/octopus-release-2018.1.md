@@ -102,15 +102,15 @@ We [talked about workers briefly in our 2018 roadmap](roadmap-2018.md#scalabilit
 
 ## Step package requirement
 
-By default, Octopus performs package acqusition immediately before the first step in a deployment that requires packages. Steps can now be configured to run before or after package acquisition.  The step condition "Run this step" has been replaced by "Package requirement":
+By default, Octopus performs package acqusition immediately before the first step in a deployment that requires packages. Steps can now be configured to run before or after package acquisition.  The step condition `Run this step` has been replaced by `Package requirement`:
 
 Previous:
 ![Step condition - Run this step](step_condition-run_this_step.png)
 
 New:
-![Step condition - Package requirement](step_condition-package-requirement.png)
+![Step condition - Package requirement](step_condition-package_requirement.png)
 
-The new "Package requirement" allows a more explicit configuration of when a step should run with respect to package acqusition. There are three options to choose from:
+The new `Package requirement` allows a more explicit configuration of when a step should run with respect to package acqusition. There are three options to choose from:
 
 - Let Octopus Decide (default): Packages may be acquired before or after this step runs - Octopus will determine the best time
 - After package acquisition: Packages will be acquired before this step runs
@@ -118,7 +118,7 @@ The new "Package requirement" allows a more explicit configuration of when a ste
 
 This option is hidden when it does not make sense, for example, when a script step is configured to run after a package step (packages must be acquired by this point).
 
-These options provide more flexibility when configuring complex parallel deployment processes to ensure that packages are acquired at the desired time. You can now configure a parallel block of steps that generate packages and use the option "Before package acquisition" to ensure that the packages can be consumed by subsequent parallel package steps.
+These options provide more flexibility when configuring complex parallel deployment processes to ensure that packages are acquired at the desired time. You can now configure a parallel block of steps that generate packages and use the option `Before package acquisition` to ensure that the packages can be consumed by subsequent parallel package steps.
 
 ## Breaking Changes
 
