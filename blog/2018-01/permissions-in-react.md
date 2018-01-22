@@ -9,7 +9,7 @@ tags:
  - React
 ---
 
-As part of our big portal overhaul in Octopus 4.0, we made the move [from Angular to React](https://octopus.com/blog/octopus-v4-angular-to-react), some great background and detail is covered in that that post. 
+As part of our big UI overhaul in Octopus 4.0, we made the move [from Angular to React](https://octopus.com/blog/octopus-v4-angular-to-react), some great background and detail is covered in that that post. 
 
 Octopus has an extensive feature set. To accompany the wide range of features there's a complex permission system that has evolved over time to support restricting what users can see and do. Many customers choose to avoid tuning permissions and operate as a set of administrators with full access. For many organizations, that's not suitable and they have opted into fine grained control of what teams and team members can see and do.
 
@@ -40,9 +40,9 @@ Our dream of a very simple permission system comes from a desire to not have to 
 Make what it currently does easier to reason about, make the code better to maintain and reduce duplicated code.
 
 
-## From Angular to React
+## From Angular UI to React UI
 
-The Angular portal had evolved with client-side code to check for permissions, the code essentially asserts that the user has sufficient privilege to see something. At the same time the API asserts the same thing with it's own code, and will return 401 responses if the user requests data they can't access or attempts to perform an action they can't.
+The Angular UI had evolved with client-side code to check for permissions, the code essentially asserts that the user has sufficient privilege to see something. At the same time the API asserts the same thing with it's own code, and will return 401 responses if the user requests data they can't access or attempts to perform an action they can't.
 
 It was out of scope to have major changes to the way we work with permissions as part of Octopus 4.0, so it was a close one-to-one port of the logic in the Angular code. The Angular code would fail silently and invisibly if we didn't write the permission assert correctly. This meant it was more forgiving, it just wouldn't do anything in that case.
 
@@ -54,7 +54,7 @@ The true guard of the data and capabilities of Octopus is the API. There were no
 
 In the first few patch releases of 4.0 with the help of the early adopters we found the edge cases we had missed in alpha and beta testing. If you check the release notes half of first 11 patches in the 4.0.x branch had a permission related fix. For the customers impacted we provided workarounds or fast patches but often they were show stopper bugs. As with all major changes and especially with a brand new UI we expected to have bugs we missed as we shipped, and by 4.0.11 the UI was as stable as it was in version 3 when considering complex permission combinations and catering for them in the UI.
 
-## The bugs
+## The UI bugs
 
 These bugs fell into 3 categories:
 
@@ -82,7 +82,7 @@ This is our wrapping React component, to check if you can deploy:
 	</PermissionCheck>
 ```
 
-A benefit we gained in the 4.0 by having this code everywhere, is we can clearly tell you why you can't see something, that's the call out element and text.
+A benefit we gained in the 4.0 by having this react component everywhere, is we can clearly tell you why you can't see something, that's the call out element and text.
 
 ```
     <PermissionCheck 
@@ -106,7 +106,7 @@ We're undertaking some work to make configuring permissions better, to ensure ou
 
 First part of the plan is to clean up and make testing the server-side permission easier, making it more robust and easier to leverage in driving the UI. The objective there is to define what actions can be done on the resources that are returned from the API, so we can do away with the need for a large portion of the extra code in React. Less code there means more safety, less maintenance and more time for us to work on more important features.
 
-Another beneficiary from permissions driven by the API would be other applications that leverage our API like the iOS [OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?mt=8) if you're curious about it, here's one of our [TL;DR videos](https://www.youtube.com/watch?v=mxKBxHNDLzc)) covering it's creation.
+Another beneficiary from permissions driven by the API would be other applications that leverage our API like the iOS [OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?mt=8) if you're curious about it, here's one of our [TL;DR videos](https://www.youtube.com/watch?v=mxKBxHNDLzc)) covering it's creation and development using React Native.
 
 
 ## Wrap up
