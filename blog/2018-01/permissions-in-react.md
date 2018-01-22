@@ -27,7 +27,7 @@ In this blog post I would like to share why those of us who maintain and interac
 
 ## Background
 
-There's a long history of how the current system has evolved to what it is now, what is present now wasn't the first approach. It was initially modeled like a firewall with attempts to block access to restricted items. It soon after evolved to a set of actions a user can do which are scoped to a set of projects, environments and tenants. At the time a user attempts to perform an action we calculate if they have the suitable permission for the resource they're attempting to act on, e.g. Deploy, Project ABC to Staging.
+There's a long history of how the current system has evolved to what it is now, what is present now wasn't the first approach. It was initially modeled like a firewall with attempts to block access to restricted items. It soon after evolved to a set of actions a user can do which are scoped to a set of projects, environments and tenants. At the time a user attempts to perform an action we calculate if they have the suitable permission for the resource they're attempting to act on, e.g. Deploy Project ABC to Staging.
 
 Did I lose you? I hope not. 
 
