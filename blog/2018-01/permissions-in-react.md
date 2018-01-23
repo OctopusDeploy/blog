@@ -4,6 +4,8 @@ description: Inside look into the React UI permissions
 author: nick.josevski@octopus.com
 visibility: private
 published: 2018-01-25
+metaImage: metaImage-reactPermissions.png
+bannerImage: blogImage-reactPermissions.png
 tags:
  - Permissions
  - React
