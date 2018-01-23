@@ -157,6 +157,7 @@ These options provide more flexibility when configuring complex parallel deploym
 We've made two behavioral changes to Octopus which may effect certain customers.
 
 - [Steps may now be explicitly configured to run before or after package acquisition](https://github.com/OctopusDeploy/Issues/issues/3974)
+ This change includes a database migration that is difficult to roll back from.
 - [Auto machine removal timing does not take into account if Octopus Server is offline](https://github.com/OctopusDeploy/Issues/issues/3924)
 
 ## Upgrading
