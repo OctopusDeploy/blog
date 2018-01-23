@@ -4,14 +4,14 @@ description: Inside look into the React UI permissions
 author: nick.josevski@octopus.com
 visibility: private
 published: 2018-01-25
-metaImage: metaImage-reactPermissions.png
-bannerImage: blogImage-reactPermissions.png
+metaImage: metaImage-react-permissions.png
+bannerImage: blogImage-react-permissions.png
 tags:
  - Permissions
  - React
 ---
 
-![Role based access control](blogImage-reactPermissions.png)
+![Role based access control](blogImage-react-permissions.png)
 
 As part of our big UI overhaul in Octopus 4.0, we made the move [from Angular to React](https://octopus.com/blog/octopus-v4-angular-to-react), some great background and detail is covered in that that post. 
 
