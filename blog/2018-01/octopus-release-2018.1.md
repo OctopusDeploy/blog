@@ -154,7 +154,7 @@ These options provide more flexibility when configuring complex parallel deploym
 
 ## Breaking Changes
 
-We've made two behavioral changes to Octopus which may effect certain customers.
+We've made two behavioral changes to Octopus which may impact certain customers.
 
 - [Package acquisition can sometimes be too parallel](https://github.com/OctopusDeploy/Issues/issues/3974)
 - [Auto machine removal timing does not take into account if Octopus Server is offline](https://github.com/OctopusDeploy/Issues/issues/3924)
