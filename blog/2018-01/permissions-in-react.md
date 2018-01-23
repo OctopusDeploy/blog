@@ -11,6 +11,8 @@ tags:
  - React
 ---
 
+![Role based access control](blogImage-reactPermissions.png)
+
 As part of our big UI overhaul in Octopus 4.0, we made the move [from Angular to React](https://octopus.com/blog/octopus-v4-angular-to-react), some great background and detail is covered in that that post. 
 
 Octopus has an extensive feature set. To accompany the wide range of features there's a complex role based access permission system that has evolved over time to support restricting what users can see and do. Many customers choose to avoid tuning permissions and operate as a set of administrators with full access. For many organizations, that's not suitable and they have opted into fine grained control of what teams and team members can see and do.
