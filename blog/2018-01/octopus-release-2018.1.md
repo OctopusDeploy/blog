@@ -144,9 +144,9 @@ New:
 
 The new `Package requirement` allows a more explicit configuration of when a step should run with respect to package acquisition. There are three options to choose from:
 
-- Let Octopus Decide (default): Packages may be acquired before or after this step runs - Octopus will determine the best time
-- After package acquisition: Packages will be acquired before this step runs
-- Before package acquisition: Packages will be acquired after this step runs
+- `Let Octopus Decide` (default): Packages may be acquired before or after this step runs - Octopus will determine the best time
+- `After package acquisition`: Packages will be acquired before this step runs
+- `Before package acquisition`: Packages will be acquired after this step runs
 
 This option is hidden when it does not make sense, for example, when a script step is configured to run after a package step (packages must be acquired by this point).
 
