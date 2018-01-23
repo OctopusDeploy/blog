@@ -5,14 +5,14 @@ author: shaun.marx@octopus.com
 visibility: private
 metaImage: metaimage-shipping-2018-1.png
 bannerImage: blogimage-shipping-2018-1.png
-published: 2018-01-21
+published: 2018-01-23
 tags:
  - New Releases
 ---
 
-This January release of Octopus Deploy is primarily a security release driven by [Octopus Cloud](https://octopus.com/cloud/register-interest) and will also benefit all of our customers. We highly recommend upgrading.
+This January release of Octopus Deploy is primarily a security release driven by [Octopus Cloud](https://octopus.com/cloud) and will also benefit each of our customers running Octopus Deploy on-premises. We highly recommend upgrading.
 
-You'll also notice our new versioning strategy: what would normally have been Octopus `4.2` is actually `2018.1`.
+You'll also notice our new versioning strategy: what would normally have been Octopus `4.2` is actually `2018.1`. Read more about [why we changed](version-change-2018.md).
 
 ## In this post
 
@@ -20,17 +20,17 @@ You'll also notice our new versioning strategy: what would normally have been Oc
 
 ## Octopus Cloud alpha
 
-One of our big drivers for this year is to bring our hosted Octopus offering to market, called **Octopus Cloud**. If you are interested in being part of our closed alpha program, you can [register your interest today](https://octopus.com/cloud/register-interest)! The closed alpha will kick off very soon, followed by an open beta, the official launch, and later in the year we will be launching our Data Centre edition.
+One of our big drivers for this year is to bring our hosted Octopus offering to market, called **[Octopus Cloud](https://octopus.com/cloud)**. If you are interested in being part of our closed alpha program, you can [register your interest today](https://octopus.com/cloud)! The closed alpha will kick off very soon, followed by an open beta, the official launch, and later in the year we will be launching our Data Centre edition.
 
-Learn more about [Octopus Cloud](https://octopus.com/purchase).
+Learn more about [Octopus Cloud](https://octopus.com/cloud).
 
 ## We've changed our versioning strategy
 
-Read more about [why we changed](version-change-2018.md) which also dives into our evolution as a software product company.
+Read more about [why we changed](version-change-2018.md) which also dives into our continuing evolution as a software product company.
 
 ## Security enhancements
 
-In preparation for [Octopus Cloud](https://octopus.com/purchase) we've performed penetration testing and a security audit. No major issues were found but uncovered a few smaller issues we wanted to fix. You may have seen several security fixes in recent patches. This feature release rolls up all of those patches, along with some extra enhancements you can use to make your Octopus Server more secure than ever.
+In preparation for [Octopus Cloud](https://octopus.com/cloud) we've performed penetration testing and a security audit. No major issues were found but uncovered a few smaller issues we wanted to fix. You may have seen several security fixes in recent patches. This feature release rolls up all of those patches, along with some extra enhancements you can use to make your Octopus Server more secure than ever.
 
 ### New built-in roles and permissions
 
@@ -41,7 +41,7 @@ In Octopus `2018.1` we have effectively split the `Octopus Administrators` team 
 - We've kept the existing `Octopus Administrators` team and `System Administrator` role which is all about configuring the Octopus Server and how it is hosted
 - We've added a new `Octopus Managers` team and `System Manager` role which is all about configuring your users, teams, projects, environments, etc
 
-This makes a lot of sense for [Octopus Cloud](https://octopus.com/purchase):
+This makes a lot of sense for [Octopus Cloud](https://octopus.com/cloud):
 
 - Our team needs to configure how your Octopus Server is hosted, but shouldn't be able to see anything else - we'll be members of the `Octopus Administrators` team.
 - We don't want you to inadvertently break your Octopus Server by changing its hosting configuration - you'll be added to the `Octopus Managers` team.
@@ -94,17 +94,69 @@ Octopus.Server.exe builtin-worker --username=OctopusWorker --password=XXXXXXXXXX
 
 All tasks which execute on the Octopus Server will run as that user account. The only gotcha is that the user account running the Octopus Server needs the correct privileges to launch processes as the built-in worker user and impersonate the built-in worker user.
 
-We outline these requirements and how to configure your Octopus Server in our documentation TBD!
+Since this can be so tricky to get right, this same command-line tool can automatically configure the correct user accounts on the local machine, and wire it all up for you.
+
+```plaintext
+Octopus.Server.exe builtin-worker --auto-configure
+```
+
+Which results in:
+
+```plaintext
+Creating a user account on the local machine called 'OctopusServer' and adding it to the 'BUILTIN\Administrators' group.
+Granting the 'SeServiceLogonRight' privilege to the 'MACHINE-123\OctopusServer' user account.
+Configuring the 'OctopusDeploy' Windows Service to start as the 'MACHINE-123\OctopusServer' user account.
+[SC] ChangeServiceConfig SUCCESS
+Creating a down-level user account on the local machine called 'OctopusWorker' for the built-in worker.
+The built-in worker is now configured to execute scripts as MACHINE-123\OctopusWorker.
+Testing the built-in worker configuration.
+Built-in worker: SUCCESS
+The success of this configuration depends on both the source and target user accounts.
+Current User: MACHINE-123\admin-user
+Target User: MACHINE-123\OctopusWorker
+
+
+Step 1: Testing credentials... PASSED
+Step 2: Testing thread impersonation... PASSED
+Step 3: Testing process impersonation... PASSED
+Step 4: Check the process impersonation worked as expected... PASSED
+
+NOTE: This test succeeded when starting from the user account 'MACHINE-123\admin-user'. If the Octopus Server usually runs as a different user account these results may vary. The same test will be run each time the Octopus Server starts to be certain the built-in worker is configured correctly.
+
+These changes require a restart of the Octopus Server.
+```
+
+Learn more about [configuring the built-in worker](https://octopus.com/docs/administration/security/built-in-worker).
 
 #### Future: External workers
 
 We [talked about workers briefly in our 2018 roadmap](roadmap-2018.md#scalability-and-continual-improvements) and will be talking in more detail with you all about this in the near future. In summary, workers will be an evolution of `Run on Server` which will let you delegate tasks in a deployment to a worker which may be external to your Octopus Server. We still plan to ship a built-in worker which you can configure as we described earlier, or disable it altogether as you see fit.
 
+## Step package requirement
+
+By default, Octopus performs package acquisition immediately before the first step in a deployment that requires packages. Steps can now be configured to run before or after package acquisition.  The step condition `Run this step` has been replaced by `Package requirement`:
+
+Previous:
+![Step condition - Run this step](step_condition-run_this_step.png)
+
+New:
+![Step condition - Package requirement](step_condition-package_requirement.png)
+
+The new `Package requirement` allows a more explicit configuration of when a step should run with respect to package acquisition. There are three options to choose from:
+
+- `Let Octopus Decide` (default): Packages may be acquired before or after this step runs - Octopus will determine the best time
+- `After package acquisition`: Packages will be acquired before this step runs
+- `Before package acquisition`: Packages will be acquired after this step runs
+
+This option is hidden when it does not make sense, for example, when a script step is configured to run after a package step (packages must be acquired by this point).
+
+These options provide more flexibility when configuring complex parallel deployment processes to ensure that packages are acquired at the desired time. You can now configure a parallel block of steps that generate packages and use the option `Before package acquisition` to ensure that the packages can be consumed by subsequent package steps.
+
 ## Breaking Changes
 
-We've made two behavioral changes to Octopus which may effect certain customers.
+We've made two behavioral changes to Octopus which may impact certain customers.
 
-- [Package acquisition can sometimes be too parallel](https://github.com/OctopusDeploy/Issues/issues/3974)
+- [Steps may now be explicitly configured to run before or after package acquisition](https://github.com/OctopusDeploy/Issues/issues/3974): This change includes a database migration that is difficult to roll back from.
 - [Auto machine removal timing does not take into account if Octopus Server is offline](https://github.com/OctopusDeploy/Issues/issues/3924)
 
 ## Upgrading
