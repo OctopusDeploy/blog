@@ -101,15 +101,15 @@ octo.exe create-environment --server http://localhost:8085 --apikey API-6FGRLBN3
 ```
 
 Or use the web interface via {Infrastructure,Environments,Add Environments}
-![create-new-environment.png]
+![](create-new-environment.png)
 
 Next, create an account to access the Pi, this can either be a Username / Password or an SSH Key
-![pi-account.png]
+![](pi-account.png]
 
 Then finally, create a deployment target under {Infrastructure,Deployment Targets,Add Deployment Target} as an SSH target.
 Set the targets role to something that represents the responsibility of the target, e.g `PiWeb`
 After filling in the details (IP Address or DNS name, SSH port and account), under the .Net section, ensure that you select _Mono not installed_, don't worry about the platform, we will be changing that later.
-![dotnet-not-mono.png]
+![](dotnet-not-mono.png)
 
 ## Custom Calamari
 Currently, Calamari does not support running on ARM architecture out of the box. You can easily fix this yourself with a few steps.
@@ -139,7 +139,7 @@ octo create-project --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM
 In the new PiWeb project, define your deployment process. 
 
 Add a `Deploy a Package` step, called `deploy web site`. The name here will allow the values in the service definition file to be updated correctly.
-![deploy-package-step-library.png]
+![](deploy-package-step-library.png)
 
 Set the **Environment** to the `Pi Dev` environment.
 Set the **Role** to the `PiWeb` role (or whatever you set the SSH target role to).
@@ -150,31 +150,17 @@ _Save it_
 
 
 Add another `Deploy a Package` step. This one will install a service on the target to run the application.
-![service-installation-step.png]
+![](service-installation-step.png)
 
 You will need to `Configure Features` for this step:
-![feature-configuration.png]
+![](feature-configuration.png)
 
 In the `Substitute Variables in Files` feature add the name of the service definition file `core4pi.service`:
-![substitute-variables-in-service.png]
+![](substitute-variables-in-service.png)
 
 Under the `Configuration Scripts` feature, paste the below script in to the `Deployment Script` section:
 
 ​```bash
-#!/bin/bash
-if [ -e /lib/systemd/system/core4pi.service ]
-then
-    echo stopping service
-    sudo systemctl stop core4pi.service
-fi
-
-echo installing service
-sudo cp core4pi.service /lib/systemd/system/
-sudo chmod 644 /lib/systemd/system/core4pi.service
-sudo systemctl daemon-reload
-sudo systemctl enable core4pi.service
-echo starting service
-sudo systemctl start core4pi.service
 ```
 
 This `bash` script will be executed during the step execution and actually perform the service installation.
@@ -182,4 +168,4 @@ This `bash` script will be executed during the step execution and actually perfo
 ## Test it
 Navigate to the IP address or DNS name of your Raspberry Pi, on port 5000 and you should hopefully see the application
 
-![its-alive.png]
+![](its-alive.png)
