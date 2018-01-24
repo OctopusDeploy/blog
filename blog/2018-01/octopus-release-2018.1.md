@@ -18,9 +18,13 @@ You'll also notice our new versioning strategy: what would normally have been Oc
 
 !toc
 
-## Octopus Cloud alpha
+## Octopus Cloud
 
-One of our big drivers for this year is to bring our hosted Octopus offering to market, called **[Octopus Cloud](https://octopus.com/cloud)**. If you are interested in being part of our closed alpha program, you can [register your interest today](https://octopus.com/cloud)! The closed alpha will kick off very soon, followed by an open beta, the official launch, and later in the year we will be launching our Data Centre edition.
+One of our big drivers for this year is to bring our hosted Octopus offering to market, called **[Octopus Cloud](https://octopus.com/cloud)**. We are kicking off a closed Alpha program in the next few days - thank you to everyone who registered!
+
+The next opportunity to start using Octopus Cloud will be during our open Beta program in March 2018. You can [register your interest in Octopus Cloud today](https://octopus.com/cloud)!
+
+Following the open Beta we will launch Octopus Cloud officially, and later in the year we will launch our Data Centre edition.
 
 Learn more about [Octopus Cloud](https://octopus.com/cloud).
 
