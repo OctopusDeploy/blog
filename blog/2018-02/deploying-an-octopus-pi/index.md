@@ -103,14 +103,17 @@ octo.exe create-environment --server http://localhost:8085 --apikey API-6FGRLBN3
 ```
 
 Or use the web interface via {Infrastructure,Environments,Add Environments}
+
 ![](create-new-environment.png "width=500") 
 
 Next, create an account to access the Pi, this can either be a Username / Password or an SSH Key
+
 ![](pi-account.png "width=500")
 
 Then finally, create a deployment target under {Infrastructure,Deployment Targets,Add Deployment Target} as an SSH target.
 Set the targets role to something that represents the responsibility of the target, e.g `PiWeb`
 After filling in the details (IP Address or DNS name, SSH port and account), under the .Net section, ensure that you select _Mono not installed_, don't worry about the platform, we will be changing that later.
+
 ![](dotnet-not-mono.png "width=500")
 
 ## Custom Calamari
@@ -137,24 +140,33 @@ octo create-project --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM
 ### Create a deployment step for the application
 In the new PiWeb project, define your deployment process. 
 
-Add a `Deploy a Package` step, called `deploy web site`. The name here will allow the values in the service definition file to be updated correctly.
-![](deploy-package-step-library.png "width=500")
+Add a `Deploy a Package` step, called `deploy web site`. 
+
+:::hint
+The step name here will allow the values in the service definition file to be updated correctly.
+:::
+
+![](deploy-package-step-library.png)
 
 Set the **Environment** to the `Pi Dev` environment.
+
 Set the **Role** to the `PiWeb` role (or whatever you set the SSH target role to).
+
 Under the **Package** section, select the package that you pushed to the server, `core4pi`
 
-The rest of the options in here don't need to be configured.
-_Save it_
+
+The rest of the options in here don't need to be configured. *Save it*
 
 ### Create a deployment step for the service definition
 Add another `Deploy a Package` step. This one will install a service on the target to run the application.
 ![](service-installation-step.png "width=500")
 
 You will need to `Configure Features` for this step:
+
 ![](feature-configuration.png "width=500")
 
 In the `Substitute Variables in Files` feature add the name of the service definition file `core4pi.service`:
+
 ![](substitute-variables-in-service.png "width=500")
 
 Under the `Configuration Scripts` feature, paste the below script in to the `Deployment Script` section:
@@ -175,7 +187,7 @@ echo starting service
 sudo systemctl start core4pi.service
 ```
 
-This `bash` script will be executed during the step execution and actually perform the service installation.
+This script will be executed during the step execution and actually perform the service installation.
 
 ## Test it
 Navigate to the IP address or DNS name of your Raspberry Pi, on port 5000 and you should hopefully see the application
