@@ -4,6 +4,8 @@ description: Inside look into the React UI permissions
 author: nick.josevski@octopus.com
 visibility: private
 published: 2018-01-25
+metaImage: metaImage-react-permissions.png
+bannerImage: blogImage-react-permissions.png
 tags:
  - Permissions
  - React
@@ -19,6 +21,7 @@ But... that would have enraged thousands of customers.
 
 In this blog post I would like to share why those of us who maintain and interact with the permission system like to dream of a world where permissions are far simpler in Octopus.
 
+![Role based access control](blogImage-react-permissions.png)
 
 ## In this post
 
@@ -71,9 +74,9 @@ The third category, was the most time consuming, in a few cases it involved a sp
 
 ## Role based access control
 
-To paint a full picture of the of the user roles in Octopus and how they drive access permissions, we have list of security permission and they are grouped into user roles that align with common ways to break up access for doing tasks in Octopus. If you're using our built in user roles to control the security and scoping them simply you are unlikely to hit the edge cases of the React UI permission code.
+To paint a full picture of the of the user roles in Octopus and how they drive access permissions, we have a list of security permission and they are grouped into user roles that align with common ways to break up access for doing tasks in Octopus. If you're using our built in user roles to control the security and scoping them simply you are unlikely to hit the edge cases of the React UI permission code.
 
-It's for the customers who have decided to craft very strict access permission for their users where the edge cases come up. Such customers have fine tuned user roles to minimize what users can do. At the time of writing this, we have 103 of these permission roles. Yes 103, and they vary in what they can be scoped to, from global (nothing) to Project, Project Group, Environment and Tenant. This translates into lots of access permission permutations (say, that fast 3 times). There are also non-obvious connections between permissions that are required to display certain parts of the React UI, and even if you're working with access roles everyday each time you adjust the access permissions in a fine grained way it's lots of testing and adjusting until you get it right.
+It's for the customers who have decided to craft very strict permission configurations for their users where the edge cases come up. Such customers have fine tuned user roles to minimize what users can do. At the time of writing this, we have 103 of these permission roles. Yes 103, and they vary in what they can be scoped to, from global (nothing) to Project, Project Group, Environment and Tenant. This translates into lots of access permission permutations (say, that fast 3 times). There are also non-obvious connections between permissions that are required to display certain parts of the React UI, and even if you're working with access roles everyday each time you adjust the access permissions in a fine grained way it's lots of testing and adjusting until you get it right.
 
 We'll be addressing this usability and configuration complexity in the near future.
 
