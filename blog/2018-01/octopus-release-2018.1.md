@@ -57,7 +57,7 @@ This new division makes sense for larger installations of Octopus, where you wan
 The underpinning of these changes are a couple of new permissions which you may use in your own Octopus installation:
 
 - `UserEdit` was added to fill a gap in our existing permission structure for editing users directly - this previously required the `AdministerSystem` permission
-- `ServerConfigurationEdit` for managing server configuration settings like Authentication, SMTP, and HTTP Security Headers
+- `ConfigureServer` for configuring things like Authentication, SMTP, and HTTP Security Headers
 
 #### Upgrade experience
 
