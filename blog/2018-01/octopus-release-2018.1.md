@@ -2,10 +2,10 @@
 title: "Octopus January Release 2018.1"
 description: What's new in Octopus 2018.1
 author: shaun.marx@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-2018-1.png
 bannerImage: blogimage-shipping-2018-1.png
-published: 2018-01-23
+published: 2018-01-24
 tags:
  - New Releases
 ---
@@ -24,7 +24,7 @@ One of our big drivers for this year is to bring our hosted Octopus offering to 
 
 The next opportunity to start using Octopus Cloud will be during our open Beta program in March 2018. You can [register your interest in Octopus Cloud today](https://octopus.com/cloud)!
 
-Following the open Beta we will launch Octopus Cloud officially, and later in the year we will launch our Data Centre edition.
+Following the open Beta we will launch Octopus Cloud officially, and later in the year we will launch our [Data Centre](https://octopus.com/cloud) edition.
 
 Learn more about [Octopus Cloud](https://octopus.com/cloud).
 

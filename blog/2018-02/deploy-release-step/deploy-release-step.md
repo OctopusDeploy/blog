@@ -41,6 +41,7 @@ When a _Deploy a Release_ step is run, it triggers a deployment of the specified
 ![Example Project Dashboard](voltron-dashboard-annotated.png "width=500")
 
 ### Conditional Deployment
+
 You can configure the conditions under which the child project is deployed:
 
 - Deploy Always (default)
@@ -53,7 +54,7 @@ Variables can be passed to the deployments triggered by a _Deploy a Release_ ste
 
 ![Pass Variables to Deployment](deploy-release-variables.png "width=500")
 
-[Output variables](/docs/deployment-process/variables/output-variables.md) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step. 
+[Output variables](https://octopus.com/docs/deployment-process/variables/output-variables.md) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step.
 
 This allows output from a child deployment to be used by the parent process and even passed into deployments triggered by subsequent _Deploy a Release_ steps.  Many coordination scenarios are enabled by this. 
 
@@ -62,6 +63,3 @@ This allows output from a child deployment to be used by the parent process and 
 This feature will ship with Octopus version 2018.2, which will be released in early February.
 
 _Happy (multi-project) Deployments!_
-
-
-
