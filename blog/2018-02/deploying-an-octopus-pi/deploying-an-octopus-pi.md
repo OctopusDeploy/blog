@@ -96,9 +96,10 @@ octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9
 ## Create Infrastructure
 
 If you don't already have an environment configured for your Raspberry Pi, create one:
-```
+```powershell
 octo.exe create-environment --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --name "Pi Dev"
 ```
+
 Or use the web interface via {Infrastructure,Environments,Add Environments}
 ![create-new-environment.png]
 
@@ -121,7 +122,7 @@ Currently, Calamari does not support running on ARM architecture out of the box.
 
 ### Modify the target config to specify the Calamari version as `linux-arm`
 
-```
+```c#
 c# code using Octopus.Clients to load target and modify the version string
 ```
 
@@ -174,8 +175,8 @@ sudo systemctl enable core4pi.service
 echo starting service
 sudo systemctl start core4pi.service
 ```
-This `bash` script will be executed during the step execution and actually perform the service installation.
 
+This `bash` script will be executed during the step execution and actually perform the service installation.
 
 ## Test it
 Navigate to the IP address or DNS name of your Raspberry Pi, on port 5000 and you should hopefully see the application
