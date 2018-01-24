@@ -74,64 +74,6 @@ Octopus `2018.1` has an additional layer of security which actively prevents any
 
 Learn more about [this issue](https://github.com/OctopusDeploy/Issues/issues/4167).
 
-### Running tasks on the Octopus Server as a different user
-
-Prior to Octopus `3.0` you required a Tentacle somewhere to do work as part of a deployment. If you wanted to deploy a web site to Azure, you would need to configure a Tentacle as a deployment target and use it as a jump box, when all you needed to do was push your package to Azure and call some APIs. That Tentacle wasn't really a deployment target at all.
-
-In Octopus `3.0` we added the concept of a **worker** into Octopus Server. It's not a concept we've talked about much to date because it's an underlying technology that's built into Octopus Server and just does what it says on the box: work. Now you could install Octopus Server and deploy a web site to Azure in minutes all without any Tentacles involved.
-
-In Octopus `3.3` we added a feature which lets you [run deployment steps on the Octopus Server](https://octopus.com/docs/deployment-process/how-to-run-steps-on-the-octopus-server) which again removed a lot of friction for scenarios other than deploying to Azure.
-
-However, this convenience came at a cost: security. By default Octopus Server runs as the highly privileged `Local System` account on Windows. We typically recommend running Octopus Server as a different account, either a User or Managed Service Account (MSA), so you can grant specific privileges to that account.
-
-#### Now: Built-in worker as a different user
-
-In Octopus `2018.1` you can configure the built-in worker to execute tasks as a different user account. This user account can be a down-level account with very restricted privileges.
-
-```plaintext
-Octopus.Server.exe builtin-worker --username=OctopusWorker --password=XXXXXXXXXX
-```
-
-All tasks which execute on the Octopus Server will run as that user account. The only gotcha is that the user account running the Octopus Server needs the correct privileges to launch processes as the built-in worker user and impersonate the built-in worker user.
-
-Since this can be so tricky to get right, this same command-line tool can automatically configure the correct user accounts on the local machine, and wire it all up for you.
-
-```plaintext
-Octopus.Server.exe builtin-worker --auto-configure
-```
-
-Which results in:
-
-```plaintext
-Creating a user account on the local machine called 'OctopusServer' and adding it to the 'BUILTIN\Administrators' group.
-Granting the 'SeServiceLogonRight' privilege to the 'MACHINE-123\OctopusServer' user account.
-Configuring the 'OctopusDeploy' Windows Service to start as the 'MACHINE-123\OctopusServer' user account.
-[SC] ChangeServiceConfig SUCCESS
-Creating a down-level user account on the local machine called 'OctopusWorker' for the built-in worker.
-The built-in worker is now configured to execute scripts as MACHINE-123\OctopusWorker.
-Testing the built-in worker configuration.
-Built-in worker: SUCCESS
-The success of this configuration depends on both the source and target user accounts.
-Current User: MACHINE-123\admin-user
-Target User: MACHINE-123\OctopusWorker
-
-
-Step 1: Testing credentials... PASSED
-Step 2: Testing thread impersonation... PASSED
-Step 3: Testing process impersonation... PASSED
-Step 4: Check the process impersonation worked as expected... PASSED
-
-NOTE: This test succeeded when starting from the user account 'MACHINE-123\admin-user'. If the Octopus Server usually runs as a different user account these results may vary. The same test will be run each time the Octopus Server starts to be certain the built-in worker is configured correctly.
-
-These changes require a restart of the Octopus Server.
-```
-
-Learn more about [configuring the built-in worker](https://octopus.com/docs/administration/security/built-in-worker).
-
-#### Future: External workers
-
-We [talked about workers briefly in our 2018 roadmap](roadmap-2018.md#scalability-and-continual-improvements) and will be talking in more detail with you all about this in the near future. In summary, workers will be an evolution of `Run on Server` which will let you delegate tasks in a deployment to a worker which may be external to your Octopus Server. We still plan to ship a built-in worker which you can configure as we described earlier, or disable it altogether as you see fit.
-
 ## Step package requirement
 
 By default, Octopus performs package acquisition immediately before the first step in a deployment that requires packages. Steps can now be configured to run before or after package acquisition.  The step condition `Run this step` has been replaced by `Package requirement`:
