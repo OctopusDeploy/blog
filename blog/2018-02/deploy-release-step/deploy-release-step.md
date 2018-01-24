@@ -8,15 +8,19 @@ tags:
  - Patterns 
 ---
 
-Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. 
+Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it micro-services, but the key point from a release-management perspective is it requires coordination.  
+
+![Synchronized Swimming](synchronized-swimming.jpg "width=500")
+
+
 Here at Octopus HQ we love this trend, because frankly the more moving parts your release and deployment processes have, the more value Octopus brings to the table. 
 
 As a natural consequence of this, users want to be able to coordinate the release of multiple projects in Octopus. This is one of our top [UserVoice suggestions](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj).
 
 The two key scenarios are:
 
-- **Bundle:** You may want to create a "bundle" release to allow releases of multiple projects to progress through your environments as a unit. 
-- **Dependencies:** You want to explicitly model that Project A depends on Project B having been deployed.
+- **Bundle:** You may want to create a "bundle" release to allow releases of multiple projects to progress together through your environments. 
+- **Dependencies:** You want to explicitly model that Project A depends on particular version of Project B having been deployed.
 
 ## Introducing the _Deploy a Release_ step 
 
@@ -45,7 +49,9 @@ You can configure the conditions under which the child project is deployed:
 
 Variables can be passed to the deployments triggered by a _Deploy a Release_ step. These are available to the child deployment process just as any other project variable. 
 
-Output variables from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step. 
+![Pass Variables to Deployment](deploy-release-variables.png "width=500")
+
+[Output variables](/docs/deployment-process/variables/output-variables.md) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step. 
 
 This allows output from a child deployment to be used by the parent process and even passed into deployments triggered by subsequent _Deploy a Release_ steps.  Many coordination scenarios are enabled by this. 
 
