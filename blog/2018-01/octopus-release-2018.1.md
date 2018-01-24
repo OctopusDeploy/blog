@@ -42,12 +42,12 @@ Octopus ships with several built-in [teams and user roles](https://octopus.com/d
 
 In Octopus `2018.1` we have effectively split the `Octopus Administrators` team and its `System Administrator` user role into two parts:
 
-- We've kept the existing `Octopus Administrators` team and `System Administrator` role which is all about configuring the Octopus Server and how it is hosted
+- We've kept the existing `Octopus Administrators` team and `System Administrator` role which is primarily focused on configuring the Octopus Server and how it is hosted
 - We've added a new `Octopus Managers` team and `System Manager` role which is all about configuring your users, teams, projects, environments, etc
 
 This makes a lot of sense for [Octopus Cloud](https://octopus.com/cloud):
 
-- Our team needs to configure how your Octopus Server is hosted, but shouldn't be able to see anything else - we'll be members of the `Octopus Administrators` team.
+- Our team needs to configure how your Octopus Server is hosted - we'll be members of the `Octopus Administrators` team.
 - We don't want you to inadvertently break your Octopus Server by changing its hosting configuration - you'll be added to the `Octopus Managers` team.
 
 This new division makes sense for larger installations of Octopus, where you want to have a clearer distinction between teams and their responsibilities.
@@ -57,7 +57,7 @@ This new division makes sense for larger installations of Octopus, where you wan
 The underpinning of these changes are a series of new permissions which you may use in your own Octopus installation:
 
 - `UserEdit` was added to fill a gap in our existing permission structure for editing users directly - this was previously required the `AdministerSystem` permission
-- `FeatureView` and `FeatureEdit` for independent control over who can see which Octopus features are enabled and who can enable/disable features
+- `FeatureEdit` for independent control over who can see which Octopus features are enabled and who can enable/disable features
 - `ConfigurationView` and `ConfigurationEdit` controls who can change hosting-related configuration which all exist under the {{Configuration>Settings}} page
 - `SmtpSettingsView` and `SmtpSettingsEdit` controls who can configure an SMTP server for sending email
 
