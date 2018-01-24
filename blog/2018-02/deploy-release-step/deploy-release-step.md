@@ -8,7 +8,7 @@ tags:
  - Patterns 
 ---
 
-Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it micro-services, but the key point from a release-management perspective is it requires coordination.  
+Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it micro-services, but the key point from a release-management perspective is it requires coordination.
 
 ![Synchronized Swimming](synchronized-swimming.jpg "width=500")
 
@@ -22,7 +22,7 @@ The two key scenarios are:
 - **Bundle:** You may want to create a "bundle" release to allow releases of multiple projects to progress together through your environments. 
 - **Dependencies:** You want to explicitly model that Project A depends on particular version of Project B having been deployed.
 
-## Introducing the _Deploy a Release_ step 
+## Introducing the _Deploy a Release_ step
 
 ![Deploy Release Step Card](deploy-release-card.png "width=500")
 
@@ -32,13 +32,14 @@ To solve this problem, we have a created a new step: _Deploy a Release_.  The _D
 
 When you create a release of a project containing one or more _Deploy a Release_ steps, you can select the release versions of the child projects to be deployed.  Exactly as versions of packages are selected when creating a release of projects which contain steps which deploy packages.
 
-The nice thing about implementing this as a step is all the regular Octopus goodness works as expected. You can intersperse _Deploy a Release_ steps with other step types.  For example, if you are creating a bundle project then your first step may be a _Manual Intervention_ step (to approve the release), and your final step may be to send a Slack notification. _Deploy a Release_ steps can also be configured to run only for specific environments, channels, or tenants, just as any other step can.    
+The nice thing about implementing this as a step is all the regular Octopus goodness works as expected. You can intersperse _Deploy a Release_ steps with other step types.  For example, if you are creating a bundle project then your first step may be a _Manual Intervention_ step (to approve the release), and your final step may be to send a Slack notification. _Deploy a Release_ steps can also be configured to run only for specific environments, channels, or tenants, just as any other step can.
 
 ![Example Project Process](voltron-project-process.png "width=500")
 
-When a _Deploy a Release_ step is run, it triggers a deployment of the specified project. This deployment is a no different from a deployment triggered directly.  It will be visible on the Octopus dashboard.   
+When a _Deploy a Release_ step is run, it triggers a deployment of the specified project. This deployment is a no different from a deployment triggered directly.  It will be visible on the Octopus dashboard.
 
 ### Conditional Deployment
+
 You can configure the conditions under which the child project is deployed:
 
 - Deploy Always (default)
@@ -47,19 +48,16 @@ You can configure the conditions under which the child project is deployed:
 
 ### Variables
 
-Variables can be passed to the deployments triggered by a _Deploy a Release_ step. These are available to the child deployment process just as any other project variable. 
+Variables can be passed to the deployments triggered by a _Deploy a Release_ step. These are available to the child deployment process just as any other project variable.
 
 ![Pass Variables to Deployment](deploy-release-variables.png "width=500")
 
-[Output variables](/docs/deployment-process/variables/output-variables.md) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step. 
+[Output variables](https://octopus.com/docs/deployment-process/variables/output-variables.md) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step.
 
-This allows output from a child deployment to be used by the parent process and even passed into deployments triggered by subsequent _Deploy a Release_ steps.  Many coordination scenarios are enabled by this. 
+This allows output from a child deployment to be used by the parent process and even passed into deployments triggered by subsequent _Deploy a Release_ steps.  Many coordination scenarios are enabled by this.
 
 ## When can I get my hands on it?
 
 This feature will ship with Octopus version 2018.2, which will be released in early February.
 
 _Happy (multi-project) Deployments!_
-
-
-
