@@ -159,6 +159,7 @@ The rest of the options in here don't need to be configured. *Save it*
 
 ### Create a deployment step for the service definition
 Add another `Deploy a Package` step. This one will install a service on the target to run the application.
+For the package selection, select the `core4pi.service` package from the **Octopus Server (built in)** package feed.
 ![](service-installation-step.png "width=500")
 
 You will need to `Configure Features` for this step:
@@ -189,7 +190,17 @@ sudo systemctl start core4pi.service
 
 This script will be executed during the step execution and actually perform the service installation.
 
+## Deploy it
+
+On the Project navigation menu, press the **Create Release**. 
+
+The **Create Release** page will allow you to set a version number for the release, you can just leave the default. It will also allow to pick which versions of the packages you want to deploy, by default it will pick the latest version numbers.
+
+Press **Save** and then press **Deploy to PI Dev**.
+
+The first time you deploy Octopus Server will update Calamari on the target machine, this may take a couple of minutes.
+
 ## Test it
-Navigate to the IP address or DNS name of your Raspberry Pi, on port 5000 and you should hopefully see the application
+After the deployment has finished, navigate to the IP address or DNS name of your Raspberry Pi on port 5000, you should see the application
 
 ![](its-alive.png "width=500")
