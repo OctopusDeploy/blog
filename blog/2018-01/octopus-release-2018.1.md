@@ -42,8 +42,8 @@ Octopus ships with several built-in [teams and user roles](https://octopus.com/d
 
 In Octopus `2018.1` we have effectively split the `Octopus Administrators` team and its `System Administrator` user role into two parts:
 
-- We've kept the existing `Octopus Administrators` team and `System Administrator` role which is primarily focused on configuring the Octopus Server and how it is hosted
-- We've added a new `Octopus Managers` team and `System Manager` role which is all about configuring your users, teams, projects, environments, etc
+- We've kept the existing `Octopus Administrators` team and `System Administrator` role which behave exactly the same as today
+- We've added a new `Octopus Managers` team and `System Manager` role which can do everything, except certain system-level functions reserved for system administrators
 
 This makes a lot of sense for [Octopus Cloud](https://octopus.com/cloud):
 
@@ -54,12 +54,10 @@ This new division makes sense for larger installations of Octopus, where you wan
 
 #### New permissions
 
-The underpinning of these changes are a series of new permissions which you may use in your own Octopus installation:
+The underpinning of these changes are a couple of new permissions which you may use in your own Octopus installation:
 
-- `UserEdit` was added to fill a gap in our existing permission structure for editing users directly - this was previously required the `AdministerSystem` permission
-- `FeatureEdit` for independent control over who can see which Octopus features are enabled and who can enable/disable features
-- `ConfigurationView` and `ConfigurationEdit` controls who can change hosting-related configuration which all exist under the {{Configuration>Settings}} page
-- `SmtpSettingsView` and `SmtpSettingsEdit` controls who can configure an SMTP server for sending email
+- `UserEdit` was added to fill a gap in our existing permission structure for editing users directly - this previously required the `AdministerSystem` permission
+- `ServerConfigurationEdit` for managing server configuration settings like Authentication, SMTP, and HTTP Security Headers
 
 #### Upgrade experience
 
