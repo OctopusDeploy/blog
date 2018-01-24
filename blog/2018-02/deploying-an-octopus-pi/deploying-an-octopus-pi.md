@@ -18,7 +18,7 @@ A Raspberry Pi 3 with dotnet core 2.0 Runtime [installed](https://github.com/dot
 node and npm on your development machine - if your chosen application requires it (angular or react)
 nodejs on your Pi 
 
-:::info
+:::hint
     ASP.NET includes NodeServices in its bundle which requires Node to be installed before it can serve any requests. When you install Node.js on the Raspberry Pi, it installs version 4.x and the executable is called `nodejs`, but NodeServices is looking for `node` in your path. I was able to fix this by creating a symlink: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
 :::
 
@@ -159,6 +159,7 @@ In the `Substitute Variables in Files` feature add the name of the service defin
 ![substitute-variables-in-service.png]
 
 Under the `Configuration Scripts` feature, paste the below script in to the `Deployment Script` section:
+
 ​```bash
 #!/bin/bash
 if [ -e /lib/systemd/system/core4pi.service ]
