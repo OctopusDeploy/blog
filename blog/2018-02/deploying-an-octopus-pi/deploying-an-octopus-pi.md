@@ -19,18 +19,20 @@ node and npm on your development machine - if your chosen application requires i
 nodejs on your Pi 
 
 :::hint
-    ASP.NET includes NodeServices in its bundle which requires Node to be installed before it can serve any requests. When you install Node.js on the Raspberry Pi, it installs version 4.x and the executable is called `nodejs`, but NodeServices is looking for `node` in your path. I was able to fix this by creating a symlink: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
+ASP.NET includes NodeServices in its bundle which requires Node to be installed before it can serve any requests. When you install Node.js on the Raspberry Pi, it installs version 4.x and the executable is called `nodejs`, but NodeServices is looking for `node` in your path. I was able to fix this by creating a symlink: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
 :::
 
 ## Build the Application
 
 ### Create a basic .Net Core Application
+
 ```powershell
 dotnet new angular
 ```
 
 ### Modify the application to listen for external requests.
 Add the following after the `.UseStartup<Startup>()` in `Program.cs`
+
 ```c#
 .UseKestrel(options => {
                     options.Listen(System.Net.IPAddress.Any, 5000);
@@ -38,6 +40,7 @@ Add the following after the `.UseStartup<Startup>()` in `Program.cs`
 ```
 
 ### Build the application
+
 ```powershell
 npm install
 dotnet build
@@ -50,12 +53,14 @@ dotnet publish -o publish --self-contained -r linux-arm
 The simplest way to create a package of a Dotnet Core application is using the `Octo.exe` command line tool.
 
 Create an `artifacts` directory and then use the `Octo Pack` command to create the package
+
 ```powershell
 mkdir artifacts
 octo.exe pack --id core4pi --version 1.0.0 --format nupkg --outputFolder artifacts --basePath publish
 ```
 
-Using Octo.exe again, push the package to 
+Using Octo.exe again, push the package to the server
+
 ```powershell
 octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --package artifacts\core4pi.1.0.0.nupkg
 ```
@@ -148,7 +153,6 @@ Under the **Package** section, select the package that you pushed to the server,
 The rest of the options in here don't need to be configured.
 _Save it_
 
-
 Add another `Deploy a Package` step. This one will install a service on the target to run the application.
 ![](service-installation-step.png)
 
@@ -161,6 +165,20 @@ In the `Substitute Variables in Files` feature add the name of the service defin
 Under the `Configuration Scripts` feature, paste the below script in to the `Deployment Script` section:
 
 ​```bash
+#!/bin/bash
+if [ -e /lib/systemd/system/core4pi.service ]
+then
+    echo stopping service
+    sudo systemctl stop core4pi.service
+fi
+
+echo installing service
+sudo cp core4pi.service /lib/systemd/system/
+sudo chmod 644 /lib/systemd/system/core4pi.service
+sudo systemctl daemon-reload
+sudo systemctl enable core4pi.service
+echo starting service
+sudo systemctl start core4pi.service
 ```
 
 This `bash` script will be executed during the step execution and actually perform the service installation.
