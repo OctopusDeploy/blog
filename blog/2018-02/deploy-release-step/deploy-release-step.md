@@ -8,7 +8,7 @@ tags:
  - Patterns 
 ---
 
-Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it micro-services, but the key point from a release-management perspective is it requires coordination.  
+Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it micro-services, but the key point from a release-management perspective is that it requires coordination.  
 
 ![Synchronized Swimming](synchronized-swimming.jpg "width=500")
 
