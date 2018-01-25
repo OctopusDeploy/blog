@@ -22,7 +22,7 @@ tags:
     * nodejs on your Pi 
 
 :::hint
-ASP.NET includes NodeServices in its bundle which requires Node to be installed before it can serve any requests. When you install Node.js on the Raspberry Pi, it installs version 4.x and the executable is called `nodejs`, but NodeServices is looking for `node` in your path. I was able to fix this by creating a symlink: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
+ASP.NET includes NodeServices in its bundle which requires Node to be installed before it can serve any requests. When you install Node.js on the Raspberry Pi, it installs version 4.x and the executable is called `nodejs`, but NodeServices is looking for `node` in your path. You can fix this by creating a symlink: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
 :::
 
 ## Build the Application
@@ -55,13 +55,13 @@ Create an `artifacts` directory and then use the `Octo Pack` command to create t
 
 ```powershell
 mkdir artifacts
-octo.exe pack --id core4pi --version 1.0.0 --format nupkg --outputFolder artifacts --basePath publish
+octo.exe pack --id core4pi --version 1.0.0 --format zip --outFolder artifacts --basePath publish
 ```
 
 Using Octo.exe again, push the package to the server
 
 ```powershell
-octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --package artifacts\core4pi.1.0.0.nupkg
+octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --package artifacts\core4pi.1.0.0.zip
 ```
 
 ## Building a service definition
@@ -92,25 +92,25 @@ This output variable will contain the path to the newly installed service. This 
 
 Create a package for the service definition and push it to the Octopus Server:
 ```powershell
-octo.exe pack --id core4pi.service --version 1.0.0 --format nupkg --outputFolder artifacts
-octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --package artifacts\core4pi.service.1.0.0.nupkg
+octo.exe pack --id core4pi.service --version 1.0.0 --format zip --outFolder artifacts
+octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --package artifacts\core4pi.service.1.0.0.zip
 ```
 
 ## Create Infrastructure
-If you don't already have an environment configured for your Raspberry Pi, create one:
+If you don't already have an Octopus environment configured for your Raspberry Pi, create one either at the command line:
 ```powershell
 octo.exe create-environment --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --name "Pi Dev"
 ```
 
-Or use the web interface via {Infrastructure,Environments,Add Environments}
+Or using the web interface via *Infrastructure* > *Environments* > *Add Environments*
 
 ![](create-new-environment.png "width=500") 
 
-Next, create an account to access the Pi, this can either be a Username / Password or an SSH Key
+Next, create an account to access the Pi, this can either be a Username / Password or an SSH Key in the *Infrastructure* > *Accounts* section in the web interface.
 
 ![](pi-account.png "width=500")
 
-Then finally, create a deployment target under {Infrastructure,Deployment Targets,Add Deployment Target} as an SSH target.
+Then finally, create a deployment target under *Infrastructure* > *Deployment Targets* > *Add Deployment Target* as an **SSH target**.
 Set the targets role to something that represents the responsibility of the target, e.g `PiWeb`
 After filling in the details (IP Address or DNS name, SSH port and account), under the .Net section, ensure that you select _Mono not installed_, don't worry about the platform, we will be changing that later.
 
@@ -160,6 +160,7 @@ The rest of the options in here don't need to be configured. *Save it*
 ### Create a deployment step for the service definition
 Add another `Deploy a Package` step. This one will install a service on the target to run the application.
 For the package selection, select the `core4pi.service` package from the **Octopus Server (built in)** package feed.
+
 ![](service-installation-step.png "width=500")
 
 You will need to `Configure Features` for this step:
@@ -196,9 +197,11 @@ On the Project navigation menu, press the **Create Release**.
 
 The **Create Release** page will allow you to set a version number for the release, you can just leave the default. It will also allow to pick which versions of the packages you want to deploy, by default it will pick the latest version numbers.
 
-Press **Save** and then press **Deploy to PI Dev**.
+Press **Save** and then press **Deploy to PI Dev** and then **Deploy** to start the deployment process.
 
+:::info
 The first time you deploy Octopus Server will update Calamari on the target machine, this may take a couple of minutes.
+:::
 
 ## Test it
 After the deployment has finished, navigate to the IP address or DNS name of your Raspberry Pi on port 5000, you should see the application
