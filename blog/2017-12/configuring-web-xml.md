@@ -29,7 +29,7 @@ So download a copy of [WildFly 11](http://wildfly.org/downloads/), and [configur
 
 ## Configuring the Maven Central Repository
 
-The next step is to setup Maven central as an external feed. You can refer to the [documentation](https://octopus.com/docs/v/4.1/deploying-applications/maven-feeds) for more details, or this [blog post](https://octopus.com/blog/secured-tomcat-from-scratch#configure-maven-central-as-an-external-feed).
+The next step is to setup Maven central as an external feed. You can refer to the [documentation](https://octopus.com/docs/packaging-applications/package-repositories/maven-feeds) for more details, or this [blog post](https://octopus.com/blog/secured-tomcat-from-scratch#configure-maven-central-as-an-external-feed).
 
 ## Adding an Application User
 
