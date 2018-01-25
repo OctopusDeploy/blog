@@ -13,16 +13,16 @@ Unless you are building a genuine monolith, your projects don't exist in isolati
 ![Synchronized Swimming](synchronized-swimming.jpg "width=500")
 
 
-Here at Octopus HQ we love this trend, because frankly the more moving parts your release and deployment processes have, the more value Octopus brings to the table. 
+Here at Octopus HQ, we love this trend, because frankly, the more moving parts your release and deployment processes have, the more value Octopus brings to the table. 
 
 As a natural consequence of this, users want to be able to coordinate the release of multiple projects in Octopus. This is one of our top [UserVoice suggestions](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj).
 
 The two key scenarios are:
 
-- **Bundle:** You may want to create a "bundle" release to allow releases of multiple projects to progress together through your environments. 
-- **Dependencies:** You want to explicitly model that Project A depends on particular version of Project B having been deployed.
+- **Bundle:** You want to create a "bundle" release to allow releases of multiple projects to progress together through your environments. 
+- **Dependencies:** You want to explicitly model that Project A depends on a particular version of Project B having been deployed.
 
-## Introducing the _Deploy a Release_ step 
+## Introducing the _Deploy a Release_ Step 
 
 ![Deploy Release Step Card](deploy-release-card.png "width=500")
 
@@ -36,7 +36,7 @@ The nice thing about implementing this as a step is all the regular Octopus good
 
 ![Example Project Process](voltron-project-process.png "width=500")
 
-When a _Deploy a Release_ step is run, it triggers a deployment of the specified project. This deployment is a no different from a deployment triggered directly.  It will be visible on the Octopus dashboard.   
+When a _Deploy a Release_ step is run, it triggers a deployment of the specified project. This deployment is no different from a deployment triggered directly.  It will be visible on the Octopus dashboard.   
 
 ![Example Project Dashboard](voltron-dashboard-annotated.png "width=500")
 
@@ -44,9 +44,9 @@ When a _Deploy a Release_ step is run, it triggers a deployment of the specified
 
 You can configure the conditions under which the child project is deployed:
 
-- Deploy Always (default)
-- If the selected release is not the current release in the environment
-- If the selected release has a higher version than the current release in the environment
+- Deploy Always (default).
+- If the selected release is not the current release in the environment.
+- If the selected release has a higher version than the current release in the environment.
 
 ### Variables
 
@@ -58,7 +58,7 @@ Variables can be passed to the deployments triggered by a _Deploy a Release_ ste
 
 This allows output from a child deployment to be used by the parent process and even passed into deployments triggered by subsequent _Deploy a Release_ steps.  Many coordination scenarios are enabled by this. 
 
-## When can I get my hands on it?
+## When Can I Get My Hands on It?
 
 This feature will ship with Octopus version 2018.2, which will be released in early February.
 
