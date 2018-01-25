@@ -2,7 +2,7 @@
 title: "Octopus React UI Permissions"
 description: Inside look into the React UI permissions
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 published: 2018-01-25
 metaImage: metaImage-react-permissions.png
 bannerImage: blogImage-react-permissions.png
@@ -13,7 +13,7 @@ tags:
 
 As part of our UI overhaul in Octopus 4.0, we made the move [from Angular to React](https://octopus.com/blog/octopus-v4-angular-to-react), some great background details are covered in that post. 
 
-Octopus has an extensive feature set. To accompany the wide range of features, there's a complex role-based access permission system that has evolved to support restricting what users can see and do. Many customers choose to avoid tuning permissions and operate as a set of administrators with full access. For many organizations, that's not suitable, and they have opted into fine-grained control of what teams and team members can see and do.
+Octopus has an extensive feature set.  To accompany the wide range of features, there's a complex role-based access permission system that has evolved to support restricting what users can see and do. Many customers choose to avoid tuning permissions and operate as a set of administrators with full access. For many organizations, that's not suitable, and they have opted into fine-grained control of what teams and team members can see and do.
 
 We half-jokingly, half-seriously, wanted to completely remove the fine-grained permissions and the large set of role-based groupings and push customers to a simplified read and write model inside Octopus. With some exceptions like providing security around sensitive data passwords, private keys, etc. 
 
