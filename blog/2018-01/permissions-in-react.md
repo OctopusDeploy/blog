@@ -101,13 +101,14 @@ This is our wrapping React component, to check if you can deploy:
 A benefit we gained in the 4.0 UI by having this react access control component everywhere, is that we can clearly tell you why you can't see something, that's the call out element and text.
 
 ```
-    <PermissionCheck 
+	<PermissionCheck 
 		permission={Permission.LifecycleView} 
 		alternate={
 			<Callout type={CalloutType.Information}>
-				 The {Permission.LifecycleView} permission is required to view the deployments
+				The {Permission.LifecycleView} permission is required to view the deployments
 			</Callout>
-		} />
+		}
+	/>
 ```
 
 It's ok, once you get used to it, but it has significant room for error, the inputs are document ids and are strings, they could easily be applied to the wrong filter. Some better type safety could mitigate that. If that's out of the way the next major challenge is still there; actually writing that code and ensuring it's in the right place.
