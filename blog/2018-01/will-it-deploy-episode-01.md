@@ -17,14 +17,14 @@ We're kicking off with a fun one as we try to deploy a ASP.NET Core web app to M
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Z77T3SHRLKE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Problem
+### Problem
 
-### Tech Stack
+## Tech Stack
 
 * Microsoft [ASP.NET Core 2.0](https://docs.microsoft.com/en-us/aspnet/core/) web app
 * [NUnit](http://nunit.org/) unit testing framework
 
-### Deployment Target: 
+## Deployment Target: 
 
 TODO: Add Azure logo
 
@@ -32,7 +32,7 @@ TODO: Add Azure logo
 * Provision our cloud infrastructure with an Azure Resource Manager Template (ARM Template)
 * Zero-downtime production deploy (Applying the blue-green deployment pattern)
 
-## Solution
+### Solution
 
 So will it deploy? Yes it can! Our deployment process looks like the following.
 
