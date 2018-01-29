@@ -26,7 +26,7 @@ The two other steps allow you to deploy CloudFormation templates and delete exis
 
 ## Michael Richardson's new steps
 
-## Roc Erez's package changes
+## Rob Erez's package changes
 
 ## Improvements to audit logs
 
