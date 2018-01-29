@@ -22,11 +22,12 @@ The two key scenarios are:
 - **Bundle:** You want to create a "bundle" release to allow releases of multiple projects to progress together through your environments. 
 - **Dependencies:** You want to explicitly model that Project A depends on a particular version of Project B having been deployed.
 
-## Introducing the _Deploy a Release_ Step 
+## Introducing the _Deploy a Release_ Step    
 
-![Deploy Release Step Card](deploy-release-card.png)
+![Deploy Release Step Card](deploy-release-card.png)   
 
-To solve this problem, we have a created a new step: _Deploy a Release_.  The _Deploy a Release_ step allows you to select another Octopus project to deploy.
+To solve this problem, we have a created a new step: _Deploy a Release_.  The _Deploy a Release_ step allows you to select another Octopus project to deploy.   
+
 
 ![Deploy Release Step - Select a Project](deploy-release-step-edit.png "width=500")
 
@@ -34,11 +35,16 @@ When you create a release of a project containing one or more _Deploy a Release_
 
 The nice thing about implementing this as a step is all the regular Octopus goodness works as expected. You can intersperse _Deploy a Release_ steps with other step types.  For example, if you are creating a bundle project then your first step may be a _Manual Intervention_ step (to approve the release), and your final step may be to send a Slack notification. _Deploy a Release_ steps can also be configured to run only for specific environments, channels, or tenants, just as any other step can. They can be configured to run in parallel or serial, just as any other step can.   
 
+
 ![Example Project Process](voltron-project-process.png "width=500")
 
 When a _Deploy a Release_ step is run, it triggers a deployment of the specified project. This deployment is no different from a deployment triggered directly.  It will be visible on the Octopus dashboard.   
 
+
+
 ![Example Project Dashboard](voltron-dashboard-annotated.png "width=500")
+
+
 
 ### Conditional Deployment
 
@@ -50,9 +56,11 @@ You can configure the conditions under which the child project is deployed:
 
 ### Variables
 
-Variables can be passed to the deployments triggered by a _Deploy a Release_ step. These are available to the child deployment process just as any other project variable. 
+Variables can be passed to the deployments triggered by a _Deploy a Release_ step. These are available to the child deployment process just as any other project variable.    
+
 
 ![Pass Variables to Deployment](deploy-release-variables.png "width=500")
+
 
 [Output variables](https://octopus.com/docs/deployment-process/variables/output-variables.md) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step.
 
