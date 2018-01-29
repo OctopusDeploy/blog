@@ -10,7 +10,7 @@ Octopus offers a no obligation 45 day free trial to give you a chance to evaluat
 
 First, sign up for a [trial license](https://octopus.com/licenses/trial). After you've entered your details, your license  is shown on the confirmation page; keep that page open or copy the license somewhere. We also send it out by email so don't stress if you navigate away from the page.
 
-### Downloads
+## Downloads
 
 Next you'll need to download the Octopus Server MSI, Octopus Tentacle MSI, and an SQL Server Database:
 
@@ -28,7 +28,7 @@ First, we’ll install the SQL Server Database. Select the basic installation, a
 
 We’ll let Octopus configure the database in the next step.
 
-### Install Octopus
+## Install Octopus
 
 Start the Octopus Server installer, accept the license and the defaults. When the installer is done, click finish to launch the Octopus Manager and click **Get Started...**. 
 
@@ -50,7 +50,7 @@ The web portal is where you configure your infrastructure, define your release p
 
 ![Octopus Dashboard](dashboard.png "width=500")
 
-### Infrastructure
+## Infrastructure
 
 Octopus organizes the machines (whether your deploying to physical servers or Microsoft Azure) into environments. Follow these steps to create an environment.
 
