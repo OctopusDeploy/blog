@@ -2,9 +2,10 @@
 title: "Coordinating Projects with the Deploy Release Step"
 description: "We have introduced a new 'Deploy Release' step type which allows coordination between Octopus Projects"
 author: michael.richardson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-deploy-release-step.png
 bannerImage: blogimage-deploy-release-step.png
+published: 2018-01-29
 tags:
  - New Releases
  - Patterns 
@@ -69,7 +70,7 @@ The _Acme.Shop_ project could contain a _Deploy Release_ step which was configur
 
 This would allow the team working on the _Acme.Shipping_ microservice project to work independently, deploying to the Octopus environments when they are ready. 
 
-When the team working on _Acme.Shop_ creates a release, they select a version of _Acme.Shipping_, for example `2.0.0`.  This effectively specifies the _minimum_ version which must be in each environment. As the _Acme.Shop_ release progresses through the environments, it will trigger a deployment of _Acme.Shipping_ only if the environment doesn't already contain `>= 2.0.0` of _Acme.Shipping_.        
+When the team working on _Acme.Shop_ creates a release, they select a version of _Acme.Shipping_, for example `2.0.0`.  This effectively specifies the minimum version which must be in each environment. As the _Acme.Shop_ release progresses through the environments, it will trigger a deployment of _Acme.Shipping_ only if the environment doesn't already contain `>= 2.0.0` of _Acme.Shipping_.        
 
 ### Variables
 
