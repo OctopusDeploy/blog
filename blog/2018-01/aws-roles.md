@@ -15,7 +15,7 @@ In this blog post we'll look at how roles can be assigned to EC2 instances and t
 
 ## Assigning Roles to EC2 Instances
 
-We'll start with an EC2 instance that has no roles and a IAM role called `ExampleRole` that has no policies attached to it. Roles can be assigned to an existing EC2 instance with the command:
+We'll start with an EC2 instance that has no roles and an IAM role called `ExampleRole` that has no policies attached to it. Roles can be assigned to an existing EC2 instance with the command:
 
 ```
 aws ec2 associate-iam-instance-profile --instance-id i-0123456789abcdef0 --iam-instance-profile Name="ExampleRole"
@@ -82,7 +82,7 @@ The output should be a single line with the name of the role.
 ExampleRole
 ```
 
-This command will return the access, secret and session token keys.
+This command will return the access, secret, and session token keys.
 
 ```
 curl http://169.254.169.254/latest/meta-data/iam/security-credentials/ExampleRole
@@ -138,7 +138,7 @@ From the role assigned to the EC2 instance, we can then assume a secondary role.
 
 Let's assume that we have a second role called `ExampleAssumedRole` that we would like to assume from `ExampleRole`.
 
-The first step is to give `ExampleRole` the permissions to assume `ExampleAssumedRole`. This is done with the following policy on `ExampleRole`.
+The first step is to give `ExampleRole` the permissions to assume `ExampleAssumedRole`. This is done with the following policy on `ExampleRole`:
 ```json
 {
     "Version": "2012-10-17",
@@ -157,7 +157,7 @@ The first step is to give `ExampleRole` the permissions to assume `ExampleAssume
 }
 ```
 
-Then `ExampleAssumedRole` needs to be updated to trust `ExampleRole`.
+Then `ExampleAssumedRole` needs to be updated to trust `ExampleRole`:
 
 ```json
 {
@@ -180,7 +180,7 @@ With these policies in place, run the following command to assume a role:
 aws sts assume-role --role-arn arn:aws:iam::123456789012:role/ExampleAssumedRole --role-session-name MySession
 ```
 
-The result then contains the `AccessKeyId`, `SecretAccessKey` and `SessionToken` that can be assigned to environment variables in the same way that was described in `Generating Keys from an Instance Role`.
+The result then contains the `AccessKeyId`, `SecretAccessKey` and `SessionToken` that can be assigned to environment variables in the same way that was described in `Generating Keys from an Instance Role`:
 
 ```json
 {
