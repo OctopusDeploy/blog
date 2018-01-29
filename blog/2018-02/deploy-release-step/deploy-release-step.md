@@ -10,7 +10,7 @@ tags:
  - Patterns 
 ---
 
-Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it micro-services, but the key point from a release-management perspective is that it requires coordination.  
+Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it microservices, but the key point from a release-management perspective is that it requires coordination.  
 
 ![Synchronized Swimming](synchronized-swimming.jpg "width=500")
 
@@ -58,6 +58,18 @@ You can configure the conditions under which the child project is deployed:
 - Deploy Always (default).
 - If the selected release is not the current release in the environment.
 - If the selected release has a higher version than the current release in the environment.
+
+This allows you to specify the relationship between versions of your components. 
+
+#### Microservice Example
+
+For example, you are deploying an application, _Acme.Shop_, which depends on a logging microservice, _Acme.Shipping_.   
+
+The _Acme.Shop_ project could contain a _Deploy Release_ step which was configured to deploy _Acme.Shipping_ with the _Deployment Condition_ field set to `If the selected release has a higher version than the current release in the environment`.
+
+This would allow the team working on the _Acme.Shipping_ microservice project to work independently, deploying to the Octopus environments when they are ready. 
+
+When the team working on _Acme.Shop_ creates a release, they select a version of _Acme.Shipping_, for example `2.0.0`.  This effectively specifies the _minimum_ version which must be in each environment. As the _Acme.Shop_ release progresses through the environments, it will trigger a deployment of _Acme.Shipping_ only if the environment doesn't already contain `>= 2.0.0` of _Acme.Shipping_.        
 
 ### Variables
 
