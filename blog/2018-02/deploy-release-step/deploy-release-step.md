@@ -3,6 +3,8 @@ title: "Coordinating Projects with the Deploy Release Step"
 description: "We have introduced a new 'Deploy Release' step type which allows coordination between Octopus Projects"
 author: michael.richardson@octopus.com
 visibility: private
+metaImage: metaImage-deployReleases.png
+bannerImage: blogImage-deployReleases.png
 tags:
  - New Releases
  - Patterns 
