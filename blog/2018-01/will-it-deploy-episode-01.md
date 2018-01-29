@@ -3,8 +3,10 @@ title: Will it Deploy? ASP.NET Core web app to Azure w/ infrastructure provision
 description: We're try to automate the deployment of a ASP.NET core web app to Microsoft's Azure platform with Infrastructure provisioning and zero production downtime.
 author: rob.pearson@octopus.com
 visibility: private
+published: 2018-01-30
 #metaImage: will-it-deploy-meta.png
 #bannerImage: will-it-deploy.png
+
 tags:
  - will-it-deploy
 ---
