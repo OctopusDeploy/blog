@@ -24,7 +24,7 @@ The two key scenarios are:
 
 ## Introducing the _Deploy a Release_ Step 
 
-![Deploy Release Step Card](deploy-release-card.png "width=500")
+![Deploy Release Step Card](deploy-release-card.png)
 
 To solve this problem, we have a created a new step: _Deploy a Release_.  The _Deploy a Release_ step allows you to select another Octopus project to deploy.
 
