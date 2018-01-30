@@ -2,14 +2,15 @@
 title: Trust Me - Assigning and Assuming IAM Roles
 description: Learn how to use roles assigned to EC2 instances and assume secondary roles.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
+published: 2018-01-31
 metaImage: metaimage-awsiam.png
 bannerImage: blogimage-awsiam.png
 tags:
  - Cloud
 ---
 
-AWS allows resources like EC2 instances to have a IAM role assigned to them. In effect, this gives applications run on the EC2 instance the permissions of that role. This means that neither the code itself, nor the process running the code, need to supply any credentials or keys, which is very convenient when designing deployment practices.
+AWS allows resources like EC2 instances to have a IAM role assigned to them. In effect, this gives applications run on the EC2 instance the permissions of that role.  This means that neither the code itself, nor the process running the code, need to supply any credentials or keys, which is very convenient when designing deployment practices.
 
 In this blog post we'll look at how roles can be assigned to EC2 instances and then used to assume secondary roles.
 

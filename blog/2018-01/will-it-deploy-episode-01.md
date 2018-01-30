@@ -7,12 +7,12 @@ published: 2018-01-30
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
- - will-it-deploy
+ - Will it Deploy
 ---
 
 Today, we're launching **Will it Deploy?** This is our brand new video series where we try to automate the deployment of different technologies with Octopus Deploy.
 
-We're kicking off the series with a fun video as we try to deploy an ASP.NET Core web app to Microsoft's Azure platform. That alone is pretty easy, so we decided to make it a bit more interesting by automating the provisioning of our cloud infrastructure as well as ensure we have a zero-downtime production deployment. 
+We're kicking off the series with a fun video as we try to deploy an ASP.NET Core web app to Microsoft's Azure platform.  That alone is pretty easy, so we decided to make it a bit more interesting by automating the provisioning of our cloud infrastructure as well as ensure we have a zero-downtime production deployment.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tQb8PJ0jzvk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -27,7 +27,7 @@ Our app is a quote generator called [Random Quotes](https://github.com/OctopusSa
 
 Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who has been learning to code and built the first cut of this app. Great work! 
 
-### Deployment Target: 
+### Deployment Target
 
 ![Microsoft Azure logo](will-it-deploy-azure-logo.png "width=500")
 
@@ -58,7 +58,7 @@ This project uses the following variables to store our resource group name, webs
 
 This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Episode001) contains all the resources and links used in this video.
 
-### Wrap-up: 
+### Wrap-up
 
 We hope you like this new series, and we hope it can help people around the world learn how to automate the deployment of their application and services.  
 
