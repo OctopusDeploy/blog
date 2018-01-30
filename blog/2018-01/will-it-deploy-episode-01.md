@@ -4,8 +4,8 @@ description: We're try to automate the deployment of a ASP.NET core web app to M
 author: rob.pearson@octopus.com
 visibility: private
 published: 2018-01-30
-metaImage: metaimage-willItDeploy.png
-bannerImage: blogimage-willItDeploy.png
+metaImage: metaimage-will-it-deploy.png
+bannerImage: blogimage-will-it-deploy.png
 tags:
  - will-it-deploy
 ---
