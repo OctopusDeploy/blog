@@ -60,6 +60,8 @@ This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Epis
 
 ### Wrap-up: 
 
-We hope you like this new series, and we hope it can help people around the world learn how to automate the deployment of their application and services.  Don't forget to subscribe to our [YouTube](https://youtube.com/octopusdeploy) channel as we're adding new videos regularly. If there's a framework or technology you'd like us to explore, let us know in the comments.
+We hope you like this new series, and we hope it can help people around the world learn how to automate the deployment of their application and services.  
+
+Don't forget to subscribe to our [YouTube](https://youtube.com/octopusdeploy) channel as we're adding new videos regularly. If there's a framework or technology you'd like us to explore, let us know in the comments.
 
 Happy deployments! :)
