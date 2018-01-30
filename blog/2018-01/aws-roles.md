@@ -3,8 +3,8 @@ title: Trust Me - Assigning and Assuming IAM Roles
 description: Learn how to use roles assigned to EC2 instances and assume secondary roles.
 author: matthew.casperson@octopus.com
 visibility: private
-metaImage: linux-metaimage.png
-bannerImage: linux-blogimage.png
+metaImage: metaimage-awsiam.png
+bannerImage: blogimage-awsiam.png
 tags:
  - Cloud
 ---
