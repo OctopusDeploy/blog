@@ -14,7 +14,7 @@ Today, we're launching **Will it Deploy?** This is our brand new video series wh
 
 We're kicking off the series with a fun video as we try to deploy an ASP.NET Core web app to Microsoft's Azure platform. That alone is pretty easy, so we decided to make it a bit more interesting by automating the provisioning of our cloud infrastructure as well as ensure we have a zero-downtime production deployment. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Z77T3SHRLKE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tQb8PJ0jzvk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Problem
 
