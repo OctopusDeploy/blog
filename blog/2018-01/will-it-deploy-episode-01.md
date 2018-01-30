@@ -1,5 +1,5 @@
 ---
-title: Will it Deploy - Episode 1
+title: Deploying an ASP.NET Core app - Will it Deploy? Episode 1
 description: We're try to automate the deployment of a ASP.NET core web app to Microsoft's Azure platform with infrastructure provisioning and zero production downtime.
 author: rob.pearson@octopus.com
 visibility: private
@@ -10,7 +10,7 @@ tags:
  - will-it-deploy
 ---
 
-Today, we're launching `Will it Deploy?`! This is our brand new video series where we try to automate the deployment of different technologies with Octopus Deploy. 
+Today, we're launching **Will it Deploy?** This is our brand new video series where we try to automate the deployment of different technologies with Octopus Deploy. 
 
 We're kicking off the series with a fun video as we try to deploy a ASP.NET Core web app to Microsoft's Azure platform. That alone is pretty easy so we decided to make it a bit more interesting by adding that it should automate the provisioning of the our cloud infrastructure as well as ensure we have a zero-downtime production deployment. 
 
@@ -37,7 +37,7 @@ Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who 
 
 ## Solution
 
-So will it deploy? **Yes it can!** Our deployment process looks like the following.
+So will it deploy? **Yes it will!** Our deployment process looks like the following.
 
 ![Octopus deployment process](will-it-deploy-deployment-process.png "width=500")
 
@@ -47,10 +47,10 @@ The first step is to add an Octopus Azure account, which has all the details req
 
 Then we add the following steps to sucessfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
 
-- Octopus `Deploy an Azure Resource Group` step to provision our cloud infrastructure via an ARM Template.
-- Octopus `Run an Azure Powershell Script` step to ensure we always have a fresh App Service staging deployment slot. We call the Azure Powershell cmdlets to delete and create a App Service deployment slot.
-- Octopus `Deploy an Azure Web App` step to deploy our web application to our App Service staging deployment slot.
-- Octopus `Run an Azure Powershell Script` step to swap our App Service staging and production (live) deployment slot. This is only done during a production deployment so that we achieve zero-downtime!
+- Octopus **Deploy an Azure Resource Group** step to provision our cloud infrastructure via an ARM Template.
+- Octopus **Run an Azure Powershell Script** step to ensure we always have a fresh App Service staging deployment slot. We call the Azure Powershell cmdlets to delete and create a App Service deployment slot.
+- Octopus **Deploy an Azure Web App** step to deploy our web application to our App Service staging deployment slot.
+- Octopus **Run an Azure Powershell Script** step to swap our App Service staging and production (live) deployment slot. This is only done during a production deployment so that we achieve zero-downtime!
 
 This project uses the following variables to store our resource group name, website name and app settings. Nice and simple!
 
