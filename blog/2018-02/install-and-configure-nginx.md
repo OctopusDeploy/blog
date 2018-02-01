@@ -4,8 +4,8 @@ description: Learn how to create a repeatable deployment process for installing 
 author: shane.gill@octopus.com
 visibility: private
 published: 2018-02-02
-metaImage: metaimage-nginx.png
-bannerImage: blogimage-nginx.png
+#metaImage: metaimage-nginx.png
+#bannerImage: blogimage-nginx.png
 tags:
  - Walkthrough
 ---
