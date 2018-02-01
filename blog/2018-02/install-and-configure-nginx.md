@@ -4,13 +4,13 @@ description: Learn how to create a repeatable deployment process for installing 
 author: shane.gill@octopus.com
 visibility: private
 published: 2018-02-02
-metaImage: metaimage-nginx.png
-bannerImage: blogimage-nginx.png
+#metaImage: metaimage-nginx.png
+#bannerImage: blogimage-nginx.png
 tags:
  - Walkthrough
 ---
 
-Hello deployers!  Over the past fews days I have learned a lot about configuring NGINX. I have configured a simple reverse proxy for two web applications and hope to never do it again. For the sake of my future self I have setup a project in Octopus to do the work. A configuration change, certificate expiry or deployment to another machine can be completed at the push of a button, rather than trying to remember all of the tweaking I have done over the past days. Here's how it works:
+Hello deployers!  Over the past few days I have learned a lot about configuring NGINX. I have configured a simple reverse proxy for two web applications and hope to never do it again. For the sake of my future self I have setup a project in Octopus to do the work. A configuration change, certificate expiry or deployment to another machine can be completed at the push of a button, rather than trying to remember all of the tweaking I have done over the past days. Here's how it works:
 
 ![NGINX deployment process](install-and-configure-nginx/nginx-deployment-process.png)
 
@@ -24,7 +24,7 @@ sudo apt-get install --assume-yes nginx
 ## Install site configurations
 There are two configuration files that instruct NGINX how to forward requests to our web applications. They look something like:
 
-```json
+```no-highlight
 server {
     listen 80; listen [::]:80;
     server_name somewhere.octopus.com;
@@ -55,7 +55,7 @@ server {
 }
 ```
 
-The files live in source control and get packaged up to be used by Octopus. This step copies the files to their destination in the `sites-available` NGINX configuration directory, and then creats a symbolic link in the `sites-enabled` directory. When NGINX start, it loads the configuration from the `sites-enabled` directory and starts forwarding requests to those sites. There is a post-deployment bash script that looks like:
+The files live in source control and get packaged up to be used by Octopus. This step copies the files to their destination in the `sites-available` NGINX configuration directory, and then creates a symbolic link in the `sites-enabled` directory. When NGINX start, it loads the configuration from the `sites-enabled` directory and starts forwarding requests to those sites. There is a post-deployment bash script that looks like:
 
 ```bash
 sudo rm /etc/nginx/sites-enabled/*
