@@ -24,7 +24,7 @@ sudo apt-get install --assume-yes nginx
 ## Install site configurations
 There are two configuration files that instruct NGINX how to forward requests to our web applications. They look something like:
 
-```json
+```no-highlight
 server {
     listen 80; listen [::]:80;
     server_name somewhere.octopus.com;
