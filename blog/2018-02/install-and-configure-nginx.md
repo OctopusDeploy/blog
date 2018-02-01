@@ -66,7 +66,7 @@ sudo ln -s /etc/nginx/sites-available/somewhere /etc/nginx/sites-enabled/somewhe
 ```
 
 ## Install SSL certificate
-Octopus has first class support for SSL certificates. This step copies the SSL certificate and key file to the location specified in the site configuration above (/etc/ssl). NGINX is expecting a PEM file for the key and a PEM file for the certificate. The certificate file must contain the entire certificate chain, that is the primary certificate and any intermediate certificates. To allow Octopus to provide the certificate in the correct format, I created a single PEM file with your primary certificate, intermediate certificates and private key. It looks something like:
+Octopus has first class support for SSL certificates. This step copies the SSL certificate and key file to the location specified in the site configuration above (/etc/ssl). NGINX is expecting a PEM file for the key and a PEM file for the certificate. The certificate file must contain the entire certificate chain, that is the primary certificate and any intermediate certificates. To allow Octopus to provide the certificate in the correct format, I created a single PEM file with the primary certificate, intermediate certificates and private key. It looks something like:
 
 ```no-highlight
 -----BEGIN CERTIFICATE-----
