@@ -2,10 +2,10 @@
 title: How to install and configure NGINX with Octopus Deploy
 description: Learn how to create a repeatable deployment process for installing and configuring NGINX.
 author: shane.gill@octopus.com
-visibility: private
+visibility: public
 published: 2018-02-02
-#metaImage: metaimage-nginx.png
-#bannerImage: blogimage-nginx.png
+metaImage: install-and-configure-nginx/metaimage-nginx.png
+bannerImage: install-and-configure-nginx/blogimage-nginx.png
 tags:
  - Walkthrough
 ---
@@ -15,7 +15,7 @@ Hello deployers!  Over the past few days I have learned a lot about configuring 
 ![NGINX deployment process](install-and-configure-nginx/nginx-deployment-process.png)
 
 ## Install NGINX
-To use NGINX we must install NGINX. A simple bash script ensures that NGINX is installed:
+To use NGINX we must install NGINX.  A simple bash script ensures that NGINX is installed:
 
 ```bash
 sudo apt-get install --assume-yes nginx
