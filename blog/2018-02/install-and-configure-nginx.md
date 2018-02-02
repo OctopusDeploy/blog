@@ -1,5 +1,5 @@
 ---
-title: Install and configure NGINX with Octopus Deploy
+title: How to install and configure NGINX with Octopus Deploy
 description: Learn how to create a repeatable deployment process for installing and configuring NGINX.
 author: shane.gill@octopus.com
 visibility: private
