@@ -1,12 +1,16 @@
 ---
 title: Setting up an Octopus Deploy Trial Locally
 description: Learn how to install a local evaluation instance of Octopus Deploy
-visibility: private
+author: lee.carlon@octopus.com
+visibility: public
+published: 2018-02-06
+metaImage: metaimage-freetrial.png
+bannerImage: blogimage-freetrial.png
 tags:
  - Octopus Trial
 ---
 
-Octopus offers a no obligation 45 day free trial to give you a chance to evaluate the software and make sure it meets your application deployment needs. If you've ever thought about spinning up your own Octopus and kicking the tentacles (please don't kick any tentacles), this blog post will help you set up a local evaluation instance so you can run through the process of automating a deployment without hooking it up to any critical infrastructure. In this post, I’m setting everything up in a single VM running Windows 10.
+Octopus offers a no obligation 45 day free trial to give you a chance to evaluate the software and make sure it meets your application deployment needs.  If you've ever thought about spinning up your own Octopus and kicking the tentacles (please don't kick any tentacles), this blog post will help you set up a local evaluation instance so you can run through the process of automating a deployment without hooking it up to any critical infrastructure. In this post, I’m setting everything up in a single VM running Windows 10.
 
 ## Downloads
 
