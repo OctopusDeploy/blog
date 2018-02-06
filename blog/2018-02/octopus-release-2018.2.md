@@ -24,7 +24,17 @@ The first allows custom scripts to be run against the AWS CLI. Octopus provides 
 
 The two other steps allow you to deploy CloudFormation templates and delete existing CloudFormation stacks. Octopus takes care of the parameters and outputs, and allows you to deploy CloudFormation templates entered directly in the step or from an external package.
 
-## Michael Richardson's new steps
+## Coordinating Projects with the Deploy a Release Step
+
+One of our most popular [UserVoice suggestions](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj) for a while now has been the ability to coordinate multiple Octopus projects, by having one trigger the deployment of another. 
+
+With this release we are proud to introduce the [Deploy a Release step](deploy-release-step/deploy-release-step.md).  
+
+![Deploy Release Step Card](deploy-release-step/deploy-release-card.png)   
+
+We hope this will enable many powerful multi-project scenarios. 
+
+![Example Deploy Release Step Project Process](deploy-release-step/voltron-project-process.png "width=500")
 
 ## Improvements to audit logs
 
