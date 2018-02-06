@@ -1,7 +1,6 @@
 ---
 title: Setting up an Octopus Deploy Trial Locally
 description: Learn how to install a local evaluation instance of Octopus Deploy
-author: lee
 visibility: public
 published: 2018-02-06
 metaImage: metaimage-freetrial.png
