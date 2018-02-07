@@ -82,4 +82,4 @@ And you’re good to go.
 
 This gives you a working instance of Octopus, albeit, in a configuration that lets you evaluate the look and feel of Octopus and peek under the hood, but not a configuration that many people will use to deploy real world software.
 
-Depending on what you want to deploy you could check out the [documentation](https://octopus.com/docs/getting-started) to learn about [packaging](https://octopus.com/docs/packaging-applications) and [deploying](https://octopus.com/docs/deploying-applications) your apps, watch our videos, or browse through the blog.
+Depending on what you want to deploy you could check out the [documentation](https://octopus.com/docs/getting-started) to learn about [packaging](https://octopus.com/docs/packaging-applications) and [deploying](https://octopus.com/docs/deploying-applications) your apps, watch our videos, or browse through the blog. 
