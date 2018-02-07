@@ -3,7 +3,7 @@ title: Deploying an Java Spring Boot web app - Will it Deploy? Episode 2
 description: We try to automate the deployment of a Java Spring Boot web app AWS Elastic Beanstalk with infrastructure provisioning and zero production downtime.
 author: rob.pearson@octopus.com
 visibility: private
-published: 2018-02-08
+published: 2018-02-12
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
