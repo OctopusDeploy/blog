@@ -30,7 +30,7 @@ Not unlike most software companies, Octopus makes a significant portion of our r
 
 What this has meant is that we've continually put enterprise customers first when designing the roadmap or choosing how we spend our time. Without building enterprise features, we can't sustainably support all the companies using Octopus for free. Something about that doesn't feel right to me. I'd like to see a healthy balance, where smaller customers are paying a small amount for licenses ($750) but the sheer number of them means it's in our interest to build features and improve their user experience equally. 
 
-## 3. Changing nature of deployments**
+## 3. Changing nature of deployments
 
 Octopus prices based on the number of target machines you are deploying to. Many customers are moving towards the cloud, and in doing that are deploying to PaaS targets - which aren't counted towards licenses currently. If you deploy to 10,000 Azure web apps with Octopus, today it would still be free. And the support burden for a customer doing deployments at that scale is definitely non-zero. 
 
