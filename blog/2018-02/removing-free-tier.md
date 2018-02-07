@@ -34,7 +34,7 @@ What this has meant is that we've continually put enterprise customers first whe
 
 Octopus prices based on the number of target machines you are deploying to. Many customers are moving towards the cloud, and in doing that are deploying to PaaS targets - which aren't counted towards licenses currently. If you deploy to 10,000 Azure web apps with Octopus, today it would still be free. And the support burden for a customer doing deployments at that scale is definitely non-zero. 
 
-Even if we were to find ways to charge based on the number of PaaS targets you deploy to, there will always be edge cases. We're adding Kubernetes support to Octopus today, and it's quite possible that someone could be deploying to a massive hundred-node Kubernetes cluster with a free version of Octopus. That trend isn't on our side. 
+Even if we were to find ways to charge based on the number of PaaS targets you deploy to, there will always be edge cases. For instance, we're adding Kubernetes support to Octopus today, and it's quite possible that someone could be deploying to a massive hundred-node Kubernetes cluster with a free version of Octopus. That trend isn't on our side. 
 
 ## Exceptions
 
@@ -52,7 +52,7 @@ Yet.
 
 I'll be doing some soul searching over the next few months and thinking about what the "right" way to handle existing customers already using Octopus for free should be. If you have thoughts on this, please let me know in the comments below. 
 
-### Doesn't it lead to paying users later?
+## Doesn't it lead to paying users later?
 
 Yes, sometimes it does. I've seen customers switch to a paid version of Octopus after 12 months of using the free version. But it really doesn't happen as often as you would think. 
 
