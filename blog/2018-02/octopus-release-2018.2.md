@@ -40,7 +40,7 @@ We hope this will enable many powerful multi-project scenarios.
 
 ## Improvements for large dashboards
 
-We'd also like to highlight one small but significant change that is a great addition for large Octopus instances. If you had a large number of environments or tenants, your dashboards that were very hard to read and often you'd be need to scroll horiztontally to see more content. The good news is that we've updated the dashboards with a fixed first column and headers so they so they far easier to read and work with. 
+We'd also like to highlight one small but significant change that is a great addition for large Octopus instances. If you had a large number of environments or tenants, your dashboards that were very hard to read and often you'd be need to scroll horizontally to see more content. The good news is that we've updated the dashboards with a fixed first column and headers so they so they far easier to read and work with. 
 
 ![Example large dashboard with scrolling](busy-dashboards.gif)
 
