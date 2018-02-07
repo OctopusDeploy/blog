@@ -45,7 +45,7 @@ When resources referenced by other resources are deleted we will now log how and
 ## Breaking Changes
 ### Improving our Packages API
 In anticipation of some upcoming new feed types we have hit the point where we were forced to revisit how we expose the packages API for external feeds, and how we store cached packages for deployments.
-Unless you are hitting the Octopus API directly to search through your external feeds or rely on specific naming of the cached packages, then there should be almost no impact to you. One side effect of the change to package cache names is that the current packages cache on the server and tentacles will be no longer checked so new deloyments will use the new package names.
+Unless you are hitting the Octopus API directly to search through your external feeds or rely on specific naming of the cached packages, then there should be almost no impact to you. One side effect of the change to package cache names is that the current packages cache on the server and tentacles will be no longer checked so new deployments will use the new package names.
 More details about these changes are available in the GitHub tickets ["Packages API does not meet the requirements of our expanding feed types #4114"](https://github.com/OctopusDeploy/Issues/issues/4114) and ["Modify the cache naming format to allow for new feed formats #4211"](https://github.com/OctopusDeploy/Issues/issues/4211).
 
 
