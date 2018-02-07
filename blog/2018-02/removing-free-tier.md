@@ -42,7 +42,7 @@ This change won't affect everyone (and probably won't affect you, yet). We have 
 
 ### Open source and personal projects
 
-If you are using Octopus at home for personal projects (rather than for work-related projects), we’re happy for you to use Octopus for free. If you want to use Octopus for an open source project that you are a contributor to, we’re happy for you to use Octopus for free. And if you are a startup or very small business, we’re happy to offer a 25% discount on the license. 
+If you are using Octopus at home for personal projects (rather than for work-related projects), we’re happy for you to use Octopus for free. If you want to use Octopus for an open source project that you are a contributor to, we’re happy for you to use Octopus for free. And if you are a startup or very small business, we’re happy to offer a discount on the license - just contact sales. 
 
 ### What happens with existing users?
 
