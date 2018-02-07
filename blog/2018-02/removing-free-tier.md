@@ -59,7 +59,7 @@ Yes, sometimes it does. I've seen customers switch to a paid version of Octopus 
 People on the free tier generally fall into a few camps:
 
  - Octopus adds amazing value, easily enough to justify $750, but they work at a company that makes buying software very difficult. In theory, the free Community edition should let them spend years seeing the value Octopus provides. In reality, after using Octopus for 12 months, they've never thought much about the value Octopus adds (since they never paid for it) and it tends to be a hard sale. 
- - Octopus adds amazing value, but we can't afford to pay. See some of the exceptions below. 
+ - Octopus adds amazing value, but we can't afford to pay. See some of the exceptions above. 
  - Octopus adds very little value, certainly not enough to justify $750 for. These customers simply don't have deployment problems complex enough for Octopus to add much value. They'll likely never buy. 
 
 Of course, there's a strong chance that we're wrong - and removing this free Community tier is the worst strategic decision I'll ever make. 
