@@ -46,7 +46,7 @@ We hope this will enable many powerful multi-project scenarios.
 
 Until now, the scripts for run-on-server steps ran as a child process of the Octopus Server and under it's security context. Last month, we shipped the ability to [change the user account](https://octopus.com/docs/administration/security/built-in-worker) that those scripts are run under.
 
-This month, we are introducing a second option, [external workers](https://octopus.com/docs/administration/workers/). This feature allows you to install a Tentacle (or use an existing one) to run all run-on-server steps that involve user scripts or packages. Once configured, the ability for the Octopus Server to run scripts is disabled, and all user provided scripts and packages are run on that Tentacle.
+This month, we are introducing a second option, [external workers](https://octopus.com/docs/administration/workers). This feature allows you to install a Tentacle (or use an existing one) to run all run-on-server steps that involve user scripts or packages. Once configured, the ability for the Octopus Server to run scripts is disabled, and all user provided scripts and packages are run on that Tentacle.
 
 This is part of our ongoing work for the [workers](https://github.com/OctopusDeploy/Specs/blob/master/Workers/index.md) feature. The next piece in the pipeline is the bundling of a worker with the server. This will act as the default worker (aka built-in worker) and will allow us to remove all the run-on-server script execution code.
 
