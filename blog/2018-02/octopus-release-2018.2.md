@@ -2,7 +2,7 @@
 title: "Octopus February Release 2018.2"
 description: What's new in Octopus 2018.2
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-2018-2.png
 bannerImage: blogimage-shipping-2018-2.png
 published: 2018-02-08
@@ -15,6 +15,10 @@ Octopus 2018.2 brings a number of exciting new features including the [much requ
 ## In this post
 
 !toc
+
+## Release Tour
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W2FMvpe3NyA" frameborder="0" allowfullscreen></iframe>
 
 ## AWS Support
 
