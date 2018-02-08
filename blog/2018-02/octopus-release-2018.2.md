@@ -38,6 +38,14 @@ We hope this will enable many powerful multi-project scenarios.
 
 ![Example Deploy Release Step Project Process](deploy-release-step/voltron-project-process.png "width=500")
 
+## External workers
+
+Until now, the scripts for run-on-server steps ran as a child process of the Octopus Server and under it's security context. Last month, we shipped the ability to [change the user account](https://octopus.com/docs/administration/security/built-in-worker) that those scripts are run under.
+
+This month, we are introducing a second option, [external workers](https://octopus.com/docs/workers/). This feature allows you to install a Tentacle (or use an existing one) to run all run-on-server steps that involve user scripts or packages. Once configured, the ability for the Octopus Server to run scripts is disabled, and all user provided scripts and packages are run on that Tentacle.
+
+This is part of our ongoing work for the [workers](https://github.com/OctopusDeploy/Specs/blob/master/Workers/index.md) feature. The next piece in the pipeline is the bundling of a worker with the server. This will act as the default worker (aka built-in worker) and will allow us to remove all the run-on-server script execution code.
+
 ## Improvements for large dashboards
 
 We'd also like to highlight one small but significant change that is a great addition for large Octopus instances. If you had a large number of environments or tenants, your dashboards that were very hard to read and often you'd be need to scroll horizontally to see more content. The good news is that we've updated the dashboards with a fixed first column and headers so they so they far easier to read and work with. 
