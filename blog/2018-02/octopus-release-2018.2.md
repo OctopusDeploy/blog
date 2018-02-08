@@ -61,6 +61,9 @@ We'd also like to highlight one small but significant change that is a great add
 When resources referenced by other resources are deleted we will now log how and why they changed, a key one being changes to Project Variables. There's also some other resource types are now being audited now and/or with more detail.
 
 ## Breaking Changes
+
+If you are using an older version of `Octopus.Client.dll` to access `/api/feeds/all` then this will now error. You will need to update to >= 4.30.7 of [Octopus.Client](https://www.nuget.org/packages/Octopus.Client). The reason for this is that we have added a new feed type for releases of Octopus projects, to support the new [Deploy Release step](deploy-release-step/deploy-release-step.md).  
+
 ### Improving our Packages API
 In anticipation of some upcoming new feed types we have hit the point where we were forced to revisit how we expose the packages API for external feeds, and how we store cached packages for deployments.
 Unless you are hitting the Octopus API directly to search through your external feeds or rely on specific naming of the cached packages, then there should be almost no impact to you. One side effect of the change to package cache names is that the current packages cache on the server and tentacles will be no longer checked so new deployments will use the new package names.
