@@ -27,7 +27,7 @@ Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who 
 
 ### Deployment Target
 
-![Microsoft Azure logo](will-it-deploy-azure-logo.png "width=500")
+
 
 * AWS - [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
 * Provision our cloud infrastructure with an AWS [CloudFormation Template](https://aws.amazon.com/cloudformation/).
@@ -37,11 +37,11 @@ Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who 
 
 So will it deploy? **Yes it will!** Our deployment process looks like the following.
 
-TODO ![Octopus deployment process](will-it-deploy-deployment-process.png "width=500")
+
 
 The first step is to add an Octopus AWS account, which has all the details required to enable me to connect to the AWS platform, safely and securely. It is used to authenticate with AWS when deploying or executing scripts.
 
-![Octopus AWS account](will-it-deploy-aws-account.png "width=500")
+
 
 Then we add the following steps to successfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
 
@@ -53,8 +53,6 @@ TODO:
 - Octopus **Run an Azure Powershell Script** step to swap our App Service staging and production (live) deployment slot. This is only done during a production deployment so that we achieve zero-downtime!
 
 This project uses the following variables to store our resource group name, website name, and app settings. Nice and simple!
-
-![Project variables](will-it-deploy-project-variables.png "width=500")
 
 This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Episode001) contains all the resources and links used in this video.
 
