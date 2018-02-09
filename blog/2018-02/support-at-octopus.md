@@ -12,7 +12,7 @@ tags:
 
 ## Support @ Octopus
 
-Support is part of the core of Octopus; not something that we consider an extra or a cost burden. So how, exactly, does that work in practice?
+Support is part of the core of Octopus; not something that we consider an extra or a cost burden.  So how, exactly, does that work in practice?
 
 Easy, everyone (including our CEO) does support. We do have a support focused Operations team that handles most of the load; however every developer answers support queries. This goes both ways in that the Operations team can, and does, raise issues and check in code fixes for Octopus.
 
