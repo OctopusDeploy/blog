@@ -1,12 +1,15 @@
 ---
-title: "Support @ Octopus"
-description: "We consider support a core part of Octopus, but what exactly happens when you need help?"
+title: Support @ Octopus
+description: We consider support a core part of Octopus, but what exactly happens when you need help?
 author: alex.rolley@octopus.com
-visibility: private
+visibility: public
 published: 2018-02-09
+metaImage: metaimage-support.png
+bannerImage: blogimage-support.png
 tags:
  - Company
 ---
+
 ## Support @ Octopus
 
 Support is part of the core of Octopus; not something that we consider an extra or a cost burden. So how, exactly, does that work in practice?
