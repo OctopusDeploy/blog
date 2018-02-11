@@ -19,6 +19,12 @@ The application that we'll be deploying will be sourced from Maven central. To d
 
 ## The AWS Account
 
+![AWS Account](aws-account.png "width=500")
+
+## The SSH Account
+
+![SSH Account](ssh-account.png "width=500")
+
 ## The Machine Policy
 
 ![Machine Policy](machine-policy.png "width=500")
