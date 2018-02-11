@@ -9,11 +9,11 @@ tags:
  - Java
 ---
 
-Over the last few months a number of new features have bee added to Octopus which allow you to deploy Java application, consume artifacts from Maven feeds, and deploy AWS CloudFormation templates. In this blog post we'll look at how all of these elements can be brought together to deploy Java applications in a cloud based environment.
+Over the last few months a number of new features have been added to Octopus which allow you to deploy Java applications, consume artifacts from Maven feeds, and deploy AWS CloudFormation templates. In this blog post we'll look at how all of these elements can be brought together to deploy Java applications in a cloud based environment.
 
 ## The Maven Feed
 
-The application that we'll be deploying will be sourced from Maven central. To do this we need to have the Maven feed configured in Octopus. This is done in {{Library>External Feeds}}. The Maven Central URL is https://repo.maven.apache.org/maven2/.
+The application that we'll be deploying will be sourced from Maven central. To access this we need to have the Maven feed configured in Octopus. This is done in {{Library>External Feeds}}. The Maven Central URL is https://repo.maven.apache.org/maven2/.
 
 ![Maven Feed](maven-feed.png "width=500")
 
@@ -35,16 +35,16 @@ The final global Octopus setting we need to configure is the machine policy, whi
 
 Unlike polling tentacles, SSH targets must have an accurate IP address or hostname to participate in an Octopus deployment. However, the EC2 instances that will be created by the CloudFormation template do not have a fixed IP address, and the IP address they do have will change when the EC2 instances is stopped and started again. This means we need to do two things to ensure our EC2 instances are correctly configured in Octopus:
 
-1. Add the EC2 instance to Octopus each time the EC2 instance boots if it is not already registered.
+1. Add the EC2 instance to Octopus each time the EC2 instance boots (if it is not already registered).
 2. Have Octopus clean up any deployment targets that fail a health check.
 
-We'll tackle step 1 with some scripting in the CloudFormation template in a later step. Step 2 is configured by configuring the `Clean Up Unavailable Deployment Targets` section in the default machine policy to enable `Automatically delete unavailable machines`.
+We'll tackle step 1 with some scripting in the CloudFormation template in a later step. Step 2 is configured by editing the `Clean Up Unavailable Deployment Targets` section in the default machine policy to enable `Automatically delete unavailable machines`.
 
 ![Machine Policy](machine-policy.png "width=500")
 
 ## The WildFly AMI
 
-We will take advantage of the AMIs provided by [Bitnami](https://bitnami.com/stack/wildfly) to use as the basis of our CloudFormation template. Bitnami provides a number of free and up to date images preinstalled with popular open source applications, which allows us to get a EC2 WildFly instance quickly up and running.
+We will take advantage of the AMIs provided by [Bitnami](https://bitnami.com/stack/wildfly) to use as the basis of our CloudFormation template. Bitnami provides a number of free and up to date images preinstalled with popular open source applications, which allows us to get an EC2 WildFly instance quickly up and running.
 
 The easiest way I found to get the AMI ID was to search for `WildFly` under the `Public images` in the AWS console. Keep in mind these AMI IDs are region specific, so the ID of `ami-5069332a` is only valid in North Virginia.
 
@@ -127,8 +127,6 @@ Resources:
             fingerprint=$(sudo ssh-keygen -l -E md5 -f /etc/ssh/ssh_host_rsa_key.pub | cut -d' ' -f2 | cut -b 5-)
             environmentId=$(wget --header="X-Octopus-ApiKey: $apiKey" -O- ${serverUrl}/api/environments?take=100 | jq ".Items[] | select(.Name==\"${environment}\") | .Id" -r)
             machineId=$(wget --header="X-Octopus-ApiKey: $apiKey" --post-data "{\"Endpoint\": {\"DotNetCorePlatform\":\"linux-x64\", \"CommunicationStyle\":\"Ssh\",\"AccountType\":\"SshKeyPair\",\"AccountId\":\"$accountId\",\"Host\":\"$localIp\",\"Port\":\"22\",\"Fingerprint\":\"$fingerprint\"},\"EnvironmentIds\":[\"$environmentId\"],\"Name\":\"$localIp\",\"Roles\":[\"${role}\"]}" -O- ${serverUrl}/api/machines | jq ".Id" -r)
-            echo Added machine \"$localIp\" '('$machineId') - Launching health check task'
-            wget --header="X-Octopus-ApiKey: $apiKey" --post-data "{\"Name\":\"Health\",\"Description\":\"Check $localIp health\",\"Arguments\":{\"Timeout\":\"00:05:00\",\"MachineIds\":[\"$machineId\"]}}" -O-  ${serverUrl}/api/tasks | jq ".Id" -r
           fi
 Outputs:
   PublicIp:
@@ -207,7 +205,7 @@ UserData:
 
 The Bitnami images create a random password for the WildFly management console when they are first booted. You can find these credentials using the [instructions provided by Bitnami](https://docs.bitnami.com/aws/faq/#find_credentials). However, we can avoid needing to know these credentials by enabling [silent authentication](https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/how_to_configure_server_security/index#silent_authentication). Silent authentication allows a process that has access to the `/opt/bitnami/wildfly/standalone/tmp/auth` directory to authenticate with WildFly without supplying a username and password. Because the code that is running the WildFly deployment will be doing so from the WildFly EC2 instance itself, we can grant permission to this directory and remove the need to know the random password generated by Bitnami.
 
-Here we create a group called `deployment`, andd the `wildfly` and `bitnami` users to that group, assign group ownership of the `/opt/bitnami/wildfly/standalone/tmp/auth` directory to the `deployment` group, and give the group full permission of the directory. This means that when Octopus connects to the EC2 instance using the `bitnami` user, it will have full control of the `/opt/bitnami/wildfly/standalone/tmp/auth` directory, and can therefor take advantage of silent authetication.
+Here we create a group called `deployment`, and the `wildfly` and `bitnami` users to that group, assign group ownership of the `/opt/bitnami/wildfly/standalone/tmp/auth` directory to the `deployment` group, and give the group full permission of the directory. This means that when Octopus connects to the EC2 instance using the `bitnami` user, it will have full control of the `/opt/bitnami/wildfly/standalone/tmp/auth` directory, and can therefor take advantage of silent authetication.
 
 ```bash
 getent group deployment || sudo groupadd deployment
@@ -236,8 +234,6 @@ if [ -z "${existing}" ]; then
   fingerprint=$(sudo ssh-keygen -l -E md5 -f /etc/ssh/ssh_host_rsa_key.pub | cut -d' ' -f2 | cut -b 5-)
   environmentId=$(wget --header="X-Octopus-ApiKey: $apiKey" -O- ${serverUrl}/api/environments?take=100 | jq ".Items[] | select(.Name==\"${environment}\") | .Id" -r)
   machineId=$(wget --header="X-Octopus-ApiKey: $apiKey" --post-data "{\"Endpoint\": {\"DotNetCorePlatform\":\"linux-x64\", \"CommunicationStyle\":\"Ssh\",\"AccountType\":\"SshKeyPair\",\"AccountId\":\"$accountId\",\"Host\":\"$localIp\",\"Port\":\"22\",\"Fingerprint\":\"$fingerprint\"},\"EnvironmentIds\":[\"$environmentId\"],\"Name\":\"$localIp\",\"Roles\":[\"${role}\"]}" -O- ${serverUrl}/api/machines | jq ".Id" -r)
-  echo Added machine \"$localIp\" '('$machineId') - Launching health check task'
-  wget --header="X-Octopus-ApiKey: $apiKey" --post-data "{\"Name\":\"Health\",\"Description\":\"Check $localIp health\",\"Arguments\":{\"Timeout\":\"00:05:00\",\"MachineIds\":[\"$machineId\"]}}" -O-  ${serverUrl}/api/tasks | jq ".Id" -r
 fi
 ```
 
@@ -261,11 +257,13 @@ The `AccountID` variable of `sshkeypair-bitnami` was found by taking the last el
 
 Note that the `AWS Account` variable is set to the `AWS Account` that was created earlier. This variable is used by the Octopus steps, and not by the CloudFormation template directly.
 
+You can get more information on creating Octopus API keys from the [documentation](https://octopus.com/docs/api-and-integration/api/how-to-create-an-api-key).
+
 ![Project Variables](project-variables.png "width=500")
 
 ## Starting the Deployment with no Targets
 
-Because we are creating the infrastructure that we will be deploying to as part of the Octopus project, we need to configure some settings to allow Octopus to start the deployment without any valid targets. This is done in the project settings under `Deployment Targets`. Setting the value to `Allow deployments to be created when there are no deployment targets` means the project can start deploying even when there are no targets available yet.
+Because we are creating the infrastructure that we will be deploying to as part of the Octopus project, we need to configure some settings to allow Octopus to start the deployment without any pre-existing valid targets. This is done in the project settings under `Deployment Targets`. Setting the value to `Allow deployments to be created when there are no deployment targets` means the project can start deploying even when there are no targets available yet.
 
 ![Allow deployments with no targets](allow-deployments-no-targets.png "width=500")
 
@@ -301,7 +299,9 @@ Here is a screenshot of the populated step.
 The `com.github.gwtmaterialdesign:gwt-material-demo` artifact is a WAR file published by the [gwt-material](https://github.com/GwtMaterialDesign/gwt-material) project. We use it here because it is a convenient sample project that is already hosted on Maven Central.
 :::
 
-Note that we have not supplied the `Managermanet user` or the `Management password`. This means we are relying on the WildFly silent authentication functionality.
+:::hint
+Note that we have not supplied the `Management user` or the `Management password`. This means we are relying on the WildFly silent authentication functionality.
+:::
 
 ![WildFly Deployment](wildfly-deployment.png "width=500")
 
@@ -329,7 +329,7 @@ Here is a screenshot of the populated step.
 
 Here is a screenshot of the result of a deployment of this project.
 
-![CloudFormation Output](cloudformation-output "width=500")
+![CloudFormation Output](cloudformation-output.png "width=500")
 
 Notice these lines in the output of the CloudFormation template deployment:
 
