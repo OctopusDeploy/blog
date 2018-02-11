@@ -19,19 +19,36 @@ The application that we'll be deploying will be sourced from Maven central. To d
 
 ## The AWS Account
 
+Octopus CloudFormation steps authenticate with AWS through an AWS Account. These accounts are managed under {{Infrastructure>Accounts>Amazon Web Services Account}}. You can find more information on creating AWS Accounts through our [documentation](https://octopus.com/docs/infrastructure/aws/creating-an-aws-account), keeping in mind that the account needs to have some [common permissions](https://octopus.com/docs/deploying-applications/aws-deployments/permissions) to be effectively used to deploy CloudFormation templates.
+
 ![AWS Account](aws-account.png "width=500")
 
 ## The SSH Account
+
+We'll also need to configure an account that will be used to connect to the WildFly EC2 instances via SSH. These accounts are managed under {{Infrastructure>Accounts>SSH Key Pairs}}. Here we'll create an SSH account with the username `bitnami` (because this is the username configured by the Bitnami AMIs - more on that below) and the PEM file that you will need to have created in AWS that will be assigned to the EC2 image. You can find more information on creating AWS key pairs in their [documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html).
 
 ![SSH Account](ssh-account.png "width=500")
 
 ## The Machine Policy
 
+The final global Octopus setting we need to configure is the machine policy, which is accessed under {{Infrastructure>Machine Policies}}.
+
+Unlike polling tentacles, SSH targets must have an accurate IP address or hostname to participate in an Octopus deployment. However, the EC2 instances that will be created by the CloudFormation template do not have a fixed IP address, and the IP address they do have will change when the EC2 instances is stopped and started again. This means we need to do two things to ensure our EC2 instances are correctly configured in Octopus:
+
+1. Add the EC2 instance to Octopus each time the EC2 instance boots if it is not already registered.
+2. Have Octopus clean up any deployment targets that fail a health check.
+
+We'll tackle step 1 with some scripting in the CloudFormation template in a later step. Step 2 is configured by configuring the `Clean Up Unavailable Deployment Targets` section in the default machine policy to enable `Automatically delete unavailable machines`.
+
 ![Machine Policy](machine-policy.png "width=500")
 
 ## The WildFly AMI
 
-To start with we will need a cloud based instance that we can deploy a Java application to. For this we will take advantage of the AMIs provided by [Bitnami](https://bitnami.com/stack/wildfly). Bitnami provides a number of free and up to date images preinstalled with popular open source applications, and we'll take advantage of this to get a EC2 WildFly instance quickly up and running.
+We will take advantage of the AMIs provided by [Bitnami](https://bitnami.com/stack/wildfly) to use as the basis of our CloudFormation template. Bitnami provides a number of free and up to date images preinstalled with popular open source applications, which allows us to get a EC2 WildFly instance quickly up and running.
+
+The easiest way I found to get the AMI ID was to search for `WildFly` under the `Public images` in the AWS console. Keep in mind these AMI IDs are region specific, so the ID of `ami-5069332a` is only valid in North Virginia.
+
+![Bitnami AMIs](bitnami-amis.png "width=500")
 
 ## The CloudFormation Template
 
@@ -44,6 +61,8 @@ This CloudFormation template has to perform a number of steps:
 3. Install the packages required to support DotNET Core 2 applications.
 4. Configure the file system permissions to allow WildFly silent authentication.
 5. Register the EC2 instance with the Octopus server.
+
+This is the complete template
 
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
@@ -120,26 +139,178 @@ Outputs:
 Description: Server's PublicIp Address
 ```
 
+To deploy the AMI as an EC2 instance we configure a resource of type `AWS::EC2::Instance` with the `ImageId` set to the AMI ID that we are deploying.
+
+```yaml
+WildFly:
+  Type: 'AWS::EC2::Instance'
+  Properties:
+    ImageId: ami-5069332a
+```
+
+Internally at Octopus we have a bunch of tags that need to be set on any EC2 instances. At a minimum you will want to set the `Name` tag, as this is the name that appears in the AWS console.
+
+:::hint
+Notice the `OwnerContact` tag value is being set using the [variable substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax) in Octopus. We'll define this variable in a later step.
+:::
+
+```yaml
+Tags:
+  -
+    Key: Appplication
+    Value: WildFly
+  -
+    Key: Domain
+    Value: None
+  -
+    Key: Environment
+    Value: Test
+  -
+    Key: LifeTime
+    Value: Transient
+  -
+    Key: Name
+    Value: WildFly
+  -
+    Key: OS
+    Value: Linux
+  -
+    Key: OwnerContact
+    Value: "#{Contact}"
+  -
+    Key: Purpose
+    Value: Support Test Instance
+  -
+    Key: Source
+    Value: CloudForation Script in Octopus Deploy
+  -
+    Key: scheduler:ec2-startstop
+    Value: true
+```
+
+In order for this EC2 instance to be used as an Octopus deployment target, it needs to either have Mono installed, or have the required packages installed to support DotNET Core 2. In this example I have choosen to support the later. Because the Bitnami AMI is running Debian, we use `apt-get` to install the dependencies listed in the [Prerequisites for .NET Core on Linux](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x).
+
+The `#cloud-boothook` marker is used by the `cloud-init` service to [identify scripts that should be run on each boot](http://cloudinit.readthedocs.io/en/latest/topics/format.html#cloud-boothook).
+
+:::hint
+In a production environment dependencies like this would be baked into the base AMI image rather than being installed when the instance is booted.
+:::
+
+```yaml
+UserData:
+  Fn::Base64: |
+    #cloud-boothook
+    #!/bin/bash
+    sudo apt-get --assume-yes update
+    sudo apt-get --assume-yes install curl libunwind8 gettext apt-transport-https jq
+```
+
+The Bitnami images create a random password for the WildFly management console when they are first booted. You can find these credentials using the [instructions provided by Bitnami](https://docs.bitnami.com/aws/faq/#find_credentials). However, we can avoid needing to know these credentials by enabling [silent authentication](https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/how_to_configure_server_security/index#silent_authentication). Silent authentication allows a process that has access to the `/opt/bitnami/wildfly/standalone/tmp/auth` directory to authenticate with WildFly without supplying a username and password. Because the code that is running the WildFly deployment will be doing so from the WildFly EC2 instance itself, we can grant permission to this directory and remove the need to know the random password generated by Bitnami.
+
+Here we create a group called `deployment`, andd the `wildfly` and `bitnami` users to that group, assign group ownership of the `/opt/bitnami/wildfly/standalone/tmp/auth` directory to the `deployment` group, and give the group full permission of the directory. This means that when Octopus connects to the EC2 instance using the `bitnami` user, it will have full control of the `/opt/bitnami/wildfly/standalone/tmp/auth` directory, and can therefor take advantage of silent authetication.
+
+```bash
+getent group deployment || sudo groupadd deployment
+sudo usermod -a -G deployment wildfly
+sudo usermod -a -G deployment bitnami
+sudo chgrp deployment /opt/bitnami/wildfly/standalone/tmp/auth
+sudo chmod 775 /opt/bitnami/wildfly/standalone/tmp/auth
+```
+
+Finally we need this EC2 instance to register itself with the Octopus server if it has not already done so. This part of the script queries the Octopus API to determine if a deployment target exists with this current hostname of the EC2 instance, and if a deployment target is not found, it will be added.
+
+:::hint
+A number of the variables in this script are provided using [variable substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax). These will be defined in the next section.
+:::
+
+```bash
+role="WildFly"
+serverUrl="#{ServerURL}"
+apiKey="#{APIKey}"
+environment="#{Environment}"
+accountId="#{AccountID}"
+localIp=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
+existing=$(wget -O- --header="X-Octopus-ApiKey: $apiKey" ${serverUrl}/api/machines/all | jq ".[] | select(.Name==\"$localIp\") | .Id" -r)
+echo "Existing machine for ${localIp}: ${existing}" >> /tmp/cloudhook
+if [ -z "${existing}" ]; then
+  fingerprint=$(sudo ssh-keygen -l -E md5 -f /etc/ssh/ssh_host_rsa_key.pub | cut -d' ' -f2 | cut -b 5-)
+  environmentId=$(wget --header="X-Octopus-ApiKey: $apiKey" -O- ${serverUrl}/api/environments?take=100 | jq ".Items[] | select(.Name==\"${environment}\") | .Id" -r)
+  machineId=$(wget --header="X-Octopus-ApiKey: $apiKey" --post-data "{\"Endpoint\": {\"DotNetCorePlatform\":\"linux-x64\", \"CommunicationStyle\":\"Ssh\",\"AccountType\":\"SshKeyPair\",\"AccountId\":\"$accountId\",\"Host\":\"$localIp\",\"Port\":\"22\",\"Fingerprint\":\"$fingerprint\"},\"EnvironmentIds\":[\"$environmentId\"],\"Name\":\"$localIp\",\"Roles\":[\"${role}\"]}" -O- ${serverUrl}/api/machines | jq ".Id" -r)
+  echo Added machine \"$localIp\" '('$machineId') - Launching health check task'
+  wget --header="X-Octopus-ApiKey: $apiKey" --post-data "{\"Name\":\"Health\",\"Description\":\"Check $localIp health\",\"Arguments\":{\"Timeout\":\"00:05:00\",\"MachineIds\":[\"$machineId\"]}}" -O-  ${serverUrl}/api/tasks | jq ".Id" -r
+fi
+```
+
 ## The Variables
+
+The CloudFormation script has a number of variables that are defined using [variable substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax). These variables are defined in the {{Variables>Project}} section of our Octopus project.
+
+:::hint
+The `AccountID` variable of `sshkeypair-bitnami` was found by taking the last element of the URL `https://octopusserver/app#/infrastructure/accounts/sshkeypair-bitnami`, which is the URL displayed when the Bitnami SSH Account is opened from {{Infrastructure>Accounts>SSH Key Pairs}}.
+:::
+
+Note that the `AWS Account` variable is set to the `AWS Account` that was created earlier. This variable is used by the Octopus steps, and not by the CloudFormation template directly.
 
 ![Project Variables](project-variables.png "width=500")
 
-## Configuring the Octopus Project
+## Starting the Deployment with no Targets
 
-Because we are potentially creating the infrastructure that we will be deploying to as part of the Octopus project, we need to configure some settings to allow Octopus to start the deployment without any valid targets. This is done in the project settings under `Deployment Targets`. Setting the value to `Allow deployments to be created when there are no deployment targets` means the project can start deploying even when there are no targets available yet.
+Because we are creating the infrastructure that we will be deploying to as part of the Octopus project, we need to configure some settings to allow Octopus to start the deployment without any valid targets. This is done in the project settings under `Deployment Targets`. Setting the value to `Allow deployments to be created when there are no deployment targets` means the project can start deploying even when there are no targets available yet.
 
 ![Allow deployments with no targets](allow-deployments-no-targets.png "width=500")
 
 ## The CloudFormation Step
 
+Now it is time to start defining the project steps. We'll start by deploying the CloudFormation template, which is done with the `Deploy an AWS CloudFormation template` step.
+
 ![CloudFormation Step](cloudformation-step.png "width=500")
+
+Here is a screenshot of the populated step.
+
+![CloudFormation WildFly](cloudformation-wildfly.png "width=500")
 
 ## The Health Check Step
 
+Once the CloudFormation template has been deployed, the EC2 instance it created will have booted up and registered itself with Octopus as a deployment target. We now need to add this new target to the list of targets that the project will deploy to. This is done using the `Health Check` step.
+
 ![Health Check](health-check.png "width=500")
+
+Here is a screenshot of the populated step.
+
+![Health Check WildFly](health-check-wildfly.png "width=500")
 
 ## The WildFly Deployment Step
 
+Now that our newly created or updated EC2 instance is part of our list of deployment targets, we can deploy our Java application to it. This is done using the `Deploy to WildFly or EAP` step.
+
 ![WildFly Step](wildfly-step.png "width=500")
 
+Here is a screenshot of the populated step.
+
+:::hint
+The `com.github.gwtmaterialdesign:gwt-material-demo` artifact is a WAR file published by the [gwt-material](https://github.com/GwtMaterialDesign/gwt-material) project. We use it here because it is a convenient sample project that is already hosted on Maven Central.
+:::
+
+Note that we have not supplied the `Managermanet user` or the `Management password`. This means we are relying on the WildFly silent authentication functionality.
+
+![WildFly Deployment](wildfly-deployment.png "width=500")
+
 ## The Final Output Step
+
+For the convenience of those running this deployment we will display some useful summary information. This is done with the `Run a Script` step.
+
+![Run a Script](run-script.png "width=500")
+
+When the CloudFormation template is deployed, any output variables are captured by Octopus and made available to subsequent steps. We take advantage of this to build some URLs based on the public IP address of the EC2 instance.
+
+```powershell
+Write-Host "Open application at http://$($OctopusParameters["Octopus.Action[WildFly CloudFormation].Output.AwsOutputs[PublicIp]"])/gwtdemo"
+Write-Host "Establish an SSH tunnel with:"
+Write-Host "ssh -L 9990:localhost:9990 bitnami@$($OctopusParameters["Octopus.Action[WildFly CloudFormation].Output.AwsOutputs[PublicIp]"]) -i YourAWSKeyPair.pem"
+Write-Host "Then open http://localhost:9990"
+Write-Host "Find the credentials using the instructions from https://docs.bitnami.com/aws/faq/starting-bitnami-aws/find_credentials/"
+```
+
+Here is a screenshot of the populated step.
+
+![Run Script WildFly Deployment](run-script-wildfly.png "width=500")
