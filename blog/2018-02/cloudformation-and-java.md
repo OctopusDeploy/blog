@@ -7,6 +7,7 @@ metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
+ - Cloud
 ---
 
 Over the last few months a number of new features have been added to Octopus which allow you to deploy Java applications, consume artifacts from Maven feeds, and deploy AWS CloudFormation templates. In this blog post we'll look at how all of these elements can be brought together to deploy Java applications in a cloud based environment.
