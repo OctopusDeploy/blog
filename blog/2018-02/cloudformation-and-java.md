@@ -241,6 +241,16 @@ if [ -z "${existing}" ]; then
 fi
 ```
 
+## The Default Security Group
+
+The CloudFormation template above does not define a security group. This means the default one is used. In order to access the EC2 instance via SSH and to open the website hosted by WildFly, the default security group needs to have ports `22` and `80` opened.
+
+![Default security group](default-security-group.png "width=500")
+
+:::hint
+In a production environment a dedicated security group should be used.
+:::
+
 ## The Variables
 
 The CloudFormation script has a number of variables that are defined using [variable substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax). These variables are defined in the {{Variables>Project}} section of our Octopus project.
@@ -316,3 +326,34 @@ Here is a screenshot of the populated step.
 ![Run Script WildFly Deployment](run-script-wildfly.png "width=500")
 
 ## Deploying the Project
+
+Here is a screenshot of the result of a deployment of this project.
+
+![CloudFormation Output](cloudformation-output "width=500")
+
+Notice these lines in the output of the CloudFormation template deployment:
+
+```
+Saving variable "Octopus.Action[WildFly CloudFormation].Output.AwsOutputs[StackId]"
+Saving variable "Octopus.Action[WildFly CloudFormation].Output.AwsOutputs[PublicIp]"
+```
+
+These log messages provide an easy way to get the complete variable names for any output variables created as a result of the CloudFormation deployment.
+
+Also note the output of the health check step. In this deployment I tweaked the CloudFormation template slightly by adding a comment to the UserData script. Although this change does not affect how the EC2 instance is deployed, CloudFormation sees it as a change to the existing stack and therefore shuts down and restarts the EC2 instance. This in turn gives the EC2 instance a new public IP, which means the EC2 instance will reregister itself with Octopus when it boots up. The health check step then checks both the old deployment target and the new one, determines that the old one is no longer valid and removes it, and successfully completes a health check on the new target and includes it in the list of targets used for the rest of the deployment.
+
+## Open the Web Application
+
+The output from the final script step generated a URL of `http://107.20.112.198/gwtdemo/`. Opening it up shows the GWT Material demo application.
+
+:::hint
+This URL won't actually work for you because this demo EC2 instance has been shutdown. The URL generated for you will have a different IP address.
+:::
+
+![GWT Material](gwt-material "width="500")
+
+## Conclusion
+
+By pulling together a number of new steps for deploying CloudFormation templates and Java applications, we can quite easily build a project that creates cloud infrastructure on the fly and deploys applications to it.
+
+If you are interested in automating the deployment of your Java applications or creating cloud infrastructure, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
