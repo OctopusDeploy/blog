@@ -34,12 +34,12 @@ We'll also need to configure an account that will be used to connect to the Wild
 
 The final global Octopus setting we need to configure is the machine policy, which is accessed under {{Infrastructure>Machine Policies}}.
 
-Unlike polling tentacles, SSH targets must have an accurate IP address or hostname to participate in an Octopus deployment. However, the EC2 instances that will be created by the CloudFormation template do not have a fixed IP address, and the IP address they do have will change when the EC2 instances is stopped and started again. This means we need to do two things to ensure our EC2 instances are correctly configured in Octopus:
+Unlike polling tentacles, SSH targets must have an accurate IP address or hostname to participate in an Octopus deployment. However, the EC2 instances that will be created by the CloudFormation template do not have a fixed IP address, and the IP address they do have will change when the EC2 instance is stopped and started again. This means we need to do two things to ensure our EC2 instances are correctly configured in Octopus:
 
 1. Add the EC2 instance to Octopus each time the EC2 instance boots (if it is not already registered).
 2. Have Octopus clean up any deployment targets that fail a health check.
 
-We'll tackle step 1 with some scripting in the CloudFormation template in a later step. Step 2 is configured by editing the `Clean Up Unavailable Deployment Targets` section in the default machine policy to enable `Automatically delete unavailable machines`.
+We'll tackle step 1 with some scripting in the CloudFormation template in a later section. Step 2 is configured by editing the `Clean Up Unavailable Deployment Targets` section in the default machine policy to enable `Automatically delete unavailable machines`.
 
 ![Machine Policy](machine-policy.png "width=500")
 
