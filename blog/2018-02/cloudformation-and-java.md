@@ -108,7 +108,6 @@ Resources:
         Fn::Base64: |
           #cloud-boothook
           #!/bin/bash
-          #blah
           echo "Starting" > /tmp/cloudhook
           sudo apt-get --assume-yes update
           sudo apt-get --assume-yes install curl libunwind8 gettext apt-transport-https jq
