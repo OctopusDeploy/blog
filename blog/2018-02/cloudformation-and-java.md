@@ -108,11 +108,14 @@ Resources:
         Fn::Base64: |
           #cloud-boothook
           #!/bin/bash
+          #blah
+          echo "Starting" > /tmp/cloudhook
           sudo apt-get --assume-yes update
           sudo apt-get --assume-yes install curl libunwind8 gettext apt-transport-https jq
           getent group deployment || sudo groupadd deployment
           sudo usermod -a -G deployment wildfly
           sudo usermod -a -G deployment bitnami
+          echo "Editing permissions" >> /tmp/cloudhook
           sudo chgrp deployment /opt/bitnami/wildfly/standalone/tmp/auth
           sudo chmod 775 /opt/bitnami/wildfly/standalone/tmp/auth
           role="WildFly"
@@ -122,7 +125,6 @@ Resources:
           accountId="#{AccountID}"
           localIp=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
           existing=$(wget -O- --header="X-Octopus-ApiKey: $apiKey" ${serverUrl}/api/machines/all | jq ".[] | select(.Name==\"$localIp\") | .Id" -r)
-          echo "Existing machine for ${localIp}: ${existing}" >> /tmp/cloudhook
           if [ -z "${existing}" ]; then
             fingerprint=$(sudo ssh-keygen -l -E md5 -f /etc/ssh/ssh_host_rsa_key.pub | cut -d' ' -f2 | cut -b 5-)
             environmentId=$(wget --header="X-Octopus-ApiKey: $apiKey" -O- ${serverUrl}/api/environments?take=100 | jq ".Items[] | select(.Name==\"${environment}\") | .Id" -r)
@@ -134,7 +136,7 @@ Outputs:
       Fn::GetAtt:
       - WildFly
       - PublicIp
-Description: Server's PublicIp Address
+    Description: Server's PublicIp Address
 ```
 
 To deploy the AMI as an EC2 instance we configure a resource of type `AWS::EC2::Instance` with the `ImageId` set to the AMI ID that we are deploying.
@@ -229,7 +231,6 @@ environment="#{Environment}"
 accountId="#{AccountID}"
 localIp=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
 existing=$(wget -O- --header="X-Octopus-ApiKey: $apiKey" ${serverUrl}/api/machines/all | jq ".[] | select(.Name==\"$localIp\") | .Id" -r)
-echo "Existing machine for ${localIp}: ${existing}" >> /tmp/cloudhook
 if [ -z "${existing}" ]; then
   fingerprint=$(sudo ssh-keygen -l -E md5 -f /etc/ssh/ssh_host_rsa_key.pub | cut -d' ' -f2 | cut -b 5-)
   environmentId=$(wget --header="X-Octopus-ApiKey: $apiKey" -O- ${serverUrl}/api/environments?take=100 | jq ".Items[] | select(.Name==\"${environment}\") | .Id" -r)
