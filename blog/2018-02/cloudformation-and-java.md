@@ -350,7 +350,7 @@ The output from the final script step generated a URL of `http://107.20.112.198/
 This URL won't actually work for you because this demo EC2 instance has been shutdown. The URL generated for you will have a different IP address.
 :::
 
-![GWT Material](gwt-material "width="500")
+![GWT Material](gwt-material.png "width="500")
 
 ## Conclusion
 
