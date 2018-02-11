@@ -263,7 +263,7 @@ Because we are creating the infrastructure that we will be deploying to as part 
 
 Now it is time to start defining the project steps. We'll start by deploying the CloudFormation template, which is done with the `Deploy an AWS CloudFormation template` step.
 
-![CloudFormation Step](cloudformation-step.png "width=500")
+![CloudFormation Step](cloudformation-step.png)
 
 Here is a screenshot of the populated step.
 
@@ -273,7 +273,7 @@ Here is a screenshot of the populated step.
 
 Once the CloudFormation template has been deployed, the EC2 instance it created will have booted up and registered itself with Octopus as a deployment target. We now need to add this new target to the list of targets that the project will deploy to. This is done using the `Health Check` step.
 
-![Health Check](health-check.png "width=500")
+![Health Check](health-check.png)
 
 Here is a screenshot of the populated step.
 
@@ -283,7 +283,7 @@ Here is a screenshot of the populated step.
 
 Now that our newly created or updated EC2 instance is part of our list of deployment targets, we can deploy our Java application to it. This is done using the `Deploy to WildFly or EAP` step.
 
-![WildFly Step](wildfly-step.png "width=500")
+![WildFly Step](wildfly-step.png)
 
 Here is a screenshot of the populated step.
 
@@ -299,7 +299,7 @@ Note that we have not supplied the `Managermanet user` or the `Management passwo
 
 For the convenience of those running this deployment we will display some useful summary information. This is done with the `Run a Script` step.
 
-![Run a Script](run-script.png "width=500")
+![Run a Script](run-script.png)
 
 When the CloudFormation template is deployed, any output variables are captured by Octopus and made available to subsequent steps. We take advantage of this to build some URLs based on the public IP address of the EC2 instance.
 
@@ -314,3 +314,5 @@ Write-Host "Find the credentials using the instructions from https://docs.bitnam
 Here is a screenshot of the populated step.
 
 ![Run Script WildFly Deployment](run-script-wildfly.png "width=500")
+
+## Deploying the Project
