@@ -45,6 +45,10 @@ This CloudFormation template has to perform a number of steps:
 4. Configure the file system permissions to allow WildFly silent authentication.
 5. Register the EC2 instance with the Octopus server.
 
+## The Variables
+
+![Project Variables](project-variables.png "width=500")
+
 ## Configuring the Octopus Project
 
 Because we are potentially creating the infrastructure that we will be deploying to as part of the Octopus project, we need to configure some settings to allow Octopus to start the deployment without any valid targets. This is done in the project settings under `Deployment Targets`. Setting the value to `Allow deployments to be created when there are no deployment targets` means the project can start deploying even when there are no targets available yet.
