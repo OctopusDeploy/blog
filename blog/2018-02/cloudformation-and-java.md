@@ -128,7 +128,7 @@ Description: Server's PublicIp Address
 
 Because we are potentially creating the infrastructure that we will be deploying to as part of the Octopus project, we need to configure some settings to allow Octopus to start the deployment without any valid targets. This is done in the project settings under `Deployment Targets`. Setting the value to `Allow deployments to be created when there are no deployment targets` means the project can start deploying even when there are no targets available yet.
 
-![Allow deployments with no targets](allow-deployments-no-targets "width=500")
+![Allow deployments with no targets](allow-deployments-no-targets.png "width=500")
 
 ## The CloudFormation Step
 
