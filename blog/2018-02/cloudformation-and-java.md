@@ -13,9 +13,15 @@ Over the last few months a number of new features have bee added to Octopus whic
 
 ## The Maven Feed
 
+The application that we'll be deploying will be sourced from Maven central. To do this we need to have the Maven feed configured in Octopus. This is done in {{Library>External Feeds}}. The Maven Central URL is https://repo.maven.apache.org/maven2/.
+
+![Maven Feed](maven-feed.png "width=500")
+
 ## The AWS Account
 
 ## The Machine Policy
+
+![Machine Policy](machine-policy.png "width=500")
 
 ## The WildFly AMI
 
