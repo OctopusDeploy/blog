@@ -354,6 +354,6 @@ This URL won't actually work for you because this demo EC2 instance has been shu
 
 ## Conclusion
 
-By pulling together a number of new steps for deploying CloudFormation templates and Java applications, we can quite easily build a project that creates cloud infrastructure on the fly and deploys applications to it.
+By pulling together a number of new steps for deploying CloudFormation templates and Java applications, we can quite easily create an Octopus project that builds cloud infrastructure on the fly and deploys applications to it.
 
 If you are interested in automating the deployment of your Java applications or creating cloud infrastructure, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
