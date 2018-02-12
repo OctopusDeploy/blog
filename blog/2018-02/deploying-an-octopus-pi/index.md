@@ -120,15 +120,6 @@ After filling in the details (IP Address or DNS name, SSH port and account), und
 
 ![](dotnet-not-mono.png "width=500")
 
-## Custom Calamari
-Currently, Calamari does not support running on ARM architecture out of the box. You can easily fix this yourself with a few steps.
-- Fork the [Calamari](https://github.com/OctopusDeploy/Calamari) repo.
-- Pull down your forked version of Calamari:
-    - `git clone http://github.com/_username_/Calamari`
-- Edit ./source/Calamari.csproj file, replacing the `<RuntimeIdentifiers>` line with `<RuntimeIdentifiers>linux-arm</RuntimeIdentifiers>`
-- Run build.
-- Follow the instructions in the Calamari [README.md](https://github.com/OctopusDeploy/Calamari/blob/master/README.md) to configure Octopus Deploy to use a custom build of Calamari.
-
 ### Modify the Target Config to Specify the Calamari Version as `linux-arm`
 ```c#
 HttpClient client = new HttpClient();
