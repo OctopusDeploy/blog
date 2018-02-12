@@ -9,6 +9,8 @@ tags:
 ---
 .Net Core has come a long way in the last few years, and Octopus Deploy has too. A while back, we added support for running [Calamari without Mono](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono), and in this post I will walk you through how to deploy .Net Core applications on to a Raspberry Pi 3, no Mono required.
 
+In this post, I will show you that it is possible to deploy and run DotNet Core applications on the Raspberry Pi 3, and along the way describe some of the different ways that you can interact with your Octopus Deploy server.
+
 ## Requirements Before Starting
 
 * Editor - Visual Studio, Visual Studio Code, Rider
@@ -33,12 +35,14 @@ dotnet new angular
 ```
 
 ### Modify the Application to Listen For External Requests
-Add the following after the `.UseStartup<Startup>()` in `Program.cs`:
+By default, an ASP.NET Core application will only serve requests to `http://localhost:5000`, to allow the web host to serve requests to your local network, add the following after the `.UseStartup<Startup>()` in `Program.cs`:
 ```c#
 .UseKestrel(options => {
                     options.Listen(System.Net.IPAddress.Any, 5000);
                 })
 ```
+
+For more information on configuring the Kestrel Web Host, check the [docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?tabs=aspnetcore2x).
 
 ### Build the Application
 ```powershell
@@ -65,7 +69,7 @@ octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9
 ```
 
 ## Building a Service Definition
-To get the application to run as a service, visit Microsoft’s documentation for [hosting .Net Core on Linux](https://docs.microsoft.com/en-au/aspnet/core/host-and-deploy/linux-nginx?tabs=aspnetcore2x).
+To get the application to run as a service, see Microsoft’s documentation for [hosting .Net Core on Linux](https://docs.microsoft.com/en-au/aspnet/core/host-and-deploy/linux-nginx?tabs=aspnetcore2x).
 
 Create a file called `core4pi.service` containing the following text:
 ```text
@@ -127,7 +131,14 @@ Currently, Calamari does not support running on ARM architecture out of the box.
 
 ### Modify the Target Config to Specify the Calamari Version as `linux-arm`
 ```c#
-c# code using Octopus.Clients to load target and modify the version string
+HttpClient client = new HttpClient();
+client.BaseAddress = new Uri(@"http:\\localhost:8065");
+client.DefaultRequestHeaders.Add("X-Octopus-Apikey", "API-3NTZNCQ1JE5IU074ED0WMH2JME");
+var machineJson = client.GetAsync("api/machines/Machines-41").Result.Content.ReadAsStringAsync().Result;
+machineJson.Dump();
+machineJson = machineJson.Replace("linux-x64","linux-arm");
+HttpContent content = new StringContent(machineJson);
+client.PutAsync("api/machines/Machines-41", content);
 ```
 
 ## Creating the Deployment Project
@@ -207,3 +218,12 @@ The first time you deploy, Octopus Server will update Calamari on the target mac
 After the deployment has finished, navigate to the IP address or DNS name of your Raspberry Pi on port 5000, you should see the application
 
 ![](its-alive.png "width=500")
+
+
+## Conclusion
+
+```
+put a conclusion blurb here
+```
+
+If you are interested in automating the deployment of your DotNetCore applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
