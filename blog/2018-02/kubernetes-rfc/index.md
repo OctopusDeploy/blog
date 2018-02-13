@@ -12,18 +12,18 @@ Kubernetes has won the container-orchestration wars (at least for this week). Pe
 We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use Kubernetes internally (though that will change as we build our hosted product), so we definitely need your help with this one. 
 
 Our current thinking is that our Kubernetes support would take the following shape:
-- A new Kubernetes Cluster target
-- Two new deployment steps: Kubernetes Apply and Kubectl Script
+- A new [Kubernetes Cluster target](#Kubernetes-Cluster-Target)
+- Two new deployment steps: [Kubernetes Apply](#Kubernetes-Apply-Step) and [Kubectl Script](#kubectl-Script-Step)
 
 ## Kubernetes Cluster Target
 
-We will introduce a new _Kubernetes Cluster_ target type, to represent the cluster our Kubernetes steps will execute against. 
+We will introduce a new _Kubernetes Cluster_ target type, to represent the cluster the new Kubernetes steps will execute against. 
 
 ![Kubernetes Cluster Target Option](kubernetes-cluster-target-option.png "width=500")
 
 The target will allow you to configure the URL of the Kubernetes Cluster and the authentication details.
 
-We will probably support the following authentication methods:
+We will possibly support the following authentication methods:
 
 - Username + password
 - Certificate
@@ -35,11 +35,11 @@ We will probably support the following authentication methods:
 
 Kubernetes supports both [declarative and imperative modes of object management](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/overview/#management-techniques). 
 
-For Octopus, it seems a natural fit to support the declarative approach.  This is implemented via the [Kubernetes Apply command](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply). We will expose this via a dedicated step.
+For Octopus, it seems a natural fit to support the declarative approach.  This is implemented via the [Kubernetes Apply command](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply). We will expose this via a dedicated _Kubernetes Apply_ step.
 
 ![Kubernetes Apply Step](kubernetes-apply-step.png "width=500")
 
-The Apply command accepts a template (JSON or YAML). This is conceptually similar to how the AWS CloudFormation or Azure Resource Group steps work in Octopus. The Kubernetes template can be sourced from a package or configured directly in the Octopus UI.     
+The Apply command accepts a template (JSON or YAML). This is conceptually similar to how the [AWS CloudFormation](https://octopus.com/docs/deploying-applications/aws-deployments/cloudformation) or [Azure Resource Group](https://octopus.com/docs/deploying-applications/azure-deployments/resource-groups) steps work in Octopus. The Kubernetes template can be sourced from a package or configured directly in the Octopus UI.     
 
 ### Container Images 
 
@@ -73,16 +73,17 @@ This is the Octopus special-sauce. It allows you snapshot a specific combination
 ![Create Release with Container Images](kubernetes-create-release.png "width=500")
 
 You can see in the UI-mock above that you are selecting two versions:
-- The version of the package which contains your Kubernetes template
+- The version of the package which contains your Kubernetes template (`AcmeWebApp` in the example above)
 - The version of the container image _within_ the template (in this case `nginx`) 
 
 ### Variable Substitution
 
 We will perform [variable-substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax) on the Kubernetes template. So you can use Octopus variables directly in it and they will be replaced. 
 
-Unfortunately Kubernetes doesn't support parameter files for templates (as for example [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) and [Azure RM](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-templates-parameters) templates do). This is unfortunate, as parameter files seem like the ideal way for the template to creator to tell tools like Octopus which values should be supplied as arguments.  
+Unfortunately Kubernetes doesn't support parameter files for templates (as for example [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) and [Azure RM](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-templates-parameters) templates do). This is unfortunate, as parameter files seem like the ideal way for the template author to tell tools like Octopus which values should be supplied as arguments.  
 
-How would you want to supply variables to the Kubernetes Apply command?  Some options would be:
+How would you want to supply variables to the Kubernetes Apply command?  
+Some options might be:
 
 1) **Variable substitution on the template**: You would include, for example, `#{Octopus.Environment}` in your template, which is replaced by the appropriate value at deployment time.  This is consistent with the approach of tools such as helm, but does have the downside of your templates not being valid outside of Octopus (and possibly not even valid JSON or YAML).  
 
@@ -99,11 +100,11 @@ As mentioned, we would definitely implemented option 1.  But if you would prefer
 
 ## kubectl Script Step
 
-There are many other [Kubernetes commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands) you may wish to execute, other than Apply.  For example: [deleting resources](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete), [scaling](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#scale), etc.
+There are many other [Kubernetes commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands) you may wish to execute, other than `apply`.  For example: [deleting resources](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete), [scaling](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#scale), etc.
 
 We will enable these by adding a new flavor of a Run a Script step: _Run a kubectl Script_. 
 
-This step will allow to write your own scripts, and we ensure the `kubectl` command line is available and authenticated against the Kubernetes cluster the step is targetting.  This is conceptually similiar to our _Run an AWS CLI Script_ or the  _Run an Azure PowerShell Script_ steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
+This step will allow you to write your own scripts, and we ensure the `kubectl` command line is available and authenticated against the Kubernetes cluster the step is targetting.  This is conceptually similiar to our _Run an AWS CLI Script_ or the  _Run an Azure PowerShell Script_ steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
 
 ## Feedback
 
