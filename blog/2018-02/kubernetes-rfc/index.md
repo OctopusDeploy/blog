@@ -7,7 +7,7 @@ tags:
  - RFC 
 ---
 
-Kubernetes has won the container-orchestration wars (at least for this week). Perhaps unsurprisingly, [Kubernetes is now #7 with a bullet](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/17930755-support-for-kubernetes) on the list of our top Uservoice suggestions.  
+Kubernetes has won the container-orchestration wars (at least for this week). Perhaps unsurprisingly, [Kubernetes is now #7 with a bullet](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/17930755-support-for-kubernetes) on the list of our top UserVoice suggestions.  
 
 We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use Kubernetes internally (though that will change as we build our hosted product), so we definitely need your help with this one. 
 
@@ -93,10 +93,10 @@ Some options might be:
 
 | Key        | Value               | Comment            |
 |------------|---------------------|--------------------|
-| foo        | #{Foo}              | Top-level property `foo` would be substituted with the value of #{Foo}|
-| foo::bar   | #{AnotherVariable}  | Nested property `foo.bar` would be substituted|
+| `foo`        | `#{Foo}`              | Top-level property `foo` would be substituted with the value of #{Foo}|
+| `foo::bar`   | `#{AnotherVariable}`  | Nested property `foo.bar` would be substituted|
 
-As mentioned, we would definitely implemented option 1.  But if you would prefer other methods of supplying variables (including any not mentioned above) then please leave a comment. 
+As mentioned, we would definitely implement option #1.  But if you would prefer other methods of supplying variables (including any not mentioned above) then please leave a comment. 
 
 ## kubectl Script Step
 
@@ -104,7 +104,7 @@ There are many other [Kubernetes commands](https://kubernetes.io/docs/reference/
 
 We will enable these by adding a new flavor of a Run a Script step: _Run a kubectl Script_. 
 
-This step will allow you to write your own scripts, and we ensure the `kubectl` command line is available and authenticated against the Kubernetes cluster the step is targetting.  This is conceptually similiar to our _Run an AWS CLI Script_ or the  _Run an Azure PowerShell Script_ steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
+This step will allow you to write your own scripts, and we ensure the `kubectl` command line is available and authenticated against the Kubernetes cluster the step is targetting.  This is conceptually similiar to our [Run an AWS CLI Script](https://octopus.com/docs/deploying-applications/custom-scripts/aws-cli-scripts) or the  [Run an Azure PowerShell Script](https://octopus.com/docs/deploying-applications/azure-deployments/running-azure-powershell) steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
 
 ## Feedback
 
