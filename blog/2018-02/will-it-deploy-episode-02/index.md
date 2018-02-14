@@ -47,8 +47,6 @@ The first step is to add an Octopus AWS account, which includes our has all the 
 
 Then we add the following steps to successfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
 
-TODO:
-
 - Octopus **Transfer a Package** step to transfer the Spring Boot jar package to the Octopus Server.
 - Octopus **Run an AWS CLI Script** step to copy the web app package to an S3 bucket.
 - Octopus **Deploy an AWS CloudFormation template** step to provision our cloud infrastructure including creating our Elastic Beanstalk application and two environments.
