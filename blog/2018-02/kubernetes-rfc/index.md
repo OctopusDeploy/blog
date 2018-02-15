@@ -9,7 +9,7 @@ tags:
 
 Kubernetes has won the container-orchestration wars (at least for this week). Perhaps unsurprisingly, [Kubernetes is now #7 with a bullet](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/17930755-support-for-kubernetes) on the list of our top UserVoice suggestions.  
 
-We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use Kubernetes internally (though that will change as we build our hosted product), so we definitely need your help with this one. 
+We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use Kubernetes internally (though that may well change as we build our hosted product), so we definitely need your help with this one. 
 
 Our current thinking is that our Kubernetes support would take the following shape:
 - A new [Kubernetes Cluster target](#Kubernetes-Cluster-Target)
@@ -68,7 +68,7 @@ When creating a release of a project which contains Kubernetes Apply steps, we w
 
 When you deploy the release, we will substitute the correct version of the container images into your template before sending it to the Kubernetes cluster.
 
-This is the Octopus special-sauce. It allows you snapshot a specific combination of container image versions, and progress these through your environments.
+_This is the Octopus special-sauce._  It allows you to snapshot a specific combination of container image versions, and progress these through your environments.
 
 ![Create Release with Container Images](kubernetes-create-release.png "width=500")
 
@@ -85,9 +85,9 @@ Unfortunately Kubernetes doesn't support parameter files for templates (as for e
 How would you want to supply variables to the Kubernetes Apply command?  
 Some options might be:
 
-1) **Variable substitution on the template**: You would include, for example, `#{Octopus.Environment}` in your template, which is replaced by the appropriate value at deployment time.  This is consistent with the approach of tools such as helm, but does have the downside of your templates not being valid outside of Octopus (and possibly not even valid JSON or YAML).  
+1) **Variable substitution directly on the template**: You would include, for example, `#{Octopus.Environment}` in your template, which is replaced by the appropriate value at deployment time.  This is consistent with the approach of tools such as [helm](https://helm.sh/), but does have the downside of your templates not being valid outside of Octopus (and possibly not even valid JSON or YAML).  
 
-2) **Transform files**: Similarly to [Microsoft web.config transforms](https://msdn.microsoft.com/library/dd465326.aspx), you would sit a transform file beside your template. The transform file could then contain Octopus variables which would be substituted, and then the transform would be applied to the template. This approach would have the advantages that your template could remain valid, and your transform can live beside your template (in your git repo, for example).  For JSON templates, there are [existing implementations](https://github.com/Microsoft/json-document-transforms/wiki).  For YAML, we couldn't find much...
+2) **Transform files**: Similar to [Microsoft web.config transforms](https://msdn.microsoft.com/library/dd465326.aspx), you would sit a transform file beside your template. The transform file could then contain Octopus variables which would be substituted, and then the transform would be applied to the template. This approach would have the advantages that your template could remain valid, and your transform can live beside your template (in your git repo, for example).  For JSON templates, there are [existing implementations](https://github.com/Microsoft/json-document-transforms/wiki).  For YAML, we couldn't find much...
 
 3) **Explicitly-configured substitutions**: We could also allow key-value pairs to be provided in the step UI, which would specify the properties in your template to be substituted. And we could support nested properties (see examples below). This has the downside that if your template structure changes you would have to update the deployment step in Octopus. 
 
@@ -96,7 +96,7 @@ Some options might be:
 | `foo`        | `#{Foo}`              | Top-level property `foo` would be substituted with the value of #{Foo}|
 | `foo::bar`   | `#{AnotherVariable}`  | Nested property `foo.bar` would be substituted|
 
-As mentioned, we would definitely implement option #1.  But if you would prefer other methods of supplying variables (including any not mentioned above) then please leave a comment. 
+As mentioned, we would definitely implement option #1 (and if you didn't have any Octopus variable placeholders in your template, then it would simply do nothing).  But if you would prefer other methods of supplying variables (including any not mentioned above) then please leave a comment. 
 
 ## kubectl Script Step
 
@@ -106,7 +106,9 @@ We will enable these by adding a new flavor of a Run a Script step: _Run a kubec
 
 This step will allow you to write your own scripts, and we ensure the `kubectl` command line is available and authenticated against the Kubernetes cluster the step is targetting.  This is conceptually similiar to our [Run an AWS CLI Script](https://octopus.com/docs/deploying-applications/custom-scripts/aws-cli-scripts) or the  [Run an Azure PowerShell Script](https://octopus.com/docs/deploying-applications/azure-deployments/running-azure-powershell) steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
 
-## Feedback
+![kubectl Script Step](kubectl-script-step.png "width=500")
+
+## We Need Your Help
 
 We think this would fit nicely with the existing Octopus concepts and architecture, but we need you to tell us if this matches the way you would expect to interact with Kubernetes. 
 
