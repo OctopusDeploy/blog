@@ -5,9 +5,7 @@ visibility: private
 published: 2018-02-15
 author: jason.brown@octopus.com
 tags:
- - Octopus 
  - PowerShell
- - Takofukku
 ---
 
 Classically, Octopus Deploy is an engine for pushing out applications - historically speaking, .NET applications - to servers. But these days, it's a lot more than that. 
@@ -18,7 +16,7 @@ I have a few Open Source projects, and I use Octopus to drive testing and publis
 
 [The StatuscakeDSC Deployment process](statuscakedsc-project-process.png)
 
-# The project setup
+## The project setup
 
 It's just a standard Octopus Project, but you'll note everything here runs on the Octopus server. It doesn't have to, it's just cheaper in infrastructure terms. These steps will run on essentially any target with PowerShell installed, so I could be targeting a VM, a container or even a polling tentacle on my home network. 
 
@@ -28,7 +26,7 @@ Then I have a fairly simple set of Octopus steps to get the job done, which I'll
 
 I have two environments for this project, `DevTest` and `Production`. When deploying to `Production`, all the steps are configured to run. But in DevTest, I explicitly exclude the 'Publish to PS Gallery' step. That's reserved for Production only, because I don't want pre-release code making its way to the gallery by mistake.
 
-# Triggering the project
+## Triggering the project
 
 The project triggers based on commits in Github using Webhooks, using a little project of mine called Takofukku. Takofukku is a lightweight, serverless webhook solution for Octopus deploy which is open for anyone to use. You simply drop a YML document called a [takofile](https://github.com/stopthatastronaut/takofukku/blob/master/takofiles.md) into your github repo, [configure a webhook](https://github.com/stopthatastronaut/takofukku#ok-so-how-do-i-hook-this-up) on the push event, and you're ready to go.
 
@@ -38,7 +36,7 @@ Every time a push event occurs, github sends a POST request to the endpoint. Tak
 
 In this specific case, my takofile maps the github `master` branch to the Octopus `production` environment, and the github `develop` branch to the Octopus `DevTest` environment. Any time we have a push/merge on those branches, Takofukku will create a new release, with the commit messages of the last push as the release notes, and deploy that release to the specified environment.
 
-# Getting the code
+## Getting the code
 
 [The Git Pull Step](git-pull.png)
 
@@ -46,7 +44,7 @@ The first thing it does is a git pull, using a (slightly tweaked) [Community Ste
 
 Following this step, you can see there's a step to write a .creds file - This is specific to the module, as StatusCakeDSC allows you to store credentials on the disk to make testing a little easier - that's explained [over at the module's repository](https://github.com/stopthatastronaut/StatusCakeDSC/blob/master/README.md#credentials), so I won't go into it here.
 
-# Running the tests
+## Running the tests
 
 [The Run Tests Step](runtests.png)
 
@@ -66,7 +64,7 @@ popd
 
 One minor problem I found with Pester tests is that errors outside the immediate scope of the test didn't always fail the step as desired. So this step checks both the Pester failures AND general errors in the step, then uses Octopus's `Fail-Step` cmdlet to fail the deployment if something goes wrong.
 
-# Publishing to the PowerShell Gallery
+## Publishing to the PowerShell Gallery
 
 [The Publish Step](publish.png)
 
@@ -87,7 +85,7 @@ To put this into Octopus, I made some simple tweaks to the original script. It n
 - if successful, and the version has been incremented, it publishes the new module
 - In the most recent code, it pushes a git tag back into github, marking the latest code with the version number from the gallery
 
-# Finishing it all up
+## Finishing it all up
 
 [The Slack Notification Step](slack.png)
 
