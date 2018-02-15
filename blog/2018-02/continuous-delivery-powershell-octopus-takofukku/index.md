@@ -1,8 +1,8 @@
 ---
 title: Continuous Delivery for PowerShell Modules using Octopus Deploy and TakoFukku
 description: Learn how to deploy PowerShell Modules to the PowerShell Gallery automatically using Octopus Deploy
-visibility: private
-published: 2018-02-15
+visibility: public
+published: 2018-02-16
 author: jason.brown@octopus.com
 metaImage: metaimage-powershell.png
 bannerImage: blogimage-powershell.png
@@ -10,7 +10,7 @@ tags:
  - PowerShell
 ---
 
-Classically, Octopus Deploy is an engine for pushing out applications - historically speaking, .NET applications - to servers. But these days, it's a lot more than that. 
+Classically, Octopus Deploy is an engine for pushing out applications - historically speaking, .NET applications - to servers.  But these days, it's a lot more than that. 
 
 Because Octopus is an excellent distributed task runner with a rich set of pre-rolled templates, it can be used to drive many workloads and processes that might be otherwise done manually, or using painstakingly hand-rolled scripts run in a CI server. In fact, for PowerShell modules, which are often small, discrete chunks of functionality with no long compilation phase, Octopus is a perfect choice.
 
