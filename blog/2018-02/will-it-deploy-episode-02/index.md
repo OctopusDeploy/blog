@@ -3,16 +3,16 @@ title: Deploying a Spring Boot web app - Will it Deploy? Episode 2
 description: We try to automate the deployment of a Spring Boot web app AWS Elastic Beanstalk with infrastructure provisioning and zero production downtime.
 author: rob.pearson@octopus.com
 visibility: private
-published: 2018-02-12
+published: 2018-02-16
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
  - Will it Deploy
 ---
 
-Wecome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy an Spring Boot web app to Amazon Web Services platform with cloud infrastructure provisioning as well as ensure we have a zero-downtime production deployment.
+Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this episode, we're trying to deploy an Spring Boot web app to Amazon Web Services platform with cloud infrastructure provisioning as well as ensure we have a zero-downtime production deployment.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tQb8PJ0jzvk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Problem
 
