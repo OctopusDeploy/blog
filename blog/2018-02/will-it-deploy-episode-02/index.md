@@ -41,7 +41,7 @@ So will it deploy? **Yes it will!** Our deployment process looks like the follow
 
 ![Octopus deployment process](deployment-process.png "width=500")
 
-The first step is to add an Octopus AWS account, which includes our has all the details required to enable me to connect to the AWS platform, safely and securely. It is used to authenticate with AWS when deploying or executing scripts.
+The first step is to add an Octopus AWS account, which includes all the details required to enable us to connect to the AWS platform, safely and securely. It is used to authenticate with AWS when deploying or executing scripts.
 
 ![AWS Account details](aws-account.png "width=500")
 
