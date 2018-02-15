@@ -146,9 +146,9 @@ octo list-machines --server http://octopus/ --apikey API-ABCDEF123456 --outputfo
     Where { $_.Name -eq 'name' }
 ```
 
-```info
+:::info
 The `% { $_ }` line unwraps the top-level array that is being returned, which seems to be a quirk of the `ConvertFrom-Json` command in Powershell.
-```
+:::
 
 ## Creating the Deployment Project
 Create a new Project via the {Projects} section in the Octopus web interface, or using the command line:
