@@ -14,7 +14,7 @@ Because Octopus is an excellent distributed task runner with a rich set of pre-r
 
 I have a few Open Source projects, and I use Octopus to drive testing and publishing on them, so today I'm going to run you through how that's done, using StatusCakeDSC as an example. StatusCakeDSC is a little Desired State Configuration module for setting up StatusCake monitoring. We use it here at Octopus, and I use it myself. It's available on the PowerShell Gallery, and when I want to publish a new version, it's Octopus that does that job for me.
 
-[The StatuscakeDSC Deployment process](statuscakedsc-project-process.png)
+![The StatuscakeDSC Deployment process](statuscakedsc-project-process.png)
 
 ## The project setup
 
@@ -30,7 +30,7 @@ I have two environments for this project, `DevTest` and `Production`. When deplo
 
 The project triggers based on commits in Github using Webhooks, using a little project of mine called Takofukku. Takofukku is a lightweight, serverless webhook solution for Octopus deploy which is open for anyone to use. You simply drop a YML document called a [takofile](https://github.com/stopthatastronaut/takofukku/blob/master/takofiles.md) into your github repo, [configure a webhook](https://github.com/stopthatastronaut/takofukku#ok-so-how-do-i-hook-this-up) on the push event, and you're ready to go.
 
-[The github webhook](github-hook.png)
+![The github webhook](github-hook.png)
 
 Every time a push event occurs, github sends a POST request to the endpoint. Takofukku receives that hook, then grabs the takofile from the specified repo and, if it finds a valid mapping, triggers an Octopus deployment on your Octopus server. Full documentation for this is available [over at github], and of course pull requests are accepted.
 
@@ -38,7 +38,7 @@ In this specific case, my takofile maps the github `master` branch to the Octopu
 
 ## Getting the code
 
-[The Git Pull Step](git-pull.png)
+![The Git Pull Step](git-pull.png)
 
 The first thing it does is a git pull, using a (slightly tweaked) [Community Step Template from the Octopus Library](https://library.octopus.com/step-templates/5c08170d-e919-4afe-9da3-7616c797d42b/actiontemplate-git-pull-(https)). If we're deploying in `Production`, we clone the `master` branch. If in `DevTest`, we clone `develop`, using a simple scoped variable.
 
@@ -46,7 +46,7 @@ Following this step, you can see there's a step to write a .creds file - This is
 
 ## Running the tests
 
-[The Run Tests Step](runtests.png)
+![The Run Tests Step](runtests.png)
 
 StatusCakeDSC uses Pester to run tests, and this PowerShell Script step is pretty simple
 
@@ -66,7 +66,7 @@ One minor problem I found with Pester tests is that errors outside the immediate
 
 ## Publishing to the PowerShell Gallery
 
-[The Publish Step](publish.png)
+![The Publish Step](publish.png)
 
 My esteemed colleague [Chris van Dal](https://octopus.com/blog/introducing-chris-van-dal) did a pull request a while back adding `publish.ps1` to this repo, so I could deploy to the PS Gallery easily. You can see the script [over at the github repo](https://github.com/stopthatastronaut/StatusCakeDSC/blob/master/publish.ps1), and it's pretty much what most powershell module authors use to push their modules out. I just drive that from my Octopus step as follows
 
@@ -87,7 +87,7 @@ To put this into Octopus, I made some simple tweaks to the original script. It n
 
 ## Finishing it all up
 
-[The Slack Notification Step](slack.png)
+![The Slack Notification Step](slack.png)
 
 The last step of all is a [Slack notification](https://library.octopusdeploy.com/step-template/actiontemplate-slack-notify-deployment), with a Run Condition of "Always Run". This step is smart enough to know when the deployment has failed and will adjust its message accordingly. I love this step template, because I it means I don't even have to log in to my Octopus Server to know if a deployment went OK after I push some commits. I just get a Slack notification on my phone, wherever I happen to be.
 
