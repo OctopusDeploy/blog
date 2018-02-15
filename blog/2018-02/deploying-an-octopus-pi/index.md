@@ -65,7 +65,7 @@ octo.exe pack --id core4pi --version 1.0.0 --format zip --outFolder artifacts --
 Using Octo.exe again, push the package to the server:
 
 ```powershell
-octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --package artifacts\core4pi.1.0.0.zip
+octo.exe push --server http://octopus/ --apikey API-ABCDEF123456 --package artifacts\core4pi.1.0.0.zip
 ```
 
 ## Building a Service Definition
@@ -97,13 +97,13 @@ This output variable will contain the path to the newly installed service. This 
 Create a package for the service definition and push it to the Octopus Server:
 ```powershell
 octo.exe pack --id core4pi.service --version 1.0.0 --format zip --outFolder artifacts
-octo.exe push --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --package artifacts\core4pi.service.1.0.0.zip
+octo.exe push --server http://octopus/ --apikey API-ABCDEF123456 --package artifacts\core4pi.service.1.0.0.zip
 ```
 
 ## Create Infrastructure
 If you don't already have an Octopus environment configured for your Raspberry Pi, create one either at the command line:
 ```powershell
-octo.exe create-environment --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --name "Pi Dev"
+octo.exe create-environment --server http://octopus/ --apikey API-ABCDEF123456 --name "Pi Dev"
 ```
 
 Or using the web interface via *Infrastructure* > *Environments* > *Add Environments*.
@@ -121,22 +121,40 @@ After filling in the details (IP Address or DNS name, SSH port and account), und
 ![](dotnet-not-mono.png "width=500")
 
 ### Modify the Target Config to Specify the Calamari Version as `linux-arm`
+This code can easily be run from [LinqPad](http://www.linqpad.net/)
+
 ```c#
+string machineId = "Machines-41";
 HttpClient client = new HttpClient();
 client.BaseAddress = new Uri(@"http:\\localhost:8065");
-client.DefaultRequestHeaders.Add("X-Octopus-Apikey", "API-3NTZNCQ1JE5IU074ED0WMH2JME");
-var machineJson = client.GetAsync("api/machines/Machines-41").Result.Content.ReadAsStringAsync().Result;
-machineJson.Dump();
+client.DefaultRequestHeaders.Add("X-Octopus-Apikey", "API-ABCDEF123456");
+var machineJson = client.GetAsync($"api/machines/{machineId}").Result.Content.ReadAsStringAsync().Result;
 machineJson = machineJson.Replace("linux-x64","linux-arm");
-HttpContent content = new StringContent(machineJson);
-client.PutAsync("api/machines/Machines-41", content);
+client.PutAsync($"api/machines/{machineId}", new StringContent(machineJson));
+```
+
+The machine id, defined on the first line, can be obtained from the Web Portal URL when viewing the deployment target `app#/infrastructure/machines/_machineId_/settings` or using the command line:
+```powershell
+octo list-machines --server http://octopus/ --apikey API-ABCDEF123456
+```
+
+You can also filter the list at the command line by using the JSON output format and filtering in Powershell:
+```powershell
+octo list-machines --server http://octopus/ --apikey API-ABCDEF123456 --outputformat=json | 
+    ConvertFrom-Json | 
+    % { $_ } |
+    Where { $_.Name -eq 'name' }
+```
+
+```info
+The `% { $_ }` line unwraps the top-level array that is being returned, which seems to be a quirk of the `ConvertFrom-Json` command in Powershell.
 ```
 
 ## Creating the Deployment Project
 Create a new Project via the {Projects} section in the Octopus web interface, or using the command line:
 
 ```powershell
-octo create-project --server http://localhost:8085 --apikey API-6FGRLBN3XYXMMXWM70B9D9BLI6Y --name "PiWeb" --projectgroup "All projects" --lifecycle "Default Lifecycle"
+octo create-project --server http://octopus/ --apikey API-ABCDEF123456 --name "PiWeb" --projectgroup "All projects" --lifecycle "Default Lifecycle"
 ```
 
 ### Create a Deployment Step For the Application
@@ -191,13 +209,13 @@ echo starting service
 sudo systemctl start core4pi.service
 ```
 
-This script will be executed during the step execution and actually perform the service installation.
+This script will be executed during the step execution and performs the service installation.
 
 ## Deploy It
 
 On the Project navigation menu, press **Create Release**. 
 
-The **Create Release** page will allow you to set a version number for the release, you can just leave the default. It will also allow to pick which versions of the packages you want to deploy, by default it will pick the latest version numbers.
+The **Create Release** page will allow you to set a version number for the release, you can just leave the default. It will also allow to pick which versions of the packages you want to deploy, by default it will pick the latest version.
 
 Press **Save** and then press **Deploy to PI Dev** and then **Deploy** to start the deployment process.
 
@@ -213,8 +231,6 @@ After the deployment has finished, navigate to the IP address or DNS name of you
 
 ## Conclusion
 
-```
-put a conclusion blurb here
-```
+With the alignment of a number of different technologies, deploying .Net to a Raspberry Pi is possible, and Octopus Deploy makes it painless. 
 
-If you are interested in automating the deployment of your DotNetCore applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
+If you are interested in automating the deployment of your .Net Core applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
