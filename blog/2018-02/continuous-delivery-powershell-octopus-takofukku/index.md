@@ -4,6 +4,8 @@ description: Learn how to deploy PowerShell Modules to the PowerShell Gallery au
 visibility: private
 published: 2018-02-15
 author: jason.brown@octopus.com
+metaImage: metaimage-powershell.png
+bannerImage: blogimage-powershell.png
 tags:
  - PowerShell
 ---
