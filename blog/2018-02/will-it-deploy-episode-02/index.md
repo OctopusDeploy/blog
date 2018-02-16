@@ -10,7 +10,7 @@ tags:
  - Will it Deploy
 ---
 
-Welcome to another **Will it Deploy?** episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy a Spring Boot web app to Amazon Web Services platform with cloud infrastructure provisioning as well as ensuring we have a zero-downtime production deployment.
+Welcome to another **Will it Deploy?** episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this episode, we're trying to deploy a Spring Boot web app to Amazon Web Services platform with cloud infrastructure provisioning as well as ensuring we have a zero-downtime production deployment.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Pd2Wya6kvIU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 

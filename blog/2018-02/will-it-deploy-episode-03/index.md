@@ -1,6 +1,6 @@
 ---
-title: Database deployments with Entity Framework - Will it Deploy? Episode 3
-description: We try to automate the database deployment of .NET Core web app using Entity Framework to manage our data.
+title: Database deployments with Entity Framework and Sql Server - Will it Deploy? Episode 3
+description: We try to automate the database deployment of .NET Core web app using Entity Framework to manage our data with Sql Server.
 author: rob.pearson@octopus.com
 visibility: private
 published: 2018-02-19
@@ -18,7 +18,7 @@ Welcome to another **Will it Deploy?** Episode where we try to automate the depl
 
 ### Tech Stack
 
-Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode003). The application is pretty simple but it allows us to illustrate how to deploy a Java web app to Amazon Web Services platform.
+Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode003). The application is pretty simple but it allows us to illustrate how to deploy a project with a database how to deploy a Java web app to Amazon Web Services platform.
 
 * Microsoft [ASP.NET Core 2.0](https://docs.microsoft.com/en-us/aspnet/core/) web app.
 * [NUnit](http://nunit.org/) unit testing framework.
