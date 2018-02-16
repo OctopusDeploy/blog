@@ -124,9 +124,9 @@ After filling in the details (IP Address or DNS name, SSH port and account), und
 This code can easily be run from [LinqPad](http://www.linqpad.net/)
 
 ```c#
-string machineId = "Machines-41";
+string machineId = "Machines-1";
 HttpClient client = new HttpClient();
-client.BaseAddress = new Uri(@"http:\\localhost:8065");
+client.BaseAddress = new Uri(@"http:\\octopus");
 client.DefaultRequestHeaders.Add("X-Octopus-Apikey", "API-ABCDEF123456");
 var machineJson = client.GetAsync($"api/machines/{machineId}").Result.Content.ReadAsStringAsync().Result;
 machineJson = machineJson.Replace("linux-x64","linux-arm");
@@ -143,7 +143,7 @@ You can also filter the list at the command line by using the JSON output format
 octo list-machines --server http://octopus/ --apikey API-ABCDEF123456 --outputformat=json | 
     ConvertFrom-Json | 
     % { $_ } |
-    Where { $_.Name -eq 'name' }
+    Where { $_.Name -eq 'target name' }
 ```
 
 :::info
