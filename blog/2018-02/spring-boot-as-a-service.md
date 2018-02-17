@@ -389,3 +389,30 @@ Write-Host "Open application at http://$($OctopusParameters["Octopus.Action[Linu
 Here is a screenshot of the populated step.
 
 ![Run Script Linux](run-script-linux.png "width=500")
+
+## Deploying the Project
+
+Here is a screenshot of the result of a deployment of this project.
+
+![CloudFormation Output](cloudformation-output.png "width=500")
+
+Notice these lines in the output of the CloudFormation template deployment:
+
+```
+Saving variable "Octopus.Action[Linux CloudFormation].Output.AwsOutputs[StackId]"
+Saving variable "Octopus.Action[Linux CloudFormation].Output.AwsOutputs[PublicIp]"
+```
+
+These log messages provide an easy way to get the complete variable names for any output variables created as a result of the CloudFormation deployment.
+
+Also note the output of the health check step. In this deployment I tweaked the CloudFormation template slightly by adding a comment to the UserData script. Although this change does not affect how the EC2 instance is deployed, CloudFormation sees it as a change to the existing stack and therefore shuts down and restarts the EC2 instance. This in turn gives the EC2 instance a new public IP, which means the EC2 instance will reregister itself with Octopus when it boots up. The health check step then checks both the old deployment target and the new one, determines that the old one is no longer valid and removes it, and successfully completes a health check on the new target and includes it in the list of targets used for the rest of the deployment.
+
+## Open the Web Application
+
+The output from the final script step generated a URL of `http://184.73.104.221:8080`. Opening it up shows the Spring Boot application.
+
+:::hint
+This URL won't actually work for you because this demo EC2 instance has been shutdown. The URL generated for you will have a different IP address.
+:::
+
+![Spring Boot Demo](spring-boot-demo.png "width=500")
