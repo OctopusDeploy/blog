@@ -20,7 +20,7 @@ Octopus CloudFormation steps authenticate with AWS through an AWS Account. These
 
 ## The SSH Account
 
-We'll also need to configure an account that will be used to connect to the WildFly EC2 instances via SSH. These accounts are managed under {{Infrastructure>Accounts>SSH Key Pairs}}. Here we'll create an SSH account with the username `ec2-user` (which is the default username for Amazon Linux) and the PEM file that you will need to have created in AWS that will be assigned to the EC2 image. You can find more information on creating AWS key pairs in their [documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html).
+We'll also need to configure an account that will be used to connect to the Linux EC2 instances via SSH. These accounts are managed under {{Infrastructure>Accounts>SSH Key Pairs}}. Here we'll create an SSH account with the username `ec2-user` (which is the default username for Amazon Linux) and the PEM file that you will need to have created in AWS that will be assigned to the EC2 image. You can find more information on creating AWS key pairs in their [documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html).
 
 ![SSH Account](ssh-account-ec2user.png "width=500")
 
@@ -246,6 +246,10 @@ Linux:
 
 In order for this EC2 instance to be used as an Octopus deployment target, it needs to either have Mono installed, or have the required packages installed to support DotNET Core 2. In this example I have chosen to support the later, so we use `yum` to install the dependencies listed in the [Prerequisites for .NET Core on Linux](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x).
 
+:::hint
+Although Amazon Linux is not officially supported by Microsoft for running DotNET Core applications, we can follow the instructions for CentOS for the purposes of this blog.
+:::
+
 We also install Java 8, and set it as the default over the existing Java 7 installation.
 
 The `#cloud-boothook` marker is used by the `cloud-init` service to [identify scripts that should be run on each boot](http://cloudinit.readthedocs.io/en/latest/topics/format.html#cloud-boothook).
@@ -297,14 +301,14 @@ A number of the variables in this script are provided using [variable substituti
 The CloudFormation script has a number of variables that are defined using [variable substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax). These variables are defined in the {{Variables>Project}} section of our Octopus project.
 
 :::hint
-The `AccountID` variable of `sshkeypair-bitnami` was found by taking the last element of the URL `https://octopusserver/app#/infrastructure/accounts/sshkeypair-bitnami`, which is the URL displayed when the Bitnami SSH Account is opened from {{Infrastructure>Accounts>SSH Key Pairs}}.
+The `AccountID` variable of `sshkeypair-ec2user` was found by taking the last element of the URL `https://octopusserver/app#/infrastructure/accounts/sshkeypair-ec2user`, which is the URL displayed when the EC2User SSH Account is opened from {{Infrastructure>Accounts>SSH Key Pairs}}.
 :::
 
 Note that the `AWS Account` variable is set to the `AWS Account` that was created earlier. This variable is used by the Octopus steps, and not by the CloudFormation template directly.
 
 You can get more information on creating Octopus API keys from the [documentation](https://octopus.com/docs/api-and-integration/api/how-to-create-an-api-key).
 
-![Project Variables](project-variables.png "width=500")
+![Project Variables](project-variables-linux.png "width=500")
 
 ## Starting the Deployment with no Targets
 
@@ -437,3 +441,9 @@ Stopped [4123]
 $ sudo service springboot start
 Started [4235]
 ```
+
+## Conclusion
+
+Fully executable JAR files allow Spring Boot applications to be deployed as regular Linux services, making them easy to deploy and manage.
+
+If you are interested in automating the deployment of your Java applications or creating cloud infrastructure, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
