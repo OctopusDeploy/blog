@@ -367,7 +367,7 @@ sudo chmod +x $filePath
 sudo rm /etc/init.d/springboot
 sudo ln -s $filePath /etc/init.d/springboot
 sudo chkconfig springboot on
-sudo service springboot start
+sudo service springboot restart
 ```
 
 Here is a screenshot of the populated step.
