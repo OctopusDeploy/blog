@@ -247,7 +247,7 @@ Linux:
 In order for this EC2 instance to be used as an Octopus deployment target, it needs to either have Mono installed, or have the required packages installed to support DotNET Core 2. In this example I have chosen to support the later, so we use `yum` to install the dependencies listed in the [Prerequisites for .NET Core on Linux](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x).
 
 :::hint
-Although Amazon Linux is not officially supported by Microsoft for running DotNET Core applications, we can follow the instructions for CentOS for the purposes of this blog.
+Although Amazon Linux is not officially supported by Microsoft for running DotNET Core applications, we can treat Amazon Linux the same as CentOS when following the DotNET Core documentation. While this works for the purposes of this blog, it is an unsupported configuration.
 :::
 
 We also install Java 8, and set it as the default over the existing Java 7 installation.
