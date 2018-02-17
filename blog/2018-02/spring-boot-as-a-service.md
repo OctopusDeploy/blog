@@ -416,3 +416,24 @@ This URL won't actually work for you because this demo EC2 instance has been shu
 :::
 
 ![Spring Boot Demo](spring-boot-demo.png "width=500")
+
+## Verifying the Service
+
+We can verify that the Spring Boot application is running as a Linux service by connecting to the EC2 instance and running the `service` command.
+
+```
+$ sudo service springboot status
+Running [2716]
+```
+
+The service can be started, stopped and restarted like any other service.
+
+```
+$ sudo service springboot restart
+Stopped [2716]
+Started [4123]
+$ sudo service springboot stop
+Stopped [4123]
+$ sudo service springboot start
+Started [4235]
+```
