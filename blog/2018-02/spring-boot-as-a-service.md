@@ -442,6 +442,4 @@ Started [4235]
 
 ## Conclusion
 
-Fully executable JAR files allow Spring Boot applications to be deployed as regular Linux services, making them easy to deploy and manage.
-
-If you are interested in automating the deployment of your Java applications or creating cloud infrastructure, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
+Fully executable JAR files allow Spring Boot applications to be deployed as regular Linux services, making them easy to deploy and manage. If you are interested in automating the deployment of your Java applications or creating cloud infrastructure, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
