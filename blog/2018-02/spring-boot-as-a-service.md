@@ -39,9 +39,9 @@ We'll tackle step 1 with some scripting in the CloudFormation template in a late
 
 ## Building a Fully Executable JAR File
 
-Typically a JAR file is run with a command like `java -jar application.jar`. However Spring makes it possible to build [fully executable JARs](https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html), which can be run in Unix systems like `./application.jar`.
+Typically a JAR file is run with a command like `java -jar application.jar`. However Spring makes it possible to build [fully executable JARs](https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html), which can be run in Unix like systems like `./application.jar`.
 
-For this blog post we'll be using a simple Thymeleaf example Spring boot application available from [GitHub](https://github.com/OctopusDeploy/ThymeleafSpringDemo/tree/executable-jar). Inside the Maven `pom.xml` we have the configuration:
+For this blog post we'll be using a simple Thymeleaf Spring Boot application available from [GitHub](https://github.com/OctopusDeploy/ThymeleafSpringDemo/tree/executable-jar). Inside the Maven `pom.xml` we have the configuration:
 
 ```xml
 <plugin>
@@ -194,7 +194,7 @@ InstanceSecurityGroup:
       CidrIp: '0.0.0.0/0'
 ```
 
-Next is the EC2 instance. This configuration defines the AMI image id, the instance type, the SSH key pair to use, and some tags to apply to the instance.
+Next is the EC2 instance. This configuration defines the AMI image ID, the instance type, the SSH key pair to use, and some tags to apply to the instance.
 
 Internally at Octopus we have a bunch of tags that need to be set on any EC2 instances. At a minimum you will want to set the `Name` tag, as this is the name that appears in the AWS console.
 
@@ -246,8 +246,8 @@ Linux:
 
 In order for this EC2 instance to be used as an Octopus deployment target, it needs to either have Mono installed, or have the required packages installed to support DotNET Core 2. In this example I have chosen to support the later, so we use `yum` to install the dependencies listed in the [Prerequisites for .NET Core on Linux](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x).
 
-:::hint
-Although Amazon Linux is not officially supported by Microsoft for running DotNET Core applications, we can treat Amazon Linux the same as CentOS when following the DotNET Core documentation. While this works for the purposes of this blog, it is an unsupported configuration.
+:::warning
+Although Amazon Linux is not officially supported by Microsoft for running DotNET Core applications, we can treat Amazon Linux the same as CentOS when following the DotNET Core documentation. However, while this works for the purposes of this blog, it is an unsupported configuration.
 :::
 
 We also install Java 8, and set it as the default over the existing Java 7 installation.
@@ -255,7 +255,7 @@ We also install Java 8, and set it as the default over the existing Java 7 insta
 The `#cloud-boothook` marker is used by the `cloud-init` service to [identify scripts that should be run on each boot](http://cloudinit.readthedocs.io/en/latest/topics/format.html#cloud-boothook).
 
 :::hint
-In a production environment dependencies like this would be baked into the base AMI image rather than being installed when the instance is booted.
+In a production environment packages like Java and the DotNET Core dependencies would be baked into the base AMI image rather than being installed when the instance is booted.
 :::
 
 ```yaml
@@ -297,6 +297,7 @@ A number of the variables in this script are provided using [variable substituti
     fi
 ```
 
+## The Variables
 
 The CloudFormation script has a number of variables that are defined using [variable substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax). These variables are defined in the {{Variables>Project}} section of our Octopus project.
 
@@ -341,7 +342,7 @@ Here is a screenshot of the populated step.
 Now that our newly created or updated EC2 instance is part of our list of deployment targets, we can transfer our Spring Boot JAR file to it. This is done using the `Transfer a package` step.
 
 :::hint
-We use the `Transfer a package` step instead of the `Deploy Java Archive` step because the latter will extract and repack the JAR file. This is done to allow files in the JAR to have their contents modified (if variable replacement is enabled). However,  Spring Boot fully executable JAR files are not able to be extracted by the `jar` tool. The Spring Boot documentation has this warning:
+We use the `Transfer a package` step instead of the `Deploy Java Archive` step because the latter will extract and repack the JAR file. This extraction and repacking is done to allow files in the JAR to have their contents modified (if variable replacement is enabled). However,  Spring Boot fully executable JAR files are not able to be extracted by the `jar` tool. The Spring Boot documentation has this warning:
 
 >Currently, some tools do not accept this format so you may not always be able to use this technique. For example, jar -xf may silently fail to extract a jar or war that has been made fully-executable.
 
