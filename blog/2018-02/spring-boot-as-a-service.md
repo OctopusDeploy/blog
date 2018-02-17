@@ -176,7 +176,7 @@ Outputs:
     Description: Server's PublicIp Address
 ```
 
-We start by defining the security group that will be assigned to the EC2 instance. This security group opens up port 22 for ssh, and port 8080 for the Spring Boot application.
+We start by defining the security group that will be assigned to the EC2 instance. This security group opens up port 22 for SSH, and port 8080 for the Spring Boot application.
 
 ```yaml
 InstanceSecurityGroup:
@@ -398,7 +398,7 @@ Here is a screenshot of the populated step.
 
 Here is a screenshot of the result of a deployment of this project.
 
-![CloudFormation Output](cloudformation-output.png "width=500")
+![CloudFormation Output](cloudformation-output-linux.png "width=500")
 
 Notice these lines in the output of the CloudFormation template deployment:
 
