@@ -380,7 +380,7 @@ Here is a screenshot of the populated step.
 
 ## Displaying Summary Information
 
-For the convenience of those running this deployment we will display some useful summary information. This is done with the `Run a Script` step.
+For the convenience of those running this deployment we will display some useful summary information. This is done with a second `Run a Script` step.
 
 ![Run a Script](run-script.png)
 
