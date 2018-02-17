@@ -382,8 +382,6 @@ Here is a screenshot of the populated step.
 
 For the convenience of those running this deployment we will display some useful summary information. This is done with a second `Run a Script` step.
 
-![Run a Script](run-script.png)
-
 When the CloudFormation template is deployed, any output variables are captured by Octopus and made available to subsequent steps. We take advantage of this to build a URL based on the public IP address of the EC2 instance.
 
 ```powershell
