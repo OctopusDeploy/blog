@@ -191,7 +191,7 @@ In the `Substitute Variables in Files` feature add the name of the service defin
 
 ![](substitute-variables-in-service.png "width=500")
 
-Under the `Configuration Scripts` feature, paste the below script in to the `Deployment Script` section:
+Under the `Configuration Scripts` feature, select **Bash**, paste the below script in to the `Deployment Script` section:
 ```bash
 #!/bin/bash
 if [ -e /lib/systemd/system/core4pi.service ]
