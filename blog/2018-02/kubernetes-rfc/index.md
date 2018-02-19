@@ -80,7 +80,7 @@ You can see in the UI-mock-up above that you are selecting two versions:
 
 We will perform [variable-substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax) on the Kubernetes template. So you can use Octopus variables directly in it, and they will be replaced. 
 
-Unfortunately Kubernetes doesn't support parameter files for templates (as for example [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) and [Azure RM](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-templates-parameters) templates do). This is unfortunate, as parameter files seem like the ideal way for the template author to tell tools like Octopus which values should be supplied as arguments.  
+Unfortunately, Kubernetes doesn't support parameter files for templates (as for example [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) and [Azure RM](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-templates-parameters) templates do). This is unfortunate, as parameter files seem like the ideal way for the template author to tell tools like Octopus which values should be supplied as arguments.  
 
 How would you want to supply variables to the Kubernetes Apply command?  
 
@@ -97,7 +97,7 @@ Some options might be:
 | `foo`        | `#{Foo}`              | Top-level property `foo` would be substituted with the value of #{Foo}.|
 | `foo::bar`   | `#{AnotherVariable}`  | Nested property `foo.bar` would be substituted.|
 
-As mentioned, we would definitely implement option #1 (and if you didn't have any Octopus variable placeholders in your template, then it wouldn't  do anything).  But if you would prefer other methods of supplying variables (including any not mentioned above) then please leave a comment. 
+As mentioned, we would definitely implement option #1 (and if you didn't have any Octopus variable placeholders in your template, then it wouldn't  do anything).  But if you would prefer other methods of supplying variables (including any not mentioned above), then please leave a comment. 
 
 ## kubectl Script Step
 
