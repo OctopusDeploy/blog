@@ -11,9 +11,9 @@ Kubernetes has won the container-orchestration wars (at least for this week). Pe
 
 We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use Kubernetes internally (though that may well change as we build our hosted product), so we definitely need your help with this one. 
 
-Our current thinking is that our Kubernetes support would take the following shape:
-- A new [Kubernetes Cluster target](#Kubernetes-Cluster-Target)
-- Two new deployment steps: [Kubernetes Apply](#Kubernetes-Apply-Step) and [Kubectl Script](#kubectl-Script-Step)
+Our current thinking is that Kubernetes support would take the following shape:
+- A new [Kubernetes Cluster target](#Kubernetes-Cluster-Target).
+- Two new deployment steps: [Kubernetes Apply](#Kubernetes-Apply-Step) and [Kubectl Script](#kubectl-Script-Step).
 
 ## Kubernetes Cluster Target
 
@@ -68,21 +68,22 @@ When creating a release of a project which contains Kubernetes Apply steps, we w
 
 When you deploy the release, we will substitute the correct version of the container images into your template before sending it to the Kubernetes cluster.
 
-_This is the Octopus special-sauce._  It allows you to snapshot a specific combination of container image versions, and progress these through your environments.
+_This is the Octopus special-sauce._  It allows you to snapshot a specific combination of container image versions and progress these through your environments.
 
 ![Create Release with Container Images](kubernetes-create-release.png "width=500")
 
-You can see in the UI-mock above that you are selecting two versions:
-- The version of the package which contains your Kubernetes template (`AcmeWebApp` in the example above)
-- The version of the container image _within_ the template (in this case `nginx`) 
+You can see in the UI-mock-up above that you are selecting two versions:
+- The version of the package which contains your Kubernetes template (`AcmeWebApp` in the example above).
+- The version of the container image _within_ the template (in this case `nginx`).
 
 ### Variable Substitution
 
-We will perform [variable-substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax) on the Kubernetes template. So you can use Octopus variables directly in it and they will be replaced. 
+We will perform [variable-substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax) on the Kubernetes template. So you can use Octopus variables directly in it, and they will be replaced. 
 
 Unfortunately Kubernetes doesn't support parameter files for templates (as for example [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) and [Azure RM](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-templates-parameters) templates do). This is unfortunate, as parameter files seem like the ideal way for the template author to tell tools like Octopus which values should be supplied as arguments.  
 
 How would you want to supply variables to the Kubernetes Apply command?  
+
 Some options might be:
 
 1) **Variable substitution directly on the template**: You would include, for example, `#{Octopus.Environment}` in your template, which is replaced by the appropriate value at deployment time.  This is consistent with the approach of tools such as [helm](https://helm.sh/), but does have the downside of your templates not being valid outside of Octopus (and possibly not even valid JSON or YAML).  
@@ -93,10 +94,10 @@ Some options might be:
 
 | Key        | Value               | Comment            |
 |------------|---------------------|--------------------|
-| `foo`        | `#{Foo}`              | Top-level property `foo` would be substituted with the value of #{Foo}|
-| `foo::bar`   | `#{AnotherVariable}`  | Nested property `foo.bar` would be substituted|
+| `foo`        | `#{Foo}`              | Top-level property `foo` would be substituted with the value of #{Foo}.|
+| `foo::bar`   | `#{AnotherVariable}`  | Nested property `foo.bar` would be substituted.|
 
-As mentioned, we would definitely implement option #1 (and if you didn't have any Octopus variable placeholders in your template, then it would simply do nothing).  But if you would prefer other methods of supplying variables (including any not mentioned above) then please leave a comment. 
+As mentioned, we would definitely implement option #1 (and if you didn't have any Octopus variable placeholders in your template, then it wouldn't  do anything).  But if you would prefer other methods of supplying variables (including any not mentioned above) then please leave a comment. 
 
 ## kubectl Script Step
 
@@ -104,7 +105,7 @@ There are many other [Kubernetes commands](https://kubernetes.io/docs/reference/
 
 We will enable these by adding a new flavor of a Run a Script step: _Run a kubectl Script_. 
 
-This step will allow you to write your own scripts, and we ensure the `kubectl` command line is available and authenticated against the Kubernetes cluster the step is targeting.  This is conceptually similiar to our [Run an AWS CLI Script](https://octopus.com/docs/deploying-applications/custom-scripts/aws-cli-scripts) or the  [Run an Azure PowerShell Script](https://octopus.com/docs/deploying-applications/azure-deployments/running-azure-powershell) steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
+This step will allow you to write your own scripts, and we ensure the `kubectl` command-line is available and authenticated against the Kubernetes cluster the step is targeting.  This is conceptually similiar to our [Run an AWS CLI Script](https://octopus.com/docs/deploying-applications/custom-scripts/aws-cli-scripts) or the  [Run an Azure PowerShell Script](https://octopus.com/docs/deploying-applications/azure-deployments/running-azure-powershell) steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
 
 ![kubectl Script Step](kubectl-script-step.png "width=500")
 
