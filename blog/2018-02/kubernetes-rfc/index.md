@@ -11,7 +11,7 @@ tags:
 
 Kubernetes has won the container-orchestration wars (at least for this week). Perhaps unsurprisingly, [Kubernetes is now #7 with a bullet](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/17930755-support-for-kubernetes) on the list of our top UserVoice suggestions.  
 
-We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use Kubernetes internally (though that may well change as we build our hosted product), so we definitely need your help with this one. 
+We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use k8s internally (though that may well change as we build our hosted product), so we definitely need your help with this one. 
 
 Our current thinking is that Kubernetes support would take the following shape:
 - A new [Kubernetes Cluster target](#Kubernetes-Cluster-Target).
@@ -41,7 +41,7 @@ For Octopus, it seems a natural fit to support the declarative approach.  This i
 
 ![Kubernetes Apply Step](kubernetes-apply-step.png "width=500")
 
-The Apply command accepts a template (JSON or YAML). This is conceptually similar to how the [AWS CloudFormation](https://octopus.com/docs/deploying-applications/aws-deployments/cloudformation) or [Azure Resource Group](https://octopus.com/docs/deploying-applications/azure-deployments/resource-groups) steps work in Octopus. The Kubernetes template can be sourced from a package or configured directly in the Octopus UI.     
+The Apply command accepts a template (JSON or YAML). This is conceptually similar to how the [AWS CloudFormation](https://octopus.com/docs/deploying-applications/aws-deployments/cloudformation) or [Azure Resource Group](https://octopus.com/docs/deploying-applications/azure-deployments/resource-groups) steps work in Octopus. The k8s template can be sourced from a package or configured directly in the Octopus UI.     
 
 ### Container Images 
 
