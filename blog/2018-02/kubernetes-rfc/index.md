@@ -1,15 +1,16 @@
 ---
 title: "Kubernetes RFC"
-description: "We are designing Kubernetes support for Octopus, and we would love to know what you think."
+description: "We are designing Kubernetes support for Octopus, and we would love your input."
 author: michael.richardson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-kubernetes-rfc.png
 bannerImage: blogimage-kubernetes-rfc.png
+published: 2018-02-19
 tags:
  - RFC 
 ---
 
-Kubernetes has won the container-orchestration wars (at least for this week). Perhaps unsurprisingly, [Kubernetes is now #7 with a bullet](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/17930755-support-for-kubernetes) on the list of our top UserVoice suggestions.  
+Kubernetes has won the container-orchestration wars (at least for this week). Perhaps unsurprisingly, [Kubernetes has rocketed to #7](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/17930755-support-for-kubernetes) on the list of our top UserVoice suggestions.  
 
 We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use k8s internally (though that may well change as we build our hosted product), so we definitely need your help with this one. 
 
@@ -115,4 +116,4 @@ This step will allow you to write your own scripts, and we ensure the `kubectl` 
 
 We think this would fit nicely with the existing Octopus concepts and architecture, but we need you to tell us if this matches the way you would expect to interact with Kubernetes. 
 
-If you currently use Kubernetes (or are planning to), we would love to hear about your scenario.  
+If you currently use Kubernetes (or are planning to), we would love to hear about your scenario.  Help us bring k8s to o5s. 
