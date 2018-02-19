@@ -3,6 +3,8 @@ title: "Kubernetes RFC"
 description: "We are designing Kubernetes support for Octopus, and we would love to know what you think."
 author: michael.richardson@octopus.com
 visibility: private
+metaImage: metaimage-kubernetes-rfc.png
+bannerImage: blogimage-kubernetes-rfc.png
 tags:
  - RFC 
 ---
