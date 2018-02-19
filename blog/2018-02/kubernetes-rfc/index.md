@@ -10,6 +10,8 @@ tags:
  - RFC 
 ---
 
+![Octopus sailing Kubernetes](blogimage-kubernetes-rfc.png)
+
 Kubernetes has won the container-orchestration wars (at least for this week). Perhaps unsurprisingly, [Kubernetes has rocketed to #7](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/17930755-support-for-kubernetes) on the list of our top UserVoice suggestions.  
 
 We've been thinking about what Kubernetes support in Octopus might look like, and we'd love to hear your thoughts.  Often when we are designing features and we want to know what a typical user looks like, we need only to look in the mirror. With Kubernetes, this isn't the case.  We don't currently use k8s internally (though that may well change as we build our hosted product), so we definitely need your help with this one. 
