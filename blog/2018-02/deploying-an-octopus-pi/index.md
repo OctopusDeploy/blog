@@ -22,6 +22,7 @@ In this post, I will show you that it is possible to deploy and run DotNet Core 
 * For Angular or React applications:
     * node and npm on your development machine - if your chosen application requires it (angular or react).
     * nodejs on your Pi. 
+* [Curl](https://curl.haxx.se/download.html)
 
 :::hint
 ASP.NET includes NodeServices in its bundle which requires Node to be installed before it can serve any requests. When you install Node.js on the Raspberry Pi, it installs version 4.x and the executable is called `nodejs`, but NodeServices is looking for `node` in your path. You can fix this by creating a symlink: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
@@ -150,6 +151,18 @@ octo list-machines --server http://octopus/ --apikey API-ABCDEF123456 --outputfo
 The `% { $_ }` line unwraps the top-level array that is being returned, which seems to be a quirk of the `ConvertFrom-Json` command in Powershell.
 :::
 
+### Download Calamari for linux-arm
+
+```powershell
+curl https://octopus.myget.org/F/octopus-dependencies/api/v2/package/Calamari.linux-arm/4.3.6 -L -o "c:\Program Files\Octopus Deploy\Octopus\Calamari.linux-arm.nupkg"
+```
+
+Replace the output path with the path to your Octopus Installation, if required.
+
+:::info
+The `linux-arm` Calamari, will be provided in future releases
+:::
+
 ## Creating the Deployment Project
 Create a new Project via the {Projects} section in the Octopus web interface, or using the command line:
 
@@ -218,6 +231,13 @@ On the Project navigation menu, press **Create Release**.
 The **Create Release** page will allow you to set a version number for the release, you can just leave the default. It will also allow to pick which versions of the packages you want to deploy, by default it will pick the latest version.
 
 Press **Save** and then press **Deploy to PI Dev** and then **Deploy** to start the deployment process.
+
+**Create Release** can also be performed from the command line
+
+```powershell
+octo create-release --server http://octopus/ --apikey API-ABCDEF123456 --project "PiWeb"
+octo deploy-release --server http://octopus/ --apikey API-ABCDEF123456 --project "PiWeb" --deployto="PiDev" --version "0.0.1"
+```
 
 :::info
 The first time you deploy, Octopus Server will update Calamari on the target machine, this may take a couple of minutes.
