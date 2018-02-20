@@ -16,7 +16,7 @@ Last week, my powershell-loving colleague [Jason Brown](https://octopus.com/blog
 
 **[Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines)** is a new offering from Atlassian, as a lightweight cloud continuous integration server using pre-configured docker containers. It's free for 50 build minutes per month, with the costs for additional minutes being very affordable (correct at time of writing). Setting up a CI server and build agents to run in the cloud can be a lengthy and expensive process, so this is a good way to hit the ground running.
 
-### The plan
+## Prologue: The plan
 
 There are a few moving parts to this solution, so the process will work as follows:
 
@@ -43,7 +43,7 @@ For this article I will be using a toy project called "Greetings.Web", which has
 
 If you don't already have an Octopus server running, [start a trial](https://octopus.com/licenses/trial) and follow our [installation guide](https://octopus.com/docs/installation) to get up-and-running in no time. For this article I'm using one of our shiny new [Octopus Cloud](https://octopus.com/cloud) preview servers: if you're interested in staying up-to-date with our progess you can [register your interest](https://octopus.com/cloud/register-interest) and be notified when we release to RTM.
 
-## Act 2: Setting up Pipelines to run a build on commit
+## Act 2: Configuring Pipelines to run a build on commit
 
 CI (continuous integration) typically works by integrating your build system into your source control repo(s), so that a new build is kicked-off automatically when new code is pushed to your remote repo. We will be using Pipelines (within Bitbucket) to do these builds, so we need to create a special file called `bitbucket-pipelines.yml` in order to let Bitbucket know what to do and how. 
 
@@ -170,6 +170,14 @@ In order for automatic release creation to work, we need to have at least one st
 
 Now that we have a project set up with a process and in the right lifecycle, we need to turn on **Automatic Release Creation** - this is the magic that creates a new release whenever a new package is detected. Open up the "Triggers" page of the project, and click "Setup" on the right-hand side under **Automatic Release Creation**: you will need to select which step it should use to evaluate whether a new package should trigger a release. Select the step you created above, and save.
 
-Now that we've done this, a new 
+#### Create a release and test the process
+
+Lastly, create a release using the package that appeared after your first successful build, and as soon as you save the release it should automatically deploy to Staging, thanks to the lifecycle settings you configured earlier. If this works correctly, then everything is ready to go! If you have any errors, have a read of the output logs to see what went wrong in your deployment and fix up any issues.
+
+## Epilogue
+
+It's time to try it all out! Make a change to your code that will be identifiable on your Staging host, and push this change to your Bitbucket repo. You should see Pipelines kick off the build and, once succeeded, Octopus should create a release and automatic deploy it to your Staging environment - all like magic! 
+
+Hopefully this post empowers you to embrace a CD piplines for your small personal projects, in a way that is cost-effective and lightweight enough to extend to other projects as they arise. If nothing else, maybe it has inspired you to adpot a part of the process, and given you some ideas about what's possible in the future.
 
 Happy Deployments!
