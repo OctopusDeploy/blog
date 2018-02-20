@@ -160,7 +160,7 @@ curl https://octopus.myget.org/F/octopus-dependencies/api/v2/package/Calamari.li
 Replace the output path with the path to your Octopus Installation, if required.
 
 :::info
-The `linux-arm` Calamari, will be provided in future releases
+The `linux-arm` Calamari package, will be provided in future releases
 :::
 
 ## Creating the Deployment Project
@@ -186,7 +186,6 @@ Set the **Environment** to the `Pi Dev` environment.
 Set the **Role** to the `PiWeb` role (or whatever you set the SSH target role to).
 
 Under the **Package** section, select the package that you pushed to the server, `core4pi`.
-
 
 The rest of the options in here don't need to be configured. *Save it*.
 
