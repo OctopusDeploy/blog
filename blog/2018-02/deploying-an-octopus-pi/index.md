@@ -9,6 +9,8 @@ published: 2018-02-21
 tags:
  - Walkthrough
 ---
+![Octopus enjoying a Raspberry Pi](blogimage-raspberrypi.png)
+
 .Net Core has come a long way in the last few years, and Octopus Deploy has too. A while back, we added support for running [Calamari without Mono](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono), and in this post I will walk you through how to deploy .Net Core applications on to a Raspberry Pi 3, no Mono required.
 
 In this post, I will show you that it is possible to deploy and run DotNet Core applications on the Raspberry Pi 3, and along the way describe some of the different ways that you can interact with your Octopus Deploy server.
