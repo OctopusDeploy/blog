@@ -3,9 +3,9 @@ title: "Using Octopus Deploy to deploy .Net Core applications to a Raspberry Pi"
 description: "You can use Octopus to deploy your .Net Core applications to a Raspberry Pi."
 author: ben.pearce@octopus.com
 visibility: private
-published: 2018-02-21
 metaImage: metaimage-raspberrypi.png
 bannerImage: blogimage-raspberrypi.png
+published: 2018-02-21
 tags:
  - Walkthrough
 ---
