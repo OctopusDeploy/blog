@@ -1,6 +1,6 @@
 ---
-title: "Using Octopus Deploy to deploy .Net Core applications to a Raspberry Pi"
-description: "You can use Octopus to deploy your .Net Core applications to a Raspberry Pi."
+title: "Using Octopus Deploy to deploy .NET Core applications to a Raspberry Pi"
+description: "You can use Octopus to deploy your .NET Core applications to a Raspberry Pi."
 author: ben.pearce@octopus.com
 visibility: public
 metaImage: metaimage-raspberrypi.png
@@ -11,9 +11,9 @@ tags:
 ---
 ![Octopus enjoying a Raspberry Pi](blogimage-raspberrypi.png)
 
-.Net Core has come a long way in the last few years, and Octopus Deploy has too.  A while back, we added support for running [Calamari without Mono](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono), and in this post I will walk you through how to deploy .Net Core applications on to a Raspberry Pi 3, no Mono required.
+.NET Core has come a long way in the last few years, and Octopus Deploy has too.  A while back, we added support for running [Calamari without Mono](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono), and in this post I will walk you through how to deploy .NET Core applications on to a Raspberry Pi 3, no Mono required.
 
-In this post, I will show you that it is possible to deploy and run DotNet Core applications on the Raspberry Pi 3, and along the way describe some of the different ways that you can interact with your Octopus Deploy server.
+In this post, I will show you that it is possible to deploy and run .NET Core applications on the Raspberry Pi 3, and along the way describe some of the different ways that you can interact with your Octopus Deploy server.
 
 ## Requirements Before Starting
 
@@ -34,7 +34,7 @@ ASP.NET includes NodeServices in its bundle which requires Node to be installed 
 
 ## Build the Application
 
-### Create a Basic .Net Core Application
+### Create a Basic .NET Core Application
 ```powershell
 dotnet new angular
 ```
@@ -58,7 +58,7 @@ dotnet publish -o publish --self-contained -r linux-arm
 ```
 
 ### Package It Up
-The simplest way to create a package of a Dotnet Core application is using the `Octo.exe` command line tool.
+The simplest way to create a package of a .NET Core application is using the `Octo.exe` command line tool.
 
 Create an `artifacts` directory and then use the `Octo Pack` command to create the package:
 
@@ -74,7 +74,7 @@ octo.exe push --server http://octopus/ --apikey API-ABCDEF123456 --package artif
 ```
 
 ## Building a Service Definition
-To get the application to run as a service, see Microsoft’s documentation for [hosting .Net Core on Linux](https://docs.microsoft.com/en-au/aspnet/core/host-and-deploy/linux-nginx?tabs=aspnetcore2x).
+To get the application to run as a service, see Microsoft’s documentation for [hosting .NET Core on Linux](https://docs.microsoft.com/en-au/aspnet/core/host-and-deploy/linux-nginx?tabs=aspnetcore2x).
 
 Create a file called `core4pi.service` containing the following text:
 ```text
@@ -121,7 +121,7 @@ Next, create an account to access the Pi, this can either be a Username / Passwo
 
 Then finally, create a deployment target under *Infrastructure* > *Deployment Targets* > *Add Deployment Target* as an **SSH target**.
 Set the targets role to something that represents the responsibility of the target, e.g `PiWeb`.
-After filling in the details (IP Address or DNS name, SSH port and account), under the .Net section, ensure that you select _Mono not installed_, don't worry about the platform, we will change that later.
+After filling in the details (IP Address or DNS name, SSH port and account), under the .NET section, ensure that you select _Mono not installed_, don't worry about the platform, we will change that later.
 
 ![](dotnet-not-mono.png "width=500")
 
@@ -254,6 +254,6 @@ After the deployment has finished, navigate to the IP address or DNS name of you
 
 ## Conclusion
 
-With the alignment of a number of different technologies, deploying .Net to a Raspberry Pi is possible, and Octopus Deploy makes it painless. Throughout this post, you have also seen a number of different ways that you can integrate with your Octopus server, including command line, API and the web portal.
+With the alignment of a number of different technologies, deploying .NET to a Raspberry Pi is possible, and Octopus Deploy makes it painless. Throughout this post, you have also seen a number of different ways that you can integrate with your Octopus server, including command line, API and the web portal.
  
-If you are interested in automating the deployment of your .Net Core applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
+If you are interested in automating the deployment of your .NET Core applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications).
