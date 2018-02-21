@@ -41,8 +41,8 @@ dotnet new angular
 By default, an ASP.NET Core application will only serve requests to `http://localhost:5000`, to allow the web host to serve requests to your local network, add the following after the `.UseStartup<Startup>()` in `Program.cs`:
 ```c#
 .UseKestrel(options => {
-                    options.Listen(System.Net.IPAddress.Any, 5000);
-                })
+    options.Listen(System.Net.IPAddress.Any, 5000);
+})
 ```
 
 For more information on configuring the Kestrel Web Host, check the [docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?tabs=aspnetcore2x).
@@ -237,7 +237,7 @@ Press **Save** and then press **Deploy to PI Dev** and then **Deploy** to start 
 
 ```powershell
 octo create-release --server http://octopus/ --apikey API-ABCDEF123456 --project "PiWeb"
-octo deploy-release --server http://octopus/ --apikey API-ABCDEF123456 --project "PiWeb" --deployto="PiDev" --version "0.0.1"
+octo deploy-release --server http://octopus/ --apikey API-ABCDEF123456 --project "PiWeb" --deployto="Pi Dev" --version "0.0.1"
 ```
 
 :::info
