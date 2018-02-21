@@ -4,8 +4,8 @@ description: "You can use Octopus to deploy your .Net Core applications to a Ras
 author: ben.pearce@octopus.com
 visibility: private
 published: 2018-02-21
-metaImage: metaimage-raspberryPi.png
-bannerImage: blogimage-raspberryPi.png
+metaImage: metaimage-raspberrypi.png
+bannerImage: blogimage-raspberrypi.png
 tags:
  - Walkthrough
 ---
