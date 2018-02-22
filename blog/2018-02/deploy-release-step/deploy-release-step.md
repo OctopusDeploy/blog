@@ -80,7 +80,7 @@ Variables can be passed to the deployments triggered by a _Deploy a Release_ ste
 ![Pass Variables to Deployment](deploy-release-variables.png "width=500")
 
 
-[Output variables](https://octopus.com/docs/deployment-process/variables/output-variables.md) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step.
+[Output variables](https://octopus.com/docs/deployment-process/variables/output-variables) from deployments triggered by a _Deploy a Release_ step are captured and exposed as output variables on the _Deploy a Release_ step.
 
 This allows output from a child deployment to be used by the parent process and even passed into deployments triggered by subsequent _Deploy a Release_ steps.  Many coordination scenarios are enabled by this. 
 
