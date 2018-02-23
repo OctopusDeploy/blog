@@ -20,6 +20,8 @@ Welcome to another **Will it Deploy?** Episode where we try to automate the depl
 
 Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode004). The application is pretty simple but it allows us to illustrate how to deploy database changes and updates.
 
+![SQL Server logo](sqlserver-logo.png "width=200")
+
 * Microsoft [ASP.NET Core 2.0](https://docs.microsoft.com/en-us/aspnet/core/) web app
 * [Data-tier application Package (DACPAC)](https://docs.microsoft.com/en-us/ef/core/) framework
 * Microsoft [SQL Server 2017](https://www.microsoft.com/en-au/sql-server/) database
