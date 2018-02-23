@@ -18,7 +18,7 @@ Welcome to another **Will it Deploy?** Episode where we try to automate the depl
 
 ### Tech Stack
 
-Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode003). The application is pretty simple but it allows us to illustrate how to deploy a project with a database how to deploy a Java web app to Amazon Web Services platform.
+Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode003). The application is pretty simple but it allows us to illustrate how to deploy database changes and updates.
 
 * Microsoft [ASP.NET Core 2.0](https://docs.microsoft.com/en-us/aspnet/core/) web app
 * [Entity Framework Core 2.0](https://docs.microsoft.com/en-us/ef/core/) framework
