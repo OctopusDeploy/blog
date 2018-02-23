@@ -1,14 +1,16 @@
 ---
 title: Continuous Delivery for .NET Core using Octopus Deploy and Bitbucket Pipelines
 description: Learn how to use Bitbucket and Bitbucket Pipelines to automatically build, test and deploy .NET core apps on code commits using Octopus Deploy
-visibility: private
-published: 2018-02-16
+visibility: public
+published: 2018-02-23
 author: andrew.katsivas@octopus.com
+metaImage: metaimage-bitbucket.png
+bannerImage: blogimage-bitbucket.png
 tags:
- - PowerShell
+ - Integration
 ---
 
-Last week, my PowerShell-loving colleague [Jason Brown](https://octopus.com/blog/introducing-jason-brown) wrote a [fantastic piece](https://octopus.com/blog/continuous-delivery-powershell-octopus-takofukku) about using Octopus and [TakoFukku](https://github.com/stopthatastronaut/takofukku) to set up a continuous delivery pipeline for PowerShell modules. In my evening hours, I've been tinkering with Bitbucket Pipelines to automate a few personal projects, so I thought I'd write a companion piece around setting up a continuous delivery pipeline for .NET core projects.
+Last week, my PowerShell-loving colleague [Jason Brown](https://octopus.com/blog/introducing-jason-brown) wrote a [fantastic piece](https://octopus.com/blog/continuous-delivery-powershell-octopus-takofukku) about using Octopus and [TakoFukku](https://github.com/stopthatastronaut/takofukku) to set up a continuous delivery pipeline for PowerShell modules.  In my evening hours, I've been tinkering with Bitbucket Pipelines to automate a few personal projects, so I thought I'd write a companion piece around setting up a continuous delivery pipeline for .NET core projects.
 
 ## A brief Introduction to the Characters
 

@@ -1,16 +1,16 @@
 ---
-title: Database deployments with Entity Framework and Sql Server - Will it Deploy? Episode 3
-description: We try to automate the database deployment of .NET Core web app using Entity Framework to manage our data with Sql Server.
+title: Deploying to SQL Server with Entity Framework Core - Will it Deploy? Episode 3
+description: We try to automate the deployment of a SQL Server Database using Entity Framework Core to manage our database structure and data.
 author: rob.pearson@octopus.com
 visibility: private
-published: 2018-02-19
+published: 2018-02-24
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
  - Will it Deploy
 ---
 
-Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this episode, we're trying to do a datadeploy an Spring Boot web app to Amazon Web Services platform with cloud infrastructure provisioning as well as ensure we have a zero-downtime production deployment.
+Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this episode, we're trying to deploy a Microsoft SQL Server database using Entity Framework Core migrations. do a datadeploy an Spring Boot web app to Amazon Web Services platform with cloud infrastructure provisioning as well as ensure we have a zero-downtime production deployment.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Pd2Wya6kvIU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
