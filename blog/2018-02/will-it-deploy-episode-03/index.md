@@ -39,7 +39,7 @@ So will it deploy? **Yes it will!** Our deployment process looks like the follow
 
 ![Octopus deployment process](deployment-process.png "width=500")
 
-Then we add the following steps to successfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
+Then we add the following steps to successfully deploy our database changes and web app.
 
 - Octopus **Deploy a Package** step to copy our database scripts to our database deployment target
 - Octopus Community Contributed step template -  **[SQL - Execute Script File](https://library.octopusdeploy.com/step-template/actiontemplate-sql-execute-script-file)** to execute our Entity Framework Core migration script agaist our SQL Server database. 
