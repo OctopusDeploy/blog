@@ -62,7 +62,7 @@ mvn deploy:deploy-file \
 
 ## Create the External Feed
 
-To consume the new artifact in Octopus, we need to add the Nexus server as an external Maven feed. This is done under the {{Library>External Feeds}}.
+To consume the new artifact in Octopus, we need to add the Nexus server as an external Maven feed. This is done under {{Library>External Feeds}}.
 
 ![Maven Repo](maven-repo.png "width=500")
 
