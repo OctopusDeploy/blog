@@ -1,5 +1,5 @@
 ---
-title: Deploying and consuming ZIP files from Maven.
+title: Deploying and consuming ZIP files from Maven
 description: Learn how to deploy ZIP files to Maven and then consume them in an Octopus project.
 author: matthew.casperson@octopus.com
 visibility: private
@@ -66,7 +66,7 @@ To consume the new artifact in Octopus, we need to add the Nexus server as an ex
 
 ![Maven Repo](maven-repo.png "width=500")
 
-You can then test the repository by searching for the artifact `org.example:package`, which is the `groupId` combined with the `artifactId`.
+We can then test the repository by searching for the artifact `org.example:package`, which is the `groupId` combined with the `artifactId`.
 
 ![Maven Test](maven-test.png "width=500")
 
