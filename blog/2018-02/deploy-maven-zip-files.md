@@ -43,7 +43,7 @@ zip package.zip test.txt
 
 ## Upload the Package
 
-To upload the package we'll use the Maven `deploy:deploy-file` goal.
+To upload the package we'll use the Maven `deploy:deploy-file` goal. Maven can be download from [here](https://maven.apache.org/download.cgi).
 
 :::hint
 The `repositoryId` system property in this command needs to match the `<id>` element in the `settings.xml` file.
