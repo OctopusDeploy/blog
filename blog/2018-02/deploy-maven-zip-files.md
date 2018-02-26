@@ -2,7 +2,8 @@
 title: Deploying and consuming ZIP files from Maven
 description: Learn how to deploy ZIP files to Maven and then consume them in an Octopus project.
 author: matthew.casperson@octopus.com
-visibility: pubic
+visibility: public
+published: 2018-02-26
 metaImage: metaimage-mavenzip.png
 bannerImage: blogimage-mavenzip.png
 tags:
@@ -10,7 +11,7 @@ tags:
  - Cloud
 ---
 
-Maven is a versatile artifact repository that extends beyond traditional Java packages like JARs and WARs to provide the ability to host generic ZIP archives.  In this blog post we'll take a look at how generic archives can be published to Maven repository, and how they can then be consumed in an Octopus project.
+Maven is a versatile artifact repository that extends beyond traditional Java packages like JARs and WARs to provide the ability to host generic ZIP archives. In this blog post we'll take a look at how generic archives can be published to Maven repository, and how they can then be consumed in an Octopus project.
 
 ## Repository Configuration
 
