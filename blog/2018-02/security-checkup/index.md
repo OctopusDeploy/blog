@@ -1,7 +1,7 @@
 ---
 title: Security checkup for your Octopus
 description: Take a few minutes to give your Octopus a security health check. We've recently shipped Octopus Cloud alpha which means we took time to look at how to keep a healthy and secure Octopus. You can too!
-visibility: public
+visibility: private
 published: 2018-02-27
 metaImage: metaimage-freetrial.png
 bannerImage: blogimage-freetrial.png
