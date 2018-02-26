@@ -40,6 +40,8 @@ Optional. Used for the meta description tag (`<meta name="description" />`).
 
 Visibility controls if the blog post is public or not.  **NOTE** There is currently a gotcha if you update a blog post to make it public with no other changes to the content, it will not be published. Just add a space somewhere and that'll trigger it until this is fixed.
 
+The options are `private` and `public`.
+
 ### Position
 Optional. Used for the position in the menu.
 
