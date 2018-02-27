@@ -1,9 +1,9 @@
 ---
 title: "Recurring Deployments"
-description: "We are introducing the ability to configure recurring scheduled deployments."
+description: "We are introducing the ability to schedule recurring deployments."
 author: michael.richardson@octopus.com
 visibility: private
-published: 2018-03-05
+published: 2018-03-01
 tags:
  - New Releases
 ---
@@ -26,7 +26,7 @@ The QA team want the latest version available each day, but they would also like
 
 If the QA team is satisfied, they can manually trigger a promotion of the release from `Test` into `Prod`. 
 
-Or of course you may have a completely different use-case for this feature.  Please feel welcome to tell us in the comments, we'd love to hear about it.
+Or of course you may have a completely different use-case for this feature.  Please feel welcome to tell us in the comments, we'd love to hear about it. Bonus points for anyone who schedules a recurring deployment to production every Friday ;)
 
 ## Voila! 
 
@@ -40,7 +40,7 @@ You can create the schedule in hopefully every way you could ever want to:
 - Cron expression 
 - Halley's Comet appearances (ahh, actually this one didn't make the final cut)
 
-Because timezones are Hard (for example, the client and server can be different), we allow you to explicitly choose the timezone.  
+The timezone is important, so we allow you to explicitly select it. For example, if you are in a timezone with daylight-savings time, then you probably want your 7am deployment to respect that.
 
 You can choose to either:
 
