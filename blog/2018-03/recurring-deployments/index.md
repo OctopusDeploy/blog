@@ -25,7 +25,7 @@ If the QA team is satisfied, they can manually trigger a promotion of the releas
 
 Or of course you may have a completely different use-case for this feature.  Please feel welcome to tell us in the comments, we'd love to hear about it.
 
-## Here It Is 
+## Voila! 
 
 ![Configuring Recurring Deployment](recurring-nightly-deployment.png)
 
@@ -37,11 +37,20 @@ You can create the schedule in hopefully every way you could ever want to:
 - Cron expression 
 - Halley's Comet appearances (ahh, actually this one didn't make the final cut)
 
-Because timezones are hard (for example, the client and server can be different), we allow you to explicitly choose the timezone.  
+Because timezones are Hard (for example, the client and server can be different), we allow you to explicitly choose the timezone.  
 
+You can choose to either:
 
-- sometimes when we do our job right it means you interact with octopus less
-- we have always had ability to schedule.. but not to recur
-- why?
-- implementation
-- when it will ship
+1. Promote the latest existing release, in which case you need to select the source environment you are promoting from and you can optionally restrict the release to be selected from a given channel.
+
+2. Create a new release each time, in which case you select the destination environment and the channel for the created release. 
+
+Option 1 makes sense in scenarios such as the described above, where you are promoting a release that has already been deployed to a previous environment in the lifecycle. 
+
+Option 2 is for when you wish to deploy to the first environment in your lifecycle, and you wish to scoop up the latest packages.
+
+## When
+
+Recurring deployments will ship in Octopus version 2018.3.0, which will be available in the first week of March. 
+
+Happy _recurring_ deployments!
