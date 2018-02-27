@@ -1,5 +1,5 @@
 ---
-title: "Recurring Deployments"
+title: "Recurring Scheduled Deployments"
 description: "We are introducing the ability to schedule recurring deployments."
 author: michael.richardson@octopus.com
 visibility: private
@@ -20,13 +20,13 @@ This was a hugely popular [UserVoice item](https://octopusdeploy.uservoice.com/f
 
 Imagine you have the canonical three environments: `Dev`, `Test`, and `Prod`.
 
-The development team have their continuous-integration pipeline configured so that everytime they push new commits, it builds and pushes the packages to Octopus where an automatic deployment is performed to the `Dev` environment.  This is the target both for the automated system tests and also an opportunity for the developers to perform any manual checks desired. 
+The development team have their continuous-integration pipeline configured so that everytime they push new commits, the build-server builds and pushes the packages to Octopus where an automatic deployment is performed to the `Dev` environment.  This is the target both for the automated system tests and also an opportunity for the developers to perform any manual checks desired. 
 
 The QA team want the latest version available each day, but they would also like it to be relatively stable, and not constantly shifting beneath them.  So they schedule a deployment which will run each night, and promote the latest release from `Dev` to the `Test` environment.  When the QA team arrives in the morning, they can check the release notes in Octopus, and see which new and shiny features those hard-working developers have delivered the previous day.  
 
 If the QA team is satisfied, they can manually trigger a promotion of the release from `Test` into `Prod`. 
 
-Or of course you may have a completely different use-case for this feature.   
+Or of course you may have a completely different use-case for this feature. We'd love to hear about it.  
 
 ## Voila! 
 
@@ -38,7 +38,6 @@ You can create the schedule in hopefully every way you could ever want to:
 - Days of the week
 - Days of the month
 - Cron expression 
-- Halley's Comet appearances (ahh, actually this one didn't make the final cut)
 
 The timezone is important, so we allow you to explicitly select it. For example, if you are in a timezone with daylight-savings time, then you probably want your 7am deployment to respect that.
 
