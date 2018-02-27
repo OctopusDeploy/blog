@@ -11,9 +11,12 @@ tags:
 Since forever (at least in internet-time), Octopus has had the ability to schedule deployments for a specific time in the future.   
 What was missing was the ability to schedule a deployment to _recur_ (this feature was known internally as _DTGAAA: Deployments That Go Again and Again_).  
 
-This was a hugely popular [UserVoice item](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments) at #4 on our list with 460+ votes. 
+This was a hugely popular [UserVoice item](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments) at #4 on our list with 460+ votes. And for good reason:  No one likes doing the same thing over and over.  This is why tools like Octopus exist! 
 
-## Why
+![Groundhog Day](groundhog-day.jpg)
+
+
+## Why?
 
 Imagine you have the canonical three environments: `Dev`, `Test`, and `Prod`.
 
@@ -27,7 +30,7 @@ Or of course you may have a completely different use-case for this feature.  Ple
 
 ## Voila! 
 
-![Configuring Recurring Deployment](recurring-nightly-deployment.png)
+![Configuring Recurring Deployment](recurring-nightly-deployment.png "width=500")
 
 You can create the schedule in hopefully every way you could ever want to: 
 
@@ -49,8 +52,8 @@ Option 1 makes sense in scenarios such as the described above, where you are pro
 
 Option 2 is for when you wish to deploy to the first environment in your lifecycle, and you wish to scoop up the latest packages.
 
-## When
+## When?
 
-Recurring deployments will ship in Octopus version 2018.3.0, which will be available in the first week of March. 
+Recurring deployments be available in Octopus version 2018.3.0, which will be released approximately the 6th of March. 
 
 Happy _recurring_ deployments!
