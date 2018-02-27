@@ -26,7 +26,7 @@ The QA team want the latest version available each day, but they would also like
 
 If the QA team is satisfied, they can manually trigger a promotion of the release from `Test` into `Prod`. 
 
-Or of course you may have a completely different use-case for this feature.  Please feel welcome to tell us in the comments, we'd love to hear about it. Bonus points for anyone who schedules a recurring deployment to production every Friday ;)
+Or of course you may have a completely different use-case for this feature.   
 
 ## Voila! 
 
@@ -51,6 +51,10 @@ You can choose to either:
 Option 1 makes sense in scenarios such as the described above, where you are promoting a release that has already been deployed to a previous environment in the lifecycle. 
 
 Option 2 is for when you wish to deploy to the first environment in your lifecycle, and you wish to scoop up the latest packages.
+
+Bonus Octopus points for anyone who configures the schedule below ;)
+
+![Friday Recurring Deployment](recurring-friday-deployment.png "width=500")
 
 ## When?
 
