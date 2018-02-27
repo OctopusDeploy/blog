@@ -1,17 +1,17 @@
 ---
 title: Security checkup for your Octopus
 description: Take a few minutes to give your Octopus a security health check. We've recently shipped Octopus Cloud alpha which means we took time to look at how to keep a healthy and secure Octopus. You can too!
-visibility: private
+visibility: public
 published: 2018-02-27
-metaImage: metaimage-freetrial.png
-bannerImage: blogimage-freetrial.png
+metaImage: metaimage-security.png
+bannerImage: blogimage-security.png
 tags:
  - Security
 ---
 
 Do you take care of your own Octopus? We do too! We still have our own Octopus Server, as a pet for deploying most of the things we build. Just like us, most of you probably have your own pet Octopus - but how safe and secure is your Octopus?
 
-We recently shipped [Octopus Cloud](https://octopus.com/cloud) alpha where we learned, and re-learned, a bunch of lessons about making Octopus safe and secure. In this post, I'll show you how to give your Octopus a security check-up.
+We recently shipped [Octopus Cloud](https://octopus.com/cloud) alpha where we learned, and re-learned, a bunch of lessons about making Octopus safe and secure.  In this post, I'll show you how to give your Octopus a security check-up.
 
 _Don't want to take care of your own Octopus anymore? Perhaps you should sign up for [Octopus Cloud](https://octopus.com/cloud) today?_
 
