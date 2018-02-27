@@ -10,13 +10,19 @@ tags:
  - New Releases
 ---
 
-Octopus 2018.3 brings a number of exciting new features including the [much requested feature to schedule recurring deployments](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments), 
+Octopus 2018.3 brings a number of exciting new features including the [much requested feature to schedule recurring deployments](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments),
 
 ## In this post
 
 !toc
 
 ## Release Tour
+
+## Terraform Support
+
+This release includes two new steps: Apply a Terraform template, and Destroy Terraform resources. These steps allow Terraform templates to be executed as part of an Octopus deployment project, with integrated support for variable substitution and output variable capturing. Refer to the [documentation](https://octopus.com/docs/deploying-applications/terraform-deployments) for more information on these new steps.
+
+![Terraform Steps](terraform-steps.png "width=500")
 
 ## Upgrading
 
