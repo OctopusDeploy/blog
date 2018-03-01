@@ -8,12 +8,14 @@ tags:
 ---
 
 ## Giving You GitHub
-Sometimes you just want to deploy your app, but it doesn't need a build step. It might be a repository where you just store your Cloud Formation templates, a bunch of scripts to run within Octopus or a simple app you’re running in an interpreted language like nodejs. The GitHub feed type provided in `2013.3.0` provides a new way for you to access resources for use during an Octopus deployment. *That right you heard correctly, we now support using GitHub as a feed source.*
+Sometimes you just want to deploy your app, but it doesn't need a build step. It might be a repository where you just store your Cloud Formation templates, a bunch of scripts to run within Octopus or a simple app you’re running in an interpreted language like nodejs. The GitHub feed type provided in `2013.3.0` provides a new way for you to access resources for use during an Octopus deployment. **That right you heard correctly, we now support using GitHub as a feed source.**
 
 ![Good News](good_news.jpg)
 > We now support using GitHub as a feed source.
 
-This new feed type allows Octopus to deploy files directly from GitHub without needing any additional intermediate build steps.
+This new feed type allows Octopus to deploy files directly from GitHub without needing any additional intermediate build steps. This means no more packaging your scripts just so that they can be used in Octopus and a better experience when storing parts of your deployment process in source control. **Tag, push, then deploy directly from Octopus**
+
+![NoBuild](nobuild.png)
 
 ### Ins and Outs
 From a deployment resource point of view, build artifacts from a package repository in many respects, look like completely different concepts to code sitting in source control. By looking at how we model the various parts of a NuGet package, we can however see some similarities in how the GitHub "package" package can be modeled to fit the Octopus ecosystem.
@@ -84,4 +86,3 @@ One of the other points mentioned above is the lack of hooks from GitHub to trig
 
 ## Git as a package feed
 We are excited about the opportunities this new feed type brings to Octopus users. Using GitHub as the source of some of your deployment dependencies will encourage simplifying your CI pipeline and allow better versioning without the superfluous effort and time required to packaging up resources that don't really need to be packaged. Let us know your thoughts about this new direction and how it might come in handy in your deployment processes.
-![NoBuild](nobuild.png)
