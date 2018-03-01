@@ -17,9 +17,6 @@ I love a good scenario, so without further adue, please meet Fictional Company 1
 
 Fictional Company 1 have decided that in Azure, every resource group must be tagged with an OwnerContact where the value is either a slack channel, or the handle of an individul person. They have also defined a second tag called NotifyCostLimit which, when this limit is hit, Octopus will send out slack notifications. If there is no NotifyCostLimit applied, the default value of $100 will be assumed. If there is no OwnerContact tag applied (a big taboo among staff), the notification is set to notify #general (@here is used to discourage people from leaving a blank OwnerContact tag).
 
-## Planning the new PowerShell Scripts
-A classic example of a "package" that doesn't need a build process is a script that you want to be able to version control outside of Octopus, but is run as part of a deployment. The following sections look at we might configure a deployment to execute a script from the `OctopusDeploy/AcmeScripts` GitHub repository.
-
 ### Objective 1: Get all cost items for all subscriptions in Azure.
 One key thing to note here is that the cmdlets used to retrieve the cost items can only get Resource Manager details, this means that we won't be seeing any Service Manager Resources here.
 
