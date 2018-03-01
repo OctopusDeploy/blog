@@ -18,7 +18,7 @@ From a deployment resource point of view, build artifacts from a package reposit
 | **NuGet**      | Any feed that supports the NuGet v2 or v3 api (e.g. https://api.nuget.org/v3/index.json) | The name of the package, typically defined in the `.nuspec` file. (e.g. `Octopus.Clients`) |A distinct instance of the package versioned through the `.nuspec` file with the [semver 2](https://semver.org/) version format.|
 | **GitHub**      | Any GitHub endpoint that supports the v3 api. This can be the standard public endpoint or private GitHub installations. (e.g. https://api.github.com)   | The full repository identity including the owner. (e.g. `OctopusDeploy/Calamari`) |A distinct tag that can be parsed as a [semver 2](https://semver.org/) version. If a release exists for that tag, then those release notes are shown in Octopus alongside that package in the release details.
 
-There are a few interesting things here to note. 
+There are a few interesting things here to note.
 
 First notice that we still ask for a uri. This is to allow for users who are using [GitHub Enterprise](https://github.com/pricing/business-enterprise) with their own custom hosted GitHub server. If you are unsure if this applies to you, then it's likely that you will be using the public GitHub endpoint at `https://api.github.com`, even if your repositories themselves are private.
 
@@ -26,10 +26,10 @@ What internally to Octopus we still call a packageId, to GitHub refers to a part
 
 And finally the last and possibly most controversial identifying piece; the version. This feed type was built to provide an easy way to treat GitHub resources as packages without the added complexity that comes with dealing with branches and commits. Since these concepts don't map very well to existing Octopus concepts, the decision was made to simply read and parse the tags on the repository and treat them as the version used by Octopus when identifying specific packages to deploy. Incidently since GitHub provides downloadable zip packages based on tags, this provided a simple mechanism to retrieve the files needed to then integrate into the existing Octopus deployment flow just as simple zip packages. Some further points are made at the end of this post outlining some future thoughts around _Git_ as a feed type. Its also worth pointing out that at the moment _only the source files_ are deployed by Octopus. Other binaries linked to the GitHub release are currently not included however this may change in the future.
 
-## What does it look like?
+## What Does it Look Like?
 A classic example of a "package" that doesn't need a build process is a script that you want to be able to version control outside of Octopus, but is run as part of a deployment. The following sections look at we might configure a deployment to execute a script from the `OctopusDeploy/AcmeScripts` GitHub repository.
 
-### Setting up the feed
+### Setting up the Feed
 To begin with let's look at creating a GitHub external feed in Octopus.
 
 ![GitHub Feed](feed.png)
@@ -38,7 +38,7 @@ As you can see we have provided the ability to set the [Personal Access Token](h
 
 It is important to provide one of the authenticated options for Octopus to use when accessing the GitHub endpoints since anonymous requests are [rate limited](https://developer.github.com/v3/#rate-limiting) by GitHub to a much lower value than authenticated requests.
 
-### Using the package
+### Using the Package
 Using a "package" from this feed is treated exactly the same as any other package. In this scenario we will select a script step and source our `RunMe.ps1` script from a package. The packageId is the full `Octopus/AcmeScripts` name which identifies our `AcmeScripts` repository.
 
 ![Script Step](script_step.png)
@@ -47,7 +47,7 @@ Note that when you search for the package if you omit the `/` character, it will
 
 ![Search](search.gif "width=500")
 
-### Adding the GitHub tag
+### Adding the GitHub Tag
 
 We now have Octopus configured and we just need to add the PowerShell script to our GitHub repository `OctopusDeploy/AcmeScripts` which will then execute during our project
 
@@ -64,7 +64,7 @@ Just for good measure we will also add some release notes to this tag through th
 
 ![GitHub Release](github_release.png)
 
-### Creating a release
+### Creating a Release
 Since we don't currently support Automatic Release Creation from external feeds (watch this space) Octopus doesn't know we just pushed this new tag until we create a new release (I'll cover using GitHub WebHooks + Azure Functions to trigger deployments in a future post).
 
 ![Octopus Release](octopus_release.png)
@@ -96,5 +96,5 @@ There are plans afoot to provide real Git-as-a-feed support where commits\branch
 
 One of the other points mentioned above is the lack of hooks from GitHub to trigger releases and deployments. Due to the nature of many of our customer's networks, calling in from the outside world is not always available. As a result we will be considering other mechanisms to support ARC from external feeds that are more practical.
 
-## Git as a package feed
+## Git as a Package Feed
 We are excited about the opportunities this new feed type brings to Octopus users. Using GitHub as the source of some of your deployment dependencies will encourage simplifying your CI pipeline and allow better versioning without the superfluous effort and time required in packaging up resources that don't really need to be packaged. Let us know your thoughts about this new direction and how it might come in handy in your deployment processes.
