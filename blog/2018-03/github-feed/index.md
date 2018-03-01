@@ -13,7 +13,7 @@ Sometimes you just want to deploy your app, but it doesn't need a build step. It
 ![Good News](good_news.jpg)
 > We now support using GitHub as a feed source.
 
-This new feed type allows Octopus to deploy files directly from GitHub without needing any additional intermediate build steps. This means no more packaging your scripts just so that they can be used in Octopus and a better experience when storing parts of your deployment process in source control. **Tag, push, then deploy directly from Octopus**
+This new feed type allows Octopus to deploy files directly from GitHub without needing any additional intermediate build steps. This means no more packaging your scripts just so that they can be used in Octopus and a better experience when storing parts of your deployment process in source control. **Tag, push, then deploy directly from Octopus, no build server necessary**
 
 ![NoBuild](nobuild.png)
 
