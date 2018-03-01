@@ -24,6 +24,10 @@ This release includes two new steps: Apply a Terraform template, and Destroy Ter
 
 ![Terraform Steps](terraform-steps.png "width=500")
 
+## GitHub Feed Types
+
+Adding GitHub as a feed type means that you can now deploy your external resources that dont require a dedicated pre-build step. Run scripts, templates or simple applications pulled directly from your source control by using tags to denote versions. Read more in our [Git Hub Feed documentation](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds) for more information on using this new feed type.
+
 ## Upgrading
 
 As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.3.0) for further information.
