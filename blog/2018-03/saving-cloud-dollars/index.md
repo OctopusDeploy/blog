@@ -8,31 +8,96 @@ tags:
 ---
 
 ## Summary
-Have you ever deployed an expensive Virtual Machine into Azure for a quick 10 minute test only to realise it's been running constantly for the last 2 months? This blog post shows how you can use Octopus to notify you via Slack if a resource has reached a spending limit which you can specify using Resource Group tags.
-
-Today, I'm going to show you how I like to use Octopus to save dollars in the cloud. Since Octopus has the ability to authenticate to and add resources to your cloud environments, it naturally has the ability to see everything. This makes Octopus a great place to run the scripts we need to report how much our resources are costing so that we can spot ones which are getting too expensive, too quickly.
+Have you ever deployed an expensive Virtual Machine into Azure for a quick 10 minute test only to come back 2 months later when you realise it's been running the whole time? This blog post shows how you can use Octopus to notify you via Slack if a resource has reached a spending limit - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing so that we can spot ones which are getting too expensive.
 
 ### Scenario
-I love a good scenario, so without further adue, please meet Fictional Company 1; A firm of highly skilled developers who need to run tests against resources in many different cloud platforms. They have chosen to use Octopus to run these reports because it allows them to apply a similar aproach to scripting a cost report, irrespective of which platform they are reporting against. Also, when developers at Fictional Company 1 want to recieve a notification, they prefer to see slack notifications over emails. So, let's get it done!
+I love a good  scenario, so without further adue, please meet OctoFX; A fictional firm of highly skilled developers who need to run tests against resources in many different cloud platforms. They have chosen to use Octopus to run these scripts because it allows them to follow a consistent approach irrespective of which cloud platform they're using. 
 
-Fictional Company 1 have decided that in Azure, every resource group must be tagged with an OwnerContact where the value is either a slack channel, or the handle of an individul person. They have also defined a second tag called NotifyCostLimit which, when this limit is hit, Octopus will send out slack notifications. If there is no NotifyCostLimit applied, the default value of $100 will be assumed. If there is no OwnerContact tag applied (a big taboo among staff), the notification is set to notify #general (@here is used to discourage people from leaving a blank OwnerContact tag).
+OctoFX has decided that in Azure, every resource group must be tagged with an OwnerContact where the value is either a slack channel name, or the handle of an individul person. They have also defined a second tag called NotifyCostLimit which, when this limit is hit, Octopus will send out slack notifications. If there is no NotifyCostLimit applied, the default value of $100 will be assumed. If there is no OwnerContact tag applied (a big taboo among staff), the notification is set to notify #general (and @here is used to discourage people from leaving a blank OwnerContact tag).
 
-### Objective 1: Get all cost items for all subscriptions in Azure.
-One key thing to note here is that the cmdlets used to retrieve the cost items can only get Resource Manager details, this means that we won't be seeing any Service Manager Resources here.
+This blog entry only covers the steps taken to query Microsoft Azure, but you can apply a similar approach with AWS as well. So, let's get it done! If you would like to see the process that the script takes, you can follow along with each of the following objectives, alternatively you can skip through to the next section to see the completed script.  
+
+### Limitations
+A few key thing to note here is that:
+- the cmdlet ([Get-AzureRmConsumptionUsageDetail](https://docs.microsoft.com/en-us/powershell/module/azurerm.consumption/get-azurermconsumptionusagedetail?view=azurermps-5.4.0)) used to retrieve the cost items can only get Resource Manager details, this means that we won't be seeing any Service Manager Resources costs at all.
+- It might take up to 2 weeks for the consumption details to be available and we should consider that the earliest data entry we see might be from two weeks ago, 
+- Cost figures do not include tax.
+
+### Objective 1: Get the consumption usage details for all subscriptions our Octopus account has Access to.
+The main focus of the script segment below is to retrieve consumption usage details. This can be acomplished by using the [Get-AzureRmConsumptionUsageDetail](https://docs.microsoft.com/en-us/powershell/module/azurerm.consumption/get-azurermconsumptionusagedetail?view=azurermps-5.4.0) cmdlet from Azure Powershell. and providing two dates, StartDate (Today minus 30 days) and the EndDate (Today)
 
 ```PowerShell
+#These will be Octopus Variables in the completed script:
+$SubscriptionId = "00000000-0000-0000-0000-000000000000"
+$DateRangeInDays = 30
+$DefaultNotifyCostLimit = 100
 
+$now = get-Date
+$SubConsumptionUsage = Get-AzureRmConsumptionUsageDetail -StartDate $($now.Date.AddDays(-$DateRangeInDays)) -EndDate $($now.Date)
 ```
 
 ### Objective 2: Find all of the resource group names which existed during this billing period.
+Now, we take each line from the consumption usage details to trim off the beginning part of each Instance ID. Then, we strip out everything after the resource group name. In the end, we are finished with an object of resource group names. Since resource groups are case insensitive, I have made each resource group name lower-case.
 
 ```PowerShell
+$SubIdPrefix = "/subscriptions/" + $SubscriptionId 
+$RgIdPrefix = $SubIdPrefix + "/resourceGroups/"
 
+$resourceGroupName = @()
+$resourceGroups = @()
+
+foreach ($line in $SubConsumptionUsage) {
+    if ($line.InstanceId -ne $null ) {
+        $thisRgName = $($line.InstanceId.ToLower()).Replace($RgIdPrefix.ToLower(),"")
+        $toAdd = $thisRgName.Split("/")[0]
+        $toAdd = $toAdd.ToString()
+        $toAdd = $toAdd.ToLower()
+        $toAdd = $toAdd.Trim()
+
+        if ($resourceGroups.Name -notcontains $toAdd) {
+            $resourceGroupName = [PSCustomObject]@{
+            Name = $toAdd
+            }
+            $resourceGroups += $resourceGroupName
+        }
+    }
+}
 ```
 
 ### Objective 3: Calculate the cost of each Resource Group, then flag if there is a problem.
+We only care about the current resource groups now, because we aren't going to perform any actions against an already deleted resource group. Then, for each resource group name we filter the details by resource group and add all the costs. We will repeat that for each resource which exists now.
 
 ```PowerShell
+$x = 0
+
+$currentResourceGroups = Get-AzureRmResourceGroup
+
+foreach ($rg in $RgTotal) {
+    
+    $thisRg = $null
+
+    $RgIdPrefix = $SubIdPrefix + "/resourceGroups/" + $rg.Name
+    $ThisRgCost = $null
+    $playgroundItem | ? { if ( $_.InstanceId -ne $null) { $($_.InstanceId.ToLower()).StartsWith($RgIdPrefix.ToLower()) } } |  ForEach-Object { $ThisRgCost += $_.PretaxCost   }
+
+    $toaddCost = [math]::Round($ThisRgCost,2)
+
+    $RgTotal[$x] | Add-Member -MemberType NoteProperty -Name "Cost" -Value $toaddCost
+
+    
+    
+    if ($currentResourceGroups.ResourceGroupName -contains $rg.Name) {
+        
+        $thisMyRgNameStuff = Get-AzureRmResourceGroup -Name $($rg.Name)
+
+        $RgTotal[$x] | Add-Member -MemberType NoteProperty -Name "OwnerContact" -Value $($thisMyRgNameStuff.tags.OwnerContact)
+        
+
+    }
+
+    $x ++
+
+}
 
 ```
 
@@ -45,8 +110,9 @@ Finally, we will be reminding people that they still have a test resource which 
 
 ## Configure it in Octopus
 Create your new Project in Octopus, mine is called `Cloud Cost` then, define these 2 project variables:
-- SubscriptionId (The Subscription Id which can be retrieved from Azure PowerShell by running `Get-AzureRmSubscription`)
-- DateRangeInDays (The script takes the current day and counts backwards by this many days to form a range to check usage cost)
+- SubscriptionId (Type: String) The Subscription Id which can be retrieved from Azure PowerShell by running `Get-AzureRmSubscription`
+- DateRangeInDays (Type: Integer) The script takes the current day and counts backwards by this many days to form a range to check usage cost
+- DefaultNotifyCostLimit (Type: Integer) If a resource group isn't tagged with a `NotifyCostLimit` Octopus will default to this value (Put an int here
 
 ### Create your first Step (Azure PowerShell Script)
 Below is the full script you will need to paste (WIP):
@@ -123,6 +189,9 @@ foreach ($rgl in $RgTotal) {
 
 $RgTotal
 ```
+
+### Setting up the Octopus Service Principal Account
+We first need to ensure that Octopus has a Service Principal Account configured to be able to see into your Azure Subscription. Please feel free to check out our documentation on [creating an Azure service principal account](https://g.octopushq.com/AzureServicePrincipalAccount) for more information on how to perform that task. For the purposes of this account you need to ensure that it has at least `Reader` access to the subscription.
 
 
 ### Create your second Step (Azure PowerShell Script)
