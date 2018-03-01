@@ -8,7 +8,7 @@ tags:
 ---
 
 ## Summary
-Sometimes you just want to deploy your app but it doesn't need a build step. It might be a repository where you just store your Cloud Formation templates, a bunch of scripts to run within Octopus or are running a simple app in an interpreted language like nodejs. The GitHub feed type provided in `2013.4.0` provides a new way for you to access resources for use during an Octopus deployment.
+Sometimes you just want to deploy your app but it doesn't need a build step. It might be a repository where you just store your Cloud Formation templates, a bunch of scripts to run within Octopus or are running a simple app in an interpreted language like nodejs. The GitHub feed type provided in `2013.3.0` provides a new way for you to access resources for use during an Octopus deployment.
 
 ### Ins and Outs
 From a deployment resource point of view, build artifacts from a package repository in many respects look like completely different concepts to code sitting in source control. By looking at how we model the various parts of a NuGet package, we can however see some similarities in how the GitHub "package" package can be modelled to fit the Octopus ecosystem.
@@ -16,7 +16,7 @@ From a deployment resource point of view, build artifacts from a package reposit
 | Feed Type        | Feed Uri           | Package  | Version |
 |:-------------:|:-------------| -----|---|
 | **NuGet**      | Any feed that supports the NuGet v2 or v3 api (e.g. https://api.nuget.org/v3/index.json) | The name of the package, typically defined in the `.nuspec` file. (e.g. `Octopus.Clients`) |A distinct instance of the package versioned through the `.nuspec` file with the [semver 2](https://semver.org/) version format.|
-| **GitHub**      | Any GitHub endpoint that supports the v3 api. This can be the standard public endpoint or private GitHub installations. (e.g. https://api.github.com)   | The full repository identity including the owner. (e.g. `OctopusDeploy/Calamari`) |A distinct tag that can be parsed as a [semver 2](https://semver.org/) version. If a release exists for that tag, then those release notes are included as Octopus Release notes|
+| **GitHub**      | Any GitHub endpoint that supports the v3 api. This can be the standard public endpoint or private GitHub installations. (e.g. https://api.github.com)   | The full repository identity including the owner. (e.g. `OctopusDeploy/Calamari`) |A distinct tag that can be parsed as a [semver 2](https://semver.org/) version. If a release exists for that tag, then those release notes are shown in Octopus alongside that package in the release details.
 
 There are a few interesting things here to note. 
 
