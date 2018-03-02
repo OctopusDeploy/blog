@@ -15,9 +15,9 @@ I love a good scenario, so without further adue, please meet OctoFX; A fictional
 This blog entry only covers the steps taken to query Microsoft Azure, but you can apply a similar approach with AWS as well. So, let's get it done! If you would like to see the process that the script takes, you can follow along with each of the following objectives, alternatively you can skip through to the `Configure it in Octopus` section of this blog to see the completed script.  
 
 ### Limitations
-A few key thing to note here:
+A few key things to note here:
 - The cmdlet ([Get-AzureRmConsumptionUsageDetail](https://docs.microsoft.com/en-us/powershell/module/azurerm.consumption/get-azurermconsumptionusagedetail?view=azurermps-5.4.0)) used to retrieve the cost items can only get Resource Manager details, this means that we won't be seeing any Service Manager Resources costs at all.
-- It might take up to two weeks for the consumption details to be available and we should consider that the earliest data entry we see might be from two weeks ago, 
+- It might take up to two weeks for the consumption details to be available and we should consider that the earliest data entry we see might be from two weeks ago. 
 - Cost figures do not include tax.
 
 ### Objective 1: Get all cost items for all subscriptions in Azure
@@ -87,13 +87,11 @@ foreach ($rg in $resourceGroups) {
     $SubConsumptionUsage | ? { if ( $_.InstanceId -ne $null) { $($_.InstanceId.ToLower()).StartsWith($RgIdPrefix.ToLower()) } } |  ForEach-Object { $ThisRgCost += $_.PretaxCost   }
     $toaddCost = [math]::Round($ThisRgCost,2)
     $resourceGroups[$rgIndexId] | Add-Member -MemberType NoteProperty -Name "Cost" -Value $toaddCost
-
-    
-    
+	   
     if ($currentResourceGroups.ResourceGroupName -contains $rg.Name) {
         
-        $thisMyRgNameStuff = Get-AzureRmResourceGroup -Name $($rg.Name)
-        $resourceGroups[$rgIndexId] | Add-Member -MemberType NoteProperty -Name "NotifyCostLimit" -Value $($thisMyRgNameStuff.tags.NotifyCostLimit)
+        $addingResourceGroup = Get-AzureRmResourceGroup -Name $($rg.Name)
+        $resourceGroups[$rgIndexId] | Add-Member -MemberType NoteProperty -Name "NotifyCostLimit" -Value $($addingResourceGroup.tags.NotifyCostLimit)
 
     }
 
@@ -227,6 +225,8 @@ Save the first step.
 ![New Step](saving-cloud-dollars_Process1.png)
 
 ```PowerShell
+
+
 write-output "Getting all cost items for this subscription in Azure"
 write-output "Subscription ID: $SubscriptionId "
 
@@ -269,6 +269,10 @@ foreach ($line in $SubConsumptionUsage) {
 write-output "Found these Resource groups: "
 $resourceGroups
 
+
+
+
+
 Write-Output "Calculating the cost of each Resource Group, then flag ones that exceed NotifyCostLimit."
 $currentResourceGroups = Get-AzureRmResourceGroup
 $rgIndexId = 0
@@ -286,14 +290,19 @@ foreach ($rg in $resourceGroups) {
     
     if ($currentResourceGroups.ResourceGroupName -contains $rg.Name) {
         
-        $thisMyRgNameStuff = Get-AzureRmResourceGroup -Name $($rg.Name)
-        $resourceGroups[$rgIndexId] | Add-Member -MemberType NoteProperty -Name "NotifyCostLimit" -Value $($thisMyRgNameStuff.tags.NotifyCostLimit)
+        $addingResourceGroup = Get-AzureRmResourceGroup -Name $($rg.Name)
+        $resourceGroups[$rgIndexId] | Add-Member -MemberType NoteProperty -Name "NotifyCostLimit" -Value $($addingResourceGroup.tags.NotifyCostLimit)
 
     }
 
     $rgIndexId ++
 
 }
+
+
+
+
+
 
 Write-Output "Filtering the items whose cost is higher than the allowed limit."
 $reminderGroups = $resourceGroups | ? {
@@ -327,7 +336,6 @@ function new-SlackMessage ( $resourceGroup ) {
 
     $state = "Current cost: $($resourceGroup.Cost)"
     $description = "ResourceGroup Name: $($resourceGroup.Name)"
-    $ownerContact = "OwnerContact: $($resourceGroup.OwnerContact)"
     $colour = $orange
 
     if ($fieldNumber -eq 0){
