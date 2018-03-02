@@ -10,9 +10,9 @@ tags:
  - Will it Deploy
 ---
 
-Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this episode, we're trying to deploy a Microsoft SQL Server database using a Data-tier Application Package (DACPAC) to an Amazon Web Services (AWS) virtual machine (VM).
+Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy a Microsoft SQL Server database using a Data-tier Application Package (DACPAC) to an Amazon Web Services (AWS) virtual machine (VM).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ya0O6Nod594" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Problem
 
