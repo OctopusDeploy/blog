@@ -7,10 +7,10 @@ tags:
  - Get-AzureRmConsumptionUsageDetail
 ---
 
-Have you ever deployed a Virtual Machine into Azure for a quick 10 minute test only to come back 2 months later when you realise it's been running the whole time? This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing .
+Have you ever deployed a Virtual Machine into Azure for a quick 10-minute test only to come back 2 months later when you realise it's been running the whole time? This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing.
 
 ### Scenario
-I love a good scenario, so without further adue, please meet OctoFX; A fictional firm of highly skilled developers who deploy resources into the cloud and run tests against them. Lately they're noticing that it's hard to remember to delete certain resources when the testing is complet and would like to be notified when a resource's cost exceeds a cost limit. While each cloud platform have their own way of notifying you of cost, OctoFX have chosen to use Octopus to run these scripts because it allows them to follow a consistent approach irrespective of which cloud platform they're using. In this scenario, we will be defining a tag called NotifyCostLimit which, when this limit is hit, Octopus will send out slack notifications. If there is no NotifyCostLimit applied, the default value of $100 will be assumed
+I love a good scenario, so without further ado, please meet OctoFX; A fictional firm of highly skilled developers who deploy resources into the cloud and run tests against them. Lately they're noticing that it's hard to remember to delete certain resources when the testing is complete and would like to be notified when a resource's cost exceeds a cost limit. While each cloud platform has their own way of notifying you of cost, OctoFX have chosen to use Octopus to run these scripts because it allows them to follow a consistent approach irrespective of which cloud platform they're using. In this scenario, we will be defining a tag called NotifyCostLimit which, when this limit is hit, Octopus will send out slack notifications. If there is no NotifyCostLimit applied, the default value of $100 will be assumed
 
 This blog entry only covers the steps taken to query Microsoft Azure, but you can apply a similar approach with AWS as well. So, let's get it done! If you would like to see the process that the script takes, you can follow along with each of the following objectives, alternatively you can skip through to the `Configure it in Octopus` section of this blog to see the completed script.  
 
@@ -21,7 +21,7 @@ A few key things to note here:
 - Cost figures do not include tax.
 
 ### Objective 1: Get all cost items for all subscriptions in Azure
-The main focus of the script segment below is to retrieve consumption usage details. This can be acomplished by using the [Get-AzureRmConsumptionUsageDetail](https://docs.microsoft.com/en-us/powershell/module/azurerm.consumption/get-azurermconsumptionusagedetail?view=azurermps-5.4.0) cmdlet from Azure Powershell. Here we provide two dates, StartDate (today minus 30 days) and the EndDate (today)
+The main focus of the script segment below is to retrieve consumption usage details. This can be accomplished by using the [Get-AzureRmConsumptionUsageDetail](https://docs.microsoft.com/en-us/powershell/module/azurerm.consumption/get-azurermconsumptionusagedetail?view=azurermps-5.4.0) cmdlet from Azure PowerShell. Here we provide two dates, StartDate (today minus 30 days) and the EndDate (today)
 
 ```PowerShell
 write-output "Getting all cost items for this subscription in Azure"
@@ -72,7 +72,7 @@ $resourceGroups
 ```
 
 ### Objective 3: Calculate the cost of each Resource Group, then flag ones that exceed NotifyCostLimit.
-We only care about the current resource groups now, because we aren't going to perform any actions against an already deleted resource group. For each resource group name encoutered we filter the details by resource group and add all the costs together. This becomes the total cost of each resource group. 
+We only care about the current resource groups now, because we aren't going to perform any actions against an already deleted resource group. For each resource group name encountered we filter the details by resource group and add all the costs together. This becomes the total cost of each resource group. 
 
 ```PowerShell
 Write-Output "Calculating the cost of each Resource Group, then flag ones that exceed NotifyCostLimit."
@@ -101,7 +101,7 @@ foreach ($rg in $resourceGroups) {
 ```
 
 ### Objective 4: Filter the items whose cost is higher than expected
-To acomplish this next part, we will pipe our resource groups to the `where-object` (which is shortened to a `?` to filter each item which is greater-than or equal to the cost notification tag `NotifyCostLimit`
+To accomplish this next part, we will pipe our resource groups to the `where-object` (which is shortened to a `?` to filter each item which is greater-than or equal to the cost notification tag `NotifyCostLimit`
 ```PowerShell
 Write-Output "Filtering the items whose cost is higher than the allowed limit."
 $reminderGroups = $resourceGroups | ? {
@@ -209,10 +209,10 @@ Please check out the [slack documentation](https://api.slack.com/) on how to cre
 
 ### Create your new Project
 Create your new Project in Octopus, mine is called `Cloud Cost` then, define these 4 project variables:
-- SubscriptionId (Type: String) The Subscription Id which can be retrieved from Azure PowerShell by running `Get-AzureRmSubscription`
-- DateRangeInDays (Type: Integer) The script takes the current day and counts backwards by this many days to form a range to check usage cost
-- DefaultNotifyCostLimit (Type: Integer) If a resource group isn't tagged with a `NotifyCostLimit` Octopus will default to this value (Put an int here
-- SlackHook (Type: String) the full URL of your slack hook, eg: (https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXX)
+- SubscriptionId (Type: String) The Subscription Id which can be retrieved from Azure PowerShell by running `Get-AzureRmSubscription`.
+- DateRangeInDays (Type: Integer) The script takes the current day and counts backwards by this many days to form a range to check usage cost.
+- DefaultNotifyCostLimit (Type: Integer) If a resource group isn't tagged with a `NotifyCostLimit` Octopus will default to this value.
+- SlackHook (Type: String) the full URL of your slack hook, eg: (https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXX).
 
 ![New Project Variables](saving-cloud-dollars_Variables.png)
 
