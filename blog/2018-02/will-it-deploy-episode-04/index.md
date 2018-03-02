@@ -2,7 +2,7 @@
 title: Deploying to SQL Server with a DACPAC - Will it Deploy? Episode 4
 description: We try to automate the deployment of a SQL Server Database using a Data-tier Application Package (DACPAC) to manage our database structure and data.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 published: 2018-02-27
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
@@ -10,7 +10,7 @@ tags:
  - Will it Deploy
 ---
 
-Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this episode, we're trying to deploy a Microsoft SQL Server database using a Data-tier Application Package (DACPAC) to an Amazon Web Services (AWS) virtual machine (VM).
+Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy a Microsoft SQL Server database using a Data-tier Application Package (DACPAC) to an Amazon Web Services (AWS) virtual machine (VM).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
