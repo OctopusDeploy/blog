@@ -225,8 +225,6 @@ Save the first step.
 ![New Step](saving-cloud-dollars_Process1.png)
 
 ```PowerShell
-
-
 write-output "Getting all cost items for this subscription in Azure"
 write-output "Subscription ID: $SubscriptionId "
 
@@ -238,9 +236,7 @@ $endDate = $($now.Date)
 write-output "Start Date:  $startDate  "
 write-output "end Date:  $endDate "
 
-
 $SubConsumptionUsage = Get-AzureRmConsumptionUsageDetail -StartDate $startDate  -EndDate $endDate
-
 
 write-output "Finding all of the resource group names which existed during this billing period."
 $SubIdPrefix = "/subscriptions/" + $SubscriptionId 
@@ -269,10 +265,6 @@ foreach ($line in $SubConsumptionUsage) {
 write-output "Found these Resource groups: "
 $resourceGroups
 
-
-
-
-
 Write-Output "Calculating the cost of each Resource Group, then flag ones that exceed NotifyCostLimit."
 $currentResourceGroups = Get-AzureRmResourceGroup
 $rgIndexId = 0
@@ -285,9 +277,7 @@ foreach ($rg in $resourceGroups) {
     $SubConsumptionUsage | ? { if ( $_.InstanceId -ne $null) { $($_.InstanceId.ToLower()).StartsWith($RgIdPrefix.ToLower()) } } |  ForEach-Object { $ThisRgCost += $_.PretaxCost   }
     $toaddCost = [math]::Round($ThisRgCost,2)
     $resourceGroups[$rgIndexId] | Add-Member -MemberType NoteProperty -Name "Cost" -Value $toaddCost
-
-    
-    
+	
     if ($currentResourceGroups.ResourceGroupName -contains $rg.Name) {
         
         $addingResourceGroup = Get-AzureRmResourceGroup -Name $($rg.Name)
@@ -298,11 +288,6 @@ foreach ($rg in $resourceGroups) {
     $rgIndexId ++
 
 }
-
-
-
-
-
 
 Write-Output "Filtering the items whose cost is higher than the allowed limit."
 $reminderGroups = $resourceGroups | ? {
@@ -326,14 +311,13 @@ function new-SlackMessage ( $resourceGroup ) {
     $username = "Octopus Cost Reminder"
     $IconUrl = "https://octopus.com/images/company/Logo-Blue_140px_rgb.png"
     $payload = @{
-    #channel = "General";
-    username = $username;
-    icon_url = $IconUrl;
-    attachments = @(
-    );
+        #channel = "General";
+        username = $username;
+        icon_url = $IconUrl;
+        attachments = @(
+        );
     }
-
-
+	
     $state = "Current cost: $($resourceGroup.Cost)"
     $description = "ResourceGroup Name: $($resourceGroup.Name)"
     $colour = $orange
@@ -347,14 +331,12 @@ function new-SlackMessage ( $resourceGroup ) {
 
     $thisFallbackMessage = "$description has spiked above expected cost (Current Cost: $state)"
 
-    #Some results can have multiple fields:
     $fields = @(
         @{
         title = $description;
         value = $state;
         });
     
-
     $thisAttachment = @{
         fallback = $thisFallbackMessage;
         color = $colour;
@@ -383,7 +365,6 @@ if ($reminderGroups -ne $null) {
 
         New-SlackNotification -hook $slackHook -group $group
 
-
     }
 }
 else {
@@ -393,9 +374,11 @@ else {
 
 ### Creating and deploying the new release
 Save your new step and Create a new Release!
+
 ![New Release](saving-cloud-dollars_CreateRelease.png)
 
 Now Lets's Deploy!
+
 ![New Release](saving-cloud-dollars_Deploy.png)
 
 ## Troubleshooting
@@ -404,7 +387,9 @@ If your script fails to run because it can't find `Get-AzureRmConsumptionUsageDe
 
 ## Finishing up
 Congratulations! You  have successfully deployed your project to check Costs in Azure!
+
 ![Now Deploy](saving-cloud-dollars_Deploy.png)
 
 Let's check out the Slack Notification!
+
 ![Now Deploy](saving-cloud-dollars_Notification.png)
