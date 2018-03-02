@@ -3,8 +3,11 @@ title: "Saving Cloud Dollars: Consumption usage details in Azure"
 description: "Using Octopus to notify if an Azure Resource group exceeds cost limits"
 author: lawrence.wilson@octopus.com
 visibility: private
+published: 2018-03-02
+metaImage: metaimage-cloudsaving.png
+bannerImage: blogimage-cloudsaving.png
 tags:
- - Get-AzureRmConsumptionUsageDetail
+ - PowerShell
 ---
 
 Have you ever deployed a Virtual Machine into Azure for a quick 10 minute test only to come back 2 months later when you realise it's been running the whole time? This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing .
