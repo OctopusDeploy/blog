@@ -10,7 +10,7 @@ tags:
  - Will it Deploy
 ---
 
-Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy a Microsoft SQL Server database using a Data-tier Application Package (DACPAC) to an Amazon Web Services (AWS) virtual machine (VM).
+Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.   In this episode, we're trying to deploy a Microsoft SQL Server database using a Data-tier Application Package (DACPAC) to an Amazon Web Services (AWS) virtual machine (VM).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ya0O6Nod594" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -44,7 +44,7 @@ So will it deploy? **Yes it will!** Our deployment process looks like the follow
 Then we add the following steps to successfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
 
 - Octopus **Deploy a Package** step to copy our database scripts to our database deployment target
-- Octopus Community Contributed step template -  **[SQL - Deploy DACPAC]https://library.octopusdeploy.com/step-templates/58399364-4367-41d5-ad35-c2c6a8258536/actiontemplate-sql-deploy-dacpac)** to execute our Entity Framework Core migration script agaist our SQL Server database. 
+- Octopus Community Contributed step template -  **[SQL - Deploy DACPAC](https://library.octopusdeploy.com/step-templates/58399364-4367-41d5-ad35-c2c6a8258536/actiontemplate-sql-deploy-dacpac)** to execute our Entity Framework Core migration script agaist our SQL Server database. 
 - Octopus **Deploy to IIS** step to deploy our ASP.NET Core web application
 
 This project uses the following variables to store our app settings, database connection details and web app configuration.
