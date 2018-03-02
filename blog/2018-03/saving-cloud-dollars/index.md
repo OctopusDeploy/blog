@@ -217,7 +217,7 @@ Create your new Project in Octopus, mine is called `Cloud Cost` then, define the
 - DefaultNotifyCostLimit (Type: Integer) If a resource group isn't tagged with a `NotifyCostLimit` Octopus will default to this value.
 - SlackHook (Type: String) the full URL of your slack hook, eg: (https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXX).
 
-![New Project Variables](saving-cloud-dollars_Variables.png)
+![New Project Variables](saving-cloud-dollars_variables.png)
 
 ### Create a new Step (Azure PowerShell Script)
 Create a new step named `Get Azure subscription cost` using `Run an Azure PowerShell Script` step template
@@ -225,7 +225,7 @@ Specify the account as your Service Principal Account which has access to the su
 Paste the full script below into your Script Content section.
 Save the first step.
 
-![New Step](saving-cloud-dollars_Process1.png)
+![New Step](saving-cloud-dollars_process1.png)
 
 ```PowerShell
 write-output "Getting all cost items for this subscription in Azure"
@@ -378,11 +378,11 @@ else {
 ### Creating and deploying the new release
 Save your new step and Create a new Release!
 
-![New Release](saving-cloud-dollars_CreateRelease.png)
+![New Release](saving-cloud-dollars_createrelease.png)
 
 Now Lets's Deploy!
 
-![New Release](saving-cloud-dollars_Deploy.png)
+![New Release](saving-cloud-dollars_deploy.png)
 
 ## Troubleshooting
 If your script fails to run because it can't find `Get-AzureRmConsumptionUsageDetails` please ensure that the latest AzureRM module is installed on your Octopus Server and create another Octopus Variable called `Octopus.Action.Azure.UseBundledAzurePowerShellModules` with a value of `False`. For more information on why you could be receiving this error, please check out or documentation on [Configuring the Version of the Azure PowerShell Modules](https://g.octopushq.com/PowerShellModulesVersion)
@@ -391,8 +391,8 @@ If your script fails to run because it can't find `Get-AzureRmConsumptionUsageDe
 ## Finishing up
 Congratulations! You  have successfully deployed your project to check Costs in Azure!
 
-![Now Deploy](saving-cloud-dollars_Deploy.png)
+![Now Deploy](saving-cloud-dollars_deploy.png)
 
 Let's check out the Slack Notification!
 
-![Now Deploy](saving-cloud-dollars_Notification.png)
+![Now Deploy](saving-cloud-dollars_notification.png)
