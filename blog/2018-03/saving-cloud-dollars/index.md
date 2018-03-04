@@ -2,15 +2,15 @@
 title: "Saving Cloud Dollars: Consumption usage details in Azure"
 description: "Using Octopus to notify if an Azure Resource group exceeds cost limits"
 author: lawrence.wilson@octopus.com
-visibility: private
-published: 2018-03-02
+visibility: public
+published: 2018-03-05
 metaImage: metaimage-cloudsaving.png
 bannerImage: blogimage-cloudsaving.png
 tags:
  - PowerShell
 ---
 
-Have you ever deployed a Virtual Machine into Azure for a quick 10-minute test only to come back 2 months later and realize it's been running the whole time?  This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing.
+Have you ever deployed a Virtual Machine into Azure for a quick 10-minute test only to come back 2 months later and realize it's been running the whole time? This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing.
 
 ## Scenario
 I love a good scenario, so without further ado, please meet OctoFX; A fictional firm of highly skilled developers who deploy resources into the cloud and run tests against them. Lately, they're noticing it's hard to remember to delete certain resources when the testing is complete and would like to be notified when a resource's cost exceeds a cost limit. While each cloud platform has their own way of notifying you of cost, OctoFX have chosen to use Octopus to run these scripts because it allows them to follow a consistent approach irrespective of which cloud platform they're using. In this scenario, we will be defining a tag called NotifyCostLimit which, when this limit is hit, Octopus will send out slack notifications. If there is no NotifyCostLimit applied, the default value of $100 will be assumed.
@@ -26,7 +26,7 @@ A few key things to note here:
 ## Objective 1: Get all cost items for all subscriptions in Azure.
 The main focus of the script segment below is to retrieve consumption usage details. This can be accomplished by using the [Get-AzureRmConsumptionUsageDetail](https://docs.microsoft.com/en-us/powershell/module/azurerm.consumption/get-azurermconsumptionusagedetail?view=azurermps-5.4.0) cmdlet from Azure PowerShell. Here we provide two dates, StartDate (today minus 30 days) and the EndDate (today)
 
-```PowerShell
+```powershell
 write-output "Getting all cost items for this subscription in Azure"
 write-output "Subscription ID: $SubscriptionId "
 
@@ -45,7 +45,7 @@ $SubConsumptionUsage = Get-AzureRmConsumptionUsageDetail -StartDate $startDate  
 ## Objective 2: Find all of the resource group names which existed during this billing period.
 Now, we take each line from the consumption usage details to trim off the beginning part of each Instance ID. Then, we strip out everything after the resource group name. In the end, we are finished with resource group names. Since resource groups are case insensitive, I have made each resource group name lower-case.
 
-```PowerShell
+```powershell
 write-output "Finding all of the resource group names which existed during this billing period."
 $SubIdPrefix = "/subscriptions/" + $SubscriptionId
 $RgIdPrefix = $SubIdPrefix + "/resourceGroups/"
@@ -77,7 +77,7 @@ $resourceGroups
 ## Objective 3: Calculate the cost of each Resource Group, then flag ones that exceed NotifyCostLimit.
 We only care about the current resource groups now, because we aren't going to perform any actions against an already deleted resource group. For each resource group name encountered we filter the details by resource group and add all the costs together. This becomes the total cost of each resource group.
 
-```PowerShell
+```powershell
 Write-Output "Calculating the cost of each Resource Group, then flag ones that exceed NotifyCostLimit."
 $currentResourceGroups = Get-AzureRmResourceGroup
 $rgIndexId = 0
@@ -105,7 +105,7 @@ foreach ($rg in $resourceGroups) {
 
 ## Objective 4: Filter the items whose cost is higher than expected.
 To accomplish this next part, we will pipe our resource groups to the `where-object` (which is shortened to a `?` to filter each item which is greater-than or equal to the cost notification tag `NotifyCostLimit`.
-```PowerShell
+```powershell
 Write-Output "Filtering the items whose cost is higher than the allowed limit."
 $reminderGroups = $resourceGroups | ? {
     if ($_.NotifyCostLimit -ne $Null) {
@@ -122,7 +122,7 @@ $reminderGroups = $resourceGroups | ? {
 ```
 ## Objective 5: Notify the correct people using a Slack notification.
 Finally, we will be reminding people that they might have a test resource which has reached the cost limit for that resource.
-```PowerShell
+```powershell
 function new-SlackMessage ( $resourceGroup ) {
 
     $orange = "#F9812A"
@@ -227,7 +227,7 @@ Save the first step.
 
 ![New Step](saving-cloud-dollars_process1.png "width=500")
 
-```PowerShell
+```powershell
 write-output "Getting all cost items for this subscription in Azure"
 write-output "Subscription ID: $SubscriptionId "
 
