@@ -10,7 +10,7 @@ tags:
  - PowerShell
 ---
 
-Have you ever deployed a Virtual Machine into Azure for a quick 10-minute test only to come back 2 months later and realize it's been running the whole time? This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing.
+Have you ever deployed a Virtual Machine into Azure for a quick 10-minute test only to come back 2 months later and realize it's been running the whole time?  This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing.
 
 ## Scenario
 I love a good scenario, so without further ado, please meet OctoFX; A fictional firm of highly skilled developers who deploy resources into the cloud and run tests against them. Lately, they're noticing it's hard to remember to delete certain resources when the testing is complete and would like to be notified when a resource's cost exceeds a cost limit. While each cloud platform has their own way of notifying you of cost, OctoFX have chosen to use Octopus to run these scripts because it allows them to follow a consistent approach irrespective of which cloud platform they're using. In this scenario, we will be defining a tag called NotifyCostLimit which, when this limit is hit, Octopus will send out slack notifications. If there is no NotifyCostLimit applied, the default value of $100 will be assumed.
@@ -217,7 +217,7 @@ Create your new Project in Octopus, mine is called `Cloud Cost`, then define the
 - DefaultNotifyCostLimit (Type: Integer). If a resource group isn't tagged with a `NotifyCostLimit`, Octopus will default to this value.
 - SlackHook (Type: String). The full URL of your slack hook, eg: (https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXX).
 
-![New Project Variables](saving-cloud-dollars_variables.png)
+![New Project Variables](saving-cloud-dollars_variables.png "width=500")
 
 ## Create a new Step (Azure PowerShell Script)
 Create a new step named `Get Azure subscription cost` using `Run an Azure PowerShell Script` step template.
@@ -225,7 +225,7 @@ Specify the account as your Service Principal Account which has access to the su
 Paste the full script below into your Script Content section.
 Save the first step.
 
-![New Step](saving-cloud-dollars_process1.png)
+![New Step](saving-cloud-dollars_process1.png "width=500")
 
 ```PowerShell
 write-output "Getting all cost items for this subscription in Azure"
@@ -378,11 +378,11 @@ else {
 ## Creating and deploying the new release
 Save your new step and create a new release!
 
-![New Release](saving-cloud-dollars_createrelease.png)
+![New Release](saving-cloud-dollars_createrelease.png "width=500")
 
 Now Lets's Deploy!
 
-![New Release](saving-cloud-dollars_deploy.png)
+![New Release](saving-cloud-dollars_deploy.png "width=500")
 
 ## Troubleshooting
 If your script fails to run because it can't find `Get-AzureRmConsumptionUsageDetails`, please ensure that the latest AzureRM module is installed on your Octopus Server and create another Octopus Variable called `Octopus.Action.Azure.UseBundledAzurePowerShellModules` with a value of `False`. For more information on why you could be receiving this error, please check out or documentation on [Configuring the Version of the Azure PowerShell Modules](https://g.octopushq.com/PowerShellModulesVersion)
@@ -391,8 +391,8 @@ If your script fails to run because it can't find `Get-AzureRmConsumptionUsageDe
 ## Finishing up
 Congratulations! You  have successfully deployed your project to check Costs in Azure!
 
-![Now Deploy](saving-cloud-dollars_deploy.png)
+![Now Deploy](saving-cloud-dollars_deploy.png "width=500")
 
 Let's check out the Slack Notification!
 
-![Now Deploy](saving-cloud-dollars_notification.png)
+![Now Deploy](saving-cloud-dollars_notification.png "width=500")
