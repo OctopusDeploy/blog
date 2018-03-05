@@ -26,7 +26,7 @@ This release includes two new steps: Apply a Terraform template, and Destroy Ter
 
 ## GitHub Feed Types
 
-Adding GitHub as a feed type means that you can now deploy your external resources that dont require a dedicated pre-build step. Run scripts, templates or simple applications pulled directly from your source control by using tags to denote versions. Read more in our [Git Hub Feed documentation](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds) for more information on using this new feed type.
+Adding GitHub as a feed type means that you can now deploy your external resources that don't require a dedicated pre-build step. Run scripts, templates or simple applications pulled directly from your source control by using tags to denote versions. Read more in our [Git Hub Feed documentation](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds) for more information on using this new feed type.
 
 ## Highlight Messages and Artifacts
 
@@ -34,7 +34,7 @@ You can now write log messages that appear on the Task Summary tab of the Task p
 
 Another log level, `wait`, has been added to indicate that the deployment is waiting for something (for example a execution mutex). These messages also appear as a different color in the log. It is primarily used by Octopus internally, but you can also log at this level. In the future we plan on adding a timeline view, which will use log messages at this level to show when a deployment is paused.
 
-Attachments will also now appear under the step they were collected in, but unlike the messages, they only appear once the step has completed due artifact collection only occuring at the end of the step.
+Attachments will also now appear under the step they were collected in, but unlike the messages, they only appear once the step has completed due artifact collection only occurring at the end of the step.
 
 ![Highlights and Artifacts](highlights-and-artifacts.png "width=500")
 
