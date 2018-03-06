@@ -2,7 +2,7 @@
 title: "GitHub Feeds"
 description: "GitHub Feeds now allow deployments from source code without having to explicitly build packages"
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-githubfeeds.png
 bannerImage: blogimage-githubfeeds.png
 tags:
@@ -18,8 +18,6 @@ Sometimes you just want to deploy your app, but it doesn't need a build step. It
 > We now support using GitHub as a feed source.
 
 This new feed type allows Octopus to deploy files directly from GitHub without any additional intermediate build steps. This means no more packaging your scripts just so that they can be used in Octopus and a better experience when storing parts of your deployment process in source control. **Tag, push, then deploy directly from Octopus, no build server necessary**
-
-![NoBuild](nobuild.png "width=700")
 
 ### Ins and Outs
 From a deployment resource point of view, build artifacts from a package repository in many respects, look like completely different concepts to code sitting in source control. By looking at how we model the various parts of a NuGet package, we can, however, see some similarities in how the GitHub "package" package can be modeled to fit the Octopus ecosystem.
@@ -83,10 +81,12 @@ From that point on it, is effectively treated the same as a typical zip file thr
 **Look ma', no build!**
 
 ## Future Plans
-It's worth restating again that this new feed type is purely built upon tags and releases. Concepts like branches, commits, and heads are not _directly_ relevant when using the new feed type. You can _indirectly_ work with branches by tagging your commits in those branches appropriately (Keep in mind that once you merge those commits back into the `master` branch, then the tag might then end up referencing a commit that's in the `master` branch).
+It's worth restating again that this new feed type is purely built upon tags and releases. Concepts like branches, commits, and heads are not _directly_ relevant when using the new feed type. You can _indirectly_ work with branches by tagging your commits in those branches appropriately (Keep in mind that once you merge those commits back into the `master` branch, then the tag might then end up referencing a commit that's then the `master` branch).
 There are plans afoot to provide real Git-as-a-feed support where commits\branches will be treated more first class, but it was decided to keep this GitHub feed work separate.
 
 One of the other points mentioned above is the lack of hooks from GitHub to trigger releases and deployments. Due to the nature of many of our customer's networks, calling in from the outside world is not always available. As a result, we will consider other mechanisms to support ARC from external feeds that are more practical.
 
 ## Git as a Package Feed
 We are excited about the opportunities this new feed type brings to Octopus users. Using GitHub as the source of some of your deployment dependencies will encourage simplifying your CI pipeline and allow better versioning without the superfluous effort and time required to packaging up resources that don't really need to be packaged. Let us know your thoughts about this new direction and how it might come in handy in your deployment processes.
+
+![NoBuild](nobuild.png "width=800")
