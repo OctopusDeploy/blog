@@ -11,7 +11,7 @@ tags:
 ---
 
 ## Giving You GitHub
-Sometimes you just want to deploy your app, but it doesn't need a build step. It might be a repository where you just store your Cloud Formation templates, a bunch of scripts to run within Octopus or a simple app you’re running in an interpreted language like nodejs. The GitHub feed type provided in `2013.3.0` provides a new way for you to access resources during an Octopus deployment. **That right, you heard correctly, we now support using GitHub as a feed source.**
+Sometimes you just want to deploy your app, but it doesn't need a build step. It might be a repository where you just store your Cloud Formation templates, a bunch of scripts to run within Octopus or a simple app you’re running in an interpreted language like nodejs. The GitHub feed type provided in `2018.3.0` provides a new way for you to access resources during an Octopus deployment. **That right, you heard correctly, we now support using GitHub as a feed source.**
 
 ![Good News](good_news.jpg)
 > We now support using GitHub as a feed source.
