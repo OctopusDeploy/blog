@@ -3,8 +3,11 @@ title: "GitHub Feeds"
 description: "GitHub Feeds now allow deployments from source code without having to explicitly build packages"
 author: robert.erez@octopus.com
 visibility: private
+metaImage: metaimage-githubfeeds.png
+bannerImage: blogimage-githubfeeds.png
 tags:
  - New Releases
+ - Walkthrough
 ---
 
 ## Giving You GitHub
