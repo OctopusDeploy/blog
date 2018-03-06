@@ -18,7 +18,7 @@ Sometimes you just want to deploy your app, but it doesn't need a build step. It
 
 This new feed type allows Octopus to deploy files directly from GitHub without any additional intermediate build steps. This means no more packaging your scripts just so that they can be used in Octopus and a better experience when storing parts of your deployment process in source control. **Tag, push, then deploy directly from Octopus, no build server necessary**
 
-![NoBuild](nobuild.png)
+![NoBuild](nobuild.png "width=700")
 
 ### Ins and Outs
 From a deployment resource point of view, build artifacts from a package repository in many respects, look like completely different concepts to code sitting in source control. By looking at how we model the various parts of a NuGet package, we can, however, see some similarities in how the GitHub "package" package can be modeled to fit the Octopus ecosystem.
@@ -79,7 +79,7 @@ From that point on it, is effectively treated the same as a typical zip file thr
 
 ![Task Result](task_result.png)
 
-> Look ma', no build!
+**Look ma', no build!**
 
 ## Future Plans
 It's worth restating again that this new feed type is purely built upon tags and releases. Concepts like branches, commits, and heads are not _directly_ relevant when using the new feed type. You can _indirectly_ work with branches by tagging your commits in those branches appropriately (Keep in mind that once you merge those commits back into the `master` branch, then the tag might then end up referencing a commit that's in the `master` branch).
