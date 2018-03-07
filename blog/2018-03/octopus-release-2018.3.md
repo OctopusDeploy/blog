@@ -2,10 +2,10 @@
 title: "Octopus March Release 2018.3"
 description: What's new in Octopus 2018.3
 author: tom.williams@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-2018-3.png
 bannerImage: blogimage-shipping-2018-3.png
-published: 2018-03-08
+published: 2018-03-07
 tags:
  - New Releases
 ---
