@@ -45,3 +45,8 @@ As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administr
 ## Wrap up
 
 That’s it for this month. Feel free leave us a comment and let us know what you think! Go forth and deploy!
+
+## Dependent Libraries
+Library Name | Version
+--- | ---
+Octopus.Client | 4.31.1
