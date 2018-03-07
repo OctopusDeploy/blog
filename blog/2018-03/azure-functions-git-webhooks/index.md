@@ -11,7 +11,7 @@ According to many cloud providers, the **serverless computing** application mode
 
 At Octopus Deploy we expect to provide first class support for AWS Lambdas in the coming months so stay tuned for their arrival. As it turns out Azure Functions are basically just [Azure Web Apps](https://azure.microsoft.com/en-us/services/app-service/web) under the hood with a few extra handlers on top so our existing "Deploy an Azure Web App" steps still fits the bill.
 
-![WebAppStep](WebAppStep.png)
+![WebAppStep](web_app_step.png)
 
 To prove the point and show that I'm not trying to avoid doing work to add a new Azure Lambda step, lets take a look at building and deploying a basic Azure Function through Octopus Deploy.
 
@@ -22,13 +22,13 @@ For our simple Azure Function we will create a HTTP triggered endpoint that retu
 
 If creating the functions via Visual Studio, make sure you have [Visual Studio 2017 v15.4](https://www.visualstudio.com/vs/) or later which includes the Azure SDKs.
 
-![Create Function Project](NewSolution.png)
+![Create Function Project](new_solution.png)
 
 Create a new project and select the `Azure Functions` project type. Right click on the project and `Add New Item` and add an `Azure Function`.
 
-![New Function Class](NewFunctionClass.png)
+![New Function Class](new_function_class.png)
 
-![New Function Type](NewFunctionType.png)
+![New Function Type](new_function_type.png)
 
 Replace the generated class with the following.
 
@@ -88,7 +88,7 @@ Although I could use the `Deploy an Azure Resource Group` step in a separate dep
 
 From the portal click the `Create a resource` button and search for `Function App`. Fill out the details and take note of the `App name` and `Resource Group` values as we will need to add them into our Octopus project shortly. When the Function App has been created, open it up and go to the `Function App Settings` page and enable slots. This feature is currently marked as "preview" but it will allow us to create a Blue\Green deployment pattern, whereby we first deploy to one slot and confirm that it's configured and running correctly before swapping it around with the "Production" slot. (The term "Production" in this case is different to the Production environment from an Octopus Environments point of view. It simply refers to the fact that the given Azure Function has multiple endpoints which can be configured independently). With the feature enabled create a new slot called `Blue`.
 
-![CreateFunction](CreateFunction.png)
+![CreateFunction](create_function.png)
 
 ## Creating an Octopus Project
 We will now create the project in Octopus deploy that will deploy our package to Azure with a Blue\Green deployment strategy and at the same time provide the appropriately scoped variables for use inside our function.
@@ -110,7 +110,7 @@ As noted above, Azure Lambdas effectively use the same architecture under the ho
 
 Using the project variables, set the resource name and Web app. Since we plan on deploying first the the Staging slot, the Web App name for this step takes the format of `<WebAppName>(<SlotName>)`
 
-![Step 1: Deploy Function](Step1_Deploy.png)
+![Step 1: Deploy Function](step1_deploy.png)
 
 ### Step 2 - Update AppSettings
 Although we could perform variable replacement to configuration files during the package upload process, the recommended way to deal with configuration values for Azure Functions is through AppSettings. These expose themselves as environment variables to the running function process.
