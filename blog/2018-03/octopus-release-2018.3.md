@@ -26,7 +26,7 @@ Big thanks to [Jeremy Cade](https://github.com/JeremyCade) for sharing his Terra
 
 Adding GitHub repositories as a feed type means that you can now deploy your external resources that don't require a dedicated pre-build step. Run scripts, templates or simple applications pulled directly from your source control by using tags to denote versions. Read more in our [Git Hub Feed documentation](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds) for more information on using this new feed type.
 
-![GitHub repository feed type](github-repo-feed.png "width=500")
+![GitHub repository feed type](github-feed.png "width=500")
 
 ## Terraform Support
 
