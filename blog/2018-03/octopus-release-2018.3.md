@@ -40,7 +40,7 @@ Projects now include support to preview the variables values that are supplied d
 
 This is part of a [highly requested feature](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6169634) from the Octopus community and we're very happy to ship it.
 
-![Project variables preview](project-variable-preview.png "width=500")
+![Project variables preview](variable-preview.png "width=500")
 
 ## Highlight Messages and Artifacts
 
