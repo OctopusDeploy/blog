@@ -2,7 +2,7 @@
 title: "Octopus March Release 2018.3"
 description: What's new in Octopus 2018.3
 author: tom.williams@octopus.com
-visibility: public
+visibility: publi
 metaImage: metaimage-shipping-2018-3.png
 bannerImage: blogimage-shipping-2018-3.png
 published: 2018-03-07
@@ -10,7 +10,7 @@ tags:
  - New Releases
 ---
 
-This month, we've greatly improved our support for _infrastructure as code_ unlocking some incredible deployment automation and infrastructure automation scenarios. Octopus `2018.3` introduces support for GitHub repositories as feeds and first class terraform support as well as some awesome smaller features like project variables preview and highlight messages/artifacts.  Read on for all the exciting details!
+This month, we've greatly improved our support for _infrastructure as code_ unlocking some incredible deployment automation and infrastructure automation scenarios. Octopus `2018.3` introduces support for GitHub repositories as feeds and first-class Terraform support as well as some awesome smaller features like deployment variable preview and highlight messages/artifacts.  Read on for all the exciting details!
 
 ## In this post
 
