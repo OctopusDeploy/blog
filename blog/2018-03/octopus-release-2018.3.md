@@ -44,7 +44,7 @@ This is part of a [highly requested feature](https://octopusdeploy.uservoice.com
 
 ## Highlight Messages and Artifacts
 
-You can now write log messages that appear on the Task Summary tab of the Task page. These messages will also now appear blue and bolded within the task log and not be hidden under the `n additional lines not show` fold. We have added helpers to log at this level (`highlight`). Refer to the [documentation](https://octopus.com/docs/deploying-applications/custom-scripts#Customscripts-Logging) for the syntax to use in your script.
+You can now write log messages that appear on the Task Summary tab of the Task page. These messages will also now appear blue and bolded within the task log and not be hidden under the `<n> additional lines not shown` fold. We have added helpers to log at this level (`highlight`). Refer to the [documentation](https://octopus.com/docs/deploying-applications/custom-scripts#Customscripts-Logging) for the syntax to use in your script.
 
 Another log level, `wait`, has been added to indicate that the deployment is waiting for something (for example a execution mutex). These messages also appear as a different color in the log. It is primarily used by Octopus internally, but you can also log at this level. In the future we plan on adding a timeline view, which will use log messages at this level to show when a deployment is paused.
 
