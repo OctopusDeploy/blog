@@ -36,7 +36,7 @@ This release includes two new steps: Apply a Terraform template, and Destroy Ter
 
 ## Deployment Variable Preview
 
-Projects now include support to preview the variables values that are supplied during deployment for specific deployment contexts including environment, deployment targets, steps etc. 
+Projects now include support to preview the variables values that are supplied during deployment for specific deployment contexts including environment, deployment targets, steps etc.
 
 This is part of a [highly requested feature](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6169634) from the Octopus community and we're very happy to ship it.
 
@@ -60,7 +60,12 @@ As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administr
 
 That’s it for this month. Feel free leave us a comment and let us know what you think! Go forth and deploy!
 
-## Dependent Libraries
+## Dependent Libraries and Extensions
+
+The following table lists the versions of libraries and extensions that can be used with this release of Octopus.
+
 Library Name | Version
 --- | ---
 Octopus.Client | 4.31.1
+Team City Extension  | 4.31.1  
+Team Foundation Server  | 2.0.98  
