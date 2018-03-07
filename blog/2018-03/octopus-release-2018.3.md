@@ -10,7 +10,7 @@ tags:
  - New Releases
 ---
 
-This month, we've greatly improved our support for _infrastructure as code_ unlocking some incredible deployment automation and infrastructure automation scenarios. Octopus `2018.3` introduces support for GitHub repositories as feeds and first class terraform support as well as some awesome smaller features like Highlight Messages and Artifacts and .  Read on for all the exciting details!
+This month, we've greatly improved our support for _infrastructure as code_ unlocking some incredible deployment automation and infrastructure automation scenarios. Octopus `2018.3` introduces support for GitHub repositories as feeds and first class terraform support as well as some awesome smaller features like project variables preview and highlight messages/artifacts.  Read on for all the exciting details!
 
 ## In this post
 
@@ -26,11 +26,21 @@ Big thanks to [Jeremy Cade](https://github.com/JeremyCade) for sharing his Terra
 
 Adding GitHub repositories as a feed type means that you can now deploy your external resources that don't require a dedicated pre-build step. Run scripts, templates or simple applications pulled directly from your source control by using tags to denote versions. Read more in our [Git Hub Feed documentation](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds) for more information on using this new feed type.
 
+![GitHub repository feed type](github-repo-feed.png "width=500")
+
 ## Terraform Support
 
 This release includes two new steps: Apply a Terraform template, and Destroy Terraform resources. These steps allow Terraform templates to be executed as part of an Octopus deployment project, with integrated support for variable substitution and output variable capturing. Refer to the [documentation](https://octopus.com/docs/deploying-applications/terraform-deployments) for more information on these new steps.
 
 ![Terraform Steps](terraform-steps.png "width=500")
+
+## Deployment Variable Preview
+
+Projects now include support to preview the variables values that are supplied during deployment for specific deployment contexts including environment, deployment targets, steps etc. 
+
+This is part of a [highly requested feature](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6169634) from the Octopus community and we're very happy to ship it.
+
+![Project variables preview](project-variable-preview.png "width=500")
 
 ## Highlight Messages and Artifacts
 
@@ -41,10 +51,6 @@ Another log level, `wait`, has been added to indicate that the deployment is wai
 Attachments will also now appear under the step they were collected in, but unlike the messages, they only appear once the step has completed due artifact collection only occurring at the end of the step.
 
 ![Highlights and Artifacts](highlights-and-artifacts.png "width=500")
-
-## Variable Preview
-
-TODO
 
 ## Upgrading
 
