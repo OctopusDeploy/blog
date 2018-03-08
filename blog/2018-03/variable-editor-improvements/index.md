@@ -72,7 +72,11 @@ To address this problem, we were able to make a number of optimisations to the w
 
 We also discovered that we were unnecessarily re-rendering more components than we needed to as the user scrolled. We focused on only rendering the bare minimum when you scroll, by using [immutable data structures](https://reactjs.org/docs/optimizing-performance.html#using-immutable-data-structures) and implementing [shouldComponentUpdate](https://reactjs.org/docs/react-component.html#shouldcomponentupdate) in a few key components. 
 
-The combination of these changes made rendering performance acceptable in both Chrome and FireFox. IE11 and Edge seemed to have different performance characterstics, and we are still not satisfied with the scrolling performance in these browsers. We have not yet worked out the root cause for these differences, so this is an ongoing investigation. For now, we have mitigated this issue by disabling virtualization for smaller variable sets that can perform an initial render in a reasonable amount of time.
+The combination of these changes made rendering performance acceptable in both Chrome and FireFox. 
+
+<img class="gifplayer" src="https://i.octopus.com/blog/2018-03/variable-editor-improvements/variables-fast-scrolling.gif" height="auto" width="100%" alt="Improved scrolling performance" data-gif="https://i.octopus.com/blog/2018-03/variable-editor-improvements/variables-fast-scrolling.gif">
+
+IE11 and Edge seemed to have different performance characterstics, and we are still not satisfied with the scrolling performance in these browsers (although it now performs significantly better than it used to be). We have not yet worked out the root cause for these differences, so this is an ongoing investigation. For now, we have mitigated this issue by disabling virtualization for smaller variable sets that can perform an initial render in a reasonable amount of time.
 
 ## Lazily Load Variable Sets
 
@@ -138,7 +142,7 @@ We thought that it would be rare that this is what the user actually wants to do
 
 ![Empty value without warning](variables-empty-value-without-warning.png "width=500")
 
-## New features
+## New Features
 
 As part of our improvements to AWS support in 2018.2, we added first class support for AWS accounts as a new type of variable. With the new Variable Editor, this was a relatively easy extension to add and works in the same way as Certificates.
 
