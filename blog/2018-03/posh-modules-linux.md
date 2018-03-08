@@ -2,17 +2,17 @@
 title: How to use PowerShell script modules... on Linux
 description: Learn how to use your library of PowerShell script modules on Linux
 author: shane.gill@octopus.com
-visibility: private
-published: 2018-03-02
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2018-03-08
+metaImage: metaimage-powershell-linux.png
+bannerImage: blogimage-powershell-linux.png
 tags:
  - Walkthrough
 ---
 
-Octopus Deploy supports re-usable [PowerShell script modules](https://octopus.com/docs/deploying-applications/custom-scripts/script-modules) that can be included in deployments across all of your projects. When a script module is included in a project, it will automatically become available to PowerShell scripts that run on Windows. You can also run your favorite PowerShell script modules on Linux, but they are not automatically made available to your PowerShell on Linux scripts. While we plan to provide first class PowerShell on Linux support, here is the trick to get them working.
+Octopus Deploy supports re-usable [PowerShell script modules](https://octopus.com/docs/deploying-applications/custom-scripts/script-modules) that can be included in deployments across all of your projects.  When a script module is included in a project, it will automatically become available to PowerShell scripts that run on Windows. You can also run your favorite PowerShell script modules on Linux, but they are not automatically made available to your PowerShell on Linux scripts. While we plan to provide first class PowerShell on Linux support, here is the trick to get them working.
 
-See here for PowerShell on Linux installation instructions: [https://github.com/PowerShell/PowerShell/blob/master/docs/installation/linux.md]
+Review the [PowerShell on Linux installation instructions](https://github.com/PowerShell/PowerShell/blob/master/docs/installation/linux.md) for more information.
 
 For this example we will use a script module called `Say Hello` with the following content:
 
