@@ -101,7 +101,7 @@ As part of this change, we wanted to change the way that users think about varia
 | WebsitePort | 2000    | Test          |
 | WebsitePort | 3000    | Production    |
 
-The new model that we're introducing to our users is that a variable can have multiple values. Users can declare which values they want to use in different scopes. Since all of the values are associated with the same variable, they will use the same variable name at execution time.
+The new model that we introduced to our users is that a variable can have multiple values. Users can declare which values they want to use in different scopes. Since all of the values are associated with the same variable, they will use the same variable name at execution time.
 
 | Variable    | Values             |
 |-------------|--------------------|
