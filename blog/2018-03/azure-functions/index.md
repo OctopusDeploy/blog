@@ -22,13 +22,13 @@ For our simple Azure Function we will create a HTTP triggered endpoint that retu
 
 If creating the functions via Visual Studio, make sure you have [Visual Studio 2017 v15.4](https://www.visualstudio.com/vs/) or later which includes the Azure SDKs.
 
-![Create Function Project](new_solution.png)
+![Create Function Project](new_solution.png "width=800")
 
 Create a new project and select the `Azure Functions` project type. Right click on the project and `Add New Item` and add an `Azure Function`.
 
-![New Function Class](new_function_class.png)
+![New Function Class](new_function_class.png "width=800")
 
-![New Function Type](new_function_type.png)
+![New Function Type](new_function_type.png "width=800")
 
 Replace the generated class with the following.
 
@@ -169,7 +169,7 @@ Switch-AzureRmWebAppSlot -ResourceGroupName $OctopusParameters["AzureResourceGro
 ## Deploy
 With each deployment the `Blue` slot will act as the update target, and then the external pointer to the two different slots will be switched around (remember it's effectively a _name_ swap, the content itself does not move around). If the new deployment starts encountering problems, the option is available to swap the slots _back_ around so that traffic is again delivered to the previous version (though we always encourage the roll forward approach where possible).
 
-![Slot Swap](slot_swap.png)
+![Slot Swap](slot_swap.png "width=800")
 
 ## Azure Functions in Octopus
 As we have seen, although Azure Functions provide a new mechanism to develop and host code, the underlying infrastructure is largely built upon the Azure WebSites offering and so it _already_ works within Octopus Deploy out-of-the-box. Managing these deployments through Octopus provide a simple and easy to understand process that allows anyone to leverage the power of this new "serverless" approach to computing. With our future plans to provide first class support for AWS Lambdas soon, there is no excuse to not give these new offerings a try.
