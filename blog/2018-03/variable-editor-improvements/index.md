@@ -8,7 +8,7 @@ tags:
  - Variables
 ---
 
-As part of the UI overhaul that occurred in Octopus 4.0, we took the opportunity to redesign the Variable Editor. This was a pain point for many of our users and was a highly requested change. Let me take you on a journey through the changes we have made to the Variable Editor.
+As part of the UI overhaul that occurred in Octopus 4.0, we took the opportunity to redesign the Variable Editor.  This was a pain point for many of our users and was a highly requested change. Let me take you on a journey through the changes we have made to the Variable Editor.
 
 ## The Old Variable Editor
 
