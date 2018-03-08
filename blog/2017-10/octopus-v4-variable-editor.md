@@ -8,6 +8,7 @@ bannerImage: 4.0variables_blogimage.png
 published: 2017-10-31
 tags:
  - New Releases
+ - Variables
 ---
 
 ![Octopus 4.0's new variable editor rocks](4.0variables_blogimage.png)
