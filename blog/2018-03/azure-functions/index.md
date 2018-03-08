@@ -68,18 +68,18 @@ These value as used during local development. If you run the solution from Visua
 
 ### Packaging for Octopus
 
-Unfortunately due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octopack) generated NuGet package will not work.
+Unfortunately due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octopack) generated NuGet package will not work. The configuration files for the functions are generated _after_ the build phase, which is when Octopack is configured to kick in. We would recommend using `dotnet publish` to publish the project to a directory then package up the generated files.
 
-![Folder](folder.png)
+![folder](folder.png "width=500")
 
-The result of a build for an Azure Function is a directory containing the `bin` folder with the compiled assemblies, a couple of configuration files used by Azure (the `local.settings.json` is only relevant when running the Azure Development Tools locally) and a folder for each function definition. Unfortunately it's these function definition files that OctoPack fails to include when packaging as it was originally developed primarily with the ASP.NET project formats in mind.
-
-Luckily, since Octopus will happily deploy anything that has been packaged up into a zip, we can leverage another Octopus command-line tool [`octo.exe`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe).
-Using your standard build tool (or even locally for testing purposes), ensure that the current working directory set is the build output of the project and call
+Luckily, since Octopus will happily deploy anything that has been packaged up into a zip, we can leverage a different Octopus command-line tool [`octo.exe`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe).
+Using your standard build tool (or even locally for testing purposes), ensure that the current working directory set is the to the project directory and call
 
 ```shell
-octo pack --id=AcmeFunctions --format=zip --outDir=./dist --version=3.14.159-pi
-octo push --server=http://myoctopusserver.acme.com --apiKey=API-ABC123IS4XQUUOG9TWDXXX --package=dist/AcmeFunctions.3.14.159-pi.zip
+dotnet publish --output bin\Release\PublishOutput --configuration Release
+cd bin\Release\PublishOutput
+octo pack --id=AcmeFunctions --format=zip --outFolder=./dist --version=9.14.159-pi
+octo push --server=http://myoctopusserver.acme.com --apiKey=API-ABC123IS4XQUUOG9TWDXXX --package=dist/AcmeFunctions.9.14.159-pi.zip
 ```
 
 ...obviously substituting the relevant values for your Octopus Server, API key and version information. Alternatively you can easily package and push the contents of the project as a zip using one of our plugins for [TeamCity](https://octopus.com/docs/api-and-integration/teamcity), [VSTS](https://octopus.com/docs/api-and-integration/tfs-vsts), [Bamboo](https://octopus.com/docs/api-and-integration/bamboo) and soon-to-be-available [AppVeyor](https://www.appveyor.com).
@@ -109,7 +109,7 @@ For our simple 1 environment scenario these values are:
 ![Variables](Variables.png)
 
 ### Step 1 - Deploy Function
-As noted above, Azure Lambdas effectively use the same architecture under the hood as standard Azure Web Apps and so we can create a project in Octopus that uses the `Deploy an Azure Web App` step to push the package.
+As noted above, Azure Functions effectively use the same architecture under the hood as standard Azure Web Apps and so we can create a project in Octopus that uses the `Deploy an Azure Web App` step to push the package.
 
 Using the project variables defined above, set the resource name and Web app. Since we plan on deploying first to the Staging slot, the Web App name for this step takes the format of `<WebAppName>(<SlotName>)`
 
