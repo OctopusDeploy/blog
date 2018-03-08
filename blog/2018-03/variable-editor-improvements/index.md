@@ -14,7 +14,7 @@ As part of the UI overhaul that occurred in Octopus 4.0, we took the opportunity
 
 The Variable Editor used to look like this.
 
-[Image of old variables editor]
+![Old Variable Editor](variables-old.png "width=500")
 
 The old variable editor was based on [XXX] and it had a number of problems that we wanted to solve as part of the redesign
 - No grouping or sorting of variables
@@ -28,7 +28,7 @@ By far the most important shortcoming of the old variable editor was the fact th
 
 In 4.0, we shipped the new Variable Editor. It looked something like this:
 
-[4.0 Variable Editor image]
+![Variable Editor - 4.0](variables-new.png "width=500")
 
 It improved on the old Variable Editor in a number of ways
     - Ability to focus and select text with one click
@@ -47,9 +47,9 @@ We decided that we would not delay the release of 4.0 in order to fix these issu
 
 In the old Variable Editor, users were able to resize the columns of the Variable Editor. This was useful when you had long variable names or values and you wanted to resize the columns so that you could see more information. Omitting this feature proved to be problematic for a number of our users. The problem was made worse by the fact that the font size was large in the new Variable Editor, leaving less space to display critical information.
 
-In [version xxx] we shipped a Variable Editor in which you could resize columns.
+In version 4.0.11 we shipped a Variable Editor in which you could resize columns.
 
-[Gif of resizing headers]
+<img class="gifplayer" src="https://i.octopus.com/blog/2018-03/variables-resizable-headers.gif" height="auto" width="100%" alt="Resizeable columns" data-gif="https://i.octopus.com/blog/2018-03/variables-resizable-headers.gif">
 
 These resizable columns were implemented with the help of the `react-dnd` library and works by applying a percentage width to the columns after you have resized them. The advantage of using a percentage width as opposed to a fixed width is that it automatically responds when the user resizes the browser window.
 
@@ -57,7 +57,7 @@ These resizable columns were implemented with the help of the `react-dnd` librar
 
 Scrolling was a big problem with the initial release of the Variable Editor, and it did not only affect large variable sets. 
 
-[gif]
+<img class="gifplayer" src="https://i.octopus.com/blog/2018-03/variables-slow-scrolling.gif" height="auto" width="100%" alt="Slow scrolling performance" data-gif="https://i.octopus.com/blog/2018-03/variables-slow-scrolling.gif">
 
 The problem is that rendering a row is a relatively expensive operation. One of the main reasons it is expensive is because of the React components we are using in the Scope column. The widths of these chips need to be measured in order to calculate how many chips we can show in the available space. 
 
@@ -76,11 +76,11 @@ The combination of these changes made rendering performance acceptable in both C
 
 ## Lazily Load Variable Sets
 
-If you view the Library Variable Sets page from within a project, you can see a collection of a variables from each included Library Variable Set, grouped into expandable sections. 
+If you view the Library Variable Sets page from within a project, you can see a collection of variables from each included Library Variable Set, grouped into expandable sections. 
 
-[Screenshot]
+![Library variable sets](variables-library-variable-sets.png "width=500")
 
-Each Library Variable Set was loaded from the server from a separate request. If you had a large number of Library Variable Sets, then this was problematic because it could hit the browser request limit and this meant the whole page took a very long time to load. Even if we did load the Library Variable Sets in a more efficient way, it could still take a long time to load all of the data for this page if you included a large number of Library Variable Sets. 
+Each Library Variable Set was loaded from the server from a separate request when this page was loaded. If you had a large number of Library Variable Sets, then this was problematic because it could hit the browser request limit and this meant the whole page took a very long time to load. Even if we did load the Library Variable Sets in a more efficient way, it could still take a long time to load all of the data for this page if you included a large number of Library Variable Sets. 
 
 We decided to change the way we load data on this page so that it behaves more like the Environments page, where the content of each Environment is only loaded when you expand that Environment. Additionally, we optimised the way requests are made by adding a new endpoint to our API that allows you to load multiple Variable Sets at the same time.
 
@@ -98,13 +98,13 @@ As part of this change, we wanted to change the way that users think about varia
 
 The new model that we wanted to introduce to our users was that a variable can have multiple values. Users can declare which values they want to use in different scopes. Since all of the values are associated with the same variable, they will use the same variable name at execution time.
 
-| Variable    | (Value, Scope)   |
+| Variable    | Values             |
 |-------------|--------------------|
-| WebsitePort | (1000, Development), (2000, Test), (3000, Production) |
+| WebsitePort | (1000 for Development), (2000 for Test), (3000 for Production) |
 
 We started off by only changing the UI to reflect this new model which meant that we could maintain backwards compatibility for the API. This meant that we were simply grouping variable by name in the UI, which many users found to be confusing at first.
 
-[Grouping screenshot]
+![Variable groups](variables-grouping.png "width=500")
 
 A common complaint was that the name was missing for certain variables. It is easy to see why users thought that this was the case, since the main functional difference between the new Variable Editor and the old Variable Editor seemed to be that variable names were sometimes missing. 
 
@@ -118,7 +118,7 @@ The new Variable Editor has a number of different warnings and messages to provi
 
 Originally, we wanted to add a warning that showed when a user was missing a value for a variable for a specific Scope. For example, if you had a variable which had values for Development and Test, but not Production, then you might expect the deployment to fail during production because there is a missing variable value.
 
-[Image of missing scope warning]
+![Missing scope warning](variables-missing-environment-warning.png "width=500")
 
 This warning ended up being overly complex to get right. Consider a situation where you have a project with channels, and the channels use different lifecycles. We would need to check that each environment in each channel would have a value scoped to it. 
 
@@ -130,17 +130,17 @@ We ended up removing this feature before the initial release of the Variable Edi
 
 We shipped the new Variable Editor with the ability to show warnings to indicate when a variable value was empty. 
 
-[Image of Empty Value warning]
+![Empty value warning](variables-empty-value-warning.png "width=500")
 
 We thought that it would be rare that this is what the user actually wants to do. However more users that we were expecting were using empty values in valid ways. And the warning indicator ended up being a bad visual indicator for them, making them think they had done something wrong, as well as adding a lot of visual noise. There was also no way to suppress this warning, which meant that they would be stuck with a warning forever. We still thought there was value in being able to filter to variable values that did not have a value, so we decided to just remove the warning indicator.
 
-[Image of Empty values without warnings]
+![Empty value without warning](variables-empty-value-without-warning.png "width=500")
 
 ## New features
 
 As part of our improvements to AWS support in 2018.2, we added the ability to represent AWS accounts as variables. This involved adding first class support to AWS accounts as a new type of variable. With the new Variable Editor, this was a relatively easy extension to add and works in the same way as Certificates.
 
-[AWS account selection]
+![AWS Account variables](variables-aws.png "width=500")
 
 ## Variable Unification
 
@@ -153,3 +153,10 @@ We also want to revisit how variable templates work and how we can improve the v
 ## What's Next?
 
 The variable editor has come a long way in the last 6 months, and this feels like just the beginning of its journey. What would you like to see in the next version of the Variable Editor?
+
+
+<script>
+  window.onload = function() {
+    $('.gifplayer').gifplayer();
+  };
+</script>
