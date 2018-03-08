@@ -73,7 +73,7 @@ To address this problem, we were able to make a number of optimisations to the w
 
 We also discovered that we were unnecessarily re-rendering more components than we needed to as the user scrolled. We focused on only rendering the bare minimum when you scroll, by using [immutable data structures](https://reactjs.org/docs/optimizing-performance.html#using-immutable-data-structures) and implementing [shouldComponentUpdate](https://reactjs.org/docs/react-component.html#shouldcomponentupdate) in a few key components. 
 
-The combination of these changes made rendering performance acceptable in both Chrome and FireFox. 
+The combination of these changes made the scrolling performance acceptable in both Chrome and FireFox. 
 
 <img class="gifplayer" src="https://i.octopus.com/blog/2018-03/variable-editor-improvements/variables-fast-scrolling.gif" height="auto" width="100%" alt="Improved scrolling performance" data-gif="https://i.octopus.com/blog/2018-03/variable-editor-improvements/variables-fast-scrolling.gif">
 
