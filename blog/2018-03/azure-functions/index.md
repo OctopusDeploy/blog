@@ -13,9 +13,9 @@ At Octopus Deploy we expect to provide first class support for AWS Lambdas in th
 
 ![WebAppStep](web_app_step.png)
 
-To prove the point and show that I'm not trying to avoid doing work to add a new Azure Function step, lets take a look at building and deploying a basic Azure Function through Octopus Deploy.
+To prove the point and show that I'm not trying to avoid doing work to add a new Azure Function step, let's take a look at building and deploying a basic Azure Function through Octopus Deploy.
 
-## Creating and packaging a smple Azure Function Project
+## Creating and packaging a simple Azure Function Project
 For our simple Azure Function we will create a HTTP triggered endpoint that returns a json payload containing some values we want Octopus to provide during deployment.
 
 ### Visual Studio Project
@@ -64,7 +64,7 @@ These value as used during local development. If you run the solution from Visua
 
 ![Running Azure Developer SDK](console.png)
 
-![running localhost](localhost.png)
+![running localhost](localhost_browser.png)
 
 ### Packaging for Octopus
 
@@ -111,14 +111,14 @@ For our simple 1 environment scenario these values are:
 ### Step 1 - Deploy Function
 As noted above, Azure Lambdas effectively use the same architecture under the hood as standard Azure Web Apps and so we can create a project in Octopus that uses the `Deploy an Azure Web App` step to push the package.
 
-Using the project variables defined above, set the resource name and Web app. Since we plan on deploying first the the Staging slot, the Web App name for this step takes the format of `<WebAppName>(<SlotName>)`
+Using the project variables defined above, set the resource name and Web app. Since we plan on deploying first to the Staging slot, the Web App name for this step takes the format of `<WebAppName>(<SlotName>)`
 
 ![Step 1: Deploy Function](step1_deploy.png)
 
 ### Step 2 - Update AppSettings
 Although we could perform variable replacement to configuration files during the package upload process, the recommended way to deal with configuration values for Azure Functions is through AppSettings. These expose themselves as environment variables to the running function process.
 
-The AppSettings also contain other environment variables used by Azure Functions itself so we can't just wipe away any values contained within it. The safest methods is to first load the existing variables, update the few key properties we want to change, and then update the whole collection (The Azure PowerShell cmdlets dont provide a granular approach to modify individual values).
+The AppSettings also contain other environment variables used by Azure Functions itself so we can't just wipe away any values contained within it. The safest methods is to first load the existing variables, update the few key properties we want to change, and then update the whole collection (The Azure PowerShell cmdlets don't provide a granular approach to modify individual values).
 
 Create a `Run an Azure PowerShell Script` step and provide the following script:
 
@@ -153,6 +153,9 @@ UpdateAppSettings -AppSettings @{"MyName" = $OctopusParameters["MyName"]; Releas
 Notice how we have provided the Octopus variables that we want to be applied to the AppSettings. This allows us to be precise about what our function needs rather than blindly passing across _all_ Octopus variables and assuming that _something might_ be needed.
 
 Once this and the preceeding step are run during a deployment, the `Blue` slot will have been updated with the latest package and its variables. The previously deployed version of this Function (assuming this is not the first time the process ran) will still be available from the `Production` slot. All traffic to `https://octoacmefunction.azurewebsites.net/api/ReticulateSplines` will still go to the previous version, but the endpoint at `https://octoacmefunction-blue.azurewebsites.net/api/ReticulateSplines` will now use the new deployment which we can test and make sure it all works as expected. The next step will then swap these slots around so that requests without the slot name go to what we currently have deployed in the `Blue` slot.
+
+![Live Browser](live_browser.png)
+
 
 ### Step 3 - SwapSlot
 Add a final `Run an Azure PowerShell Script` and provide the following script:
