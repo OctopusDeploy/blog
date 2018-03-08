@@ -16,13 +16,13 @@ The Variable Editor used to look like this:
 
 ![Old Variable Editor](variables-old.png "width=500")
 
-It was based on [SlickGrid](https://github.com/mleibman/SlickGrid) and it had a number of problems that we wanted to solve as part of the redesign:
+It was based on [SlickGrid](https://github.com/mleibman/SlickGrid), and it had a number of problems that we wanted to solve as part of the redesign:
 - There was no grouping or sorting of variables.
 - Two clicks were often required to highlight part of the text.
 - Filters were not discoverable or easy to apply.
 - It was necessary to enter a popup to edit variable scopes.
 
-By far, the most important shortcoming of the old variable editor was how difficult it was to extend. It was an area of code that received very little attention and any changes were often risky to make.
+By far, the most important shortcoming of the old variable editor was how difficult it was to extend. It was an area of code that received very little attention, and any changes were often risky to make.
 
 ## The New Variable Editor
 
@@ -30,7 +30,7 @@ In 4.0, we shipped the new Variable Editor. It looked something like this:
 
 ![Variable Editor - 4.0](variables-new.png "width=500")
 
-It improved on the old Variable Editor in a number of ways:
+It improved on the old Variable Editor in the following ways:
 - The ability to focus and select text with one click.
 - Variables are automatically grouped by their name.
 - Filters are discoverable and easy to use.
@@ -42,7 +42,7 @@ However, there were some still some major problems with this implementation:
 - Users were unable to resize the columns.
 - It was slow to render when scrolling, which made the experience feel unresponsive.
 
-We decided that we would not delay the release of 4.0 in order to fix these issues, but instead focus on fixing them as soon as possible.
+We decided not to delay the release of 4.0 to fix these issues, but instead focus on fixing them as soon as possible.
 
 ## Resizable Columns
 
@@ -60,7 +60,7 @@ Scrolling was a big problem with the initial release of the Variable Editor, and
 
 <img class="gifplayer" src="https://i.octopus.com/blog/2018-03/variable-editor-improvements/variables-slow-scrolling.gif" height="auto" width="100%" alt="Slow scrolling performance" data-gif="https://i.octopus.com/blog/2018-03/variable-editor-improvements/variables-slow-scrolling.gif">
 
-The problem is that rendering a row is a relatively expensive operation. One of the main reasons it is expensive is because of the specific components we use in the Scope column. The widths of these chips need to be measured in order to calculate how many chips we can show in the available space.
+The problem is that rendering a row is a relatively expensive operation. One of the main reasons it is expensive is because of the specific components we use in the Scope column. The widths of these chips need to be measured to calculate how many chips we can show in the available space.
 
 Each render of this cell involves:
 1. Rendering _all_ of the chips.
@@ -69,7 +69,7 @@ Each render of this cell involves:
 
 This happens for each row in the variable editor as it scrolls into view because we are using virtualization, and this is the main reason that rendering is slow. An alternative to this approach would be to render all rows up front without virtualization, but this makes the initial render very slow. For a large variable set, this becomes painfully slow and is an even worse problem than the scrolling performance.
 
-To address this problem, we made a number of optimizations to the way we render and measure these components. We were measuring a number of things more often than we needed to, and we were able to minimize the cost of some of the reflows. These changes ended up having a noticeable impact on performance.
+To address this problem, we made a number of optimizations to the way we render and measure these components. We measured a number of things more often than we needed to, and we were able to minimize the cost of some of the reflows. These changes ended up having a noticeable impact on performance.
 
 We also discovered that we were unnecessarily re-rendering more components than we needed to as the user scrolled. We focused on only rendering the bare minimum when you scroll, by using [immutable data structures](https://reactjs.org/docs/optimizing-performance.html#using-immutable-data-structures) and implementing [shouldComponentUpdate](https://reactjs.org/docs/react-component.html#shouldcomponentupdate) in a few key components.
 
@@ -107,13 +107,13 @@ The new model that we're introducing to our users is that a variable can have mu
 |-------------|--------------------|
 | WebsitePort | (1000 for Development), (2000 for Test), (3000 for Production) |
 
-We started by changing the UI to reflect this new model which meant that we could maintain backwards compatibility for the API. This meant that we were simply grouping variables by name in the UI, which many users found to be confusing at first.
+We started by changing the UI to reflect this new model which meant that we could maintain backward compatibility for the API. This meant that we were simply grouping variables by name in the UI, which many users found to be confusing at first.
 
 ![Original variable groups](variables-grouping-old.png "width=500")
 
-A common complaint was that the name was missing for certain variables. It is easy to see why users thought this was the case, because at first glance the main functional difference between the new Variable Editor and the old Variable Editor appeared to be that variable names were sometimes missing.
+A common complaint was that the name was missing for certain variables. It is easy to see why users thought this was the case because at first glance the main functional difference between the new Variable Editor and the old Variable Editor appeared to be that variable names were sometimes missing.
 
-We ended up iterating on this design a few times, and came up with a new design which emphasized that we're showing multiple values and scopes for variables. There is now a separate "header" row in the Variable Editor for each variable that has multiple values. This also solved another problem that we had; we now had a sensible place to put an overflow menu that contained actions that were specific to the whole variable, rather than the individual values.
+We ended up iterating on this design a few times and came up with a new design which emphasized that we're showing multiple values and scopes for variables. There is now a separate "header" row in the Variable Editor for each variable that has multiple values. This also solved another problem that we had; we now had a sensible place to put an overflow menu that contained actions that were specific to the whole variable, rather than the individual values.
 
 ![Improved variable groups](variables-grouping-new.png "width=500")
 
@@ -129,7 +129,7 @@ Originally, we wanted to add a warning that showed when a user was missing a val
 
 This warning ended up being overly complex to get right. Consider a situation where you have a project with channels, and the channels use different lifecycles. We would need to check that each environment in each channel had a value scoped to it.
 
-The story gets even more complex, when you consider there are a number of ways to scope your variable values that result in a valid value in every possible deployment scope. A common way to do this is to have a single unscoped value that applies to any environments that don't have a value explicitly scoped to them. However, there are other ways of achieving the same result. For example, instead of having an unscoped value, you could have a value scoped to the specific deployment steps which uses that variable.
+The story gets even more complex when you consider there are multiple ways to scope your variable values that result in a valid value in every possible deployment scope. A common way to do this is to have a single unscoped value that applies to any environments that don't have a value explicitly scoped to them. However, there are other ways of achieving the same result. For example, instead of having an unscoped value, you could have a value scoped to the specific deployment steps which uses that variable.
 
 We ended up removing this feature before the initial release of the Variable Editor because it proved too difficult to implement without producing a large number of false positives.
 
@@ -145,7 +145,7 @@ We thought that it would be rare that the user actually wants to do this. Howeve
 
 ## New Features
 
-As part of our improvements to AWS support in 2018.2, we added first class support for AWS accounts as a new type of variable. With the new Variable Editor, this was a relatively easy extension to add and works in the same way as Certificates.
+As part of our improvements to AWS support in 2018.2, we added first-class support for AWS accounts as a new type of variable. With the new Variable Editor, this was a relatively easy extension to add and works in the same way as Certificates.
 
 ![AWS Account variables](variables-aws.png "width=500")
 
@@ -159,7 +159,7 @@ We also want to revisit how variable templates work, and how we can improve the 
 
 ## What's Next?
 
-The Variable Editor has come a long way in the last 6 months, and this feels like just the beginning of its journey. What would you like to see in the next version of the Variable Editor?
+The Variable Editor has come a long way in the last six months, and this feels like just the beginning of its journey. What would you like to see in the next version of the Variable Editor?
 
 
 <script>
