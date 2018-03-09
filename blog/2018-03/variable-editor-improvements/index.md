@@ -2,13 +2,15 @@
 title: "Variable Editor: A Journey"
 description: "An exploration of the improvements we have made to the Variable Editor"
 author: tom.peters@octopus.com
-visibility: private
+visibility: public
 published: 2018-03-09
+metaImage: metaimage-variables.png
+bannerImage: blogimage-variables.png
 tags:
  - Variables
 ---
 
-As part of the UI overhaul that occurred in Octopus 4.0, we took the opportunity to [redesign the Variable Editor](https://octopus.com/blog/octopus-v4-variable-editor).  This was a pain point for many of our users and was a highly requested change. Let me take you on a journey through the changes we have made to the Variable Editor!
+As part of the UI overhaul that occurred in Octopus 4.0, we took the opportunity to [redesign the Variable Editor](https://octopus.com/blog/octopus-v4-variable-editor). This was a pain point for many of our users and was a highly requested change. Let me take you on a journey through the changes we have made to the Variable Editor!
 
 ## The Old Variable Editor
 
