@@ -2,13 +2,17 @@
 title: "Variable Editor: A Journey"
 description: "An exploration of the improvements we have made to the Variable Editor"
 author: tom.peters@octopus.com
-visibility: private
+visibility: public
 published: 2018-03-09
+metaImage: metaimage-variables.png
+bannerImage: blogimage-variables.png
 tags:
  - Variables
 ---
 
-As part of the UI overhaul that occurred in Octopus 4.0, we took the opportunity to [redesign the Variable Editor](https://octopus.com/blog/octopus-v4-variable-editor).  This was a pain point for many of our users and was a highly requested change. Let me take you on a journey through the changes we have made to the Variable Editor!
+![Octo-Scientist improving variables](blogimage-variables.png)
+
+As part of the UI overhaul that occurred in Octopus 4.0, we took the opportunity to [redesign the Variable Editor](https://octopus.com/blog/octopus-v4-variable-editor). This was a pain point for many of our users and was a highly requested change. Let me take you on a journey through the changes we have made to the Variable Editor!
 
 ## The Old Variable Editor
 
@@ -101,7 +105,7 @@ As part of this change, we wanted to change the way that users think about varia
 | WebsitePort | 2000    | Test          |
 | WebsitePort | 3000    | Production    |
 
-The new model that we're introducing to our users is that a variable can have multiple values. Users can declare which values they want to use in different scopes. Since all of the values are associated with the same variable, they will use the same variable name at execution time.
+The new model that we introduced to our users is that a variable can have multiple values. Users can declare which values they want to use in different scopes. Since all of the values are associated with the same variable, they will use the same variable name at execution time.
 
 | Variable    | Values             |
 |-------------|--------------------|
