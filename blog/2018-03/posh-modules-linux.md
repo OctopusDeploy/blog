@@ -23,7 +23,7 @@ function Say-Hello($name)
 }
 ```
 
-For help creating a script module in Octopus follow the instructions in the documentation: [https://octopus.com/docs/deploying-applications/custom-scripts/script-modules]
+For help creating a script module in Octopus follow the [instructions in the documentation](https://octopus.com/docs/deploying-applications/custom-scripts/script-modules).
 
 We will use a project called `PowerShell modules on Linux` that includes the `Say Hello` script module. Our deployment process consists of a `Run a Script` step that will invoke the `Say-Hello` method from PowerShell. Our naive bash script would look like this:
 
