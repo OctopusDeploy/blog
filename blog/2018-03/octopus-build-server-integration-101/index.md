@@ -57,7 +57,7 @@ Now, before we dwelve into each of the stages, I want to mention that stages 1 a
 
 **End goal:** By the end of this stage, you should have a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages) that contains your build output. The package will only be sitting in a folder on your build agent for now.
 
-We are going to split this stage into 2 clear steps:
+We are going to split this stage into 2 steps:
 
 **1.1) Get your project building successfully - ** I've seen this step scare many developers, mostly because it forces them to deal with that black box they've been using for a while called "Build Configuration". It's very common in development teams that only 1-2 devs actually know how their build works, and the rest simply click on "Run" and hope for the best.  If you are in the latter group, this might be a good moment to change that situation and pair up with a teammate to learn how your build process works.
 
@@ -68,7 +68,7 @@ To consider this step done, you should be able to get a successful build followi
 
 **1.2) Get your build output packaged up -** In this step you should be packaging up the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). The only key recommendation here is that you version the package with the same version number of the build that's creating it. So if you are building the project `MyWebApp` and you are running the build `1.0.6`, your package should end up being `MyWebApp.1.0.6.zip`
 
-![Good News](packageVersion.png)
+![Package version == build version](packageVersion.png)
 
 You can do this in the same build step where you are building your app (if you are using [Cake](https://cakebuild.net/) for example) or you could have a dedicated build step just for it. Unless I'm using something like Cake, I like to have a dedicated step because its easier to spot if the build failed during the packaging process, the build or any other step I'm running.
 
@@ -78,5 +78,23 @@ By the end of this step you should have a package with the same version as your 
 
 ###Stage 2: The Deployment
 
-###Stage 3: The Glue (Octo.exe)
+**End goal:** By the end of this stage you should be able to manually create a release from the Octopus web portal and run a successful deployment of a package. Yes, **Manually**.
+
+We are also going to split this stage into a couple of steps:
+
+**2.1) Upload a test package to the built-in repository - ** This idea of this step is simply to get a package with your compiled application on it, so you can use it in the deployment process you are about to setup. If you already finished **Stage 1**, you can grab one of the packages that was created during your builds. If you haven't finished that stage already, simply compile your app locally and package the output into a package using [Octo.exe pack](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe)
+
+Once you have the package, push it to the [Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository#PushingpackagestotheBuilt-Inrepository-UsingtheOctopuswebportal) and make sure you can see it in the web portal under `Library -> Packages`
+
+![Package in repository](packageInRepository.png)
+
+
+
+**2.2) Design your deployment process and run it - ** Now this is where you finally start doing things in Octopus
+
+
+
+###Stage 3: The Glue
+
+
 
