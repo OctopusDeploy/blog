@@ -41,13 +41,11 @@ The below are two (very simplified) lists of what each tool's role should be in 
 
 ###What should Octopus do?
 
-- **Provision infrastructure (optional)**. If you need to create an `Azure WebApp`, an `Elastic Beanstalk` instance, scale up a VM set, create an IIS/Tomcat website or anything that's related to setting up **the place** where you'll be putting your compiled code, adding it as one of the first steps in your Octopus deployment process is a very good idea. //maybe mention a thing our two about our awesome infrastructure as code story.
-
 - **Set configuration values in your application before deployment**. Ideally, the content of your package should be deployable to *any* environment in your pipeline, and the only thing that should be different are environment-specific configuration values such as connection strings, passwords, keys to connect to other services, etc. Octopus has a wide set of feature to deal with any configuration file modification that's needs to be done *before* pushing your application to its destination.
 
 - **Deploy your Application**.
 
-  ​
+  **Provision infrastructure (optional)**. If you need to create an `Azure WebApp`, an `Elastic Beanstalk` instance, scale up a VM set, create an IIS/Tomcat website or anything that's related to setting up **the place** where you'll be putting your compiled code, adding it as one of the first steps in your Octopus deployment process is a very good idea. //maybe mention a thing our two about our awesome infrastructure as code story.
 
 ##So how should I start integrating Octopus into my CI pipeline?
 
@@ -57,17 +55,28 @@ Now, before we dwelve into each of the stages, I want to mention that stages 1 a
 
 ### Stage 1: The build
 
-**End goal:** By the end of this stage, you should have a package of [any of the supported formats](link) that contains your build output. The package will only be sitting in a folder on your build agent for now.
+**End goal:** By the end of this stage, you should have a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages) that contains your build output. The package will only be sitting in a folder on your build agent for now.
 
 We are going to split this stage into 2 clear steps:
 
-**1) Get your project building successfully - ** I've seen this step scare many developers, mostly because it forces them to deal with that black box they've been using for a while called "Build Configuration". It's very common in development teams that only 1-2 devs actually know how their build works, and the rest simply click on "Run" and hope for the best.  If you are in the latter group, this might be a good moment to change that situation and pair up with a teammate to learn how your build process works.
+**1.1) Get your project building successfully - ** I've seen this step scare many developers, mostly because it forces them to deal with that black box they've been using for a while called "Build Configuration". It's very common in development teams that only 1-2 devs actually know how their build works, and the rest simply click on "Run" and hope for the best.  If you are in the latter group, this might be a good moment to change that situation and pair up with a teammate to learn how your build process works.
 
-To consider this step done, you should be able to get a successful build and send its output to a fixed folder in your build agent's `WorkDir`. Every build tool out there has a parameter that allows you to send the output to a directory of your choice. My recommendation is that you send it to a folder called `Build` or `Output` that sits at the root of your build's `WorkDir`
+To consider this step done, you should be able to get a successful build following these 2 guidelines:
 
-**2) Get your build output packaged up -** 
+- The build output must be sent to a fixed folder. Every build tool out there has a parameter that allows you to send the output to a directory of your choice. My recommendation is that you send it to a folder called `Build` or `Output` that sits at the root of your build's `WorkDir`
+- The content in that folder should be structured exactly like you expect it to be deployed to its destination. For example if your `Azure Web App` expects a `web.config` and an `index.html` file at the root, then those 2 files should also be at the root of this folder.
 
+**1.2) Get your build output packaged up -** In this step you should be packaging up the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). The only key recommendation here is that you version the package with the same version number of the build that's creating it. So if you are building the project `MyWebApp` and you are running the build `1.0.6`, your package should end up being `MyWebApp.1.0.6.zip`
 
+![Good News](packageVersion.png)
 
+You can do this in the same build step where you are building your app (if you are using [Cake](https://cakebuild.net/) for example) or you could have a dedicated build step just for it. Unless I'm using something like Cake, I like to have a dedicated step because its easier to spot if the build failed during the packaging process, the build or any other step I'm running.
 
+By the end of this step you should have a package with the same version as your build, and inside of it should be a copy of your compiled application ready to be deployed to its destination(*).
+
+*(&ast;) you might have to manually modify some configuration values if you want to test this manually. I strongly recommend you to do this once just to make sure your packages are good to go for the next phases*
+
+###Stage 2: The Deployment
+
+###Stage 3: The Glue (Octo.exe)
 
