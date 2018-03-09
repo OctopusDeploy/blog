@@ -57,7 +57,15 @@ Now, before we dwelve into each of the stages, I want to mention that stages 1 a
 
 ### Stage 1: The build
 
-**End goal:** By the end of this stage you should end up with a package of [any of the supported formats](link) that contains your build output. The package will only be sitting in a folder on your build agent for now.
+**End goal:** By the end of this stage, you should have a package of [any of the supported formats](link) that contains your build output. The package will only be sitting in a folder on your build agent for now.
+
+We are going to split this stage into 2 clear steps:
+
+**1) Get your project building successfully - ** I've seen this step scare many developers, mostly because it forces them to deal with that black box they've been using for a while called "Build Configuration". It's very common in development teams that only 1-2 devs actually know how their build works, and the rest simply click on "Run" and hope for the best.  If you are in the latter group, this might be a good moment to change that situation and pair up with a teammate to learn how your build process works.
+
+To consider this step done, you should be able to get a successful build and send its output to a fixed folder in your build agent's `WorkDir`. Every build tool out there has a parameter that allows you to send the output to a directory of your choice. My recommendation is that you send it to a folder called `Build` or `Output` that sits at the root of your build's `WorkDir`
+
+**2) Get your build output packaged up -** 
 
 
 
