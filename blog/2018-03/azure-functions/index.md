@@ -156,18 +156,12 @@ Once this and the preceeding step are run during a deployment, the `Blue` slot w
 
 ![Live Browser](live_browser.png)
 
-
 ### Step 3 - SwapSlot
-Add a final `Run an Azure PowerShell Script` and provide the following script:
+There is another existing step that was built for Azure Web Apps which we can also put to good use with Azure Functions. Add a new step and search for the `Switch Azure Staging Deployment Slot` step in the step library. Provide the variables for `ResourceGroupName`, `AppName` and `SlotName` that was provided in the first step above. For `AzureAccount` field, you will currently need to get the account Id for the azure account you have configured in Octopus. This can bee seen in the url when you view the account through the Octopus Portal. In the coming weeks we expect this requirement to go away as we provide a typed variable for Azure Accounts in the same way that we have done for AWS Accounts.
 
-```powershell
-Write-Host Swapping Slot $OctopusParameters["AzureStagingSlotName"] into Production
-#Swap the staging slot into production
-Switch-AzureRmWebAppSlot -ResourceGroupName $OctopusParameters["AzureResourceGroupName"] `
-	-Name $OctopusParameters["AzureFunctionName"]  `
-    -SourceSlotName $OctopusParameters["AzureStagingSlotName"] `
-    -DestinationSlotName "Production"
-```
+![Step 2: Slot Swap](step2_slot_swap.png)
+
+The `SmokeTest` configuration will simply hit the host address of the function and although is more relevant for warming up Web Apps, it doesn't hurt to make sure the function had deployed successfully.
 
 ## Deploy
 With each deployment the `Blue` slot will act as the update target, and then the external pointer to the two different slots will be switched around (remember it's effectively a _name_ swap, the content itself does not move around). If the new deployment starts encountering problems, the option is available to swap the slots _back_ around so that traffic is again delivered to the previous version (though we always encourage the roll forward approach where possible).
