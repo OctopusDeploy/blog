@@ -74,27 +74,69 @@ You can do this in the same build step where you are building your app (if you a
 
 By the end of this step you should have a package with the same version as your build, and inside of it should be a copy of your compiled application ready to be deployed to its destination(*).
 
-*(&ast;) you might have to manually modify some configuration values if you want to test this manually. I strongly recommend you to do this once just to make sure your packages are good to go for the next phases*
+*(&ast;) you might have to manually modify some configuration values if you want to test this manually. I strongly recommend you to do this once just to make sure your packages are good to go for the next phases.*
 
 ###Stage 2: The Deployment
 
-**End goal:** By the end of this stage you should be able to manually create a release from the Octopus web portal and run a successful deployment of a package. Yes, **Manually**.
+**End goal:** By the end of this stage you should be able to create a release in Octopus and trigger a successful deployment of your application from the command line using [Octo.exe](https://octopus.com/docs/api-and-integration).
 
 We are also going to split this stage into a couple of steps:
 
-**2.1) Upload a test package to the built-in repository - ** This idea of this step is simply to get a package with your compiled application on it, so you can use it in the deployment process you are about to setup. If you already finished **Stage 1**, you can grab one of the packages that was created during your builds. If you haven't finished that stage already, simply compile your app locally and package the output into a package using [Octo.exe pack](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe)
+**2.1) Upload a test package to the built-in repository - ** This idea of this step is simply to get a package with your compiled application on it, so you can use it in the deployment process you are about to setup. If you've already finished **Stage 1**, you can grab one of the packages that was created during your builds. If you haven't finished that stage yet, simply compile your app locally and package the output into a package using [Octo.exe pack](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe)
 
 Once you have the package, push it to the [Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository#PushingpackagestotheBuilt-Inrepository-UsingtheOctopuswebportal) and make sure you can see it in the web portal under `Library -> Packages`
 
 ![Package in repository](packageInRepository.png)
 
+You only need 1 package for the next step which you'll be using over and over until you get the Deployment Process right. If your deployment process will be using more than one package, repeat this process for each package you'll be needing.
 
+**2.2) Design your deployment process and run it - ** Now here's where you finally start doing things in Octopus. We won't get into too much detail here, because [that's what our documentation is for](https://octopus.com/docs/deploying-applications). But the overall idea of this step is that you setup your Deployment Process in Octopus using the packages you uploaded in **2.1** and that you are able to run it successfully through the UI.
 
-**2.2) Design your deployment process and run it - ** Now this is where you finally start doing things in Octopus
+If this is your first time setting up your Octopus project, odds are this is the step where you'll be spending most of your time. At this point don't bother too much about the version number of the packages you are using or the release number in Octopus. The sole purpose of this step is that you get comfortable with your Deployment Process and that you fully understand what each step brings to the table.
 
+So sit back and trigger as many deployments as you need :)
 
+**2.3) Create a release and trigger a deployment using Octo.exe**
 
-###Stage 3: The Glue
+In the previous step you learned how to create a release and trigger a deployment from the Web Portal. The goal of this step is that you learn to do the same thing, but using `Octo.exe`.
 
+If you don't know about this CLI tool, the elevator pitch is that it talks to the [Octopus API](https://octopus.com/docs/api-and-integration/api) and helps you do some of the most frequently used actions against your Octopus Instance.  You can read about all the functionality it provides in [this document](https://octopus.com/docs/api-and-integration/octo.exe-command-line)
 
+The command you should be paying attention to is [create-release](https://octopus.com/docs/api-and-integration/octo.exe-command-line/creating-releases). A few tips about this command:
 
+- If you use the `--deployTo` parameter, it will not only create the release, but also deploy it to an environment. It basically combines the commands `create-release` and `deploy-release`
+- use `--progress` to be able to see the deployment log in the console at it executes. Otherwise the command will only create a task in Octopus, and you'll be forced to go to the Web Portal to see how the deployment went.
+- use `--whatIf` to see what would happen if you ran that command, without actually triggering anything in Octopus.
+
+Every single build server integration out there (at least the ones built by the Octopus team) is simply a UI wrapper around this CLI tool. So the knowledge you gain from this step will come in really handy on the next stage.
+
+###Stage 3: The Integration
+
+Now this stage is where we'll put together everything we did in the two previous phases. For this reason its necessary that you finish both of them successfully.
+
+**End goal:** By the end of this stage, you should be able to add a new step to your build process that triggers a deployment in Octopus.
+
+If you are using any of the below build servers, then we recommend you to install the plugin/extension mentioned in the link, which will add a few new steps/runners for you to use in your build process. As mentioned before, these new steps will only be UI wrappers around `Octo.exe`, so most of the fields you'll be filling in them should be very similar to the parameters you used in `2.3`
+
+- [VSTS/TFS](https://octopus.com/docs/api-and-integration/tfs-vsts)
+- [TeamCity](https://octopus.com/docs/api-and-integration/teamcity)
+- [Bamboo](https://octopus.com/docs/api-and-integration/bamboo)
+- [Jenkins](https://octopus.com/docs/api-and-integration/jenkins)
+- AppVeyor (coming soon)
+
+*The step you should pay attention to will have the words "Create Release" on its name in pretty much all cases*
+
+If you are not using one of the above build servers, don't worry! The knowledge you gained in `2.3` should be more than enough for you to be able to add a Powershell/Bash script step to your build process that runs the same `Octo.exe` command that you already used.
+
+```
+:::hint
+**Pro Tip**
+Every one of the "Create Release" steps provided by the plugins/extensions will have a checkbox called Show deployment progress or similar. If you check that box, what's going to happen is that your build server will keep the connection open with your Octopus deployment, and it will show you the output of it in your build log. Additionally, if your deployment fails, that step in your build process will also fail. This last bit is extremely handy as you'll know by just looking at your build if the deployment in Octopus failed or not.
+
+If you are using a raw Octo.exe call, then the equivalent of this feature is the --progress parameter.
+:::
+```
+
+---------------
+
+And that's it! I really hope this guide helps you integrate Octopus into your CI pipeline in a more organized fashion. Please keep in mind that
