@@ -7,7 +7,7 @@ tags:
  - New Releases
 ---
 
-According to many cloud providers, the **serverless computing** application model is the way of the future (citation needed). AWS Lambdas and Azure Functions both allow you to write code that costs you for the actual usage that they incur. While this means that now you will be forced to literally pay for writing sloppy code, it also allows you to write and deliver loosely-coupled services which only add to your bill when that code is executing, and costs nothing when idle.
+According to many cloud providers, the **serverless computing** application model is the way of the future (citation needed). AWS Lambdas and Azure Functions both allow you to write code that costs you for the actual usage that they incur. While this means that now you will be forced to literally pay for writing sloppy code, it also allows you to write and deliver loosely-coupled services which only add to your bill when that code is executing and costs nothing when idle.
 
 At Octopus Deploy we expect to provide first class support for AWS Lambdas in the coming months so stay tuned for their arrival. As it turns out Azure Functions are basically just [Azure Web Apps](https://azure.microsoft.com/en-us/services/app-service/web) under the hood with a few extra handlers on top so our existing "Deploy an Azure Web App" steps still fits the bill.
 
@@ -16,7 +16,7 @@ At Octopus Deploy we expect to provide first class support for AWS Lambdas in th
 To prove the point and show that I'm not trying to avoid doing work to add a new Azure Function step, let's take a look at building and deploying a basic Azure Function through Octopus Deploy.
 
 ## Creating and packaging a simple Azure Function Project
-For our simple Azure Function we will create a HTTP triggered endpoint that returns a json payload containing some values we want Octopus to provide during deployment.
+For our simple Azure Function, we will create a HTTP triggered endpoint that returns a JSON payload containing some values we want Octopus to provide during deployment.
 
 ### Visual Studio Project
 
@@ -82,12 +82,12 @@ octo pack --id=AcmeFunctions --format=zip --outFolder=./dist --version=9.14.159-
 octo push --server=http://myoctopusserver.acme.com --apiKey=API-ABC123IS4XQUUOG9TWDXXX --package=dist/AcmeFunctions.9.14.159-pi.zip
 ```
 
-...obviously substituting the relevant values for your Octopus Server, API key and version information. Alternatively you can easily package and push the contents of the project as a zip using one of our plugins for [TeamCity](https://octopus.com/docs/api-and-integration/teamcity), [VSTS](https://octopus.com/docs/api-and-integration/tfs-vsts), [Bamboo](https://octopus.com/docs/api-and-integration/bamboo) and soon-to-be-available [AppVeyor](https://www.appveyor.com).
+...obviously substituting the relevant values for your Octopus Server, API key, and version information. Alternatively, you can easily package and push the contents of the project as a zip using one of our plugins for [TeamCity](https://octopus.com/docs/api-and-integration/teamcity), [VSTS](https://octopus.com/docs/api-and-integration/tfs-vsts), [Bamboo](https://octopus.com/docs/api-and-integration/bamboo) and soon-to-be-available [AppVeyor](https://www.appveyor.com).
 
 ## Creating the Azure Function
-Although I could use the `Deploy an Azure Resource Group` step in a separate deployment project to spin up an Azure function, to keep this demo simple I'll just be creating the function through the Azure portal directly.
+Although I could use the `Deploy an Azure Resource Group` step in a separate deployment project to spin up an Azure function, to keep this demo simple, I'll just be creating the function through the Azure portal directly.
 
-From the portal, click the `Create a resource` button and search for `Function App`. Fill out the details and take note of the `App name` and `Resource Group` values as we will need to add them into our Octopus project shortly. When the Function App has been created, open it up and go to the `Function App Settings` page and enable slots. This feature is currently marked as "preview" and while not necessary, it will allow us to create a Blue\Green deployment pattern. With this strategy we first deploy to one slot and confirm that it's configured and running correctly before swapping it around with the "Production" slot. The term "Production" in this case is different to a "Production environment" from an Octopus Environments point of view. It simply refers to the fact that the given Azure Function has multiple endpoints which can be configured independently. With the feature enabled create a new slot called `Blue`.
+From the portal, click the `Create a resource` button and search for `Function App`. Fill out the details and take note of the `App name` and `Resource Group` values as we will need to add them to our Octopus project shortly. When the Function App has been created, open it up and go to the `Function App Settings` page and enable slots. This feature is currently marked as "preview", and while not necessary, it will allow us to create a Blue\Green deployment pattern. With this strategy, we first deploy to one slot and confirm that it's configured and running correctly before swapping it around with the "Production" slot. The term "Production" in this case is different to a "Production environment" from an Octopus Environments point of view. It simply refers to the fact that the given Azure Function has multiple endpoints which can be configured independently. With the feature enabled, create a new slot called `Blue`.
 
 ![CreateFunction](create_function.png)
 
@@ -97,7 +97,7 @@ We will now create the project in Octopus deploy that will push our package to A
 > **NOTE:** The appropriate model for deploying Azure Functions across multiple environments in Octopus Deploy is to have a **separate Azure Function for each environment**. This allows us to safely configure the Functions at each stage without risking changes leaking across environments. It is recommended that you _do not_ try and use multiple slots on a single function to model environments. Azure functions are cheap and cost you nothing except for when being used so **there is no reason to try and "squeeze" them together as is sometimes done with other cloud resources.**
 
 ### Add Variables
-Since we will need to script out a couple of post-deployment steps to deal with slot-swapping, putting all the configuration into the variables section of the project allows us to consolidate them all in one place, and vary them across environments. In the case of a standard deployment lifecycles we would typically use different Azure ResourceGroups and/or Azure Function Apps across the different Octopus environments.
+Since we will need to script out a couple of post-deployment steps to deal with slot-swapping, putting all the configuration into the variables section of the project allows us to consolidate them all in one place, and vary them across environments. In the case of a standard deployment lifecycles, we would typically use different Azure ResourceGroups and/or Azure Function Apps across the different Octopus environments.
 
 For our simple one environment scenario these values are:
 
@@ -157,11 +157,11 @@ Once this and the preceding step is run during a deployment, the `Blue` slot wil
 ![Live Browser](live_browser.png)
 
 ### Step 3 - SwapSlot
-There is another existing step that was built for Azure Web Apps which we can also put to good use with Azure Functions. Add a new step and search for the `Switch Azure Staging Deployment Slot` step in the step library. Provide the variables for `ResourceGroupName`, `AppName` and `SlotName` that was provided in the first step above. For `AzureAccount` field, you will currently need to get the account ID for the azure account you have configured in Octopus. This can be seen in the url when you view the account through the Octopus Portal. In the coming weeks we expect this requirement to go away as we provide a typed variable for Azure Accounts in the same way that we have done for AWS Accounts.
+There is another existing step that was built for Azure Web Apps which we can also put to good use with Azure Functions. Add a new step and search for the `Switch Azure Staging Deployment Slot` step in the step library. Provide the variables for `ResourceGroupName`, `AppName` and `SlotName` that was provided in the first step above. For `AzureAccount` field, you will currently need to get the account ID for the Azure account you have configured in Octopus. This can be seen in the URL when you view the account through the Octopus Portal. In the coming weeks, we expect this requirement to go away as we provide a typed variable for Azure Accounts in the same way that we have done for AWS Accounts.
 
 ![Step 2: Slot Swap](step2_slot_swap.png)
 
-The `SmokeTest` configuration will simply hit the host address of the function and although it is more relevant for warming up Web Apps, it doesn't hurt to make sure the function has deployed successfully.
+The `SmokeTest` configuration will simply hit the host address of the function, and although it is more relevant for warming up Web Apps, it doesn't hurt to make sure the function has deployed successfully.
 
 ## Deploy
 With each deployment the `Blue` slot will act as the update target, and then the external pointer to the two different slots will be switched around (remember it's effectively a _name_ swap, the content itself does not move around). If the new deployment starts encountering problems, the option is available to swap the slots _back_ around so that traffic is again delivered to the previous version (though we always encourage the roll forward approach where possible).
@@ -169,4 +169,4 @@ With each deployment the `Blue` slot will act as the update target, and then the
 ![Slot Swap](slot_swap.png "width=800")
 
 ## Azure Functions in Octopus
-As we have seen, although Azure Functions provide a new mechanism to develop and host code, the underlying infrastructure is largely built upon the Azure WebSites offering and so it _already_ works within Octopus Deploy out-of-the-box. Managing these deployments through Octopus provide a simple and easy to understand process that allows anyone to leverage the power of this new "serverless" approach to computing. With our future plans to provide first class support for AWS Lambdas soon, there is no excuse to not give these new offerings a try.
+As we have seen, although Azure Functions provide a new mechanism to develop and host code, the underlying infrastructure is largely built upon the Azure WebSites offering and so it _already_ works within Octopus Deploy out-of-the-box. Managing these deployments through Octopus provides a simple and easy to understand process that allows anyone to leverage the power of this new "serverless" approach to computing. With our future plans to provide first class support for AWS Lambdas soon, there is no excuse to not give these new offerings a try.
