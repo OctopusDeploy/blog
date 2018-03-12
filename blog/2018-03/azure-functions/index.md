@@ -2,10 +2,15 @@
 title: "Deploying Azure Functions with Octopus Deploy"
 description: "Connecting GitHub WebHooks to Octopus for release creation is easy using Azure Functions (which can itself be deployed in Octopus)"
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
+published: 2018-03-13
+metaImage: metaimage-azurefunctions.png
+bannerImage: blogimage-azurefunctions.png
 tags:
  - New Releases
 ---
+
+![Azure Functions in the Cloud](blogimage-azurefunctions.png)
 
 According to many cloud providers, the **serverless computing** application model is the way of the future (citation needed). AWS Lambdas and Azure Functions both allow you to write code that costs you for the actual usage that they incur. While this means that now you will be forced to literally pay for writing sloppy code, it also allows you to write and deliver loosely-coupled services which only add to your bill when that code is executing and costs nothing when idle.
 
