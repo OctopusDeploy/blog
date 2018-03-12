@@ -47,7 +47,7 @@ Replace the generated class with the following.
         }
     }
 ```
-When invoked this function will pull variables named `MyName` and `Release` and return them to the user in a JSON response.
+When invoked, this function will pull variables named `MyName` and `Release` and return them to the user in a JSON response.
 
 Open the `local.settings.json` file in the solution explorer and add the following properties.
 ```json
@@ -55,7 +55,7 @@ Open the `local.settings.json` file in the solution explorer and add the followi
   "IsEncrypted": false,
   "Values": {
     "MyName": "Steve",
-    "Release":  "0.0.0" 
+    "Release":  "0.0.0"
   }
 }
 ```
@@ -68,7 +68,7 @@ These value as used during local development. If you run the solution from Visua
 
 ### Packaging for Octopus
 
-Unfortunately due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octopack) generated NuGet package will not work. The configuration files for the functions are generated _after_ the build phase, which is when Octopack is configured to kick in. We would recommend using `dotnet publish` to publish the project to a directory then package up the generated files.
+Unfortunately, due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octopack) generated NuGet package will not work. The configuration files for the functions are generated _after_ the build phase, which is when Octopack is configured to kick in. We would recommend using `dotnet publish` to publish the project to a directory then package up the generated files.
 
 ![folder](folder.png "width=500")
 
@@ -87,19 +87,19 @@ octo push --server=http://myoctopusserver.acme.com --apiKey=API-ABC123IS4XQUUOG9
 ## Creating the Azure Function
 Although I could use the `Deploy an Azure Resource Group` step in a separate deployment project to spin up an Azure function, to keep this demo simple I'll just be creating the function through the Azure portal directly.
 
-From the portal click the `Create a resource` button and search for `Function App`. Fill out the details and take note of the `App name` and `Resource Group` values as we will need to add them into our Octopus project shortly. When the Function App has been created, open it up and go to the `Function App Settings` page and enable slots. This feature is currently marked as "preview" and while not necessary, it will allow us to create a Blue\Green deployment pattern. With this strategy we first deploy to one slot and confirm that it's configured and running correctly before swapping it around with the "Production" slot. The term "Production" in this case is different to a "Production environment" from an Octopus Environments point of view. It simply refers to the fact that the given Azure Function has multiple endpoints which can be configured independently. With the feature enabled create a new slot called `Blue`.
+From the portal, click the `Create a resource` button and search for `Function App`. Fill out the details and take note of the `App name` and `Resource Group` values as we will need to add them into our Octopus project shortly. When the Function App has been created, open it up and go to the `Function App Settings` page and enable slots. This feature is currently marked as "preview" and while not necessary, it will allow us to create a Blue\Green deployment pattern. With this strategy we first deploy to one slot and confirm that it's configured and running correctly before swapping it around with the "Production" slot. The term "Production" in this case is different to a "Production environment" from an Octopus Environments point of view. It simply refers to the fact that the given Azure Function has multiple endpoints which can be configured independently. With the feature enabled create a new slot called `Blue`.
 
 ![CreateFunction](create_function.png)
 
 ## Creating an Octopus Project
 We will now create the project in Octopus deploy that will push our package to Azure with a Blue\Green deployment strategy and at the same time provide the appropriately scoped variables for use inside our function.
 
-> **NOTE:** The appropriate model for deploying Azure Functions across multiple environments in Octopus Deploy is to have a **separate Azure Function for each environment**. This allows us to safely configure the Functions at each stage without risking changes leaking across environments. It is recommended that you _do not_ try and use multiple slots on a single function to model environments. Azure functions are cheap and cost you noting except for when being used so **there is no reason to try and "squeeze" them together as is sometimes done with other cloud resources.**
+> **NOTE:** The appropriate model for deploying Azure Functions across multiple environments in Octopus Deploy is to have a **separate Azure Function for each environment**. This allows us to safely configure the Functions at each stage without risking changes leaking across environments. It is recommended that you _do not_ try and use multiple slots on a single function to model environments. Azure functions are cheap and cost you nothing except for when being used so **there is no reason to try and "squeeze" them together as is sometimes done with other cloud resources.**
 
 ### Add Variables
 Since we will need to script out a couple of post-deployment steps to deal with slot-swapping, putting all the configuration into the variables section of the project allows us to consolidate them all in one place, and vary them across environments. In the case of a standard deployment lifecycles we would typically use different Azure ResourceGroups and/or Azure Function Apps across the different Octopus environments.
 
-For our simple 1 environment scenario these values are:
+For our simple one environment scenario these values are:
 
     - AzureFunctionName = "OctoAcmeFunction"
     - AzureResourceGroupName = "OctoAcmeRG"
@@ -125,7 +125,7 @@ Create a `Run an Azure PowerShell Script` step and provide the following script:
 ```powershell
 function UpdateAppSettings {
  param( [string]$ResourceGroup, [string]$FunctionAppName, [string]$Slot, [hashtable]$AppSettings )
- 
+
     Write-Host "Loading Existing AppSettings"
     $webApp = Get-AzureRmWebAppSlot -ResourceGroupName  $ResourceGroup -Name $FunctionAppName -Slot $Slot
 
@@ -152,16 +152,16 @@ UpdateAppSettings -AppSettings @{"MyName" = $OctopusParameters["MyName"]; Releas
 
 Notice how we have provided the Octopus variables that we want to be applied to the AppSettings. This allows us to be precise about what our function needs rather than blindly passing across _all_ Octopus variables and assuming that _something might_ be needed.
 
-Once this and the preceeding step are run during a deployment, the `Blue` slot will have been updated with the latest package and its variables. The previously deployed version of this Function (assuming this is not the first time the process ran) will still be available from the `Production` slot. All traffic to `https://octoacmefunction.azurewebsites.net/api/ReticulateSplines` will still go to the previous version, but the endpoint at `https://octoacmefunction-blue.azurewebsites.net/api/ReticulateSplines` will now use the new deployment which we can test and make sure it all works as expected. The next step will then swap these slots around so that requests without the slot name go to what we currently have deployed in the `Blue` slot.
+Once this and the preceding step is run during a deployment, the `Blue` slot will have been updated with the latest package and its variables. The previously deployed version of this Function (assuming this is not the first time the process ran) will still be available from the `Production` slot. All traffic to `https://octoacmefunction.azurewebsites.net/api/ReticulateSplines` will still go to the previous version, but the endpoint at `https://octoacmefunction-blue.azurewebsites.net/api/ReticulateSplines` will now use the new deployment which we can test and make sure it all works as expected. The next step will then swap these slots around so that requests without the slot name go to what we currently have deployed in the `Blue` slot.
 
 ![Live Browser](live_browser.png)
 
 ### Step 3 - SwapSlot
-There is another existing step that was built for Azure Web Apps which we can also put to good use with Azure Functions. Add a new step and search for the `Switch Azure Staging Deployment Slot` step in the step library. Provide the variables for `ResourceGroupName`, `AppName` and `SlotName` that was provided in the first step above. For `AzureAccount` field, you will currently need to get the account Id for the azure account you have configured in Octopus. This can bee seen in the url when you view the account through the Octopus Portal. In the coming weeks we expect this requirement to go away as we provide a typed variable for Azure Accounts in the same way that we have done for AWS Accounts.
+There is another existing step that was built for Azure Web Apps which we can also put to good use with Azure Functions. Add a new step and search for the `Switch Azure Staging Deployment Slot` step in the step library. Provide the variables for `ResourceGroupName`, `AppName` and `SlotName` that was provided in the first step above. For `AzureAccount` field, you will currently need to get the account ID for the azure account you have configured in Octopus. This can be seen in the url when you view the account through the Octopus Portal. In the coming weeks we expect this requirement to go away as we provide a typed variable for Azure Accounts in the same way that we have done for AWS Accounts.
 
 ![Step 2: Slot Swap](step2_slot_swap.png)
 
-The `SmokeTest` configuration will simply hit the host address of the function and although is more relevant for warming up Web Apps, it doesn't hurt to make sure the function had deployed successfully.
+The `SmokeTest` configuration will simply hit the host address of the function and although it is more relevant for warming up Web Apps, it doesn't hurt to make sure the function has deployed successfully.
 
 ## Deploy
 With each deployment the `Blue` slot will act as the update target, and then the external pointer to the two different slots will be switched around (remember it's effectively a _name_ swap, the content itself does not move around). If the new deployment starts encountering problems, the option is available to swap the slots _back_ around so that traffic is again delivered to the previous version (though we always encourage the roll forward approach where possible).
