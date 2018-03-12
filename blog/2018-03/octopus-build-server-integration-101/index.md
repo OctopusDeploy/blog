@@ -3,7 +3,7 @@ title: "Integration 101: Octopus and Build Servers"
 description: "A brief introduction on how to approach your brand new integration between Octopus and your Build Server"
 author: dalmiro.granas@octopus.com
 visibility: private
-published: 2018-03-14
+published: 2018-03-15
 metaImage: metaimage-cloudsaving.png
 bannerImage: blogimage-buildserver.png
 tags:
@@ -68,7 +68,7 @@ To consider this step done, you should be able to get a successful build followi
 
 **1.2) Get your build output packaged up -** In this step you should be packaging up the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). The only key recommendation here is that you version the package with the same version number of the build that's creating it. So if you are building the project `MyWebApp` and you are running the build `1.0.6`, your package should end up being `MyWebApp.1.0.6.zip`
 
-![Package version == build version](packageVersion.png)
+![Package version == build version](package-version.png)
 
 You can do this in the same build step where you are building your app (if you are using [Cake](https://cakebuild.net/) for example) or you could have a dedicated build step just for it. Unless I'm using something like Cake, I like to have a dedicated step because its easier to spot if the build failed during the packaging process, the build or any other step I'm running.
 
@@ -86,7 +86,7 @@ We are also going to split this stage into a couple of steps:
 
 Once you have the package, push it to the [Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository#PushingpackagestotheBuilt-Inrepository-UsingtheOctopuswebportal) and make sure you can see it in the web portal under `Library -> Packages`
 
-![Package in repository](packageInRepository.png)
+![Package in repository](package-in-repository.png)
 
 You only need 1 package for the next step which you'll be using over and over until you get the Deployment Process right. If your deployment process will be using more than one package, repeat this process for each package you'll be needing.
 
