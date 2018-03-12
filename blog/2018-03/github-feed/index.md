@@ -87,7 +87,7 @@ There are plans afoot to provide real Git-as-a-feed support where commits\branch
 
 One of the other points mentioned above is the lack of hooks from GitHub to trigger releases and deployments. Due to the nature of many of our customer's networks, calling in from the outside world is not always available. As a result, we will consider other mechanisms to support ARC from external feeds that are more practical.
 
-## Git as a Package Feed
+## GitHib as a Package Feed
 We are excited about the opportunities this new feed type brings to Octopus users. Using GitHub as the source of some of your deployment dependencies will encourage simplifying your CI pipeline and allow better versioning without the superfluous effort and time required to packaging up resources that don't really need to be packaged. Let us know your thoughts about this new direction and how it might come in handy in your deployment processes.
 
 ![NoBuild](nobuild.png "width=800")
