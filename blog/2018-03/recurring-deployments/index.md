@@ -3,7 +3,7 @@ title: "Recurring Scheduled Deployments"
 description: "We are introducing the ability to schedule recurring deployments."
 author: michael.richardson@octopus.com
 visibility: private
-published: 2018-03-01
+published: 2018-03-21
 tags:
  - New Releases
 ---
@@ -57,6 +57,6 @@ Bonus Octopus points for anyone who configures the schedule below ;)
 
 ## When?
 
-Recurring deployments be available in Octopus version 2018.3.0, which will be released approximately the 6th of March. 
+Recurring deployments be available in Octopus version 2018.4.0, which will be released early April. 
 
 Happy _recurring_ deployments!
