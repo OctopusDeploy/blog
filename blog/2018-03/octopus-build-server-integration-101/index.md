@@ -21,9 +21,7 @@ In my 3 years providing support to our users at Octopus, *"Integrating Octopus w
 
 This blog post is aimed for users that are just starting their journey integrating Octopus into their continuous integration (CI) pipeline. If you already have this up and running, there might not be too much value for you here :)
 
-## In this post
-
-!toc
+ !toc
 
 ## Separation of Concerns
 
@@ -53,18 +51,17 @@ The below are two (very simplified) lists of what each tool's role should be in 
 
 One of the most common mistakes I've seen people make when starting this task was to try to configure too many things at the same time, without fully understanding what each tool brings to the table. In this blogpost I'm not gonna share any details and how to set things up (we have great documentation for that). Instead, I want this blogpost to work as a guideline/checklist that'll help you get this task done in an ordered fashion.
 
-We're gonna split this task into 3 well delimited stages:  **The Build**, **The Deployment** & **The Glue**. Each stage will have its own **end goal** that we are going to focus on.
+We're gonna split this task into 3 well delimited stages:  **The Build**, **The Deployment** & **The Integration**. Each stage will have its own **End Goal** that we are going to focus on.
 
 :::hint
 **Working with a teammate?**
 Stages **1** and **2** can we worked on in any order, because they won't be touching each other until we reach stage 3. This means that if you are working with a teammate on this integration, he could be focusing in stage **1** while you focus in stage **2** (you could even bet a beer to see who finishes first).
 :::
 
-### Stage 1: The build
+### Stage 1: The Build
 
 :::success
-**End goal**
-By the end of this stage, you should be able to run a successful build of your application, and as a result you should have a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages) that contains your build output. The package will only be sitting in a folder on your build agent for now.
+**End goal:** By the end of this stage, you should be able to run a successful build of your application, and as a result you should have a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages) that contains your build output. The package will only be sitting in a folder on your build agent for now.
 :::
 
 We are going to split this stage into 2 steps:
@@ -76,21 +73,16 @@ To consider this step done, you should be able to get a successful build followi
 - The build output must be sent to a fixed folder. Every build tool out there has a parameter that allows you to send the output to a directory of your choice. My recommendation is that you send it to a folder called `Build` or `Output` that sits at the root of your build's `WorkDir`.
 - The content in that folder should be structured exactly like you expect it to be deployed to its destination. For example if your Website/Pass platform expects a `web.config` and an `index.html` file at the root, then those 2 files should also be at the root of this folder.
 
-**1.2) Get your build output packaged up -** In this step you should be packaging up the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). The only key recommendation here is that you version the package with the same version number of the build that's creating it. So if you are building the project `SupportFlow` and you are running the build `1.0.78`, your package should end up being `SupportFlow.1.0.78.zip`
+**1.2) Get your build output packaged up -** In this step you should be packaging up the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). We strongly recommend you to use one of the "Pack application" steps [provided by our plugins](#A-few-words-about-build-server-plugins). If you are not using one of the build servers with a plugin built by our team, you can add a "script" step to your build that runs [Octo.exe pack](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe) to achieve the same.
+
+The only key recommendation here is that you version the package with the same version number of the build that's creating it. So if you are building the project `SupportFlow` and you are running the build `1.0.78`, your package should end up being `SupportFlow.1.0.78.zip`
 
 ![Package version == build version](package-version.png)
-
-You can do this in the same build step where you are building your app (if you are using [Cake](https://cakebuild.net/) for example) or you could have a dedicated build step just for it. Unless I'm using something like Cake, I like to have a dedicated step because its easier to spot if the build failed during the packaging process, the build or any other step I'm running.
-
-By the end of this step you should have a package with the same version as your build, and inside of it should be a copy of your compiled application ready to be deployed to its destination(*).
-
-*(&ast;) you might have to manually modify some configuration values if you want to test this manually. I strongly recommend you to do this once just to make sure your packages are good to go for the next phases.*
 
 ### Stage 2: The Deployment
 
 :::success
-**End goal**
-By the end of this stage you should be able to create a release in Octopus and trigger a successful deployment of your application from the command line using [Octo.exe](https://octopus.com/docs/api-and-integration).
+**End goal:** By the end of this stage you should be able to create a release in Octopus and trigger a successful deployment of your application from the command line using [Octo.exe](https://octopus.com/docs/api-and-integration).
 :::
 
 We are also going to split this stage into a couple of steps:
@@ -129,36 +121,52 @@ Every single build server integration out there (at least the ones built by the 
 
 ### Stage 3: The Integration
 
-Now this stage is where we'll put together everything we did in the two previous phases. For this reason its necessary that you finish both of them successfully.
+Now this stage is where we'll put together everything we did in the two previous stages. For this reason its necessary that you finish both of them successfully.
 
 :::success
-**End goal**
-By the end of this stage, you should be able to add a new step to your build process that triggers a deployment in Octopus.
+**End goal**: By the end of this stage, you should be able to add a new step to your build process that triggers a deployment in Octopus.
 :::
 
-If you are using any of the below build servers, then we recommend you to install the plugin/extension mentioned in the link, which will add a few new steps/runners for you to use in your build process. As mentioned before, these new steps will only be UI wrappers around `Octo.exe`, so most of the fields you'll be filling in them should be very similar to the parameters you used in `2.3`
+If you are using any of [the build servers mentioned in the below section](#A-few-words-about-build-server-plugins), then we recommend you to install the plugin/extension for it so you can use it in the below steps.
 
-- [VSTS/TFS](https://octopus.com/docs/api-and-integration/tfs-vsts)
-- [TeamCity](https://octopus.com/docs/api-and-integration/teamcity)
-- [Bamboo](https://octopus.com/docs/api-and-integration/bamboo)
-- AppVeyor (coming soon)
+**3.1)Push the package to a repository from the build:** In `1.2` you created a package from your build, but until that point the package was just sitting on your build agent. In this step you'll need to tweak your build process in order that *after* creating the package, it pushes it to your package repository. 
 
-Once you install the right extension, add a new step to your build process to trigger a deployment in Octopus. The below list shows the name of the step you should be using depending on your build server:
+Depending on whether you are using one of our plugins or not, and if you are using the Octopus built-in repository to store your packages or not, you'll need to use one of the below approaches:
 
-| Build Server        | Step Name|
-|:-------------:|:-------------|
-| **VSTS/TFS**      | "Create Octopus Release" |
-| **TeamCity**      | "Octopus Deploy: Create Release" |
-| **Bamboo**      | "Octopus Deploy: Create Release" |
+| Using Plugin | Using built-in repository | Recommended Approach |
+| :-----------------: | :-----------------: | :-----------------: |
+| Yes | Yes | Use the step with the words "Push package" on its name provided by the plugin |
+| Yes | No | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) |
+| No | Yes | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) or [Octo.exe push](https://octopus.com/docs/api-and-integration/octo.exe-command-line/pushing-packages)  |
 
-If you are not using one of the above build servers, don't worry! The knowledge you gained in `2.3` should be more than enough for you to be able to add a Powershell/Bash script step to your build process that runs the same `Octo.exe` command that you already used.
+**3.2)Create a Release/Deployment in Octopus from the build:**
+
+If you are using one of our build server plugins, look for a step with the words "Create Release" on its name.
+
+If you are not using one of the build servers mentioned below, don't worry! The knowledge you gained in `2.3` should be more than enough for you to be able to add a Powershell/Bash script step to your build process that runs the same `Octo.exe` command that you already used. To do this, you'll need `Octo.exe` sitting on your build agent at build time. You can achieve that using [this NuGet package](https://www.nuget.org/packages/OctopusTools/) or [this Chocolatey package](https://chocolatey.org/packages/octopustools).
 
 :::hint
 **Pro Tip**
 Every one of the "Create Release" steps provided by the plugins/extensions will have a checkbox called "Show deployment progress" or similar. If you check that box, your build server will keep the connection open with your Octopus deployment, and it will show you the output of it in your build log. Additionally, if your deployment fails, that step in your build process will also fail. This last bit is extremely handy as you'll know by just looking at your build if the deployment in Octopus failed or not.
 
-If you are using a raw Octo.exe call, then the equivalent of this feature is the `--progress` parameter.
+If you are using a raw `Octo.exe` call, the equivalent of this feature is the `--progress` parameter.
 :::
+
+:::warning
+If you run into issues with this step, check our [troubleshooting guide](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers) to get some ideas on how to fix it or to learn how to properly ask for help in our forums.
+:::
+
+### A few words about Build Server Plugins
+
+If you check our [API and Integration documentation](https://octopus.com/docs/api-and-integration), you'll notice that our team built a few plugins for some of the most popular build servers out there. These plugins extend the functionality of your build server, by adding some custom steps to do things with Octopus, such as triggering deployments and pushing packages. The below list has links to each plugin documentation, along with the list of steps that each plugin provides.
+
+| Build Server | Step Names                        |
+| :----------: | :-------------------------------: |
+| [VSTS/TFS](https://octopus.com/docs/api-and-integration/tfs-vsts) | "Create Octopus Release","Deploy Octopus Release","Promote Octopus Release","Package Application","Push Package to Octopus" |
+| [TeamCity](https://octopus.com/docs/api-and-integration/teamcity) | "Create Release","Deploy Release","Promote Release","Push Package"(also packs) |
+| [Bamboo](https://octopus.com/docs/api-and-integration/bamboo)  | "Create Release","Deploy Release","Pack Package","Push Packages" |
+
+Behind the scenes, all these steps really do is provide a UI to then run `Octo.exe` in the background. So if you are familiar with `Octo.exe` already, you'll be able to understand how each of these steps work a lot easier.
 
 ---------------
 
