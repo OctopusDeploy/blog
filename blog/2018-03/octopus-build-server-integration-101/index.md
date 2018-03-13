@@ -177,7 +177,7 @@ If you check our [API and Integration documentation](https://octopus.com/docs/ap
 | [TeamCity](https://octopus.com/docs/api-and-integration/teamcity) | "Create Release","Deploy Release","Promote Release","Push Package"(also packs) |
 | [Bamboo](https://octopus.com/docs/api-and-integration/bamboo) | "Create Release","Deploy Release","Pack Package","Push Packages" |
 
-Behind the scenes, all these steps really do is provide a UI for you to pass values, which will later on be passed to `Octo.exe` during your build. So if you are not using any of the above build servers, you can simply use `Octo.exe` from a script step in your build process.
+Behind the scenes, these steps are really just UI wrappers around `Octo.exe`. So if you are not using any of the above build servers, you can simply use `Octo.exe` from a script step in your build process to achieve the same results.
 
 ---------------
 
