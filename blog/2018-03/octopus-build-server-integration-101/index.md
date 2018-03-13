@@ -66,7 +66,7 @@ Stages **1** and **2** can we worked on in any order, because they won't be touc
 
 We are going to split this stage into 2 steps:
 
-**1.1) Get your project building successfully** 
+#### 1.1) Get your project building successfully
 
 I've seen this step scare many developers, mostly because it forces them to deal with that black box they've been using for a while called "Build Configuration". It's very common in development teams that only 1-2 devs actually know how their build works, and the rest simply click on "Run" and hope for the best.  If you are in the latter group, this might be a good moment to change that situation and pair up with a teammate to learn how your build process works.
 
@@ -165,7 +165,7 @@ If you are using a raw `Octo.exe` call, the equivalent of this feature is the `-
 If you run into issues with this step, check our [troubleshooting guide](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers) to get some ideas on how to fix it or to learn how to properly ask for help in our forums.
 :::
 
-### A few words about Build Server Plugins
+## A few words about Build Server Plugins
 
 If you check our [API and Integration documentation](https://octopus.com/docs/api-and-integration), you'll notice that our team built a few plugins for some of the most popular build servers out there. These plugins extend the functionality of your build server, by adding some custom steps to do things with Octopus, such as triggering deployments and pushing packages. The below list has links to each plugin documentation, along with the list of steps that each plugin provides.
 
