@@ -23,6 +23,7 @@ This blog post is aimed for users that are just starting their journey integrati
 
  !toc
 
+
 ## Separation of Concerns
 
 In a way, Octopus and every build server technology out there can seem pretty similar at a first glance. A few things in common they have are:
@@ -34,6 +35,7 @@ But that's pretty much where the similarities stop. If you want to integrate any
 
 The below are two (very simplified) lists of what each tool's role should be in an ideal CI pipeline.
 
+
 ### What should the build server do?
 
 - **Compile your binaries**. This means running `MSBuild`,`NPM`,`javac`,`dotnet.exe`, etc, and dropping your compiled app to a folder on the build agent.
@@ -41,11 +43,15 @@ The below are two (very simplified) lists of what each tool's role should be in 
 - **Pack and Push your app to a repository**. Once the tests passed, create a package with the output of your build and push it to your repository.
 - **Call the next tool in the CI pipeline**. In our case we'll be calling Octopus to tell it to create and deploy a release.
 
+
 ### What should Octopus do?
 
 - **Provision infrastructure (optional)**. If you need to create an `Azure WebApp`, an `Elastic Beanstalk` instance, scale up a VM set, create an IIS/Tomcat website or anything that's related to setting up *the place* where you'll be putting your compiled code, adding this task as one of the first steps in your Octopus deployment process is a very good idea. Octopus currently supports [Terraform](https://octopus.com/docs/deploying-applications/terraform-deployments), [AWS CloudFormation](https://octopus.com/docs/deploying-applications/aws-deployments/cloudformation) and [Azure RM Templates](https://octopus.com/docs/deploying-applications/azure-deployments/resource-groups) for this.
 - **Set configuration values in your application before deployment**. Ideally, the content of your package should be deployable to *any* environment in your lifecycle, and the only thing that should be different are environment-specific configuration values such as connection strings, passwords/API Keys, etc. Octopus has [a wide set of features](https://octopus.com/docs/deployment-process/configuration-files) to deal with configuration modifications as deployment time that can be used for this.
 - **Deploy your Application**.
+
+
+
 
 ## So how should I start integrating Octopus into my CI pipeline?
 
