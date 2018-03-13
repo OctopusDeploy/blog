@@ -21,8 +21,8 @@ In my 3 years providing support to our users at Octopus, *"Integrating Octopus w
 
 This blog post is aimed for users that are just starting their journey integrating Octopus into their continuous integration (CI) pipeline. If you already have this up and running, there might not be too much value for you here :)
 
+## In this post
  !toc
-
 
 ## Separation of Concerns
 
@@ -67,8 +67,6 @@ Stages **1** and **2** can we worked on in any order, because they won't be touc
 **End goal:** By the end of this stage, you should be able to run a successful build of your application, and as a result you should have a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages) that contains your build output pushed to a package repository.
 :::
 
-We are going to split this stage into 2 steps:
-
 #### 1.1 - Get your project building successfully
 
 I've seen this step scare many developers, mostly because it forces them to deal with that black box they've been using for a while called "Build Configuration". It's very common in development teams that only 1-2 devs actually know how their build works, and the rest simply click on "Run" and hope for the best.  If you are in the latter group, this might be a good moment to change that situation and pair up with a teammate to learn how your build process works.
@@ -80,7 +78,7 @@ To consider this step done, you should be able to get a successful build followi
 
 #### 1.2 - Get your build output packaged up and pushed to a repository
 
-In this step you'll be packaging up the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages), and then you'll be pushing that package to a repository from where Octopus will pick it up.
+In this step you'll be packaging up the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). Then you'll be pushing that package to a repository where Octopus will pick it up.
 
 Depending on whether you are using [one of our plugins](#a-few-words-about-build-server-plugins-and-octoexe) or not, and if you are using [the Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories#Packagerepositories-Usingthebuilt-inrepository) to store your packages or not, you'll need to use one of the below approaches:
 
@@ -108,17 +106,15 @@ The only key recommendation here is that you version the package with the same v
 **End goal:** By the end of this stage you should be able to create a release in Octopus and trigger a successful deployment of your application from the command line using [Octo.exe](https://octopus.com/docs/api-and-integration).
 :::
 
-We are also going to split this stage into a couple of steps:
-
 #### 2.1 - Upload a test package to your repository
 
-If you already finished step `1.2`, that means you already have a package in your repository, so you can skip to the next step. If you haven't finished that step yet, simply compile your app locally and package the output using [Octo.exe pack](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe). Once you have the package, push it to the [Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository#PushingpackagestotheBuilt-Inrepository-UsingtheOctopuswebportal) and make sure you can see it in the web portal under `Library -> Packages`
+If you already finished step `1.2`, that means you already have a package in your repository, so you can skip to the next step. If you haven't finished that step yet, simply compile your app locally and package the output using [Octo.exe pack](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe). Once you have a package, push it to the [Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository#PushingpackagestotheBuilt-Inrepository-UsingtheOctopuswebportal) and make sure you can see it in the web portal under `Library -> Packages`
 
 You only need 1 package for the next step, which you'll be using over and over until you get the Deployment Process right. If your deployment process will be using more than one package (perhaps deploying a *WebApp* and a *Cloud Service* separately ), repeat this process for each package you'll be needing.
 
 #### 2.2 - Design your deployment process and run it
 
-Now here's where you finally start doing things in Octopus. We won't get into too much detail here, because [that's what our documentation is for](https://octopus.com/docs/deploying-applications). But the overall idea of this step is that you setup your Deployment Process in Octopus using the packages you uploaded in `2.1`, and that you are able to run it successfully through the UI.
+Now here's where you finally start doing things in Octopus. We won't get into too much detail here, because [that's what our documentation is for](https://octopus.com/docs/deploying-applications). But the overall idea of this step is that you'll setup your Deployment Process in Octopus to deploy the packages mentioned in `2.1`. Once you do this, you should be able to trigger a successfull deployment from the Octopus web portal manually.
 
 If this is your first time setting up your Octopus project, this probably is the step where you'll be spending most of your time. At this point don't bother too much about the version number of the packages you are using or the release number in Octopus. The sole purpose of this step is that you get comfortable with your Deployment Process and that you fully understand what each step brings to the table.
 
@@ -128,7 +124,7 @@ So sit back and trigger as many deployments as you need :)
 
 In the previous step you learned how to create a release and trigger a deployment from the Web Portal. The goal of this step is that you learn to do the same thing, but using `Octo.exe`.
 
-If you don't know about this CLI tool, the TLDR is that its a command line application that talks to the [Octopus API](https://octopus.com/docs/api-and-integration/api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/api-and-integration/octo.exe-command-line)
+If you don't know about this CLI tool, the TLDR is that its a command line application that talks to the [Octopus API](https://octopus.com/docs/api-and-integration/api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/api-and-integration/octo.exe-command-line).
 
 The command you should be paying attention to is [create-release](https://octopus.com/docs/api-and-integration/octo.exe-command-line/creating-releases). A few tips about this command:
 
@@ -154,9 +150,15 @@ If you are using one of our build server plugins, look for a step with the words
 
 If you are not using one of your plugins, don't worry! The knowledge you gained in `2.3` should be more than enough for you to be able to add a Powershell/Bash script step to your build process that runs the same `Octo.exe` command that you already used. To do this, you'll need `Octo.exe` sitting on your build agent at build time. You can achieve by adding [this NuGet package](https://www.nuget.org/packages/OctopusTools/) or [this Chocolatey package](https://chocolatey.org/packages/octopustools) as dependencies.
 
+Regardless if you are using the plugin step, or a raw `Octo.exe` call, the main values you'll need to pass are:
+
+- The `Release Version`. We strongly recommend you to use your build number to set this value, so you always know which build triggered which release in Octopus.
+
+- The `Environment` you'll be deploying to.
+
 :::hint
 **Pro Tip**
-Every one of the "Create Release" steps provided by the plugins/extensions will have a checkbox called "Show deployment progress" or similar. If you check that box, your build server will keep the connection open with your Octopus deployment, and it will show you the output of it in your build log. Additionally, if your deployment fails, that step in your build process will also fail. This last bit is extremely handy as you'll know by just looking at your build if the deployment in Octopus failed or not.
+Every one of the "Create Release" steps provided by the plugins/extensions will have a checkbox called `Show Deployment Progress` or similar. If you check that box, your build server will keep the connection open with your Octopus deployment, and it will show you the output of it in your build log in real-time. Additionally, if your deployment fails, that step in your build process will also fail. This last bit is extremely handy as you'll know by just looking at your build if the deployment in Octopus failed or not.
 
 If you are using a raw `Octo.exe` call, the equivalent of this feature is the `--progress` parameter.
 :::
@@ -179,4 +181,6 @@ Behind the scenes, all these steps really do is provide a UI for you to pass val
 
 ---------------
 
-And that's it! I really hope this guide helps you integrate Octopus into your CI pipeline in a more organized fashion. Please keep in mind that
+And that's it! I really hope this guide helps you integrate Octopus into your CI pipeline in a more organized fashion. 
+
+Please keep in mind that this guide makes a lot of assumptions, and is mostly targetted to really basic CI pipelines. If you feel like your process won't fit in the process described here, [reach out in our support forum](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers#Octopus-Steps-Ask-for-help) and we'll give you a hand with it.
