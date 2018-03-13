@@ -148,7 +148,7 @@ Every single build server integration out there (at least the ones built by the 
 
 Now this stage is where we'll put together everything we did in the two previous stages. For this reason its necessary that you finish both of them successfully.
 
-#### 3.2 - Create a Release/Deployment in Octopus from the build
+#### 3.1 - Create a Release/Deployment in Octopus from the build
 
 If you are using one of our build server plugins, look for a step with the words "Create Release" on its name.
 
