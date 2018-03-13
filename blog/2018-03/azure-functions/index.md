@@ -1,6 +1,6 @@
 ---
 title: "Deploying Azure Functions with Octopus Deploy"
-description: "Connecting GitHub WebHooks to Octopus for release creation is easy using Azure Functions (which can itself be deployed in Octopus)"
+description: "Azure Functions can be deployed with Octopus Deploy using Web App deployment steps"
 author: robert.erez@octopus.com
 visibility: public
 published: 2018-03-13
