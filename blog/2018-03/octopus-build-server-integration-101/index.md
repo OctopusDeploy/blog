@@ -4,8 +4,8 @@ description: "A brief introduction on how to approach your brand new integration
 author: dalmiro.granas@octopus.com
 visibility: private
 published: 2018-03-14
-metaImage: metaimage-cloudsaving.png
-bannerImage: blogimage-buildserver.png
+metaImage: metaimage-integration101.png
+bannerImage: metaimage-integration101.png
 tags:
  - Integration
  - TeamCity
@@ -194,4 +194,4 @@ Behind the scenes, these steps are really just UI wrappers around `Octo.exe`. So
 
 And that's it! I really hope this guide helps you integrate Octopus into your CI pipeline in a more organized fashion.
 
-Please keep in mind that this guide makes a lot of assumptions, and is mostly targeted to really basic CI pipelines. If you feel like your process won't fit in the process described here, [reach out in our support forum](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers#Octopus-Steps-Ask-for-help) and we'll give you a hand with it.
+Please keep in mind that this guide makes a lot of assumptions, and is mostly targeted to really basic CI pipelines. If you feel like the steps described here won't fit your process, [reach out in our support forum](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers#Octopus-Steps-Ask-for-help) and we'll give you a hand with it.
