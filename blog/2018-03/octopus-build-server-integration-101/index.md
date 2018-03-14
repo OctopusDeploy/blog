@@ -26,7 +26,7 @@ This blog post is aimed at users who are just starting their journey integrating
 
 ## Separation of Concerns
 
-In a way, Octopus and every build server technology out there can seem pretty similar at a first glance. A few things they have in common are:
+In a way, Octopus and every build server technology out there can seem pretty similar at first glance. A few things they have in common are:
 
 - Both tools belong in CI pipelines and are aimed at helping development teams get their code out there faster and more reliably.
 - Both are basically process runners. You define a process filled with steps, you execute it, and magic happens.
@@ -38,7 +38,7 @@ The below are two (very simplified) lists of what each tool's role should be in 
 
 ### What Should the Build Server Do?
 
-- **Compile your binaries**. This means running `MSBuild`,`NPM`,`javac`,`dotnet.exe`, etc, and dropping your compiled app to a folder on the build agent.
+- **Compile your binaries**. This means running `MSBuild`,`NPM`,`javac`,`dotnet.exe`, etc., and dropping your compiled app to a folder on the build agent.
 - **Run tests**.
 - **Pack and push your app to a repository**. Once the tests passed, create a package with the output of your build and push it to your repository.
 - **Call the next tool in the CI pipeline**. In our case, we'll be calling Octopus to tell it to create and deploy a release.
@@ -53,11 +53,11 @@ The below are two (very simplified) lists of what each tool's role should be in 
 
 One of the most common mistakes I've seen people make when starting this task, is to configure too many things at the same time without fully understanding what each tool brings to the table. In this blog post, I'm not gonna share any details about how to set things up (we have great documentation for that). Instead, I want this post to work as a guideline/checklist that'll help you get this task done in an ordered fashion.
 
-We're gonna split this task into 3 well delimited stages:  **The Build**, **The Deployment** & **The Integration**. Each stage will have its own **End Goal** that we are going to focus on.
+We're gonna split this task into three well delimited stages:  **The Build**, **The Deployment** & **The Integration**. Each stage will have its own **End Goal** that we are going to focus on.
 
 :::hint
 **Working with a teammate?**
-Stages **1** and **2** can be worked on in any order, because they won't be touching each other until we reach stage **3**. This means, if you are working with a teammate on this integration, he could focus on stage **1** while you focus on stage **2** (you could even bet a beer to see who finishes first).
+Stages **1** and **2** can be worked on in any order because they won't be touching each other until we reach stage **3**. This means, if you are working with a teammate on this integration, he could focus on stage **1** while you focus on stage **2** (you could even bet a beer to see who finishes first).
 :::
 
 ### Stage 1 - The Build
@@ -70,14 +70,14 @@ Stages **1** and **2** can be worked on in any order, because they won't be touc
 
 I've seen many developers scared by this step, mostly because it forces them to deal with that black box they've been using for a while called "Build Configuration". It's very common in development teams that only 1-2 devs actually know how their build works, and the rest simply click on "Run" and hope for the best.  If you are in the latter group, this might be a good moment to change that situation and pair up with a teammate to learn how your build process works.
 
-To consider this step done, you should have a successful build following these 2 guidelines:
+To consider this step done, you should have a successful build following these two guidelines:
 
 - The build output must be sent to a fixed folder. Every build tool out there has a parameter that allows you to send the output to a directory of your choice. My recommendation is that you send it to a folder called `Build` or `Output` that sits at the root of your build's `WorkDir`.
-- The content in that folder should be structured exactly how you expect it to be deployed to its destination. For example, if your Website/PAAS expects a `web.config` and an `index.html` file at the root, then those 2 files should also be at the root of this folder.
+- The content in that folder should be structured exactly how you expect it to be deployed to its destination. For example, if your Website/PAAS expects a `web.config` and an `index.html` file at the root, then those two files should also be at the root of this folder.
 
 #### 1.2 - Get Your Build Output Packaged Up and Pushed to a Repository
 
-In this step you'll package the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). Then you'll push that package to a repository where Octopus will pick it up.
+In this step, you'll package the contents of the `output folder` mentioned in the previous step into a package of [any of the supported formats](https://octopus.com/docs/packaging-applications/supported-packages). Then you'll push that package to a repository where Octopus will pick it up.
 
 Depending on whether you are using [one of our plugins](#a-few-words-about-build-server-plugins-and-octoexe) or not, and if you are using [the Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories#Packagerepositories-Usingthebuilt-inrepository) to store your packages or not, you'll need to use one of the below approaches:
 
@@ -121,15 +121,15 @@ So sit back and trigger as many deployments as you need :)
 
 #### 2.3 - Create a Release and Trigger a Deployment Using Octo.exe
 
-In the previous step you learned how to create a release and trigger a deployment from the Web Portal. The goal of this step is that you learn to do the same thing, but using `Octo.exe`.
+In the previous step, you learned how to create a release and trigger a deployment from the Web Portal. The goal of this step is that you learn to do the same thing, but using `Octo.exe`.
 
 If you don't know about this CLI tool, here's the TL;DR, its a command line application that talks to the [Octopus API](https://octopus.com/docs/api-and-integration/api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/api-and-integration/octo.exe-command-line).
 
 The command you should be paying attention to is [create-release](https://octopus.com/docs/api-and-integration/octo.exe-command-line/creating-releases). A few tips about this command:
 
-- If you use the `--deployTo` parameter, it will not only create the release, but also deploy it to an environment. It basically combines the commands `create-release` and `deploy-release`.
-- use `--progress` to see the deployment log in the console at it executes. Otherwise the command will only create a task in Octopus, and you'll be forced to go to the Web Portal to see how the deployment went.
-- use `--whatIf` to see what would happen if you ran that command, without actually triggering anything in Octopus.
+- If you use the `--deployTo` parameter, it will not only create the release but also deploy it to an environment. It basically combines the commands `create-release` and `deploy-release`.
+- Use `--progress` to see the deployment log in the console at it executes. Otherwise, the command will only create a task in Octopus, and you'll be forced to go to the Web Portal to see how the deployment went.
+- Use `--whatIf` to see what would happen if you ran that command, without actually triggering anything in Octopus.
 
 :::hint
 Every single build server integration out there (at least the ones built by the Octopus team) is simply a UI wrapper around this CLI tool. So the knowledge you gain from this step will come in really handy on the next stage.
