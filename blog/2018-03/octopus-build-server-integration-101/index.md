@@ -188,13 +188,6 @@ If you check our [API and Integration documentation](https://octopus.com/docs/ap
   - Push Packages
 - **AppVeyor** (coming soon)
 
-|               Build Server               |                Step Names                |
-| :--------------------------------------: | :--------------------------------------: |
-| [VSTS/TFS](https://octopus.com/docs/api-and-integration/tfs-vsts) | "Create Octopus Release","Deploy Octopus Release","Promote Octopus Release","Package Application","Push Package to Octopus" |
-| [TeamCity](https://octopus.com/docs/api-and-integration/teamcity) | "Create Release","Deploy Release","Promote Release","Push Package"(also packs) |
-| [Bamboo](https://octopus.com/docs/api-and-integration/bamboo) | "Create Release","Deploy Release","Pack Package","Push Packages" |
-| **AppVeyor** (coming soon) | |
-
 Behind the scenes, these steps are really just UI wrappers around `Octo.exe`. So if you are not using any of the above build servers, you can simply use `Octo.exe` from a script step in your build process to achieve the same results.
 
 ---------------
