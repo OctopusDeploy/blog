@@ -5,6 +5,8 @@ author: michael.richardson@octopus.com
 visibility: private
 published: 2018-03-21
 tags:
+ - New Releases
+ - Cloud
 ---
 
 Octopus is a release-management and deployment-automation tool.  Not surprisingly, the concepts exposed in Octopus reflect this: Releases, Deployments, Environments, and _Targets_. 
