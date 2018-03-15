@@ -2,10 +2,10 @@
 title: "Integration 101: Octopus and Build Servers"
 description: "A brief introduction on how to approach your brand new integration between Octopus and your Build Server"
 author: dalmiro.granas@octopus.com
-visibility: private
-published: 2018-03-14
+visibility: public
+published: 2018-03-15
 metaImage: metaimage-integration101.png
-bannerImage: metaimage-integration101.png
+bannerImage: blogimage-integration101.png
 tags:
  - Integration
  - TeamCity
@@ -13,9 +13,7 @@ tags:
 
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Integration 101" src="https://i.octopus.com/blog/2018-03/blogimage-buildserver.png" />
-</div>
+![Build Server and Octopus Integration Introduction](blogimage-integration101.png)
 
 In my three years providing support to our customers at Octopus, *"Integrating Octopus with build servers"* is probably the subject I answered the most questions about. In this blog post, I'm going to give you a few tips on how to approach this task if you are starting from scratch, regardless of the build server technology you are using.
 
