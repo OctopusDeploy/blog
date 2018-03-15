@@ -31,9 +31,9 @@ The world is changing. More and more, a deployment is not targeting a group of m
 
 One of the strengths (we believe) of Octopus is that it models deployment concepts in a way that matches how people think and speak about them. Specifically, in Octopus-language, deployment targets live within environments.  This is a surprisingly rare approach.  Many of the tools that play in the same space are primarily build\CI servers, and as such have a different concept of environments and targets\agents.  
 
-So we made the decision to model the various flavors of PaaS as deployment targets.   
+We made the decision to model the various flavors of PaaS as deployment targets.   
 
-_TODO: Insert UI mock_
+![Add Deployment Target](add-deployment-target.png "width=500")
 
 _This sounds familiar..._
 
@@ -47,15 +47,15 @@ Which PaaS flavors will be supported?
 
 As a first phase, in our April release (2018.4.0), we will add:
 
-- Azure Web Apps (which are also Azure Functions)
-- Azure Cloud Services (though Microsoft seem determined to kill these any day now)
+- Azure Web Apps (which also represent Azure Functions)
+- Azure Service Fabric
 
 In the coming months we will add:
 
 - AWS Lambda
 - Kubernetes 
 
-And no doubt more will follow.
+And no doubt more will follow. 
 
 ## Benefits
 
@@ -88,8 +88,8 @@ We genuinely hope this doesn't seem unreasonable.
 
 ## Migration
 
-Everything you have configured today will continue to work.
+There will be no breaking changes. Everything you have configured today will continue to work.
 
-As of the 2018.4.0 release, if you wish to create new _Deploy Azure Web_ or _Deploy Azure Cloud Service_ steps you will need to first configure targets in the appropriate environments.  
+As of the 2018.4.0 release, if you wish to create new _Deploy Azure Web_ or _Deploy a Service Fabric App_ steps you will need to first configure targets in the appropriate environments.  
 
 If you have any concerns or questions, please don't hesitate to reach out.
