@@ -55,15 +55,23 @@ And no doubt more will follow.
 
 ## Benefits
 
-Modelling these PaaS endpoints as deployment targets brings a number of benefits. Two in particular are worth mentioning.
+Modelling these PaaS endpoints as deployment targets brings a number of benefits. Three in particular are worth mentioning.
 
-### Multiple Targets in an Environment 
+### 1. Visibility 
+
+We love the idea of being able to view your PaaS targets in their environments:  
+
+![PaaS targets in environments](paas-environments.png "width=500")
+
+Imagine starting work at a new company. Being able to view the infrastructure page in Octopus and see the environments, the targets within them, and the roles those targets possess is very powerful.  We feel this is much nicer than having to reverse-engineer this picture from the various deployment-processes. 
+
+### 2. Multiple Targets 
 
 [Roles](https://octopus.com/docs/infrastructure/environments/target-roles) in Octopus provide a simple yet powerful ability to execute a step across multiple targets.  Targets are assigned one or more roles. Steps in a deployment-process specify which role they should execute on, and the step will then be executed once for each matching target. 
 
 Admittedly with PaaS targets this ability isn't required as often as it is with machines.  For example, when deploying your web app to virtual machines, you must deploy to each machine in your cluster. Whereas with an Azure Web App for example, you just deploy to the PaaS endpoint and it scales internally (this is one of the key benefits).  But... you may have multiple Azure Web Apps in different geographic regions.  The combination of targets and roles provides an easy mechanism to deploy to all of these. Or you may have a multi-tenant application where each tenant has their own web app.  Targets + roles + tenants = a lovely way to model this.  
 
-### Putting the Ops in DevOps
+### 3. Putting the Ops in DevOps
 
 By explicitly modelling PaaS endpoints as self-contained targets which live in environments, Octopus has valuable information and concepts which wouldn't exist if the PaaS targets existed only as configuration values dispersed throughout variables and deployment-processes.  This opens many possible feature avenues, which we are excited to explore.  For example:
 
@@ -120,12 +128,8 @@ If you have any concerns or questions, please don't hesitate to reach out.
 
 ## The Future 
 
-We are excited about the direction this takes the product.  We feel it is a natural fit, and plays to the strengths of Octopus. 
+We are excited about this direction.  We feel it is a natural fit, and provides all the immediate [benefits mentioned above](#benefits). 
 
-We love the idea of being able to view your PaaS targets in their environments:  
-
-![PaaS targets in environments](paas-environments.png "width=500")
-
-This work is also a key stepping-stone for some other features we have planned.  We want to make it much easier to dynamically provision and deprovision entire environments (e.g. for feature-branches), and to execute operations processes against environments.  We will post more on these features in the coming months. 
+But this work is also a key stepping-stone for other features we have planned.  We want to make it much easier to dynamically provision and deprovision entire environments (e.g. for feature-branches), and to execute operations processes against environments.  We will post more on these features in the coming months. 
 
 As always, we welcome your feedback.
