@@ -121,12 +121,12 @@ So sit back and trigger as many deployments as you need :)
 
 In the previous step, you learned how to create a release and trigger a deployment from the Web Portal. The goal of this step is that you learn to do the same thing, but using `Octo.exe`.
 
-If you don't know about this CLI tool, here's the TL;DR, its a command line application that talks to the [Octopus API](https://octopus.com/docs/api-and-integration/api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/api-and-integration/octo.exe-command-line).
+If you don't know about this CLI tool, here's the TL;DR, it's a command line application that talks to the [Octopus API](https://octopus.com/docs/api-and-integration/api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/api-and-integration/octo.exe-command-line).
 
 The command you should be paying attention to is [create-release](https://octopus.com/docs/api-and-integration/octo.exe-command-line/creating-releases). A few tips about this command:
 
 - If you use the `--deployTo` parameter, it will not only create the release but also deploy it to an environment. It basically combines the commands `create-release` and `deploy-release`.
-- Use `--progress` to see the deployment log in the console at it executes. Otherwise, the command will only create a task in Octopus, and you'll be forced to go to the Web Portal to see how the deployment went.
+- Use `--progress` to see the deployment log in the console as it executes. Otherwise, the command will only create a task in Octopus, and you'll be forced to go to the Web Portal to see how the deployment went.
 - Use `--whatIf` to see what would happen if you ran that command, without actually triggering anything in Octopus.
 
 :::hint
@@ -139,7 +139,7 @@ Every single build server integration out there (at least the ones built by the 
 **Goal**: By the end of this stage, you should be able to add a new step to your build process that triggers a deployment in Octopus.
 :::
 
-Now this stage is where we'll put together everything from the two previous stages. For this reason, its necessary that you finish both of them successfully.
+Now this stage is where we'll put together everything from the two previous stages. For this reason, it's necessary that you finish both of them successfully.
 
 #### 3.1 - Create a Release/Deployment in Octopus From the Build
 
