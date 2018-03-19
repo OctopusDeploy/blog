@@ -10,7 +10,7 @@ tags:
  - New Releases
 ---
 
-![Octo-Cuckoo clock illustating recurring deployments[(blogimage-recurring-deployments.png)
+![Octo-Cuckoo clock illustating recurring deployments](blogimage-recurring-deployments.png)
 
 Octopus has long had the ability to schedule deployments for a specific time in the future.   
 What was missing was the ability to schedule a deployment to _recur_. This feature was known internally as _DTGAAA: Deployments That Go Again and Again_.  
