@@ -377,7 +377,7 @@ This feature will also replace Offline Drops. While it may not seem a direct cor
 
 ## Reference architecture
 
-In a post-Octopus 4.0 world you will be able to model lots of interesting scenarios using multiple Spaces with releases flowing between them, even if the Spaces are connected or disconnected.
+In a remote-promotions world you will be able to model lots of interesting scenarios using multiple Octopus servers with releases flowing between them, even if the Octopus servers are connected or disconnected.
 
 ### Example: Connected networks
 
@@ -393,9 +393,9 @@ Disconnected networks have multiple teams working in their own Spaces, then push
 
 ## Roll-out
 
-Remote Release Promotions will form part of Octopus 4.0, along with the [Spaces/ODCM feature](https://octopus.com/blog/odcm-rfc) (and likely a bunch of other goodies too).
+We are planning to implement Remote Release Promotions in the second half of 2018. 
 
-Some components of this feature are quite independent, and we feel they will add value outside of Remote Promotions. For example: per-environment variable-templates and comparing releases. Wherever possible we intend to implement these and get them into your hands as quickly as we can. You can expect to see them trickling out in the coming months.
+Some components of this feature are quite independent, and we feel they will add value outside of Remote Promotions. For example: per-environment variable-templates and comparing releases. Wherever possible we intend to implement these and get them into your hands as quickly as we can. 
 
 ## Feedback
 
