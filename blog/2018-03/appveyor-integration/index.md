@@ -37,7 +37,7 @@ After adding your Octopus Server URL and API Key, tick the `Push Packages` optio
 With our AppVeyor build pipeline set up, let's now jump into our Octopus Server and get this website deployed.
 
 ## Continuing Deployment Through Octopus
-With a dead simple Octopus Server [installation](https://octopus.com/docs/installation) (which, can naturally itself be [automated](https://octopus.com/docs/installation/automating-installation)) we are ready to add our new `RandomQuotes` project through the Octopus Web Portal.
+With a dead simple Octopus Server [installation](https://octopus.com/docs/installation) (which, can naturally itself be [automated](https://octopus.com/docs/installation/automating-installation)) we are ready to add our new `RandomQuotes` project through the Octopus Web Portal. [Hosted Octopus](https://octopus.com/cloud) is an exciting new option which will be available soon that allows you to use Octopus Deploy without any on-premise infrastructure. We will manage your servers for you!
 
 ### Octopus Projects
 After configuring our [infrastructure](https://octopus.com/docs/infrastructure), go to the `Projects` section, click `Add Project`, and give it the name `RandomQuotes` that we specified earlier in our AppVeyor deploy step. This project contains all the deployment steps and configuration variables that define how this application is deployed.
@@ -66,11 +66,44 @@ This introduces us to one of the other awesome features of Octopus Deploy, [vari
 
 A common pattern is to define variables in Octopus for the different environments which are replaced in configuration files used by the application at run time. Using them during the deployment process opens up a wide range of advanced scenarios.
 
+For our `RandomQuotes` project, we have a config transformation file for each of our environments. The `Web.Production.config` transformation that looks like:
+```xml
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <appSettings>
+    <add key="ReleaseVersion" value="#{Octopus.Release.Number}" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="EnvironmentName" value="#{Octopus.Environment.Name}" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="BackgroundColor" value="#1e8822" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+  </appSettings>
+  <system.web>
+    <compilation xdt:Transform="RemoveAttributes(debug)" />
+  </system.web>
+</configuration>
+```
+
+Notice the value for `ReleaseVersion` includes a template pattern During a deployment. (jump to the end of this post if you can't stand the suspense and what to see what this looks like).
+
 ## Commit and Enjoy
+
 We now have our automated CI/CD pipeline configured. When we commit a change to our project, AppVeyor will automatically pick up the changes, build the project, and push it to our Octopus Server. From this point on, Octopus Deploy takes over and deploys it to our staging environment. Once we are happy with this release, we can deploy to production with the click of a button. The same built package that has been tested will then be pushed to our production environment using new values provided by our variables.
 
 ![Logs Together](logs_together.png)
-![Deployed Staging](deployed_staging.png)
+
+When the deployment occurs, Octopus will apply any web.config transformations in your project and perform variable replacements so that the same built artifact is run in each environment, ensuring that the code that you test is the code that you run in production.
+
+**Staging**
+
+![Deployed Staging](app_staging.png)
+
+With the staging version of our application available we can inspect and test it before kicking off a deployment to production...
+
+![Running Deployment](octopus_deploying.png)
+
+**Production**
+
+![Deployed Production](app_production.png)
+
+Notice how the transformation has been applied changing the colour of the navbar, while the port and other variables have been updated based on the environment being deployed to.
 
 ## AppVeyor + Octopus = Deploy Any Time
 AppVeyor and Octopus Deploy combined provides a new and exciting way to improve your deployment automation. Code changes made directly to your applications can be safely deployed in a repeatable fashion using software that can both step in and take care of the tedious configuration you previously had to hand-craft, while at the same time providing the flexibility to meet your application's specific needs. Flex the powers of AppVeyor's new feature today with a free Octopus [trial](https://octopus.com/licenses/trial).
