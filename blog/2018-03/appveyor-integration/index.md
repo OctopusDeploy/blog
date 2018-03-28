@@ -3,15 +3,19 @@ title: "Octopus Deploy comes to AppVeyor"
 description: "The new Octopus Deploy feature in AppVeyor makes building Continuous Deployments even easier"
 author: robert.erez@octopus.com
 visibility: private
+metaImage: metaimage-appveyor.png
+bannerImage: blogimage-appveyor.png
 tags:
  - Walkthrough
 ---
 
-The fantastic team at AppVeyor have recently added built-in support for pushing and deploying your projects through Octopus Deploy. What is Octopus Deploy I hear you ask? Octopus Deploy is an automated release management tool to simplify the process of creating repeatable and manageable continuous integration and deployment pipelines. Deploying your application through its life cycle requires the assurance that the staging and production releases are identical where it counts, but with configuration that can be injected to change from phase to phase.
+![Continous Delivery in the cloud with Octopus and AppVeyor](blogimage-appveyor.png)
 
-Let's take a look at how this new partnership between AppVeyor and Octopus Deploy can help set your deployments up for not just success, but predictably reliable success!
+The fantastic team at AppVeyor have recently added built-in support for pushing and deploying your projects (.NET, Java, JavaScript etc) with Octopus Deploy. What is Octopus Deploy I hear you ask? Octopus Deploy is a friendly deployment automation tool that makes it easy to automate your application deployments in a fast, repeatable and reliable manner. Octopus takes over where your build server ends, enabling you to easily automate even the most complicated application deployments, whether on-prem or in the cloud. Deploying your application through environments like DEV, TEST and PRODUCTION requires the assurance that the each releases are identical where it counts, but with configuration that can be injected to change from environment to environment.
 
-The public [OctopusSamples/RandomQuotes-aspmvc4](https://github.com/OctopusSamples/RandomQuotes-aspmvc4) repository provides a basic MVC app to display a bunch of wise quotes. Our goal is to set up a CI pipeline to deploy this website to our IIS server for both a staging and then production environment.
+Let's take a look at how this new partnership between AppVeyor and Octopus Deploy can help you build a complete devliery pipeline in the cloud. 
+
+The public [OctopusSamples/RandomQuotes-aspmvc4](https://github.com/OctopusSamples/RandomQuotes-aspmvc4) repository provides a basic ASP.NET MVC app to display a bunch of wise quotes. Our goal is to set up a delivery pipeline to deploy this website to our IIS server for both a staging and then production environment.
 
 ## AppVeyor Octopus Plugin
 Starting with the build of our project, I've added the `OctopusSamples/RandomQuotes-aspmvc4` GitHub repository as the source of a new AppVeyor project.
@@ -106,6 +110,7 @@ With the staging version of our application available we can inspect and test it
 Notice how the transformation has been applied changing the colour of the navbar, while the port and other variables have been updated based on the environment being deployed to.
 
 ## AppVeyor + Octopus = Deploy Any Time
-AppVeyor and Octopus Deploy combined provides a new and exciting way to improve your deployment automation. Code changes made directly to your applications can be safely deployed in a repeatable fashion using software that can both step in and take care of the tedious configuration you previously had to hand-craft, while at the same time providing the flexibility to meet your application's specific needs. Flex the powers of AppVeyor's new feature today with a free Octopus [trial](https://octopus.com/licenses/trial).
+
+AppVeyor in combination with Octopus Deploy offers a new and exciting way to automate your continuous delivery pipeline in a repeatable, reliable manner. Say goodbye to hand rolled custom scripting solutions which break down at 5pm on a Friday. Flex the powers of AppVeyor's new feature today with a [free Octopus trial](https://octopus.com/licenses/trial).
 
 Happy Deployments!
