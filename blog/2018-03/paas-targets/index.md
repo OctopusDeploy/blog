@@ -3,7 +3,7 @@ title: "PaaS Deployment Targets"
 description: "We are introducing new deployment targets to represent the platform-as-a-service offerings"
 author: michael.richardson@octopus.com
 visibility: private
-published: 2018-03-21
+published: 2018-04-21
 tags:
  - New Releases
  - Cloud
@@ -41,7 +41,7 @@ For the full details of why, please read the linked post.  In summary, it was be
 
 Which PaaS flavors will be supported?
 
-As a first phase, in our April release (2018.4.0), we will add:
+As a first phase, in our May release (2018.5), we will add:
 
 - Azure Web Apps (which also represent Azure Functions)
 - Azure Service Fabric
@@ -116,13 +116,13 @@ Historically deployments to PaaS endpoints have comprised a small proportion of 
 
 We originally planned to introduce PaaS target billing based on counting the PaaS endpoints you actually deploy to (easy enough for us to count these during a deployment). Since we're making the switch over to modelling PaaS endpoints as targets instead, this seems like the right time to introduce billing for them to if we are ever going to do it. 
 
-As of the 2018.4.0 release of Octopus, these PaaS targets will be included in the machine (aka target) count for licensing. Note that this will not effect existing _Deploy an Azure Web App_, _Deploy a Service Fabric app_, or _Deploy an Azure Cloud Service_ steps.  Only new targets created going forward will be counted.  
+As of the 2018.5 release of Octopus, these PaaS targets will be included in the machine (aka target) count for licensing. Note that this will not effect existing _Deploy an Azure Web App_, _Deploy a Service Fabric app_, or _Deploy an Azure Cloud Service_ steps.  Only new targets created going forward will be counted.  
 
 ## Migration
 
 There will be no breaking changes. Everything you have configured today will continue to work.
 
-As of the 2018.4.0 release, if you wish to create new _Deploy Azure Web_ or _Deploy a Service Fabric App_ steps you will need to first configure targets in the appropriate environments.  
+As of the 2018.5 release, if you wish to create new _Deploy Azure Web_ or _Deploy a Service Fabric App_ steps you will need to first configure targets in the appropriate environments.  
 
 Counts for license-usage will not change until you create instances of the new targets.  Essentially, your existing configuration in Octopus will continue to function and will be priced exactly as it was. These changes are all forward-only. 
 
