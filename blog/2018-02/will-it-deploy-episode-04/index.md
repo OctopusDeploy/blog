@@ -41,7 +41,7 @@ So will it deploy? **Yes it will!** Our deployment process looks like the follow
 
 ![Octopus deployment process](deployment-process.png "width=500")
 
-Then we add the following steps to successfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
+Then we add the following steps to successfully deploy our app.
 
 - Octopus **Deploy a Package** step to copy our database scripts to our database deployment target
 - Octopus Community Contributed step template -  **[SQL - Deploy DACPAC](https://library.octopusdeploy.com/step-templates/58399364-4367-41d5-ad35-c2c6a8258536/actiontemplate-sql-deploy-dacpac)** to deploy our DACPAC to our SQL Server database. 
