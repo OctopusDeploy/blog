@@ -2,15 +2,15 @@
 title: Deploying a Multi-Tenant Web App to Multiple Customers - Will it Deploy? Episode 5
 description: We try to automate the deployment of a multi-tenant SaaS web app to different customers to AWS EC2 virtual machines.
 author: rob.pearson@octopus.com
-visibility: private
-published: 2018-03-28
+visibility: public
+published: 2018-03-29
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
  - Will it Deploy
 ---
 
-Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this special double-episode, we're trying to deploy a multi-tenant SaaS web app to Amazon Web Services (AWS) virtual machines.
+Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this special double-episode, we're trying to deploy a multi-tenant SaaS web app to Amazon Web Services (AWS) virtual machines.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KGqlKduFohI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
