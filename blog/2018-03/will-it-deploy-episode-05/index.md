@@ -18,11 +18,15 @@ Welcome to another **Will it Deploy?** Episode where we try to automate the depl
 
 ### Tech Stack
 
-Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode005). The application is relatively simple but it includes a number of common features that allows us to illustrate the complexities of multi-tenant deployments
+Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode005). The application is relatively simple but it includes a number of common features that allows us to illustrate the complexities of multi-tenant deployments.
+
+Features:
 
 * Customised app settings for each customer
 * Dynamic feature/module loading at application startup
 * Customised colors and styles for each customer
+
+Technologies:
 
 ![SQL Server logo](sqlserver-logo.png "width=200")
 
