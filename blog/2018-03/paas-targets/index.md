@@ -9,11 +9,11 @@ tags:
  - Cloud
 ---
 
-_Summary: Platform-as-a-Service endpoints will be modelled as deployment targets in Octopus._
+_Summary: Platform-as-a-Service endpoints (Azure websites, etc.) will be modelled as deployment targets in Octopus._
 
-Octopus is a release-management and deployment-automation tool.  Not surprisingly, the concepts exposed in Octopus reflect this: Releases, Deployments, Environments, and _Targets_ (aka machines). 
+Octopus is a release-management and deployment-automation tool. Not surprisingly, the concepts exposed in Octopus reflect this: Releases, Deployments, Environments, and _Targets_ (aka machines). 
 
-One of the strengths (we believe) of Octopus is that it models deployment concepts in a way that matches how people think and communicate about them.  Deployment targets are modelled as first-class objects that live within one or more environments.  This is a surprisingly rare approach.  Many of the tools that play in the same space are primarily build\CI servers, and as such have a different concept of environments and targets\agents.  To them a "target" is often just a bunch of configuration values within a deployment process.  
+One of the strengths (we believe) of Octopus is that it models deployment concepts in a way that matches how people think and communicate about them.  Deployment targets are modelled as first-class objects that live within one or more environments.  This is a surprisingly rare approach.  Many of the tools that play in the same space are primarily build/CI servers, and as such have a different concept of environments and targets/agents. To them a "target" is often just a bunch of configuration values within a deployment process.  
 
 The current (as at March 2018) types of deployment targets in Octopus are:
 
@@ -110,9 +110,11 @@ We will dive into more detail about this in future posts.
 
 ## Pricing
 
-Octopus licensing is machined-based, which has meant that Octopus has not charged for deploying platform-as-a-service applications.  Historically deployments to PaaS endpoints have comprised a small proportion of overall Octopus usage, so this hasn't been a big factor.  But the trends are clear, and there is no reason to think adoption won't continue to increase.   
+Octopus licensing is currently based on the number of machines you deploy to; this is because we believe the number of machines you deploy to is a good approximation of the value Octopus is providing. This means that Octopus has not until now charged for deploying platform-as-a-service applications. A customer deploying to a hundred IaaS virtual machines would have to license Octopus appropriately, but a customer deploying to a hundred Azure websites, service fabric clusters, or Kubernetes clusers wouldn't. 
 
-We have been investing significantly in these technologies, and will continue to do so.  So while the move to model these as targets wasn't _necessary_ to price them (there are other options), and certainly wasn't _the_ reason, it does provide a simple and clean way to include them under our licensing. 
+Historically deployments to PaaS endpoints have comprised a small proportion of overall Octopus usage, so this isn't something we've worried about. But the trends are clear, and there is no reason to think adoption won't continue to increase.   
+
+We originally planned to introduce PaaS target billing based on counting the PaaS endpoints you actually deploy to (easy enough for us to count these during a deployment). Since we're making the switch over to modelling PaaS endpoints as targets instead, this seems like the right time to introduce billing for them to if we are ever going to do it. 
 
 As of the 2018.4.0 release of Octopus, these PaaS targets will be included in the machine (aka target) count for licensing. Note that this will not effect existing _Deploy an Azure Web App_, _Deploy a Service Fabric app_, or _Deploy an Azure Cloud Service_ steps.  Only new targets created going forward will be counted.  
 
