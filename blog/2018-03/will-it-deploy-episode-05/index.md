@@ -16,6 +16,8 @@ Welcome to another **Will it Deploy?** Episode where we try to automate the depl
 
 ## Problem
 
+![Multi-Tenant architecture](tenants-multipleapplication.png "width=500")
+
 ### Tech Stack
 
 Our app is a quote generator called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode005). The application is relatively simple but it includes a number of common features that allows us to illustrate the complexities of multi-tenant deployments.
@@ -46,6 +48,8 @@ Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who 
 ## Solution
 
 So will it deploy? **Yes it will!** Our deployment process looks like the following.
+
+![Octopus Multi-Tenant Deployments](octopus-first-class-tenants.png "width=500")
 
 ![Octopus deployment process](deployment-process.png "width=500")
 
