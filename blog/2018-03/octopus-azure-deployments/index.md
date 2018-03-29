@@ -4,15 +4,19 @@ description: "Kicking off our Azure Cloud Deployments with Octopus blog series l
 author: rob.pearson@octopus.com
 visibility: public
 published: 2018-03-30
+metaImage: metaimage-azure.png
+bannerImage: blogimage-azure.png
 tags:
  - Azure
 ---
+
+![Octopus Juggling Azure Balls](blogimage-azure.png)
 
 Octopus Deploy started with automating deployments in the Microsoft ecosystem and we long supported deployments to Microsoft Azure platform as it evolved. Buckle up as we take a trip down memory lane.
 
 ## Early Days
 
-It all started with Octopus Deploy `v1.5.0.1645` in March 2013 (5 years ago!!), which first added support for [deploying to Windows Azure specifically Cloud Services](https://octopus.com/blog/octopus-1.5-azure-ftp-scriptcs).  This was fantastic and helped tons of teams start deploying to the cloud and move to repeatable and reliable deployments. Microsoft continued to introduce new services including Azure web apps Platform as a Service (PaaS). This proved very popular and one of my first Octopus automated deployments was deploying an ASP.NET Web API web service to an Azure web app using Octopus 2.6 and [this blog post](https://octopus.com/blog/deploy-aspnet-applications-to-azure-websites). 
+It all started with Octopus Deploy `v1.5.0.1645` in March 2013 (5 years ago!!), which first added support for [deploying to Windows Azure specifically Cloud Services](https://octopus.com/blog/octopus-1.5-azure-ftp-scriptcs). This was fantastic and helped tons of teams start deploying to the cloud and move to repeatable and reliable deployments. Microsoft continued to introduce new services including Azure web apps Platform as a Service (PaaS). This proved very popular and one of my first Octopus automated deployments was deploying an ASP.NET Web API web service to an Azure web app using Octopus 2.6 and [this blog post](https://octopus.com/blog/deploy-aspnet-applications-to-azure-websites). 
 
 ## First Class Support and a Pivot
 
