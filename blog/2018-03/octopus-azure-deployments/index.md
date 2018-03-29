@@ -20,7 +20,7 @@ In June 2015, Octopus `3.0.0` launched and introduced Azure accounts and new dep
 
 ## Octopus + Azure vNext
 
-We're gearing up to ship the next generation of Octopus support for Azure deployments and infrastructure automation. Very exciting features and new steps are coming soon!  There's some great posts coming so be sure to check out our blog each week.
+We're gearing up to ship the next generation of Octopus support for Azure deployments and infrastructure automation. Very exciting features and new deployment targets are coming soon!  There's some great posts coming so be sure to check out our blog each week.
 
 Blog series posts:
 
