@@ -15,6 +15,10 @@ tags:
 
 In this post, I will show you that it is possible to deploy and run .NET Core applications on the Raspberry Pi 3, and along the way describe some of the different ways that you can interact with your Octopus Deploy server.
 
+:::warn
+At the time of writing, support for ARM architecture is not included by default and needs to be manually enabled.
+:::
+
 ## Requirements Before Starting
 
 * Editor - Visual Studio, Visual Studio Code, Rider
@@ -161,10 +165,11 @@ The `% { $_ }` line unwraps the top-level array that is being returned, which se
 curl https://octopus.myget.org/F/octopus-dependencies/api/v2/package/Calamari.linux-arm/4.4.15 -L -o "c:\Program Files\Octopus Deploy\Octopus\Calamari.linux-arm.nupkg"
 ```
 
-Replace the output path with the path to your Octopus Installation, if required.
+Replace the output path, `-o`, with the path to your Octopus Installation, if required.
 
 :::info
-The `linux-arm` Calamari package, will be provided in future releases
+The `linux-arm` Calamari package, will be provided in future releases.
+If upgrading the Octopus Server installation before support is included by default, you will need to update the Calamari version to match the version of the other Calamari packages. The version number can be obtained from the `Calamari.nupkg` package using [Nuget Package Explorer](https://github.com/NuGetPackageExplorer/NuGetPackageExplorer).
 :::
 
 ## Creating the Deployment Project
