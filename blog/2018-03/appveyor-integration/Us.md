@@ -91,6 +91,8 @@ With the staging version of our application available we can inspect and test it
 
 Notice how the transformation has been applied changing the colour of the navbar, while the port and other variables have been updated based on the environment being deployed to.
 
+For more information about this new feature, be sure to read our [docs](https://octopus.com/docs/api-and-integration/app-veyor)
+
 ## AppVeyor + Octopus = Deploy Any Time
 
 AppVeyor in combination with Octopus Deploy offers a new and exciting way to automate your continuous delivery pipeline in a repeatable, reliable manner. Say goodbye to hand rolled custom scripting solutions which break down at 5pm on a Friday. Flex the powers of AppVeyor's new feature today with a [free Octopus trial](https://octopus.com/licenses/trial).
