@@ -34,7 +34,8 @@ In the `Deployment` configuration, select the new `Octopus Deploy` deployment pr
 
 After adding your Octopus Server URL and API Key, tick the `Push Packages` option to allow AppVeyor to auto-detect the Octopus package built in the previous step. AppVeyor will then push the package to the Octopus [built-in NuGet feed](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository). Although Octopus supports [automatic release creation](https://octopus.com/docs/deployment-process/releases/automatic-release-creation) when a new package is available, in this scenario we will trigger it through AppVeyor. Click the `Create Release` checkbox and provide the name of the project, `RandomQuotes` which we will later set-up in Octopus and which AppVeyor will programmatically trigger.
 
-#### Configuration As Code
+
+#### Source Controlled Configuration
 Another great feature of AppVeyor is the ability to provide your build configuration via an `appveyor.yml` file that lives alongside your code instead being set through the web portal. This means the process an be tied directly to the source code which allows for easy versioning and for your build steps to evolve with your project. Read their [docs](https://www.appveyor.com/docs/build-configuration/#appveyoryml-and-ui-coexistence) for more information on how this works in practice. This approach is similar to a feature that we at Octopus are working through to allow the deployment side of your CD pipeline to be stored via source control configuration. [Check out the ideas](https://github.com/OctopusDeploy/Specs/blob/master/ProcessAsCode/index.md) on how we might approach "deployment configuration as code" and let us know what you think.
 
 **With our AppVeyor build pipeline set up, let's now jump into our Octopus Server and get this website deployed.**
