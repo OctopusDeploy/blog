@@ -11,62 +11,44 @@ tags:
 
 ![Continous Delivery in the cloud with Octopus and AppVeyor](blogimage-appveyor.png)
 
-The fantastic team at AppVeyor have recently added built-in support for pushing and deploying your projects (.NET, Java, JavaScript etc) with Octopus Deploy. What is Octopus Deploy I hear you ask? Octopus Deploy is a friendly deployment automation tool that makes it easy to automate your application deployments in a fast, repeatable and reliable manner. Octopus takes over where your build server ends, enabling you to easily automate even the most complicated application deployments, whether on-prem or in the cloud. Deploying your application through environments like DEV, TEST and PRODUCTION requires the assurance that the each releases are identical where it counts, but with configuration that can be injected to change from environment to environment.
+The fantastic team at [AppVeyor](https://www.appveyor.com/) have recently added built-in support for pushing and deploying your projects (.NET, Java, JavaScript etc) with Octopus Deploy. AppVeyor is a cloud-hosted continuous integration tool which is quite popular amongst open source projects, particularly in the .Net space. From direct integration with your source control to deployment plugins like their new Octopus Deploy offering, AppVeyor provides a simple out-of-the-box solution to building your application without having to manage your own build infrastructure. Each build gets its own clean environment with all the tools you need to kickstart your automated CI solution. Now with the new Octopus integration, the process will become even easier.
 
-Let's take a look at how this new partnership between AppVeyor and Octopus Deploy can help you build a complete devliery pipeline in the cloud. 
+**Used in conjunction with our upcoming [Octopus Cloud](https://octopus.com/cloud) offering, you will soon be be able to create a cloud-based, completely scalable continuous deployment pipeline without having to manage a single machine yourself. How exciting is that!**
 
-The public [OctopusSamples/RandomQuotes-aspmvc4](https://github.com/OctopusSamples/RandomQuotes-aspmvc4) repository provides a basic ASP.NET MVC app to display a bunch of wise quotes. Our goal is to set up a delivery pipeline to deploy this website to our IIS server for both a staging and then production environment.
+Lets take a look an example of how to make the most of this new offering.
 
 ## AppVeyor Octopus Plugin
-Starting with the build of our project, I've added the `OctopusSamples/RandomQuotes-aspmvc4` GitHub repository as the source of a new AppVeyor project.
+After a simple and free sign-up process, we can start by creating a new AppVeyor project, I've added the `OctopusSamples/RandomQuotes-aspmvc4` GitHub repository as the source code repository. There are a whole range of other repository options available from BitBucket to VSTS. The public [OctopusSamples/RandomQuotes-aspmvc4](https://github.com/OctopusSamples/RandomQuotes-aspmvc4) repository provides a basic ASP.NET MVC app to display a bunch of wise quotes. Our goal is to set up a delivery pipeline to deploy this website to our IIS server for both a staging and then production environment.
 
 ### Build & Pack
-Looking at the build phase, you should notice the new `Package Applications for Octopus Deployment`:
+Looking at the build phase, you should notice a `Package Applications for Octopus Deployment` flag.
 
-![AppVeyor Build Step](appveyor_build_step.png)
+![AppVeyor Build Step](appveyor_build_step.png "width=500")
 
-This flag ensures that once the build has completed, the contents are zipped up into a package that can be pushed to Octopus Deploy. Although Octopus will accept any NuGet, zip, or tar package this flag will use the `octo.exe` tool to [create a zip](https://octopus.com/docs/packaging-applications/creating-packages/creating-zip-packages), named using the application name and version.
-
- Advanced features in Octopus-like [Channels](https://octopus.com/docs/deployment-process/channels) allow you to configure custom rules to prevent pre-release versioned packages from getting pushed to production, or ensure that version requirements are met for any linked packages as part of that deployment.
+This flag ensures that once the build has completed, the contents are zipped up into a package that can be pushed to Octopus Deploy. Although Octopus will accept any NuGet, zip, or tar package this flag will make use of `octo.exe` to [create a zip](https://octopus.com/docs/packaging-applications/creating-packages/creating-zip-packages), named using the application name and version of this AppVeyor project.
 
 ### Push
-In the `Deployment` configuration of the AppVeyor project, select the new `Octopus Deploy` deployment provider. This feature performs all the appropriate calls to pass the package into Octopus and create a related Octopus Release.
+In the `Deployment` configuration, select the new `Octopus Deploy` deployment provider. This feature performs all the appropriate calls to pass the package into Octopus and create a related Octopus [Release](https://octopus.com/docs/deployment-process/releases) .
 
-In Octopus, a [Release](https://octopus.com/docs/deployment-process/releases) ensures that each versioned build artifact will progress through its various environment phases with the same snapshotted deployment process, even if that project process is modified while the release is progressing. Reliable, repeatable deployments are our mantra.
+![AppVeyor Deployment Step](appveyor_build_deployment.png "width=500")
 
-![AppVeyor Deployment Step](appveyor_build_deployment.png)
-
-After adding your Octopus Server URL and API Key, tick the `Push Packages` option to allow AppVeyor to auto-detect the Octopus package built in the previous step. AppVeyor will then push the package to the Octopus [built-in NuGet feed](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository). Although Octopus supports [automatic release creation](https://octopus.com/docs/deployment-process/releases/automatic-release-creation) when a new package is available, in this scenario we will trigger it through AppVeyor. Click the `Create Release` checkbox and provide the name of the project, `RandomQuotes` which we will later set-up in Octopus and which AppVeyor will programmatically trigger. Octopus was built [API first](https://octopus.com/docs/api-and-integration/api) and as such _every_ feature and behavior can be configured and triggered via HTTP endpoints to integrate into _any_ existing CI/CD pipeline!).
+After adding your Octopus Server URL and API Key, tick the `Push Packages` option to allow AppVeyor to auto-detect the Octopus package built in the previous step. AppVeyor will then push the package to the Octopus [built-in NuGet feed](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository). Although Octopus supports [automatic release creation](https://octopus.com/docs/deployment-process/releases/automatic-release-creation) when a new package is available, in this scenario we will trigger it through AppVeyor. Click the `Create Release` checkbox and provide the name of the project, `RandomQuotes` which we will later set-up in Octopus and which AppVeyor will programmatically trigger.
 
 With our AppVeyor build pipeline set up, let's now jump into our Octopus Server and get this website deployed.
 
 ## Continuing Deployment Through Octopus
-With a dead simple Octopus Server [installation](https://octopus.com/docs/installation) (which, can naturally itself be [automated](https://octopus.com/docs/installation/automating-installation)) we are ready to add our new `RandomQuotes` project through the Octopus Web Portal. [Hosted Octopus](https://octopus.com/cloud) is an exciting new option which will be available soon that allows you to use Octopus Deploy without any on-premise infrastructure. We will manage your servers for you!
 
-### Octopus Projects
-After configuring our [infrastructure](https://octopus.com/docs/infrastructure), go to the `Projects` section, click `Add Project`, and give it the name `RandomQuotes` that we specified earlier in our AppVeyor deploy step. This project contains all the deployment steps and configuration variables that define how this application is deployed.
+To match with the configuration we just provided in AppVeyor, create a new project and give it the name `RandomQuotes`. For our simple deployment scenario, we will first go to the `Process` section and simply add a new IIS step.
+With the `Deploy to IIS` step selected, we will add a few settings to provide Octopus information to enable creating and configuring the IIS website.
 
-For our simple deployment scenario, we will first go to the `Process` section and add a new IIS step. Octopus will handle all the complicated interactions to configure our IIS website with just a few inputs from us. There is a wide range of pre-built steps available for use in almost any deployment, so you don't need to write (or support) a single line of code. On top of this, we have an active [community library](https://octopus.com/docs/deployment-process/steps/community-step-templates) with 100's more, and you can build and share your [own steps](https://octopus.com/docs/deployment-process/steps/community-step-templates) between teams.
+![Octopus Deploy IIS](octopus_iis_step.png "width=500")
+After providing a role that maps to the target where we have IIS available, we will configure which package will be used for this step. Using the built-in feed (which AppVeyor will be pushing to) we can provide the PackageId `RandomQuotes`.
 
-![Octopus Deploy Steps](octopus_many_steps.png)
+Configuring the website itself at its simplest consists of setting just two additional values, The `Website name` and the `AppPool`. For this example, we will host both `Staging` and `Production` on the same machine (not the best idea for a real project), so we will provide a different website name based on the environment being deployed. The `#{Octopus.Environment.Name}` section of the name will be replaced at deploy time with the name of the environment.
 
- You can also include [custom scripts](https://octopus.com/docs/deploying-applications/custom-scripts) in a variety of languages if you have a process in mind that doesn't quite fit any of the provided steps.
+ In addition to the `Website Name` we have also decided to provide a different binding port between  `Staging` and `Production`. This value `#{CustomPort}` is set in the `Variables` section of the project and can be scoped to a different value based on various combinations of deployment contexts like environment, machine or [tenant](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments), to name just a few.
 
-### Deployment Step Details
-After selecting the `Deploy to IIS` step, we will add a few settings to provide Octopus information to enable creating and configuring the IIS website.
-
-![Octopus Deploy IIS](octopus_iis_step.png)
-
-Setting the Role under `Execution Plan` defines which machine(s) the website will be deployed to. A discussion on how Octopus can handle multiple environments each with different machine roles is a discussion in itself which we skip over in this demo. Check out our [docs](https://octopus.com/docs/infrastructure/environments) for more details.
-
-Next, we will configure which package will be used for this step. Using the built-in feed (which AppVeyor will be pushing to) we can provide the PackageId `RandomQuotes`.
-
-Configuring the website itself, which, at its simplest consists of setting just two additional values. The `Website name` and the `AppPool`. For this example, we will host both `Staging` and `Production` on the same machine (not the best idea for a real project), so we will provide a different website name based on the environment being deployed. The `#{Octopus.Environment.Name}` section of the name will be replaced at deploy time with the name of the environment.
-
-### Variables
-This introduces us to one of the other awesome features of Octopus Deploy, [variables](https://octopus.com/docs/deployment-process/variables). Using a templating syntax, you can provide configuration values, scripts, or even packages that all make use of variables that can be provided from Octopus itself or even user defined! In addition to the `Website Name` we have also decided to provide a different binding port between  `Staging` and `Production`. This value `#{CustomPort}` is set in the `Variables` section of the project and can be scoped to a different value based on various combinations of deployment contexts like environment, machine or [tenant](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments), to name just a few.
-
-![Octopus Deploy variables](octopus_variables.png)
+![Octopus Deploy variables](octopus_variables.png "width=500")
 
 A common pattern is to define variables in Octopus for the different environments which are replaced in configuration files used by the application at run time. Using them during the deployment process opens up a wide range of advanced scenarios.
 
@@ -85,29 +67,31 @@ For our `RandomQuotes` project, we have a config transformation file for each of
 </configuration>
 ```
 
-Notice the value for `ReleaseVersion` includes a template pattern During a deployment. (jump to the end of this post if you can't stand the suspense and what to see what this looks like).
+Notice the value for `ReleaseVersion` includes a template pattern provided during a deployment. (jump to the end of this post if you can't stand the suspense and what to see what this looks like).
 
 ## Commit and Enjoy
 
-We now have our automated CI/CD pipeline configured. When we commit a change to our project, AppVeyor will automatically pick up the changes, build the project, and push it to our Octopus Server. From this point on, Octopus Deploy takes over and deploys it to our staging environment. Once we are happy with this release, we can deploy to production with the click of a button. The same built package that has been tested will then be pushed to our production environment using new values provided by our variables.
+We now have our automated CI/CD pipeline configured. When we commit a change to our project, AppVeyor will automatically detect and pick up the changes from GitHub, build the project, and push it to our Octopus Server. From that point on, Octopus Deploy takes over and deploys it to our `Staging` environment. Once we are happy with this release, we can deploy to `Production` with the click of a button. The same built package that has been tested will then be pushed to our production environment using new values provided by our variables.
 
-![Logs Together](logs_together.png)
+![Logs Together](logs_together.png "width=500")
 
 When the deployment occurs, Octopus will apply any web.config transformations in your project and perform variable replacements so that the same built artifact is run in each environment, ensuring that the code that you test is the code that you run in production.
 
 **Staging**
 
-![Deployed Staging](app_staging.png)
+![Deployed Staging](app_staging.png "width=500")
 
 With the staging version of our application available we can inspect and test it before kicking off a deployment to production...
 
-![Running Deployment](octopus_deploying.png)
+![Running Deployment](octopus_deploying.png "width=500")
 
 **Production**
 
-![Deployed Production](app_production.png)
+![Deployed Production](app_production.png "width=500")
 
 Notice how the transformation has been applied changing the colour of the navbar, while the port and other variables have been updated based on the environment being deployed to.
+
+For more information about this new feature, be sure to read our [docs](https://octopus.com/docs/api-and-integration/app-veyor)
 
 ## AppVeyor + Octopus = Deploy Any Time
 
