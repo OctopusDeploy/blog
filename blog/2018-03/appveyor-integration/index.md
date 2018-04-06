@@ -42,6 +42,7 @@ To match with the configuration we just provided in AppVeyor, create a new proje
 With the `Deploy to IIS` step selected, we will add a few settings to provide Octopus information to enable creating and configuring the IIS website.
 
 ![Octopus Deploy IIS](octopus_iis_step.png "width=800")
+
 After providing a role that maps to the target where we have IIS available, we will configure which package will be used for this step. Using the built-in feed (which AppVeyor will be pushing to) we can provide the PackageId `RandomQuotes`.
 
 Configuring the website itself at its simplest consists of setting just two additional values, The `Website name` and the `AppPool`. For this example, we will host both `Staging` and `Production` on the same machine (not the best idea for a real project), so we will provide a different website name based on the environment being deployed. The `#{Octopus.Environment.Name}` section of the name will be replaced at deploy time with the name of the environment.
