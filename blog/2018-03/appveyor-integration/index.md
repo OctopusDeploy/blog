@@ -1,6 +1,6 @@
 ---
 title: "Octopus Deploy comes to AppVeyor"
-description: "The new Octopus Deploy feature in AppVeyor makes building Continuous Deployments even easier"
+description: "The new Octopus Deploy feature in AppVeyor makes Continuous Deployments in the cloud even easier"
 author: robert.erez@octopus.com
 visibility: public
 metaImage: metaimage-appveyor.png
