@@ -18,6 +18,8 @@ Octopus 2018.4 will probably do some cool things.
 
 ## Release Tour
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AR45wMd1_8o" frameborder="0" allowfullscreen></iframe>
+
 ## Upgrading
 
 As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.4.0) for further information.
