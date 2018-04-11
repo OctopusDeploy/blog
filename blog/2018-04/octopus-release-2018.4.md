@@ -28,7 +28,7 @@ This month, our headline feature is _Recurring Scheduled Deployments_ which was 
 
 Octopus has long supported scheduled deployments. You can simply specify when to execute a deployment, but this only worked a single time. Our new recurring scheduled deployments feature lets you trigger a deployment as often as you like. This could be deploying a release to your test or QA environment for daily testing, deploying your latest stable release every Friday at 5pm, or even spinning up and tearing down virtual infrastructure on a schedule to save money when it’s not being used... like evenings and weekends.
 
-This story will become even stronger after we ship operation focused features that let you to run [maintenance tasks](https://github.com/OctopusDeploy/Specs/blob/master/ProcessAsCode/index.md) on a schedule. Watch this blog for more information on upcoming features.
+This will become even more powerful when we ship operations focused [maintenance processes](https://github.com/OctopusDeploy/Specs/blob/master/MainenanceProcess/index.md) on a schedule. Watch this blog for more information on upcoming features.
 
 ## First-class Amazon Web Services S3 Support
 
