@@ -12,7 +12,9 @@ tags:
 
 ![Octopus Deploy 2018.4 release banner](blogimage-shipping-2018-4.png)
 
-This month, we're shipping one our most highly requested features - 
+This month, we're shipping , Recurring Scheduled Deployments. 
+
+This month, our headline feature is _Recurring Scheduled Deployments_ which was one our [most highly requested features](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments) and we’re very happy to ship it. We’re also shipping a new first-class AWS S3 step that makes working with Amazon web services easier and we added the ability to set a steps as required (i.e. it cannot be skipped).
 
 ## In this post
 
