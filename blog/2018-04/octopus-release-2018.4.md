@@ -1,8 +1,8 @@
 ---
-title: "Octopus April Release 2018.4"
+title: Octopus April Release 2018.4
 description: What's new in Octopus 2018.4
-author: jayden.platell@octopus.com
-visibility: private
+author: rob.pearson@octopus.com
+visibility: public
 metaImage: metaimage-shipping-2018-4.png
 bannerImage: blogimage-shipping-2018-4.png
 published: 2018-04-12
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2018.4 release banner](blogimage-shipping-2018-4.png)
 
-This month, our headline feature is _Recurring Scheduled Deployments_ which was one of our [most highly requested features](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments), and we’re very happy to ship it. We’re also shipping a new first-class AWS S3 step that makes working with Amazon Web Services easier, and we added the ability to set a step as required so it can't be skipped.
+This month, our headline feature is _Recurring Scheduled Deployments_ which was one of our [most highly requested features](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments), and we’re very happy to ship it.  We’re also shipping a new first-class AWS S3 step that makes working with Amazon Web Services easier, and we added the ability to set a step as required so it can't be skipped.
 
 ## In This Post
 
@@ -32,7 +32,7 @@ This will become even more powerful when we ship operations focused [maintenance
 
 ## First-class Amazon Web Services S3 Support
 
-We're continuing to improve our Amazon Web Services (AWS) support by adding a first-class S3 step. This greatly simplifies getting packages/files into S3 buckets and working with them in the AWS eco-system.
+We're continuing to improve our Amazon Web Services (AWS) support by adding a [first-class S3 step](https://octopus.com/docs/deploying-applications/aws-deployments/s3). This greatly simplifies getting packages/files into S3 buckets and working with them in the AWS eco-system.
 
 ![AWS S3 step screenshot](aws-s3-step.png "width=500")
 
