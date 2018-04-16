@@ -3,8 +3,6 @@ title: "Managing Dynamic Targets"
 description: Walkthrough of managing a QA environment in Azure
 author: ben.pearce@octopus.com
 visibility: private
-metaImage: metaimage-shipping-2018-4.png
-bannerImage: blogimage-shipping-2018-4.png
 published: 2018-04-13
 tags:
  - Walkthrough
