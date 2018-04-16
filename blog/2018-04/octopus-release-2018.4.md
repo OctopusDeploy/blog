@@ -5,14 +5,14 @@ author: rob.pearson@octopus.com
 visibility: public
 metaImage: metaimage-shipping-2018-4.png
 bannerImage: blogimage-shipping-2018-4.png
-published: 2018-04-12
+published: 2018-04-17
 tags:
  - New Releases
 ---
 
 ![Octopus Deploy 2018.4 release banner](blogimage-shipping-2018-4.png)
 
-This month, our headline feature is _Recurring Scheduled Deployments_ which was one of our [most highly requested features](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments), and we’re very happy to ship it.  We’re also shipping a new first-class AWS S3 step that makes working with Amazon Web Services easier, and we added the ability to set a step as required so it can't be skipped.
+This month, our headline feature is _Recurring Scheduled Deployments_ which was one of our [most highly requested features](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments), and we’re very happy to ship it. We’re also shipping a new first-class AWS S3 step that makes working with Amazon Web Services easier, and we added the ability to set a step as required so it can't be skipped.
 
 ## In This Post
 
