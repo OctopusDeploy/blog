@@ -38,9 +38,16 @@ We're continuing to improve our Amazon Web Services (AWS) support by adding a fi
 
 ## Required Steps
 
+Deployment-process steps can be skipped at deploy time.  This is very convenient, but there are times when you may want to prevent specific steps from being skipped. Manual-intervention steps are an obvious example (they were in fact already unable to be skipped if responsibility was restricted to specified teams).  Other examples might be steps which send notifications or run verification processes.  
+With 2018.4 you can mark a step as required, and it will not be eligible to be skipped. 
+
 ![Required steps screenshot](required-step.png "width=500")
 
-Deployment steps can be skipped at deploy time but there are times when this is undesirable. For example, you may have a manual intervention step to require approval. It is somewhat of a loophole that this can be skipped at deployment time. So we've added the ability to set a step as required so it can't be skipped.
+This resolves the following UserVoice requests:
+
+- [Required Steps](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/5823326-required-steps)
+- [Add permissions to stop deployers from skipping steps](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6511629-add-permissions-to-stop-deployers-from-skipping-st) 
+- [Allow to mark a deployment step as mandatory (un-skippable)](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/20592493-allow-to-mark-a-deployment-step-as-mandatory-un-s) 
 
 ## Breaking Changes
 
