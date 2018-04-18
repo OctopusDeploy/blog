@@ -72,7 +72,7 @@ Next, select the Access Control (IAM) blade and if your app isn't listed, click 
 
 Now you can go ahead and create an Octopus Azure account and use it to deploy your applications safely and securely.
 
-![octopus-account.png]()
+![Octopus Azure account](octopus-account.png "width=500")
 
 ## App Registration with Azure PowerShell
 
