@@ -2,7 +2,7 @@
 title: Deploying an ASP.NET MVC web app to Azure with AppVeyor and Octopus - Will it Deploy? Episode 6
 description: Deploying an ASP.NET MVC web app to Azure with a cloud-based delivery pipeline using AppVeyor and Octopus - Will it Deploy? Episode 6
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 published: 2018-04-19
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
@@ -10,20 +10,20 @@ tags:
  - Will it Deploy
 ---
 
-Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy an ASP.NET MVC 5 web app to a Microsoft Azure App Service. We also explore setting up a cloud-based delivery pipeline with [AppVeyor](https://appveyor.com) and Octopus.
+Welcome to another **Will it Deploy?** episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy an ASP.NET MVC 5 web app to a Microsoft Azure App Service. We also explore setting up a cloud-based delivery pipeline with [AppVeyor](https://appveyor.com) and [Octopus](https://octopus.com/cloud).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uIWGd7EUxXE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-NOTE: Octopus Cloud is coming soon! Head over to [Octopus Cloud](https://octopus.com/cloud) to register your interest and stay up to date with our cloud-based solution. 
+NOTE: [Octopus Cloud](https://octopus.com/cloud) is coming soon! Register your interest and stay up to date with our cloud-based solution. 
 
 ## Problem
 
 ### Tech Stack
 
-Our app is a random quote generation web app called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode006). This is fairly simple, but it'll allow us to walk through how to automate the deployment of an ASP.NET MVC web application to Microsoft's Azure platform.
+Our app is a random quote generator web app called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode006). This is fairly simple, but it'll allow us to walk through how to automate the deployment of an ASP.NET MVC web application to Microsoft's Azure platform.
 
-* Microsoft [ASP.NET MVC 5](https://docs.microsoft.com/en-us/aspnet/mvc/mvc5) web app.
-* [NUnit](http://nunit.org/) unit testing framework.
+* Microsoft [ASP.NET MVC 5](https://docs.microsoft.com/en-us/aspnet/mvc/mvc5) web app
+* [NUnit](http://nunit.org/) unit testing framework
 * Build with [AppVeyor](https://appveyor.com)
 * Deploy with [Octopus](https://octopus.com/cloud)
 
@@ -33,7 +33,7 @@ Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who 
 
 ![Microsoft Azure logo](will-it-deploy-azure-logo.png "width=500")
 
-Microsoft's Azure Platform - [App Service](https://azure.microsoft.com/en-au/services/app-service/).
+[Microsoft's Azure Platform](https://azure.microsoft.com/) - [App Service](https://azure.microsoft.com/en-us/services/app-service/).
 
 ## Solution
 
@@ -41,11 +41,11 @@ So will it deploy? **Yes it will!**
 
 Our cloud-based delivery pipeline looks like the following:
 
-![GitHub, AppVeyor and Octopus delivery pipeline](cloud-pipeline.png "width=500")
+![GitHub, AppVeyor and Octopus delivery pipeline](cloud-pipeline.png "width=750")
 
-We're commiting our source code to [GitHub](https://github.com/), building our app with [AppVeyor](https://appveyor.com) and deploying with [Octopus](https://octopus.com/cloud) to [Microsoft Azure](https://azure.microsoft.com/en-au/services/app-service/). 
+We're commiting our source code to [GitHub](https://github.com/), building our app automatically with [AppVeyor](https://appveyor.com) and deploying to [Microsoft Azure](https://azure.microsoft.com/en-au/services/app-service/) with [Octopus](https://octopus.com/cloud). 
 
-It's quick and easy to integrate AppVeyor with Octopus. We simply turned on selected the 'Package Web Applications for Octopus deploy' build option and configured an 'Octopus Deploy' deployment provider. 
+It's quick and easy to integrate AppVeyor with Octopus. We simply selected the 'Package Web Applications for Octopus deploy' build option and configured an 'Octopus Deploy' deployment provider.
 
 ![AppVeyor build settings](appveyor-package-webapp.png "width=500")
 
