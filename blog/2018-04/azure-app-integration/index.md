@@ -78,8 +78,38 @@ Now you can go ahead and create an Octopus Azure account and use it to deploy yo
 
 For those developers who prefer to run scripts, the following PowerShell script can retrieve the same values. It also creates 
 
-```
+```powershell
+# Obviously, replace the following with your own values
+$subscriptionId = "cd21dc34-73dc-4c7d-bd86-041284e0bc45"
+$tenantId = "2a681dca-3230-4e01-abcb-b1fd225c0982"
+$password = "correct horse battery staple"
 
+# Login to your Azure Subscription
+Login-AzureRMAccount
+Set-AzureRMContext -SubscriptionId $subscriptionId -TenantId $tenantId
+
+# Create an Octopus Deploy Application in Active Directory
+Write-Output "Creating AAD application..."
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+$azureAdApplication = New-AzureRmADApplication -DisplayName "Octopus Deploy" -HomePage "http://octopus.com" -IdentifierUris "http://octopus.com" -Password $securePassword
+$azureAdApplication | Format-Table
+
+# Create the Service Principal
+Write-Output "Creating AAD service principal..."
+$servicePrincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
+$servicePrincipal | Format-Table
+
+# Sleep, to Ensure the Service Principal is Actually Created
+Write-Output "Sleeping for 10s to give the service principal a chance to finish creating..."
+Start-Sleep -s 10
+
+# Assign the Service Principal the Contributor Role to the Subscription.
+# Roles can be Granted at the Resource Group Level if Desired.
+Write-Output "Assigning the Contributor role to the service principal..."
+New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId
+
+# The Application ID (aka Client ID) will be Required When Creating the Account in Octopus Deploy
+Write-Output "Client ID: $($azureAdApplication.ApplicationId)"
 
 ```
 
