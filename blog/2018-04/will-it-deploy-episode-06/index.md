@@ -53,11 +53,11 @@ It's quick and easy to integrate AppVeyor with Octopus. We simply selected the '
 
 Our deployment process looks like the following:
 
-![Octopus deployment process](will-it-deploy-deployment-process.png "width=500")
+![Octopus deployment process](deployment-process.png "width=500")
 
 We have a single step in our deployment process which is an Octopus **Deploy an Azure Web App** step to deploy our web application to our App Service. It's very simple to configure and we mostly use the defaults. We did turn on the Configuration Variable replacement feature update our `web.config` file during deployments.
 
-![Project variables](will-it-deploy-project-variables.png "width=500")
+![Project variables](project-variables.png "width=500")
 
 This project uses the following variables to store our Azure resource group name and website name, as well as a handful of other application settings like our banner background colour, the release version and environment the app is deployed to. Nice and simple but it illustrates how we can change our configuration as we promote our application through different environments.
 
