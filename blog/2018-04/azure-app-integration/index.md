@@ -3,7 +3,7 @@ title: Azure App Integrations: Integrating your apps with Azure Active Directory
 description: Integrated your apps and services with Azure can require working with 
 author: rob.pearson@octopus.com
 visibility: private
-published: 2018-04-15
+published: 2018-04-20
 tags:
  - Azure
  - Deep Dive
@@ -27,13 +27,9 @@ These values can be found via the Azure Portal or via Powershell. I stuggle to r
 
 This one is easy. Navigate to the Azure Portal `Subscriptions` blade and pick the appropriate Subscription ID. NOTE: This value is a GUID.
 
-![Azure Subscriptions](azure-subscriptions.png)
-
 ### AAD Tenant ID
 
 This is another easy one. Navigate to the `Azure Active Directory` service and select the Properties blade. The Directory is your AAD Tenant ID. NOTE: This value is a GUID.
-
-![Azure Subscriptions](azure-active-directory-tenant-id.png)
 
 ### AAD Registered Application ID and AAD Registered Application Password/Key
 
