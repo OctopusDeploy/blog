@@ -36,6 +36,8 @@ This one is easy. Navigate to the Azure Portal `Subscriptions` blade and pick th
 
 This is another easy one. Navigate to the `Azure Active Directory` service and select the Properties blade. The Directory is your AAD Tenant ID. NOTE: This value is a GUID.
 
+![Azure Active Directory properties](azure-ad-properties.png "width=500")
+
 ### AAD Registered Application ID and AAD Registered Application Password/Key
 
 If you have created an AAD registered application, then it's relatively straight forward to note the Application ID and Password/Key. Navigate to to the Azure Active Directory service and select the App registrations blade. Make sure to click `View all applications` if you don't see anything there. If you have already created an registered application for integration, select the app and note the Application ID. 
