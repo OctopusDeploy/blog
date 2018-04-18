@@ -1,5 +1,5 @@
 ---
-title: Azure App Integrations: Integrating your apps with Azure Active Directory (AAD)
+title: Azure App Integrations - Integrating your apps with Azure Active Directory (AAD)
 description: Integrated your apps and services with Azure can require working with 
 author: rob.pearson@octopus.com
 visibility: private
