@@ -9,26 +9,28 @@ tags:
  - Deep Dive
 ---
 
-Octopus Deploy integrates with popular cloud services like [Amazon Web Services (AWS)](https://aws.amazon.com/) and [Microsoft's Azure platform](https://azure.microsoft.com/) to make it easy to deploy your apps safely and securely. Integrating with Amazon is as simple as adding your AWS Access Key and Secret Key however, Azure requires a few more details and it's not immediately obvious how to set things up. This is enabled by registered applications in Azure Active Directory (AAD) but it can be tricky to setup so we're going to take a deeper look.
+Octopus Deploy integrates with popular cloud services like [Amazon Web Services (AWS)](https://aws.amazon.com/) and [Microsoft's Azure platform](https://azure.microsoft.com/) to make it easy to deploy your apps safely and securely. Integrating with Amazon is as simple as adding your AWS Access Key and Secret Key however, Azure requires a few more details and it's not immediately obvious how to set things up. This is enabled by Azure Active Directory (AAD) registered applications (or app registrations) but it can be tricky to setup so we're going to take a deeper look.
 
-![Octopus Accounts](octopus-accounts.png "width=500")
+![Octopus Accounts](octopus-accounts.png "width=750")
 
+Octopus requires four values which are utilised to authenticate with Azure and interact with it securely. 
 
-> Enterprise developers and software-as-a-service (SaaS) providers can develop commercial cloud services or line-of-business applications, that can be integrated with Azure Active Directory (Azure AD) to provide secure sign-in and authorization for their services. To integrate an application or service with Azure AD, a developer must first register the application with Azure AD.
-
-This integration requires four values:
 * Azure Subscription ID
 * AAD Tenant ID
 * AAD Registered Application ID
 * AAD Registered Application Password/Key
 
-These values can be found via the Azure Portal or via Powershell. I stuggle to remember where all the values are found so we'll walk through the process now of finding/creating them now.
+The first three values are GUIDs and the final one is a password. These values can be found via the Azure Portal or via Powershell. Personally, I stuggle to remember where to find all the values are found so we'll walk through the process now of finding/creating them.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## App Registration in the Azure Portal
 
 ### Azure Subscrition ID
 
-This one is easy. Navigate to the Azure Portal `Subscriptions` blade and pick the appropriate Subscription ID. NOTE: This value is a GUID.
+This one is easy. Navigate to the Azure Portal `Subscriptions` blade and pick the appropriate Subscription ID.
+
+![Azure subscriptions](azure-subscriptions.png "width=500")
 
 ### AAD Tenant ID
 
