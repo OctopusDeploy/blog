@@ -43,7 +43,7 @@ Our cloud-based delivery pipeline looks like the following:
 
 ![GitHub, AppVeyor and Octopus delivery pipeline](cloud-pipeline.png "width=750")
 
-We're commiting our source code to [GitHub](https://github.com/), building our app automatically with [AppVeyor](https://appveyor.com) and deploying to [Microsoft Azure](https://azure.microsoft.com/en-au/services/app-service/) with [Octopus](https://octopus.com/cloud). 
+We're commiting our source code to [GitHub](https://github.com/OctopusSamples/WillItDeploy-Episode006), building our app automatically with [AppVeyor](https://appveyor.com) and deploying to [Microsoft Azure](https://azure.microsoft.com/en-au/services/app-service/) with [Octopus](https://octopus.com/cloud). 
 
 It's quick and easy to integrate AppVeyor with Octopus. We simply selected the 'Package Web Applications for Octopus deploy' build option and configured an 'Octopus Deploy' deployment provider.
 
