@@ -57,9 +57,9 @@ Our deployment process looks like the following:
 
 We have a single step in our deployment process which is an Octopus **Deploy an Azure Web App** step to deploy our web application to our App Service. It's very simple to configure and we mostly use the defaults. We did turn on the Configuration Variable replacement feature update our `web.config` file during deployments.
 
-![Project variables](project-variables.png "width=500")
+This project uses the following variables to store our Azure resource group name, website name, as well as a handful of other application settings like our banner background colour, release version and environment name. This is simple but it illustrates how we can change our configuration as our web app is promoted through environments.
 
-This project uses the following variables to store our Azure resource group name and website name, as well as a handful of other application settings like our banner background colour, the release version and environment the app is deployed to. Nice and simple but it illustrates how we can change our configuration as we promote our application through different environments.
+![Project variables](project-variables.png "width=500")
 
 This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Episode006) contains all the resources and links used in this video.
 
