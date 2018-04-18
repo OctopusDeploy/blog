@@ -2,11 +2,19 @@
 title: "PaaS Deployment Targets"
 description: "We are introducing new deployment targets to represent the platform-as-a-service offerings"
 author: michael.richardson@octopus.com
-visibility: private
-published: 2018-04-21
+visibility: public
+published: 2018-04-20
+metaImage: metaimage-paas.png
+bannerImage: blogimage-paas.png
 tags:
  - New Releases
  - Cloud
+---
+
+![Azure PaaS deployment targets banner](blogimage-paas.png)
+
+This post is a part of our 'Azure Cloud Deployments with Octopus' blog series. Follow it on our [blog](/blog/2018-03/octopus-azure-deployments/index.md) or our [twitter](https://twitter.com/OctopusDeploy) feed.
+
 ---
 
 _Summary: Platform-as-a-Service endpoints (Azure websites, etc.) will be modelled as deployment targets in Octopus._

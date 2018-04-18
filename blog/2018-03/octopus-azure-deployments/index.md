@@ -28,7 +28,7 @@ We're gearing up to ship the next generation of Octopus support for Azure deploy
 
 Blog series posts:
 
-* TBA
+* [PaaS Deployment Targets](/blog/2018-04/paas-targets/index.md)
 * TBA
 * TBA
 * TBA
