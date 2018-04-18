@@ -42,19 +42,19 @@ This is another easy one. Navigate to the `Azure Active Directory` service and s
 
 If you have created an AAD registered application, then it's relatively straight forward to note the Application ID and Password/Key. Navigate to to the Azure Active Directory service and select the App registrations blade. Make sure to click `View all applications` if you don't see anything there. If you have already created an registered application for integration, select the app and note the Application ID. 
 
-![AAD registered applications](azure-ad-registered-apps.png)
+![AAD registered applications](azure-ad-registered-apps.png "width=500")
 
 If you haven't created an application, Click the New application registration and fill in the appropriate deails and then click `Save`. THen note the Application ID. 
 
-![Create AAD registered app](azure-ad-create-registered-app01.png)
+![Create AAD registered app](azure-ad-create-registered-app01.png "width=500")
 
-![Create AAD registered app](azure-ad-create-registered-app02.png)
+![Create AAD registered app](azure-ad-create-registered-app02.png "width=500")
 
 Application Passwords are one-time genereated tokens and so if you don't already know your password, you'll need to generate a new one. If you haven't set one, the process is the same. 
 
-![Set AAD registered app password](azure-ad-registered-app-password.png)
-
 Click the settings button and then the `Keys` blade. Add a new Password with a good description and click save. The password will be displayed after you click save. Be sure to note it as it won't be displayed again. 
+
+![Set AAD registered app password](azure-ad-registered-app-password.png "width=500")
 
 That's it, you now have your registered Application ID and password.
 
