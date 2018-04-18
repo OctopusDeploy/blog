@@ -44,12 +44,13 @@ Which PaaS flavors will be supported?
 As a first phase, in our May release (2018.5), we will add:
 
 - Azure Web Apps (which also represent Azure Functions)
+- Azure Cloud Services
 - Azure Service Fabric
 
 In the coming months we will add:
 
-- AWS Lambda
 - Kubernetes 
+- AWS Lambda
 
 And no doubt more will follow. 
 
@@ -122,7 +123,7 @@ As of the 2018.5 release of Octopus, these PaaS targets will be included in the 
 
 There will be no breaking changes. Everything you have configured today will continue to work.
 
-As of the 2018.5 release, if you wish to create new _Deploy Azure Web_ or _Deploy a Service Fabric App_ steps you will need to first configure targets in the appropriate environments.  
+As of the 2018.5 release, if you wish to create new _Deploy Azure Web_, _Deploy Azure Cloud Service_, or _Deploy a Service Fabric App_ steps you will need to first configure targets in the appropriate environments.  
 
 Counts for license-usage will not change until you create instances of the new targets.  Essentially, your existing configuration in Octopus will continue to function and will be priced exactly as it was. These changes are all forward-only. 
 
