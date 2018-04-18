@@ -12,9 +12,9 @@ tags:
 
 Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy an ASP.NET MVC 5 web app to a Microsoft Azure App Service. We also explore setting up a cloud-based delivery pipeline with [AppVeyor](https://appveyor.com) and Octopus.
 
-NOTE: Octopus Cloud is coming soon! Head over to [Octopus Cloud](https://octopus.com/cloud) to register your interest and stay up to date with our cloud-based solution. 
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uIWGd7EUxXE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+NOTE: Octopus Cloud is coming soon! Head over to [Octopus Cloud](https://octopus.com/cloud) to register your interest and stay up to date with our cloud-based solution. 
 
 ## Problem
 
@@ -43,23 +43,25 @@ Our cloud-based delivery pipeline looks like the following:
 
 ![GitHub, AppVeyor and Octopus delivery pipeline](cloud-pipeline.png "width=500")
 
+We're commiting our source code to [GitHub](https://github.com/), building our app with [AppVeyor](https://appveyor.com) and deploying with [Octopus](https://octopus.com/cloud) to [Microsoft Azure](https://azure.microsoft.com/en-au/services/app-service/). 
+
+It's quick and easy to integrate AppVeyor with Octopus. We simply turned on selected the 'Package Web Applications for Octopus deploy' build option and configured an 'Octopus Deploy' deployment provider. 
+
+![AppVeyor build settings](appveyor-package-webapp.png "width=500")
+
+![AppVeyor deployment provider settings](appveyor-deployment-provider.png "width=500")
+
 Our deployment process looks like the following:
 
 ![Octopus deployment process](will-it-deploy-deployment-process.png "width=500")
 
-The first step is to add an Octopus Azure account, which has all the details required to enable me to connect to the Azure platform, safely and securely. It is used to authenticate with Azure when deploying or executing scripts.
-
-![Octopus Azure account](will-it-deploy-azure-account.png "width=500")
-
-Then we add the following steps to successfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
-
-- Octopus **Deploy an Azure Web App** step to deploy our web application to our App Service.
-
-This project uses the following variables to store our resource group name, website name, and app settings. Nice and simple!
+We have a single step in our deployment process which is an Octopus **Deploy an Azure Web App** step to deploy our web application to our App Service. It's very simple to configure and we mostly use the defaults. We did turn on the Configuration Variable replacement feature update our `web.config` file during deployments.
 
 ![Project variables](will-it-deploy-project-variables.png "width=500")
 
-This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Episode001) contains all the resources and links used in this video.
+This project uses the following variables to store our Azure resource group name and website name, as well as a handful of other application settings like our banner background colour, the release version and environment the app is deployed to. Nice and simple but it illustrates how we can change our configuration as we promote our application through different environments.
+
+This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Episode006) contains all the resources and links used in this video.
 
 ### Wrap-up
 
