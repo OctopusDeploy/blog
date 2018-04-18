@@ -78,7 +78,7 @@ Now you can go ahead and create an Octopus Azure account and use it to deploy yo
 
 For those developers who prefer to run scripts, the following PowerShell script can retrieve the same values. It also creates 
 
-```powershell
+```PowerShell
 # Obviously, replace the following with your own values
 $subscriptionId = "cd21dc34-73dc-4c7d-bd86-041284e0bc45"
 $tenantId = "2a681dca-3230-4e01-abcb-b1fd225c0982"
