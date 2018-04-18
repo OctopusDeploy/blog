@@ -46,13 +46,13 @@ If you have created an AAD registered application, then it's relatively straight
 
 If you haven't created an application, Click the New application registration and fill in the appropriate deails and then click `Save`. THen note the Application ID. 
 
-![Create AAD registered app](azure-ad-creaet-registered-app01.png)
+![Create AAD registered app](azure-ad-create-registered-app01.png)
 
-![Create AAD registered app](azure-ad-creaet-registered-app02.png)
+![Create AAD registered app](azure-ad-create-registered-app02.png)
 
 Application Passwords are one-time genereated tokens and so if you don't already know your password, you'll need to generate a new one. If you haven't set one, the process is the same. 
 
-![Set AAD registered app password](azure-ad-registered-apps.png)
+![Set AAD registered app password](azure-ad-registered-app-password.png)
 
 Click the settings button and then the `Keys` blade. Add a new Password with a good description and click save. The password will be displayed after you click save. Be sure to note it as it won't be displayed again. 
 
