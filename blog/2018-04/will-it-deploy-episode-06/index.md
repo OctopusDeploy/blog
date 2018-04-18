@@ -12,18 +12,20 @@ tags:
 
 Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy an ASP.NET MVC 5 web app to a Microsoft Azure App Service. We also explore setting up a cloud-based delivery pipeline with [AppVeyor](https://appveyor.com) and Octopus.
 
-NOTE: Octopus Cloud is coming soon! Head over to https://octopus.com/cloud to register your interest and stay up to date with our cloud-based solution. 
+NOTE: Octopus Cloud is coming soon! Head over to [Octopus Cloud](https://octopus.com/cloud) to register your interest and stay up to date with our cloud-based solution. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KGqlKduFohI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uIWGd7EUxXE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Problem
 
 ### Tech Stack
 
-Our app is a random quote generator web app called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode006). This is fairly simple, but it'll allow us to walk through how to automate the deployment of an ASP.NET MVC web application to Microsoft's Azure platform.
+Our app is a random quote generation web app called [Random Quotes](https://github.com/OctopusSamples/WillItDeploy-Episode006). This is fairly simple, but it'll allow us to walk through how to automate the deployment of an ASP.NET MVC web application to Microsoft's Azure platform.
 
-* Microsoft [ASP.NET Core 2.0](https://docs.microsoft.com/en-us/aspnet/core/) web app.
+* Microsoft [ASP.NET MVC 5](https://docs.microsoft.com/en-us/aspnet/mvc/mvc5) web app.
 * [NUnit](http://nunit.org/) unit testing framework.
+* Build with [AppVeyor](https://appveyor.com)
+* Deploy with [Octopus](https://octopus.com/cloud)
 
 Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who has been learning to code and built the first cut of this app. Nice job! 
 
@@ -35,11 +37,13 @@ Microsoft's Azure Platform - [App Service](https://azure.microsoft.com/en-au/ser
 
 ## Solution
 
-So will it deploy? **Yes it will!** Our cloud-based delivery pipeline looks like the following:
+So will it deploy? **Yes it will!** 
+
+Our cloud-based delivery pipeline looks like the following:
 
 ![GitHub, AppVeyor and Octopus delivery pipeline](cloud-pipeline.png "width=500")
 
-Our deployment process looks like the following.
+Our deployment process looks like the following:
 
 ![Octopus deployment process](will-it-deploy-deployment-process.png "width=500")
 
@@ -49,10 +53,7 @@ The first step is to add an Octopus Azure account, which has all the details req
 
 Then we add the following steps to successfully deploy our app including cloud infrastructure provisioning and a zero downtime production deployment.
 
-- Octopus **Deploy an Azure Resource Group** step to provision our cloud infrastructure via an ARM Template.
-- Octopus **Run an Azure Powershell Script** step to ensure we always have a fresh App Service staging deployment slot. We call the Azure Powershell cmdlets to delete and create an App Service deployment slot.
-- Octopus **Deploy an Azure Web App** step to deploy our web application to our App Service staging deployment slot.
-- Octopus **Run an Azure Powershell Script** step to swap our App Service staging and production (live) deployment slot. This is only done during a production deployment so that we achieve zero-downtime!
+- Octopus **Deploy an Azure Web App** step to deploy our web application to our App Service.
 
 This project uses the following variables to store our resource group name, website name, and app settings. Nice and simple!
 
