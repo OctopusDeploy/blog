@@ -9,7 +9,7 @@ tags:
  - Deep Dive
 ---
 
-Octopus Deploy integrates with popular cloud services like [Amazon Web Services (AWS)](https://aws.amazon.com/) and [Microsoft's Azure platform](https://azure.microsoft.com/) to make it easy to deploy your apps safely and securely. Integrating with Amazon is as simple as adding your AWS Access Key and Secret Key however, Azure requires a few more details and it's not immediately obvious how to set things up. This is enabled by registered applications in Azure Active Directory (AAD). Our documentation covers this however we thought it would be take a deeper look as it can be tricky.
+Octopus Deploy integrates with popular cloud services like [Amazon Web Services (AWS)](https://aws.amazon.com/) and [Microsoft's Azure platform](https://azure.microsoft.com/) to make it easy to deploy your apps safely and securely. Integrating with Amazon is as simple as adding your AWS Access Key and Secret Key however, Azure requires a few more details and it's not immediately obvious how to set things up. This is enabled by registered applications in Azure Active Directory (AAD) but it can be tricky to setup so we're going to take a deeper look.
 
 ![Octopus Accounts](octopus-accounts.png "width=500")
 
