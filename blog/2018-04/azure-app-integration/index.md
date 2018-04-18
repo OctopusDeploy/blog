@@ -56,11 +56,23 @@ Click the settings button and then the `Keys` blade. Add a new Password with a g
 
 ![Set AAD registered app password](azure-ad-registered-app-password.png "width=500")
 
-That's it, you now have your registered Application ID and password.
+That's it, you now have your registered application ID and password.
 
 ### Permissions
 
-The final step is to ensure your registered app has permission to work with your Azure resources. Navigate to the 'Resource Groups' service and select the resource group(s) that you want our application to access. Next, select the Access Control (IAM) blade and if your app isn't listed, click the `Add` button. Select the appropriate role (Contributor is a good option) and search for your new application name. Select it from the search results and then click Save.  
+The final step is to ensure your registered app has permission to work with your Azure resources. Navigate to the 'Resource Groups' service and select the resource group(s) that you want our application to access. 
+
+![Resource Group permission](resource-group-perms01.png "width=500")
+
+Next, select the Access Control (IAM) blade and if your app isn't listed, click the `Add` button. Select the appropriate role (Contributor is a good option) and search for your new application name. Select it from the search results and then click Save.  
+
+![Resource Group permission](resource-group-perms02.png "width=500")
+
+### Octopus Account
+
+Now you can go ahead and create an Octopus Azure account and use it to deploy your applications safely and securely.
+
+![octopus-account.png]()
 
 ## App Registration with Azure PowerShell
 
