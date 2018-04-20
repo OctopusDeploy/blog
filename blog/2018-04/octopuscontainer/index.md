@@ -20,19 +20,18 @@ docker run -i --env sqlDbConnectionString=<MyConnectionString> octopusdeploy/oct
 
 Rather than go into details about the anatomy of the Docker commands in this post, I would encourage you to check out the [Docker docs](https://docs.docker.com/engine/reference/run/) for more detailed explanations.
 
-As good container adherents, we all know we should treat containers as immutable and could be torn down at any point. To deal with this, we probably want to ensure that the server files used by the instance are written to something more permanent. The Octopus Server container provides several mount points to make maintaining these files a little easier. In addition, although the container exposes the portal on port `81` we may want to map it to something specific on the host. Overall the above command is nice and simple, but it's probably ideal to provide our own admin credentials to access the newly created instance than rely on the defaults. 
+As good container adherents, we all know we should treat containers as immutable and could be torn down at any point. To deal with this, we should ensure that the server files used by the instance are written to something more permanent. The Octopus Server container provides several mount points to make maintaining these files a little easier. In addition, although the container exposes the Octopus Web Portal on port `81` we may want to map it to a specific port on the host. Overall the above command is nice and simple, but it's probably ideal to provide our own admin credentials to access the newly created instance than rely on the defaults.
 
 Let's add a little more configuration to this command.
 
 ```PowerShell
-docker run -i `
-    --detach `
+docker run --interactive --detach `
     --name OctopusServer `
     --publish "8081:80" `
-    --volume "./Repository:C:/Repository" `
-    --volume "./Artifacts:C:/Artifacts" `
-    --volume "./TaskLogs:C:/TaskLogs" `
-    --env sqlDbConnectionString="Server=172.23.192.1,1433;Initial Catalog=Octopus;Persist Security Info=False;User ID=sa;Password=P@ssw0rd;MultipleActiveResultSets=False;Connection Timeout=30;" `
+    --volume "E:/Octopus/Repository:C:/Repository" `
+    --volume "E:/Octopus/Artifacts:C:/Artifacts" `
+    --volume "E:/Octopus/TaskLogs:C:/TaskLogs" `
+    --env sqlDbConnectionString="Server=172.23.192.1,1433;Initial Catalog=Octopus;Persist Security Info=False;User ID=sa;Password=P@ssw0rdz;MultipleActiveResultSets=False;Connection Timeout=30;" `
     --env OctopusAdminUsername=Mario `
     --env OctopusAdminPassword=ItsAMe! `
     octopusdeploy/octopusdeploy:2018.4.0
@@ -41,7 +40,7 @@ docker run -i `
 Now that everything has been externalized from the container, we can easily upgrade the Octopus Server instance when that hot new Octopus feature we have been waiting for becomes available. First we need to get the master-key from our original Octopus instance. As part of the startup process of this container the master-key is written to the logs so it can be found by running `docker logs OctopusServer`. With the key in hand we can just stop the original container and rerun the above run command with the new master-key environment variable and new version tag.
 
 ```PowerShell
-docker run -i `
+docker run --interactive --detach `
     ...
     ...
     --env masterKey=7dnak8asdn23hjasd== `
@@ -51,12 +50,13 @@ docker run -i `
 And boom, the new version will download, perform any necessary database migrations and be up and running. _Told you it was crazy simple._ Check out [our docs](https://octopus.com/docs/installation/octopus-in-container/octopus-server-container) on the Octopus Server Images for further details on some of the available configuration.
 
 ## Running Tentacle in a container
-An Octopus Tentacle container is also available but it's probably of less value than a standard Tentacle. Since any deployment tasks that run against the Tentacle in Octopus will run _within_ the container itself, you are probably less likely to use it for things like updating an IIS website or deploying up a NodeJS application. Where this will start providing more value, is when the Tentacle executable will be able to be used for [running tasks](https://github.com/OctopusDeploy/Specs/blob/master/Workers/index.md) that are currently confined to "run-on-server".
+An Octopus Tentacle container is also available however since any deployment tasks that run against the Tentacle in Octopus will run _within_ the container itself, you are probably less likely to use it for things like updating an IIS website or deploying up a NodeJS application. Where this will start providing more value, is when the Tentacle executable will be able to be used for [running tasks](https://github.com/OctopusDeploy/Specs/blob/master/Workers/index.md) that are currently confined to "run-on-server".
 
 When a Tentacle container starts up it registers itself with the server details provided. With future changes the Tentacle will also re-register itself when it shuts down however that functionality has only become available in [recent](https://github.com/moby/moby/issues/25982) Windows Container builds so that side is not yet accounted for in the current build.
 
 ```PowerShell
-docker run -i --name MyTentacle `
+docker run --interactive --detach  `
+    --name MyTentacle `
     --env ServerApiKey=API-48AC758FF8912B `
     --env ServerUrl=http://myoctopus.acme.com `
     --env TargetEnvironment=Development `
@@ -96,8 +96,8 @@ services:
         condition: service_healthy
     stdin_open: true
     volumes:
-      - "./Repository:C:/Repository"
-      - "./TaskLogs:C:/TaskLogs"
+      - "E:/Octopus/Repository:C:/Repository"
+      - "E:/Octopus/TaskLogs:C:/TaskLogs"
 networks:
   default:
     external:
