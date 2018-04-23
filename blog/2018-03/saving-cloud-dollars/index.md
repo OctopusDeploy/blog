@@ -389,10 +389,10 @@ In your new project, select {{Triggers,Add Trigger,Scheduled trigger}}.
 
 ![New Schedule](saving-cloud-dollars_schedule.png "width=500")
 
-Under the **Name** section, provide a name to describe this schedule, I've chosen to use "25th day of each month"
-Under the **Trigger Schedule** section, I've set this to **Days per month** and set the day to be the **25th** day of each month - With a start time of 09:00AM.
-Under the **Trigger Action** section, you can select which release you would prefer to run. I've chosen to deploy the **latest** release of this project. 
-Under both the  **Source environment** and **Destination environment** choose the same environment. I've chosen the **Production** environemnt.
+- Under the **Name** section, provide a name to describe this schedule, I've chosen to use "25th day of each month"
+- Under the **Trigger Schedule** section, I've set this to **Days per month** and set the day to be the **25th** day of each month - With a start time of 09:00AM.
+- Under the **Trigger Action** section, you can select which release you would prefer to run. I've chosen to deploy the **latest** release of this project. 
+- Under both the  **Source environment** and **Destination environment** choose the same environment. I've chosen the **Production** environemnt.
 
 This will cause the latest release in the source environment to be re-deployed on the 25th day of each month.
 
