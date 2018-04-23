@@ -28,7 +28,7 @@ By default, an environment is not allowed to have dynamic targets create or remo
 
 So as to simplify our QA environment, and prevent it from deploying to other environments (such as Production), we can create a new [Lifecycle](https://octopus.com/docs/infrastructure/lifecycles) that only allows deployments to our new environment.
 
-![QA Only Lifecycle](qa-only.lifecycle.png)
+![QA Only Lifecycle](qa-only-lifecycle.png)
 
 ### Create tenants
     
