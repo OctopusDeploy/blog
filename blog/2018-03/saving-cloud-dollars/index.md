@@ -10,6 +10,9 @@ tags:
  - PowerShell
 ---
 
+
+Updated 2018-04-23 - This blog post has been updated after our Octopus 2018.4 release which now has support for [recurring scheduled deployments](https://octopus.com/blog/octopus-release-2018.4#recurring-scheduled-deployments) to illustrate how to run a deployment regularly on a schedule.
+
 Have you ever deployed a Virtual Machine into Azure for a quick 10-minute test only to come back 2 months later and realize it's been running the whole time? This blog post shows how you can use Octopus to notify you via Slack if an Azure resource group cost spikes above an expected amount - which you can specify using resource group tags. Since Octopus has the ability to authenticate to many different cloud platforms, and deploy resources to them, it naturally has the ability to get useful data out too. This makes Octopus a great candidate to run the scripts we need to see how much our resources are costing.
 
 ## Scenario
@@ -75,7 +78,7 @@ $resourceGroups
 ```
 
 ## Objective 3: Calculate the cost of each Resource Group, then flag ones that exceed NotifyCostLimit.
-We only care about the current resource groups now, because we aren't going to perform any actions against an already deleted resource group. For each resource group name encountered we filter the details by resource group and add all the costs together. This becomes the total cost of each resource group.
+For each resource group name encountered we filter the details by resource group and add all the costs together. This becomes the total cost of each resource group.
 
 ```powershell
 Write-Output "Calculating the cost of each Resource Group, then flag ones that exceed NotifyCostLimit."
@@ -375,18 +378,36 @@ else {
 }
 ```
 
-## Creating and deploying the new release
+## Creating your new release.
 Save your new step and create a new release!
 
 ![New Release](saving-cloud-dollars_createrelease.png "width=500")
 
+## Setup a deployment schedule (Optional)
+Optionally, you can set your Cloud Cost project to run on a recurring schedule. One possibility could be to run this task once per month, on a set day.
+In your new project, select {{Triggers,Add Trigger,Scheduled trigger}}. 
+
+![New Schedule](saving-cloud-dollars_schedule.png "width=500")
+
+Under the **Name** section, provide a name to describe this schedule, I've chosen to use "25th day of each month"
+Under the **Trigger Schedule** section, I've set this to **Days per month** and set the day to be the **25th** day of each month - With a start time of 09:00AM.
+Under the **Trigger Action** section, you can select which release you would prefer to run. I've chosen to deploy the **latest** release of this project. 
+Under both the  **Source environment** and **Destination environment** choose the same environment. I've chosen the **Production** environemnt.
+
+This will cause the latest release in the source environment to be re-deployed on the 25th day of each month.
+
+![New Schedule settings](saving-cloud-dollars_schedule-settings.png "width=500")
+
+Save your new schedule.
+
+## Deploying your new release.
+
 Now Lets's Deploy!
 
-![New Release](saving-cloud-dollars_deploy.png "width=500")
+![Deploy Release](saving-cloud-dollars_deploy.png "width=500")
 
 ## Troubleshooting
 If your script fails to run because it can't find `Get-AzureRmConsumptionUsageDetails`, please ensure that the latest AzureRM module is installed on your Octopus Server and create another Octopus Variable called `Octopus.Action.Azure.UseBundledAzurePowerShellModules` with a value of `False`. For more information on why you could be receiving this error, please check out or documentation on [Configuring the Version of the Azure PowerShell Modules](https://g.octopushq.com/PowerShellModulesVersion)
-
 
 ## Finishing up
 Congratulations! You  have successfully deployed your project to check Costs in Azure!
