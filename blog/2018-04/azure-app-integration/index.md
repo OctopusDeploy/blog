@@ -1,9 +1,11 @@
 ---
-title: Azure App Integration and Octopus Accounts
-description: Integrating your apps and services with Azure can be tricky so this post explores how Octopus accounts work with Microsoft's Azure platform.
+title: Deep Dive - Azure App Integration and Octopus Accounts
+description: We take a deep dive looking at integrating your apps and services with Azure exploring how Octopus accounts work with the Microsoft Azure platform.
 author: rob.pearson@octopus.com
-visibility: private
-published: 2018-04-20
+visibility: public
+published: 2018-04-26
+metaImage: metaimage-deep-dive.png
+bannerImage: blogimage-deep-dive.png
 tags:
  - Azure
  - Deep Dive
