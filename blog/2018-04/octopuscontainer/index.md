@@ -1,8 +1,10 @@
 ---
-title: "Running Octopus Deploy inside a container"
+title: Running Octopus Deploy inside a container
 description: The Octopus Deploy Docker image makes it a simple process to provision a new Octopus Server instance.
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
+metaImage: metaimage-dockercontainer.png
+bannerImage: blogimage-dockercontainer.png
 tags:
  - Ecosystem
 ---
