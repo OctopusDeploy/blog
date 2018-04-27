@@ -3,11 +3,14 @@ title: Running Octopus Deploy inside a container
 description: The Octopus Deploy Docker image makes it a simple process to provision a new Octopus Server instance.
 author: robert.erez@octopus.com
 visibility: public
+published: 2018-04-27
 metaImage: metaimage-dockercontainer.png
 bannerImage: blogimage-dockercontainer.png
 tags:
  - Ecosystem
 ---
+
+![Octopus Docker Container Banner](blogimage-dockercontainer.png)
 
 In today's fast-paced world, what some of us really need is a quicker way to download and run Octopus Deploy. Thankfully Octopus Deploy Containers are now available and allow users to run an Octopus Server or Tentacle directly from inside a Docker container.
 The [octopusdeploy/octopusdeploy](https://hub.docker.com/r/octopusdeploy/octopusdeploy/) and [octopusdeploy/tentacle](https://hub.docker.com/r/octopusdeploy/tentacle/) images are built alongside our standard Octopus Sever and Tentacle build process, so you can always be sure to have the latest version available (and the upgrade process is _crazy_ easy as you'll shortly see).
