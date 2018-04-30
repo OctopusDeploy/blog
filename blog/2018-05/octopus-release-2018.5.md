@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2018.5 release banner](blogimage-shipping-2018-5.png)
 
-This month, our headline feature is ... 
+This month, our headline feature is Azure. We have new deployment targets for Azure Web Apps, Cloud Services and Service Fabric Clusters, plus the ability to manage them in Octopus using Powershell Cmdlets.
 
 ## In This Post
 
