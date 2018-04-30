@@ -26,7 +26,7 @@ This month, our headline feature is Azure. We have new deployment targets for Az
 
 ![New Deployment Targets](new-targets.png "width=500")
 
-This release reintroduces both **Azure Web Apps** and **Azure Cloud Service** modeled as deployment targets, and introduces **Azure Service Fabric Clusters** to the deployment target family.
+This release [reintroduces](https://octopus.com/blog/azure-changes) both **Azure Web Apps** and **Azure Cloud Service** modeled as deployment targets, and introduces **Azure Service Fabric Clusters** to the deployment target family.
 
 For more information on the PaaS Targets, have a read of our previous [blog post](https://octopus.com/blog/paas-targets). 
 
