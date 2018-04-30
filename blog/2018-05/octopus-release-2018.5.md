@@ -48,6 +48,18 @@ This will give you the benefit of being able to scope different accounts across 
 
 The properties of the Azure Account (Client Id, Subscription Id, Tenent Id etc.) will also be available to use in your scripts. Just turn on the `OctopusPrintVariables` option to [see all the variables available](https://octopus.com/docs/support/debug-problems-with-octopus-variables#DebugproblemswithOctopusvariables-Writethevariablestothedeploymentlog).
 
+## Improved Support for PEM Certificate Chains
+
+Previously certificate chains (i.e. a primary certificate plus one or more intermediate or authority certificates) could only be uploaded in PFX format, and PFX was the only export format which would contain the chain certificates.
+
+As of release 2018.5: 
+
+- PEM files containing certificate chains can be uploaded. 
+- A new expanded [certificate variable](https://octopus.com/docs/deployment-process/variables/certificate-variables#expanded-properties) has been added: `MyCertificate.ChainPem` (assuming the certificate variable is named `MyCertificate`) which allows accessing the chain certificates in PEM format
+- When [exporting a certificate](https://octopus.com/docs/deploying-applications/certificates/export-certificate) containing a chain, the various certificate components can be optionally included (see image below)
+
+![Export certificate to PEM](download-pem-chain.png "width=500")
+
 ## Breaking Changes
 
 We have upgraded the Azure SDK library and the Azure PowerShell modules to support the latest Azure features. Most notably missing was support for nested ARM templates, which will now work out of the box.
