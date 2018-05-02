@@ -5,14 +5,14 @@ author: rob.pearson@octopus.com
 visibility: private
 metaImage: metaimage-shipping-2018-5.png
 bannerImage: blogimage-shipping-2018-5.png
-published: 2018-05-01
+published: 2018-05-08
 tags:
  - New Releases
 ---
 
 ![Octopus Deploy 2018.5 release banner](blogimage-shipping-2018-5.png)
 
-This month, our headline feature is Azure. We have new deployment targets for Azure Web Apps, Cloud Services and Service Fabric Clusters, plus the ability to manage them in Octopus using PowerShell Cmdlets.
+This month, our headline feature is our next generation Azure support. We have new deployment targets for Azure Web Apps, Cloud Services and Service Fabric Clusters, plus the ability to manage them in Octopus using PowerShell Cmdlets.
 
 ## In This Post
 
@@ -20,7 +20,7 @@ This month, our headline feature is Azure. We have new deployment targets for Az
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/raepkFD7kx8" frameborder="0" allowfullscreen></iframe>
 
 ## PaaS Targets for Azure
 
