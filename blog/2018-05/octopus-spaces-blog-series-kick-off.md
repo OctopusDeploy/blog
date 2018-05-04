@@ -3,6 +3,8 @@ title: "Octopus Spaces blog series kick off"
 description: Octopus Spaces blog series kick off
 author: nick.josevski@octopus.com
 visibility: private
+metaImage: metaimage-spaces.png
+bannerImage: blogimage-spaces.png
 published: 2018-05-04
 tags:
  - Teams
