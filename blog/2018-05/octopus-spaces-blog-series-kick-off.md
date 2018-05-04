@@ -12,7 +12,7 @@ tags:
 ---
 
 
-## Octopus Spaces blog series kick off
+![Octopus Spaces blog series kick off](blogimage-spaces.png)
 
 Octopus was originally designed with small teams in mind. Everything is at the global level: Projects, Environments, Lifecycles, Variable Sets, etc.
 
