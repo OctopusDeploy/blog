@@ -2,7 +2,7 @@
 title: "Octopus Spaces blog series kick off"
 description: Octopus Spaces blog series kick off
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-spaces.png
 bannerImage: blogimage-spaces.png
 published: 2018-05-04
@@ -16,7 +16,7 @@ tags:
 
 Octopus was originally designed with small teams in mind. Everything is at the global level: Projects, Environments, Lifecycles, Variable Sets, etc.
 
-In large organizations, as more teams onboard, this doesn't scale well:
+In large organizations, as more teams on-board, this doesn't scale well:
 
  - People end up "namespacing" things to avoid conflicts and confusion: "This is our Production environment"
  - People struggle to provide any segregation using our permission system.
