@@ -7,8 +7,8 @@ metaImage: metaimage-spaces.png
 bannerImage: blogimage-spaces.png
 published: 2018-05-04
 tags:
- - Teams
  - Spaces
+ - Teams
 ---
 
 
