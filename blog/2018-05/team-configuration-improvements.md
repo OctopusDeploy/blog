@@ -1,8 +1,8 @@
 ---
 title: "Team Configuration Improvements"
-description: Some upcoming improvements to Teams
+description: Some upcoming improvements to configuring Teams
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 published: 2018-05-09
 tags:
  - Teams
@@ -12,9 +12,11 @@ tags:
 
 ## Team Configuration Improvements
 
-Configuring your Octopus server is not something you do all the time, the focus is on deploying your software and fine tuning your projects. Way down on the list of interesting things to do with Octopus is configuring teams and permissions. 
+Configuring your Octopus server is not something you do all the time, the focus is on deploying your software and fine tuning your projects. Way down on the list of interesting things to do with Octopus is configuring teams and permissions.
 
 It's an area of Octopus that hasn't changed in a very long time, we are now making  some improvements around how teams are managed. In this post the focus will be on the structural change to teams, look out for the coming Spaces blog post where we'll be talking about teams again.
+
+![role-based access control](blogimage-team-permissions.png)
 
 ## Background
 
@@ -41,7 +43,7 @@ On the second team you add the same members again, and grant them different perm
 
 This leads to many arbitrary permutations of teams just to support different permission combinations. At this point, you have two teams with the same set of users, because it was the only way to achieve different sets of permissions relating to the two environments.
 
-Now, you want those same users to have some visibility into the "Production" environment but with read only access. Hopefully you've guessed right, you need a third team! This goes on and on. 
+Now, you want those same users to have some visibility into the "Production" environment but with read only access. Hopefully you've guessed right, you need a third team! This goes on and on.
 
 When a new team member joins your organization, you have to add them to three teams. This is a burden to maintain, one way to simplify things was using Active Directory, but that's not for everyone. It's not hard to see why we're building these changes and improvements.
 
@@ -56,7 +58,7 @@ Naming things is hard, so we're sticking to what's already there and hopefully f
 ## Pit of Success
 We've spent a lot of time talking to customers about the complexities of configuring permissions. Often, when they struggling to set something up the way they want it. Our end goal with these changes and future refinements is to make sure everyone falls into the pit of success when configuring their teams and permissions.
 
-To achieve this we'll be coming up with a few more types of roles and improving the names and descriptions to make it easier to pick the right role. 
+To achieve this we'll be coming up with a few more types of roles and improving the names and descriptions to make it easier to pick the right role.
 
 If you have made your own combinations, because what Octopus comes with wasn't right for you, we would like to hear from you. Let us know what you called the role, and some examples of the permissions you added.
 
