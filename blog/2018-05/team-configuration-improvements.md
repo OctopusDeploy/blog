@@ -41,7 +41,7 @@ On the first team you add the members, grant them the appropriate permissions, a
 
 On the second team you add the same members again, and grant them different permissions, and apply restrictions to both "Development" and "QA".
 
-This leads to many arbitrary permutations of teams just to support different permission combinations. At this point, you have two teams with the same set of users, because it was the only way to achieve different sets of permissions relating to the two environments.
+This leads to many arbitrary permutations of teams just to support different scoping of roles. At this point, you have two teams with the same set of users, because it was the only way to achieve different sets of permissions relating to the two environments.
 
 Now, you want those same users to have some visibility into the "Production" environment but with read only access. Hopefully you've guessed right, you need a third team! This goes on and on.
 
@@ -53,7 +53,7 @@ If we visualize this, it's 3 developer teams, which all have the same team membe
 
 ## How you will configure teams in the future
 
-We decided it doesn't have to be this onerous. As part of the larger set of work to deliver Spaces, we're working to make Teams easier to manage. We are making team-members the focus of teams, and letting the teams hold as many of the team permission combinations as you need.
+We decided it doesn't have to be this onerous. As part of the larger set of work to deliver Spaces, we're working to make Teams easier to manage. We are making team-members the focus of teams, and letting the teams hold as many of the scoped roles as you need.
 
 Naming things is hard, so we're sticking to what's already there and hopefully familiar, they're still called "roles". Soon you can have as many roles as you like on any given team.
 
