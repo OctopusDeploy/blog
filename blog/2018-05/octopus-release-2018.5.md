@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2018.5 release banner](blogimage-shipping-2018-5.png)
 
-This month, our headline feature is our next generation Azure support. We have new deployment targets for Azure Web Apps, Cloud Services and Service Fabric Clusters, plus the ability to manage them in Octopus using PowerShell Cmdlets.
+This month, we're shipping the next generation of our Azure support. Octopus `2018.5` bundles the latest Azure SDK and Powershell Modules, introduces new deployment targets for Azure Web Apps, Cloud Services and Service Fabric Clusters, plus adds the ability to dynamically manage them in Octopus using PowerShell Cmdlets.
 
 ## In This Post
 
@@ -26,19 +26,30 @@ This month, our headline feature is our next generation Azure support. We have n
 
 ![New Deployment Targets](new-targets.png "width=500")
 
-This release reintroduces both **Azure Web Apps** and **Azure Cloud Service** modeled as deployment targets, and introduces **Azure Service Fabric Clusters** to the deployment target family.
+This release reintroduces both **Azure Web Apps** and **Azure Cloud Service** modeled as deployment targets, and introduces **Azure Service Fabric Clusters** to the deployment target family. This brings improved visibility of your infrastructure and environments, enables you to easily deploy to multiple targets/regions and unlocks new operations focused tasks like service health checks etc. 
 
-For more information on the PaaS Targets, have a read of our previous [blog post](https://octopus.com/blog/paas-targets). 
+![Production Deployment Targets Example](azure-targets.png)
+
+For more information on the PaaS Targets, have a read of [blog post](https://octopus.com/blog/paas-targets) introducing the ideas. 
 
 ## Managing Octopus Infrastructure
 
-One of the problems with our initial implementation of **Azure Web App** Targets was that there was no easy path to create them as needed. You could easily create the Azure Web App, but Octopus required manual steps to represent them in Octopus.
+One of the problems with our initial implementation of **Azure Web App** Targets was that there was no easy path to dynamically create them as needed. You could easily create the Azure Web App, but Octopus required manual steps to represent them in Octopus.
 
 Now you can create those new **PaaS targets** as easily as Azure resources, using our new built-in PowerShell Cmdlets.
 
-The initial release of these cmdlets will allow you to create **Azure Accounts** for all the new Azure targets, and be able to delete those targets too.
+The initial release of these cmdlets will allow you to create **Azure Accounts**, create all the new Azure deployment targets and delete those targets too.  For example:
 
-For more information, see the [PaaS blog post](https://octopus.com/blog/paas-targets) and the [documentation](https://octopus.com/docs/infrastructure/dynamic-infrastructure). Also, look for more blog posts and [Will it Deploy](https://www.youtube.com/watch?v=tQb8PJ0jzvk&list=PLAGskdGvlaw13QRF-ypT9h83QTPutlbMn) videos.
+```powershell
+# Octopus variables
+$serviceName = "MyNewServiceName"
+$accountName = "Developer Playground"
+
+# Create new target in Octopus
+New-OctopusAzureWebAppTarget -Name $serviceName -AzureWebApp $serviceName -AzureResourceGroupName $serviceName -OctopusAccountIdOrName "accountName" -OctopusRoles "web"
+```
+
+For more information, see our PaaS targets [blog post](https://octopus.com/blog/paas-targets) and our dynamic infrastructure [documentation](https://octopus.com/docs/infrastructure/dynamic-infrastructure).
 
 ## Azure Accounts as Variables
 
@@ -62,9 +73,9 @@ As of release 2018.5:
 
 ## Breaking Changes
 
-We have upgraded the Azure SDK library and the Azure PowerShell modules to support the latest Azure features. Most notably missing was support for nested ARM templates, which will now work out of the box.
+As mentioned, we have upgraded the Azure SDK library and the Azure PowerShell modules to support the latest Azure features. Most notably missing was support for nested ARM templates, which will now work out of the box.
 
-These upgrades have also forced the minimum supported environment for Octopus to **.Net 4.5.2** and **PowerShell 5.0**.
+These upgrades have also forced the minimum supported environment for Octopus to **Microsoft .NET 4.5.2** and **PowerShell 5.0** so you'll need to plan your upgrade accordingly.
 
 ## Upgrading
 
