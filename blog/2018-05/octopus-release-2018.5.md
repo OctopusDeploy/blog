@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: private
 metaImage: metaimage-shipping-2018-5.png
 bannerImage: blogimage-shipping-2018-5.png
-published: 2018-05-08
+published: 2018-05-15
 tags:
  - New Releases
 ---
@@ -44,9 +44,10 @@ The initial release of these cmdlets will allow you to create **Azure Accounts**
 # Octopus variables
 $serviceName = "MyNewServiceName"
 $accountName = "Developer Playground"
+$roleNames = "web"
 
 # Create new target in Octopus
-New-OctopusAzureWebAppTarget -Name $serviceName -AzureWebApp $serviceName -AzureResourceGroupName $serviceName -OctopusAccountIdOrName "accountName" -OctopusRoles "web"
+New-OctopusAzureWebAppTarget -Name $serviceName -AzureWebApp $serviceName -AzureResourceGroupName $serviceName -OctopusAccountIdOrName $accountName -OctopusRoles $roleNames
 ```
 
 For more information, see our PaaS targets [blog post](https://octopus.com/blog/paas-targets) and our dynamic infrastructure [documentation](https://octopus.com/docs/infrastructure/dynamic-infrastructure).
