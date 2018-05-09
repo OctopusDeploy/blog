@@ -38,7 +38,7 @@ One of the problems with our initial implementation of **Azure Web App** Targets
 
 Now you can create those new **PaaS targets** as easily as Azure resources, using our new built-in PowerShell Cmdlets.
 
-The initial release of these cmdlets will allow you to create **Azure Accounts**, create all the new Azure deployment targets and delete those targets too.  For example:
+The initial release of these cmdlets will allow you to create **Azure Accounts** and all of the new Azure deployment targets. For example:
 
 ```powershell
 # Octopus variables
