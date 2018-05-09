@@ -28,7 +28,7 @@ This month, we're shipping the next generation of our Azure support. Octopus `20
 
 This release reintroduces both **Azure Web Apps** and **Azure Cloud Service** modeled as deployment targets, and introduces **Azure Service Fabric Clusters** to the deployment target family. This brings improved visibility of your infrastructure and environments, enables you to easily deploy to multiple targets/regions and unlocks new operations focused tasks like service health checks etc. 
 
-![Production Deployment Targets Example](azure-targets.png)
+![Production Deployment Targets Example](azure-targets.png "width=500")
 
 For more information on the PaaS Targets, have a read of [blog post](https://octopus.com/blog/paas-targets) introducing the ideas. 
 
