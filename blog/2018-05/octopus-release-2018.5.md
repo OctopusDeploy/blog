@@ -1,5 +1,5 @@
 ---
-title: Octopus April Release 2018.5
+title: Octopus May Release 2018.5
 description: Octopus 2018.5 features our next generation of Azure support.
 author: rob.pearson@octopus.com
 visibility: private
