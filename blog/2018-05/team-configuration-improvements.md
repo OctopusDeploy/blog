@@ -47,13 +47,23 @@ Now, you want those same users to have some visibility into the "Production" env
 
 When a new team member joins your organization, you have to add them to three teams. This is a burden to maintain, one way to simplify things was using Active Directory, but that's not for everyone. It's not hard to see why we're building these changes and improvements.
 
+If we visualize this, it's 3 developer teams, which all have the same team members, but exist just to assist in defining the scoping.
+
+![Team Roles data how it is](blogimage-teams-structure-how-it-is-today.png "width=500")
+
 ## How you will configure teams in the future
 
 We decided it doesn't have to be this onerous. As part of the larger set of work to deliver Spaces, we're working to make Teams easier to manage. We are making team-members the focus of teams, and letting the teams hold as many of the team permission combinations as you need.
 
 Naming things is hard, so we're sticking to what's already there and hopefully familiar, they're still called "roles". Soon you can have as many roles as you like on any given team.
 
-![Team Roles](team-role-scopes.png "width=500")
+If we visualize the change, we can collapse the 3 developer teams into 1 logical team that houses all our developers, and then associate as many roles and scopes as we need.
+
+![Team Roles data how it will be](blogimage-teams-structure-how-it-will-be.png "width=500")
+
+The User Interface for this will look like this.
+
+![Team Roles UI](team-role-scopes.png "width=500")
 
 ## Pit of Success
 We've spent a lot of time talking to customers about the complexities of configuring permissions. Often, when they struggling to set something up the way they want it. Our end goal with these changes and future refinements is to make sure everyone falls into the pit of success when configuring their teams and permissions.
