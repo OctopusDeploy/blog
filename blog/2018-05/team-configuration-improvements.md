@@ -4,6 +4,8 @@ description: Some upcoming improvements to configuring Teams
 author: nick.josevski@octopus.com
 visibility: public
 published: 2018-05-09
+metaImage: metaimage-team-permissions.png
+bannerImage: blogimage-team-permissions.png
 tags:
  - Teams
  - Spaces
@@ -12,7 +14,7 @@ tags:
 
 ## Team Configuration Improvements
 
-Configuring your Octopus server is not something you do all the time, the focus is on deploying your software and fine tuning your projects. Way down on the list of interesting things to do with Octopus is configuring teams and permissions.
+Configuring your Octopus server is not something you do all the time, the focus is on deploying your software and fine tuning your projects.  Way down on the list of interesting things to do with Octopus is configuring teams and permissions.
 
 It's an area of Octopus that hasn't changed in a very long time, we are now making  some improvements around how teams are managed. In this post the focus will be on the structural change to teams, look out for the coming Spaces blog post where we'll be talking about teams again.
 
