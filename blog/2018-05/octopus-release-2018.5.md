@@ -78,6 +78,10 @@ As mentioned, we have upgraded the Azure SDK library and the Azure PowerShell mo
 
 These upgrades have also forced the minimum supported environment for Octopus to **Microsoft .NET 4.5.2** and **PowerShell 5.0** so you'll need to plan your upgrade accordingly.
 
+Azure [recently announced](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/) that from June 30th 2018 they are retiring support for Service Management API (NOTE: Management Certificates use Service Management API). This affects deployments to Azure App Services.
+
+**Please switch to using Service Principals for your Octopus Azure accounts**:  https://g.octopushq.com/AzureServicePrincipalAccount
+
 ## Upgrading
 
 As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.5.0) for further information.
