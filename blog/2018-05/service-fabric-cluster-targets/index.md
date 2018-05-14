@@ -44,11 +44,13 @@ Microsoft made it super ~developer~ demo-friendly to deploy to Service Fabric vi
 
 The problem is, demo-friendly != real-world (_"Friends don't let friends right-click publish"_ amirite).
 
-When deploying directly from Visual Studio, Microsoft only _partially_ package all of your files. During the deployment, they actually _call back_ into your source code for the `PublishProfiles` and `ApplicationParameters` (so your package folder from your publish, by default, is useless to anything except Visual Studio).
+When deploying directly from Visual Studio, Microsoft only _partially_ package all of your files. During the deployment, they actually _call back_ into your source code for the `PublishProfiles` and `ApplicationParameters` (so the package folder from your publish, by default, is useless to anything except Visual Studio).
 
 _Sigh..._
 
 To get around this, we've written specific [packaging documentation](https://octopus.com/docs/deploying-applications/azure-deployments/service-fabric/packaging) to help in your real-world deployment pipeline (and not from an over-developed IDE that's sitting on your intern's laptop).
+
+> It’s a figure of speech, Morty. They’re bureaucrats. I don’t respect them.
 
 For this example, we've used the [Custom build targets](https://octopus.com/docs/deploying-applications/azure-deployments/service-fabric/packaging#custom-build-targets) section of the packaging documentation to help us copy the `PublishProfiles` and `ApplicationParameters` that we need for our Service Fabric package, to ensure we have _everything_ needed for our deployment.
 
