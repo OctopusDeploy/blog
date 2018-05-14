@@ -68,7 +68,7 @@ We can now zip that up using a SemVer-friendly package filename that can be cons
 
 Because Microsoft loves their GAC, before anything deployment-related can work against Service Fabric, our deployment server needs to have the [Service Fabric SDK](https://g.octopushq.com/ServiceFabricSdkDownload) installed and PowerShell script execution needs to be enabled (full instructions can be [found here](https://octopus.com/docs/deploying-applications/azure-deployments/deploying-to-service-fabric/deploying-a-package-to-a-service-fabric-cluster)).
 
-## Time to Deploy
+## It's Time to Deploy
 
 Congratulations. If you've made it this far:
 
