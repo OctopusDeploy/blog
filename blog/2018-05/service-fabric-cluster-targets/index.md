@@ -122,6 +122,6 @@ After running a deployment, we can see the Azure SF PowerShell cmdlets at work s
 
 The really cool thing about these new Azure Targets is the clear separation that now exists between _infrastructure_ concerns and _deployment process_ concerns. You can now setup and monitor your Azure infrastructure independently of your project deployment processes, which simplifies and makes it easier to reason about your deployment.
 
-Our new Azure Targets are available from `2018.5`. For more details, you can see the full [2018.5 blog post](https://octopus.com/blog/octopus-release-2018.5) which includes a cool walkthrough video.
+Our new Azure Targets are available from `2018.5`. For more details, you can see the full [2018.5 blog post](https://octopus.com/blog/octopus-release-2018.5) which includes an awesome walkthrough video by a real Canadian.
 
 Please let us know if you have any thoughts/feedback and as always, happy deployments!
