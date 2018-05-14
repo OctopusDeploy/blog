@@ -4,10 +4,11 @@ description: TODO
 author: mark.siedle@octopus.com
 visibility: private
 published: 2018-05-21
+metaImage: metaimage-will-it-deploy.png
+bannerImage: blogimage-will-it-deploy.png
 tags:
+- Azure
 ---
-
-Service Fabric Deployment Targets
 
 With the [release of 2018.5](https://octopus.com/blog/octopus-release-2018.5) and the introduction of [Azure Service Fabric Cluster targets](https://octopus.com/blog/paas-targets), we thought it'd be the perfect opportunity to provide a quick overview of the new Service Fabric deployment targets with Octopus Deploy.
 
