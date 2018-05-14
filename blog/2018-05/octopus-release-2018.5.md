@@ -76,7 +76,7 @@ As of release 2018.5:
 
 As mentioned, we have upgraded the Azure SDK library and the Azure PowerShell modules to support the latest Azure features. Most notably missing was support for nested ARM templates, which will now work out of the box.
 
-These upgrades have also forced the minimum supported environment for Octopus to **Microsoft .NET 4.5.2** and **PowerShell 5.0** so you'll need to plan your upgrade accordingly. The **PowerShell 5.0** requirement is only required if you are running the Azure PowerShell scripts.
+These upgrades have also forced the minimum supported environment for Octopus Server to **Microsoft .NET 4.5.2** and **PowerShell 5.0** so you'll need to plan your upgrade accordingly. The **PowerShell 5.0** requirement is only if you are running the Azure PowerShell scripts.
 
 Azure [recently announced](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/) that from June 30th 2018 they are retiring support for Service Management API (NOTE: Management Certificates use Service Management API). This affects deployments to Azure App Services.
 
