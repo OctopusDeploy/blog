@@ -125,8 +125,6 @@ Under the **Tenants** menu, add two new Tenants, and connect them to the **Web A
 For each tenant you will need to click **CONNECT PROJECT** and select the setup project we just created. If you have chosen to create your Azure account variable as a *Project Template* you will need to provide the actual Azure account at this step. This allows you to provide different accounts for each tenant if required.
 
 
-
-
 ## Deploy
 
 
