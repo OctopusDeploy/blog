@@ -10,9 +10,11 @@ tags:
 ---
 
 In 2018.5, we have introduced the ability to manage your Azure deployment targets from within your deployment process. 
-Using the Azure Powershell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could deploy your applications to them without some heavy lifting within Octopus.
+Using the Azure Powershell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting within Octopus.
 
-In this blog post, I will walk-through a basic example of how you could manage a Web Application in QA environment, hosted in Azure, from setup to tear down.
+In this blog post, I will walk-through a basic example of how you could manage a Web Application in QA environment, hosted in Azure, from setup to tear down, including the resources you need in Azure and Octopus to make it all happen.
+
+Obviously, you will need an application to deploy, but I will leave that as an [exercise](https://octopus.com/blog/deploying-an-octopus-pi#build-the-application) for the reader.
 
 ## Setup
 
@@ -32,7 +34,7 @@ See the documentation on [Creating an Azure Service Principal Account](https://o
 
 So as to simplify our QA environment, and prevent it from deploying to other environments (such as Production), we can create a new [Lifecycle](https://octopus.com/docs/infrastructure/lifecycles) that only allows deployments to our new environment.
 
-![QA Only Lifecycle](qa-only-lifecycle.png)
+![QA Only Lifecycle](qa-only-lifecycle.png "width=500")
 
 ### Create a Script Module
 
@@ -86,6 +88,29 @@ When setting up the process for this project, we are going to need an **Azure Ac
 
     - Go to *Variables* -> *Project Templates* and click *ADD TEMPLATE*, set the *Control Type* to *Azure Account* and give the variable a name. This variable will be given a value later when we set up *Tenants*.
 
+### The Deployment Process
+
+Let's get a deployment process configured.
+
+![Deployment process](deployment-process.png "width=500")
+
+The first step here is an **Azure PowerShell Script**. The step should be configured to run on the Octopus Server, it doesn't require a role at this point.
+The script will query Azure to check for the existence of the target Resource Group and create the Resource Group, the App Service Plan and the Web App, if required. We are also setting an expiry date using a *Tag* on the Resource Group, which will be used later in the tear down project.
+The last line in the script is the magic that allows our next step to work, it will create a new **Azure Web App Target** in the Octopus server and assign it a role of *QATest*. The last parameter will allow the command to create or update an existing target that matches on name. 
+
+*** TODO *** insert final script here
+
+The next step is a **Deploy an Azure Web App** step. It is where we will deploy the application to the target we created in the previous step. You will need to set the target roles to be *QATest*, but it will not be available in the list, you will need to type it in and select *Add*.
+
+:::warn
+Improved management for *Roles* is coming in the future, but for the moment you will need to type the role name manually
+:::
+
+The last step is a notification step, which could be Slack, email or something else.
+In my Slack noticification step I set the title to be `Deployment to #{Octopus.Deployment.Tenant.Name}` and the message to be `#{Octopus.Project.Name} release #{Octopus.Release.Number} to #{Octopus.Environment.Name} (#{Octopus.Machine.Name})  Deployed #{Octopus.Action[Setup Azure Web App].Output.Action} to #{Octopus.Action[Setup Azure Web App].Output.Url}`.
+
+The `Url` and `Action` output parameters were created in the first script step.
+
 
 
 Create a project
@@ -96,6 +121,8 @@ Create a project
 In this example, I am using tenants to demonstrate how you can structure a QA environment. A tenant might represent a Tester, or a Customer.
 
 Under the **Tenants** menu, add two new Tenants, and connect them to the **Web App Setup** project, and the environment we created earlier.
+
+For each tenant you will need to click **CONNECT PROJECT** and select the setup project we just created. If you have chosen to create your Azure account variable as a *Project Template* you will need to provide the actual Azure account at this step. This allows you to provide different accounts for each tenant if required.
 
 
 
