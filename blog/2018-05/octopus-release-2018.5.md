@@ -72,6 +72,19 @@ As of release 2018.5:
 
 ![Export certificate to PEM](download-pem-chain.png "width=500")
 
+## Licensing Changes
+
+Some important licensing changes are coming in Octopus 2018.5:
+
+- Your existing Azure **steps** will not count towards your licensing limits, just like before. Nothing has changed here.
+- **Azure targets** will start contributing to your licensing limits just like other targets in Octopus.
+  - Any existing "old" Azure targets will be upgraded to the new format, and will begin counting towards your licensing limits.
+- **Offline Drop** targets will start contributing to your licensing limits just like other targets in Octopus.
+
+:::warning
+If you make heavy use of the "old" Azure targets or Offline Drop targets, please take the time to ensure your Octopus Server will still be compliant with your license after you upgrade. Octopus will check this for you during the upgrade process. If you run into trouble, please reach out to our [support team](https://octopus.com/support) for help!
+:::
+
 ## Breaking Changes
 
 As mentioned, we have upgraded the Azure SDK library and the Azure PowerShell modules to support the latest Azure features. Most notably missing was support for nested ARM templates, which will now work out of the box.
