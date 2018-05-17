@@ -17,7 +17,7 @@ Service Fabric can be more than a little overwhelming if you're just starting ou
 
 ## Service Fabric and the Foreseeable Future
 
-Azure recently [announced](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/) that from June 30th, 2018 they are retiring support for Service Management API. After this announcement (and much confusion to the community regarding the future of Cloud Services - source: me =P), it was confirmed that Cloud Services will still be supported, but there's a clear push to move people towards the newer Resource Management world. There's also statements like this to consider: "Cloud Services is similar to Service Fabric in degree of control versus ease of use, but it's now a legacy service and Service Fabric is recommended for new development" ([source](https://docs.microsoft.com/en-us/azure/app-service/choose-web-site-cloud-service-vm)).
+Azure recently [announced](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/) that from June 30th, 2018 they are retiring support for Service Management API. After this announcement (and much confusion to the community regarding the future of Cloud Services - source: me =P), it was confirmed that Cloud Services will still be supported, but there's a clear push to move people towards the newer Resource Management world. There's also statements like this to consider: _"Cloud Services is similar to Service Fabric in degree of control versus ease of use, but it's now a legacy service and Service Fabric is recommended for new development"_ ([source](https://docs.microsoft.com/en-us/azure/app-service/choose-web-site-cloud-service-vm)).
 
 With Service Fabric being the recommended path for new cloud service development in Azure moving forward, let's see how easy it is to get setup with your own Service Fabric cluster and deploy to it.
 
@@ -41,13 +41,13 @@ In this case, we've set up both [Certificate](https://octopus.com/docs/deploying
 
 ## Packaging for Service Fabric
 
-Microsoft made it super ~developer~ demo-friendly to deploy to Service Fabric via Visual Studio.
+Microsoft made it super <strike>developer</strike> demo-friendly to deploy to Service Fabric via Visual Studio.
 
 The problem is, demo-friendly != real-world (_"Friends don't let friends right-click publish"_ amirite).
 
 When deploying directly from Visual Studio, Microsoft only _partially_ package all of your files. During the deployment, they actually _call back_ into your source code for the `PublishProfiles` and `ApplicationParameters` (so the package folder from your publish, by default, is useless to anything except Visual Studio).
 
-_Sigh..._
+_Sad panda sigh..._
 
 To get around this, we've written specific [packaging documentation](https://octopus.com/docs/deploying-applications/azure-deployments/service-fabric/packaging) to help in your real-world deployment pipeline (and not from an over-developed IDE that's sitting on your intern's laptop).
 
@@ -69,7 +69,7 @@ We can now zip that up using a SemVer-friendly package filename that can be cons
 
 ## Installing the Service Fabric SDK
 
-Because Microsoft loves their GAC before anything deployment-related can work against Service Fabric, our deployment server needs to have the [Service Fabric SDK](https://g.octopushq.com/ServiceFabricSdkDownload) installed, and PowerShell script execution needs to be enabled (full instructions can be [found here](https://octopus.com/docs/deploying-applications/azure-deployments/deploying-to-service-fabric/deploying-a-package-to-a-service-fabric-cluster)).
+Because Microsoft loves their GAC, before anything deployment-related can work against Service Fabric, our deployment server needs to have the [Service Fabric SDK](https://g.octopushq.com/ServiceFabricSdkDownload) installed, and PowerShell script execution needs to be enabled (full instructions can be [found here](https://octopus.com/docs/deploying-applications/azure-deployments/deploying-to-service-fabric/deploying-a-package-to-a-service-fabric-cluster)).
 
 ## It's Time to Deploy
 
@@ -121,7 +121,7 @@ After running a deployment, we can see the Azure SF PowerShell cmdlets at work s
 
 ## Azure Deployment Targets
 
-The really cool thing about these new Azure Targets is the clear separation that now exists between _infrastructure_ concerns and _deployment process_ concerns. You can now setup and monitor your Azure infrastructure independently of your project deployment processes, which simplifies and makes it easier to reason about your deployment.
+The really cool thing about these new Azure Targets is the clear separation that now exists between _infrastructure_ concerns and _deployment process_ concerns. You can now setup and monitor your Azure infrastructure independently of your project's deployment processes, which simplifies and makes it easier to reason about your deployment.
 
 Our new Azure Targets are available from `2018.5`. For more details, you can see the full [2018.5 blog post](https://octopus.com/blog/octopus-release-2018.5) which includes an awesome walkthrough video by a real Canadian.
 
