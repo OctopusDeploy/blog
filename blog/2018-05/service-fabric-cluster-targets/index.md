@@ -93,7 +93,7 @@ Firstly, we head over to `Infrastructure > Deployment Targets`, click `Add Deplo
 
 Next, we fill out the details of our Service Fabric Cluster on Azure, remembering to select the right security mode as required. In this case, we're referencing the certificate that was uploaded to our Certificate Library earlier:
 
-![Creating Azure Service Fabric Targets - step 2](sf-create-target2.png "width=500")
+![Creating Azure Service Fabric Targets - step 2](sf-create-target2a.png "width=500")
 
 We hit `Save`, then we wait for a health check to complete. If all has gone well, our Octopus Server will have used the Service Fabric SDK that's installed on our server to run a health check against the SF cluster (using the security mode parameters we defined) and will have found our target healthy:
 
