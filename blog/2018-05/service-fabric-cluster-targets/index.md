@@ -4,8 +4,8 @@ description: With the release of 2018.5 and the introduction of Azure Service Fa
 author: mark.siedle@octopus.com
 visibility: private
 published: 2018-05-17
-metaImage: metaimage-serviceFabric.png
-bannerImage: blogimage-serviceFabric.png
+metaImage: metaimage-service-fabric.png
+bannerImage: blogimage-service-fabric.png
 tags:
  - Azure
  - New Releases
