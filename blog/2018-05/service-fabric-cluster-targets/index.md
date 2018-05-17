@@ -2,7 +2,7 @@
 title: Service Fabric Deployment Targets
 description: With the release of 2018.5 and the introduction of Azure Service Fabric Cluster targets, we thought it'd be the perfect opportunity to provide a quick overview of the new Service Fabric deployment targets with Octopus Deploy.
 author: mark.siedle@octopus.com
-visibility: private
+visibility: public
 published: 2018-05-18
 metaImage: metaimage-service-fabric.png
 bannerImage: blogimage-service-fabric.png
@@ -45,7 +45,7 @@ Microsoft made it super <strike>developer</strike> demo-friendly to deploy to Se
 
 The problem is, demo-friendly != real-world (_"Friends don't let friends right-click publish"_ amirite).
 
-When deploying directly from Visual Studio, Microsoft only _partially_ package all of your files. During the deployment, they actually _call back_ into your source code for the `PublishProfiles` and `ApplicationParameters` (so the package folder from your publish, by default, is useless to anything except Visual Studio).
+When deploying Service Fabric apps directly from Visual Studio, Microsoft only _partially_ package all of your files. During the deployment they actually _call back_ into your source code for the `PublishProfiles` and `ApplicationParameters` (so the package folder from your publish, by default, is useless to anything except Visual Studio).
 
 _Sad panda sigh..._
 
