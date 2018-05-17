@@ -125,7 +125,18 @@ Historically deployments to PaaS endpoints have comprised a small proportion of 
 
 We originally planned to introduce PaaS target billing based on counting the PaaS endpoints you actually deploy to (easy enough for us to count these during a deployment). Since we're making the switch over to modelling PaaS endpoints as targets instead, this seems like the right time to introduce billing for them to if we are ever going to do it. 
 
-As of the 2018.5 release of Octopus, these PaaS targets will be included in the machine (aka target) count for licensing. Note that this will not effect existing _Deploy an Azure Web App_, _Deploy a Service Fabric app_, or _Deploy an Azure Cloud Service_ steps.  Only new targets created going forward will be counted.  
+### Licensing Changes from 2018.5
+
+Here are the important licensing changes we plan to make in Octopus 2018.5:
+
+- Your existing Azure **steps** will not count towards your licensing limits, just like before. Nothing has changed here.
+- **Azure targets** will start contributing to your licensing limits just like other targets in Octopus.
+  - Any existing "old" Azure targets will be upgraded to the new format, and will begin counting towards your licensing limits.
+- **Offline Drop** targets will start contributing to your licensing limits just like other targets in Octopus.
+
+:::warning
+If you make heavy use of the "old" Azure targets or Offline Drop targets, please take the time to ensure your Octopus Server will still be compliant with your license after you upgrade. Octopus will check this for you during the upgrade process. If you run into trouble, please reach out to our [support team](https://octopus.com/support) for help!
+:::
 
 ## Migration
 
