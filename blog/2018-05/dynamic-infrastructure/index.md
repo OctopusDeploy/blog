@@ -7,6 +7,7 @@ published: 2018-04-20
 tags:
  - Walkthrough
  - Azure
+ - New Releases
 ---
 
 In 2018.5, we have introduced the ability to manage your Azure deployment targets from within your deployment process. 
@@ -169,3 +170,221 @@ After running the tear-down project, all resource groups with an Expiry tag of t
 
 Using the recently introduced [Scheduled Project Triggers](https://octopus.com/docs/deployment-process/project-triggers/scheduled-project-trigger) you can trigger the tear down script to be executed nightly or weekly.
 
+## Azure Resource Manager Templates and Cloud Regions
+
+Run Template against `CloudWebRegion` roles
+Run app deployment against `CloudWebApp` roles
+
+```
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_AZ180_name": {
+            "defaultValue": "AZ180",
+            "type": "String"
+        },
+        "config_web_name": {
+            "defaultValue": "web",
+            "type": "String"
+        },
+        "hostNameBindings_az180.azurewebsites.net_name": {
+            "defaultValue": "az180.azurewebsites.net",
+            "type": "String"
+        },
+        "sites_AZ180_serverFarmId": {
+            "defaultValue": "/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/ShannonsResourceGroup/providers/Microsoft.Web/serverfarms/Default1",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[parameters('sites_AZ180_name')]",
+            "apiVersion": "2016-08-01",
+            "location": "South Central US",
+            "tags": {
+                "hidden-related:/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourcegroups/ShannonsResourceGroup/providers/Microsoft.Web/serverfarms/Default1": "empty"
+            },
+            "scale": null,
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_AZ180_name'),'az180.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_AZ180_name'),'az180.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[parameters('sites_AZ180_serverFarmId')]",
+                "reserved": false,
+                "siteConfig": null,
+                "scmSiteAlsoStopped": false,
+                "hostingEnvironmentProfile": null,
+                "clientAffinityEnabled": true,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "cloningInfo": null
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180/config/web'.",
+            "type": "Microsoft.Web/sites/config",
+            "name": "[concat(parameters('sites_AZ180_name'), '/', parameters('config_web_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "South Central US",
+            "tags": {
+                "hidden-related:/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourcegroups/ShannonsResourceGroup/providers/Microsoft.Web/serverfarms/Default1": "empty"
+            },
+            "scale": null,
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "phpVersion": "5.6",
+                "pythonVersion": "",
+                "nodeVersion": "",
+                "linuxFxVersion": "",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": null,
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$AZ180",
+                "publishingPassword": null,
+                "appSettings": null,
+                "metadata": null,
+                "connectionStrings": null,
+                "machineKey": null,
+                "handlerMappings": null,
+                "documentRoot": null,
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "javaVersion": null,
+                "javaContainer": null,
+                "javaContainerVersion": null,
+                "appCommandLine": "",
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false,
+                        "virtualDirectories": null
+                    }
+                ],
+                "winAuthAdminState": 0,
+                "winAuthTenantState": 0,
+                "customAppPoolIdentityAdminState": false,
+                "customAppPoolIdentityTenantState": false,
+                "runtimeADUser": null,
+                "runtimeADUserPassword": null,
+                "loadBalancing": "LeastRequests",
+                "routingRules": [],
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "limits": null,
+                "autoHealEnabled": false,
+                "autoHealRules": null,
+                "tracingOptions": null,
+                "vnetName": "",
+                "siteAuthEnabled": false,
+                "siteAuthSettings": {
+                    "enabled": null,
+                    "unauthenticatedClientAction": null,
+                    "tokenStoreEnabled": null,
+                    "allowedExternalRedirectUrls": null,
+                    "defaultProvider": null,
+                    "clientId": null,
+                    "clientSecret": null,
+                    "issuer": null,
+                    "allowedAudiences": null,
+                    "additionalLoginParams": null,
+                    "isAadAutoProvisioned": false,
+                    "googleClientId": null,
+                    "googleClientSecret": null,
+                    "googleOAuthScopes": null,
+                    "facebookAppId": null,
+                    "facebookAppSecret": null,
+                    "facebookOAuthScopes": null,
+                    "twitterConsumerKey": null,
+                    "twitterConsumerSecret": null,
+                    "microsoftAccountClientId": null,
+                    "microsoftAccountClientSecret": null,
+                    "microsoftAccountOAuthScopes": null
+                },
+                "cors": null,
+                "push": null,
+                "apiDefinition": null,
+                "autoSwapSlotName": null,
+                "localMySqlEnabled": false,
+                "managedServiceIdentityId": null,
+                "xManagedServiceIdentityId": null,
+                "ipSecurityRestrictions": null,
+                "http20Enabled": false,
+                "minTlsVersion": "1.0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_AZ180_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180/hostNameBindings/az180.azurewebsites.net'.",
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "name": "[concat(parameters('sites_AZ180_name'), '/', parameters('hostNameBindings_az180.azurewebsites.net_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "South Central US",
+            "scale": null,
+            "properties": {
+                "siteName": "AZ180",
+                "domainId": null,
+                "hostNameType": "Verified"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_AZ180_name'))]"
+            ]
+        }
+    ]
+}
+```
+
+![](Screen Shot 2018-05-18 at 5.08.02 pm.png "width-500")
+
+Post Deployment Script
+```
+New-OctopusAzureWebAppTarget -name “WebAppTarget-$OctopusMachineName” -azureWebApp "AZ180#{Site}" -azureResourceGroupName "AZ180ResourceGroup" -octopusAccountIdOrName $AzureAccount -octopusRoles “CloudWebApp”
+```
+
+Variables:
+![](Screen Shot 2018-05-18 at 5.04.58 pm.png "width=500")
