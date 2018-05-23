@@ -379,7 +379,7 @@ Run app deployment against `CloudWebApp` roles
 }
 ```
 
-![](Screen Shot 2018-05-18 at 5.08.02 pm.png "width-500")
+![](screenshot-2.png "width-500")
 
 Post Deployment Script
 ```
@@ -387,4 +387,4 @@ New-OctopusAzureWebAppTarget -name “WebAppTarget-$OctopusMachineName” -azure
 ```
 
 Variables:
-![](Screen Shot 2018-05-18 at 5.04.58 pm.png "width=500")
+![](screenshot-1.png "width=500")
