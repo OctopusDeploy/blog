@@ -1,6 +1,6 @@
 ---
 title: "Octopus Cloud FAQs"
-description: Octopus Cloud: all your questions answered!
+description: "Octopus Cloud: all your questions answered!"
 author: andrew.katsivas@octopus.com
 visibility: private
 tags:
@@ -8,11 +8,23 @@ tags:
  - FAQ
 ---
 
+We've been talking about it for a while now, and Octopus Cloud is almost here - [welcome to the world of tomorrow](https://www.youtube.com/watch?v=aiwA0JrGfjA)! Since early in 2018 we've been in closed testing with a handful of users putting the platform through its paces, and in June 2018 we are opening it up to another group of early-access users, ahead of a public launch in Q3 2018. 
+
+With that in mind, we've put together a questions we get commonly asked, so you can get up-to-speed as quickly as possible. If you still have questions that we _haven't_ answered here, then please [contact our support team](mailto:support@octopus.com).
+
+:::hint 
+If you want occasional updates about our progress with Octopus Cloud, and to stay informed when we do officially launch to public signups, [register your interest](https://octopus.com/cloud/register-interest) and we'll keep you in the loop.
+:::
+
 ## General
+
+#### When will Octopus Cloud be publically available?
+
+We've been testing Octopus Cloud since Feb 2018, and an early-access period for selected users who registered their interest will be underway through June 2018. Therefore, we expect Octopus Cloud to be publically available in Q3 2018 (July-August).
 
 #### Can I import my existing deployment data from my self-hosted (on-premises) Octopus server into Octopus Cloud?
 
-When we reach RTM, we will provide you with the ability to import data from your existing self-hosted Octopus servers. However, during the alpha and beta tests we want you to configure new projects and environments, so we can effectively test the system.
+We have plans to release migration tooling to help you seamlessly transition your existing self-hosted projects and configuration to a new cloud instance. However, in the early stages of release any projects will need to be set up from scratch, or [imported using `octo.exe`](https://octopus.com/docs/api-and-integration/octo.exe-command-line/import).
 
 #### I live somewhere that isn't near any of the available cloud regions: can I have my Octopus Cloud hosted nearer to my location?
 
@@ -20,81 +32,76 @@ At launch we will only be supporting a few specific cloud regions (initially Ore
 
 If you want to specifically request a region, please send us an email at [support@octopus.com](mailto:support@octopus.com) and we'll add your request to the list.
 
-#### When will Octopus Cloud be publically available?
+## Features & Usage
 
-We will be doing our closed-alpha phase through Feb 2018, with an aim to do two rounds of open beta from March to May 2018, with an expected release of RTM by July 2018.
+#### What is the difference between self-hosted (on-premises) Octopus and Octopus Cloud?
 
+Octopus and Octopus Cloud are the same product, with the exception that Octopus Cloud is managed, monitored, backed up, and automatically upgraded for you by our team. However, some limited configuration and diagnostic functionality may not be available in Octopus Cloud (for security reasons).
 
-## Team Configuration Improvements
+Our end goal is that anything you can do in self-hosted Octopus, you should be able to do in the cloud-hosted system as well - this includes our exhaustive API and all steps and features you know and love.
 
-Configuring your Octopus server is not something you do all the time, the focus is on deploying your software and fine tuning your projects.  Way down on the list of interesting things to do with Octopus is configuring teams and permissions.
+#### What if I want to cancel my Octopus instance: will I be able to export my data out?
 
-It's an area of Octopus that hasn't changed in a very long time, we are now making  some improvements around how teams are managed. In this post the focus will be on the structural change to teams, look out for the coming Spaces blog post where we'll be talking about teams again.
+Yes, of course! We will make sure you have the ability to retrieve a database backup of your Octopus before terminating your account.
 
-![role-based access control](blogimage-team-permissions.png)
+#### What can / can't I do with my Octopus Cloud instance? Are there limitations?
 
-## Background
+Generally speaking we've tried to empower our users as much as possible, without introducing any security or resource-sharing issues. We've written up our thoughts on the issue, and the sorts of things we would consider "excessive use", and what we would do about it - you can [read the full acceptable usage policy here](https://octopus.com/company/acceptable-usage).
 
-Octopus has fine-grained permissions, for instance:
+## Security & Availability
 
- - Create a deployment
- - Edit a machine
+#### What uptime guarantees do you provide?
 
-There are over 100 hundred of these permissions and bundle them together as User Roles, which are logical sets of permissions that achieve specific tasks. For instance:
+At launch we won't be able to provide any specific guarantees, until we can be sure that we can meet them - and to do that, we need to have users on the platform so we can measure our availability. 
 
- - **Environment Manager**: for configuring machines and targets.
- - **Project Deployer**: for deploying projects.
+That being said, we will be doing our **absolute very best** to make sure you stay online and deploying with your Octopus Cloud, including having an engineer on-call 24/7 to action any incidents that get reported through our monitoring systems.
 
-A team is a collection of users, a set of these User Roles, and where the roles apply, such as specific environments, projects or tenants. The way it currently is leads to reasonable overhead in managing teams and permissions.
+#### Can Octopus staff access my data?
 
+Octopus staff have no "standing-access" to your data: i.e., we can't just open up your account and rifle through your stuff. If you need assistance at any point, and you give us explicit permission to log in to your instance for the purposes of helping you, then we will do so: but only with your approval. In this event, any actions taken by an Octopus support engineer will be fully audited in your instance, so you can see exactly what we've done (if anything).
 
-## How we configure teams now
+However, during support events such as restoring backups or responding to a customer request for encrypted data, we have the ability to recover your master key from encrypted storage and can use it to restore your data. In the case of recovering a failed instance, we may do this automatically. For other support scenarios, we may ask your explicit permission to access your master key.
 
-At the moment, if you have a team of software developers who you want to deploy to the "Development" environment, but you also want them to be able to configure and manage both "Development" and "QA". You would need to create two teams.
+#### Who owns the data inside my Octopus instance?
 
-On the first team you add the members, grant them the appropriate permissions, and restrict them to "Development" only.
+All data inputted by you into your Octopus instance (including packages and scripts) are owned entirely by you: and, as such, if you cancel your Octopus license, that data is yours to take with you (see related question "What if I want to cancel my Octopus instance: will I be able to export my data out?").
 
-On the second team you add the same members again, and grant them different permissions, and apply restrictions to both "Development" and "QA".
+We will, however, collect broad usage statistics (e.g., number of steps of a given type, deployment frequency etc.) so that we can understand customer usage patterns and tune the service to be as optimal as possible. These statistics are general in nature, and don't contain any specifics like project names, script contains and so forth.
 
-This leads to many arbitrary permutations of teams just to support different scoping of roles. At this point, you have two teams with the same set of users, because it was the only way to achieve different sets of permissions relating to the two environments.
+#### Do I need to take backups of my Octopus instance, or will you do it for me?
 
-Now, you want those same users to have some visibility into the "Production" environment but with read only access. Hopefully you've guessed right, you need a third team! This goes on and on.
+You do not need to take backups - that is all handled as a part of the hosted platform. We make regular backups of instance databases throughout the day and store these securely in blob storage, so we have multiple restore points in the unlikely case of disaster.
 
-When a new team member joins your organization, you have to add them to three teams. This is a burden to maintain, one way to simplify things was using Active Directory, but that's not for everyone. It's not hard to see why we're building these changes and improvements.
+We'll be evaluating our backup and recovery strategy frequently after launch, to improve resiliency and recovery as we need to.
 
-If we visualize this, it's 3 developer teams, which all have the same team members, but exist just to assist in defining the scoping.
+#### What is the octoadmin user account?
 
-![Team Roles data how it is](blogimage-teams-structure-how-it-is-today.png "width=500")
+This is a built-in account which gets created in cloud instances with top-level admin permissions, and is used for provisioning and maintenance tasks on your instance. This isn't used by us to log in with, even in the case of a support request (see "Can Octopus staff access my data?").
 
-## How you will configure teams in the future
+#### Can I log in as the octoadmin account?
 
-We decided it doesn't have to be this onerous. As part of the larger set of work to deliver Spaces, we're working to make Teams easier to manage. We are making team-members the focus of teams, and letting the teams hold as many of the scoped roles as you need.
+No, the octoadmin account is a service account used by various back-end systems to co-ordinate your cloud instance, it's not intended for use by users.
 
-Naming things is hard, so we're sticking to what's already there and hopefully familiar, they're still called "roles". Soon you can have as many roles as you like on any given team.
+#### Can I remove the octoadmin account?
 
-If we visualize the change, we can collapse the 3 developer teams into 1 logical team that houses all our developers, and then associate as many roles and scopes as we need.
+No, we need the octoadmin account to remain active, so that we can perform upgrade and maintenance tasks on your instance.
 
-![Team Roles data how it will be](blogimage-teams-structure-how-it-will-be.png "width=500")
+## Pricing
 
-The User Interface for this will look like this.
+#### Can I upgrade my Octopus pricing tier once I've signed up?
 
-![Team Roles UI](team-role-scopes.png "width=500")
+Yes, you can scale your license up and down to suit your needs as often as it makes sense for you! Whenever you change tiers your limits will be adjusted straight away, and the pricing will change on the next billing cycle. [View Octopus Cloud pricing](https://octopus.com/cloud)
 
-## Pit of Success
-We've spent a lot of time talking to customers about the complexities of configuring permissions. Often, when they struggling to set something up the way they want it. Our end goal with these changes and future refinements is to make sure everyone falls into the pit of success when configuring their teams and permissions.
+#### If I cancel my Octopus Cloud instance mid-month, can I get a refund?
 
-To achieve this we'll be coming up with a few more types of roles and improving the names and descriptions to make it easier to pick the right role.
+We bill Octopus Cloud one month at a time, so if you cancel you will be cancelling for the end of the paid period, at the end of the month. However, if you think you’re entitled to a refund, definitely let us know at [sales@octopus.com](mailto:sales@octopus.com) and we'll do our best to help.
 
-If you have made your own combinations, because what Octopus comes with wasn't right for you, we would like to hear from you. Let us know what you called the role, and some examples of the permissions you added.
+#### Can I pay for my Octopus Cloud instance annually?
 
-## Breaking Change
+Currently no, but we do intend to make this option available in the near future.
 
-We try very hard not to introduce breaking changes in our API, and in most cases we avoid it. In this case it will need to be a sharp breaking change. The team data structure is different and we decided attempting to make it partially backwards compatible could cause worse damage and confusion. You will still be able to create the same structured team with a single item that defines the restrictions, if you don't want to take advantage of this change.
+#### What if I need more nodes? Can I buy a HA / Data Center license for Octopus Cloud?
 
-If you're currently using the API to create and edit teams, after this feature is released, you will need to update any code using that API as the data structure of teams changes to support linking of multiple roles with their own scope.
+Not at initial launch, as there are some very unique challenges to be solved in the HA space. But it's definitely on our plan to implement in the near future.
 
-## Conclusion
-
-If you have any questions, let us know in the comments. If you have concerns about the API change, let us know via our [support channels](https://octopus.com/support)  with some details of what you're doing at the moment, and we'll walk you through how to configure your teams with the new API.
-
-If all these technical details have you asking for more, be sure to check out this earlier post on how the [permissions work in the React UI](https://octopus.com/blog/permissions-in-react) of Octopus  and be on the lookout for more information coming soon about Spaces.
+--
