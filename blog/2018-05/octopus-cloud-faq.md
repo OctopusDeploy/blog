@@ -10,10 +10,10 @@ tags:
 
 We've been talking about it for a while now, and Octopus Cloud is almost here - [welcome to the world of tomorrow](https://www.youtube.com/watch?v=aiwA0JrGfjA)! Since early in 2018 we've been in closed testing with a handful of users putting the platform through its paces, and in June 2018 we are opening it up to another group of early-access users, ahead of a public launch in Q3 2018. 
 
-With that in mind, we've put together a questions we get commonly asked, so you can get up-to-speed as quickly as possible. If you still have questions that we _haven't_ answered here, then please [contact our support team](mailto:support@octopus.com).
+With that in mind, we've put together a few questions we get commonly asked, so you can get up-to-speed as quickly as possible. If you still have questions that we _haven't_ answered here, then please [contact our support team](mailto:support@octopus.com) and we'll be happy to answer them for you.
 
 :::hint 
-If you want occasional updates about our progress with Octopus Cloud, and to stay informed when we do officially launch to public signups, [register your interest](https://octopus.com/cloud/register-interest) and we'll keep you in the loop.
+If you want occasional updates about our progress with Octopus Cloud, and to stay informed when we do officially publically launch, [register your interest](https://octopus.com/cloud/register-interest) and we'll keep you in the loop.
 :::
 
 ## General
@@ -42,25 +42,25 @@ Our end goal is that anything you can do in self-hosted Octopus, you should be a
 
 **What if I want to cancel my Octopus instance: will I be able to export my data out?**
 
-Yes, of course! We will make sure you have the ability to retrieve a database backup of your Octopus before terminating your account.
+Yes, of course! We will make sure you have the ability to retrieve a database backup of your Octopus instance before terminating your account.
 
 **What can / can't I do with my Octopus Cloud instance? Are there limitations?**
 
-Generally speaking we've tried to empower our users as much as possible, without introducing any security or resource-sharing issues. We've written up our thoughts on the issue, and the sorts of things we would consider "excessive use", and what we would do about it - you can [read the full acceptable usage policy here](https://octopus.com/company/acceptable-usage).
+Generally speaking we've tried to empower our users as much as possible, without introducing any security or resource-sharing issues. We've written up our thoughts on the issue, and the sorts of things we would consider "excessive use" and what we would do about it, into an Acceptable Usage policy - you can [read the policy here](https://octopus.com/company/acceptable-usage).
 
 ## Security & Availability
 
 **What uptime guarantees do you provide?**
 
-At launch we won't be able to provide any specific guarantees, until we can be sure that we can meet them - and to do that, we need to have users on the platform so we can measure our availability. 
+At launch we won't be able to provide any specific guarantees until we can be sure that we can meet them - and to do that, we need to have users on the platform so we can measure our availability. 
 
 That being said, we will be doing our **absolute very best** to make sure you stay online and deploying with your Octopus Cloud, including having an engineer on-call 24/7 to action any incidents that get reported through our monitoring systems.
 
 **Can Octopus staff access my data?**
 
-Octopus staff have no "standing-access" to your data: i.e., we can't just open up your account and rifle through your stuff. If you need assistance at any point, and you give us explicit permission to log in to your instance for the purposes of helping you, then we will do so: but only with your approval. In this event, any actions taken by an Octopus support engineer will be fully audited in your instance, so you can see exactly what we've done (if anything).
+Octopus staff have no "standing-access" to your data: i.e., we can't just open up your account and rifle through your stuff. If you need assistance at any point, and you give us explicit permission to log in to your instance for the purposes of helping you, then we will do so: but only with your approval. In this event, any actions taken by an Octopus Support Engineer will be fully audited in your instance, so you can see exactly what we've done (if anything).
 
-However, during support events such as restoring backups or responding to a customer request for encrypted data, we have the ability to recover your master key from encrypted storage and can use it to restore your data. In the case of recovering a failed instance, we may do this automatically. For other support scenarios, we may ask your explicit permission to access your master key.
+During other support events, such as restoring backups or responding to a request from you for encrypted data, we have the ability to recover your master key from encrypted storage and can use it to restore your data. In the case of recovering a failed instance, we may do this automatically. For other support scenarios, we may ask your explicit permission to access your master key.
 
 **Who owns the data inside my Octopus instance?**
 
@@ -73,6 +73,12 @@ We will, however, collect broad usage statistics (e.g., number of steps of a giv
 You do not need to take backups - that is all handled as a part of the hosted platform. We make regular backups of instance databases throughout the day and store these securely in blob storage, so we have multiple restore points in the unlikely case of disaster.
 
 We'll be evaluating our backup and recovery strategy frequently after launch, to improve resiliency and recovery as we need to.
+
+**Do I get full admin access to my instance? What is "Octopus Managers"**
+
+On your cloud instance there are a few select permissions that relate to the hosting of Octopus itself, and not so much the configuration/usability of your instance (e.g. server configuration logs), so we've introduced a new built-in team called "Octopus Managers": think of it as a "cloud-instance admin". The "Octopus Administrators" team is still present, but it's only used by our octoadmin account, and if you ask us to log in to your instance for support.
+
+If you find there is something you think you ought to have access to as an "Octopus Manager", but don't, [let us know](mailto:support@octopus.com) and we can review the permissions.
 
 **What is the octoadmin user account?**
 
