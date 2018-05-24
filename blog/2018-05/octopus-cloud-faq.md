@@ -22,11 +22,11 @@ If you want occasional updates about our progress with Octopus Cloud, and to sta
 
 We've been testing Octopus Cloud since Feb 2018, and an early-access period for selected users who registered their interest will be underway through June 2018. Therefore, we expect Octopus Cloud to be publically available in Q3 2018 (July-August).
 
-**Can I import my existing deployment data from my self-hosted (on-premises) Octopus server into Octopus Cloud?**
+**Can I import my existing deployment data from my self-hosted (on-premises) Octopus server into an Octopus Cloud instance?**
 
 We have plans to release migration tooling to help you seamlessly transition your existing self-hosted projects and configuration to a new cloud instance. However, in the early stages of release any projects will need to be set up from scratch, or [imported using `octo.exe`](https://octopus.com/docs/api-and-integration/octo.exe-command-line/import).
 
-**I live somewhere that isn't near any of the available cloud regions: can I have my Octopus Cloud hosted nearer to my location?**
+**I live somewhere that isn't near any of the available cloud regions: can I have my Octopus Cloud instance hosted nearer to my location?**
 
 At launch we will only be supporting a few specific cloud regions (initially Oregon, USA), but we have plans to bring more regions online as demand for instances grows.
 
@@ -97,3 +97,9 @@ Currently no, but we do intend to make this option available in the near future.
 **What if I need more nodes? Can I buy a HA / Data Center license for Octopus Cloud?**
 
 Not at initial launch, as there are some very unique challenges to be solved in the HA space. But it's definitely on our plan to implement in the near future.
+
+--
+
+This list of questions is certainly not exhaustive, so if you didn't find what you were looking for, please feel free to ask us! If it's something you think other users might benefit from knowing as well, put a question in the discussion section below; otherwise [reach out to us via email](mailto:support@octopus.com) and we'll do our best to assist.
+
+Happy (cloud) deployments!
