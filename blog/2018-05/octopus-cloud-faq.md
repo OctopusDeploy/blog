@@ -94,6 +94,10 @@ We bill Octopus Cloud one month at a time, so if you cancel you will be cancelli
 
 Currently no, but we do intend to make this option available in the near future.
 
+**Is there a free version of Octopus Cloud?**
+
+We'd absolutely **love** for this to be feasible, and are hoping to work towards it in the future, but at launch time there will be no free edition of Octopus Cloud, apart from the 30-day trial.  
+
 **What if I need more nodes? Can I buy a HA / Data Center license for Octopus Cloud?**
 
 Not at initial launch, as there are some very unique challenges to be solved in the HA space. But it's definitely on our plan to implement in the near future.
