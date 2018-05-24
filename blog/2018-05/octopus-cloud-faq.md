@@ -80,18 +80,6 @@ On your cloud instance there are a few select permissions that relate to the hos
 
 If you find there is something you think you ought to have access to as an "Octopus Manager", but don't, [let us know](mailto:support@octopus.com) and we can review the permissions.
 
-**What is the octoadmin user account?**
-
-This is a built-in account which gets created in cloud instances with top-level admin permissions, and is used for provisioning and maintenance tasks on your instance. This isn't used by us to log in with, even in the case of a support request (see "Can Octopus staff access my data?").
-
-**Can I log in as the octoadmin account?**
-
-No, the octoadmin account is a service account used by various back-end systems to co-ordinate your cloud instance, it's not intended for use by users.
-
-**Can I remove the octoadmin account?**
-
-No, we need the octoadmin account to remain active, so that we can perform upgrade and maintenance tasks on your instance.
-
 ## Pricing
 
 **Can I upgrade my Octopus pricing tier once I've signed up?**
