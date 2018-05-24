@@ -98,7 +98,7 @@ Currently no, but we do intend to make this option available in the near future.
 
 Not at initial launch, as there are some very unique challenges to be solved in the HA space. But it's definitely on our plan to implement in the near future.
 
---
+---
 
 This list of questions is certainly not exhaustive, so if you didn't find what you were looking for, please feel free to ask us! If it's something you think other users might benefit from knowing as well, put a question in the discussion section below; otherwise [reach out to us via email](mailto:support@octopus.com) and we'll do our best to assist.
 
