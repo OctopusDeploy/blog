@@ -19,7 +19,7 @@ Obviously, you will need an application to deploy, but I will leave that as an [
 
 ## Setup
 
-First we need to configure Octopus to manage our new project.
+First, we need to configure Octopus to manage our new project.
 
 ### Create an Azure Account
 
@@ -39,18 +39,18 @@ So as to simplify our QA deployment, and prevent it from deploying to other envi
 
 ### Create a Script Module
 
-You will quite often need reusable scripts to include various projects, to generate a unique site name put the following PowerShell function in a **Script Module**, availble under the **Library** section:
+You will quite often need reusable scripts to include various projects, to generate a unique site name put the following PowerShell function in a **Script Module**, available under the **Library** section:
 
 ```powershell
 function GetSiteName($prefix) 
 {
-	# Octopus variables
-	$environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ", "").Replace(".", "-")
-	$tenant = $OctopusParameters['Octopus.Deployment.Tenant.Name'].Replace(".", "-")
-	
-	# A unique name based on the Octopus environment, release, and tenant
-	$uniqueName = "$prefix-$environment-$tenant"
-    
+    # Octopus variables
+    $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ", "").Replace(".", "-")
+    $tenant = $OctopusParameters['Octopus.Deployment.Tenant.Name'].Replace(".", "-")
+
+    # A unique name based on the Octopus environment, release, and tenant
+    $uniqueName = "$prefix-$environment-$tenant"
+
     return $uniqueName
 }
 ```
@@ -73,7 +73,7 @@ Create a new project and do some initial setup:
  - Under *Variables* -> *Library Sets*, click *INCLUDE LIBRARY VARIABLE SETS*, and select the **Variable Set** created in the previous step.
  - Under *Settings*:
    - change *Deployment Targets* to *Allow deployments to be created when there are no deployment targets*
-   - change *Skip Deployment Targets* to *Skip deployment targets if they are or become unavailble*. This is optional and depends on your requirements, please see the [documentation](https://octopus.com/docs/deployment-patterns/elastic-and-transient-environments/deploying-to-transient-targets) for more information.
+   - change *Skip Deployment Targets* to *Skip deployment targets if they are or become unavailable*. This is optional and depends on your requirements, please see the [documentation](https://octopus.com/docs/deployment-patterns/elastic-and-transient-environments/deploying-to-transient-targets) for more information.
 
 When setting up the process for this project, we are going to need an **Azure Account**, there are a few different ways to provide the account to the steps:
 
@@ -98,7 +98,7 @@ Let's get a deployment process configured.
 
 The first step here is an **Azure PowerShell Script**. The step should be configured to run on the Octopus Server, it doesn't require a role at this point.
 
-The script will query Azure to check for the existence of the target Resource Group and create the Resource Group, the App Service Plan and the Web App, if required. We are also setting an expiry date using a *Tag* on the Resource Group, which will be used later in the tear down project.
+The script will query Azure to check for the existence of the target Resource Group and create the Resource Group, the App Service Plan, and the Web App if required. We are also setting an expiry date using a *Tag* on the Resource Group, which will be used later in the teardown project.
 
 The last line in the script is the magic that allows our next step to work, it will create a new **Azure Web App Target** in the Octopus server and assign it a role of *QATest*. The last parameter will allow the command to create or update an existing target that matches on name.
 
@@ -112,7 +112,7 @@ Improved management for *Roles* is coming in the future, but for the moment you 
 
 The last step is a notification step, which could be Slack, email or something else.
 
-In my Slack noticification step I set the following custom settings:
+In my Slack notification step I set the following custom settings:
 
 *Title* is `Deployment to #{Octopus.Deployment.Tenant.Name}`
 
@@ -125,22 +125,25 @@ Create a project
     
 ### Create tenants
 
-In this example, I am using tenants to demonstrate how you can structure a QA environment. A tenant might represent a Tester, or a Customer.
+In this example, I am using tenants to demonstrate how you can structure a QA environment. A tenant might represent a Tester or a Customer.
 
-Under the **Tenants** menu, add two new Tenants, and connect them to the **Web App Setup** project, and the environment we created earlier.
+Under the **Tenants** menu, add two new Tenants and connect them to the **Web App Setup** project, and the environment we created earlier.
 
-For each tenant you will need to click **CONNECT PROJECT** and select the setup project we just created. If you have chosen to create your Azure account variable as a *Project Template* you will need to provide the actual Azure account at this step. This allows you to provide different accounts for each tenant if required.
-
-
+For each tenant, you will need to click **CONNECT PROJECT** and select the setup project we just created. If you have chosen to create your Azure account variable as a *Project Template* you will need to provide the actual Azure account at this step. This allows you to provide different accounts for each tenant if required.
 
 
-## Tear down
+
+
+## Teardown
 
 All of those Azure resources are potentially costing you money, even when no one is using them, so we can use a second project to tear down the applications from both Azure and Octopus.
 
 Create a new project and do some setup configuration in *Settings*:
+
 - change *Deployment Targets* to *Allow deployments to be created when there are no deployment targets*
-- change *Skip Deployment Targets* to *Skip deployment targets if they are or become unavailble*.
+
+- change *Skip Deployment Targets* to *Skip deployment targets if they are or become unavailable*.
+
 
 Under the *Variables* -> *Library Sets* include the library variable set we created earlier. This will be used in our tear-down script
 
@@ -157,8 +160,9 @@ $resourceGroups = Get-AzureRmResourceGroup | `
                                 -and $_.Tags -ne $null `
                                 -and $_.Tags.ContainsKey("Expiry") `
                                 -and [DateTime]::Parse($_.Tags["Expiry"]) -ile $date }
-                                
+
 Write-Host "Found $($resourceGroups.Count) resource groups"
+
 foreach ($rg in $resourceGroups) {
   Write-Host "Removing $($rg.ResourceGroupName)"
   Remove-AzureRmResourceGroup -Name $rg.ResourceGroupName -Force
@@ -166,12 +170,13 @@ foreach ($rg in $resourceGroups) {
 }
 ```
 
-After running the tear-down project, all resource groups with an Expiry tag of the execution date or earlier will be removed and the corresponding Octopus *Azure Web App* target will be removed as well.
+After running the teardown project, all resource groups with an Expiry tag of the execution date or earlier will be removed and the corresponding Octopus *Azure Web App* target will be removed as well.
 
-Using the recently introduced [Scheduled Project Triggers](https://octopus.com/docs/deployment-process/project-triggers/scheduled-project-trigger) you can trigger the tear down script to be executed nightly or weekly.
+Using the recently introduced [Scheduled Project Triggers](https://octopus.com/docs/deployment-process/project-triggers/scheduled-project-trigger) you can trigger the teardown script to be executed nightly or weekly.
 
 ## Azure Resource Manager Templates and Cloud Regions
 
+With all targets added in `2018.5`, Cloud Regions still have a role in scoping your deployment scripts to support a [Multi-region Deployment Pattern](https://octopus.com/docs/deployment-patterns/multi-region-deployment-pattern). You can incorporate 
 Run Template against `CloudWebRegion` roles
 Run app deployment against `CloudWebApp` roles
 
@@ -180,7 +185,7 @@ Run app deployment against `CloudWebApp` roles
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "sites_AZ180_name": {
+        "site_name": {
             "defaultValue": "AZ180",
             "type": "String"
         },
@@ -203,7 +208,7 @@ Run app deployment against `CloudWebApp` roles
             "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180'.",
             "type": "Microsoft.Web/sites",
             "kind": "app",
-            "name": "[parameters('sites_AZ180_name')]",
+            "name": "[parameters('site_name')]",
             "apiVersion": "2016-08-01",
             "location": "South Central US",
             "tags": {
@@ -214,7 +219,7 @@ Run app deployment against `CloudWebApp` roles
                 "enabled": true,
                 "hostNameSslStates": [
                     {
-                        "name": "[concat(parameters('sites_AZ180_name'),'az180.azurewebsites.net')]",
+                        "name": "[concat(parameters('site_name'),'az180.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -222,7 +227,7 @@ Run app deployment against `CloudWebApp` roles
                         "hostType": "Standard"
                     },
                     {
-                        "name": "[concat(parameters('sites_AZ180_name'),'az180.scm.azurewebsites.net')]",
+                        "name": "[concat(parameters('site_name'),'az180.scm.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -247,7 +252,7 @@ Run app deployment against `CloudWebApp` roles
         {
             "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180/config/web'.",
             "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('sites_AZ180_name'), '/', parameters('config_web_name'))]",
+            "name": "[concat(parameters('site_name'), '/', parameters('config_web_name'))]",
             "apiVersion": "2016-08-01",
             "location": "South Central US",
             "tags": {
@@ -356,13 +361,13 @@ Run app deployment against `CloudWebApp` roles
                 "minTlsVersion": "1.0"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_AZ180_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('site_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180/hostNameBindings/az180.azurewebsites.net'.",
             "type": "Microsoft.Web/sites/hostNameBindings",
-            "name": "[concat(parameters('sites_AZ180_name'), '/', parameters('hostNameBindings_az180.azurewebsites.net_name'))]",
+            "name": "[concat(parameters('site_name'), '/', parameters('hostNameBindings_az180.azurewebsites.net_name'))]",
             "apiVersion": "2016-08-01",
             "location": "South Central US",
             "scale": null,
@@ -372,7 +377,7 @@ Run app deployment against `CloudWebApp` roles
                 "hostNameType": "Verified"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_AZ180_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('site_name'))]"
             ]
         }
     ]
