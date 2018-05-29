@@ -18,7 +18,7 @@ By using a [semver](https://docs.npmjs.com/misc/semver) range in your `packages.
 
 Every time you deploy the application YOU ARE DOWNLOADING NEW, POTENTIALLY UNTESTED DEPENDENCIES! And thats if everything goes well. Even though npm no longer supports pushing new files to existing versions I have heard of more than one occasion where production releases fail because the packages were unable to be downloaded due to npm being temporarily down or, ya know.... networks stuff. This failure to install is often accompanied by overwriting the old version, resulting in a server that is effectively worthless (or worse) until access to npm is restored. In one case a user was performing this "fresh install" process each time their AWS Elastic Beanstalk tried to spin up a new web server when the exiting farm was under load. The inability to bring new servers online to serve the traffic ended up killing the whole website. This is _after_ the original deployment had already "succeeded" many days ago.
 
-# Packaging your NodeJs app
+## Packaging your NodeJs app
 Thats right, you should be packaging up your JavaScript applications in the same way you would expect to see for your other apps.
 Octopus had a tool that you can use that may help with that
 
@@ -74,7 +74,8 @@ octo.pack({dependencies: 'prod', bypassDisk: true, root: "."},
     .finalize(true);
 ```
 
-There are gulp, grunt and webpack versions of these libraries that will help package your project during your build process.
+There are [gulp](https://github.com/OctopusDeploy/gulp-octo) and [grunt](https://github.com/OctopusDeploy/grunt-octo) versions of these libraries that will help package your project during your build process (with a webpack one on the way). 
+
 
 
 WebAssembly stands to help make a lot of developers start thinking about parts of their front-end code the same way they do their back-end code. The compilation takes place on a dedicated build server with the resulting artifacts are built once and deployed to each environment. In some ways I'm hoping the use of WebAssembly is constrained to projects where performance is critical. One of the greatest benefits of being constrained to JavaScript to the browser, is that despite all it's limitations, confusing scopes, it serves as the lingua franca between developers from all other languages. I can use frameworks and tools built and used but people developing Haskell applications and we all benefit from the huge pool of talent and ideas out there. Once we all go back into our siloed languages, we all lose something.
