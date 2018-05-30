@@ -3,15 +3,14 @@ title: "Managing Dynamic Targets"
 description: Walkthrough of managing a QA environment in Azure
 author: ben.pearce@octopus.com
 visibility: private
-published: 2018-04-20
+published: 2018-05-31
 tags:
  - Walkthrough
  - Azure
- - New Releases
 ---
 
 In 2018.5, we have introduced the ability to manage your Azure deployment targets from within your deployment process. 
-Using the Azure Powershell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting within Octopus.
+Using the Azure Powershell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting within Octopus. This will also be a technical overview of some of the topics discussed in [PaaS Deployment Targets](https://octopus.com/blog/paas-targets).
 
 In this blog post, I will walk-through a basic example of how you could manage a Web Application in QA environment, hosted in Azure, from setup to tear down, including the resources you need in Azure and Octopus to make it all happen.
 
@@ -173,12 +172,16 @@ Using the recently introduced [Scheduled Project Triggers](https://octopus.com/d
 With all the targets added in `2018.5`, *Cloud Regions* still have a role in scoping your deployment scripts to support a [Multi-region Deployment Pattern](https://octopus.com/docs/deployment-patterns/multi-region-deployment-pattern). 
 You can incorporate Cloud Regions to be able to run your PowerShell scripts or Azure Resource Manager Templates for different geographic regions, for example.
 
+### Setup
+
 For this example we are going to create two *Cloud Regions*
+
 ![Cloud Regions](cloud-regions.png "width=500")
 
 We can then use these *Cloud Regions* to create infrastructure across two different Azure geographic regions and deploy an [ARM template](https://octopus.com/docs/deployment-examples/azure-deployments/resource-groups) for each region.
 
 Create a new project, and add a **Deploy an Azure Resource Group** step to the process:
+
 ![ARM Step](arm-template-step.png "width=200")
 
 Set the step to run against the role that we assigned to the new *Cloud Regions*, created in the previous step.
@@ -193,7 +196,7 @@ Since we want the Resource Group to have a different name and a different locati
 New-AzureRmResourceGroup -Name $SiteResourceGroup -Location $SiteLocation -Force
 ```
 
-For the ARM template itself, the easiest way to get started is to go to the Azure Portal and create all the resources you want in your template. For this example, I created a *Resource Group*, *App Service* and *App Service Plan*. Then under the *Automation Script* section on the *Resource Group* you can grab the template you will need to recreate the resources.
+For the ARM template itself, the easiest way to get started is to go to the Azure Portal and create all the resources you want in your template. For this example, I created a *Resource Group*, *App Service* and *App Service Plan*. Then under the *Automation Script* section on the *Resource Group* you can grab the template you will need to recreate the resources. Or you can grab one of the [samples](https://github.com/Azure/azure-quickstart-templates).
 
 You will also need to make one modification to the template to allow the region to be an input parameter, add the following JSON in to the parameters section, not forgetting the comma after the previous parameter:
 
@@ -208,7 +211,7 @@ Then replace all the occurrences of the `location` value throughout the template
 
 When you put the final template in to the template source on the step, it will extract the parameters and allow you to replace those with values with your own.
 
-![arm parameters](arm-template-parameters.png "width=500")
+![ARM Parameters](arm-template-parameters.png "width=500")
 
 The last part of the ARM template process is to add a post-deployment script to create the new *Azure Web App Target* in Octopus:
 
@@ -224,4 +227,26 @@ New-OctopusAzureWebAppTarget -name $SiteName `
 Now create all the variables that we need to support our process, taking note of scoping for some values for the different cloud regions:
 
 ![Arm template project variables](arm-template-variables.png "width=500")
+
+Lastly, we need to add a *Deploy Azure Web App* step to the process, which will run against the `CloudWebSite` role. This is exactly the same process as we used in the first example above.
+
+### Tear Down
+
+You can use the same script as the previous tear down example, by adding an `Expiry` tag to the `New-AzureRmResourceGroup` command in the pre-deploy script in the ARM template step, or you could deploy an empty ARM template to the same resource group:
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": []
+}
+```
+
+## Auto deployment
+
+With the introduction of the new *Azure* targets, you can also make use of [Automatic Deployment Triggers](https://octopus.com/docs/deployment-process/project-triggers/automatic-deployment-triggers), allowing you to have your infrastructure scripts / templates in a seperate deployment process to your application processes. *Automatic Deployment Triggers* can then be setup to trigger a deployment when a new instance of a web application gets created.
+
+## Conclusion
 
