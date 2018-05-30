@@ -4,12 +4,14 @@ description: Walkthrough of managing a QA environment in Azure
 author: ben.pearce@octopus.com
 visibility: private
 published: 2018-05-31
+metaImage: metaimage-dynamic-targets.png
+bannerImage: blogimage-dynamic-targets.png
 tags:
  - Walkthrough
  - Azure
 ---
 
-![Dynamic targets](dynamic-infrastructure.png)
+![Dynamic targets](blogimage-dynamic-targets.png)
 
 In 2018.5, we have introduced the ability to easily manage your Azure deployment targets from within your deployment process.
 Using the Azure PowerShell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting within Octopus. The new dynamic target cmdlets make this straightforward.
