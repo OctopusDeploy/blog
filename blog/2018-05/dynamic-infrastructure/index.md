@@ -12,7 +12,7 @@ tags:
 In 2018.5, we have introduced the ability to easily manage your Azure deployment targets from within your deployment process.
 Using the Azure Powershell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting within Octopus. The new dynamic target cmdlets make this straightforward.
 
-In this blog post, I will firstly walk-through a example of how you could manage a Web Application in QA environment, hosted in Azure, from setup to tear down, including the resources you need in Azure and Octopus to make it all happen. Finally, I will walk through an example of how you could deploy a web site to multiple geographic regions and tear those down. This will also be a technical overview of some of the topics discussed in [PaaS Deployment Targets](https://octopus.com/blog/paas-targets).
+In this blog post, I will firstly walk-through an example of how you could manage a Web Application in QA environment, hosted in Azure, from setup to tear down, including the resources you need in Azure and Octopus to make it all happen. Finally, I will walk through an example of how you could deploy a website to multiple geographic regions and tear those down. This will also be a technical overview of some of the topics discussed in [PaaS Deployment Targets](https://octopus.com/blog/paas-targets).
 
 Obviously, you will need an application to deploy, but I will leave that as an [exercise for the reader](https://octopus.com/blog/deploying-an-octopus-pi#build-the-application).
 
@@ -209,7 +209,7 @@ You can incorporate **Cloud Regions** to be able to run your PowerShell scripts 
 
 ### Setup
 
-For this example we are going to create two **Cloud Regions**
+For this example, we are going to create two **Cloud Regions**
 
 ![Cloud Regions](cloud-regions.png "width=500")
 
@@ -221,7 +221,7 @@ Create a new project, and add a **Deploy an Azure Resource Group** step to the p
 
 Set the step to run against the role that we assigned to the new **Cloud Regions**, created in the previous step.
 
-In the Account section you can select an account directly, or you can bind it to an Azure Account variable.
+In the Account section, you can select an account directly, or you can bind it to an Azure Account variable.
 
 The ARM step will also require the target Resource Group to exist in Azure before you can deploy the template to create the resources inside the Resource Group. Previously, this would have to be done in an earlier step, in 2018.5 we have allowed configuration scripts to be run on the step. These can be turned on via the *Configure Features* option at the top of the step. Once this is turned on, you can add a pre and post *PowerShell* deployment scripts.
 
@@ -233,7 +233,7 @@ New-AzureRmResourceGroup -Name $SiteResourceGroup -Location $SiteLocation -Force
 
 For the ARM template itself, the easiest way to get started is to go to the Azure Portal and create all the resources you want in your template. For this example, I created a *Resource Group*, *App Service* and *App Service Plan*. Then under the *Automation Script* section on the *Resource Group* you can grab the template you will need to recreate the resources. Or you can grab one of the [samples](https://github.com/Azure/azure-quickstart-templates).
 
-You will also need to make one modification to the template to allow the region to be an input parameter, add the following JSON in to the parameters section, not forgetting the comma after the previous parameter:
+You will also need to make one modification to the template to allow the region to be an input parameter, add the following JSON into the parameters section, not forgetting the comma after the previous parameter:
 
 ```json
 "location": {
@@ -244,7 +244,7 @@ You will also need to make one modification to the template to allow the region 
 
 Then replace all the occurrences of the `location` value throughout the template to be `"location": "[parameters('location')]"`.
 
-When you put the final template in to the template source on the step, it will extract the parameters and allow you to replace those with values with your own.
+When you put the final template into the template source on the step, it will extract the parameters and allow you to replace those with values with your own.
 
 ![ARM Parameters](arm-template-parameters.png "width=500")
 
@@ -267,7 +267,7 @@ Lastly, we need to add a *Deploy Azure Web App* step to the process, which will 
 
 ### Tear Down
 
-You can use the same script as the previous tear down example, by adding an `Expiry` tag to the `New-AzureRmResourceGroup` command in the pre-deploy script in the ARM template step, or you could deploy an empty ARM template to the same resource group:
+You can use the same script as the previous teardown example, by adding an `Expiry` tag to the `New-AzureRmResourceGroup` command in the pre-deploy script in the ARM template step, or you could deploy an empty ARM template to the same resource group:
 
 ```json
 {
@@ -281,11 +281,11 @@ You can use the same script as the previous tear down example, by adding an `Exp
 
 ## Auto deployment
 
-With the introduction of the new *Azure* targets, you can also make use of [Automatic Deployment Triggers](https://octopus.com/docs/deployment-process/project-triggers/automatic-deployment-triggers), allowing you to have your infrastructure scripts / templates in a separate deployment process to your application processes. *Automatic Deployment Triggers* can then be set to trigger a deployment when a new instance of a web application gets created.
+With the introduction of the new *Azure* targets, you can also make use of [Automatic Deployment Triggers](https://octopus.com/docs/deployment-process/project-triggers/automatic-deployment-triggers), allowing you to have your infrastructure scripts/templates in a separate deployment process to your application processes. *Automatic Deployment Triggers* can then be set to trigger a deployment when a new instance of a web application gets created.
 
 ## Conclusion
 
-The new Dynamic Target provisioning cmdlets fill in the gap with our first implementation of Azure Web App targets from version 3. You know have full end to end control over management of your targets.
+The new Dynamic Target provisioning cmdlets fill in the gap with our first implementation of Azure Web App targets from version 3. You know have full end to end management of your targets.
 This won't be the end of the road either for dynamic targets, with features such as dynamic environments and maintenance tasks on the horizon they will start to play a bigger role. We might even add a UI so it is one less line of code you have to write.
 
 Happy deployments.
