@@ -9,6 +9,8 @@ tags:
  - Azure
 ---
 
+![Dynamic targets](dynamic-infrastructure.png)
+
 In 2018.5, we have introduced the ability to easily manage your Azure deployment targets from within your deployment process.
 Using the Azure PowerShell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting within Octopus. The new dynamic target cmdlets make this straightforward.
 
