@@ -100,7 +100,7 @@ The first step here is an **Azure PowerShell Script**. The step should be config
 
 The script will query Azure to check for the existence of the target Resource Group and create the Resource Group, the App Service Plan, and the Web App if required. We are also setting an expiry date using a *Tag* on the Resource Group, which will be used later in the teardown project.
 
-The last line in the script is the magic that allows our next step to work, it will create a new **Azure Web App Target** in the Octopus server and assign it a role of *QATest*. The last parameter will allow the command to create or update an existing target that matches on name.
+The last line in the script is the magic that allows our next step to work, it will create a new **Azure Web App Target** in the Octopus server and assign it a role of *QATest*. The last parameter will allow the command to create or update an existing target that matches on the name.
 
 *** TODO *** insert final script here
 
@@ -119,9 +119,6 @@ In my Slack notification step I set the following custom settings:
 *Message* is `#{Octopus.Project.Name} release #{Octopus.Release.Number} to #{Octopus.Environment.Name} for #{Octopus.Deployment.Tenant.Name} Deployed #{Octopus.Action[Setup Azure Web App].Output.Action} to #{Octopus.Action[Setup Azure Web App].Output.Url}`.
 
 The `Url` and `Action` output parameters were created in the first script step.
-
-Create a project
-    - configure tenants setting
     
 ### Create tenants
 
@@ -129,10 +126,7 @@ In this example, I am using tenants to demonstrate how you can structure a QA en
 
 Under the **Tenants** menu, add two new Tenants and connect them to the **Web App Setup** project, and the environment we created earlier.
 
-For each tenant, you will need to click **CONNECT PROJECT** and select the setup project we just created. If you have chosen to create your Azure account variable as a *Project Template* you will need to provide the actual Azure account at this step. This allows you to provide different accounts for each tenant if required.
-
-
-
+For each tenant, you will need to click **CONNECT PROJECT** and select the setup project we just created. If you have chosen to create your Azure account variable as a **Project Template** variable you will need to provide the actual Azure account at this step. This allows you to provide different accounts for each tenant if required.
 
 ## Teardown
 
@@ -176,220 +170,58 @@ Using the recently introduced [Scheduled Project Triggers](https://octopus.com/d
 
 ## Azure Resource Manager Templates and Cloud Regions
 
-With all targets added in `2018.5`, Cloud Regions still have a role in scoping your deployment scripts to support a [Multi-region Deployment Pattern](https://octopus.com/docs/deployment-patterns/multi-region-deployment-pattern). You can incorporate 
-Run Template against `CloudWebRegion` roles
-Run app deployment against `CloudWebApp` roles
+With all the targets added in `2018.5`, *Cloud Regions* still have a role in scoping your deployment scripts to support a [Multi-region Deployment Pattern](https://octopus.com/docs/deployment-patterns/multi-region-deployment-pattern). 
+You can incorporate Cloud Regions to be able to run your PowerShell scripts or Azure Resource Manager Templates for different geographic regions, for example.
 
+For this example we are going to create two *Cloud Regions*
+![Cloud Regions](cloud-regions.png "width=500")
+
+We can then use these *Cloud Regions* to create infrastructure across two different Azure geographic regions and deploy an [ARM template](https://octopus.com/docs/deployment-examples/azure-deployments/resource-groups) for each region.
+
+Create a new project, and add a **Deploy an Azure Resource Group** step to the process:
+![ARM Step](arm-template-step.png "width=200")
+
+Set the step to run against the role that we assigned to the new *Cloud Regions*, created in the previous step.
+
+In the Account section you can select an account directly, or you can bind it to an Azure Account variable. 
+
+The ARM step will also require the target Resource Group to exist in Azure before you can deploy the template to create the resources inside the Resource Group. Previously, this would have to be done in an earlier step, in 2018.5 we have allowed configuration scripts to be run on the step. These can be turned on via the *Configure Features* option at the top of the step. Once this is turned on, you can add a pre and post *PowerShell* deployment scripts.
+
+Since we want the Resource Group to have a different name and a different location for each geographic region, we can use variables to provide the region names and resource group names so that they can be different. In the Resource Group Name field, add the variable syntax `#{SiteResourceGroup}` and in the Pre-Deploy script section add the following *PowerShell* command:
+
+```powershell
+New-AzureRmResourceGroup -Name $SiteResourceGroup -Location $SiteLocation -Force
 ```
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "site_name": {
-            "defaultValue": "AZ180",
-            "type": "String"
-        },
-        "config_web_name": {
-            "defaultValue": "web",
-            "type": "String"
-        },
-        "hostNameBindings_az180.azurewebsites.net_name": {
-            "defaultValue": "az180.azurewebsites.net",
-            "type": "String"
-        },
-        "sites_AZ180_serverFarmId": {
-            "defaultValue": "/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/ShannonsResourceGroup/providers/Microsoft.Web/serverfarms/Default1",
-            "type": "String"
-        }
-    },
-    "variables": {},
-    "resources": [
-        {
-            "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180'.",
-            "type": "Microsoft.Web/sites",
-            "kind": "app",
-            "name": "[parameters('site_name')]",
-            "apiVersion": "2016-08-01",
-            "location": "South Central US",
-            "tags": {
-                "hidden-related:/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourcegroups/ShannonsResourceGroup/providers/Microsoft.Web/serverfarms/Default1": "empty"
-            },
-            "scale": null,
-            "properties": {
-                "enabled": true,
-                "hostNameSslStates": [
-                    {
-                        "name": "[concat(parameters('site_name'),'az180.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "virtualIP": null,
-                        "thumbprint": null,
-                        "toUpdate": null,
-                        "hostType": "Standard"
-                    },
-                    {
-                        "name": "[concat(parameters('site_name'),'az180.scm.azurewebsites.net')]",
-                        "sslState": "Disabled",
-                        "virtualIP": null,
-                        "thumbprint": null,
-                        "toUpdate": null,
-                        "hostType": "Repository"
-                    }
-                ],
-                "serverFarmId": "[parameters('sites_AZ180_serverFarmId')]",
-                "reserved": false,
-                "siteConfig": null,
-                "scmSiteAlsoStopped": false,
-                "hostingEnvironmentProfile": null,
-                "clientAffinityEnabled": true,
-                "clientCertEnabled": false,
-                "hostNamesDisabled": false,
-                "containerSize": 0,
-                "dailyMemoryTimeQuota": 0,
-                "cloningInfo": null
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180/config/web'.",
-            "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('site_name'), '/', parameters('config_web_name'))]",
-            "apiVersion": "2016-08-01",
-            "location": "South Central US",
-            "tags": {
-                "hidden-related:/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourcegroups/ShannonsResourceGroup/providers/Microsoft.Web/serverfarms/Default1": "empty"
-            },
-            "scale": null,
-            "properties": {
-                "numberOfWorkers": 1,
-                "defaultDocuments": [
-                    "Default.htm",
-                    "Default.html",
-                    "Default.asp",
-                    "index.htm",
-                    "index.html",
-                    "iisstart.htm",
-                    "default.aspx",
-                    "index.php",
-                    "hostingstart.html"
-                ],
-                "netFrameworkVersion": "v4.0",
-                "phpVersion": "5.6",
-                "pythonVersion": "",
-                "nodeVersion": "",
-                "linuxFxVersion": "",
-                "requestTracingEnabled": false,
-                "remoteDebuggingEnabled": false,
-                "remoteDebuggingVersion": null,
-                "httpLoggingEnabled": false,
-                "logsDirectorySizeLimit": 35,
-                "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "$AZ180",
-                "publishingPassword": null,
-                "appSettings": null,
-                "metadata": null,
-                "connectionStrings": null,
-                "machineKey": null,
-                "handlerMappings": null,
-                "documentRoot": null,
-                "scmType": "None",
-                "use32BitWorkerProcess": true,
-                "webSocketsEnabled": false,
-                "alwaysOn": false,
-                "javaVersion": null,
-                "javaContainer": null,
-                "javaContainerVersion": null,
-                "appCommandLine": "",
-                "managedPipelineMode": "Integrated",
-                "virtualApplications": [
-                    {
-                        "virtualPath": "/",
-                        "physicalPath": "site\\wwwroot",
-                        "preloadEnabled": false,
-                        "virtualDirectories": null
-                    }
-                ],
-                "winAuthAdminState": 0,
-                "winAuthTenantState": 0,
-                "customAppPoolIdentityAdminState": false,
-                "customAppPoolIdentityTenantState": false,
-                "runtimeADUser": null,
-                "runtimeADUserPassword": null,
-                "loadBalancing": "LeastRequests",
-                "routingRules": [],
-                "experiments": {
-                    "rampUpRules": []
-                },
-                "limits": null,
-                "autoHealEnabled": false,
-                "autoHealRules": null,
-                "tracingOptions": null,
-                "vnetName": "",
-                "siteAuthEnabled": false,
-                "siteAuthSettings": {
-                    "enabled": null,
-                    "unauthenticatedClientAction": null,
-                    "tokenStoreEnabled": null,
-                    "allowedExternalRedirectUrls": null,
-                    "defaultProvider": null,
-                    "clientId": null,
-                    "clientSecret": null,
-                    "issuer": null,
-                    "allowedAudiences": null,
-                    "additionalLoginParams": null,
-                    "isAadAutoProvisioned": false,
-                    "googleClientId": null,
-                    "googleClientSecret": null,
-                    "googleOAuthScopes": null,
-                    "facebookAppId": null,
-                    "facebookAppSecret": null,
-                    "facebookOAuthScopes": null,
-                    "twitterConsumerKey": null,
-                    "twitterConsumerSecret": null,
-                    "microsoftAccountClientId": null,
-                    "microsoftAccountClientSecret": null,
-                    "microsoftAccountOAuthScopes": null
-                },
-                "cors": null,
-                "push": null,
-                "apiDefinition": null,
-                "autoSwapSlotName": null,
-                "localMySqlEnabled": false,
-                "managedServiceIdentityId": null,
-                "xManagedServiceIdentityId": null,
-                "ipSecurityRestrictions": null,
-                "http20Enabled": false,
-                "minTlsVersion": "1.0"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('site_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/95bf77d2-64b1-4ed2-9de1-b5451e3881f5/resourceGroups/AZ180ResourceGroup/providers/Microsoft.Web/sites/AZ180/hostNameBindings/az180.azurewebsites.net'.",
-            "type": "Microsoft.Web/sites/hostNameBindings",
-            "name": "[concat(parameters('site_name'), '/', parameters('hostNameBindings_az180.azurewebsites.net_name'))]",
-            "apiVersion": "2016-08-01",
-            "location": "South Central US",
-            "scale": null,
-            "properties": {
-                "siteName": "AZ180",
-                "domainId": null,
-                "hostNameType": "Verified"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('site_name'))]"
-            ]
-        }
-    ]
+
+For the ARM template itself, the easiest way to get started is to go to the Azure Portal and create all the resources you want in your template. For this example, I created a *Resource Group*, *App Service* and *App Service Plan*. Then under the *Automation Script* section on the *Resource Group* you can grab the template you will need to recreate the resources.
+
+You will also need to make one modification to the template to allow the region to be an input parameter, add the following JSON in to the parameters section, not forgetting the comma after the previous parameter:
+
+```json
+"location": {
+    "defaultValue": "Australia Southeast",
+    "type": "String"
 }
 ```
 
-![](screenshot-2.png "width-500")
+Then replace all the occurrences of the `location` value throughout the template to be `"location": "[parameters('location')]"`.
 
-Post Deployment Script
-```
-New-OctopusAzureWebAppTarget -name “WebAppTarget-$OctopusMachineName” -azureWebApp "AZ180#{Site}" -azureResourceGroupName "AZ180ResourceGroup" -octopusAccountIdOrName $AzureAccount -octopusRoles “CloudWebApp”
+When you put the final template in to the template source on the step, it will extract the parameters and allow you to replace those with values with your own.
+
+![arm parameters](arm-template-parameters.png "width=500")
+
+The last part of the ARM template process is to add a post-deployment script to create the new *Azure Web App Target* in Octopus:
+
+```powershell
+New-OctopusAzureWebAppTarget -name $SiteName `
+                             -azureWebApp $SiteName `
+                             -azureResourceGroupName $SiteResourceGroup  `
+                             -octopusAccountIdOrName "azure" `
+                             -octopusRoles "CloudWebSite" `
+                             -updateIfExisting
 ```
 
-Variables:
-![](screenshot-1.png "width=500")
+Now create all the variables that we need to support our process, taking note of scoping for some values for the different cloud regions:
+
+![Arm template project variables](arm-template-variables.png "width=500")
+
