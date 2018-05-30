@@ -80,7 +80,17 @@ On your cloud instance there are a few select permissions that relate to the hos
 
 If you find there is something you think you ought to have access to as an "Octopus Manager", but don't, [let us know](mailto:support@octopus.com) and we can review the permissions.
 
+## Technical
+
+### Is the IP address of the Octopus Cloud instance static, so I can whitelist it on my network?
+
+Unfortunately, not yet. The IP address is "sticky", in that it will be fixed while the instance is running - but if the instance gets restarted for any reason, a new IP address is likely to be assigned on reboot. Our infrastructure will automatically update your DNS record as part of this process, so it won't affect your regular use, but it may cause you pain with whitelisting. Our recommendation is that you use Tentacles in **polling mode** so you don't need your Octopus to reach into your network, until we have static IP support available. 
+
 ## Pricing
+
+### Can I get a free trial of Octopus Cloud, to evaluate it before buying?
+
+Of course! We offer a 30-day trial with no credit card required: just put in your details and we'll get the instance ready to go for you. About a week before the trial finishes we'll email you, to see how you're going and whether you want to continue using your cloud instance. If so, you will be able to select a pricing tier and set up payment information and seamlessly transition to a monthly plan. If not, there will be no hard feelings and we'll tear your instance down (with plenty of warning, don't worry!) and you won't have to pay anything at all.
 
 ### Can I upgrade my Octopus pricing tier once I've signed up?
 
