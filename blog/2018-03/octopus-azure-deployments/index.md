@@ -30,4 +30,4 @@ Blog series posts:
 
 * [PaaS Deployment Targets](/blog/2018-04/paas-targets/index.md)
 * [Service Fabric Deployment Targets](/blog/2018-05/service-fabric-cluster-targets/index.md)
-* TBA
+* [Managing Dynamic Targets][/blog/2018-05/dynamic-infrastructure/index.md]
