@@ -13,10 +13,11 @@ tags:
 
 ![Dynamic targets](blogimage-dynamic-targets.png)
 
-In 2018.5, we have introduced the ability to easily manage your Azure deployment targets from within your deployment process.
-Using the Azure PowerShell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting within Octopus. The new dynamic target cmdlets make this straightforward.
+In this post, we will walk through an example of dynamic creation and teardown of Azure infrastructure, to create on-demand Web Apps per tester.
+We will also look at deploying a website to multiple geographic regions and how to tear those down too. This will also be a technical overview of some of the topics discussed in [PaaS Deployment Targets](https://octopus.com/blog/paas-targets) and our [release video](https://www.youtube.com/watch?v=raepkFD7kx8).
 
-In this blog post, I will walk through an example of how you could manage a Web Application in a QA environment, hosted in Azure, from setup to teardown, including the resources you need in Azure and Octopus to make it all happen. Finally, I will walk through an example of how you could deploy a website to multiple geographic regions and tear those down. This will also be a technical overview of some of the topics discussed in [PaaS Deployment Targets](https://octopus.com/blog/paas-targets).
+In 2018.5, we have introduced the ability to easily manage your Azure deployment targets from within your deployment process.
+Previously in Octopus, you could use the Azure PowerShell modules you can create Resource Groups and Web Apps within your Azure subscription, but you could not deploy your applications to them without some heavy lifting. The new dynamic target cmdlets make this straightforward.
 
 Obviously, you will need an application to deploy, but I will leave that as an [exercise for the reader](https://octopus.com/blog/deploying-an-octopus-pi#build-the-application).
 
@@ -30,7 +31,7 @@ See the documentation on [Creating an Azure Service Principal Account](https://o
 
 ### Create an Environment and Configure Dynamic Infrastructure
 
-By default, an environment is not allowed to have dynamic targets created or removed, so you will need to turn this on by editing the Environment settings.
+Create a new environment, if you don't already have one. By default, an environment is not allowed to have dynamic targets created or removed, so you will need to turn this on by editing the Environment settings.
 
 ![Environment configuration](dynamic-infrastucture-environment-setting.png "width=500")
 
@@ -42,7 +43,8 @@ So as to simplify our QA deployment, and prevent it from deploying to other envi
 
 ### Create a Script Module
 
-You will quite often need reusable scripts to include various projects, to generate a unique site name put the following PowerShell function in a **Script Module**, available under the **Library** section:
+Script modules give you the ability to create functions that can be shared across projects. 
+To generate a unique site name put the following PowerShell function in a **Script Module**, available under the **Library** section:
 
 ```powershell
 function GetSiteName($prefix)
@@ -76,7 +78,7 @@ Create a new project and do some initial setup:
 - Under *Variables* -> *Library Sets*, click *INCLUDE LIBRARY VARIABLE SETS*, and select the **Variable Set** created in the previous step.
 - Under *Settings*:
   - change *Deployment Targets* to *Allow deployments to be created when there are no deployment targets*
-  - change *Skip Deployment Targets* to *Skip deployment targets if they are or become unavailable*. This is optional and depends on your requirements, please see the [documentation](https://octopus.com/docs/deployment-patterns/elastic-and-transient-environments/deploying-to-transient-targets) for more information.
+  - change *Skip Deployment Targets* to *Skip deployment targets if they are or become unavailable*. If you don't change this setting, any Web App targets that have been removed from Azure but not cleaned up in Octopus will fail the deployment. This is optional and depends on your requirements, please see the [documentation](https://octopus.com/docs/deployment-patterns/elastic-and-transient-environments/deploying-to-transient-targets) for more information.
 
 When setting up the process for this project, we are going to need an **Azure Account**, there are a few different ways to provide the account to the steps:
 
@@ -158,7 +160,7 @@ The `Url` and `Action` output parameters were created in the first script step.
 
 ### Create Tenants
 
-In this example, I am using tenants to demonstrate how you can structure a QA environment. A tenant might represent a Tester or a Customer.
+In this example, I am leveraging tenants to demonstrate how you can structure a QA environment. A tenant might represent a Tester or a Customer. By applying this pattern, you can scale your deployments from just a few, up to hundreds of testers, deploying the Azure infrastructure and latest application to each one.
 
 Under the **Tenants** menu, add two new Tenants and connect them to the **Web App Setup** project, and the environment we created earlier.
 
@@ -166,7 +168,7 @@ Under the **Tenants** menu, add two new Tenants and connect them to the **Web Ap
 
 For each tenant, you will need to click **CONNECT PROJECT** and select the setup project we just created. If you have chosen to create your Azure account variable as a **Project Template** variable, you will need to provide the actual Azure account at this step. This allows you to provide different accounts for each tenant if required.
 
-Using **Tenants** for your deployments will let you to provide configuration for each deployment per tenant using tenant variables. For example, each Tester could have their own database and provide the database name per tenant to build the database connection string in the web app deployment project. See our [documentation](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments) for more information and examples.
+Using **Tenants** for your deployments will let you to provide configuration for each deployment per tenant using tenant variables. For example, each Tester/Customer could have their own database, the database name is provided by a variable per tenant to build the database connection string in the web app deployment project. See our [documentation](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments) for more information and examples.
 
 ## Teardown
 
@@ -219,7 +221,11 @@ For this example, we are going to create two **Cloud Regions**.
 
 We can then use these *Cloud Regions* to create infrastructure across two different Azure geographic regions and deploy an [ARM template](https://octopus.com/docs/deployment-examples/azure-deployments/resource-groups) for each region.
 
-Create a new project, and add a **Deploy an Azure Resource Group** step to the process:
+Now, lets create a new project to run our Azure Resource Manager templates:
+
+![ARM deployment process](deployment-process-arm.png "width=500")
+
+The first step is a **Deploy an Azure Resource Group**:
 
 ![ARM Step](arm-template-step.png "width=200")
 
