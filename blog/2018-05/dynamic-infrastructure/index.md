@@ -31,7 +31,7 @@ See the documentation on [Creating an Azure Service Principal Account](https://o
 
 ### Create an Environment and Configure Dynamic Infrastructure
 
-Create a new environment, if you don't already have one. By default, an environment is not allowed to have dynamic targets created or removed, so you will need to turn this on by editing the Environment settings.
+Create a new environment, if you don't already have one. By default, an environment is **not** allowed to have dynamic targets created or removed, so you will need to turn this on by editing the Environment settings.
 
 ![Environment configuration](dynamic-infrastucture-environment-setting.png "width=500")
 
@@ -74,7 +74,7 @@ The first project we need to create is the one that will create all the infrastr
 
 Create a new project and do some initial setup:
 
-- Under *Process*, change the *Lifecycle* from the *Default* to the new lifecycle created earlier.
+- Under *Process*, change the *Lifecycle* from the *Default* to the new lifecycle and include the new *Script Module* 
 - Under *Variables* -> *Library Sets*, click *INCLUDE LIBRARY VARIABLE SETS*, and select the **Variable Set** created in the previous step.
 - Under *Settings*:
   - change *Deployment Targets* to *Allow deployments to be created when there are no deployment targets*
