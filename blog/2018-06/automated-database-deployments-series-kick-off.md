@@ -2,7 +2,7 @@
 title: "Automated Database Deployments Series Kick Off"
 description: Automated Database Deployments Series Kick Off
 author: bob.walker@octopus.com
-visibility: public
+visibility: private
 published: 2018-06-04
 tags:
  - Database Deployments
