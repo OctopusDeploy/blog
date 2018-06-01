@@ -27,7 +27,7 @@ In a nutshell, we had all this automation, except on the most crucial part of th
 
 To put it mildly, database change control was the wild west.  To summarize our challenges:
 
-- Environment was all different
+- The environments were all different
 - Custom scripts were created per environment
 - Database Objects existed in one environment and not the other
 - Deployments took hours
