@@ -1,5 +1,5 @@
 ---
-title: "Building And Deploying Node.js Applications"
+title: "Packaging Node.js Applications"
 description: Just because you are using Node.js, it's no reason to violate the principle of build-once, deploy-many
 author: robert.erez@octopus.com
 visibility: private
