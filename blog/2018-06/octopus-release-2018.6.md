@@ -59,7 +59,7 @@ We've also included the initial backend changes for another significant feature,
 
 ## Breaking Changes
 
-There aren't any breaking changes in this release.  You can upgrade worry free!
+There aren't any breaking changes in this release so you can upgrade worry free!
 
 ## Upgrading
 
