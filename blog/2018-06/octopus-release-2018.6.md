@@ -24,38 +24,38 @@ This month, Octopus 2018.6 includes two UserVoice community requested improvemen
 
 ## UserVoice Community Requested Improvements
 
-First up, we’re introducing a couple of smaller UserVoice community requested improvements from our [UserVoice site](https://octopusdeploy.uservoice.com). 
+First up, we’re introducing a couple of smaller UserVoice community requested improvements from our [UserVoice site](https://octopusdeploy.uservoice.com).
 
 ### Prompted Variables Control Types
 
 ![Octopus Variable Editor showing prompted variable options](prompted-var-control-types.png "width=500")
 
-The first [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/30965434-set-octopusvariable-to-support-issensitive-flag) is a nice improvement where you can now specify control types for prompted variables. Previously this was not available as the variable could only be a text input, but now you can also use checkboxes or select lists. 
+The first [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/30965434-set-octopusvariable-to-support-issensitive-flag) is a nice improvement that lets you specify control types for prompted variables. Previously this was not available as the variable could only be a text input, but now you can also use checkboxes or lists.
 
-### Sensitive Output Variables 
+### Sensitive Output Variables
 
 ![Octopus script setting a sensitive output variable](sensitive-output-var.png "width=500")
 
-Another [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/30965434-set-octopusvariable-to-support-issensitive-flag) is a similarly small yet valuable where you can now set sensitive output variables. This change is an excellent addition to keep your sensitive data secure, and it's handy in dynamic provisioning scenarios when you generate passwords on the fly and then use throughout your deployment.
+Another [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/30965434-set-octopusvariable-to-support-issensitive-flag) is similarly small yet valuable, you can now set sensitive output variables. This change is an excellent addition to keep your sensitive data secure, and it's handy in dynamic provisioning scenarios when you generate passwords on the fly and then use them throughout your deployment.
 
 ## Building the Foundation - Designed to Scale
 
-Next, this release is building the foundation for two new features designed for larger teams and companies with big Octopus instances. They’re designed to help our customers scale with thousands of projects, environments and deployments.
+Next, this release is building the foundation for two new features designed for larger teams and companies with big Octopus instances. They’re designed to help our customers scale with thousands of projects, environments, and deployments.
 
-## Octopus Workers backend enhancements
+## Octopus Workers Backend Enhancements
 
 ![Octopus Infrastructure Dashboard with workers sneak preview](octopus-workers-preview1.png "width=500")
 
-This month we're including backend changes for a more extensive feature, called Workers, which is coming soon. The changes are technical and transparent, but it's an excellent opportunity to review the feature. Workers can be used to replace and extend our feature to run steps on the Octopus Server. This is something we introduced in Octopus 3.0, and it's commonly used to execute one-off tasks like database scripts or other things that don't need to run on a specific machine. Workers build upon this with improved security whereby custom scripts aren't run on the Octopus Server during deployments. And it can also improve performance by shifting deployment steps from your Octopus Server onto a pool of workers, leaving the Octopus Server to orchestrate the deployments. There are number other benefits that we'll talk once we launch this great new feature. 
+This month we're including backend changes for a more extensive feature, called Workers, which is coming soon. The changes are technical and transparent, but it's an excellent opportunity to review the feature. Workers can be used to replace and extend our feature to run steps on the Octopus Server. This is something we introduced in Octopus 3.0, and it's commonly used to execute one-off tasks like database scripts or other things that don't need to run on a specific machine. Workers build upon this with improved security whereby custom scripts aren't run on the Octopus Server during deployments. And it can also improve performance by shifting deployment steps from your Octopus Server onto a pool of workers, leaving the Octopus Server to orchestrate the deployments. There are number other benefits that we'll talk about when we launch this great new feature.
 
 NOTE: This feature is optional. You can leave everything just the way it is, and your deployments will keep working. _We call the Octopus Server the "built-in worker" after all!_ Workers are an optional feature you can add to your deployments as you see fit.
 
-## Octopus Spaces backend enhancements
+## Octopus Spaces Backend Enhancements
 
 ![Octopus Spaces switcher sneak preview](octopus-spaces-preview1.png "width=500")
 ![Octopus Spaces dashboard sneak preview](octopus-spaces-preview2.png "width=500")
 
-We've also included the initial backend changes for another significant feature, called Spaces, which is also coming soon. Spaces allow you to create your own custom world within Octopus just for your team. So you only see your projects, your environments and your machines. This is incredibly beneficial for large companies with hundreds of developers, testers and managers using Octopus or simply smaller teams with a lot of projects and environments. It can be difficult to find the details are important to you but this is all changes with spaces which is coming soon. 
+We've also included the initial backend changes for another significant feature, called Spaces, which is also coming soon. Spaces allow you to create your own custom world within Octopus just for your team. So you only see your projects, your environments, and your machines. This is incredibly beneficial for large companies with hundreds of developers, testers, and managers using Octopus or simply smaller teams with a lot of projects and environments. It can be difficult to find the details that are important to you, but that changes with spaces, which is coming soon.
 
 ## Breaking Changes
 
@@ -63,8 +63,8 @@ There aren't any breaking changes in this release so you can upgrade worry free!
 
 ## Upgrading
 
-As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.6.0) for further information.
+As usual, [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.6.0) for further information.
 
 ## Wrap up
 
-That’s it for this month. Feel free leave us a comment and let us know what you think! Go forth and deploy!
+That’s it for this month. Feel free to leave us a comment and let us know what you think! Go forth and deploy!
