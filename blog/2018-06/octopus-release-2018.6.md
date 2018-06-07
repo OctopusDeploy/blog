@@ -57,9 +57,22 @@ NOTE: This feature is optional. You can leave everything just the way it is, and
 
 We've also included the initial backend changes for another significant feature, called Spaces, which is also coming soon. Spaces allow you to create your own custom world within Octopus just for your team. So you only see your projects, your environments, and your machines. This is incredibly beneficial for large companies with hundreds of developers, testers, and managers using Octopus or simply smaller teams with a lot of projects and environments. It can be difficult to find the details that are important to you, but that changes with spaces, which is coming soon.
 
+## Licensing Changes
+
+Back in Febuary this year, we [announced we will no longer support the free Community Edition](https://octopus.com/blog/removing-free-tier) of Octopus Deploy. Starting with Octopus 2018.6 we will be enforcing that decision in the product itself using a cutoff date of **31 March 2018**:
+
+- If you already have a commercial license for Octopus Deploy, nothing has changed for you.
+- If you are already using the free Community Edition, don't worry, it will keep working!
+- If you started a trial of Octopus Deploy before the cutoff date, nothing has changed for you. Your trial will automatically downgrade to the free Community Edition.
+- If you started a trial of Octopus Deploy after the cutoff date, you will need to purchase a commercial license once your trial concludes. Don't worry, we've introduced some [very affordable commercial licenses](https://octopus.com/pricing).
+
+If you have any concerns at all, please don't hesitate to [contact us](https://octopus.com/support).
+
 ## Breaking Changes
 
-There aren't any breaking changes in this release so you can upgrade worry free!
+The only change we're making is to remove the `Octopus.Server.exe external-worker` command which let you use a single Tentacle to replace the built-in worker. If you are already using Tentacle as an external worker, we will automatically migrate it as the first worker in the default worker pool.
+
+Otherwise there aren't any breaking changes in this release so you can upgrade worry free!
 
 ## Upgrading
 
