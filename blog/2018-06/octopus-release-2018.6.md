@@ -70,7 +70,7 @@ If you have any concerns at all, please don't hesitate to [contact us](https://o
 
 ## Breaking Changes
 
-The only change we're making is to remove the `Octopus.Server.exe external-worker` command which let you use a single Tentacle to replace the built-in worker. If you are already using Tentacle as an external worker, we will automatically migrate it as the first worker in the default worker pool.
+The only change we're making is to remove the `Octopus.Server.exe external-worker` command which let you use a single Tentacle to replace the built-in worker. If you are already using Tentacle as an external worker, we will automatically migrate it as the first worker in the default worker pool. Learn about [managing external workers](https://octopus.com/docs/administration/workers/external-workers) in Octopus Deploy 2018.6 and newer.
 
 Otherwise there aren't any breaking changes in this release so you can upgrade worry free!
 
