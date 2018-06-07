@@ -70,7 +70,9 @@ If you have any concerns at all, please don't hesitate to [contact us](https://o
 
 ## Breaking Changes
 
-The only change we're making is to remove the `Octopus.Server.exe external-worker` command which let you use a single Tentacle to replace the built-in worker. If you are already using Tentacle as an external worker, we will automatically migrate it as the first worker in the default worker pool. Learn about [managing external workers](https://octopus.com/docs/administration/workers/external-workers) in Octopus Deploy 2018.6 and newer.
+With the foundations for workers going in, we're removing the `Octopus.Server.exe external-worker` command which allowed a single Tentacle to replace the built-in worker. If you are already using Tentacle as an external worker, we will automatically migrate it as the first worker in the default worker pool. Learn about [managing external workers](https://octopus.com/docs/administration/workers/external-workers) in Octopus Deploy 2018.6 and newer.
+
+Also, because workers, like deployment targets, can be health checked, one of the arguments to health check and upgrade tasks has been tweaked.  If you use the UI, nothing changes.  If you insert tasks through the API with an argument, e.g. like `...ExecuteHealthCheck(environmentId: "Environments-21")` from the clients library, nothing changes. But if you create health check or upgrade with no arguments, this now means for all deployment targets and all workers.  Use `restrictTo: "DeploymentTargets"` for all deployment targets and `restrictTo: "Workers"` for all workers.
 
 Otherwise there aren't any breaking changes in this release so you can upgrade worry free!
 
