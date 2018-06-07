@@ -30,7 +30,7 @@ First up, we’re introducing a couple of smaller UserVoice community requested 
 
 ![Octopus Variable Editor showing prompted variable options](prompted-var-control-types.png "width=500")
 
-The first [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/30965434-set-octopusvariable-to-support-issensitive-flag) is a nice improvement that lets you specify control types for prompted variables. Previously this was not available as the variable could only be a text input, but now you can also use checkboxes or lists.
+The first [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6016396-variable-prompt-templates) is a nice improvement that lets you specify control types for prompted variables. Previously this was not available as the variable could only be a text input, but now you can also use checkboxes or lists.
 
 ### Sensitive Output Variables
 
@@ -65,7 +65,7 @@ There aren't any breaking changes in this release so you can upgrade worry free!
 
 This release contains some optimization for our Machine table that may take some time depending on how many machines you have, so please ensure you allow time for this to complete.
 
-As usual, [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.6.0) for further information.
+Otherwise, our standard [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.6.0) for further information.
 
 ## Wrap up
 
