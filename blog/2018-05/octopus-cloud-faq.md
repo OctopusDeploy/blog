@@ -5,13 +5,13 @@ author: andrew.katsivas@octopus.com
 visibility: public
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
-published: 2018-06-08
+published: 2018-05-30
 tags:
  - Octopus Cloud
  - FAQ
 ---
 
-We've been talking about it for a while now, and Octopus Cloud is almost here - [welcome to the world of tomorrow](https://www.youtube.com/watch?v=aiwA0JrGfjA)!   Since early in 2018 we've been in closed testing with a handful of users putting the platform through its paces, and in June 2018 we are opening it up to another group of early-access users, ahead of a public launch in Q3 2018. 
+We've been talking about it for a while now, and Octopus Cloud is almost here - [welcome to the world of tomorrow](https://www.youtube.com/watch?v=aiwA0JrGfjA)! Since early in 2018 we've been in closed testing with a handful of users putting the platform through its paces, and in June 2018 we are opening it up to another group of early-access users, ahead of a public launch in Q3 2018. 
 
 With that in mind, we've put together a few questions we get commonly asked, so you can get up-to-speed as quickly as possible. If you still have questions that we _haven't_ answered here, then please [contact our support team](mailto:support@octopus.com) and we'll be happy to answer them for you.
 
