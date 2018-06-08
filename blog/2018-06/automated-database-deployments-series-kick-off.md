@@ -1,14 +1,16 @@
 ---
-title: "Automated Database Deployments Series Kick Off"
+title: Automated Database Deployments Series Kick Off
 description: Automated Database Deployments Series Kick Off
 author: bob.walker@octopus.com
-visibility: private
-published: 2018-06-04
+visibility: public
+published: 2018-06-08
+metaImage: metaimage-database-kickoff.png
+bannerImage: blogimage-database-kickoff.png
 tags:
  - Database Deployments
 ---
 
-The most nerve-racking part (for me), in any deployment is the database.  Deploying code is far less stressful.  If something isn't right the code can be rolled back.  By the time it reaches production, there should be zero surprises.  It is same code that was tested in dev, QA, and pre-production.    
+The most nerve-racking part (for me), in any deployment is the database.  Deploying code is far less stressful.  If something isn't right the code can be rolled back. By the time it reaches production, there should be zero surprises.  It is same code that was tested in dev, QA, and pre-production.    
 
 Databases are not as flexible.  Imagine there is an error in a script and the names of all users gets deleted.  There isn't a good way to roll that back.  Sure a backup could be restored.  But when was that backup taken?  Have any users been in the system since that backup?  What data will be lost if the backup is restored?
 
