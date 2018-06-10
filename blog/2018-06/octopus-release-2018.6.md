@@ -2,7 +2,7 @@
 title: Octopus June Release 2018.6
 description: Octopus 2018.6 is building the foundation for some excellent new features coming soon!
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-2018-6.png
 bannerImage: blogimage-shipping-2018-6.png
 published: 2018-06-08
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2018.6 release banner](blogimage-shipping-2018-6.png)
 
-This month, Octopus 2018.6 includes two UserVoice community requested improvements, and it's also building the foundation for some fantastic new features that should be available in the upcoming months. Keep reading for the full details!
+This month, Octopus 2018.6 includes two UserVoice community requested improvements, and it's also building the foundation for some fantastic new features that should be available in the upcoming months.  Keep reading for the full details!
 
 ## In This Post
 
