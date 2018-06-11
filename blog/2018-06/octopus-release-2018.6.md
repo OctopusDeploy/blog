@@ -59,12 +59,14 @@ We've also included the initial backend changes for another significant feature,
 
 ## Licensing Changes
 
-Back in Febuary this year, we [announced we will no longer support the free Community Edition](https://octopus.com/blog/removing-free-tier) of Octopus Deploy. Starting with Octopus 2018.6 we will be enforcing that decision in the product itself using a cutoff date of **31 March 2018**:
+_Summary: if you are already happily using Octopus Deploy, nothing should change for you! This change only affects customers who have installed Octopus Deploy after 31 March 2018 and were planning to use the free Community Edition._
 
-- If you already have a commercial license for Octopus Deploy, nothing has changed for you.
-- If you are already using the free Community Edition, don't worry, it will keep working!
-- If you started a trial of Octopus Deploy before the cutoff date, nothing has changed for you. Your trial will automatically downgrade to the free Community Edition.
-- If you started a trial of Octopus Deploy after the cutoff date, you will need to purchase a commercial license once your trial concludes. Don't worry, we've introduced some [very affordable commercial licenses](https://octopus.com/pricing).
+Back in Febuary this year, we [announced we will no longer support the free Community Edition](https://octopus.com/blog/removing-free-tier) for new installations of Octopus Deploy. Starting with Octopus 2018.6 we will be enforcing that decision in the product itself:
+- If you were already using Octopus Deploy before **31 March 2018** nothing has changed for you.
+- If you already have a commercial license for Octopus Deploy nothing has changed for you.
+- If you are already using the free Community Edition, don't worry, it will keep working! And yes, you can upgrade to newer versions of Octopus Deploy using the existing Community Edition limits.
+- If you started a trial of Octopus Deploy before **31 March 2018** nothing has changed for you. Your trial will automatically downgrade to the free Community Edition.
+- If you started a trial of Octopus Deploy after **31 March 2018**, you will need to purchase a commercial license once your trial concludes. Don't worry, we've introduced some [very affordable commercial licenses](https://octopus.com/pricing).
 
 If you have any concerns at all, please don't hesitate to [contact us](https://octopus.com/support).
 
