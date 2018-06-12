@@ -2,13 +2,16 @@
 title: "Packaging Node.js Applications"
 description: Just because you are using Node.js, don't violate the principle of build-once, deploy-many
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
+metaImage: metaimage-nodejs.png
+bannerImage: blogimage-nodejs.png
+published: 2018-06-12
 tags:
  - New Releases
 ---
 
 Node.js has become one of the hottest programming languages to work within recent years. JavaScript has constantly been ranked as the most popular programming language in the [Stack Overflow developer surveys](https://insights.stackoverflow.com/survey/2018) for several years running and it's not hard to see why.
-The ubiquity of JavaScript as the front-end language for the web means that is used and understood (citation needed) by developers regardless if they come from a background of Java, C#, or Ruby. The number of developers out there who already know JavaScript means that the community is huge with libraries and frameworks for every possible requirement, so it stands to reason that using it for server-side projects sometimes seems like the right approach.
+The ubiquity of JavaScript as the front-end language for the web means that is used and understood (citation needed) by developers regardless if they come from a background of Java, C#, or Ruby.  The number of developers out there who already know JavaScript means that the community is huge with libraries and frameworks for every possible requirement, so it stands to reason that using it for server-side projects sometimes seems like the right approach.
 
 ![NodeJS is so hot right now](nodejs_so_hot.jpg)
 
