@@ -2,7 +2,7 @@
 title: Automated Database Deployments Iteration Zero
 description: Automated Database Deployments Iteration Zero
 author: bob.walker@octopus.com
-visibility: public
+visibility: private
 published: 2018-06-18
 tags:
  - Database Deployments
