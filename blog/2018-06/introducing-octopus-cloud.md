@@ -2,7 +2,7 @@
 title: "Introducing Octopus Cloud"
 description: "Octopus Cloud has been a while in the making. In this post we look at how and why Octopus Cloud came to be, and what the future may look like"
 author: andrew.katsivas@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
 published: 2018-06-14
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)
 
-When I first started at Octopus in September 2017, "hosted" (as we referred to it then) had been bandied about for a while, but the real work hadn't really kicked off in earnest. Late in 2017 a team officially formed to bring Hosted to life, bringing together skills from across our team in cloud architecture, infrastructure, and security. It's been a wild ride, but we're finally at the finish line - Octopus Cloud is launching for public access in the next few weeks.
+When I first started at Octopus in September 2017, "hosted" (as we referred to it then) had been bandied about for a while, but the real work hadn't really kicked off in earnest. Late in 2017 a team officially formed to bring Hosted to life, bringing together skills from across our team in cloud architecture, infrastructure, and security.  It's been a wild ride, but we're finally at the finish line - Octopus Cloud is launching for public access in the next few weeks.
 
 With the launch coming soon, I wanted to take a moment to write about our journey to this point: why we decided to build Octopus Cloud, things that worked Really Well, other things that Really Didn't Work, and some of the lessons we learned along the way.
 
