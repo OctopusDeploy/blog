@@ -12,15 +12,15 @@ tags:
 
 ![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)
 
-When I first started at Octopus in September 2017, "hosted" (as we referred to it then) had been bandied about for a while, but the real work hadn't really kicked off in earnest. Late in 2017 a team officially formed to bring Hosted to life, bringing together skills from across our team in cloud architecture, infrastructure, and security. It's been a wild ride, but we're finally at the finish line. Octopus Cloud is launching for public access in the next few weeks.
+When I first started at Octopus in September 2017, "hosted" (as we referred to it then) had been bandied about for a while, but the real work hadn't really kicked off in earnest. Late in 2017 a team officially formed to bring Hosted to life, bringing together skills from across our team in cloud architecture, infrastructure, and security. It's been a wild ride, but we're finally at the finish line - Octopus Cloud is launching for public access in the next few weeks.
 
-With the launch coming soon, I wanted to take a moment to write about our journey to this point, why we decided to build Octopus Cloud, things that worked Really Well, other things that Really Didn't Work, and some of the lessons we learned along the way.
+With the launch coming soon, I wanted to take a moment to write about our journey to this point: why we decided to build Octopus Cloud, things that worked Really Well, other things that Really Didn't Work, and some of the lessons we learned along the way.
 
 This post also launches an Octopus Cloud blog series, with following posts digging in much deeper into some of the specific challenges we faced and overcame, and how our team and company had to change in this cloud-native world. Settle in with a coffee.
 
 ## Why put Octopus in the cloud? (a brief history of Octopus)
 
-When Octopus first came to life as one of Paul Stovell's many great ideas. The landscape of programming and development was quite different; deploying reliably and repeatably to on-premises and self-hosted servers was a huge pain. In those days, applications often ran on managed servers, so having a managed deployment server on the same network (or WAN) made total sense.
+When Octopus first came to life as one of Paul Stovell's many great ideas, the landscape of programming and development was quite different; deploying reliably and repeatably to on-premises and self-hosted servers was a huge pain. In those days, applications often ran on managed servers, so having a managed deployment server on the same network (or WAN) made total sense.
 
 Fast-forward 5 years and that landscape looks totally different. A lot of teams are developing exclusively (or predominantly) for the cloud: web apps, microservices, "serverless" (code you dump onto someone else's server and make their problem) all exist in this nebulous "other space". When all of your deployment targets live in the cloud, having a managed on-premises deployment server doesn't make a heap of sense. A lot of teams are running their Octopus out of cloud VMs on Azure or AWS anyway, and we even started referring to it as "self-hosted" (not "on-premises"), because so many people aren't running the servers themselves anyway.
 
@@ -32,7 +32,7 @@ It sounds easy, right? "Just put it in the cloud" is something I hear often, usu
 
 ### "Run on server" (aka "please destroy our servers")
 
-In a nutshell, Octopus was built from the ground-up to _empower_ developers to have seamless, resilient deployments out of the box, but also to be able to hack and tweak as they needed to, to get their specific config working. This means that Octopus has a huge amount of switches you can flip and dials you can turn, to tune up your deployments as you see fit. And when you control the server yourself, that's totally fine. Trying to find the balance point with the "run on server" steps has been one of the greatest challenges, but we've managed to get some really exciting features out of that work ("Workers" are coming soon).
+In a nutshell, Octopus was built from the ground-up to _empower_ developers to have seamless, resilient deployments out of the box, but also to be able to hack and tweak as they needed to, to get their specific config working. This means that Octopus has a huge amount of switches you can flip to tune up your deployments as you see fit. And when you control the server yourself, that's totally fine. But allowing _any_ abitrary scripts and executables to run without limitation on our servers makes us very nervous indeed. However, this has forced us to have some very interesting discussions about security and our execution architecture, and has helped to pave the way for some exciting new features ([have a read about Workers](https://octopus.com/blog/octopus-release-2018.6#octopus-workers-backend-enhancements), coming soon).
 
 ### Pushing Octopus to the limit (aka "how creative can we be?")
 
