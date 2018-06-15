@@ -19,7 +19,9 @@ This post will be discussing the following:
 Deploying databases can be very complex.  There are multiple approaches to deploying databases.  At Octopus Deploy, rather than forcing an approach, or a tool, upon users we decided to make it easy to integrate with third-party tools.  Allow the tools specifically designed for deploying databases do what they do best.  The flexibility of integrating with multiple tools means there is a lot to choose from.  As you evaluate third-party tools you will find they approach deployments one of two ways.  Each approach has its pros and cons.
 
 ### #1 Model-Driven Approach
-With the model-driven approach, the desired state of the database is defined.  The state is saved into source control.  During the deployment, the tool will compare the desired state with the deployment target and generate a delta script.
+With the model-driven approach, the desired state of the database is defined.  The state is saved into source control.  During the deployment, the tool will compare the desired state with the deployment target and generate a delta script.  This process will be done for each environment.
+
+![](model-driven-approach.png)
 
 The database desired state is stored as files in source control.  It depends on the tool what the file will be.  It might be a series of create scripts.  It might be an XML file.  It could be something completely different.  The important thing to know is the tool will be responsible for updating and maintaining those files.
 
@@ -44,6 +46,8 @@ The lack of control can be a bit of a burden sometimes.  You might end up creati
 ### #2 Change-Driven Approach
 A change-driven approach is where all the necessary delta scripts are handwritten.  This is also known as migrations.  Those scripts are checked into source control.  During the deployment, the tool will look to see which change scripts have not been run on the destination database and run them in a specific order.  
 
+![](change-driven-approach.png)
+
 #### Change-Driven Pros
 With the change-driven approach, you have complete control over all the scripts.  When deploying a change you know exactly what script is going to run.  Complex changes are much easier to deal with, you just need to write the script and save it to source control.  Some migration frameworks allow you to write code to do migrations to help make it easier to implement more complex changes.  In addition, it is much easier to exclude items from deployments.  Just don't include the script for items you want to exclude.
 
@@ -52,7 +56,7 @@ The model-driven approach ensures the entire destination database matches the de
 
 It is much, much harder to see the history of a specific object like a table or a stored procedure.  Instead of going to a single file and viewing the history you are required to do a search to find all the files where the object was changed.  Depending on the number of table changes going on, it could be easy to miss a key change and not even know it.  
 
-Finally, a lot of developers are not expert SQL Developers.  They are used to using SQL Server Management Studio UI to create tables and indexes.  They don't know how to write a lot of the changes being made by hand.  It takes a lot of practice to get the T-SQL syntax memorized.    
+Finally, a lot of developers are not expert SQL Developers.  They are used to using SQL Server Management Studio UI to create tables and indexes.  They don't know how to write a lot of the changes being made by hand.  It takes a lot of practice to get the T-SQL syntax memorized.  In the case where the tool allows you to write code for more complex changes, there is another learning curve to understand the syntax and the rules.
 
 ### Picking an Approach
 
