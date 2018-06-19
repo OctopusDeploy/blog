@@ -55,3 +55,9 @@ Putting it all in Octopus Deploy had a side benefit of giving the DBAs and opera
 So you might be asking yourself, why in the world are you telling me all of this?  What is the point of all of this?  To pat your own back?  Well... maybe a little.   Really it is to announce that I'm kicking off a blog series where I'll walk through the process of setting up database lifecycle management (DLM) and database deployment automation.  
 
 The goal of the series is to provide you with some real-world examples using a variety of database deployment tools.  In addition to that, we will discuss some common pitfalls you will run across.  I'm excited to get started!
+
+---
+
+Blog series posts:
+
+* [Iteration Zero](/blog/2018-06/automated-database-deployments-iteration-zero.md)
