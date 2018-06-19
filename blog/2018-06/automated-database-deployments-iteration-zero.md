@@ -4,8 +4,8 @@ description: Automated Database Deployments Iteration Zero
 author: bob.walker@octopus.com
 visibility: public
 published: 2018-06-19
-metaImage: metaimage-automateDatabase.png
-bannerImage: blogimage-automateDatabase.png
+metaImage: metaimage-automate-database.png
+bannerImage: blogimage-automate-database.png
 tags:
  - Database Deployments
 ---
@@ -106,7 +106,7 @@ With Octopus Deploy [artifacts](https://octopus.com/docs/deployment-process/arti
 
 In some cases, the step template provided by the third-party has artifact creation directly built in.  For example, here is the process for deploying tooling using Redgate.
 
-![](Database-Approve-Changes.png)
+![](database-approve-change.png)
 
 During the deployment it created the artifacts automatically.
 
