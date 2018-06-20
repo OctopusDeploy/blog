@@ -31,7 +31,11 @@ We looked at other survey answers that might have explained the link between spa
 
 ## Immutable application deployments with F# Make
 
-*todo*
+[Nikolai Norman Andersen](https://twitter.com/nikolaiii) shared his deployment strategies with us in this session. Using FAKE (F# Make) for both build and deploy scripts was interesting to see.
+
+Nikolai also covered infrastructure as code using ARM templates to build up infrastructure in Azure and then deploy to it.
+
+Another cool tech featured in this talk was Kudu, which allows running local deployments with the same process that deploys to Azure.
 
 ## The F# Path To Relaxation
 
@@ -53,7 +57,11 @@ And finally, we learned about maintaining a network with suggestions and tips on
 
 ## Elm: A functional love story
 
-*todo*
+In _Elm: A functional love story_, Tale Prestmo walked us through her journey from a kid who loved math to functional programming and Elm.
+
+This was a good overview of functional programming and concepts. Tale talked about pure functions, partial application and currying (not the same thing!), and the dreaded monad.
+
+She then talked about why she loved Elm and why she thinks we might too. Small logical functions are easy to reason about. A purely functional language forces you to write and learn in a functional style. And Elm has a user focused design.
 
 ## Wrap up
 
