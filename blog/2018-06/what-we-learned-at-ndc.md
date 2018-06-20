@@ -27,7 +27,7 @@ In this talk, [Evelina Gabasova](https://twitter.com/evelgab) used statistical a
 
 Evelina taught us to go beyond "correlation is not equal to causation" and some tools to find out whether there is a causal relationship between two variables. Did you know that countries with higher birth rates also have larger stork populations?
 
-We looked at other survey answers that might have explained the link between spaces and salary. She also talked whether the data could be trusted. And with anonymous surveys, the answer is no.
+We looked at other survey answers that might have explained the link between spaces and salary. She also talked about whether the data could be trusted. And with anonymous surveys, the answer is no.
 
 ## Immutable application deployments with F# Make
 
@@ -41,7 +41,7 @@ Another cool tech featured in this talk was Kudu, which allows running local dep
 
 [Don Syme](https://twitter.com/dsyme) talked about F# from a language designer's point of view and how F# manages to reconcile what appear to be contradictory ideas.
 
-We got at look at how the language has grown to support functional principles and support interoperability, object programming, and practicality. There is also the interesting story of F# balances being an enterprise supported language and having a great amount of openness and a strong open source community.
+We got a look at how the language has grown to support functional principles and support interoperability, object programming, and practicality. There is also the interesting story of F# balances being an enterprise supported language and having a great amount of openness and a strong open source community.
 
 [Much like life, F# finds a way](https://www.youtube.com/watch?v=dMjQ3hA9mEA).
 
@@ -61,7 +61,7 @@ In _Elm: A functional love story_, Tale Prestmo walked us through her journey fr
 
 This was a good overview of functional programming and concepts. Tale talked about pure functions, partial application and currying (not the same thing!), and the dreaded monad.
 
-She then talked about why she loved Elm and why she thinks we might too. Small logical functions are easy to reason about. A purely functional language forces you to write and learn in a functional style. And Elm has a user focused design.
+She then talked about why she loved Elm and why she thinks we might too. Small logical functions are easy to reason about. A purely functional language forces you to write and learn in a functional style. And Elm has a user-focused design.
 
 ## Wrap up
 
