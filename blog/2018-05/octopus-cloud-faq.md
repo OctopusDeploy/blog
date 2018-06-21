@@ -3,6 +3,9 @@ title: "Octopus Cloud FAQs"
 description: "Octopus Cloud: all your questions answered!"
 author: andrew.katsivas@octopus.com
 visibility: public
+metaImage: metaimage-octopus-cloud.png
+bannerImage: blogimage-octopus-cloud.png
+published: 2018-05-30
 tags:
  - Octopus Cloud
  - FAQ
