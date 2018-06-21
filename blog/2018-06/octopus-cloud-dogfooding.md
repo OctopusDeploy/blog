@@ -42,11 +42,13 @@ While this greatly reduces the scope for things going wrong, it's still not as g
 
 ### Metrics
 
-Effectively managing a whole bunch of Octopus Servers means we really need to know whats going on, both pre-emptively and when an incident happens. We use [Grafana](https://link-needed) to store and view metrics and [telegraf](https://link-needed) to read and ship metrics. We added functionality to Octopus Server to log task and web api metrics to file, so telegraf can ingest them. This, combined with some inbuild telegraf functionality, allows us to have some awesome dashboards like:
+Effectively managing a whole bunch of Octopus Servers means we really need to know whats going on, both pre-emptively and when an incident happens. We use [Elasticsearch](https://www.elastic.co/) to store our metrics, [Grafana](https://link-needed) to view them and [telegraf](https://link-needed) to read and ship metrics. We added functionality to Octopus Server to log task and web api metrics to file, so telegraf can ingest them and ship them off to Elasticserach. This, combined with some inbuild telegraf functionality, allows us to have some awesome dashboards like:
 
 !!! INSERT PIC HERE !!!
- 
+
 One of the great things about us running and managing Octopus is that we get to see broad, high level metrics about how Octopus is performing in the real world. It also means that if there's a performance issue, we're the ones that will get bitten by the increased costs of higher spec machines - something that can only be a win for improving Octopus performance!
+
+We'll drill into metrics and dashboarding in another blog post soon.
 
 ### Tenants
 
