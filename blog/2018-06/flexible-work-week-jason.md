@@ -4,6 +4,8 @@ description: Flexible work can be life changing
 author: jason.brown@octopus.com
 visibility: private
 published: 2018-06-08
+metaImage: flexiwork/metaimage-FlexibleWork.png
+bannerImage: flexiwork/blogimage-FlexibleWork.png
 tags:
  - Flexible Work Week
 ---
