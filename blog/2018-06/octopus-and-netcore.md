@@ -3,8 +3,6 @@ title: Octopus and NuGet in a .NETCore world
 description: How Octopus is evolving in the 
 author: shannon.lewis@octopus.com
 visibility: private
-metaImage: metaimage-octopus-netcore.png
-bannerImage: blogimage-octopus-netcore.png
 published: 2018-06-29
 tags:
  - OctoPack
