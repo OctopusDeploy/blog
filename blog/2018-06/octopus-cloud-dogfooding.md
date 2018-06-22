@@ -44,7 +44,7 @@ While this significantly reduces the scope for things going wrong, it's still no
 
 Effectively managing a whole bunch of Octopus Servers means we really need to know whats going on, both pre-emptively and when an incident happens. We use [Elasticsearch](https://www.elastic.co/) to store our metrics, [Grafana](https://grafana.com/) to view them and [telegraf](https://www.influxdata.com/time-series-platform/telegraf/) to read and ship metrics. We added functionality to the Octopus Server to log task and web API metrics to file, so telegraf can ingest them and ship them off to Elasticsearch. This, combined with some inbuilt telegraf functionality, allows us to have some awesome dashboards like:
 
-!!! INSERT PIC HERE !!!
+![Octopus Cloud monitoring dashboard](octopus-cloud-dashboard.png)
 
 One of the great things about us running and managing Octopus is that we get to see broad, high level metrics about how Octopus is performing in the real world. It also means that if there's a performance issue, we're the ones that will get bitten by the increased costs of higher spec machines - something that can only be a win for improving Octopus performance!
 
