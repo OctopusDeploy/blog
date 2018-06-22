@@ -16,7 +16,7 @@ When I joined Octopus Deploy in June 2017, I'd been living in Sydney for almost 
 
 In modern Sydney, you live one of three ways. You either pay extortionate rent to live near the CBD, you deal with an extraordinary commute, or you try to strike a balance between the two.
 
-After far too many run-ins with dangerous drivers on my 15km bike commute, I'd given up trying to strike the balance, and committed a big chunk of my paycheque to a warehouse in Rozelle, a walkable 3km from my previous work. Sure, I wasn't spending three or four hours a day on a train, and I was much less likely to be mown down on my bike by someone in a white ute, but I was was still stressed and often unhappy.
+After far too many run-ins with dangerous drivers on my 15km bike commute, I'd given up trying to strike the balance, and committed a big chunk of my paycheque to a warehouse in Rozelle, a walkable 3km from my previous work. Sure, I wasn't spending three or four hours a day on a train, and I was much less likely to be mown down on my bike by someone in a white [ute](https://en.wikipedia.org/wiki/Ute_(vehicle)), but I was was still stressed and often unhappy.
 
 Octopus Deploy is a remote-first workplace. Many of my colleagues are located in Brisbane and others in Melbourne, Adelaide, the US, and even Argentina. Shortly after joining Octopus, I was almost ready to pack up and move to Brisbane to join my new team.
 
