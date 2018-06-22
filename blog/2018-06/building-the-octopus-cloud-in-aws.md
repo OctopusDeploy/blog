@@ -13,8 +13,6 @@ tags:
  - CloudFormation
 ---
 
-# Building the Octopus Cloud in AWS
-
 ## Intro
 Before we started to build the Octopus Cloud, there was discussion around where it should be hosted. It eventually came down to two choices; Amazon Web Services (AWS) or Microsoft Azure.
 
