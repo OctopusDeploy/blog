@@ -12,7 +12,7 @@ tags:
  - NuGet
 ---
 
-![Octopus Deploy and .NETCore packaging](blogimage-octopus-netcore.png)
+
 
 I while back we posted about [packaging formats](https://octopus.com/blog/wanted-universal-packaging-format) and why Octopus uses the NuGet repository protocol.
 
