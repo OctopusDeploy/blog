@@ -10,7 +10,7 @@ tags:
  - Flexible Work Week
 ---
 
-![Octo-flexi](metaimage-FlexibleWork.png)
+![Octo-flexi](blogimage-FlexibleWork.png)
 
 Flexible working can be a game changer in many ways. I'm Jason, a Cloud Architect here at Octopus Deploy, and I'm going to explain why it's not just been a game changer for me, but a life changer.
 
