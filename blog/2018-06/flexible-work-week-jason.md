@@ -30,6 +30,8 @@ So an idea began to germinate.
 
 When I'd started riding bikes seriously again a few years ago, I went on a flying visit to the town of Bright, in North-East Victoria. After that first visit, I'd go back, time and time again.
 
+![A panorama from Mount Porepunkah](flexiwork/IMG_2407_1.JPG)
+
 Nestled in the mountains, Bright is well known to serious road cyclists and mountain bikers. It's surrounded by forests criss-crossed with superb gravel trails for day-long adventures, has five or six mountain bike parks within a short drive, and is a base for some of Australia's best road rides. Because it's a tourist town, it's also well served by infrastructure, is close to two ski resorts, and has enough cafes, bars and entertainment to keep a pampered city dweller amused at the weekend.
 
 I began to wonder. I'd had an ambition to buy a holiday base in Bright for a long time. Could I maybe... live there?
