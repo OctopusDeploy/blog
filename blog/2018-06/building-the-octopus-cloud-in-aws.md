@@ -1,3 +1,18 @@
+---
+title: Building the Octopus Cloud in AWS
+description: Building the Octopus Cloud in AWS
+author: chris.vandal@octopus.com
+visibility: private
+published: 2018-06-22
+tags:
+ - Octopus Cloud
+ - AWS
+ - Networking
+ - Infrastructure
+ - Terraform
+ - CloudFormation
+---
+
 # Building the Octopus Cloud in AWS
 
 ## Intro
