@@ -12,7 +12,7 @@ Back in February (which is years ago in Internet land), we [published a post](ht
 
  In the time since we wrote the original post about Bitbucket Pipelines we have started to publish up-to-date container images of our [octo.exe](https://octopus.com/docs/api-and-integration/octo.exe-command-line) command line tool that will turbo charge your continuous deployment process when scripting outside of the Octopus Portal.
 
-The octo.exe container is now [published to DockerHub](https://hub.docker.com/r/octopusdeploy/octo/) with both an alpine and nanoserver base image available. This means you can use now use octo.exe in your container build chains as used by BitBucket. Extending on the the ideas outlined by Andy in the previous post, we can now avoid having to install any zip tools or perform any convoluted curl requests.
+The octo.exe container is now [published to DockerHub](https://hub.docker.com/r/octopusdeploy/octo/) with both an alpine and nanoserver base image available. This means you can use use octo.exe in containerized build chains like those provided by BitBucket. Extending on the the ideas outlined by Andy in the previous post, we can now avoid having to install any zip tools or perform any convoluted curl requests.
 
 The `bitbucket-pipelines.yml` in the root of a Node.JS project could be as simple as
 
