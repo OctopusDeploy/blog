@@ -12,7 +12,7 @@ tags:
 
 ![Octo-flexi](blogimage-flexiblework.png)
 
-Flexible working can be a game changer in many ways.  I'm Jason, a Cloud Architect here at Octopus Deploy, and I'm going to explain why it's not just been a game changer for me, but a life changer.
+Flexible working can be a game changer in many ways. I'm Jason, a Cloud Architect here at Octopus Deploy, and I'm going to explain why it's not just been a game changer for me, but a life changer.
 
 When I joined Octopus Deploy in June 2017, I'd been living in Sydney for almost 19 years, and to be honest, I was ready for a change.
 
@@ -32,7 +32,7 @@ So an idea began to germinate.
 
 When I'd started riding bikes seriously again a few years ago, I went on a flying visit to the town of Bright, in North-East Victoria. After that first visit, I'd go back, time and time again.
 
-![A panorama from Mount Porepunkah](flexiwork/mount-porepunkah.jpg "width=500")
+![A panorama from Mount Porepunkah](flexiwork/mount-porepunkah.jpg "width=600")
 
 Nestled in the mountains, Bright is well known to serious road cyclists and mountain bikers. It's surrounded by forests criss-crossed with superb gravel trails for day-long adventures, has five or six mountain bike parks within a short drive, and is a base for some of Australia's best road rides. Because it's a tourist town, it's also well served by infrastructure, is close to two ski resorts, and has enough cafes, bars and entertainment to keep a pampered city dweller amused at the weekend.
 
