@@ -2,7 +2,7 @@
 title: Flexible Working - Jason's Story
 description: Flexible work can be life changing
 author: jason.brown@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-flexiblework.png
 bannerImage: blogimage-flexiblework.png
 published: 2018-06-22
@@ -12,7 +12,7 @@ tags:
 
 ![Octo-flexi](blogimage-flexiblework.png)
 
-Flexible working can be a game changer in many ways. I'm Jason, a Cloud Architect here at Octopus Deploy, and I'm going to explain why it's not just been a game changer for me, but a life changer.
+Flexible working can be a game changer in many ways.  I'm Jason, a Cloud Architect here at Octopus Deploy, and I'm going to explain why it's not just been a game changer for me, but a life changer.
 
 When I joined Octopus Deploy in June 2017, I'd been living in Sydney for almost 19 years, and to be honest, I was ready for a change.
 
