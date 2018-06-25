@@ -15,7 +15,7 @@ tags:
 
 Back in February (which is years ago in Internet land), we [published a post](https://octopus.com/blog/continuous-delivery-bitbucket-pipelines) about how you can link your [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) build process with deployments through Octopus Deploy. In the time since we wrote this, we have started to publish up-to-date container images of our [octo.exe](https://octopus.com/docs/api-and-integration/octo.exe-command-line) command line tool that will turbo-charge your continuous deployment process when scripting outside of the Octopus Portal, particularly for these container-based build chains.
 
-<img src="mario_pipe.png" style="float:right" />
+<img src="./mario_pipe.png" style="float:right" />
 For those of who who missed the previous post, Bitbucket Pipelines provides a really simple and low-cost way of automating builds from Bitbucket code repositories. Combining it with Octopus Deploy means you can properly manage your deployments, while still reducing the amount of overhead to go from code to app. It uses containers under the hood to execute each step which is an awesome new approach to build tooling. This strategy that many vendors have started to use means that every build process can be precisely tailored to the requirements of the application in question. Multiple different platforms and versions of tools can be run side-by-side on demand on the same build infrastructure without any conflicts or pollution across builds.
 
 
