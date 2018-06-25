@@ -2,7 +2,7 @@
 title: Bitbucket Pipelines - Octo.exe Container Redux
 description: Deployments from Bitbucket to Octopus is now easier when using Containers
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
 published: 2018-06-22
 tags:
  - Integration
