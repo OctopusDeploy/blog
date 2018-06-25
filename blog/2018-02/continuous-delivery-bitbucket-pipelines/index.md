@@ -10,6 +10,8 @@ tags:
  - Integration
 ---
 
+![Bitbucket pipelinse and Octopus Deploy](blogimage-bitbucket.png)
+
 Last week, my PowerShell-loving colleague [Jason Brown](https://octopus.com/blog/introducing-jason-brown) wrote a [fantastic piece](https://octopus.com/blog/continuous-delivery-powershell-octopus-takofukku) about using Octopus and [TakoFukku](https://github.com/stopthatastronaut/takofukku) to set up a continuous delivery pipeline for PowerShell modules.  In my evening hours, I've been tinkering with Bitbucket Pipelines to automate a few personal projects, so I thought I'd write a companion piece around setting up a continuous delivery pipeline for .NET core projects.
 
 ## A brief Introduction to the Characters
@@ -83,6 +85,8 @@ Don't worry if it doesn't build the first time; read the output and make any cor
 ### Extending the Script
 
 Now that you've happily got a basic pipelines build running, it's time to extend the script to package up your built code and push that to Octopus ready to deploy.
+
+**Update 2018/06: Since writing this post we have started publishing `octo.exe` into a container to make this process even simpler. Check out our [updated blog post](https://octopus.com/blog/bitbucket-pipelines-redux) for details.**
 
 #### Octopus API Key
 
