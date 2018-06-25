@@ -86,6 +86,8 @@ Don't worry if it doesn't build the first time; read the output and make any cor
 
 Now that you've happily got a basic pipelines build running, it's time to extend the script to package up your built code and push that to Octopus ready to deploy.
 
+**Update 2018/06: Since writing this post we have started publishing `octo.exe` into a container to make this process even simpler. Check out our [updated blog post](https://octopus.com/blog/bitbucket-pipelines-redux) for details.**
+
 #### Octopus API Key
 
 First, we need to create an API key for our Octopus login so that Pipelines can use the Octopus API to push our code packages across. [This article](https://octopus.com/docs/api-and-integration/api/how-to-create-an-api-key) will walk you through creating an API key; make sure you save it somewhere you can retrieve later.
