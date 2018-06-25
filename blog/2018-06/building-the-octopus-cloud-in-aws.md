@@ -2,7 +2,7 @@
 title: Building the Octopus Cloud in AWS
 description: Building the Octopus Cloud in AWS
 author: chris.vandal@octopus.com
-visibility: private
+visibility: public
 published: 2018-06-25
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
@@ -12,7 +12,10 @@ tags:
  - Infrastructure
 ---
 
+![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)
+
 ## Intro
+
 Before we started to build the Octopus Cloud platform, we discussed where it should be hosted. We eventually came down to two choices: Amazon Web Services (AWS) or Microsoft Azure.
 
 From there, we settled on AWS mainly because the majority of the team have prior experience with the service offerings from AWS, rather than any specific technical differences between the two cloud providers.
