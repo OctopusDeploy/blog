@@ -5,7 +5,7 @@ author: matt.richardson@octopus.com
 visibility: private
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
-published: 2018-06-25
+published: 2018-06-28
 tags:
  - Octopus Cloud
 ---
@@ -32,11 +32,11 @@ Using it for provisioning Octopus Cloud instances, and for our management instan
 
 ## Security
 
-Implementing Octopus Cloud has meant we've been focused on all aspects of security. When using [output variables](https://octopus.com/docs/deployment-process/variables/output-variables) to pass around API keys, we realised that there was a potential flaw here where sensitive values could end up outputted as plain-text in logs. There's now a `-sensitive` parameter to ensure this can't happen.
+Implementing Octopus Cloud has meant we've even more focused on all aspects of security. When using [output variables](https://octopus.com/docs/deployment-process/variables/output-variables) to pass around API keys, we realised that there was a potential flaw here where sensitive values could end up outputted as plain-text in logs. There's [now](https://octopus.com/blog/octopus-release-2018.6#sensitive-output-variables) a `-sensitive` parameter to ensure this can't happen.
 
 ## Workers unite!
 
-For a long time, you've been able to run your own scripts on the Octopus Server. In a high-trust environment, this has not been a problem, but for some organisations (and especially in a SaaS world) this is less than ideal. To address this, we added the ability to specify a user account to use when running scripts on the server - on the 'built-in worker'. That allows us to run scripts as a separate, low privileged user, reducing the potential impact.
+For a long time, you've been able to run your own scripts on the Octopus Server. In a high-trust environment, this has not been a problem, but for some organisations (and especially in a SaaS world) this is less than ideal. To address this, we added the ability to specify a user account to use when running scripts on the server - on the [built-in worker](https://octopus.com/docs/administration/workers/built-in-worker). That allows us to run scripts as a separate, low privileged user, reducing the potential impact.
 
 While this significantly reduces the scope for things going wrong, it's still not as good as we want. We've done a whole lot of work to implement Workers (a way to configure one or more tentacles as places to offload work - including running scripts - from the Octopus server) the first part of which [dropped in 2018.6.0](https://octopus.com/blog/octopus-release-2018.6). This lays the groundwork for allowing us, in the future, to farm these run-on-server tasks out to single-use containers - giving us much greater isolation.
 
@@ -52,13 +52,13 @@ We'll drill into the detail of metrics and dashboarding in another blog post soo
 
 ## Tenants
 
-We use tenants very heavily. This has helped us find a bunch of areas that aren't as easy to use as we'd like. While we haven't made much progress in this area (too many good ideas, not enough time!), we've learnt a lot and have some good ideas to make this better in the future.
+We use the [multi-tenant deployment pattern](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments) very heavily. This has helped us find a bunch of areas that aren't as easy to use as we'd like. While we haven't made much progress in this area (too many good ideas, not enough time!), we've learnt a lot and have some good ideas to make this better in the future.
 
 One quick win that we did manage to implement was the ability to use the [script console](https://octopus.com/docs/administration/script-console) with tenants. Previously, you had to look up the infrastructure page, find all instances associated with that tenant, take a note of them, then go back to the script console and select the instances manually. Pretty painful, not to mention error-prone. Now, it's as simple as selecting the tenant and you're good to go!  
 
 ## Squashing those bugs
 
-Using the new Terraform, S3 and CloudFormation steps fairly early-on allowed us to find a bunch of those niggly edge-cases that only show up in the real world. While it's annoying for us to find them while trying to build out Octopus Cloud, it's much more preferable for us to hit these bugs than for you the customer. One of the benefits of using these features as soon as they are available means that the developers involved are still in the same 'head space', meaning the bugs can be easily found and fixed, rather than 3 months down the track when all context has been forgotten.
+Using the new [Terraform](https://octopus.com/docs/deployment-examples/terraform-deployments), [S3](https://octopus.com/docs/deployment-examples/aws-deployments/s3) and [CloudFormation](https://octopus.com/docs/deployment-examples/aws-deployments/cloudformation) steps fairly early-on allowed us to find a bunch of those niggly edge-cases that only show up in the real world. While it's annoying for us to find them while trying to build out Octopus Cloud, it's much more preferable for us to hit these bugs than for you the customer. One of the benefits of using these features as soon as they are available means that the developers involved are still in the same 'head space', meaning the bugs can be easily found and fixed, rather than 3 months down the track when all context has been forgotten.
 
 Another dogfooding win was finding a pesky timing bug that caused a browser redirect during login on slow connections. All our dev testing was done with fast(ish) connections, so the bug never manifested. Deploying and using this ourselves meant we found and fixed the bug fairly quickly.
 
