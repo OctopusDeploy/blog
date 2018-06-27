@@ -32,7 +32,7 @@ Using it for provisioning Octopus Cloud instances, and for our management instan
 
 ## Security
 
-Implementing Octopus Cloud has meant we've been focused on all aspects of security. When using [output variables](https://octopus.com/docs/deployment-process/variables/output-variables) to pass around API keys, we realised that there was a potential flaw here where sensitive could end up outputted as plain-text in logs. There's now a `-sensitive` parameter to ensure this can't happen.
+Implementing Octopus Cloud has meant we've been focused on all aspects of security. When using [output variables](https://octopus.com/docs/deployment-process/variables/output-variables) to pass around API keys, we realised that there was a potential flaw here where sensitive values could end up outputted as plain-text in logs. There's now a `-sensitive` parameter to ensure this can't happen.
 
 ## Workers unite!
 
