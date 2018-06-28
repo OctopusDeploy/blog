@@ -2,7 +2,7 @@
 title: Eating our own dog food
 description: How using Octopus to manage Octopus Cloud has helped us eat our own dog food and improve
 author: matt.richardson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
 published: 2018-06-28
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)
 
-One of the guiding principles that we've followed while building Octopus Cloud is using Octopus Deploy as much as possible, so we can increase our in-house usage of Octopus and essentially 'eat our own dog food'. We've really focused on this to make sure we feel the same pain that our customers do and help make Octopus even better.
+One of the guiding principles that we've followed while building Octopus Cloud is using Octopus Deploy as much as possible, so we can increase our in-house usage of Octopus and essentially 'eat our own dog food'.  We've really focused on this to make sure we feel the same pain that our customers do and help make Octopus even better.
 
 While this has not been without its challenges (a deployment tool is not necessarily the first choice to manage a SaaS platform!), overall it has been a fun journey. It's definitely paid off, and we've been able to test and improve Octopus in the real world.
 
