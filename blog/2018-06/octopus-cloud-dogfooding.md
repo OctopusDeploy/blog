@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)
 
-One of the guiding principles that we've followed while building Octopus Cloud is using Octopus Deploy as much as possible, so we can increase our in-house usage of Octopus and essentially 'eat our own dog food.' We've really focused on this to make sure we feel the same pain that our customers do and can help make Octopus even better.
+One of the guiding principles that we've followed while building Octopus Cloud is using Octopus Deploy as much as possible, so we can increase our in-house usage of Octopus and essentially 'eat our own dog food'. We've really focused on this to make sure we feel the same pain that our customers do and help make Octopus even better.
 
 While this has not been without its challenges (a deployment tool is not necessarily the first choice to manage a SaaS platform!), overall it has been a fun journey. It's definitely paid off, and we've been able to test and improve Octopus in the real world.
 
@@ -70,7 +70,7 @@ Keep an eye out for a blog post soon talking about this in further detail.
 
 ## Little Niggles
 
-Using Octopus on a daily basis has highlighted little niggles that got in the way of the super-smooth experience we want it to be. One of these was the 'running tasks' link on the `Configuration->Nodes` page. It would display '3 running tasks' as a link, and you'd think that clicking on that link would show you those 3 tasks, but instead, it showed all tasks from that node, regardless of state. While this wasn't exactly a show stopper, it was one that annoyed me frequently enough that I took the time out to fix it. Now, you see the running tasks, very useful when you're draining a node, ready to replace it!
+Using Octopus on a daily basis has highlighted little niggles that got in the way of the super-smooth experience we want it to be. One of these was the 'running tasks' link on the `Configuration->Nodes` page. It would display '3 running tasks' as a link, and you'd think that clicking on that link would show you those 3 tasks, but instead, it showed all tasks from that node, regardless of state. While this wasn't exactly a show stopper, it was one that annoyed me frequently enough that I took the time out to fix it. Now, you only see the running tasks - very useful when you're draining a node, ready to replace it!
 
 Another one of those little niggles was the message that gets shown when a task is blocked by another:
 
