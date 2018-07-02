@@ -3,14 +3,14 @@ title: Announcing Octopus Cloud
 description: Octopus Cloud is now generally available!
 author: jason.brown@octopus.com
 visibility: private
-metaImage: metaimage-octopus-cloud.png
-bannerImage: blogimage-octopus-cloud.png
+metaImage: metaimage-octopuscloudlaunch.png
+bannerImage: blogimage-octopuscloudlaunch.png
 published: 2018-07-02
 tags:
  - OctopusCloud
 ---
 
-![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)
+![Octopus Clouds launch fireworks illustration](blogimage-octopuscloudlaunch.png)
 
 Octopus Cloud is here! Yes, after many months of planning, coding, testing, bugfixing and re-testing, we're launching Octopus Cloud to the world.
 
