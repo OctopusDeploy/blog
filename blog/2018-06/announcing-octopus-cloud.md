@@ -18,7 +18,7 @@ Octopus Cloud is here! Yes, after many months of planning, coding, testing, bugf
 
 Octopus Cloud is a fully-featured, real Octopus instance, hosted and managed by experts.
 
-We've put in a lot of effort over the last year to make sure that the features you enjoy now in your self-hosted Octopus instance are also available in the Cloud version. We haven't built an Octopus-Lite. We use the same code you can download from [octopus.com](https://octopus.com/downloads), hosted in the cloud and managed by a team of battle-hardened DevOps veterans.
+We've put in a lot of effort over the last year to make sure that the features you enjoy now in your self-hosted Octopus instance are also available in the cloud version. We haven't built an Octopus-Lite. We use the same code you can download from [octopus.com](https://octopus.com/downloads), hosted in the cloud and managed by a team of battle-hardened DevOps veterans.
 
 ## Octopus Cloud Tour
 
@@ -32,9 +32,9 @@ We've put in a lot of effort over the last year to make sure that the features y
 
 **It's safe**. Your data is important to us - so we keep your data safely backed up and encrypted. You can request a copy of your data at any time should you wish to move back to a private instance.
 
-We've throttled back a couple of the more high-octane, full trust capabilities of the server, but these tasks can still be executed just fine on a full-trust Tentacle target.
+We've throttled back a couple of the more high-octane, full-trust capabilities of the server, but these tasks can still be executed just fine on a full-trust Tentacle target.
 
-**It's fully supported**. As with our self-hosted version, the Octopus Support team is just a few keystrokes away. Support is included in the price, so don't be shy.
+**It's fully supported**. As with our self-hosted version, the Octopus support team is just a few keystrokes away. Support is included in the price, so don't be shy.
 
 ## It's available now
 
