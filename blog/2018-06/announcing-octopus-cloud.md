@@ -7,12 +7,12 @@ metaImage: metaimage-octopuscloudlaunch.png
 bannerImage: blogimage-octopuscloudlaunch.png
 published: 2018-07-02
 tags:
- - OctopusCloud
+ - Octopus Cloud
 ---
 
 ![Octopus Clouds launch fireworks illustration](blogimage-octopuscloudlaunch.png)
 
-Octopus Cloud is here! Yes, after many months of planning, coding, testing, bugfixing and re-testing, we're launching Octopus Cloud to the world.
+Octopus Cloud is here!   Yes, after many months of planning, coding, testing, bugfixing and re-testing, we're launching Octopus Cloud to the world.
 
 ## It's Octopus, in the Cloud
 
@@ -22,7 +22,7 @@ We've put in a lot of effort over the last year to make sure that the features y
 
 ## Octopus Cloud Tour
 
-<!-- put the video here, guys -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
 ## Tell me more!
 
