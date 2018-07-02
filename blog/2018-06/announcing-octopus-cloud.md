@@ -28,7 +28,7 @@ We've put in a lot of effort over the last year to make sure that the features y
 
 **It's hassle-free**. We take care of keeping the infrastructure running so you don't have to. We do the backups, we monitor the performance, we roll out upgrades and we do all the associated heavy lifting. If something fails, we fix it. You don't have to manage that pet VM any longer. Just concentrate on delivering great software and we'll herd the octopi.
 
-**It's affordable**. Our commercial team has worked day and night to come up with [a pricing model that works for everyone](https://octopus.com/cloud). Our Starter Edition for teams up to five users costs a flat $10/month. For larger teams, we move up to the $20/user/month Standard Edition, and we have Enterprise offerings coming in Q3/4 of 2018.
+**It's affordable**. Our commercial team has worked day and night to come up with [a pricing model that works for everyone](https://octopus.com/cloud). Our Starter Edition for teams up to five users costs a flat $10/month. For larger teams, we move up to the $20/user per month Standard Edition, and we have Enterprise offerings coming in Q3/4 of 2018.
 
 **It's safe**. Your data is important to us - so we keep your data safely backed up and encrypted. You can request a copy of your data at any time should you wish to move back to a private instance.
 
