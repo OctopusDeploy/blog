@@ -102,7 +102,7 @@ We've also got a nice story for the transition away from runnings steps on the O
 
 We all love our dev teams (at least developers like me hope you do), but maybe you would much rather if they couldn't execute code on your Octopus Server.  
 
-Well, all your existing Azure, AWS and Terraform steps (and any script steps targeted at the server) Won't mention a Worker Pool and so end up with the default Pool, which is empty, and thus the steps run on the Built-in Worker.  But, if you drop even one Worker in that default Pool, then rule (2) applies and the step runs on that Worker and not the Built-in Worker.
+Well, all your existing Azure, AWS and Terraform steps (and any script steps targeted at the server) won't mention a Worker Pool and so end up with the default Pool, which is empty, and thus the steps run on the Built-in Worker.  But, if you drop even one Worker in that default Pool, then rule (2) applies and the step runs on that Worker and not the Built-in Worker.
 
 Let's have a look at that in action.  I started with an Octopus Server setup with no Workers (other than the Built-in Worker, of course) and no Worker Pools (other than the default Pool). I created a simple project with a script targeted at the server.
 
