@@ -129,6 +129,6 @@ The same concurrency rules apply as always did.  The server still respects your 
 
 ## Comming soon
 
-Workers is about the be released in Octopus 2018.7.0, so keep an eye on our releases for that.  
+Workers is about to be released in Octopus 2018.7.0, so keep an eye on our releases for that.  
 
 On the blog, I'll be posting a couple more installments about Workers.  Next up, I'll be looking at using Workers to reduce load on the Octopus Server.  After that, I'll take a look at how we can use Workers for some nice patterns for cloud deployments.
