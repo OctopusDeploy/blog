@@ -18,7 +18,7 @@ In this post, I'll give you a pre-release peak, tell you the what and why of Wor
 
 Following posts will give more walk-through examples to scale up your Octopus infrastructure with Workers and using Workers for cloud deployments.
 
-Workers allow some nice ways to set up your deployments and move work off your Octopus Server, so it's well worth reading carefully, but we've also designed it [so you never even need to know it's there](#What-wait-No-Now-theres-workers-and-pools-and-a-built-in-worker-I-don-t-care-just-let-me-have-it-back-to-how-it-used-to-be) if you don't want to use it.
+Workers allow some nice ways to set up your deployments and move work off your Octopus Server, so it's well worth reading carefully, but we've also designed it [so you never even need to know it's there](#What,-Wait,-No.-Now-there's-Workers-and-Pools-and-a-Built-in-Worker,-I-don't-care,-just-let-me-have-it-back-to-how-it-used-to-be) if you don't want to use it.
 
 ## What are these workers anyway?
 
@@ -44,7 +44,7 @@ So, Workers are just machines that can run script, Azure, AWS and Terraform step
 
 Over the course of a couple of posts, I'll flesh out the details of three cases where Workers come in handy (or are essential).
 
-1. [Moving steps off the Octopus Server - security](#Stopping-steps-running-on-the-server)
+1. [Moving steps off the Octopus Server - security](#Stopping-steps-running-on-the-Octopus-Server)
 1. Workers for scaling up - performance (in a following post)
 1. Setting up cloud Workers - cloud (in a following post)
 
