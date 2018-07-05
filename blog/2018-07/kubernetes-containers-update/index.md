@@ -18,7 +18,7 @@ There were a few common themes in the feedback, which caused us to alter course 
 
 ## #1 A more friendly Kubernetes
 
-![Kubernetes Bear](k8s-bear.png "width=500")
+![Kubernetes Bear](k8s-bear.png)
 
 One of the strengths of Octopus has always been that it is user-friendly.  It allowed you to deploy to an ASP.NET website without being a Level 100 IIS Wizard. 
 
