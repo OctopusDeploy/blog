@@ -16,7 +16,7 @@ We are just about to release a great new feature that gives you all kinds of new
 
 In this post, I'll give you a pre-release peak, tell you the what and why of Workers, and show you how to use Workers to move steps off the Octopus Server.  
 
-Following posts will give more walk-through examples for scalling with Workers and using Workers for cloud deployments.
+Following posts will give more walk-through examples to scale up your Octopus infrastructure with Workers and using Workers for cloud deployments.
 
 Workers allow some nice ways to set up your deployments and move work off your Octopus Server, so it's well worth reading carefully, but we've also designed it [so you never even need to know it's there](#What-wait-No-Now-theres-workers-and-pools-and-a-built-in-worker-I-don-t-care-just-let-me-have-it-back-to-how-it-used-to-be) if you don't want to use it.
 
@@ -26,7 +26,7 @@ Since version 3.0, Octopus has had one Worker.  We didn't call it a Worker to st
 
 Azure, AWS and Terraform steps all need somewhere to run, so, out-of-the-box that's the Built-in Worker on the Octopus Server.  Steps in Octopus are executed by [Calamari](https://github.com/OctopusDeploy/Calamari), our open-source, conventions-based deployment executable.  Lots of the time, Calamari runs on a deployment target.  But in the case of Azure, AWS and Terraform steps, the Octopus Server uses the Built-in Worker to invoke Calamari locally.
 
-The give-away that the server can invoke Calamari is script steps.  Those call out the option of running the step on the Octopus server.
+The giveaway that the server can invoke Calamari is script steps.  Those call out the option of running the step on the Octopus server.
 
 ![Script Step run-on-server](workers-run-on-server.png)
 
@@ -56,7 +56,7 @@ But, before we get into the examples, let's look at how the whole Workers setup 
 
 ### Workers
 
-Workers are Listening Tentacles, Polling Tentacles or SSH machines.  The setup is the same as for tentacle or SSH deployment targets.  Workers even use the same Tentacle and Calamari binaries as deployment targets.
+Workers are Listening Tentacles, Polling Tentacles or SSH machines.  The setup is the same as for tentacle or SSH Deployment Targets.  Workers even use the same Tentacle and Calamari binaries as Deployment Targets.
 
 For example, here I'm using the Tentacle Manager to [set up a Tentacle](https://octopus.com/docs/infrastructure/windows-targets), but you can also [script it](https://octopus.com/docs/infrastructure/windows-targets/automating-tentacle-installation), and even do the full [worker registration](https://octopus.com/docs/api-and-integration/tentacle.exe-command-line/register-with) from the command line.
 
@@ -73,13 +73,13 @@ After entering the host and port of the Tenacle I configured, I give the Worker 
 
 ### Worker Pools
 
-Workers are grouped into Worker Pools.  From the Octopus Server's point of view, all the Workers in a Pool are equivalent. Pools might represent machines setup to assit with particular kinds of deployment, or for a specific set of tools installed, or maybe you'll assign Pools for particular teams or projects you are undertaking (that'll work nicely in a short while when our Spaces feature comes in).
+Workers are grouped into Worker Pools.  From the Octopus Server's point of view, all the Workers in a Pool are equivalent. Pools might represent machines setup to assist with particular kinds of deployment, or for a specific set of tools installed, or maybe you'll assign Pools for particular teams or projects you are undertaking (that'll work nicely in a short while when our Spaces feature comes in).
 
 ![Worker Pools](workers-pools.png)
 
 ### Running steps on Workers
 
-Steps - well, script, Azure, AWS or Terraform steps - can now target a Worker Pool and will be executed on a Worker from that Pool.  There's always a default Pool that steps are assumed to target if nothing else is specified.  You're free to change which pool is the default.  Initially it starts out, unsurprisingly, as a pool called "Default Worker Pool".
+Steps - well, script, Azure, AWS or Terraform steps - can now target a Worker Pool and will be executed on a Worker from that Pool.  There's always a default Pool that steps are assumed to target if nothing else is specified.  You're free to change which pool is the default.  Initially, it starts out, unsurprisingly, as a pool called "Default Worker Pool".
 
 Just two rules govern how Octopus decides where to execute a step that requires a Worker.  Octopus will run the step on...
 
@@ -92,7 +92,7 @@ That's pretty much it: you setup Workers (as easy as setting up Deployment Targe
 
 No worries, we've got you covered.  We took a hard look at use cases for not using Workers and for transitioning to Workers.  We think we got smooth answers for both.
 
-**If you don't want to use Workers, then it's really simple - just ignore it**.  If you're an existing Octopus user, your steps won't change, there's no changes to any of your deployment processes, your Octopus experience won't change, even your deployment logs won't change.
+**If you don't want to use Workers, then it's really simple - just ignore it**.  If you are an existing Octopus user, your steps won't change, there are no changes to any of your deployment processes, your Octopus experience won't change, even your deployment logs won't change.
 
 Point (1) above says it all.  Any steps that would require a Worker will resolve to the default Worker Pool, because your steps won't say any different, and that will end up at the Built-in Worker, which is the same experience Octopus users have had since version 3.0. 
 
@@ -120,9 +120,9 @@ On deploying release 0.0.2 of the same project (unchanged), the logs let me know
 
 That's all it takes.  Just one Tentacle is enough to stop user code executing on the Octopus Server.  
 
-Of course it's also possible to provision multiple Workers to share the work the server hands out.
+Of course, it's also possible to provision multiple Workers to share the work the server hands out.
 
-It's also possible to turn off the Built-in Worker, meaning that it never gets invoked even if the default pool happens to be empty.  Check the option in Configure -> Features.
+It's also possible to turn off the Built-in Worker, meaning that it never gets invoked even if the default pool happens to be empty.  Check the option in Configuration -> Features.
 
 The same concurrency rules apply as always did.  The server still respects your parallel steps and `Octopus.Action.MaxParallelism`, so multiple concurrent steps could be running on Workers, even on the same Worker, just as the Built-in Worker runs many steps concurrently.
 
