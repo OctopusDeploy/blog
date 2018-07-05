@@ -98,7 +98,7 @@ Point (1) above says it all.  Any steps that would require a Worker will resolve
 
 ## Stopping steps running on the Octopus Server
 
-We've also got a nice story for the transition away from runnings steps on the Octopus server.  No deployment processes need updating, just a tiny bit of setup and Octopus will move steps off the server and onto Workers.
+We've also got a nice story for the transition away from runnings steps on the Octopus server.  No deployment processes need updating.  Just a tiny bit of setup and Octopus will move steps off the server and onto Workers.
 
 We all love our dev teams (at least developers like me hope you do), but maybe you would much rather if they couldn't execute code on your Octopus Server.  
 
