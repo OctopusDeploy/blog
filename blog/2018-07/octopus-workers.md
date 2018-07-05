@@ -94,7 +94,7 @@ No worries, we've got you covered.  We took a hard look at use cases for not usi
 
 **If you don't want to use Workers, then it's really simple - just ignore it**.  If you are an existing Octopus user, your steps won't change, there are no changes to any of your deployment processes, your Octopus experience won't change, even your deployment logs won't change.
 
-Point (1) above says it all.  Any steps that would require a Worker will resolve to the default Worker Pool, because your steps won't say any different, and that will end up at the Built-in Worker, which is the same experience Octopus users have had since version 3.0. 
+Point (1) above says it all.  Any steps that would require a Worker will resolve, because your steps won't say any different, to the default Worker Pool, and that will end up at the Built-in Worker, which is the same experience Octopus users have had since version 3.0. 
 
 ## Stopping steps running on the Octopus Server
 
