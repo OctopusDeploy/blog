@@ -114,7 +114,7 @@ After deploying the project, the logs clearly point out that the script ran on t
 
 I then, as [descirbed above](#Workers), provisioned a Tentacle and registered it as a Worker in the Default Worker Pool.
 
-On deploying release 0.0.2 of the same project (unchanged), the logs let me know it ran on the Worker instead of the server.
+On deploying release 0.0.2 of the same project (unchanged), the logs let me know now it ran on the Worker instead of the server.
 
 ![Script ran on a Workerr](workers-ran-on-worker.png)
 
