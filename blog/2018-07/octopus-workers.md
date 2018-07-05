@@ -58,7 +58,7 @@ But, before we get into the examples, let's look at how the whole Workers setup 
 
 Workers are Listening Tentacles, Polling Tentacles or SSH machines.  The setup is the same as for tentacle or SSH Deployment Targets.  Workers even use the same Tentacle and Calamari binaries as Deployment Targets.
 
-For example, here I'm using the Tentacle Manager to [set up a Tentacle](https://octopus.com/docs/infrastructure/windows-targets), but you can also [script it](https://octopus.com/docs/infrastructure/windows-targets/automating-tentacle-installation), and even do the full [worker registration](https://octopus.com/docs/api-and-integration/tentacle.exe-command-line/register-with) from the command line.
+For example, here I'm using the Tentacle Manager to [set up a Tentacle](https://octopus.com/docs/infrastructure/windows-targets), but you can also [script the setup](https://octopus.com/docs/infrastructure/windows-targets/automating-tentacle-installation), and even do the full [worker registration](https://octopus.com/docs/api-and-integration/tentacle.exe-command-line/register-with) from the command line.
 
 ![Tentacle Manager](workers-tentacle-setup.png)
 
@@ -120,7 +120,7 @@ On deploying release 0.0.2 of the same project (unchanged), the logs let me know
 
 That's all it takes.  Just one Tentacle is enough to stop user code executing on the Octopus Server.  
 
-Of course, it's also possible to provision multiple Workers to share the work the server hands out.
+Of course, it's also possible to provision multiple Workers to share the work the server hands out.  I'll talk about that in the next post.
 
 It's also possible to turn off the Built-in Worker, meaning that it never gets invoked even if the default pool happens to be empty.  Check the option in Configuration -> Features.
 
