@@ -26,7 +26,7 @@ Since version 3.0, Octopus has had one Worker.  We didn't call it a Worker to st
 
 Azure, AWS, and Terraform steps all need somewhere to run, so, out-of-the-box that's the Built-in Worker on the Octopus Server.  Steps in Octopus are executed by [Calamari](https://github.com/OctopusDeploy/Calamari), our open-source, conventions-based deployment executable.  Often, Calamari runs on a deployment target, but in the case of Azure, AWS, and Terraform steps the Octopus Server uses the Built-in Worker to invoke Calamari locally.
 
-Script steps are the giveaway that Octopus can invoke Calamari locally.  In the script step pictured you can see the option to run the step on the Octopus Server; it's the built-in worker that makes this possible.
+Script steps are the giveaway that Octopus can invoke Calamari locally.  In the script step pictured you can see the option to run on the Octopus Server; it's the Built-in Worker that makes this possible.
 
 ![Script Step run-on-server](workers-run-on-server.png)
 
