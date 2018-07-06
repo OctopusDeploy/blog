@@ -18,7 +18,7 @@ In this post, I'll give you a pre-release peek, tell you the what and why of Wor
 
 Future posts will give more walk-through examples to scale up your Octopus infrastructure with Workers and using Workers for cloud deployments.
 
-Workers give you some nice ways to set up your deployments and move work off your Octopus Server, so it's well worth reading carefully, but we've also designed it [so you don't even need to know it's there](#What,-Wait,-No.-Now-there's-Workers-and-Pools-and-a-Built-in-Worker,-I-don't-care,-just-let-me-have-it-back-to-how-it-used-to-be) if you don't want to use it.
+Workers give you some nice ways to set up your deployments and move work off your Octopus Server, so it's well worth reading carefully, but we've also designed it [so you don't even need to know it's there](#What,-Wait,-No.-I-don’t-need-workers,-change-it-back...) if you don't want to use it.
 
 ## What Are These Workers Anyway?
 
