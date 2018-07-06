@@ -80,10 +80,10 @@ Workers are grouped into Worker Pools.  From the Octopus Server's point of view,
 
 Steps - well, script, Azure, AWS, or Terraform steps - can now target a Worker Pool and will be executed on a Worker from that Pool.  There's always a default Pool that steps are assumed to target if nothing else is specified.  You're free to change which pool is the default.  Initially, it starts out, unsurprisingly, as a pool called "Default Worker Pool".
 
-Just two rules govern how Octopus decides where to execute a step that requires a Worker.  Octopus will run the step on...
+There's just two options Octopus has for picking a worker on which to execute a step.
 
-1. The Built-in Worker, if the step resolves to the default Pool and there are no Workers in the default pool.
-1. Any healthy Worker from the given pool.
+1. Octopus picks the built-in Worker, if the step resolves to the default pool and there are no Workers in the default pool.
+1. Octopus picks any healthy worker from the given pool, in all other cases
 
 That's pretty much it. You setup Workers (as easy as setting up Deployment Targets), group the Workers into Pools (as easy as putting Deployment Target into Environments), and then you point a step at a Pool and Octopus distributes out the work of your deployment process.
 
