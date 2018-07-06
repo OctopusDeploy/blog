@@ -68,40 +68,26 @@ That's awesome, but what about .NET Core and cross platform?
 
 Well, for some time now `Octo.exe` has been cross platform, with support for running on both .NETFramework and .NET Core. What's been awkard until now has been executing octo while doing a build on a .NET Core only platform (think Linux build agent).
 
-Enter the `dotnet octo` CLI extension. It does everything `Octo.exe` does, but can be called using `dotnet octo <command>` which works at either a project level or globally.
+Enter the `dotnet octo` global tool. It does everything `Octo.exe` does, but can be called using `dotnet octo <command>`. This provides a convenient way to get octo onto any machine which has the latest dotnet SDK version available. This may sound familiar to you if you use chocolatey to get octo and similar tools onto your machine. This summoner does however have another little trick under it's hat which makes it a bit more useful in other scenarios which we will soon witness.
 
-In order for `octo` to be made available at the project level you must add it as a tool reference to your project file. Unfortunately this has to be done manually but is quite simple to do as shown in the following minimal project file example:
-
-```
-<Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-  </PropertyGroup>
-
-   <ItemGroup>
-    <DotNetCliToolReference Include="Octopus.DotNet.Cli" Version="4.38.0" />
-   </ItemGroup>
-</Project>
-```
-
-This makes octo available via the dotnet command when your current working directory is the project folder. It has the added benefit of being available as soon as the project is restored which is great if you have some build scripts setup to make use of it.
-
-The dotnet SDK `2.1.300` also introduced some new commands which make it easy to [install tools](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) such as Octo globally using the `dotnet tool` command i.e.:
+Summoning octo is quite simple using the following:
 ```
 dotnet tool install -g Octopus.DotNet.Cli
 ```
 
-Although convenient when running some ad-hoc commands, it's less ideal to install things globally in some environments. Luckily, you can install Octo at the solution level using the `--tool-path` parameter like so:
+Congratulations you can now awaken octo from it's slumber by invoking classic incantations such as `dotnet octo create-release`. Convenient but not too useful if you don't want octo available globally. Luckily we can also install tools to a user
+specified location which makes it more useful for build scripts. This can be achieved by adding the `--tool-path` parameter for example:
+
 ```
-dotnet tool install Octopus.DotNet.Cli --tool-path /path/to/solution
+dotnet tool install Octopus.DotNet.Cli --tool-path /path/to/install
 ```
-This will create an executable in the specified folder called `dotnet-octo` which can be invoked directly without the `dotnet` command. This still performs a `dotnet octo` under the covers, however dotnet will not automatically
-discover executables in the current working directory. In order to use the same `dotnet octo` command shown earlier you will need to add the tool location to the current environment path variable. If you are using build scripts however, this should not be needed as the generated executable will suffice.
+
+This will generate an executable in the specified tool directory called `dotnet-octo`. Unfortunately dotnet doesn't provide an equivalent parameter or configuration file to make it easier to tell it where to find these custom install locations. In order to have these available via the `dotnet` command, then you will also need to ensure that the install location is added to the environment path variable. This shouldn't prevent you from being able to execute the generated executable directly without using `dotnet` as it will be invoking `dotnet octo` under the covers for you.
 
 TODO: Build script examples
 
-## Runtime requirements
-In order to use Octo as described here, you must have the .NET Core runtime `2.1.0` or newer installed.
+## Runtime and SDK requirements
+In order to use Octo as described here, you must use the .NET Core SDK `2.1.300` or newer.
 
 ## Conclusion
 OctoPack is dead, long live `Octo.exe`
