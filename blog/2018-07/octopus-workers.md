@@ -83,7 +83,7 @@ Steps - well, script, Azure, AWS, or Terraform steps - can now target a Worker P
 There's just two options Octopus has for picking a worker on which to execute a step.
 
 1. Octopus picks the built-in Worker, if the step resolves to the default pool and there are no Workers in the default pool.
-1. Octopus picks any healthy worker from the given pool, in all other cases
+1. Octopus picks any healthy worker from the given pool, in all other cases.
 
 That's pretty much it. You setup Workers (as easy as setting up Deployment Targets), group the Workers into Pools (as easy as putting Deployment Target into Environments), and then you point a step at a Pool and Octopus distributes out the work of your deployment process.
 
