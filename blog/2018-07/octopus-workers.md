@@ -26,7 +26,7 @@ Since version 3.0, Octopus has had one Worker.  We didn't call it a Worker to st
 
 Azure, AWS, and Terraform steps all need somewhere to run, so, out-of-the-box that's the Built-in Worker on the Octopus Server.  Steps in Octopus are executed by [Calamari](https://github.com/OctopusDeploy/Calamari), our open-source, conventions-based deployment executable.  Often, Calamari runs on a deployment target, but in the case of Azure, AWS, and Terraform steps the Octopus Server uses the Built-in Worker to invoke Calamari locally.
 
-The giveaway that the server can invoke Calamari is script steps.  Those call out the option of running the step on the Octopus server.
+If you look at the script steps, you can see the option to run the step on the Octopus Server; it's the built-in worker makes this possible.
 
 ![Script Step run-on-server](workers-run-on-server.png)
 
@@ -87,9 +87,9 @@ Just two rules govern how Octopus decides where to execute a step that requires 
 
 That's pretty much it. You setup Workers (as easy as setting up Deployment Targets), group the Workers into Pools (as easy as putting Deployment Target into Environments), and then you point a step at a Pool and Octopus distributes out the work of your deployment process.
 
-## What, Wait, No.  Now there's Workers and Pools and a Built-in Worker, I don't care, just let me have it back to how it used to be
+## What, Wait, No. I don’t need workers, change it back...
 
-No worries, we've got you covered.  We took a hard look at use cases for not using Workers and for transitioning to Workers.  We think we got smooth answers for both.
+We took a hard look at use cases for *not* using Workers and for transitioning to Workers.  We think we got smooth answers for both.
 
 **If you don't want to use Workers, then it's really simple - just ignore it**.  If you are an existing Octopus user, your steps won't change, there are no changes to any of your deployment processes, your Octopus experience won't change, even your deployment logs won't change.
 
