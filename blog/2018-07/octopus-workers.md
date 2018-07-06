@@ -3,14 +3,13 @@ title: Octopus Workers
 description: Octopus now supports external worker machines
 author: michael.compton@octopus.com
 visibility: private
-metaImage: ??
-bannerImage: ??
-published: ??
+bannerImage: blogimage-workers.png
+published: 2018-07-06
 tags:
  - Workers
 ---
 
-**top image**
+![Octopus Workers illustration](blogimage-workers.png)
 
 We are just about to release a great new feature that gives you all kinds of new power for setting up your Octopus infrastructure.  In 2018.7.0 we'll introduce Workers.  
 
