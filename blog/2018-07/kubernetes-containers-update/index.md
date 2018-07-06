@@ -11,7 +11,7 @@ tags:
 
 ![Octopus sailing Kubernetes](blogimage-kubernetes-containers-update.png "width=500")
 
-A few months back we asked the Octopus community if they could spare a few minutes and brain-cycles to provide some feedback on the [first-draft of our Kubernetes plans](https://octopus.com/blog/kubernetes-rfc).  And you certainly delivered.  So firstly, thank-you!  We sincerely appreciate everyone who shared their thoughts, no matter how strongly we may disagree with them (just kidding).  We're confident it has already resulted in a better product. 
+A few months back we asked the Octopus community if they could spare a few minutes and brain-cycles to provide some feedback on the [first-draft of our Kubernetes plans](https://octopus.com/blog/kubernetes-rfc).  And you certainly delivered.  So firstly, thank-you!  We sincerely appreciate everyone who shared their thoughts.  The product will certainly benefit from it. 
 
 There were a few common themes in the feedback, which caused us to alter course slightly.  We'll talk a little about those, and then finally give a [summary and progress update](#summary).
 
@@ -52,7 +52,7 @@ So plenty of you really like Helm, huh?
 
 ![Helm Comment](helm-comment.png)
 
-It seems a significant portion of Kubernetes users are using Helm, and many made it clear that not having Helm integration would result in them razing their Octopus installation and salting the server that was hosting it.  Fortunately, once we investigated, Helm actually fits pretty nicely into the Octopus architecture. 
+It seems a significant portion of Kubernetes users are using Helm, and many made it clear that not having Helm integration would result in them razing their Octopus installation and salting the server that was hosting it ;)  Fortunately, once we investigated, Helm actually fits pretty nicely into the Octopus architecture. 
 
 So we are committed to also adding Helm integration. This will be in the form of:
 
@@ -98,4 +98,12 @@ The first cut of Operation Make-Octopus-Love-Containers will include the followi
 ### When?
 
 Much of the functionality above has been built. We are planning to begin alpha-testing of this in the coming month.  We had many volunteers for being our K8s lab rats, and we are going to reach out to you with the details of how you can play with this very soon.  
+
+### Step 1 of N 
+
+The is the only the beginning.  If there is something we have left out, that you would like to see, then let us know. Things on our radar include:
+
+- A `Docker Compose` deployment step
+- The [Kubernetes Apply](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/index.md#apply-a-kubernetes-template-step) step we originally proposed 
+- ECS support 
 
