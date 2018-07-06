@@ -27,7 +27,7 @@ Azure, AWS, and Terraform steps all need somewhere to run, so, out-of-the-box th
 
 Script steps are the giveaway that Octopus can invoke Calamari locally.  In the script step pictured you can see the option to run on the Octopus Server; it's the Built-in Worker that makes this possible.
 
-![Script Step run-on-server](workers-run-on-server.png)
+![Script Step run-on-server](workers-run-on-server.png "width=500")
 
 All a Worker does is takes these points where the server could execute Calamari locally, using the Built-in Worker, and gives you the option of executing them on a Worker somewhere else.
 
@@ -59,21 +59,21 @@ Workers are Listening Tentacles, Polling Tentacles or SSH machines.  The setup i
 
 For example, here I'm using the Tentacle Manager to [set up a Tentacle](https://octopus.com/docs/infrastructure/windows-targets), but you can also [script the setup](https://octopus.com/docs/infrastructure/windows-targets/automating-tentacle-installation), and even do the full [worker registration](https://octopus.com/docs/api-and-integration/tentacle.exe-command-line/register-with) from the command line.
 
-![Tentacle Manager](workers-tentacle-setup.png)
+![Tentacle Manager](workers-tentacle-setup.png "width=500")
 
 Once I've setup the Tentacle, I navigate to the new *Workers* tab in *Infrastructure* and select "ADD WORKER".
 
-![Workers Infrastructure Page](workers-infrastructure.png)
+![Workers Infrastructure Page](workers-infrastructure.png "width=500")
 
 After entering the host and port of the Tentacle I configured, I give the Worker a name, select a machine policy, and put the Worker in a Worker Pool.
 
-![Worker Details](workers-set-worker-pool.png)
+![Worker Details](workers-set-worker-pool.png "width=500")
 
 ### Worker Pools
 
 Workers are grouped into Worker Pools.  From the Octopus Server's point of view, all the Workers in a Pool are equivalent. Pools might represent machines setup to assist with particular kinds of deployment, or for a specific set of tools installed, or maybe you'll assign Pools for particular teams or projects you are undertaking (that'll work nicely in a short while when our Spaces feature comes in).
 
-![Worker Pools](workers-pools.png)
+![Worker Pools](workers-pools.png "width=500")
 
 ### Running Steps on Workers
 
@@ -104,17 +104,17 @@ Well, all your existing Azure, AWS, and Terraform steps (and any script steps ta
 
 Let's have a look at that in action.  I started with an Octopus Server setup with no Workers (other than the Built-in Worker, of course) and no Worker Pools (other than the default Pool). I created a simple project with a script targeted at the server.
 
-![Script Step](workers-script-step.png)
+![Script Step](workers-script-step.png "width=500")
 
 After deploying the project, the logs clearly point out that the script ran on the Octopus Server.
 
-![Script ran on Octopus Server](workers-ran-on-server.png)
+![Script ran on Octopus Server](workers-ran-on-server.png "width=500")
 
 I then, as [described above](#Workers), provisioned a Tentacle and registered it as a Worker in the Default Worker Pool.
 
 On deploying release 0.0.2 of the same project (unchanged), the logs let me know that it now ran on the Worker instead of the server.
 
-![Script ran on a Worker](workers-ran-on-worker.png)
+![Script ran on a Worker](workers-ran-on-worker.png "width=500")
 
 That's all it takes.  Just one Tentacle is enough to stop user code executing on the Octopus Server.  
 
