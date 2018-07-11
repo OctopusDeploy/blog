@@ -77,7 +77,7 @@ For the jumpbox you will need to install the following items:
 
 ## Sample Project
 
-For this walk-through I modified the RandomQuotes project used in previous Will It Deploy videos.  If you haven't had the chance to check them out you are missing out.  Do yourself a favor and watch them.  Each episode is less than around 15 minutes.  You can find the playlist [here](https://www.youtube.com/playlist?list=PLAGskdGvlaw13QRF-ypT9h83QTPutlbMn).  
+For this walk-through I modified the RandomQuotes project used in previous Will It Deploy videos.  If you haven't had the chance to check them out you are missing out.  Do yourself a favor and watch them.  Each episode is around 15 minutes.  You can find the playlist [here](https://www.youtube.com/playlist?list=PLAGskdGvlaw13QRF-ypT9h83QTPutlbMn).  
 
 The source code for this sample can be found here.
 
