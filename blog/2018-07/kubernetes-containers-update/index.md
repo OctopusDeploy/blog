@@ -103,10 +103,13 @@ The first cut of Operation Make-Octopus-Love-Containers will include the followi
 - [Helm Chart Repository feed type](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/helm.md#helm-chart-feed)
 - [Helm Deploy Release deployment step](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/helm.md#helm-deploy-release-step)
 - [Ability to reference container images (and other packages) from script steps](https://github.com/OctopusDeploy/Specs/blob/master/Script-Step-Packages/index.md)
+- AWS Container Image Registry feed type. (This will make it easier to [configure the AWS registry as an Octopus feed](https://octopus.com/docs/packaging-applications/package-repositories/registries/amazon-ec2-container-services#amazon-ec2-container-service), and avoid those pesky credential time-outs)
 
 ### When?
 
-Much of the functionality above has been built. We are planning to begin alpha-testing of this in the coming month.  We had many volunteers for being our K8s lab rats, and we are going to reach out to you with the details of how you can play with this very soon.  
+Much of the functionality above has been built. We are planning to begin alpha-testing of this in the coming weeks.  We had many volunteers for being our K8s lab rats, and we are going to reach out to you with the details of how you can play with this very soon.  
+
+As soon as we are satisfied with the feedback from the early adopters, we will ship this in a coming monthly release.
 
 ### Step 1 of N 
 
