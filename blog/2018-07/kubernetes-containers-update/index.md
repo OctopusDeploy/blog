@@ -115,9 +115,11 @@ As soon as we are satisfied with the feedback from the early adopters, we will s
 
 ### Step 1 of N 
 
-The is only the beginning.  If there is something we have left out that you would like to see supported, then please let us know. Things on our radar include:
+The is only the beginning.  If there is something we have left out that you would like to see supported, then please let us know. Things on our radar include: 
 
 - A `Docker Compose` deployment step
 - The [Kubernetes Apply](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/index.md#apply-a-kubernetes-template-step) step we originally proposed 
 - ECS support 
 
+As always, please feel welcome to leave comments on this post. We've also created a `#containers` channel in the [Octopus Deploy community Slack](https://join.slack.com/t/octopususergroup/shared_invite/MjMxOTEzMTE2NjcyLTE1MDM5MTc1MTUtZmVlYjBjMmZhMA
+), so you can also come and chat to us there. 
