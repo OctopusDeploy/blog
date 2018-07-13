@@ -91,7 +91,9 @@ This change will apply to the following steps:
 - `Run an AWS CLI Script` 
 - The new `Run a kubectl Script` step (see below)
 
-We're hopeful this will make container scenarios feel a lot more natural, and will be better able to leverage the power of Octopus. 
+We're also adding an `AWS Elastic Container Registry` feed type.  You can currently [configure AWS ECR as a feed](https://octopus.com/docs/packaging-applications/package-repositories/registries/amazon-ec2-container-services#amazon-ec2-container-service) in Octopus, but it is rather fiddly and comes with the significant drawback that the credentials will time-out after 12 hours.  The new feed will avoid this problem. 
+
+We're hopeful these changes will make container scenarios feel a lot more natural, and be better able to leverage the power of Octopus. 
 
 ## Summary
 
@@ -103,7 +105,7 @@ The first cut of Operation Make-Octopus-Love-Containers will include the followi
 - [Helm Chart Repository feed type](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/helm.md#helm-chart-feed)
 - [Helm Deploy Release deployment step](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/helm.md#helm-deploy-release-step)
 - [Ability to reference container images (and other packages) from script steps](https://github.com/OctopusDeploy/Specs/blob/master/Script-Step-Packages/index.md)
-- AWS Container Image Registry feed type. (This will make it easier to [configure the AWS registry as an Octopus feed](https://octopus.com/docs/packaging-applications/package-repositories/registries/amazon-ec2-container-services#amazon-ec2-container-service), and avoid those pesky credential time-outs)
+- AWS Elastic Container Registry feed type. 
 
 ### When?
 
