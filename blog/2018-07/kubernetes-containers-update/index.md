@@ -13,7 +13,7 @@ tags:
 
 A few months back we asked the Octopus community if they could spare a few minutes and brain-cycles to provide some feedback on the [first-draft of our Kubernetes plans](https://octopus.com/blog/kubernetes-rfc).  And you certainly delivered.  So first, thank-you!  We sincerely appreciate everyone who shared their thoughts.  The product will certainly benefit from it. 
 
-There were a few common themes in the feedback, which caused us to alter course slightly.  We'll talk a little about those, and then finally give a [summary and progress update](#summary).
+There were a few common themes in the feedback, which caused us to alter course slightly.  We'll talk a little about those, and then finally give a summary and progress update.
 
 !toc
 
@@ -23,9 +23,9 @@ There were a few common themes in the feedback, which caused us to alter course 
 
 One of the strengths of Octopus has always been that it is user-friendly.  It allowed you to deploy to an ASP.NET website without being a Level 100 IIS Wizard. 
 
-It was pointed out that we were perhaps missing an opportunity to provide a higher level of abstraction; to possibly smooth the learning curve a little. We agreed. 
+It was pointed out that we were perhaps missing an opportunity to provide a similar experience for Kubernetes; to possibly smooth the learning curve a little. We agreed. 
 
-As part of the first-cut, we are going to include a _Deploy Containers to Kubernetes_ deployment step.  This step will have a richer user-interface, and will walk through the process of:  
+As part of the first-cut, we are going to include a _Deploy Containers to Kubernetes_ deployment step.  This step will have a rich user-interface, and will walk through the process of:  
 
 - Creating a Kubernetes Deployment, including selecting the deployment-style and the container images 
 
@@ -72,11 +72,16 @@ We want to provide a great experience whether you use Helm or not. And OK, to be
 
 ## #3 Not just Kubernetes
 
-We were also reminded that there are many container scenarios which don't involve Kubernetes, and there are a few rough edges in Octopus currently for these. For example, deploying container images to ECS. 
+We were also reminded that there are many container scenarios which don't involve Kubernetes, and there are a few rough edges in Octopus currently for these. For example, deploying to ECS. 
 
 To help unlock all the scenarios we won't be adding first-class support for at this moment, we are making a few changes to the family of _Run a Script_ steps to make working with container images a bit nicer. 
 
-Previously, the only way you could reference a package from a script step was to embed the script in the package.  And this wasn't even supported for container images. This meant that working with container images in custom script steps generally involved adding the image tag as a regular variable, and modifying it before creating the release. This works, but it forfeits the traditional Octopus-goodness around versioning, for example: selecting the package versions when creating a release; being able to bind the release version to the package version; seeing which versions are included in the release; etc. Customers are even simulating these by including dummy packages (e.g. NuGet or Zip) in their deployment process to represent their container images, since these would be captured in the release. This is very clever, but also made us sad. It shouldn't require that level of ingenuity. 
+Previously, the only way you could reference a package from a script step was to embed the script in the package.  And this wasn't even supported for container images. This meant that working with container images in custom script steps generally involved adding the image tag as a regular variable, and modifying it before creating the release. This works, but it forfeits the traditional Octopus-goodness around versioning, for example: 
+- selecting the package versions when creating a release 
+- being able to bind the release version to the package version 
+- seeing which package versions are included in the release
+
+Customers are even simulating these by including dummy packages (e.g. NuGet or Zip) in their deployment process to represent their container images, since these would be captured in the release. This is very clever, but also made us sad. It shouldn't require that level of ingenuity. 
 
 You will now be able to reference packages (including container images) from script steps. The versions of these packages will be selected when creating a release, and will then be available from your custom script, both as a set of variables and the package itself depending on the acquisition options selected (see [the spec](https://github.com/OctopusDeploy/Specs/blob/master/Script-Step-Packages/index.md) for more details). 
 
@@ -105,7 +110,7 @@ Much of the functionality above has been built. We are planning to begin alpha-t
 
 ### Step 1 of N 
 
-The is the only the beginning.  If there is something we have left out, that you would like to see, then let us know. Things on our radar include:
+The is only the beginning.  If there is something we have left out that you would like to see supported, then please let us know. Things on our radar include:
 
 - A `Docker Compose` deployment step
 - The [Kubernetes Apply](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/index.md#apply-a-kubernetes-template-step) step we originally proposed 
