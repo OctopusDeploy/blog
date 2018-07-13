@@ -74,7 +74,7 @@ We want to provide a great experience whether you use Helm or not. And OK, to be
 
 We were also reminded that there are many container scenarios which don't involve Kubernetes, and there are a few rough edges in Octopus currently for these. For example, deploying to ECS.
 
-To help unlock all the scenarios we won't be adding first-class support for at this moment, we are making a few changes to the family of _Run a Script_ steps to make working with container images a bit nicer.
+To help unlock all the scenarios we won't be adding first-class support for at this moment, we are making a few changes to the _Run a Script_ steps to make working with container images a bit nicer.
 
 Previously, the only way you could reference a package from a script step was to embed the script in the package.  And this wasn't even supported for container images. This meant that working with container images in custom script steps generally involved adding the image tag as a regular variable, and modifying it before creating the release. This works, but it forfeits the traditional Octopus-goodness around versioning, for example:
 - Selecting the package versions when creating a release.
