@@ -11,10 +11,11 @@ tags:
 
 ![Octopus sailing Kubernetes](blogimage-kubernetes-containers-update.png "width=500")
 
-A few months back we asked the Octopus community if they could spare a few minutes and brain-cycles to provide some feedback on the [first-draft of our Kubernetes plans](https://octopus.com/blog/kubernetes-rfc).  And you certainly delivered.  So firstly, thank-you!  We sincerely appreciate everyone who shared their thoughts.  The product will certainly benefit from it. 
+A few months back we asked the Octopus community if they could spare a few minutes and brain-cycles to provide some feedback on the [first-draft of our Kubernetes plans](https://octopus.com/blog/kubernetes-rfc).  And you certainly delivered.  So first, thank-you!  We sincerely appreciate everyone who shared their thoughts.  The product will certainly benefit from it. 
 
 There were a few common themes in the feedback, which caused us to alter course slightly.  We'll talk a little about those, and then finally give a [summary and progress update](#summary).
 
+!toc
 
 ## #1 A more friendly Kubernetes
 
@@ -42,8 +43,11 @@ The end result (with collapsed sections) will look something like:
 
 ![Deploy Containers Step - Final](k8s-deploy-containers-step.png "width=500")
 
+Another of Octopus's strengths is managing [variables](https://octopus.com/docs/deployment-process/variables), including [transforming configuration files](https://octopus.com/docs/deployment-process/configuration-features).  But this is redundant if you can't get those files into your Kubernetes pods.
 
-We are excited about this step.  Starting with an empty YAML file, the Kubernetes learning-curve can be daunting, and we feel there is scope for Octopus to help with that. 
+Kubernetes has the concept of ConfigMaps (and Secrets, for sensitive data).  We will provide an easy way to leverage the Octopus variable and configuration-file power, and to push the results to a ConfigMap or Secret.  
+
+We are excited about the _Deploy Containers to Kubernetes_ step.  Starting with an empty YAML file, the Kubernetes learning-curve can be daunting, and we feel there is scope for Octopus to help with that. 
 We are especially enthused about the ability to select `Blue\Green` as the deployment style.  This will hopefully make some tricky scenarios much easier to configure.  We will talk more about this in future posts. 
 
 ## #2 Helm 
@@ -72,7 +76,7 @@ We were also reminded that there are many container scenarios which don't involv
 
 To help unlock all the scenarios we won't be adding first-class support for at this moment, we are making a few changes to the family of _Run a Script_ steps to make working with container images a bit nicer. 
 
-Previously, the only way you could reference a package from a script step was to embed the script in the package.  And this wasn't even supported for container images. This meant that working with container images in custom script steps generally involved adding the image tag as a regular variable, and modifying it before creating the release. This works, but it forfeits the traditional Octopus-goodness around versioning, for example: selecting the package versions when creating a release; being able to bind the release version to the package version; seeing which versions are included in the release; etc. Customers are even simulating these by including dummy packages (e.g. NuGet or Zip) in their deployment process to represent their container images, since these would be captured in the release. This is very clever, but also made us sad. It shouldn't require that level of ingenuity to work with container images. 
+Previously, the only way you could reference a package from a script step was to embed the script in the package.  And this wasn't even supported for container images. This meant that working with container images in custom script steps generally involved adding the image tag as a regular variable, and modifying it before creating the release. This works, but it forfeits the traditional Octopus-goodness around versioning, for example: selecting the package versions when creating a release; being able to bind the release version to the package version; seeing which versions are included in the release; etc. Customers are even simulating these by including dummy packages (e.g. NuGet or Zip) in their deployment process to represent their container images, since these would be captured in the release. This is very clever, but also made us sad. It shouldn't require that level of ingenuity. 
 
 You will now be able to reference packages (including container images) from script steps. The versions of these packages will be selected when creating a release, and will then be available from your custom script, both as a set of variables and the package itself depending on the acquisition options selected (see [the spec](https://github.com/OctopusDeploy/Specs/blob/master/Script-Step-Packages/index.md) for more details). 
 
