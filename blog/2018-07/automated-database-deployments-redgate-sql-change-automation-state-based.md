@@ -3,7 +3,7 @@ title: Automated Database Deployments using State Based Redgate SQL Change Autom
 description: Automated Database Deployments using State Based Redgate SQL Change Automation
 author: bob.walker@octopus.com
 visibility: private
-published: 2018-07-16
+published: 2018-07-20
 tags:
  - Database Deployments
 ---
@@ -16,11 +16,11 @@ The end goal of this article is for you to have a working proof of concept for y
 
 ## Prep Work
 
-For this demo you will need a SQL Server instance running, an Octopus Deploy instance and a CI server.  I recommend using a dev instance or your local machine for this proof of concept.  
+For this demo you will need a SQL Server instance running, an Octopus Deploy instance and a CI server.  I recommend using a Dev environment or your local machine for this proof of concept.  
 
 ## Tools Needed
 
-If you would like to follow along at home you will need the following.  The examples given will be using TeamCity and VSTS/TFS.  The examples will still apply for Jenkins and Bamboo, the UI will look different.
+If you would like to follow along at home you will need the following tooling.  The examples given will be using TeamCity and VSTS/TFS.  As you will see later, the core concepts and UI for all the CI tools will be very similar.  
 
 - Octopus Deploy
     - Get 45-day free trial for on-premise [here](https://octopus.com/licenses/trial).
@@ -41,7 +41,7 @@ If you would like to follow along at home you will need the following.  The exam
 
 ## Installing Software
 
-Most of the setup is pretty straight-forward.  Follow the wizards and the prompts and what-not.  
+I'm not going to walk you through on how to install those tools.  This article would be 100 pages long if I did that.  If you run into issues please go to the vendor's website for any help.  If you need any help with installing Octopus Deploy please start with our [docs](https://octopus.com/docs/installation) or contact [support](mailto:support@octopus.com).
 
 ### Developer Machine
 This is the machine where we will be making the schema changes and checking them into source control.  Redgate's SQL Toolbelt will prompt to install quite a bit.  
@@ -53,7 +53,7 @@ You only need to install the following:
 
 ### Build Server
 
-Both Octopus Deploy and Redgate have plug-ins support for the major build servers.  For ease of use I have included the download links below.  
+Both Octopus Deploy and Redgate have plug-ins for the major build servers.  For ease of use I have included the download links below.  
 
 - Jenkins
     - Octopus - download [here](https://download.octopusdeploy.com/octopus-tools/4.37.0/OctopusTools.4.37.0.zip) - Please note, you can have Jenkins interact with Octopus by using octo.exe.  You can read more about that [here](https://octopus.com/docs/api-and-integration/jenkins)
