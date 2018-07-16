@@ -46,9 +46,7 @@ There are no breaking changes in this release.
 
 ## Upgrading
 
-This release contains some optimization for our Machine table that may take some time depending on how many machines you have, so please ensure you allow time for this to complete.
-
-Otherwise, our standard [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.7.0) for further information.
+As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.7.0) for further information.
 
 ## Wrap up
 
