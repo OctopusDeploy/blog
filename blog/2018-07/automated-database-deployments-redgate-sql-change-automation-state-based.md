@@ -14,6 +14,8 @@ Previous blog posts discussed why [you need automated database deployments](http
 
 The end goal of this article is for you to have a working proof of concept for you to demo to your team or leaders within your organization.
 
+!toc
+
 ## Prep Work
 
 For this demo you will need a SQL Server instance running, an Octopus Deploy instance and a CI server.  I recommend using a Dev environment or your local machine for this proof of concept.  
