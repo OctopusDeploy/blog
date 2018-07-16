@@ -20,7 +20,7 @@ This month, our headline feature is **Octopus Workers** which allows you to shif
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tNuYRs_J8cY" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N4uBvgB3ehM" frameborder="0" allowfullscreen></iframe>
 
 ## Octopus Workers and Worker Pools 
 
