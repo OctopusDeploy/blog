@@ -10,9 +10,9 @@ tags:
 
 ## Introduction
 
-Previous blog posts discussed why [you need automated database deployments](https://octopus.com/blog/automated-database-deployments-series-kick-off) and [tips on getting started](https://octopus.com/blog/automated-database-deployments-iteration-zero) down that path.  Enough talk, it is time for action!  This article will walk you through setting up an automated database deployment pipeline using the [state based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate's SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool to start with because it is easy to setup, integrates with SSMS, and...well...I already had a demo setup.  I'm also a [little biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate's tooling.  So there's that.
+My previous blog posts discussed why [you need automated database deployments](https://octopus.com/blog/automated-database-deployments-series-kick-off) and [tips on getting started](https://octopus.com/blog/automated-database-deployments-iteration-zero) down that path.  Enough talk, [it is time for action](https://www.youtube.com/watch?v=Rj22DbRoAPM)!  This article will walk through setting up an automated database deployment pipeline using the [state based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate's SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool to start with because it is easy to setup, integrates with SSMS, and...well...I already had a demo setup.  I'm also a [little biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate's tooling.  So there's that.
 
-The end goal of this article is for you to have a working proof of concept for you to demo to your team or decision makers.
+The end goal of this article is for you to have a working proof of concept for you to demo.
 
 !toc
 
@@ -22,7 +22,7 @@ For this demo you will need a SQL Server instance running, an Octopus Deploy ins
 
 ## Tools Needed
 
-If you would like to follow along at home you will need the following tooling.  The examples given will be using TeamCity and VSTS/TFS.  As you will see later, the core concepts and UI for all the CI tools will be very similar.  
+You will need the following tooling.  The examples given will be using TeamCity and VSTS/TFS.  As you will see later, the core concepts and UI for all the CI tools will be very similar.  
 
 - Octopus Deploy
     - Get 45-day free trial for on-premise [here](https://octopus.com/licenses/trial).
@@ -46,16 +46,14 @@ If you would like to follow along at home you will need the following tooling.  
 I'm not going to walk you through on how to install those tools.  This article would be 100 pages long if I did that.  If you run into issues please go to the vendor's website for any help.  If you need any help with installing Octopus Deploy please start with our [docs](https://octopus.com/docs/installation) or contact [support](mailto:support@octopus.com).
 
 ### Developer Machine
-This is the machine where we will be making the schema changes and checking them into source control.  Redgate's SQL Toolbelt will prompt to install quite a bit.  
-
-You only need to install the following:
+This is the machine where we will be making the schema changes and checking them into source control.  When you install Redgate's SQL Toolbelt you will be prompt to install quite a bit of software.  You only need to install the following:
 - SQL Source Control
 - SQL Prompt (it isn't required, but it makes your life so much easier)
 - SSMS Integration Pack
 
 ### Build Server
 
-Both Octopus Deploy and Redgate have plug-ins for the major build servers.  For ease of use, I have included the download links below.  
+Both Octopus Deploy and Redgate have plug-ins for the major build servers.  
 
 - Jenkins
     - Octopus - download [here](https://download.octopusdeploy.com/octopus-tools/4.37.0/OctopusTools.4.37.0.zip) - Please note, you can have Jenkins interact with Octopus by using octo.exe.  You can read more about that [here](https://octopus.com/docs/api-and-integration/jenkins)
@@ -71,7 +69,7 @@ Both Octopus Deploy and Redgate have plug-ins for the major build servers.  For 
     - Redgate - download [here](https://marketplace.atlassian.com/apps/1213347/redgate-dlm-automation-for-bamboo?hosting=server&tab=overview)
 
 ### Deployment Target
-It is not recommended to install an Octopus Tentacle on SQL Server.  The [documentation](https://octopus.com/docs/deployment-examples/sql-server-databases#SQLServerdatabases-Tentacles) goes into further details why.  Instead, we will be installing the tentacle on a jump box which sits between Octopus Deploy and SQL Server.  For security you have two options, you can use integrated security, by setting the tentacle to run as a service account or user account.  Here is [some documentation](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) on how to configure that.  
+Installing an Octopus Tentacle on SQL Server is a big no-no.  The [documentation](https://octopus.com/docs/deployment-examples/sql-server-databases#SQLServerdatabases-Tentacles) goes into further details why.  Instead, we will be installing the tentacle on a jump box which sits between Octopus Deploy and SQL Server.  For security purposes I recommend running the tentacle as a specific user account.  This way you can make use of integrated security.  Here is [some documentation](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) on how to configure that.  Keep in mind that only works if you are using Active Directory.  If you are not using that, you can still use this process, you will just need to use SQL Users instead.
 
 For the jump box you will need to install the following items:
 - SQL Change Automation PowerShell 3.0
@@ -91,10 +89,10 @@ Everything you need is already checked into source control.  All we need to do i
 
 You will need the step templates from Redgate to [create a database release](http://library.octopus.com/step-templates/c20b70dc-69aa-42a1-85db-6d37341b63e3/actiontemplate-redgate-create-database-release) and [deploy a database release](http://library.octopus.com/step-templates/7d18aeb8-5e69-4c91-aca4-0d71022944e8/actiontemplate-redgate-deploy-from-database-release).  When you are browsing the step template you might notice the step template [to deploy directly from a package](http://library.octopus.com/step-templates/19f750fb-2ce8-4361-859e-2dfcdf08a952/actiontemplate-redgate-deploy-from-package).  How the state-based functionality for SQL Change Automation Works is it will compare the state of the database stored in the NuGet package with the destination database.  Each time it runs it creates a new set of delta scripts to apply.  Because of that, the recommended process is:
 
-1) Download the database package onto the jump server.
-2) Create the delta script.
+1) Download the database package onto the jump box.
+2) Create the delta script by comparing the package on the jump box with the database on SQL Server.
 3) Review the delta script (can be skipped in dev).
-4) Run the delta script from the Jump Server on SQL Server.
+4) Run the script on SQL Server using the tentacle on the jump box.
 
 Using the step template to deploy from the package prevents the ability to review the scripts.  
 
@@ -102,7 +100,9 @@ This is the process I have put together for deploying databases.
 
 ![](octopus-database-deployment-overview.png)
 
-I am a firm believer of having tools handle all the manual work for me.  This is why my process will create the main SQL user for the database, the database, and add the SQL user to the database and the user to the role.  You can download those step templates from the Octopus Community Step Template Library.  If you are starting out giving up that much control can be scary.  Completely understandable.  The main steps you need from the above screenshot are:
+I am a firm believer of having tools handle all the manual work for me.  This is why my process will create the main SQL user for the database, the database, add the SQL user to the database, and the user to the role.  If you want your process to do that, you can download those step templates from the [Octopus Community Step Template Library](http://library.octopus.com/listing).  
+
+You don't have to add all that functionality.  This is the beginning of your automated database deployment journey.  Providing that much automation can be very scary without trusting the process.  Completely understandable.  The main steps you need from the above screenshot are:
 
 ![](octopus-database-required-steps.png)
 
@@ -110,7 +110,7 @@ Let's go ahead and walk through each one.  The download a package step is very s
 
 ![](octopus-database-download-package.png)
 
-The Redgate - Create Database Release step is a little more interesting.  What trips up most people is the Export Path.  The export path is where the delta script will be exported to.  The "Redgate - Deploy from Database Release" step needs access to that path.  
+The Redgate - Create Database Release step is a little more interesting.  What trips up most people is the Export Path.  The export path is where the delta script will be exported to.  This needs to be a directory outside of the Octopus Deploy tentacle folder.  This is because the "Redgate - Deploy from Database Release" step needs access to that path and the tentacle folder will be different for each step.  
 
 ![](octopus-create-database-release-step.png)
 
