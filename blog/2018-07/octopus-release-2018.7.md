@@ -50,7 +50,7 @@ There are no breaking changes in this release.
 
 ## Known issues
 
-When using Dynamic Infrastructure PowerShell cmdlet's to create a new deployment target, if a subsequent step deploys a package from an external worker, the deployment will fail. Adding a **Health Check** step, configured for a **full health check**, between the script step and the package deployment step which will allow the deployment plan to acquire the necessary packages to the worker.
+When using Dynamic Infrastructure PowerShell cmdlet's to create a new deployment target, if a subsequent step deploys a package from an external worker, the deployment will fail. Adding a **Health Check** step, configured for a **full health check**, between the script step and the package deployment step which will allow the deployment plan to acquire the necessary packages to the worker. [Link to issue on GitHub](https://github.com/OctopusDeploy/Issues/issues/4731)
 
 ## Upgrading
 
