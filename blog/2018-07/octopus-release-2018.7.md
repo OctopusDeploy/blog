@@ -46,7 +46,7 @@ This release, we have reinstated first class support for **Azure Web Site Deploy
 
 ## Breaking Changes
 
-There are no breaking changes in this release.
+The API endpoint for listing Azure Web Sites `\api\accounts\{id}\websites`, no longer returns the Deployment Slots, only the production Web Sites. There is a new API endpoint `/api/accounts/{id}/{resourceGroupName}/websites/{webSiteName}/slots` for listing the Deployments Slots for a single Web Site.
 
 ## Known issues
 
