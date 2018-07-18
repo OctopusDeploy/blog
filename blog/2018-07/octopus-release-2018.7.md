@@ -2,10 +2,10 @@
 title: Octopus July Release 2018.7
 description: Octopus 2018.7 - Sharing the Workload with Workers!
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-2018-7.png
 bannerImage: blogimage-shipping-2018-7.png
-published: 2018-07-16
+published: 2018-07-18
 tags:
  - New Releases
 ---
@@ -40,9 +40,17 @@ Read more about this in our [Octopus Workers blog series](https://octopus.com/bl
 
 We’re also shipping some performance and polish improvements. That is, we’ve made some significant updates to improve Octopus Server performance and usability. Particularly for larger installations, including much lower CPU usage on SQL server in some cases, improvements to deletion, and faster project and infrastructure dashboards. We’re continually working to improve our user experience, and this month, we’ve tweaked the variable snapshot update process as well as improving lifecycle, channel, and role scoping pages.
 
+## Azure Web Sites and Slots
+
+This release, we have reinstated first class support for **Azure Web Site Deployment Slots**, allowing you to select a specific slot for a **Azure Web App** deployment target or setting the slot directly on a **Deploy an Azure Web App** step. We have also improved the performance of the **Azure Web Site** selector.
+
 ## Breaking Changes
 
-There are no breaking changes in this release.
+The API endpoint for listing Azure Web Sites `\api\accounts\{id}\websites`, no longer returns the Deployment Slots, only the production Web Sites. There is a new API endpoint `/api/accounts/{id}/{resourceGroupName}/websites/{webSiteName}/slots` for listing the Deployments Slots for a single Web Site.
+
+## Known issues
+
+When using [Dynamic Infrastructure PowerShell cmdlets](https://octopus.com/docs/infrastructure/dynamic-infrastructure/azure-web-app-target) to create a new Azure PaaS deployment target, if a subsequent step deploys a package to the newly created target, from an external worker, the deployment will fail. Adding a **Health Check** step, configured for a **full health check**, between the script step and the package deployment step which will allow the deployment plan to acquire the necessary packages to the worker. We've created a [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/4731) to track this problem until it's resolved.
 
 ## Upgrading
 
