@@ -109,9 +109,9 @@ The first cut of Operation Make-Octopus-Love-Containers will include the followi
 
 ### When?
 
-Much of the functionality above has been built. We are planning to begin alpha-testing this in the coming weeks.  We have many volunteer K8s lab rats, and we are going to reach out to you with the details of how you can play with this very soon.  
+Much of the functionality above has been built. We are planning to begin shipping this in the August release.  The Kubernetes functionality will initially be hidden behind a feature-toggle, as we are considering this an alpha release.  We have many volunteer K8s lab rats, and we are going to reach out to you in the coming weeks to invite you to take it for a spin and provide feedback.  
 
-As soon as we are satisfied with the feedback from the early adopters, we will ship this in a coming monthly release.
+As soon as we are satisfied that our early adopters love it, we will remove the feature-toggle and announce it as production-ready.
 
 ### Step 1 of N
 

@@ -2,10 +2,10 @@
 title: Octopus July Release 2018.7
 description: Octopus 2018.7 - Sharing the Workload with Workers!
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-shipping-2018-7.png
 bannerImage: blogimage-shipping-2018-7.png
-published: 2018-07-16
+published: 2018-07-18
 tags:
  - New Releases
 ---
@@ -50,12 +50,11 @@ The API endpoint for listing Azure Web Sites `\api\accounts\{id}\websites`, no l
 
 ## Known issues
 
-When using Dynamic Infrastructure PowerShell cmdlet's to create a new deployment target, if a subsequent step deploys a package from an external worker, the deployment will fail. Adding a **Health Check** step, configured for a **full health check**, between the script step and the package deployment step which will allow the deployment plan to acquire the necessary packages to the worker. We've created a [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/4731) to track this problem until it's resolved.
+When using [Dynamic Infrastructure PowerShell cmdlets](https://octopus.com/docs/infrastructure/dynamic-infrastructure/azure-web-app-target) to create a new Azure PaaS deployment target, if a subsequent step deploys a package to the newly created target, from an external worker, the deployment will fail. Adding a **Health Check** step, configured for a **full health check**, between the script step and the package deployment step which will allow the deployment plan to acquire the necessary packages to the worker. We've created a [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/4731) to track this problem until it's resolved.
 
 ## Upgrading
 
 As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.7.0) for further information.
-
 
 ## Wrap Up
 
