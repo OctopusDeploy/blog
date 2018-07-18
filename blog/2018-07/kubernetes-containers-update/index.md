@@ -2,8 +2,8 @@
 title: Kubernetes, Containers, and Octopus - An Update
 description: A progress update on adding Kubernetes support to Octopus  
 author: michael.richardson@octopus.com
-visibility: private
-published: 2018-07-09
+visibility: public
+published: 2018-07-19
 tags:
 - Containers
 - Docker
@@ -23,7 +23,7 @@ There were a few common themes in the feedback, which caused us to alter course 
 
 One of the strengths of Octopus has always been that it is user-friendly.  It lets you deploy to an ASP.NET website without being a Level 100 IIS Wizard.
 
-It was pointed out that we were perhaps missing an opportunity to provide a similar experience for Kubernetes; to possibly smooth the learning curve a little. We agreed.
+It was pointed out that we were perhaps missing an opportunity to provide a similar experience for Kubernetes; to possibly smooth the learning curve a little.  We agreed.
 
 As part of the first-cut, we are going to include a _Deploy Containers to Kubernetes_ deployment step.  This step will have a rich user-interface and will walk through the process of:  
 
