@@ -1,10 +1,8 @@
 ---
 title: [WEBINAR] Starting the DevOps Journey
 description: Taking a DevOps approach and paving the way for staying ahead in business
-author: rob.pearson@octopus.com
+author: rebecca.mcneil@octopus.com
 visibility: private
-metaImage: 
-bannerImage: 
 published: 2018-07-19
 tags:
  - Webinar
