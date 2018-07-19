@@ -3,6 +3,8 @@ title: Kubernetes, Containers, and Octopus - An Update
 description: A progress update on adding Kubernetes support to Octopus  
 author: michael.richardson@octopus.com
 visibility: public
+bannerImage: blogimage-kubernetes-containers-update.png
+metaImage: metaimage-kubernetes-containers-update.png
 published: 2018-07-19
 tags:
 - Containers
@@ -81,7 +83,7 @@ Previously, the only way you could reference a package from a script step was to
 - Being able to bind the release version to the package version.
 - Seeing which package versions are included in the release.
 
-Customers are even simulating these by including dummy packages (e.g. NuGet or Zip) in their deployment process to represent their container images, since these would be captured in the release. This is very clever, but also made us sad. It shouldn't require that level of ingenuity.
+Customers are even simulating these by including dummy packages (e.g. NuGet or Zip) in their deployment process to represent their container images, since these would be captured in the release.  This is very clever, but also made us sad. It shouldn't require that level of ingenuity.
 
 You will now be able to reference packages (including container images) from script steps. The versions of these packages will be selected when creating a release, and will then be available from your custom script, both as a set of variables and the package itself depending on the acquisition options selected (see [the spec](https://github.com/OctopusDeploy/Specs/blob/master/Script-Step-Packages/index.md) for more details).
 
