@@ -1,11 +1,9 @@
 ---
-title: [WEBINAR] Starting the DevOps Journey
+title: WEBINAR - Starting the DevOps Journey
 description: Taking a DevOps approach and paving the way for staying ahead in business
-author: rob.pearson@octopus.com
-visibility: private
-metaImage: 
-bannerImage: 
-published: 2018-07-19
+author: rebecca.mcneil@octopus.com
+visibility: public
+published: 2018-07-20
 tags:
  - Webinar
 ---
@@ -24,4 +22,4 @@ What's covered:
 
 Watch this webinar for real-world insights to guide and inform your DevOps journey.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uxvhNdgh-20" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315"  src="https://www.youtube.com/embed/uxvhNdgh-20" frameborder="0" allowfullscreen></iframe>
