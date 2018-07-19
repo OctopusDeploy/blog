@@ -36,6 +36,19 @@ Octopus workers bring many benefits including the following:
 
 Read more about this in our [Octopus Workers blog series](https://octopus.com/blog/tag/Workers).
 
+### Licensing
+
+> Are workers and worker pools limited by license? They are kind of like deployment targets, right?
+
+At this point we've decided to limit the use of workers and worker pools for different license kinds:
+
+1. Customers using a grandfathered `Community` (free), `Professional`, `Team`, or `Enterprise` license are limited to one worker and worker pool. This enables you to transition from using the built-in worker into [a more secure configuration](https://octopus.com/docs/administration/security/hardening-octopus#configuring-workers).
+1. Customers using a grandfathered `High Availability` license get **unlimited** workers and worker pools.
+1. Customers with one of the current `Standard` or `Data Center` licenses also get **unlimited** workers and worker pools. _These licenses were introduced around the Octopus 4.0 timeframe._
+1. [Octopus Cloud](https://octopus.com/cloud) customers also get **unlimited** workers and worker pools.
+
+If you have any questions about your license and how it applies to workers and worker pools, please contact [sales@octopus.com](mailto:sales@octopus.com).
+
 ## Perf and Polish Improvements
 
 We’re also shipping some performance and polish improvements. That is, we’ve made some significant updates to improve Octopus Server performance and usability. Particularly for larger installations, including much lower CPU usage on SQL server in some cases, improvements to deletion, and faster project and infrastructure dashboards. We’re continually working to improve our user experience, and this month, we’ve tweaked the variable snapshot update process as well as improving lifecycle, channel, and role scoping pages.
