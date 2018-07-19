@@ -3,7 +3,7 @@ title: Automated Database Deployments using State Based Redgate SQL Change Autom
 description: Automated Database Deployments using State Based Redgate SQL Change Automation
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-07-21
+published: 2018-07-20
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ## Introduction
 
-My previous blog posts discussed why [you need automated database deployments](https://octopus.com/blog/automated-database-deployments-series-kick-off) and [tips for getting started](https://octopus.com/blog/automated-database-deployments-iteration-zero) down that path. Enough talk, it is time for action!  This article will walk through setting up an automated database deployment pipeline using the [state based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate's SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool to start with because it is easy to setup, integrates with SSMS, and...well...I already had a demo setup.  I'm also a [little biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate's tooling.  So there's that.
+My previous blog posts discussed why [you need automated database deployments](https://octopus.com/blog/automated-database-deployments-series-kick-off) and [tips for getting started](https://octopus.com/blog/automated-database-deployments-iteration-zero) down that path.  Enough talk, it is time for action!  This article will walk through setting up an automated database deployment pipeline using the [state based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate's SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool to start with because it is easy to setup, integrates with SSMS, and...well...I already had a demo setup.  I'm also a [little biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate's tooling.  So there's that.
 
 The end goal of this article is for you to have a working proof of concept for you to demo.
 
