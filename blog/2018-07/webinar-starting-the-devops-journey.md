@@ -1,5 +1,5 @@
 ---
-title: [WEBINAR] Starting the DevOps Journey
+title: WEBINAR - Starting the DevOps Journey
 description: Taking a DevOps approach and paving the way for staying ahead in business
 author: rebecca.mcneil@octopus.com
 visibility: public
