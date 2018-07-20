@@ -117,7 +117,7 @@ As soon as we are satisfied that our early adopters love it, we will remove the 
 
 ### Step 1 of N
 
-The is only the beginning.  If there is something we have left out that you would like to see supported, then please let us know. Things on our radar include:
+This is only the beginning.  If there is something we have left out that you would like to see supported, then please let us know. Things on our radar include:
 
 - A `Docker Compose` deployment step
 - The [Kubernetes Apply](https://github.com/OctopusDeploy/Specs/blob/master/Kubernetes/index.md#apply-a-kubernetes-template-step) step we originally proposed
