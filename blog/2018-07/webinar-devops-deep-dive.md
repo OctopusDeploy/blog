@@ -24,7 +24,7 @@ It was a great discussion that covered a lot of questions including:
 * The vision behind tenants (54:17)
 * Managing tons and tons of variables (1:00:28)
 * How can I store my entire Octopus configuration in Git so that when I change it, hotfix branches from weeks ago can still be deployed? (1:06:54)
-* Using different production networks separate from the one you can access? (1:09:50)
+* Using different production networks separate from the one you can access (1:09:50).
 
 <iframe width="560" height="315"  src="https://www.youtube.com/embed/0LbFjC9MKxs" frameborder="0" allowfullscreen></iframe>
 
