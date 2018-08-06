@@ -14,7 +14,7 @@ tags:
 
 ![Octopus Packaging .NET Core banner](blogimage-package-netcore.png)
 
-In the past few months, we've had a number of questions and requests for better support around building and packaging .NET Core applications. We've had support for that for quite a while, what has been interesting though is the number of requests for supporting building .NET Core applications on .NET Core. What does that mean exactly? It means supporting building .NET Core applications on machines that only have .NET Core, and not the full .NET framework. Think Linux or Mac OS machines.
+In the past few months, we've had a number of questions and requests for better support around building and packaging .NET Core applications. We've had support for that for quite a while, what has been interesting though is the number of requests for supporting building .NET Core applications on .NET Core. What does that mean exactly? It means supporting building .NET Core applications on machines that only have .NET Core, and not the full .NET framework.  Think Linux or Mac OS machines.
 
 If that's a space you're working in or looking to move into we've got some exciting news. Along with all of the other exciting things included in [2018.7](https://octopus.com/blog/octopus-release-2018.7), we've updated `octo.exe` so you can now access it as a .NET Command line extension.
 
