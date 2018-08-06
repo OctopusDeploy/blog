@@ -3,13 +3,16 @@ title: Packaging for .NETCore, on .NETCore, with Octopus
 description: Using Octopus tooling to package .NETCore applications, on .NETCore
 author: shannon.lewis@octopus.com
 visibility: private
-published: 2018-07-29
+metaImage: metaimage-packageNetCore.png
+bannerImage: blogimage-packageNetCore.png
+published: 2018-08-06
 tags:
  - OctoExe
  - .NET Core
  - NuGet
 ---
 
+![Octopus Packaging .NET Core banner](blogimage-packageNetCore.png)
 
 In the past few months, we've had a number of questions and requests for better support around building and packaging .NET Core applications. We've had support for that for quite a while, what has been interesting though is the number of requests for supporting building .NET Core applications on .NET Core. What does that mean exactly? It means supporting building .NET Core applications on machines that only have .NET Core, and not the full .NET framework. Think Linux or Mac OS machines.
 
@@ -49,7 +52,7 @@ In order to use Octo as described here, you must use the .NET Core SDK `2.1.300`
 
 ## Build Servers
 
-Our TeamCity extension will already handle switching between `octo.exe` and `dotnet octo`, so you shouldn't need to change anything in your existing steps for `pack`,  `push` etc. You will have to work out a strategy for the `dotnet tool` command. You could run that as a script at the beginning of your build process, or you could have it pre-run on your build agents.
+Our TeamCity extension will already handle switching between `octo.exe` and `dotnet octo`, so you shouldn't need to change anything in your existing steps for `push`, `create-release` etc. You will have to work out a strategy for the `dotnet tool` command. You could run that as a script at the beginning of your build process, or you could have it pre-run on your build agents. Also coming very soon to the TeamCity extension is a separate `pack` step, for those who want to pack and then use a feed other than Octopus's internal feed (e.g. TeamCity's feed or Artifactory).
 
 The **v3.0** update of the VSTS extension includes the updates to support using `dotnet octo`. The changes include a move away from using PowerShell, which makes it compatible with build agents running operating systems like Linux.
 
