@@ -2,7 +2,7 @@
 title: Packaging for .NETCore, on .NETCore, with Octopus
 description: Using Octopus tooling to package .NETCore applications, on .NETCore
 author: shannon.lewis@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-package-netcore.png
 bannerImage: blogimage-package-netcore.png
 published: 2018-08-06
