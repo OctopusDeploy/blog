@@ -70,3 +70,4 @@ The one caveat to this is that `octo.exe` uses `Octopus.Client` for it's `push` 
 ## Wrapping Up
 
 The .NET Core world is still a fast moving place, so this is a step in what I'm sure will be a longer journey. If you're building .NET Core applications, please give `dotnet octo` a spin and give us feedback below to help guide that journey.
+
