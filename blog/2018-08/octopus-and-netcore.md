@@ -3,8 +3,8 @@ title: Packaging for .NETCore, on .NETCore, with Octopus
 description: Using Octopus tooling to package .NETCore applications, on .NETCore
 author: shannon.lewis@octopus.com
 visibility: private
-metaImage: metaimage-packageNetCore.png
-bannerImage: blogimage-packageNetCore.png
+metaImage: metaimage-package-netcore.png
+bannerImage: blogimage-package-netcore.png
 published: 2018-08-06
 tags:
  - OctoExe
@@ -12,7 +12,7 @@ tags:
  - NuGet
 ---
 
-![Octopus Packaging .NET Core banner](blogimage-packageNetCore.png)
+![Octopus Packaging .NET Core banner](blogimage-package-netcore.png)
 
 In the past few months, we've had a number of questions and requests for better support around building and packaging .NET Core applications. We've had support for that for quite a while, what has been interesting though is the number of requests for supporting building .NET Core applications on .NET Core. What does that mean exactly? It means supporting building .NET Core applications on machines that only have .NET Core, and not the full .NET framework. Think Linux or Mac OS machines.
 
