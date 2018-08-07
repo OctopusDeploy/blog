@@ -23,13 +23,13 @@ To follow along with this blog post, you will need to have a Kubernetes cluster 
 
 [Helm](https://helm.sh/) is a package manager for Kuberenetes, and we'll use it to install some third party services into the Kubernetes cluster. Google Cloud provides [documentation](https://cloud.google.com/community/tutorials/nginx-ingress-gke#install-helm-in-cloud-shell) describing how to install Helm in their cloud, and other cloud providers will provide similar documentation.
 
-## Preparing the Octopus server
+## Preparing the Octopus Server
 
 The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. One of the easiest ways to install `kubectl` is with [Chocolatey](https://chocolatey.org/packages/kubernetes-cli).
 
 Likewise the Helm steps require the `helm` executable to be available on the path. Helm is also available from [Chocolatey](https://chocolatey.org/packages/kubernetes-helm).
 
-## What we will create
+## What we Will Create
 
 Before we dive into the specifics of deploying a Kuberenetes application, it is worth understanding what we are trying to achieve with this example.
 
@@ -52,7 +52,7 @@ Although we listed two environments as requirements, we'll actually create three
 
 ![Kubernetes Environments](kubernetes-environments.png)
 
-## The lifecycles
+## The Lifecycles
 
 The default lifecycle in Octopus assumes that all environments will be deployed to, one after the other. This is not the case for us. We have two distinct lifecycles: Development -> Production, and Admin as a standalone environment where utility scripts are run.
 
@@ -64,7 +64,7 @@ To model the scripts run against the Kubernetes cluster, we'll create a lifecycl
 
 ![Admin Lifecycle](kubernetes-admin-lifecycle.png)
 
-## The admin target
+## The Admin Target
 
 A Kubernetes target in Octopus is conceptually a permission boundary within a Kubernetes cluster. It defines this boundary using a Kubernetes namespace and a Kubernetes account.
 
@@ -128,7 +128,7 @@ Because this Admin target will be used to run utility scripts, we don't want to 
 
 We now have a target that we can use to prepare the service accounts for the other namespaces.
 
-## The service account
+## The HTTPD Development Service Account
 
 We now have a Kubernetes target, but this target is configured with the cluster administrator account. It is not a good idea to be running deployments with an administrator account, so what we need to do is create a namespace and service account that will allow us to deploy only the resources we need for our application.
 
@@ -249,7 +249,7 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW5
 
 ![Service account token](kubernetes-service-account-token.png)
 
-## The httpd development target
+## The HTTPD Development Target
 
 We now have everything we need to create a target that will be used to deploy the Httpd application in the Development environment.
 
@@ -264,3 +264,13 @@ Notice here that the `Target Roles` includes a role that matches the name of the
 This target represents the intersection of an application and an environment, using a namespace to enforce the permission boundary. This is a pattern we'll repeat over and over with each application and environment.
 
 ![](kubernetes-httpd-development-target.png)
+
+Now that we have a target to deploy to, let's deploy our first application!
+
+## The HTTPD Application
+
+The `Deploy Kubernetes containers` step provides an opinionated process for deploying applications to a Kubernetes cluster. This step provides a standard pattern for creating a collection of Kubernetes resources that work together to provide resilient deployments.
+
+![](kuberenetes-deploy-containers-step.png)
+
+The application we'll be deploying is [HTTPD](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, HTTPD is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like HTTPD does.
