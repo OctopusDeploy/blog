@@ -412,3 +412,15 @@ In developing these Kubernetes steps for Octopus we found that everyone loves to
 What we have achieved here is to lay the groundwork for deployments of multiple applications across multiple environments separating concerns with namespaces and service accounts with limited permissions.
 
 So, take a breath, because we're only half done. Having reached the point of deploying a single application to a single environment with a single load balancer, we're going to take the next step and make this a multi-environment deployment.
+
+## So What Happens When Things go Wrong?
+
+Deployments will sometimes fail. This is not only to be expected, but celebrated, as long as it happens in the `Development` environment. Failing quickly is a key component to a robust CD pipeline.
+
+Let's simulate a failed deployment. We can do this by configuring the Container resource readiness probe to run a command that does not exist. Readiness probes are used by Kubernetes to determine when a Container resource is ready to start accepting traffic, and by deliberately configuring a test that can not pass, we can simulate a failed deployment.
+
+![](kubernetes-readiness-probe.png)
+
+![](kubernetes-configmap-failed.png)
+
+As expected, the deployment fails.
