@@ -421,6 +421,121 @@ Let's simulate a failed deployment. We can do this by configuring the Container 
 
 ![](kubernetes-readiness-probe.png)
 
+As part of this failed deployment, we'll also change the value of the ConfigMap. Remember that this value is what is displayed in the web page.
+
 ![](kubernetes-configmap-failed.png)
 
 As expected, the deployment fails.
+
+![](kubernetes-failed-deployment.png)
+
+So what does it mean to have a failed deployment? Because we are using the blue/green deployment strategy, we now have two Deployment resources. Because the latest one called `httpd-deployments-842` has failed, the previous one called `httpd-deployments-841` has not been removed.
+
+We also have two ConfigMap resources. Again, because the last deployment failed, the previous ConfigMap resource has not been removed.
+
+![](kubernetes-google-cloud-workload-2.png)
+
+![](kubernetes-google-cloud-configmap-2.png)
+
+Because the old resources were not edited during deployment and were not removed because the deployment failed, our last deployment is still live, accessible, and displays the same text that was defined with the last successful deployment.
+
+This again is one of the opinions that this step has about what a Kubernetes deployment should be. Failed deployments should not take down an environment, but instead give you the opportunity to resolve the issue while leaving the previous deployment in place.
+
+![](kubernetes-httpd-webpage.png)
+
+Go ahead and remove the bad readiness check from the Container resource. Also change the value of the ConfigMap resource to display a new message.
+
+![](kubernetes-configmap-succeeded.png)
+
+This time the deployment succeeds. Because the deployment succeeded, the previous Deployment and ConfigMap resources have been cleaned up, and the new message is displayed on the webpage.
+
+![](kubernetes-google-cloud-workload-3.png)
+
+![](kubernetes-httpd-afterredeploy.png)
+
+By creating new Deployment resources with each blue/green deployment, and by creating new ConfigMap resources with each deployment, we can be sure that our Kubernetes cluster is not left in an undefined state during a deployment or after a failed deployment.
+
+## Promoting to Production
+
+I promised you an example of a multi-environment deployment, so let's go ahead and configure our Production environment.
+
+First, create a service account for the production environment. This YAML is the same code we used to create the service account for the Development environment, only with the text `development` replaced with `production`.
+
+```yaml
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: httpd-production
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: httpd-deployer
+  namespace: httpd-production
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: httpd-production
+  name: httpd-deployer-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: httpd-deployer-binding
+  namespace: httpd-production
+subjects:
+- kind: ServiceAccount
+  name: httpd-deployer
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: httpd-deployer-role
+  apiGroup: ""
+```
+
+Likewise the Powershell to get the token is the same except `development` is now `production`.
+
+```
+$user="httpd-deployer"
+$namespace="httpd-production"
+$data = kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace
+[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data))
+```
+
+I won't repeat the details of running these scripts, creating the token account or creating the target, so refer back to [The HTTPD Development Service Account](#the-httpd-development-service-account) for more details.
+
+You want to end up with a target like the one shown below configured.
+
+![](kubernetes-production-target.png)
+
+Now go ahead and promote the Octopus deployment to the Production environment.
+
+This will result in a second Load balancer Service resource being created with a new public IP address.
+
+![](kubernetes-google-cloud-services2.png)
+
+And our production instance can be viewed in a web browser.
+
+![](kubernetes-httpd-webpage2.png)
+
+Let's have some fun and use a variable for the value of the ConfigMap resource. By setting the value to the variable `#{Octopus.Environment.Name}`, we will display the environment name in the web page.
+
+![](kubernetes-configmap-environmentname.png)
+
+Pushing this change through to production results in the environment name being displayed on the page.
+
+![](kubernetes-httpd-webpage3.png)
+
+That was a trivial example, but does highlight the power that is available by configuring multi-environment deployments. Once your accounts, targets and environments are configured, moving applications through environments is easy, secure and highly configurable.
+
+## Migrating to Ingress
+
+For convenience we have exposed our HTTPD application via a Load balancer service. This was the quick solution, because Google Cloud took care of building a network load balancer with a public IP address.
+
+Unfortunately this solution will not scale with more applications. Each of those network load balancers costs money, and keeping track of multiple public IP addresses can be a pain when it comes to security and audting.
