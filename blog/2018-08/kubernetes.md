@@ -1,6 +1,6 @@
-ensure---
+---
 title: Deploying applications to Kubernetes with Octopus
-description: Learn how to configure a simple multi-environment Kubernetes cluster and deploy an application to it.
+description: Learn how to configure a multi-environment Kubernetes cluster and deploy an application to it.
 author: matthew.casperson@gmail.com
 visibility: private
 metaImage: metaimage-kubernetes.png
@@ -879,3 +879,15 @@ Redeploy the project to the Development environment. Once the deployment is fini
 Now that we have the Development environment working as we expect, push the deployment to the Production environment (remembering to delete the old Service resource, otherwise the `nodePort` error will be thrown again). This time the deployment works straight away.
 
 ![](kubernetes-httpd-success-production.png)
+
+## Summary
+
+In this post we have seen how to manage multi-environment deployments within a Kubernetes cluster using Octopus. Each application and environment was configured in as a separate namespace, with a matching service account that had permissions only to that single namespace. The namespaces and service accounts were then configured as Kubernetes targets, which represent a permission boundary in a Kubernetes cluster.
+
+The deployments were then performed using the blue/green strategy, and we saw how failed deployments leave the last successful deployment in place while the failed resources can be debugged.
+
+We also looked at how to deploy applications with Helm across environments, which we implemented by deploying the nginx-ingress chart.
+
+The end result was a repeatable deployment process that emphasises testing changes in a Development environment, and pushing the changes to a Production environment when ready.
+
+I hope you have enjoyed this blog post, and feel free to join the [Slack](https://octopususergroup.slack.com/messages/CBQ3FPQAH) channel if you have any feedback.
