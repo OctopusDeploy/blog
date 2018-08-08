@@ -576,7 +576,139 @@ Either approach is valid, with its own pros and cons. For this example though we
 
 We will treat the Nginx Ingress Controller resource as an application deployment. This means, like we did with the Httpd deployment, a service account and target will be created for each environment.
 
-We've seen the YAML files to create service accounts and the scripts to get tokens a few times now, so I won't repeat them here.
+The Service Account, Role and RoleBinding resources need to be tweaked when deployng Helm charts. Deploying a Helm chart involves listing and creating resources in the `kube-system` namespace. To support this, we create an additional Role resource with the permissions that are required in the `kube-system` namespace, and bind that Role resource to the Service account resource with another RoleBinding resource.
+
+This is the YAML that creates the `nginx-deployer` Service Account resource in the `nginx-development` namespace.
+
+```yaml
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx-development
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-deployer
+  namespace: nginx-development
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: nginx-development
+  name: nginx-deployer-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nginx-deployer-binding
+  namespace: nginx-development
+subjects:
+- kind: ServiceAccount
+  name: nginx-deployer
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: nginx-deployer-role
+  apiGroup: ""
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: kube-system
+  name: nginx-deployer-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/portforward"]
+  verbs: ["list", "create"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nginx-deployer-development-binding
+  namespace: kube-system
+subjects:
+- kind: ServiceAccount
+  name: nginx-deployer
+  apiGroup: ""
+  namespace: nginx-development
+roleRef:
+  kind: Role
+  name: nginx-deployer-role
+  apiGroup: ""
+```
+
+This is the YAML for creating the `nginx-deployer` Service Account resource in the `nginx-production` namespace.
+
+```yaml
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx-production
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-deployer
+  namespace: nginx-production
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: nginx-production
+  name: nginx-deployer-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nginx-deployer-binding
+  namespace: nginx-production
+subjects:
+- kind: ServiceAccount
+  name: nginx-deployer
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: nginx-deployer-role
+  apiGroup: ""
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: kube-system
+  name: nginx-deployer-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/portforward"]
+  verbs: ["list", "create"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nginx-deployer-production-binding
+  namespace: kube-system
+subjects:
+- kind: ServiceAccount
+  name: nginx-deployer
+  apiGroup: ""
+  namespace: nginx-production
+roleRef:
+  kind: Role
+  name: nginx-deployer-role
+  apiGroup: ""
+```
+
+The process of getting the token for the service account is the same, as is creating the token Octopus account and target.
 
 After creating the accounts, namespaces and targets, we'll have the following list of targets configured in Octopus.
 
@@ -626,3 +758,60 @@ In the `Additional values.yaml files` section, add the `nginx-values` package we
 Save those change, and remember to change the lifecycle to `Application`.
 
 ![](kubernetes-helm-lifecycle.png)
+
+Now deploy the Helm chart to the Development environment.
+
+![](kubernetes-helm-nginx-development.png)
+
+Helm helpfully gives us an example of how to create Ingress resources that work with the newly deployed Ingress Controller resource.
+
+```yaml
+The nginx-ingress controller has been installed.
+It may take a few minutes for the LoadBalancer IP to be available.
+You can watch the status by running 'kubectl --namespace nginx-development get services -o wide -w nginx-development-nginx-ingress-controller'
+An example Ingress that makes use of the controller:
+  apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: nginx-development
+    name: example
+    namespace: foo
+  spec:
+    rules:
+      - host: www.example.com
+        http:
+          paths:
+            - backend:
+                serviceName: exampleService
+                servicePort: 80
+              path: /
+    # This section is only required if TLS is to be enabled for the Ingress
+    tls:
+        - hosts:
+            - www.example.com
+          secretName: example-tls
+```
+
+In particular, the annotations are important.
+
+```yaml
+annotations:
+  kubernetes.io/ingress.class: nginx-development
+```
+
+Remember how we set the `controller.ingressClass` parameter when deploying the Helm chart? This annotation is what that property controls. It means that an Ingress resource must specifically set the `kubernetes.io/ingress.class: nginx-development` annotation to be considered by this Ingress Controller resource. This is how we distinguish between rules for the development and production Ingress Controller resources.
+
+Go ahead and push the deployment to the Production environment.
+
+We can now see the Nginx Deployment resources in the Kubernetes cluster.
+
+![](kubernetes-nginx-deployments.png)
+
+Those Nginx Deployment resources are accessible from new Load balancer Service resources.
+
+![](kubernetes-nginx-services.png)
+
+We're now ready to connect to the Httpd application through the Ingress Controllers instead of through their own network load balancers.
+
+## Configuring Ingress
