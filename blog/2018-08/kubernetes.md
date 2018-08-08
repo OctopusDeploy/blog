@@ -622,3 +622,7 @@ In the `Additional values.yaml files` section, add the `nginx-values` package we
 ![](kubernetes-helm-additional-values.png)
 
 ![](kubernetes-helm-additional-values-summary.png)
+
+Save those change, and remember to change the lifecycle to `Application`.
+
+![](kubernetes-helm-lifecycle.png)
