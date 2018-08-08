@@ -74,7 +74,7 @@ To model the scripts run against the Kubernetes cluster, we'll create a lifecycl
 
 A Kubernetes target in Octopus is conceptually a permission boundary within a Kubernetes cluster. It defines this boundary using a Kubernetes namespace and a Kubernetes account.
 
-As the number of environments, teams, applications and services being deployed to a Kubernetes cluster grows, it is important to keep them isolated to prevent resources from accidentally being overwritten or deleted, or to prevent resources like CPU and memory being consumed by rouge deployments. Permissions and resource limits can be enforced by applying them to Kubernetes namespaces, and those restrictions are then applied to any deployment that is placed in the namespace.
+As the number of environments, teams, applications and services being deployed to a Kubernetes cluster grows, it is important to keep them isolated to prevent resources from accidentally being overwritten or deleted, or to prevent resources like CPU and memory being consumed by rogue deployments. Permissions and resource limits can be enforced by applying them to Kubernetes namespaces, and those restrictions are then applied to any deployment that is placed in the namespace.
 
 In keeping with the practise of least privilege, each namespace will have a corresponding system account that only has privileges to that single namespace.
 
@@ -882,7 +882,11 @@ And we get a 404. What is wrong here?
 
 The issue here is that we opened a URL like http://35.193.149.6/httpd, and then passed that same path down to the Httpd service. Our Httpd service has no content to serve under the `httpd` path. It only has the `index.html` file in the root path the mapped from a ConfigMap resource.
 
+![](kubernetes-bad-path.jpg)
+
 Fortunately this path mismatch is quite easy to solve. By setting the `nginx.ingress.kubernetes.io/rewrite-target` annotation to `/`, we can configure Nginx to pass the request that it receives on path `/httpd` along to the path `/`. So while we access the URL http://35.193.149.6/httpd in the browser, the Httpd service sees a request to the root path.
+
+![](kubernetes-good-path.jpg)
 
 ![](kubernetes-rewrite-target.png)
 
@@ -893,6 +897,12 @@ Redeploy the project to the Development environment. Once the deployment is fini
 Now that we have the Development environment working as we expect, push the deployment to the Production environment (remembering to delete the old Service resource, otherwise the `nodePort` error will be thrown again). This time the deployment works straight away.
 
 ![](kubernetes-httpd-success-production.png)
+
+:::hint
+The `nginx.ingress.kubernetes.io/rewrite-target` annotation works in simple cases, but when the returned content is a HTML page that has links to CSS and JavaScript file, those links may be relative to the base path, because the application serving the content has no idea about the original path that was used.
+
+In some cases this can be rectified with the `nginx.ingress.kubernetes.io/add-base-url` annotation. This will insert a `<base>` element into the header of the HTML being returned. [See the Nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) for more information.
+:::
 
 ## Summary
 
