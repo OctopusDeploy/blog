@@ -11,7 +11,16 @@ tags:
 
 Octopus 2018.8 previews a number of new features that make managing Kubernetes deployments easy. These Kubernetes steps and targets have been designed to allow teams to deploy applications to Kubernetes taking advantage of Octopus environments, dashboards, security, account management, variable management and integration with other platforms and services.
 
-In this blog post we'll walk through the process of deploying a simple Docker container to a Kubernetes cluster that hosts multiple environments.
+At the end of this blog post you will learn how to:
+* Configure Service Accounts and Namespaces with the principal of least privilege in mind
+* Deploy a functioning web server in Kubernetes
+* Perform blue/green updates of Kubernetes Deployments, with simulated failures
+* Access applications through a public network load balancer
+* Direct traffic with a multiple Nginx Ingress Controllers
+* Deploy applications using Helm
+* And do all of that across a development and production environment
+
+This will be a long blog post, but it will take you from a blank Kubernetes cluster to a functional multi-environment cluster with repeatable deployments using patterns that will scale as your teams and applications grow.
 
 :::warning
 The Kubernetes functionality in Octopus 2018.8 is a preview only. The features discussed here will likely change in future versions.
