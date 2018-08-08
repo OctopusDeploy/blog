@@ -14,7 +14,7 @@ Octopus 2018.8 previews a number of new features that make managing Kubernetes d
 In this blog post we'll walk through the process of deploying a simple Docker container to a Kubernetes cluster that hosts multiple environments.
 
 :::warning
-The Kubernetes functionality in Octopus 2018.8 is a preview only, and must not be used for production deployments or enabled on production Octopus instances.
+The Kubernetes functionality in Octopus 2018.8 is a preview only. The features discussed here may change in future versions.
 :::
 
 ## Prerequisites
@@ -417,6 +417,10 @@ So, take a breath, because we're only half done. Having reached the point of dep
 
 Deployments will sometimes fail. This is not only to be expected, but celebrated, as long as it happens in the `Development` environment. Failing quickly is a key component to a robust CD pipeline.
 
+Let's review what we have got deployed now. We have a load balancer pointing to a service resource, which in turn is pointing to the deployment resource.
+
+![](kubernetes-deployment-diagram.jpg)
+
 Let's simulate a failed deployment. We can do this by configuring the Container resource readiness probe to run a command that does not exist. Readiness probes are used by Kubernetes to determine when a Container resource is ready to start accepting traffic, and by deliberately configuring a test that can not pass, we can simulate a failed deployment.
 
 ![](kubernetes-readiness-probe.png)
@@ -429,9 +433,15 @@ As expected, the deployment fails.
 
 ![](kubernetes-failed-deployment.png)
 
-So what does it mean to have a failed deployment? Because we are using the blue/green deployment strategy, we now have two Deployment resources. Because the latest one called `httpd-deployments-842` has failed, the previous one called `httpd-deployments-841` has not been removed.
+So what does it mean to have a failed deployment?
+
+![](kubernetes-deployment-diagram-2.jpg)
+
+Because we are using the blue/green deployment strategy, we now have two Deployment resources. Because the latest one called `httpd-deployments-842` has failed, the previous one called `httpd-deployments-841` has not been removed.
 
 We also have two ConfigMap resources. Again, because the last deployment failed, the previous ConfigMap resource has not been removed.
+
+In essence the failed deployment resource and its associated configmap resource are orphaned. They are not accessible from the service resource, meaning to the outside world the new deployment is invisible.
 
 ![](kubernetes-google-cloud-workload-2.png)
 
@@ -448,6 +458,8 @@ Go ahead and remove the bad readiness check from the Container resource. Also ch
 ![](kubernetes-configmap-succeeded.png)
 
 This time the deployment succeeds. Because the deployment succeeded, the previous Deployment and ConfigMap resources have been cleaned up, and the new message is displayed on the webpage.
+
+![](kubernetes-deployment-diagram-3.jpg)
 
 ![](kubernetes-google-cloud-workload-3.png)
 
