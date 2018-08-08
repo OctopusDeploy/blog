@@ -815,3 +815,67 @@ Those Nginx Deployment resources are accessible from new Load balancer Service r
 We're now ready to connect to the Httpd application through the Ingress Controllers instead of through their own network load balancers.
 
 ## Configuring Ingress
+
+Back in the Httpd Container Deployment step, we need to change the `Service Type` from `Load balancer` to `Cluster IP`. This is because an Ingress Controller resource can direct traffic to the Httpd Service resource internally. There is no longer a need for the Httpd Service resource to be publically accessible, and a Cluster IP Service resource provides everything we need.
+
+![](kubernetes-service-clusterip.png)
+
+We now need to configure the Ingress resource.
+
+Start by defining the `Ingress Name`.
+
+![](kubernetes-ingress-name.png)
+
+The Ingress resources support the many different Ingress Controllers that are available via annotations. These are key/value pairs that often contain implementation specific values. Because we have deployed the Nginx ingress controller, a number of the annotations we are defining are specific to Nginx.
+
+The first annotation is shared across Ingress Controller resource implementations though. It is the `kubernetes.io/ingress.class` annotation that we talked about earlier. We set this annotation to `nginx-#{Octopus.Environment.Name | ToLower}`. This means that when deploying in the Development environment, this annotation will be set to `nginx-development`, and when deploying to the Production environment it will be set to `nginx-production`. This is how we target the environment specific Ingress Controller resources.
+
+The `kubernetes.io/ingress.allow-http` annotation is set to true to allow unsecure HTTP traffic, and `nginx.ingress.kubernetes.io/ssl-redirect` is set to false to prevent Nginx from redirecting HTTP traffic to HTTPS.
+
+![](kubernetes-ingress-annotations.png)
+
+:::warning
+Enabling HTTP traffic is a security risk and is shown here for demonstration purposes only.
+:::
+
+The last section to configure is the `Ingress Host Rules`. This is where we map incoming requests to the Service resource that exposes our Container resources. In our case we want to expose the `/httpd` path to the Service resource port that maps to port 80 on our Container resource.
+
+The `Host` field is left blank, which means it will capture requests for all hosts.
+
+![](kubernetes-host-rule.png)
+
+Go ahead and deploy this to the Development environment. You will get an error like this.
+
+```
+The Service "httpd" is invalid: spec.ports[0].nodePort: Invalid value: 30245: may not be used when `type` is 'ClusterIP'
+```
+
+![](kubernetes-nodeport-error.png)
+
+This error is thrown because we changed a Load balancer Service resource, which defined a `nodePort` property, to a Cluster IP Service resource, which does not support the `nodePort` property. Kubernetes is pretty good at knowing how to update an existing resource to match a new configuration, but in this case it doesn't know how to perform this change.
+
+The easiest solution is to delete the service and rerun the deployment. Because we have completely defined the deployment process in Octopus, we can delete and recreate these resources safe in the knowledge that there are no undocumented settings that have been applied to the cluster that we might be removing.
+
+![](kubernetes-delete-service.png)
+
+This time the deployment succeeds, and we have successfully deployed the Ingress resource. The last step is to open up the URL that we exposed via the Ingress Controller resource.
+
+![](kubernetes-httpd-error.png)
+
+And we get a 404. What is wrong here?
+
+## Managing URL Mappings
+
+The issue here is that we opened a URL like http://35.193.149.6/httpd, and then passed that same path down to the Httpd service. Our Httpd service has no content to serve under the `httpd` path. It only has the `index.html` file in the root path the mapped from a ConfigMap resource.
+
+Fortunately this path mismatch is quite easy to solve. By setting the `nginx.ingress.kubernetes.io/rewrite-target` annotation to `/`, we can configure Nginx to pass the request that it receives on path `/httpd` along to the path `/`. So while we access the URL http://35.193.149.6/httpd in the browser, the Httpd service sees a request to the root path.
+
+![](kubernetes-rewrite-target.png)
+
+Redeploy the project to the Development environment. Once the deployment is finished, the URL http://35.193.149.6/httpd will return our custom web page displaying the name of the environment.
+
+![](kubernetes-httpd-success.png)
+
+Now that we have the Development environment working as we expect, push the deployment to the Production environment (remembering to delete the old Service resource, otherwise the `nodePort` error will be thrown again). This time the deployment works straight away.
+
+![](kubernetes-httpd-success-production.png)
