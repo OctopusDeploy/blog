@@ -9,12 +9,12 @@ tags:
  - Kubernetes
 ---
 
-Octopus 2018.8 previews a number of new features that make managing Kubernetes deployments easy. These Kubernetes steps and targets have been designed to allow teams to deploy applications to Kubernetes taking advantage of the Octopus environments, dashboards, security, account management, variable management and integration with other platforms and services.
+Octopus 2018.8 previews a number of new features that make managing Kubernetes deployments easy. These Kubernetes steps and targets have been designed to allow teams to deploy applications to Kubernetes taking advantage of Octopus environments, dashboards, security, account management, variable management and integration with other platforms and services.
 
 In this blog post we'll walk through the process of deploying a simple Docker container to a Kubernetes cluster that hosts multiple environments.
 
 :::warning
-The Kubernetes functionality in Octopus 2018.8 is a preview only. The features discussed here may change in future versions.
+The Kubernetes functionality in Octopus 2018.8 is a preview only. The features discussed here will likely change in future versions.
 :::
 
 !toc
@@ -30,6 +30,10 @@ To follow along with this blog post, you will need to have a Kubernetes cluster 
 The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. One of the easiest ways to install `kubectl` is with [Chocolatey](https://chocolatey.org/packages/kubernetes-cli).
 
 Likewise the Helm steps require the `helm` executable to be available on the path. Helm is also available from [Chocolatey](https://chocolatey.org/packages/kubernetes-helm).
+
+Because the Kubernetes functionality in Octopus is in a preview state, the steps discussed in this post need to be enabled in the `Features` section.
+
+![](kubernetes-enable-steps.png)
 
 ## What we Will Create
 
@@ -52,11 +56,15 @@ Don't worry if this diagram looks intimidating, as we'll build up each of these 
 
 The Kubernetes support in Octopus relies on having a Docker feed defined. Because the HTTPD image we are deploying can be found in the main Docker repository, we'll create a feed against the `https://index.docker.io` URL.
 
+Learn more about Docker feeds [here](https://octopus.com/docs/packaging-applications/package-repositories/registries).
+
 ![](kubernetes-feed.png)
 
 ## The Environments
 
 Although we listed two environments as requirements, we'll actually create three. The additional environment, called Admin, will be where we run utility scripts to create user accounts.
+
+Learn more about environments [here](https://octopus.com/docs/infrastructure/environments).
 
 ![Kubernetes Environments](kubernetes-environments.png)
 
@@ -71,6 +79,8 @@ To model the progression from Development to Production, we'll create a lifecycl
 To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called Admin. It will contain a single phase for deployments to the Admin environment.
 
 ![Admin Lifecycle](kubernetes-admin-lifecycle.png)
+
+Learn more about lifecycles [here](https://octopus.com/docs/deployment-process/lifecycles).
 
 ## The Admin Target
 
@@ -98,7 +108,7 @@ Other cloud providers use different authentication schemes for their administrat
 
 Most Kubernetes clusters expose their API over HTTPS, but will often do so using an untrusted certificate. In order to communicate with the Kubernetes cluster, we can either disable any validation of the certificate, or provide the certificate as part of the Kubernetes target. Disabling certificate validation is not considered best practise, so we will instead upload the Kubernetes cluster certificate to Octopus.
 
-The certificate is provided by Google as a PEM file, like this (copied from the Cluster CA certificate field in the Cluster credentials dialog):
+The certificate is provided by Google as a PEM file, like this (copied from the `Cluster CA certificate` field in the `Cluster credentials` dialog):
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -124,6 +134,8 @@ Jash2XeDyUqUFUEsH+0+
 
 This text is then saved to a file called `k8s.pem`, and uploaded to Octopus.
 
+Learn more about certificates [here](https://octopus.com/docs/deployment-examples/certificates).
+
 ![Kubernetes Certificate](kubernetes-certificate.png)
 
 With the user account and the certificate saved, we can now create the Kubernetes target called Admin.
@@ -133,6 +145,8 @@ This target will deploy to the Admin environment, and take on a role that is als
 Because this Admin target will be used to run utility scripts, we don't want to have it target a Kubernetes namespace, so that field is left blank.
 
 ![Kubernetes Target](kubernetes-target.png)
+
+Learn more about Kubernetes targets [here](https://octopus.com/docs/deployment-examples/kubernetes-deployments/kubernetes-target).
 
 We now have a target that we can use to prepare the service accounts for the other namespaces.
 
@@ -279,7 +293,7 @@ Now that we have a target to deploy to, let's deploy our first application!
 
 The `Deploy Kubernetes containers` step provides an opinionated process for deploying applications to a Kubernetes cluster. This step implements a standard pattern for creating a collection of Kubernetes resources that work together to provide repeatable and resilient deployments.
 
-![](Kubernetes-deploy-containers-step.png)
+![](kubernetes-deploy-containers-step.png)
 
 The application we'll be deploying is [HTTPD](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, HTTPD is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like HTTPD does.
 
