@@ -19,9 +19,9 @@ The Kubernetes functionality in Octopus 2018.8 is a preview only, and must not b
 
 ## Prerequisites
 
-To follow along with this blog post, you will need to have a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kuberenetes service provided by Google Cloud, but any Kubernetes cluster will do.
+To follow along with this blog post, you will need to have a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kubernetes service provided by Google Cloud, but any Kubernetes cluster will do.
 
-[Helm](https://helm.sh/) is a package manager for Kuberenetes, and we'll use it to install some third party services into the Kubernetes cluster. Google Cloud provides [documentation](https://cloud.google.com/community/tutorials/nginx-ingress-gke#install-helm-in-cloud-shell) describing how to install Helm in their cloud, and other cloud providers will provide similar documentation.
+[Helm](https://helm.sh/) is a package manager for Kubernetes, and we'll use it to install some third party services into the Kubernetes cluster. Google Cloud provides [documentation](https://cloud.google.com/community/tutorials/nginx-ingress-gke#install-helm-in-cloud-shell) describing how to install Helm in their cloud, and other cloud providers will provide similar documentation.
 
 ## Preparing the Octopus Server
 
@@ -31,11 +31,11 @@ Likewise the Helm steps require the `helm` executable to be available on the pat
 
 ## What we Will Create
 
-Before we dive into the specifics of deploying a Kuberenetes application, it is worth understanding what we are trying to achieve with this example.
+Before we dive into the specifics of deploying a Kubernetes application, it is worth understanding what we are trying to achieve with this example.
 
 Our infrastructure has the following requirements:
 * Two environments: Development and Production
-* One Kuberenetes cluster
+* One Kubernetes cluster
 * A single application (we're deploying the [HTTPD Docker image](https://hub.docker.com/_/httpd/) as an example here)
 * The application is exposed by a custom URL path like http://myapp/httpd
 * Zero downtime deployments
@@ -48,7 +48,7 @@ Don't worry if this diagram looks intimidating, as we'll build up each of these 
 
 ## The Feed
 
-The Kubernetes support in Octopus relies on having a Docker feed defined as the source for the Docker images that will be deployed. Because the HTTPD image we are deploying can be found in the main Docker repository, we'll create a feed against the `https://index.docker.io` URL.
+The Kubernetes support in Octopus relies on having a Docker feed defined. Because the HTTPD image we are deploying can be found in the main Docker repository, we'll create a feed against the `https://index.docker.io` URL.
 
 ![](kubernetes-feed.png)
 
@@ -62,11 +62,11 @@ Although we listed two environments as requirements, we'll actually create three
 
 The default lifecycle in Octopus assumes that all environments will be deployed to, one after the other. This is not the case for us. We have two distinct lifecycles: Development -> Production, and Admin as a standalone environment where utility scripts are run.
 
-To model the progression from Development to Production, we'll create a lifecycle called Application. It will contain two phases, the first being deployments to the Development environment, and the second being deployments to the Production environment.
+To model the progression from Development to Production, we'll create a lifecycle called Application. It will contain two phases, the first for deployments to the Development environment, and the second for deployments to the Production environment.
 
 ![Application Lifecycle](kubernetes-application-lifecycle.png)
 
-To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called Admin. It will contain a single phase being deployments to the Admin environment.
+To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called Admin. It will contain a single phase for deployments to the Admin environment.
 
 ![Admin Lifecycle](kubernetes-admin-lifecycle.png)
 
@@ -277,7 +277,7 @@ Now that we have a target to deploy to, let's deploy our first application!
 
 The `Deploy Kubernetes containers` step provides an opinionated process for deploying applications to a Kubernetes cluster. This step implements a standard pattern for creating a collection of Kubernetes resources that work together to provide resilient deployments.
 
-![](kuberenetes-deploy-containers-step.png)
+![](Kubernetes-deploy-containers-step.png)
 
 The application we'll be deploying is [HTTPD](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, HTTPD is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like HTTPD does.
 
