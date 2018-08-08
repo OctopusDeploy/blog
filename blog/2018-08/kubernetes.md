@@ -1,4 +1,4 @@
----
+ensure---
 title: Deploying applications to Kubernetes with Octopus
 description: Learn how to configure a simple multi-environment Kubernetes cluster and deploy an application to it.
 author: matthew.casperson@gmail.com
@@ -405,7 +405,7 @@ All of which results in HTTPD serving the contents of the ConfigMap resource as 
 
 ![](kubernetes-httpd-webpage.png)
 
-If you have made it this far - congratulations! But you may be wondering why we had to configure so many things just to get to the point of displaying a static web page. Reading any other Kubernetes tutorial on the internet would have had you at this point 10000 words ago...
+If you have made it this far - congratulations! But you may be wondering why we had to configure so many things just to get to the point of displaying a static web page. Reading any other Kubernetes tutorial on the internet would have had you at this point 1000 words ago...
 
 In developing these Kubernetes steps for Octopus we found that everyone loves to show how quickly you can spin up a single application deployed to a single environment using the admin account and exposing everything on a dedicated load balancer. Which is great, but doesn't represent that kind of challenges that real world deployments face.
 
@@ -536,6 +536,89 @@ That was a trivial example, but does highlight the power that is available by co
 
 ## Migrating to Ingress
 
-For convenience we have exposed our HTTPD application via a Load balancer service. This was the quick solution, because Google Cloud took care of building a network load balancer with a public IP address.
+For convenience we have exposed our HTTPD application via a Load balancer Service resource. This was the quick solution, because Google Cloud took care of building a network load balancer with a public IP address.
 
-Unfortunately this solution will not scale with more applications. Each of those network load balancers costs money, and keeping track of multiple public IP addresses can be a pain when it comes to security and audting.
+Unfortunately this solution will not scale with more applications. Each of those network load balancers costs money, and keeping track of multiple public IP addresses can be a pain when it comes to security and auditing.
+
+The solution is to have a single Load balancer Service that accepts all incoming requests and then directs the traffic to the appropriate Pod resources based on the request. So https://myapp/userservice traffic would be directed to the user microservice, and https://myapp/cartservice traffic would be directed to the cart microservice.
+
+This is exactly what the Ingress resource does for us. A single Load balancer Service resource will direct traffic to an Ingress Controller resource, which in turn will direct traffic to other internal Service resources that don't incur any additional infrastructure costs.
+
+Unlike most Kubernetes resources, Ingress Controllers are provided by a third party. Some cloud providers have their own Ingress Controllers, but we'll use the Nginx Ingress controller as it is the most popular and can be ported between cloud providers.
+
+But to configure the Nginx Ingress Controller, we first need to set up Helm.
+
+## Configuring Helm
+
+Helm is to Kubernetes what Chocolatey is to Windows or Apt/Yum is to Linux. Helm provides a way to deploy both simple and complex applications to a Kubernetes cluster, taking care of all the dependencies and exposing the available options, and providing commands for upgrading and removing existing deployments.
+
+The great thing about Helm is that there is a huge catalogue of applications already packaged into what Helm calls charts. We will use one of those charts to install the Nginx Ingress Controller.
+
+## Install Helm in the Kubernetes Cluster
+
+Helm has a server side component that must first be installed on the Kubernetes cluster itself. Cloud providers have instructions for setting up the server side component, so hit up those docs to get the instructions for preparing your Kubernetes cluster with Helm.
+
+## Helm Feed
+
+To make use of Helm we need to configure a Helm feed. Since we will use the standard public Helm repository, we configure the feed to access https://kubernetes-charts.storage.googleapis.com/.
+
+![](kubernetes-helm-feed.png)
+
+## Ingress Controllers and Multiple Environments
+
+At this point we have a decision to make about how to deploy the Ingress Controllers resources.
+
+We can have one Load Balancer Service resource directing traffic to one Ingress Controller resource, which in turn can direct traffic across environments. Ingress Controller resources can direct traffic based on the hostname of the request, so traffic sent to https://myproductionapp/userservice can be sent to the Production environment, while https://mydevelopmentapp/userservice can be sent to the Development environment.
+
+The other option is to have an Ingress Controller resource per environment. In this case, an Ingress Controller resource in the Development environment would only send traffic to other services in the Development environment, and a Ingress Controller resource in the Production environment would send traffic to Production services.
+
+Either approach is valid, with its own pros and cons. For this example though we'll deploy an Ingress Controller resource to each environment.
+
+We will treat the Nginx Ingress Controller resource as an application deployment. This means, like we did with the Httpd deployment, a service account and target will be created for each environment.
+
+We've seen the YAML files to create service accounts and the scripts to get tokens a few times now, so I won't repeat them here.
+
+After creating the accounts, namespaces and targets, we'll have the following list of targets configured in Octopus.
+
+![](kubernetes-targets.png)
+
+## Configuring Helm Variables
+
+Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress for services in the Development environment from those in the Production environment.
+
+To define the Helm configuration, we need to create a YAML file called `values.yaml` with the following content.
+
+```yaml
+controller:
+  ingressClass: nginx-#{Octopus.Environment.Name | ToLower}
+```
+
+This file defines the `controller.ingressClass` parameter to be `nginx-development` for the Development environment, and `nginx-production` for the Production environment.
+
+Note that we are using the Octopus variable substitution here. While Helm does have its own templating language, this file will be processed by Octopus before being sent to Helm.
+
+Package this file up in a zip file. Any ZIP utility will do, or you can use the [Octopus CLI](https://octopus.com/docs/api-and-integration/octo.exe-command-line) with the following command. The Octopus CLI tool is handy here because it will produce a file with the correct version in the filename.
+
+```
+Octo.exe pack --id nginx-values --include .\values.yaml --version 1.0.0 --format zip --overwrite
+```
+
+This will produce a file called `nginx-values.1.0.0.zip`, which we then upload to the Octopus Built-In library.
+
+![](kubernetes-helm-values-file.png)
+
+Now we can deploy the Nginx Helm chart with the `Run a Helm Update` step.
+
+Select the `nginx-ingress` chart from the helm feed.
+
+![](kubernetes-helm-nginx.png)
+
+Set the `Kubernetes Release Name` to `nginx-#{Octopus.Environment.Name | ToLower}`. Again we have taken advantage of the Octopus variable substitution to enusre that the Helm release has a unique name in each environmnt.
+
+![](kubernetes-helm-name.png)
+
+In the `Additional values.yaml files` section, add the `nginx-values` package we uploaded earlier.
+
+![](kubernetes-helm-additional-values.png)
+
+![](kubernetes-helm-additional-values-summary.png)
