@@ -315,6 +315,8 @@ The `Labels` field allows general key/value pairs to be assigned to the resource
 
 ![](kubernetes-deployment-section.png)
 
+## The Deployment Strategy
+
 Kubernetes provides a powerful declarative model for the resources that it manages. When using the `kubectl` command directly, it is possible to describe the desired state of a resource (usually in YAML) and "apply" that resource into the Kubernetes cluster. Kubernetes will then compare the desired state of the resource to the current state of the resource in the cluster, and make the necessary changes to update the cluster resources to the desired state.
 
 Sometimes this change is as simple as updating a property like a label. But in other cases the desired state requires redeploying entire applications.
@@ -329,17 +331,21 @@ The blue/green deployment strategy provides some interesting possibilities for t
 
 ![](kubernetes-deployment-strategy.png)
 
+## Volumes and ConfigMaps
+
 Volumes provide a way for Container resources to access external data. [Kubernetes provides a lot of flexibility with volumes](http://g.octopushq.com/KubernetesVolumes), and they could be disks, network shares, directories on nodes, GIT repositories and more.
 
-For this example, we want to take the data stored in a ConfigMap resource, and expose it as a file within our Container resource. ConfigMap resources are convenient because Kubernetes ensures they are highly available, they can be shared across Container resources, and they are so easy to create.
+For this example, we want to take the data stored in a ConfigMap resource, and expose it as a file within our Container resource. ConfigMap resources are convenient because Kubernetes ensures they are highly available, they can be shared across Container resources, and they are easy to create.
 
-Because they are so convenient, the step can treat a ConfigMap resource as part of the deployment. This ensures that the Container resources that make up a deployment always have access to the ConfigMap that were associated with them. This is important, because you don't want to be in a position where version 1 of your application is referencing version 2 of your ConfigMap resource while version 2 of your application is in the process of being rolled out. Don't worry if that doesn't make much sense though, we'll see this in action later on.
+Because they are so convenient, the step can treat a ConfigMap resource as part of the deployment. This ensures that the Container resources that make up a deployment always have access to the ConfigMap resource that was associated with them. This is important, because you don't want to be in a position where version 1 of your application is referencing version 2 of your ConfigMap resource while version 2 of your application is in the process of being rolled out. Don't worry if that doesn't make much sense though, we'll see this in action later on.
 
 And this is exactly what we will configure for this demo. The `Volume type` is set to `Config Map`, it is given a `Name`, and we select the `Reference the config map created as port of this step` option to indicate that the ConfigMap resource that will be defined later on in the step is what the volume is pointing to.
 
-The ConfigMap Volume items provide a way to map a ConfigMap resource value to a filename. In this example we have set the `Key` to `index` and the path to `index.html`, meaning that we want to expose the ConfigMap resource values called `index` as a file with the name `index.html` when this volume is mounted in a Container resource.
+The ConfigMap Volume items provide a way to map a ConfigMap resource value to a filename. In this example we have set the `Key` to `index` and the path to `index.html`, meaning that we want to expose the ConfigMap resource value called `index` as a file with the name `index.html` when this volume is mounted in a Container resource.
 
 ![](kubernetes-volume.png)
+
+## The Container
 
 The next step is to configure the Container resources. This is where we will configure the HTTPD application.
 
@@ -351,13 +357,15 @@ In order to access HTTPD we need to expose a port. Being a web server, HTTPD acc
 
 ![](kubernetes-ports.png)
 
-The last piece of configuration is to mount the ConfigMap volume we defined earlier in a directory. The HTTPD Docker image has been built to serve content from the `/usr/local/apache2/htdocs` directory. If you recall, we configured the ConfigMap Volume to expose the value of the ConfigMap called `index` as a file called `index.html`. So by mounting the volume under the `/usr/local/apache2/htdocs` directory, this Container resource will have a file called `/usr/local/apache2/htdocs/index.html` with the contents of the value in the ConfigMap.
+The last piece of configuration is to mount the ConfigMap volume we defined earlier in a directory. The HTTPD Docker image has been built to serve content from the `/usr/local/apache2/htdocs` directory. If you recall, we configured the ConfigMap Volume to expose the value of the ConfigMap resource called `index` as a file called `index.html`. So by mounting the volume under the `/usr/local/apache2/htdocs` directory, this Container resource will have a file called `/usr/local/apache2/htdocs/index.html` with the contents of the value in the ConfigMap resource.
 
 ![](kubernetes-container-volume.png)
 
 The configuration of each container is summarized in the main step UI, so you can review it at a glance.
 
 ![](kubernetes-container-summary.png)
+
+# The ConfigMap
 
 We have talked a lot about the ConfigMap resource that is created by the step, so now it is time to configure it.
 
@@ -367,11 +375,13 @@ If you remember, we exposed this ConfigMap resource as a volume, and that volume
 
 ![](kubernetes-configmap.png)
 
+# The Service
+
 We're close now to having an application deployed and accessible. Because it is nice to see some progress, we'll take a little shortcut here and expose our application to the world with the quickest option available to us.
 
-To communicate with the HTTPD application, we need to take the port that we exposed on the Container resource (port 80, which we called `web`) through a service. And to access that service from the outside world, we'll create a load balancer service resource.
+To communicate with the HTTPD application, we need to take the port that we exposed on the Container resource (port 80, which we called `web`) through a Service resource. And to access that Service resource from the outside world, we'll create a Load balancer Service resource.
 
-By deploying a load balancer service resource, our cloud provider will create a network load balancer for us. What kind of network load balancer is created and how it is configured differs from one cloud provider to the next, but generally speaking the default is to create a network load balancer with a public IP address.
+By deploying a Load balancer Service resource, our cloud provider will create a network load balancer for us. What kind of network load balancer is created and how it is configured differs from one cloud provider to the next, but generally speaking the default is to create a network load balancer with a public IP address.
 
 :::warning
 Whenever you expose applications to the outside world, you must consider adding security like firewalls.
@@ -385,7 +395,7 @@ The `Service Type` section is where we configure the Service resource as a `Load
 
 ![](kubernetes-service-type.png)
 
-The `Service Ports` section is where incoming ports are mapped to the Container resource ports. In this case we are exposing port 80 on the service resource, and directing that to the `web` port (also port 80, but those values are not required to match) on the Container resource.
+The `Service Ports` section is where incoming ports are mapped to the Container resource ports. In this case we are exposing port 80 on the Service resource, and directing that to the `web` port (also port 80, but those values are not required to match) on the Container resource.
 
 ![](kubernetes-service-port.png)
 
@@ -394,6 +404,9 @@ The ports are summarized in the main UI so they can be quickly reviewed.
 ![](kubernetes-service-port-summary.png)
 
 At this point, all the groundwork has been laid, and we can deploy the application.
+
+
+# The First Deployment
 
 When you create a deployment of this project, Octopus allows you to define the version of the Docker image that will be included. If you look back at the configuration of the Container resource, you will notice that we never specified a version, just the image name. This is by design, as Octopus expects that most deployments will involve new Docker image versions, whereas the configuration of the Kubernetes resources will remain mostly static.
 
@@ -433,7 +446,7 @@ So, take a breath, because we're only half done. Having reached the point of dep
 
 Deployments will sometimes fail. This is not only to be expected, but celebrated, as long as it happens in the `Development` environment. Failing quickly is a key component to a robust CD pipeline.
 
-Let's review what we have got deployed now. We have a load balancer pointing to a service resource, which in turn is pointing to the deployment resource.
+Let's review what we have got deployed now. We have a load balancer pointing to a Service resource, which in turn is pointing to the Deployment resource.
 
 ![](kubernetes-deployment-diagram.jpg)
 
@@ -457,7 +470,7 @@ Because we are using the blue/green deployment strategy, we now have two Deploym
 
 We also have two ConfigMap resources. Again, because the last deployment failed, the previous ConfigMap resource has not been removed.
 
-In essence the failed deployment resource and its associated ConfigMap resource are orphaned. They are not accessible from the service resource, meaning to the outside world the new deployment is invisible.
+In essence the failed deployment resource and its associated ConfigMap resource are orphaned. They are not accessible from the Service resource, meaning to the outside world the new deployment is invisible.
 
 ![](kubernetes-google-cloud-workload-2.png)
 
@@ -744,7 +757,7 @@ After creating the accounts, namespaces and targets, we'll have the following li
 
 ## Configuring Helm Variables
 
-Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress for services in the Development environment from those in the Production environment.
+Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress resource rules for traffic in the Development environment from those in the Production environment.
 
 To define the Helm configuration, we need to create a YAML file called `values.yaml` with the following content.
 
@@ -882,7 +895,7 @@ The Service "httpd" is invalid: spec.ports[0].nodePort: Invalid value: 30245: ma
 
 This error is thrown because we changed a Load balancer Service resource, which defined a `nodePort` property, to a Cluster IP Service resource, which does not support the `nodePort` property. Kubernetes is pretty good at knowing how to update an existing resource to match a new configuration, but in this case it doesn't know how to perform this change.
 
-The easiest solution is to delete the service and rerun the deployment. Because we have completely defined the deployment process in Octopus, we can delete and recreate these resources safe in the knowledge that there are no undocumented settings that have been applied to the cluster that we might be removing.
+The easiest solution is to delete the Service resource and rerun the deployment. Because we have completely defined the deployment process in Octopus, we can delete and recreate these resources safe in the knowledge that there are no undocumented settings that have been applied to the cluster that we might be removing.
 
 ![](kubernetes-delete-service.png)
 
@@ -917,7 +930,7 @@ Now that we have the Development environment working as we expect, push the depl
 :::hint
 The `nginx.ingress.kubernetes.io/rewrite-target` annotation works in simple cases, but when the returned content is a HTML page that has links to CSS and JavaScript file, those links may be relative to the base path, because the application serving the content has no idea about the original path that was used.
 
-In some cases this can be rectified with the `nginx.ingress.kubernetes.io/add-base-url` annotation. This will insert a `<base>` element into the header of the HTML being returned. [See the Nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) for more information.
+In some cases this can be rectified with the `nginx.ingress.kubernetes.io/add-base-url: true` annotation. This will insert a `<base>` element into the header of the HTML being returned. [See the Nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) for more information.
 :::
 
 ## Summary
