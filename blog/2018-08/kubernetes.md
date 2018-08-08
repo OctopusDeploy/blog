@@ -830,7 +830,7 @@ The Ingress resources support the many different Ingress Controllers that are av
 
 The first annotation is shared across Ingress Controller resource implementations though. It is the `kubernetes.io/ingress.class` annotation that we talked about earlier. We set this annotation to `nginx-#{Octopus.Environment.Name | ToLower}`. This means that when deploying in the Development environment, this annotation will be set to `nginx-development`, and when deploying to the Production environment it will be set to `nginx-production`. This is how we target the environment specific Ingress Controller resources.
 
-The `kubernetes.io/ingress.allow-http` annotation is set to true to allow unsecure HTTP traffic, and `nginx.ingress.kubernetes.io/ssl-redirect` is set to false to prevent Nginx from redirecting HTTP traffic to HTTPS.
+The `kubernetes.io/ingress.allow-http` annotation is set to `true` to allow unsecure HTTP traffic, and `nginx.ingress.kubernetes.io/ssl-redirect` is set to `false` to prevent Nginx from redirecting HTTP traffic to HTTPS.
 
 ![](kubernetes-ingress-annotations.png)
 
@@ -858,7 +858,9 @@ The easiest solution is to delete the service and rerun the deployment. Because 
 
 ![](kubernetes-delete-service.png)
 
-This time the deployment succeeds, and we have successfully deployed the Ingress resource. The last step is to open up the URL that we exposed via the Ingress Controller resource.
+This time the deployment succeeds, and we have successfully deployed the Ingress resource.
+
+Let's open up the URL that we exposed via the Ingress Controller resource.
 
 ![](kubernetes-httpd-error.png)
 
