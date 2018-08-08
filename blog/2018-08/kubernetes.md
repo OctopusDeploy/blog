@@ -134,9 +134,9 @@ Because this Admin target will be used to run utility scripts, we don't want to 
 
 We now have a target that we can use to prepare the service accounts for the other namespaces.
 
-## The HTTPD Development Service Account
+## The Httpd Development Service Account
 
-We now have a Kubernetes target, but this target is configured with the cluster administrator account. It is not a good idea to be running deployments with an administrator account, so what we need to do is create a namespace and service account that will allow us to deploy only the resources we need for our application.
+We now have a Kubernetes target, but this target is configured with the cluster administrator account. It is not a good idea to be running deployments with an administrator account, so what we need to do is create a namespace and service account that will allow us to deploy only the resources we need for our application in an isolated area in the Kubernetes cluster.
 
 To do this, we need to create four resources in the Kubernetes cluster: a namespace, a service account, a role and a role binding. We've already discussed namespaces and service accounts. A role defines the actions that can be applied and the resources they can be applied to. A role binding associates a service account with the role, granting the service account the permissions that were defined in the role.
 
@@ -255,7 +255,7 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW5
 
 ![Service account token](kubernetes-service-account-token.png)
 
-## The HTTPD Development Target
+## The Httpd Development Target
 
 We now have everything we need to create a target that will be used to deploy the Httpd application in the Development environment.
 
@@ -263,7 +263,7 @@ We start by creating a token account in Octopus with the token that was returned
 
 ![](kubernetes-hhtpd-development-token.png)
 
-We then use this token in a new Kubernetes target called `Httpd Development`.
+We then use this token in a new Kubernetes target called `Httpd-Development`.
 
 Notice here that the `Target Roles` includes a role called `Httpd` that matches the name of the application being deployed, and that the `Kubernetes namespace` is set to `httpd-development`. The service account we created only has permissions to deploy into the `httpd-development` namespace, and will only be used to deploy the Httpd application into the `Development` environment.
 
@@ -273,13 +273,13 @@ Therefore this target represents the intersection of an application and an envir
 
 Now that we have a target to deploy to, let's deploy our first application!
 
-## The HTTPD Application
+## The Httpd Application
 
-The `Deploy Kubernetes containers` step provides an opinionated process for deploying applications to a Kubernetes cluster. This step implements a standard pattern for creating a collection of Kubernetes resources that work together to provide resilient deployments.
+The `Deploy Kubernetes containers` step provides an opinionated process for deploying applications to a Kubernetes cluster. This step implements a standard pattern for creating a collection of Kubernetes resources that work together to provide repeatable and resilient deployments.
 
 ![](Kubernetes-deploy-containers-step.png)
 
-The application we'll be deploying is [HTTPD](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, HTTPD is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like HTTPD does.
+The application we'll be deploying is [Httpd](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, Httpd is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like Httpd does.
 
 The step is given a name, and targets a role. The role that we target here is the one that was created to match the name of the application we are deploying. In selecting the `Httpd` role, we ensure that the step will use our Kubernetes target that was configured to deploy the Httpd application.
 
@@ -287,7 +287,7 @@ The step is given a name, and targets a role. The role that we target here is th
 
 The `Deployment` section is used to configure the details of the Deployment resource that will be created in Kubernetes.
 
-I'll use the term "resource" (e.g. Deployment resource or Pod resource) to distinguish between the resources that are created in the Kubernetes cluster (which is to say the resources that you would work with if you used the `kubectl` tool directly) and Octopus concepts or general actions like deploying things. This may lead to sentences like "Click the Deploy button to deploy the Deployment resource", but please don't hold that against me.
+I'll use the term "resource" (e.g. Deployment resource or Pod resource) from now on to distinguish between the resources that are created in the Kubernetes cluster (which is to say the resources that you would work with if you used the `kubectl` tool directly) and Octopus concepts or general actions like deploying things. This may lead to sentences like "Click the Deploy button to deploy the Deployment resource", but please don't hold that against me.
 
 The `Deployment name` field defines the name that is assigned to the Deployment resource. These names are the unique identifies for Kubernetes resources within a Namespace resource. This is significant, because it means that to create a new and distinct resource in Kubernetes, it must have a unique name. This will be important when we select a deployment strategy later on, so keep this in the back of your mind.
 
@@ -315,27 +315,27 @@ The blue/green deployment strategy provides some interesting possibilities for t
 
 Volumes provide a way for Container resources to access external data. [Kubernetes provides a lot of flexibility with volumes](http://g.octopushq.com/KubernetesVolumes), and they could be disks, network shares, directories on nodes, GIT repositories and more.
 
-For this example, we want to take the data stored in a ConfigMap resource, and expose it as a file within our Container resource. ConfigMaps are convenient because Kubernetes ensures they are highly available, they can be shared across Container resources, and they are so easy to create.
+For this example, we want to take the data stored in a ConfigMap resource, and expose it as a file within our Container resource. ConfigMap resources are convenient because Kubernetes ensures they are highly available, they can be shared across Container resources, and they are so easy to create.
 
-Because they are so convenient, the step can treat a ConfigMap resource as part of the deployment. This ensures that the Container resources that make up a deployment always has access to the ConfigMap that were associated with them. This is important, because you don't want to be in a position where version 1 of your application is referencing version 2 of your ConfigMap while version 2 of your application is in the process of being rolled out. Don't worry if that doesn't make much sense though, we'll see this in action later on.
+Because they are so convenient, the step can treat a ConfigMap resource as part of the deployment. This ensures that the Container resources that make up a deployment always have access to the ConfigMap that were associated with them. This is important, because you don't want to be in a position where version 1 of your application is referencing version 2 of your ConfigMap resource while version 2 of your application is in the process of being rolled out. Don't worry if that doesn't make much sense though, we'll see this in action later on.
 
 And this is exactly what we will configure for this demo. The `Volume type` is set to `Config Map`, it is given a `Name`, and we select the `Reference the config map created as port of this step` option to indicate that the ConfigMap resource that will be defined later on in the step is what the volume is pointing to.
 
-The ConfigMap Volume items provide a way to map a ConfigMap resource value to a filename. In this example we have set the `Key` to index and the path to `index.html`, meaning that we want to expose the ConfigMap resource values called `index` as a file with the name `index.html` when this volume is mounted in a Container resource.
+The ConfigMap Volume items provide a way to map a ConfigMap resource value to a filename. In this example we have set the `Key` to `index` and the path to `index.html`, meaning that we want to expose the ConfigMap resource values called `index` as a file with the name `index.html` when this volume is mounted in a Container resource.
 
 ![](kubernetes-volume.png)
 
-The next step is to configure the Container resources. This is where we will configure the HTTPD application.
+The next step is to configure the Container resources. This is where we will configure the Httpd application.
 
-We start by configuring the Docker image that will be used by the Container resource. Here we have seelcted the `httpd` image from the Docker feed we created previously.
+We start by configuring the Docker image that will be used by the Container resource. Here we have selected the `httpd` image from the Docker feed we created previously.
 
 ![](kubernetes-package.png)
 
-In order to access HTTPD we need to expose a port. Being a web server, HTTPD accepts traffic on port 80. Ports can be named to make them easier to work with, and so we'll call this port `web`.
+In order to access Httpd we need to expose a port. Being a web server, Httpd accepts traffic on port 80. Ports can be named to make them easier to work with, and so we'll call this port `web`.
 
 ![](kubernetes-ports.png)
 
-The last piece of configuration is to mount the ConfigMap volume we defined earlier in a directory. The HTTPD Docker image has been configured to serve content from the `/usr/local/apache2/htdocs` directory. If you recall, we configured the ConfigMap Volume to expose the value of the ConfigMap called `index` as a file called `index.html`. So by mounting the volume under the `/usr/local/apache2/htdocs` directory, this Container resource will have a file called `/usr/local/apache2/htdocs/index.html` with the contents of the value in the ConfigMap. We'll configure this ConfigMap next.
+The last piece of configuration is to mount the ConfigMap volume we defined earlier in a directory. The Httpd Docker image has been built to serve content from the `/usr/local/apache2/htdocs` directory. If you recall, we configured the ConfigMap Volume to expose the value of the ConfigMap called `index` as a file called `index.html`. So by mounting the volume under the `/usr/local/apache2/htdocs` directory, this Container resource will have a file called `/usr/local/apache2/htdocs/index.html` with the contents of the value in the ConfigMap.
 
 ![](kubernetes-container-volume.png)
 
@@ -347,15 +347,15 @@ We have talked a lot about the ConfigMap resource that is created by the step, s
 
 The `Config Map Name` section defines the name (or, technically, part of the name - more on that later) of the ConfigMap resource. The `Config Map Items` defines the key/value pairs that make up the ConfigMap resource.
 
-If you remember, we exposed this ConfigMap resource as a volume, and that volume defined an item that mapped the ConfiMap value called `index` to the file called `index.html`. So here we create an item called `index`, and the value of the item is what will eventually become the contents of the `index.html` file.
+If you remember, we exposed this ConfigMap resource as a volume, and that volume defined an item that mapped the ConfigMap resource value called `index` to the file called `index.html`. So here we create an item called `index`, and the value of the item is what will eventually become the contents of the `index.html` file.
 
 ![](kubernetes-configmap.png)
 
 We're close now to having an application deployed and accessible. Because it is nice to see some progress, we'll take a little shortcut here and expose our application to the world with the quickest option available to us.
 
-To communicate with the HTTPD application, we need to take the port that we exposed on the Container resource (port 80, which we called `web`) through a service. And to access that service from the outside world, we'll create a load balancer service.
+To communicate with the Httpd application, we need to take the port that we exposed on the Container resource (port 80, which we called `web`) through a service. And to access that service from the outside world, we'll create a load balancer service resource.
 
-By deploying a load balancer service, our cloud provider will create a network load balancer.. What kind of network load balancer is created and how it is configured differs from one cloud provider to the next, but generally speaking the default is to create a network load balancer with a public IP address.
+By deploying a load balancer service resource, our cloud provider will create a network load balancer for us. What kind of network load balancer is created and how it is configured differs from one cloud provider to the next, but generally speaking the default is to create a network load balancer with a public IP address.
 
 :::warning
 Whenever you expose applications to the outside world, you must consider adding security like firewalls.
@@ -369,7 +369,7 @@ The `Service Type` section is where we configure the Service resource as a `Load
 
 ![](kubernetes-service-type.png)
 
-The `Service Ports` section is where incoming ports are mapped to the Container resource ports. In this case we are exposing port 80 on the service, and directing that to the `web` port (also port 80, but those values are not required to match) on the Container resource.
+The `Service Ports` section is where incoming ports are mapped to the Container resource ports. In this case we are exposing port 80 on the service resource, and directing that to the `web` port (also port 80, but those values are not required to match) on the Container resource.
 
 ![](kubernetes-service-port.png)
 
@@ -379,7 +379,7 @@ The ports are summarized in the main UI so they can be quickly reviewed.
 
 At this point, all the groundwork has been laid, and we can deploy the application.
 
-When you create a deployment of this project, Octopus allows you to define the version of the Docker image that will be included. If you look back at the configuration of the Container resource, you will notice that we never specified a version, just the image name. This is by design, as Octopus expects that most deployments will involve new Docker image versions, whereas the configuration of the Kubernetes resources will otherwise remain mostly static.
+When you create a deployment of this project, Octopus allows you to define the version of the Docker image that will be included. If you look back at the configuration of the Container resource, you will notice that we never specified a version, just the image name. This is by design, as Octopus expects that most deployments will involve new Docker image versions, whereas the configuration of the Kubernetes resources will remain mostly static.
 
 This means the only decision to make with day to day deployments is the version of the Docker images, and you can take advantage of Octopus features like [channels](https://octopus.com/docs/deployment-process/channels) to further customize how image versions are selected during deployment.
 
@@ -389,7 +389,7 @@ And with that our deployment has succeeded.
 
 ![](kubernetes-deployment-logs.png)
 
-Jumping in the Google Cloud console we can see that a Deployment resource called `httpd-deployments-841` has been created. The name is a combination of the Deployment resource name we defined in the step of `httpd` and a unique identifier for the Octopus deployment of `deployments-841`. This name was created because the blue/green deployment strategy requires that the Deployment resource created with each deployment be unique.
+Jumping into the Google Cloud console we can see that a Deployment resource called `httpd-deployments-841` has been created. The name is a combination of the Deployment resource name we defined in the step of `httpd` and a unique identifier for the Octopus deployment of `deployments-841`. This name was created because the blue/green deployment strategy requires that the Deployment resource created with each deployment be unique.
 
 ![](kubernetes-google-cloud-workload.png)
 
@@ -401,7 +401,7 @@ The ConfigMap resource called `configmap-deployments-841` was also created. Like
 
 ![](kubernetes-google-cloud-configmap.png)
 
-All of which results in HTTPD serving the contents of the ConfigMap resource as a web page under the public IP address of the Service resource.
+All of which results in Httpd serving the contents of the ConfigMap resource as a web page under the public IP address of the Service resource.
 
 ![](kubernetes-httpd-webpage.png)
 
@@ -437,7 +437,7 @@ We also have two ConfigMap resources. Again, because the last deployment failed,
 
 ![](kubernetes-google-cloud-configmap-2.png)
 
-Because the old resources were not edited during deployment and were not removed because the deployment failed, our last deployment is still live, accessible, and displays the same text that was defined with the last successful deployment.
+Because the old resources were not edited during deployment and were not removed due the deployment failed, our last deployment is still live, accessible, and displays the same text that was defined with the last successful deployment.
 
 This again is one of the opinions that this step has about what a Kubernetes deployment should be. Failed deployments should not take down an environment, but instead give you the opportunity to resolve the issue while leaving the previous deployment in place.
 
@@ -453,7 +453,7 @@ This time the deployment succeeds. Because the deployment succeeded, the previou
 
 ![](kubernetes-httpd-afterredeploy.png)
 
-By creating new Deployment resources with each blue/green deployment, and by creating new ConfigMap resources with each deployment, we can be sure that our Kubernetes cluster is not left in an undefined state during a deployment or after a failed deployment.
+By creating new Deployment resources with each blue/green deployment, and by creating new ConfigMap resources with each deployment, we can be sure that our Kubernetes cluster is not left in an undefined state during an update or after a failed deployment.
 
 ## Promoting to Production
 
@@ -536,11 +536,11 @@ That was a trivial example, but does highlight the power that is available by co
 
 ## Migrating to Ingress
 
-For convenience we have exposed our HTTPD application via a Load balancer Service resource. This was the quick solution, because Google Cloud took care of building a network load balancer with a public IP address.
+For convenience we have exposed our Httpd application via a Load balancer Service resource. This was the quick solution, because Google Cloud took care of building a network load balancer with a public IP address.
 
 Unfortunately this solution will not scale with more applications. Each of those network load balancers costs money, and keeping track of multiple public IP addresses can be a pain when it comes to security and auditing.
 
-The solution is to have a single Load balancer Service that accepts all incoming requests and then directs the traffic to the appropriate Pod resources based on the request. So https://myapp/userservice traffic would be directed to the user microservice, and https://myapp/cartservice traffic would be directed to the cart microservice.
+The solution is to have a single Load balancer Service that accepts all incoming requests and then directs the traffic to the appropriate Pod resources based on the request. For example https://myapp/userservice traffic would be directed to the user microservice, and https://myapp/cartservice traffic would be directed to the cart microservice.
 
 This is exactly what the Ingress resource does for us. A single Load balancer Service resource will direct traffic to an Ingress Controller resource, which in turn will direct traffic to other internal Service resources that don't incur any additional infrastructure costs.
 
