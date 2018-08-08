@@ -17,6 +17,8 @@ In this blog post we'll walk through the process of deploying a simple Docker co
 The Kubernetes functionality in Octopus 2018.8 is a preview only. The features discussed here may change in future versions.
 :::
 
+!toc
+
 ## Prerequisites
 
 To follow along with this blog post, you will need to have a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kubernetes service provided by Google Cloud, but any Kubernetes cluster will do.
@@ -134,7 +136,7 @@ Because this Admin target will be used to run utility scripts, we don't want to 
 
 We now have a target that we can use to prepare the service accounts for the other namespaces.
 
-## The Httpd Development Service Account
+## The HTTPD Development Service Account
 
 We now have a Kubernetes target, but this target is configured with the cluster administrator account. It is not a good idea to be running deployments with an administrator account, so what we need to do is create a namespace and service account that will allow us to deploy only the resources we need for our application in an isolated area in the Kubernetes cluster.
 
@@ -255,9 +257,9 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW5
 
 ![Service account token](kubernetes-service-account-token.png)
 
-## The Httpd Development Target
+## The HTTPD Development Target
 
-We now have everything we need to create a target that will be used to deploy the Httpd application in the Development environment.
+We now have everything we need to create a target that will be used to deploy the HTTPD application in the Development environment.
 
 We start by creating a token account in Octopus with the token that was returned above.
 
@@ -265,7 +267,7 @@ We start by creating a token account in Octopus with the token that was returned
 
 We then use this token in a new Kubernetes target called `Httpd-Development`.
 
-Notice here that the `Target Roles` includes a role called `Httpd` that matches the name of the application being deployed, and that the `Kubernetes namespace` is set to `httpd-development`. The service account we created only has permissions to deploy into the `httpd-development` namespace, and will only be used to deploy the Httpd application into the `Development` environment.
+Notice here that the `Target Roles` includes a role called `Httpd` that matches the name of the application being deployed, and that the `Kubernetes namespace` is set to `httpd-development`. The service account we created only has permissions to deploy into the `httpd-development` namespace, and will only be used to deploy the HTTPD application into the `Development` environment.
 
 Therefore this target represents the intersection of an application and an environment, using a namespace and a limited service account to enforce the permission boundary. This is a pattern we'll repeat over and over with each application and environment.
 
@@ -273,15 +275,15 @@ Therefore this target represents the intersection of an application and an envir
 
 Now that we have a target to deploy to, let's deploy our first application!
 
-## The Httpd Application
+## The HTTPD Application
 
 The `Deploy Kubernetes containers` step provides an opinionated process for deploying applications to a Kubernetes cluster. This step implements a standard pattern for creating a collection of Kubernetes resources that work together to provide repeatable and resilient deployments.
 
 ![](Kubernetes-deploy-containers-step.png)
 
-The application we'll be deploying is [Httpd](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, Httpd is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like Httpd does.
+The application we'll be deploying is [HTTPD](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, HTTPD is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like HTTPD does.
 
-The step is given a name, and targets a role. The role that we target here is the one that was created to match the name of the application we are deploying. In selecting the `Httpd` role, we ensure that the step will use our Kubernetes target that was configured to deploy the Httpd application.
+The step is given a name, and targets a role. The role that we target here is the one that was created to match the name of the application we are deploying. In selecting the `Httpd` role, we ensure that the step will use our Kubernetes target that was configured to deploy the HTTPD application.
 
 ![](kubernetes-step-role.png)
 
@@ -325,17 +327,17 @@ The ConfigMap Volume items provide a way to map a ConfigMap resource value to a 
 
 ![](kubernetes-volume.png)
 
-The next step is to configure the Container resources. This is where we will configure the Httpd application.
+The next step is to configure the Container resources. This is where we will configure the HTTPD application.
 
 We start by configuring the Docker image that will be used by the Container resource. Here we have selected the `httpd` image from the Docker feed we created previously.
 
 ![](kubernetes-package.png)
 
-In order to access Httpd we need to expose a port. Being a web server, Httpd accepts traffic on port 80. Ports can be named to make them easier to work with, and so we'll call this port `web`.
+In order to access HTTPD we need to expose a port. Being a web server, HTTPD accepts traffic on port 80. Ports can be named to make them easier to work with, and so we'll call this port `web`.
 
 ![](kubernetes-ports.png)
 
-The last piece of configuration is to mount the ConfigMap volume we defined earlier in a directory. The Httpd Docker image has been built to serve content from the `/usr/local/apache2/htdocs` directory. If you recall, we configured the ConfigMap Volume to expose the value of the ConfigMap called `index` as a file called `index.html`. So by mounting the volume under the `/usr/local/apache2/htdocs` directory, this Container resource will have a file called `/usr/local/apache2/htdocs/index.html` with the contents of the value in the ConfigMap.
+The last piece of configuration is to mount the ConfigMap volume we defined earlier in a directory. The HTTPD Docker image has been built to serve content from the `/usr/local/apache2/htdocs` directory. If you recall, we configured the ConfigMap Volume to expose the value of the ConfigMap called `index` as a file called `index.html`. So by mounting the volume under the `/usr/local/apache2/htdocs` directory, this Container resource will have a file called `/usr/local/apache2/htdocs/index.html` with the contents of the value in the ConfigMap.
 
 ![](kubernetes-container-volume.png)
 
@@ -353,7 +355,7 @@ If you remember, we exposed this ConfigMap resource as a volume, and that volume
 
 We're close now to having an application deployed and accessible. Because it is nice to see some progress, we'll take a little shortcut here and expose our application to the world with the quickest option available to us.
 
-To communicate with the Httpd application, we need to take the port that we exposed on the Container resource (port 80, which we called `web`) through a service. And to access that service from the outside world, we'll create a load balancer service resource.
+To communicate with the HTTPD application, we need to take the port that we exposed on the Container resource (port 80, which we called `web`) through a service. And to access that service from the outside world, we'll create a load balancer service resource.
 
 By deploying a load balancer service resource, our cloud provider will create a network load balancer for us. What kind of network load balancer is created and how it is configured differs from one cloud provider to the next, but generally speaking the default is to create a network load balancer with a public IP address.
 
@@ -401,7 +403,7 @@ The ConfigMap resource called `configmap-deployments-841` was also created. Like
 
 ![](kubernetes-google-cloud-configmap.png)
 
-All of which results in Httpd serving the contents of the ConfigMap resource as a web page under the public IP address of the Service resource.
+All of which results in HTTPD serving the contents of the ConfigMap resource as a web page under the public IP address of the Service resource.
 
 ![](kubernetes-httpd-webpage.png)
 
@@ -441,7 +443,7 @@ Because we are using the blue/green deployment strategy, we now have two Deploym
 
 We also have two ConfigMap resources. Again, because the last deployment failed, the previous ConfigMap resource has not been removed.
 
-In essence the failed deployment resource and its associated configmap resource are orphaned. They are not accessible from the service resource, meaning to the outside world the new deployment is invisible.
+In essence the failed deployment resource and its associated ConfigMap resource are orphaned. They are not accessible from the service resource, meaning to the outside world the new deployment is invisible.
 
 ![](kubernetes-google-cloud-workload-2.png)
 
@@ -548,7 +550,7 @@ That was a trivial example, but does highlight the power that is available by co
 
 ## Migrating to Ingress
 
-For convenience we have exposed our Httpd application via a Load balancer Service resource. This was the quick solution, because Google Cloud took care of building a network load balancer with a public IP address.
+For convenience we have exposed our HTTPD application via a Load balancer Service resource. This was the quick solution, because Google Cloud took care of building a network load balancer with a public IP address.
 
 Unfortunately this solution will not scale with more applications. Each of those network load balancers costs money, and keeping track of multiple public IP addresses can be a pain when it comes to security and auditing.
 
@@ -586,9 +588,9 @@ The other option is to have an Ingress Controller resource per environment. In t
 
 Either approach is valid, with its own pros and cons. For this example though we'll deploy an Ingress Controller resource to each environment.
 
-We will treat the Nginx Ingress Controller resource as an application deployment. This means, like we did with the Httpd deployment, a service account and target will be created for each environment.
+We will treat the Nginx Ingress Controller resource as an application deployment. This means, like we did with the HTTPD deployment, a service account and target will be created for each environment.
 
-The Service Account, Role and RoleBinding resources need to be tweaked when deployng Helm charts. Deploying a Helm chart involves listing and creating resources in the `kube-system` namespace. To support this, we create an additional Role resource with the permissions that are required in the `kube-system` namespace, and bind that Role resource to the Service account resource with another RoleBinding resource.
+The Service Account, Role and RoleBinding resources need to be tweaked when deploying Helm charts. Deploying a Helm chart involves listing and creating resources in the `kube-system` namespace. To support this, we create an additional Role resource with the permissions that are required in the `kube-system` namespace, and bind that Role resource to the Service account resource with another RoleBinding resource.
 
 This is the YAML that creates the `nginx-deployer` Service Account resource in the `nginx-development` namespace.
 
@@ -757,7 +759,7 @@ Select the `nginx-ingress` chart from the helm feed.
 
 ![](kubernetes-helm-nginx.png)
 
-Set the `Kubernetes Release Name` to `nginx-#{Octopus.Environment.Name | ToLower}`. Again we have taken advantage of the Octopus variable substitution to enusre that the Helm release has a unique name in each environmnt.
+Set the `Kubernetes Release Name` to `nginx-#{Octopus.Environment.Name | ToLower}`. Again we have taken advantage of the Octopus variable substitution to ensure that the Helm release has a unique name in each environment.
 
 ![](kubernetes-helm-name.png)
 
@@ -824,11 +826,11 @@ Those Nginx Deployment resources are accessible from new Load balancer Service r
 
 ![](kubernetes-nginx-services.png)
 
-We're now ready to connect to the Httpd application through the Ingress Controllers instead of through their own network load balancers.
+We're now ready to connect to the HTTPD application through the Ingress Controllers instead of through their own network load balancers.
 
 ## Configuring Ingress
 
-Back in the Httpd Container Deployment step, we need to change the `Service Type` from `Load balancer` to `Cluster IP`. This is because an Ingress Controller resource can direct traffic to the Httpd Service resource internally. There is no longer a need for the Httpd Service resource to be publically accessible, and a Cluster IP Service resource provides everything we need.
+Back in the HTTPD Container Deployment step, we need to change the `Service Type` from `Load balancer` to `Cluster IP`. This is because an Ingress Controller resource can direct traffic to the HTTPD Service resource internally. There is no longer a need for the HTTPD Service resource to be publicly accessible, and a Cluster IP Service resource provides everything we need.
 
 ![](kubernetes-service-clusterip.png)
 
@@ -880,11 +882,11 @@ And we get a 404. What is wrong here?
 
 ## Managing URL Mappings
 
-The issue here is that we opened a URL like http://35.193.149.6/httpd, and then passed that same path down to the Httpd service. Our Httpd service has no content to serve under the `httpd` path. It only has the `index.html` file in the root path the mapped from a ConfigMap resource.
+The issue here is that we opened a URL like http://35.193.149.6/httpd, and then passed that same path down to the HTTPD service. Our HTTPD service has no content to serve under the `httpd` path. It only has the `index.html` file in the root path the mapped from a ConfigMap resource.
 
 ![](kubernetes-bad-path.jpg)
 
-Fortunately this path mismatch is quite easy to solve. By setting the `nginx.ingress.kubernetes.io/rewrite-target` annotation to `/`, we can configure Nginx to pass the request that it receives on path `/httpd` along to the path `/`. So while we access the URL http://35.193.149.6/httpd in the browser, the Httpd service sees a request to the root path.
+Fortunately this path mismatch is quite easy to solve. By setting the `nginx.ingress.kubernetes.io/rewrite-target` annotation to `/`, we can configure Nginx to pass the request that it receives on path `/httpd` along to the path `/`. So while we access the URL http://35.193.149.6/httpd in the browser, the HTTPD service sees a request to the root path.
 
 ![](kubernetes-good-path.jpg)
 
@@ -914,4 +916,4 @@ We also looked at how to deploy applications with Helm across environments, whic
 
 The end result was a repeatable deployment process that emphasises testing changes in a Development environment, and pushing the changes to a Production environment when ready.
 
-I hope you have enjoyed this blog post, and feel free to join the [Slack](https://octopususergroup.slack.com/messages/CBQ3FPQAH) channel if you have any feedback.
+I hope you have enjoyed this blog post, and if you have any suggestions or comments about the Kubernetes functionality please leave a comment. These steps are in a preview state, so your feedback is appreciated.
