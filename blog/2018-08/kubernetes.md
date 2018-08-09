@@ -957,6 +957,29 @@ The `nginx.ingress.kubernetes.io/rewrite-target` annotation works in simple case
 In some cases this can be rectified with the `nginx.ingress.kubernetes.io/add-base-url: true` annotation. This will insert a `<base>` element into the header of the HTML being returned. [See the Nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) for more information.
 :::
 
+## Output Variables
+
+One of the benefits of using Octopus to perform Kubernetes deployments is that your deployment process can integrate with a much wider ecosystem. This is done by accessing the output variables that are generated for each resource created by this step. These parameters can then be consumed in later steps.
+
+:::hint
+By setting the `OctopusPrintEvaluatedVariables` variable to `True` in the Octopus project, it is possible to see all the variables that are available during deployment. See the [documentation](https://octopus.com/docs/support/debug-problems-with-octopus-variables#DebugproblemswithOctopusvariables-Writethevariablestothedeploymentlog) for more details.
+:::
+
+In our case, the output variables are (replace `step name`, with the name of the step):
+* Octopus.Action[step name].Output.Ingress
+* Octopus.Action[step name].Output.ConfigMap
+* Octopus.Action[step name].Output.Deployment
+* Octopus.Action[step name].Output.Service
+
+These variables contain the JSON representation of the Kubernetes resources that were created. By parsing these JSON strings in a script step, we can for example display a link to the network load balancer that is exposing our Kubernetes services.
+
+```PowerShell
+$IngressParsed = ConvertFrom-Json -InputObject $OctopusParameters["Octopus.Action[Httpd].Output.Ingress"]
+Write-Host "Access the ingress load balancer at http://$($IngressParsed.status.loadBalancer.ingress.ip)"
+```
+
+![](kubernetes-script-summary.png)
+
 ## Summary
 
 In this post we have seen how to manage multi-environment deployments within a Kubernetes cluster using Octopus. Each application and environment was configured in as a separate namespace, with a matching service account that had permissions only to that single namespace. The namespaces and service accounts were then configured as Kubernetes targets, which represent a permission boundary in a Kubernetes cluster.
