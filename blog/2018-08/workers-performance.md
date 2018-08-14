@@ -66,7 +66,7 @@ On the right, the whole package still has to go out over the network, so the net
 
 What about when we build the next version of that package and deploy the project again.  In that case, the cost of running on the Built-in Worker on the Octopus Server will be the same; however, on an external Worker we have the option of not pushing the whole package and instead calcuating a package diff and sending just the diff.  If we do that, we get a graph like on the left below.
 
-![FIXME](workers-s3-package-graphs.png "width=500")
+![S3 upload package options](workers-s3-package-graphs.png "width=500")
 
 For the nearly 300MB package there's a new CPU cost, which is the calculation of the diff, and, in this case, we can see that represented on the disk because Octopus has to access both versions of the package to calcuate the diff.  In the task logs I see
 
@@ -101,7 +101,7 @@ For this test, I cloned a public ASP.NET Core project off Github, made some smal
 
 Once more, the step is targeted to run on the Default Worker Pool.  So when the pool is empty, it runs on the Built-in Worker on the Octopus server and gives the graphs on the left below, when the pool contains a Worker, the step runs on that machine and the impact on the Octopus Server is shown in the graphs on the right. 
 
-![FIXME](workers-Azure-graphs.png "width=500")
+![Azure Web App deployment](workers-Azure-graphs.png "width=500")
 
 On the left, the CPU cost is starting the deployment, invoking Calamari, unpacking the package, doing variable replacement, and negotiating with Azure about what files need to be uploaded.  The disk cost is for the same reasons and the network cost is pushing the data up to the Cloud.  This was a pretty small package, so all those costs go up as the package size increases.  If you're pushing 100MB+ packages to Azure, with pre- and post-deploy scripts, configuration transforms, variable substitution, etc., then you'll see a much bigger hit here.
 
@@ -112,7 +112,7 @@ On the right, when the step runs on an external Worker, the only costs on the Oc
 
 I've described 3 pretty toy deployment examples, but each of them involves some intrinsic work that has to be done for the deployment to succeed.  So there's no case for optimising away these costs, but the costs can be moved.  The following graph show the cost on the Octopus Server when all three projects run simultaneously.  On the left is using the Built-in Worker, and on the right is when an external Worker does the actual deployment work.  Note the scale on the disk graphs - the left on the server is 10X on the right.
 
-![Three deployments together](workers-together-compare-graphs.png "width=500")
+![Three Deployments](workers-together-compare-graphs.png "width=500")
 
 Now, the graphs on the left aren't the toughest day this server will ever see, but if that's not even close to the workload on your Octopus instance, then you can probably free up even more resources on your Octopus Server by moving the CPU work, disk hits and network traffic off your Octopus Server.  Once the workload gets bigger, it will also start to have an impact on total deployment time as parallel deployments compete for resources, so moving to Workers might speed up your deployments as well as move work off the server box.
 
