@@ -60,7 +60,7 @@ In this example, I'm doing an S3 upload of a 296MB file.  Again, I've targeted t
 
 ![S3 Upload](workers-s3-graphs.png "width=500")
 
-On the left, you see there's some CPU cost to pushing the package to AWS S3 and a network hit getting the package on the wire.  In this example, the package was already on the server.  If the server had to first acquire the package, we'd see extra network and disk cost for that.  
+On the left, you see there's some CPU cost to pushing the package to AWS S3 and a network hit getting the package on the wire.  In this example, the package was already on the server.  If the server had to first acquire the package, we'd see [extra network and disk cost](https://octopus.com/docs/deployment-process/performance#package-transfer) for that.  
 
 On the right, the whole package still has to go out over the network, so the network cost is the same, but it's interesting that the package push to S3 costs more CPU than Octopus just pushing it down Halibut to a Worker.
 
@@ -68,7 +68,7 @@ What about when we build the next version of that package and deploy the project
 
 ![S3 upload package options](workers-s3-package-graphs.png "width=500")
 
-For the nearly 300MB package there's a new CPU cost, which is the calculation of the diff, and, in this case, we can see that represented on the disk because Octopus has to access both versions of the package to calculate the diff.  In the task logs I see
+For the nearly 300MB package there's a new CPU cost, which is the calculation of the diff, and, in this case, we can see that represented on the disk because Octopus has to access both versions of the package to calculate the diff.  In the task logs, I see
 
 ```
 22:24:14   Verbose  |         Finding earlier packages that have been uploaded to this Tentacle.
@@ -90,7 +90,7 @@ For the nearly 300MB package there's a new CPU cost, which is the calculation of
 
 So, in this case, I got a nice 63.21% reduction, but the payoff for the cost of calculating the diff would have been better if the two packages had turned out more similar (interestingly, the packages were Octopus Server versions 2018.7.7 and 2018.7.8, so I had expected them to be more similar - just shows how much work we cram into each version)
 
-There's also the option for tentacles to acquire packages directly, rather than ever having the package on the server.  We're adding new features to allow multiple packages per step, so we're revamping how that looks in the UI, but for this test, I set the variable `Octopus.Action.Package.DownloadOnTentacle`.  And with that set, our Octopus Server does very little at all (graphs on the right above) it's just the cost of asking the Worker if it’s finished and writing the logs.
+There's also the option for tentacles to acquire packages directly, rather than ever having the package on the server.  We're adding new features to allow multiple packages per step, so we're revamping how that looks in the UI, but for this test, I set the [Octopus System Variable](/docs/deployment-process/variables/system-variables.md) `Octopus.Action.Package.DownloadOnTentacle`.  And with that set, our Octopus Server does very little at all (graphs on the right above) it's just the cost of asking the Worker if it’s finished and writing the logs.
 
 
 ## Case 3: An Azure Web App deploy
@@ -103,7 +103,7 @@ Once more, the step is targeted to run on the Default Worker Pool.  So when the 
 
 ![Azure Web App deployment](workers-Azure-graphs.png "width=500")
 
-On the left, the CPU cost is starting the deployment, invoking Calamari, unpacking the package, doing variable replacement, and negotiating with Azure about what files need to be uploaded.  The disk cost is for the same reasons and the network cost is pushing the data up to the Cloud.  This was a pretty small package, so all those costs go up as the package size increases.  If you're pushing 100MB+ packages to Azure, with pre- and post-deploy scripts, configuration transforms, variable substitution, etc., then you'll see a much bigger hit here.
+On the left, the CPU cost is starting the deployment, invoking Calamari, unpacking the package, doing variable replacement, and negotiating with Azure about what files need to be uploaded.  The disk cost is for the same reasons and the network cost is negotiation with Azure and pushing the data up to the Cloud.  This was a pretty small package, so all those costs go up as the package size increases.  If you're pushing 100MB+ packages to Azure, with pre- and post-deploy scripts, configuration transforms, variable substitution, etc., then you'll see a much bigger hit here.
 
 On the right, when the step runs on an external Worker, the only costs on the Octopus Server are a small amount of network traffic and writing what turned out to be a 1.1MB log file.  Note the scale on the disk graph is 10x less in this case.  Again these costs could be further reduced by choosing to download the package directly to the Worker and external log storage.
 
@@ -119,7 +119,9 @@ Now, the graphs on the left aren't the toughest day this server will ever see, b
 
 # Conclusion
 
-In this post, with three simple deployments, I've picked apart the kinds of costs that deployments place on your Octopus Server machine.  The examples weren't large or real, so if I can do load shedding in even these toy examples, you should be able to do more with real workloads.  I hope they've made you a little more aware of some of the moving parts in your deployments and helped you understand how you can optimize your deployments using Workers.  There are lots of options, for example, from deploying from the server, to only pushing package diffs, to moving the entire package handling off to the Worker - maybe the diffs are small enough that spending the CPU on the server will make a big win on network traffic, or maybe you can colocate your package feeds, Workers and Azure targets so that turn out to be the best network option.   Workers just give you more options on how to set up your deployments and how to spread the work.
+In this post, with three simple deployments, I've picked apart the kinds of costs that deployments place on your Octopus Server machine.  The examples weren't large or real, so if I can do load shedding in even these toy examples, you should be able to do more with real workloads.  I hope they've made you a little more aware of some of the moving parts in your deployments and helped you understand how you can optimize your deployments for [steps that use Workers](https://octopus.com/docs/administration/workers#where-steps-run).  There are lots of options, for example, from deploying from the server, to only pushing package diffs, to moving the entire package handling off to the Worker - maybe the diffs are small enough that spending the CPU on the server will make a big win on network traffic, or maybe you can colocate your package feeds, Workers and Azure targets so that turn out to be the best network option.   Workers just give you more options on how to set up your deployments and how to spread the work.
+
+We've also got more docs [here](https://octopus.com/docs/administration/performance) and [here](https://octopus.com/docs/deployment-process/performance) to help you optimize your Octopus server.
 
 Remember that there's not much special about a worker.  It's just a tentacle or SSH machine, so you can harvest whatever spare computing resources you have - that could be existing tentacle VMs that aren't worked much, it could be on-prem machines it could be Dev or Test boxes with spare cycles - or you can provision special worker infrastructure just for deployment load.
 
