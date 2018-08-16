@@ -123,7 +123,7 @@ In this post, with three simple deployments, I've picked apart the kinds of cost
 
 We've also got more docs [here](https://octopus.com/docs/administration/performance) and [here](https://octopus.com/docs/deployment-process/performance) to help you optimize your Octopus server.
 
-Remember that there's not much special about a worker.  It's just a tentacle or SSH machine, so you can harvest whatever spare computing resources you have - that could be existing tentacle VMs that aren't worked much, it could be on-prem machines it could be Dev or Test boxes with spare cycles - or you can provision special worker infrastructure just for deployment load.
+Remember that there's not much special about a worker.  It's just a tentacle or SSH machine, so you can harvest whatever spare computing resources you have - that could be existing tentacle VMs that aren't worked much, it could be on-prem machines, it could be Dev or Test boxes with spare cycles - or you can provision special worker infrastructure just for deployment load.
 
 Next time, I'm going to look closely at PaaS targets with default worker pools attached to each target, so you can have your workers near your targets and even firewall off your infrastructure so that the Workers poll the server from a secured network and only the Workers have access to deploy to the targets.
 
