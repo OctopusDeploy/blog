@@ -16,11 +16,11 @@ tags:
 
 Worker let you shift some of the deployment work from your Octopus Server to other machines.  You might move work over to Workers simply from a security point of view, e.g. so that scripts aren't running on your Octopus Server box.  But there are also other reasons to move work off the server.  One of those is performance.  This time, I'm going to look at the effect of using Workers on you Octopus Server's performance during deployments.  
 
-Now, this is a case where I have to start with the classic warning that your milage may vary.  There's lots going on in your Octopus server.  Depending on your setup, you might have the database on the same machine, you might have it elsewhere (and we [recomend you do](https://octopus.com/docs/administration/performance#tips)), you might have logs stored locally or on a share, and your deployment patterns will greatly affect how much work the server is doing.  In this post, I'm going to look at the CPU, disk and network load on the server during deployments.
+Now, this is a case where I have to start with the classic warning that your mileage may vary.  There's lots going on in your Octopus server.  Depending on your setup, you might have the database on the same machine, you might have it elsewhere (and we [recomend you do](https://octopus.com/docs/administration/performance#tips)), you might have logs stored locally or on a share, and your deployment patterns will greatly affect how much work the server is doing.  In this post, I'm going to look at the CPU, disk and network load on the server during deployments.
 
-We're always driving pretty hard to improve the performace of Octopus.  Sometimes that's database performance.  Sometimes, it's finding parts where we can optimize or cache to improve API performance.  This post isn't about those bits.  It's about when the wheels hit the road when you are running a deployment.  Octopus can't optimize round these bits.  It's the actual work of the deployment, so it has to be done.  But you can distribute the workload to get the best results for you.
+We're always driving pretty hard to improve the performance of Octopus.  Sometimes that's database performance.  Sometimes, it's finding parts where we can optimize or cache to improve API performance.  This post isn't about those bits.  It's about when the wheels hit the road when you are running a deployment.  Octopus can't optimize round these bits.  It's the actual work of the deployment, so it has to be done.  But you can distribute the workload to get the best results for you.
 
-Your Octopus Server is the centre piece of your deployment infrastructure, and an overloaded Octopus Server makes deployments slow and deployers sad. However, using Workers, you can effectively shift CPU, Disk, and Network load to external machines, giving your Octopus Server a break and your deployments a boost.
+Your Octopus Server is the centerpiece of your deployment infrastructure, and an overloaded Octopus Server makes deployments slow and deployers sad. However, using Workers, you can effectively shift CPU, Disk, and Network load to external machines, giving your Octopus Server a break and your deployments a boost.
 
 In this post, I'm going to pick things apart so you can understand the working pieces and what the tradeoffs are in distributing out your server's work to Worker machines.  To do that, I'm going to run everything from a perspective you can see.  So this isn't about what I can measure internally, it's about what you can observe on your machine and how that affects your server and your deployment times.
 
@@ -42,33 +42,33 @@ When the default pool is empty, the step runs on the Built-in Worker on the Octo
 
 In my setup, both the database and log storage are on the Octopus server machine, so the first hit on the CPU contains some database work as well as planning the deployment.  But the database is so small in my examples that I'll ignore its effects.
 
-On the left, we see a CPU hit that turns out to be cost of invoking a fresh [Calamari](https://github.com/OctopusDeploy/Calamari) (our open-source, conventions-based deployment executable) process for the Built-in Worker.  The sleep separates that work from the second spike, which is mostly the `for` loop.  Under 'Disk', you can see spikes for setting up logs etc, and then writing the logs to disk.  The scale on the disk graph lets you know we weren't taxing anything too much with this simple log write.
+On the left, we see a CPU hit that turns out to be cost of invoking a fresh [Calamari](https://github.com/OctopusDeploy/Calamari) (our open-source, conventions-based deployment executable) process for the Built-in Worker.  The sleep separates that work from the second spike, which is mostly the `for` loop.  Under 'Disk', you can see spikes for setting up logs etc and then writing the logs to disk.  The scale on the disk graph lets you know we weren't taxing anything too much with this simple log write.
 
-On the right, when the actual work happens on an external Wotker machine, the disk activity is much the same as before: because, in this example, the server is on the same box as the logs storage, those costs are always going to be seen here.  However, the CPU usage is gone, letting us know that the inital spike in the first graph is the Calamari invocation.  There is some network activity transfering the logs from the Worker back to the Octopus Server, but it's too small to see clearly here; you'll see network hits in a following example.
+On the right, when the actual work happens on an external Worker machine, the disk activity is much the same as before: because, in this example, the server is on the same box as the logs storage, those costs are always going to be seen here.  However, the CPU usage is gone,  demonstrating that the initial spike in the first graph is the Calamari invocation.  There is some network activity transferring the logs from the Worker back to the Octopus Server, but it's too small to see clearly here; you'll see network hits in a later example.
 
 We could trade off the disk hits here with some extra infrastructure: for example, storing logs elsewhere would push those costs out to other machines (at the expense of network traffic).
 
-A note to remember about costs is that Calamari is invoked for every role for each step.  So if I target the script to run on behalf of a role containing ten deployment targets, we'll get 10x the Calamari invocation and 10x script cost.  On the Built-in Worker on your Octopus server, that adds up, but if we off-load that to external Workers, it's barely noticable.
+A note to remember about costs is that Calamari is invoked for every role for each step.  So if I target the script to run on behalf of a role containing ten deployment targets, we'll get 10x the Calamari invocation and 10x script cost.  On the Built-in Worker on your Octopus server, that adds up, but if we off-load that to external Workers, it's barely noticeable.
 
 ![Script Step on behalf performance](workers-script-onbehalf-graphs.png "width=500")
 
 ## Case 2: An S3 File Upload
 
-The last example showed the pretty obvious case that if there's compute work in something that can be shifted to a Worker, then doing so shifts the whole CPU expense off the Octopus server.  But it also hints that there's other trade offs to be made and as we'll see in this example, sometimes there's compute work generated by the server.
+The last example showed the pretty obvious case that if there's compute work in something that can be shifted to a Worker, then doing so shifts the whole CPU expense off the Octopus server.  But it also hints that there are other trade-offs to be made and as we'll see in this example, sometimes there's compute work generated by the server.
 
-In this example I'm doing an S3 upload of a 296MB file.  Again, I've targeted the step at the Default Worker Pool.  When that pool is empty, it runs on the Built-in worker and gives the graphs on the left below, when the pool contains an external Worker it runs on that machine and gives the graphs on the right.
+In this example, I'm doing an S3 upload of a 296MB file.  Again, I've targeted the step at the Default Worker Pool.  When that pool is empty, it runs on the Built-in worker and gives the graphs on the left below, when the pool contains an external Worker it runs on that machine and gives the graphs on the right.
 
 ![S3 Upload](workers-s3-graphs.png "width=500")
 
 On the left, you see there's some CPU cost to pushing the package to AWS S3 and a network hit getting the package on the wire.  In this example, the package was already on the server.  If the server had to first acquire the package, we'd see extra network and disk cost for that.  
 
-On the right, the whole package still has to go out over the network, so the network cost is the same, but it's interestng that the package push to S3 costs more CPU than Octopus just pushing it down Halibut to a Worker.
+On the right, the whole package still has to go out over the network, so the network cost is the same, but it's interesting that the package push to S3 costs more CPU than Octopus just pushing it down Halibut to a Worker.
 
-What about when we build the next version of that package and deploy the project again.  In that case, the cost of running on the Built-in Worker on the Octopus Server will be the same; however, on an external Worker we have the option of not pushing the whole package and instead calcuating a package diff and sending just the diff.  If we do that, we get a graph like on the left below.
+What about when we build the next version of that package and deploy the project again.  In that case, the cost of running on the Built-in Worker on the Octopus Server will be the same; however, on an external Worker, we have the option of not pushing the whole package and, instead, calculating a package diff and sending just the diff.  If we do that, we get a graph like on the left below.
 
 ![S3 upload package options](workers-s3-package-graphs.png "width=500")
 
-For the nearly 300MB package there's a new CPU cost, which is the calculation of the diff, and, in this case, we can see that represented on the disk because Octopus has to access both versions of the package to calcuate the diff.  In the task logs I see
+For the nearly 300MB package there's a new CPU cost, which is the calculation of the diff, and, in this case, we can see that represented on the disk because Octopus has to access both versions of the package to calculate the diff.  In the task logs I see
 
 ```
 22:24:14   Verbose  |         Finding earlier packages that have been uploaded to this Tentacle.
@@ -90,14 +90,14 @@ For the nearly 300MB package there's a new CPU cost, which is the calculation of
 
 So, in this case, I got a nice 63.21% reduction, but the payoff for the cost of calculating the diff would have been better if the two packages had turned out more similar (interestingly, the packages were Octopus Server versions 2018.7.7 and 2018.7.8, so I had expected them to be more similar - just shows how much work we cram into each version)
 
-There's also the option for tentacles to acquire packages directly, rather than ever having the package on the server.  We're adding new features to allow multiple packages per step, so we're revamping how that looks in the UI, but for this test, I set the variable `Octopus.Action.Package.DownloadOnTentacle`.  And with that set, our Octopus Server does very little at all (graphs on the right above) it's just the cost of asking the Worker if it’s finnished and writing the logs.
+There's also the option for tentacles to acquire packages directly, rather than ever having the package on the server.  We're adding new features to allow multiple packages per step, so we're revamping how that looks in the UI, but for this test, I set the variable `Octopus.Action.Package.DownloadOnTentacle`.  And with that set, our Octopus Server does very little at all (graphs on the right above) it's just the cost of asking the Worker if it’s finished and writing the logs.
 
 
 ## Case 3: An Azure Web App deploy
 
 Azure deployments all need a Worker.  All the Azure steps either use WebDeploy or the Azure CmdLets, so it's either the Built-in or external Workers. 
 
-For this test, I cloned a public ASP.NET Core project off Github, made some small changes to allow for Octopus veriable replacement, built and packaged using `dotnet publish` and `Octo.exe pack` and deployed as a Web App using our built-in step.  The final package was pretty small, ending up at just over 21MB.
+For this test, I cloned a public ASP.NET Core project off Github, made some small changes to allow for Octopus variable replacement, built and packaged using `dotnet publish` and `Octo.exe pack` and deployed as a Web App using our built-in step.  The final package was pretty small, ending up at just over 21MB.
 
 Once more, the step is targeted to run on the Default Worker Pool.  So when the pool is empty, it runs on the Built-in Worker on the Octopus server and gives the graphs on the left below, when the pool contains a Worker, the step runs on that machine and the impact on the Octopus Server is shown in the graphs on the right. 
 
@@ -105,12 +105,12 @@ Once more, the step is targeted to run on the Default Worker Pool.  So when the 
 
 On the left, the CPU cost is starting the deployment, invoking Calamari, unpacking the package, doing variable replacement, and negotiating with Azure about what files need to be uploaded.  The disk cost is for the same reasons and the network cost is pushing the data up to the Cloud.  This was a pretty small package, so all those costs go up as the package size increases.  If you're pushing 100MB+ packages to Azure, with pre- and post-deploy scripts, configuration transforms, variable substitution, etc., then you'll see a much bigger hit here.
 
-On the right, when the step runs on an external Worker, the only costs on the Octopus Server are a small amount of network traffic and writing what turned out to be a 1.1MB log file.  Note the scale on the disk graph is 10x less in this case.  Again these costs could be further reduced by chosing to download the package directly to the Worker and external log storage.
+On the right, when the step runs on an external Worker, the only costs on the Octopus Server are a small amount of network traffic and writing what turned out to be a 1.1MB log file.  Note the scale on the disk graph is 10x less in this case.  Again these costs could be further reduced by choosing to download the package directly to the Worker and external log storage.
 
 
 ## Case 4: All together
 
-I've described 3 pretty toy deployment examples, but each of them involves some intrinsic work that has to be done for the deployment to succeed.  So there's no case for optimising away these costs, but the costs can be moved.  The following graph show the cost on the Octopus Server when all three projects run simultaneously.  On the left is using the Built-in Worker, and on the right is when an external Worker does the actual deployment work.  Note the scale on the disk graphs - the left on the server is 10X on the right.
+I've described 3 pretty toy deployment examples, but each of them involves some intrinsic work that has to be done for the deployment to succeed.  So there's no case for optimizing away these costs, but the costs can be moved.  The following graphs show the cost on the Octopus Server when all three projects run simultaneously.  On the left is using the Built-in Worker, and on the right is when an external Worker does the actual deployment work.  Note the scale on the disk graphs - the left on the server is 10X on the right.
 
 ![Three Deployments](workers-together-compare-graphs.png "width=500")
 
@@ -119,7 +119,7 @@ Now, the graphs on the left aren't the toughest day this server will ever see, b
 
 # Conclusion
 
-In this post, with three simple deployments, I've picked apart the kinds of costs that deployments place on your Octopus Server machine.  The examples weren't large or real, so if I can do load shedding in even these toy examples, you should be able to do more with real workloads.  I hope they've made you a little more aware of some of the moving parts in your deployments and helped you understand how you can optimize your deployments using Workers.  There's lots of options, for example, from deploying from the server, to only pushing package diffs, to moving the entire package handling off to the Worker - maybe the diffs are small enough that spending the CPU on the server will make a big win on network traffic, or maybe you can colocate your package feeds, Workers and Azure targets so that turn out to be the best network option.   Workers just gives you more options on how to set up your deployments and how to spread the work.
+In this post, with three simple deployments, I've picked apart the kinds of costs that deployments place on your Octopus Server machine.  The examples weren't large or real, so if I can do load shedding in even these toy examples, you should be able to do more with real workloads.  I hope they've made you a little more aware of some of the moving parts in your deployments and helped you understand how you can optimize your deployments using Workers.  There are lots of options, for example, from deploying from the server, to only pushing package diffs, to moving the entire package handling off to the Worker - maybe the diffs are small enough that spending the CPU on the server will make a big win on network traffic, or maybe you can colocate your package feeds, Workers and Azure targets so that turn out to be the best network option.   Workers just give you more options on how to set up your deployments and how to spread the work.
 
 Remember that there's not much special about a worker.  It's just a tentacle or SSH machine, so you can harvest whatever spare computing resources you have - that could be existing tentacle VMs that aren't worked much, it could be on-prem machines it could be Dev or Test boxes with spare cycles - or you can provision special worker infrastructure just for deployment load.
 
