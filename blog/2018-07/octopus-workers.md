@@ -45,7 +45,7 @@ So, Workers are just machines that can run script, Azure, AWS, and Terraform ste
 Over the course of a couple of posts, I'll flesh out the details of three cases where Workers come in handy (or are essential).
 
 1. [Moving steps off the Octopus Server - security](#Stopping-steps-running-on-the-Octopus-Server)
-1. Workers for scaling up - performance (in a following post)
+1. [Workers for scaling up - performance](https://octopus.com/blog/octopus-workers)
 1. Setting up cloud Workers - cloud (in a following post)
 
 Of course, there are also other ways to use Workers.
