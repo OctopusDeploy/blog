@@ -101,7 +101,7 @@ For this test, I cloned a public ASP.NET Core project from Github, made some sma
 
 Once more, the step is targeted to run on the Default Worker Pool.  So when the pool is empty, it runs on the Built-in Worker on the Octopus Server and gives the graphs on the left below, when the pool contains a Worker, the step runs on that machine and the impact on the Octopus Server is shown in the graphs on the right.
 
-![Azure Web App deployment](workers-Azure-graphs.png "width=500")
+![Azure Web App deployment](workers-azure-graphs.png "width=500")
 
 On the left, the CPU cost is starting the deployment, invoking Calamari, unpacking the package, doing variable replacement, and negotiating with Azure about what files need to be uploaded.  The disk cost is for the same reasons and the network cost is negotiation with Azure and pushing the data up to the Cloud.  This was a pretty small package, so all those costs go up as the package size increases.  If you're pushing 100MB+ packages to Azure, with pre and post-deploy scripts, configuration transforms, variable substitution, etc., then you'll see a much bigger hit here.
 
