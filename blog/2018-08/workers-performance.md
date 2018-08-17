@@ -90,7 +90,7 @@ For the nearly 300MB package there's a new CPU cost, which is the calculation of
 
 So, in this case, I got a nice 63.21% reduction, but the payoff for the cost of calculating the diff would have been better if the two packages had turned out more similar (interestingly, the packages were Octopus Server versions 2018.7.7 and 2018.7.8, so I had expected them to be more similar - just shows how much work we cram into each version).
 
-There's also the option for Tentacles to acquire packages directly, rather than ever having the package on the server.  We're adding new features to allow multiple packages per step, so we're revamping how that looks in the UI, but for this test, I set the [Octopus System Variable](/docs/deployment-process/variables/system-variables.md) `Octopus.Action.Package.DownloadOnTentacle`.  And with that set, our Octopus Server does very little at all (graphs on the right above) it's just the cost of asking the Worker if it’s finished and writing the logs.
+There's also the option for Tentacles to acquire packages directly, rather than ever having the package on the server.  We're adding new features to allow multiple packages per step, so we're revamping how that looks in the UI, but for this test, I set the [Octopus System Variable](https://octopus.com/docs/deployment-process/variables/system-variables.md) `Octopus.Action.Package.DownloadOnTentacle`.  And with that set, our Octopus Server does very little at all (graphs on the right above) it's just the cost of asking the Worker if it’s finished and writing the logs.
 
 
 ## Case 3: An Azure Web App Deploy
@@ -116,8 +116,7 @@ I've described three pretty toy deployment examples, but each of them involves s
 
 Now, the graphs on the left aren't the toughest day this server will ever see, but if that's not even close to the workload on your Octopus instance, then you can probably free up even more resources on your Octopus Server by moving the CPU work, disk hits, and network traffic off your Octopus Server.  Once the workload gets bigger, it will also start to have an impact on total deployment time as parallel deployments compete for resources, so moving to Workers might speed up your deployments as well as move work off the server box.
 
-
-# Conclusion
+## Conclusion
 
 In this post, with three simple deployments, I've picked apart the kinds of costs that deployments place on your Octopus Server machine.  The examples weren't large or real, so if I can do load shedding in even these toy examples, you should be able to do more with real workloads.  I hope they've made you a little more aware of some of the moving parts in your deployments and helped you understand how you can optimize your deployments for [steps that use Workers](https://octopus.com/docs/administration/workers#where-steps-run).  There are lots of options, for example, from deploying from the server, to only pushing package diffs, to moving the entire package handling off to the Worker - maybe the diffs are small enough that spending the CPU on the server will make a big win on network traffic, or maybe you can colocate your package feeds, Workers and Azure targets so that turn out to be the best network option.   Workers just give you options on how to set up your deployments and how to spread the work.
 
