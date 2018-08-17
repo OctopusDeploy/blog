@@ -3,14 +3,14 @@ title: Octopus Workers and Performance
 description: Using Octopus Workers to improve server and deployment performance
 author: michael.compton@octopus.com
 visibility: private
-bannerImage: ???
-metaImage: ???
-published:
+bannerImage: blogimage-workerperf.png
+metaImage: metaimage-workerperf.png
+published: 2018-08-17
 tags:
  - Workers
 ---
 
-![Octopus Workers illustration](???)
+![Octopus Workers illustration](blogimage-workerperf.png)
 
 [In the last post](https://octopus.com/blog/octopus-workers), I introduced Workers and some of the things that can be done with them.  I also promised to get back to you with more details.  Since then, we've shipped Workers in version 2018.7.0 and Octopus customers have picked it up and started using it.  Now I've got a couple more posts lined up.  
 
