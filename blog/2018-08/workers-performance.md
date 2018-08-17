@@ -2,7 +2,7 @@
 title: Octopus Workers and Performance
 description: Using Octopus Workers to improve server and deployment performance
 author: michael.compton@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-workerperf.png
 metaImage: metaimage-workerperf.png
 published: 2018-08-17
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Workers illustration](blogimage-workerperf.png)
 
-[In the last post](https://octopus.com/blog/octopus-workers),  I introduced Workers and some of the things that can be done with them.  I also promised to get back to you with more details.  Since then, we've shipped Workers in version 2018.7.0 and Octopus customers have picked it up and started using it.  Now I've got a couple more posts lined up.  
+[In the last post](https://octopus.com/blog/octopus-workers), I introduced Workers and some of the things that can be done with them. I also promised to get back to you with more details. Since then, we've shipped Workers in version 2018.7.0 and Octopus customers have picked it up and started using it. Now I've got a couple more posts lined up.  
 
 [External Workers](https://octopus.com/docs/infrastructure/workers/index.md) let you shift some of the deployment work from your Octopus Server to other machines.  You might move work over to Workers simply from a security point of view, e.g. so that scripts aren't running on your Octopus Server box.  But there are other reasons to move work off the server.  One of those is performance.  This time, I'm going to look at the effect of using Workers on you Octopus Server's performance during deployments.  
 
