@@ -271,7 +271,7 @@ $data = kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.sec
 ```
 
 :::warning
-We have retrieved the token as part of a script step here for demonstration purposes only. Displaying the token in the log output is a security risk, and should be done with caution.
+We have retrieved the token as part of a script step here for demonstration purposes only. Displaying the token in the log output is a security risk, and should be done with caution. These same scripts can be run locally instead to prevent the tokens being saved in a log file.
 :::
 
 Before we deploy the script, we need to make sure the project is using the Admin lifecycle.
@@ -288,7 +288,7 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW5
 
 ## The HTTPD Development Target
 
-We now have everything we need to create a target that will be used to deploy the HTTPD application in the Development environment.
+We now have everything we need to create a target that will be used to deploy the HTTPD application in the `Development` environment.
 
 We start by creating a token account in Octopus with the token that was returned above.
 
@@ -513,9 +513,9 @@ By creating new Deployment resources with each blue/green deployment, and by cre
 
 ## Promoting to Production
 
-I promised you an example of a multi-environment deployment, so let's go ahead and configure our Production environment.
+I promised you an example of a multi-environment deployment, so let's go ahead and configure our `Production` environment.
 
-First, create a service account for the production environment. This YAML is the same code we used to create the service account for the Development environment, only with the text `development` replaced with `production`.
+First, create a service account for the production environment. This YAML is the same code we used to create the service account for the `Development` environment, only with the text `development` replaced with `production`.
 
 ```yaml
 ---
@@ -573,7 +573,7 @@ You want to end up with a target like the one shown below configured.
 
 ![](kubernetes-production-target.png)
 
-Now go ahead and promote the Octopus deployment to the Production environment.
+Now go ahead and promote the Octopus deployment to the `Production` environment.
 
 This will result in a second Load balancer Service resource being created with a new public IP address.
 
@@ -627,9 +627,9 @@ To make use of Helm we need to configure a Helm feed. Since we will use the stan
 
 At this point we have a decision to make about how to deploy the Ingress Controllers resources.
 
-We can have one Load Balancer Service resource directing traffic to one Ingress Controller resource, which in turn can direct traffic across environments. Ingress Controller resources can direct traffic based on the hostname of the request, so traffic sent to https://myproductionapp/userservice can be sent to the Production environment, while https://mydevelopmentapp/userservice can be sent to the Development environment.
+We can have one Load Balancer Service resource directing traffic to one Ingress Controller resource, which in turn can direct traffic across environments. Ingress Controller resources can direct traffic based on the hostname of the request, so traffic sent to https://myproductionapp/userservice can be sent to the `Production` environment, while https://mydevelopmentapp/userservice can be sent to the `Development` environment.
 
-The other option is to have an Ingress Controller resource per environment. In this case, an Ingress Controller resource in the Development environment would only send traffic to other services in the Development environment, and a Ingress Controller resource in the Production environment would send traffic to Production services.
+The other option is to have an Ingress Controller resource per environment. In this case, an Ingress Controller resource in the `Development` environment would only send traffic to other services in the `Development` environment, and a Ingress Controller resource in the `Production` environment would send traffic to `Production` services.
 
 Either approach is valid, with its own pros and cons. For this example though we'll deploy an Ingress Controller resource to each environment.
 
@@ -781,7 +781,7 @@ After creating the accounts, namespaces and targets, we'll have the following li
 
 ## Configuring Helm Variables
 
-Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress resource rules for traffic in the Development environment from those in the Production environment.
+Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress resource rules for traffic in the `Development` environment from those in the `Production` environment.
 
 To define the Helm configuration, we need to create a YAML file called `values.yaml` with the following content.
 
@@ -790,7 +790,7 @@ controller:
   ingressClass: nginx-#{Octopus.Environment.Name | ToLower}
 ```
 
-This file defines the `controller.ingressClass` parameter to be `nginx-development` for the Development environment, and `nginx-production` for the Production environment.
+This file defines the `controller.ingressClass` parameter to be `nginx-development` for the `Development` environment, and `nginx-production` for the `Production` environment.
 
 Note that we are using the Octopus variable substitution here. While Helm does have its own templating language, this file will be processed by Octopus before being sent to Helm.
 
@@ -824,7 +824,7 @@ Save those change, and remember to change the lifecycle to `Application`.
 
 ![](kubernetes-helm-lifecycle.png)
 
-Now deploy the Helm chart to the Development environment.
+Now deploy the Helm chart to the `Development` environment.
 
 ![](kubernetes-helm-nginx-development.png)
 
@@ -867,7 +867,7 @@ annotations:
 
 Remember how we set the `controller.ingressClass` parameter when deploying the Helm chart? This annotation is what that property controls. It means that an Ingress resource must specifically set the `kubernetes.io/ingress.class: nginx-development` annotation to be considered by this Ingress Controller resource. This is how we distinguish between rules for the development and production Ingress Controller resources.
 
-Go ahead and push the deployment to the Production environment.
+Go ahead and push the deployment to the `Production` environment.
 
 We can now see the Nginx Deployment resources in the Kubernetes cluster.
 
@@ -893,7 +893,7 @@ Start by defining the `Ingress Name`.
 
 The Ingress resources support the many different Ingress Controllers that are available via annotations. These are key/value pairs that often contain implementation specific values. Because we have deployed the Nginx ingress controller, a number of the annotations we are defining are specific to Nginx.
 
-The first annotation is shared across Ingress Controller resource implementations though. It is the `kubernetes.io/ingress.class` annotation that we talked about earlier. We set this annotation to `nginx-#{Octopus.Environment.Name | ToLower}`. This means that when deploying in the Development environment, this annotation will be set to `nginx-development`, and when deploying to the Production environment it will be set to `nginx-production`. This is how we target the environment specific Ingress Controller resources.
+The first annotation is shared across Ingress Controller resource implementations though. It is the `kubernetes.io/ingress.class` annotation that we talked about earlier. We set this annotation to `nginx-#{Octopus.Environment.Name | ToLower}`. This means that when deploying in the `Development` environment, this annotation will be set to `nginx-development`, and when deploying to the `Production` environment it will be set to `nginx-production`. This is how we target the environment specific Ingress Controller resources.
 
 The `kubernetes.io/ingress.allow-http` annotation is set to `true` to allow unsecure HTTP traffic, and `nginx.ingress.kubernetes.io/ssl-redirect` is set to `false` to prevent Nginx from redirecting HTTP traffic to HTTPS.
 
@@ -909,7 +909,7 @@ The `Host` field is left blank, which means it will capture requests for all hos
 
 ![](kubernetes-host-rule.png)
 
-Go ahead and deploy this to the Development environment. You will get an error like this.
+Go ahead and deploy this to the `Development` environment. You will get an error like this.
 
 ```
 The Service "httpd" is invalid: spec.ports[0].nodePort: Invalid value: 30245: may not be used when `type` is 'ClusterIP'
@@ -943,11 +943,11 @@ Fortunately this path mismatch is quite easy to solve. By setting the `nginx.ing
 
 ![](kubernetes-rewrite-target.png)
 
-Redeploy the project to the Development environment. Once the deployment is finished, the URL http://35.193.149.6/httpd will return our custom web page displaying the name of the environment.
+Redeploy the project to the `Development` environment. Once the deployment is finished, the URL http://35.193.149.6/httpd will return our custom web page displaying the name of the environment.
 
 ![](kubernetes-httpd-success.png)
 
-Now that we have the Development environment working as we expect, push the deployment to the Production environment (remembering to delete the old Service resource, otherwise the `nodePort` error will be thrown again). This time the deployment works straight away.
+Now that we have the `Development` environment working as we expect, push the deployment to the `Production` environment (remembering to delete the old Service resource, otherwise the `nodePort` error will be thrown again). This time the deployment works straight away.
 
 ![](kubernetes-httpd-success-production.png)
 
@@ -988,6 +988,6 @@ The deployments were then performed using the blue/green strategy, and we saw ho
 
 We also looked at how to deploy applications with Helm across environments, which we implemented by deploying the nginx-ingress chart.
 
-The end result was a repeatable deployment process that emphasises testing changes in a Development environment, and pushing the changes to a Production environment when ready.
+The end result was a repeatable deployment process that emphasises testing changes in a `Development` environment, and pushing the changes to a `Production` environment when ready.
 
 I hope you have enjoyed this blog post, and if you have any suggestions or comments about the Kubernetes functionality please leave a comment. These steps are in a preview state, so your feedback is appreciated.
