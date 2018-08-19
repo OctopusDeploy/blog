@@ -71,7 +71,7 @@ Learn more about Docker feeds [here](https://octopus.com/docs/packaging-applicat
 
 ## The Environments
 
-Although we listed two environments as requirements, we'll actually create three. The additional environment, called Admin, will be where we run utility scripts to create user accounts.
+Although we listed two environments as requirements, we'll actually create three. The additional environment, called `Kubernetes Admin`, will be where we run utility scripts to create user accounts.
 
 Learn more about environments [here](https://octopus.com/docs/infrastructure/environments).
 
@@ -85,13 +85,13 @@ To model the progression from Development to Production, we'll create a lifecycl
 
 ![Application Lifecycle](kubernetes-application-lifecycle.png)
 
-To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called Admin. It will contain a single phase for deployments to the Admin environment.
+To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called Admin. It will contain a single phase for deployments to the `Kubernetes Admin` environment.
 
 ![Admin Lifecycle](kubernetes-admin-lifecycle.png)
 
 Learn more about lifecycles [here](https://octopus.com/docs/deployment-process/lifecycles).
 
-## The Admin Target
+## The Kubernetes Admin Target
 
 A Kubernetes target in Octopus is conceptually a permission boundary within a Kubernetes cluster. It defines this boundary using a Kubernetes namespace and a Kubernetes account.
 
@@ -101,7 +101,7 @@ In keeping with the practise of least privilege, each namespace will have a corr
 
 The combination of a namespace and a service account that is limited to the namespace makes up a typical Octopus Kubernetes target.
 
-Having said that, we need some place to start in order to create the namespaces and service accounts, and for that we will create a Kubernetes target with the administrator credentials that deploys to the Admin environment.
+Having said that, we need some place to start in order to create the namespaces and service accounts, and for that we will create a Kubernetes target with the administrator credentials that deploys to the `Kubernetes Admin` environment.
 
 First, we need to create an account that holds the administrator user credentials. The Kubernetes cluster in Google Cloud provides a user called `admin` with a randomly generated password that we can use.
 
@@ -147,11 +147,11 @@ Learn more about certificates [here](https://octopus.com/docs/deployment-example
 
 ![Kubernetes Certificate](kubernetes-certificate.png)
 
-With the user account and the certificate saved, we can now create the Kubernetes target called Admin.
+With the user account and the certificate saved, we can now create the Kubernetes target called `Kubernetes Admin`.
 
-This target will deploy to the Admin environment, and take on a role that is also called Admin. The account will be the Admin account we created above, and the cluster certificate will reference the certificate we saved above.
+This target will deploy to the `Kubernetes Admin` environment, and take on a role that is called Admin. The account will be the `Kubernetes Admin` account we created above, and the cluster certificate will reference the certificate we saved above.
 
-Because this Admin target will be used to run utility scripts, we don't want to have it target a Kubernetes namespace, so that field is left blank.
+Because this `Kubernetes Admin` target will be used to run utility scripts, we don't want to have it target a Kubernetes namespace, so that field is left blank.
 
 ![Kubernetes Target](kubernetes-target.png)
 
@@ -212,7 +212,7 @@ To create these resources, we need to save the YAML as a file, and then use `kub
 
 ![Kubernetes Script Step](kubernetes-script-step.png)
 
-This step will then target the Admin Kubernetes target, and run the following script, which saves the YAML to a file and then uses `kubectl` to apply the YAML.
+This step will then target the `Kubernetes Admin` target, and run the following script, which saves the YAML to a file and then uses `kubectl` to apply the YAML.
 
 ```PowerShell
 Set-Content -Path serviceaccount.yml -Value @"
