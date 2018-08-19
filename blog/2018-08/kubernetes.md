@@ -79,13 +79,13 @@ Learn more about environments [here](https://octopus.com/docs/infrastructure/env
 
 ## The Lifecycles
 
-The default lifecycle in Octopus assumes that all environments will be deployed to, one after the other. This is not the case for us. We have two distinct lifecycles: Development -> Production, and Admin as a standalone environment where utility scripts are run.
+The default lifecycle in Octopus assumes that all environments will be deployed to, one after the other. This is not the case for us. We have two distinct lifecycles: `Development` -> `Production`, and `Kubernetes Admin` as a standalone environment where utility scripts are run.
 
-To model the progression from Development to Production, we'll create a lifecycle called Application. It will contain two phases, the first for deployments to the Development environment, and the second for deployments to the Production environment.
+To model the progression from `Development` to `Production`, we'll create a lifecycle called `Application`. It will contain two phases, the first for deployments to the `Development` environment, and the second for deployments to the `Production` environment.
 
 ![Application Lifecycle](kubernetes-application-lifecycle.png)
 
-To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called Admin. It will contain a single phase for deployments to the `Kubernetes Admin` environment.
+To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called `Kubernetes Admin`. It will contain a single phase for deployments to the `Kubernetes Admin` environment.
 
 ![Admin Lifecycle](kubernetes-admin-lifecycle.png)
 
