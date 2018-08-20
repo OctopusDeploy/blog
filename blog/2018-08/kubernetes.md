@@ -261,6 +261,53 @@ roleRef:
 kubectl apply -f serviceaccount.yml
 ```
 
+The bash script is very similar.
+
+```sh
+cat >serviceaccount.yml <<EOL
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: httpd-development
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: httpd-deployer
+  namespace: httpd-development
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: httpd-development
+  name: httpd-deployer-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get"]    
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: httpd-deployer-binding
+  namespace: httpd-development
+subjects:
+- kind: ServiceAccount
+  name: httpd-deployer
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: httpd-deployer-role
+  apiGroup: ""
+EOL
+
+kubectl apply -f serviceaccount.yml
+```
+
 ![Kubernetes Service Account Script](kubernetes-service-account-script.png)
 
 Once this script is run, a service account called `httpd-deployer` will be created. This service account is automatically assigned a token that we can use to authenticate with the Kubernetes cluster. We can run a second script to get this token.
