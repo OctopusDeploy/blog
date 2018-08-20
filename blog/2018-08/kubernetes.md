@@ -811,11 +811,14 @@ Set the `Kubernetes Release Name` to `nginx-#{Octopus.Environment.Name | ToLower
 
 Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress resource rules for traffic in the `Development` environment from those in the `Production` environment.
 
-In the `Explicit Key Values` section, add a `Key` called `controller.ingressClass` and a value called `nginx-#{Octopus.Environment.Name | ToLower}`. Note that we have again used variable substitution to ensure each environment has a unique value applied to it.
+In the `Raw Values YAML` section, add the following YAML. Note that we have again used variable substitution to ensure each environment has a unique value applied to it.
+
+```YAML
+controller:
+  ingressClass: "nginx-#{Octopus.Environment.Name | ToLower}"
+```
 
 ![](kubernetes-helm-additional-values.png)
-
-![](kubernetes-helm-additional-values-summary.png)
 
 Save those change, and remember to change the lifecycle to `Application`.
 
