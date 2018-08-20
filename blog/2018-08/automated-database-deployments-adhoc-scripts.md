@@ -59,8 +59,6 @@ With the use cases in mind, next up are the requirements for the process.
 - Analysis of the script, if the script contains certain keywords then a human should review the script prior to it being run.
 - Work in for any environment.  We want to encourage people to run this for any environment.  Even Dev.
 
-
-
 ## Setup
 
 ### Tentacles
@@ -87,7 +85,7 @@ The way to do this is to add a single phase and all the environments to that sin
 
 ## Projects and Process
 
-For this process, I created a number of step templates.  I don't want to submit those to the community library because they aren't generic enough.  You can find them here: [Link].
+For this process, I created a number of step templates.  I don't want to submit those to the community library because they aren't generic enough.  You can find them on out [GitHub samples repository](https://github.com/OctopusSamples/AdHoc-SQLQueries).
 
 ### Ingesting Scripts
 
@@ -163,7 +161,7 @@ The Get Scripts From Package to Review is a step template.  It will do the follo
 3) Perform some basic analysis on the SQL files
 4) Set an output variable, ManualInterventionRequired, in the event the analysis fails
 
-This is all a step template.  The only parameter required is the step which downloaded the package.
+This is all done in a step template.  The only parameter required is the step which downloaded the package.
 
 ![](adhoc-octopus-run-database-package-get-script-files.png)
 
