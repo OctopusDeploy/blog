@@ -799,40 +799,19 @@ After creating the accounts, namespaces and targets, we'll have the following li
 
 ## Configuring Helm Variables
 
-Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress resource rules for traffic in the `Development` environment from those in the `Production` environment.
-
-To define the Helm configuration, we need to create a YAML file called `values.yaml` with the following content.
-
-```yaml
-controller:
-  ingressClass: nginx-#{Octopus.Environment.Name | ToLower}
-```
-
-This file defines the `controller.ingressClass` parameter to be `nginx-development` for the `Development` environment, and `nginx-production` for the `Production` environment.
-
-Note that we are using the Octopus variable substitution here. While Helm does have its own templating language, this file will be processed by Octopus before being sent to Helm.
-
-Package this file up in a zip file. Any ZIP utility will do, or you can use the [Octopus CLI](https://octopus.com/docs/api-and-integration/octo.exe-command-line) with the following command. The Octopus CLI tool is handy here because it will produce a file with the correct version in the filename.
-
-```
-Octo.exe pack --id nginx-values --include .\values.yaml --version 1.0.0 --format zip --overwrite
-```
-
-This will produce a file called `nginx-values.1.0.0.zip`, which we then upload to the Octopus Built-In library.
-
-![](kubernetes-helm-values-file.png)
-
-Now we can deploy the Nginx Helm chart with the `Run a Helm Update` step.
+We can deploy the Nginx Helm chart with the `Run a Helm Update` step.
 
 Select the `nginx-ingress` chart from the helm feed.
 
 ![](kubernetes-helm-nginx.png)
 
-Set the `Kubernetes Release Name` to `nginx-#{Octopus.Environment.Name | ToLower}`. Again we have taken advantage of the Octopus variable substitution to ensure that the Helm release has a unique name in each environment.
+Set the `Kubernetes Release Name` to `nginx-#{Octopus.Environment.Name | ToLower}`. We have taken advantage of the Octopus variable substitution to ensure that the Helm release has a unique name in each environment.
 
 ![](kubernetes-helm-name.png)
 
-In the `Additional values.yaml files` section, add the `nginx-values` package we uploaded earlier.
+Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress resource rules for traffic in the `Development` environment from those in the `Production` environment.
+
+In the `Explicit Key Values` section, add a `Key` called `controller.ingressClass` and a value called `nginx-#{Octopus.Environment.Name | ToLower}`. Note that we have again used variable substitution to ensure each environment has a unique value applied to it.
 
 ![](kubernetes-helm-additional-values.png)
 
