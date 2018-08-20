@@ -40,6 +40,8 @@ The Kubernetes steps in Octopus require that the `kubectl` executable be availab
 
 Likewise the Helm steps require the `helm` executable to be available on the path. Helm is also available from [Chocolatey](https://chocolatey.org/packages/kubernetes-helm).
 
+If you run the Kubernetes steps from [Linux workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
+
 Because the Kubernetes functionality in Octopus is in a preview state, the steps discussed in this post need to be enabled in the `Features` section.
 
 ![](kubernetes-enable-steps.png)
