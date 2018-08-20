@@ -570,11 +570,19 @@ roleRef:
 
 Likewise the Powershell to get the token is the same except `development` is now `production`.
 
-```
+```Powershell
 $user="httpd-deployer"
 $namespace="httpd-production"
 $data = kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace
 [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data))
+```
+
+The same is true of the bash script.
+
+```sh
+user="httpd-deployer"
+namespace="httpd-production"
+kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace | base64 --decode
 ```
 
 I won't repeat the details of running these scripts, creating the token account or creating the target, so refer back to [The HTTPD Development Service Account](#the-httpd-development-service-account) for more details.
