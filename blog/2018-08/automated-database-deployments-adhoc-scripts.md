@@ -24,10 +24,10 @@ When I've run across this particular scenario in the past the process is:
 
 This process has a lot of flaws in it.  At some point in my career, I've been either the developer or the person running the script.  It is not an enjoyable process.
 
-1) The person running the script is not an expert in the system.  The vast majority of the time a cursorily glance is done on the script before running it.
+1) The person running the script is not an expert in the system.  The vast majority of the time a cursory glance is done on the script before running it.
 2) The people who have the necessary rights could've gone home for the day, gone out to lunch, or in a meeting.  The script might not be run for several hours.  In some cases, the data must be fixed right away.  
 3) Notification of when the script is run is manual.  Meaning the script could've been run but the notification isn't sent for a while.
-4) Most companies don't let junior developers have rights to make changes to production.  The people who can run the script have other, and frankly, more important responsibilities.  Being interrupted to run a script is very, very annoying.
+4) Most companies don't let junior developers have rights to make changes to production.  The people who can run the script have other, and frankly, more important responsibilities.  They might be really focused on something and being interrupted breaks their flow.
 5) If the requests are done via email or slack nothing is audited.  Email is where documentation goes to die.  
 
 Octopus Deploy can do so much more than deploying software.  A lot of new functionality has been added to make Octopus Deploy a more complete DevOps tool.  In this post, I will walk you through a process to automate running AdHoc queries.
@@ -37,7 +37,7 @@ My reason for using Octopus Deploy (aside, from the fact that I work here) is be
 - Auditing: Octopus Deploy can tell you who made the request, who approved the request, and when this all happened.  
 - Artifacts: Using the artifact functionality built into Octopus Deploy it is possible to store and capture the exact script which was run.  If someone changes the script after the fact on the file share there is no way to know that.
 - Approvals: In some cases, it is important to have another set of eyes look at the script. Octopus Deploy can be set up to conditionally approve scripts based on a set of criteria.
-- Automation: No more manually sending emails.  No more manually sending confirmations.  No more opening up SSMS and running the script.  
+- Automation: No more manually sending emails.  No more manually sending confirmations.  No more opening up SSMS and running the script. 
 - Repeatable: The same process will be used across all environments to run the scripts.
 
 !toc
@@ -67,9 +67,13 @@ With the use cases in mind, next up are the requirements for the process.
 
 Our [database deployment documentation](https://octopus.com/docs/deployment-examples/sql-server-databases) recommends you install tentacles on a "jump box" sitting between Octopus Deploy and the database server.  When using integrated security those tentacles are running under service accounts who have permissions to handle deployments.  These tentacles will handle normal deployments.
 
-When using integrated security the recommendation is to create a separate set of tentacles to run these ad-hoc scripts.  The account the tentacles are running under can have elevated permissions.  
+You have a few options for setting up an ad-hoc process and permissions.
 
-Unless the account being used for normal deployments of database changes is a system admin.  Then make use of those tentacles.
+Option #1: Continue to use the deployment tentacles, but give them elevated rights to perform additional tasks.  
+
+Option #2: Create a new set of service accounts with elevated permissions.  Create new tentacles for those new service accounts.
+
+Option #3: A combination of option 1 and option 2.  Create two pipelines.  One for data fixes, the other for other changes.  The data fixes run through the regular deployment targets.  The other changes run through a new set of deployment targets with new service accounts.  
 
 ### Lifecycle
 
@@ -98,7 +102,7 @@ A couple of questions come to mind.
 3) Q: What database on the SQL Server? A: RandomQuotes_Dev
 4) Q: Who is submitting the script? A: Bob Walker
 
-How do those answers be sent to the process and by extension Octopus Deploy?  For this, I will be using a YAML file called MetaData.  It will contain all that information.
+Okay, we know the answers.  Now, how do we get those from our brain to Octopus Deploy?  For this, I will be using a YAML file called MetaData.  It will contain all that information.
 
 ```
 ---
@@ -245,7 +249,7 @@ Change the manual intervention step to always run.  In addition, change the envi
 
 ### This seems like overkill.  Couldn't you use prompted variables in Octopus Deploy?
 
-Absolutely!  I have another project set up to just that.  The question is, who will be submitting these scripts?  Should they have rights to create a release and have it go to production?  Should everybody have access to Octopus Deploy?  For my use cases, my answer was no to all of those.  My primary goal for this process was the elimination of as many manual steps as possible.  Manually creating a release using prompted variables added too many manual steps.  
+Absolutely!  I have another project set up to do just that.  The question is, who will be submitting these scripts?  Should they have rights to create a release and have it go to production?  Should everybody have access to Octopus Deploy?  For my use cases, my answer was no to all of those.  My primary goal for this process was the elimination of as many manual steps as possible.  Manually creating a release using prompted variables added too many manual steps.  
 
 ## Conclusion
 
