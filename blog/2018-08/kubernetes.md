@@ -265,11 +265,19 @@ kubectl apply -f serviceaccount.yml
 
 Once this script is run, a service account called `httpd-deployer` will be created. This service account is automatically assigned a token that we can use to authenticate with the Kubernetes cluster. We can run a second script to get this token.
 
-```
+```Powershell
 $user="httpd-deployer"
 $namespace="httpd-development"
 $data = kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace
 [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data))
+```
+
+The same functionality can be run in bash with the following script.
+
+```sh
+user="httpd-deployer"
+namespace="httpd-development"
+kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace | base64 --decode
 ```
 
 :::warning
