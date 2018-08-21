@@ -331,7 +331,7 @@ kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.secrets[0].
 We have retrieved the token as part of a script step here for demonstration purposes only. Displaying the token in the log output is a security risk, and should be done with caution. These same scripts can be run locally instead to prevent the tokens being saved in a log file.
 :::
 
-Before we deploy the script, we need to make sure the project is using the Admin lifecycle.
+Before we deploy the script, we need to make sure the project is using the `Kubernetes Admin` lifecycle.
 
 ![Admin Project Lifecycle](kubernetes-admin-project-lifecycle.png)
 
