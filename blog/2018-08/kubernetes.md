@@ -1021,7 +1021,7 @@ In our case, the output variables are (replace `step name`, with the name of the
 These variables contain the JSON representation of the Kubernetes resources that were created. By parsing these JSON strings in a script step, we can for example display a link to the network load balancer that is exposing our Kubernetes services.
 
 ```PowerShell
-$IngressParsed = ConvertFrom-Json -InputObject $OctopusParameters["Octopus.Action[Httpd].Output.Ingress"]
+$IngressParsed = ConvertFrom-Json -InputObject $OctopusParameters["Octopus.Action[Deploy Httpd].Output.Ingress"]
 Write-Host "Access the ingress load balancer at http://$($IngressParsed.status.loadBalancer.ingress.ip)"
 ```
 
