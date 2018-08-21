@@ -90,7 +90,29 @@ This build configuration depends on the "Build" build configuration, and is trig
 
 ## VSTS
 
+Ok, round 2 here we come. I've used the same source code for this setup, so it's literally the same app. The only real difference in setup is I decided to use a different Id for the package I was creating, just to make sure I didn't get version conflicts when I was pushing the packages to my Octopus server.
 
+Like before, here's the sneak peak at the pipeline and then we'll dig into details.
+
+![VSTS Pipeline](netcorebuilds\vsts-pipeline.png)
+
+I've mentioned a couple of times now that the .NET tooling knows the right way to do this stuff. In the pipeline above all I did was ask for a new pipeline and select the .NET Core template from the list. It created the first 5 steps, the 5th being the one I've disabled. I disabled this step rather than deleting it to illustrate the pattern again. By default VSTS wants you to publish to a folder and then use that as the basis for what to move to the target of the deployment, just like we've been talking about. All we're doing here is replacing the Publish Artifact step with our Pack and Push steps, which package the folder content and push the package to Octopus just like we saw in the TeamCity example.
+
+Here's what's in the Publish step. I haven't changed anything in this step, I'm showing it here because the output folder it's using is important for _Source Path_ in the next step.
+
+![VSTS Publish](netcorebuilds\vsts-publish.png)
+
+Once we've got the output folder then it's time to set up the packaging step.
+
+![VSTS Pack](netcorebuilds\vsts-pack.png)
+
+The Publish Artifact step that I disabled was using a folder called `drop` for its output, so I followed suit for simplicity.
+
+![VSTS Push](netcorebuilds\vsts-push.png)
+
+This then feeds in to the final step, to push the package to Octopus. The Octopus Url and API key are taken care of using a service connection in VSTS, which you select from the dropdown on the step.
+
+The only other point to note is the `$(Build.BuildNumber)`. This is a built in variable but you can control it's format (using the `Options` tab that you can see up near the top left). I've changed from the default to `1.0.0$(rev:.r)` for doing this demo. The default scheme works, but I tend to use it with caution. It creates SemVer versions with a major based on the current date, which isn't really in the spirit of SemVer. Do you make breaking changes every day? It's ok, you don't need to answer that ;) The other catch is that if you ever decide to move off this scheme the existing major numbers will be really big, so almost any other scheme would result in versions that Octopus would interpret as older than the existing ones.
 
 ## Cake script
 
