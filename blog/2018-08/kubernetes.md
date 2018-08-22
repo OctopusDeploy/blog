@@ -1027,6 +1027,14 @@ Write-Host "Access the ingress load balancer at http://$($IngressParsed.status.l
 
 ![](kubernetes-script-summary.png)
 
+## Going Further
+
+You may have noticed that the Octopus step does expose every possible option that can be defined on a Deployment resource.
+
+If you need a level of customization that the step does not provide, you can find the YAML for the resources that are created in the log files. These YAML files can be copied out, edited and deployed manually through the `Run a kubectl CLI script` step.
+
+![](kubernetes-yaml-output.png)
+
 ## Summary
 
 In this post we have seen how to manage multi-environment deployments within a Kubernetes cluster using Octopus. Each application and environment was configured in as a separate namespace, with a matching service account that had permissions only to that single namespace. The namespaces and service accounts were then configured as Kubernetes targets, which represent a permission boundary in a Kubernetes cluster.
