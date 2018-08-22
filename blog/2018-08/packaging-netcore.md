@@ -16,7 +16,7 @@ tags:
 
 We recently posted an introduction to our newly added capability for [packaging .NET Core applications on .NET Core](octopus-and-netcore.md). In this post we're going to get our hands dirty and dig into how to put together a build pipeline for a .NET Core application. The concepts apply equally regardless of whether the build machine itself has full .NET Framework or .NET Core. 
 
-Along the way we're actually going to build the pipeline a few times over, using different build servers and tools.
+Along the way we're actually going to build the pipeline a few times over, using different build servers and tools. It is going to be .NET Core focused, but the same concepts can be applied to many full framework scenarios (there just not as "mandatory" in that world), so if you have an interest in building and packaging applications please read on.
 
 ## Link 1 in the chain
 
@@ -116,9 +116,171 @@ The only other point to note is the `$(Build.BuildNumber)`. This is a built in v
 
 ## Cake script
 
+Ding, ding, round 3! In the previous examples we used tooling that is built around defining your build process as a series of steps in the tool itself. What if we wanted to be a bit more tool agnostic though? What about if we wanted to be able to run the build locally on our development machine to test it? [Cake](https://cakebuild.net/) is a great option for both of these scenarios. Again, let's start by having a look at an example script.
 
+```csharp
+#tool "nuget:?package=GitVersion.CommandLine&prerelease"
+
+using Path = System.IO.Path;
+using IO = System.IO;
+using Cake.Common.Tools;
+
+var target = Argument("target", "Default");
+var configuration = Argument("configuration", "Release");
+var octopusServer = Argument("octopusServer", "");
+var octopusApikey = Argument("octopusApiKey", "");
+
+var isLocalBuild = string.IsNullOrWhiteSpace(octopusServer);
+
+var packageId = "CakeDemoAspNetCoreApp";
+
+var publishDir = "./publish";
+var artifactsDir = "./artifacts";
+var localPackagesDir = "../LocalPackages";
+
+var gitVersionInfo = GitVersion(new GitVersionSettings {
+    OutputType = GitVersionOutput.Json
+});
+
+var nugetVersion = gitVersionInfo.NuGetVersion;
+
+Setup(context =>
+{
+    if(BuildSystem.IsRunningOnTeamCity)
+        BuildSystem.TeamCity.SetBuildNumber(gitVersionInfo.NuGetVersion);
+
+    Information("Building v{0}", nugetVersion);
+});
+
+Teardown(context =>
+{
+    Information("Finished running tasks.");
+});
+
+Task("__Default")
+    .IsDependentOn("__Clean")
+    .IsDependentOn("__Restore")
+    .IsDependentOn("__Build")
+    .IsDependentOn("__Publish")
+    .IsDependentOn("__Pack")
+    .IsDependentOn("__Push");
+
+Task("__Clean")
+    .Does(() =>
+{
+    CleanDirectory(artifactsDir);
+    CleanDirectory(publishDir);
+    CleanDirectories("./source/**/bin");
+    CleanDirectories("./source/**/obj");
+});
+
+Task("__Restore")
+    .Does(() => DotNetCoreRestore("source", new DotNetCoreRestoreSettings
+    {
+        ArgumentCustomization = args => args.Append($"/p:Version={nugetVersion}")
+    })
+);
+
+Task("__Build")
+    .Does(() =>
+{
+    DotNetCoreBuild("source", new DotNetCoreBuildSettings
+    {
+        Configuration = configuration,
+        ArgumentCustomization = args => args.Append($"/p:Version={nugetVersion}")
+    });
+});
+
+Task("__Publish")
+    .Does(() =>
+{
+    DotNetCorePublish("source", new DotNetCorePublishSettings
+    {
+        Framework = "netcoreapp2.0",
+        Configuration = configuration,
+        OutputDirectory = publishDir,
+        ArgumentCustomization = args => args.Append($"--no-build")
+    });
+});
+
+Task("__Pack")
+    .Does(() => {
+    
+    StartProcess("dotnet", new ProcessSettings {
+        Arguments = new ProcessArgumentBuilder()
+            .Append("octo")
+            .Append("pack")
+            .Append($"--id={packageId}")
+            .Append($"--version={nugetVersion}")
+            .Append($"--basePath=\"{publishDir}\"")
+            .Append($"--outFolder=\"{artifactsDir}\"")
+        }
+    );
+});
+
+Task("__Push")
+    .Does(() => {
+
+    var packageFile = $"{artifactsDir}\\{packageId}.{nugetVersion}.nupkg";
+    
+    if (!isLocalBuild)
+    {
+        StartProcess("dotnet", new ProcessSettings {
+            Arguments = new ProcessArgumentBuilder()
+                .Append("octo")
+                .Append("push")
+                .Append($"--server={octopusServer}")
+                .Append($"--apikey={octopusApikey}")
+                .Append($"--package=\"{packageFile}\"")
+            }
+        );
+    }
+    else
+    {
+        CreateDirectory(localPackagesDir);
+        CopyFileToDirectory(packageFile, localPackagesDir);
+    }
+});
+
+Task("Default")
+    .IsDependentOn("__Default");
+
+RunTarget(target);
+
+```
+
+I'm not going to walk through this script line by line, hopefully it's clear enough from a read through though that it's following exactly the same flow we've been using in the other examples. What I will go through is a couple of gotchas that the script shows how to deal with and a pattern that we use a bit here at Octopus that I've found really useful.
+
+I'll start with the pattern. You'll see up near the top there's a variable called _isLocalBuild_ being calculated, then in the ___Push_ task we use that to switch between actually doing an `octo push` and simulating a push by copying the files to a local folder. Doing this lets us do 2 things. Firstly we can run the script repeatedly while testing it and not have to worry about forcing overwrites of packages etc. The second and more important thing is that it lets us build local versions of the packages that can then be consumed and tested without having to wait for a build server. This is typically more useful when building library packages than application packages, but I've included it here because we've found it really useful and I wanted to share it :)
+
+Now for the gotchas. The first relates to the restore task, and isn't really required for a application package build. It will catch you out if you are doing a library package build though and you have multiple projects in your solution that refer to each other. The difference in that scenario is that you would also probably want to use `dotnet pack` rather than `dotnet octo pack`, and it will produce a NuGet package per library project file vs a single package file. The dependencies between the multiple packages will end up with the wrong version numbers if you don't include the version number when you do the `dotnet restore`. This is a behavior of `dotnet`, not Cake.
+
+The second gotcha relates to the `--no-build` parameter being passed in the ___Publish_ task, and this one does relate to application packages and will catch you out silently. If you don't pass this parameter the `dotnet publish` will run the build again, just to be sure, but won't include the version parameter that you passed to the original build. So it's wasted time and energy building again, and lost things along the way :( If you get this wrong you will still get a package that has the correct version, but the binaries inside it will have the wrong version and you probably won't notice this until something goes wrong down the track.
+
+In this example I've used [GitVersion](https://github.com/GitTools/GitVersion) and included an example of how to push the derived version back to TeamCity, if that's where it happens to be running. To achieve this in VSTS your best bet is to grab the GitVersion task from the Marketplace and add it as the first step in your pipeline (also set the Build number format to `$(GITVERSION_FullSemVer)`, there's more info about this in the [GitVersion docs](https://gitversion.readthedocs.io/en/latest/build-server-support/build-server/tfs-build-vnext/#running-inside-tfs)). The setup in either TeamCity or VSTS is then simplified down to a step that invokes Cake to run your script. If you've followed [Cake's guide to getting started](https://cakebuild.net/docs/tutorials/getting-started) you'll have the bootstrapping scripts you need and your step will just have to end up executing something like 
+
+```powershell
+build.ps1 -octopusServer=http://yourserverurl -octopusApikey=yourapikey
+```
+
+### `dotnet octo` installation
+
+I said right back at the start of this post
+
+> The concepts apply equally regardless of whether the build machine itself has full .NET Framework or .NET Core.
+
+and this is true. The concepts are the same. There's a mechanical piece though that I know is going to catch people out, the Octo .Net CLI extension installation.
+
+If you're using the TeamCity or VSTS steps you don't need to worry about this, our extension makes sure the installation is taken care of for you. (**TODO: confirm with Shaun that this is true for TC Linux agents**)
+
+When you're using Cake though you have to make sure you install `dotnet octo` yourself. Depending on your scenario you have a couple of options on how to do this.
+
+One option is to install globally (`dotnet tool install Octopus.DotNet.Cli -g`). This works if you can pre-install on either pet agents or cattle agent images and are comfortable that builds sharing the agents (cattle agents can still hang around and service multiple builds while they're alive) won't need conflicting versions of the CLI extension.
+
+Another option is to install to a folder relative to the build working folder (e.g. `dotnet tool install Octopus.DotNet.Cli --tool-path octoTools`). The trick to this method is that the folder (`octoTools`) has to end up in the path too or `dotnet` can't see it.
 
 ## Wrapping Up
 
-.
+Woohoo you stuck with me to the end, thank you! This did turn out to be a much bigger post than I had originally expected it to be, but it's something we get asked about a bit so hopefully this will be something that will help a number of you out there.
 
+As always, if you have any questions or feedback please let us know below.
