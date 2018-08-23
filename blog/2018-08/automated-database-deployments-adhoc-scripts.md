@@ -6,9 +6,13 @@ description: Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline
 author: bob.walker@octopus.com
 visibility: private
 published: 2018-08-23
+metaImage: metaimage-sqlscript.png
+bannerImage: blogimage-sqlscript.png
 tags:
  - Database Deployments
 ---
+
+![Octopus worker deploying an adhoc SQL script illustration](blogimage-sqlscript.png)
 
 ## Introduction
 Automating database deployments provides a quantum leap in continuous delivery.  I cannot believe the number of problems solved by automating database deployments.  Whether it is adding a new table, modifying a stored procedure or creating an index.  I no longer have to try to determine the delta between environments.
