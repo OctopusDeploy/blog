@@ -1069,7 +1069,7 @@ Define the following project variables:
 * ApplicationName - The name of the application that is being deployed to Kubernetes.
 * KubernetesUrl - The Kubernetes cluster URL.
 
-The script that we will run relies on the `Octopus.Client` package which is available from the public Nuget feed at https://api.nuget.org/v3/index.json. We need to add this package to the script step, ensuring that it will be extracted.
+The script that we will run relies on the `Octopus.Client` package, which is available from the public Nuget feed at https://api.nuget.org/v3/index.json. We need to add this package to the script step, ensuring that it will be extracted.
 
 ![](kubernetes-script-dll-package.png)
 
@@ -1174,7 +1174,7 @@ if ($repository.Machines.FindByName($accountName) -eq $null) {
 
 This script will then create the Kubernetes resources, get the token, and create the Octopus token account and Kubernetes target.
 
-You could also allow the project variables to be supplied during deployment, or save this script as a step template to make it easier to reuse.
+You could also allow the project variables to be supplied during deployment, or save this script as a [step template](https://octopus.com/docs/deployment-process/steps/custom-step-templates) to make it easier to reuse.
 
 ## Summary
 
