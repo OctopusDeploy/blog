@@ -329,6 +329,8 @@ kubectl get secret $(kubectl get serviceaccount $user -o jsonpath="{.secrets[0].
 
 :::warning
 We have retrieved the token as part of a script step here for demonstration purposes only. Displaying the token in the log output is a security risk, and should be done with caution. These same scripts can be run locally instead to prevent the tokens being saved in a log file.
+
+See the section [Scripting Kubernetes Targets](#scripting-kubernetes-targets) for a solution that automates the process of creating these accounts, without leaving tokens in the log file.
 :::
 
 Before we deploy the script, we need to make sure the project is using the `Kubernetes Admin` lifecycle.
@@ -1052,6 +1054,127 @@ The script will be run in the same kubectl context that is created when running 
 ![](kubernetes-script-console-result.png)
 
 The script console also has the advantage of saving a history of what commands were run by whom, providing an audit trail for mission critical systems.
+
+## Scripting Kubernetes Targets
+
+Creating accounts and targets can be time consuming if you are managing a large Kubernetes cluster. Fortunately the process can be automated so the Kubernetes Namespace and Service Account resources along with the Octopus Account and Targets are created with a single script.
+
+Create a `Run a kubectl CLI Script` step that targets an existing Kubernetes admin target (i.e. a target that was set up with the Kubernetes admin credentials).
+
+Define the following project variables:
+
+* ApiKey - The Octopus API key that will be used to create the account and targets.
+* ServerUrl - The Octopus server url.
+* EnvironmentName - The name of the environment that the Kubernetes account represents.
+* ApplicationName - The name of the application that is being deployed to Kubernetes.
+* KubernetesUrl - The Kubernetes cluster URL.
+
+The script that we will run relies on the `Octopus.Client` package which is available from the public Nuget feed at https://api.nuget.org/v3/index.json. We need to add this package to the script step, ensuring that it will be extracted.
+
+![](kubernetes-script-dll-package.png)
+
+Paste the following code as the script body.
+
+```PowerShell
+Set-Content -Path serviceaccount.yml -Value @"
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: $($ApplicationName.ToLower())-deployer
+  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  name: $($ApplicationName.ToLower())-deployer-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get"]    
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: $($ApplicationName.ToLower())-deployer-binding
+  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+subjects:
+- kind: ServiceAccount
+  name: $($ApplicationName.ToLower())-deployer
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: $($ApplicationName.ToLower())-deployer-role
+  apiGroup: ""
+"@
+
+kubectl apply -f serviceaccount.yml
+
+$data = kubectl get secret $(kubectl get serviceaccount "$($ApplicationName.ToLower())-deployer" -o jsonpath="{.secrets[0].name}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())") -o jsonpath="{.data.token}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())"
+$Token = [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data))
+
+[Reflection.Assembly]::LoadFrom("Octopus.Client\lib\net45\Octopus.Client.dll")
+
+$endpoint = new-object Octopus.Client.OctopusServerEndpoint($ServerUrl, $ApiKey)
+$repository = new-object Octopus.Client.OctopusRepository($endpoint)
+
+# Create the token account
+
+$accountName = $ApplicationName + "-" + $EnvironmentName
+$account = $repository.Accounts.FindByName($accountName)
+if ($account -eq $null) {
+  $tokenValue = new-object Octopus.Client.Model.SensitiveValue
+  $tokenValue.NewValue = $Token;
+  $tokenAccount = new-object Octopus.Client.Model.Accounts.TokenAccountResource
+  $tokenAccount.Name = $accountName;
+  $tokenAccount.Token = $tokenValue;
+  $account = $repository.Accounts.Create($tokenAccount);
+} else {
+  $tokenValue = new-object Octopus.Client.Model.SensitiveValue
+  $tokenValue.NewValue = $Token;
+  $account.Token = $tokenValue;
+  $account = $repository.Accounts.Modify($account);
+}
+
+# Find the environment
+
+$environment = $repository.Environments.FindByName($EnvironmentName)
+
+if ($environment -eq $null) {
+	Write-Error "Could not find the environemnt called $EnvironmentName"
+    exit 1
+}
+
+# Create the endpoint
+if ($repository.Machines.FindByName($accountName) -eq $null) {
+  $kubernetesEndpoint = new-object Octopus.Client.Model.Endpoints.KubernetesEndpointResource
+  $kubernetesEndpoint.ClusterUrl = $KubernetesUrl;
+  $kubernetesEndpoint.SkipTlsVerification = "True";
+  $kubernetesEndpoint.AccountId = $account.Id;
+
+  # Create the machine
+  $machine = new-object Octopus.Client.Model.MachineResource
+  $machine.Name = $accountName
+  $machine.Endpoint = $kubernetesEndpoint;
+  $machine.EnvironmentIds = new-object Octopus.Client.Model.ReferenceCollection $environment.Id
+  $machine.Roles = new-object Octopus.Client.Model.ReferenceCollection $ApplicationName
+
+  $repository.Machines.Create($machine);
+}
+```
+
+This script will then create the Kubernetes resources, get the token, and create the Octopus token account and Kubernetes target.
+
+You could also allow the project variables to be supplied during deployment, or save this script as a step template to make it easier to reuse.
 
 ## Summary
 
