@@ -1051,7 +1051,7 @@ The script will be run in the same kubectl context that is created when running 
 
 ![](kubernetes-script-console-result.png)
 
-The script console is a convenient way to leverage the configuration of Kubernetes targets without jumping to the command line and reconfiguring your local kubectl config files.
+The script console also has the advantage of saving a history of what commands were run by whom, providing an audit trail for mission critical systems.
 
 ## Summary
 
