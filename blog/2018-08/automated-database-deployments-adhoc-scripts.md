@@ -87,7 +87,7 @@ The way to do this is to add a single phase and all the environments to that sin
 
 ## Projects and Process
 
-For this process, I created a number of step templates.  I don't want to submit those to the community library because they aren't generic enough.  You can find them on out [GitHub samples repository](https://github.com/OctopusSamples/AdHoc-SQLQueries).
+For this process, I created a number of step templates.  I don't want to submit those to the community library because they aren't generic enough.  You can find them on our [GitHub samples repository](https://github.com/OctopusSamples/AdHoc-SQLQueries).
 
 ### Ingesting Scripts
 
