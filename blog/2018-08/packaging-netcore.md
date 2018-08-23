@@ -1,6 +1,6 @@
 ---
-title: Packaging .NETCore applications
-description: Using Octopus tooling to package .NETCore applications
+title: Build pipelines and application packaging with .NETCore
+description: An adventure in build tools and Octopus tooling to package .NETCore applications
 author: shannon.lewis@octopus.com
 visibility: private
 metaImage: metaimage-package-netcore.png
@@ -14,25 +14,27 @@ tags:
 
 ![Octopus Packaging .NET Core banner](blogimage-package-netcore.png)
 
-We recently posted an introduction to our newly added capability for [packaging .NET Core applications on .NET Core](octopus-and-netcore.md). In this post we're going to get our hands dirty and dig into how to put together a build pipeline for a .NET Core application. The concepts apply equally regardless of whether the build machine itself has full .NET Framework or .NET Core. 
+We recently posted an introduction to our newly added capability for [packaging .NET Core applications on .NET Core](octopus-and-netcore.md). In this post we're going to get our hands dirty and dig into how to put together a build pipeline for a .NET Core application.
 
-Along the way we're actually going to build the pipeline a few times over, using different build servers and tools. It is going to be .NET Core focused, but the same concepts can be applied to many full framework scenarios (there just not as "mandatory" in that world), so if you have an interest in building and packaging applications please read on.
+The concepts we're going to cover apply equally regardless of whether the build machine itself has full .NET Framework or .NET Core. They can also apply to many full framework scenarios, so even if you're not doing .NET Core there might be something here for you.
 
-## Link 1 in the chain
+Along the way we're actually going to build the pipeline a few times over, using different build servers and tools.
 
-The focus in this post is to illustrate the build setup, so we're going to assume that you are familiar with everything required to get you to the point of building. We're using a Git repo with a simple ASP.NET Web application for illustration, but the content and mechanics of the application aren't important to the overall story.
+## Before we dive in
+
+The focus in this post is to illustrate the build setup, so I'm going to assume that you are familiar with everything required to get you to the point of building. I'm using a Git repo with a simple ASP.NET Web application for illustration, but the content and mechanics of the application aren't important to the overall story.
 
 ## The 3 steps to success
 
-So what is important? In all of the following examples there is 1 underlying pattern being used. The 3 core steps are:
+So when you're putting together a build pipeline for .NET Core, what is important? First and foremost for me is, don't fight the tooling. I mentioned in the last post that the way OctoPack does things doesn't fit with the .NET Core world, so we have to change our thinking to suit that world.
+
+To that end, in all of the following examples there is 1 underlying pattern being used that entails 3 core steps:
 
 1. publish the application to a folder
 2. package the application
 3. push the package to a feed that can be used by Octopus
 
-For those familiar with [OctoPack](https://g.octopushq.com/ExternalToolOctoPack), it also uses these same 3 steps, it just does them internally so you don't need to worry about it. As mentioned in the previous post though, it makes some assumptions about the way the application can be published and those assumptions don't hold for some newer application types.
-
-The Microsoft build tooling does understand these application types and their eccentricities. It is also designed to publish the minimal set of binaries and content ready for transport to where it's going to actually execute.
+Now [OctoPack](https://g.octopushq.com/ExternalToolOctoPack) actually also uses these same 3 conceptual steps, it just does them internally so it isn't necessarily obvious. The issue with OctoPack is that it has its own way of doing the publish, rather than deferring to the Microsoft tooling that's built to handle all of the newer application types you could be wanting to package.
 
 ## TeamCity
 
@@ -40,9 +42,9 @@ Alright, without further ado, let's get into our first example. Here's a sneak p
 
 ![TeamCity build steps](netcorebuilds\tc-steps.png)
 
-That might look like a lot of steps at first glance, but TeamCity can do some heavy lifting here. Once you've created your project and configured your VCS root go to the Build Steps and let TeamCity have a stab at creating the build steps based on what it can see in the repo. In our sample that got us the first 3 steps in a couple of button clicks.
+TeamCity can actually setup a fair bit of this for you. Once you've created your project and configured your VCS root go to the Build Steps and let TeamCity have a stab at creating the build steps based on what it can see in the repo and it should come up with steps 1-3 for you.
 
-Now let's fine tune the publish step a little by setting a specific Output directory, and this rounds out publishing to a folder. Note that the output directory is relative to the csproj folder location. I like to use a folder off the root level of the repo, thus the `../../`.
+Now let's fine tune the publish step a little by setting a specific Output directory that's easier for the following step to find. Note that the output directory is relative to the csproj folder location. I like to use a folder off the root level of the repo, thus the `../../`.
 
 ![TeamCity publish step](netcorebuilds\tc-publish.png)
 
@@ -52,7 +54,7 @@ This gets us the application contents published, next we package it.
 
 This step is a recent addition to our TeamCity extension, so if you can't see it you'll need to update the extension. The _Package ID_ is declared as a TeamCity variable because we're going to use it again in the Push step shortly, the actual value isn't important for our illustration.
 
-The _Source path_ is the folder we published to in the previous step and the _Output  path_ is where we're going to put the resulting package. 
+The _Source path_ is the folder we published to in the previous step (noting that this time it's relative to the root checkout folder) and the _Output  path_ is where we're going to put the resulting package. 
 
 Just to reiterate, the actual values used for almost all of these fields aren't particularly important, so long as you understand which fields on each step need to align. The _Package version_ is generally always going to be `%build.number%` though :)
 
@@ -74,11 +76,11 @@ There can be a catch if you are using the TeamCity feed as an external feed to O
 
 There are 2 things I've done quite specifically in setting up this step to make sure things go bang if the TeamCity and Octopus worlds aren't correctly aligned. The first is to leave the _Release number_ blank in TeamCity and configure the project settings in Octopus to use the package version, in the _Release Versioning_ setting. The second is to explicitly specify the exact package version that we just pushed to the feed as the package version the release must use, which we do through the additional arguments (yes, in hindsight this might have been better as a 1st class field and we might look at that in the future).
 
-Which brings us to the catch, if you trigger the release the package may not be available in the feed yet and Octopus won't be able to find it. By providing the specific version of the package we will force a build failure here if the package isn't available. Without this the release creation will default to auto selecting the most recent package and everything will look hunky dory until you realize some fix you thought had been released isn't actually there. Many hours of head scratching will ensure until you happen to notice the single digit difference in the package version to the release version.
+Which brings us to the catch, if you trigger the release the package may not be available in the feed yet and Octopus won't be able to find it. By providing the specific version of the package we will force a build failure here if the package isn't available. Without this the release creation will default to auto selecting the most recent package and everything will look hunky dory until you realize some fix you thought had been released isn't actually there. Many hours of head scratching will ensue until you happen to notice the single digit difference in the package version to the release version.
 
-So why did I also leave the _Release number_ blank in TeamCity, when you'd often see it set to `%build.number%`? Well if I forget to set the version explicitly via the additional parameters then the release in Octopus will end up with the version of the older package that got auto selected, this will either hard fail if that release already exists or will stand out when you look at the project overview. I.e. an incorrect release number is big and bold and much easier to spot in the UI than an incorrect package version within the release.
+So why did I also leave the _Release number_ blank in TeamCity, when you'd often see it set to `%build.number%`? Well if I forget to set the version explicitly via the additional parameters then the release in Octopus will end up with the version of the older package that got auto selected (I have the project in Octopus set to use the package for the release versioning), this will either hard fail if that release already exists or will stand out when you look at the project overview. I.e. an incorrect release number is big and bold and much easier to spot in the UI than an incorrect package version within the release.
 
-Ok, now those are good counter measures to have in place, but they just warn us if it all goes wrong, how do we make sure it doesn't all go wrong? The best bet we've found is [Build chains](https://confluence.jetbrains.com/display/TCD10/Build+Chain). I'll leave most of how to deal with build chains as an exercise for the reader, but here's the setup I've used for a "Release" Build Configuration in my demo project.
+Ok, now those are good counter measures to have in place, but they just warn us if it all goes wrong, how do we make sure it doesn't all go wrong? The best bet we've found is [Build chains](https://confluence.jetbrains.com/display/TCD10/Build+Chain). I'll leave most of how to deal with build chains as some homework for you, but here's the setup I've used for a "Release" Build Configuration in my demo project.
 
 ![TeamCity chained build general settings](netcorebuilds\tc-rel-gen.png)
 
@@ -86,7 +88,7 @@ Ok, now those are good counter measures to have in place, but they just warn us 
 
 ![TeamCity chained build triggers](netcorebuilds\tc-rel-trig.png)
 
-This build configuration depends on the "Build" build configuration, and is triggered when that succeeds. This build's version number is also directly set to the build number from its dependency.
+This build configuration depends on the "Build" build configuration, and is triggered when that succeeds. This build's version number is also directly set to the build number from its dependency and it will not start until it's dependency has completed and the resulting artifacts are published and indexed.
 
 ## VSTS
 
@@ -271,7 +273,7 @@ I said right back at the start of this post
 
 and this is true. The concepts are the same. There's a mechanical piece though that I know is going to catch people out, the Octo .Net CLI extension installation.
 
-If you're using the TeamCity or VSTS steps you don't need to worry about this, our extension makes sure the installation is taken care of for you. (**TODO: confirm with Shaun that this is true for TC Linux agents**)
+If you're using the TeamCity or VSTS steps you don't need to worry about this, our extension makes sure the installation is taken care of for you.
 
 When you're using Cake though you have to make sure you install `dotnet octo` yourself. Depending on your scenario you have a couple of options on how to do this.
 
