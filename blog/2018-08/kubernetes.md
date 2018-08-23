@@ -1027,13 +1027,31 @@ Write-Host "Access the ingress load balancer at http://$($IngressParsed.status.l
 
 ![](kubernetes-script-summary.png)
 
-## Going Further
+## Some Useful Tips and Tricks
+
+### Viewing the Resource YAML
 
 You may have noticed that the Octopus step does expose every possible option that can be defined on a Deployment resource.
 
 If you need a level of customization that the step does not provide, you can find the YAML for the resources that are created in the log files. These YAML files can be copied out, edited and deployed manually through the `Run a kubectl CLI script` step.
 
 ![](kubernetes-yaml-output.png)
+
+## Adhoc Scripts
+
+One of the challenges with managing multiple Kubernetes accounts and clusters is constantly switching between them when running quick queries and one off maintenance scripts. It is always best practise not to run scripts with an admin user, but I think we have all run that sneaky command as admin just to get the job done. And more than a few have been burned with a delete command that was just a bit too broad...
+
+Fortunately, once targets have been configured in Octopus as described in this blog post, it becomes easy to run these adhoc scripts limited to a single namespace using the `Script Console`.
+
+You can access the `Script Console` through `Tasks -> Script Console`. Select the Kubernetes target that reflects the namespace that you are working with, and write a script in the supplied editor.
+
+![](kubernetes-script-console.png)
+
+The script will be run in the same kubectl context that is created when running the `Run a kubectl CLI Script` step. This means you adhoc scripts will be contained to the namespace of the target (assuming if course the service account has the correct permissions), limiting the potential damage of a wayward command.
+
+![](kubernetes-script-console-result.png)
+
+The script console is a convenient way to leverage the configuration of Kubernetes targets without jumping to the command line and reconfiguring your local kubectl config files.
 
 ## Summary
 
