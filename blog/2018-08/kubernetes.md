@@ -1065,7 +1065,7 @@ Define the following project variables:
 
 * ApiKey - The Octopus API key that will be used to create the account and targets.
 * ServerUrl - The Octopus server url.
-* EnvironmentName - The name of the environment that the Kubernetes account represents.
+* EnvironmentName - The name of the environment that the Kubernetes account represents. This environment must already exist in Octopus.
 * ApplicationName - The name of the application that is being deployed to Kubernetes.
 * KubernetesUrl - The Kubernetes cluster URL.
 
