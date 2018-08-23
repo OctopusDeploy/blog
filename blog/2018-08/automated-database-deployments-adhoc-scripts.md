@@ -1,10 +1,8 @@
- 
-
 ---
 title: Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline
 description: Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline
 author: bob.walker@octopus.com
-visibility: private
+visibility: public
 published: 2018-08-23
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
@@ -15,7 +13,7 @@ tags:
 ![Octopus worker deploying an adhoc SQL script illustration](blogimage-sqlscript.png)
 
 ## Introduction
-Automating database deployments provides a quantum leap in continuous delivery.  I cannot believe the number of problems solved by automating database deployments.  Whether it is adding a new table, modifying a stored procedure or creating an index.  I no longer have to try to determine the delta between environments.
+Automating database deployments provides a quantum leap in continuous delivery.  I cannot believe the number of problems solved by automating database deployments.  Whether it is adding a new table, modifying a stored procedure or creating an index. I no longer have to try to determine the delta between environments.
 
 But a common scenario keeps popping up. Being able to run ad-hoc queries on the database server.  The most common use case I have seen is needing the ability to fix some data.  Typically the data gets in a strange state when a user does something unexpected.  In some cases, the root issue won't be fixed (it doesn't happen often enough), or the issue won't be fixed for another week or so.  But the data needs fixing right now.  
 
