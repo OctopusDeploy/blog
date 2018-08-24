@@ -3,8 +3,8 @@ title: Build Pipelines and Application Packaging With .NETCore
 description: An adventure in build tools and Octopus tooling to package .NETCore applications
 author: shannon.lewis@octopus.com
 visibility: private
-metaImage: metaimage-package-netcore.png
-bannerImage: blogimage-package-netcore.png
+metaImage: metaimage-pipeline.png
+bannerImage: blogimage-pipeline.png
 published: 2018-08-24
 tags:
  - OctoExe
@@ -12,7 +12,7 @@ tags:
  - NuGet
 ---
 
-![Octopus Packaging .NET Core banner](blogimage-package-netcore.png)
+![Octopus Packaging .NET Core banner](blogimage-pipeline.png)
 
 We recently posted an introduction to our new capability for [packaging .NET Core applications on .NET Core](octopus-and-netcore.md). In this post, we're going to get our hands dirty and dig into how to put together a build pipeline for a .NET Core application.
 
@@ -52,7 +52,7 @@ This gets us the application contents published. Next we package it.
 
 ![TeamCity Octo pack step](netcorebuilds\tc-pack.png)
 
-This step is a recent addition to our TeamCity extension, so if you can't see it, you'll need to update the extension. The _Package ID_ is declared as a TeamCity variable because we're going to use it again in the Push step shortly, the actual value isn't important for our illustration.
+This step is a recent addition to our [TeamCity extension](https://g.octopushq.com/OnboardingPackagingTeamCityLearnMore), so if you can't see it, you'll need to update the extension. The _Package ID_ is declared as a TeamCity variable because we're going to use it again in the Push step shortly, the actual value isn't important for our illustration.
 
 The _Source path_ is the folder we published to in the previous step (noting that, this time it's relative to the root checkout folder) and the _Output  path_ is where we're going to put the resulting package.
 
@@ -98,7 +98,7 @@ Like before, here's the sneak peek at the pipeline and then we'll dig into detai
 
 ![VSTS Pipeline](netcorebuilds\vsts-pipeline.png)
 
-I've mentioned a couple of times now that the .NET tooling knows the right way to do this stuff. In the pipeline above all I did was ask for a new pipeline and select the .NET Core template from the list. It created the first five steps, the fifth being the one I've disabled. I disabled this step rather than deleting it to illustrate the pattern again. By default, VSTS wants you to publish to a folder and then use that as the basis for what to move to the target of the deployment, just like we've been talking about. All we're doing here is replacing the Publish Artifact step with our Pack and Push steps, which package the folder content and push the package to Octopus just like we saw in the TeamCity example.
+I've mentioned a couple of times now that the .NET tooling knows the right way to do this stuff. In the pipeline above all I did was ask for a new pipeline and select the .NET Core template from the list. It created the first five steps, the fifth being the one I've disabled. I disabled this step rather than deleting it to illustrate the pattern again. By default, VSTS wants you to publish to a folder and then use that as the basis for what to move to the target of the deployment, just like we've been talking about. All we're doing here is replacing the Publish Artifact step with the Pack and Push steps from the [Octopus VSTS extension](https://g.octopushq.com/OnboardingPackagingVstsLearnMore), which package the folder content and push the package to Octopus just like we saw in the TeamCity example.
 
 Here's what's in the Publish step. I haven't changed anything in this step; I'm showing it here because the output folder it's using is important for _Source Path_ in the next step.
 
