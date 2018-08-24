@@ -2,7 +2,7 @@
 title: Build Pipelines and Application Packaging With .NETCore
 description: An adventure in build tools and Octopus tooling to package .NETCore applications
 author: shannon.lewis@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-pipeline.png
 bannerImage: blogimage-pipeline.png
 published: 2018-08-24
