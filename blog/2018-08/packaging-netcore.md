@@ -30,9 +30,9 @@ So when you're putting together a build pipeline for .NET Core, what is importan
 
 To that end, in all of the following examples there is one underlying pattern being used that entails three core steps:
 
-1. Publish the application to a folder
-2. Package the application
-3. Push the package to a feed that can be used by Octopus
+1. Publish the application to a folder.
+2. Package the application.
+3. Push the package to a feed that can be used by Octopus.
 
 Now [OctoPack](https://g.octopushq.com/ExternalToolOctoPack) also uses these same three conceptual steps it just does them internally, so it isn't necessarily obvious. The issue with OctoPack is that it has its own way of doing the publish, rather than deferring to the Microsoft tooling that's built to handle all of the newer application types you could be packaging.
 
