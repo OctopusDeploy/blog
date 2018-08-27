@@ -1,3 +1,13 @@
+---
+title: Deprecating Azure Management Certificates
+description: We're planning to deprecate the use of Management Certificates for Azure Web App deployments. Here's what you need to know.
+author: shannon.lewis@octopus.com
+visibility: private
+published: 2018-08-30
+tags:
+ - Azure
+---
+
 In this post I'm going to outline some changes that we are planning for `2018.9` related to Azure deployments.
 
 For the most part this will be us moving some things around internally, but there is one change we're planning that will impact anyone still deploying Azure Web Apps using Management Certificates.
