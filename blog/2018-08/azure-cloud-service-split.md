@@ -34,7 +34,7 @@ This will have no impact on any current Octopus instances, they will continue to
 
 This is the change that will more likely impact people. To allow us to move forward with support for things like Azure Storage steps and Azure Function deployments, as a couple of examples, we need to remove some of the things that are holding us back. One of the primary culprits in this space is the myriad of code paths created by supporting the two different account types and the two sets of APIs they have access to. So our plan is to remove support for Web App deployments using Management Certificates.
 
-Another factor in this decision has been Microsoft's announcement about [deprecating the Service Management APIs](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/). So the writing is on the wall, this is approach is dated and its days are numbered anyway.
+Another factor in this decision has been Microsoft's announcement about [deprecating the Service Management APIs](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/). So the writing is on the wall, this approach is dated and its days are numbered anyway.
 
 From an Octopus perspective, the change is hopefully a little less dramatic than it might first seem. We actually removed the ability to use Management Certificates for any new steps and any Azure deployment targets as of `2018.5`. So you'll only be impacted if you have deployment processes in an instance that has been upgraded from an earlier version and you are using Management Certificates to deploy Web Apps. Cloud Services can only be deployed using Management Certificates, so they will stay unchanged.
 
