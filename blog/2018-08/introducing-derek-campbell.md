@@ -1,7 +1,7 @@
 ---
 title: "Introducing Derek Campbell"
 visibility: public
-description: "A brief introduction to Bob Walker"
+description: "A brief introduction to Derek Campbell"
 published: 2018-08-27
 tags:
  - Company
