@@ -10,7 +10,7 @@ tags:
 <img alt="Profile Pic" src="https://i.octopus.com/site/team/derek-od.jpeg" height="140" width="140" />
 </div>
 
-Hello! I’m Derek and I joined Octopus as a Solution Architect in August 2018. 
+Hello!  I’m Derek and I joined Octopus as a Solution Architect in August 2018. 
  
 I started out in Ops in what seems like a lifetime ago, progressed into release management and for the past 7 years I have been doing DevOps and Infrastructure Consultancy mostly in Web technologies. I have been using Octopus and at times taking advantage of its generous licensing model throughout the past 5 years for .NET Projects. I used Octopus to deploy to on premise IIS, Azure Web Apps and AWS Virtual Machines. My main passion is making technologically complex processes more approachable to enable people and organisations achieve their end goals quicker and more reliably. I am really looking forward to helping our current and new customers achieve their success. Feel free to come and talk to me and the team on our user slack.
  
