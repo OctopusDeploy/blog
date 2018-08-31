@@ -19,7 +19,7 @@ We are adding the ability to add package references to the family of script step
 - `Run an Azure PowerShell Script`
 - `Run an AWS CLI Script`
 
-Previously these steps were able to reference a single package which contained the script to be run.  They can now also reference packages which do not contain the script.  Yes, packages, _plural_.  Oh, and _packages_ includes container images. 
+Previously these steps were able to reference a single package which contained the script to be run.  They can now also reference packages which do not contain the script.  Yes, packages, _plural_.  Oh, and when we say _packages_ we are including container images (see [below](#container-images)).  
 
 ## Why?
 
@@ -29,11 +29,13 @@ Previously when accessing files from a scipt there were two patterns:
 
 ### 1) The "wrapper" package 
 
-Octopus has long had the ability to use a package as the source of the script to be executed.  A side-effect of this is that the package is first extracted, and the files inside then sit alongside the script file being run. This has led many to realize they could either embed their script inside the package they wish to consume, or vice-versa to embed the package in the same package as the script.   
+<div style="float: right; margin: 30px; margin-top: 0">
+    <img alt="Russian Dolls" src="https://i.octopus.com/blog/2018-08/script-step-packages/russian-dolls.jpg" width="250"/>
+</div>
+
+Octopus has long had the ability to use a package as the source of the script to be executed.  A side-effect of this is that the package is first extracted, and the files inside then sit alongside the script file being run. This has led many a savvy user to realize they could either embed their script inside the package they wish to consume, or vice-versa to embed the package in the same package as the script.   
 
 This works, but we would prefer to not force the creation of these artificial wrapper packages.
-
-![Russian Dolls](russian-dolls.jpg)
 
 
 ### 2) The "deploy-the-packages-first" pattern
@@ -43,11 +45,17 @@ In this pattern, one or many _Deploy a Package_ or _Transfer a Package_ steps ar
 The key drawback of this approach is that it can only be used to execute the script on a target machine.  It can't be used to run on the Octopus Server or a Worker.
 It also makes the deployment process more complicated than it should be. 
 
-![Rube Goldberg Machine](rube-goldberg-machine.jpg)
+<img alt="Rube Goldberg Machine" src="https://i.octopus.com/blog/2018-08/script-step-packages/rube-goldberg-machine.jpg" width="600"/>
 
 ### Container Images
 
-blah blah blah
+You can now reference container images from script steps in a first-class way!
+
+![Container Image Reference](aws-ecs-container-image.png "width=500")
+
+This means the version (the image tag) of the images will be captured at release creation time, just like any other package.
+
+Container images can be configured to be acquired on the execution target, or to not be acquired at all.  For example, in the image above we are updating an AWS ECS service to use version of the container image.  Since we are simply using the metadata, we don't need to bear the cost of pulling the image locally.  
 
 ## An Example: NuGet Push 
 
@@ -104,8 +112,7 @@ We've enabled the file variable-substitution features for script steps.
 
 This allows substituting Octopus variables into files contained in referenced packages. 
 
-
-## Gimme Gimme Gimme
+## When 
 
 Package-References from Script Steps are available in Octopus 2018.8, which will be available for download by the time you are reading this.  
 
