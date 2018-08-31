@@ -5,7 +5,7 @@ author: michael.richardson@octopus.com
 visibility: private
 bannerImage: 
 metaImage: 
-published: 2019-08-30
+published: 2019-09-03
 tags:
 - Scripting
 ---
@@ -30,7 +30,7 @@ Previously when accessing files from a script there were two patterns:
 ### 1) The "wrapper" package 
 
 <div style="float: right; margin: 30px; margin-top: 0">
-    <img alt="Russian Dolls" src="https://i.octopus.com/blog/2018-08/script-step-packages/russian-dolls.jpg" width="250"/>
+    <img alt="Russian Dolls" src="https://i.octopus.com/blog/2018-09/script-step-packages/russian-dolls.jpg" width="250"/>
 </div>
 
 Octopus has long had the ability to use a package as the source of the script to be executed.  A side-effect of this is that the package is first extracted, and the files inside then sit alongside the script file being run. This has led many a savvy user to realize they could either embed their script inside the package they wish to consume, or vice-versa to embed the package in the same package as the script.   
@@ -45,7 +45,7 @@ In this pattern, one or many _Deploy a Package_ or _Transfer a Package_ steps ar
 The key drawback of this approach is that it can only be used to execute the script on a target machine.  It can't be used to run on the Octopus Server or a Worker.
 It also makes the deployment process more complicated than it should be. 
 
-<img alt="Rube Goldberg Machine" src="https://i.octopus.com/blog/2018-08/script-step-packages/rube-goldberg-machine.jpg" width="600"/>
+<img alt="Rube Goldberg Machine" src="https://i.octopus.com/blog/2018-09/script-step-packages/rube-goldberg-machine.jpg" width="600"/>
 
 ### Container Images
 
