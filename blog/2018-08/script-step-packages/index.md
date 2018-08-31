@@ -61,7 +61,7 @@ Container images can be configured to be acquired on the execution target, or to
 
 A real example scenario we have at Octopus HQ is pushing packages to NuGet.  
 
-The release process for (as an example) our Octopus.Client .NET library is to push the package to a NuGet repository.  For our `Test` environment, we push to a private MyGet feed, and then for our `Production` release we push to [nuget.org](https://www.nuget.org/packages/Octopus.Client/)
+The release process for, as an example, our Octopus.Client .NET library is to push the package to a NuGet repository.  For our `Test` environment, we push to a private MyGet feed, and then for our `Production` release we push to [nuget.org](https://www.nuget.org/packages/Octopus.Client/)
 
 This involves two packages: 
 - `NuGet.CommandLine` from nuget.org, which we need to extract to run `nuget.exe push` 
@@ -78,6 +78,17 @@ When we add the `NuGet.CommandLine` package reference we specify that it should 
 Contrast this with the `Octopus.Client` package reference, which we specify to _not_ be extracted.
 
 ![Add Octopus.Client package reference](octopus-client-add-package.png "width=500")
+
+Our script to publish the package then becomes:
+
+```
+# Build the path to nuget.exe
+$nugetPackagePath = $OctopusParameters["Octopus.Action.Package[nuget].ExtractedPath"]
+$nugetExe = Join-Path -Path $nugetPackagePath -ChildPath "Tools\nuget.exe"
+
+# nuget push
+. $nugetExe push Octopus.Client.nupkg -source $DestinationRepository
+```
 
 The referenced packages are available to the custom script in two ways.  
 
