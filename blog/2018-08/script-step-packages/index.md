@@ -25,7 +25,7 @@ Previously these steps were able to reference a single package which contained t
 
 Scripts often need to interact with packages. They may need to read\write files within a package (for example to execute another script contained in a package) or in some cases only the package metadata is required (for example updating the image version used by an AWS ECS service). 
 
-Previously when accessing files from a scipt there were two patterns:
+Previously when accessing files from a script there were two patterns:
 
 ### 1) The "wrapper" package 
 
@@ -55,13 +55,13 @@ You can now reference container images from script steps in a first-class way!
 
 This means the version (the image tag) of the images will be captured at release creation time, just like any other package.
 
-Container images can be configured to be acquired on the execution target, or to not be acquired at all.  For example, in the image above we are updating an AWS ECS service to use version of the container image.  Since we are simply using the metadata, we don't need to bear the cost of pulling the image locally.  
+Container images can be configured to be acquired on the execution target, or to not be acquired at all.  For example, in the image above we are updating the version of a container image used by an AWS ECS service.  Since we are simply using the metadata, we don't need to bear the cost of pulling the image locally.  
 
 ## An Example: NuGet Push 
 
 A real example scenario we have at Octopus HQ is pushing packages to NuGet.  
 
-The release process for, as an example, our Octopus.Client .NET library is to push the package to a NuGet repository.  For our `Test` environment, we push to a private MyGet feed, and then for our `Production` release we push to [nuget.org](https://www.nuget.org/packages/Octopus.Client/)
+The release process for our Octopus.Client .NET library is to push the package to a NuGet repository.  For our `Test` environment, we push to a private MyGet feed, and then for our `Production` release we push to [nuget.org](https://www.nuget.org/packages/Octopus.Client/)
 
 This involves two packages: 
 - `NuGet.CommandLine` from nuget.org, which we need to extract to run `nuget.exe push` 
