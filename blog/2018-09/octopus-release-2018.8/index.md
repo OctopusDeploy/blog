@@ -2,8 +2,8 @@
 title: Octopus September Release 2018.8
 description: Octopus 2018.8 - Script Step Packages and Kubernetes Alpha 
 author: michael.richardson@octopus.com
-visibility: private
-published: 2018-09-03
+visibility: public
+published: 2018-09-04
 metaImage: metaimage-shipping-2018-8.png
 bannerImage: blogimage-shipping-2018-8.png
 tags:
@@ -30,7 +30,7 @@ We have an entire [post on these enhancements](https://octopus.com/blog/script-s
 
 ## Kubernetes Alpha
 
-We are very excited to be including the first-draft of Kubernetes support in Octopus!  This functionality is being released behind a feature-flag, and is designed to enable us to receive feedback from some real users. Although we don't currently recommend using this for production work-loads, we would encourage anyone interested to take a peek and all feedback is very welcome. 
+We are very excited to be including the first-draft of Kubernetes support in Octopus! This functionality is being released behind a feature-flag, and is designed to enable us to receive feedback from some real users. Although we don't currently recommend using this for production work-loads, we would encourage anyone interested to take a peek and all feedback is very welcome. 
 
 ![Kubernetes Feature Flag](k8s-feature-flag.png "width=500")
 

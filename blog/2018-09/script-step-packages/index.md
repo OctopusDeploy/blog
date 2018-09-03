@@ -2,10 +2,10 @@
 title: Packages in Script Steps 
 description: As of Octopus 2018.8 Script Steps will have the ability to reference packages
 author: michael.richardson@octopus.com
-visibility: private
+visibility: public
 metaImage: metaimage-script-step-packages.png
 bannerImage: blogimage-script-step-packages.png
-published: 2018-09-03
+published: 2018-09-04
 tags:
 - Scripting
 ---
@@ -33,7 +33,7 @@ Previously when accessing files from a script there were two patterns:
     <img alt="Russian Dolls" src="https://i.octopus.com/blog/2018-09/script-step-packages/russian-dolls.jpg" width="250"/>
 </div>
 
-Octopus has long had the ability to use a package as the source of the script to be executed.  A side-effect of this is that the package is first extracted, and the files inside then sit alongside the script file being run. This has led many a savvy user to realize they could either embed their script inside the package they wish to consume, or vice-versa to embed the package in the same package as the script.   
+Octopus has long had the ability to use a package as the source of the script to be executed. A side-effect of this is that the package is first extracted, and the files inside then sit alongside the script file being run. This has led many a savvy user to realize they could either embed their script inside the package they wish to consume, or vice-versa to embed the package in the same package as the script.   
 
 This works, but we would prefer to not force the creation of these artificial wrapper packages.
 
