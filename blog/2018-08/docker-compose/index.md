@@ -11,7 +11,7 @@ tags:
 - Docker
 ---
 
-Support for simple Docker steps has been available in Octopus from version 3.5.0 and since that time the containers landscape has dramatically changed. An increasing number of continuous deployment pipelines make use of containers, whether that be to standardize the build environments, testing or even runtime. Although we have recently focused our attention on improving our [Kubernetes support](../../2018-07/kubernetes-containers-update/index.md), for some requirements a simple docker-compose file is all that is needed. Why use a air-compressed nail gun, when all you need is a single hammer?
+Support for simple Docker steps has been available in Octopus from version 3.5.0 and since that time the containers landscape has dramatically changed. An increasing number of continuous deployment pipelines make use of containers, whether that be to standardize the build environments, testing or even runtime. Although we have recently focused our attention on improving our [Kubernetes support](../../2018-07/kubernetes-containers-update/index.md), for some requirements a simple docker-compose file is all that is needed. Why use a nail gun, when all you need is a hammer?
 
 With a recent upscaling of the `Run a Script` deployment step, performing `docker-compose` tasks can now be better integrated into your Octopus Deploy project. In this post we will look at how environment variables can be easily supplied and image versions tied to Octopus releases by leveraging some great new scripting features. All of the images and scripts in this example is available either on GitHub or DockerHub where indicated.
 
