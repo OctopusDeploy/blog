@@ -522,7 +522,7 @@ Deployments will sometimes fail. This is not only to be expected, but celebrated
 
 Let's review what we have got deployed now. We have a load balancer pointing to a Service resource, which in turn is pointing to the Deployment resource.
 
-![](kubernetes-deployment-diagram.jpg)
+![](kubernetes-deployment-diagram.jpg "width=500")
 
 Let's simulate a failed deployment. We can do this by configuring the Container resource readiness probe to run a command that does not exist. Readiness probes are used by Kubernetes to determine when a Container resource is ready to start accepting traffic, and by deliberately configuring a test that can not pass, we can simulate a failed deployment.
 
@@ -538,7 +538,7 @@ As expected, the deployment fails.
 
 So what does it mean to have a failed deployment?
 
-![](kubernetes-deployment-diagram-2.jpg)
+![](kubernetes-deployment-diagram-2.jpg "width=500")
 
 Because we are using the blue/green deployment strategy, we now have two Deployment resources. Because the latest one called `httpd-deployments-842` has failed, the previous one called `httpd-deployments-841` has not been removed.
 
@@ -562,7 +562,7 @@ Go ahead and remove the bad readiness check from the Container resource. Also ch
 
 This time the deployment succeeds. Because the deployment succeeded, the previous Deployment and ConfigMap resources have been cleaned up, and the new message is displayed on the webpage.
 
-![](kubernetes-deployment-diagram-3.jpg)
+![](kubernetes-deployment-diagram-3.jpg "width=500")
 
 ![](kubernetes-google-cloud-workload-3.png "width=500")
 
@@ -984,11 +984,11 @@ And we get a 404. What is wrong here?
 
 The issue here is that we opened a URL like http://35.193.149.6/httpd, and then passed that same path down to the HTTPD service. Our HTTPD service has no content to serve under the `httpd` path. It only has the `index.html` file in the root path the mapped from a ConfigMap resource.
 
-![](kubernetes-bad-path.jpg)
+![](kubernetes-bad-path.jpg "width=500")
 
 Fortunately this path mismatch is quite easy to solve. By setting the `nginx.ingress.kubernetes.io/rewrite-target` annotation to `/`, we can configure Nginx to pass the request that it receives on path `/httpd` along to the path `/`. So while we access the URL http://35.193.149.6/httpd in the browser, the HTTPD service sees a request to the root path.
 
-![](kubernetes-good-path.jpg)
+![](kubernetes-good-path.jpg "width=500")
 
 ![](kubernetes-rewrite-target.png "width=500")
 
