@@ -89,14 +89,14 @@ Yes, in a controlled fashion. "Accelerating" to a fast lane release will result 
 
 ### Will you change your versioning strategy?
 
-Not really, no. We will just pick the next release number for each release of Octopus Server [just like we do today](/2018-01/version-change-2018.md) with some extra context:
+Not really, no. We will just pick the next release number for each release of Octopus Server [just like we do today](/blog/2018-01/version-change-2018.md) with some extra context:
 
 - We will add `LTS` to some part of the version for releases which come with long-term support.
 
 Based on our current plans, our release schedule should look something like this:
 
-- `2018.7` shipped in July 2018 primarily with support for workers - [see release notes](/2018-07/octopus-release-2018.7.md)
-- `2018.8` shipped in September with support for multiple packages in steps and Kubernetes support in alpha - [see release notes](/2018-09/octopus-release-2018.8/index.md)
+- `2018.7` shipped in July 2018 primarily with support for workers - [see release notes](/blog/2018-07/octopus-release-2018.7.md)
+- `2018.8` shipped in September with support for multiple packages in steps and Kubernetes support in alpha - [see release notes](/blog/2018-09/octopus-release-2018.8/index.md)
 - `2018.9` is scheduled to ship in late September 2018 with the Kubernetes support in full release
 - `2018.10 LTS` is scheduled to ship in early October 2018 and will be based on the most reputable release of `2018.9.x` (including Kubernetes support, excluding Spaces because that comes in `2018.11.x`)
 - `2018.11` is scheduled to ship in late October and will be the first installment of Spaces
