@@ -1,7 +1,7 @@
 ---
 title: Deploying applications to Kubernetes with Octopus
 description: Learn how to configure a multi-environment Kubernetes cluster and deploy an application to it.
-author: matthew.casperson@gmail.com
+author: matthew.casperson@octopus.com
 visibility: private
 metaImage: metaimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
@@ -439,7 +439,7 @@ The configuration of each container is summarized in the main step UI, so you ca
 
 ![](kubernetes-container-summary.png)
 
-# The ConfigMap
+## The ConfigMap
 
 We have talked a lot about the ConfigMap resource that is created by the step, so now it is time to configure it.
 
@@ -449,7 +449,7 @@ If you remember, we exposed this ConfigMap resource as a volume, and that volume
 
 ![](kubernetes-configmap.png)
 
-# The Service
+## The Service
 
 We're close now to having an application deployed and accessible. Because it is nice to see some progress, we'll take a little shortcut here and expose our application to the world with the quickest option available to us.
 
@@ -480,7 +480,7 @@ The ports are summarized in the main UI so they can be quickly reviewed.
 At this point, all the groundwork has been laid, and we can deploy the application.
 
 
-# The First Deployment
+## The First Deployment
 
 When you create a deployment of this project, Octopus allows you to define the version of the Docker image that will be included. If you look back at the configuration of the Container resource, you will notice that we never specified a version, just the image name. This is by design, as Octopus expects that most deployments will involve new Docker image versions, whereas the configuration of the Kubernetes resources will remain mostly static.
 
