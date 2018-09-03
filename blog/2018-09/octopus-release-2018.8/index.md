@@ -1,12 +1,16 @@
 ---
-title: Octopus Release 2018.8
+title: Octopus September Release 2018.8
 description: Octopus 2018.8 - Script Step Packages and Kubernetes Alpha 
 author: michael.richardson@octopus.com
 visibility: private
 published: 2018-09-03
+metaImage: metaimage-shipping-2018-8.png
+bannerImage: blogimage-shipping-2018-8.png
 tags:
  - New Releases
 ---
+
+![Octopus Deploy 2018.8 release banner](blogimage-shipping-2018-8.png)
 
 ## In This Post
 
@@ -14,7 +18,7 @@ tags:
 
 ## Release Tour
 
-_To Be Added_
+<iframe width="560" height="315" src="https://www.youtube.com/embed/luv-qSbla_k" frameborder="0" allowfullscreen></iframe>
 
 ## Script Step Packages++
 
