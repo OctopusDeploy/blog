@@ -1039,7 +1039,7 @@ If you need a level of customization that the step does not provide, you can fin
 
 ![](kubernetes-yaml-output.png "width=500")
 
-## Adhoc Scripts
+### Adhoc Scripts
 
 One of the challenges with managing multiple Kubernetes accounts and clusters is constantly switching between them when running quick queries and one off maintenance scripts. It is always best practise not to run scripts with an admin user, but I think we have all run that sneaky command as admin just to get the job done. And more than a few have been burned with a delete command that was just a bit too broad...
 
@@ -1055,7 +1055,7 @@ The script will be run in the same kubectl context that is created when running 
 
 The script console also has the advantage of saving a history of what commands were run by whom, providing an audit trail for mission critical systems.
 
-## Scripting Kubernetes Targets
+### Scripting Kubernetes Targets
 
 Creating accounts and targets can be time consuming if you are managing a large Kubernetes cluster. Fortunately the process can be automated so the Kubernetes Namespace and Service Account resources along with the Octopus Account and Targets are created with a single script.
 
