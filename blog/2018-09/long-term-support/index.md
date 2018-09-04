@@ -51,7 +51,7 @@ We want to give you the power to choose, along with simple guidance to help make
 
 ### Introducing the fast and slow lanes
 
-Under the covers, we plan to keep working the same way we have for the last several years: shipping bug fixes and minor enhancements with a quick turnaround, and working closely with our customers to design and test new features. What we are adding is a special release cadence, where the release is based on the most stable version at that point in time with some additional quality assurance, complete with the the offer of six months long-term support.
+Under the covers, we plan to keep working the same way we have for the last several years: shipping bug fixes and minor enhancements with a quick turnaround, and working closely with our customers to design and test new features. What we are adding is a special release cadence, where the release is based on the most stable version at that point in time with some additional quality assurance, complete with the offer of six months long-term support.
 
 Internally we think about this as two "release lanes":
 
