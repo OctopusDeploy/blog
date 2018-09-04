@@ -1,5 +1,5 @@
 ---
-title: Octopus September Release 2018.8
+title: Octopus 2018.8 Release 
 description: Octopus 2018.8 - Script Step Packages and Kubernetes Alpha 
 author: michael.richardson@octopus.com
 visibility: public
