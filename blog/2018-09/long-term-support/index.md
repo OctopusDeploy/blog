@@ -43,10 +43,6 @@ Each release of Octopus Server will clearly indicate if it is an LTS release on 
 
 We realise not every customer is the same. We want to make it really easy for anyone to answer this question: _What is the best release of Octopus Server to install?_
 
-- For customers on Octopus Cloud, we make the choice for you. _Yes, you are our test subjects, and we love you for it!_
-- For some self-hosted customers the answer will be clear: **We depend on Octopus deeply and want the most stable release possible. We want the latest release with long-term support!**
-- For other self-hosted customers the answer will be different: **We really want to explore the Octopus support for Kubernetes. Let's install that release the day it comes out!**
-
 We want to give you the power to choose, along with simple guidance to help make an informed choice.
 
 ### Introducing the fast and slow lanes
@@ -58,11 +54,24 @@ Internally we think about this as two "release lanes":
 - The **fast lane** is exactly what we do today. We ship new features when they are ready, usually every 4-6 weeks, and ship bug fixes and minor enhancements into patches every few days.
 - The **slow lane** is where we will stabilize and ship releases with long-term support, along with any patches containing critical bug fixes and security patches for up to six months.
 
-In practical terms:
+#### Octopus Cloud is in the fast lane
 
-- Octopus Cloud customers will be using releases from the fast lane
-- Self-hosted customers will be able to choose the releases they want to install
-  - The [downloads page](https://octopus.com/downloads) will default to releases from the slow lane with long-term support
+[Octopus Cloud](https://octopus.com/cloud) customers will be using releases from the fast lane: we make the choice for you. You will get the latest and greatest features as soon as they are ready, along with the fastest turnaround time on bug fixes and small enhancements.
+
+#### Self-hosted: the power to choose
+
+Self-hosted customers can make the choice for themselves. We recommend choosing a lane and sticking with that, but you can [switch lanes](#switching-lanes) when it suits your situation. 
+
+Choose the **slow lane releases with long-term support** if this sounds like your scenario:
+
+- "We prefer stability over having the latest features."
+- "We upgrade Octopus about every three months."
+- "We evaluate Octopus in a test environment before upgrading our production installation." 
+
+You should choose the **fast lane releases** if this sounds lke your scenario:
+
+- "We want the latest and greatest features and really fast turnaround on small enhancements and bug fixes."
+- "We want to engage closely with the Octopus team so we can help them build the best automation tooling in the world!"
 
 ## Q&A
 
@@ -83,9 +92,9 @@ We will not:
 - Ship new features in LTS patches
 - Ship breaking changes in LTS patches
 
-### Can we move between the slow and fast lanes?
+### Can we move between the slow and fast lanes? {#switching-lanes}
 
-Yes, in a controlled fashion. "Accelerating" to a fast lane release will result in you running a higher version of Octopus Server - it's just a normal upgrade. If you would like to "decelerate" back to the slow lane releases with long-term support, just wait until the next LTS release is shipped and upgrade to that.
+Yes, you can switch lanes in a controlled fashion. "Accelerating" to a fast lane release will result in you running a higher version of Octopus Server - it's just a normal upgrade. If you would like to "decelerate" back to the slow lane releases with long-term support, just wait until the next LTS release is shipped and upgrade to that.
 
 ### Will you change your versioning strategy?
 
@@ -93,10 +102,10 @@ Not really, no. We will just pick the next release number for each release of Oc
 
 - We will add `LTS` to some part of the version for releases which come with long-term support.
 
-Based on our current plans, our release schedule should look something like this:
+Let's imagine a possible future based on our current plans (please don't bet the farm on these exact dates or feature lists):
 
 - `2018.7` shipped in July 2018 primarily with support for workers - [see release notes](/blog/2018-07/octopus-release-2018.7.md)
 - `2018.8` shipped in September with support for multiple packages in steps and Kubernetes support in alpha - [see release notes](/blog/2018-09/octopus-release-2018.8/index.md)
-- `2018.9` is scheduled to ship in late September 2018 with the Kubernetes support in full release
-- `2018.10 LTS` is scheduled to ship in early October 2018 and will be based on the most reputable release of `2018.9.x` (including Kubernetes support, excluding Spaces because that comes in `2018.11.x`)
-- `2018.11` is scheduled to ship in late October and will be the first installment of Spaces
+- `2018.9` ships in late September 2018 with the Kubernetes support in full release
+- `2018.10 LTS` ships in early October 2018 based on the most reputable release of `2018.9` (including Kubernetes support, excluding Spaces because that comes in `2018.11`). This release comes with six months of long-term support.
+- `2018.11` ships in late October as the first installment of Spaces
