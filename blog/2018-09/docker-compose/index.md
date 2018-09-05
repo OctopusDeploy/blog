@@ -3,13 +3,15 @@ title: Integrating docker-compose steps with Octopus Deploy
 description: Performing docker-compose is easy with the new script running capabilities
 author: robert.erez@octopus.com
 visibility: private
-bannerImage: 
-metaImage: 
-published: 2019-07-19
+bannerImage: blogimage-docker-compose.png
+metaImage: metaimage-docker-compose.png
+published: 2018-09-05
 tags:
 - Containers
 - Docker
 ---
+
+![Octopus working with Docker Compose illustration](blogimage-docker-compose.png)
 
 Support for simple Docker steps has been available in Octopus from version 3.5.0 and since that time the containers landscape has dramatically changed. An increasing number of continuous deployment pipelines make use of containers, whether that be to standardize the build environments, testing or even runtime. Although we have recently focused our attention on improving our [Kubernetes support](../../2018-07/kubernetes-containers-update/index.md), for some requirements a simple docker-compose file is all that is needed. Why use a nail gun, when all you need is a hammer?
 
