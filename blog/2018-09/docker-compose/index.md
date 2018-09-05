@@ -13,7 +13,7 @@ tags:
 
 Support for simple Docker steps has been available in Octopus from version 3.5.0 and since that time the containers landscape has dramatically changed. An increasing number of continuous deployment pipelines make use of containers, whether that be to standardize the build environments, testing or even runtime. Although we have recently focused our attention on improving our [Kubernetes support](../../2018-07/kubernetes-containers-update/index.md), for some requirements a simple docker-compose file is all that is needed. Why use a nail gun, when all you need is a hammer?
 
-With a recent upscaling of the `Run a Script` deployment step, performing `docker-compose` tasks can now be better integrated into your Octopus Deploy project. In this post we will look at how environment variables can be easily supplied and image versions tied to Octopus releases by leveraging some great new scripting features. All of the images and scripts in this example is available either on GitHub or DockerHub where indicated.
+With a recent upscaling of the `Run a Script` deployment step in the `2018.8.0` release, performing `docker-compose` tasks can now be better integrated into your Octopus Deploy project. In this post we will look at how environment variables can be easily supplied and image versions tied to Octopus releases by leveraging some great new scripting features. All of the images and scripts in this example are available either on GitHub or DockerHub where indicated.
 
 ## Starting with a simple compose
 We want to build a simple website that has a visitor counter (hello 1990's) and a simple message. To do this we are going to run a small python website that stores the visitor state in a redis data store. Wrapping the website up into a container and running them through docker-compose means that we can be sure that the execution environment always matches our expectations. I won't go into the details of writing python scripts or building the docker image for this website but feel free to check out the source code for the [web app](https://github.com/OctopusSamples/Docker-Compose/blob/master/WebAppAndRedis/app/app.py) and [Dockerfile](https://github.com/OctopusSamples/Docker-Compose/blob/master/WebAppAndRedis/app/Dockerfile) on the [GitHub repo](https://github.com/OctopusSamples/Docker-Compose) that hosts these project files.
@@ -76,7 +76,7 @@ Since we want to version all of our scripts and `docker-compose.yml` files, we w
 
 ![script selection](script_selection.png "width=500")
 
-Under these fields is the new feature, `Additional Packages`. Lets add references to the two docker images that are used for this project. In this case we will make use of a [DockerHub feed](https://octopus.com/docs/packaging-applications/package-repositories/registries/docker-hub) and have selected the official `redis` image
+Under these fields is the new feature, `Additional Packages`. Let's add references to the two docker images that are used for this project. In this case we will make use of a [DockerHub feed](https://octopus.com/docs/packaging-applications/package-repositories/registries/docker-hub) and have selected the official `redis` image
 
 ![redis image](redis_image.png "width=500")
 
@@ -171,4 +171,4 @@ If we want to update the greeting text passed into our container we can just upd
 ## Docker-Compose and Octopus
 As shown above, using the new multi-package selection available in script steps opens up a whole new set of possibilities for deployment automation including easier docker-compose deployments. To integrate docker-compose in your Octopus process, select each image as an additional script-step package and make use of the `.env` file to supply the values that need to change.
 
-Hopefully this post gives you some ideas on where to start with your docker-compose deployments. We are continuing to add additional functionality to Octopus Deploy to make deploying your containers as easy as possible so that you can get back to the work of actually writing code! Keep an eye out for our Kubernetes support in our next big release!
+Hopefully this post gives you some ideas on where to start with your docker-compose deployments. We are continuing to add additional functionality to Octopus Deploy to make deploying your containers as easy as possible so that you can get back to the work of actually writing code! Take a peek at our [Kubernetes support](/blog/2018-09/octopus-release-2018.1/index.md) available as an alpha in the latest big release `2018.8.0`!
