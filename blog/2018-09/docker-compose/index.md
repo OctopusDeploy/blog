@@ -2,7 +2,7 @@
 title: Integrating docker-compose steps with Octopus Deploy
 description: Performing docker-compose is easy with the new script running capabilities
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-docker-compose.png
 metaImage: metaimage-docker-compose.png
 published: 2018-09-05
