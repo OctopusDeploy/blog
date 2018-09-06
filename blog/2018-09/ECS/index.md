@@ -60,7 +60,7 @@ docker push 968802670493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1
 With our image ready for deployment, we can go ahead and add ECR to Octopus as a first class feed type. 
 From the `Library` section, add a new feed and select the type `AWS Elastic Container Registry`. You will then need to supply your AWS credentials and region that the registry is in.
 
-![ECR Feed](ecr_feed.png)
+![ECR Feed](ecr-feed.png)
 
 When we save and test the new feed, Octopus should be able to find the registry we configured earlier. What Octopus is doing under the hood is using the credentials provided to contact AWS and get the standard username/password credentials used by Docker to interact with remote repositories. It then uses the retrieved username and password to interact with the v2 Docker registry exposed by AWS just like a standard Docker feed type.
 
@@ -71,13 +71,13 @@ Because the Octopus Server itself needs access to the registry to list images an
 ### Deploying Image to AWS ECS
 Although Octopus doesn't currently have a ECS sepcific deployment step, we can still make use of a multi-package script step to update our ECS Task and Service. This will allow us to use Octopus to control the image version released throughout our deployment pipeline, as well as manage the different variables that are needed to be supplied to the running container. Add a `Run an AWS CLI Script` step to your project.
 
-![Project Step](project_steps.png "width=500")
+![Project Step](project-steps.png "width=500")
 
  Enter the AWS Region that the ECR services are located in and select the AWS account that has the necessary permissions to create ECR Tasks and update the ECR services. This account is likely to differ between staging and production so it is best to supply the account through a project variable scoped to your different environments.
 
 Skip down the `Referenced Packages` section and add the Docker image that we added to our ECR feed. In the case of this image we dont need to do any package acquisition through Octopus since that will be handled up in AWS itself. In this case we have given it a simple name that we will use to access these variables in the script however this field can be left blank and will be defaulted to the packageId.
 
-![Reference Package](reference_package.png "width=500")
+![Reference Package](reference-package.png "width=500")
 
  By selecting `The package will not be acquired` we get access to the following variables
 
@@ -218,20 +218,20 @@ Write-Host "Updated Service $($ServiceUpdate.ServiceArn)"
 Write-Verbose $($ServiceUpdate | ConvertTo-Json)
 
 ```
-![Script Step](script_step.png "width=800")
+![Script Step](script-step.png "width=800")
 
 We then add the following variables which will supply configuration for both the ECS infrastructure itself, and the details we want to push into the container.
 
-![Project Variables](project_variables.png "width=800")
+![Project Variables](project-variables.png "width=800")
 
 ### Deployment
 When we kick off a deployment you should notice that although we are using a package (the image), there is no acquisition that takes place. This is because Octopus is just providing the values _describing_ the package for use in our scripts. When the deployment runs the ECS Service will start up new tasks and, based on the `DesiredCount`,  `DeploymentConfiguration_MaximumPercent` and `DeploymentConfiguration_MinimumHealthyPercent` configuration, ensure that the correct number of tasks are active at any given point which results in a rolling-update style deployment.
 
 Let's take a look at our dev and production deployments
 
-![Dev](deployed_dev.png "width=300")
+![Dev](deployed-dev.png "width=300")
 
-![Dev](deployed_prod.png "width=300")
+![Dev](deployed-prod.png "width=300")
 
 Huzzzah! Colors and messages, when I consider the traffic this app is going to get I'm glad we have that load balanced!
 
