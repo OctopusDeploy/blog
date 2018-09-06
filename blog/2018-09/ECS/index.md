@@ -1,0 +1,242 @@
+---
+title: Deploying an AWS ECS task using containers from ECR
+description: Deployments to AWS ECS using containers from ECR are now possible using the new multi-package feature of Octopus script steps
+author: robert.erez@octopus.com
+visibility: private
+bannerImage: 
+metaImage: 
+published: 2019-07-19
+tags:
+- Containers
+- Docker
+- AWS
+---
+## Elastic Container Services (ECS)
+Before Kubernetes became the leader in container orchestration, AWS came up with it's own orchestration abstraction that helps managing scaling and load balancing across multiple container instances. Elastic Container Services (ECS) structures the configuration of container deployments in a way that feels closer to how they have approached [AWS Lambdas](https://aws.amazon.com/lambda)
+
+Similar to with Lambdas, the primary configuration is versioned each time it is updated, with a secondary layer (the service in the case of ECS or Alias in the terms of Lambda) is able to point to a specific version.
+..something about Fargate vs EC2
+
+## Elastic Container Registry (ECR)
+The ability to use a Docker container registry in Octopus deploy has been possible since the first Docker steps were available back in 2016. Although AWS provides a Docker container registry under the Elastic Container Registry (ECR) offering, there has been a slight hurdle that makes using it very difficult. The V2 docker registries api that Octopus integrates with takes a username and password for authentication. Although ECR does not provide a static set of credentials, they do provide login details through a `get-login` API request. These credentials can then be used . The catch however, is that these credentials are only valid for 12 hours. This means that to use an ECR feed in Octopus Deploy, you would need to ensure you retrieved the credentials and updated the feed details every 12 hours at a minimum. This is obviously a bit of a dampener for attempt to build an automated deployment pipeline.
+
+In the `2018.8.0` release we have now provided a way to add AWS ECR feeds as first class feed types. By providing the appropriate AWS credentials Octopus can take care of this two-step authentication process so that you can just work with standard IAM roles. We will use this new feed type in the following ECS demonstration.
+
+## Deployments with Octopus
+As part of this sample we wont dive into the configuration of every component as this is left as an excercise to the reader.
+
+
+### Building the image for ECR
+Our sample image is a basic html website that changes content based on some environment variables that we plan to provide and is built on top of the `httpd` container image.
+
+```dockerfile
+FROM httpd:2.4
+
+ENV OCTO_COLOR="#f00"
+ENV OCTO_ENV="DEFAULT"
+CMD echo "<html>\
+	<head>\
+		<title>Octopus Container</title>\
+		<style>body {background-color: $OCTO_COLOR;} </style>\
+	</head>\
+	<body><h1>Hello $OCTO_ENV</h1></body>\
+</html>" > /usr/local/apache2/htdocs/index.html && httpd-foreground\
+```
+
+aws ecr get-login --no-include-email
+
+docker login -u AWS -p eyJwYXlsb2F...zh9 https://968802670493.dkr.ecr.ap-southeast-1.amazonaws.com
+
+A word of warning, the version
+
+Because we plan on pushing this image to our ECR repository, we must tag it with a fully qualified name that includes the ECR repository name and the image name. 
+
+docker build -t 968802670493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1 .
+
+Make sure before you push the package the `hello-color` repository has been created in your ECR instance.
+docker push 968802670493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1
+
+### Adding ECR feed to Octopus Deploy
+With our image ready for deployment, we can go ahead and add ECR to Octopus as a first class feed type. 
+From the `Library` section, add a new feed and select the type `AWS Elastic Container Registry`. You will then need to supply your AWS credentials and region that the registry is in.
+
+![ECR Feed](ecr_feed.png)
+
+When we save and test the new feed, Octopus should be able to find the registry we configured earlier. What Octopus is doing under the hood is using the credentials provided to contact AWS and get the standard username/password credentials used by Docker to interact with remote repositories. It then uses the retrieved username and password to interact with the v2 Docker registry exposed by AWS just like a standard Docker feed type.
+
+:::info
+Because the Octopus Server itself needs access to the registry to list images and tags (as versions when creating a release), assumed IAM roles are currently not supported for this feed type. While this _may_ be supported in the future, it would also require the Octopus Server to itself be running in AWS infrastructure to work. At the moment the AWS ECR feed type requires standard AWS credentials to operate.
+:::
+
+### Deploying Image to AWS ECS
+Although Octopus doesn't currently have a ECS sepcific deployment step, we can still make use of a multi-package script step to update our ECS Task and Service. This will allow us to use Octopus to control the image version released throughout our deployment pipeline, as well as manage the different variables that are needed to be supplied to the running container. Add a `Run an AWS CLI Script` step to your project.
+
+![Project Step](project_steps.png "width=500")
+
+ Enter the AWS Region that the ECR services are located in and select the AWS account that has the necessary permissions to create ECR Tasks and update the ECR services. This account is likely to differ between staging and production so it is best to supply the account through a project variable scoped to your different environments.
+
+Skip down the `Referenced Packages` section and add the Docker image that we added to our ECR feed. In the case of this image we dont need to do any package acquisition through Octopus since that will be handled up in AWS itself. In this case we have given it a simple name that we will use to access these variables in the script however this field can be left blank and will be defaulted to the packageId.
+
+![Reference Package](reference_package.png "width=500")
+
+ By selecting `The package will not be acquired` we get access to the following variables
+
+- `Octopus.Action.Package[web].PackageId` - The package ID. In the case of docker images this roughly correlates with the repository name ("hello-color")
+- `Octopus.Action.Package[Acme].PackageVersion` - the version of the package included in the release. In the case of docker images this correlates with the image tag
+- `Octopus.Action.Package[web].FeedId` - The feed ID ("feeds-singapore-ecr")
+
+The other variables `Octopus.Action.Package[web].ExtractedPath`, `Octopus.Action.Package[web].PackageFilePath`, `Octopus.Action.Package[web].PackageFileName` aren't really relevant for docker images however a docker specific variable 
+`Octopus.Action.Package[web].Image` is also available that will resolve to the fully qualified image name. In the case of this package it might look something like `aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we need to make use of in the following script.
+
+
+Now on to our script. We can break up the script into 3 basic parts:
+#### 1. Define the containers
+``` powershell
+$PortMappings = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.PortMapping]"
+$PortMappings.Add($(New-Object -TypeName "Amazon.ECS.Model.PortMapping" -Property @{ HostPort=80; ContainerPort=80; Protocol=[Amazon.ECS.TransportProtocol]::Tcp}))
+
+$EnvironmentVariables = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.KeyValuePair]"
+$EnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="OCTO_COLOR"; Value=$OctopusParameters["Color"]}))
+$EnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="OCTO_MSG"; Value=$OctopusParameters["Message"]}))
+
+Write-Host "Adding Container Definition for" $OctopusParameters["Octopus.Action.Package[web].Image"]
+$ContainerDefinitions = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.ContainerDefinition]"
+$ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefinition" -Property @{ `
+    Name="web"; `
+    Image=$OctopusParameters["Octopus.Action.Package[web].Image"]; `
+    PortMappings=$PortMappings; `
+    Environment=$EnvironmentVariables
+    Memory=256;}))
+```
+We have to explicitly set the environment variables into the container definition for this task. Although you can override the environment variables when running a task directly on a cluster, when being run through a service there is currently no such option and dynamic configuration is left up to the user based on the the [environmental metadata](https://aws.amazon.com/about-aws/whats-new/2017/11/amazon-ecs-allows-containers-to-directly-access-environmental-metadata/). There is an open ECS [GitHub issue](https://github.com/aws/amazon-ecs-agent/issues/3) asking for better support however being almost 4 years old means it might not be addressed any time soon. For this reason I would recommended to keep a separate task for each environment, and use some sort of naming convention with project variables to vary the task being updated depending on the deployment.
+
+Notice that when providing the image details, we are using the `Octopus.Action.Package[web].Image` variable described above. This value will be derived off the image version selected during the release.
+
+#### 2. Create task with container definition
+
+```powershell
+$Region = $OctopusParameters["Octopus.Action.Amazon.RegionName"]
+$TaskName = $OctopusParameters["TaskName"]
+$ExecutionRole = $(Get-IAMRole -RoleName "ecsTaskExecutionROle").Arn
+
+Write-Host "Creating New Task Definition $TaskName"
+$TaskDefinition = Register-ECSTaskDefinition `
+    -ContainerDefinition $ContainerDefinitions `
+    -Cpu 256 `
+    -Family $TaskName `
+    -TaskRoleArn $ExecutionRole `
+    -ExecutionRoleArn $ExecutionRole `
+    -Memory 512 `
+    -NetworkMode awsvpc `
+    -Region $Region `
+    -RequiresCompatibility "FARGATE"
+```
+
+Although you could load the previous task configuration as a template and update just the image, this approach ensures that the Octopus deployment process becomes the source of truth for what is expected to be running. In addition, it means that this script can be run where there _is_ no previous script set up, say when you want to configure a new endpoint for a new testing environment.
+
+By loading the task name out of an environment variable, it means that we can vary the task per-environment (and tenant if relevant) which allows us to have multiple task definitions for our different deployment contexts.
+
+#### 3. Upgrade the service to use the new task
+```powershell
+$ClusterName = $OctopusParameters["ClusterName"]
+$ServiceName = $OctopusParameters["ServiceName"]
+
+Write-Host "Updating Service $ServiceName"
+$ServiceUpdate = Update-ECSService `
+    -Cluster $ClusterName `
+    -ForceNewDeployment $true `
+    -Service $ServiceName `
+    -TaskDefinition $TaskDefinition.TaskDefinitionArn `
+    -DesiredCount 2 `
+    -DeploymentConfiguration_MaximumPercent 200 `
+    -DeploymentConfiguration_MinimumHealthyPercent 100
+```
+So that we can have multiple services running for each environment, the name of the service is provide based on a project variable that uses a naming convention to vary by environment (see the project variables screenshot at the end of this post for details).
+
+An alternative approach to what's described in this post might involve starting the task directly in the cluster without a service. This is really only useful for ad-hoc tasks rather than scalable applications since using a service makes it easier to set up more advanced configuration like including a load balancer to spread traffic across multiple tasks or setting up auto-scaling rules.
+
+#### Putting it all together
+If we put all these scripts together and add a a few logging flourishes it should look something like the following
+```powershell
+# Define Container
+$PortMappings = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.PortMapping]"
+$PortMappings.Add($(New-Object -TypeName "Amazon.ECS.Model.PortMapping" -Property @{ HostPort=80; ContainerPort=80; Protocol=[Amazon.ECS.TransportProtocol]::Tcp}))
+
+$EnvironmentVariables = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.KeyValuePair]"
+$EnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="OCTO_COLOR"; Value=$OctopusParameters["Color"]}))
+$EnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="OCTO_MSG"; Value=$OctopusParameters["Message"]}))
+
+Write-Host "Adding Container Definition for" $OctopusParameters["Octopus.Action.Package[web].Image"]
+$ContainerDefinitions = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.ContainerDefinition]"
+$ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefinition" -Property @{ `
+    Name="web"; `
+    Image=$OctopusParameters["Octopus.Action.Package[web].Image"]; `
+    PortMappings=$PortMappings; `
+    Environment=$EnvironmentVariables
+    Memory=256;}))
+
+# Create Task
+$Region = $OctopusParameters["Octopus.Action.Amazon.RegionName"]
+$TaskName = $OctopusParameters["TaskName"] 
+$ExecutionRole = $(Get-IAMRole -RoleName  "ecsTaskExecutionROle").Arn
+Write-Host "Creating New Task Definition $TaskName"
+$TaskDefinition = Register-ECSTaskDefinition `
+    -ContainerDefinition $ContainerDefinitions `
+    -Cpu 256 `
+    -Family $TaskName `
+    -TaskRoleArn $ExecutionRole `
+    -ExecutionRoleArn $ExecutionRole `
+    -Memory 512 `
+    -NetworkMode awsvpc `
+    -Region $Region `
+    -RequiresCompatibility "FARGATE"
+
+if(!$?) {
+    Write-Error "Failed to register new task definition"
+    Exit 0
+}
+Write-Host "Created Task Definition $($TaskDefinition.TaskDefinitionArn)"
+Write-Verbose $($TaskDefinition | ConvertTo-Json)
+
+# Update Service
+$ClusterName = $OctopusParameters["ClusterName"]
+$ServiceName = $OctopusParameters["ServiceName"]
+Write-Host "Updating Service $ServiceName"
+$ServiceUpdate = Update-ECSService `
+    -Cluster $ClusterName `
+    -ForceNewDeployment $true `
+    -Service $ServiceName `
+    -TaskDefinition $TaskDefinition.TaskDefinitionArn `
+    -DesiredCount 2 `
+    -DeploymentConfiguration_MaximumPercent 200 `
+    -DeploymentConfiguration_MinimumHealthyPercent 100
+if(!$?) {
+    Write-Error "Failed to register new task definition"
+    Exit 0
+}
+Write-Host "Updated Service $($ServiceUpdate.ServiceArn)"
+Write-Verbose $($ServiceUpdate | ConvertTo-Json)
+
+```
+![Script Step](script_step.png "width=800")
+
+We then add the following variables which will supply configuration for both the ECS infrastructure itself, and the details we want to push into the container.
+
+![Project Variables](project_variables.png "width=800")
+
+### Deployment
+When we kick off a deployment you should notice that although we are using a package (the image), there is no acquisition that takes place. This is because Octopus is just providing the values _describing_ the package for use in our scripts. When the deployment runs the ECS Service will start up new tasks and, based on the `DesiredCount`,  `DeploymentConfiguration_MaximumPercent` and `DeploymentConfiguration_MinimumHealthyPercent` configuration, ensure that the correct number of tasks are active at any given point which results in a rolling-update style deployment.
+
+Let's take a look at our dev and production deployments
+
+![Dev](deployed_dev.png "width=300")
+
+![Dev](deployed_prod.png "width=300")
+
+Huzzzah! Colors and messages, when I consider the traffic this app is going to get I'm glad we have that load balanced!
+
+### Activities Left for the Reader
+This deployment script is likely to be quite a bit simpler than what you may need in the real world. You may need to configure volume mounts, CPU limits, custom scaling rules or any number of the various configuration options exposed by the AWS APIs. This script focused on the "Fargate" oferring which abstracts away the management of the servers in the cluster, however the same principle will work if you are using the "EC2" configuration of ECS.
+
+## Octopus Deploy's Future Plans for ECS
+If you are using ECS today, hopefully this post give you some idea on how to approach deployments to it with Octopus Deploy, leveraging all the things that Octopus is great at. Although recently Kubernetes has taken the industry's attention in the container space, ECS continues to be a popular option and we anticipate that there may be a more first-class ECS step on the horizon. In keeping with the "Octopus is the source of truth" philosophy with respect to the ECS tasks, I would expect that the step would end up mirroring many of the configuration options available through the AWS portal today, however with tighter integration to Octopus variables and package selection.
