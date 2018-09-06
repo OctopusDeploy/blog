@@ -30,6 +30,36 @@ The Kubernetes functionality in Octopus 2018.8 is a preview only. The features d
 
 !toc
 
+## New to Octopus? 
+
+Deploying to Kubernetes on Octopus Deploy?  What the heck is Octopus Deploy?  If you've never heard of Octopus, that's OK. Kubernetes is an exciting technology, and we're getting a lot of interest from people new to it, so this is a brief introduction to the core concepts. 
+
+First, Octopus started as an on-prem solution installed on Windows Servers however Octopus Cloud offers the same great experience without infrastructure requirements. So if build [Node](https://nodejs.org/) all day or you're a [Java](https://www.java.com/)/[Kotlin](https://kotlinlang.org/) shop, we have a solution for you. Check out our [pricing page](https://octopus.com/cloud) for more details.
+
+Octopus is designed to make it easy to automate the deployments of your apps and services. There are three core steps to automate your first application deployment.
+
+1. Tell Octopus about your infrastructure. Add your team's environments (i.e. Dev, Test and Prod), machines and cloud services accounts (AWS and Microsoft Azure) that you deploy your apps and services to.
+
+![Infrastructure dashboard](todo.png)
+
+2. Integrate your existing build pipeline. Octopus works with your application build artifacts and can store them itself or access external package feeds like Artifactory.
+
+![Octopus Built-in package repos](todo.png)
+
+3. Create a project and define your deployment process as a series of rich built-in steps or powerful custom script steps to deploy your applications.
+
+![An example deployment process for a project](todo.png)
+
+Add variables for all the configuration settings that change as you deploy your app through environments. For example, database connection strings or security details third-party services.
+
+![An example of project variables](todo.png)
+
+4. Finally, create a release and deploy it to your environments. That's it. From this point forward, you can enjoy fast, repeatable and reliable deployments. 
+
+![Deploying a release to production](todo.png)
+
+Explore our [demo site](https://demo.octopus.com/) to see everything Octopus offers.
+
 ## Prerequisites
 
 To follow along with this blog post, you will need to have a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kubernetes service provided by Google Cloud, but any Kubernetes cluster will do.
@@ -38,11 +68,9 @@ To follow along with this blog post, you will need to have a Kubernetes cluster 
 
 ## Preparing the Octopus Server
 
-The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. One of the easiest ways to install `kubectl` is with [Chocolatey](https://chocolatey.org/packages/kubernetes-cli).
+The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. Likewise the Helm steps require the `helm` executable to be available on the path. 
 
-Likewise the Helm steps require the `helm` executable to be available on the path. Helm is also available from [Chocolatey](https://chocolatey.org/packages/kubernetes-helm).
-
-If you run the Kubernetes steps from [Linux workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
+If you run the Kubernetes steps from [Octopus workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
 
 Because the Kubernetes functionality in Octopus is in a preview state, the steps discussed in this post need to be enabled in the `Features` section.
 
