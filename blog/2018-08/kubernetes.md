@@ -9,7 +9,9 @@ tags:
  - Kubernetes
 ---
 
-Octopus 2018.8 previews a number of new features that make managing Kubernetes deployments easy. These Kubernetes steps and targets have been designed to allow teams to deploy applications to Kubernetes taking advantage of Octopus environments, dashboards, security, account management, variable management and integration with other platforms and services.
+![Octopus steering the Kubernetes ship illustration](blogimage-kubernetes.png)
+
+[Octopus 2018.8](/blog/2018-09/octopus-release-2018.8/index.md) previews a number of new features that make managing Kubernetes deployments easy. These Kubernetes steps and targets have been designed to allow teams to deploy applications to Kubernetes taking advantage of Octopus environments, dashboards, security, account management, variable management and integration with other platforms and services.
 
 At the end of this blog post you will learn how to:
 * Configure Service Accounts and Namespaces with the principal of least privilege in mind
