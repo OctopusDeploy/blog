@@ -19,7 +19,8 @@ But first some background.
 ## Elastic Container Services (ECS)
 Before Kubernetes became the leader in container orchestration, AWS came up with it's own abstraction that helps manage scaling and load balancing across multiple container instances. ECS defines the configuration of container deployments in a way that feels closer to how they have approached [AWS Lambdas](https://aws.amazon.com/lambda) Similar to with Lambdas, the primary configuration is versioned each time it is updated and a [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) provides an abstraction above that (analogous to a [alias](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) for Lambda) is able to point to a specific version. The services are all located within a [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) of nodes which previously would be a bunch of EC2 instances that you had to manage. With the release of [Fargate](https://aws.amazon.com/fargate/), AWS will now happily abstract away and mange the individual machines entirely.
 
-![Tasks, Services and Clusters](tasks-services-cluster.png "width=500")
+![Tasks, Services and Clusters](tasks-services-cluster.png)
+
 Services run in a cluster and their active tasks are based on a specific version of a task definition.
 
 ## Elastic Container Registry (ECR)
@@ -64,7 +65,7 @@ Because the Octopus Server itself needs access to the registry to list images an
 ### Deploying Image to AWS ECS
 Although Octopus doesn't currently have a ECS sepcific deployment step, we can still make use of a multi-package script step to update our ECS Task and Service. This will allow us to use Octopus to control the image version released throughout our deployment pipeline, as well as manage the different variables that are needed to be supplied to the running container. Add a `Run an AWS CLI Script` step to your project.
 
-![Project Step](project-steps.png "width=500")
+![Project Step](project-steps.png)
 
  Enter the AWS Region that the ECR services are located in and select the AWS account that has the necessary permissions to create ECR Tasks and update the ECR services. This account is likely to differ between staging and production so it is best to supply the account through a project variable scoped to your different environments.
 
@@ -210,20 +211,20 @@ Write-Host "Updated Service $($ServiceUpdate.ServiceArn)"
 Write-Verbose $($ServiceUpdate | ConvertTo-Json)
 
 ```
-![Script Step](script-step.png "width=800")
+![Script Step](script-step.png)
 
 We then add the following variables which will supply configuration for both the ECS infrastructure itself, and the details we want to push into the container.
 
-![Project Variables](project-variables.png "width=800")
+![Project Variables](project-variables.png)
 
 ### Deployment
 When we kick off a deployment you should notice that although we are using a package (the image), there is no acquisition that takes place. This is because Octopus is just providing the values _describing_ the package for use in our scripts. When the deployment runs the ECS Service will start up new tasks and, based on the `DesiredCount`,  `DeploymentConfiguration_MaximumPercent` and `DeploymentConfiguration_MinimumHealthyPercent` configuration, ensure that the correct number of tasks are active at any given point which results in a rolling-update style deployment.
 
 Let's take a look at our dev and production deployments
 
-![Dev](deployed-dev.png "width=300")
+![Dev](deployed-dev.png "width=500")
 
-![Dev](deployed-prod.png "width=300")
+![Dev](deployed-prod.png "width=500")
 
 Huzzzah! Colors and messages, when I consider the traffic this app is going to get I'm glad we have that load balanced!
 
