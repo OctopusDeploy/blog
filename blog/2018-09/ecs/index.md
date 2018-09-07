@@ -11,20 +11,24 @@ tags:
 - Docker
 - AWS
 ---
-## Elastic Container Services (ECS)
-Before Kubernetes became the leader in container orchestration, AWS came up with it's own orchestration abstraction that helps managing scaling and load balancing across multiple container instances. Elastic Container Services (ECS) structures the configuration of container deployments in a way that feels closer to how they have approached [AWS Lambdas](https://aws.amazon.com/lambda)
 
-Similar to with Lambdas, the primary configuration is versioned each time it is updated, with a secondary layer (the service in the case of ECS or Alias in the terms of Lambda) is able to point to a specific version.
-..something about Fargate vs EC2
+Amazon's Elastic Container Services (ECS) provides a simplified way to orchestrate the running of your Docker containers that is a popular alternative to Kuberenetes. With the multi-package script steps available in Octopus Deploy from version `2018.8.0`, you can now guide deployments to ECS with all the benefits of Octopus's versioning and variable management. This release also provides support for Amazon's Elastic Container Registry (ECR) as a first-class feed type. To demonstrate how this might work for you, the following post will walk through an example from Dockerfile to Deployment.
+
+But first some background.
+
+## Elastic Container Services (ECS)
+Before Kubernetes became the leader in container orchestration, AWS came up with it's own abstraction that helps manage scaling and load balancing across multiple container instances. ECS defines the configuration of container deployments in a way that feels closer to how they have approached [AWS Lambdas](https://aws.amazon.com/lambda) Similar to with Lambdas, the primary configuration is versioned each time it is updated and a [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) provides an abstraction above that (analogous to a [alias](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) for Lambda) is able to point to a specific version. The services are all located within a [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) of nodes which previously would be a bunch of EC2 instances that you had to manage. With the release of [Fargate](https://aws.amazon.com/fargate/), AWS will now happily abstract away and mange the individual machines entirely.
+
+![Tasks, Services and Clusters](tasks-services-cluster.png "width=500")
+Services run in a cluster and their active tasks are based on a specific version of a task definition.
 
 ## Elastic Container Registry (ECR)
-The ability to use a Docker container registry in Octopus deploy has been possible since the first Docker steps were available back in 2016. Although AWS provides a Docker container registry under the Elastic Container Registry (ECR) offering, there has been a slight hurdle that makes using it very difficult. The V2 docker registries api that Octopus integrates with takes a username and password for authentication. Although ECR does not provide a static set of credentials, they do provide login details through a `get-login` API request. These credentials can then be used . The catch however, is that these credentials are only valid for 12 hours. This means that to use an ECR feed in Octopus Deploy, you would need to ensure you retrieved the credentials and updated the feed details every 12 hours at a minimum. This is obviously a bit of a dampener for attempt to build an automated deployment pipeline.
+The ability to use a Docker container registry in Octopus Deploy has been possible since the first Docker steps were available back in 2016. Although AWS provides a Docker container registry under the Elastic Container Registry (ECR) offering, there has been a slight hurdle that makes using it very difficult. The standard V2 Docker Registries API that Octopus integrates with take a username and password for authentication. Although ECR does not provide a static set of credentials, they do provide login details through a `get-login` API request. The catch however, is that these credentials are only valid for 12 hours. This means that to use an ECR feed in Octopus Deploy, you would need to ensure you retrieved the credentials and updated the feed details every 12 hours at a minimum. This is obviously a bit of a dampener for any attempt to build an automated deployment pipeline.
 
-In the `2018.8.0` release we have now provided a way to add AWS ECR feeds as first class feed types. By providing the appropriate AWS credentials Octopus can take care of this two-step authentication process so that you can just work with standard IAM roles. We will use this new feed type in the following ECS demonstration.
+In the `2018.8.0` release we have now provided a way to add AWS ECR feeds as first class feed types. By providing the appropriate AWS credentials, Octopus can take care of this two-step authentication process so that you can just work with standard IAM roles.
 
 ## Deployments with Octopus
-As part of this sample we wont dive into the configuration of every component as this is left as an excercise to the reader.
-
+As part of this sample we will be using an available ECS Fargate cluster, however could be used on an EC2 cluster with some modifications.
 
 ### Building the image for ECR
 Our sample image is a basic html website that changes content based on some environment variables that we plan to provide and is built on top of the `httpd` container image.
@@ -43,21 +47,10 @@ CMD echo "<html>\
 </html>" > /usr/local/apache2/htdocs/index.html && httpd-foreground\
 ```
 
-aws ecr get-login --no-include-email
-
-docker login -u AWS -p eyJwYXlsb2F...zh9 https://968802670493.dkr.ecr.ap-southeast-1.amazonaws.com
-
-A word of warning, the version
-
-Because we plan on pushing this image to our ECR repository, we must tag it with a fully qualified name that includes the ECR repository name and the image name. 
-
-docker build -t 968802670493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1 .
-
-Make sure before you push the package the `hello-color` repository has been created in your ECR instance.
-docker push 968802670493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1
+Like any good continuous deployment system we want to build once and deploy many times, so building the image will take place outside of an Octopus Deploy during our build phase. I would suggest reading some of AWS extensive [docs](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) for details on pushing an image to ECR.
 
 ### Adding ECR feed to Octopus Deploy
-With our image ready for deployment, we can go ahead and add ECR to Octopus as a first class feed type. 
+With our image ready for deployment, we can go ahead and add ECR to Octopus as a first class feed type.
 From the `Library` section, add a new feed and select the type `AWS Elastic Container Registry`. You will then need to supply your AWS credentials and region that the registry is in.
 
 ![ECR Feed](ecr-feed.png)
@@ -87,7 +80,6 @@ Skip down the `Referenced Packages` section and add the Docker image that we add
 
 The other variables `Octopus.Action.Package[web].ExtractedPath`, `Octopus.Action.Package[web].PackageFilePath`, `Octopus.Action.Package[web].PackageFileName` aren't really relevant for docker images however a docker specific variable 
 `Octopus.Action.Package[web].Image` is also available that will resolve to the fully qualified image name. In the case of this package it might look something like `aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we need to make use of in the following script.
-
 
 Now on to our script. We can break up the script into 3 basic parts:
 #### 1. Define the containers
