@@ -2,7 +2,8 @@
 title: Deploying applications to Kubernetes with Octopus
 description: Learn how to configure a multi-environment Kubernetes cluster and deploy an application to it.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
+published: 2018-09-07
 metaImage: metaimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
@@ -36,7 +37,7 @@ To follow along with this blog post, you will need to have an Octopus instance, 
 
 [Helm](https://helm.sh/) is a package manager for Kubernetes, and we'll use it to install some third party services into the Kubernetes cluster. Google Cloud provides [documentation](https://cloud.google.com/community/tutorials/nginx-ingress-gke#install-helm-in-cloud-shell) describing how to install Helm in their cloud, and other cloud providers will provide similar documentation.
 
-If you're new to Octopus, check out our [getting started guide](https://octopus.com/docs/getting-started) to learn more or explore our [demo site](https://demo.octopus.com/) to see some working examples.
+**New to Octopus?** Check out our [getting started guide](https://octopus.com/docs/getting-started) to learn more or explore our [demo site](https://demo.octopus.com/) to see some working examples.
 
 ## Preparing the Octopus Server
 
@@ -67,7 +68,7 @@ Don't worry if this diagram looks intimidating, as we'll build up each of these 
 
 ## The Feed
 
-The Kubernetes support in Octopus relies on having a Docker feed defined. Because the HTTPD image we are deploying can be found in the main Docker repository, we'll create a feed against the `https://index.docker.io` URL.
+The Kubernetes support in Octopus relies on having a Docker feed defined.  Because the HTTPD image we are deploying can be found in the main Docker repository, we'll create a feed against the `https://index.docker.io` URL.
 
 Learn more about Docker feeds [here](https://octopus.com/docs/packaging-applications/package-repositories/registries).
 
