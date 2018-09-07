@@ -217,7 +217,11 @@ We then add the following variables which will supply configuration for both the
 ![Project Variables](project-variables.png)
 
 ### Deployment
-When kicking off a deployment you should notice that although we are using a package (the image), there is no acquisition that takes place. This is because Octopus is just providing the values _describing_ the package for use in our scripts. When the deployment runs the ECS service will start up new tasks and, based on the `DesiredCount`,  `DeploymentConfiguration_MaximumPercent` and `DeploymentConfiguration_MinimumHealthyPercent` configuration, ensure that the correct number of tasks are active at any given point which results in a rolling-update style deployment.
+When creating a release you will be prompted to provide the version of the image that you wish to deploy. Octopus obtains this information directly from the container registry so you are able to see exactly which images have been deployed and which have yet to be released. The version numbers are actually derived by parsing the image tag so although you can provide any tag as the "version", only tags that are able to be parsed as [semver 2](https://semver.org/) will be visible.
+
+![Create Release](create-release.png "width=500")
+
+Kicking off a deployment you should also notice that although we are using a package (the image), there is no acquisition that takes place. This is because Octopus is just providing the values _describing_ the package for use in our scripts. When the deployment executes the ECS service will run new tasks and, based on the `DesiredCount`,  `DeploymentConfiguration_MaximumPercent` and `DeploymentConfiguration_MinimumHealthyPercent` configuration, ensure that the correct number of tasks are active at any given point and which results in a rolling-update style deployment.
 
 Let's take a look at our dev and production deployments
 
