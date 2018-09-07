@@ -29,7 +29,6 @@ The ability to use a Docker container registry in Octopus Deploy has been possib
 In the `2018.8.0` release we have now provided a way to add AWS ECR feeds as first class feed types. By providing the appropriate AWS credentials, Octopus can take care of this two-step authentication process so that you can just work with standard IAM roles.
 
 ## Deployments with Octopus
-As part of this sample we will be using an available ECS Fargate cluster, however could be used on an EC2 cluster with some modifications.
 
 ### Building the image for ECR
 Our sample image is a basic html website that changes content based on some environment variables that we plan to provide and is built on top of the `httpd` container image.
@@ -79,9 +78,9 @@ When referencing a [package in a script](https://octopus.com/docs/deployment-exa
 - `Octopus.Action.Package[web].PackageVersion` - the version of the package included in the release. In the case of docker images this correlates with the image tag
 - `Octopus.Action.Package[web].FeedId` - The feed ID ("feeds-singapore-ecr")
 
-A docker specific variable `Octopus.Action.Package[web].Image` is also provided that resolves to the fully qualified image name. In the case of this package it might look something like `918801671493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we need to make use of in the following script.
+A docker specific variable `Octopus.Action.Package[web].Image` is also provided that resolves to the fully qualified image name. In the case of this package it might look something like `918801671493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we will need to make use of in the following script.
 
-Now on to our script. We can break up the script into 3 basic parts:
+We can break up the script into 3 basic parts:
 
 #### 1. Define the containers
 ``` powershell
@@ -101,7 +100,7 @@ $ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefi
     Environment=$EnvironmentVariables
     Memory=256;}))
 ```
-We have to explicitly set the environment variables into the container definition for this task. Although you can override the environment variables when running a task directly on a cluster, when being run through a service there is currently no such option and dynamic configuration is left up to the user based on the the [environmental metadata](https://aws.amazon.com/about-aws/whats-new/2017/11/amazon-ecs-allows-containers-to-directly-access-environmental-metadata/). There is an open ECS [GitHub issue](https://github.com/aws/amazon-ecs-agent/issues/3) asking for better support however being almost 4 years old means it might not be addressed any time soon. For this reason I would recommended to keep a separate task for each environment, and use some sort of naming convention with project variables to vary the task being updated depending on the deployment.
+We have to explicitly set the environment variables into the container definition for this task. Although you can override the environment variables when running a task directly on a cluster, when being run through a service there is currently no such option and dynamic configuration is left up to the user based on the the [environmental metadata](https://aws.amazon.com/about-aws/whats-new/2017/11/amazon-ecs-allows-containers-to-directly-access-environmental-metadata/). There is an open ECS [GitHub issue](https://github.com/aws/amazon-ecs-agent/issues/3) asking for better support however being almost 4 years old means it might not be addressed any time soon. For this reason I would recommended to keep a separate task for each environment, and use project variables to vary the task being updated depending on the deployment.
 
 Notice that when providing the image details, we are using the `Octopus.Action.Package[web].Image` variable described above. This value will be derived off the image version selected during the release.
 
@@ -125,7 +124,7 @@ $TaskDefinition = Register-ECSTaskDefinition `
     -RequiresCompatibility "FARGATE"
 ```
 
-Although you could load the previous task configuration as a template and update just the image, this approach ensures that the Octopus deployment process becomes the source of truth for what is expected to be running. In addition, it means that this script can be run where there _is_ no previous script set up, say when you want to configure a new endpoint for a new testing environment.
+Although you could load a previously constructed task configuration as a template and update just the image, this approach ensures that the Octopus deployment process becomes the source of truth for what is expected to be running. In addition, it means that this script can be run where there is _no_ previous script yet set up, for example when you want to configure a new endpoint for a new testing environment.
 
 By loading the task name out of an environment variable, it means that we can vary the task per-environment (and tenant if relevant) which allows us to have multiple task definitions for our different deployment contexts.
 
@@ -144,9 +143,9 @@ $ServiceUpdate = Update-ECSService `
     -DeploymentConfiguration_MaximumPercent 200 `
     -DeploymentConfiguration_MinimumHealthyPercent 100
 ```
-So that we can have multiple services running for each environment, the name of the service is provide based on a project variable that uses a naming convention to vary by environment (see the project variables screenshot at the end of this post for details).
+So that we can have multiple services running for each environment, the name of the service is provided via a project variable that uses a naming convention to vary by environment (see the project variables screenshot at the end of this post for details).
 
-An alternative approach to what's described in this post might involve starting the task directly in the cluster without a service. This is really only useful for ad-hoc tasks rather than scalable applications since using a service makes it easier to set up more advanced configuration like including a load balancer to spread traffic across multiple tasks or setting up auto-scaling rules.
+An alternative approach to what's described in this post might involve running the task directly in the cluster without using a service. This is really only useful for ad-hoc tasks rather than scalable applications since using a service makes it easier to set up more advanced configuration like including a load balancer to spread traffic across multiple tasks or setting up auto-scaling rules.
 
 #### Putting it all together
 If we put all these scripts together and add a a few logging flourishes it should look something like the following
@@ -218,7 +217,7 @@ We then add the following variables which will supply configuration for both the
 ![Project Variables](project-variables.png)
 
 ### Deployment
-When we kick off a deployment you should notice that although we are using a package (the image), there is no acquisition that takes place. This is because Octopus is just providing the values _describing_ the package for use in our scripts. When the deployment runs the ECS Service will start up new tasks and, based on the `DesiredCount`,  `DeploymentConfiguration_MaximumPercent` and `DeploymentConfiguration_MinimumHealthyPercent` configuration, ensure that the correct number of tasks are active at any given point which results in a rolling-update style deployment.
+When kicking off a deployment you should notice that although we are using a package (the image), there is no acquisition that takes place. This is because Octopus is just providing the values _describing_ the package for use in our scripts. When the deployment runs the ECS service will start up new tasks and, based on the `DesiredCount`,  `DeploymentConfiguration_MaximumPercent` and `DeploymentConfiguration_MinimumHealthyPercent` configuration, ensure that the correct number of tasks are active at any given point which results in a rolling-update style deployment.
 
 Let's take a look at our dev and production deployments
 
@@ -229,7 +228,9 @@ Let's take a look at our dev and production deployments
 Huzzzah! Colors and messages, when I consider the traffic this app is going to get I'm glad we have that load balanced!
 
 ### Activities Left for the Reader
-This deployment script is likely to be quite a bit simpler than what you may need in the real world. You may need to configure volume mounts, CPU limits, custom scaling rules or any number of the various configuration options exposed by the AWS APIs. This script focused on the "Fargate" oferring which abstracts away the management of the servers in the cluster, however the same principle will work if you are using the "EC2" configuration of ECS.
+This deployment script is likely to be quite a bit simpler than what you may want in the real world. You may need to configure volume mounts, CPU limits, custom scaling rules or any number of the various configuration options exposed by the AWS APIs. This script focused on the "Fargate" offering which abstracts away the management of the servers in the cluster, however the same principle will work with a few modifications if you are using the "EC2" configuration of ECS. 
 
 ## Octopus Deploy's Future Plans for ECS
-If you are using ECS today, hopefully this post give you some idea on how to approach deployments to it with Octopus Deploy, leveraging all the things that Octopus is great at. Although recently Kubernetes has taken the industry's attention in the container space, ECS continues to be a popular option and we anticipate that there may be a more first-class ECS step on the horizon. In keeping with the "Octopus is the source of truth" philosophy with respect to the ECS tasks, I would expect that the step would end up mirroring many of the configuration options available through the AWS portal today, however with tighter integration to Octopus variables and package selection.
+Although recently Kubernetes has taken the industry's attention in the container space, ECS continues to be a popular option and we anticipate that there may be a more first-class ECS step on the horizon. In keeping with the "Octopus is the source of truth" philosophy, I would expect that any ECS specific step would end up mirroring many of the configuration options available through the AWS portal today, however with tighter integration to Octopus variables and package selection.
+
+With every release Octopus provides richer and more useful integration with various cloud providers, and AWS is no exception. If you are using ECS today, hopefully this post give you some idea on how to approach deployments with Octopus Deploy, leveraging all the things that Octopus is great at. Let us know of your deployment successes (or failures) with Octopus to ECS!
