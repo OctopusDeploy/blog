@@ -80,7 +80,7 @@ Skip down the `Referenced Packages` section and add the Docker image that we add
 - `Octopus.Action.Package[web].FeedId` - The feed ID ("feeds-singapore-ecr")
 
 The other variables `Octopus.Action.Package[web].ExtractedPath`, `Octopus.Action.Package[web].PackageFilePath`, `Octopus.Action.Package[web].PackageFileName` aren't really relevant for docker images however a docker specific variable 
-`Octopus.Action.Package[web].Image` is also available that will resolve to the fully qualified image name. In the case of this package it might look something like `aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we need to make use of in the following script.
+`Octopus.Action.Package[web].Image` is also available that will resolve to the fully qualified image name. In the case of this package it might look something like `918801671493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we need to make use of in the following script.
 
 Now on to our script. We can break up the script into 3 basic parts:
 #### 1. Define the containers
