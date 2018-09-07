@@ -166,6 +166,7 @@ curl https://octopus.myget.org/F/octopus-dependencies/api/v2/package/Calamari.li
 ```
 
 Replace the output path, `-o`, with the path to your Octopus Installation, if required.
+Replace the version number in the `curl` command (_4.4.15_) with the current version number supplied with your Octopus installation, this number can be obtained from the verbose log of another project. Look for a line that looks like `Using Calamari.linux-x64 x.y.z`, which will give you the Calamari version in use on your Octopus Server.
 
 :::info
 The `linux-arm` Calamari package, will be provided in future releases.
