@@ -19,7 +19,7 @@ But first some background.
 ## Elastic Container Services (ECS)
 Before Kubernetes became the leader in container orchestration, AWS came up with it's own abstraction that helps manage scaling and load balancing across multiple container instances. ECS defines the configuration of container deployments in a way that feels closer to how they have approached [AWS Lambdas](https://aws.amazon.com/lambda) Similar to with Lambdas, the primary configuration is versioned each time it is updated and a [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) provides an abstraction above that (analogous to a [alias](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) for Lambda) is able to point to a specific version. The services are all located within a [cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) of nodes which previously would be a bunch of EC2 instances that you had to manage. With the release of [Fargate](https://aws.amazon.com/fargate/), AWS will now happily abstract away and mange the individual machines entirely.
 
-![Tasks, Services and Clusters](tasks-services-cluster.png)
+![Tasks, Services and Clusters](tasks-services-cluster.png "width=900")
 
 Services run in a cluster and their active tasks are based on a specific version of a task definition.
 
@@ -69,20 +69,20 @@ Although Octopus doesn't currently have a ECS sepcific deployment step, we can s
 
  Enter the AWS Region that the ECR services are located in and select the AWS account that has the necessary permissions to create ECR Tasks and update the ECR services. This account is likely to differ between staging and production so it is best to supply the account through a project variable scoped to your different environments.
 
-Skip down the `Referenced Packages` section and add the Docker image that we added to our ECR feed. In the case of this image we dont need to do any package acquisition through Octopus since that will be handled up in AWS itself. In this case we have given it a simple name that we will use to access these variables in the script however this field can be left blank and will be defaulted to the packageId.
+Skip down the `Referenced Packages` section and add the Docker image that we added to our ECR feed. For this image we don't need to do any package acquisition since that will be handled by AWS itself, so select the `The package will not be acquired` option. We have also given it a simple name that we will use to access these variables in the script however this field can be left blank and it will then be defaulted to the packageId.
 
 ![Reference Package](reference-package.png "width=500")
 
- By selecting `The package will not be acquired` we get access to the following variables
+When referencing a [package in a script](https://octopus.com/docs/deployment-examples/custom-scripts/standalone-scripts#accessing-package-references-from-a-custom-script) we get access to a bunch of variables that are indexed by the name we provided above.
 
 - `Octopus.Action.Package[web].PackageId` - The package ID. In the case of docker images this roughly correlates with the repository name ("hello-color")
-- `Octopus.Action.Package[Acme].PackageVersion` - the version of the package included in the release. In the case of docker images this correlates with the image tag
+- `Octopus.Action.Package[web].PackageVersion` - the version of the package included in the release. In the case of docker images this correlates with the image tag
 - `Octopus.Action.Package[web].FeedId` - The feed ID ("feeds-singapore-ecr")
 
-The other variables `Octopus.Action.Package[web].ExtractedPath`, `Octopus.Action.Package[web].PackageFilePath`, `Octopus.Action.Package[web].PackageFileName` aren't really relevant for docker images however a docker specific variable 
-`Octopus.Action.Package[web].Image` is also available that will resolve to the fully qualified image name. In the case of this package it might look something like `918801671493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we need to make use of in the following script.
+A docker specific variable `Octopus.Action.Package[web].Image` is also provided that resolves to the fully qualified image name. In the case of this package it might look something like `918801671493.dkr.ecr.ap-southeast-1.amazonaws.com/hello-color:1.0.1`. It is this `Image` variable that we need to make use of in the following script.
 
 Now on to our script. We can break up the script into 3 basic parts:
+
 #### 1. Define the containers
 ``` powershell
 $PortMappings = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.PortMapping]"
