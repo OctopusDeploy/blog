@@ -131,4 +131,6 @@ Let's imagine a possible future based on our current plans (please don't bet the
 
   - At this point in time we will discontinue support for `2018.10 LTS`, with `2019.1 LTS` and `2019.5 LTS` becoming the two current releases covered by long-term support.
 
+One thing you might notice in this imagined future: there were three fast lane releases between `2019.1 LTS` and `2019.5 LTS`. We plan to ship fast lane releases at our discretion, and we plan to ship a new LTS release on a three month cadence. The most important part is to choose the releases from the best lane for you, and don't pay too much attention to the version number attached.
+
 Hopefully this imagined future helps clarify our plans. If you have any concerns our questions please reach out in the comments below!
