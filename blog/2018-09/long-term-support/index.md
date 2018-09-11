@@ -4,7 +4,7 @@ description: In Q4 2018 we will be shipping our first release of Octopus Server 
 author: michael.noonan@octopus.com
 visibility: private
 bannerImage: blogimage-ltsrelease.png
-metaImage:
+metaImage: blogimage-ltsrelease.png
 published: 2018-09-08
 tags:
 - New Releases, LTS
