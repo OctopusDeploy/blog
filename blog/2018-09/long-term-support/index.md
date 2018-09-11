@@ -113,7 +113,7 @@ Not really, no. We will pick the next release number for each release of Octopus
 
 - We will add `LTS` to some part of the version for releases which come with long-term support.
 
-Let's imagine a possible future based on our current plans (please don't bet the farm on these exact dates or feature lists):
+Let's imagine a possible future based on our current plans. _Please don't bet the farm on these exact dates, version numbers, nor features lists - this is just an example to help you imagine how our release history might look after a while, and how these will map to your scenario._
 
 - `2018.7` shipped in July 2018 primarily with support for workers - [see release notes](/blog/2018-07/octopus-release-2018.7.md).
 - `2018.8` shipped in September 2018 with support for multiple packages in steps and Kubernetes support in alpha - [see release notes](/blog/2018-09/octopus-release-2018.8/index.md).
@@ -135,4 +135,10 @@ Let's imagine a possible future based on our current plans (please don't bet the
 
 One thing you might notice in this imagined future: there were three fast lane releases between `2019.1 LTS` and `2019.5 LTS`. We plan to ship fast lane releases at our discretion, and we plan to ship a new LTS release on a three month cadence. The most important part is to choose the releases from the best lane for you, and don't pay too much attention to the version number attached.
 
-Hopefully this imagined future helps clarify our plans. If you have any concerns our questions please reach out in the comments below!
+Hopefully this imagined future helps clarify our plans.
+
+## Wrapping Up
+
+We are introducing long-term support (LTS) for Octopus, and you can bank on it.
+
+If you have any concerns our questions please reach out in the comments below!
