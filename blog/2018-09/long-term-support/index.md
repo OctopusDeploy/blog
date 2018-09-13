@@ -5,7 +5,7 @@ author: michael.noonan@octopus.com
 visibility: private
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2018-09-08
+published: 2018-09-14
 tags:
 - New Releases, LTS
 ---
