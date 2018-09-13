@@ -2,17 +2,17 @@
 title: Introducing long-term Support for Octopus Server
 description: In Q4 2018 we will be shipping our first release of Octopus Server with long-term support.
 author: michael.noonan@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2018-09-14
+published: 2018-09-18
 tags:
 - New Releases, LTS
 ---
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)
 
-We are planning to ship our very first release of Octopus Server with **long-term support (LTS)** in Q4 2018. This post explains our plans for Octopus Server in an LTS world, and how you will benefit. We also explore some of the background to this decision and some of the mechanics we'll use behind the scenes.
+We are planning to ship our very first release of Octopus Server with **long-term support (LTS)** in Q4 2018.  This post explains our plans for Octopus Server in an LTS world, and how you will benefit. We also explore some of the background to this decision and some of the mechanics we'll use behind the scenes.
 
 We think a lot of self-hosted customers will want to predominantly use Octopus Server releases with long-term support, but if you use self-hosted and want to keep right up to date with everything we're doing, you can keep enjoying that cake too!
 
