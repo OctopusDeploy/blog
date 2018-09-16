@@ -41,7 +41,7 @@ To follow along with this blog post, you will need to have an Octopus instance, 
 
 ## Preparing the Octopus Server
 
-The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. Likewise the Helm steps require the `helm` executable to be available on the path. 
+The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. Likewise the Helm steps require the `helm` executable to be available on the path.
 
 If you run the Kubernetes steps from [Octopus workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
 
@@ -1163,6 +1163,7 @@ if ($repository.Machines.FindByName($accountName) -eq $null) {
   $kubernetesEndpoint.ClusterUrl = $KubernetesUrl;
   $kubernetesEndpoint.SkipTlsVerification = "True";
   $kubernetesEndpoint.AccountId = $account.Id;
+  $kubernetesEndpoint.Namespace = $ApplicationName.ToLower() + "-" + $EnvironmentName.ToLower()
 
   # Create the machine
   $machine = new-object Octopus.Client.Model.MachineResource
