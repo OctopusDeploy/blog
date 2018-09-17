@@ -70,14 +70,12 @@ So if across your organisation you deploy different projects with different tool
 
 ## Workers in Secured Networks
 
-Some customers have asked bout blocking off their cloud environments or on prem Servic Fabric to external access.  Polling Tentacle Workers attached to cloud targets works great in these cases.
+Some customers have asked about blocking off their cloud environments or on prem Servic Fabric to external access.  Polling Tentacle Workers attached to cloud targets works great in these cases.
 
 
 As well as allowing you to lock-down your deployments, it's another good reason that we hang health checks for Cloud targets of their default pools: in a setup like this, the Octopus server couldn't reach in to do the health check.
 
-  I've seen examples that advise putting an RDP jump box into a virtual network that can access the required ports in your Cloud infrastructure, and using the jump box as a deployment machine.  Now that's all good and well, but it's pretty clumsy and still exposes extra ports to the outside world.  With Octopus you can go much better.
-
-  You need only expose the ports you want you services to actually expose and the polling Workers perform the deployments, without needing to have deployment ports open.  
+  You need only expose the ports you want your services to actually expose and the polling Workers perform the deployments, without needing to have deployment ports open to the outside world.  
 
 
 ## Conclusions
