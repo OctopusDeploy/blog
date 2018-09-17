@@ -36,7 +36,7 @@ So, Octopus chooses a Worker from the default Worker Pool to run health checks f
 
 Let's look at some setups that use default pools for cloud targets.
 
-## Workers with cloud targets
+## Workers with Cloud Targets
 
 If you've deployed to Azure using Octopus before, or do so without Workers, then your deployment setup works like on the left of the diagram below.  You might have all sorts of virtual networks and load balancers and access options set up in Azure, but in the end, the Built-in Worker on the Octopus server is managing and deploying to your Azure infrastructure, probably through ports 19000, or 19080 - the same ports the Azure Management Portal uses if you browse your infrastructure on the Web.  In this kind of set up, Octopus calls directly into you infrastructure and any package transfers happen from the Octopus server.  
 
@@ -61,7 +61,12 @@ This works just as well for cloud hosted Service Fabric as it does for self host
 
 ## Kubernetes
 
-...anything interesting to say about Kubernetes targets with default worker pools???
+Our new Kubernetes targets also get the option of default worker pools per target.  That means you can have the Workers that provision and control you Kubernetes infrastructure whereever makes the best sense for each project and environment you deploy to.
+
+It also means you can tweak the tools on your Workers to suit the targets.  For example, if the version of `kubectl` or `helm` is important, then you can set the Worker pools for each cluster to contain the correct tooling you need for that project..
+
+So if across your organisation you deploy different projects with different tooling requirements, no problems: with Workers, you're not fixed to the same toolset across your whole Octopus installation; you can pick the tooling you need per target cluster.
+
 
 ## Workers in Secured Networks
 
