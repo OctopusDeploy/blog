@@ -1079,23 +1079,31 @@ The script that we will run relies on the `Octopus.Client` package, which is ava
 Paste the following code as the script body.
 
 ```PowerShell
+$namespace = if ([string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployment.Tenant.Id"])) {
+	"$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())"
+} else {		 				
+	$($ApplicationName.ToLower()) + "-" + `
+	$($EnvironmentName.ToLower()) + "-" + `
+	$($OctopusParameters["Octopus.Deployment.Tenant.Name"].ToLower() -replace "[^a-z0-9]","")
+}
+
 Set-Content -Path serviceaccount.yml -Value @"
 ---
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  name: $namespace
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: $($ApplicationName.ToLower())-deployer
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  namespace: $namespace
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  namespace: $namespace
   name: $($ApplicationName.ToLower())-deployer-role
 rules:
 - apiGroups: ["", "extensions", "apps"]
@@ -1109,7 +1117,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: $($ApplicationName.ToLower())-deployer-binding
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  namespace: $namespace
 subjects:
 - kind: ServiceAccount
   name: $($ApplicationName.ToLower())-deployer
@@ -1122,7 +1130,7 @@ roleRef:
 
 kubectl apply -f serviceaccount.yml
 
-$data = kubectl get secret $(kubectl get serviceaccount "$($ApplicationName.ToLower())-deployer" -o jsonpath="{.secrets[0].name}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())") -o jsonpath="{.data.token}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())"
+$data = kubectl get secret $(kubectl get serviceaccount "$($ApplicationName.ToLower())-deployer" -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace
 $Token = [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data))
 
 [Reflection.Assembly]::LoadFrom("Octopus.Client\lib\net45\Octopus.Client.dll")
@@ -1132,7 +1140,12 @@ $repository = new-object Octopus.Client.OctopusRepository($endpoint)
 
 # Create the token account
 
-$accountName = $ApplicationName + "-" + $EnvironmentName
+$accountName = if ([string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployment.Tenant.Id"])) {
+	$ApplicationName + "-" + $EnvironmentName
+} else {
+	$ApplicationName + "-" + $EnvironmentName + "-"  + $($OctopusParameters["Octopus.Deployment.Tenant.Name"] -replace "[^A-Za-z0-9]","")
+}
+
 $account = $repository.Accounts.FindByName($accountName)
 if ($account -eq $null) {
   $tokenValue = new-object Octopus.Client.Model.SensitiveValue
@@ -1163,7 +1176,7 @@ if ($repository.Machines.FindByName($accountName) -eq $null) {
   $kubernetesEndpoint.ClusterUrl = $KubernetesUrl;
   $kubernetesEndpoint.SkipTlsVerification = "True";
   $kubernetesEndpoint.AccountId = $account.Id;
-  $kubernetesEndpoint.Namespace = $ApplicationName.ToLower() + "-" + $EnvironmentName.ToLower()
+  $kubernetesEndpoint.Namespace = $namespace
 
   # Create the machine
   $machine = new-object Octopus.Client.Model.MachineResource
@@ -1171,6 +1184,10 @@ if ($repository.Machines.FindByName($accountName) -eq $null) {
   $machine.Endpoint = $kubernetesEndpoint;
   $machine.EnvironmentIds = new-object Octopus.Client.Model.ReferenceCollection $environment.Id
   $machine.Roles = new-object Octopus.Client.Model.ReferenceCollection $ApplicationName
+  if (-not [string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployment.Tenant.Id"])) {
+  	$machine.TenantedDeploymentParticipation = [Octopus.Client.Model.TenantedDeploymentMode]::Tenanted;
+  	$machine.TenantIds = new-object Octopus.Client.Model.ReferenceCollection $OctopusParameters["Octopus.Deployment.Tenant.Id"]
+  }
 
   $repository.Machines.Create($machine);
 }
