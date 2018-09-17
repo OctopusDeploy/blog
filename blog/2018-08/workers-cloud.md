@@ -63,7 +63,7 @@ This works just as well for cloud hosted Service Fabric as it does for self host
 
 Our new Kubernetes targets also get the option of default worker pools per target.  That means you can have the Workers that provision and control you Kubernetes infrastructure whereever makes the best sense for each project and environment you deploy to.
 
-It also means you can tweak the tools on your Workers to suit the targets.  For example, if the version of `kubectl` or `helm` is important, then you can set the Worker pools for each cluster to contain the correct tooling you need for that project..
+It also means you can tweak the tools on your Workers to suit the targets.  For example, if the version of `kubectl` or `helm` is important, then you can set the Worker pools for each cluster to contain the correct tooling you need for that project.
 
 So if across your organisation you deploy different projects with different tooling requirements, no problems: with Workers, you're not fixed to the same toolset across your whole Octopus installation; you can pick the tooling you need per target cluster.
 
