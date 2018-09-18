@@ -141,4 +141,4 @@ Hopefully this imagined future helps clarify our plans.
 
 We are introducing long-term support (LTS) for Octopus, and you can bank on it.
 
-If you have any concerns our questions please reach out in the comments below!
+If you have any concerns or questions, please reach out in the comments below!
