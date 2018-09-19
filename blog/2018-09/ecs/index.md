@@ -5,7 +5,7 @@ author: robert.erez@octopus.com
 visibility: public
 bannerImage: amazon-elastic-containers-octopus-deploy.png
 metaImage: amazon-elastic-containers-octopus-deploy.png
-published: 2019-07-19
+published: 2018-07-19
 tags:
 - Containers
 - Docker
