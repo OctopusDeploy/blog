@@ -5,7 +5,7 @@ author: robert.erez@octopus.com
 visibility: public
 bannerImage: amazon-elastic-containers-octopus-deploy.png
 metaImage: amazon-elastic-containers-octopus-deploy.png
-published: 2018-07-19
+published: 2018-09-19
 tags:
 - Containers
 - Docker
@@ -14,7 +14,7 @@ tags:
 
 ![Octopus Juggling AWS ECS and Docker](amazon-elastic-containers-octopus-deploy.png)
 
-Amazon's Elastic Container Services (ECS) provides a simplified way to orchestrate the running of your Docker containers that is a popular alternative to Kubernetes. With the multi-package script steps available in Octopus Deploy from version `2018.8.0`, you can now guide deployments to ECS with all the benefits of Octopus's versioning and variable management. This release also provides support for Amazon's Elastic Container Registry (ECR) as a first-class feed type.  To demonstrate how this might work for you, the following post will walk through an example from Dockerfile to Deployment.
+Amazon's Elastic Container Services (ECS) provides a simplified way to orchestrate the running of your Docker containers that is a popular alternative to Kubernetes. With the multi-package script steps available in Octopus Deploy from version `2018.8.0`, you can now guide deployments to ECS with all the benefits of Octopus's versioning and variable management. This release also provides support for Amazon's Elastic Container Registry (ECR) as a first-class feed type. To demonstrate how this might work for you, the following post will walk through an example from Dockerfile to Deployment.
 
 But first some background.
 
