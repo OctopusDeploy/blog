@@ -1,15 +1,18 @@
 ---
 title: Deploying applications to Kubernetes with Octopus
 description: Learn how to configure a multi-environment Kubernetes cluster and deploy an application to it.
-author: matthew.casperson@gmail.com
-visibility: private
+author: matthew.casperson@octopus.com
+visibility: public
+published: 2018-09-07
 metaImage: metaimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
  - Kubernetes
 ---
 
-Octopus 2018.8 previews a number of new features that make managing Kubernetes deployments easy. These Kubernetes steps and targets have been designed to allow teams to deploy applications to Kubernetes taking advantage of Octopus environments, dashboards, security, account management, variable management and integration with other platforms and services.
+![Octopus steering the Kubernetes ship illustration](blogimage-kubernetes.png)
+
+[Octopus 2018.8](/blog/2018-09/octopus-release-2018.8/index.md) previews a number of new features that make managing Kubernetes deployments easy. These Kubernetes steps and targets have been designed to allow teams to deploy applications to Kubernetes taking advantage of Octopus environments, dashboards, security, account management, variable management and integration with other platforms and services.
 
 At the end of this blog post you will learn how to:
 * Configure Service Accounts and Namespaces with the principal of least privilege in mind
@@ -30,21 +33,21 @@ The Kubernetes functionality in Octopus 2018.8 is a preview only. The features d
 
 ## Prerequisites
 
-To follow along with this blog post, you will need to have a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kubernetes service provided by Google Cloud, but any Kubernetes cluster will do.
+To follow along with this blog post, you will need to have an Octopus instance, a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kubernetes service provided by Google Cloud, but any Kubernetes cluster will do.
 
 [Helm](https://helm.sh/) is a package manager for Kubernetes, and we'll use it to install some third party services into the Kubernetes cluster. Google Cloud provides [documentation](https://cloud.google.com/community/tutorials/nginx-ingress-gke#install-helm-in-cloud-shell) describing how to install Helm in their cloud, and other cloud providers will provide similar documentation.
 
+**New to Octopus?** Check out our [getting started guide](https://octopus.com/docs/getting-started) to learn more or explore our [demo site](https://demo.octopus.com/) to see some working examples.
+
 ## Preparing the Octopus Server
 
-The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. One of the easiest ways to install `kubectl` is with [Chocolatey](https://chocolatey.org/packages/kubernetes-cli).
+The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. Likewise the Helm steps require the `helm` executable to be available on the path.
 
-Likewise the Helm steps require the `helm` executable to be available on the path. Helm is also available from [Chocolatey](https://chocolatey.org/packages/kubernetes-helm).
-
-If you run the Kubernetes steps from [Linux workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
+If you run the Kubernetes steps from [Octopus workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
 
 Because the Kubernetes functionality in Octopus is in a preview state, the steps discussed in this post need to be enabled in the `Features` section.
 
-![](kubernetes-enable-steps.png)
+![](kubernetes-enable-steps.png "width=500")
 
 ## What we Will Create
 
@@ -59,17 +62,17 @@ Our infrastructure has the following requirements:
 
 At a high level, this is what we will end up with.
 
-![Kubernetes Overview](kubernetes-overview.jpg)
+![Kubernetes Overview](kubernetes-overview.jpg "width=500")
 
 Don't worry if this diagram looks intimidating, as we'll build up each of these elements step by step.
 
 ## The Feed
 
-The Kubernetes support in Octopus relies on having a Docker feed defined. Because the HTTPD image we are deploying can be found in the main Docker repository, we'll create a feed against the `https://index.docker.io` URL.
+The Kubernetes support in Octopus relies on having a Docker feed defined.  Because the HTTPD image we are deploying can be found in the main Docker repository, we'll create a feed against the `https://index.docker.io` URL.
 
 Learn more about Docker feeds [here](https://octopus.com/docs/packaging-applications/package-repositories/registries).
 
-![](kubernetes-feed.png)
+![](kubernetes-feed.png "width=500")
 
 ## The Environments
 
@@ -77,7 +80,7 @@ Although we listed two environments as requirements, we'll actually create three
 
 Learn more about environments [here](https://octopus.com/docs/infrastructure/environments).
 
-![Kubernetes Environments](kubernetes-environments.png)
+![Kubernetes Environments](kubernetes-environments.png "width=500")
 
 ## The Lifecycles
 
@@ -85,11 +88,11 @@ The default lifecycle in Octopus assumes that all environments will be deployed 
 
 To model the progression from `Development` to `Production`, we'll create a lifecycle called `Application`. It will contain two phases, the first for deployments to the `Development` environment, and the second for deployments to the `Production` environment.
 
-![Application Lifecycle](kubernetes-application-lifecycle.png)
+![Application Lifecycle](kubernetes-application-lifecycle.png "width=500")
 
 To model the scripts run against the Kubernetes cluster, we'll create a lifecycle called `Kubernetes Admin`. It will contain a single phase for deployments to the `Kubernetes Admin` environment.
 
-![Admin Lifecycle](kubernetes-admin-lifecycle.png)
+![Admin Lifecycle](kubernetes-admin-lifecycle.png "width=500")
 
 Learn more about lifecycles [here](https://octopus.com/docs/deployment-process/lifecycles).
 
@@ -107,11 +110,11 @@ Having said that, we need some place to start in order to create the namespaces 
 
 First, we need to create an account that holds the administrator user credentials. The Kubernetes cluster in Google Cloud provides a user called `admin` with a randomly generated password that we can use.
 
-![Kubernetes cluster details](kubernetes-cluster-details.png)
+![Kubernetes cluster details](kubernetes-cluster-details.png "width=500")
 
 These credentials are saved in a username/password Octopus account.
 
-![Kubernetes Admin Account](kubernetes-admin-account.png)
+![Kubernetes Admin Account](kubernetes-admin-account.png "width=500")
 
 :::hint
 Other cloud providers use different authentication schemes for their administrator users. See the [documentation](https://octopus.com/docs/deployment-examples/kubernetes-deployments/kubernetes-target#accounts) for details on using account types other than a username and password.
@@ -147,7 +150,7 @@ This text is then saved to a file called `k8s.pem`, and uploaded to Octopus.
 
 Learn more about certificates [here](https://octopus.com/docs/deployment-examples/certificates).
 
-![Kubernetes Certificate](kubernetes-certificate.png)
+![Kubernetes Certificate](kubernetes-certificate.png "width=500")
 
 With the user account and the certificate saved, we can now create the Kubernetes target called `Kubernetes Admin`.
 
@@ -155,7 +158,7 @@ This target will deploy to the `Kubernetes Admin` environment, and take on a rol
 
 Because this `Kubernetes Admin` target will be used to run utility scripts, we don't want to have it target a Kubernetes namespace, so that field is left blank.
 
-![Kubernetes Target](kubernetes-target.png)
+![Kubernetes Target](kubernetes-target.png "width=500")
 
 Learn more about Kubernetes targets [here](https://octopus.com/docs/deployment-examples/kubernetes-deployments/kubernetes-target).
 
@@ -212,7 +215,7 @@ roleRef:
 
 To create these resources, we need to save the YAML as a file, and then use `kubectl` to create them in the cluster. To do this, we use the `Run a kubectl CLI Script` step.
 
-![Kubernetes Script Step](kubernetes-script-step.png)
+![Kubernetes Script Step](kubernetes-script-step.png "width=500")
 
 This step will then target the `Kubernetes Admin` target, and run the following script, which saves the YAML to a file and then uses `kubectl` to apply the YAML.
 
@@ -308,7 +311,7 @@ EOL
 kubectl apply -f serviceaccount.yml
 ```
 
-![Kubernetes Service Account Script](kubernetes-service-account-script.png)
+![Kubernetes Service Account Script](kubernetes-service-account-script.png "width=500")
 
 Once this script is run, a service account called `httpd-deployer` will be created. This service account is automatically assigned a token that we can use to authenticate with the Kubernetes cluster. We can run a second script to get this token.
 
@@ -335,7 +338,7 @@ See the section [Scripting Kubernetes Targets](#scripting-kubernetes-targets) fo
 
 Before we deploy the script, we need to make sure the project is using the `Kubernetes Admin` lifecycle.
 
-![Admin Project Lifecycle](kubernetes-admin-project-lifecycle.png)
+![Admin Project Lifecycle](kubernetes-admin-project-lifecycle.png "width=500")
 
 We can now run the script, which will create the service account and display the token. The token looks like this:
 
@@ -343,7 +346,7 @@ We can now run the script, which will create the service account and display the
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJodHRwZC1kZXZlbG9wbWVudCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJodHRwZC1kZXBsb3llci10b2tlbi0ycG1ndCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJodHRwZC1kZXBsb3llciIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjliZGQzYWQ0LTk5ZTktMTFlOC04ODdmLTQyMDEwYTgwMDA5MyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpodHRwZC1kZXZlbG9wbWVudDpodHRwZC1kZXBsb3llciJ9.DDiMDOmznf4S8ClHO30RvSZNGHN_7WYk9-FABaLkSC-mIunWtJHiT_lEovbUToogM0fnG1ISueundAZ6tsRRY-eVwefLvhgy1Ync2QlLwaqeoUenGt1d36lH5YFb7gYmon2UD54DGEdYNzafI1TLWi3DS1apjSUc3kWh54HfZXSeQmCE7fGu4wNoJz3WU1MEQZx8KqM9__lVDxtPGmE2pyZX6OYBXoAQv9-cfs_1GP009exfkVWbVYdDFDoEko21KDAORjyKu4ow4KvVXOXzcfgCKe_UlYyuLg0A6NRyc8lDj4D34R1crIPvqWmXVy5BMK4ENchhYEC62nsInptZAg
 ```
 
-![Service account token](kubernetes-service-account-token.png)
+![Service account token](kubernetes-service-account-token.png "width=500")
 
 ## The HTTPD Development Target
 
@@ -351,7 +354,7 @@ We now have everything we need to create a target that will be used to deploy th
 
 We start by creating a token account in Octopus with the token that was returned above.
 
-![](kubernetes-hhtpd-development-token.png)
+![](kubernetes-hhtpd-development-token.png "width=500")
 
 We then use this token in a new Kubernetes target called `Httpd-Development`.
 
@@ -359,7 +362,7 @@ Notice here that the `Target Roles` includes a role called `Httpd` that matches 
 
 Therefore this target represents the intersection of an application and an environment, using a namespace and a limited service account to enforce the permission boundary. This is a pattern we'll repeat over and over with each application and environment.
 
-![](kubernetes-httpd-development-target.png)
+![](kubernetes-httpd-development-target.png "width=500")
 
 Now that we have a target to deploy to, let's deploy our first application!
 
@@ -367,13 +370,13 @@ Now that we have a target to deploy to, let's deploy our first application!
 
 The `Deploy Kubernetes containers` step provides an opinionated process for deploying applications to a Kubernetes cluster. This step implements a standard pattern for creating a collection of Kubernetes resources that work together to provide repeatable and resilient deployments.
 
-![](kubernetes-deploy-containers-step.png)
+![](kubernetes-deploy-containers-step.png "width=500")
 
 The application we'll be deploying is [HTTPD](https://hub.docker.com/_/httpd/). This is a popular web server from Apache, and while we won't be doing anything more than displaying static text as a web page with it, HTTPD is a useful example given most applications deployed to Kubernetes will expose HTTP ports just like HTTPD does.
 
 The step is given a name, and targets a role. The role that we target here is the one that was created to match the name of the application we are deploying. In selecting the `Httpd` role, we ensure that the step will use our Kubernetes target that was configured to deploy the HTTPD application.
 
-![](kubernetes-step-role.png)
+![](kubernetes-step-role.png "width=500")
 
 The `Deployment` section is used to configure the details of the Deployment resource that will be created in Kubernetes.
 
@@ -387,7 +390,7 @@ The `Progression deadline in seconds` field configures how long Kubernetes will 
 
 The `Labels` field allows general key/value pairs to be assigned to the resources created by the step. Behind the scene these labels will be applied to the Deployment, Pod, Service, Ingress, ConfigMap, Secret and Container resources created by the step. As we mentioned earlier, this step is opinionated, and one of those opinions is that labels should be defined once and applied to all resources created as part of the deployment.
 
-![](kubernetes-deployment-section.png)
+![](kubernetes-deployment-section.png "width=500")
 
 ## The Deployment Strategy
 
@@ -403,7 +406,7 @@ Octopus provides a third deployment strategy called blue/green. This strategy wi
 
 The blue/green deployment strategy provides some interesting possibilities for those tasked with managing Kubernetes deployments, so we'll select this strategy.
 
-![](kubernetes-deployment-strategy.png)
+![](kubernetes-deployment-strategy.png "width=500")
 
 ## Volumes and ConfigMaps
 
@@ -417,7 +420,7 @@ And this is exactly what we will configure for this demo. The `Volume type` is s
 
 The ConfigMap Volume items provide a way to map a ConfigMap resource value to a filename. In this example we have set the `Key` to `index` and the path to `index.html`, meaning that we want to expose the ConfigMap resource value called `index` as a file with the name `index.html` when this volume is mounted in a Container resource.
 
-![](kubernetes-volume.png)
+![](kubernetes-volume.png "width=500")
 
 ## The Container
 
@@ -425,21 +428,21 @@ The next step is to configure the Container resources. This is where we will con
 
 We start by configuring the Docker image that will be used by the Container resource. Here we have selected the `httpd` image from the Docker feed we created previously.
 
-![](kubernetes-package.png)
+![](kubernetes-package.png "width=500")
 
 In order to access HTTPD we need to expose a port. Being a web server, HTTPD accepts traffic on port 80. Ports can be named to make them easier to work with, and so we'll call this port `web`.
 
-![](kubernetes-ports.png)
+![](kubernetes-ports.png "width=500")
 
 The last piece of configuration is to mount the ConfigMap volume we defined earlier in a directory. The HTTPD Docker image has been built to serve content from the `/usr/local/apache2/htdocs` directory. If you recall, we configured the ConfigMap Volume to expose the value of the ConfigMap resource called `index` as a file called `index.html`. So by mounting the volume under the `/usr/local/apache2/htdocs` directory, this Container resource will have a file called `/usr/local/apache2/htdocs/index.html` with the contents of the value in the ConfigMap resource.
 
-![](kubernetes-container-volume.png)
+![](kubernetes-container-volume.png "width=500")
 
 The configuration of each container is summarized in the main step UI, so you can review it at a glance.
 
-![](kubernetes-container-summary.png)
+![](kubernetes-container-summary.png "width=500")
 
-# The ConfigMap
+## The ConfigMap
 
 We have talked a lot about the ConfigMap resource that is created by the step, so now it is time to configure it.
 
@@ -447,9 +450,9 @@ The `Config Map Name` section defines the name (or, technically, part of the nam
 
 If you remember, we exposed this ConfigMap resource as a volume, and that volume defined an item that mapped the ConfigMap resource value called `index` to the file called `index.html`. So here we create an item called `index`, and the value of the item is what will eventually become the contents of the `index.html` file.
 
-![](kubernetes-configmap.png)
+![](kubernetes-configmap.png "width=500")
 
-# The Service
+## The Service
 
 We're close now to having an application deployed and accessible. Because it is nice to see some progress, we'll take a little shortcut here and expose our application to the world with the quickest option available to us.
 
@@ -463,50 +466,50 @@ Whenever you expose applications to the outside world, you must consider adding 
 
 The `Service Name` section defines the name of the Service resource.
 
-![](kubernetes-service-name.png)
+![](kubernetes-service-name.png "width=500")
 
 The `Service Type` section is where we configure the Service resource as a `Load balancer`. The other fields can be left blank in this section.
 
-![](kubernetes-service-type.png)
+![](kubernetes-service-type.png "width=500")
 
 The `Service Ports` section is where incoming ports are mapped to the Container resource ports. In this case we are exposing port 80 on the Service resource, and directing that to the `web` port (also port 80, but those values are not required to match) on the Container resource.
 
-![](kubernetes-service-port.png)
+![](kubernetes-service-port.png "width=500")
 
 The ports are summarized in the main UI so they can be quickly reviewed.
 
-![](kubernetes-service-port-summary.png)
+![](kubernetes-service-port-summary.png "width=500")
 
 At this point, all the groundwork has been laid, and we can deploy the application.
 
 
-# The First Deployment
+## The First Deployment
 
 When you create a deployment of this project, Octopus allows you to define the version of the Docker image that will be included. If you look back at the configuration of the Container resource, you will notice that we never specified a version, just the image name. This is by design, as Octopus expects that most deployments will involve new Docker image versions, whereas the configuration of the Kubernetes resources will remain mostly static.
 
 This means the only decision to make with day to day deployments is the version of the Docker images, and you can take advantage of Octopus features like [channels](https://octopus.com/docs/deployment-process/channels) to further customize how image versions are selected during deployment.
 
-![](kubernetes-create-deployment.png)
+![](kubernetes-create-deployment.png "width=500")
 
 And with that our deployment has succeeded.
 
-![](kubernetes-deployment-logs.png)
+![](kubernetes-deployment-logs.png "width=500")
 
 Jumping into the Google Cloud console we can see that a Deployment resource called `httpd-deployments-841` has been created. The name is a combination of the Deployment resource name we defined in the step of `httpd` and a unique identifier for the Octopus deployment of `deployments-841`. This name was created because the blue/green deployment strategy requires that the Deployment resource created with each deployment be unique.
 
-![](kubernetes-google-cloud-workload.png)
+![](kubernetes-google-cloud-workload.png "width=500")
 
 The deployment also created a Service resource called `httpd`. Notice that it is of type `Load balancer`, and that it has a public IP address.
 
-![](kubernetes-google-cloud-services.png)
+![](kubernetes-google-cloud-services.png "width=500")
 
 The ConfigMap resource called `configmap-deployments-841` was also created. Like the Deployment resource, the name of the ConfigMap resource is a combination of the name we defined in the step and the unique deployment name added by Octopus. Unlike the Deployment resource, ConfigMaps created by the step will always have unique names like this (the Deployment resource only has the unique deployment name appended for blue/green deployments).
 
-![](kubernetes-google-cloud-configmap.png)
+![](kubernetes-google-cloud-configmap.png "width=500")
 
 All of which results in HTTPD serving the contents of the ConfigMap resource as a web page under the public IP address of the Service resource.
 
-![](kubernetes-httpd-webpage.png)
+![](kubernetes-httpd-webpage.png "width=500")
 
 If you have made it this far - congratulations! But you may be wondering why we had to configure so many things just to get to the point of displaying a static web page. Reading any other Kubernetes tutorial on the internet would have had you at this point 1000 words ago...
 
@@ -522,23 +525,23 @@ Deployments will sometimes fail. This is not only to be expected, but celebrated
 
 Let's review what we have got deployed now. We have a load balancer pointing to a Service resource, which in turn is pointing to the Deployment resource.
 
-![](kubernetes-deployment-diagram.jpg)
+![](kubernetes-deployment-diagram.jpg "width=500")
 
 Let's simulate a failed deployment. We can do this by configuring the Container resource readiness probe to run a command that does not exist. Readiness probes are used by Kubernetes to determine when a Container resource is ready to start accepting traffic, and by deliberately configuring a test that can not pass, we can simulate a failed deployment.
 
-![](kubernetes-readiness-probe.png)
+![](kubernetes-readiness-probe.png "width=500")
 
 As part of this failed deployment, we'll also change the value of the ConfigMap. Remember that this value is what is displayed in the web page.
 
-![](kubernetes-configmap-failed.png)
+![](kubernetes-configmap-failed.png "width=500")
 
 As expected, the deployment fails.
 
-![](kubernetes-failed-deployment.png)
+![](kubernetes-failed-deployment.png "width=500")
 
 So what does it mean to have a failed deployment?
 
-![](kubernetes-deployment-diagram-2.jpg)
+![](kubernetes-deployment-diagram-2.jpg "width=500")
 
 Because we are using the blue/green deployment strategy, we now have two Deployment resources. Because the latest one called `httpd-deployments-842` has failed, the previous one called `httpd-deployments-841` has not been removed.
 
@@ -546,27 +549,27 @@ We also have two ConfigMap resources. Again, because the last deployment failed,
 
 In essence the failed deployment resource and its associated ConfigMap resource are orphaned. They are not accessible from the Service resource, meaning to the outside world the new deployment is invisible.
 
-![](kubernetes-google-cloud-workload-2.png)
+![](kubernetes-google-cloud-workload-2.png "width=500")
 
-![](kubernetes-google-cloud-configmap-2.png)
+![](kubernetes-google-cloud-configmap-2.png "width=500")
 
 Because the old resources were not edited during deployment and were not removed due the deployment failed, our last deployment is still live, accessible, and displays the same text that was defined with the last successful deployment.
 
 This again is one of the opinions that this step has about what a Kubernetes deployment should be. Failed deployments should not take down an environment, but instead give you the opportunity to resolve the issue while leaving the previous deployment in place.
 
-![](kubernetes-httpd-webpage.png)
+![](kubernetes-httpd-webpage.png "width=500")
 
 Go ahead and remove the bad readiness check from the Container resource. Also change the value of the ConfigMap resource to display a new message.
 
-![](kubernetes-configmap-succeeded.png)
+![](kubernetes-configmap-succeeded.png "width=500")
 
 This time the deployment succeeds. Because the deployment succeeded, the previous Deployment and ConfigMap resources have been cleaned up, and the new message is displayed on the webpage.
 
-![](kubernetes-deployment-diagram-3.jpg)
+![](kubernetes-deployment-diagram-3.jpg "width=500")
 
-![](kubernetes-google-cloud-workload-3.png)
+![](kubernetes-google-cloud-workload-3.png "width=500")
 
-![](kubernetes-httpd-afterredeploy.png)
+![](kubernetes-httpd-afterredeploy.png "width=500")
 
 By creating new Deployment resources with each blue/green deployment, and by creating new ConfigMap resources with each deployment, we can be sure that our Kubernetes cluster is not left in an undefined state during an update or after a failed deployment.
 
@@ -638,25 +641,25 @@ I won't repeat the details of running these scripts, creating the token account 
 
 You want to end up with a target like the one shown below configured.
 
-![](kubernetes-production-target.png)
+![](kubernetes-production-target.png "width=500")
 
 Now go ahead and promote the Octopus deployment to the `Production` environment.
 
 This will result in a second Load balancer Service resource being created with a new public IP address.
 
-![](kubernetes-google-cloud-services2.png)
+![](kubernetes-google-cloud-services2.png "width=500")
 
 And our production instance can be viewed in a web browser.
 
-![](kubernetes-httpd-webpage2.png)
+![](kubernetes-httpd-webpage2.png "width=500")
 
 Let's have some fun and use a variable for the value of the ConfigMap resource. By setting the value to the variable `#{Octopus.Environment.Name}`, we will display the environment name in the web page.
 
-![](kubernetes-configmap-environmentname.png)
+![](kubernetes-configmap-environmentname.png "width=500")
 
 Pushing this change through to production results in the environment name being displayed on the page.
 
-![](kubernetes-httpd-webpage3.png)
+![](kubernetes-httpd-webpage3.png "width=500")
 
 That was a trivial example, but does highlight the power that is available by configuring multi-environment deployments. Once your accounts, targets and environments are configured, moving applications through environments is easy, secure and highly configurable.
 
@@ -688,7 +691,7 @@ Helm has a server side component that must first be installed on the Kubernetes 
 
 To make use of Helm we need to configure a Helm feed. Since we will use the standard public Helm repository, we configure the feed to access https://kubernetes-charts.storage.googleapis.com/.
 
-![](kubernetes-helm-feed.png)
+![](kubernetes-helm-feed.png "width=500")
 
 ## Ingress Controllers and Multiple Environments
 
@@ -844,7 +847,7 @@ The process of getting the token for the service account is the same, as is crea
 
 After creating the accounts, namespaces and targets, we'll have the following list of targets configured in Octopus.
 
-![](kubernetes-targets.png)
+![](kubernetes-targets.png "width=500")
 
 ## Configuring Helm Variables
 
@@ -852,11 +855,11 @@ We can deploy the Nginx Helm chart with the `Run a Helm Update` step.
 
 Select the `nginx-ingress` chart from the helm feed.
 
-![](kubernetes-helm-nginx.png)
+![](kubernetes-helm-nginx.png "width=500")
 
 Set the `Kubernetes Release Name` to `nginx-#{Octopus.Environment.Name | ToLower}`. We have taken advantage of the Octopus variable substitution to ensure that the Helm release has a unique name in each environment.
 
-![](kubernetes-helm-name.png)
+![](kubernetes-helm-name.png "width=500")
 
 Helm charts can be customized with parameters. The Nginx Helm chart has documented the parameters that it supports [here](https://github.com/helm/charts/tree/master/stable/nginx-ingress#configuration). In particular, we want to define the `controller.ingressClass` parameter, and change it for each environment. The Ingress class is used as a way of determining which Ingress Controller will be configured with which rule, and we'll use this to distinguish between Ingress resource rules for traffic in the `Development` environment from those in the `Production` environment.
 
@@ -867,15 +870,15 @@ controller:
   ingressClass: "nginx-#{Octopus.Environment.Name | ToLower}"
 ```
 
-![](kubernetes-helm-additional-values.png)
+![](kubernetes-helm-additional-values.png "width=500")
 
 Save those change, and remember to change the lifecycle to `Application`.
 
-![](kubernetes-helm-lifecycle.png)
+![](kubernetes-helm-lifecycle.png "width=500")
 
 Now deploy the Helm chart to the `Development` environment.
 
-![](kubernetes-helm-nginx-development.png)
+![](kubernetes-helm-nginx-development.png "width=500")
 
 Helm helpfully gives us an example of how to create Ingress resources that work with the newly deployed Ingress Controller resource.
 
@@ -920,11 +923,11 @@ Go ahead and push the deployment to the `Production` environment.
 
 We can now see the Nginx Deployment resources in the Kubernetes cluster.
 
-![](kubernetes-nginx-deployments.png)
+![](kubernetes-nginx-deployments.png "width=500")
 
 Those Nginx Deployment resources are accessible from new Load balancer Service resources.
 
-![](kubernetes-nginx-services.png)
+![](kubernetes-nginx-services.png "width=500")
 
 We're now ready to connect to the HTTPD application through the Ingress Controllers instead of through their own network load balancers.
 
@@ -932,13 +935,13 @@ We're now ready to connect to the HTTPD application through the Ingress Controll
 
 Back in the HTTPD Container Deployment step, we need to change the `Service Type` from `Load balancer` to `Cluster IP`. This is because an Ingress Controller resource can direct traffic to the HTTPD Service resource internally. There is no longer a need for the HTTPD Service resource to be publicly accessible, and a Cluster IP Service resource provides everything we need.
 
-![](kubernetes-service-clusterip.png)
+![](kubernetes-service-clusterip.png "width=500")
 
 We now need to configure the Ingress resource.
 
 Start by defining the `Ingress Name`.
 
-![](kubernetes-ingress-name.png)
+![](kubernetes-ingress-name.png "width=500")
 
 The Ingress resources support the many different Ingress Controllers that are available via annotations. These are key/value pairs that often contain implementation specific values. Because we have deployed the Nginx ingress controller, a number of the annotations we are defining are specific to Nginx.
 
@@ -946,7 +949,7 @@ The first annotation is shared across Ingress Controller resource implementation
 
 The `kubernetes.io/ingress.allow-http` annotation is set to `true` to allow unsecure HTTP traffic, and `nginx.ingress.kubernetes.io/ssl-redirect` is set to `false` to prevent Nginx from redirecting HTTP traffic to HTTPS.
 
-![](kubernetes-ingress-annotations.png)
+![](kubernetes-ingress-annotations.png "width=500")
 
 :::warning
 Enabling HTTP traffic is a security risk and is shown here for demonstration purposes only.
@@ -956,7 +959,7 @@ The last section to configure is the `Ingress Host Rules`. This is where we map 
 
 The `Host` field is left blank, which means it will capture requests for all hosts.
 
-![](kubernetes-host-rule.png)
+![](kubernetes-host-rule.png "width=500")
 
 Go ahead and deploy this to the `Development` environment. You will get an error like this.
 
@@ -964,19 +967,19 @@ Go ahead and deploy this to the `Development` environment. You will get an error
 The Service "httpd" is invalid: spec.ports[0].nodePort: Invalid value: 30245: may not be used when `type` is 'ClusterIP'
 ```
 
-![](kubernetes-nodeport-error.png)
+![](kubernetes-nodeport-error.png "width=500")
 
 This error is thrown because we changed a Load balancer Service resource, which defined a `nodePort` property, to a Cluster IP Service resource, which does not support the `nodePort` property. Kubernetes is pretty good at knowing how to update an existing resource to match a new configuration, but in this case it doesn't know how to perform this change.
 
 The easiest solution is to delete the Service resource and rerun the deployment. Because we have completely defined the deployment process in Octopus, we can delete and recreate these resources safe in the knowledge that there are no undocumented settings that have been applied to the cluster that we might be removing.
 
-![](kubernetes-delete-service.png)
+![](kubernetes-delete-service.png "width=500")
 
 This time the deployment succeeds, and we have successfully deployed the Ingress resource.
 
 Let's open up the URL that we exposed via the Ingress Controller resource.
 
-![](kubernetes-httpd-error.png)
+![](kubernetes-httpd-error.png "width=500")
 
 And we get a 404. What is wrong here?
 
@@ -984,21 +987,21 @@ And we get a 404. What is wrong here?
 
 The issue here is that we opened a URL like http://35.193.149.6/httpd, and then passed that same path down to the HTTPD service. Our HTTPD service has no content to serve under the `httpd` path. It only has the `index.html` file in the root path the mapped from a ConfigMap resource.
 
-![](kubernetes-bad-path.jpg)
+![](kubernetes-bad-path.jpg "width=500")
 
 Fortunately this path mismatch is quite easy to solve. By setting the `nginx.ingress.kubernetes.io/rewrite-target` annotation to `/`, we can configure Nginx to pass the request that it receives on path `/httpd` along to the path `/`. So while we access the URL http://35.193.149.6/httpd in the browser, the HTTPD service sees a request to the root path.
 
-![](kubernetes-good-path.jpg)
+![](kubernetes-good-path.jpg "width=500")
 
-![](kubernetes-rewrite-target.png)
+![](kubernetes-rewrite-target.png "width=500")
 
 Redeploy the project to the `Development` environment. Once the deployment is finished, the URL http://35.193.149.6/httpd will return our custom web page displaying the name of the environment.
 
-![](kubernetes-httpd-success.png)
+![](kubernetes-httpd-success.png "width=500")
 
 Now that we have the `Development` environment working as we expect, push the deployment to the `Production` environment (remembering to delete the old Service resource, otherwise the `nodePort` error will be thrown again). This time the deployment works straight away.
 
-![](kubernetes-httpd-success-production.png)
+![](kubernetes-httpd-success-production.png "width=500")
 
 :::hint
 The `nginx.ingress.kubernetes.io/rewrite-target` annotation works in simple cases, but when the returned content is a HTML page that has links to CSS and JavaScript file, those links may be relative to the base path, because the application serving the content has no idea about the original path that was used.
@@ -1027,7 +1030,7 @@ $IngressParsed = ConvertFrom-Json -InputObject $OctopusParameters["Octopus.Actio
 Write-Host "Access the ingress load balancer at http://$($IngressParsed.status.loadBalancer.ingress.ip)"
 ```
 
-![](kubernetes-script-summary.png)
+![](kubernetes-script-summary.png "width=500")
 
 ## Some Useful Tips and Tricks
 
@@ -1037,9 +1040,9 @@ You may have noticed that the Octopus step does expose every possible option tha
 
 If you need a level of customization that the step does not provide, you can find the YAML for the resources that are created in the log files. These YAML files can be copied out, edited and deployed manually through the `Run a kubectl CLI script` step.
 
-![](kubernetes-yaml-output.png)
+![](kubernetes-yaml-output.png "width=500")
 
-## Adhoc Scripts
+### Adhoc Scripts
 
 One of the challenges with managing multiple Kubernetes accounts and clusters is constantly switching between them when running quick queries and one off maintenance scripts. It is always best practise not to run scripts with an admin user, but I think we have all run that sneaky command as admin just to get the job done. And more than a few have been burned with a delete command that was just a bit too broad...
 
@@ -1047,15 +1050,15 @@ Fortunately, once targets have been configured in Octopus as described in this b
 
 You can access the `Script Console` through `Tasks -> Script Console`. Select the Kubernetes target that reflects the namespace that you are working with, and write a script in the supplied editor.
 
-![](kubernetes-script-console.png)
+![](kubernetes-script-console.png "width=500")
 
 The script will be run in the same kubectl context that is created when running the `Run a kubectl CLI Script` step. This means you adhoc scripts will be contained to the namespace of the target (assuming if course the service account has the correct permissions), limiting the potential damage of a wayward command.
 
-![](kubernetes-script-console-result.png)
+![](kubernetes-script-console-result.png "width=500")
 
 The script console also has the advantage of saving a history of what commands were run by whom, providing an audit trail for mission critical systems.
 
-## Scripting Kubernetes Targets
+### Scripting Kubernetes Targets
 
 Creating accounts and targets can be time consuming if you are managing a large Kubernetes cluster. Fortunately the process can be automated so the Kubernetes Namespace and Service Account resources along with the Octopus Account and Targets are created with a single script.
 
@@ -1071,28 +1074,36 @@ Define the following project variables:
 
 The script that we will run relies on the `Octopus.Client` package, which is available from the public Nuget feed at https://api.nuget.org/v3/index.json. We need to add this package to the script step, ensuring that it will be extracted.
 
-![](kubernetes-script-dll-package.png)
+![](kubernetes-script-dll-package.png "width=500")
 
 Paste the following code as the script body.
 
 ```PowerShell
+$namespace = if ([string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployment.Tenant.Id"])) {
+	"$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())"
+} else {		 				
+	$($ApplicationName.ToLower()) + "-" + `
+	$($EnvironmentName.ToLower()) + "-" + `
+	$($OctopusParameters["Octopus.Deployment.Tenant.Name"].ToLower() -replace "[^a-z0-9]","")
+}
+
 Set-Content -Path serviceaccount.yml -Value @"
 ---
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  name: $namespace
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: $($ApplicationName.ToLower())-deployer
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  namespace: $namespace
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  namespace: $namespace
   name: $($ApplicationName.ToLower())-deployer-role
 rules:
 - apiGroups: ["", "extensions", "apps"]
@@ -1106,7 +1117,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: $($ApplicationName.ToLower())-deployer-binding
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  namespace: $namespace
 subjects:
 - kind: ServiceAccount
   name: $($ApplicationName.ToLower())-deployer
@@ -1119,7 +1130,7 @@ roleRef:
 
 kubectl apply -f serviceaccount.yml
 
-$data = kubectl get secret $(kubectl get serviceaccount "$($ApplicationName.ToLower())-deployer" -o jsonpath="{.secrets[0].name}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())") -o jsonpath="{.data.token}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())"
+$data = kubectl get secret $(kubectl get serviceaccount "$($ApplicationName.ToLower())-deployer" -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace
 $Token = [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data))
 
 [Reflection.Assembly]::LoadFrom("Octopus.Client\lib\net45\Octopus.Client.dll")
@@ -1129,7 +1140,12 @@ $repository = new-object Octopus.Client.OctopusRepository($endpoint)
 
 # Create the token account
 
-$accountName = $ApplicationName + "-" + $EnvironmentName
+$accountName = if ([string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployment.Tenant.Id"])) {
+	$ApplicationName + "-" + $EnvironmentName
+} else {
+	$ApplicationName + "-" + $EnvironmentName + "-"  + $($OctopusParameters["Octopus.Deployment.Tenant.Name"] -replace "[^A-Za-z0-9]","")
+}
+
 $account = $repository.Accounts.FindByName($accountName)
 if ($account -eq $null) {
   $tokenValue = new-object Octopus.Client.Model.SensitiveValue
@@ -1160,6 +1176,7 @@ if ($repository.Machines.FindByName($accountName) -eq $null) {
   $kubernetesEndpoint.ClusterUrl = $KubernetesUrl;
   $kubernetesEndpoint.SkipTlsVerification = "True";
   $kubernetesEndpoint.AccountId = $account.Id;
+  $kubernetesEndpoint.Namespace = $namespace
 
   # Create the machine
   $machine = new-object Octopus.Client.Model.MachineResource
@@ -1167,6 +1184,10 @@ if ($repository.Machines.FindByName($accountName) -eq $null) {
   $machine.Endpoint = $kubernetesEndpoint;
   $machine.EnvironmentIds = new-object Octopus.Client.Model.ReferenceCollection $environment.Id
   $machine.Roles = new-object Octopus.Client.Model.ReferenceCollection $ApplicationName
+  if (-not [string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployment.Tenant.Id"])) {
+  	$machine.TenantedDeploymentParticipation = [Octopus.Client.Model.TenantedDeploymentMode]::Tenanted;
+  	$machine.TenantIds = new-object Octopus.Client.Model.ReferenceCollection $OctopusParameters["Octopus.Deployment.Tenant.Id"]
+  }
 
   $repository.Machines.Create($machine);
 }

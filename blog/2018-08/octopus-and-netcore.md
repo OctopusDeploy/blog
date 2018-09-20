@@ -31,7 +31,7 @@ dotnet tool install Octopus.DotNet.Cli --tool-path /path/to/install
 
 To then awaken `octo.exe` from its slumber invoke classic incantations such as `dotnet octo pack` and `dotnet octo create-release`.
 
-Just as a note on the `tool-path` argument, you can replace that with the --global flag and it will install the tool globally. Depending on your build machine configuration, installing globally possibly isn't a recommended idea though, installing locally to the user running the build or to the folder the build is running in provides better isolation. Unfortunately, the isolation comes with a minor wrinkle where the dotnet command line doesn't provide the same argument to help find the tools you've put into custom tool paths. To get around this, you have to **ensure the path is added to the environment Path variable**.
+Just as a note on the `tool-path` argument, you can replace that with the --global flag and it will install the tool globally. Depending on your build machine configuration, installing globally possibly isn't a recommended idea though, installing locally to the folder the build is running in provides better isolation. Unfortunately, the isolation comes with a minor wrinkle where the dotnet command line doesn't provide the same argument to help find the tools you've put into custom tool paths. To get around this, you have to **ensure the path is added to the environment Path variable**.
 
 Also worth a quick note, the above summons the latest version onto your build machine. There is a [version switch](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-tool-install) if you want finer control.
 
