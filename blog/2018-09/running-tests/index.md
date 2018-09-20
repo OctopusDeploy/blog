@@ -199,4 +199,4 @@ At this point we can deploy the test script against any environment at any time 
 This was a simple example of how to get the details of a previous deployment to run a trivial network test. But there is so much more you could do. Some examples might be:
 * Use a [worker pool](https://octopus.com/docs/infrastructure/workers/worker-pools) with workers in different regions to simulate connections tests from international customers.
 * Use [scheduled triggers](https://octopus.com/docs/deployment-process/project-triggers/scheduled-project-trigger) to run automated tests overnight.
-* Use [step conditions](https://octopus.com/docs/deployment-process/conditions) to generate Slack or email notifications to report any errors with the test.
+* Use [step conditions](https://octopus.com/docs/deployment-process/conditions#run-condition) to generate Slack or email notifications to report any errors with the test.
