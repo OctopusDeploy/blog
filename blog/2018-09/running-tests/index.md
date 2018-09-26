@@ -3,8 +3,8 @@ title: Running manual tests against cloud infrastructure deployed by Octopus
 description: Learn how to extract variables from the last deployment to run manual tests
 author: matthew.casperson@octopus.com
 visibility: private
-bannerImage:
-metaImage:
+bannerImage: blogimage-runningtests.png
+metaImage: blogimage-runningtests.png
 tags:
 - AWS
 ---
