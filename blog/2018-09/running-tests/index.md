@@ -9,6 +9,8 @@ tags:
 - AWS
 ---
 
+![Octopus Professor running tests in a lab with chemicals and beakers](blogimage-runningtests.png)
+
 A question that came up during the NDC conference in Sydney this year was how to run UI tests against previous deployments to various environments. The tests were not necessarily part of the deployment process, but could be run manually or on a separate schedule. Despite not being a deployment as such, it would be convenient to run tests from Octopus as Octopus has all the information about where applications have been deployed.
 
 So at a high level the problem was this:
