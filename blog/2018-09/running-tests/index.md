@@ -3,6 +3,7 @@ title: Running manual tests against cloud infrastructure deployed by Octopus
 description: Learn how to run tests against infrastructure that was previously deployed by Octopus.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-09-27
 bannerImage: blogimage-runningtests.png
 metaImage: metaimage-runningtests.png
 tags:
