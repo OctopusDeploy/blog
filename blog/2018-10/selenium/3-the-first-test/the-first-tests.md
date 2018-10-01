@@ -254,3 +254,41 @@ It was possible in previous versions of Chrome to disable this bar using the `--
 ![](./image21.png)
 
 And with that we have a simple but fully functional WebDriver test controlling the Chrome web browser, giving us a foundation on which to start building some more advanced tests.
+
+## Firefox tests
+
+For our tests to launch Firefox, it needs to be installed. Firefox can be downloaded from https://firefox.com.
+
+Then the `geckodriver` executable needs to be placed on the path from one of the platform specific downloads available from https://github.com/mozilla/geckodriver/releases.
+
+The executable name for MacOS and Linux is `geckodriver`, and for Windows it is `geckodriver.exe`.
+
+Finally an instance of the `FirefoxDriver` class is created. This class has the same `get()` method as the `ChromeDriver` class, because they both inherit from `RemoteWebDriver`.
+
+You can see the `FirefoxDriver` class being created in the new `openURLFirefox()` method shown below.
+
+```java
+package com.octopus;
+
+import org.junit.Test;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class InitialTest {
+    @Test
+    public void openURL() {
+        final ChromeDriver chromeDriver = new ChromeDriver();
+        chromeDriver.get("https://octopus.com/");
+        chromeDriver.quit();
+    }
+
+    @Test
+    public void openURLFirefox() {
+        final FirefoxDriver firefoxDriver = new FirefoxDriver();
+        firefoxDriver.get("https://octopus.com/");
+        firefoxDriver.quit();
+    }
+}
+```
+
+Running the `openURLFirefox()` unit test will open the Firefox browser, open the page at https://octopus.com/, and then close the browser again.
