@@ -54,6 +54,7 @@ Let's break down this POM file to understand the various components that it is c
 ## Project element
 
 At the top level is the <project> element.
+
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
