@@ -159,8 +159,7 @@ public void clickElementWithCSSSelector(final String cssSelector) {
 }
 
 @Override
-public void selectOptionByTextFromSelectWithCSSSelector(final String
-optionText, final String cssSelector) {
+public void selectOptionByTextFromSelectWithCSSSelector(final String optionText, final String cssSelector) {
   if (getAutomatedBrowser() != null) {
     getAutomatedBrowser().selectOptionByTextFromSelectWithCSSSelector(optionText, cssSelector);
   }
@@ -174,8 +173,7 @@ public void populateElementWithCSSSelector(final String cssSelector, final Strin
 }
 
 @Override
-public String getTextFromElementWithCSSSelector(final String
-cssSelector) {
+public String getTextFromElementWithCSSSelector(final String cssSelector) {
   if (getAutomatedBrowser() != null) {
     return getAutomatedBrowser().getTextFromElementWithCSSSelector(cssSelector);
   }
@@ -192,8 +190,7 @@ public void clickElementWithCSSSelector(final String cssSelector) {
 }
 
 @Override
-public void selectOptionByTextFromSelectWithCSSSelector(final String
-optionText, final String cssSelector) {
+public void selectOptionByTextFromSelectWithCSSSelector(final String optionText, final String cssSelector) {
   new Select(webDriver.findElement(By.cssSelector(cssSelector))).selectByVisibleText(optionText);
 }
 
@@ -203,8 +200,7 @@ public void populateElementWithCSSSelector(final String cssSelector, final Strin
 }
 
 @Override
-public String getTextFromElementWithCSSSelector(final String
-cssSelector) {
+public String getTextFromElementWithCSSSelector(final String cssSelector) {
   return webDriver.findElement(By.cssSelector(cssSelector)).getText();
 }
 ```
