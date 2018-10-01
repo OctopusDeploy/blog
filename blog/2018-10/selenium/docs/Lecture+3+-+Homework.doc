@@ -1,0 +1,720 @@
+Message-ID: <1345976568.241.1529357909293@edefc50a989e>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_240_962477426.1529357909293"
+
+------=_Part_240_962477426.1529357909293
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Lecture 3 - Homework</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Lecture 3 - Homework</h1>
+    <div class=3D"Section1">
+        <p>Below is the sample web page where the form elements have a <cod=
+e>name</code> attribute added to them.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: xml; gutter: false; theme: RDark" data-theme=3D"RDark">&lt;!DOCTYPE html&=
+gt;
+&lt;html lang=3D"en"&gt;
+&lt;head&gt;
+    &lt;meta charset=3D"UTF-8"&gt;
+    &lt;title&gt;A sample web site&lt;/title&gt;
+    &lt;style&gt;
+        form &gt; * {
+            display: block;
+        }
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        /*
+            Print a message to the page
+        */
+        function interactionMessage(message) {
+            document.getElementById('message').textContent =3D message;
+        }
+
+        /*
+            Create a new element on the page after 5 seconds
+        */
+        setTimeout(function() {
+            var newDiv =3D document.createElement("div");
+            newDiv.setAttribute("id", "newdiv_element");
+            newDiv.textContent =3D "I am a newly created div";
+            document.body.appendChild(newDiv);
+            document.getElementById("div3_element").style.display =3D "";
+        }, 5000);
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=3D"message"&gt;&lt;/div&gt;
+&lt;form id=3D"form_element" onsubmit=3D"interactionMessage('Form Submitted=
+'); return false"&gt;
+    &lt;button name=3D"button_element" id=3D"button_element" type=3D"button=
+" onclick=3D"interactionMessage('Button Clicked')"&gt;Form Button&lt;/butto=
+n&gt;
+    &lt;input name=3D"text_element" id=3D"text_element" type=3D"text" oninp=
+ut=3D"interactionMessage('Text Input Changed')"&gt;
+    &lt;select name=3D"select_element" id=3D"select_element" onchange=3D"in=
+teractionMessage('Select Changed')"&gt;
+        &lt;optgroup label=3D"Group 1"&gt;
+            &lt;option id=3D"option1.1_element"&gt;Option 1.1&lt;/option&gt=
+;
+        &lt;/optgroup&gt;
+        &lt;optgroup label=3D"Group 2"&gt;
+            &lt;option id=3D"option2.1_element"&gt;Option 2.1&lt;/option&gt=
+;
+            &lt;option id=3D"option2.2_element"&gt;Option 2.2&lt;/option&gt=
+;
+        &lt;/optgroup&gt;
+        &lt;optgroup label=3D"Group 3" disabled&gt;
+            &lt;option id=3D"option3.1_element"&gt;Option 3.1&lt;/option&gt=
+;
+            &lt;option id=3D"option3.2_element"&gt;Option 3.2&lt;/option&gt=
+;
+            &lt;option id=3D"option3.3_element"&gt;Option 3.3&lt;/option&gt=
+;
+        &lt;/optgroup&gt;
+    &lt;/select&gt;
+    &lt;textarea name=3D"textarea_element" id=3D"textarea_element" name=3D"=
+textarea" rows=3D"10" cols=3D"50"
+              oninput=3D"interactionMessage('Text Area Changed')"&gt;&lt;/t=
+extarea&gt;
+    &lt;div&gt;&lt;input name=3D"radio_group" id=3D"radio1_element" type=3D=
+"radio" name=3D"color" value=3D"blue"
+                onchange=3D"interactionMessage('Radio Button Changed')"&gt;=
+ Blue
+    &lt;/div&gt;
+    &lt;div&gt;&lt;input name=3D"radio_group" id=3D"radio2_element" type=3D=
+"radio" name=3D"color" value=3D"green"
+                onchange=3D"interactionMessage('Radio Button Changed')"&gt;=
+ Green
+    &lt;/div&gt;
+    &lt;div&gt;&lt;input name=3D"radio_group" id=3D"radio3_element" type=3D=
+"radio" name=3D"color" value=3D"red"
+                onchange=3D"interactionMessage('Radio Button Changed')"&gt;=
+ Red
+    &lt;/div&gt;
+    &lt;div&gt;&lt;input name=3D"checkbox1_element" id=3D"checkbox1_element=
+" type=3D"checkbox" name=3D"vehicle" value=3D"Bike"
+                onchange=3D"interactionMessage('Checkbox Changed')"&gt; I h=
+ave a bike
+    &lt;/div&gt;
+    &lt;div&gt;&lt;input name=3D"checkbox2_element" id=3D"checkbox2_element=
+" type=3D"checkbox" name=3D"vehicle" value=3D"Car" checked
+                onchange=3D"interactionMessage('Checkbox Changed')"&gt; I h=
+ave a car
+    &lt;/div&gt;
+    &lt;input id=3D"submit_element" type=3D"submit"&gt;
+&lt;/form&gt;
+&lt;img id=3D"image_element" src=3D"java.png" width=3D"128" heigh=3D"128" o=
+nclick=3D"interactionMessage('Image Clicked')"&gt;
+&lt;div id=3D"div_element" onclick=3D"interactionMessage('Div Clicked')"&gt=
+;I am a div&lt;/div&gt;
+&lt;div id=3D"div2_element" onclick=3D"interactionMessage('Div 2 Clicked')"=
+&gt;I am a div too&lt;/div&gt;
+&lt;div id=3D"div3_element" style=3D"display: none" onclick=3D"interactionM=
+essage('Div 3 Clicked')"&gt;I am a hidden div&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>=20
+</div>
+</div>
+<p>Your task is to write the code necessary for the following test to pass.=
+ You will need to complete the names of the methods that end with <code>...=
+</code>, and populate the method parameters that have the placeholder of <c=
+ode>...</code>.</p>
+<p>For example, <code>automatedBrowser.clickElementWith...(...);</code> mig=
+ht become <code>automatedBrowser.clickElementWithName("button_element");</c=
+ode>.</p>
+<p>Note that there are multiple ways this test can be implemented.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: RDark" data-theme=3D"RDark">@Test
+public void formTestByName() throws URISyntaxException {
+    final AutomatedBrowser automatedBrowser =3D AUTOMATED_BROWSER_FACTORY.g=
+etAutomatedBrowser("Chrome");
+    try {
+        automatedBrowser.init();
+        automatedBrowser.goTo(FormTest.class.getResource("/form.html").toUR=
+I().toString());
+
+        automatedBrowser.clickElementWith...(...);
+        assertEquals("Button Clicked", automatedBrowser.getTextFromElementW=
+ithId("message"));
+
+        automatedBrowser.populateElementWith...(..., "test text");
+        assertEquals("Text Input Changed", automatedBrowser.getTextFromElem=
+entWithId("message"));
+
+        automatedBrowser.populateElementWith...(..., "test text");
+        assertEquals("Text Area Changed", automatedBrowser.getTextFromEleme=
+ntWithId("message"));
+
+        automatedBrowser.selectOptionByTextFromSelectWith...("Option 2.1", =
+...);
+        assertEquals("Select Changed", automatedBrowser.getTextFromElementW=
+ithId("message"));
+
+        automatedBrowser.clickElementWith...(...);
+        assertEquals("Checkbox Changed", automatedBrowser.getTextFromElemen=
+tWithId("message"));
+    } finally {
+        automatedBrowser.destroy();
+    }
+}</pre>=20
+</div>
+</div>
+<h3 id=3D"Lecture3-Homework-HomeworkAnswer">Homework Answer</h3>
+<p>There are a number of ways to select elements by their <code>name</code>=
+ attribute.</p>
+<p>One way is to select them using an XPath query. We've seen that you can =
+select an element via its <code>id</code> attribute with an XPath query lik=
+e <code>//*[@id=3D\"button_element\"]</code>. Selecting an element by the <=
+code>name</code> attribute is very similar; simply replace the <code>id</co=
+de> in the query with <code>name</code>, like <code>//*[@name=3D\"button_el=
+ement\"]</code>.</p>
+<p>This results in a test like the following:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: RDark" data-theme=3D"RDark">@Test
+public void formTestByNameUsingXPath() throws URISyntaxException {
+=09final AutomatedBrowser automatedBrowser =3D AUTOMATED_BROWSER_FACTORY.ge=
+tAutomatedBrowser("Chrome");
+=09try {
+=09=09automatedBrowser.init();
+=09=09automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI(=
+).toString());
+
+=09=09automatedBrowser.clickElementWithXPath("//*[@name=3D\"button_element\=
+"]");
+=09=09assertEquals("Button Clicked", automatedBrowser.getTextFromElementWit=
+hId("message"));
+
+=09=09automatedBrowser.populateElementWithXPath("//*[@name=3D\"text_element=
+\"]", "test text");
+=09=09assertEquals("Text Input Changed", automatedBrowser.getTextFromElemen=
+tWithId("message"));
+
+=09=09automatedBrowser.populateElementWithXPath("//*[@name=3D\"textarea_ele=
+ment\"]", "test text");
+=09=09assertEquals("Text Area Changed", automatedBrowser.getTextFromElement=
+WithId("message"));
+
+=09=09automatedBrowser.selectOptionByTextFromSelectWithXPath("Option 2.1", =
+"//*[@name=3D\"select_element\"]");
+=09=09assertEquals("Select Changed", automatedBrowser.getTextFromElementWit=
+hId("message"));
+
+=09=09automatedBrowser.clickElementWithXPath("//*[@name=3D\"checkbox2_eleme=
+nt\"]");
+=09=09assertEquals("Checkbox Changed", automatedBrowser.getTextFromElementW=
+ithId("message"));
+=09} finally {
+=09=09automatedBrowser.destroy();
+=09}
+}</pre>=20
+</div>
+</div>
+<p>It is also possible to use CSS Selectors to select elements with given <=
+code>name</code> attributes. These CSS Selectors take the form <code>[name=
+=3Dbutton_element]</code>.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: RDark" data-theme=3D"RDark">@Test
+public void formTestByNameWithCSSSelector() throws URISyntaxException {
+=09final AutomatedBrowser automatedBrowser =3D AUTOMATED_BROWSER_FACTORY.ge=
+tAutomatedBrowser("Chrome");
+=09try {
+=09=09automatedBrowser.init();
+=09=09automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI(=
+).toString());
+
+=09=09automatedBrowser.clickElementWithCSSSelector("[name=3Dbutton_element]=
+");
+=09=09assertEquals("Button Clicked", automatedBrowser.getTextFromElementWit=
+hId("message"));
+
+=09=09automatedBrowser.populateElementWithCSSSelector("[name=3Dtext_element=
+]", "test text");
+=09=09assertEquals("Text Input Changed", automatedBrowser.getTextFromElemen=
+tWithId("message"));
+
+=09=09automatedBrowser.populateElementWithCSSSelector("[name=3Dtextarea_ele=
+ment]", "test text");
+=09=09assertEquals("Text Area Changed", automatedBrowser.getTextFromElement=
+WithId("message"));
+
+=09=09automatedBrowser.selectOptionByTextFromSelectWithCSSSelector("Option =
+2.1", "[name=3Dselect_element]");
+=09=09assertEquals("Select Changed", automatedBrowser.getTextFromElementWit=
+hId("message"));
+
+=09=09automatedBrowser.clickElementWithCSSSelector("[name=3Dcheckbox2_eleme=
+nt]");
+=09=09assertEquals("Checkbox Changed", automatedBrowser.getTextFromElementW=
+ithId("message"));
+=09} finally {
+=09=09automatedBrowser.destroy();
+=09}
+}</pre>=20
+</div>
+</div>
+<p>The final solution is to make use of the <code>By.name()</code> method a=
+s a way of searching for elements with a given <code>name</code> attribute.=
+ This solution is a bit more involved as it means touching the <code>Automa=
+tedBrowser</code> interface, <code>AutomatedBrowserBase</code> and <code>We=
+bDriverDecorator</code> classes.</p>
+<p>For completeness, we add the following methods to the <code>AutomatedBro=
+wser</code> interface. Our test won't make use of all these methods, but ad=
+ding all of them allows us to interact with elements by their <code>name</c=
+ode> attribute just like we can using any other locator.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: RDark" data-theme=3D"RDark">void clickElement=
+WithName(String name);
+
+void clickElementWithName(String name, int waitTime);
+
+void selectOptionByTextFromSelectWithName(String optionText, String name);
+
+void selectOptionByTextFromSelectWithName(String optionText, String name, i=
+nt waitTime);
+
+void populateElementWithName(String name, String text);
+
+void populateElementWithName(String name, String text, int waitTime);
+
+String getTextFromElementWithName(String name);
+
+String getTextFromElementWithName(String name, int waitTime);</pre>=20
+</div>
+</div>
+<p>These methods get a default implementation in the <code>AutomatedBrowser=
+Base</code> class.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: RDark" data-theme=3D"RDark">    @Override
+    public void clickElementWithName(final String name) {
+        if (getAutomatedBrowser() !=3D null) {
+            getAutomatedBrowser().clickElementWithName(name);
+        }
+    }
+
+    @Override
+    public void clickElementWithName(final String name, final int waitTime)=
+ {
+        if (getAutomatedBrowser() !=3D null) {
+            getAutomatedBrowser().clickElementWithName(name, waitTime);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithName(final String optionTex=
+t, final String name) {
+        if (getAutomatedBrowser() !=3D null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithName(opti=
+onText, name);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithName(final String optionTex=
+t, final String name, final int waitTime) {
+        if (getAutomatedBrowser() !=3D null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithName(opti=
+onText, name, waitTime);
+        }
+    }
+
+    @Override
+    public void populateElementWithName(final String name, final String tex=
+t) {
+        if (getAutomatedBrowser() !=3D null) {
+            getAutomatedBrowser().populateElementWithName(name, text);
+        }
+    }
+
+    @Override
+    public void populateElementWithName(final String name, final String tex=
+t, final int waitTime) {
+        if (getAutomatedBrowser() !=3D null) {
+            getAutomatedBrowser().populateElementWithName(name, text, waitT=
+ime);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithName(final String name) {
+        if (getAutomatedBrowser() !=3D null) {
+            return getAutomatedBrowser().getTextFromElementWithName(name);
+        }
+
+        return null;
+    }
+
+    @Override
+    public String getTextFromElementWithName(final String name, final int w=
+aitTime) {
+        if (getAutomatedBrowser() !=3D null) {
+            return getAutomatedBrowser().getTextFromElementWithName(name, w=
+aitTime);
+        }
+
+        return null;
+    }</pre>=20
+</div>
+</div>
+<p>Then we add implementations for these methods in the <code>WebDriverDeco=
+rator</code> class.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: RDark" data-theme=3D"RDark">    @Override
+    public void clickElementWithName(final String name) {
+        webDriver.findElement(By.name(name)).click();
+    }
+
+    @Override
+    public void clickElementWithName(final String name, final int waitTime)=
+ {
+        if (waitTime &lt;=3D 0) {
+            clickElementWithName(name);
+        } else {
+            final WebDriverWait wait =3D new WebDriverWait(webDriver, waitT=
+ime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.name(nam=
+e)))).click();
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithName(final String optionTex=
+t, final String name) {
+        new Select(webDriver.findElement(By.name(name))).selectByVisibleTex=
+t(optionText);
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithName(final String optionTex=
+t, final String name, final int waitTime) {
+        if (waitTime &lt;=3D 0) {
+            selectOptionByTextFromSelectWithName(name, optionText);
+        } else {
+            final WebDriverWait wait =3D new WebDriverWait(webDriver, waitT=
+ime);
+            new Select(wait.until(ExpectedConditions.elementToBeClickable((=
+By.name(name))))).selectByVisibleText(optionText);
+        }
+    }
+
+    @Override
+    public void populateElementWithName(final String name, final String tex=
+t) {
+        webDriver.findElement(By.name(name)).sendKeys(text);
+    }
+
+    @Override
+    public void populateElementWithName(final String name, final String tex=
+t, final int waitTime) {
+        if (waitTime &lt;=3D 0) {
+            populateElementWithName(name, text);
+        } else {
+            final WebDriverWait wait =3D new WebDriverWait(webDriver, waitT=
+ime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.name(nam=
+e)))).sendKeys(text);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithName(final String name) {
+        return webDriver.findElement(By.name(name)).getText();
+    }
+
+    @Override
+    public String getTextFromElementWithName(final String name, final int w=
+aitTime) {
+        if (waitTime &lt;=3D 0) {
+            return getTextFromElementWithName(name);
+        } else {
+            final WebDriverWait wait =3D new WebDriverWait(webDriver, waitT=
+ime);
+            return wait.until(ExpectedConditions.presenceOfElementLocated((=
+By.name(name)))).getText();
+        }
+    }</pre>=20
+</div>
+</div>
+<p>Then we can make use of these new methods in the test.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: RDark" data-theme=3D"RDark">@Test
+public void formTestByName() throws URISyntaxException {
+    final AutomatedBrowser automatedBrowser =3D AUTOMATED_BROWSER_FACTORY.g=
+etAutomatedBrowser("Chrome");
+    try {
+        automatedBrowser.init();
+        automatedBrowser.goTo(FormTest.class.getResource("/form.html").toUR=
+I().toString());
+
+        automatedBrowser.clickElementWithName("button_element");
+        assertEquals("Button Clicked", automatedBrowser.getTextFromElementW=
+ithId("message"));
+
+        automatedBrowser.populateElementWithName("text_element", "test text=
+");
+        assertEquals("Text Input Changed", automatedBrowser.getTextFromElem=
+entWithId("message"));
+
+        automatedBrowser.populateElementWithName("textarea_element", "test =
+text");
+        assertEquals("Text Area Changed", automatedBrowser.getTextFromEleme=
+ntWithId("message"));
+
+        automatedBrowser.selectOptionByTextFromSelectWithName("Option 2.1",=
+ "select_element");
+        assertEquals("Select Changed", automatedBrowser.getTextFromElementW=
+ithId("message"));
+
+        automatedBrowser.clickElementWithName("checkbox2_element");
+        assertEquals("Checkbox Changed", automatedBrowser.getTextFromElemen=
+tWithId("message"));
+    } finally {
+        automatedBrowser.destroy();
+    }
+}</pre>=20
+</div>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_240_962477426.1529357909293--
