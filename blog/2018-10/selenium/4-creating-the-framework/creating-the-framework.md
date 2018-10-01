@@ -23,7 +23,7 @@ To fix this, open the `Maven Projects` tool window and click the `Reimport All M
 
 ![](./image4.png)
 
-The java directory is now shown with a blue icon, which indicates that it will hold Java classes.
+The `java` directory is now shown with a blue icon, which indicates that it will hold Java classes.
 
 ![](./image5.png)
 
@@ -95,7 +95,7 @@ We'll make use of the decorator pattern to build up instances of the `AutomatedB
 
 So why use the decorator pattern instead of a class hierarchy implementing `AutomatedBrowser` directly?
 
-In implementing the decorator pattern we give ourselves the ability to create a whole range of independent implementations with features that enhance and customize how we interact with the browser, without trying to represent this implementations with a deep class hierarchy.
+In implementing the decorator pattern we give ourselves the ability to create a whole range of independent implementations with features that enhance and customize how we interact with the browser, without trying to represent these implementations with a deep class hierarchy.
 
 Two obvious implementations are those that configure instances of the `ChromeDriver` or the `FirefoxDriver` classes, allowing us to open either the Chrome or Firefox browsers. But as we move through this blog series we'll introduce a whole range of decorators that implement features such as proxies, stub methods for functionality not supported by mobile browsers, remote browsers and much more.
 
@@ -103,7 +103,7 @@ The framework for all this flexibility starts here.
 
 To make it easier for us to create decorator classes, we'll create a class called `AutomatedBrowserBase`, which will implement `AutomatedBrowser`, and pass through all method calls to a parent instance of `AutomatedBrowser`.
 
-Because the AutomatedBrowserBase class provides an implementation of every method in the `AutomatedBrowser` interface, decorator classes extending `AutomatedBrowserBase` can override only the methods that are specific to them. This significantly cuts down on the amount of boiler plate code that is required to create a decorator.
+Because the `AutomatedBrowserBase` class provides an implementation of every method in the `AutomatedBrowser` interface, decorator classes extending `AutomatedBrowserBase` can override only the methods that are specific to them. This significantly cuts down on the amount of boiler plate code that is required to create a decorator.
 
 Note that `AutomatedBrowserBase` class is created in the
 `com.octopus.decoratorbase` package. Having this class in its
@@ -286,11 +286,11 @@ Notice that `WebDriverDecorator` has a default constructor. This is unlike `Chro
 We've already seen a lot of the code that goes into `the WebDriverDecorator` class in the last lecture, with the `webDriver.get()` method opening a URL, and the `webDriver.quit()` method closing the browser.
 
 ```java
-package academy.learnprogramming.decorators;
+package com.octopus.decorators;
 
-import academy.learnprogramming.AutomatedBrowser;
+import com.octopus.AutomatedBrowser;
 
-import academy.learnprogramming.decoratorbase.AutomatedBrowserBase;
+import com.octopus.decoratorbase.AutomatedBrowserBase;
 
 import org.openqa.selenium.WebDriver;
 
@@ -385,7 +385,7 @@ Because this is a test class, it will be created in the
 `src/test/java/com/octopus` directory.
 
 ```java
-package academy.learnprogramming;
+package com.octopus;
 
 import org.junit.Test;
 
@@ -442,7 +442,7 @@ automatedBrowser.destroy();
 }
 ```
 
-The FactoryTest class makes use of JUnit parameterization to run the test method multiple times with different inputs. We'll use this functionality to run the test against both the Chrome and Firefox browsers with a single test method.
+The `FactoryTest` class makes use of JUnit parameterization to run the test method multiple times with different inputs. We'll use this functionality to run the test against both the Chrome and Firefox browsers with a single test method.
 
 To enable parameterization, the test class require the annotation `@RunWith(Parameterized.class)`.
 
@@ -494,7 +494,7 @@ public void openURL() {
   AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser(browser);
 
   automatedBrowser.init();
-  automatedBrowser.goTo("https://learnprogramming.academy/");
+  automatedBrowser.goTo("https://octopus.com/");
   automatedBrowser.destroy();
 }
 ```
