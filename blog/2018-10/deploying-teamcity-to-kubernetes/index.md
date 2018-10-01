@@ -115,11 +115,15 @@ First, create a name, assign it to environments and a role.
 
 ![](octopus_deploy_add_k8s_start.png)
 
-Next select the username/password account, enter in the IP Address, and select the certificate.
+Next select the username/password account, enter in the IP Address, and select the certificate.  
+
+**Please note:** it is important to use https://[Ip Address] for the URL.  If you don't use that, Octopus will be unable to connect to your K8s cluster and you will be spending a lot of time wondering why.  I know this because I forgot and I kept scratching my head wondering why it wasn't working.
 
 ![](octopus_deploy_add_k8s_options.png)
 
 I like to perform a health check right away to make sure I didn't screw anything up.
+
+![](octopus_deploy_success_connect_k8s.png)
 
 Finally we need add Docker Hub as a feed.  This is where the TeamCity container will be pulled from.  Go to library -> external feeds and click the "Add Feed" button on the top right.  
 
@@ -165,13 +169,89 @@ Now it is time to specify the port number.  The default port number exposed by T
 
 ![](teamcity_container_port.png)
 
-That is all we are going to specify for now.  Go ahead and click on the ok button.  In the features selection enter in the name of the service and keep the option of node port.
+That is all we are going to specify for now.  Go ahead and click on the ok button.  
+
+After the modal window closes, in the features selection enter in the name of the service and select the option of Load Balancer.
 
 ![](octopus_deploy_server_features.png)
 
-We need a way to access the server.  For this we will be using port 80.  
+We need a way to access the server.  Click the add port button to get the service port modal window to open.
+
+![](octopus_deploy_adding_external_port.png)
+
+For this we will be using port 80.  Give it a name, use port 80 and have it point back to the named port defined when we selected the container.
 
 ![](octopus_deploy_service_port.png)
 
+When it is all said and done your summary screen should look similar to this:
+
+![](octopus_deploy_team_city_server_summary_k8s.png)
+
 That is it!  Now it is time to save and we can create our first deployment!
+
+![](octopus_deploy_create_release.png)
+
+The deployment itself does not take very long.  
+
+![](octopus_deploy_team_city_server_results.png)
+
+But go back to GCP's interface and click on the services link on the left.  You can see GCP will take a minute to create the load balancer.
+
+![](gcp_creating_loadbalancer.png)
+
+After the load balancer is complete let's click on the URL.  If all goes well we should be presented with this screen!
+
+![](team_city_k8s_port_started.png)
+
+## Step 3: Persistent Volume
+
+Alright, things are coming along.  However, we have a slight problem.  Each time Octopus Deploy does a deployment it will destroy the node and recreate it.  That means the data directory in the above screenshot will be cleared out.  The end result is we have to recreate the TeamCity configuration each time.  That is...just awful.  What kind of build server is that?  
+
+**Please Note:** This is not directly caused by Octopus Deploy, it is a feature of Kubernetes.  By default it assumes pods can be destroyed and recreated whenever needed.
+
+What we need is to persist that data between deployments.  Thankfully, Kubernetes already has that functionality.  We just need to tap into it.  
+
+To keep things simple I will be using a simple persistant volume.  This uses the storage which is backing the Kubernetes cluster.  It is possible to make use of other storage options.  There are [many options](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).  Pick the best one which works for your company / needs.  
+
+To do this we will need to learn a little bit about the K8s CLI which is called kubectl.  The command we are interested in is the [apply command](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply).  This command will be create a resource if it doesn't already exist.  Which is perfect, that means we can use it in our deployment process.
+
+Now a quirk with the apply command is you have to supply it a YAML or JSON file.  The file can be a URL or right on the hard drive.  What I did was create a GitHub repo to store these types of files.  Then I could reference the file from Github.
+
+The file.  It is creating a 30 GB hard drive for me to use as my data drive.  
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dt-pm-claim
+  labels:
+    app: data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30Gi
+```
+
+Octopus Deploy can run kubectl commands.  Let's go ahead and find that step to add to our process.
+
+![](ocotpus_deploy_kube_ctl.png)
+
+The script I need to run is:
+
+```
+kubectl apply -f [URL of file]
+```
+
+Let's go ahead and add that to the step.  Don't forget to set the worker and the role!
+
+![](octopus_deploy_kube_ctl_command.png)
+
+After saving my process looks like this.  
+
+![](octopus_deploy_post_script_process.png)
+
+That doesn't look right, we want to create the volume for the server.  Let's reorder that.
+
+![](octopus_deploy_persistant_process_ordered.png)
 
