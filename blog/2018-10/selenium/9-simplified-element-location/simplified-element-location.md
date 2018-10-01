@@ -329,319 +329,51 @@ which is too long.
 package com.octopus.utils.impl;
 
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.support.ui.Clock;
-
 import org.openqa.selenium.support.ui.Sleeper;
-
 import org.openqa.selenium.support.ui.SystemClock;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverWaitEx extends WebDriverWait {
-
-public static final long DEFAULT_SLEEP_TIMEOUT = 10;
-
-public WebDriverWaitEx(final WebDriver driver, final long
-timeOutInSeconds) {
-
-this(driver, new SystemClock(), Sleeper.SYSTEM_SLEEPER,
-timeOutInSeconds, DEFAULT_SLEEP_TIMEOUT);
-
-}
-
-public WebDriverWaitEx(final WebDriver driver, final long timeOut, final
-TimeUnit time) {
-
-this(driver, new SystemClock(), Sleeper.SYSTEM_SLEEPER, timeOut,
-DEFAULT_SLEEP_TIMEOUT, time);
-
-}
-
-public WebDriverWaitEx(final WebDriver driver, final long
-timeOutInSeconds, final long sleepInMillis) {
-
-this(driver, new SystemClock(), Sleeper.SYSTEM_SLEEPER,
-timeOutInSeconds, sleepInMillis);
-
-}
-
-public WebDriverWaitEx(
-
-final WebDriver driver,
-
-final Clock clock,
-
-final Sleeper sleeper,
-
-final long timeOutInSeconds,
-
-final long sleepTimeOut) {
-
-this(driver, clock, sleeper, timeOutInSeconds, sleepTimeOut,
-TimeUnit.SECONDS);
-
-}
-
-public WebDriverWaitEx(
-
-final WebDriver driver,
-
-final Clock clock,
-
-final Sleeper sleeper,
-
-final long timeOut,
-
-final long sleepTimeOut,
-
-final TimeUnit time) {
-
-// Call the WebDriverWait constructor with a timeout of 0
-
-super(driver, clock, sleeper, 0, sleepTimeOut);
-
-// Now set the timeout, possibly as a sub-second duration
-
-withTimeout(timeOut, time);
-
-}
-
-}
-
-We now have the ability to find elements based on any kind of locator.
-To take advantage of this, we add the following methods to the
-AutomatedBrowser interface.
-
-void clickElement(String locator);
-
-void clickElement(String locator, int waitTime);
-
-void selectOptionByTextFromSelect(String optionText, String locator);
-
-void selectOptionByTextFromSelect(String optionText, String locator, int
-waitTime);
-
-void populateElement(String locator, String text);
-
-void populateElement(String locator, String text, int waitTime);
-
-String getTextFromElement(String locator);
-
-String getTextFromElement(String locator, int waitTime);
-
-The usual default methods are added to AutomatedBrowserBase.
-
-@Override
-
-public void clickElement(final String locator) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElement(locator);
-
-}
-
-}
-
-@Override
-
-public void clickElement(final String locator, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElement(locator, waitTime);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelect(final String optionText, final
-String locator) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelect(optionText, locator);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelect(final String optionText, final
-String locator, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelect(optionText, locator,
-waitTime);
-
-}
-
-}
-
-@Override
-
-public void populateElement(final String locator, final String text) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElement(locator, text);
-
-}
-
-}
-
-@Override
-
-public void populateElement(final String locator, final String text,
-final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElement(locator, text, waitTime);
-
-}
-
-}
-
-@Override
-
-public String getTextFromElement(final String locator) {
-
-if (getAutomatedBrowser() != null) {
-
-return getAutomatedBrowser().getTextFromElement(locator);
-
-}
-
-return null;
-
-}
-
-@Override
-
-public String getTextFromElement(final String locator, final int
-waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-return getAutomatedBrowser().getTextFromElement(locator, waitTime);
-
-}
-
-return null;
-
-}
-
-And the following implementations are added to WebDriverDecorator.
-
-private static final SimpleBy SIMPLE_BY = new SimpleByImpl();
-
-@Override
-
-public void clickElement(final String locator) {
-
-clickElement(locator, 0);
-
-}
-
-@Override
-
-public void clickElement(final String locator, final int waitTime) {
-
-SIMPLE_BY.getElement(
-
-getWebDriver(),
-
-locator,
-
-waitTime,
-
-by -> ExpectedConditions.elementToBeClickable(by)).click();
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelect(final String optionText, final
-String locator) {
-
-selectOptionByTextFromSelect(optionText, locator, 0);
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelect(final String optionText, final
-String locator, final int waitTime) {
-
-new Select(SIMPLE_BY.getElement(
-
-getWebDriver(),
-
-locator,
-
-waitTime,
-
-by ->
-ExpectedConditions.elementToBeClickable(by))).selectByVisibleText(optionText);
-
-}
-
-@Override
-
-public void populateElement(final String locator, final String text) {
-
-populateElement(locator, text, 0);
-
-}
-
-@Override
-
-public void populateElement(final String locator, final String text,
-final int waitTime) {
-
-SIMPLE_BY.getElement(
-
-getWebDriver(),
-
-locator,
-
-waitTime,
-
-by -> ExpectedConditions.elementToBeClickable(by)).sendKeys(text);
-
-}
-
-@Override
-
-public String getTextFromElement(final String locator) {
-
-return getTextFromElement(locator, 0);
-
-}
-
-@Override
-
-public String getTextFromElement(final String locator, final int
-waitTime) {
-
-return SIMPLE_BY.getElement(
-
-getWebDriver(),
-
-locator,
-
-waitTime,
-
-by -> ExpectedConditions.presenceOfElementLocated(by)).getText();
-
+    public static final long DEFAULT_SLEEP_TIMEOUT = 10;
+
+    public WebDriverWaitEx(final WebDriver driver, final long timeOutInSeconds) {
+        this(driver, new SystemClock(), Sleeper.SYSTEM_SLEEPER, timeOutInSeconds, DEFAULT_SLEEP_TIMEOUT);
+    }
+
+    public WebDriverWaitEx(final WebDriver driver, final long timeOut, final TimeUnit time) {
+        this(driver, new SystemClock(), Sleeper.SYSTEM_SLEEPER, timeOut, DEFAULT_SLEEP_TIMEOUT, time);
+    }
+
+    public WebDriverWaitEx(final WebDriver driver, final long timeOutInSeconds, final long sleepInMillis) {
+        this(driver, new SystemClock(), Sleeper.SYSTEM_SLEEPER, timeOutInSeconds, sleepInMillis);
+    }
+
+    public WebDriverWaitEx(
+            final WebDriver driver,
+            final Clock clock,
+            final Sleeper sleeper,
+            final long timeOutInSeconds,
+            final long sleepTimeOut) {
+
+        this(driver, clock, sleeper, timeOutInSeconds, sleepTimeOut, TimeUnit.SECONDS);
+    }
+
+    public WebDriverWaitEx(
+            final WebDriver driver,
+            final Clock clock,
+            final Sleeper sleeper,
+            final long timeOut,
+            final long sleepTimeOut,
+            final TimeUnit time) {
+
+        // Call the WebDriverWait constructor with a timeout of 0
+        super(driver, clock, sleeper, 0, sleepTimeOut);
+        // Now set the timeout, possibly as a sub-second duration
+        withTimeout(timeOut, time);
+    }
 }
 ```
 
