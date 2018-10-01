@@ -77,7 +77,7 @@ The complete webpage is shown below.
     </div>
     <input id="submit_element" type="submit">
 </form>
-<img id="image_element" src="java.png" width="128" heigh="128" onclick="interactionMessage('Image Clicked')">
+<img id="image_element" src="java.png" width="128" height="128" onclick="interactionMessage('Image Clicked')">
 <div id="div_element" onclick="interactionMessage('Div Clicked')">I am a div</div>
 <div id="div2_element" onclick="interactionMessage('Div 2 Clicked')">I am a div too</div>
 <div id="div3_element" style="display: none" onclick="interactionMessage('Div 3 Clicked')">I am a hidden div</div>
@@ -113,96 +113,60 @@ We have a `<form>` element that will hold a collection of common HTML form eleme
 do a page reload on submission by returning false.
 
 ```HTML
-<form id="form_element" onsubmit="interactionMessage('Form
-Submitted'); return false">
+<form id="form_element" onsubmit="interactionMessage('Form Submitted'); return false">
 ```
 
 Inside the form is a collection of text box, text area, button, radio button, checkbox and select elements. Like for parent `<form>` element, most of these child elements call the `interactionMessage()` method in response to an event.
 
-```
-<button id="button_element" type="button"
-onclick="interactionMessage('Button Clicked')">Form
-Button</button>
-
-<input id="text_element" type="text"
-oninput="interactionMessage('Text Input Changed')">
-
-<select id="select_element" onchange="interactionMessage('Select
-Changed')">
-
-<optgroup label="Group 1">
-
-<option id="option1.1_element">Option 1.1</option>
-
-</optgroup>
-
-<optgroup label="Group 2">
-
-<option id="option2.1_element">Option 2.1</option>
-
-<option id="option2.2_element">Option 2.2</option>
-
-</optgroup>
-
-<optgroup label="Group 3" disabled>
-
-<option id="option3.1_element">Option 3.1</option>
-
-<option id="option3.2_element">Option 3.2</option>
-
-<option id="option3.3_element">Option 3.3</option>
-
-</optgroup>
-
+```html
+<button name="button_element" id="button_element" type="button" onclick="interactionMessage('Button Clicked')">Form Button</button>
+<input name="text_element" id="text_element" type="text" oninput="interactionMessage('Text Input Changed')">
+<select name="select_element" id="select_element" onchange="interactionMessage('Select Changed')">
+    <optgroup label="Group 1">
+        <option id="option1.1_element">Option 1.1</option>
+    </optgroup>
+    <optgroup label="Group 2">
+        <option id="option2.1_element">Option 2.1</option>
+        <option id="option2.2_element">Option 2.2</option>
+    </optgroup>
+    <optgroup label="Group 3" disabled>
+        <option id="option3.1_element">Option 3.1</option>
+        <option id="option3.2_element">Option 3.2</option>
+        <option id="option3.3_element">Option 3.3</option>
+    </optgroup>
 </select>
-
-<textarea id="textarea_element" name="textarea" rows="10"
-cols="50" oninput="interactionMessage('Text Area
-Changed')"></textarea>
-
-<div><input id="radio1_element" type="radio"
-name="color" value="blue" onchange="interactionMessage('Radio
-Button Changed')"> Blue</div>
-
-<div><input id="radio2_element" type="radio"
-name="color" value="green" onchange="interactionMessage('Radio
-Button Changed')"> Green</div>
-
-<div><input id="radio3_element" type="radio"
-name="color" value="red" onchange="interactionMessage('Radio
-Button Changed')"> Red</div>
-
-<div><input id="checkbox1_element" type="checkbox"
-name="vehicle" value="Bike" onchange="interactionMessage('Checkbox
-Changed')"> I have a bike</div>
-
-<div><input id="checkbox2_element" type="checkbox"
-name="vehicle" value="Car" checked
-onchange="interactionMessage('Checkbox Changed')"> I have a
-car</div>
-
+<textarea name="textarea_element" id="textarea_element" name="textarea" rows="10" cols="50"
+          oninput="interactionMessage('Text Area Changed')"></textarea>
+<div><input name="radio_group" id="radio1_element" type="radio" name="color" value="blue"
+            onchange="interactionMessage('Radio Button Changed')"> Blue
+</div>
+<div><input name="radio_group" id="radio2_element" type="radio" name="color" value="green"
+            onchange="interactionMessage('Radio Button Changed')"> Green
+</div>
+<div><input name="radio_group" id="radio3_element" type="radio" name="color" value="red"
+            onchange="interactionMessage('Radio Button Changed')"> Red
+</div>
+<div><input name="checkbox1_element" id="checkbox1_element" type="checkbox" name="vehicle" value="Bike"
+            onchange="interactionMessage('Checkbox Changed')"> I have a bike
+</div>
+<div><input name="checkbox2_element" id="checkbox2_element" type="checkbox" name="vehicle" value="Car" checked
+            onchange="interactionMessage('Checkbox Changed')"> I have a car
+</div>
 <input id="submit_element" type="submit">
 ```
 
 Outside of the `<form>` we have some image and div elements.
 
-```
-<img id="image_element" src="java.png" width="128"
-heigh="128" onclick="interactionMessage('Image Clicked')">
-
-<div id="div_element" onclick="interactionMessage('Div
-Clicked')">I am a div</div>
-
-<div id="div2_element" onclick="interactionMessage('Div 2
-Clicked')">I am a div too</div>
+```html
+<img id="image_element" src="java.png" width="128" height="128" onclick="interactionMessage('Image Clicked')">
+<div id="div_element" onclick="interactionMessage('Div Clicked')">I am a div</div>
+<div id="div2_element" onclick="interactionMessage('Div 2 Clicked')">I am a div too</div>
 ```
 
 The final div element has its display style set to none, effectively hiding it on the page. This element will be displayed after 5 seconds by the JavaScript called by the `setTimeout()` method.
 
 ```HTML
-<div id="div3_element" style="display: none"
-onclick="interactionMessage('Div 3 Clicked')">I am a hidden
-div</div>
+<div id="div3_element" style="display: none" onclick="interactionMessage('Div 3 Clicked')">I am a hidden div</div>
 ```
 
 The end result looks like this.
@@ -240,38 +204,26 @@ We now have two important pieces of the puzzle completed. First, we have the beg
 Let's create a test method `formTestByID()` inside a class `FormTest` that will open the browser, open our test web page, and close the browser again.
 
 ```java
-package academy.learnprogramming;
+package com.octopus;
 
 import org.junit.Test;
-
 import java.net.URISyntaxException;
 
 public class FormTest {
 
-private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
-= new AutomatedBrowserFactory();
+  private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY = new AutomatedBrowserFactory();
 
-@Test
+  @Test
+  public void formTestByID() throws URISyntaxException {
+    final AutomatedBrowser automatedBrowser = AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
 
-public void formTestByID() throws URISyntaxException {
-
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
-
-try {
-
-automatedBrowser.init();
-
-automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
-
-} finally {
-
-automatedBrowser.destroy();
-
-}
-
-}
-
+    try {
+      automatedBrowser.init();
+      automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
+    } finally {
+      automatedBrowser.destroy();
+    }
+  }
 }
 ```
 
@@ -389,11 +341,9 @@ Let's move onto populating text boxes and text areas with some text, and verifyi
 
 ```Java
 automatedBrowser.populateElementWithId("text_element", "test text");
-
 assertEquals("Text Input Changed", automatedBrowser.getTextFromElementWithId("message"));
 
 automatedBrowser.populateElementWithId("textarea_element", "test text");
-
 assertEquals("Text Area Changed", automatedBrowser.getTextFromElementWithId("message"));
 ```
 
@@ -410,7 +360,6 @@ Next we will select an option from the drop down list.
 
 ```Java
 automatedBrowser.selectOptionByTextFromSelectWithId("Option 2.1", "select_element");
-
 assertEquals("Select Changed", automatedBrowser.getTextFromElementWithId("message"));
 ```
 
@@ -430,7 +379,6 @@ Noticeably absent from that list of actions is the ability to select an option f
 
 ```java
 @Override
-
 public void selectOptionByTextFromSelectWithId(String optionText, String selectId) {
   new Select(webDriver.findElement(By.id(selectId))).selectByVisibleText(optionText);
 }
@@ -440,11 +388,9 @@ Clicking radio buttons and checkboxes can be done with the same `clickElementWit
 
 ```Java
 automatedBrowser.clickElementWithId("radio3_element");
-
 assertEquals("Radio Button Changed", automatedBrowser.getTextFromElementWithId("message"));
 
 automatedBrowser.clickElementWithId("checkbox2_element");
-
 assertEquals("Checkbox Changed", automatedBrowser.getTextFromElementWithId("message"));
 ```
 
@@ -452,11 +398,9 @@ We are not limited to interacting with form elements. The `clickElementWithId()`
 
 ```Java
 automatedBrowser.clickElementWithId("image_element");
-
 assertEquals("Image Clicked", automatedBrowser.getTextFromElementWithId("message"));
 
 automatedBrowser.clickElementWithId("div_element");
-
 assertEquals("Div Clicked", automatedBrowser.getTextFromElementWithId("message"));
 ```
 
