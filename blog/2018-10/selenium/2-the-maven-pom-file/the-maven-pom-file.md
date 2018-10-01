@@ -1,5 +1,4 @@
-The Maven POM file
-================================
+## The Maven POM file
 
 The first step in establishing our Java project is the creation of a Maven Project Object Model (POM) file. This is an XML document that defines how our code will be built, what additional dependencies it has access to, and how tests are run.
 

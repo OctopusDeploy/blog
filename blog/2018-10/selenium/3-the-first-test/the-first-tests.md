@@ -1,5 +1,4 @@
-The first test
-============================
+## The first test
 
 Now that we have the Maven project configured and imported in IntelliJ, we can start adding some tests.
 
