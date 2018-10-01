@@ -402,8 +402,7 @@ public void formTestWithSimpleBy() throws URISyntaxException {
   final String formTextAreaLocator = "textarea_element";
   final String formDropDownListLocator = "[name=select_element]";
 
-  final String formCheckboxLocator =
-  "//*[@name=\\"checkbox1_element\\"]";
+  final String formCheckboxLocator = "//*[@name=\"checkbox1_element\"]";
 
   final String messageLocator = "message";
 
