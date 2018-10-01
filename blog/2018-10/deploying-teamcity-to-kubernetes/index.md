@@ -16,7 +16,7 @@ A the time of this writing, we have two more solution architects focused on cust
 
 Our first two build servers, VSTS (now Azure DevOps) and AppVeyor, were rather easy to set up.  They are already SaaS.  But a large chunk of our users are using TeamCity.  All three of us have a local TeamCity instance.  It is time to move that to the cloud.
 
-Side Note: at times in this article I am going to swap Kubernetes and K8s.  They mean the same thing.  
+**Side Note:** at times in this article I am going to swap Kubernetes and K8s.  They mean the same thing.  
 
 ## Requirements
 
