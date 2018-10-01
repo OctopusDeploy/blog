@@ -166,33 +166,19 @@ We then recreate the same test using an explicit wait, waiting for a shorter per
 
 ```java
 @Test(expected = TimeoutException.class)
+public void shortExplicitWaitNoImplicitWaitForDynamicElement() throws URISyntaxException {
+  final AutomatedBrowser automatedBrowser = AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
+  final long start = System.currentTimeMillis();
 
-public void shortExplicitWaitNoImplicitWaitForDynamicElement() throws
-URISyntaxException {
-
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
-
-final long start = System.currentTimeMillis();
-
-try {
-
-automatedBrowser.init();
-
-automatedBrowser.goTo(WaitTest.class.getResource("/form.html").toURI().toString());
-
-automatedBrowser.clickElementWithId("newdiv_element", 2);
-
-} finally {
-
-automatedBrowser.destroy();
-
-final long duration = System.currentTimeMillis() - start;
-
-System.out.println("Duration: " + duration / 1000);
-
-}
-
+  try {
+    automatedBrowser.init();
+    automatedBrowser.goTo(WaitTest.class.getResource("/form.html").toURI().toString());
+    automatedBrowser.clickElementWithId("newdiv_element", 2);
+  } finally {
+    automatedBrowser.destroy();
+    final long duration = System.currentTimeMillis() - start;
+    System.out.println("Duration: " + duration / 1000);
+  }
 }
 ```
 
