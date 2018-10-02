@@ -53,7 +53,7 @@ public void captureHarFile() {
 }
 ```
 
-To save the captured traffic by calling getHar().writeTo().
+To save the captured traffic by calling `getHar().writeTo()`.
 
 ```java
 @Override
@@ -104,7 +104,7 @@ final AutomatedBrowser automatedBrowser =
   try {
     automatedBrowser.init();
     automatedBrowser.captureHarFile();
-    automatedBrowser.goTo("https://learnprogramming.academy/");
+    automatedBrowser.goTo("https://octopus.com/");
   } finally {
     try {
       automatedBrowser.saveHarFile("test.har");
@@ -121,7 +121,7 @@ In the `finally` block we then nest an additional `try`/`finally` block. Inside 
 
 Inside the nested finally block we then call `automatedBrowser.destroy()`. Because the call to `destroy()` frees resources, we need to ensure that it runs if the test fails and if the attempt to save the HAR file fails. Nesting `try`/`finally` blocks in this way guarantees that the `destroy()` method is called regardless of any other failure.
 
-The resulting `test.har` file captures the network traffic made as a result to opening <https://learnprogramming.academy/>. This file can then be reviewed with tools like the HAR Analyzer to quickly identify any failed requests (i.e. any HTTP response codes in the 4xx or 5xx range), as well as providing a visual timeline of the calls. This information can be invaluable for debugging errors with web applications and understanding performance bottlenecks.
+The resulting `test.har` file captures the network traffic made as a result to opening <https://octopus.com/>. This file can then be reviewed with tools like the HAR Analyzer to quickly identify any failed requests (i.e. any HTTP response codes in the 4xx or 5xx range), as well as providing a visual timeline of the calls. This information can be invaluable for debugging errors with web applications and understanding performance bottlenecks.
 
 To open file the with HAR Analyzer, open up
 <https://toolbox.googleapps.com/apps/har_analyzer/> and click the `CHOOSE FILE` button.
@@ -142,24 +142,26 @@ These codes are numbers between 100 and 599, and are grouped in blocks of 100. T
 
 The table below shows the general meaning of the response codes.
 
-  **Code range**   **Meaning**
-  ---------------- --------------------------
-  1xx              Informational responses.
-  2xx              Success
-  3xx              Redirection
-  4xx              Client errors
-  5xx              Server errors
+| Code range |	Meaning |
+|-|-|
+|1xx|	Informational responses|
+|2xx|	Success|
+|3xx|	Redirection |
+|4xx|	Client errors |
+|5xx|	Server errors |
+
 
 The table then shows 7 columns.
 
-  **Column**   **Value**
-  ------------ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Time         The UTC time when the request was made.
-  Response     The HTTP response code. This is the code that is filtered using the checkboxes above.
-  Req. Size    The number of bytes that were sent by the browser.
-  Resp. Size   The number of bytes that were received by the browser.
-  Analysis     Shows icons representing the data that was associated with the request, the status of the request, and whether the request was served from the browsers cache or not.
-  Timing       Displays a graph showing the events that made up the request and how long they took.
+|Column|	Value|
+|-|-|
+|Time|	The UTC time when the request was made.|
+|Response|	The HTTP response code. This is the code that is filtered using the checkboxes above.|
+|Req. Size|	The number of bytes that were sent by the browser.|
+|Resp. Size|	The number of bytes that were received by the browser.|
+|Analysis|	Shows icons representing the data that was associated with the request, the status of the request, and whether the request was served from the browsers cache or not.|
+|Timing|	Displays a graph showing the events that made up the request and how long they took.|
+
 
 The timings of the responses are shown in a graph in the final column. Hovering the cursor over each of the colored columns shows what kind of even was taking place, and how long it took.
 
@@ -226,16 +228,13 @@ Finally we add the predefined group of `CaptureType` enums that represent the co
 captureTypes.addAll(CaptureType.getCookieCaptureTypes());
 ```
 
-These `CaptureType` enums are then passed to the `setHarCaptureTypes()`
-method to configure BrowserMob to save all these details into the
-resulting HAR file.
+These `CaptureType` enums are then passed to the `setHarCaptureTypes()` method to configure BrowserMob to save all these details into the resulting HAR file.
 
 ```java
 proxy.setHarCaptureTypes(captureTypes);
 ```
 
-Update the test to call the `captureCompleteHarFile()` method, and run it
-again.
+Update the test to call the `captureCompleteHarFile()` method, and run it again.
 
 ```java
 @Test
@@ -258,18 +257,10 @@ public void captureCompleteHarFile() throws URISyntaxException {
 }
 ```
 
-You will notice that the HAR file is now several megabytes in size, and
-that was for one relatively simple page request. More complete tests
-could generate quite large HAR files, so use the
-`captureCompleteHarFile()` method sparingly.
+You will notice that the HAR file is now several megabytes in size, and that was for one relatively simple page request. More complete tests could generate quite large HAR files, so use the `captureCompleteHarFile()` method sparingly.
 
-When we analyze the new HAR file we can see that there are no longer any
-warnings about missing information.
+When we analyze the new HAR file we can see that there are no longer any warnings about missing information.
 
 ![](./image9.png)
 
-HAR files are an incredibly useful way to record and analyze the network
-iterations made during a test, and thanks to the BrowserMob proxy
-generating HAR files is quite easy to do. But BrowserMob can do more
-than just record the traffic that flows through it, and in the next
-lecture we'll see how BrowserMob can block or modify requests.
+HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next lecture we'll see how BrowserMob can block or modify requests.
