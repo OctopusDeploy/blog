@@ -36,8 +36,7 @@ Running a test in Firefox with this configuration will result in the exception b
 
 ```
 org.openqa.selenium.SessionNotCreatedException: InvalidArgumentError: Expected [object Undefined] undefined to be an integer
-Build info: version: '3.12.0', revision: '7c6e0b3', time:
-'2018-05-08T14:04:26.12Z'
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z'
 System info: host: 'Christinas-MBP', ip: '192.168.1.84', os.name:
 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.5', java.version: '1.8.0_144'
 Driver info: driver.version: FirefoxDriver
