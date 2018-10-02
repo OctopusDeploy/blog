@@ -56,7 +56,6 @@ public class BrowserMobDecorator extends AutomatedBrowserBase {
   }
 
   @Override
-
   public DesiredCapabilities getDesiredCapabilities() {
 
     proxy = new BrowserMobProxyServer();
