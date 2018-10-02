@@ -181,11 +181,13 @@ external services. You may also find that blocking optional services
 like these can speed up your tests by removing more network traffic that
 is not required to test the web application.
 
-automatedBrowser.blockRequestTo(".\*?twitter\\\\.com.\*", 500);
+```java
+automatedBrowser.blockRequestTo(".\*?twitter\\.com.\*", 500);
 
-automatedBrowser.blockRequestTo(".\*?google\\\\.com.\*", 500);
+automatedBrowser.blockRequestTo(".\*?google\\.com.\*", 500);
 
-automatedBrowser.blockRequestTo(".\*?facebook\\\\.com.\*", 500);
+automatedBrowser.blockRequestTo(".\*?facebook\\.com.\*", 500);
+```
 
 You will note that we have not called `automatedBrowser.destory()` here.
 This is to allow us to view the web page that results from the network
