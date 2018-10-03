@@ -3,9 +3,7 @@ title: Octopus presenting at Redgate's SQL in the City Summit
 description: Bob Walker and Derek Campbell will be presenting at Redgate's SQL in the City Summit this month in London and Chicago on how database DevOps can help you stay ahead of the competition.
 author: bob.walker@octopus.com
 visibility: public
-bannerImage:
-metaImage:
-published: 2018-10-04
+published: 2018-10-03
 tags:
  - Events
 ---
