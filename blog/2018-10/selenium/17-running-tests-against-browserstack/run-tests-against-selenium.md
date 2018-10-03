@@ -24,9 +24,9 @@ the Username and Access Key, as we will need these values later.
 ![](./image4.png)
 
 To run tests remotely against BrowserStack we need to create an instance
-of the RemoteDriver class. Unlike ChromeDriver or FirefoxDiver,
-RemoteDriver is designed to control a browser hosted on a remote server.
-This means we need to give the RemoteDriver a URL to send commands to,
+of the RemoteDriver class. Unlike `ChromeDriver` or `FirefoxDiver`,
+`RemoteDriver` is designed to control a browser hosted on a remote server.
+This means we need to give the `RemoteDriver` a URL to send commands to,
 along with the credentials.
 
 The BrowserStack documentation at
@@ -36,66 +36,44 @@ https://&lt;username&gt;:&lt;password&gt;@hub-cloud.browserstack.com/wd/hub.
 The username and password are embedded into the URL.
 
 To enable tests to be run against BrowserStack we will create a new
-decorator called BrowserStackDecorator.
+decorator called `BrowserStackDecorator`.
 
 ```java
 package com.octopus.decorators;
 
 import com.octopus.AutomatedBrowser;
-
 import com.octopus.decoratorbase.AutomatedBrowserBase;
-
 import com.octopus.exceptions.ConfigurationException;
-
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.MalformedURLException;
 
 import java.net.URL;
 
 public class BrowserStackDecorator extends AutomatedBrowserBase {
 
-private static final String USERNAME_ENV = "BROWSERSTACK_USERNAME";
+  private static final String USERNAME_ENV = "BROWSERSTACK_USERNAME";
 
-private static final String AUTOMATE_KEY_ENV = "BROWSERSTACK_KEY";
+  private static final String AUTOMATE_KEY_ENV = "BROWSERSTACK_KEY";
 
-public BrowserStackDecorator(final AutomatedBrowser automatedBrowser) {
+  public BrowserStackDecorator(final AutomatedBrowser automatedBrowser) {
+    super(automatedBrowser);
+  }
 
-super(automatedBrowser);
-
-}
-
-@Override
-
-public void init() {
-
-try {
-
-final String url = "https://" +
-
-System.getenv(USERNAME_ENV) + ":" +
-
-System.getenv(AUTOMATE_KEY_ENV) +
-
-"@hub-cloud.browserstack.com/wd/hub";
-
-final WebDriver webDriver = new RemoteWebDriver(new URL(url),
-getDesiredCapabilities());
-
-getAutomatedBrowser().setWebDriver(webDriver);
-
-getAutomatedBrowser().init();
-
-} catch (MalformedURLException ex) {
-
-throw new ConfigurationException(ex);
-
-}
-
-}
-
+  @Override
+  public void init() {
+    try {
+      final String url = "https://" +
+        System.getenv(USERNAME_ENV) + ":" +
+        System.getenv(AUTOMATE_KEY_ENV) +
+        "@hub-cloud.browserstack.com/wd/hub";
+      final WebDriver webDriver = new RemoteWebDriver(new URL(url), getDesiredCapabilities());
+      getAutomatedBrowser().setWebDriver(webDriver);
+      getAutomatedBrowser().init();
+    } catch (MalformedURLException ex) {
+      throw new ConfigurationException(ex);
+    }
+  }
 }
 ```
 
@@ -112,18 +90,15 @@ private static final String USERNAME_ENV = "BROWSERSTACK_USERNAME";
 private static final String AUTOMATE_KEY_ENV = "BROWSERSTACK_KEY";
 ```
 
-Next we construct the URL that will allow the RemoteDriver to contact
+Next we construct the URL that will allow the `RemoteDriver` to contact
 the BrowserStack service. We use calls to `System.getenv()` to get the
 username and password from environment variables.
 
 ```java
 final String url = "https://" +
-
-System.getenv(USERNAME_ENV) + ":" +
-
-System.getenv(AUTOMATE_KEY_ENV) +
-
-"@hub-cloud.browserstack.com/wd/hub";
+  System.getenv(USERNAME_ENV) + ":" +
+  System.getenv(AUTOMATE_KEY_ENV) +
+  "@hub-cloud.browserstack.com/wd/hub";
 ```
 
 There are only minor difference between the construction of the
@@ -135,8 +110,7 @@ There is no equivalent to a class like `ChromeOptions` for the
 `RemoteDriver` class. It uses the `DesiredCapabilities` object directly.
 
 ```java
-final WebDriver webDriver = new RemoteWebDriver(new URL(url),
-getDesiredCapabilities());
+final WebDriver webDriver = new RemoteWebDriver(new URL(url), getDesiredCapabilities());
 ```
 
 If the URL we constructed was not valid, a `MalformedURLException` is
@@ -145,9 +119,7 @@ called `ConfigurationException`.
 
 ```java
 catch (MalformedURLException ex) {
-
-throw new ConfigurationException(ex);
-
+  throw new ConfigurationException(ex);
 }
 ```
 
@@ -158,30 +130,22 @@ environment variables have not been configured.
 package com.octopus.exceptions;
 
 public class ConfigurationException extends RuntimeException {
+  public ConfigurationException() {
 
-public ConfigurationException() {
+  }
 
-}
+  public ConfigurationException(final String message) {
+    super(message);
+  }
 
-public ConfigurationException(final String message) {
+  public ConfigurationException(final String message, final Throwable ex)
+  {
+    super(message, ex);
+  }
 
-super(message);
-
-}
-
-public ConfigurationException(final String message, final Throwable ex)
-{
-
-super(message, ex);
-
-}
-
-public ConfigurationException(final Exception ex) {
-
-super(ex);
-
-}
-
+  public ConfigurationException(final Exception ex) {
+    super(ex);
+  }
 }
 ```
 
@@ -207,9 +171,7 @@ called `BrowserStackEdgeDecorator`.
 package com.octopus.decorators;
 
 import com.octopus.AutomatedBrowser;
-
 import com.octopus.decoratorbase.AutomatedBrowserBase;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BrowserStackEdgeDecorator extends AutomatedBrowserBase {
@@ -217,33 +179,22 @@ public class BrowserStackEdgeDecorator extends AutomatedBrowserBase {
 public BrowserStackEdgeDecorator(final AutomatedBrowser
 automatedBrowser) {
 
-super(automatedBrowser);
+  super(automatedBrowser);
 
-}
+  }
 
-@Override
+  @Override
+  public DesiredCapabilities getDesiredCapabilities() {
+    final DesiredCapabilities caps = getAutomatedBrowser().getDesiredCapabilities();
 
-public DesiredCapabilities getDesiredCapabilities() {
-
-final DesiredCapabilities caps =
-getAutomatedBrowser().getDesiredCapabilities();
-
-caps.setCapability("os", "Windows");
-
-caps.setCapability("os_version", "10");
-
-caps.setCapability("browser", "Edge");
-
-caps.setCapability("browser_version", "insider preview");
-
-caps.setCapability("browserstack.local", "false");
-
-caps.setCapability("browserstack.selenium_version", "3.5.2");
-
-return caps;
-
-}
-
+    caps.setCapability("os", "Windows");
+    caps.setCapability("os_version", "10");
+    caps.setCapability("browser", "Edge");
+    caps.setCapability("browser_version", "insider preview");
+    caps.setCapability("browserstack.local", "false");
+    caps.setCapability("browserstack.selenium_version", "3.5.2");
+    return caps;
+  }
 }
 ```
 
@@ -260,7 +211,7 @@ that they do not have access to, we leave the `BrowserMobDecorator` class
 out of the decorator chain.
 
 The order in which we nest the decorators is important here. The
-BrowserStackDecorator expects the desired capabilities to be set in a
+`BrowserStackDecorator` expects the desired capabilities to be set in a
 nested decorator, which is `BrowserStackEdgeDecorator` in this case. This
 means that `BrowserStackDecorator` has to have `BrowserStackEdgeDecorator`
 passed to its constructor, and not the other way around.
@@ -272,60 +223,42 @@ import com.octopus.decorators.*;
 
 public class AutomatedBrowserFactory {
 
-public AutomatedBrowser getAutomatedBrowser(String browser) {
+  public AutomatedBrowser getAutomatedBrowser(String browser) {
 
-// ...
+    // ...
 
-if ("BrowserStackEdge".equalsIgnoreCase(browser)) {
+    if ("BrowserStackEdge".equalsIgnoreCase(browser)) {
+      return getBrowserStackEdge();
+    }
 
-return getBrowserStackEdge();
+    if ("BrowserStackEdgeNoImplicitWait".equalsIgnoreCase(browser)) {
+      return getBrowserStackEdgeNoImplicitWait();
+    }
 
-}
+    throw new IllegalArgumentException("Unknown browser " + browser);
 
-if ("BrowserStackEdgeNoImplicitWait".equalsIgnoreCase(browser)) {
+  }
 
-return getBrowserStackEdgeNoImplicitWait();
+  // ...
 
-}
+  private AutomatedBrowser getBrowserStackEdge() {
 
-throw new IllegalArgumentException("Unknown browser " + browser);
+    return new BrowserStackDecorator(
+      new BrowserStackEdgeDecorator(
+        new ImplicitWaitDecorator(10,
+          new WebDriverDecorator()
+        )
+      )
+    );
+  }
 
-}
-
-// ...
-
-private AutomatedBrowser getBrowserStackEdge() {
-
-return new BrowserStackDecorator(
-
-new BrowserStackEdgeDecorator(
-
-new ImplicitWaitDecorator(10,
-
-new WebDriverDecorator()
-
-)
-
-)
-
-);
-
-}
-
-private AutomatedBrowser getBrowserStackEdgeNoImplicitWait() {
-
-return new BrowserStackDecorator(
-
-new BrowserStackEdgeDecorator(
-
-new WebDriverDecorator()
-
-)
-
-);
-
-}
-
+  private AutomatedBrowser getBrowserStackEdgeNoImplicitWait() {
+    return new BrowserStackDecorator(
+      new BrowserStackEdgeDecorator(
+        new WebDriverDecorator()
+      )
+    );
+  }
 }
 ```
 
@@ -345,63 +278,44 @@ attempt to load the file would have failed.
 
 ```java
 @Test
-
 public void browserStackTest() {
 
 final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("BrowserStackEdge");
+  AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("BrowserStackEdge");
 
-final String formButtonLocator = "button_element";
+  final String formButtonLocator = "button_element";
+  final String formTextBoxLocator = "text_element";
+  final String formTextAreaLocator = "textarea_element";
+  final String formDropDownListLocator = "[name=select_element]";
+  final String formCheckboxLocator = "//*[@name=\"checkbox1_element\"]";
 
-final String formTextBoxLocator = "text_element";
+  final String messageLocator = "message";
 
-final String formTextAreaLocator = "textarea_element";
+  try {
+    automatedBrowser.init();
 
-final String formDropDownListLocator = "\[name=select_element\]";
+    automatedBrowser.goTo("https://s3.amazonaws.com/webdriver-testing-website/form.html");
 
-final String formCheckboxLocator =
-"//*\[@name=\"checkbox1_element\"\]";
+    automatedBrowser.clickElement(formButtonLocator);
+    assertEquals("Button Clicked", automatedBrowser.getTextFromElement(messageLocator));
 
-final String messageLocator = "message";
+    automatedBrowser.populateElement(formTextBoxLocator, "test text");
+    assertEquals("Text Input Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-try {
+    automatedBrowser.populateElement(formTextAreaLocator, "test text");
+    assertEquals("Text Area Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-automatedBrowser.init();
+    automatedBrowser.selectOptionByTextFromSelect("Option 2.1", formDropDownListLocator);
+    assertEquals("Select Changed",
+    automatedBrowser.getTextFromElement(messageLocator));
 
-automatedBrowser.goTo("https://s3.amazonaws.com/webdriver-testing-website/form.html");
+    automatedBrowser.clickElement(formCheckboxLocator);
+    assertEquals("Checkbox Changed",
+    automatedBrowser.getTextFromElement(messageLocator));
 
-automatedBrowser.clickElement(formButtonLocator);
-
-assertEquals("Button Clicked",
-automatedBrowser.getTextFromElement(messageLocator));
-
-automatedBrowser.populateElement(formTextBoxLocator, "test text");
-
-assertEquals("Text Input Changed",
-automatedBrowser.getTextFromElement(messageLocator));
-
-automatedBrowser.populateElement(formTextAreaLocator, "test text");
-
-assertEquals("Text Area Changed",
-automatedBrowser.getTextFromElement(messageLocator));
-
-automatedBrowser.selectOptionByTextFromSelect("Option 2.1",
-formDropDownListLocator);
-
-assertEquals("Select Changed",
-automatedBrowser.getTextFromElement(messageLocator));
-
-automatedBrowser.clickElement(formCheckboxLocator);
-
-assertEquals("Checkbox Changed",
-automatedBrowser.getTextFromElement(messageLocator));
-
-} finally {
-
-automatedBrowser.destroy();
-
-}
-
+  } finally {
+    automatedBrowser.destroy();
+  }
 }
 ```
 
@@ -432,13 +346,13 @@ configurations, and click `Edit Configurations...`
 
 ![](./image6.png)
 
-Under the Configuration tab you will see a field that says Environment
-Variables. Click the button to the right of this field.
+Under the Configuration tab you will see a field called `Environment
+Variables`. Click the button to the right of this field.
 
 ![](./image7.png)
 
 Enter the environment variables in the dialog, and save the changes.
-Click the OK button twice to save the changes.
+Click the `OK` button twice to save the changes.
 
 ![](./image8.png)
 
