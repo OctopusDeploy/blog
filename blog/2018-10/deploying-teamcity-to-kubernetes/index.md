@@ -96,7 +96,7 @@ This next page shows us the overview of the cluster.  Make note of the IP Addres
 
 In order to connect to the cluster we need to get the username and password.
 
-#### Option 1: Getting Admin Credentials to Connect Octopus to Google Cloud
+#### Getting Admin Credentials to Connect Octopus to Google Cloud
 Kubernetes on Google Cloud provides two ways to connect to it.  At the time of this writing Google Cloud will create a admin account for you.  However, in future versions that will be optional.  
 
 ![](gcp_sample_k8s_overview.png "width=500")
@@ -105,12 +105,7 @@ If you click the "show credentials" link, that will show the username and passwo
 
 ![](gcp_username_pw.png "width=500")
 
-#### Option 2: Creating Service Account
-Going forward, a service account will be needed to connect to the Kubernetes Cluster.  To do that you will need to go to the cluster in GCP and send over some YAML.
-
-First go to the cluster overview screen and click on the deploy button.
-
-![](gcp_deploy_to_cluster.png "width=500")
+**Side Note:** In upcoming versions of Kubernetes (v1.12) on Google Cloud the default admin and password will be disabled.  You will need to create a service account.  Please follow [these instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) on how to do this.  As v1.12 is not out yet anything I post here could be out of date. 
 
 #### Saving Credentials
 Now we have a username and password, we're going to save those credentials in Octopus.  Go to {{Infrastructure,Accounts}}.  On the top right, click on add account and select username/password.
