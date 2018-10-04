@@ -18,6 +18,8 @@ A the time of this writing, we have two more solution architects focused on cust
 
 Our first two build servers, VSTS (now Azure DevOps) and AppVeyor, were rather easy to set up.  They are already SaaS.  But many of our users are using TeamCity.  All three of us have a local TeamCity instance.  It's time to move that to the cloud.
 
+The other reason I chose TeamCity is because of it's "real-world" potential.  A lot of containers I've had a chance to work with are rather simple.  An ASP.NET Core WebApi which only connects to an external SQL Server.  With TeamCity there are a lot of considerations, there is a main server, an agent which needs to talk to the server, and the need to persist data between deployments.  
+
 **Side Note:** at times in this article I am going to use Kubernetes and K8s interchangeably.  They mean the same thing.  It really depends how I feel when I was writing the sentence.
 
 !toc
@@ -143,7 +145,7 @@ First, create a name, assign it to environments and a role.
 
 Next, select the username/password account, enter in the IP Address, and select the certificate.  
 
-**Please note:** it is important to use https://[Ip Address] for the URL.  If you don't, Octopus won't be able to connect to your K8s cluster and you will spend a lot of time wondering why.  I know this because I forgot and I kept scratching my head wondering why it wasn't working.
+**Please note:** it is important to have https:// before your [Ip Address] for the URL.  If you don't, Octopus won't be able to connect to your K8s cluster and you will spend a lot of time wondering why.  I know this because I forgot and I kept scratching my head wondering why it wasn't working.
 
 ![](octopus_deploy_add_k8s_options.png "width=500")
 
