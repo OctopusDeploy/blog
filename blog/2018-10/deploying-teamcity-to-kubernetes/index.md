@@ -14,7 +14,7 @@ Hi!  My name is Bob Walker and I am a solution architect here at Octopus Deploy.
 
 My primary focus is making sure our customers are successful using Octopus Deploy.  That simple sentence covers a wide range of duties.  One day I could be reviewing configuration.  While the next, I might be working on a custom implementation using the API.  Or I might provide demos showing off all the new functionality we've been adding.  At Octopus Deploy we don't have a preference for which build server our customers use, and that flexibility is great for our customers because they can continue using their build tool of choice.  A side effect of that is I get to learn how to use every build server by creating builds to demo.  Speaking of which, if you'd like a demo please [click here](https://octopus.appointlet.com/s/sales-60/bob-ryan) to schedule one!
 
-A the time of this writing, we have two more solution architects focused on customer's success, Ryan Rousseau and Derek Campbell.  Whenever possible we share the demos we've set up.  Our backgrounds are in development or infrastructure, which means we really dislike it anytime we have to reinvent the wheel.  The easiest way we found to share demo resources is to use SaaS or IaaS whenever possible.  We use Octopus Cloud for our Demo Octopus instance.  In fact, we were one of the alpha users of Octopus Cloud and are one of the bleeding edge users.  We help dogfood Octopus Cloud every day.  
+A the time of this writing, we have two more solution architects focused on customer's success, Ryan Rousseau and Derek Campbell.  Whenever possible we share the demos we've set up.  Our backgrounds are in development or infrastructure, which means we really dislike it anytime we have to reinvent the wheel.  The easiest way we found to share demo resources is to use SaaS or IaaS whenever possible.  We use [Octopus Cloud](https://octopus.com/pricing/cloud) for our Demo Octopus instance.  In fact, we were one of the alpha users of Octopus Cloud and are one of the bleeding edge users.  We help dogfood Octopus Cloud every day.  
 
 Our first two build servers, VSTS (now Azure DevOps) and AppVeyor, were rather easy to set up.  They are already SaaS.  But many of our users are using TeamCity.  All three of us have a local TeamCity instance.  It's time to move that to the cloud.
 
@@ -68,7 +68,9 @@ Currently, K8s is disabled by a feature flag.  First things first, go to {{confi
 
 ![](enable_k8s_octopus_deploy.png "width=500")
 
-Next up, it is time to create a worker.  The worker will have Kubectl installed on it.  I want these machines partitioned off from the rest of my targets because they will have admin access to my cluster.  To do this, I first created a worker pool called "Kubernetes Worker Pool."
+Next up, it is time to create a worker.  Workers are a new type of targets.  This [feature was added in 2018.7.0](https://octopus.com/blog/octopus-release-2018.7).  It allows you to create a pool of machines to perform work.  Previously this work was performed directly on the Octopus Server.  
+
+The worker will have Kubectl installed on it.  I want these machines partitioned off from the rest of my targets because they will have admin access to my cluster.  To do this, I first created a worker pool called "Kubernetes Worker Pool."
 
 ![](octopus_k8s_worker_pool.png "width=500")
 
@@ -160,7 +162,7 @@ Finally, we need to add Docker Hub as a feed.  This is where the TeamCity contai
 I want to start simple and go complex.  It is possible to configure TeamCity to use external storage and an external database.  But it's also possible to configure it to use local storage and a local database.  I know if I configure it to use the local resources that they will be destroyed each time I do a deployment.  For right now, that is fine.  I just want to get it running.  I won't set up any users or projects.  
 
 ### Create Project and Add First Step
-In Octopus Deploy, create a new project.  I created a new environment called "SpinUp" and lifecycle called "SpinUp Only."  Please feel free to configure your environment and lifecycle however you want.  This is just what I did.
+In Octopus Deploy, create a new project.  I created a new environment called "SpinUp" and lifecycle called "SpinUp Only."  Feel free to configure your environment and lifecycle however you want.  This is just what I did.
 
 ![](octopus_deploy_create_project.png "width=500")
 
