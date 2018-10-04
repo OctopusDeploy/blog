@@ -37,100 +37,78 @@ Here is the test that completes this ticket purchasing scenario with WebDriver.
 package com.octopus;
 
 import org.junit.Assert;
-
 import org.junit.Test;
 
 public class TicketMonsterTest {
 
-private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
-= new AutomatedBrowserFactory();
+  private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
+  = new AutomatedBrowserFactory();
 
-private static final int WAIT_TIME = 30;
+  private static final int WAIT_TIME = 30;
 
-@Test
+  @Test
+  public void purchaseTickets() {
 
-public void purchaseTickets() {
+    final AutomatedBrowser automatedBrowser =
+    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
 
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
+    try {
 
-try {
+      automatedBrowser.init();
 
-automatedBrowser.init();
+      automatedBrowser.goTo("https://ticket-monster.herokuapp.com");
 
-automatedBrowser.goTo("https://ticket-monster.herokuapp.com");
+      automatedBrowser.clickElement("Buy tickets now", WAIT_TIME);
 
-automatedBrowser.clickElement("Buy tickets now", WAIT_TIME);
+      automatedBrowser.clickElement("Concert", WAIT_TIME);
 
-automatedBrowser.clickElement("Concert", WAIT_TIME);
+      automatedBrowser.clickElement("Rock concert of the decade", WAIT_TIME);
 
-automatedBrowser.clickElement("Rock concert of the decade",
-WAIT_TIME);
+      automatedBrowser.selectOptionByTextFromSelect("Toronto : Roy Thomson Hall", "venueSelector", WAIT_TIME);
 
-automatedBrowser.selectOptionByTextFromSelect("Toronto : Roy Thomson
-Hall", "venueSelector", WAIT_TIME);
+      automatedBrowser.clickElement("bookButton", WAIT_TIME);
 
-automatedBrowser.clickElement("bookButton", WAIT_TIME);
+      automatedBrowser.selectOptionByTextFromSelect("A - Premier platinum reserve", "sectionSelect", WAIT_TIME);
 
-automatedBrowser.selectOptionByTextFromSelect("A - Premier platinum
-reserve", "sectionSelect", WAIT_TIME);
+      automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
 
-automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
+      automatedBrowser.clickElement("add", WAIT_TIME);
 
-automatedBrowser.clickElement("add", WAIT_TIME);
+      automatedBrowser.populateElement("email", "email@example.org", WAIT_TIME);
 
-automatedBrowser.populateElement("email", "email@example.org",
-WAIT_TIME);
+      automatedBrowser.clickElement("submit", WAIT_TIME);
 
-automatedBrowser.clickElement("submit", WAIT_TIME);
+      final String email =
+      automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)", WAIT_TIME);
+      Assert.assertTrue(email.contains("email@example.org"));
 
-final String email =
-automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) >
-div:nth-child(1) > p:nth-child(2)", WAIT_TIME);
+      final String event =
+      automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)", WAIT_TIME);
+      Assert.assertTrue(event.contains("Rock concert of the decade"));
 
-Assert.assertTrue(email.contains("email@example.org"));
-
-final String event =
-automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) >
-div:nth-child(1) > p:nth-child(3)", WAIT_TIME);
-
-Assert.assertTrue(event.contains("Rock concert of the decade"));
-
-final String venue =
-automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) >
-div:nth-child(1) > p:nth-child(4)", WAIT_TIME);
-
-Assert.assertTrue(venue.contains("Roy Thomson Hall"));
-
-} finally {
-
-automatedBrowser.destroy();
-
-}
-
-}
-
+      final String venue =
+      automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(4)", WAIT_TIME);
+      Assert.assertTrue(venue.contains("Roy Thomson Hall"));
+    } finally {
+        automatedBrowser.destroy();
+    }
+  }
 }
 ```
 
 Let's break this code down line by line.
 
-We have a static instance of the `AutomatedBrowserFactory` class, which we
-will use to generate instances of the `AutomatedBrowser` class.
+We have a static instance of the `AutomatedBrowserFactory` class, which we will use to generate instances of the `AutomatedBrowser` class.
 
 ```java
 private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
   = new AutomatedBrowserFactory();
 ```
 
-Because we will take advantage of explicit waits when interacting with
-elements, we need to have a duration in which to wait for elements to be
-  available. The constant WAIT_TIME will be used as the default duration
+Because we will take advantage of explicit waits when interacting with elements, we need to have a duration in which to wait for elements to be available. The constant `WAIT_TIME` will be used as the default duration
 for explicit wait times.
 
-We have quite a generous wait time here, because the application has
-been deployed to quite a small Heroku instance, and sometimes pages can
-take some time to load.
+We have quite a generous wait time here, because the application has been deployed to quite a small Heroku instance, and sometimes pages can take some time to load.
 
 ```java
 private static final int WAIT_TIME = 30;
