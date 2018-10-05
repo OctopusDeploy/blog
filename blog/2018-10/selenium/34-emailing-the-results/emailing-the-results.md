@@ -175,63 +175,39 @@ To send the email we need to make a few small changes to the
 ```java
 public String runCucumber(String feature) throws Throwable {
 
-File driverDirectory = null;
+  File driverDirectory = null;
+  File chromeDirectory = null;
+  File outputFile = null;
+  File txtOutputFile = null;
+  File featureFile = null;
 
-File chromeDirectory = null;
+  try {
+    driverDirectory = downloadChromeDriver();
+    chromeDirectory = downloadChromeHeadless();
+    outputFile = Files.createTempFile("output", ".json").toFile();
+    txtOutputFile = Files.createTempFile("output", ".txt").toFile();
+    featureFile = writeFeatureToFile(feature);
 
-File outputFile = null;
+    cucumber.api.cli.Main.run(
+      new String[]{
+        "--monochrome",
+        "--glue", "com.octopus.decoratorbase",
+        "--format", "json:" + outputFile.toString(),
+        "--format", "pretty:" + txtOutputFile.toString(),
+        featureFile.getAbsolutePath()},
+      Thread.currentThread().getContextClassLoader());
 
-File txtOutputFile = null;
+    sendEmail("admin@matthewcasperson.com", FileUtils.readFileToString(txtOutputFile, Charset.defaultCharset()));
 
-File featureFile = null;
+    return FileUtils.readFileToString(outputFile, Charset.defaultCharset());
 
-try {
-
-driverDirectory = downloadChromeDriver();
-
-chromeDirectory = downloadChromeHeadless();
-
-outputFile = Files.createTempFile("output", ".json").toFile();
-
-txtOutputFile = Files.createTempFile("output", ".txt").toFile();
-
-featureFile = writeFeatureToFile(feature);
-
-cucumber.api.cli.Main.run(
-
-new String\[\]{
-
-"--monochrome",
-
-"--glue", "com.octopus.decoratorbase",
-
-"--format", "json:" + outputFile.toString(),
-
-"--format", "pretty:" + txtOutputFile.toString(),
-
-featureFile.getAbsolutePath()},
-
-Thread.currentThread().getContextClassLoader());
-
-sendEmail("admin@matthewcasperson.com",
-FileUtils.readFileToString(txtOutputFile, Charset.defaultCharset()));
-
-return FileUtils.readFileToString(outputFile, Charset.defaultCharset());
-
-} finally {
-
-FileUtils.deleteQuietly(driverDirectory);
-
-FileUtils.deleteQuietly(chromeDirectory);
-
-FileUtils.deleteQuietly(outputFile);
-
-FileUtils.deleteQuietly(txtOutputFile);
-
-FileUtils.deleteQuietly(featureFile);
-
-}
-
+  } finally {
+    FileUtils.deleteQuietly(driverDirectory);
+    FileUtils.deleteQuietly(chromeDirectory);
+    FileUtils.deleteQuietly(outputFile);
+    FileUtils.deleteQuietly(txtOutputFile);
+    FileUtils.deleteQuietly(featureFile);
+  }
 }
 ```
 
