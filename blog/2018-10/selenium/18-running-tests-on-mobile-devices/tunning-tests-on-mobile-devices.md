@@ -1,24 +1,24 @@
-## Running tests on mobile devices
+---
+title: Running tests on mobile devices
+description: In this post we learn how to run tests against the mobile devices in BrowserStack.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
-So far we have limited our testing to desktop browsers, but no testing
-strategy would be complete without a way to also test mobile browsers.
-Mobile browser testing is one of the major features of a service like
-BrowserStack. It is quite easy to run tests against a huge variety of
-mobile browsers using the same code we have been developing and running
-against desktop browsers.
+So far we have limited our testing to desktop browsers, but no testing strategy would be complete without a way to also test mobile browsers. Mobile browser testing is one of the major features of a service like BrowserStack. It is quite easy to run tests against a huge variety of mobile browsers using the same code we have been developing and running against desktop browsers.
 
-Let's take a look at how we can test against Chrome on the Samsung
-Galaxy Note 8 mobile device.
+Let's take a look at how we can test against Chrome on the Samsung Galaxy Note 8 mobile device.
 
-First we need to build the desired capabilities object to instruct
-BrowserStack to run the tests against the Samsung device. As before we
-can get these details through the form available at
+First we need to build the desired capabilities object to instruct BrowserStack to run the tests against the Samsung device. As before we can get these details through the form available at
 <https://www.browserstack.com/automate/capabilities>.
 
-![C:\2713f257ba961d58a8316e44e3691666](./image1.png)
+![C:\2713f257ba961d58a8316e44e3691666](./image1.png "width=500")
 
-We then take these settings and use them to build a new decorator class
-called `BrowserStackAndroidDecorator`.
+We then take these settings and use them to build a new decorator class called `BrowserStackAndroidDecorator`.
 
 ```java
 package com.octopus.decorators;
@@ -63,11 +63,11 @@ public class AutomatedBrowserFactory {
   // ...
 
   if ("BrowserStackAndroid".equalsIgnoreCase(browser)) {
-    return getBrowserStackAndroid();
+      return getBrowserStackAndroid();
   }
 
   if ("BrowserStackAndroidNoImplicitWait".equalsIgnoreCase(browser)) {
-    return getBrowserStackAndroid();
+      return getBrowserStackAndroidNoImplicitWait();
   }
 
   throw new IllegalArgumentException("Unknown browser " + browser);
@@ -100,7 +100,6 @@ We can then make use of this new AutomatedBrowser instance in our tests.
 
 ```java
 @Test
-
 public void browserStackAndroidTest() {
 
   final AutomatedBrowser automatedBrowser =
@@ -139,49 +138,28 @@ public void browserStackAndroidTest() {
 }
 ```
 
-If we run this test, an exception may once again be generated about
-invalid credentials. If you recall we previously defined the
-BrowserStack credentials as environment variables, but we did so against
-a single test only. It can get tedious adding these variables to each
-new test configuration, so to add these environment variables to all
-tests, we need to configure the default settings for all JUnit tests run
-by IntelliJ.
+If we run this test, an exception may once again be generated about invalid credentials. If you recall we previously defined the BrowserStack credentials as environment variables, but we did so against a single test only. It can get tedious adding these variables to each
+new test configuration, so to add these environment variables to all tests, we need to configure the default settings for all JUnit tests run by IntelliJ.
 
-Click the drop down list of configurations, and select Edit
-Configurations...
+Click the drop down list of configurations, and select `Edit Configurations...`
 
 ![C:\164b6a7a999aea368f833df845efd42f](./image2.tmp)
 
 This time instead of adding the environment variables to the
-configuration of an individual test, we add them as the defaults of any
-JUnit configuration.
+configuration of an individual test, we add them as the defaults of any JUnit configuration.
 
-Expand the Defaults menu on the left hand side, select the JUnit option,
-and add `BROWSERSTACK_USERNAME` and `BROWSERSTACK_KEY` to the Environment
-variables.
+Expand the Defaults menu on the left hand side, select the JUnit option, and add `BROWSERSTACK_USERNAME` and `BROWSERSTACK_KEY` to the `Environment variables`.
 
-![C:\5f0645e9d5db5ef6ccd5390caacfd309](./image3.png)
+![C:\5f0645e9d5db5ef6ccd5390caacfd309](./image3.png "width=500")
 
-You may need to delete the JUnit configuration that was created when you
-ran the test. This will be found under the JUnit option in the left hand
-menu. Select the configuration, and click the minus button.
+You may need to delete the JUnit configuration that was created when you ran the test. This will be found under the JUnit option in the left hand menu. Select the configuration, and click the minus button.
 
-![C:\fd113ade73cde35a8d343177545f4022](./image4.png)
+![C:\fd113ade73cde35a8d343177545f4022](./image4.png "width=500")
 
-When you run the unit test again, IntelliJ will create a new JUnit
-configuration, and this will have the environment variables populated
-with the default values.
+When you run the unit test again, IntelliJ will create a new JUnit configuration, and this will have the environment variables populated with the default values.
 
-![](./image5.png)
+![](./image5.png "width=500")
 
-Running the test again it will create a new BrowserStack session, which
-again can be viewed by clicking Products → Automate in BrowserStack. The
-test will be run on a Samsung mobile device.
+Running the test again it will create a new BrowserStack session, which again can be viewed by clicking `Products` → `Automate` in BrowserStack. The test will be run on a Samsung mobile device.
 
-The ability to run our tests across a huge range of devices shows just
-how flexible WebDriver is. With a few simple decorators we can configure
-our tests to run on the hundreds of devices supported by BrowserStack.
-But there are still some edge cases that we'll need to be mindful of
-when writing tests that work across desktop and mobile browsers, and in
-the next lecture we'll see and example where we need to work around
-some of the differences between environments.
+The ability to run our tests across a huge range of devices shows just how flexible WebDriver is. With a few simple decorators we can configure our tests to run on the hundreds of devices supported by BrowserStack. But there are still some edge cases that we'll need to be mindful of when writing tests that work across desktop and mobile browsers, and in the next lecture we'll see and example where we need to work around some of the differences between environments.

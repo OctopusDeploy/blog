@@ -1,4 +1,13 @@
-## Running tests against BrowserStack
+---
+title: Running tests against BrowserStack
+description: In this post we learn how to run tests against the BrowserStack service.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 To create a BrowserStack account, go to <https://www.browserstack.com>. You will see links to sign up for a free trial, either on the main page, or in the top menu.
 
