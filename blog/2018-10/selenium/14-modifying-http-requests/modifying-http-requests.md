@@ -1,4 +1,13 @@
-## Modifying HTTP Requests
+---
+title: Modifying HTTP Requests
+description: In this post we learn how to modify network requests made through BrowserStack.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including:
 
@@ -12,7 +21,7 @@ A typical network request through a proxy looks like this. The proxy sits betwee
 
 ![C:\\64a2439378bd827631823103f990261e](image1.png "width=500")
 
-This diagram shows the request and response that we are trying to achieve.
+The diagram below shows the request and response that we are trying to achieve.
 
 1.  A request is made by the browser to the URL of a resource like a PNG image
 
@@ -52,9 +61,9 @@ And then the method is implemented in the `BrowserMobDecorator` class like this.
 public void blockRequestTo(String url, int responseCode) {
   proxy.addRequestFilter((request, contents, messageInfo) -> {
     if (Pattern.compile(url).matcher(messageInfo.getOriginalUrl()).matches()) {
-      final HttpResponse response = new
-      DefaultHttpResponse(request.getProtocolVersion(),
-      HttpResponseStatus.valueOf(responseCode));
+      final HttpResponse response = new DefaultHttpResponse(
+        request.getProtocolVersion(),
+        HttpResponseStatus.valueOf(responseCode));
 
       response.headers().add(HttpHeaders.CONNECTION, "Close");
 
@@ -73,17 +82,15 @@ Let's break this method down.
 
 We start by adding a request filter to the BrowserMob proxy object. The request filter is supplied as a lambda that takes three arguments:
 
--   request, which contains the details of the HTTP request such as the URL, HTTP method type (GET, POST etc), headers and more
+-   `request`, which contains the details of the HTTP request such as the URL, HTTP method type (GET, POST etc), headers and more.
 
--   contents, which contains the body of the request
+-   `contents`, which contains the body of the request.
 
--   messageInfo, which contains some additional information about the
-    request, such as the original request details without any
-    modifications from filters
+-   `messageInfo`, which contains some additional information about the request, such as the original request details without any modifications from filters.
 
 ```java
 proxy.addRequestFilter((request, contents, messageInfo) -> {
-  ```
+```
 
 In the lambda we check to see if the URL that was passed in to the `alterRequestTo()` method matches the URL of the request. We treat the URL as a regular expression to give us some more flexibility in the URLs that we match.
 
@@ -98,7 +105,9 @@ The first is the HTTP protocol version, which we set to the same version as the 
 The second is the HTTP response code, which we set to the value passed into the `alterRequestTo()` method.
 
 ```java
-final HttpResponse response = new DefaultHttpResponse(request.getProtocolVersion(), HttpResponseStatus.valueOf(responseCode));
+final HttpResponse response = new DefaultHttpResponse(
+  request.getProtocolVersion(),
+  HttpResponseStatus.valueOf(responseCode));
 ```
 
 We then need to indicate that this request should not utilise the HTTP keep alive functionality. This is done by setting the HTTP header `Connection` to `Close`.
@@ -130,7 +139,8 @@ public void modifyRequests() {
   AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Firefox");
 
   automatedBrowser.init();
-  automatedBrowser.blockRequestTo(".\*?\\.png", 201);
+  automatedBrowser.blockRequestTo(".*?\\.png", 201);
+  automatedBrowser.blockRequestTo("https://.*?twitter\\.com/", 500);
   automatedBrowser.goTo("https://octopus.com/");
 }
 ```
@@ -138,26 +148,22 @@ public void modifyRequests() {
 This call to `blockRequestTo()` will return an empty response for any request to PNG images. We use a HTTP return code of 201 to indicate that the response was successful but empty. This is an example of where we speed up a test by blocking images from being downloaded.
 
 ```java
-automatedBrowser.blockRequestTo(".\*?\\.png", 201);
+automatedBrowser.blockRequestTo(".*?\\.png", 201);
 ```
 
-The next three lines block requests to services provided by social media platforms. Because we return a HTTP response code of 500, which is used to indicate a server side error processing the request, we could use these altered requests as a way of simulating the failure of the these external services. You may also find that blocking optional services like these can speed up your tests by removing more network traffic that is not required to test the web application.
+The next lines block requests to services provided by Twitter. Because we return a HTTP response code of 500, which is used to indicate a server side error processing the request, we could use these altered requests as a way of simulating the failure of the these external services. You may also find that blocking optional services like these can speed up your tests by removing more network traffic that is not required to test the web application.
 
 ```java
-automatedBrowser.blockRequestTo(".\*?twitter\\.com.\*", 500);
-
-automatedBrowser.blockRequestTo(".\*?google\\.com.\*", 500);
-
-automatedBrowser.blockRequestTo(".\*?facebook\\.com.\*", 500);
+automatedBrowser.blockRequestTo("https://.*?twitter\\.com/", 500);
 ```
 
 You will note that we have not called `automatedBrowser.destory()` here. This is to allow us to view the web page that results from the network requests being altered. As you can see, the images that were usually presented are now no longer displayed because these requests were intercepted and returned as empty responses.
 
 ![](./image3.png "width=500")
 
-An important thing to note here is that it is no longer possible to interact with the web page in any meaningful way. This is because BrowserMob has been closed, meaning the proxy that the browser was configured with is no longer available, so all future network requests will fail.
+An important thing to note here is that it is no longer possible to interact with the web page in any meaningful way once the test has completed. This is because BrowserMob has been closed, meaning the proxy that the browser was configured with is no longer available, so all future network requests will fail.
 
-To interact with the web page, you will need to manually remove the proxy settings from the browsers settings. The screenshot below shows the Firefox proxy settings we saw in the last lecture. Selecting the No proxy option will allow the browser to be used after BrowserMob has been shut down.
+To interact with the web page, you will need to manually remove the proxy settings from the browsers settings. The screenshot below shows the Firefox proxy settings we saw in the last lecture. Selecting the `No proxy` option will allow the browser to be used after BrowserMob has been shut down.
 
 ![C:\\8670254aa7b6874ef581d1f37eb34235](./image4.png "width=500")
 
