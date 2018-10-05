@@ -1,26 +1,37 @@
-##The TicketMonster test
+---
+title: The TicketMonster test
+description: In this post we learn how to test a real world Java web application.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
-In order to write tests for TicketMonster, we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at <https://developers.redhat.com/ticket-monster/whatisticketmonster/>. However for this course we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
+TicketMonster is a sample application created by RedHat to demonstrate a number of Java web technologies. The nice thing about TicketMonster (from the point of view of a WebDriver tutorial anyway) is that it has not been optimized for automated tests, meaning that to successfully test a typical journey through the application we can't rely on consistent network requests or all elements having convenient `id` attributes to locate them with.
+
+But in order to write tests for TicketMonster, we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at <https://developers.redhat.com/ticket-monster/whatisticketmonster/>. However for this course we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
 
 We will test the scenario of purchasing a ticket for an event, so let's first run through the process of buying a ticket manually.
 
-Starting at the home page, we click the Buy tickets now button.
+Starting at the home page, we click the `Buy tickets now` button.
 
 ![](./image1.png)
 
-This presents us with a list of events. From here we click the Concert link to expand the menu, and then click the Rock concert of the decade link.
+This presents us with a list of events. From here we click the `Concert` link to expand the menu, and then click the `Rock concert of the decade` link.
 
 ![](./image2.png)
 
-We select Toronto : Roy Thomson Hall as the venue, and leave the default time. Then click the Order tickets button.
+We select `Toronto : Roy Thomson Hall` as the venue, and leave the default time. Then click the `Order tickets` button.
 
 ![](./image3.png)
 
-Select the A - Premier platinum reserve section, and enter 2 for the number of tickets. Enter an email in the Order Summary section, and click the Add tickets button to confirm these choices.
+Select the `A - Premier platinum reserve` section, and enter `2` for the number of tickets. Enter an email in the `Order Summary` section, and click the `Add tickets` button to confirm these choices.
 
 ![](./image4.png)
 
-With the ticket selection done click the Checkout button.
+With the ticket selection done click the `Checkout` button.
 
 ![](./image5.png)
 
@@ -28,8 +39,7 @@ The transaction is completed, and we have bought our pretend tickets to a fictio
 
 ![](./image6.png)
 
-Although this scenario of buying tickets is not complex, testing it with WebDriver require a number of techniques that we have implemented in our library so far. We click elements like links and buttons, populate text boxes, select items from drop down lists, and interact with elements
-that are dynamically added to the page.
+Although this scenario of buying tickets is not complex, testing it with WebDriver require a number of techniques that we have implemented in our library so far. We click elements like links and buttons, populate text boxes, select items from drop down lists, and interact with elements that are dynamically added to the page.
 
 Here is the test that completes this ticket purchasing scenario with WebDriver.
 
@@ -41,58 +51,55 @@ import org.junit.Test;
 
 public class TicketMonsterTest {
 
-  private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
-  = new AutomatedBrowserFactory();
+    private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY =
+            new AutomatedBrowserFactory();
 
-  private static final int WAIT_TIME = 30;
+    private static final int WAIT_TIME = 30;
 
-  @Test
-  public void purchaseTickets() {
+    @Test
+    public void purchaseTickets() {
 
-    final AutomatedBrowser automatedBrowser =
-    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
+        final AutomatedBrowser automatedBrowser =
+                AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
 
-    try {
+        try {
 
-      automatedBrowser.init();
+            automatedBrowser.init();
 
-      automatedBrowser.goTo("https://ticket-monster.herokuapp.com");
+            automatedBrowser.goTo("https://ticket-monster.herokuapp.com");
 
-      automatedBrowser.clickElement("Buy tickets now", WAIT_TIME);
+            automatedBrowser.clickElement("Buy tickets now", WAIT_TIME);
 
-      automatedBrowser.clickElement("Concert", WAIT_TIME);
+            automatedBrowser.clickElement("Concert", WAIT_TIME);
 
-      automatedBrowser.clickElement("Rock concert of the decade", WAIT_TIME);
+            automatedBrowser.clickElement("Rock concert of the decade", WAIT_TIME);
 
-      automatedBrowser.selectOptionByTextFromSelect("Toronto : Roy Thomson Hall", "venueSelector", WAIT_TIME);
+            automatedBrowser.selectOptionByTextFromSelect("Toronto : Roy Thomson Hall", "venueSelector", WAIT_TIME);
 
-      automatedBrowser.clickElement("bookButton", WAIT_TIME);
+            automatedBrowser.clickElement("bookButton", WAIT_TIME);
 
-      automatedBrowser.selectOptionByTextFromSelect("A - Premier platinum reserve", "sectionSelect", WAIT_TIME);
+            automatedBrowser.selectOptionByTextFromSelect("A - Premier platinum reserve", "sectionSelect", WAIT_TIME);
 
-      automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
+            automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
 
-      automatedBrowser.clickElement("add", WAIT_TIME);
+            automatedBrowser.clickElement("add", WAIT_TIME);
 
-      automatedBrowser.populateElement("email", "email@example.org", WAIT_TIME);
+            automatedBrowser.populateElement("email", "email@example.org", WAIT_TIME);
 
-      automatedBrowser.clickElement("submit", WAIT_TIME);
+            automatedBrowser.clickElement("submit", WAIT_TIME);
 
-      final String email =
-      automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)", WAIT_TIME);
-      Assert.assertTrue(email.contains("email@example.org"));
+            final String email = automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)", WAIT_TIME);
+            Assert.assertTrue(email.contains("email@example.org"));
 
-      final String event =
-      automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)", WAIT_TIME);
-      Assert.assertTrue(event.contains("Rock concert of the decade"));
+            final String event = automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)", WAIT_TIME);
+            Assert.assertTrue(event.contains("Rock concert of the decade"));
 
-      final String venue =
-      automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(4)", WAIT_TIME);
-      Assert.assertTrue(venue.contains("Roy Thomson Hall"));
-    } finally {
-        automatedBrowser.destroy();
+            final String venue = automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(4)", WAIT_TIME);
+            Assert.assertTrue(venue.contains("Roy Thomson Hall"));
+        } finally {
+            automatedBrowser.destroy();
+        }
     }
-  }
 }
 ```
 
@@ -105,8 +112,7 @@ private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
   = new AutomatedBrowserFactory();
 ```
 
-Because we will take advantage of explicit waits when interacting with elements, we need to have a duration in which to wait for elements to be available. The constant `WAIT_TIME` will be used as the default duration
-for explicit wait times.
+Because we will take advantage of explicit waits when interacting with elements, we need to have a duration in which to wait for elements to be available. The constant `WAIT_TIME` will be used as the default duration for explicit wait times.
 
 We have quite a generous wait time here, because the application has been deployed to quite a small Heroku instance, and sometimes pages can take some time to load.
 
@@ -114,12 +120,7 @@ We have quite a generous wait time here, because the application has been deploy
 private static final int WAIT_TIME = 30;
 ```
 
-For this test we will be using explicit waits, and also taking advantage
-of the simple element selection methods. For both of these to work as
-expected, we need to have an instance of `AutomatedBrowser` that does not
-implement implicit waits. By passing the `ChromeNoImplicitWait` option to
-the `AutomatedBrowserFactory` instance, we will receive a `AutomatedBrowser`
-instance that does not implement implicit waits.
+For this test we will be using explicit waits, and also taking advantage of the simple element selection methods. For both of these to work as expected, we need to have an instance of `AutomatedBrowser` that does not implement implicit waits. By passing the `ChromeNoImplicitWait` option to the `AutomatedBrowserFactory` instance, we will receive a `AutomatedBrowser` instance that does not implement implicit waits.
 
 ```java
 @Test
@@ -159,7 +160,7 @@ The `By.linkText()` method means we can use the text that makes up the link, wh
 automatedBrowser.clickElement("Buy tickets now", WAIT_TIME);
 ```
 
-The Concert and Rock concert of the decade elements are also links, and so we identify them by their text.
+The `Concert and Rock concert of the decade` elements are also links, and so we identify them by their text.
 
 ![](./image8.png)
 
@@ -179,11 +180,9 @@ automatedBrowser.selectOptionByTextFromSelect("Toronto : Roy Thomson Hall", "ven
 
 Once we make a venue selection, a new panel is displayed that provides some default dates and times. We accept these defaults, and so we do not need to interact with the new drop down lists.
 
-We do need to click the Order tickets button. Unlike the other button like element we have been clicking, this element is an actual form button. This means we can't use the text in the element as a way of
-identifying it. This element has a name of bookButton, and since the `By.name()` method is one of the ways SimpleBy identifies element, we can use this attribute to identify the button.
+We do need to click the `Order tickets` button. Unlike the other button like element we have been clicking, this element is an actual form button. This means we can't use the text in the element as a way of identifying it. This element has a name of `bookButton`, and since the `By.name()` method is one of the ways `SimpleBy` identifies element, we can use this attribute to identify the button.
 
-This step is a good example of where explicit waits are valuable, as the elements we are interacting with are dynamically displayed and we can not assume that the element is immediately available to be clicked. Because we are using explicit waits, we can be assured that the test will only proceed when the elements are in the desired state, which in
-this case means that they are clickable.
+This step is a good example of where explicit waits are valuable, as the elements we are interacting with are dynamically displayed and we can not assume that the element is immediately available to be clicked. Because we are using explicit waits, we can be assured that the test will only proceed when the elements are in the desired state, which in this case means that they are clickable.
 
 ![](./image10.png)
 
@@ -208,7 +207,7 @@ The text box defining the number of tickets to be purchased has a name of `ticke
 automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
 ```
 
-The `Add tickets` button is another example of a form button. We use its name of add to identify and click it.
+The `Add tickets` button is another example of a form button. We use its `name` of `add` to identify and click it.
 
 ![](./image13.png)
 
@@ -216,7 +215,7 @@ The `Add tickets` button is another example of a form button. We use its name of
 automatedBrowser.clickElement("add", WAIT_TIME);
 ```
 
-The email text box has a ID of email, which we use to identify it and populate it with the dummy email address <email@example.org>.
+The email text box has a ID of `email`, which we use to identify it and populate it with the dummy email address `email@example.org`.
 
 ![](./image14.png)
 
@@ -224,7 +223,7 @@ The email text box has a ID of email, which we use to identify it and populate i
 automatedBrowser.populateElement("email", "email@example.org", WAIT_TIME);
 ```
 
-The Checkout button is yet another form button. It has a name of submit.
+The `Checkout` button is yet another form button. It has a `name` of `submit`.
 
 ![](./image15.png)
 
@@ -240,7 +239,7 @@ In these situations you have to use either an XPath or a CSS Selector to identif
 
 ![](./image16.png)
 
-Right clicking on the element and selecting Copy → Copy selector to let Chrome generate a CSS Selector that uniquely identities the element.
+Right clicking on the element and selecting `Copy` → `Copy selector` to let Chrome generate a CSS Selector that uniquely identities the element.
 
 ![](./image17.png)
 
@@ -274,7 +273,7 @@ In testing a real world application like TicketMonster, we can observe three imp
 
 The first is that dynamic elements are everywhere in today's web applications. Whether these are elements that we need to interact with after a new page is loaded, or they are elements that are being manipulated by JavaScript, testing modern web applications means dealing with elements that are not always immediately available.
 
-Second, we have seen in this test just how rare it is to have unique IDs for the elements we want to interact with. Quite often we have had to rely on the name attribute, and even had to use CSS Selectors to identify some paragraph elements for our final validations.
+Second, we have seen in this test just how rare it is to have unique IDs for the elements we want to interact with. Quite often we have had to rely on the `name` attribute, and even had to use CSS Selectors to identify some paragraph elements for our final validations.
 
 Third, we have seen that just because two elements look the same on the screen, they can be based on completely different HTML elements. In TicketMonster, links using the `<a>` element and form buttons using the `<input>` element are visually identical. But these two elements have an impact on how we can write the tests. Namely that links can be identified by their text content, and form buttons can not.
 
@@ -286,15 +285,15 @@ You will see Chrome open up, complete the purchase, and then the test will pass 
 
 ![](./image19.png)
 
-This is a good opportunity to push the code changes to GitHub. Right click the root project directory and select Git → Commit directory.
+This is a good opportunity to push the code changes to GitHub. Right click the root project directory and select `Git` → `Commit directory...`.
 
 ![](./image20.png)
 
-Enter a commit message, and click Commit and Push.
+Enter a commit message, and click `Commit and Push`.
 
 ![](./image21.png)
 
-Then click the Push button to update the GitHub repository.
+Then click the `Push` button to update the GitHub repository.
 
 ![](./image22.png)
 
