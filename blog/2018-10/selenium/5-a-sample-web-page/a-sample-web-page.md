@@ -1,4 +1,13 @@
-## A sample web page
+---
+title: A Sample Web Page
+description: In this post we create a sample web page to run some tests against.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 Now that we have the basis of the framework that we'll be using to write WebDriver tests, it is time to start interacting with a web page.
 
@@ -97,7 +106,7 @@ function interactionMessage(message) {
 
 The second JavaScript function uses the `setTimeout()` function to wait for 5 seconds and then append a new `<div>` element to the page. It also resets the style of a div with the ID `div3_element`, which will have the effect of displaying a hidden element.
 
-We'll use both of these dynamic updates to the web page to demonstrate how to use implicit and explicit waits.
+We'll use both of these dynamic updates to the web page to demonstrate how to use implicit and explicit waits in a future post.
 
 ```JavaScript
 setTimeout(function() {
@@ -109,8 +118,7 @@ setTimeout(function() {
 }, 5000);
 ```
 
-We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented from trying to
-do a page reload on submission by returning false.
+We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented from trying to do a page reload on submission by returning `false`.
 
 ```HTML
 <form id="form_element" onsubmit="interactionMessage('Form Submitted'); return false">
@@ -163,7 +171,7 @@ Outside of the `<form>` we have some image and div elements.
 <div id="div2_element" onclick="interactionMessage('Div 2 Clicked')">I am a div too</div>
 ```
 
-The final div element has its display style set to none, effectively hiding it on the page. This element will be displayed after 5 seconds by the JavaScript called by the `setTimeout()` method.
+The final div element has its `display` style set to `none`, effectively hiding it on the page. This element will be displayed after 5 seconds by the JavaScript called by the `setTimeout()` method.
 
 ```HTML
 <div id="div3_element" style="display: none" onclick="interactionMessage('Div 3 Clicked')">I am a hidden div</div>
@@ -171,33 +179,33 @@ The final div element has its display style set to none, effectively hiding it o
 
 The end result looks like this.
 
-![](./image1.png)
+![](./image1.png "width=500")
 
 In order to make use of this page as part of a Java test, we need to save it in the `src/test/resources` directory. This is the standard Maven directory where resource files are found.
 
-This directory doesn't exist yet, so we create it by right clicking on the test directory and selecting New → Directory.
+This directory doesn't exist yet, so we create it by right clicking on the test directory and selecting `New` → `Directory`.
 
-![](./image2.png)
+![](./image2.png "width=500")
 
 Enter the name resources, and click the `OK` button.
 
-![](./image3.png)
+![](./image3.png "width=500")
 
-As we have seen a few times now, creating a directory that has special meaning in a Maven project does not automatically update the IntelliJ project. We can see in the screenshot below that the resources directory now exists, but it looks like a plain directory in out project.
+As we have seen a few times now, creating a directory that has special meaning in a Maven project does not automatically update the IntelliJ project. We can see in the screenshot below that the `resources` directory now exists, but it looks like a plain directory in out project.
 
-![](./image4.png)
+![](./image4.png "width=500")
 
 To update the IntelliJ project, open the `Maven Projects` tool window and click the `Reimport All Maven Projects` button.
 
-![](./image5.png)
+![](./image5.png "width=500")
 
 The icon for the resources directory is updated to reflect the fact that this will hold file like our sample web page.
 
-![](./image6.png)
+![](./image6.png "width=500")
 
 Once the resources folder is configured, save the HTML code to a file called `form.html`.
 
-![](./image7.png)
+![](./image7.png "width=500")
 
 We now have two important pieces of the puzzle completed. First, we have the beginnings of the framework that will allow us to create flexible `AutomatedBrowser` objects through which we interact with web pages. Second, we have a sample web page that includes most of the elements we are likely to encounter while writing WebDriver tests. So now it is time to write some real WebDriver tests.
 
@@ -215,7 +223,8 @@ public class FormTest {
 
   @Test
   public void formTestByID() throws URISyntaxException {
-    final AutomatedBrowser automatedBrowser = AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
+    final AutomatedBrowser automatedBrowser =
+      AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
 
     try {
       automatedBrowser.init();
@@ -235,7 +244,7 @@ FormTest.class.getResource("/form.html").toURI().toString()
 
 Now let's manually open the same web page. IntelliJ provides a handy service for hosting webpages locally. This can be accessed by clicking the shortcut in the top right hand corner of the screen when the HTML file is opened in the editor.
 
-![](./image8.png)
+![](./image8.png "width=500")
 
 Clicking the Chrome browser icon will open up Chrome to a page with a URL like <http://localhost:63342/webdrivertraining/form.html?_ijt=2r0gmmveunmkptr759pintjfe5>. This is a quick and easy way to start interacting with our sample web page.
 
@@ -247,20 +256,20 @@ To interact with the button, we need to know its ID. We know that this button ha
 
 With the page loaded in Chrome, right click on the button element and click the `Inspect` option.
 
-![](./image9.png)
+![](./image9.png "width=500")
 
-This will open Chrome's Developer Tools, and highlight the button HTML element inside the Elements tab.
+This will open Chrome's Developer Tools, and highlight the button HTML element inside the `Elements` tab.
 
-The HTML elements displayed in the Developer Tools `Element` tab are updated in real time as elements are added, removed and changed by JavaScript calls. This means you will often get more information from the Developer Tools than you would simply looking at the HTML source code.
+The HTML elements displayed in the Developer Tools `Elements` tab are updated in real time as elements are added, removed and changed by JavaScript calls. This means you will often get more information from the Developer Tools than you would simply looking at the HTML source code.
 
 You can see this for yourself by right clicking on the text that says `I am a newly created div` and selecting the `Inspect` option. This will reveal the `<div>` element created as a result of the `setTimeout()` method call. You will not see that `<div>` element in the HTML source code, as it is dynamically generated at run time.
 
-![](./image10.png)
+![](./image10.png "width=500")
 
 Going back to the `<button>` element, we can see that the id
 attribute is indeed `button_element`.
 
-![](./image11.png)
+![](./image11.png "width=500")
 
 Now that we know the ID of the element we wish to interact with, we can start building out our test. We start by making a call to `clickElementWithId()`, passing in the ID of the element that we wish to click.
 
@@ -288,7 +297,17 @@ public void clickElementWithId(final String id) {
 }
 ```
 
-This method does three important things.
+When you paste this code into the  `WebDriverDecorator` class, ItelliJ will display the `By` class in red. This is because we have not imported the package that contains the `By` class.
+
+To fix this place the mouse cursor over the red text and click ALT + Enter. This will display a context menu that has the `Import class` option.
+
+![](./image12.png "width=500")
+
+IntelliJ is usually pretty good at working out which package to import based on the context of the class, and in this case will add the `import org.openqa.selenium.By;` statement to the top of the class.
+
+![](./image13.png "width=500")
+
+The `clickElementWithId()` method does three important things.
 
 First, it finds the element we wish to interact with using a call to `By.id(id)`. The `By` class is used to find elements in a web page, and offers a range of methods to perform the search. Because we are searching for an element by its ID, we call `By.id()`.
 
@@ -302,7 +321,7 @@ But how can we be sure that WebDriver actually clicked the button? If you look b
 
 We can then extract the text from the element that holds the message `Button Clicked` and verify that it says what we expect it to say.
 
-To do this we call the `getTextFromElementWithId()` method, passing in the ID of message, which is the ID of the `<div>` element that holds the message text we wish to verify. We then verify the result of this method call using the `assertEquals()` provided by JUnit.
+To do this we call the `getTextFromElementWithId()` method, passing in the ID of the element containing the text we wish to return, which in our case is the ID of the `<div>` element that holds the message text we wish to verify. We then verify the result of this method call using the `assertEquals()` provided by JUnit.
 
 ```java
 @Test
@@ -315,9 +334,7 @@ public void formTestByID() throws URISyntaxException {
     automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
 
     automatedBrowser.clickElementWithId("button_element");
-
-    assertEquals("Button Clicked",
-    automatedBrowser.getTextFromElementWithId("message"));
+    assertEquals("Button Clicked", automatedBrowser.getTextFromElementWithId("message"));
   } finally {
     automatedBrowser.destroy();
   }
