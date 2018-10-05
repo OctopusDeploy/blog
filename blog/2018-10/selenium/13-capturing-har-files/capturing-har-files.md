@@ -1,8 +1,17 @@
-## Capturing HAR files
+---
+title: Capturing HAR files
+description: In this post we learn how to capture HAR files through BrowserStack.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 HTTP Archive (HAR) files are a standard JSON formatted log of a browsers interaction with an external web application.
 
-You can generate a HAR file by opening the Chrome developer tools, clicking the Network tab, opening a web site, and then right clicking in the list of network calls and selecting Save as HAR with content.
+You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`.
 
 ![](./image1.png)
 
@@ -99,7 +108,7 @@ Now all that is left is to use these methods as part of a test.
 @Test
 public void captureHarFile() throws URISyntaxException {
 final AutomatedBrowser automatedBrowser =
-  AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("FirefoxHeadless");
+  AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
 
   try {
     automatedBrowser.init();
@@ -117,7 +126,7 @@ final AutomatedBrowser automatedBrowser =
 
 Here we have made a call to `automatedBrowser.captureHarFile()` before we open the web page. This ensures that we are capturing all network traffic as part of this test.
 
-In the `finally` block we then nest an additional `try`/`finally` block. Inside the nested try block we call `automatedBrowser.saveHarFile("test.har")`, which will write any captured traffic to the file `test.har`. This call is made in the `finally` block because we want to save this network traffic even if the test fails. The HAR file will often contain information that can be used to debug a failed test, so we want to make sure we save this file regardless of an errors during the tests.
+In the `finally` block we then nest an additional `try`/`finally` block. Inside the nested `try` block we call `automatedBrowser.saveHarFile("test.har")`, which will write any captured traffic to the file `test.har`. This call is made in the `finally` block because we want to save this network traffic even if the test fails. The HAR file will often contain information that can be used to debug a failed test, so we want to make sure we save this file regardless of an errors during the tests.
 
 Inside the nested finally block we then call `automatedBrowser.destroy()`. Because the call to `destroy()` frees resources, we need to ensure that it runs if the test fails and if the attempt to save the HAR file fails. Nesting `try`/`finally` blocks in this way guarantees that the `destroy()` method is called regardless of any other failure.
 
@@ -134,7 +143,9 @@ Select the `test.har` file.
 
 You will then get a table showing all the network requests made as part of the test.
 
-![](./image5.png)You can filter the results by the HTTP response codes with these checkboxes.
+![](./image5.png)
+
+You can filter the results by the HTTP response codes with these checkboxes.
 
 ![](./image6.png)
 
@@ -196,7 +207,6 @@ Then we implement the method in the `BrowserMobDecorator` class.
 
 ```java
 @Override
-
 public void captureCompleteHarFile() {
   final EnumSet<CaptureType> captureTypes =
     CaptureType.getAllContentCaptureTypes();
