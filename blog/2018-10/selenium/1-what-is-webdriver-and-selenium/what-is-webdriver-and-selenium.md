@@ -3,8 +3,7 @@ What is WebDriver and Selenium?
 
 When it comes to testing web applications, you have probably heard of WebDriver and Selenium. Often the two terms are used interchangeably or even combined to refer to the platform on which a developer can write code to interact with a web browser. However, these two terms refer to slightly different things.
 
-Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at <https://www.w3.org/TR/webdriver1/>, and is freely available for anyone
-to implement.
+Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at <https://www.w3.org/TR/webdriver1/>, and is freely available for anyone to implement.
 
 Most browser vendors implement the WebDriver API through an additional executable that is shipped separate to the browser itself. The list below shows where the major browsers provide this binary driver:
 
@@ -14,19 +13,17 @@ Most browser vendors implement the WebDriver API through an additional executabl
 -   IE: <http://selenium-release.storage.googleapis.com/index.html>
 -   Edge: <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>
 
-To see the WebDriver API in action we'll download and run the Chrome binary driver. Open up [https://sites.google.com/a/chromium.org/chromedriver/downloads,](https://sites.google.com/a/chromium.org/chromedriver/downloads)
-and click the link for the latest release.
+To see the WebDriver API in action we'll download and run the Chrome binary driver. Open up [https://sites.google.com/a/chromium.org/chromedriver/downloads,](https://sites.google.com/a/chromium.org/chromedriver/downloads) and click the link for the latest release.
 
-![](./image1.png)
+![](./image1.png "width=500")
 
 Then download the driver for your local operating system.
 
-![](./image2.png)
+![](./image2.png "width=500")
 
-In my case I am using a Mac, so I download `chromedriver_mac64.zip`. Inside this archive is the driver executable called `chromedriver`. The
-Windows version is called `chromedriver.exe`.
+In my case I am using a Mac, so I download `chromedriver_mac64.zip`. Inside this archive is the driver executable called `chromedriver`. The Windows version is called `chromedriver.exe`.
 
-![](./image3.png)
+![](./image3.png "width=500")
 
 Extract this file and run it. You will be given the port on which the WebDriver API is exposed.
 
@@ -39,24 +36,38 @@ Starting ChromeDriver 2.40.565386
 Only local connections are allowed.
 ```
 
-To interact with the API we need a tool that allows us to make HTTP requests. Here I have used PostMan, which is available from <https://www.getpostman.com/>.
+To interact with the API we need a tool that allows us to make HTTP requests. Here I have used Postman, which is available from <https://www.getpostman.com/>.
 
 The first step is to open the browser. This is done by creating a new
 session.
 
-To create a new session via the WebDriver API, we make a HTTP POST request to the `/session` endpoint. In addition we need to define the type of browser that we wish to open, which in this case is chrome. This information is sent in a JSON object in the POST body.
+To create a new session via the WebDriver API, we make a HTTP POST request to the `/session` endpoint. In addition we need to define the type of browser that we wish to open, which in this case is chrome. This information is sent in a JSON object in the POST body. In this example we'll open Chrome.
+
+```json
+{
+	"desiredCapabilities": {
+		"browserName": "chrome"
+	}
+}
+```
 
 The response from this request includes a `sessionId`. We can use this to perform additional operation on the browser window we just opened.
 
-![](./image4.png)
+![](./image4.png "width=500")
 
 The next logical step is to open a URL in the browser. This is done with a HTTP POST request to `/session/<session id>/url`, with the POST body including the URL that is to be opened.
 
-![](./image5.png)
+```json
+{
+	"url": "http://octopus.com"
+}
+```
+
+![](./image5.png "width=500")
 
 This call results in the requested URL being opened in the browser.
 
-![](./image6.png)
+![](./image6.png "width=500")
 
 At this point you might be feeling somewhat overwhelmed. HTTP calls made by tools like Postman with JSON bodies against a REST API... This is a lot of moving parts, and the process of opening a browser and browsing to a URL was far from simple.
 
@@ -66,7 +77,7 @@ From this point on, all the code we write will make use of the Selenium API. Sel
 
 The diagram below shows the relationship between the browser, the binary driver, the Selenium API and the Java code we will be writing.
 
-![](./image7.png)
+![](./image7.png "width=500")
 
 Selenium is synonymous with WebDriver because it is by far the most popular way to take advantage of the WebDriver API. I have personally never seen a case in the real world where code was written against the WebDriver API directly. Because of this, the terms WebDriver, Selenium and Selenium WebDriver are used interchangeably to refer to the Selenium API rather than the lower level WebDriver API.
 
