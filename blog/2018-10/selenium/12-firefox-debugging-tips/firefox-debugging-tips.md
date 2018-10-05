@@ -1,4 +1,13 @@
-## Firefox debugging tricks
+---
+title: Firefox debugging tricks
+description: In this post we learn how some tricks to debugging Firefox JavaScript stack traces.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 A common issue that I have run into on multiple occasions when using proxies is a subtle misconfiguration in Firefox that results in errors being thrown.
 
@@ -6,8 +15,7 @@ To simulate this error, lets attempt to configure the SOCKS proxy in the `Browse
 
 SOCKS proxies are used to proxy TCP packets, meaning they can be used with HTTP, HTTPS, FTP and a whole range of other higher level protocols. We won't be using BrowserMob as a SOCKS proxy, but configuring it here is a useful way to demonstrate the misconfiguration error.
 
-We configure the SOCKS proxy by calling
- seleniumProxy.setSocksProxy(proxyStr)`.
+We configure the SOCKS proxy by calling `seleniumProxy.setSocksProxy(proxyStr)`.
 
 ```java
 @Override
@@ -87,9 +95,7 @@ In theory you can define the SOCKS proxy version with the following code in the 
 @Override
 public DesiredCapabilities getDesiredCapabilities() {
   // ...
-
   seleniumProxy.setSocksVersion(5);
-
   // ...
 }
 ```
