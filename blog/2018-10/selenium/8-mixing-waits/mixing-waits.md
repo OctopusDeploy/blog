@@ -1,4 +1,13 @@
-## Mixing waits
+---
+title: Mixing Implicit and Explicit Waits
+description: In this post we learn how implicit and explicit waits can interfere with each other.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 We have seen that there are two types of waits: implicit and explicit. Both are implemented independently of one another, so what happens when you have both an implicit and an explicit wait in a single test?
 
@@ -18,7 +27,7 @@ private AutomatedBrowser getChromeBrowser() {
 
 Let's then create a test that attempts to click an element that will never be found on the page.
 
-The addition of the expected parameter on the `@Test` annotation indicates that this test will only pass if a `TimeoutException` exception is thrown, and we expect this exception to be thrown because there will never be an element with the ID of `This ID does not exist`.
+The addition of the expected exception on the `@Test` annotation indicates that this test will only pass if a `TimeoutException` exception is thrown, and we expect this exception to be thrown because there will never be an element with the ID of `This ID does not exist`.
 
 ```java
 @Test(expected = TimeoutException.class)
@@ -61,7 +70,7 @@ automatedBrowser.clickElementWithId("This ID does not exist", 1);
 
 Running this test reveals that the test always takes over 10 seconds to complete.
 
-![](./image1.png)
+![](./image1.png "width=500")
 
 This result may be surprising when the code has used an explicit wait of only 1 second to wait for the missing element. What it shows is that when mixing a short explicit wait with a long implicit wait, the test will pause for the full time of the implicit wait.
 
@@ -89,7 +98,7 @@ public void mixedTestLongExplicitWait() throws URISyntaxException {
 
 Running this test reveals that the test always takes over 20 seconds to complete. This is a more expected result, and shows that the larger of the times assigned to the implicit and explicit waits are used.
 
-![](./image2.png)
+![](./image2.png "width=500")
 
 Let's try a third scenario, where we use a explicit wait time of 2 seconds for the div element that is created after 5 seconds. If you recall from a previous lecture, the div with the id of `newdiv_element` is created and dynamically added to the page using a JavaScript function after 5 seconds.
 
@@ -97,8 +106,7 @@ You may add steps like these to a test to ensure that a web application performs
 
 ```java
 @Test
-public void shortExplicitWaitForDynamicElement() throws
-URISyntaxException {
+public void shortExplicitWaitForDynamicElement() throws URISyntaxException {
 
   final AutomatedBrowser automatedBrowser = AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
 
@@ -118,7 +126,7 @@ URISyntaxException {
 
 This test passes. Even though we have explicitly waited only 2 seconds for an element we know won't be created for 5 seconds, the element is found and clicked.
 
-![](./image3.png)
+![](./image3.png "width=500")
 
 This behavior is counter-intuitive, and if we had been using a wait time of 2 seconds to enforce the performance requirements of our application, this test would produce a false positive.
 
@@ -184,6 +192,6 @@ public void shortExplicitWaitNoImplicitWaitForDynamicElement() throws URISyntaxE
 
 This time we get the expected result of a test that throws a `TimeoutException`.
 
-What these tests show us is that implicit and explicit waits are not mutually exclusive. Even though they are defined independently, and have no obvious impact on each other, in fact implicit wait times do impact explicit wait operations.
+What these tests show us is that implicit and explicit waits are not mutually exclusive. Even though they are defined independently, and have no obvious impact on each other, implicit wait times do impact explicit wait operations.
 
 Because explicit waits allow us to write more robust tests that enforce the state of an element within a time period, as well as providing an individual duration for each interaction to be completed in, it makes sense to use explicit waits for our tests. What we have seen here is that to take advantage of explicit waits, we also need to disable implicit waits.
