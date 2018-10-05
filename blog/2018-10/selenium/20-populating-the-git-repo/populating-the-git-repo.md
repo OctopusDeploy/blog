@@ -1,5 +1,13 @@
-Lecture 9.1 - Populating the Git repo
-=====================================
+---
+title: Populating the Git repo
+description: In this post we learn how to push our code to GitHub.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 We've talked about the idea of a code repository, and in this lecture we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
 
