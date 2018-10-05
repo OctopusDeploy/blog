@@ -58,7 +58,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @Given("^I open the browser \"(\[^\"\]\*)\"$")
+  @Given("^I open the browser \"([^\"]*)\"$")
   public void openBrowser(String browser) {
     // ...
   }
@@ -94,43 +94,43 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("^I open the URL \"(\[^\"\]\*)\"$")
+  @And("^I open the URL \"([^\"]*)\"$")
   @Override
   public void goTo(String url) {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\"$")
   @Override
   public void clickElementWithId(String id) {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithId(String id, int waitTime) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\"$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithId(String optionText, String id) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithId(String optionText, String id, int waitTime) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" with the text \"([^\"]*)\"$")
   @Override
   public void populateElementWithId(String id, String text) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" with the text \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithId(String id, String text, int waitTime)
   {
@@ -147,37 +147,37 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the xpath \"([^\"]*)\"$")
   @Override
   public void clickElementWithXPath(String xpath) {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the xpath \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithXPath(String xpath, int waitTime) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\"$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the xpath \"([^\"]*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithXPath(String optionText, String xpath) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the xpath \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithXPath(String optionText, String xpath, int waitTime) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the xpath \"([^\"]*)\" with the text \"([^\"]*)\"$")
   @Override
   public void populateElementWithXPath(String xpath, String text) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the xpath \"([^\"]*)\" with the text \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithXPath(String xpath, String text, int waitTime) {
     // ...
@@ -193,38 +193,38 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the css selector \"([^\"]*)\"$")
   @Override
   public void clickElementWithCSSSelector(String cssSelector) {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the css selector \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithCSSSelector(String cssSelector, int waitTime) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\"$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the css selector \"([^\"]*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithCSSSelector(String optionText, String cssSelector) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the css selector \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithCSSSelector(String optionText, String cssSelector, int waitTime) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the css selector
-  \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the css selector
+  \"([^\"]*)\" with the text \"([^\"]*)\"$")
   @Override
   public void populateElementWithCSSSelector(String cssSelector, String text) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the css selector \"([^\"]*)\" with the text \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithCSSSelector(String cssSelector, String text, int waitTime) {
     // ...
@@ -240,37 +240,37 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the name \"([^\"]*)\"$")
   @Override
   public void clickElementWithName(String name) {
     // ...
   }
 
-  @And("^I click the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)* with the name \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithName(String name, int waitTime) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\"$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the name \"([^\"]*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithName(String optionText, String name) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the name \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithName(String optionText, String name, int waitTime) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the name \"([^\"]*)\" with the text \"([^\"]*)\"$")
   @Override
   public void populateElementWithName(String name, String text) {
     // ...
   }
 
-  @And("^I populate the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)* with the name \"([^\"]*)\" with the text \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithName(String name, String text, int waitTime) {
     // ...
@@ -286,37 +286,37 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("^I click the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\*$")
+  @And("^I click the \"([^\"]*)\" \\w+(?:\\s+\\w+)*$")
   @Override
   public void clickElement(String locator) {
     // ...
   }
 
-  @And("^I click the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \"([^\"]*)\" \\w+(?:\\s+\\w+)* waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElement(String locator, int waitTime) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\*$")
+  @And("^I select the option \"([^\"]*)\" from the \"([^\"]*)\" \\w+(?:\\s+\\w+)*$")
   @Override
   public void selectOptionByTextFromSelect(String optionText, String locator) {
     // ...
   }
 
-  @And("^I select the option \"(\[^\"\]\*)\" from the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"([^\"]*)\" from the \"([^\"]*)\" \\w+(?:\\s+\\w+)* waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelect(String optionText, String locator, int waitTime) {
     // ...
   }
 
-  @And("^I populate the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* with the text \"(\[^\"\]\*)\"$")
+  @And("^I populate the \"([^\"]*)\" \\w+(?:\\s+\\w+)* with the text \"([^\"]*)\"$")
   @Override
   public void populateElement(String locator, String text) {
     // ...
   }
 
-  @And("^I populate the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \"([^\"]*)\" \\w+(?:\\s+\\w+)* with the text \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElement(String locator, String text, int waitTime) {
     // ...
@@ -344,19 +344,19 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("^I save the HAR file to \"(\[^\"\]\*)\"$")
+  @And("^I save the HAR file to \"([^\"]*)\"$")
   @Override
   public void saveHarFile(String file) {
     // ...
   }
 
-  @And("^I block the request to \"(\[^\"\]\*)\" returning the HTTP code \"\\d+\"$")
+  @And("^I block the request to \"([^\"]*)\" returning the HTTP code \"\\d+\"$")
   @Override
   public void blockRequestTo(final String url, final int responseCode) {
     // ...
   }
 
-  @And("^I alter the response fron \"(\[^\"\]\*)\" returning the
+  @And("^I alter the response fron \"([^\"]*)\" returning the
   HTTP code \"\\d+\" and the response body:$")
   @Override
   public void alterResponseFrom(String url, int responseCode, String responseBody) {
@@ -383,23 +383,20 @@ Feature: Test TicketMonster
   Scenario: Purchase Tickets
     Given I open the browser "ChromeNoImplicitWait"
     When I open the URL "https://ticket-monster.herokuapp.com"
-    And I click the "Buy tickets now" button waiting up to "10" seconds
-    And I click the "Concert" link waiting up to "10" seconds
-    And I click the "Rock concert of the decade" link waiting up to "10"
-    seconds
-    And I select the option "Toronto : Roy Thomson Hall" from the
-    "venueSelector" drop down list waiting up to "10" seconds
-    And I click the "bookButton" button waiting up to "10" seconds
-    And I select the option "A - Premier platinum reserve" from the
-    "sectionSelect" drop down list waiting up to "10" seconds
-    And I populate the "tickets-1" text box with the text "2" waiting up to "10" seconds
-    And I click the "add" button waiting up to "10" seconds
-    And I populate the "email" text box with the text "email@example.org" waiting up to "10" seconds
-    And I click the "submit" button waiting up to "10" seconds
+    And I click the "Buy tickets now" button waiting up to "30" seconds
+    And I click the "Concert" link waiting up to "30" seconds
+    And I click the "Rock concert of the decade" link waiting up to "30" seconds
+    And I select the option "Toronto : Roy Thomson Hall" from the "venueSelector" drop down list waiting up to "30" seconds
+    And I click the "bookButton" button waiting up to "30" seconds
+    And I select the option "A - Premier platinum reserve" from the "sectionSelect" drop down list waiting up to "30" seconds
+    And I populate the "tickets-1" text box with the text "2" waiting up to "30" seconds
+    And I click the "add" button waiting up to "30" seconds
+    And I populate the "email" text box with the text "email@example.org" waiting up to "30" seconds
+    And I click the "submit" button waiting up to "30" seconds
     Then I close the browser
 ```
 
-Now either run the CucumberTest test class from IntelliJ, or commit the
+Now either run the `CucumberTest` test class from IntelliJ, or commit the
 code to GitHub and let Travis CI run the test for you. We have just
 successfully replicated the journey through the TicketMonster
 application that we wrote in Java in a previous lecture.
@@ -574,22 +571,22 @@ set the default explicit wait time to "10" seconds, and remove the
 phrase waiting up to "10" seconds from all the other steps.
 
 ```gherkin
-Feature: Test TicketMonster
-Scenario: Purchase Tickets with default wait time
-  Given I open the browser "ChromeNoImplicitWait"
-  And I set the default explicit wait time to "10" seconds
-  When I open the URL "https://ticket-monster.herokuapp.com"
-  And I click the "Buy tickets now" button
-  And I click the "Concert" link
-  And I click the "Rock concert of the decade" link
-  And I select the option "Toronto : Roy Thomson Hall" from the "venueSelector" drop down list
-  And I click the "bookButton" button
-  And I select the option "A - Premier platinum reserve" from the "sectionSelect" drop down list
-  And I populate the "tickets-1" text box with the text "2"
-  And I click the "add" button
-  And I populate the "email" text box with the text "email@example.org"
-  And I click the "submit" button
-  Then I close the browser
+Feature: Test TicketMonster With Default Wait
+  Scenario: Purchase Tickets with default wait time
+    Given I open the browser "ChromeNoImplicitWait"
+    And I set the default explicit wait time to "30" seconds
+    When I open the URL "https://ticket-monster.herokuapp.com"
+    And I click the "Buy tickets now" button
+    And I click the "Concert" link
+    And I click the "Rock concert of the decade" link
+    And I select the option "Toronto : Roy Thomson Hall" from the "venueSelector" drop down list
+    And I click the "bookButton" button
+    And I select the option "A - Premier platinum reserve" from the "sectionSelect" drop down list
+    And I populate the "tickets-1" text box with the text "2"
+    And I click the "add" button
+    And I populate the "email" text box with the text "email@example.org"
+    And I click the "submit" button
+    Then I close the browser
 ```
 
 We are now very close to having a test that can be written and read in
@@ -686,7 +683,7 @@ and the code below shows how the `selectOptionByTextFromSelectWithId()`
 method was updated.
 
 ```java
-@And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\"$")
+@And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\"$")
 @Override
 public void selectOptionByTextFromSelectWithId(String optionText, String
 id) {
@@ -703,10 +700,8 @@ now gives obscure locators like `tickets-1` a readable name like `Adult
 Ticket Count`.
 
 ```gherkin
-Feature: Test TicketMonster
-
+Feature: Test TicketMonster With Aliases
   Scenario: Purchase Tickets with default wait time and aliases
-
     Given I open the browser "ChromeNoImplicitWait"
     And I set the following aliases:
       | Venue | venueSelector |
@@ -715,8 +710,7 @@ Feature: Test TicketMonster
       | Adult Ticket Count | tickets-1 |
       | Add Tickets | add |
       | Checkout | submit |
-
-    And I set the default explicit wait time to "10" seconds
+    And I set the default explicit wait time to "30" seconds
     When I open the URL "https://ticket-monster.herokuapp.com"
     And I click the "Buy tickets now" button
     And I click the "Concert" link
