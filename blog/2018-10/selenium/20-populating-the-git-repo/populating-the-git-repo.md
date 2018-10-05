@@ -1,72 +1,53 @@
 Lecture 9.1 - Populating the Git repo
 =====================================
 
-We've talked about the idea of a code repository, and in this lecture
-we'll sign up to GitHub, which is a free service that provides us with
-hosted Git code repositories we can use to manage our code.
+We've talked about the idea of a code repository, and in this lecture we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
 
-To start, open up <https://github.com.> On the main page you will see a
-form that allows you to sign up for a free account.
+To start, open up <https://github.com.> On the main page you will see a form that allows you to sign up for a free account.
 
-Enter a username, email address and password, and click the Sign up for
-GitHub button.
+Enter a username, email address and password, and click the Sign up for GitHub button.
 
-![](./image1.png)Select the Unlimited public repositories for free
-option, and lick the Continue button.
+![](./image1.png)Select the Unlimited public repositories for free option, and click the `Continue` button.
 
 ![](./image2.png)
 
-We do not need to personalize GitHub now, so click the skip this step
-link.
+We do not need to personalize GitHub now, so click the skip this step link.
 
 ![](./image3.png)
 
-We now have created a new GitHub account. You will have received an
-email to the address that you signed up with. Inside the email is a link
-that you need to click to validate your email address.
+We now have created a new GitHub account. You will have received an email to the address that you signed up with. Inside the email is a link that you need to click to validate your email address.
 
 ![](./image4.png)
 
-Once you click the link, you will be able to create a new Git repository
-by clicking the Start a project button.
+Once you click the link, you will be able to create a new Git repository by clicking the `Start a project` button.
 
 ![](./image5.png)
 
-Give your repository a name (I've used the name WebDriver here), select the Public option, and click the Create repository button.
+Give your repository a name (I've used the name `WebDriver` here), select the `Public` option, and click the `Create repository` button.
 
 It is important that we create a public repository, because both GitHub and Travis CI offer free plans for public repositories. This means we can create a CI pipeline at no cost.
 
 ![](./image6.png)
 
-With the repository created, we now have a URL that we can use to
-check-in code through. In my case the URL is
+With the repository created, we now have a URL that we can use to check-in code through. In my case the URL is
 <https://github.com/matthewcasperson/WebDriver.git>.
 
 ![](./image7.png)
 
-We now have an empty Git repository, ready to fill with our code.
-IntelliJ has excellent support for working with code in Git
-repositories, so we'll use IntelliJ create a local Git repository and
-link it to the one we just created in GitHub.
+We now have an empty Git repository, ready to fill with our code. IntelliJ has excellent support for working with code in Git repositories, so we'll use IntelliJ create a local Git repository and link it to the one we just created in GitHub.
 
-Open Intellj with the WebDriver project loaded. Then click VCS → Enable
-Version Control Integration\...
+Open Intellj with the WebDriver project loaded. Then click `VCS` → `Enable Version Control Integration...`
 
 ![](./image8.png)
 
-Select Git as the version control system to use, and click the OK
-button.
+Select Git as the version control system to use, and click the `OK` button.
 
 ![](./image9.png)
 
-This will create a local Git repository in the directory the holds the
-currently loaded project. This Git repository can function completely
-independently of a remote repository like the one we created in GitHub,
-but in order to use a CI tool like Travis CI we need to link our local
-Git repository and the remote one hosted in GitHub together. This is
+This will create a local Git repository in the directory the holds the currently loaded project. This Git repository can function completely independently of a remote repository like the one we created in GitHub, but in order to use a CI tool like Travis CI we need to link our local Git repository and the remote one hosted in GitHub together. This is
 done by configuring GitHub as a remote repository.
 
-To add a remote repository, click VCS → Git → Remotes\...
+To add a remote repository, click `VCS` → `Git` → `Remotes...`
 
 ![](./image10.png)
 
@@ -74,7 +55,7 @@ Click the plus icon to add a new remote repository.
 
 ![](./image11.png)
 
-Leave the default name of origin.
+Leave the default name of `origin`.
 
 For the URL we need to use a slightly modified version of the URL that was supplied to us by GitHub. If you recall from when we created the Git repository in GitHub we were given a URL of `https://github.com/matthewcasperson/WebDriver.git`. This is the URL that we need to enter here, but modified to include the GitHub username in the URL. This is done by adding the username and the at symbol after the `https://`. So in my case the URL being entered is `https://matthewcasperson@github.com/matthewcasperson/WebDriver.git`.
 
@@ -88,13 +69,11 @@ Click the OK button to close the Git Remotes dialog.
 
 ![](./image13.png)
 
-You will notice now that the files that make up our project are shown in red. This indicates that these files have not been added to the Git
-repository.
+You will notice now that the files that make up our project are shown in red. This indicates that these files have not been added to the Git repository.
 
 ![](./image14.png)
 
-Generally speaking we want to add all our source code files to the Git repository. In addition though our project directory also has a number of files created by IntelliJ for its own configuration. IntelliJ offer some advice on which files to check-in to the repository at
-<https://intellij-support.jetbrains.com/hc/en-us/articles/206544839>:
+Generally speaking we want to add all our source code files to the Git repository. In addition though our project directory also has a number of files created by IntelliJ for its own configuration. IntelliJ offer some advice on which files to check-in to the repository at <https://intellij-support.jetbrains.com/hc/en-us/articles/206544839>:
 
 -   All the files under `.idea` directory in the project root **except** the `workspace.xml` and `tasks.xml` files which store user specific settings
 
@@ -102,7 +81,7 @@ Generally speaking we want to add all our source code files to the Git repositor
 
 To prevent some files from ever being added to the Git repository, we need to create a file called `.gitignore`. This file lists those files in our directory that Git should not try to add to the repository.
 
-Right click the top level project folder and select New → File.
+Right click the top level project folder and select `New` → `File`.
 
 ![](./image15.png)
 
@@ -120,7 +99,7 @@ You may not have either of these files present in your directory yet. It is OK t
 
 ![](./image18.png)
 
-Right click the top level project folder, and select Git → Add. This will add all files, except for those in the `.gitignore` file, to the repository.
+Right click the top level project folder, and select `Git` → `Add`. This will add all files, except for those in the `.gitignore` file, to the repository.
 
 ![](./image19.png)
 
@@ -128,7 +107,7 @@ Now all the files are green, except for `.idea/workspace.xml`. This file was one
 
 ![](./image20.png)
 
-Now that we have added to the files to the repository, we want to check them in. To do this we right click the top level project folder and select Git → Commit Directory.
+Now that we have added to the files to the repository, we want to check them in. To do this we right click the top level project folder and select `Git` → `Commit Directory`.
 
 ![](./image21.png)
 
@@ -150,8 +129,7 @@ Once the push operation has completed, you will see a message.
 
 ![](./image25.png)
 
-Returning back to the repository in GitHub, we can see that the files
-were pushed up to the remote repository.
+Returning back to the repository in GitHub, we can see that the files were pushed up to the remote repository.
 
 ![](./image26.png)
 
