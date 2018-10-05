@@ -13,13 +13,13 @@ HTTP Archive (HAR) files are a standard JSON formatted log of a browsers interac
 
 You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`.
 
-![](./image1.png)
+![](./image1.png "width=500")
 
 This will generate a HAR file that contains the details of all the network calls captured by the developer tools.
 
 Because HAR files have an open format, there are a number of tools online that you can use to inspect their contents. One such tool is the [HAR Analyser](https://toolbox.googleapps.com/apps/har_analyzer/). This tool allows you to upload a HAR file and then filter by HTTP response code, inspect the content associated with a request, and view the timing of each network call. This kind of information is invaluable when debugging an error with a web application, or to understand how well the site is responding.
 
-![](./image2.png)
+![](./image2.png "width=500")
 
 One of the useful features in BrowserMob is the ability to generate HAR files based on the network requests that pass through it.
 
@@ -135,19 +135,19 @@ The resulting `test.har` file captures the network traffic made as a result to o
 To open file the with HAR Analyzer, open up
 <https://toolbox.googleapps.com/apps/har_analyzer/> and click the `CHOOSE FILE` button.
 
-![](./image3.png)
+![](./image3.png "width=500")
 
 Select the `test.har` file.
 
-![](./image4.png)
+![](./image4.png "width=500")
 
 You will then get a table showing all the network requests made as part of the test.
 
-![](./image5.png)
+![](./image5.png "width=500")
 
 You can filter the results by the HTTP response codes with these checkboxes.
 
-![](./image6.png)
+![](./image6.png "width=500")
 
 These codes are numbers between 100 and 599, and are grouped in blocks of 100. The 0 response code is a special case, and indicates that no response was returned.
 
@@ -178,13 +178,13 @@ The timings of the responses are shown in a graph in the final column. Hovering 
 
 If the Relative timing type is selected, the graph represents the total time taken by all requests, with the colored columns showing how much time the individual request took relative to the total.
 
-![](./image7.png)
+![](./image7.png "width=500")
 
 If the Independent timing type is selected, the graph shows only the amount of time each event took relative to the single request.
 
 Clicking any of the rows shows more details about the request on the right hand side of the page.
 
-![](./image8.png)
+![](./image8.png "width=500")
 
 You'll notice that when a request is selected, a lot of the data is missing. This is because by default BrowserMob only captures a small subset of the data that can be saved in a HAR file. To capture all the information available, we create a new method called `captureCompleteHarFile()` in the `AutomatedBrowser` interface.
 
@@ -271,6 +271,6 @@ You will notice that the HAR file is now several megabytes in size, and that was
 
 When we analyze the new HAR file we can see that there are no longer any warnings about missing information.
 
-![](./image9.png)
+![](./image9.png "width=500")
 
 HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next lecture we'll see how BrowserMob can block or modify requests.
