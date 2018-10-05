@@ -1,4 +1,13 @@
-## Writing a Gherkin feature
+---
+title: Writing a Gherkin feature
+description: In this post we write a complete test in Gherkin
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 Now that we know how to construct regular expressions to map methods to
 Gherkin steps, we can go ahead and add annotations to all appropriate
@@ -49,12 +58,12 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @Given("\^I open the browser \"(\[\^\"\]\*)\"$")
+  @Given("^I open the browser \"(\[^\"\]\*)\"$")
   public void openBrowser(String browser) {
     // ...
   }
 
-  @Given("\^I close the browser$")
+  @Given("^I close the browser$")
   public void closeBrowser() {
     // ...
   }
@@ -85,43 +94,43 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("\^I open the URL \"(\[\^\"\]\*)\"$")
+  @And("^I open the URL \"(\[^\"\]\*)\"$")
   @Override
   public void goTo(String url) {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the id \"(\[\^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\"$")
   @Override
   public void clickElementWithId(String id) {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the id \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithId(String id, int waitTime) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[\^\"\]\*)\"$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithId(String optionText, String id) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithId(String optionText, String id, int waitTime) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the id \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
   @Override
   public void populateElementWithId(String id, String text) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the id \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithId(String id, String text, int waitTime)
   {
@@ -138,37 +147,37 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the xpath \"(\[\^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\"$")
   @Override
   public void clickElementWithXPath(String xpath) {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the xpath \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithXPath(String xpath, int waitTime) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the xpath \"(\[\^\"\]\*)\"$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithXPath(String optionText, String xpath) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the xpath \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithXPath(String optionText, String xpath, int waitTime) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the xpath \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
   @Override
   public void populateElementWithXPath(String xpath, String text) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the xpath \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the xpath \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithXPath(String xpath, String text, int waitTime) {
     // ...
@@ -184,38 +193,38 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the css selector \"(\[\^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\"$")
   @Override
   public void clickElementWithCSSSelector(String cssSelector) {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the css selector \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithCSSSelector(String cssSelector, int waitTime) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the css selector \"(\[\^\"\]\*)\"$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithCSSSelector(String optionText, String cssSelector) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the css selector \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithCSSSelector(String optionText, String cssSelector, int waitTime) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the css selector
-  \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the css selector
+  \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
   @Override
   public void populateElementWithCSSSelector(String cssSelector, String text) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the css selector \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the css selector \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithCSSSelector(String cssSelector, String text, int waitTime) {
     // ...
@@ -231,37 +240,37 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the name \"(\[\^\"\]\*)\"$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\"$")
   @Override
   public void clickElementWithName(String name) {
     // ...
   }
 
-  @And("\^I click the \\w+(?:\\s+\\w+)\* with the name \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElementWithName(String name, int waitTime) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the name \"(\[\^\"\]\*)\"$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\"$")
   @Override
   public void selectOptionByTextFromSelectWithName(String optionText, String name) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the name \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelectWithName(String optionText, String name, int waitTime) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the name \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\"$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\"$")
   @Override
   public void populateElementWithName(String name, String text) {
     // ...
   }
 
-  @And("\^I populate the \\w+(?:\\s+\\w+)\* with the name \"(\[\^\"\]\*)\" with the text \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \\w+(?:\\s+\\w+)\* with the name \"(\[^\"\]\*)\" with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElementWithName(String name, String text, int waitTime) {
     // ...
@@ -277,37 +286,37 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("\^I click the \"(\[\^\"\]\*)\" \\w+(?:\\s+\\w+)\*$")
+  @And("^I click the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\*$")
   @Override
   public void clickElement(String locator) {
     // ...
   }
 
-  @And("\^I click the \"(\[\^\"\]\*)\" \\w+(?:\\s+\\w+)\* waiting up to \"(\\d+)\" seconds?$")
+  @And("^I click the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void clickElement(String locator, int waitTime) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \"(\[\^\"\]\*)\" \\w+(?:\\s+\\w+)\*$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\*$")
   @Override
   public void selectOptionByTextFromSelect(String optionText, String locator) {
     // ...
   }
 
-  @And("\^I select the option \"(\[\^\"\]\*)\" from the \"(\[\^\"\]\*)\" \\w+(?:\\s+\\w+)\* waiting up to \"(\\d+)\" seconds?$")
+  @And("^I select the option \"(\[^\"\]\*)\" from the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void selectOptionByTextFromSelect(String optionText, String locator, int waitTime) {
     // ...
   }
 
-  @And("\^I populate the \"(\[\^\"\]\*)\" \\w+(?:\\s+\\w+)\* with the text \"(\[\^\"\]\*)\"$")
+  @And("^I populate the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* with the text \"(\[^\"\]\*)\"$")
   @Override
   public void populateElement(String locator, String text) {
     // ...
   }
 
-  @And("\^I populate the \"(\[\^\"\]\*)\" \\w+(?:\\s+\\w+)\* with the text \"(\[\^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
+  @And("^I populate the \"(\[^\"\]\*)\" \\w+(?:\\s+\\w+)\* with the text \"(\[^\"\]\*)\" waiting up to \"(\\d+)\" seconds?$")
   @Override
   public void populateElement(String locator, String text, int waitTime) {
     // ...
@@ -323,38 +332,38 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
     // ...
   }
 
-  @And("\^I capture the HAR file$")
+  @And("^I capture the HAR file$")
   @Override
   public void captureHarFile() {
     // ...
   }
 
-  @And("\^I capture the complete HAR file$")
+  @And("^I capture the complete HAR file$")
   @Override
   public void captureCompleteHarFile() {
     // ...
   }
 
-  @And("\^I save the HAR file to \"(\[\^\"\]\*)\"$")
+  @And("^I save the HAR file to \"(\[^\"\]\*)\"$")
   @Override
   public void saveHarFile(String file) {
     // ...
   }
 
-  @And("\^I block the request to \"(\[\^\"\]\*)\" returning the HTTP code \"\\d+\"$")
+  @And("^I block the request to \"(\[^\"\]\*)\" returning the HTTP code \"\\d+\"$")
   @Override
   public void blockRequestTo(final String url, final int responseCode) {
     // ...
   }
 
-  @And("\^I alter the response fron \"(\[\^\"\]\*)\" returning the
+  @And("^I alter the response fron \"(\[^\"\]\*)\" returning the
   HTTP code \"\\d+\" and the response body:$")
   @Override
   public void alterResponseFrom(String url, int responseCode, String responseBody) {
     // ...
   }
 
-  @And("\^I maximize the window$")
+  @And("^I maximize the window$")
   @Override
   public void maximizeWindow() {
     // ...
@@ -439,7 +448,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 
   // ...
 
-  @And("\^I set the default explicit wait time to \"(\\d+)\" seconds?$")
+  @And("^I set the default explicit wait time to \"(\\d+)\" seconds?$")
   @Override
   public void setDefaultExplicitWaitTime(int waitTime) {
     if (getAutomatedBrowser() != null) {
@@ -603,7 +612,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 
   // ...
 
-  @Given("\^I set the following aliases:$")
+  @Given("^I set the following aliases:$")
   public void setAliases(Map<String, String> aliases) {
     this.aliases.putAll(aliases);
   }
@@ -616,13 +625,13 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 We then make use of a feature in Cucumber called data tables to populate
 the aliases map.
 
-Notice that the regular expression `\^I set the following aliases:$` has
+Notice that the regular expression `^I set the following aliases:$` has
 no capture groups. Traditionally we use capture groups as a way of
 passing values to the method parameters. But in this case the data table
 is supplied after the step, and passed into the method as a Map object.
 
 ```java
-@Given("\^I set the following aliases:$")
+@Given("^I set the following aliases:$")
 public void setAliases(Map<String, String> aliases) {
   this.aliases.putAll(aliases);
 }
@@ -677,7 +686,7 @@ and the code below shows how the `selectOptionByTextFromSelectWithId()`
 method was updated.
 
 ```java
-@And("\^I select the option \"(\[\^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[\^\"\]\*)\"$")
+@And("^I select the option \"(\[^\"\]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"(\[^\"\]\*)\"$")
 @Override
 public void selectOptionByTextFromSelectWithId(String optionText, String
 id) {

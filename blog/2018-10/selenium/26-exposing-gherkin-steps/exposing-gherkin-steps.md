@@ -1,4 +1,13 @@
-## Exposing Gherkin steps
+---
+title: Exposing Gherkin steps
+description: In this post we investigate the regular expressions that make up complex Gherkin steps
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 Now that we have the basics in place to integrate the
 `AutomatedBrowserBase` class with Cucumber, it is time to start fleshing
