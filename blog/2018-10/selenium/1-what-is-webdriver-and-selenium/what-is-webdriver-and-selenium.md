@@ -1,5 +1,15 @@
-What is WebDriver and Selenium?
-===============================
+---
+title: What is WebDriver and Selenium?
+description: Learn what the terms WebDriver and Selenium refer to
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
+
+## What is WebDriver and Selenium?
 
 When it comes to testing web applications, you have probably heard of WebDriver and Selenium. Often the two terms are used interchangeably or even combined to refer to the platform on which a developer can write code to interact with a web browser. However, these two terms refer to slightly different things.
 

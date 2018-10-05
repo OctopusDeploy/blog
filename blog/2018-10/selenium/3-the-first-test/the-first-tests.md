@@ -1,3 +1,15 @@
+---
+title: The First WebDriver Test
+description: In this post we create the first WebDriver tests against Chrome and Firefox.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
+
+
 ## The first test
 
 Now that we have the Maven project configured and imported in IntelliJ, we can start adding some tests.
