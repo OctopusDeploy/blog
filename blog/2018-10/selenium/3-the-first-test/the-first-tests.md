@@ -2,11 +2,9 @@
 
 Now that we have the Maven project configured and imported in IntelliJ, we can start adding some tests.
 
-The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory
-structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure.
+The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure.
 
-To create the new directory, right click on the top level project
-folder, select New → Directory.
+To create the new directory, right click on the top level project folder, select `New` → `Directory`.
 
 ![](./image1.png)
 
@@ -20,14 +18,12 @@ Projects` button in the `Maven Projects` tool window.
 
 ![](./image3.png)
 
-Notice now that the java folder has a green icon. This is an indication
-that IntelliJ recognizes this folder as one that contains Java source
-files.
+Notice now that the `java` folder has a green icon. This is an indication that IntelliJ recognizes this folder as one that contains Java source files.
 
 ![](./image4.png)
 
 Inside `octopus` directory we will create a class called
-`InitialTest`. To do this right click on the `octopus` directory and select New → Java Class.
+`InitialTest`. To do this right click on the `octopus` directory and select `New` → `Java Class`.
 
 ![](./image5.png)
 
@@ -68,7 +64,7 @@ Next we use the `get()` method to open up a URL. This is equivalent to entering 
 chromeDriver.get("https://octopus.com/");
 ```
 
-Finally we call the quit() method to close the browser and shutdown the driver.
+Finally we call the `quit()` method to close the browser and shutdown the driver.
 
 ```java
 chromeDriver.quit();
@@ -150,11 +146,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 In this example I have extracted the driver executable to
 `/Users/Shared/tools/chromedriver`.
 
-The alternative to defining the `webdriver.chrome.driver` system property is to place the driver executable on in a directory found in the PATH environment variable. When the driver executable is found on the PATH, you do not need to configure the `<systemPropertyVariables>` element as we did above, as the file can be automatically found.
+The alternative to defining the `webdriver.chrome.driver` system property is to place the driver executable on in a directory found in the `PATH` environment variable. When the driver executable is found on the `PATH`, you do not need to configure the `<systemPropertyVariables>` element as we did above, as the file can be automatically found.
 
-On a MacOS system, you can add new directories to the PATH environment variable by adding the directory to the file `/etc/paths`.
+On a MacOS system, you can add new directories to the `PATH` environment variable by adding the directory to the file `/etc/paths`.
 
-In the example below you can see from the output of the cat command (which prints the contents of a file to the screen) that the directory `/Users/Shared/tools` has been added to the `/etc/paths` file.
+In the example below you can see from the output of the `cat` command (which prints the contents of a file to the screen) that the directory `/Users/Shared/tools` has been added to the `/etc/paths` file.
 
 ```
 $ cat /etc/paths
@@ -179,14 +175,14 @@ In Linux distributions like Ubuntu, additional custom software is typically inst
 
 ![](./image12.png)
 
-To add the `/opt/tools` directory to the PATH, add it to the PATH variable in `/etc/environment`. In the screenshot below you can see that `/opt/tools` has been added to the end of the list of directories already assigned to the `PATH` environment variable. You may need to log out and back in for the change to take effect once you edit the `/etc/environment` file.
+To add the `/opt/tools` directory to the `PATH`, add it to the `PATH` variable in `/etc/environment`. In the screenshot below you can see that `/opt/tools` has been added to the end of the list of directories already assigned to the `PATH` environment variable. You may need to log out and back in for the change to take effect once you edit the `/etc/environment` file.
 
 ![](./image13.png)
 
 In Windows you may want to save the driver to a path like
 `C:\tools\chromedriver.exe`. To add this directory to the `PATH`, we need to edit the system properties.
 
-To see the system properties, click the Windows Key + R to open the Run dialog, and enter `control sysdm.cpl,,3` as the command to run. Click the `OK` button.
+To see the system properties, click the Windows Key + R to open the `Run` dialog, and enter `control sysdm.cpl,,3` as the command to run. Click the `OK` button.
 
 ![](./image14.png)
 
@@ -194,8 +190,7 @@ This will open the `System Properties` dialog box. Click the `Environment Variab
 
 ![](./image15.png)
 
-The environment variables are split between those at the top, which are specific to the current user, and those at the bottom, which are shared among all users. Both lists will have a Path variable. We'll edit the
-System variables to ensure the driver executables are available for all users, so double click the Path item in the System variables list.
+The environment variables are split between those at the top, which are specific to the current user, and those at the bottom, which are shared among all users. Both lists will have a `Path` variable. We'll edit the `System variables` to ensure the driver executables are available for all users, so double click the Path item in the `System variables` list.
 
 ![](./image16.png)
 
@@ -217,7 +212,7 @@ You will notice though that the browser window opened and closed quite quickly. 
 
 Sometimes it is useful to leave the browser open after a test has run. Especially when debugging tests it is convenient to be able to interact with the browser directly after a test has failed in order to determine the reason for the test failure.
 
-Leaving the browser open is as simple as not calling the `quit()` method on the driver object. Since it is the call to the quit() method that closes the browser and shuts down the driver, not making this call will leave the browser open after the test has finished.
+Leaving the browser open is as simple as not calling the `quit()` method on the driver object. Since it is the call to the `quit()` method that closes the browser and shuts down the driver, not making this call will leave the browser open after the test has finished.
 
 In the code below I have commented out the call to `chromeDriver.quit()`, and so when this test is run the Chrome browser it launches will remain open on the screen.
 
@@ -249,7 +244,9 @@ resources that they consume.
 
 Notice that when Chrome is being controlled by WebDriver, it displays a warning message saying Chrome is being controlled by automated test software. This is a security feature in Chrome to let users know when their browser is being controlled by software written with the WebDriver API. This warning can not be closed or prevented using WebDriver, although it can be manually closed.
 
+:::hint
 It was possible in previous versions of Chrome to disable this bar using the `--disable-infobars` argument, but this option was removed because it could be misused for malicious purposes. See <https://chromium.googlesource.com/chromium/src/+/d869ab3350d8ebd95222b4a47adf87ce3d3214b1> for more details on why this option was removed.
+:::
 
 ![](./image21.png)
 
