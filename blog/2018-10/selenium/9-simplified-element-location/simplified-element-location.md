@@ -478,16 +478,13 @@ public void formTestWithSimpleBy() throws URISyntaxException {
     automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
 
     automatedBrowser.clickElement(formButtonLocator, 10);
-    assertEquals("Button Clicked",
-    automatedBrowser.getTextFromElement(messageLocator));
+    assertEquals("Button Clicked", automatedBrowser.getTextFromElement(messageLocator));
 
     automatedBrowser.populateElement(formTextBoxLocator, "test text", 10);
-    assertEquals("Text Input Changed",
-    automatedBrowser.getTextFromElement(messageLocator));
+    assertEquals("Text Input Changed", automatedBrowser.getTextFromElement(messageLocator));
 
     automatedBrowser.populateElement(formTextAreaLocator, "test text", 10);
-    assertEquals("Text Area Changed",
-    automatedBrowser.getTextFromElement(messageLocator));
+    assertEquals("Text Area Changed", automatedBrowser.getTextFromElement(messageLocator));
 
     automatedBrowser.selectOptionByTextFromSelect("Option 2.1", formDropDownListLocator, 10);
     assertEquals("Select Changed", automatedBrowser.getTextFromElement(messageLocator));
