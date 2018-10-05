@@ -1,6 +1,15 @@
-## Implicit and Explicit Waits
+---
+title: Implicit and Explicit Waits
+description: In this post we learn the strategies WebDriver implements for interacting with dynamic elements in web pages.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
-In our test web page we have a setTimeout() method call that creates a new `<div>` with the ID of `newdiv_element` after 5 seconds. Such dynamic updates are common in modern web development, and are used extensively with Single Page Applications (SPAs) written with libraries like React and Angular.
+In our test web page we have a `setTimeout()` method call that created a new `<div>` with the ID of `newdiv_element` after 5 seconds. Such dynamic updates are common in modern web development, and are used extensively with Single Page Applications (SPAs) written with libraries like React and Angular.
 
 These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element.
 
@@ -81,42 +90,29 @@ We can implement implicit waits with a new decorator called `ImplicitWaitDecorat
 package com.octopus.decorators;
 
 import com.octopus.AutomatedBrowser;
-
 import com.octopus.decoratorbase.AutomatedBrowserBase;
-
 import java.util.concurrent.TimeUnit;
 
 public class ImplicitWaitDecorator extends AutomatedBrowserBase {
 
-private final int waitTime;
+  private final int waitTime;
 
-public ImplicitWaitDecorator(final int waitTime, final AutomatedBrowser
-automatedBrowser) {
+  public ImplicitWaitDecorator(final int waitTime, final AutomatedBrowser automatedBrowser) {
 
-super(automatedBrowser);
+  super(automatedBrowser);
+    this.waitTime = waitTime;
+  }
 
-this.waitTime = waitTime;
+  @Override
+  public void init() {
+    getAutomatedBrowser()
+      .getWebDriver()
+      .manage()
+      .timeouts()
+      .implicitlyWait(waitTime, TimeUnit.SECONDS);
 
-}
-
-@Override
-
-public void init() {
-
-getAutomatedBrowser()
-
-.getWebDriver()
-
-.manage()
-
-.timeouts()
-
-.implicitlyWait(waitTime, TimeUnit.SECONDS);
-
-getAutomatedBrowser().init();
-
-}
-
+    getAutomatedBrowser().init();
+  }
 }
 ```
 
@@ -125,17 +121,11 @@ We can then make use of this decorator by editing the
 
 ```java
 private AutomatedBrowser getChromeBrowser() {
-
-return new ChromeDecorator(
-
-new ImplicitWaitDecorator(10,
-
-new WebDriverDecorator()
-
-)
-
-);
-
+  return new ChromeDecorator(
+    new ImplicitWaitDecorator(10,
+      new WebDriverDecorator()
+      )
+    );
 }
 ```
 
@@ -149,19 +139,16 @@ To make use of explicit waits, we add a new method to the `AutomatedBrowser` int
 
 ```java
 void clickElementWithId(String id, int waitTime);
+```
 
-A default method is added to the AutomatedBrowserBase class.
+A default method is added to the `AutomatedBrowserBase` class.
 
+```java
 @Override
-
 public void clickElementWithId(final String id, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElementWithId(id, waitTime);
-
-}
-
+  if (getAutomatedBrowser() != null) {
+    getAutomatedBrowser().clickElementWithId(id, waitTime);
+  }
 }
 ```
 
@@ -169,21 +156,13 @@ And then the method is then defined in the `WebDriverDecorator` class.
 
 ```java
 @Override
-
 public void clickElementWithId(final String id, final int waitTime) {
-
-if (waitTime <= 0) {
-
-clickElementWithId(id);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).click();
-
-}
-
+  if (waitTime <= 0) {
+    clickElementWithId(id);
+  } else {
+    final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+    wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).click();
+  }
 }
 ```
 
@@ -195,7 +174,7 @@ We start by defining the amount of time that we wish to wait for an element. Thi
 final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
 ```
 
-We then call the `until()` method on the resulting WebDriverWait instance.
+We then call the `until()` method on the resulting `WebDriverWait` instance.
 
 Finally we use one of the static methods on the `ExpectedCondition` class to indicate what state the element we are searching for must be in before the element is returned to us.
 
@@ -211,27 +190,18 @@ To test the explicit wait we create a new test that makes use of the new `clickE
 
 ```java
 @Test
+public void clickDynamicElementWithExplicitWait() throws URISyntaxException {
+  final AutomatedBrowser automatedBrowser =
+    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
 
-public void clickDynamicElementWithExplicitWait() throws
-URISyntaxException {
+  try {
+    automatedBrowser.init();
+    automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
+    automatedBrowser.clickElementWithId("newdiv_element", 10);
 
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
-
-try {
-
-automatedBrowser.init();
-
-automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
-
-automatedBrowser.clickElementWithId("newdiv_element", 10);
-
-} finally {
-
-automatedBrowser.destroy();
-
-}
-
+  } finally {
+    automatedBrowser.destroy();
+  }
 }
 ```
 
@@ -247,26 +217,18 @@ Let's create a test that relies on an implicit wait to click the hidden element.
 
 ```java
 @Test
-
 public void clickHiddenElement() throws URISyntaxException {
 
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
+  final AutomatedBrowser automatedBrowser =
+    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
 
-try {
-
-automatedBrowser.init();
-
-automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
-
-automatedBrowser.clickElementWithId("div3_element");
-
-} finally {
-
-automatedBrowser.destroy();
-
-}
-
+  try {
+  automatedBrowser.init();
+  automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
+  automatedBrowser.clickElementWithId("div3_element");
+  } finally {
+    automatedBrowser.destroy();
+  }
 }
 ```
 
@@ -284,27 +246,17 @@ Compare this behaviour to a test that make use of explicit waits.
 
 ```java
 @Test
+public void clickHiddenElementWithExplicitWait() throws URISyntaxException {
+  final AutomatedBrowser automatedBrowser =
+    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
 
-public void clickHiddenElementWithExplicitWait() throws
-URISyntaxException {
-
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("Chrome");
-
-try {
-
-automatedBrowser.init();
-
-automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
-
-automatedBrowser.clickElementWithId("div3_element", 10);
-
-} finally {
-
-automatedBrowser.destroy();
-
-}
-
+  try {
+    automatedBrowser.init();
+    automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
+    automatedBrowser.clickElementWithId("div3_element", 10);
+  } finally {
+    automatedBrowser.destroy();
+  }
 }
 ```
 
@@ -320,23 +272,13 @@ Selecting an option from a drop down list waits for the `<select>` element to be
 
 ```java
 @Override
-
-public void selectOptionByTextFromSelectWithId(final String optionText,
-final String id, final int waitTime) {
-
-if (waitTime <= 0) {
-
-selectOptionByTextFromSelectWithId(id, optionText);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-new
-Select(wait.until(ExpectedConditions.elementToBeClickable((By.id(id))))).selectByVisibleText(optionText);
-
-}
-
+public void selectOptionByTextFromSelectWithId(final String optionText, final String id, final int waitTime) {
+  if (waitTime <= 0) {
+    selectOptionByTextFromSelectWithId(id, optionText);
+  } else {
+    final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+    new Select(wait.until(ExpectedConditions.elementToBeClickable((By.id(id))))).selectByVisibleText(optionText);
+  }
 }
 ```
 
@@ -344,22 +286,13 @@ Likewise we wait for elements like `<textarea>` to be clickable before trying to
 
 ```java
 @Override
-
-public void populateElementWithId(final String id, final String text,
-final int waitTime) {
-
-if (waitTime <= 0) {
-
-populateElementWithId(id, text);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).sendKeys(text);
-
-}
-
+public void populateElementWithId(final String id, final String text, final int waitTime) {
+  if (waitTime <= 0) {
+    populateElementWithId(id, text);
+  } else {
+    final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+    wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).sendKeys(text);
+  }
 }
 ```
 
@@ -367,23 +300,15 @@ When returning the text from an element, it only needs to be present on the page
 
 ```java
 @Override
+public String getTextFromElementWithId(final String id, final int waitTime) {
+  if (waitTime <= 0) {
+    return getTextFromElementWithId(id);
+  } else {
+    final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
 
-public String getTextFromElementWithId(final String id, final int
-waitTime) {
-
-if (waitTime <= 0) {
-
-return getTextFromElementWithId(id);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-return
-wait.until(ExpectedConditions.presenceOfElementLocated((By.id(id)))).getText();
-
-}
-
+    return
+    wait.until(ExpectedConditions.presenceOfElementLocated((By.id(id)))).getText();
+  }
 }
 ```
 
@@ -398,71 +323,63 @@ import org.openqa.selenium.WebDriver;
 
 public interface AutomatedBrowser {
 
-WebDriver getWebDriver();
+  WebDriver getWebDriver();
 
-void setWebDriver(WebDriver webDriver);
+  void setWebDriver(WebDriver webDriver);
 
-void init();
+  void init();
 
-void destroy();
+  void destroy();
 
-void goTo(String url);
+  void goTo(String url);
 
-void clickElementWithId(String id);
+  void clickElementWithId(String id);
 
-void clickElementWithId(String id, int waitTime);
+  void clickElementWithId(String id, int waitTime);
 
-void selectOptionByTextFromSelectWithId(String optionText, String id);
+  void selectOptionByTextFromSelectWithId(String optionText, String id);
 
-void selectOptionByTextFromSelectWithId(String optionText, String id,
-int waitTime);
+  void selectOptionByTextFromSelectWithId(String optionText, String id, int waitTime);
 
-void populateElementWithId(String id, String text);
+  void populateElementWithId(String id, String text);
 
-void populateElementWithId(String id, String text, int waitTime);
+  void populateElementWithId(String id, String text, int waitTime);
 
-String getTextFromElementWithId(String id);
+  String getTextFromElementWithId(String id);
 
-String getTextFromElementWithId(String id, int waitTime);
+  String getTextFromElementWithId(String id, int waitTime);
 
-void clickElementWithXPath(String xpath);
+  void clickElementWithXPath(String xpath);
 
-void clickElementWithXPath(String xpath, int waitTime);
+  void clickElementWithXPath(String xpath, int waitTime);
 
-void selectOptionByTextFromSelectWithXPath(String optionText, String
-xpath);
+  void selectOptionByTextFromSelectWithXPath(String optionText, String xpath);
 
-void selectOptionByTextFromSelectWithXPath(String optionText, String
-xpath, int waitTime);
+  void selectOptionByTextFromSelectWithXPath(String optionText, String xpath, int waitTime);
 
-void populateElementWithXPath(String xpath, String text);
+  void populateElementWithXPath(String xpath, String text);
 
-void populateElementWithXPath(String xpath, String text, int waitTime);
+  void populateElementWithXPath(String xpath, String text, int waitTime);
 
-String getTextFromElementWithXPath(String xpath);
+  String getTextFromElementWithXPath(String xpath);
 
-String getTextFromElementWithXPath(String xpath, int waitTime);
+  String getTextFromElementWithXPath(String xpath, int waitTime);
 
-void clickElementWithCSSSelector(String cssSelector);
+  void clickElementWithCSSSelector(String cssSelector);
 
-void clickElementWithCSSSelector(String cssSelector, int waitTime);
+  void clickElementWithCSSSelector(String cssSelector, int waitTime);
 
-void selectOptionByTextFromSelectWithCSSSelector(String optionText,
-String cssSelector);
+  void selectOptionByTextFromSelectWithCSSSelector(String optionText, String cssSelector);
 
-void selectOptionByTextFromSelectWithCSSSelector(String optionText,
-String cssSelector, int waitTime);
+  void selectOptionByTextFromSelectWithCSSSelector(String optionText, String cssSelector, int waitTime);
 
-void populateElementWithCSSSelector(String cssSelector, String text);
+  void populateElementWithCSSSelector(String cssSelector, String text);
 
-void populateElementWithCSSSelector(String cssSelector, String text, int
-waitTime);
+  void populateElementWithCSSSelector(String cssSelector, String text, int waitTime);
 
-String getTextFromElementWithCSSSelector(String cssSelector);
+  String getTextFromElementWithCSSSelector(String cssSelector);
 
-String getTextFromElementWithCSSSelector(String cssSelector, int
-waitTime);
-
+  String getTextFromElementWithCSSSelector(String cssSelector, int waitTime);
 }
 ```
 
@@ -472,420 +389,236 @@ Here is the `AutomatedBrowserBase` class with default implementations for the ne
 package com.octopus.decoratorbase;
 
 import com.octopus.AutomatedBrowser;
-
 import org.openqa.selenium.WebDriver;
 
 public class AutomatedBrowserBase implements AutomatedBrowser {
-
-private AutomatedBrowser automatedBrowser;
-
-public AutomatedBrowserBase() {
-
-}
-
-public AutomatedBrowserBase(final AutomatedBrowser automatedBrowser) {
-
-this.automatedBrowser = automatedBrowser;
-
-}
-
-public AutomatedBrowser getAutomatedBrowser() {
-
-return automatedBrowser;
-
-}
-
-@Override
-
-public WebDriver getWebDriver() {
-
-if (getAutomatedBrowser() != null) {
-
-return getAutomatedBrowser().getWebDriver();
-
-}
-
-return null;
-
-}
-
-@Override
-
-public void setWebDriver(final WebDriver webDriver) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().setWebDriver(webDriver);
-
-}
-
-}
-
-@Override
-
-public void init() {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().init();
-
-}
-
-}
-
-@Override
-
-public void destroy() {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().destroy();
-
-}
-
-}
-
-@Override
-
-public void goTo(String url) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().goTo(url);
-
-}
-
-}
-
-@Override
-
-public void clickElementWithId(final String id) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElementWithId(id);
-
-}
-
-}
-
-@Override
-
-public void clickElementWithId(final String id, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElementWithId(id, waitTime);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithId(final String optionText,
-final String id) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelectWithId(optionText,
-id);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithId(final String optionText,
-final String id, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelectWithId(optionText, id,
-waitTime);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithId(final String id, final String text) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElementWithId(id, text);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithId(final String id, final String text,
-final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElementWithId(id, text, waitTime);
-
-}
-
-}
-
-@Override
-
-public String getTextFromElementWithId(final String id) {
-
-if (getAutomatedBrowser() != null) {
-
-return getAutomatedBrowser().getTextFromElementWithId(id);
-
-}
-
-return null;
-
-}
-
-@Override
-
-public String getTextFromElementWithId(final String id, final int
-waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-return getAutomatedBrowser().getTextFromElementWithId(id, waitTime);
-
-}
-
-return null;
-
-}
-
-@Override
-
-public void clickElementWithXPath(final String xpath) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElementWithXPath(xpath);
-
-}
-
-}
-
-@Override
-
-public void clickElementWithXPath(final String xpath, final int
-waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElementWithXPath(xpath, waitTime);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithXPath(final String
-optionText, final String xpath) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelectWithXPath(optionText,
-xpath);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithXPath(final String
-optionText, final String xpath, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelectWithXPath(optionText,
-xpath, waitTime);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithXPath(final String xpath, final String
-text) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElementWithXPath(xpath, text);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithXPath(final String xpath, final String
-text, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElementWithXPath(xpath, text, waitTime);
-
-}
-
-}
-
-@Override
-
-public String getTextFromElementWithXPath(final String xpath) {
-
-if (getAutomatedBrowser() != null) {
-
-return getAutomatedBrowser().getTextFromElementWithXPath(xpath);
-
-}
-
-return null;
-
-}
-
-@Override
-
-public String getTextFromElementWithXPath(final String xpath, final int
-waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-return getAutomatedBrowser().getTextFromElementWithXPath(xpath,
-waitTime);
-
-}
-
-return null;
-
-}
-
-@Override
-
-public void clickElementWithCSSSelector(final String cssSelector) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElementWithCSSSelector(cssSelector);
-
-}
-
-}
-
-@Override
-
-public void clickElementWithCSSSelector(final String cssSelector, final
-int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().clickElementWithCSSSelector(cssSelector,
-waitTime);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithCSSSelector(final String
-optionText, final String cssSelector) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelectWithCSSSelector(optionText,
-cssSelector);
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithCSSSelector(final String
-optionText, final String cssSelector, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().selectOptionByTextFromSelectWithCSSSelector(optionText,
-cssSelector, waitTime);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithCSSSelector(final String cssSelector,
-final String text) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElementWithCSSSelector(cssSelector, text);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithCSSSelector(final String cssSelector,
-final String text, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-getAutomatedBrowser().populateElementWithCSSSelector(cssSelector, text,
-waitTime);
-
-}
-
-}
-
-@Override
-
-public String getTextFromElementWithCSSSelector(final String
-cssSelector) {
-
-if (getAutomatedBrowser() != null) {
-
-return
-getAutomatedBrowser().getTextFromElementWithCSSSelector(cssSelector);
-
-}
-
-return null;
-
-}
-
-@Override
-
-public String getTextFromElementWithCSSSelector(final String
-cssSelector, final int waitTime) {
-
-if (getAutomatedBrowser() != null) {
-
-return
-getAutomatedBrowser().getTextFromElementWithCSSSelector(cssSelector,
-waitTime);
-
-}
-
-return null;
-
-}
-
+    private AutomatedBrowser automatedBrowser;
+
+    public AutomatedBrowserBase() {
+    }
+
+    public AutomatedBrowserBase(final AutomatedBrowser automatedBrowser) {
+        this.automatedBrowser = automatedBrowser;
+    }
+
+    public AutomatedBrowser getAutomatedBrowser() {
+        return automatedBrowser;
+    }
+
+    @Override
+    public WebDriver getWebDriver() {
+        if (getAutomatedBrowser() != null) {
+            return getAutomatedBrowser().getWebDriver();
+        }
+        return null;
+    }
+
+    @Override
+    public void setWebDriver(final WebDriver webDriver) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().setWebDriver(webDriver);
+        }
+    }
+
+    @Override
+    public void init() {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().init();
+        }
+    }
+
+    @Override
+    public void destroy() {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().destroy();
+        }
+    }
+
+    @Override
+    public void goTo(String url) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().goTo(url);
+        }
+    }
+
+    @Override
+    public void clickElementWithId(final String id) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().clickElementWithId(id);
+        }
+    }
+
+    @Override
+    public void clickElementWithId(final String id, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().clickElementWithId(id, waitTime);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithId(final String optionText, final String id) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithId(optionText, id);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithId(final String optionText, final String id, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithId(optionText, id, waitTime);
+        }
+    }
+
+    @Override
+    public void populateElementWithId(final String id, final String text) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().populateElementWithId(id, text);
+        }
+    }
+
+    @Override
+    public void populateElementWithId(final String id, final String text, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().populateElementWithId(id, text, waitTime);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithId(final String id) {
+        if (getAutomatedBrowser() != null) {
+            return getAutomatedBrowser().getTextFromElementWithId(id);
+        }
+        return null;
+    }
+
+    @Override
+    public String getTextFromElementWithId(final String id, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            return getAutomatedBrowser().getTextFromElementWithId(id, waitTime);
+        }
+        return null;
+    }
+
+    @Override
+    public void clickElementWithXPath(final String xpath) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().clickElementWithXPath(xpath);
+        }
+    }
+
+    @Override
+    public void clickElementWithXPath(final String xpath, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().clickElementWithXPath(xpath, waitTime);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithXPath(final String optionText, final String xpath) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithXPath(optionText, xpath);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithXPath(final String optionText, final String xpath, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithXPath(optionText, xpath, waitTime);
+        }
+    }
+
+    @Override
+    public void populateElementWithXPath(final String xpath, final String
+            text) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().populateElementWithXPath(xpath, text);
+        }
+    }
+
+    @Override
+    public void populateElementWithXPath(final String xpath, final String text, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().populateElementWithXPath(xpath, text, waitTime);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithXPath(final String xpath) {
+        if (getAutomatedBrowser() != null) {
+            return getAutomatedBrowser().getTextFromElementWithXPath(xpath);
+        }
+        return null;
+    }
+
+    @Override
+    public String getTextFromElementWithXPath(final String xpath, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            return getAutomatedBrowser().getTextFromElementWithXPath(xpath,
+                    waitTime);
+        }
+        return null;
+    }
+
+    @Override
+    public void clickElementWithCSSSelector(final String cssSelector) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().clickElementWithCSSSelector(cssSelector);
+        }
+    }
+
+    @Override
+    public void clickElementWithCSSSelector(final String cssSelector, final
+    int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().clickElementWithCSSSelector(cssSelector, waitTime);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithCSSSelector(final String optionText, final String cssSelector) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithCSSSelector(optionText,
+                    cssSelector);
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithCSSSelector(final String optionText, final String cssSelector, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().selectOptionByTextFromSelectWithCSSSelector(optionText,
+                    cssSelector, waitTime);
+        }
+    }
+
+    @Override
+    public void populateElementWithCSSSelector(final String cssSelector, final String text) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().populateElementWithCSSSelector(cssSelector, text);
+        }
+    }
+
+    @Override
+    public void populateElementWithCSSSelector(final String cssSelector, final String text, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            getAutomatedBrowser().populateElementWithCSSSelector(cssSelector, text, waitTime);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithCSSSelector(final String cssSelector) {
+        if (getAutomatedBrowser() != null) {
+            return getAutomatedBrowser().getTextFromElementWithCSSSelector(cssSelector);
+        }
+        return null;
+    }
+
+    @Override
+    public String getTextFromElementWithCSSSelector(final String cssSelector, final int waitTime) {
+        if (getAutomatedBrowser() != null) {
+            return getAutomatedBrowser().getTextFromElementWithCSSSelector(cssSelector, waitTime);
+        }
+        return null;
+    }
 }
 ```
 
@@ -895,400 +628,228 @@ And here is the `WebDriverDecorator` class with explicit wait implementations fo
 package com.octopus.decorators;
 
 import com.octopus.decoratorbase.AutomatedBrowserBase;
-
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import org.openqa.selenium.support.ui.Select;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebDriverDecorator extends AutomatedBrowserBase {
-
-private WebDriver webDriver;
-
-public WebDriverDecorator() {
-
-}
-
-@Override
-
-public WebDriver getWebDriver() {
-
-return webDriver;
-
-}
-
-@Override
-
-public void setWebDriver(final WebDriver webDriver) {
-
-this.webDriver = webDriver;
-
-}
-
-@Override
-
-public void destroy() {
-
-if (webDriver != null) {
-
-webDriver.quit();
-
-}
-
-}
-
-@Override
-
-public void goTo(final String url) {
-
-webDriver.get(url);
-
-}
-
-@Override
-
-public void clickElementWithId(final String id) {
-
-webDriver.findElement(By.id(id)).click();
-
-}
-
-@Override
-
-public void clickElementWithId(final String id, final int waitTime) {
-
-if (waitTime <= 0) {
-
-clickElementWithId(id);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).click();
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithId(final String optionText,
-final String selectId) {
-
-new
-Select(webDriver.findElement(By.id(selectId))).selectByVisibleText(optionText);
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithId(final String optionText,
-final String id, final int waitTime) {
-
-if (waitTime <= 0) {
-
-selectOptionByTextFromSelectWithId(id, optionText);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-new
-Select(wait.until(ExpectedConditions.elementToBeClickable((By.id(id))))).selectByVisibleText(optionText);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithId(final String id, final String text) {
-
-webDriver.findElement(By.id(id)).sendKeys(text);
-
-}
-
-@Override
-
-public void populateElementWithId(final String id, final String text,
-final int waitTime) {
-
-if (waitTime <= 0) {
-
-populateElementWithId(id, text);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).sendKeys(text);
-
-}
-
-}
-
-@Override
-
-public String getTextFromElementWithId(final String id) {
-
-return webDriver.findElement(By.id(id)).getText();
-
-}
-
-@Override
-
-public String getTextFromElementWithId(final String id, final int
-waitTime) {
-
-if (waitTime <= 0) {
-
-return getTextFromElementWithId(id);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-return
-wait.until(ExpectedConditions.presenceOfElementLocated((By.id(id)))).getText();
-
-}
-
-}
-
-@Override
-
-public void clickElementWithXPath(final String xpath) {
-
-webDriver.findElement(By.xpath(xpath)).click();
-
-}
-
-@Override
-
-public void clickElementWithXPath(final String xpath, final int
-waitTime) {
-
-if (waitTime <= 0) {
-
-clickElementWithXPath(xpath);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.xpath(xpath)))).click();
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithXPath(final String
-optionText, final String xpath) {
-
-new
-Select(webDriver.findElement(By.xpath(xpath))).selectByVisibleText(optionText);
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithXPath(final String
-optionText, final String xpath, final int waitTime) {
-
-if (waitTime <= 0) {
-
-selectOptionByTextFromSelectWithXPath(xpath, optionText);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-new
-Select(wait.until(ExpectedConditions.elementToBeClickable((By.xpath(xpath))))).selectByVisibleText(optionText);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithXPath(final String xpath, final String
-text) {
-
-webDriver.findElement(By.xpath(xpath)).sendKeys(text);
-
-}
-
-@Override
-
-public void populateElementWithXPath(final String xpath, final String
-text, final int waitTime) {
-
-if (waitTime <= 0) {
-
-populateElementWithXPath(xpath, text);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.xpath(xpath)))).sendKeys(text);
-
-}
-
-}
-
-@Override
-
-public String getTextFromElementWithXPath(final String xpath) {
-
-return webDriver.findElement(By.xpath(xpath)).getText();
-
-}
-
-@Override
-
-public String getTextFromElementWithXPath(final String xpath, final int
-waitTime) {
-
-if (waitTime <= 0) {
-
-return getTextFromElementWithXPath(xpath);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-return
-wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath(xpath)))).getText();
-
-}
-
-}
-
-@Override
-
-public void clickElementWithCSSSelector(final String cssSelector) {
-
-webDriver.findElement(By.cssSelector(cssSelector)).click();
-
-}
-
-@Override
-
-public void clickElementWithCSSSelector(String css, final int waitTime)
-{
-
-if (waitTime <= 0) {
-
-clickElementWithCSSSelector(css);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector(css)))).click();
-
-}
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithCSSSelector(final String
-optionText, final String cssSelector) {
-
-new
-Select(webDriver.findElement(By.cssSelector(cssSelector))).selectByVisibleText(optionText);
-
-}
-
-@Override
-
-public void selectOptionByTextFromSelectWithCSSSelector(final String
-optionText, final String css, final int waitTime) {
-
-if (waitTime <= 0) {
-
-selectOptionByTextFromSelectWithCSSSelector(css, optionText);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-new
-Select(wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector(css))))).selectByVisibleText(optionText);
-
-}
-
-}
-
-@Override
-
-public void populateElementWithCSSSelector(final String cssSelector,
-final String text) {
-
-webDriver.findElement(By.cssSelector(cssSelector)).sendKeys(text);
-
-}
-
-@Override
-
-public void populateElementWithCSSSelector(String css, final String
-text, final int waitTime) {
-
-if (waitTime <= 0) {
-
-populateElementWithCSSSelector(css, text);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector(css)))).sendKeys(text);
-
-}
-
-}
-
-@Override
-
-public String getTextFromElementWithCSSSelector(final String
-cssSelector) {
-
-return webDriver.findElement(By.cssSelector(cssSelector)).getText();
-
-}
-
-@Override
-
-public String getTextFromElementWithCSSSelector(String css, final int
-waitTime) {
-
-if (waitTime <= 0) {
-
-return getTextFromElementWithCSSSelector(css);
-
-} else {
-
-final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
-
-return
-wait.until(ExpectedConditions.presenceOfElementLocated((By.cssSelector(css)))).getText();
-
-}
-
-}
-
+    private WebDriver webDriver;
+
+    public WebDriverDecorator() {
+    }
+
+    @Override
+    public WebDriver getWebDriver() {
+        return webDriver;
+    }
+
+    @Override
+    public void setWebDriver(final WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
+    @Override
+    public void destroy() {
+        if (webDriver != null) {
+            webDriver.quit();
+        }
+    }
+
+    @Override
+    public void goTo(final String url) {
+        webDriver.get(url);
+    }
+
+    @Override
+    public void clickElementWithId(final String id) {
+        webDriver.findElement(By.id(id)).click();
+    }
+
+    @Override
+    public void clickElementWithId(final String id, final int waitTime) {
+        if (waitTime <= 0) {
+            clickElementWithId(id);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).click();
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithId(final String optionText, final String selectId) {
+        new Select(webDriver.findElement(By.id(selectId))).selectByVisibleText(optionText);
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithId(final String optionText, final String id, final int waitTime) {
+        if (waitTime <= 0) {
+            selectOptionByTextFromSelectWithId(id, optionText);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            new Select(wait.until(ExpectedConditions.elementToBeClickable((By.id(id))))).selectByVisibleText(optionText);
+        }
+    }
+
+    @Override
+    public void populateElementWithId(final String id, final String text) {
+        webDriver.findElement(By.id(id)).sendKeys(text);
+    }
+
+    @Override
+    public void populateElementWithId(final String id, final String text,
+                                      final int waitTime) {
+        if (waitTime <= 0) {
+            populateElementWithId(id, text);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).sendKeys(text);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithId(final String id) {
+        return webDriver.findElement(By.id(id)).getText();
+    }
+
+    @Override
+    public String getTextFromElementWithId(final String id, final int
+            waitTime) {
+        if (waitTime <= 0) {
+            return getTextFromElementWithId(id);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            return wait.until(ExpectedConditions.presenceOfElementLocated((By.id(id)))).getText();
+        }
+    }
+
+    @Override
+    public void clickElementWithXPath(final String xpath) {
+        webDriver.findElement(By.xpath(xpath)).click();
+    }
+
+    @Override
+    public void clickElementWithXPath(final String xpath, final int waitTime) {
+        if (waitTime <= 0) {
+            clickElementWithXPath(xpath);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.xpath(xpath)))).click();
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithXPath(final String optionText, final String xpath) {
+        new Select(webDriver.findElement(By.xpath(xpath))).selectByVisibleText(optionText);
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithXPath(final String
+                                                              optionText, final String xpath, final int waitTime) {
+        if (waitTime <= 0) {
+            selectOptionByTextFromSelectWithXPath(xpath, optionText);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            new Select(wait.until(ExpectedConditions.elementToBeClickable((By.xpath(xpath))))).selectByVisibleText(optionText);
+        }
+    }
+
+    @Override
+    public void populateElementWithXPath(final String xpath, final String
+            text) {
+        webDriver.findElement(By.xpath(xpath)).sendKeys(text);
+    }
+
+    @Override
+    public void populateElementWithXPath(final String xpath, final String
+            text, final int waitTime) {
+        if (waitTime <= 0) {
+            populateElementWithXPath(xpath, text);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.xpath(xpath)))).sendKeys(text);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithXPath(final String xpath) {
+        return webDriver.findElement(By.xpath(xpath)).getText();
+    }
+
+    @Override
+    public String getTextFromElementWithXPath(final String xpath, final int
+            waitTime) {
+        if (waitTime <= 0) {
+            return getTextFromElementWithXPath(xpath);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            return wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath(xpath)))).getText();
+        }
+    }
+
+    @Override
+    public void clickElementWithCSSSelector(final String cssSelector) {
+        webDriver.findElement(By.cssSelector(cssSelector)).click();
+    }
+
+    @Override
+    public void clickElementWithCSSSelector(String css, final int waitTime) {
+        if (waitTime <= 0) {
+            clickElementWithCSSSelector(css);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector(css)))).click();
+        }
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithCSSSelector(final String optionText, final String cssSelector) {
+        new
+                Select(webDriver.findElement(By.cssSelector(cssSelector))).selectByVisibleText(optionText);
+    }
+
+    @Override
+    public void selectOptionByTextFromSelectWithCSSSelector(final String optionText, final String css, final int waitTime) {
+        if (waitTime <= 0) {
+            selectOptionByTextFromSelectWithCSSSelector(css, optionText);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            new Select(wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector(css))))).selectByVisibleText(optionText);
+        }
+    }
+
+    @Override
+    public void populateElementWithCSSSelector(final String cssSelector,
+                                               final String text) {
+        webDriver.findElement(By.cssSelector(cssSelector)).sendKeys(text);
+    }
+
+    @Override
+    public void populateElementWithCSSSelector(String css, final String text, final int waitTime) {
+        if (waitTime <= 0) {
+            populateElementWithCSSSelector(css, text);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector(css)))).sendKeys(text);
+        }
+    }
+
+    @Override
+    public String getTextFromElementWithCSSSelector(final String cssSelector) {
+        return webDriver.findElement(By.cssSelector(cssSelector)).getText();
+    }
+
+    @Override
+    public String getTextFromElementWithCSSSelector(String css, final int waitTime) {
+        if (waitTime <= 0) {
+            return getTextFromElementWithCSSSelector(css);
+        } else {
+            final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
+            return wait.until(ExpectedConditions.presenceOfElementLocated((By.cssSelector(css)))).getText();
+        }
+    }
 }
 ```
 
-Now that we have seen how implicit and explicit waits work, it is important to understand some of unexpected consequences of using them at the same time. In the next lecture we'll learn about some unexpected behavior when implicit and explicit waits are mixed.
+Now that we have seen how implicit and explicit waits work, it is important to understand some of unexpected consequences of using them at the same time. In the next post we'll learn about some unexpected behavior when implicit and explicit waits are mixed.
