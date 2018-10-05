@@ -1,14 +1,21 @@
-## Headless Browsers
+---
+title: Headless Browsers
+description: In this post we learn how to run tests against headless browsers.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
-You will have noticed by now that running tests with WebDriver results in a browser window being opened and the web pages being loaded and interacted with as if by some invisible mouse pointer. While it can be useful to watch the progression of a test in the browser, there are times when it is desirable to have the tests complete off-screen. For example, running tests as part of a continuous deployment process does not require anyone to watch the browser as the tests are executed. Indeed, sometimes there is not even a monitor attached to the systems that are running the tests (this is known as a headless environment). So how can we run tests in such headless environments?
+You will have noticed by now that running tests with WebDriver results in a browser window being opened and the web pages being loaded and interacted with as if by some invisible mouse pointer. While it can be useful to watch the progression of a test in the browser, there are times when it is desirable to have the tests complete off-screen. For example, running tests as part of a continuous deployment process does not require anyone to watch the browser as the tests are executed. Indeed, sometimes there is not even a monitor attached to the systems that are running the tests -  this is known as a headless environment. So how can we run tests in such headless environments?
 
 This is a problem that projects like [PhantomJS](http://phantomjs.org/) were created to solve. PhantomJS is a web browser based on WebKit, which is the library that powers browsers like Apple Safari. Unlike a traditional browser though, PhantomJS has no GUI, and is designed to be controlled by technologies like WebDriver. Because it has no GUI, PhantomJS can be run on continuous integration servers that are traditionally hosted on headless servers. This means you can run WebDriver tests on a central server in response to application changes without having to launch a browser window in a desktop environment.
 
-Recently browsers like Firefox and Chrome have added native support for headless browsing. This is a great benefit to anyone writing WebDriver tests, as it means that the tests can be run on the very same browsers that end users have installed, while still allowing tests to be run on a
-headless server.
+Recently browsers like Firefox and Chrome have added native support for headless browsing. This is a great benefit to anyone writing WebDriver tests, as it means that the tests can be run on the very same browsers that end users have installed, while still allowing tests to be run on a headless server.
 
-These days development of PhantomJS has stalled. One of the maintainers of the project has [stepped
-down](https://groups.google.com/forum/#!topic/phantomjs/9aI5d-LDuNE), and the latest release of PhantomJS is over 2 years old. But the good news is that it is quite easy to configure Chrome and Firefox to run tests in a headless environment.
+These days development of PhantomJS has stalled. One of the maintainers of the project has [stepped down](https://groups.google.com/forum/#!topic/phantomjs/9aI5d-LDuNE), and the latest release of PhantomJS is over 2 years old. But the good news is that it is quite easy to configure Chrome and Firefox to run tests in a headless environment.
 
 Before we start configuring headless browsers, we need to add some additional support for configuring the driver classes.
 
@@ -26,7 +33,7 @@ public interface AutomatedBrowser {
 
 Then we add a default method in the `AutomatedBrowserBase` class.
 
-This method differs a little from the typical default decorator method implementation in that if there is no parent `AutomatedBrowser` instance to return an instance of the `DesiredCapabilities` class from, we return a new instance of `DesiredCapabilities` instead of null. This ensures that if no decorator has provided any `DesiredCapabilities`, we can always rely on a default instance being returned.
+This method differs a little from the typical default decorator method implementation in that if there is no parent `AutomatedBrowser` instance to return an instance of the `DesiredCapabilities` class from, we return a new instance of `DesiredCapabilities` instead of `null`. This ensures that if no decorator has provided any `DesiredCapabilities`, we can always rely on a default instance being returned.
 
 ```java
 @Override
@@ -56,20 +63,18 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeDecorator extends AutomatedBrowserBase {
 
-public ChromeDecorator(final AutomatedBrowser automatedBrowser) {
+    public ChromeDecorator(final AutomatedBrowser automatedBrowser) {
+        super(automatedBrowser);
+    }
 
-  super(automatedBrowser);
-
-  }
-
-  @Override
-  public void init() {
-    final ChromeOptions options = new ChromeOptions();
-    options.merge(getDesiredCapabilities());
-    final WebDriver webDriver = new ChromeDriver(options);
-    getAutomatedBrowser().setWebDriver(webDriver);
-    getAutomatedBrowser().init();
-  }
+    @Override
+    public void init() {
+        final ChromeOptions options = new ChromeOptions();
+        options.merge(getDesiredCapabilities());
+        final WebDriver webDriver = new ChromeDriver(options);
+        getAutomatedBrowser().setWebDriver(webDriver);
+        getAutomatedBrowser().init();
+    }
 }
 ```
 
