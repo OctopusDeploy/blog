@@ -1,10 +1,15 @@
-## Environment specific handing
+---
+title: Environment specific handing
+description: In this post we learn how to customize WebDriver operations based on the target environment.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
-You may have noticed when running tests against the Edge browser in
-BrowserStack that the window was not maximized. It usually makes sense
-to run tests in a maximized window to ensure that the tests are run with
-web pages displayed with a consistent resolution, so let's add a new
-method to maximize the window.
+You may have noticed when running tests against the Edge browser in BrowserStack that the window was not maximized. It usually makes sense to run tests in a maximized window to ensure that the tests are run with web pages displayed with a consistent resolution, so let's add a new method to maximize the window.
 
 First we add the method `maximizeWindow()` to the `AutomatedBrowser` class.
 
@@ -19,12 +24,10 @@ public interface AutomatedBrowser {
   // ...
 
   void maximizeWindow();
-
-  }
+}
 ```
 
-Then we add the default implementation to the `AutomatedBrowserBase`
-class.
+Then we add the default implementation to the `AutomatedBrowserBase` class.
 
 ```java
 package com.octopus.decoratorbase;
@@ -72,101 +75,93 @@ public class WebDriverDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Now in our test we can maximize the window before the URL is opened with
-a call to `automatedBrowser.maximizeWindow()`.
+Now in our test we can maximize the window before the URL is opened with a call to `automatedBrowser.maximizeWindow()`.
 
 ```java
 @Test
 public void browserStackEdgeTest() {
-  final AutomatedBrowser automatedBrowser =
-    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("BrowserStackEdge");
+    final AutomatedBrowser automatedBrowser =
+            AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("BrowserStackEdge");
 
-  final String formButtonLocator = "button_element";
-  final String formTextBoxLocator = "text_element";
-  final String formTextAreaLocator = "textarea_element";
-  final String formDropDownListLocator = "[name=select_element]";
+    final String formButtonLocator = "button_element";
+    final String formTextBoxLocator = "text_element";
+    final String formTextAreaLocator = "textarea_element";
+    final String formDropDownListLocator = "[name=select_element]";
+    final String formCheckboxLocator = "//*[@name=\"checkbox1_element\"]";
 
-  final String formCheckboxLocator =
-  "//*[@name=\"checkbox1_element\"]";
+    final String messageLocator = "message";
 
-  final String messageLocator = "message";
+    try {
+        automatedBrowser.init();
 
-  try {
-    automatedBrowser.init();
+        automatedBrowser.maximizeWindow();
 
-    automatedBrowser.maximizeWindow();
+        automatedBrowser.goTo("https://s3.amazonaws.com/webdriver-testing-website/form.html");
 
-    automatedBrowser.goTo("https://s3.amazonaws.com/webdriver-testing-website/form.html");
+        automatedBrowser.clickElement(formButtonLocator);
+        assertEquals("Button Clicked", automatedBrowser.getTextFromElement(messageLocator));
 
-    automatedBrowser.clickElement(formButtonLocator);
-    assertEquals("Button Clicked", automatedBrowser.getTextFromElement(messageLocator));
+        automatedBrowser.populateElement(formTextBoxLocator, "test text");
 
-    automatedBrowser.populateElement(formTextBoxLocator, "test text");
+        assertEquals("Text Input Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-    assertEquals("Text Input Changed", automatedBrowser.getTextFromElement(messageLocator));
+        automatedBrowser.populateElement(formTextAreaLocator, "test text");
 
-    automatedBrowser.populateElement(formTextAreaLocator, "test text");
+        assertEquals("Text Area Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-    assertEquals("Text Area Changed", automatedBrowser.getTextFromElement(messageLocator));
+        automatedBrowser.selectOptionByTextFromSelect("Option 2.1", formDropDownListLocator);
+        assertEquals("Select Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-    automatedBrowser.selectOptionByTextFromSelect("Option 2.1", formDropDownListLocator);
-    assertEquals("Select Changed", automatedBrowser.getTextFromElement(messageLocator));
-
-    automatedBrowser.clickElement(formCheckboxLocator);
-    assertEquals("Checkbox Changed", automatedBrowser.getTextFromElement(messageLocator));
-  } finally {
-    automatedBrowser.destroy();
-  }
+        automatedBrowser.clickElement(formCheckboxLocator);
+        assertEquals("Checkbox Changed", automatedBrowser.getTextFromElement(messageLocator));
+    } finally {
+        automatedBrowser.destroy();
+    }
 }
 ```
 
-This test will now run and, as expected, the Edge browser window will be
-maximized before the URL is opened.
+This test will now run and, as expected, the Edge browser window will be maximized before the URL is opened.
 
-But what happens if we run this same test against a mobile browser?
-Let's add the call to `automatedBrowser.maximizeWindow()` in a test that
-makes use of the `AutomatedBrowser` instance generated when we pass the
-string `BrowserStackAndroid` to the factory class.
+But what happens if we run this same test against a mobile browser? Let's add the call to `automatedBrowser.maximizeWindow()` in a test that makes use of the `AutomatedBrowser` instance generated when we pass the string `BrowserStackAndroid` to the factory class.
 
 ```java
 @Test
 public void browserStackAndroidTest() {
 
-  final AutomatedBrowser automatedBrowser =
-    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("BrowserStackAndroid");
+    final AutomatedBrowser automatedBrowser =
+            AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("BrowserStackAndroid");
 
-  final String formButtonLocator = "button_element";
-  final String formTextBoxLocator = "text_element";
-  final String formTextAreaLocator = "textarea_element";
-  final String formDropDownListLocator = "[name=select_element]";
-  final String formCheckboxLocator =
-  "//*[@name=\"checkbox1_element\"]";
-  final String messageLocator = "message";
+    final String formButtonLocator = "button_element";
+    final String formTextBoxLocator = "text_element";
+    final String formTextAreaLocator = "textarea_element";
+    final String formDropDownListLocator = "[name=select_element]";
+    final String formCheckboxLocator =  "//*[@name=\"checkbox1_element\"]";
+    final String messageLocator = "message";
 
-  try {
-    automatedBrowser.init();
+    try {
+        automatedBrowser.init();
 
-    automatedBrowser.maximizeWindow();
+        automatedBrowser.maximizeWindow();
 
-    automatedBrowser.goTo("https://s3.amazonaws.com/webdriver-tests/form.html");
+        automatedBrowser.goTo("https://s3.amazonaws.com/webdriver-tests/form.html");
 
-    automatedBrowser.clickElement(formButtonLocator);
-    assertEquals("Button Clicked", automatedBrowser.getTextFromElement(messageLocator));
+        automatedBrowser.clickElement(formButtonLocator);
+        assertEquals("Button Clicked", automatedBrowser.getTextFromElement(messageLocator));
 
-    automatedBrowser.populateElement(formTextBoxLocator, "test text");
-    assertEquals("Text Input Changed", automatedBrowser.getTextFromElement(messageLocator));
+        automatedBrowser.populateElement(formTextBoxLocator, "test text");
+        assertEquals("Text Input Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-    automatedBrowser.populateElement(formTextAreaLocator, "test text");
-    assertEquals("Text Area Changed", automatedBrowser.getTextFromElement(messageLocator));
+        automatedBrowser.populateElement(formTextAreaLocator, "test text");
+        assertEquals("Text Area Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-    automatedBrowser.selectOptionByTextFromSelect("Option 2.1", formDropDownListLocator);
-    assertEquals("Select Changed", automatedBrowser.getTextFromElement(messageLocator));
+        automatedBrowser.selectOptionByTextFromSelect("Option 2.1", formDropDownListLocator);
+        assertEquals("Select Changed", automatedBrowser.getTextFromElement(messageLocator));
 
-    automatedBrowser.clickElement(formCheckboxLocator);
-    assertEquals("Checkbox Changed", automatedBrowser.getTextFromElement(messageLocator));
-  } finally {
-    automatedBrowser.destroy();
-  }
+        automatedBrowser.clickElement(formCheckboxLocator);
+        assertEquals("Checkbox Changed", automatedBrowser.getTextFromElement(messageLocator));
+    } finally {
+        automatedBrowser.destroy();
+    }
 }
 ```
 
@@ -216,26 +211,13 @@ webStorageEnabled: false}
 Session ID: 1a34a4609f63d6bc8749bd3a09f5001ea5a93dd7
 ```
 
-![C:\f22aeb0db211bb4354f00a062e71f0ea](./image1.png)
+![C:\f22aeb0db211bb4354f00a062e71f0ea](./image1.png "width=500")
 
-This exception makes sense, because mobile browsers do not have the
-concept of resizable windows. They are always full screen, and therefor
-it is invalid to try and modify the size of the window.
+This exception makes sense, because mobile browsers do not have the concept of resizable windows. They are always full screen, and therefor it is invalid to try and modify the size of the window.
 
-This does leave us with a problem though. Ideally we would like to be
-able to run our test code against any browser. Although we have been
-creating new test methods to demonstrate new browsers throughout these
-lectures, in practice it is desirable to have a single test method that
-is called multiple times for different browsers. Running a single test
-method reduces the amount of duplicated code, making the tests easier to
-maintain.
+This does leave us with a problem though. Ideally we would like to be able to run our test code against any browser. Although we have been creating new test methods to demonstrate new browsers throughout these lectures, in practice it is desirable to have a single test method that is called multiple times for different browsers. Running a single test method reduces the amount of duplicated code, making the tests easier to maintain.
 
-We could try to detect the device that the test is being run on inside
-the test, and wrap up the call to maximize the window in an `if`
-statement. The code below extracts the name of the device manufacturer,
-and if it is not samsung, we assume that the test is being run on a
-desktop device, and the call to `automatedBrowser.maximizeWindow()` is
-made.
+We could try to detect the device that the test is being run on inside the test, and wrap up the call to maximize the window in an `if` statement. The code below extracts the name of the device manufacturer, and if it is not samsung, we assume that the test is being run on a desktop device, and the call to `automatedBrowser.maximizeWindow()` is made.
 
 ```java
 String manufacturer = ((RemoteWebDriver) automatedBrowser.getWebDriver()).getCapabilities().getCapability("deviceManufacturer").toString();
@@ -245,15 +227,9 @@ if (!manufacturer.equalsIgnoreCase("samsung")) {
 }
 ```
 
-This solution works, but it is not very elegant. The code only works if
-the only mobile devices we test against are manufactured by Samsung,
-meaning each new device we test against requires new code in our tests
-to see if it is a mobile device. It also clutters up our test with a lot
-of code that distracts from the interactions that we are actually
-interested in.
+This solution works, but it is not very elegant. The code only works if the only mobile devices we test against are manufactured by Samsung, meaning each new device we test against requires new code in our tests to see if it is a mobile device. It also clutters up our test with a lot of code that distracts from the interactions that we are actually interested in.
 
-A much more elegant solution is to override the `maximizeWindow()` method
-in the `BrowserStackAndroidDecorator` decorator class.
+A much more elegant solution is to override the `maximizeWindow()` method in the `BrowserStackAndroidDecorator` decorator class.
 
 ```java
 package com.octopus.decorators;
@@ -273,13 +249,6 @@ public class BrowserStackAndroidDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Here we have added an implementation of the `maximizeWindow()` method that
-does nothing. We know that any time we use the
-`BrowserStackAndroidDecorator` class, we must be working with a mobile
-browser, and so we simply ignore any request to maximize the window.
+Here we have added an implementation of the `maximizeWindow()` method that does nothing. We know that any time we use the `BrowserStackAndroidDecorator` class, we must be working with a mobile browser, and so we simply ignore any request to maximize the window.
 
-This solution means our test code does not need to change when run on a
-desktop browser or a mobile one. Those writing and maintaining the tests
-are no longer required to account for the kinds of device that will be
-running the final test, which makes the test much more robust and easier
-to maintain.
+This solution means our test code does not need to change when run on a desktop browser or a mobile one. Those writing and maintaining the tests are no longer required to account for the kinds of device that will be running the final test, which makes the test much more robust and easier to maintain.
