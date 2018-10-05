@@ -1,7 +1,15 @@
-##The Page Object Model design pattern
+---
+title: The Page Object Model design pattern
+description: In this post we learn about the Page Object Model design pattern.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
-While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some
-limitations.
+While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some limitations.
 
 The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like
 
@@ -11,8 +19,7 @@ automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
 
 What is `tickets-1` in this case? This identifier does not describe the element that it locates particularly well. You would need to be intimately familiar with the application being tested to know what this line of code does.
 
-The second, and perhaps most significant, limitation is that the code used to construct this test is not reusable. Imagine that in addition to this test that purchases a ticket, we wanted to write a second test that verified the prices of the tickets for each available section. You might
-write a test like this to ensure that pricing changes don't result in unreasonably high or low ticket prices.
+The second, and perhaps most significant, limitation is that the code used to construct this test is not reusable. Imagine that in addition to this test that purchases a ticket, we wanted to write a second test that verified the prices of the tickets for each available section. You might write a test like this to ensure that pricing changes don't result in unreasonably high or low ticket prices.
 
 To write a second test, each of the interactions with the application to the point of being able to select an event section would need to be copied and pasted into a second test method. However copying and pasting is best avoided because it makes code much harder to maintain, since common functionality now lives in multiple methods and all have to be individually updated.
 
@@ -22,8 +29,7 @@ Let's take a look at how we can rewrite the test using the POM design pattern.
 
 Each POM class that we create needs to have access to an `AutomatedBrowser` instance. In addition we will also define a common wait time for the explicit waits used when interacting with elements. Exposing these shared properties is done with a class called BasePage.
 
-Note that the instance variables, static variables and constructor are all have the protected scope. This means that they are only available to classes that extend `BasePage`, meaning `BasePage` is not something we can
-instantiate directly.
+Note that the instance variables, static variables and constructor are all have the protected scope. This means that they are only available to classes that extend `BasePage`, meaning `BasePage` is not something we can instantiate directly.
 
 ```java
 package com.octopus.pages;
@@ -94,7 +100,7 @@ private static final String URL =
 private static final String BUY_TICKETS_NOW = "Buy tickets now";
 ```
 
-The constructor takes an instance of AutomatedBrowser, and passes it to the `BasePage` constructor.
+The constructor takes an instance of `AutomatedBrowser`, and passes it to the `BasePage` constructor.
 
 ```java
 public MainPage(final AutomatedBrowser automatedBrowser) {
@@ -106,7 +112,7 @@ The first method we define will open up the URL to the application main page. To
 
 It is in methods like `openPage()` that the specific details of URLs to be opened or elements to be interacted with are encapsulated. Callers of this method do not need to know the URL that is being opened, and should the URL change, it only needs to be changed in one location making maintenance much easier.
 
-To allow calls to be chained, we return an instance of this as the final statement. Each method in POM classes will return the POM class that additional interactions can be performed on. This way consumers of the POM classes can easily understand the flow of the application, which we will see when we write the test method.
+To allow calls to be chained, we return an instance of `this` as the final statement. Each method in POM classes will return the POM class that additional interactions can be performed on. This way consumers of the POM classes can easily understand the flow of the application, which we will see when we write the test method.
 
 ```java
 public MainPage openPage() {
@@ -115,14 +121,13 @@ public MainPage openPage() {
 }
 ```
 
-The only action we are interested on on the main page is clicking the Buy tickets now link, which we do in a method called `buyTickets()`.
+The only action we are interested on on the main page is clicking the `Buy tickets now` link, which we do in a method called `buyTickets()`.
 
-If you recall from the previous lecture, how we interacted with elements like this link was not as easy as it might have appeared, because these elements could either be styled links (`<a>` elements), or form buttons (or `<input>` elements). Depending on which kind of element was used, our first test had to use a different locator. Links could be identified by their text, while form buttons had to be identified by an ID or name attribute.
+If you recall from the previous post, how we interacted with elements like this link was not as easy as it might have appeared, because these elements could either be styled links (`<a>` elements), or form buttons (`<input>` elements). Depending on which kind of element was used, our first test had to use a different locator. Links could be identified by their text, while form buttons had to be identified by an ID or name attribute.
 
-This distinction between elements is no longer the concern of those writing these tests, but instead has been encapsulated inside this POM class. Calling the `buyTickets()` will result in that desired element being clicked, regardless of how that element has been implemented.
+This distinction between elements is no longer the concern of those writing these tests, but instead has been encapsulated inside this POM class. Calling the `buyTickets()` will result in the desired element being clicked, regardless of how that element has been implemented.
 
-Because clicking this link directs the browser to the events page, we return an instance of the `EventsPage` class. Callers of the `buyTickets()` can understand that this return value indicates that a page navigation has taken place, and that further interaction with the page now has to
-be performed using the `EventsPage` class.
+Because clicking this link directs the browser to the events page, we return an instance of the `EventsPage` class. Callers of the `buyTickets()` can understand that this return value indicates that a page navigation has taken place, and that further interaction with the page now has to be performed using the `EventsPage` class.
 
 ```java
 public EventsPage buyTickets() {
@@ -222,7 +227,7 @@ public class VenuePage extends BasePage {
 
 Selecting a venue is performed by the `selectVenue()` method, with the venue name passed in as an argument.
 
-Selecting a venue does not trigger any page navigation, so we return this to indicate that future interactions will still be performed on the same page.
+Selecting a venue does not trigger any page navigation, so we return `this` to indicate that future interactions will still be performed on the same page.
 
 ```java
 public VenuePage selectVenue(final String venue) {
@@ -255,48 +260,31 @@ import com.octopus.pages.BasePage;
 
 public class CheckoutPage extends BasePage {
 
-private static final String SECTION_DROP_DOWN_LIST =
-"sectionSelect";
+    private static final String SECTION_DROP_DOWN_LIST = "sectionSelect";
+    private static final String ADULT_TICKET_COUNT = "tickets-1";
+    private static final String ADD_TICKETS_BUTTON = "add";
+    private static final String EMAIL_ADDRESS = "email";
+    private static final String CHECKOUT_BUTTON = "submit";
 
-private static final String ADULT_TICKET_COUNT = "tickets-1";
+    public CheckoutPage(final AutomatedBrowser automatedBrowser) {
 
-private static final String ADD_TICKETS_BUTTON = "add";
+        super(automatedBrowser);
 
-private static final String EMAIL_ADDRESS = "email";
+    }
 
-private static final String CHECKOUT_BUTTON = "submit";
+    public CheckoutPage buySectionTickets(final String section, final
+    Integer adultCount) {
+        automatedBrowser.selectOptionByTextFromSelect(section, SECTION_DROP_DOWN_LIST, WAIT_TIME);
+        automatedBrowser.populateElement(ADULT_TICKET_COUNT, adultCount.toString(), WAIT_TIME);
+        automatedBrowser.clickElement(ADD_TICKETS_BUTTON, WAIT_TIME);
+        return this;
+    }
 
-public CheckoutPage(final AutomatedBrowser automatedBrowser) {
-
-super(automatedBrowser);
-
-}
-
-public CheckoutPage buySectionTickets(final String section, final
-Integer adultCount) {
-
-automatedBrowser.selectOptionByTextFromSelect(section,
-SECTION_DROP_DOWN_LIST, WAIT_TIME);
-
-automatedBrowser.populateElement(ADULT_TICKET_COUNT,
-adultCount.toString(), WAIT_TIME);
-
-automatedBrowser.clickElement(ADD_TICKETS_BUTTON, WAIT_TIME);
-
-return this;
-
-}
-
-public ConfirmationPage checkout(final String email) {
-
-automatedBrowser.populateElement(EMAIL_ADDRESS, email, WAIT_TIME);
-
-automatedBrowser.clickElement(CHECKOUT_BUTTON, WAIT_TIME);
-
-return new ConfirmationPage(automatedBrowser);
-
-}
-
+    public ConfirmationPage checkout(final String email) {
+        automatedBrowser.populateElement(EMAIL_ADDRESS, email, WAIT_TIME);
+        automatedBrowser.clickElement(CHECKOUT_BUTTON, WAIT_TIME);
+        return new ConfirmationPage(automatedBrowser);
+    }
 }
 ```
 
@@ -307,58 +295,48 @@ The constant variables here are a good example of why you want to use variables 
 ```java
 public class CheckoutPage extends BasePage {
 
-private static final String SECTION_DROP_DOWN_LIST =
-"sectionSelect";
+  private static final String SECTION_DROP_DOWN_LIST =
+  "sectionSelect";
+  private static final String ADULT_TICKET_COUNT = "tickets-1";
+  private static final String ADD_TICKETS_BUTTON = "add";
+  private static final String EMAIL_ADDRESS = "email";
+  private static final String CHECKOUT_BUTTON = "submit";
 
-private static final String ADULT_TICKET_COUNT = "tickets-1";
+  public CheckoutPage(final AutomatedBrowser automatedBrowser) {
 
-private static final String ADD_TICKETS_BUTTON = "add";
+    super(automatedBrowser);
 
-private static final String EMAIL_ADDRESS = "email";
-
-private static final String CHECKOUT_BUTTON = "submit";
-
-public CheckoutPage(final AutomatedBrowser automatedBrowser) {
-
-super(automatedBrowser);
-
-}
+    }
 ```
 
-To buy tickets in a given section we use the `buySectionTickets()` method. This method selects the desired section from the drop down list, adds the number of tickets to be bought, and clicks the Add button.
+To buy tickets in a given section we use the `buySectionTickets()` method. This method selects the desired section from the drop down list, adds the number of tickets to be bought, and clicks the `Add` button.
 
-This action does not result in any page navigation, so we return this.
+This action does not result in any page navigation, so we return `this`.
 
 ```java
-public CheckoutPage buySectionTickets(final String section, final
-Integer adultCount) {
+  public CheckoutPage buySectionTickets(final String section, final Integer adultCount) {
 
-automatedBrowser.selectOptionByTextFromSelect(section,
-SECTION_DROP_DOWN_LIST, WAIT_TIME);
+  automatedBrowser.selectOptionByTextFromSelect(section,
+  SECTION_DROP_DOWN_LIST, WAIT_TIME);
 
-automatedBrowser.populateElement(ADULT_TICKET_COUNT,
-adultCount.toString(), WAIT_TIME);
+  automatedBrowser.populateElement(ADULT_TICKET_COUNT,
+  adultCount.toString(), WAIT_TIME);
 
-automatedBrowser.clickElement(ADD_TICKETS_BUTTON, WAIT_TIME);
+  automatedBrowser.clickElement(ADD_TICKETS_BUTTON, WAIT_TIME);
 
-return this;
-
+  return this;
 }
 ```
 
-To purchase the tickets we use the `checkout()` method. This method accepts the email address to be associated with the purchase, enters that email address into the appropriate field, and click the Checkout button.
+To purchase the tickets we use the `checkout()` method. This method accepts the email address to be associated with the purchase, enters that email address into the appropriate field, and click the `Checkout` button.
 
-Clicking the Checkout button navigates us to the confirmation page, so we return an instance of the `ConfirmationPage` class.
+Clicking the `Checkout` button navigates us to the confirmation page, so we return an instance of the `ConfirmationPage` class.
 
 ```java
 public ConfirmationPage checkout(final String email) {
-
-automatedBrowser.populateElement(EMAIL_ADDRESS, email, WAIT_TIME);
-
-automatedBrowser.clickElement(CHECKOUT_BUTTON, WAIT_TIME);
-
-return new ConfirmationPage(automatedBrowser);
-
+  automatedBrowser.populateElement(EMAIL_ADDRESS, email, WAIT_TIME);
+  automatedBrowser.clickElement(CHECKOUT_BUTTON, WAIT_TIME);
+  return new ConfirmationPage(automatedBrowser);
 }
 ```
 
@@ -368,44 +346,31 @@ Let's take a look at `the ConfirmationPage` class.
 package com.octopus.pages.ticketmonster;
 
 import com.octopus.AutomatedBrowser;
-
 import com.octopus.pages.BasePage;
 
 public class ConfirmationPage extends BasePage {
 
-private static final String EMAIL_ADDRESS = "div.col-md-6:nth-child(1)
-> div:nth-child(1) > p:nth-child(2)";
+    private static final String EMAIL_ADDRESS = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)";
 
-private static final String EVENT_NAME = "div.col-md-6:nth-child(1)
-> div:nth-child(1) > p:nth-child(3)";
+    private static final String EVENT_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)";
 
-private static final String VENUE_NAME = "div.col-md-6:nth-child(1)
-> div:nth-child(1) > p:nth-child(4)";
+    private static final String VENUE_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(4)";
 
-public ConfirmationPage(final AutomatedBrowser automatedBrowser) {
+    public ConfirmationPage(final AutomatedBrowser automatedBrowser) {
+        super(automatedBrowser);
+    }
 
-super(automatedBrowser);
+    public String getEmail() {
+        return automatedBrowser.getTextFromElement(EMAIL_ADDRESS, WAIT_TIME);
+    }
 
-}
+    public String getEvent() {
+        return automatedBrowser.getTextFromElement(EVENT_NAME, WAIT_TIME);
+    }
 
-public String getEmail() {
-
-return automatedBrowser.getTextFromElement(EMAIL_ADDRESS, WAIT_TIME);
-
-}
-
-public String getEvent() {
-
-return automatedBrowser.getTextFromElement(EVENT_NAME, WAIT_TIME);
-
-}
-
-public String getVenue() {
-
-return automatedBrowser.getTextFromElement(VENUE_NAME, WAIT_TIME);
-
-}
-
+    public String getVenue() {
+        return automatedBrowser.getTextFromElement(VENUE_NAME, WAIT_TIME);
+    }
 }
 ```
 
@@ -416,20 +381,15 @@ The elements that we want to interact with on this page had no attributes that w
 ```java
 public class ConfirmationPage extends BasePage {
 
-private static final String EMAIL_ADDRESS = "div.col-md-6:nth-child(1)
-> div:nth-child(1) > p:nth-child(2)";
+    private static final String EMAIL_ADDRESS = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)";
 
-private static final String EVENT_NAME = "div.col-md-6:nth-child(1)
-> div:nth-child(1) > p:nth-child(3)";
+    private static final String EVENT_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)";
 
-private static final String VENUE_NAME = "div.col-md-6:nth-child(1)
-> div:nth-child(1) > p:nth-child(4)";
+    private static final String VENUE_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(4)";
 
-public ConfirmationPage(final AutomatedBrowser automatedBrowser) {
-
-super(automatedBrowser);
-
-}
+    public ConfirmationPage(final AutomatedBrowser automatedBrowser) {
+        super(automatedBrowser);
+    }
 ```
 
 Unlike the other POM classes, we are not clicking, selecting or populating any elements on this page. We are however interested in getting some text from the page, which we can then use to verify that the tickets we purchased have the correct values.
@@ -438,21 +398,15 @@ The getter functions here return the text content of 3 paragraph (or `<p>`) elem
 
 ```java
 public String getEmail() {
-
-return automatedBrowser.getTextFromElement(EMAIL_ADDRESS, WAIT_TIME);
-
+    return automatedBrowser.getTextFromElement(EMAIL_ADDRESS, WAIT_TIME);
 }
 
 public String getEvent() {
-
-return automatedBrowser.getTextFromElement(EVENT_NAME, WAIT_TIME);
-
+    return automatedBrowser.getTextFromElement(EVENT_NAME, WAIT_TIME);
 }
 
 public String getVenue() {
-
-return automatedBrowser.getTextFromElement(VENUE_NAME, WAIT_TIME);
-
+    return automatedBrowser.getTextFromElement(VENUE_NAME, WAIT_TIME);
 }
 ```
 
@@ -460,52 +414,37 @@ Let's now take a look at the test method that uses the POM classes.
 
 ```java
 @Test
-
 public void purchaseTicketsPageObjectModel() {
 
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
+    final AutomatedBrowser automatedBrowser =
+            AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
 
-try {
+    try {
 
-automatedBrowser.init();
+        automatedBrowser.init();
 
-final EventsPage eventsPage = new MainPage(automatedBrowser)
+        final EventsPage eventsPage = new MainPage(automatedBrowser)
+                .openPage()
+                .buyTickets();
 
-.openPage()
+        final VenuePage venuePage = eventsPage
+                .selectEvent("Concert", "Rock concert of the decade");
 
-.buyTickets();
+        final CheckoutPage checkoutPage = venuePage
+                .selectVenue("Toronto : Roy Thomson Hall")
+                .book();
 
-final VenuePage venuePage = eventsPage
+        final ConfirmationPage confirmationPage = checkoutPage
+                .buySectionTickets("A - Premier platinum reserve", 2)
+                .checkout("email@example.org");
 
-.selectEvent("Concert", "Rock concert of the decade");
+        Assert.assertTrue(confirmationPage.getEmail().contains("email@example.org"));
+        Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of the decade"));
+        Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson Hall"));
 
-final CheckoutPage checkoutPage = venuePage
-
-.selectVenue("Toronto : Roy Thomson Hall")
-
-.book();
-
-final ConfirmationPage confirmationPage = checkoutPage
-
-.buySectionTickets("A - Premier platinum reserve", 2)
-
-.checkout("email@example.org");
-
-Assert.assertTrue(confirmationPage.getEmail().contains("email@example.org"));
-
-Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of
-the decade"));
-
-Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson
-Hall"));
-
-} finally {
-
-automatedBrowser.destroy();
-
-}
-
+    } finally {
+        automatedBrowser.destroy();
+    }
 }
 ```
 
@@ -513,22 +452,19 @@ The code to initialize the `AutomatedBrowser` instance remains the same as our p
 
 ```java
 @Test
-
 public void purchaseTicketsPageObjectModel() {
+  final AutomatedBrowser automatedBrowser =
+  AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
 
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
-
-try {
-
-automatedBrowser.init();
+  try {
+    automatedBrowser.init();
 ```
 
 Our test then starts with the main page, which is now represented by the `MainPage` class. We start by creating a new instance of the `MainPage` class, and then chain calls to the `openPage()` and `buyTickets()` methods.
 
-An instance of the `EventsPage` class is returned by the `buyTickets()` method. We save this value in a variable called eventsPage.
+An instance of the `EventsPage` class is returned by the `buyTickets()` method. We save this value in a variable called `eventsPage`.
 
-Notice that at no point in this code did we make any reference to the URL that was used to open the page, nor the locators that were used to click the Buy Tickets Now link. These details are now handled by the POM classes, freeing up the test code from any specific knowledge of how the web application works.
+Notice that at no point in this code did we make any reference to the URL that was used to open the page, nor the locators that were used to click the `Buy Tickets Now` link. These details are now handled by the POM classes, freeing up the test code from any specific knowledge of how the web application works.
 
 ```java
 final EventsPage eventsPage = new MainPage(automatedBrowser)
@@ -536,8 +472,7 @@ final EventsPage eventsPage = new MainPage(automatedBrowser)
   .buyTickets();
 ```
 
-Navigating the venue, checkout and confirmation pages follows the same pattern. The only values that are required to be defined in the test are the names of the concerts, venues, and sections, the email address and the number of tickets to buy. At no point are we defining locators or
-making distinctions between links and form buttons.
+Navigating the venue, checkout and confirmation pages follows the same pattern. The only values that are required to be defined in the test are the names of the concerts, venues, and sections, the email address and the number of tickets to buy. At no point are we defining locators or making distinctions between links and form buttons.
 
 ```java
 final VenuePage venuePage = eventsPage
@@ -556,10 +491,8 @@ Validating the details of the purchased tickets is also now much more streamline
 
 ```java
 Assert.assertTrue(confirmationPage.getEmail().contains("email@example.org"));
-
 Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of
 the decade"));
-
 Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson
 Hall"));
 ```
