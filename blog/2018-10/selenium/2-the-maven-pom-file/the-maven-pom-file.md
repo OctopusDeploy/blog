@@ -26,7 +26,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <selenium.version>3.12.0</selenium.version>
+    <selenium.version>3.14.0</selenium.version>
     <junit.version>4.12</junit.version>
   </properties>
   <build>
