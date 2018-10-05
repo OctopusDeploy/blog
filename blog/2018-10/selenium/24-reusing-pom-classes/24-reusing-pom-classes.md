@@ -87,7 +87,7 @@ private.
 
 In this method we attempt to match the input to the regular expression
 Pattern that was defined earlier. If the match was successful, we
-extract group 1, which will contain strings like 219.5 or 149.5. These
+extract group 1, which will contain strings like `219.5` or `149.5`. These
 strings are then converted to float values and returned.
 
 If the input did not match the regular expression, an exception is
