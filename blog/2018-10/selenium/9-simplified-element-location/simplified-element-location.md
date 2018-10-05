@@ -1,4 +1,13 @@
-## Simplified element location
+---
+title: Simplified element location
+description: In this post we learn how to remove explicit element searches by ID, XPath and CSS Selectors in favor of generic locators.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 In the last lecture we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath and CSS Selector, and the homework assignment was to add support for locate elements based on their name attribute.
 
