@@ -16,10 +16,7 @@ But, at the end of the day, this code is still written in Java, and few of the s
 Integrating the Cucumber library is one solution to make testing more approachable for non-developers. We can use the Cucumber library as the glue between our Java code and a language called Gherkin, which we'll do in this post.
 
 ### The Gherkin Language
-The Gherkin language has been designed to provide a natural dialect that
-describes the requirements, behaviors and interactions with a system.
-Gherkin uses a convention where all steps start with the words Given,
-When, Then and And. An example of this would be the steps
+The Gherkin language has been designed to provide a natural dialect that describes the requirements, behaviors and interactions with a system. Gherkin uses a convention where all steps start with the words `Given`, `When`, `Then` and `And`. An example of this would be the steps
 
 ```
 Given an employee named Bob making $12 per hour.
@@ -27,11 +24,9 @@ When Bob works 40 hours in one week;
 Then Bob will be paid $480 on Friday evening.
 ```
 
-This style is very readable, even without any special understanding of
-the Gherkin language.
+This style is very readable, even without any special understanding of the Gherkin language.
 
-We want to take this ability to describe a system using natural language
-and apply it to WebDriver tests. This would allow us to write tests like
+We want to take this ability to describe a system using natural language and apply it to WebDriver tests. This would allow us to write tests like
 
 ```
 Given I open the URL "https://ticket-monster.herokuapp.com"
@@ -44,17 +39,10 @@ And I select the option "A - Premier platinum reserve" from the "Sections" drop 
 Then I verify the text from the "Adult Price" label equals "@ $167.75"
 ```
 
-These steps test a very similar scenario to those we have been testing
-in Java. Unlike Java code though, anyone can read this test and
-understand what it means. Better yet, with just a small amount of
-training anyone can write these tests as well.
+These steps test a very similar scenario to those we have been testing in Java. Unlike Java code though, anyone can read this test and understand what it means. Better yet, with just a small amount of training anyone can write these tests as well.
 
 To start we need to add two dependencies: `cucumber-java` and
-`cucumber-junit`. The `cucumber-java` library provides a number of
-annotations we will use to link Gherkin steps to Java methods. The
-`cucumber-junit` library allows us to execute Gherkin features and
-scenarios as part of a JUnit test. We'll learn more about features and
-scenarios later on when we start writing the tests.
+`cucumber-junit`. The `cucumber-java` library provides a number of annotations we will use to link Gherkin steps to Java methods. The `cucumber-junit` library allows us to execute Gherkin features and scenarios as part of a JUnit test. We'll learn more about features and scenarios later on when we start writing the tests.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -132,8 +120,7 @@ These regular expression groups are how Cucumber extracts data from a string and
 
 So our task is to add the annotations `@Given`, `@When`, `@And` and `@Then` to methods that will perform some useful work. The regular expressions assigned to the annotations define the Gherkin dialect that we can use to write tests with.
 
-There are some important considerations when selecting a class to apply
-these annotations to.
+There are some important considerations when selecting a class to apply these annotations to.
 
 The first is that the annotations must be placed on concrete methods. This means we can not apply the annotations to methods defined in an interface.
 
