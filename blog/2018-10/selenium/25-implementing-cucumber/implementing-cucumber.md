@@ -1,4 +1,13 @@
-## Implementing Cucumber
+---
+title: Implementing Cucumber
+description: In this post we see how to integrate Cucumber with WebDriver.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 All of our code so far has been written in Java, and we have implemented design patterns like Page Object Model to increase the readability and maintainability of our code.
 
@@ -59,7 +68,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <properties>
     <!-- ... -->
     <cucumber.version>2.3.1</cucumber.version>
-
   </properties>
 
   <!-- ... -->
@@ -81,17 +89,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-Cucumber works by attaching annotations to methods to match Gherkin
-steps to regular expressions, and then match the groups from those
-regular expression to parameters on the method.
+Cucumber works by attaching annotations to methods to match Gherkin steps to regular expressions, and then match the groups from those regular expression to parameters on the method.
 
-The annotations are called `@Given`, `@When`, `@And` and `@Then`. As with
-the Gherkin language itself, these annotations are interchangeable, and
-there is no requirement to match the annotation to the corresponding
-prefix used in a Gherkin step.
+The annotations are called `@Given`, `@When`, `@And` and `@Then`. As with the Gherkin language itself, these annotations are interchangeable, and there is no requirement to match the annotation to the corresponding prefix used in a Gherkin step.
 
-For example, we may annotate a method to open up a given URL with the
-`@And` annotation.
+For example, we may annotate a method to open up a given URL with the `@And` annotation.
 
 ```java
 @And("^I open the URL \"([^\"]*)\"$")
@@ -100,8 +102,7 @@ public void goTo(String url) {
 }
 ```
 
-But then reference it in a Gherkin step with the step prefix Given, like
-so:
+But then reference it in a Gherkin step with the step prefix `Given`, like so:
 
 ```
 Given I open the URL "http://google.com"
@@ -120,77 +121,37 @@ Let's break the regular expression assigned to the annotation down.
 | $ |	Match the end of the string |
 
 
-To understand these regular expressions we can use an online tool like
-<http://regex-testdrive.com/en/>. Here we have entered the regular
-expression and a target string that we want to match to the regular
-expression. Clicking the Test button then shows us the results of this
+To understand these regular expressions we can use an online tool like <http://regex-testdrive.com/en/>. Here we have entered the regular expression and a target string that we want to match to the regular expression. Clicking the Test button then shows us the results of this
 match.
 
-You can see that this match returned two groups. Group 0 in a regular
-expression always returns the complete string that was matched, which in
-our case is the full sentence I open the URL "<http://google.com>".
-Group 1 returns only the characters that were between the parentheses,
-which in this case was the URL [http://google.com.](http://google.com)
+You can see that this match returned two groups. Group 0 in a regular expression always returns the complete string that was matched, which in our case is the full sentence I open the URL "<http://google.com>". Group 1 returns only the characters that were between the parentheses, which in this case was the URL [http://google.com.](http://google.com)
 
 ![C:\a2b8c9a7303cc5bf8ca9c040bf678051](./image1.png)
 
-These regular expression groups are how Cucumber extracts data from a
-string and passes it to the associated method. In our case the method
-takes a single string parameter. Cucumber will pass the value of group 1
-to this first parameter.
+These regular expression groups are how Cucumber extracts data from a string and passes it to the associated method. In our case the method takes a single string parameter. Cucumber will pass the value of group 1 to this first parameter.
 
-So our task is to add the annotations `@Given`, `@When`, `@And` and `@Then`
-to methods that will perform some useful work. The regular expressions
-assigned to the annotations define the Gherkin dialect that we can use
-to write tests with.
+So our task is to add the annotations `@Given`, `@When`, `@And` and `@Then` to methods that will perform some useful work. The regular expressions assigned to the annotations define the Gherkin dialect that we can use to write tests with.
 
 There are some important considerations when selecting a class to apply
 these annotations to.
 
-The first is that the annotations must be placed on concrete methods.
-This means we can not apply the annotations to methods defined in an
-interface.
+The first is that the annotations must be placed on concrete methods. This means we can not apply the annotations to methods defined in an interface.
 
-The second is that the class that the annotations are applied to can not
-be extended. Cucumber does not support inheritance of classes that have
-the annotations attached to them.
+The second is that the class that the annotations are applied to can not be extended. Cucumber does not support inheritance of classes that have the annotations attached to them.
 
-The third is that when executing a method with a Cucumber annotation,
-Cucumber will manage the life-cycle of the class containing the method.
-This means that factories like `AutomatedBrowserFactory` will be bypassed
-when creating new instances of classes.
+The third is that when executing a method with a Cucumber annotation, Cucumber will manage the life-cycle of the class containing the method. This means that factories like `AutomatedBrowserFactory` will be bypassed when creating new instances of classes.
 
-This leaves us in something of a bind. Given these restrictions, where
-can we apply the annotations?
+This leaves us in something of a bind. Given these restrictions, where can we apply the annotations?
 
-We can't place the annotations on the `AutomatedBrowser` interface,
-because we need to add the annotations to a concrete class.
+We can't place the annotations on the `AutomatedBrowser` interface, because we need to add the annotations to a concrete class.
 
-At first glance we might be able to place the annotations on the
-`WebDriverDecorator` class, as this is where the majority of our
-functionality is defined. However decorators are only useful when they
-are built in specific combinations. We have used the
-`AutomatedBrowserFactory` class to build these decorator combinations for
-us, but because Cucumber will take control of the life-cycle of
-annotated classes, it will bypass `AutomatedBrowserFactory` making our
-decorators useless.
+At first glance we might be able to place the annotations on the `WebDriverDecorator` class, as this is where the majority of our functionality is defined. However decorators are only useful when they are built in specific combinations. We have used the `AutomatedBrowserFactory` class to build these decorator combinations for us, but because Cucumber will take control of the life-cycle of annotated classes, it will bypass `AutomatedBrowserFactory` making our decorators useless.
 
-The only other option is the `AutomatedBrowserBase` class, but this has
-been inherited by every decorator class, which is not supported by
-Cucumber.
+The only other option is the `AutomatedBrowserBase` class, but this has been inherited by every decorator class, which is not supported by Cucumber.
 
-Fortunately, there is a work around to the limitation Cucumber places on
-extending classes with annotations. You may have noticed that we placed
-the `AutomatedBrowserBase` class alone in its own package called
-`com.octopus.decoratorbase`. It may have seemed odd to have a
-package for a single class, but this was done quite deliberately. By
-isolating the `AutomatedBrowserBase` class in a package way from all the
-decorator classes that extend it, we can work around Cucumbers
-limitations.
+Fortunately, there is a work around to the limitation Cucumber places on extending classes with annotations. You may have noticed that we placed the `AutomatedBrowserBase` class alone in its own package called `com.octopus.decoratorbase`. It may have seemed odd to have a package for a single class, but this was done quite deliberately. By isolating the `AutomatedBrowserBase` class in a package way from all the decorator classes that extend it, we can work around Cucumbers limitations.
 
-To see how this workaround works, lets start by creating a test class
-that makes use of the code we included with the cucumber-junit Maven
-dependency.
+To see how this workaround works, lets start by creating a test class that makes use of the code we included with the `cucumber-junit` Maven dependency.
 
 ```java
 package com.octopus;
@@ -206,54 +167,30 @@ public class CucumberTest {
 }
 ```
 
-This test class has two annotations that integrate it with the Cucumber
-library.
+This test class has two annotations that integrate it with the Cucumber library.
 
-The first is the `@RunWith` annotation. This JUnit annotation accepts a
-class that can be used to modify how the test is run. In this case the
-Cucumber class modifies the test to look for any `*.feature` files in the
+The first is the `@RunWith` annotation. This JUnit annotation accepts a class that can be used to modify how the test is run. In this case the Cucumber class modifies the test to look for any `*.feature` files in the
 same package as the test class and execute them.
 
 ```java
 @RunWith(Cucumber.class)
 ```
 
-The second annotation is `@CucumberOptions`. This annotation is used to
-customize how Cucumber will run the `*.feature` files it finds. Here we
-have passed the package `com.octopus.decoratorbase` as
-containing "glue" classes. Glue classes are simply classes with the
-annotations `@Given`, `@When`, `@And` or `@Then`.
+The second annotation is `@CucumberOptions`. This annotation is used to customize how Cucumber will run the `*.feature` files it finds. Here we have passed the package `com.octopus.decoratorbase` as containing "glue" classes. Glue classes are simply classes with the annotations `@Given`, `@When`, `@And` or `@Then`.
 
-Cucumber will catalogue the classes in this package, as well as any
-sub-packages. Glue classes found in an underneath this package must not
-extend one another.
+Cucumber will catalogue the classes in this package, as well as any sub-packages. Glue classes found in an underneath this package must not extend one another.
 
-What this means is that because the `AutomatedBrowserBase` class is the
-only class found in this package, Cucumber is satisfied that no illegal
-class hierarchies exist. It doesn't matter that all the decorator
-classes under the `com.octopus.decorators` package extend the
-`AutomatedBrowserBase` class, because Cucumber is unaware of these
-decorator classes.
+What this means is that because the `AutomatedBrowserBase` class is the only class found in this package, Cucumber is satisfied that no illegal class hierarchies exist. It doesn't matter that all the decorator classes under the `com.octopus.decorators` package extend the `AutomatedBrowserBase` class, because Cucumber is unaware of these decorator classes.
 
-So by isolating the `AutomatedBrowserBase` class in its own package, we
-can then use it as a Cucumber glue class.
+So by isolating the `AutomatedBrowserBase` class in its own package, we can then use it as a Cucumber glue class.
 
 ```java
 @CucumberOptions(glue = "com.octopus.decoratorbase")
 ```
 
-Other than these two annotations, the `CucumberTest` class is expected to
-be empty. Unlike traditional JUnit test classes, where the tests are
-defined in methods, all Cucumber tests are defined in external
-`*.feature` files.
+Other than these two annotations, the `CucumberTest` class is expected to be empty. Unlike traditional JUnit test classes, where the tests are defined in methods, all Cucumber tests are defined in external `*.feature` files.
 
-Because the methods in the `AutomatedBrowserBase` class are the only way a
-Gherkin test can execute a test, we need to expose some methods to
-create and destroy `AutomatedBrowser` instances. Normally we would perform
-this logic as part of a JUnit test by calling
-`AutomatedBrowserFactory.getAutomatedBrowser() `at the start of the test
-and `automatedBrowser.destroy()` at the end. To expose this functionality
-to Cucumber, we create the methods `openBrowser()` and `closeBrowser()`.
+Because the methods in the `AutomatedBrowserBase` class are the only way a Gherkin test can execute a test, we need to expose some methods to create and destroy `AutomatedBrowser` instances. Normally we would perform this logic as part of a JUnit test by calling `AutomatedBrowserFactory.getAutomatedBrowser() `at the start of the test and `automatedBrowser.destroy()` at the end. To expose this functionality to Cucumber, we create the methods `openBrowser()` and `closeBrowser()`.
 
 ```java
 public class AutomatedBrowserBase implements AutomatedBrowser {
@@ -289,48 +226,31 @@ Let's take a look at these two methods in more detail.
 @Given("^I open the browser \"([^\"]*)\"$")
 ```
 
-The annotation `@Given("^I open the browser
-\"([^\"]*)\"$")` attached to the `openBrowser()` method works
-the same way as the previous example of `@And("^I open the URL
-\"([^\"]*)\"$")`. The annotations `@Given` and `@And` are
-interchangeable. Typically `@Given` is used on methods that perform some
-kind of initialization or management functionality, but this is just a
-convention rather than a rule.
+The annotation `@Given("^I open the browser \"([^\"]*)\"$")` attached to the `openBrowser()` method works the same way as the previous example of `@And("^I open the URL \"([^\"]*)\"$")`. The annotations `@Given` and `@And` are interchangeable. Typically `@Given` is used on methods that perform some kind of initialization or management functionality, but this is just a convention rather than a rule.
 
-The regular expression assigned to the `@Given` annotation follows the
-same pattern of using the caret and dollar characters to bookend the
-expression, a literal match of the string I open the browser, and a
-non-greedy capture group inside quotes.
+The regular expression assigned to the `@Given` annotation follows the same pattern of using the caret and dollar characters to bookend the expression, a literal match of the string I open the browser, and a non-greedy capture group inside quotes.
 
-The value of the capture group is then passed to the parameter called
-browser.
+The value of the capture group is then passed to the parameter called browser.
 
 ```java
 public void openBrowser(String browser) {
 ```
 
-From this point the method works like any other method. In this case we
-call `AutomatedBrowserFactory.getAutomatedBrowser()` to construct the
-specified AutomatedBrowser configuration, and then call the `init()`
-function to initialize it.
+From this point the method works like any other method. In this case we call `AutomatedBrowserFactory.getAutomatedBrowser()` to construct the specified AutomatedBrowser configuration, and then call the `init()` function to initialize it.
 
 ```java
 automatedBrowser = AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser(browser);
 automatedBrowser.init();
 ```
 
-The annotation `@Given("^I close the browser$")` attached to the
-`closeBrowser()` method has no capture groups, which means the method it
-is attached to has no parameters. The regular expression here can only
-match the literal string `I close the browser`.
+The annotation `@Given("^I close the browser$")` attached to the `closeBrowser()` method has no capture groups, which means the method it is attached to has no parameters. The regular expression here can only match the literal string `I close the browser`.
 
 ```java
 @Given("^I close the browser$")
 public void closeBrowser() {
 ```
 
-This method is then responsible for calling the `destroy()` method on the
-`AutomatedBrowser` instance created by the `openBrowser()` method.
+This method is then responsible for calling the `destroy()` method on the `AutomatedBrowser` instance created by the `openBrowser()` method.
 
 ```java
   if (automatedBrowser != null) {
@@ -340,15 +260,9 @@ This method is then responsible for calling the `destroy()` method on the
 }
 ```
 
-We now have enough to run a very simple Cucumber test. Create the
-following file under the `src/test/resources/com/octopus`
-directory called `simpletest.feature`.
+We now have enough to run a very simple Cucumber test. Create the following file under the `src/test/resources/com/octopus` directory called `simpletest.feature`.
 
-The directory `src/test/resources/com/octopus` is where Maven
-places resources for the `com.octopus` package by default.
-Remember that we need to place this file in the same package as the test
-class for it to be found. The name of the file can be anything we want,
-but it must have the `.feature` extension to be recognized by Cucumber.
+The directory `src/test/resources/com/octopus` is where Maven places resources for the `com.octopus` package by default. Remember that we need to place this file in the same package as the test class for it to be found. The name of the file can be anything we want, but it must have the `.feature` extension to be recognized by Cucumber.
 
 ![C:\537406a0bc59b2f2768f2721fc6136d5](./image2.png)
 
@@ -368,9 +282,7 @@ group of related Scenarios.
 Feature: A simple test
 ```
 
-Next we have the `Scenario:`. A scenario is like a method in a traditional
-unit test class, in that it is self contained and demonstrates some
-aspect of the system being tested.
+Next we have the `Scenario:`. A scenario is like a method in a traditional unit test class, in that it is self contained and demonstrates some aspect of the system being tested.
 
 ```gherkin
 Scenario: Open and close the browser
@@ -379,35 +291,21 @@ Scenario: Open and close the browser
 Finally we have the two steps that we defined in the
 `AutomatedBrowserBase` class.
 
-Notice that the step prefixes used here don't exactly match the names
-of the annotations. While it would be nice if these step matched up with
-the annotation names, this is not a requirement.
+Notice that the step prefixes used here don't exactly match the names of the annotations. While it would be nice if these step matched up with the annotation names, this is not a requirement.
 
-Also notice that the regular expressions we defined do not capture the
-words Given, When, Then or And, even though the complete step always
-starts with a word like this. The regular expressions we define start by
-matching the content of the step after this initial word.
+Also notice that the regular expressions we defined do not capture the words `Given`, `When`, `Then` or `And`, even though the complete step always start with a word like this. The regular expressions we define start by matching the content of the step after this initial word.
 
 ```gherkin
 Given I open the browser "ChromeNoImplicitWait"
 Then I close the browser
 ```
 
-To run the test click on the icon next to the test class and select `Run
-'CucumberTest'`.
+To run the test click on the icon next to the test class and select `Run 'CucumberTest'`.
 
 ![C:\a277c2bd96ba8a3dfb01dacfccfd685e](./image3.png)
 
-Running the test will find the `simpletest.feature` file and execute it.
-The feature file in turn will open Chrome and then close it straight
-away. In the test results we can see that we successfully ran 1
-Scenario, resulting in 2 steps being run.
+Running the test will find the `simpletest.feature` file and execute it. The feature file in turn will open Chrome and then close it straight away. In the test results we can see that we successfully ran 1 Scenario, resulting in 2 steps being run.
 
 ![C:\c7c63543a445275fbcae1e3ace817ee9](./image4.png)
 
-We now have laid the foundation for creating a gherkin dialect that will
-allow us to write natural language tests in Gherkin that can be verified
-using WebDriver. However we still have a lot of work to do to create end
-to end tests. In the next lecture we will expose more of the
-`AutomatedBrowser` class to Cucumber, and work towards creating a readable
-end to end test.
+We now have laid the foundation for creating a gherkin dialect that will allow us to write natural language tests in Gherkin that can be verified using WebDriver. However we still have a lot of work to do to create end to end tests. In the next post we will expose more of the `AutomatedBrowser` class to Cucumber, and work towards creating a readable end to end test.
