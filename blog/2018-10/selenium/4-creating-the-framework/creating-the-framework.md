@@ -17,33 +17,33 @@ Before we can create this class, we first need to add a new directory to our pro
 
 Right click on the `src` directory, and select `New` → `Directory`.
 
-![](./image1.png)
+![](./image1.png "width=500")
 
 Enter `main/java/com/octopus` as the directory name and click
 `OK`.
 
-![](./image2.png)
+![](./image2.png "width=500")
 
 As before, the new directory structure is created, but it is not yet recognized by IntelliJ as a directory that holds Java classes.
 
-![](./image3.png)
+![](./image3.png "width=500")
 
 To fix this, open the `Maven Projects` tool window and click the `Reimport All Maven Projects` button.
 
-![](./image4.png)
+![](./image4.png "width=500")
 
 The `java` directory is now shown with a blue icon, which indicates that it will hold Java classes.
 
-![](./image5.png)
+![](./image5.png "width=500")
 
 We can now create the class `AutomatedBrowserFactory` in the
 `src/main/java/com/octopus` directory. To create the new click right click on the `octopus` folder and select `New` → `Java Class`.
 
-![](./image11.png)
+![](./image11.png "width=500")
 
 Enter `AutomatedBrowserFactory` in the `Name` field and click the `OK` button.
 
-![](./image12.png)
+![](./image12.png "width=500")
 
 In the snippet below, we have a factory skeleton with a method called `getAutomatedBrowser()` that accepts the name of the browser that we wish to test against. This method returns an instance of the `AutomatedBrowser` interface.
 
@@ -80,11 +80,11 @@ The `AutomatedBrowser` interface will expose all the interactions we will perfor
 
 To create the `AutomatedBrowser` interface right click on the `octopus` directory and select `New` → `Java Class`.
 
-![](./image13.png)
+![](./image13.png "width=500")
 
 Enter `AutomatedBrowser` in the `Name` field, select the `Interface` option from the `Kind` field, and click the `OK` button.
 
-![](./image14.png)
+![](./image14.png "width=500")
 
 Then paste the following code into the new file.
 
@@ -136,15 +136,15 @@ own package will be an important design decision for features that we'll look at
 
 To create the new package, right click on the `octopus` directory and select `New` → `Package`.
 
-![](./image6.png)
+![](./image6.png "width=500")
 
 Enter the name `decoratorbase`, and click the `OK` button.
 
-![](./image7.png)
+![](./image7.png "width=500")
 
 The new package is then added to the directory structure.
 
-![](./image8.png)
+![](./image8.png "width=500")
 
 Inside the `com.octopus.decoratorbase` package create a new
 class called `AutomatedBrowserBase` with the following code. Each method defined in the `AutomatedBrowser` interface is implemented by passing it through to the `automatedBrowser` instance variable (if it is not null).
@@ -242,7 +242,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 
 Now let's extend the `AutomatedBrowserBase` class to create the `ChromeDecorator` class. `ChromeDecorator` will override the `init()` method to create an instance of the `ChromeDriver` class.
 
-The `ChromeDecorator` class will be placed in the `com.octopus.decorators` package, so create the new decorators package just like you did with the `decoratorbase` package.
+The `ChromeDecorator` class will be placed in the `com.octopus.decorators` package, so create the new `decorators` package just like you did with the `decoratorbase` package.
 
 Inside the `com.octopus.decorators` package create a class called `ChromeDecorator` with the following code.
 
@@ -302,8 +302,7 @@ The last step is to initialize the drivers by calling `getAutomatedBrowser().ini
 
 The final decorator we need is one that uses the WebDriver API to perform actions against the browsers initialized by either the `ChromeDecorator` or `FirefoxDecorator` classes. For this we'll create the `WebDriverDecorator` class.
 
-The `WebDriverDecorator` class will host a `WebDriver` instance, and expose it through the `getWebDriver()` and `setWebDriver()` methods. `The destroy()` method will close the web browser, and the `goTo()` method opens up the
-supplied URL.
+The `WebDriverDecorator` class will host a `WebDriver` instance, and expose it through the `getWebDriver()` and `setWebDriver()` methods. `The destroy()` method will close the web browser, and the `goTo()` method opens up the supplied URL.
 
 Notice that `WebDriverDecorator` has a default constructor. This is unlike `ChromeDecorator` and `FirefoxDecorator`, which both provide a single constructor that takes a `AutomatedBrowser`. This difference exists because `WebDriverDecorator` is intended to be the base `AutomatedBrowser` that other decorators wrap up. We'll see this in action when we update the `AutomatedBrowserFactory` class.
 
@@ -313,61 +312,42 @@ We've already seen a lot of the code that goes into `the WebDriverDecorator` cl
 package com.octopus.decorators;
 
 import com.octopus.AutomatedBrowser;
-
 import com.octopus.decoratorbase.AutomatedBrowserBase;
-
 import org.openqa.selenium.WebDriver;
 
 public class WebDriverDecorator extends AutomatedBrowserBase {
 
-private WebDriver webDriver;
+  private WebDriver webDriver;
 
-public WebDriverDecorator() {
+  public WebDriverDecorator() {
 
-}
+  }
 
-public WebDriverDecorator(final AutomatedBrowser automatedBrowser) {
+  public WebDriverDecorator(final AutomatedBrowser automatedBrowser) {
+    super(automatedBrowser);
+  }
 
-super(automatedBrowser);
+  @Override
+  public WebDriver getWebDriver() {
+    return webDriver;
+  }
 
-}
+  @Override
+  public void setWebDriver(final WebDriver webDriver) {
+    this.webDriver = webDriver;
+  }
 
-@Override
+  @Override
+  public void destroy() {
+    if (webDriver != null) {
+      webDriver.quit();
+    }
+  }
 
-public WebDriver getWebDriver() {
-
-return webDriver;
-
-}
-
-@Override
-
-public void setWebDriver(final WebDriver webDriver) {
-
-this.webDriver = webDriver;
-
-}
-
-@Override
-
-public void destroy() {
-
-if (webDriver != null) {
-
-webDriver.quit();
-
-}
-
-}
-
-@Override
-
-public void goTo(final String url) {
-
-webDriver.get(url);
-
-}
-
+  @Override
+  public void goTo(final String url) {
+    webDriver.get(url);
+  }
 }
 ```
 
@@ -379,29 +359,21 @@ Note how the decorator constructors wrap each other up. This is key to the decor
 
 ```java
 private AutomatedBrowser getChromeBrowser() {
-
-return new ChromeDecorator(
-
-new WebDriverDecorator()
-
-);
-
+  return new ChromeDecorator(
+    new WebDriverDecorator()
+  );
 }
 
 private AutomatedBrowser getFirefoxBrowser() {
-
-return new FirefoxDecorator(
-
-new WebDriverDecorator()
-
-);
-
+  return new FirefoxDecorator(
+    new WebDriverDecorator()
+  );
 }
 ```
 
 The image below shows how decorators wrap each other up, and pass method calls to the instances that they decorate.
 
-![](./image9.png)
+![](./image9.png "width=500")
 
 Let's create a test that makes use of our factory and the instances of `AutomatedBrowser` that it creates.
 
@@ -412,57 +384,38 @@ Because this is a test class, it will be created in the
 package com.octopus;
 
 import org.junit.Test;
-
 import org.junit.runner.RunWith;
-
 import org.junit.runners.Parameterized;
-
 import java.util.Arrays;
 
 @RunWith(Parameterized.class)
-
 public class FactoryTest {
 
-private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
-= new AutomatedBrowserFactory();
+  private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
+    = new AutomatedBrowserFactory();
 
-private String browser;
+  private String browser;
 
-public FactoryTest(final String browser) {
+  public FactoryTest(final String browser) {
+    this.browser = browser;
+  }
 
-this.browser = browser;
+  @Parameterized.Parameters
+  public static Iterable data() {
+    return Arrays.asList(
+      "Chrome",
+      "Firefox"
+    );
+  }
 
-}
-
-@Parameterized.Parameters
-
-public static Iterable data() {
-
-return Arrays.asList(
-
-"Chrome",
-
-"Firefox"
-
-);
-
-}
-
-@Test
-
-public void openURL() {
-
-final AutomatedBrowser automatedBrowser =
-AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser(browser);
-
-automatedBrowser.init();
-
-automatedBrowser.goTo("https://learnprogramming.academy/");
-
-automatedBrowser.destroy();
-
-}
-
+  @Test
+  public void openURL() {
+    final AutomatedBrowser automatedBrowser =
+      AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser(browser);
+    automatedBrowser.init();
+    automatedBrowser.goTo("https://octopus.com/");
+    automatedBrowser.destroy();
+  }
 }
 ```
 
@@ -481,17 +434,11 @@ It then needs a static method to return the values that will be passed to the `F
 
 ```java
 @Parameterized.Parameters
-
 public static Iterable data() {
-
-return Arrays.asList(
-
-"Chrome",
-
-"Firefox"
-
-);
-
+  return Arrays.asList(
+    "Chrome",
+    "Firefox"
+  );
 }
 ```
 
@@ -505,7 +452,7 @@ public FactoryTest(final String browser) {
 }
 ```
 
-The test method can then make use of the browser instance variable to launch either the Chrome or Firefox browser as part of the test.
+The test method can then make use of the `browser` instance variable to launch either the Chrome or Firefox browser as part of the test.
 
 This ability to select a browser at run time through the
 `AutomatedBrowserFactory` will provide us with a great deal of flexibility in our testing later on.
@@ -515,7 +462,7 @@ This ability to select a browser at run time through the
 
 public void openURL() {
   final AutomatedBrowser automatedBrowser =
-  AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser(browser);
+    AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser(browser);
 
   automatedBrowser.init();
   automatedBrowser.goTo("https://octopus.com/");
@@ -525,6 +472,6 @@ public void openURL() {
 
 We have created a number of new classes as part of this blog, and you should end up with a directory structure that looks like this.
 
-![](./image10.png)
+![](./image10.png "width=500")
 
 Now that we have a simple framework to run tests against multiple browsers, we need to have a web page that we can interact with, which we will create in the next post.
