@@ -107,7 +107,7 @@ public class FirefoxDecorator extends AutomatedBrowserBase {
 
 Starting a browser in headless mode is done by configuring either the `ChromeOptions` or `FirefoxOptions` instances.
 
-To launch Chrome in headless mode, we pass some arguments to the chrome executable. The `ChromeOptions` class provides a simple way to configure these arguments through the method `setHeadless()`.
+To launch Chrome in headless mode, we pass some arguments to the `chrome` executable. The `ChromeOptions` class provides a simple way to configure these arguments through the method `setHeadless()`.
 
 Let's take a look at the code for the `ChromeDecorator` class to allow us to run Chrome in headless mode.
 
