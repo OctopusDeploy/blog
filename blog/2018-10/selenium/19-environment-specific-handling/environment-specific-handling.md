@@ -215,9 +215,9 @@ Session ID: 1a34a4609f63d6bc8749bd3a09f5001ea5a93dd7
 
 This exception makes sense, because mobile browsers do not have the concept of resizable windows. They are always full screen, and therefor it is invalid to try and modify the size of the window.
 
-This does leave us with a problem though. Ideally we would like to be able to run our test code against any browser. Although we have been creating new test methods to demonstrate new browsers throughout these lectures, in practice it is desirable to have a single test method that is called multiple times for different browsers. Running a single test method reduces the amount of duplicated code, making the tests easier to maintain.
+This does leave us with a problem though. Ideally we would like to be able to run our test code against any browser. Although we have been creating new test methods to demonstrate new browsers throughout these posts, in practice it is desirable to have a single test method that is called multiple times for different browsers. Running a single test method reduces the amount of duplicated code, making the tests easier to maintain.
 
-We could try to detect the device that the test is being run on inside the test, and wrap up the call to maximize the window in an `if` statement. The code below extracts the name of the device manufacturer, and if it is not samsung, we assume that the test is being run on a desktop device, and the call to `automatedBrowser.maximizeWindow()` is made.
+We could try to detect the device that the test is being run on inside the test, and wrap up the call to maximize the window in an `if` statement. The code below extracts the name of the device manufacturer, and if it is not `samsung`, we assume that the test is being run on a desktop device, and the call to `automatedBrowser.maximizeWindow()` is made.
 
 ```java
 String manufacturer = ((RemoteWebDriver) automatedBrowser.getWebDriver()).getCapabilities().getCapability("deviceManufacturer").toString();
