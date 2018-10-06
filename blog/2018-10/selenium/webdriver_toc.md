@@ -11,6 +11,8 @@ tags:
 
 This blog series steps through the process of writing WebDriver UI tests in Java from the first line of code through to running tests at scale in the cloud.
 
+The source code that accompanies this blog series can be found at [GitHub](https://github.com/OctopusDeploy/WebDriverTraining).
+
 1. [What is WebDriver and Selenium](1-what-is-webdriver-and-selenium/what-is-webdriver-and-selenium.md)
 2. [The Maven POM File](2-the-maven-pom-file/the-maven-pom-file.md)
 3. [The First Test](3-the-first-test/the-first-test.md)
