@@ -27,7 +27,7 @@ When modifying responses, the network requests and responses follow the flow sho
 
 6.  The altered response is passed back to the browser
 
-![C:\27f6991bd6c9ae2c1606222d23b69bc0](./image1.png "width=500")
+![C:\27f6991bd6c9ae2c1606222d23b69bc0](image1.png "width=500")
 
 To demonstrate this we'll create a very simple web page that queries the Yahoo weather API to get the sunset time in Hawaii. This data is retrieved from a request to
 <https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys>, which returns a JSON response like the following:
@@ -94,7 +94,7 @@ This web page makes a query to the Yahoo API, and upon a successful response wil
 
 Here is a screenshot of the page when opened in Chrome. The output highlights an interesting bug in the Yahoo service in that it returned the literal string `7:4 pm`. I assume this means that the sun sets at 7:40 pm. This won't be an issue for us though, because we are going to replace this buggy response with a known good value.
 
-![C:\79c967b754cda70a95a2072218e5b76a](./image2.png "width=500")
+![C:\79c967b754cda70a95a2072218e5b76a](image2.png "width=500")
 
 Even without the bug in the time being returned, the sunset time is not a fixed value. Obviously throughout the year we can expect this time to change. But what if we needed our test to always have a sunset time of 7:00 pm? This is possible with Browermob response filters.
 

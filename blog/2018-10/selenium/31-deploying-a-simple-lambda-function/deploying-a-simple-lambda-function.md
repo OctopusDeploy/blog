@@ -89,7 +89,7 @@ public class LambdaEntry {
 
 In order to deploy this Lambda, we need to create a file called `serverless.yml` in the project's root directory. This configuration file is used by the Serverless application to configure and deploy the Lambda.
 
-![C:\\0b4b22e1bd61e3d5249b0db50c8cde7f](./image1.png "width=500")
+![C:\\0b4b22e1bd61e3d5249b0db50c8cde7f](image1.png "width=500")
 
 ```yaml
 service:
@@ -163,7 +163,7 @@ functions:
 
 Before we can deploy the Lambda function, we need to ensure that the file `target/webdrivertraining-1.0-SNAPSHOT.jar` is up to date. Serverless will not rebuild the application for us before deploying, so it is up to us to rebuild it manually. Click Maven `Projects` → `package` to rebuild the JAR file.
 
-![C:\\929577e8ad0a8809d3e7d19cfcf21570](./image2.png "width=500")
+![C:\\929577e8ad0a8809d3e7d19cfcf21570](image2.png "width=500")
 
 We can now deploy the Lambda function. Open up a terminal, command prompt or PowerShell window and change to the project root directory. Then run the command:
 
@@ -200,13 +200,13 @@ Serverless is doing a lot of work behind the scenes to upload our JAR files as a
 
 If we return to the AWS Lambda console, we can now see the new Lambda function has been deployed. Click the function link.
 
-![C:\\30bd315ba4b2ee81f05c718344025294](./image3.png "width=500")
+![C:\\30bd315ba4b2ee81f05c718344025294](image3.png "width=500")
 
 This page shows us the details of the Lambda function.
 
 To test that the function works, click the `Test` button.
 
-![C:\\b24d832e8c4c491083526bb2ca815e1d](./image4.png "width=500")
+![C:\\b24d832e8c4c491083526bb2ca815e1d](image4.png "width=500")
 
 Replace the test data with a string. Because the first parameter of our Lambda function accepts a string, we need to supply a string when testing.
 
@@ -218,14 +218,14 @@ The fact that Lambda functions only accept JSON as input and provide JSON as out
 
 Then populate the `Event` name field, and click the `Create` button.
 
-![C:\\1d66f3aba2a8529623be190d8215c526](./image5.png "width=500")
+![C:\\1d66f3aba2a8529623be190d8215c526](image5.png "width=500")
 
 Now that we have a test event, click the `Test` button again.
 
-![C:\\9f1e25d4726ec56aade10c28d902412b](./image6.png "width=500")
+![C:\\9f1e25d4726ec56aade10c28d902412b](image6.png "width=500")
 
 And our test Lambda function has executed successfully by returning `true`.
 
-![C:\\25e8e70a701bd868bc63f982e0521af0](./image7.png "width=500")
+![C:\\25e8e70a701bd868bc63f982e0521af0](image7.png "width=500")
 
 Although this Lambda function doesn't do anything useful, it does prove that we have written a valid Lambda function and that it can be deployed using the Serverless application. With this work done we can move onto writing a Lambda function that actually runs a WebDriver test, which we'll do in the next lecture.

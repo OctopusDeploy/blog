@@ -10,18 +10,11 @@ tags:
 ---
 
 Now that we have the basics in place to integrate the
-`AutomatedBrowserBase` class with Cucumber, it is time to start fleshing
-out the Gherkin dialect that we can use to write WebDriver tests.
+`AutomatedBrowserBase` class with Cucumber, it is time to start fleshing out the Gherkin dialect that we can use to write WebDriver tests.
 
-The next step in most tests after opening the browser is to open a URL.
-We can expose this by annotating the `goTo()` method.
+The next step in most tests after opening the browser is to open a URL. We can expose this by annotating the `goTo()` method.
 
-We will use the regular expression `^I open the URL "([^\"]\*)"$`
-to capture the URL that we wish to open and pass it to the url
-parameter. This regular expression follows the familiar pattern of using
-the caret and dollar signs to match the start and end of the string,
-some plain text that must be literally matched, and a single group
-inside quotes.
+We will use the regular expression `^I open the URL "([^\"]\*)"$` to capture the URL that we wish to open and pass it to the url parameter. This regular expression follows the familiar pattern of using the caret and dollar signs to match the start and end of the string, some plain text that must be literally matched, and a single group inside quotes.
 
 ```java
 @And("^I open the URL \"([^\"]\*)\"$")
@@ -112,7 +105,7 @@ following examples:
 -   I click the check box with the id "option-1"
 -   I click the big red button with the id "submit"
 
-![C:\d117bb78328e97f7dab22e91ecfeae72](./image1.png)
+![C:\d117bb78328e97f7dab22e91ecfeae72](image1.png "width=500")
 
 Notice that there are only ever two groups captured: group 0 being the
 entire string, and group 1 being the ID of the element we want to click.
@@ -172,7 +165,7 @@ following examples:
 -   I click the big red button with the id "submit" waiting up to
     "5" seconds
 
-![C:\4f279d1029084cec389ed1a693b43b4e](./image2.png)
+![C:\4f279d1029084cec389ed1a693b43b4e](image2.png "width=500")
 
 This regular expression has three capture groups. Again group 0 is the
 entire string. As was the case with the previous regular expression,
@@ -237,7 +230,7 @@ following examples:
 -   I select the option "This is also a long name" from the list of
     options with the id "alongid" waiting up to "5" seconds
 
-![C:\98467ce11d951c72ec283e76b8d449e3](./image3.png)
+![C:\98467ce11d951c72ec283e76b8d449e3](image3.png "width=500")
 
 Now we have 4 capture groups. As always group 0 is the entire string,
 then the first capture group is the name of the option to select, the

@@ -17,33 +17,33 @@ Before we can create this class, we first need to add a new directory to our pro
 
 Right click on the `src` directory, and select `New` → `Directory`.
 
-![](./image1.png "width=500")
+![](image1.png "width=500")
 
 Enter `main/java/com/octopus` as the directory name and click
 `OK`.
 
-![](./image2.png "width=500")
+![](image2.png "width=500")
 
 As before, the new directory structure is created, but it is not yet recognized by IntelliJ as a directory that holds Java classes.
 
-![](./image3.png "width=500")
+![](image3.png "width=500")
 
 To fix this, open the `Maven Projects` tool window and click the `Reimport All Maven Projects` button.
 
-![](./image4.png "width=500")
+![](image4.png "width=500")
 
 The `java` directory is now shown with a blue icon, which indicates that it will hold Java classes.
 
-![](./image5.png "width=500")
+![](image5.png "width=500")
 
 We can now create the class `AutomatedBrowserFactory` in the
 `src/main/java/com/octopus` directory. To create the new click right click on the `octopus` folder and select `New` → `Java Class`.
 
-![](./image11.png "width=500")
+![](image11.png "width=500")
 
 Enter `AutomatedBrowserFactory` in the `Name` field and click the `OK` button.
 
-![](./image12.png "width=500")
+![](image12.png "width=500")
 
 In the snippet below, we have a factory skeleton with a method called `getAutomatedBrowser()` that accepts the name of the browser that we wish to test against. This method returns an instance of the `AutomatedBrowser` interface.
 
@@ -80,11 +80,11 @@ The `AutomatedBrowser` interface will expose all the interactions we will perfor
 
 To create the `AutomatedBrowser` interface right click on the `octopus` directory and select `New` → `Java Class`.
 
-![](./image13.png "width=500")
+![](image13.png "width=500")
 
 Enter `AutomatedBrowser` in the `Name` field, select the `Interface` option from the `Kind` field, and click the `OK` button.
 
-![](./image14.png "width=500")
+![](image14.png "width=500")
 
 Then paste the following code into the new file.
 
@@ -136,15 +136,15 @@ own package will be an important design decision for features that we'll look at
 
 To create the new package, right click on the `octopus` directory and select `New` → `Package`.
 
-![](./image6.png "width=500")
+![](image6.png "width=500")
 
 Enter the name `decoratorbase`, and click the `OK` button.
 
-![](./image7.png "width=500")
+![](image7.png "width=500")
 
 The new package is then added to the directory structure.
 
-![](./image8.png "width=500")
+![](image8.png "width=500")
 
 Inside the `com.octopus.decoratorbase` package create a new
 class called `AutomatedBrowserBase` with the following code. Each method defined in the `AutomatedBrowser` interface is implemented by passing it through to the `automatedBrowser` instance variable (if it is not null).
@@ -373,7 +373,7 @@ private AutomatedBrowser getFirefoxBrowser() {
 
 The image below shows how decorators wrap each other up, and pass method calls to the instances that they decorate.
 
-![](./image9.png "width=500")
+![](image9.png "width=500")
 
 Let's create a test that makes use of our factory and the instances of `AutomatedBrowser` that it creates.
 
@@ -472,6 +472,6 @@ public void openURL() {
 
 We have created a number of new classes as part of this blog, and you should end up with a directory structure that looks like this.
 
-![](./image10.png "width=500")
+![](image10.png "width=500")
 
 Now that we have a simple framework to run tests against multiple browsers, we need to have a web page that we can interact with, which we will create in the next post.

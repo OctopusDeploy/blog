@@ -135,15 +135,15 @@ The screenshot below shows the important fields that need to be populated to mak
 -   Paste in the Gherkin feature into the text area at the bottom of the tab
 -   Click the `Send` button
 
-![/C:/941191ba7e622160892a5123816cf59a](./image1.png "width=500")
+![/C:/941191ba7e622160892a5123816cf59a](image1.png "width=500")
 
 If you are lucky, you might see this response.
 
-![/C:/643a4cd7e0389640c129bc0a2485278f](./image2.png "width=500")
+![/C:/643a4cd7e0389640c129bc0a2485278f](image2.png "width=500")
 
 I say lucky, because you may have seen the Endpoint request timed out error message instead.
 
-![/C:/6258b00237e59450e4167ba1a9104d2c](./image3.png "width=500")
+![/C:/6258b00237e59450e4167ba1a9104d2c](image3.png "width=500")
 
 So what does the Endpoint request timed out error message mean?
 
@@ -151,7 +151,7 @@ This error is a result of different limitations of the services that were implem
 
 If you open up the Lambda console and view the function, you can now see that a service called API Gateway is sitting in front of the Lambda function.
 
-![/C:/edb84ea8b782041656cd633e9368260c](./image4.png "width=500")
+![/C:/edb84ea8b782041656cd633e9368260c](image4.png "width=500")
 
 API Gateway is another AWS service that is used to build HTTP APIs, and it is the service that the serverless application built when we added HTTP events. It is API Gateway that is taking out HTTP requests, transforming them with the templates we defined, passing them to the Lambda function, transforming the response from the Lambda function, and passing the results back to the caller.
 
@@ -218,7 +218,7 @@ Setting the `X-Amz-Invocation-Type` header value to `RequestResponse` restores t
 
 The `X-Amz-Invocation-Type` header is documented in more detail at [https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html.](https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html)
 
-![/C:/c702d2a86f09873ae9edd675c653e749](./image5.png "width=500")
+![/C:/c702d2a86f09873ae9edd675c653e749](image5.png "width=500")
 
 This request will return almost immediately, and with an empty object as the response.
 

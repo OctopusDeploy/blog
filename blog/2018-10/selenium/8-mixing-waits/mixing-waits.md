@@ -70,7 +70,7 @@ automatedBrowser.clickElementWithId("This ID does not exist", 1);
 
 Running this test reveals that the test always takes over 10 seconds to complete.
 
-![](./image1.png "width=500")
+![](image1.png "width=500")
 
 This result may be surprising when the code has used an explicit wait of only 1 second to wait for the missing element. What it shows is that when mixing a short explicit wait with a long implicit wait, the test will pause for the full time of the implicit wait.
 
@@ -98,7 +98,7 @@ public void mixedTestLongExplicitWait() throws URISyntaxException {
 
 Running this test reveals that the test always takes over 20 seconds to complete. This is a more expected result, and shows that the larger of the times assigned to the implicit and explicit waits are used.
 
-![](./image2.png "width=500")
+![](image2.png "width=500")
 
 Let's try a third scenario, where we use a explicit wait time of 2 seconds for the div element that is created after 5 seconds. If you recall from a previous lecture, the div with the id of `newdiv_element` is created and dynamically added to the page using a JavaScript function after 5 seconds.
 
@@ -126,7 +126,7 @@ public void shortExplicitWaitForDynamicElement() throws URISyntaxException {
 
 This test passes. Even though we have explicitly waited only 2 seconds for an element we know won't be created for 5 seconds, the element is found and clicked.
 
-![](./image3.png "width=500")
+![](image3.png "width=500")
 
 This behavior is counter-intuitive, and if we had been using a wait time of 2 seconds to enforce the performance requirements of our application, this test would produce a false positive.
 

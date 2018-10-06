@@ -17,7 +17,7 @@ For this test we need to get to the checkout screen, but not actually
 proceed with the checkout. Instead we want to loop over each of the
 section options and get the ticket prices for them.
 
-![C:\9c18ad03019ca85e0721a66947cd11ef](./image1.png)
+![C:\9c18ad03019ca85e0721a66947cd11ef](image1.png "width=500")
 
 To support this new test we need to add some additional methods to the `CheckoutPage` class.
 

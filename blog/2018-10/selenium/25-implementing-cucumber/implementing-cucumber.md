@@ -114,7 +114,7 @@ match.
 
 You can see that this match returned two groups. Group 0 in a regular expression always returns the complete string that was matched, which in our case is the full sentence I open the URL "<http://google.com>". Group 1 returns only the characters that were between the parentheses, which in this case was the URL [http://google.com.](http://google.com)
 
-![C:\a2b8c9a7303cc5bf8ca9c040bf678051](./image1.png)
+![C:\a2b8c9a7303cc5bf8ca9c040bf678051](image1.png "width=500")
 
 These regular expression groups are how Cucumber extracts data from a string and passes it to the associated method. In our case the method takes a single string parameter. Cucumber will pass the value of group 1 to this first parameter.
 
@@ -251,7 +251,7 @@ We now have enough to run a very simple Cucumber test. Create the following file
 
 The directory `src/test/resources/com/octopus` is where Maven places resources for the `com.octopus` package by default. Remember that we need to place this file in the same package as the test class for it to be found. The name of the file can be anything we want, but it must have the `.feature` extension to be recognized by Cucumber.
 
-![C:\537406a0bc59b2f2768f2721fc6136d5](./image2.png)
+![C:\537406a0bc59b2f2768f2721fc6136d5](image2.png "width=500")
 
 ```gherkin
 Feature: A simple test
@@ -289,10 +289,10 @@ Then I close the browser
 
 To run the test click on the icon next to the test class and select `Run 'CucumberTest'`.
 
-![C:\a277c2bd96ba8a3dfb01dacfccfd685e](./image3.png)
+![C:\a277c2bd96ba8a3dfb01dacfccfd685e](image3.png "width=500")
 
 Running the test will find the `simpletest.feature` file and execute it. The feature file in turn will open Chrome and then close it straight away. In the test results we can see that we successfully ran 1 Scenario, resulting in 2 steps being run.
 
-![C:\c7c63543a445275fbcae1e3ace817ee9](./image4.png)
+![C:\c7c63543a445275fbcae1e3ace817ee9](image4.png "width=500")
 
 We now have laid the foundation for creating a gherkin dialect that will allow us to write natural language tests in Gherkin that can be verified using WebDriver. However we still have a lot of work to do to create end to end tests. In the next post we will expose more of the `AutomatedBrowser` class to Cucumber, and work towards creating a readable end to end test.

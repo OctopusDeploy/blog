@@ -19,31 +19,31 @@ Before we can use SES, we need to verify the email address that we will appear t
 
 To open the SES console, click the `Services` link and then click the `Simple Email Service` link.
 
-![C:\\e1a769cc26af90404e05f1b3d2a36c04](./image1.png "width=500")
+![C:\\e1a769cc26af90404e05f1b3d2a36c04](image1.png "width=500")
 
 Click the `Email Addresses` link in the left hand menu, and then click the `Verify a New Email Address` button.
 
-![C:\\2a4bbabe855a4bd884d5060233d087ce](./image2.png "width=500")
+![C:\\2a4bbabe855a4bd884d5060233d087ce](image2.png "width=500")
 
 Enter an email address that you have access to, and click the `Verify This Email Address` button.
 
-![C:\\c20b26b91a93a75d93e9379f556d456f](./image3.png "width=500")
+![C:\\c20b26b91a93a75d93e9379f556d456f](image3.png "width=500")
 
 You will see a prompt telling you that a verification email has been sent.
 
-![C:\\92c9eb3b38fe00a11ffb044cacd67087](./image4.png "width=500")
+![C:\\92c9eb3b38fe00a11ffb044cacd67087](image4.png "width=500")
 
 The email will have a link in it that you need to open.
 
-![C:\\27233411237724a5000019a0818bfcbf](./image5.png "width=500")
+![C:\\27233411237724a5000019a0818bfcbf](image5.png "width=500")
 
 Clicking the link takes you to a page that tells you that the email address has been successfully verified.
 
-![C:\\efadf80f7a46f630e2d01999fa0b2310](./image6.png "width=500")
+![C:\\efadf80f7a46f630e2d01999fa0b2310](image6.png "width=500")
 
 Back in the SES console, we can now see that the email address has been verified. You may need to click the refresh button to update the status to verified.
 
-![C:\\2c68f8f83fe44183ee293e5455e8eec1](./image7.png "width=500")
+![C:\\2c68f8f83fe44183ee293e5455e8eec1](image7.png "width=500")
 
 Now that we have configured SES, we need to incorporate it into our code.
 
@@ -244,8 +244,10 @@ Recompile the code with Maven and redeploy it with serverless. Then make another
 
 As before, we get an empty response. But after some time the email address passed to the `sendEmail()` method will receive a message with the results of the test.
 
+:::hint
 If you don't see the email, check your spam folder. Outlook 365 constantly identified these emails as spam, and other providers may do the same.
+:::
 
-![C:\\64fd79671c78abdc3a4f8f36373ecef3](./image8.png "width=500")
+![C:\\64fd79671c78abdc3a4f8f36373ecef3](image8.png "width=500")
 
 We now have a complete solution for launching WebDriver tests in Lambda from a HTTP request, and receiving the results as an email. Whether we launch 1 test or 1000, the infrastructure we have deployed here will scale seamlessly and reliably to accommodate our requests. This is the power of using cloud services like AWS.

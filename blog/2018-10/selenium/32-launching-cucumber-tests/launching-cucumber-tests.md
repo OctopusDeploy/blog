@@ -642,26 +642,26 @@ button\n Then I close the browser"
 
 Here is a screenshot of the web page after it has performed the conversion.
 
-![C:\0041c95b938e7b0537ed58a097b82e4f](./image1.png "width=500")
+![C:\0041c95b938e7b0537ed58a097b82e4f](image1.png "width=500")
 
 This JSON string can then be passed as input when testing the Lambda.
 
 Open up the Lambda console and open the
 `cucumber-chrome-aws-dev-runCucumber` function. Then click the drop down list next to the `Test` button can click `Configure` test events.
 
-![C:\4167b39ce53037784b2394d5b10cf3d1](./image2.png "width=500")
+![C:\4167b39ce53037784b2394d5b10cf3d1](image2.png "width=500")
 
 Give the test event a name, paste in the JSON string, and click the `Create` button.
 
-![C:\a3ce8e4a0b0cf618269a6113d3085e0b](./image3.png "width=500")
+![C:\a3ce8e4a0b0cf618269a6113d3085e0b](image3.png "width=500")
 
 Then click the `Test` button.
 
-![C:\33f234d4327eb29ee0448b9da5ae4c80](./image4.png "width=500")
+![C:\33f234d4327eb29ee0448b9da5ae4c80](image4.png "width=500")
 
 The Gherkin feature is run with out Lambda function, and the results are passed back.
 
-![C:\934ae5036efaded971794102cb4ea728](./image5.png "width=500")
+![C:\934ae5036efaded971794102cb4ea728](image5.png "width=500")
 
 We now have the ability to run Cucumber tests as a Lambda function inside a headless instance of Chrome, and because Lambda functions will scale up to accommodate an essentially infinite number of requests (your budget not withstanding) we now have a solution that will allows us to run an enormous number of tests in parallel.
 

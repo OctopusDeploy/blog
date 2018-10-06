@@ -44,7 +44,7 @@ org.openqa.selenium.NoSuchElementException: no such element: Unable to
 locate element: {"method":"id","selector":"newdiv_element"}
 ```
 
-![](./image1.png)
+![](image1.png "width=500")
 
 This exception is not surprising. Our test is attempting to click an element that won't be created for another 5 seconds.
 
@@ -131,7 +131,7 @@ private AutomatedBrowser getChromeBrowser() {
 
 With the implicit wait time configured we can run the original test (i.e. the one without `Thread.sleep()`), and it will pass. This is because WebDriver will wait for up to 10 seconds for any element we search for to be present in the web page. This gives our dynamic element, created after 5 seconds, plenty of time to appear on the page.
 
-![](./image2.png)
+![](image2.png "width=500")
 
 Explicit waits are the second method provided by WebDriver to wait for elements to be available. Unlike implicit waits, which apply to any element we attempt to find in the page, explicit waits can be used on an element-by-element case.
 
@@ -238,7 +238,7 @@ Running this test will throw the exception:
 org.openqa.selenium.ElementNotVisibleException: element not visible
 ```
 
-![](./image3.png)
+![](image3.png "width=500")
 
 We get this exception because the implicit wait immediately returned the `<div>` since it was present on the web page. Implicit waits don't take into account if the element is disabled or hidden. If the element is available on the page, the implicit wait is satisfied, and the test continues. Or, in our case, fails, because you can not click on an invisible element.
 

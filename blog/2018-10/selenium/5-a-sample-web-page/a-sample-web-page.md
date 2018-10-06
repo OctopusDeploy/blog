@@ -179,33 +179,33 @@ The final div element has its `display` style set to `none`, effectively hiding 
 
 The end result looks like this.
 
-![](./image1.png "width=500")
+![](image1.png "width=500")
 
 In order to make use of this page as part of a Java test, we need to save it in the `src/test/resources` directory. This is the standard Maven directory where resource files are found.
 
 This directory doesn't exist yet, so we create it by right clicking on the test directory and selecting `New` → `Directory`.
 
-![](./image2.png "width=500")
+![](image2.png "width=500")
 
 Enter the name resources, and click the `OK` button.
 
-![](./image3.png "width=500")
+![](image3.png "width=500")
 
 As we have seen a few times now, creating a directory that has special meaning in a Maven project does not automatically update the IntelliJ project. We can see in the screenshot below that the `resources` directory now exists, but it looks like a plain directory in out project.
 
-![](./image4.png "width=500")
+![](image4.png "width=500")
 
 To update the IntelliJ project, open the `Maven Projects` tool window and click the `Reimport All Maven Projects` button.
 
-![](./image5.png "width=500")
+![](image5.png "width=500")
 
 The icon for the resources directory is updated to reflect the fact that this will hold file like our sample web page.
 
-![](./image6.png "width=500")
+![](image6.png "width=500")
 
 Once the resources folder is configured, save the HTML code to a file called `form.html`.
 
-![](./image7.png "width=500")
+![](image7.png "width=500")
 
 We now have two important pieces of the puzzle completed. First, we have the beginnings of the framework that will allow us to create flexible `AutomatedBrowser` objects through which we interact with web pages. Second, we have a sample web page that includes most of the elements we are likely to encounter while writing WebDriver tests. So now it is time to write some real WebDriver tests.
 
@@ -244,7 +244,7 @@ FormTest.class.getResource("/form.html").toURI().toString()
 
 Now let's manually open the same web page. IntelliJ provides a handy service for hosting webpages locally. This can be accessed by clicking the shortcut in the top right hand corner of the screen when the HTML file is opened in the editor.
 
-![](./image8.png "width=500")
+![](image8.png "width=500")
 
 Clicking the Chrome browser icon will open up Chrome to a page with a URL like <http://localhost:63342/webdrivertraining/form.html?_ijt=2r0gmmveunmkptr759pintjfe5>. This is a quick and easy way to start interacting with our sample web page.
 
@@ -256,7 +256,7 @@ To interact with the button, we need to know its ID. We know that this button ha
 
 With the page loaded in Chrome, right click on the button element and click the `Inspect` option.
 
-![](./image9.png "width=500")
+![](image9.png "width=500")
 
 This will open Chrome's Developer Tools, and highlight the button HTML element inside the `Elements` tab.
 
@@ -264,12 +264,12 @@ The HTML elements displayed in the Developer Tools `Elements` tab are updated in
 
 You can see this for yourself by right clicking on the text that says `I am a newly created div` and selecting the `Inspect` option. This will reveal the `<div>` element created as a result of the `setTimeout()` method call. You will not see that `<div>` element in the HTML source code, as it is dynamically generated at run time.
 
-![](./image10.png "width=500")
+![](image10.png "width=500")
 
 Going back to the `<button>` element, we can see that the id
 attribute is indeed `button_element`.
 
-![](./image11.png "width=500")
+![](image11.png "width=500")
 
 Now that we know the ID of the element we wish to interact with, we can start building out our test. We start by making a call to `clickElementWithId()`, passing in the ID of the element that we wish to click.
 
@@ -301,11 +301,11 @@ When you paste this code into the  `WebDriverDecorator` class, ItelliJ will disp
 
 To fix this place the mouse cursor over the red text and click ALT + Enter. This will display a context menu that has the `Import class` option.
 
-![](./image12.png "width=500")
+![](image12.png "width=500")
 
 IntelliJ is usually pretty good at working out which package to import based on the context of the class, and in this case will add the `import org.openqa.selenium.By;` statement to the top of the class.
 
-![](./image13.png "width=500")
+![](image13.png "width=500")
 
 The `clickElementWithId()` method does three important things.
 

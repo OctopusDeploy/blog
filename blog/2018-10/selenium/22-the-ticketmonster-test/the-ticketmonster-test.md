@@ -17,27 +17,27 @@ We will test the scenario of purchasing a ticket for an event, so let's first ru
 
 Starting at the home page, we click the `Buy tickets now` button.
 
-![](./image1.png)
+![](image1.png "width=500")
 
 This presents us with a list of events. From here we click the `Concert` link to expand the menu, and then click the `Rock concert of the decade` link.
 
-![](./image2.png)
+![](image2.png "width=500")
 
 We select `Toronto : Roy Thomson Hall` as the venue, and leave the default time. Then click the `Order tickets` button.
 
-![](./image3.png)
+![](image3.png "width=500")
 
 Select the `A - Premier platinum reserve` section, and enter `2` for the number of tickets. Enter an email in the `Order Summary` section, and click the `Add tickets` button to confirm these choices.
 
-![](./image4.png)
+![](image4.png "width=500")
 
 With the ticket selection done click the `Checkout` button.
 
-![](./image5.png)
+![](image5.png "width=500")
 
 The transaction is completed, and we have bought our pretend tickets to a fictional show.
 
-![](./image6.png)
+![](image6.png "width=500")
 
 Although this scenario of buying tickets is not complex, testing it with WebDriver require a number of techniques that we have implemented in our library so far. We click elements like links and buttons, populate text boxes, select items from drop down lists, and interact with elements that are dynamically added to the page.
 
@@ -139,7 +139,7 @@ try {
 
 From the main page we click the Buy tickets now link. Even though this element looks like a button, is it actually a link, or an `<a>` element.
 
-![](./image7.png)
+![](image7.png "width=500")
 
 This means that we can identify this element by its text. If you remember back to when we implemented the `SimpleBy` class, one of the methods that we used to identify an element was the `By.ByLinkText` class.
 
@@ -162,7 +162,7 @@ automatedBrowser.clickElement("Buy tickets now", WAIT_TIME);
 
 The `Concert and Rock concert of the decade` elements are also links, and so we identify them by their text.
 
-![](./image8.png)
+![](image8.png "width=500")
 
 ```java
 automatedBrowser.clickElement("Concert", WAIT_TIME);
@@ -172,7 +172,7 @@ WAIT_TIME);
 
 The venue selection drop down list has an ID of `venueSelector`, so we use this to identify it. From this list we select the `Toronto : Roy Thomson Hall` option.
 
-![](./image9.png)
+![](image9.png "width=500")
 
 ```java
 automatedBrowser.selectOptionByTextFromSelect("Toronto : Roy Thomson Hall", "venueSelector", WAIT_TIME);
@@ -184,7 +184,7 @@ We do need to click the `Order tickets` button. Unlike the other button like ele
 
 This step is a good example of where explicit waits are valuable, as the elements we are interacting with are dynamically displayed and we can not assume that the element is immediately available to be clicked. Because we are using explicit waits, we can be assured that the test will only proceed when the elements are in the desired state, which in this case means that they are clickable.
 
-![](./image10.png)
+![](image10.png "width=500")
 
 ```java
 automatedBrowser.clickElement("bookButton", WAIT_TIME);
@@ -193,7 +193,7 @@ automatedBrowser.clickElement("bookButton", WAIT_TIME);
 The section is selected from a drop down list with an ID of
 `sectionSelect`.
 
-![](./image11.png)
+![](image11.png "width=500")
 
 ```java
 automatedBrowser.selectOptionByTextFromSelect("A - Premier platinum reserve", "sectionSelect", WAIT_TIME);
@@ -201,7 +201,7 @@ automatedBrowser.selectOptionByTextFromSelect("A - Premier platinum reserve", "s
 
 The text box defining the number of tickets to be purchased has a name of `tickets-1`. We use this to identify the element, and populate it with the text `2`.
 
-![](./image12.png)
+![](image12.png "width=500")
 
 ```java
 automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
@@ -209,7 +209,7 @@ automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
 
 The `Add tickets` button is another example of a form button. We use its `name` of `add` to identify and click it.
 
-![](./image13.png)
+![](image13.png "width=500")
 
 ```java
 automatedBrowser.clickElement("add", WAIT_TIME);
@@ -217,7 +217,7 @@ automatedBrowser.clickElement("add", WAIT_TIME);
 
 The email text box has a ID of `email`, which we use to identify it and populate it with the dummy email address `email@example.org`.
 
-![](./image14.png)
+![](image14.png "width=500")
 
 ```java
 automatedBrowser.populateElement("email", "email@example.org", WAIT_TIME);
@@ -225,7 +225,7 @@ automatedBrowser.populateElement("email", "email@example.org", WAIT_TIME);
 
 The `Checkout` button is yet another form button. It has a `name` of `submit`.
 
-![](./image15.png)
+![](image15.png "width=500")
 
 ```java
 automatedBrowser.clickElement("submit", WAIT_TIME);
@@ -237,11 +237,11 @@ The text that we are interested in is found in a number of paragraph, or `<p>`, 
 
 In these situations you have to use either an XPath or a CSS Selector to identify the elements. Because CSS Selectors tend to be more familiar to web developers, this is the style that we will use.
 
-![](./image16.png)
+![](image16.png "width=500")
 
 Right clicking on the element and selecting `Copy` → `Copy selector` to let Chrome generate a CSS Selector that uniquely identities the element.
 
-![](./image17.png)
+![](image17.png "width=500")
 
 In this case the element holding the email address can be found with the CSS Selector `div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)`. We use this to identify the element and get its text content, which is then checked to ensure that it does hold the email address we entered earlier.
 
@@ -279,33 +279,33 @@ Third, we have seen that just because two elements look the same on the screen, 
 
 To run the test locally click the green icon next to the test, and select the `Run 'purchaseTickets()'` option.
 
-![](./image18.png)
+![](image18.png "width=500")
 
 You will see Chrome open up, complete the purchase, and then the test will pass and finish.
 
-![](./image19.png)
+![](image19.png "width=500")
 
 This is a good opportunity to push the code changes to GitHub. Right click the root project directory and select `Git` → `Commit directory...`.
 
-![](./image20.png)
+![](image20.png "width=500")
 
 Enter a commit message, and click `Commit and Push`.
 
-![](./image21.png)
+![](image21.png "width=500")
 
 Then click the `Push` button to update the GitHub repository.
 
-![](./image22.png)
+![](image22.png "width=500")
 
 In a few moments Travis CI will detect the changes and run the tests. In the logs you will see the new test being executed.
 
-![](./image23.png)
+![](image23.png "width=500")
 
 This cycle of writing code, adding tests, checking-in the changes and having a central server build the code, run the tests and record the results is crucial to the idea of Continuous Integration. If you are part of a team, the current state of the code base can be quickly determined by whether or not the Travis CI build is passing, and because we are running tests with each check-in, we can have a high degree of confidence that a passing build represents a code base that is valid and able to be deployed.
 
 If you had a keen eye, you may have noticed some of the images didn't load correctly when the tickets were purchased. This can happen if the site hosting the placeholder images is experiencing performance issues. As you can see in the screenshot below, the event and location images have not loaded correctly.
 
-![](./image3.png)
+![](image3.png "width=500")
 
 Issues like this should be considered a bug, and is something we can detect as part of our test. Let's update the test to capture a HAR file, which we implemented when we added support for the BrowserMob
 proxy.
@@ -368,6 +368,6 @@ Analyzer](https://toolbox.googleapps.com/apps/har_analyzer/) and look for networ
 
 Sure enough, we can see some requests for images have a response code of 0, meaning they did not complete successfully. So even though our test successfully completed the process of purchasing tickets, the HAR file can be used to identify other issues that may impact on the user experience.
 
-![](./image24.png)
+![](image24.png "width=500")
 
 This test of TicketMonster represents a real world example of how you can write end to end tests using WebDriver. The library we have created makes it quite easy to interact with the web application; however, having a test that directly lists every click, select and populate operation is quite low level. In the next lecture, we'll look at a design pattern that abstracts away the interactions with a web application to produce more reusable and maintainable code.

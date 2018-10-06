@@ -64,7 +64,7 @@ onPacket@chrome://marionette/content/server.js:241:8
 _onJSONObjectReady/<@chrome://marionette/content/transport.js:500:9
 ```
 
-![](./image1.png)
+![](image1.png "width=500")
 
 From the message in the exception it appears that that some remote JavaScript code resulted in an error. But where is this JavaScript code, and how can we debug the error?
 
@@ -77,7 +77,7 @@ fromJSON@chrome://marionette/content/session.js:291:28
 
 The key to debugging this error is to understand that the file `chrome://marionette/content/session.js` is bundled with Firefox. If you enter that URL into Firefox, you can see the source of the file.
 
-![](./image2.png)
+![](image2.png "width=500")
 
 In this case the offending line of code is:
 
@@ -85,7 +85,7 @@ In this case the offending line of code is:
 p.socksVersion = assert.positiveInteger(json.socksVersion);
 ```
 
-![](./image3.png)
+![](image3.png "width=500")
 
 From this code we can deduce that we need to define the version of the SOCKS proxy.
 

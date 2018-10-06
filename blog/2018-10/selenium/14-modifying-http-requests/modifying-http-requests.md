@@ -33,7 +33,7 @@ The diagram below shows the request and response that we are trying to achieve.
 
 5.  The empty response is sent back to the browser.
 
-![C:\\46f5ae53d5a2c2db101267136cb92e19](./image2.png "width=500")
+![C:\\46f5ae53d5a2c2db101267136cb92e19](image2.png "width=500")
 
 To support modifying requests we add a new method to the `AutomatedBrowser` interface.
 
@@ -159,16 +159,16 @@ automatedBrowser.blockRequestTo("https://.*?twitter\\.com/", 500);
 
 You will note that we have not called `automatedBrowser.destory()` here. This is to allow us to view the web page that results from the network requests being altered. As you can see, the images that were usually presented are now no longer displayed because these requests were intercepted and returned as empty responses.
 
-![](./image3.png "width=500")
+![](image3.png "width=500")
 
 An important thing to note here is that it is no longer possible to interact with the web page in any meaningful way once the test has completed. This is because BrowserMob has been closed, meaning the proxy that the browser was configured with is no longer available, so all future network requests will fail.
 
 To interact with the web page, you will need to manually remove the proxy settings from the browsers settings. The screenshot below shows the Firefox proxy settings we saw in the last lecture. Selecting the `No proxy` option will allow the browser to be used after BrowserMob has been shut down.
 
-![C:\\8670254aa7b6874ef581d1f37eb34235](./image4.png "width=500")
+![C:\\8670254aa7b6874ef581d1f37eb34235](image4.png "width=500")
 
 Remember that by not calling the `destory()` method, we are now responsible for manually closing the driver binaries launched by the test.
 
-![C:\\491bba4f05d276005b967a923068965a](./image5.png "width=500")
+![C:\\491bba4f05d276005b967a923068965a](image5.png "width=500")
 
 Blocking network requests to things like images can speed up WebDriver tests, and is especially useful when running tests against headless browsers, because there no one watching the tests being run so there is little benefit to downloading images that will never be seen.

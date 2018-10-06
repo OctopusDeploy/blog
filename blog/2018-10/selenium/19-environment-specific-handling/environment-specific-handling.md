@@ -211,7 +211,7 @@ webStorageEnabled: false}
 Session ID: 1a34a4609f63d6bc8749bd3a09f5001ea5a93dd7
 ```
 
-![C:\f22aeb0db211bb4354f00a062e71f0ea](./image1.png "width=500")
+![C:\f22aeb0db211bb4354f00a062e71f0ea](image1.png "width=500")
 
 This exception makes sense, because mobile browsers do not have the concept of resizable windows. They are always full screen, and therefor it is invalid to try and modify the size of the window.
 
