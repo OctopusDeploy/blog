@@ -61,7 +61,7 @@ Remember that bucket names have to be globally unique, so you won't be able to u
 
 Open the newly created bucket.
 
-![C:\\15a6b421a9b0c264bb584f21ac49ab28](image7.tmp)
+![C:\\15a6b421a9b0c264bb584f21ac49ab28](image7.png "width=500")
 
 Click the `Upload` button.
 
