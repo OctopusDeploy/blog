@@ -50,9 +50,7 @@ number.
 The `\s` character class matches any white space character, like a space
 or a tab.
 
-You can find more information about regular expression character classes
-at
-<https://docs.oracle.com/javase/tutorial/essential/regex/pre_char_classes.html>.
+You can find more information about regular expression character classes in the  [Oracle documentation](https://docs.oracle.com/javase/tutorial/essential/regex/pre_char_classes.html).
 
 We also use a non-capture group in this regular expression. A
 non-capture group starts with `(?:` and ends with `)`. Non-capture groups
@@ -97,9 +95,7 @@ individual components.
 | $	| Match the end of the string  |
 
 
-To understand the kind of steps that will match this regular expression,
-enter it into <http://regex-testdrive.com/en/dotest> and test the
-following examples:
+To understand the kind of steps that will match this regular expression, enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the following examples:
 
 -   I click the text box with the id "email"
 -   I click the check box with the id "option-1"
@@ -155,7 +151,7 @@ individual components.
 
 
 To understand the kind of steps that will match this regular expression,
-enter it into <http://regex-testdrive.com/en/dotest> and test the
+enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the
 following examples:
 
 -   I click the text box with the id "email" waiting up to "1"
@@ -220,7 +216,7 @@ individual components.
 
 
 To understand the kind of steps that will match this regular expression,
-enter it into <http://regex-testdrive.com/en/dotest> and test the
+enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the
 following examples:
 
 -   I select the option "Option One" from the drop down list with the
