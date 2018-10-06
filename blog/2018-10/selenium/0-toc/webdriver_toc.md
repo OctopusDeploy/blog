@@ -13,7 +13,7 @@ This blog series steps through the process of writing WebDriver UI tests in Java
 
 The source code that accompanies this blog series can be found at [GitHub](https://github.com/OctopusDeploy/WebDriverTraining).
 
-1. [What is WebDriver and Selenium](/blog/2018-10/selenium/1-what-is-webdriver-and-selenium/1-what-is-webdriver-and-selenium/what-is-webdriver-and-selenium.md)
+1. [What is WebDriver and Selenium](/blog/2018-10/selenium/1-what-is-webdriver-and-selenium/what-is-webdriver-and-selenium.md)
 2. [The Maven POM File](/blog/2018-10/selenium/2-the-maven-pom-file/the-maven-pom-file.md)
 3. [The First Test](/blog/2018-10/selenium/3-the-first-test/the-first-test.md)
 4. [Creating the Framework](/blog/2018-10/selenium/4-creating-the-framework/creating-the-framework.md)

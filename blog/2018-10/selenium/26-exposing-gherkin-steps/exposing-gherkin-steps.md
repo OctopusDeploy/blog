@@ -132,7 +132,7 @@ individual components.
 | Pattern |	Meaning |
 |-|-|
 | ^	| Match the start of the string |
-| I | click the	Match the literal string `I click the` |
+| I click the |	Match the literal string `I click the` |
 | \\w+	| Match one or more word characters |
 | (?:	| Start a non-capture group |
 | \\s+	| Match one or more white space characters |
