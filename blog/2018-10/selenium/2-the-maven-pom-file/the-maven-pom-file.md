@@ -78,14 +78,14 @@ All Maven POM files have a `<project>` element as the root element, and the attr
 
 The `<modelVersion>` element defines the POM version. The only supported value for this element is `4.0.0`.
 
-<https://maven.apache.org/pom.html#Quick_Overview> has details on the elements that make up the POM file.
+[https://maven.apache.org/pom.html#Quick_Overview](https://maven.apache.org/pom.html#Quick_Overview) has details on the elements that make up the POM file.
 
 ## Group, artifact and version
 
 The `<groupId>`, `<artifactId>` and `<version>` elements
 define the identity of the Maven artifact produced by this project. These values are sometimes combined and abbreviated to the acronym GAV.
 
-The `groupId` usually takes the form of a reversed domain name, although this is just a convention and not a strict requirement. We have used the value `com.octopus`, which is the reverse of the domain name in the URL <http://octopus.com/>.
+The `groupId` usually takes the form of a reversed domain name, although this is just a convention and not a strict requirement. We have used the value `com.octopus`, which is the reverse of the domain name in the URL [http://octopus.com/](http://octopus.com/).
 
 The combination of the `groupId` and `artifactId` must be unique, and since many projects may share the `groupId`, it is the `artifactId` that describes this project.
 
@@ -148,7 +148,7 @@ The next settings configure certain aspects of the Maven build process. Maven pr
 
 
 See
-<https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference> for a complete list of the phases for the Maven life cycles.
+[https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Lifecycle_Reference) for a complete list of the phases for the Maven life cycles.
 
 Each phase is executed by what is known as a goal exposed by a plugin, and each plugin can be configured within a `<plugin>` element, nested under the `<build><plugins>` elements.
 
@@ -176,7 +176,7 @@ The configuration of the Java version is done with the `<source>` and `<target>`
 
 Finally we have the `<dependencies>` element. This element defines the additional libraries that our application relies on.
 
-The details of the dependencies are usually found through one of the many Maven repository search engines, such as <https://search.maven.org/>. The screenshot below shows a search for the JUnit library.
+The details of the dependencies are usually found through one of the many Maven repository search engines, such as [https://search.maven.org/](https://search.maven.org/). The screenshot below shows a search for the JUnit library.
 
 ![](image2.png "width=500")
 
@@ -192,7 +192,7 @@ JUnit is a popular unit testing library, and we will use it extensively while wr
 
 Note the `<scope>` element is set to `test` for the `junit` dependency. This indicates that this dependency is only required for the testing phase of the Maven lifecycle, and will not be packaged up when building release artifacts.
 
-:::note
+:::hint
 We are using JUnit 4 here instead of the more recent JUnit 5 because some of the libraries that we'll be using later on in the course have not been updated to work with JUnit 5 yet.
 :::
 
@@ -224,7 +224,7 @@ Then select the `pom.xml` file.
 
 IntelliJ recognizes that the pom.xml file is a Maven project, and begins the process of importing the project from Maven.
 
-The defaults in this dialog are fine, so click the Next button.
+The defaults in this dialog are fine, so click the `Next` button.
 
 ![](image7.png "width=500")
 
@@ -239,7 +239,7 @@ This dialog allows you to select the JDK to use to build the project. If you are
 
 ![](image9.png "width=500")
 
-If you do not see the Java 1.8 SDK as an option, click the plus icon and select JDK from the Add New SDK menu.
+If you do not see the Java 1.8 SDK as an option, click the plus icon and select JDK from the `Add New SDK` menu.
 
 ![](image10.png "width=500")
 
@@ -268,7 +268,7 @@ The default name for the IntelliJ project is the same as the Maven ArtifactID. T
 
 IntelliJ then creates an empty project linked to the Maven project.
 
-On the right hand side of the IDE you will see a button called `Maven Projects`. If you do not see this button, the window can be opened by clicking `View` → `Tool Windows` → `Maven` Projects.
+On the right hand side of the IDE you will see a button called `Maven Projects`. If you do not see this button, the window can be opened by clicking `View` → `Tool Windows` → `Maven Projects`.
 
 ![](image16.png "width=500")
 

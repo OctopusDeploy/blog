@@ -155,7 +155,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 In this example I have extracted the driver executable to
 `/Users/Shared/tools/chromedriver`.
 
-The alternative to defining the `webdriver.chrome.driver` system property is to place the driver executable on in a directory found in the `PATH` environment variable. When the driver executable is found on the `PATH`, you do not need to configure the `<systemPropertyVariables>` element as we did above, as the file can be automatically found.
+The alternative to defining the `webdriver.chrome.driver` system property is to place the driver executable in a directory found in the `PATH` environment variable. When the driver executable is found on the `PATH`, you do not need to configure the `<systemPropertyVariables>` element as we did above, as the file can be automatically found.
 
 On a MacOS system, you can add new directories to the `PATH` environment variable by adding the directory to the file `/etc/paths`.
 
