@@ -174,47 +174,26 @@ $ serverless deploy
 You will see output like the following:
 
 ```
-$ serverless deploy
-
 Serverless: Packaging service...
-
 Serverless: Uploading CloudFormation file to S3...
-
 Serverless: Uploading artifacts...
-
-Serverless: Uploading service .zip file to S3 (22.66 MB)...
-
+Serverless: Uploading service .zip file to S3 (19.78 MB)...
 Serverless: Validating template...
-
 Serverless: Updating Stack...
-
 Serverless: Checking Stack update progress...
-
-...............
-
+.....................
 Serverless: Stack update finished...
-
 Service Information
-
 service: cucumber-chrome-aws
-
 stage: dev
-
 region: us-east-1
-
 stack: cucumber-chrome-aws-dev
-
 api keys:
-
-None
-
+  None
 endpoints:
-
-None
-
+  None
 functions:
-
-runCucumber: cucumber-chrome-aws-dev-runCucumber
+  runCucumber: cucumber-chrome-aws-dev-runCucumber
 ```
 
 Serverless is doing a lot of work behind the scenes to upload our JAR files as a Lambda function, which is one of the benefits of using Serverless instead of uploading our Lambda function manually.
@@ -225,7 +204,7 @@ If we return to the AWS Lambda console, we can now see the new Lambda function h
 
 This page shows us the details of the Lambda function.
 
-To test that the function works, click the Test button.
+To test that the function works, click the `Test` button.
 
 ![C:\\b24d832e8c4c491083526bb2ca815e1d](./image4.png "width=500")
 
@@ -237,7 +216,7 @@ Lambda functions also always convert the returned object to JSON.
 
 The fact that Lambda functions only accept JSON as input and provide JSON as output will be important later on when we link this function up to a HTTP endpoint.
 
-Then populate the `Event` name field, and click the Create button.
+Then populate the `Event` name field, and click the `Create` button.
 
 ![C:\\1d66f3aba2a8529623be190d8215c526](./image5.png "width=500")
 
