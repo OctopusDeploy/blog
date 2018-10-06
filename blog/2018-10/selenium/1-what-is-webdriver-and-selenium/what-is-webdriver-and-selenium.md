@@ -51,7 +51,7 @@ To interact with the API we need a tool that allows us to make HTTP requests. He
 The first step is to open the browser. This is done by creating a new
 session.
 
-To create a new session via the WebDriver API, we make a HTTP POST request to the `/session` endpoint. In addition we need to define the type of browser that we wish to open, which in this case is chrome. This information is sent in a JSON object in the POST body. In this example we'll open Chrome.
+To create a new session via the WebDriver API, we make a HTTP POST request to the `/session` endpoint. In addition we need to define the type of browser that we wish to open. This information is sent in a JSON object in the POST body. In this example we'll open Chrome.
 
 ```json
 {
@@ -61,7 +61,7 @@ To create a new session via the WebDriver API, we make a HTTP POST request to th
 }
 ```
 
-The response from this request includes a `sessionId`. We can use this to perform additional operation on the browser window we just opened.
+The response from this request includes a `sessionId`. We can use this to perform additional operations on the browser window we just opened.
 
 ![](image4.png "width=500")
 
