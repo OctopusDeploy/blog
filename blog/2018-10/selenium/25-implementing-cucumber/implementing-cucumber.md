@@ -15,7 +15,7 @@ But, at the end of the day, this code is still written in Java, and few of the s
 
 Integrating the Cucumber library is one solution to make testing more approachable for non-developers. We can use the Cucumber library as the glue between our Java code and a language called Gherkin, which we'll do in this post.
 
-### The Gherkin Language
+## The Gherkin Language
 The Gherkin language has been designed to provide a natural dialect that describes the requirements, behaviors and interactions with a system. Gherkin uses a convention where all steps start with the words `Given`, `When`, `Then` and `And`. An example of this would be the steps
 
 ```
