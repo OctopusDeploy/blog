@@ -14,10 +14,10 @@ Now that we have the basics in place to integrate the
 
 The next step in most tests after opening the browser is to open a URL. We can expose this by annotating the `goTo()` method.
 
-We will use the regular expression `^I open the URL "([^\"]\*)"$` to capture the URL that we wish to open and pass it to the url parameter. This regular expression follows the familiar pattern of using the caret and dollar signs to match the start and end of the string, some plain text that must be literally matched, and a single group inside quotes.
+We will use the regular expression `^I open the URL "([^\"]*)"$` to capture the URL that we wish to open and pass it to the url parameter. This regular expression follows the familiar pattern of using the caret and dollar signs to match the start and end of the string, some plain text that must be literally matched, and a single group inside quotes.
 
 ```java
-@And("^I open the URL \"([^\"]\*)\"$")
+@And("^I open the URL \"([^\"]*)\"$")
 @Override
 public void goTo(String url) {
   // ...
@@ -28,8 +28,8 @@ Now we need to expose some methods to interact with the web page. Here
 we have annotated the `clickElementWithId()` method.
 
 ```java
-@And("^I click the \\w+(?:\\s+\\w+)\* with the id
-\"([^\"]\*)\"$")
+@And("^I click the \\w+(?:\\s+\\w+)* with the id
+\"([^\"]*)\"$")
 @Override
 public void clickElementWithId(String id) {
   // ...
@@ -62,7 +62,7 @@ the pattern is matched to a string. This is important for the
 integration with Cucumber, because non-capture groups are not passed as
 parameters to the associated method.
 
-The pattern `\\w+(?:\\s+\\w+)\*` matches zero or more words
+The pattern `\\w+(?:\\s+\\w+)*` matches zero or more words
 separated by spaces. So the following strings will all match this
 pattern:
 
@@ -116,7 +116,7 @@ implements explicit waits. This method has a second parameter called
 `waitTime` that takes an int.
 
 ```java
-@And("^I click the \\w+(?:\\s+\\w+)\* with the id \"([^\"]\*)\" waiting up to \"(\\d+)\" seconds?$")
+@And("^I click the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
 @Override
 public void clickElementWithId(String id, int waitTime) {
   // ...
@@ -182,7 +182,7 @@ time to wait for the drop down list to be clickable. This regular
 expression therefor needs to have 3 capture groups.
 
 ```java
-@And("^I select the option \"([^\"]\*)\" from the \\w+(?:\\s+\\w+)\* with the id \"([^\"]\*)\" waiting up to \"(\\d+)\" seconds?$")
+@And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
 @Override
 public void selectOptionByTextFromSelectWithId(String optionText, String
 id, int waitTime) {
