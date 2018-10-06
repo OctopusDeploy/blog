@@ -13,19 +13,19 @@ To create a BrowserStack account, go to <https://www.browserstack.com>. You will
 
 Enter your email address, password and name, and continue to the next page.
 
-![](image1.jpeg)
+![](image1.jpeg "width=500")
 
 And that's it. You now have a BrowserStack account.
 
-![](image2.jpeg)
+![](image2.jpeg "width=500")
 
 In order to connect to BrowserStack, we need to get the Access Key. This can be found by clicking the `Account` menu, and selecting `Settings`.
 
-![](image3.jpeg)
+![](image3.jpeg "width=500")
 
 You will find the Access Key under the Automate heading. Make a note of the `Username` and `Access Key`, as we will need these values later.
 
-![](image4.png)
+![](image4.png "width=500")
 
 To run tests remotely against BrowserStack we need to create an instance of the `RemoteDriver` class. Unlike `ChromeDriver` or `FirefoxDiver`, `RemoteDriver` is designed to control a browser hosted on a remote server. This means we need to give the `RemoteDriver` a URL to send commands to, along with the credentials.
 
@@ -136,7 +136,7 @@ Constructing the `RemoteDriver` is only half the story though. Because `RemoteDr
 
 We will start by testing against the Edge browser, which is available in Windows 10.
 
-![](image5.png)
+![](image5.png "width=500")
 
 These desired capability settings will be defined in a new decorator called `BrowserStackEdgeDecorator`.
 
@@ -286,17 +286,17 @@ org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:
 
 This is because we haven't setup the environment variables with the BrowserStack username and password. To add these environment variables to the test, click the drop down list in IntelliJ that contains the configurations, and click `Edit Configurations...`
 
-![](image6.png)
+![](image6.png "width=500")
 
 Under the Configuration tab you will see a field called `Environment
 Variables`. Click the button to the right of this field.
 
-![](image7.png)
+![](image7.png "width=500")
 
 Enter the environment variables in the dialog, and save the changes.
 Click the `OK` button twice to save the changes.
 
-![](image8.png)
+![](image8.png "width=500")
 
 This time the test will run successfully. You can view the test running by logging into BrowserStack and clicking the `Products` → `Automate` link. By default the last test is shown. The screen to the right will show you the test being run live against the remote browser, or if the test has completed will provide a recorded video of the test.
 

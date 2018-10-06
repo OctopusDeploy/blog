@@ -3,8 +3,8 @@ title: Running tests on mobile devices
 description: In this post we learn how to run tests against the mobile devices in BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: private
-bannerImage: webdriver.png
-metaImage: webdriver.png
+bannerImage: webdriver.png "width=500")
+metaImage: webdriver.png "width=500")
 tags:
 - Java
 ---
@@ -16,7 +16,7 @@ Let's take a look at how we can test against Chrome on the Samsung Galaxy Note 8
 First we need to build the desired capabilities object to instruct BrowserStack to run the tests against the Samsung device. As before we can get these details through the form available at
 <https://www.browserstack.com/automate/capabilities>.
 
-![C:\2713f257ba961d58a8316e44e3691666](image1.png "width=500")
+![C:\2713f257ba961d58a8316e44e3691666](image1.png "width=500") "width=500")
 
 We then take these settings and use them to build a new decorator class called `BrowserStackAndroidDecorator`.
 
@@ -143,22 +143,22 @@ new test configuration, so to add these environment variables to all tests, we n
 
 Click the drop down list of configurations, and select `Edit Configurations...`
 
-![C:\164b6a7a999aea368f833df845efd42f](image2.tmp)
+![C:\164b6a7a999aea368f833df845efd42f](image2.png "width=500"))
 
 This time instead of adding the environment variables to the
 configuration of an individual test, we add them as the defaults of any JUnit configuration.
 
 Expand the Defaults menu on the left hand side, select the JUnit option, and add `BROWSERSTACK_USERNAME` and `BROWSERSTACK_KEY` to the `Environment variables`.
 
-![C:\5f0645e9d5db5ef6ccd5390caacfd309](image3.png "width=500")
+![C:\5f0645e9d5db5ef6ccd5390caacfd309](image3.png "width=500") "width=500")
 
 You may need to delete the JUnit configuration that was created when you ran the test. This will be found under the JUnit option in the left hand menu. Select the configuration, and click the minus button.
 
-![C:\fd113ade73cde35a8d343177545f4022](image4.png "width=500")
+![C:\fd113ade73cde35a8d343177545f4022](image4.png "width=500") "width=500")
 
 When you run the unit test again, IntelliJ will create a new JUnit configuration, and this will have the environment variables populated with the default values.
 
-![](image5.png "width=500")
+![](image5.png "width=500") "width=500")
 
 Running the test again it will create a new BrowserStack session, which again can be viewed by clicking `Products` → `Automate` in BrowserStack. The test will be run on a Samsung mobile device.
 

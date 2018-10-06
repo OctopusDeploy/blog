@@ -79,7 +79,7 @@ Looking at the contents of the UberJAR file we can see that it has significantly
 You will have noticed that running the package Maven lifecycle results in all the tests being run. Given that the tests we have written involve launching web browsers, these tests can get in the way if you just want to produce the JAR file. To prevent tests from being run, right click on the package lifecycle menu item and select the `Create
 'webdrivertraining...'...` option.
 
-![C:\\c00ed64c68f139e3bbf3bf836c200a12](image6.png)
+![C:\\c00ed64c68f139e3bbf3bf836c200a12](image6.png "width=500")
 
 Then select the `Runner` tab. Unselect the `Use project settings` option, and then select the `Skip tests` option. Click the `OK` button to save the changed.
 
@@ -87,6 +87,6 @@ Then select the `Runner` tab. Unselect the `Use project settings` option, and th
 
 This will create a new configuration called `webdrivertraining [package]`. Clicking the green arrow with this configuration selected will run the Maven package lifecycle, but skip the tests, allowing you to build the JAR files quickly.
 
-![C:\\1eaaa83ad11078700649ee9e0810bd14](image8.png)
+![C:\\1eaaa83ad11078700649ee9e0810bd14](image8.png "width=500")
 
 The resulting UberJAR file provides a convenient, self contained package that we can easily distribute and run, and is what we will be deploying as an AWS Lambda. In the next lecture we'll add the code required to run a WebDriver test in Lambda, and use the Serverless application to publish the UberJAR file.

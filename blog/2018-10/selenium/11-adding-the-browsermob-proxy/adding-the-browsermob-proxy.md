@@ -228,14 +228,14 @@ public void formTestByIDFirefox() throws URISyntaxException {
 
 Once the test has completed, the Firefox browser that it launched will still be displayed. Then from the menu we can select the `Preferences` option.
 
-![](image1.png)
+![](image1.png "width=500")
 
 At the bottom of the preferences page is the Network Proxy section. Click the `Settings...` button.
 
-![](image2.png)
+![](image2.png "width=500")
 
 Here we can see the proxy settings that we defined in code. This is confirmation that our proxy has been configured via WebDriver.
 
-![](image3.png)
+![](image3.png "width=500")
 
 Configuring a proxy server gives us the ability to observe and interact with the network requests being made during a test in ways that are not possible using WebDriver alone. The next step is to expose the features of the BrowserMob proxy that are useful to us. But before we do that, we'll take a look at a common misconfiguration that can arise when configuring proxies, and learn how to debug the errors that are displayed.
