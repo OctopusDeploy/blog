@@ -9,7 +9,7 @@ tags:
 - Java
 ---
 
-In the last lecture we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath and CSS Selector, and the homework assignment was to add support for locate elements based on their name attribute.
+In the last lecture we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath and CSS Selector.
 
 But wouldn't it be nice if we could call a single set of methods with the element identifier and let WebDriver work out which elements matched?
 
@@ -30,7 +30,6 @@ public void formTestWithSimpleBy() throws URISyntaxException {
   final String messageLocator = "";
 
   try {
-
     automatedBrowser.init();
 
     automatedBrowser.goTo(FormTest.class.getResource("/form.html").toURI().toString());
@@ -76,7 +75,7 @@ public interface SimpleBy {
 }
 ```
 
-The `ExpectedConditionCallback` interface defines a single method that will take a By object, and return a `ExpectedCondition` object. We'll make use of this to build an explicit wait condition.
+The `ExpectedConditionCallback` interface defines a single method that will take a `By` object, and return a `ExpectedCondition` object. We'll make use of this to build an explicit wait condition.
 
 ```java
 package com.octopus.utils;
@@ -219,11 +218,13 @@ Inside the `try` block we execute an explicit wait, only this time we wait for a
 Notice that we call the functional interface passed into the `expectedConditionCallback` parameter to convert the instance of the `By` class into the desired expected condition. This allows the caller of the method to decide what state the element should be in in order to be
 considered a match.
 
-It is worth noting that the WebDriver API is not thread safe, so we have to execute our code in a sequential fashion like this instead of running each test in a separate thread.
+:::hint
+The WebDriver API is not thread safe, so we have to execute our code in a sequential fashion like this instead of running each test in a separate thread.
+:::
 
-The catch block does nothing, because we expect that most attempts to find an element with a given implementation of the By class will fail. For example, if the locator string was set to an XPath like `//*[@name="button_element"]`, the locator `By.cssSelector(locator)` will never find a match because it only works with CSS Selectors.
+The `catch` block does nothing, because we expect that most attempts to find an element with a given implementation of the `By` class will fail. For example, if the locator string was set to an XPath like `//*[@name="button_element"]`, the locator `By.cssSelector(locator)` will never find a match because it only works with CSS Selectors.
 
-However, the locator `By.xpath(locator)` could well find a match, in which case return `wait.until(condition)` will exit the loop and return the matching element.
+However, the locator `By.xpath(locator)` could well find a match, in which case `return `ait.until(condition)` will exit the loop and return the matching element.
 
 ```java
 try {
@@ -261,7 +262,7 @@ You may wonder what happens if two implementations of `By` could return a match.
 
 In practise though such conflicts are rare, and can be easily resolved by passing in an XPath or CSS Selector as the locator. The odds of your web page having a XPath or CSS Selector embedded in an `id`, `name` or `class` attribute is exceptionally small, and so they will not match more than one element.
 
-If you had a keen eye you may have noticed that we created an instance of `WebDriverWaitEx` instead of the usual `WebDriverWait`. `WebDriverWaitEx` extends `WebDriverWait`, and adds an additional constructor that allow it to be configured to wait for sub-second amounts of time (`WebDriverWait` can wait for no less than 1 second). This is important to us, because if each instance of the `By` class that we were testing took 1 second to complete, the entire loop would take at least 6 seconds to process, which is too long.
+If you had a keen eye you may have noticed that we created an instance of `WebDriverWaitEx` instead of the usual `WebDriverWait`. `WebDriverWaitEx` extends `WebDriverWait`, and adds an additional constructor that allows it to be configured to wait for sub-second amounts of time (`WebDriverWait` can wait for no less than 1 second). This is important to us, because if each instance of the `By` class that we were testing took 1 second to complete, the entire loop would take at least 6 seconds to process, which is too long.
 
 ```java
 package com.octopus.utils.impl;
