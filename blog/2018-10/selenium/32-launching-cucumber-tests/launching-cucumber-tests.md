@@ -540,7 +540,7 @@ public class AutomatedBrowserFactory {
 }
 ```
 
-To deploy the new Lambda function, run the `package` Maven lifecycle, and run `serverless` deploy to upload the code to AWS.
+To deploy the new Lambda function, run the `package` Maven lifecycle, and run `serverless deploy` to upload the code to AWS.
 
 We are now ready to test the Lambda function by passing in a Gherkin feature file. However, if you recall from the last lecture we said that every input to a Lambda function must be valid JSON. Our Gherkin feature files most definitely are not written in JSON, so we need some way to convert text into a JSON string.
 
