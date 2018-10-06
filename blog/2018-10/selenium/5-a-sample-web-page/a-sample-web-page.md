@@ -347,14 +347,14 @@ The `getTextFromElementWithId()` method then needs an implementation in the `Web
 
 Notice that the `getTextFromElementWithId()` method follows the same pattern as the `clickElementWithId()`. In fact the only difference is that we call `getText()` on the resulting element instead of `click()`.
 
-And with that we have successfully clicked an element with WebDriver and verified that the page responded how we expected.
-
 ```java
 @Override
 public String getTextFromElementWithId(final String id) {
   return webDriver.findElement(By.id(id)).getText();
 }
 ```
+
+And with that we have successfully clicked an element with WebDriver and verified that the page responded how we expected.
 
 Let's move onto populating text boxes and text areas with some text, and verifying that the event handlers on those fields print the expected message to the page.
 
