@@ -19,7 +19,7 @@ These days development of PhantomJS has stalled. One of the maintainers of the p
 
 Before we start configuring headless browsers, we need to add some additional support for configuring the driver classes.
 
-WebDriver uses a class called `DesiredCapabilities` that serves as a generic container for browser driver settings. The `DesiredCapabilities` class is essentially a container for key value pairs, with some convenience methods for configuring commonly used settings.
+WebDriver uses a class called `DesiredCapabilities` that serves as a generic container for browser driver settings. The `DesiredCapabilities` class is essentially a container for key/value pairs, with some convenience methods for configuring commonly used settings.
 
 First we add the method `getDesiredCapabilities()` to the `AutomatedBrowser` interface.
 
@@ -33,7 +33,7 @@ public interface AutomatedBrowser {
 
 Then we add a default method in the `AutomatedBrowserBase` class.
 
-This method differs a little from the typical default decorator method implementation in that if there is no parent `AutomatedBrowser` instance to return an instance of the `DesiredCapabilities` class from, we return a new instance of `DesiredCapabilities` instead of `null`. This ensures that if no decorator has provided any `DesiredCapabilities`, we can always rely on a default instance being returned.
+This method differs a little from the typical default decorator method implementations in that if there is no parent `AutomatedBrowser` instance to return an instance of the `DesiredCapabilities` class, we return a new instance of `DesiredCapabilities` instead of `null`. This ensures that if no decorator has provided any `DesiredCapabilities`, we can always rely on a default instance being returned.
 
 ```java
 @Override
@@ -228,7 +228,7 @@ public void formTestByIDHeadless() throws URISyntaxException {
 
 The process for creating a headless instance of Firefox is almost exactly the same as for Chrome.
 
-First the `FirefoxDecorator` class is updated with a constructor that sets the headless instance variable, and a call to `setHeadless()` in the options class configures the headless mode on the driver.
+First the `FirefoxDecorator` class is updated with a constructor that sets the `headless` instance variable, and a call to `setHeadless()` in the options class configures the headless mode on the driver.
 
 ```java
 package com.octopus.decorators;
@@ -320,4 +320,4 @@ public void formTestByIDHeadlessFirefox() throws URISyntaxException {
 
 Running tests on specialized browsers like PhantomJS that didn't quite behave like "real" browsers used to be a pain point for testers, but was a necessary evil. By supporting headless browsing, browsers like Chrome and Firefox have paved the way for testers to utilize the same browsers used by end users in automated tests on headless servers. We'll take advantage of these headless browsers in later lectures as we integrate with platforms like Travis CI and AWS Lambda.
 
-In addition, by exposing the ability to configure browsers via the `DesiredCapabilities` class we have provided a hook that we can take advantage of with new decorators to add functionality such as custom proxies, which is exactly what we'll be doing in the next lecture.
+In addition, by exposing the ability to configure browsers via the `DesiredCapabilities` class we have provided a hook that we can take advantage of with new decorators to add functionality such as custom proxies, which is exactly what we'll be doing in the next post.
