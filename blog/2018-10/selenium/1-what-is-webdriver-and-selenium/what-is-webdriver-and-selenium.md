@@ -13,17 +13,17 @@ tags:
 
 When it comes to testing web applications, you have probably heard of WebDriver and Selenium. Often the two terms are used interchangeably or even combined to refer to the platform on which a developer can write code to interact with a web browser. However, these two terms refer to slightly different things.
 
-Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at <https://www.w3.org/TR/webdriver1/>, and is freely available for anyone to implement.
+Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at [https://www.w3.org/TR/webdriver1/](https://www.w3.org/TR/webdriver1/), and is freely available for anyone to implement.
 
 Most browser vendors implement the WebDriver API through an additional executable that is shipped separate to the browser itself. The list below shows where the major browsers provide this binary driver:
 
--   Chrome: <https://sites.google.com/a/chromium.org/chromedriver/downloads>
--   Firefox: <https://github.com/mozilla/geckodriver/releases>
--   Opera: <https://github.com/operasoftware/operachromiumdriver/releases>
--   IE: <http://selenium-release.storage.googleapis.com/index.html>
--   Edge: <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>
+-   Chrome: [https://sites.google.com/a/chromium.org/chromedriver/downloads](https://sites.google.com/a/chromium.org/chromedriver/downloads)
+-   Firefox: [https://github.com/mozilla/geckodriver/releases](https://github.com/mozilla/geckodriver/releases)
+-   Opera: [https://github.com/operasoftware/operachromiumdriver/releases](https://github.com/operasoftware/operachromiumdriver/releases)
+-   IE: [http://selenium-release.storage.googleapis.com/index.html](http://selenium-release.storage.googleapis.com/index.html)
+-   Edge: [https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
-To see the WebDriver API in action we'll download and run the Chrome binary driver. Open up [https://sites.google.com/a/chromium.org/chromedriver/downloads,](https://sites.google.com/a/chromium.org/chromedriver/downloads) and click the link for the latest release.
+To see the WebDriver API in action we'll download and run the Chrome binary driver. Open up [https://sites.google.com/a/chromium.org/chromedriver/downloads](https://sites.google.com/a/chromium.org/chromedriver/downloads) and click the link for the latest release.
 
 ![](image1.png "width=500")
 
@@ -46,7 +46,7 @@ Starting ChromeDriver 2.40.565386
 Only local connections are allowed.
 ```
 
-To interact with the API we need a tool that allows us to make HTTP requests. Here I have used Postman, which is available from <https://www.getpostman.com/>.
+To interact with the API we need a tool that allows us to make HTTP requests. Here I have used Postman, which is available from [https://www.getpostman.com/](https://www.getpostman.com/).
 
 The first step is to open the browser. This is done by creating a new
 session.
