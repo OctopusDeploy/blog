@@ -186,7 +186,7 @@ Fortunately Cucumber also provides a way to run it from the command line with a 
 
 The first parameter to be passed to the `run()` method is a String array that holds the arguments that would normally has been provided on the command line. We have used a number of options to customize the output, link with out glue class, and save a report file.
 
--   The ``--monochrome` option removes and colored text from the messages printed to the console. These colored messages don't translate well when viewed in log files.
+-   The `--monochrome` option removes and colored text from the messages printed to the console. These colored messages don't translate well when viewed in log files.
 
 -   The `--glue` option links Cucumber to the package holding our annotated class. This is the same option that we passed to the JUnit annotations that were used earlier.
 
@@ -210,7 +210,7 @@ Once the Gherkin feature file has been run, we read the contents of the report f
 
 ```java
 return `FileUtils.readFileToString(outputFile, Charset.defaultCharset());`
-```java
+```
 
 All of the files we created are then deleted using the
 `FileUtils.deleteQuietly()` method from the Apache Commons IO library. This method does not throw any exceptions, and means we make an attempt to delete each file, ignoring any errors.
@@ -318,7 +318,7 @@ To extract the ZIP file we have the `unzipFile()` method.
 
 ```java
 private void unzipFile(final String fileZip, final String outputDirectory) throws IOException {
-  ```
+```
 
 We start by creating a buffer into which the contents of the ZIP file can be read.
 
@@ -441,34 +441,32 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeHeadlessLambdaDecorator extends AutomatedBrowserBase
 {
-  public ChromeHeadlessLambdaDecorator(final AutomatedBrowser automatedBrowser) {
-
-  super(automatedBrowser);
-
-  }
-
-  @Override
-  public void init() {
-    final ChromeOptions options = new ChromeOptions();
-    options.addArguments("--disable-gpu");
-    options.addArguments("--headless");
-    options.addArguments("--window-size=1366,768");
-    options.addArguments("--single-process");
-    options.addArguments("--no-sandbox");
-    options.addArguments("--user-data-dir=/tmp/user-data");
-    options.addArguments("--data-path=/tmp/data-path");
-    options.addArguments("--homedir=/tmp");
-    options.addArguments("--disk-cache-dir=/tmp/cache-dir");
-
-    if (System.getProperty("chrome.binary") != null) {
-      options.setBinary(System.getProperty("chrome.binary"));
+    public ChromeHeadlessLambdaDecorator(final AutomatedBrowser automatedBrowser) {
+        super(automatedBrowser);
     }
 
-    options.merge(getDesiredCapabilities());
-    final WebDriver webDriver = new ChromeDriver(options);
-    getAutomatedBrowser().setWebDriver(webDriver);
-    getAutomatedBrowser().init();
-  }
+    @Override
+    public void init() {
+        final ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-gpu");
+        options.addArguments("--headless");
+        options.addArguments("--window-size=1366,768");
+        options.addArguments("--single-process");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--user-data-dir=/tmp/user-data");
+        options.addArguments("--data-path=/tmp/data-path");
+        options.addArguments("--homedir=/tmp");
+        options.addArguments("--disk-cache-dir=/tmp/cache-dir");
+
+        if (System.getProperty("chrome.binary") != null) {
+            options.setBinary(System.getProperty("chrome.binary"));
+        }
+
+        options.merge(getDesiredCapabilities());
+        final WebDriver webDriver = new ChromeDriver(options);
+        getAutomatedBrowser().setWebDriver(webDriver);
+        getAutomatedBrowser().init();
+    }
 }
 ```
 
