@@ -61,7 +61,7 @@ public class InitialTest {
 
 Let's break this code down.
 
-The first step is to get an instance of the driver class that matches the browser that will be under our control. In this case the browser that we wish to control is Google Chrome, whose corresponding driver class is `ChromeDriver`. This class comes from the `org.seleniumhq.selenium:selenium-java` dependency we added in the last lecture.
+The first step is to get an instance of the driver class that matches the browser that will be under our control. In this case the browser that we wish to control is Google Chrome, whose corresponding driver class is `ChromeDriver`. This class comes from the `org.seleniumhq.selenium:selenium-java` dependency we added in the last post.
 
 ```java
 final ChromeDriver chromeDriver = new ChromeDriver();
@@ -93,7 +93,7 @@ http://chromedriver.storage.googleapis.com/index.html
 
 ![](image8.png "width=500")
 
-The `IllegalStateException` exception was thrown when we attempted to run the test because the driver executable could not be found. Helpfully the error points us to <http://chromedriver.storage.googleapis.com/index.html>, where the driver can be downloaded.
+The `IllegalStateException` exception was thrown when we attempted to run the test because the driver executable could not be found. Helpfully the error points us to [http://chromedriver.storage.googleapis.com/index.html](http://chromedriver.storage.googleapis.com/index.html), where the driver can be downloaded.
 
 Opening this link reveals a number of directories that correspond to the version of the driver executable. You will almost always want to get the latest version, although the sorting applied to the list does not make the latest version apparent.
 
@@ -102,7 +102,7 @@ In the screenshot below you can see that the directories are sorted using a stri
 ![](image9.png "width=500")
 
 Alternatively you can visit the website at
-<https://sites.google.com/a/chromium.org/chromedriver/downloads>, which will provide a direct link to the latest version.
+[https://sites.google.com/a/chromium.org/chromedriver/downloads](https://sites.google.com/a/chromium.org/chromedriver/downloads), which will provide a direct link to the latest version.
 
 Inside the directory you will find a number of zip files corresponding to the platform you are running the test against.
 
@@ -199,7 +199,7 @@ This will open the `System Properties` dialog box. Click the `Environment Variab
 
 ![](image15.png "width=500")
 
-The environment variables are split between those at the top, which are specific to the current user, and those at the bottom, which are shared among all users. Both lists will have a `Path` variable. We'll edit the `System variables` to ensure the driver executables are available for all users, so double click the Path item in the `System variables` list.
+The environment variables are split between those at the top, which are specific to the current user, and those at the bottom, which are shared among all users. Both lists will have a `Path` variable. We'll edit the `System variables` to ensure the driver executables are available for all users, so double click the `Path` item in the `System variables` list.
 
 ![](image16.png "width=500")
 
@@ -213,7 +213,7 @@ Add `C:\tools` to the list. Then click the `OK` button on all the open dialogs t
 
 Given the option adding the driver executable to the path or setting the `webdriver.chrome.driver` system property, I usually prefer to extract the driver executables into a directory in the `PATH` environment variable. Having the driver executables for each browser saved in a common location will make it easier to switch between browsers without having to remember the specific system property to define for each, or juggle different file names depending on the operating system the test is running on.
 
-So at this point we can now run the test without error. You will notice the Chrome browser launch, open up <https://octopus.com/>, and close again. We have now successfully run our first WebDriver test.
+So at this point we can now run the test without error. You will notice the Chrome browser launch, open up [https://octopus.com/](https://octopus.com/), and close again. We have now successfully run our first WebDriver test.
 
 ![](image19.png "width=500")
 
@@ -263,7 +263,7 @@ And with that we have a simple but fully functional WebDriver test controlling t
 
 ## Firefox tests
 
-For our tests to launch Firefox, it needs to be installed. Firefox can be downloaded from https://firefox.com.
+For our tests to launch Firefox, it needs to be installed. Firefox can be downloaded from [https://firefox.com](https://firefox.com).
 
 Then the `geckodriver` executable needs to be placed on the path from one of the platform specific downloads available from https://github.com/mozilla/geckodriver/releases.
 
@@ -297,4 +297,4 @@ public class InitialTest {
 }
 ```
 
-Running the `openURLFirefox()` unit test will open the Firefox browser, open the page at https://octopus.com/, and then close the browser again.
+Running the `openURLFirefox()` unit test will open the Firefox browser, open the page at [https://octopus.com/](https://octopus.com/), and then close the browser again.
