@@ -1,4 +1,21 @@
-## Installing the tools
+---
+title: Installing the tools
+description: In this post we install the serverless application
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
+
+Until this point we have been running tests sequentially, either locally or on the Travis CI platform. However, running UI tests one after another does not scale particularly well. As more tests are added, and more combinations and edge cases are tested, it is not uncommon to find that UI test suite will take hours to complete.
+If there is one justified criticism of UI testing, it is that it is far slower than other forms of testing. Without a better way of running UI tests, they will become a bottleneck in the CI pipeline. So what can we do to make tests complete in a shorter period of time?
+
+> One year ago, one of our UI test suites took hours to run. Last month, it took 16 minutes. Today, it takes 39 seconds.
+
+This is the introduction to a [blog post](https://aws.amazon.com/blogs/devops/ui-testing-at-scale-with-aws-lambda/) on Amazon talking about how a development team dropped their UI testing times from hours to seconds with Chrome headless and AWS Lambda. This reduction in testing time is exactly what we are looking for, and in this lecture we'll learn how to run our UI tests at massive scale using AWS Lambda.
+
 
 Lambda is a service provided by AWS that allows short lived applications to be run at near infinite scale. Lambda takes care of provisioning the operating system and deploying your code, and you only pay for the time that you application is actually running. But the best feature of Lambda is that all the scaling is taken care of for you. As you make more requests to applications hosted in Lambda, the platform will scale up automatically to ensure that performance is maintained. And if requests drop off, Lambda will scale back down. This scaling is automatic and transparent to our code.
 
