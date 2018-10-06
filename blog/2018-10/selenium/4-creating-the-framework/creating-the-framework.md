@@ -147,7 +147,7 @@ The new package is then added to the directory structure.
 ![](image8.png "width=500")
 
 Inside the `com.octopus.decoratorbase` package create a new
-class called `AutomatedBrowserBase` with the following code. Each method defined in the `AutomatedBrowser` interface is implemented by passing it through to the `automatedBrowser` instance variable (if it is not null).
+class called `AutomatedBrowserBase` with the following code. Each method defined in the `AutomatedBrowser` interface is implemented by passing it through to the `automatedBrowser` instance variable (if it is not `null`).
 
 ```java
 package com.octopus.decoratorbase;
@@ -270,8 +270,8 @@ public class ChromeDecorator extends AutomatedBrowserBase {
 }
 ```
 
-And we follow the same process to create the FirefoxDecorator class,
-which creates an instance of the FirefoxDriver class.
+And we follow the same process to create the `FirefoxDecorator` class,
+which creates an instance of the `FirefoxDriver` class.
 
 ```java
 package com.octopus.decorators;
@@ -302,11 +302,11 @@ The last step is to initialize the drivers by calling `getAutomatedBrowser().ini
 
 The final decorator we need is one that uses the WebDriver API to perform actions against the browsers initialized by either the `ChromeDecorator` or `FirefoxDecorator` classes. For this we'll create the `WebDriverDecorator` class.
 
-The `WebDriverDecorator` class will host a `WebDriver` instance, and expose it through the `getWebDriver()` and `setWebDriver()` methods. `The destroy()` method will close the web browser, and the `goTo()` method opens up the supplied URL.
+The `WebDriverDecorator` class will host a `WebDriver` instance, and expose it through the `getWebDriver()` and `setWebDriver()` methods. The `destroy()` method will close the web browser, and the `goTo()` method opens up the supplied URL.
 
 Notice that `WebDriverDecorator` has a default constructor. This is unlike `ChromeDecorator` and `FirefoxDecorator`, which both provide a single constructor that takes a `AutomatedBrowser`. This difference exists because `WebDriverDecorator` is intended to be the base `AutomatedBrowser` that other decorators wrap up. We'll see this in action when we update the `AutomatedBrowserFactory` class.
 
-We've already seen a lot of the code that goes into `the WebDriverDecorator` class in the last lecture, with the `webDriver.get()` method opening a URL, and the `webDriver.quit()` method closing the browser.
+We've already seen a lot of the code that goes into the `WebDriverDecorator` class in the last lecture, with the `webDriver.get()` method opening a URL, and the `webDriver.quit()` method closing the browser.
 
 ```java
 package com.octopus.decorators;
@@ -473,5 +473,11 @@ public void openURL() {
 We have created a number of new classes as part of this blog, and you should end up with a directory structure that looks like this.
 
 ![](image10.png "width=500")
+
+To run the tests, click the green arrow next to the `FactoryTest` class and select the `Run 'FactoryTest'` option.
+
+![](image15.png "width=500")
+
+You will see both Chrome and Firefox open, display [https://octopus.com](https://octopus.com), and close again.
 
 Now that we have a simple framework to run tests against multiple browsers, we need to have a web page that we can interact with, which we will create in the next post.
