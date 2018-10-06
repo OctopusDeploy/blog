@@ -1,4 +1,13 @@
-## Emailing the results
+---
+title: Asynchronous Lambdas
+description: In this post we will send the results of a Cucumber test via email
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 We now have the ability to run Gherkin feature files from a HTTP POST request that is forwarded to an AWS Lambda, but because of the differing time limits of API Gateway and Lambda requests, we were forced to run the tests in an asynchronous manner. This means our original HTTP requests no longer receives the output of the test, so we need another solution for returning the test results.
 
@@ -207,14 +216,13 @@ Just before we return the JSON response, we call the sendEmail() method to email
 sendEmail("admin@matthewcasperson.com", FileUtils.readFileToString(txtOutputFile, Charset.defaultCharset()));
 ```
 
-The final change is to give the `runCucumber()` function the permission to
-use SES to send an email.
+The final change is to give the `runCucumber()` function the permission to use SES to send an email.
 
 The Identity and Access Management (IAM) service provides the security for code and services running in AWS. We saw this service earlier when we created the access and secret keys to use with the serverless application.
 
 In additional to managing users, IAM also manages the permissions granted to other AWS services, including Lambda. In our case we need to grant the Lambda function the ability to send emails with SES. We grant this permission by adding a `iamRoleStatements` section under the provider section in the `serverless.yml` file.
 
-Here we set the `Effect` setting to `Allow` to indicate that we are granting the ability to perform some action. The `Resource` setting is set to "*", which is the only valid value for this option. The `Action` setting is set to `ses:SendEmail`, which is the name of the action that relates to sending emails in SES.
+Here we set the `Effect` setting to `Allow` to indicate that we are granting the ability to perform some action. The `Resource` setting is set to `"*"`, which is the only valid value for this option. The `Action` setting is set to `ses:SendEmail`, which is the name of the action that relates to sending emails in SES.
 
 :::hint
 Only a subset of AWS actions can be limited to specific resources. The documentation at <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html> lists actions that support a Resource setting more granular than the asterisk wildcard. The ses:SendEmail action is not in this list, therefore the Resource setting can only be configured with an asterisk.

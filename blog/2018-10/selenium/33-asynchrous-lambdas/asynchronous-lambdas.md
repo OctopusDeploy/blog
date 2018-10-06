@@ -1,4 +1,13 @@
-## Asynchronous Lambdas
+---
+title: Asynchronous Lambdas
+description: In this post we will learn how to launch Lambdas asynchronously from API Gateway
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: webdriver.png
+metaImage: webdriver.png
+tags:
+- Java
+---
 
 We now have the ability to run Gherkin features with an AWS Lambda function. But so far we have had to trigger the tests from the AWS console. This is fine while we test that the Lambda works, but it not a very convenient way to run tests.
 
@@ -20,7 +29,7 @@ package:
 
 functions:
   runCucumber:
-    handler: com.matthewcasperson.LambdaEntry::runCucumber
+    handler: com.octopus.LambdaEntry::runCucumber
     timeout: 300
     memorySize: 512
     events:
@@ -172,7 +181,7 @@ package:
 
 functions:
   runCucumber:
-    handler: com.matthewcasperson.LambdaEntry::runCucumber
+    handler: com.octopus.LambdaEntry::runCucumber
     timeout: 300
     memorySize: 512
     events:
