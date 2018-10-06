@@ -27,7 +27,7 @@ private AutomatedBrowser getChromeBrowser() {
 
 Let's then create a test that attempts to click an element that will never be found on the page.
 
-The addition of the expected exception on the `@Test` annotation indicates that this test will only pass if a `TimeoutException` exception is thrown, and we expect this exception to be thrown because there will never be an element with the ID of `This ID does not exist`.
+The addition of the `expected` exception on the `@Test` annotation indicates that this test will only pass if a `TimeoutException` exception is thrown, and we expect this exception to be thrown because there will never be an element with the ID of `This ID does not exist`.
 
 ```java
 @Test(expected = TimeoutException.class)
