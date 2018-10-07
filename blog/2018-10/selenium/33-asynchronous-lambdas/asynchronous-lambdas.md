@@ -49,7 +49,7 @@ functions:
             template: $util.parseJson($input.body)
 ```            
 
-The new events section adds a http event. The HTTP method is post, the path that we can access is called `runCucumber`, and because this event triggers a Lambda function the integration is set to lambda.
+The new `events` section adds a `http` event. The HTTP `method` is `post`, the `path` that we can access is called `runCucumber`, and because this event triggers a Lambda function the `integration` is set to `lambda`.
 
 ```yaml
 events:
@@ -61,7 +61,7 @@ events:
 
 When we perform a HTTP POST, we pass in the Gherkin feature file to be run in the body of the request. But, as we saw before, Lambda functions expect all inputs to be JSON data. We worked around this requirement while testing the Lambda from the console by using a simple web page to convert plain text into a JSON string. We can achieve the same conversion here using request templates.
 
-Here we have configured a request template that is used when a request containing text/plain content is made. The key `text/plain` is a Multipurpose Internet Mail Extensions (MIME) type, which is a standardized way to indicate the nature and format of a document.
+Here we have configured a request template that is used when a request containing `text/plain` content is made. The key `text/plain` is a Multipurpose Internet Mail Extensions (MIME) type, which is a standardized way to indicate the nature and format of a document.
 
 ```yaml
 request:
@@ -80,7 +80,7 @@ The purpose of this template is the same as the web page we wrote to convert pla
 | Pattern |	Meaning |
 |-|-|
 | " |	Print a literal double quote |
-| $util.escapeJavaScript($input.body) |	Take the raw text from the request held in $input.body (i.e. the text that was sent as the HTTP POST body), and pass to the `$util.escapeJavaScript()` function. |
+| $util.escapeJavaScript($input.body) |	Take the raw text from the request held in `$input.body` (i.e. the text that was sent as the HTTP POST body), and pass to the `$util.escapeJavaScript()` function. |
 | .replaceAll("\'","'") |	The `escapeJavaScript()` function will escape single quotes, which is not valid JSON. So replace all escaped quotes with single quotes. |
 | " |	Print a literal double quote |
 
@@ -141,11 +141,11 @@ If you are lucky, you might see this response.
 
 ![/C:/643a4cd7e0389640c129bc0a2485278f](image2.png "width=500")
 
-I say lucky, because you may have seen the Endpoint request timed out error message instead.
+I say lucky, because you may have seen the `Endpoint request timed out` error message instead.
 
 ![/C:/6258b00237e59450e4167ba1a9104d2c](image3.png "width=500")
 
-So what does the Endpoint request timed out error message mean?
+So what does the `Endpoint request timed out` error message mean?
 
 This error is a result of different limitations of the services that were implemented to provide a HTTP endpoint in front of the Lambda function.
 

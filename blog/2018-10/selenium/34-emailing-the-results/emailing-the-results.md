@@ -210,7 +210,7 @@ We then pass an additional parameter to the `cucumber.api.cli.Main.run()` method
 "--format", "pretty:" + txtOutputFile.toString(),
 ```
 
-Just before we return the JSON response, we call the sendEmail() method to email the plain text results. In this way we can get the results even if there is no longer any process listening to the return value of this method.
+Just before we return the JSON response, we call the `sendEmail()` method to email the plain text results. In this way we can get the results even if there is no longer any process listening to the return value of this method.
 
 ```java
 sendEmail("admin@matthewcasperson.com", FileUtils.readFileToString(txtOutputFile, Charset.defaultCharset()));
