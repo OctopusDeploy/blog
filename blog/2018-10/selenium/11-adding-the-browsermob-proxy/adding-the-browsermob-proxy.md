@@ -118,7 +118,7 @@ seleniumProxy.setHttpProxy(proxyStr);
 seleniumProxy.setSslProxy(proxyStr);
 ```
 
-Next we get a copy of the `DesiredCapabilities` object. If you remember from the last lecture, this object is used to configure settings that can be applied to any browser launched by WebDriver.
+Next we get a copy of the `DesiredCapabilities` object. If you remember from the last post, this object is used to configure settings that can be applied to any browser launched by WebDriver.
 
 ```java
 final DesiredCapabilities desiredCapabilities =
@@ -129,7 +129,7 @@ The `DesiredCapabilities` instance is then configured with the `Proxy` instance.
 
 In the previous posts we noted that the `DesiredCapabilities` class is essentially a key/value store. You can see this in practice now as we save the `Proxy` instance against the `CapabilityType.PROXY` value.
 
-`CapabilityType.PROXY` is a string constant set to proxy, and this value is recognized by all browsers as containing proxy configuration settings.
+`CapabilityType.PROXY` is a string constant set to `proxy`, and this value is recognized by all browsers as containing proxy configuration settings.
 
 ```java
 desiredCapabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
@@ -183,7 +183,7 @@ private AutomatedBrowser getFirefoxBrowserNoImplicitWait() {
 
 Now our `AutomatedBrowserFactory` is configuring browsers to pass traffic to our instance of the BrowserMob proxy. This won't change how the tests are run just yet; proxies are designed to be largely invisible to the end user, and so our tests will run like they did before. However we now have the means to monitor and intercept network requests if we wish to do so.
 
-We can confirm that the BrowserMob proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the finally block.
+We can confirm that the BrowserMob proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the `finally` block.
 
 ```java
 @Test
@@ -230,7 +230,7 @@ Once the test has completed, the Firefox browser that it launched will still be 
 
 ![](image1.png "width=500")
 
-At the bottom of the preferences page is the Network Proxy section. Click the `Settings...` button.
+At the bottom of the preferences page is the `Network Proxy` section. Click the `Settings...` button.
 
 ![](image2.png "width=500")
 
