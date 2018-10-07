@@ -134,7 +134,9 @@ Let's break this class down.
 
 The following constants are the URLs to the Chrome Lambda distribution and the Linux binary driver that we uploaded to S3. These URLs will be different for you, as you will have uploaded them to a different S3 bucket.
 
+:::warning
 Do not use these URLs for your own tests, but always use URLs to an S3 bucket that you control. Using URLs to your own S3 buckets ensures that your code relies only on resources that you own and manage.
+:::
 
 ```java
 private static final String CHROME_HEADLESS_PACKAGE =
@@ -485,7 +487,7 @@ The `--window-size` argument defines the size of the browser window.
 options.addArguments("--window-size=1366,768");
 ```
 
-The `--single-process` and `--no-sandbox` arguments are required to run Chrome in a Lambda environment. You can find out more information as to why these arguments are required at <https://github.com/adieuadieu/serverless-chrome/issues/15>.
+The `--single-process` and `--no-sandbox` arguments are required to run Chrome in a Lambda environment. You can find out more information as to why these arguments are required at [https://github.com/adieuadieu/serverless-chrome/issues/15](https://github.com/adieuadieu/serverless-chrome/issues/15).
 
 ```java
 options.addArguments("--single-process");
@@ -511,7 +513,7 @@ if (System.getProperty("chrome.binary") != null) {
 
 To take advantage of this new decorator, we expose it through the `AutomatedBrowserFactory` class.
 
-We do not use the `BrowserMobDecorator` here because Chrome 64 has a known issue using a proxy in headless mode. You can find out more details about this issue at <https://bugs.chromium.org/p/chromium/issues/detail?id=721739>.
+We do not use the `BrowserMobDecorator` here because Chrome 64 has a known issue using a proxy in headless mode. You can find out more details about this issue at [](https://bugs.chromium.org/p/chromium/issues/detail?id=721739).
 
 ```java
 package com.octopus;
