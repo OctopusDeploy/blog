@@ -45,7 +45,7 @@ Before we get started though, we do need to install some additional tools to mak
 
 We'll use the [Serverless](https://serverless.com/) platform to deploy our Lambda functions to AWS. Serverless provides us with some simple commands that take care of uploading our code, deploying to to Lambda, and setting the various options required by Lambda.
 
-Servless is a Node.js application, which means that we need to have Node.js installed locally to use it. You can download and install Node.js from <https://nodejs.org/en/download/>.
+Servless is a Node.js application, which means that we need to have Node.js installed locally to use it. You can download and install Node.js from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
 You can confirm that Node.js is installed by running the command `node --version` from a terminal or PowerShell.
 
@@ -56,7 +56,7 @@ v8.11.2
 
 The Serverless application is then installed with `npm`, which is short for Node Package Manager. This command will download and install the Serverless application to your local machine.
 
-On a Linux or MacOS machine, you can install Serverless with the sudo command.
+On a Linux or MacOS machine, you can install Serverless with the `sudo` command.
 
 ```
 $ sudo npm install serverless -g
@@ -89,7 +89,7 @@ Click the `Add user` button.
 
 ![C:\f240ce9cca4677631a2f672eb456c95b](image7.png "width=500")
 
-Give the new user a name in the User name field, and select the Programmatic access option. This option means that the user will have the ability to generate an access and secret key, and it is this key pair which will be used by the Serverless application to deploy our code.
+Give the new user a name in the `User name` field, and select the `Programmatic access` option. This option means that the user will have the ability to generate an access and secret key, and it is this key pair which will be used by the Serverless application to deploy our code.
 
 Click the `Next: permissions` button to continue.
 
