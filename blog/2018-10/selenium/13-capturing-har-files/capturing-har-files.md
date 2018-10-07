@@ -9,7 +9,7 @@ tags:
 - Java
 ---
 
-HTTP Archive (HAR) files are a standard JSON formatted log of a browsers interaction with an external web application.
+HTTP Archive (HAR) files are a standard JSON formatted log of a browser's interaction with an external web application.
 
 You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`.
 
@@ -128,7 +128,7 @@ Here we have made a call to `automatedBrowser.captureHarFile()` before we open t
 
 In the `finally` block we then nest an additional `try`/`finally` block. Inside the nested `try` block we call `automatedBrowser.saveHarFile("test.har")`, which will write any captured traffic to the file `test.har`. This call is made in the `finally` block because we want to save this network traffic even if the test fails. The HAR file will often contain information that can be used to debug a failed test, so we want to make sure we save this file regardless of an errors during the tests.
 
-Inside the nested finally block we then call `automatedBrowser.destroy()`. Because the call to `destroy()` frees resources, we need to ensure that it runs if the test fails and if the attempt to save the HAR file fails. Nesting `try`/`finally` blocks in this way guarantees that the `destroy()` method is called regardless of any other failure.
+Inside the nested `finally` block we then call `automatedBrowser.destroy()`. Because the call to `destroy()` frees resources, we need to ensure that it runs if the test fails and if the attempt to save the HAR file fails. Nesting `try`/`finally` blocks in this way guarantees that the `destroy()` method is called regardless of any other failure.
 
 The resulting `test.har` file captures the network traffic made as a result to opening <https://octopus.com/>. This file can then be reviewed with tools like the HAR Analyzer to quickly identify any failed requests (i.e. any HTTP response codes in the 4xx or 5xx range), as well as providing a visual timeline of the calls. This information can be invaluable for debugging errors with web applications and understanding performance bottlenecks.
 
@@ -176,11 +176,11 @@ The table then shows 7 columns.
 
 The timings of the responses are shown in a graph in the final column. Hovering the cursor over each of the colored columns shows what kind of even was taking place, and how long it took.
 
-If the Relative timing type is selected, the graph represents the total time taken by all requests, with the colored columns showing how much time the individual request took relative to the total.
+If the `Relative` timing type is selected, the graph represents the total time taken by all requests, with the colored columns showing how much time the individual request took relative to the total.
 
 ![](image7.png "width=500")
 
-If the Independent timing type is selected, the graph shows only the amount of time each event took relative to the single request.
+If the `Independent` timing type is selected, the graph shows only the amount of time each event took relative to the single request.
 
 Clicking any of the rows shows more details about the request on the right hand side of the page.
 
