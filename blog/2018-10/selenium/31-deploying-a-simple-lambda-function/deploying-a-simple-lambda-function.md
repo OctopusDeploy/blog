@@ -9,7 +9,7 @@ tags:
 - Java
 ---
 
-In the previous lectures we configured all the prerequisites required by our Lambda function:
+In the previous posts we configured all the prerequisites required by our Lambda function:
 
 -   An AWS account was created and the credentials configured locally
 -   The Serverless application was installed
@@ -73,7 +73,7 @@ returntype methodname(inputType input)
 
 The return and input type from this method can be any type, and the method itself can have any name. Let's then write one of the most simple Lambda functions we can.
 
-The code below defines an Lambda function that returns a boolean type that is always true. This code isn't very useful, but it is enough to test that the Lambda works.
+The code below defines an Lambda function that returns a `boolean` type that is always `true`. This code isn't very useful, but it is enough to test that the Lambda works.
 
 ```java
 package com.octopus;
@@ -121,11 +121,11 @@ service:
 
 We then define the details of the cloud platform that we are deploying to. The Serverless application is cloud agnostic, and can be used to deploy to multiple cloud providers like AWS, Azure and Google Cloud. We are using AWS, and so the providers section will configure the global properties of the AWS Lambda service.
 
-The name property is the name of the cloud provider, set to aws in this case.
+The `name` property is the name of the cloud provider, set to aws in this case.
 
-The runtime property defines the language that our Lambda function is written in, which is java8.
+The `runtime` property defines the language that our Lambda function is written in, which is java8.
 
-The region property defines the AWS region that we will be deploying the Lambda to. AWS has many regions around the world, and you can find a complete list of regions that support Lambda at <https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region>. We will use the `us-east-1` region here.
+The `region` property defines the AWS region that we will be deploying the Lambda to. AWS has many regions around the world, and you can find a complete list of regions that support Lambda at [https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region](https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region). We will use the `us-east-1` region here.
 
 ```yaml
 provider:
@@ -134,20 +134,20 @@ provider:
   region: us-east-1
 ```
 
-The package section defines where the Lambda code can be found. In our case the Lambda code is in the file `target/webdrivertraining-1.0-SNAPSHOT.jar`, which we reference via the artifact property. Note that this file is the UberJAR, which has packaged up our entire application and its dependencies in a single file.
+The package section defines where the Lambda code can be found. In our case the Lambda code is in the file `target/webdrivertraining-1.0-SNAPSHOT.jar`, which we reference via the `artifact` property. Note that this file is the UberJAR, which has packaged up our entire application and its dependencies in a single file.
 
 ```yaml
 package:
   artifact: target/webdrivertraining-1.0-SNAPSHOT.jar
 ```
 
-The functions section is where we define the Lambda function.
+The `functions` section is where we define the Lambda function.
 
 The `runCucumber` section defines an individual function. This section can have any name, and we have used the same name as the entry point method for convenience.
 
-The handler property defines the entry point method name. This method name is built from the fully qualified class name, two colons, and the method name. The value `com.octopus.LambdaEntry::runCucumber` means that this Lambda function will execute the method `runCucumber()` from the `LambdaEntry` class in the `com.octopus` package.
+The `handler` property defines the entry point method name. This method name is built from the fully qualified class name, two colons, and the method name. The value `com.octopus.LambdaEntry::runCucumber` means that this Lambda function will execute the method `runCucumber()` from the `LambdaEntry` class in the `com.octopus` package.
 
-The timeout property sets the maximum amount of time this function can run. Lambda has a hard limit of 5 minutes, and we have also set the timeout to 5 minutes (expressed as 300 seconds).
+The `timeout` property sets the maximum amount of time this function can run. Lambda has a hard limit of 5 minutes, and we have also set the timeout to 5 minutes (expressed as 300 seconds).
 
 The `memorySize` property defines how much memory our Lambda environment can use. We have limited ourselves to 512MB here. Note that this value include any memory used by external applications (like Chrome), as well as our own code.
 
@@ -214,7 +214,9 @@ Lambda functions always take JSON as input, which is converted into a Java objec
 
 Lambda functions also always convert the returned object to JSON.
 
+:::hint
 The fact that Lambda functions only accept JSON as input and provide JSON as output will be important later on when we link this function up to a HTTP endpoint.
+:::
 
 Then populate the `Event` name field, and click the `Create` button.
 
