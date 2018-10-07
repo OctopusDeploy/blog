@@ -197,7 +197,7 @@ java.version: '10'
 Driver info: org.openqa.selenium.remote.RemoteWebDriver
 
 Capabilities {browserName: chrome, chromeOptions: {args: [test-type,
-\--proxy-server=http://65.74..., \--disable-translate]},
+--proxy-server=http://65.74..., --disable-translate]},
 databaseEnabled: false, deviceManufacturer: samsung, deviceModel:
 SM-N950F, deviceName: ce051715d1a6a708017e, deviceScreenSize: 1440x2960,
 deviceUDID: ce051715d1a6a708017e, enablePerformanceLogging: false,
