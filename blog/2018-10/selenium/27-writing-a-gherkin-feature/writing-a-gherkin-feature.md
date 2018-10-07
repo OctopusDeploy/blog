@@ -9,23 +9,11 @@ tags:
 - Java
 ---
 
-Now that we know how to construct regular expressions to map methods to
-Gherkin steps, we can go ahead and add annotations to all appropriate
-methods in the `AutomatedBrowserBase` class.
+Now that we know how to construct regular expressions to map methods to Gherkin steps, we can go ahead and add annotations to all appropriate methods in the `AutomatedBrowserBase` class.
 
-Notice that we don't add annotations for all the methods. Methods like
-`getTextFromElementWithId()`, which return a value, are not able to be
-used in Gherkin steps because Gherkin has no notion of variables, so the
-return values don't have any meaning. We also don't expose methods
-like `init()` and `destroy()`, as these lifecycle methods are called by the
-`openBrowser()` and `closeBrowser()` methods. There are some internal only
-methods like `getWebDriver()`, `getAutomatedBrowser()`,
-`setAutomatedBrowser()` and `getDesiredCapabilities()` that are only used by
-the decorators, and do not make any sense to expose as Gherkin steps.
+Notice that we don't add annotations for all the methods. Methods like `getTextFromElementWithId()`, which return a value, are not able to be used in Gherkin steps because Gherkin has no notion of variables, so the return values don't have any meaning. We also don't expose methods like `init()` and `destroy()`, as these lifecycle methods are called by the `openBrowser()` and `closeBrowser()` methods. There are some internal only methods like `getWebDriver()`, `getAutomatedBrowser()`, `setAutomatedBrowser()` and `getDesiredCapabilities()` that are only used by the decorators, and do not make any sense to expose as Gherkin steps.
 
-The remaining steps have Cucumber annotations applied to them, assigning
-regular expressions that follow the same logic that we saw in the last
-lecture.
+The remaining steps have Cucumber annotations applied to them, assigning regular expressions that follow the same logic that we saw in the last lecture.
 
 ```java
 package com.octopus.decoratorbase;
@@ -372,8 +360,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 }
 ```
 
-With these annotations in place, we can now write a feature file to
-complete a test of a ticket purchase from TicketMonster.
+With these annotations in place, we can now write a feature file to complete a test of a ticket purchase from TicketMonster.
 
 Save the following code to the file
 `src/test/resources/com/octopus/ticketmonster.feature`.
@@ -398,9 +385,9 @@ Feature: Test TicketMonster
 
 Now either run the `CucumberTest` test class from IntelliJ, or commit the code to GitHub and let Travis CI run the test for you. We have just successfully replicated the journey through the TicketMonster application that we wrote in Java in a previous lecture.
 
-If you read this test out aloud it almost sounds like instructions you would give a colleague if you were instructing them to complete a ticket purchase. But the format is still a bit clunky. Most of the steps end with the phrase waiting up to "30" seconds, and some of the locators like tickets-1 don't give a lot of context.
+If you read this test out aloud it almost sounds like instructions you would give a colleague if you were instructing them to complete a ticket purchase. But the format is still a bit clunky. Most of the steps end with the phrase `waiting up to "30" seconds`, and some of the locators like `tickets-1` don't give a lot of context.
 
-Let's address the needless repetition of the phrase waiting up to "30" seconds.
+Let's address the needless repetition of the phrase `waiting up to "30" seconds`.
 
 We start by adding a new method called `setDefaultExplicitWaitTime()` to the `AutomatedBrowser` interface. We'll use this method to set a default time to be used with an explicit wait on all the steps.
 
@@ -543,7 +530,7 @@ public void clickElement(final String locator) {
 }
 ```
 
-Now we can write the Gherkin feature like this. We call the step And I set the default explicit wait time to "30" seconds, and remove the phrase waiting up to "30" seconds from all the other steps.
+Now we can write the Gherkin feature like this. We call the step `And I set the default explicit wait time to "30" seconds`, and remove the phrase `waiting up to "30" seconds` from all the other steps.
 
 ```gherkin
 Feature: Test TicketMonster With Default Wait
@@ -568,7 +555,7 @@ We are now very close to having a test that can be written and read in something
 
 Gherkin does not have any native notions of constants, meaning we need to introduce something we'll call aliases. Aliases are nothing more than key value pairs, but they allow us to assign a meaningful key like `Adult Ticket Count` to the value `tickets-1`. We can then use the key `Adult Ticket Count` in the Gherkin step, making the step much more readable.
 
-To store these key value pairs, we create a new instance variable called aliases, and a new method called `setAliases()` to save them.
+To store these key/value pairs, we create a new instance variable called `aliases`, and a new method called `setAliases()` to save them.
 
 ```java
 public class AutomatedBrowserBase implements AutomatedBrowser {
@@ -599,8 +586,7 @@ public void setAliases(Map<String, String> aliases) {
 }
 ```
 
-We call this step like so. The table underneath the step is passed to
-the method as a Map, with the first column being the key and the second column is the value.
+We call this step like so. The table underneath the step is passed to the method as a `Map`, with the first column being the key and the second column is the value.
 
 ```gherkin
 And I set the following aliases:
@@ -616,13 +602,13 @@ Now that we can populate this map, we need a way to read it.
 
 Java 8 has a handy method called `getOrDefault()` that allows us to get a value from a map, or return a default value. Now inside every method of the `AutomatedBrowserBase` class we pass string parameters to the child `AuotomatedBrowser` instance using the string value as a key of the aliases map, or if the aliases map does not contain the string as a key, the parameter is passed as is.
 
-For example, instead of calling
+For example, instead of calling:
 
 ```java
 getAutomatedBrowser().selectOptionByTextFromSelectWithId(optionText, id)
 ```
 
-which passes the parameters `optionText` and `id` directly through to the child `AuotomatedBrowser` instance, we instead call 
+which passes the parameters `optionText` and `id` directly through to the child `AuotomatedBrowser` instance, we instead call:
 
 ```java
 getAutomatedBrowser().selectOptionByTextFromSelectWithId(
