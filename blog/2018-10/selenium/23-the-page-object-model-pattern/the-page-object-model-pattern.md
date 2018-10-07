@@ -11,7 +11,7 @@ tags:
 
 While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some limitations.
 
-The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like
+The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like:
 
 ```java
 automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
@@ -27,7 +27,7 @@ One solution to both of these limitations is to use the Page Object Model, or PO
 
 Let's take a look at how we can rewrite the test using the POM design pattern.
 
-Each POM class that we create needs to have access to an `AutomatedBrowser` instance. In addition we will also define a common wait time for the explicit waits used when interacting with elements. Exposing these shared properties is done with a class called BasePage.
+Each POM class that we create needs to have access to an `AutomatedBrowser` instance. In addition we will also define a common wait time for the explicit waits used when interacting with elements. Exposing these shared properties is done with a class called `BasePage`.
 
 Note that the instance variables, static variables and constructor are all have the protected scope. This means that they are only available to classes that extend `BasePage`, meaning `BasePage` is not something we can instantiate directly.
 
@@ -123,9 +123,9 @@ public MainPage openPage() {
 
 The only action we are interested on on the main page is clicking the `Buy tickets now` link, which we do in a method called `buyTickets()`.
 
-If you recall from the previous post, how we interacted with elements like this link was not as easy as it might have appeared, because these elements could either be styled links (`<a>` elements), or form buttons (`<input>` elements). Depending on which kind of element was used, our first test had to use a different locator. Links could be identified by their text, while form buttons had to be identified by an ID or name attribute.
+If you recall from the previous post, how we interacted with elements like this link was not as easy as it might have appeared, because these elements could either be styled links (`<a>` elements), or form buttons (`<input>` elements). Depending on which kind of element was used, our first test had to use a different locator. Links could be identified by their text, while form buttons had to be identified by an `id` or `name` attribute.
 
-This distinction between elements is no longer the concern of those writing these tests, but instead has been encapsulated inside this POM class. Calling the `buyTickets()` will result in the desired element being clicked, regardless of how that element has been implemented.
+This distinction between elements is no longer the concern of those writing these tests, but instead has been encapsulated inside this POM class. Calling the `buyTickets()` method will result in the desired element being clicked, regardless of how that element has been located.
 
 Because clicking this link directs the browser to the events page, we return an instance of the `EventsPage` class. Callers of the `buyTickets()` can understand that this return value indicates that a page navigation has taken place, and that further interaction with the page now has to be performed using the `EventsPage` class.
 
@@ -136,7 +136,7 @@ public EventsPage buyTickets() {
 }
 ```
 
-Let's take a look at the EventsPage class.
+Let's take a look at the `EventsPage` class.
 
 ```java
 package com.octopus.pages.ticketmonster;
@@ -267,9 +267,7 @@ public class CheckoutPage extends BasePage {
     private static final String CHECKOUT_BUTTON = "submit";
 
     public CheckoutPage(final AutomatedBrowser automatedBrowser) {
-
         super(automatedBrowser);
-
     }
 
     public CheckoutPage buySectionTickets(final String section, final
@@ -303,10 +301,8 @@ public class CheckoutPage extends BasePage {
   private static final String CHECKOUT_BUTTON = "submit";
 
   public CheckoutPage(final AutomatedBrowser automatedBrowser) {
-
     super(automatedBrowser);
-
-    }
+  }
 ```
 
 To buy tickets in a given section we use the `buySectionTickets()` method. This method selects the desired section from the drop down list, adds the number of tickets to be bought, and clicks the `Add` button.
@@ -351,9 +347,7 @@ import com.octopus.pages.BasePage;
 public class ConfirmationPage extends BasePage {
 
     private static final String EMAIL_ADDRESS = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)";
-
     private static final String EVENT_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)";
-
     private static final String VENUE_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(4)";
 
     public ConfirmationPage(final AutomatedBrowser automatedBrowser) {
@@ -374,7 +368,7 @@ public class ConfirmationPage extends BasePage {
 }
 ```
 
-As has been the case for every other POM class, This class extends `BasePage` and passes `AutomatedBrowser` to the `BasePage` constructor.
+As has been the case for every other POM class, this class extends `BasePage` and passes `AutomatedBrowser` to the `BasePage` constructor.
 
 The elements that we want to interact with on this page had no attributes that we could use to identify them, forcing us to use CSS Selectors. The use of constant variables here is particularly important in giving these locators some context, as strings like `"div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)"` are difficult to decipher.
 
@@ -382,9 +376,7 @@ The elements that we want to interact with on this page had no attributes that w
 public class ConfirmationPage extends BasePage {
 
     private static final String EMAIL_ADDRESS = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)";
-
     private static final String EVENT_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)";
-
     private static final String VENUE_NAME = "div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(4)";
 
     public ConfirmationPage(final AutomatedBrowser automatedBrowser) {
