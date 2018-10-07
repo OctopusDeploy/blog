@@ -30,7 +30,7 @@ When modifying responses, the network requests and responses follow the flow sho
 ![C:\27f6991bd6c9ae2c1606222d23b69bc0](image1.png "width=500")
 
 To demonstrate this we'll create a very simple web page that queries the Yahoo weather API to get the sunset time in Hawaii. This data is retrieved from a request to
-<https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys>, which returns a JSON response like the following:
+[https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys](https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys), which returns a JSON response like the following:
 
 ```json
 {
@@ -187,7 +187,7 @@ automatedBrowser.alterResponseFrom(
   "{\"query\":{\"count\":1,\"created\":\"2018-04-28T05:20:30Z\",\"lang\":\"en-US\",\"results\":{\"channel\":{\"astronomy\":{\"sunset\":\"7:00 pm\"}}}}}");
 ```
 
-After opening the web page, we then check that the message printed to the page does reflect this hardcoded sunset time.
+After opening the web page, we then check that the message printed to the page reflects this hardcoded sunset time.
 
 ```java
 final String sunset = automatedBrowser.getTextFromElementWithId("sunset", 60);
@@ -196,7 +196,7 @@ Assert.assertTrue(sunset, sunset.contains("7:00 pm"));
 
 The fact that this test passes proves that we have modified the response from the API to include our own custom JSON response.
 
-Knowing that the Yahoo API can return times like `7:4 pm`, it would be prudent to create a test that simulates this edge case. Indeed given that the time returned by the API is not something we control, it would be quite difficult to test the scenario when an invalid time is sent back, because calling the API tomorrow may result in a perfectly valid time being returned.
+Knowing that the Yahoo API can return times like `7:4 pm`, it would be prudent to create a test that simulates this edge case. But given that the time returned by the API is not something we control, it would be quite difficult to test the scenario when an invalid time is sent back, because calling the API tomorrow may result in a perfectly valid time being returned.
 
 Here is another test, but this time one that returns the invalid sunset time. In this example our simple webpage displays this time as is, which may not be desirable, but by modifying the response with BrowserMob we can as testers ensure that this edge case is reliably captured in our tests.
 
