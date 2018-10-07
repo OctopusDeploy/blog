@@ -11,11 +11,11 @@ tags:
 
 In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including:
 
--   Simulating the failure of external services
+-   Simulating the failure of external services.
 
--   Mocking external services
+-   Preventing assets like images from being loaded, which can improve the performance of tests.
 
--   Preventing assets like images from being loaded, which can improve the performance of tests
+- Blocking third party services during testing, like social media services.
 
 A typical network request through a proxy looks like this. The proxy sits between the browser and external resources, and passes requests back and forth.
 
@@ -23,11 +23,11 @@ A typical network request through a proxy looks like this. The proxy sits betwee
 
 The diagram below shows the request and response that we are trying to achieve.
 
-1.  A request is made by the browser to the URL of a resource like a PNG image
+1.  A request is made by the browser to the URL of a resource like a PNG image.
 
-2.  The request is directed to the proxy
+2.  The request is directed to the proxy.
 
-3.  The proxy uses a request filter to inspect the request
+3.  The proxy uses a request filter to inspect the request.
 
 4.  The request is short-circuited with an empty response. The external URL is never contacted.
 
@@ -145,13 +145,13 @@ public void modifyRequests() {
 }
 ```
 
-This call to `blockRequestTo()` will return an empty response for any request to PNG images. We use a HTTP return code of 201 to indicate that the response was successful but empty. This is an example of where we speed up a test by blocking images from being downloaded.
+This call to `blockRequestTo()` will return an empty response for any request to PNG images. We use a HTTP return code of `201` to indicate that the response was successful but empty. This is an example of where we speed up a test by blocking images from being downloaded.
 
 ```java
 automatedBrowser.blockRequestTo(".*?\\.png", 201);
 ```
 
-The next lines block requests to services provided by Twitter. Because we return a HTTP response code of 500, which is used to indicate a server side error processing the request, we could use these altered requests as a way of simulating the failure of the these external services. You may also find that blocking optional services like these can speed up your tests by removing more network traffic that is not required to test the web application.
+The next line block requests to services provided by Twitter. Because we return a HTTP response code of `500`, which is used to indicate a server side error processing the request, we could use these altered requests as a way of simulating the failure of the these external services. You may also find that blocking optional services like these can speed up your tests by removing more network traffic that is not required to test the web application.
 
 ```java
 automatedBrowser.blockRequestTo("https://.*?twitter\\.com/", 500);
@@ -163,7 +163,7 @@ You will note that we have not called `automatedBrowser.destory()` here. This is
 
 An important thing to note here is that it is no longer possible to interact with the web page in any meaningful way once the test has completed. This is because BrowserMob has been closed, meaning the proxy that the browser was configured with is no longer available, so all future network requests will fail.
 
-To interact with the web page, you will need to manually remove the proxy settings from the browsers settings. The screenshot below shows the Firefox proxy settings we saw in the last lecture. Selecting the `No proxy` option will allow the browser to be used after BrowserMob has been shut down.
+To interact with the web page, you will need to manually remove the proxy settings from the browsers settings. The screenshot below shows the Firefox proxy settings we saw in the last post. Selecting the `No proxy` option will allow the browser to be used after BrowserMob has been shut down.
 
 ![C:\\8670254aa7b6874ef581d1f37eb34235](image4.png "width=500")
 
