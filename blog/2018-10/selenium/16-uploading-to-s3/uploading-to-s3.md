@@ -11,7 +11,7 @@ tags:
 
 We have gotten by this far testing web pages loaded from the local disk, and with a few simple tests to public web sites. However as we start looking at the advanced features of WebDriver, we need the ability to host real public web sites that we can interact with.
 
-There are a million ways to host a web site, but given that we'll be using Amazon Web Services (AWS) later on in the course, hosting a web site using the S3 service is a logical choice for us.
+There are a million ways to host a web site, but given that we'll be using Amazon Web Services (AWS) in later posts, hosting a web site using the S3 service is a logical choice for us.
 
 For those not familiar with it, AWS is a collection of services and platforms provided by Amazon that allow you to do things like create hosted virtual machines (via the EC2 service), create hosted database servers (via the RDS service), store files (via the S3 service), run functions (via the Lambda service) and much, much more. AWS has over 100 different services to take advantage of, although we will only be using a small number as part of this blog series.
 
@@ -23,19 +23,17 @@ To access the S3 console, click `Services` → `S3` from the AWS console.
 
 ![](image6.png "width=500")
 
-Because we have just created an new AWS account, we will be starting with a clean slate.
-
 We first need to create a bucket. A bucket is roughly analogous to a directory, but with the important caveat that the name of the bucket must be globally unique. This means the name of your bucket can not have been used by any other AWS customer.
 
 :::hint
 If you see S3 bucket names that are seemingly randomly generated, this is because all the common bucket names have long since been used by other AWS customers.
 :::
 
-To create a new bucket, click the Create bucket button.
+To create a new bucket, click the `Create bucket` button.
 
 ![](image7.png "width=500")
 
-Give your bucket a name (remembering that it has to be globally unique, and so the name I have used here is no unavailable), and click the `Next` button.
+Give your bucket a name (remembering that it has to be globally unique, and so the name I have used here is now unavailable), and click the `Next` button.
 
 ![](image8.png "width=500")
 
@@ -101,7 +99,7 @@ Now that the files are publicly available, we need to find the URL that we can u
 
 ![](image23.png "width=500")
 
-The link to open this file is shown in the Overview tab, and in this case the URL is <https://s3.amazonaws.com/webdriver-testing-website/form.html>. You can click this link to open the page in the browser.
+The link to open this file is shown in the Overview tab, and in this case the URL is [https://s3.amazonaws.com/webdriver-testing-website/form.html](https://s3.amazonaws.com/webdriver-testing-website/form.html). You can click this link to open the page in the browser.
 
 ![](image24.png "width=500")
 
