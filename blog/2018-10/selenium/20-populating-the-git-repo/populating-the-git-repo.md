@@ -9,19 +9,19 @@ tags:
 - Java
 ---
 
-We've talked about the idea of a code repository, and in this lecture we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
+We've talked about the idea of a code repository, and in this post we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
 
-To start, open up <https://github.com.> On the main page you will see a form that allows you to sign up for a free account.
+To start, open up [https://github.com](https://github.com). On the main page you will see a form that allows you to sign up for a free account.
 
-Enter a username, email address and password, and click the Sign up for GitHub button.
+Enter a username, email address and password, and click the `Sign up for GitHub` button.
 
 ![](image1.png "width=500")
 
-Select the Unlimited public repositories for free option, and click the `Continue` button.
+Select the `Unlimited public repositories for free` option, and click the `Continue` button.
 
 ![](image2.png "width=500")
 
-We do not need to personalize GitHub now, so click the skip this step link.
+We do not need to personalize GitHub now, so click the `skip this step` link.
 
 ![](image3.png "width=500")
 
@@ -40,7 +40,7 @@ It is important that we create a public repository, because both GitHub and Trav
 ![](image6.png "width=500")
 
 With the repository created, we now have a URL that we can use to check-in code through. In my case the URL is
-<https://github.com/matthewcasperson/WebDriver.git>.
+[https://github.com/matthewcasperson/WebDriver.git](https://github.com/matthewcasperson/WebDriver.git).
 
 ![](image7.png "width=500")
 
@@ -50,12 +50,11 @@ Open Intellj with the WebDriver project loaded. Then click `VCS` → `Enable Ver
 
 ![](image8.png "width=500")
 
-Select Git as the version control system to use, and click the `OK` button.
+Select `Git` as the version control system to use, and click the `OK` button.
 
 ![](image9.png "width=500")
 
-This will create a local Git repository in the directory the holds the currently loaded project. This Git repository can function completely independently of a remote repository like the one we created in GitHub, but in order to use a CI tool like Travis CI we need to link our local Git repository and the remote one hosted in GitHub together. This is
-done by configuring GitHub as a remote repository.
+This will create a local Git repository in the directory the holds the currently loaded project. This Git repository can function completely independently of a remote repository like the one we created in GitHub, but in order to use a CI tool like Travis CI we need to link our local Git repository and the remote one hosted in GitHub together. This is done by configuring GitHub as a remote repository.
 
 To add a remote repository, click `VCS` → `Git` → `Remotes...`
 
@@ -75,7 +74,7 @@ Click the `OK` button to save the changes.
 
 ![](image12.png "width=500")
 
-Click the OK button to close the Git Remotes dialog.
+Click the `OK` button to close the `Git Remotes` dialog.
 
 ![](image13.png "width=500")
 
@@ -143,4 +142,4 @@ Returning back to the repository in GitHub, we can see that the files were pushe
 
 ![](image26.png "width=500")
 
-Using a source control repository is generally considered good practice, as it allows changes to be tracked and audited, giving you the ability to identify code that caused an issue and undo those changes if need be. Hosted git repositories like those provided by GitHub means that your code is also backed up in a second location, and can be shared with a team of developers who may all be working on the same project. And storing code in GitHub makes it easy to integrate with other services, which we'll see in the next lecture when we link GitHub and Travis CI to build our code and run our tests automatically with each check-in.
+Using a source control repository is generally considered good practice, as it allows changes to be tracked and audited, giving you the ability to identify code that caused an issue and undo those changes if need be. Hosted git repositories like those provided by GitHub means that your code is also backed up in a second location, and can be shared with a team of developers who may all be working on the same project. And storing code in GitHub makes it easy to integrate with other services, which we'll see in the next post when we link GitHub and Travis CI to build our code and run our tests automatically with each check-in.
