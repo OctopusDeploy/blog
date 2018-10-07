@@ -11,7 +11,7 @@ tags:
 
 Now that we have our code in a public GitHub repository, we can link it with Travis CI to allow check-ins to trigger the building and testing of our code.
 
-Start by opening <https://travis-ci.com/> and clicking the `Sign in with GitHub` button.
+Start by opening [https://travis-ci.com/](https://travis-ci.com/) and clicking the `Sign in with GitHub` button.
 
 ![](image1.png "width=500")
 
@@ -46,9 +46,10 @@ The `.travis.yml` file is a configuration file that Travis CI looks for in any r
 
 Travis CI performs the builds on either a Linux or MacOS instance. We'll use Linux to do the builds, as Linux has a number useful tools we can take advantage of for our tests.
 
+:::hint
 Windows support is coming, but not available yet. See
-<https://github.com/travis-ci/travis-ci/issues/2104> for more
-information on Windows support in Travis CI.
+[https://github.com/travis-ci/travis-ci/issues/2104](https://github.com/travis-ci/travis-ci/issues/2104) for more information on Windows support in Travis CI.
+:::
 
 Let's take a look at the complete `.travis.yml` file.
 
@@ -77,7 +78,7 @@ before_install:
 - sudo cp geckodriver /usr/bin
 ```
 
-Now lets break this file down.
+Now let's break this file down.
 
 The `sudo` option is used to indicate that the build should be done in an environment where the `sudo` command can be run or not. By setting this option to `required`, we have indicated that we need to have the ability to run `sudo` command, which means that Travis CI will run this build inside a virtual machine. If we had set this option to `false`, Travis CI would have created a container to run the build.
 
@@ -102,7 +103,7 @@ language: java
 The `jdk` option configures the JDK that is used to build the code. You have the option of using OpenJDK, which is the open source implementation of Java, or Oracle JDK, which is the Java distribution provided by Oracle. Either option is fine for our code, but we will go with the Oracle JDK.
 
 :::hint
-The issue at <https://github.com/travis-ci/travis-ci/issues/9368> is
+The issue at [https://github.com/travis-ci/travis-ci/issues/9368](https://github.com/travis-ci/travis-ci/issues/9368) is
 tracking the addition of new versions of Java in Travis CI.
 :::
 
@@ -140,13 +141,15 @@ When running Firefox from a Travis CI environment, a number of warnings like `(f
 
 The next two commands configure and start Xvfb.
 
-In previous lectures we talked about how some systems are headless, which simply means that they do not have a monitor attached to them. The build environments used by Travis CI are an example of headless environments.
+In previous posts we talked about how some systems are headless, which simply means that they do not have a monitor attached to them. The build environments used by Travis CI are an example of headless environments.
 
 However there are situations, like when running automated tests against web browsers, when it is useful to have an environment that can run desktop applications, even without a monitor. Xvfb, which is short for X Virtual Frame Buffer, allows such desktop applications to run in headless environments. Xvfb creates a virtual monitor in memory, and desktop applications "draw" themselves to this virtual monitor.
 
-By using Xvfb we can test browsers that don't have native support for running in headless environments, or run older versions of browsers like Chrome and Firefox that only recently gained native headless support.
-
+:::hint
 The X in Xvfb comes from the name X Window System, which is the windowing system used by the versions of Linux that can be run in Travis CI.
+:::
+
+By using Xvfb we can test browsers that don't have native support for running in headless environments, or run older versions of browsers like Chrome and Firefox that only recently gained native headless support.
 
 Exporting the `DISPLAY` environment variable configures applications to draw themselves to screen `99`, which is the screen that Xvfb provides by default.
 
@@ -196,7 +199,7 @@ We do the same for the Firefox binary driver.
 - sudo cp geckodriver /usr/bin
 ```
 
-To create the `.travis.yml` file, right click on the project root folder and select New → File.
+To create the `.travis.yml` file, right click on the project root folder and select `New` → `File`.
 
 ![](image8.png "width=500")
 
@@ -267,7 +270,7 @@ Under the Environment Variables add values for `BROWSERSTACK_USERNAME` and `BROW
 
 ![](image15.png "width=500")
 
-Click the build in the left hand menu, and then click Restart build. This will rebuild the code, but this time with the new environment variables.
+Click the build in the left hand menu, and then click `Restart build`. This will rebuild the code, but this time with the new environment variables.
 
 ![](image16.png "width=500")
 
