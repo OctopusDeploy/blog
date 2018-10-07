@@ -210,7 +210,7 @@ Assert.assertTrue(generalAdultPrices > 10);
 Assert.assertTrue(generalAdultPrices < 1000);
 ```
 
-We then finish the test cleaning up resources in the finally block.
+We then finish the test cleaning up resources in the `finally` block.
 
 ```java
   } finally {
