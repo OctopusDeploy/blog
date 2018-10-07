@@ -13,7 +13,7 @@ The Maven project we have used to build our code will package up our classes int
 
 ![C:\\b4da756b8e562f2449a92910d5712a96](image1.png "width=500")
 
-Packaging the application will first run all the tests, and then build the JAR file under the target directory.
+Packaging the application will first run all the tests, and then build the JAR file under the `target` directory.
 
 ![C:\\eb232509f6285bcc27ff6f6904d0429f](image2.png "width=500")
 
