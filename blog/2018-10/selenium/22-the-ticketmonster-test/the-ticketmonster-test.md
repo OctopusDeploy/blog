@@ -11,7 +11,7 @@ tags:
 
 TicketMonster is a sample application created by RedHat to demonstrate a number of Java web technologies. The nice thing about TicketMonster (from the point of view of a WebDriver tutorial anyway) is that it has not been optimized for automated tests, meaning that to successfully test a typical journey through the application we can't rely on consistent network requests or all elements having convenient `id` attributes to locate them with.
 
-But in order to write tests for TicketMonster, we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at <https://developers.redhat.com/ticket-monster/whatisticketmonster/>. However for this course we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
+But in order to write tests for TicketMonster, we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at [https://developers.redhat.com/ticket-monster/whatisticketmonster/](https://developers.redhat.com/ticket-monster/whatisticketmonster/). However for this course we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
 
 We will test the scenario of purchasing a ticket for an event, so let's first run through the process of buying a ticket manually.
 
@@ -366,8 +366,8 @@ public void purchaseTickets() {
 We can then load the resulting HAR file into [HAR
 Analyzer](https://toolbox.googleapps.com/apps/har_analyzer/) and look for network errors by filtering the HTTP response codes to 0, 4xx and 5xx. Responses in these ranges indicate an error.
 
-Sure enough, we can see some requests for images have a response code of 0, meaning they did not complete successfully. So even though our test successfully completed the process of purchasing tickets, the HAR file can be used to identify other issues that may impact on the user experience.
+Sure enough, we can see some requests for images have a response code of `0`, meaning they did not complete successfully. So even though our test successfully completed the process of purchasing tickets, the HAR file can be used to identify other issues that may impact on the user experience.
 
 ![](image24.png "width=500")
 
-This test of TicketMonster represents a real world example of how you can write end to end tests using WebDriver. The library we have created makes it quite easy to interact with the web application; however, having a test that directly lists every click, select and populate operation is quite low level. In the next lecture, we'll look at a design pattern that abstracts away the interactions with a web application to produce more reusable and maintainable code.
+This test of TicketMonster represents a real world example of how you can write end to end tests using WebDriver. The library we have created makes it quite easy to interact with the web application; however, having a test that directly lists every click, select and populate operation is quite low level. In the next post, we'll look at a design pattern that abstracts away the interactions with a web application to produce more reusable and maintainable code.
