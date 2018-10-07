@@ -121,9 +121,9 @@ functions:
 runCucumber: cucumber-chrome-aws-dev-runCucumber
 ```
 
-Notice that the log file shows the URL of the endpoint that we can use to trigger the HTTP events. In the example above the URL <https://hkm5i7fmlc.execute-api.us-east-1.amazonaws.com/dev/runCucumber> is what we will call with HTTP POST requests to execute a Gherkin feature.
+Notice that the log file shows the URL of the endpoint that we can use to trigger the HTTP events. In the example above the URL [https://hkm5i7fmlc.execute-api.us-east-1.amazonaws.com/dev/runCucumber](https://hkm5i7fmlc.execute-api.us-east-1.amazonaws.com/dev/runCucumber) is what we will call with HTTP POST requests to execute a Gherkin feature.
 
-To make a HTTP request, we'll use a tool called Postman, which you can download from <https://www.getpostman.com/>. Postman provides a simple interface that we can use to craft custom HTTP requests, and in this case we will make a POST request to the URL we found above.
+To make a HTTP request, we'll use a tool called Postman, which you can download from [https://www.getpostman.com/](https://www.getpostman.com/). Postman provides a simple interface that we can use to craft custom HTTP requests, and in this case we will make a POST request to the URL we found above.
 
 The screenshot below shows the important fields that need to be populated to make this POST request.
 

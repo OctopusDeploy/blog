@@ -225,7 +225,7 @@ In additional to managing users, IAM also manages the permissions granted to oth
 Here we set the `Effect` setting to `Allow` to indicate that we are granting the ability to perform some action. The `Resource` setting is set to `"*"`, which is the only valid value for this option. The `Action` setting is set to `ses:SendEmail`, which is the name of the action that relates to sending emails in SES.
 
 :::hint
-Only a subset of AWS actions can be limited to specific resources. The documentation at <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html> lists actions that support a Resource setting more granular than the asterisk wildcard. The ses:SendEmail action is not in this list, therefore the Resource setting can only be configured with an asterisk.
+Only a subset of AWS actions can be limited to specific resources. The documentation at [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html) lists actions that support a Resource setting more granular than the asterisk wildcard. The ses:SendEmail action is not in this list, therefore the Resource setting can only be configured with an asterisk.
 :::
 
 ```yaml
