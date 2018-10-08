@@ -2,12 +2,13 @@
 title: "Introducing Roy Wallace"
 visibility: public
 description: "A brief introduction to Roy Wallace"
+author: roy.wallace@octopus.com
 published: 2018-10-05
 tags:
  - Company
 ---
 <div style="float: right; margin: 30px; margin-top: 0">
-<img alt="Profile Pic" src="https://i.octopus.com/site/team/roy-wallace.jpg" height="140" width="140" />
+<img alt="Profile Pic" src="https://i.octopus.com/site/team/roy-wallace.2.jpg" height="140" width="140" />
 </div>
 
 Hi! I'm Roy and I've recently joined the Octopus team as a Solution Architect. 
