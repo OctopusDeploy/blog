@@ -109,3 +109,37 @@ I'm going to go ahead and commit those changes.  Now it is time to set up a buil
 
 ## Setting up a build server
 
+In my TeamCity instance I have created a new project.  The project is going to be very simple, package up the database, publish the package to Octopus Deploy, create new release in Octopus Deploy.  First up is the package database.  For this build step I will package up the entire db/src folder (which includes any additional schemas).  Right now it only contains the "SourceDB" schema.
+
+![](teamcity_package_oracle_db.png)
+
+Pushing the package should be pretty straight-forward.  
+
+![](teamcity_push_packages.png)
+
+In Octopus Deploy I've setup a very simple deployment process.  The goal at this point is to just make sure everything packages, pushes and deploys successfully.  I'm not too worried at this stage about the deployment process (that will come in a couple of minutes).
+
+![](octopus_simple_oracle_process.png)
+
+Back in TeamCity I will use that new project in my create a release step.
+
+![](teamcity_create_octopus_release.png)
+
+Now the moment of truth, running the build for the first time.  And...I messed it up.  Of course I did.  Nothing works perfectly the first time.
+
+![](team_city_first_build.png)
+
+It took a couple of tries but I got the build working.
+
+![](teamcity_successful_build.png)
+
+The issue was I put a / in start of the packaging path.  It should've been db/src, like so.
+
+![](teamcity_correct_pack_step.png)
+
+If I download the package from Octopus and examine it I can see all the files that were created are there.
+
+![](octopus_package_contents.png)
+
+We have the build server packaging, publishing and triggering a deployment.  Now it is time to go to Octopus and get the process worked out.
+
