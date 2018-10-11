@@ -20,11 +20,15 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
-## Feature 1
+## Kubernetes deployments made easy
 
 TODO
 
-## Feature 2
+## Offline Drop Artifacts
+
+TODO
+
+## Updated Cloud SDKs
 
 TODO
 
