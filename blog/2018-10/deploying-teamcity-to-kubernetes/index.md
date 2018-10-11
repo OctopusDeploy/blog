@@ -1,14 +1,16 @@
-
-
 ---
 title: Deploying TeamCity to Kubernetes using Octopus Deploy
 description: Learn how to spin up a build server on demand using Octopus Deploy and Kubernetes
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-10-08
+published: 2018-10-12
+metaImage: blogimage-dockertok8.png
+bannerImage: blogimage-dockertok8.png
 tags:
  - Kubernetes
 ---
+
+![Octopus deploying a TeamCity container to Kubernetes illustration](blogimage-dockertok8.png)
 
 Hi!  My name is Bob Walker and I am a solution architect here at Octopus Deploy.  
 
