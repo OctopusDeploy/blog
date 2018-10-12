@@ -1,3 +1,15 @@
+---
+title: Deploy to Oracle Database using Octopus Deploy and Redgate 
+description: Octopus Deploy supports many database tools.  Follow along as we get a CI/CD pipeline built to deploy a database change to an Oracle Database
+author: bob.walker@octopus.com
+visibility: public
+published: 2018-10-18
+metaImage: metaimage-redgate-database.png
+bannerImage: blogimage-redgate-database.png
+tags:
+ - Database Deployments
+---
+
 Many years prior to joining Octopus Deploy, I worked on a .NET application with Oracle as its database for about 30ish months.  I started working there a couple of years before Octopus Deploy version 1.0 was released.  Those were tough deployments.  Everything was manual.  And we could only deploy on Saturday mornings at 2 AM.
 
 Thankfully those days are over.  The tooling available today is light-years ahead of where it was.  Today we are going to cover deploying to changes to Oracle databases.  The goal of this article is to build up entire CI/CD pipeline using TeamCity as the build server, Octopus Deploy as the deployment tool (of course), with the Redgate Oracle toolset handling the heavy lifting on the database side.  
