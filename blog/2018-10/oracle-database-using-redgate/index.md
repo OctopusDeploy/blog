@@ -3,16 +3,18 @@ title: Deploy to Oracle Database using Octopus Deploy and Redgate
 description: Octopus Deploy supports many database tools.  Follow along as we get a CI/CD pipeline built to deploy a database change to an Oracle Database
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-10-18
+published: 2018-10-16
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
  - Database Deployments
 ---
 
-Many years prior to joining Octopus Deploy, I worked on a .NET application with Oracle as its database for about thirty months.  I started working there a couple of years before Octopus Deploy version 1.0 was released.  Those were tough deployments.  Everything was manual.  And we could only deploy on Saturday mornings at 2 AM.
+Many years prior to joining Octopus Deploy, I worked on a .NET application with Oracle as its database for about 3 years.  I started working there a couple of years before Octopus Deploy version 1.0 was released.  Those were tough deployments.  Everything was manual.  And we could only deploy on Saturday mornings at 2 AM.  Which led the never ending debate, should I go to sleep before the deployment, or should I stay up.  The deployments took anywhere from 2 to 4 hours.  The answer, go to sleep.  And set 3 alarms.
 
 Thankfully, those days are over.  The tooling available today is light-years ahead of where it was.  Today we're going to cover deploying changes to Oracle databases.  The goal of this article is to build up entire CI/CD pipeline using TeamCity as the build server, Octopus Deploy as the deployment tool (of course), with the Redgate Oracle toolset doing the heavy lifting on the database side.  
+
+_Disclaimer:_ I used Oracle between 2010 and 2013.  The Oracle instance was 10g and I used Benthic and SQL Developer to query Oracle.  A lot has changed since that time.  I'm a SQL Server guy.  Without question I did some goofy things in this article which are no longer best practice.  
 
 **Side Note:** I chose TeamCity for no other reason other than I like it and I had the build server already running.  The core concepts from this article will transfer over to Jenkins, Bamboo, TFS/VSTS/Azure DevOps.  
 
@@ -27,7 +29,7 @@ If you wish to follow along, you will need to download and install the following
 - [Redgate Oracle Toolset](https://www.red-gate.com/dynamic/products/oracle-development/deployment-suite-for-oracle/download)
 - [Octopus Deploy](https://octopus.com/downloads)
 
-One note, in order to download anything from Oracle you have to create an account.  The form to do that...requires a lot of information.  Prepare yourself for that.  I opted for personal edition because just like SQL Server Developer Edition, it is fully featured, just limited in what you can do with the license.  I am not using this for anything production related, just demos.  
+In order to download anything from Oracle you have to create an account.  The form to do that...requires a lot of information.  Prepare yourself for that.  I opted for personal edition because just like SQL Server Developer Edition, it is fully featured, just limited in what you can do with the license.  I am not using this for anything production related, just demos.  
 
 For the purposes of this article, I am going to be deploying to the same Oracle database running on a Windows machine.  Yes...this is cheating.  In a real-world environment, you should follow a setup similar to this.
 
@@ -55,7 +57,7 @@ I'm also going to add in a sequence.  For those of you not familiar with Oracle,
 
 ![](oracle_add_sequence.png "width=500")
 
-Now I can assign that sequence to the column ID. There is probably a better way to do this.  But I haven't used Oracle in over 7 years.  
+Finally, I am going to tie the sequence and the id field together.  The purpose behind this is to have a couple of schema changes ready to deploy to a blank database.  Your changes will most likely be much more complex.
 
 ![](oracle_make_id_sequence.png "width=500")
 
@@ -71,7 +73,9 @@ After hitting that massive button you will be sent to a wizard.  First, you will
 
 ![](redgate_configure_connection.png "width=500")
 
-The database connection is good to go.  Next up is configuring the source control system to use.  This repository will be a git repository.  But rather than using the built-in git functionality, I prefer to use a working folder.  This is so I can use my git GUI of choice and get the full functionality of git.  As you can see I have an empty working folder.
+The database connection is good to go.  Next up is configuring the source control system to use.  This repository will be a git repository.  But rather than using the built-in git functionality, I prefer to use a working folder.  This is so I can use my git GUI of choice and get the full functionality of git, specifically branching.  Once you get this process working a great next step is to setup Oracle on each developer's machine.  With a dedicated instance a developer can check in their source code and database changes at the same time.  Rather than make a database change on a shared server and then wait for the code to be checked in to make use of that change.
+
+As you can see I have an empty working folder.
 
 ![](empty_working_folder.png "width=500")
 
@@ -155,7 +159,7 @@ As you can see I do not have anything set up on this database.
 
 ## Setup Octopus Deploy
 
-As shown in an earlier screenshot, you should set up a jump box which sits between Octopus Deploy and your Oracle Database.  This machine will need to have Redgate's Oracle Toolbelt, SQL*Plus, and the standard tnsnames.ora file installed. The tnsnames.ora file will need to contain all the hosts (aka database servers) you need to connect to from this jump box.
+As shown in an earlier screenshot, you should set up a jump box which sits between Octopus Deploy and your Oracle Database.  This machine will need to have Redgate's Oracle Toolbelt, SQL*Plus, and the standard `tnsnames.ora` file installed. The `tnsnames.ora` file will need to contain all the hosts (aka database servers) you need to connect to from this jump box.
 
 **Important:** Due to a quirk in the Redgate's Oracle Toolbelt, you will need to run the tentacle as an account rather than as the local system account.  You will get errors saying the tool isn't activated even though it is.  And then you will curse at the screen as I did.  Please follow [these instructions](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) on how to do that.
 
@@ -171,7 +175,7 @@ Diving into the first step and there a few options to fill out.  I've tried to i
 
 ![](octopus_redgate_create_oracle_release.png "width=500")
 
-At the end of the step, you are asked to provide the source schema and the destination schema.  This is due to a setting Redgate's tooling.  The step-template wraps the command-line.  It offers as an option so the step template has to offer it as an option.
+At the end of the step, you are asked to provide the source schema and the destination schema.  This is due to a setting Redgate's tooling.  The step-template wraps the command-line.  It offers the schema name as an option so the step template has to offer it as an option.
 
 ![](redgate_oracle_schema_compare.png "width=500")
 
