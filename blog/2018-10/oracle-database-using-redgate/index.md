@@ -1,5 +1,5 @@
 ---
-title: Deploy to Oracle Database using Octopus Deploy and Redgate 
+title: Deploy to Oracle Database using Octopus Deploy and Redgate
 description: Octopus Deploy supports many database tools.  Follow along as we get a CI/CD pipeline built to deploy a database change to an Oracle Database
 author: bob.walker@octopus.com
 visibility: public
@@ -10,15 +10,15 @@ tags:
  - Database Deployments
 ---
 
-Many years prior to joining Octopus Deploy, I worked on a .NET application with Oracle as its database for about 30ish months.  I started working there a couple of years before Octopus Deploy version 1.0 was released.  Those were tough deployments.  Everything was manual.  And we could only deploy on Saturday mornings at 2 AM.
+Many years prior to joining Octopus Deploy, I worked on a .NET application with Oracle as its database for about thirty months.  I started working there a couple of years before Octopus Deploy version 1.0 was released.  Those were tough deployments.  Everything was manual.  And we could only deploy on Saturday mornings at 2 AM.
 
-Thankfully those days are over.  The tooling available today is light-years ahead of where it was.  Today we are going to cover deploying to changes to Oracle databases.  The goal of this article is to build up entire CI/CD pipeline using TeamCity as the build server, Octopus Deploy as the deployment tool (of course), with the Redgate Oracle toolset handling the heavy lifting on the database side.  
+Thankfully, those days are over.  The tooling available today is light-years ahead of where it was.  Today we're going to cover deploying changes to Oracle databases.  The goal of this article is to build up entire CI/CD pipeline using TeamCity as the build server, Octopus Deploy as the deployment tool (of course), with the Redgate Oracle toolset doing the heavy lifting on the database side.  
 
 **Side Note:** I chose TeamCity for no other reason other than I like it and I had the build server already running.  The core concepts from this article will transfer over to Jenkins, Bamboo, TFS/VSTS/Azure DevOps.  
 
 !toc
 
-## Getting Started 
+## Getting Started
 
 If you wish to follow along, you will need to download and install the following tools.
 
@@ -37,9 +37,9 @@ With this setup, you would install a tentacle on a [worker](https://octopus.com/
 
 ## Creating a Source Database
 
-Redgate's Oracle Toolset is a state-based tool.  For those of you who didn't read my previous articles, a state-based tool is one where you save the desired state of the database into source control.  During the deployment, a unique delta script is generated to run against the Oracle database.  That delta script will be only used for that database for that environment.  The next environment will get a new delta script.
+Redgate's Oracle Toolset is a state-based tool.  For those of you who haven't read my previous articles, a state-based tool is one where you save the desired state of the database into source control.  During the deployment, a unique delta script is generated to run against the Oracle database.  That delta script will be only used for that database for that environment.  The next environment will get a new delta script.
 
-I am starting this all from scratch.  I set up a VM and installed Oracle on it.  I now am going to create a source database.  This database will represent the desired state I want all the other databases to be in.  I am going to set up my database and then check that into source control using [Redgate's Source Control for Oracle](https://www.red-gate.com/products/oracle-development/source-control-for-oracle/).  
+I am starting this all from scratch.  I set up a VM and installed Oracle.  I am now going to create a source database.  This database will represent the desired state I want all the other databases to be in.  I am going to set up my database and then check that into source control using [Redgate's Source Control for Oracle](https://www.red-gate.com/products/oracle-development/source-control-for-oracle/).  
 
 It's been a while since I had to create a database in Oracle.  I'm using the [database creation assistant](https://docs.oracle.com/cd/B16254_01/doc/server.102/b14196/install003.htm) provided by Oracle.  I know it is possible to script all this out.  But I'd rather focus on deployments than setting this all up.
 
@@ -51,17 +51,17 @@ I am going to add a new table to it.  Nothing super fancy.  Just a small table w
 
 ![](oracle_add_table.png "width=500")
 
-I'm also going to add in a sequence.  For those of you not familiar with Oracle, a sequence is needed when you want to use an auto-incrementing number for your Id field.  Well, in old-school Oracle anyway.  It looks like things have changed a bit.  But I'm still going to create one...just because.
+I'm also going to add in a sequence.  For those of you not familiar with Oracle, a sequence is needed when you want to use an auto-incrementing number for your ID field.  Well, in old-school Oracle anyway.  It looks like things have changed a bit.  But I'm still going to create one...just because.
 
 ![](oracle_add_sequence.png "width=500")
 
-Now I can assign that sequence to column Id.  Probably is a better way to do this.  But I haven't used Oracle in over 7 years.  
+Now I can assign that sequence to the column ID. There is probably a better way to do this.  But I haven't used Oracle in over 7 years.  
 
 ![](oracle_make_id_sequence.png "width=500")
 
 ## Tying Oracle To Source Control
 
-The table is in place we want to create.  It is time to put that table and sequence definition into source control.  For this, I will be using [Redgate's Source Control for Oracle](https://www.red-gate.com/products/oracle-development/source-control-for-oracle/).  One thing you will notice is that application isn't a plug-in like [Redgate's SQL Source Control](https://www.red-gate.com/products/sql-development/sql-source-control/).  If I had to venture a guess it is because there unlike SQL Server with its SQL Server Management Studio, there isn't one main UI to access an Oracle database.  There is SQL Developer, Benthic, Toad, etc.
+The table we want to create is in place.  It is time to put that table and sequence definition into source control.  For this, I will be using [Redgate's Source Control for Oracle](https://www.red-gate.com/products/oracle-development/source-control-for-oracle/).  One thing you will notice is that application isn't a plug-in like [Redgate's SQL Source Control](https://www.red-gate.com/products/sql-development/sql-source-control/).  If I had to venture a guess, it is because unlike SQL Server with its SQL Server Management Studio, there isn't one main UI to access an Oracle database.  There is SQL Developer, Benthic, Toad, etc.
 
 When we first launch the application we are presented with a single option, "Create a new source control project..."
 
@@ -91,11 +91,11 @@ Finally, we reach the end.  This tool will monitor this database and schema for 
 
 ![](redgate_summary.png "width=500")
 
-When it is finished hooking up all the bail and twine behinds the scenes we can see there are four changes to check in.
+When it is finished hooking up all the bail and twine behind the scenes we can see there are four changes to check in.
 
 ![](redgate_project_summary.png "width=500")
 
-When I click on the big arrow I am presented with a summary screen.  Those of you who have used Redgate's SQL Source Control, this should look very familiar.
+When I click on the big arrow I am presented with a summary screen.  For those of you who have used Redgate's SQL Source Control, this should look very familiar.
 
 ![](redgate_commit_changes_summary.png "width=500")
 
@@ -139,11 +139,11 @@ The issue was I put a / at the start of the packaging path.  It should've been d
 
 ![](teamcity_correct_pack_step.png "width=500")
 
-If I download the package from Octopus and examine it I can see all the files that were created are there.
+If I download the package from Octopus and examine it, I can see all the files that were created are there.
 
 ![](octopus_package_contents.png "width=500")
 
-We have the build server packaging, publishing and triggering a deployment.  Now it is time to go to Octopus and get that process built out.
+We have the build server packaging, publishing, and triggering a deployment.  Now it is time to go to Octopus and get that process built out.
 
 ## Configure Destination Database
 
@@ -155,7 +155,7 @@ As you can see I do not have anything set up on this database.
 
 ## Setup Octopus Deploy
 
-As shown in an earlier screenshot, you should set up a jump box which sits between Octopus Deploy and your Oracle Database.  This machine will need to have Redgate's Oracle Toolbelt, SQL*Plus, and the standard tnsnames.ora file installed. The tnsnames.ora file will need to contain all the hosts (aka database servers) you will need to connect to from this jump box. 
+As shown in an earlier screenshot, you should set up a jump box which sits between Octopus Deploy and your Oracle Database.  This machine will need to have Redgate's Oracle Toolbelt, SQL*Plus, and the standard tnsnames.ora file installed. The tnsnames.ora file will need to contain all the hosts (aka database servers) you need to connect to from this jump box.
 
 **Important:** Due to a quirk in the Redgate's Oracle Toolbelt, you will need to run the tentacle as an account rather than as the local system account.  You will get errors saying the tool isn't activated even though it is.  And then you will curse at the screen as I did.  Please follow [these instructions](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) on how to do that.
 
@@ -163,7 +163,7 @@ I have added two new step-templates to the community library.  [Redgate - Create
 
 The process I have put together is very simple.  The first step generates a report and a delta script, in pre-prod and prod a DBA approves the changes, and then the delta script is run against the database.
 
-**Please Note** I intentionally made this step only generate a delta script and a report file.  It is possible to make Redgate's Oracle tools to do the deployment for you by including the /deploy command line switch.  I omitted that command line switch because I feel it is important to build trust in the process first and have a human approve the changes.  The community library is open source, you are free to clone that step and adjust to meet your needs.
+**Please Note** I intentionally made this step only generate a delta script and a report file.  It is possible to make Redgate's Oracle tools do the deployment for you by including the `/deploy` command line switch.  I omitted that command line switch because I feel it is important to build trust in the process first and have a human approve the changes.  The community library is open source, you are free to clone that step and adjust to meet your needs.
 
 ![](oracle_deployment_process.png "width=500")
 
@@ -201,6 +201,6 @@ Let's check the database to make sure.  Yup, everything is there.
 
 ## Conclusion
 
-The days of manually writing deployment scripts for each environment are rapidly drawing to a close.  In this article, we create an entire CI/CD pipeline for an Oracle database.  It is still lacking a couple of key features, such as handling any sort of initialization data as well as static data.  But it is a good start.  I encourage you to take this basic process and start adding on to it.  
+The days of manually writing deployment scripts for each environment are rapidly drawing to a close.  In this article, we created an entire CI/CD pipeline for an Oracle database.  It is still lacking a couple of key features, such as handling any sort of initialization data as well as static data.  But it is a good start.  I encourage you to take this basic process and start adding on to it.  
 
 Until next time, happy deployments!
