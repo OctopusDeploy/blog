@@ -31,7 +31,11 @@ For this example, we created our cluster manually via the Azure portal method.
 
 ### Gotcha #1: The Initial Wait Time
 
-When spinning up Service Fabric clusters on Azure, we need to watch the status of our cluster carefully and make sure it says "Ready" before trying to connect or deploy anything. This is worth mentioning because there is typically a long wait time after creating the cluster on Azure until all nodes have been provisioned and "baseline upgrades" of our nodes have taken place, then finally it's all ready. This process can take anywhere from 1-6 hours from what we've observed, depending on the alignment of the moon and the stars on any given day :)
+When spinning up Service Fabric clusters on Azure, we need to watch the status of our cluster carefully and make sure it says "Ready" before trying to connect or deploy anything.
+
+<strike>This is worth mentioning because there is typically a long wait time after creating the cluster on Azure until all nodes have been provisioned and "baseline upgrades" of our nodes have taken place, then finally it's all ready. This process can take anywhere from 1-6 hours from what we've observed, depending on the alignment of the moon and the stars on any given day :)</strike>
+
+Since this blog post was published, the spin-up times have improved significantly for Service Fabric clusters on Azure to be under an hour, and several times even under half an hour. But just remember to wait until the status is "Ready" before trying to connect or deploy anything ;) <i>(Edit 23rd October 2018)</i>
 
 Once we've successfully created our cluster, it should appear like this in our Azure portal:
 
