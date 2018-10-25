@@ -1,6 +1,6 @@
 ---
 title: Kubernetes adoption made easy - Octopus Deploy 2018.9 
-description: Kubernetes adoption made easy! Octopus 2018.9 includes our first-class support for Kubernetes Deployments including support for Kubernetes cluster infrastructure and 
+description: Kubernetes adoption made easy! Octopus 2018.9 includes our first-class support for Kubernetes Deployments including infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process.
 author: rob.pearson@octopus.com
 visibility: private
 published: 2018-10-25
@@ -14,11 +14,9 @@ tags:
 
 ## Kubernetes Adoption Made Easy
 
-Octopus is proud to ship our first-class support for Kubernetes Deployments! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. Kubernetes, or K8s, is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. We took the approach to balance power and ease-of-use to give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them from zero YAML configuration to full control over with `kubectl` and deployment YAML.
+Octopus is proud to ship our first-class support for Kubernetes deployments! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. Kubernetes, or K8s, is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. We took the approach to balance power and ease-of-use to give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
-We feel that our K8s support is second to none as we have 
-
-`TODO: Blurb about variable replacement and easy promotions` 
+One of the best parts about our K8s deployments support 
 
 `TODO: Add Kubernetes Ebook Banner graphic and link here`
 
