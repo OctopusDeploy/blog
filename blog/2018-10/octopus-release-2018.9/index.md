@@ -29,13 +29,13 @@ We took the approach to balance power and ease-of-use to give you the best of bo
 
 !toc
 
-## Kubernetes Infrastructure
+## Infrastructure for Kubernetes
 
 ![Kubernetes deployment targets](k8s-clusters.png "width=500")
 
 Octopus Deploy now supports adding Kubernetes Clusters as deployment targets and the associated configuration options. We also added support for Helm Chart feeds.
 
-## Kubernetes Deployment Process
+## Deployment Processes for Kubernetes 
 
 ![Kubernetes deployment steps](k8s-steps.png "width=500")
 
