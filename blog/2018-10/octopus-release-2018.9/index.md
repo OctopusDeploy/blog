@@ -16,7 +16,7 @@ tags:
 
 Octopus is proud to ship our first-class support for Kubernetes deployments! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. Kubernetes, or K8s, is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. We took the approach to balance power and ease-of-use to give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
-We believe that Kubernetes container orchestration is only the first half of the story and Octopus is the best option for the second half. Along side our first-calss support, you get:
+We believe that Kubernetes container orchestration is only the first half of the story and Octopus is the best option for the second half. Along side our first-class support, you get our best-in-class support for the following.
 
 * Easy promotions between your environments. i.e. Dev &rarr; TEST &rarr; PROD
 * Rich variable replacement
@@ -33,11 +33,15 @@ One of the best parts about our K8s deployments support is that it's complemente
 
 ## Kubernetes deployments made easy
 
-Our [Kubernetes support](https://octopus.com/docs/deployment-examples/kubernetes-deployments) is visible in two main areas. 
+Our [Kubernetes support](https://octopus.com/docs/deployment-examples/kubernetes-deployments) includes significant enhancements to Octopus infrastructure and deployment processes. 
+
+### Infrastructure
 
 ![Kubernetes deployment targets](k8s-clusters.png "width=500")
 
 Octopus now supports adding Kubernetes Clusters as deployment targets and all the associated configuration options. We also include support for Helm chart feeds for teams using Helm.
+
+### Deployment Process
 
 ![Kubernetes deployment steps](k8s-steps.png "width=500")
 
