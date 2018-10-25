@@ -10,13 +10,17 @@ tags:
  - New Releases
 ---
 
-![Kubernetes made easy - Octopus Deploy 2018.9 release banner](blogimage-shipping-2018-9.png)
+![Kubernetes Adoption Made Easy - Octopus Deploy 2018.9 release banner](blogimage-shipping-2018-9.png)
 
-## In This Post
+## Kubernetes Adoption Made Easy
 
 Octopus is proud to ship our first-class support for Kubernetes Deployments! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. Kubernetes, or K8s, is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. We took the approach to balance power and ease-of-use to give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
-!toc
+We feel that our K8s support is second to none as we have 
+
+`TODO: Blurb about variable replacement and easy promotions` 
+
+`TODO: Add Kubernetes Ebook Banner graphic and link here`
 
 ## Release Tour
 
@@ -24,7 +28,15 @@ Octopus is proud to ship our first-class support for Kubernetes Deployments! Our
 
 ## Kubernetes deployments made easy
 
-TODO
+Our [Kubernetes support](https://octopus.com/docs/deployment-examples/kubernetes-deployments) is visible in two main areas. 
+
+![Kubernetes deployment targets](k8s-clusters.png "width=500")
+
+Octopus now supports adding Kubernetes Clusters as deployment targets and all the associated configuration options. We also include support for Helm chart feeds for teams using Helm.
+
+![Kubernetes deployment steps](k8s-steps.png "width=500")
+
+Octopus ships with numerous new deployment steps enabling teams to deploy Docker containers to Kubernetes, execute scripts directly with `kubectl` and perform Helm upgrades.
 
 ## Offline Drop Artifacts
 
@@ -46,11 +58,21 @@ We've updated all the Cloud dependencies that ship with Octopus:
 
 ## Breaking Changes
 
-TODO
+This release includes a major bump of Azure Powershell  modules to `6.8.1` to fix a [known issue](https://github.com/OctopusDeploy/Issues/issues/4574) with the previous `5.7.0` bundled version. Please see [Azure PowerShell release notes](https://docs.microsoft.com/en-us/powershell/azure/release-notes-azureps?view=azurermps-6.11.0) for more information.
 
 ## Upgrading
 
 As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.9.0) for further information.
+
+### Octopus Cloud
+
+Octopus Cloud users will start receiving the latest bits next week during their maintenance window.
+
+### Self-hosted Octopus
+
+Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2018.9.0) the latest release now.
+
+!toc
 
 ## Wrap Up
 
