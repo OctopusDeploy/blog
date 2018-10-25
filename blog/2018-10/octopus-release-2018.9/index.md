@@ -1,6 +1,6 @@
 ---
-title: Kubernetes adoption made easy - Octopus Deploy 2018.9 
-description: Kubernetes adoption made easy! Octopus 2018.9 includes our first-class support for Kubernetes Deployments including infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process.
+title: Kubernetes deployments made easy - Octopus Deploy 2018.9 
+description: Kubernetes deployments made easy! Octopus 2018.9 includes our first-class support for Kubernetes Deployments including infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process.
 author: rob.pearson@octopus.com
 visibility: private
 published: 2018-10-25
@@ -12,9 +12,14 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FZ8U5OuDyOw" frameborder="0" allowfullscreen></iframe>
 
-## Kubernetes Adoption Made Easy
+## Kubernetes Deployments Made Easy
 
-Octopus is proud to ship our first-class support for [Kubernetes deployments](https://octopus.com/docs/deployment-examples/kubernetes-deployments)! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. Kubernetes, or K8s, is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. We took the approach to balance power and ease-of-use to give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them from zero YAML configuration to full control over with `kubectl` and deployment YAML.
+Octopus Deploy is proud to ship our first-class support for [Kubernetes deployments](https://octopus.com/docs/deployment-examples/kubernetes-deployments)! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. 
+
+Kubernetes (or K8s) is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. 
+
+We took the approach to balance power and ease-of-use and give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
+
 
 [![The Ultimate Guide to Kubernetes Deployments with Octopus](kubernetes-ebook-blog-cta)](https://hello.octopus.com/kubernetes-ebook)
 
@@ -22,13 +27,13 @@ Octopus is proud to ship our first-class support for [Kubernetes deployments](ht
 
 ![Kubernetes deployment targets](k8s-clusters.png "width=500")
 
-Octopus now supports adding Kubernetes Clusters as deployment targets and all the associated configuration options. We also include support for Helm chart feeds for teams using Helm.
+Octopus Deploy now supports adding Kubernetes Clusters as deployment targets and all the associated configuration options. We also include support for Helm chart feeds for teams using Helm.
 
 ### Deployment Process
 
 ![Kubernetes deployment steps](k8s-steps.png "width=500")
 
-Octopus ships with numerous new deployment steps enabling teams to deploy Docker containers to Kubernetes, execute scripts directly with `kubectl` and perform Helm upgrades.
+Octopus Deploy ships with numerous new deployment steps enabling teams to deploy Docker containers to Kubernetes, execute scripts directly with `kubectl` and perform Helm upgrades.
 
 ## Offline Drop Artifacts
 
@@ -54,16 +59,6 @@ This release includes a major bump of Azure Powershell  modules to `6.8.1` to fi
 
 ## Upgrading
 
-As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.9.0) for further information.
-
-### Octopus Cloud
-
-Octopus Cloud users will start receiving the latest bits next week during their maintenance window.
-
-### Self-hosted Octopus
-
-Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2018.9.0) the latest release now.
-
-## Wrap Up
+As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.9.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2018.9.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during their maintenance window.
 
 That’s it for this month. Feel free to leave us a comment and let us know what you think! Go forth and deploy!
