@@ -1,5 +1,5 @@
 ---
-title: Kubernetes deployments made easy - Octopus Deploy 2018.9 
+title: Kubernetes deployments made easy - Octopus Deploy 2018.9
 description: Kubernetes deployments made easy! Octopus 2018.9 includes our first-class support for Kubernetes Deployments including infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process.
 author: rob.pearson@octopus.com
 visibility: public
@@ -14,11 +14,11 @@ tags:
 
 ## Kubernetes Deployments Made Easy
 
-Octopus Deploy is proud to ship our first-class support for [Kubernetes deployments](https://octopus.com/docs/deployment-examples/kubernetes-deployments)! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. 
+Octopus Deploy is proud to ship our first-class support for [Kubernetes deployments](https://octopus.com/docs/deployment-examples/kubernetes-deployments)! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform.
 
-Kubernetes (or K8s) is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. 
+Kubernetes (or K8s) is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity, and it can be overwhelming and difficult to learn the configuration options and deployment YAML.
 
-We took the approach to balance power and ease-of-use and give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
+We took the approach to balance power and ease-of-use and give you the best of both worlds. This takes shape in the form of infrastructure support for Kubernetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
 
 <a href='https://hello.octopus.com/kubernetes-ebook'> ![The Ultimate Guide to Kubernetes Deployments with Octopus](kubernetes-ebook-blog-cta.png) </a>
@@ -33,29 +33,29 @@ Octopus Deploy now supports adding Kubernetes Clusters as deployment targets and
 
 ![Kubernetes deployment steps](k8s-steps.png "width=500")
 
-Octopus Deploy ships with numerous new deployment steps enabling teams to deploy Docker containers to Kubernetes, execute scripts directly with `kubectl` and perform Helm upgrades.
+Octopus Deploy ships with numerous new deployment steps enabling teams to deploy Docker containers to Kubernetes, execute scripts directly with `kubectl`, and perform Helm upgrades.
 
 ## Offline Drop Artifacts
 
 [Offline Package Drop targets](https://octopus.com/docs/infrastructure/offline-package-drop) can now be configured to persist the bundle as an Octopus Artifact.
 
-Offline Package Drop targets could previously only persist the bundle to a file-system directory, which wasn't suitable for Octopus Cloud instances. Artifacts are a perfect fit for this; the deployment bundle is persisted a zip file stored against the deployment in Octopus.
+Offline Package Drop targets could previously only persist the bundle to a file-system directory, which wasn't suitable for Octopus Cloud instances. Artifacts are a perfect fit for this; the deployment bundle is persisted as a zip file stored against the deployment in Octopus.
 
 ## Updated Cloud SDKs
 
 We've updated all the Cloud dependencies that ship with Octopus:
 
 * Azure PowerShell modules upgraded from `5.7.0` to `6.8.1`. This update fixes some known issues with the `5.7.0` release of Azure PowerShell.
-* Azure CLI upgraded from `2.0.42` to `2.0.45`
-* AWS PowerShell modules upgraded from `3.3.225.1` to `3.3.343.0`
-* AWS CLI upgraded from `1.16.6` to `1.16.15`
-* Terraform CLI upgraded from `0.11.5` to `0.11.81`
-* Terraform AzureRm plugin version `1.16.0`
-* Terraform AWS plugin version `1.39.0`
+* Azure CLI upgraded from `2.0.42` to `2.0.45`.
+* AWS PowerShell modules upgraded from `3.3.225.1` to `3.3.343.0`.
+* AWS CLI upgraded from `1.16.6` to `1.16.15`.
+* Terraform CLI upgraded from `0.11.5` to `0.11.81`.
+* Terraform AzureRm plugin version `1.16.0`.
+* Terraform AWS plugin version `1.39.0`.
 
 ## Breaking Changes
 
-This release includes a major bump of Azure Powershell  modules to `6.8.1` to fix a [known issue](https://github.com/OctopusDeploy/Issues/issues/4574) with the previous `5.7.0` bundled version. Please see [Azure PowerShell release notes](https://docs.microsoft.com/en-us/powershell/azure/release-notes-azureps?view=azurermps-6.11.0) for more information.
+This release includes a major bump of Azure PowerShell  modules to `6.8.1` to fix a [known issue](https://github.com/OctopusDeploy/Issues/issues/4574) with the previous `5.7.0` bundled version. Please see [Azure PowerShell release notes](https://docs.microsoft.com/en-us/powershell/azure/release-notes-azureps?view=azurermps-6.11.0) for more information.
 
 ## Upgrading
 
