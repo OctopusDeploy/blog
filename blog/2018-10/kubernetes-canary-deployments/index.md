@@ -9,13 +9,13 @@ tags:
  - Kubernetes
 ---
 
-When rolling out new versions of an application it can be useful to direct a small amount of traffic to the new version and watch for any errors. This strategy, known as a canary deployment, means that any errors that may be present in the new version can only affect a small number of users. Incrementally increasing the amount of traffic to the new version provides an increasing degree of confidence that there are no issues, and the deployment can be rolled back to the previous version if any issues arise.
+When rolling out new versions of an application, it can be useful to direct a small amount of traffic to the new version and watch for any errors. This strategy, known as a canary deployment, means that any errors that are present in the new version can only affect a small number of users. Incrementally increasing the amount of traffic to the new version provides an increasing degree of confidence that there are no issues, and the deployment can be rolled back to the previous version if any issues are present.
 
-Kubernetes is particularly well suited to canary deployments thanks to the flexibility it provides for managing deployments and directing traffic. In this blog post we'll look at how canary deployments can be achieved using the [Voyager ingress controller](https://appscode.com/products/voyager) and Octopus.
+Kubernetes is particularly well suited to canary deployments thanks to the flexibility it provides for managing deployments and directing traffic. In this blog post, we'll look at how canary deployments can be achieved using the [Voyager ingress controller](https://appscode.com/products/voyager) and Octopus.
 
 ## Prerequisites
 
-To follow along with this blog post you will need to have a Kubernetes cluster, and a Kubernetes target in Octopus configured with administrative credentials. I'll be using a Google Cloud Kubernetes cluster, and an admin Kubernetes target with the `Google Cloud Kubernetes Admin` role.
+To follow along with this blog post, you will need to have a Kubernetes cluster, and a Kubernetes target in Octopus configured with administrative credentials. I'll be using a Google Cloud Kubernetes cluster and an admin Kubernetes target with the `Google Cloud Kubernetes Admin` role.
 
 The Kubernetes cluster will also need to have Helm installed. Google offers [these instructions](https://cloud.google.com/community/tutorials/nginx-ingress-gke#install-helm-in-cloud-shell) for installing Helm into their Kubernetes cluster.
 
@@ -23,11 +23,11 @@ The Kubernetes cluster will also need to have Helm installed. Google offers [the
 
 Before we can start deploying any application to Kubernetes, we need to install Voyager to our cluster. Voyager offers many [different installation methods](https://appscode.com/products/voyager/5.0.0/setup/), but I find Helm to be the most convenient for situations like this.
 
-Well make use of the Helm step in Octopus itself to deploy the Voyager Helm chart.
+We'll make use of the Helm step in Octopus itself to deploy the Voyager Helm chart.
 
 ### The External Feed
 
-The first step is to create an external feed pointing to the [AppsCode Charts Repository](https://github.com/appscode/charts). External feeds can be found under Library -> External Feeds.
+The first step is to create an external feed pointing to the [AppsCode Charts Repository](https://github.com/appscode/charts). External feeds are found under {{Library,External}} Feeds.
 
 ![](external-feed.png "width=500")
 
@@ -41,9 +41,9 @@ To get a packaged version of the `helm` executable, head over to the [Helm GitHu
 
 ![](helm-client.png "width=500")
 
-This will download a file called something like `helm-v2.11.0-windows-amd64.zip`. Rename it to something like `helm-windows-amd64.2.11.0.zip`, as this file format works better with the Octopus built in feed.
+This will download a file called something like `helm-v2.11.0-windows-amd64.zip`. Rename it to something like `helm-windows-amd64.2.11.0.zip`, as this file format works better with the Octopus built-in feed.
 
-Then upload the file to the build in feed, which can be accessed via Library -> Packages. In the screenshot below you can see that I have uploaded the `helm` binaries for both Windows and Linux.
+Then upload the file to the built-in feed, which can be accessed via {{Library,Packages}}. In the screenshot below you can see that I have uploaded the `helm` binaries for both Windows and Linux.
 
 ![](packages.png "width=500")
 
@@ -57,7 +57,7 @@ The screenshot below shows the populated step.
 
 ![](helm-step.png "width=500")
 
-There are a few settings of interest in this step. The first is the `Helm Client Tool` configuration. I've used the `Custom packaged helm client tool` option, and pointed it to the Helm binary package we uploaded to the built in feed earlier. The `Helm executable location` of `windows-amd64/helm.exe` refers to the `helm.exe` file in the archive. In the screenshot below you can see the directory structure of the archive.
+There are a few settings of interest in this step. The first is the `Helm Client Tool` configuration. I've used the `Custom packaged helm client tool` option and pointed it to the Helm binary package we uploaded to the built-in feed earlier. The `Helm executable location` of `windows-amd64/helm.exe` refers to the `helm.exe` file in the archive. In the screenshot below, you can see the directory structure of the archive.
 
 ![](helm-archive.png "width=500")
 
@@ -74,11 +74,11 @@ We also set two values on the Helm chart in the `Explicit Key Values` section. T
 
 The `rbac.create` value is set to `true` because my Kubernetes cluster has RBAC enabled.
 
-The logs from the deployment helpfully gives us a command we can run to verify the installation. In my case the command is `kubectl --namespace=default get deployments -l "release=voyager-operator, app=voyager" `.
+The logs from the deployment give us a command we can run to verify the installation. In my case the command is `kubectl --namespace=default get deployments -l "release=voyager-operator, app=voyager" `.
 
 ![](helm-logs.png "width=500")
 
-We can run these ad-hoc commands through the Octopus Script Console, which can be access via Task -> Script Console.
+We can run these ad hoc commands through the Octopus Script Console, which can be accessed via {{Task,Script Console}}.
 
 Here I have run the command against the Kubernetes administrative target called `GoogleK8SAdmin`.
 
@@ -89,26 +89,26 @@ The results show that Voyager is installed and ready.
 ![](script-console-result.png "width=500")
 
 :::success
-Running ad-hoc scripts via Octopus has a number of advantages, such as being able to run commands against different targets without the hassle of configuring the context locally, as well as providing a history of the scripts that have been run.
+Running ad hoc scripts via Octopus has a number of advantages, such as being able to run commands against different targets without the hassle of configuring the context locally, as well as providing a history of the scripts that have been run.
 :::
 
 ### The Canary Environments
 
 We'll model the progression of the canary deployments as Octopus environments. Doing so has a number of advantages, such as displaying the current progression on the dashboard, and allowing easy rollbacks to previous states.
 
-Environments can be found under Infrastructure -> Environments.
+Environments can be found under {{Infrastructure,Environments}}.
 
-For this blog we'll have three environments: `Canary 25%`, `Canary 75%` and `Canary 100%`. Each represents the increasing amount of traffic that will directed to the canary deployment.
+For this blog, we'll have three environments: `Canary 25%`, `Canary 75%` and `Canary 100%`. Each represents the increasing amount of traffic that will be directed to the canary deployment.
 
 ![](environments.png "width=500")
 
-It is important that these environments allow `Dynamic Infrastructure`, as we'll take advantage of this to create our restricted Kubernetes targets rather than using the administrative one for all deployments.
+It is important that these environments allow `Dynamic Infrastructure`, we'll take advantage of this to create our restricted Kubernetes targets rather than using the administrative one for all deployments.
 
 ![](dynamic-infrastructure.png "width=500")
 
 To progress our application through these environments, we'll create a Lifecycle with three phases, one for each of the canary environments.
 
-Lifecycles can be found under Library -> Lifecycles.
+Lifecycles can be found under {{Library,Lifecycles}}.
 
 ![](lifecycle.png "width=500")
 
@@ -118,13 +118,13 @@ Finally, ensure the Kubernetes administrative target can access the canary envir
 
 ### The Deployment Project
 
-We now have all the infrastructure in place to start deploying our application. So the next step is to create a new deployment project to push an application container to Kubernetes.
+We now have all the infrastructure in place to start deploying our application. The next step is to create a new deployment project to push an application container to Kubernetes.
 
-For this example we'll use the HTTPD image, which is a web server that we'll configure to display a custom web page showing the version of the image that was deployed. By displaying the version as a web page, we can observe web traffic being directed to the canary release in increasing percentages.
+For this example, we'll use the HTTPD image, which is a web server that we'll configure to display a custom web page showing the version of the image that was deployed. By displaying the version as a web page, we can observe web traffic being directed to the canary release in increasing percentages.
 
 #### The Variables
 
-We'll start by defining some variables that we will be used by the deployment process.
+We'll start by defining some variables that will be used by the deployment process.
 
 | Variable | Purpose | Value |
 |-|-|-|
@@ -144,7 +144,7 @@ The first step in the process is a `Run a kubectl CLI Script` step.
 
 ![](run-kubectl.png)
 
-The purpose of this step is to create a Kubernetes target with permissions limited to a single namespace. We'll use this new Kubernetes target to deploy the various resources that make up our application, as opposed to always deploying resources using a administrative account. Using a limited account gives us a degree of security and limits the potential damage that a misconfigured step can cause in our cluster.
+The purpose of this step is to create a Kubernetes target with permissions limited to a single namespace. We'll use this new Kubernetes target to deploy the resources that make up our application, as opposed to always deploying resources using an administrative account. Using a limited account gives us a degree of security and limits the potential damage that a misconfigured step can cause in our cluster.
 
 Having said that, this step is run with the administrative Kubernetes target, because we have to start somewhere.
 
@@ -160,7 +160,7 @@ $accountName = if (![string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployme
     $projectNameSafe
 }
 
-# The namespace is the acocunt name, but lowercase
+# The namespace is the account name, but lowercase
 $namespace = $accountName.ToLower()
 # The project name is used for a number of k8s names, which must be lowercase
 $projectNameSafeLower = $projectNameSafe.ToLower()
@@ -229,12 +229,12 @@ New-OctopusKubernetesTarget `
     -skipTlsVerification True
 ```
 
-The end result of running the script is a new Kubernetes target called `HTTPDCanary` (after the name of the project) with a role of `HTTPD` targetting the Kubernetes namespace `httpdcanary` (also after the name of the project, but lowercase because Kubernetes only allows lowercase characters in its names).
+The result of running the script is a new Kubernetes target called `HTTPDCanary` (after the name of the project) with a role of `HTTPD` targeting the Kubernetes namespace `httpdcanary` (also after the name of the project, but lowercase because Kubernetes only allows lowercase characters in its names).
 
 ![](target.png "width=500")
 
 :::success
-The PowerShell function `New-OctopusKubernetesTarget` only works if the environment in which it is run allows dynamic targets, which is why our `Canary ##%` environments were configured to allow that.
+The PowerShell function `New-OctopusKubernetesTarget` only works if the environment you run it in allows dynamic targets, which is why our `Canary ##%` environments were configured to allow that.
 :::
 
 #### Create the Previous Deployment Resource
@@ -245,11 +245,11 @@ The second step is a `Deploy Kubernetes containers` step.
 
 We'll use this step to deploy the "stable" version of the application. This is the version that the canary version will eventually replace.
 
-This step will run on behalf of any target with the role `HTTPD`, which as you recall from the previous step is the role that we assigned to the new Kubernetes target. By performing the deployment in the context of the limited Kubernetes target, we can be sure that our deployment step will not be able to delete or modify anything outside of the namespace `httpdcanary`.
+This step will run on behalf of any target with the role `HTTPD`, which as you recall from the previous step is the role that we assigned to the new Kubernetes target. By performing the deployment in the context of the limited Kubernetes target, we can be sure that our deployment step can not delete or modify anything outside of the namespace `httpdcanary`.
 
 ![](on-behalf-of.png "width=500")
 
-The `Deployment` section configures some high level details out the Deployment resource.
+The `Deployment` section configures some high-level details for the Deployment resource.
 
 The `Deployment name` field references the `DeploymentNamePrevious` variable we configured earlier.
 
@@ -261,7 +261,7 @@ We also define a label with a key of `app` and a value of `httpd`. The labels de
 
 The `Deployment strategy` section has been left with the default option of `Recreate deployments`.
 
-In reality the selection of deployment strategy doesn't play a role in our deployments, because instead of updating a Deployment resource in place we are deploying two resources side by side. We are implementing the canary deployment pattern ourselves, not using the standard patterns provided by Kubernetes.
+In reality, the selection of deployment strategy doesn't play a role in our deployments because instead of updating a Deployment resource in place, we are deploying two resources side by side. We are implementing the canary deployment pattern ourselves, not using the standard patterns provided by Kubernetes.
 
 ![](deployment-strategy.png "width=500")
 
@@ -281,7 +281,7 @@ Being a web server, HTTPD exposed port 80.
 
 ![](ports.png "width=500")
 
-Inside the container we mount the volume defined earlier to the path `/usr/local/apache2/htdocs`. That path is where HTTPD looks for content to serve up. And because we exposed the ConfigMap item called `index` as a file called `index.html`, we end up with a file called `/usr/local/apache2/htdocs/index.html` mounted in our container.
+Inside the container, we mount the volume defined earlier to the path `/usr/local/apache2/htdocs`. That path is where HTTPD looks for content to serve up. And because we exposed the ConfigMap item called `index` as a file called `index.html`, we end up with a file called `/usr/local/apache2/htdocs/index.html` mounted in our container.
 
 ![](volume-mount.png "width=500")
 
@@ -289,15 +289,15 @@ With those values set, we will see a container summary like the following.
 
 ![](container-summary.png "width=500")
 
-In the `Pod Annotations` section we define an annotation called `ingress.appscode.com/backend-weight` with the value from the variable `PreviousTraffic`. The `PreviousTraffic` variable is either `0`, `25` or `75` depending on the environment we are deploying to.
+In the `Pod Annotations` section, we define an annotation called `ingress.appscode.com/backend-weight` with the value from the variable `PreviousTraffic`. The `PreviousTraffic` variable is either `0`, `25` or `75` depending on the environment we are deploying to.
 
-The annotation is a [recognized by the Voyager ingress controller](https://appscode.com/products/voyager/5.0.0/guides/ingress/http/blue-green-deployment/) as defining the amount of traffic to send to the Pod resource.
+The annotation is [recognized by the Voyager ingress controller](https://appscode.com/products/voyager/5.0.0/guides/ingress/http/blue-green-deployment/) as defining the amount of traffic to send to the Pod resource.
 
 So, when deploying to the `Canary 25%` environment, `PreviousTraffic` is set to `75`, meaning the previous deployment will receive 75% of the traffic.
 
 ![](pod-annotations.png "width=500")
 
-In the ConfigMap feature we build up the ConfigMap resource that will ultimately provide the content for the `index.html` file.
+In the ConfigMap feature, we build up the ConfigMap resource that will ultimately provide the content for the `index.html` file.
 
 The name of the ConfigMap is set to `#{DeploymentNamePrevious}-configmap`, and we add a single item called `index` with the value `#{Octopus.Action[HTTPD Old].Package[httpd].PackageVersion}`.
 
@@ -307,23 +307,23 @@ The variable `Octopus.Action[HTTPD Old].Package[httpd].PackageVersion` will hold
 
 #### ConfigMap Name Templates
 
-If you look back at the variables we added to this project, you will notice that we defined one called `Octopus.Action.KubernetesContainers.ConfigMapNameTemplate`. This variable impacts how this ConfigMap is managed during a deployment.
+If you look back at the variables we added to this project you will notice that we defined one called `Octopus.Action.KubernetesContainers.ConfigMapNameTemplate`. This variable impacts how this ConfigMap is managed during a deployment.
 
-Normally Octopus environments are separate, and used to represent a distinct progression from testing to production. Which is to say that deploying to a testing environment does not impact a production environment, and vis versa.
+Normally Octopus environments are separate and used to represent a distinct progression from testing to production. Which is to say that deploying to a testing environment does not impact a production environment and vice versa.
 
-We have used environments a little differently here. Instead of a distinct and separate environments, our environments represent the gradual change in the amount of traffic being directed to a new, or canary, version.
+We have used environments a little differently here. Instead of distinct and separate environments, our environments represent the gradual change in the amount of traffic being directed to a new, or canary, version.
 
-This is a subtle but significant distinction, because it means that the `Canary 25%` environment is the same logical environment as the `Canary 75%` environment. This means that the deployment to the `Canary 75%` environment overwrites the deployment to the `Canary 25%` environment.
+This is a subtle but significant distinction because it means that the `Canary 25%` environment is the same logical environment as the `Canary 75%` environment. This means that the deployment to the `Canary 75%` environment overwrites the deployment to the `Canary 25%` environment.
 
-However, the Kubernetes steps are configured with an assumption that environments are distinct. One implication of this assumption is that when we deploy a ConfigMap resource as part of the container step to the `Canary 25%` environment, it will have a unique name that will not be overwritten when we deploy the ConfigMap again to the `Canary 75%` environment. Not overwriting resources makes sense normally as you move from testing to production, but in our case we do want resources to be overwritten.
+However, the Kubernetes steps are configured with the assumption that environments are distinct. One implication of this assumption is that when we deploy a ConfigMap resource as part of the container step to the `Canary 25%` environment, it will have a unique name that will not be overwritten when we deploy the ConfigMap again to the `Canary 75%` environment. Not overwriting resources makes sense normally as you move from testing to production, but in our case, we do want resources to be overwritten.
 
 Overwriting the ConfigMap resource is prevented by giving it a unique name with each deployment. By default, this unique name is generated by appending the Octopus deployment ID to the end of the name.
 
-For example, we gave the ConfigMap a name of `#{DeploymentNamePrevious}-configmap`, which will resolve to a name of `http-previous-configmap`. During deployment this name is combined with the deployment id to produce a unqiue name like `http-previous-configmap-deployment-1234`.
+For example, we gave the ConfigMap a name of `#{DeploymentNamePrevious}-configmap`, which will resolve to a name of `http-previous-configmap`. During deployment, this name is combined with the deployment ID to produce a unqiue name like `http-previous-configmap-deployment-1234`.
 
-However, we do not want unique names. We want names that will be the same between our canary environments, so they resources will be overwritten.
+However, we do not want unique names. We want names that will be the same between our canary environments, so the resources will be overwritten.
 
-This is why we set the `Octopus.Action.KubernetesContainers.ConfigMapNameTemplate` variable to `#{Octopus.Action.KubernetesContainers.ConfigMapName}-httpdcanary`. This overrides the default behaviour of appending the deployment ID, and instead appends the fixed string `httpdcanary`.
+This is why we set the `Octopus.Action.KubernetesContainers.ConfigMapNameTemplate` variable to `#{Octopus.Action.KubernetesContainers.ConfigMapName}-httpdcanary`. This overrides the default behavior of appending the deployment ID, and instead appends the fixed string `httpdcanary`.
 
 This means our canary environments will deploy a ConfigMap resource called `http-previous-configmap-httpdcanary` every time. And because the name is no longer unique, it will be overwritten in each environment.
 
@@ -347,7 +347,7 @@ The ConfigMap name is set to `#{DeploymentNameNew}-configmap`, and the item valu
 
 ![](configmap-new.png "width=500")
 
-Otherwise the configuration of the containers, volumes and deployment strategies is the same as the previous step.
+Otherwise, the configuration of the containers, volumes, and deployment strategies is the same as the previous step.
 
 #### The Service
 
@@ -379,7 +379,7 @@ The service selects the Pod resources it directs traffic to by setting the `Serv
 
 #### The Voyager Ingress Resource
 
-The fifth and final step is to define a Voyager Ingress resource. This resource is a not a standard Kubernetes resource, so we can't use the standard Ingress step in Octopus to deploy it. Instead we use the `Run a kubectl CLI Script` step again to save a YAML file and apply it with the `kubectl` command.
+The fifth and final step is to define a Voyager Ingress resource. This resource is a not a standard Kubernetes resource, so we can't use the standard Ingress step in Octopus to deploy it. Instead, we use the `Run a kubectl CLI Script` step again to save a YAML file and apply it with the `kubectl` command.
 
 ```PowerShell
 Set-Content -Path "ingress.yaml" -Value @"
@@ -398,7 +398,7 @@ kubectl apply -f ingress.yaml
 
 ## Deploying the Project
 
-Lets create a deployment of this project. As part of the deployment we have the opportunity to select the versions of the Docker images that will be deployed as part of the Deployment resource.
+Let's create a deployment of this project. As part of the deployment, we have the opportunity to select the versions of the Docker images that will be deployed as part of the Deployment resource.
 
 Here I have set the old or previous version to `2.4.18`. In this example, this version represents that last stable version that was deployed.
 
@@ -418,7 +418,7 @@ The Voyager Ingress resource directs traffic to the Service resource, which in t
 
 Because of the `ingress.appscode.com/backend-weight` annotations on the Pod resources, Voyager knows to direct 25% of traffic to the canary Pod resources, and 75% to the previous Pod resources.
 
-Once deployed, each Voyager Ingress resource creates an associated Load Balancer Service resource. This load balancer has a public IP address which we can access from a browser. In my case the public IP is 35.194.2.130.
+Once deployed, each Voyager Ingress resource creates an associated Load Balancer Service resource. This load balancer has a public IP address which we can access from a browser. In my case, the public IP is 35.194.2.130.
 
 ![](loadbalancer.png "width=500")
 
@@ -432,7 +432,7 @@ After a refresh, I am shown version `2.4.18`. This means I was directed to the p
 
 ![](previous-web-page.png "width=500")
 
-As I refresh the page over and over I am presented with version `2.4.18` more often than I am presented with `2.4.20`. This confirms that the majority of the traffic is being directed to the previous version of HTTPD, and only 25% is being directed to the canary pods.
+As I refresh the page over and over, I am presented with version `2.4.18` more often than I am presented with `2.4.20`. This confirms that the majority of the traffic is being directed to the previous version of HTTPD, and only 25% is being directed to the canary pods.
 
 As you would expect, promoting the deployment to the `Canary 75%` environment reverses the traffic proportions. Now 75% of the traffic is being directed to the canary Pod resources.
 
@@ -440,13 +440,13 @@ Promoting to the `Canary 100%` environment then completes our deployment. All tr
 
 ## Reverting a Deployment
 
-The nice thing about representing canary deployments as Octopus environments is that we can revert back to a previous state. Say for example that after deploying to the `Canary 75%` environment, you begin to see network dropouts that were not present when you deployed to the `Canary 25%` environment.
+The nice thing about representing canary deployments as Octopus environments is that we can revert back to a previous state. Say, for example, that after deploying to the `Canary 75%` environment, you begin to see network dropouts that were not present when you deployed to the `Canary 25%` environment.
 
 To roll back to the `Canary 25%` environment, open the deployment in Octopus and select the `Deploy to` option from the vertical menu.
 
 ![](deploy-to.png "width=500")
 
-Select the `Canary 25%` environment, and click the `Deploy` button.
+Select the `Canary 25%` environment and click the `Deploy` button.
 
 ![](redeploy.png "width=500")
 
@@ -470,10 +470,10 @@ This new deployment will then:
 2. Deploy the canary Deployment resource, which is currently configured with version `2.4.20`, with the new version of `2.4.23`. The annotations configure this deployment to receive 25% of the traffic.
 3. The Service and Voyager Ingress resources remain unchanged at this point.
 
-The nice thing about this second deployment is that there is little down time. While the deployment from step 1 is taking place, the old canary deployment is still serving traffic. While the deployment for step 2 is taking place, the deployment from step 1 is serving traffic. And after step 3, all traffic is being routed according to the assigned percentages.
+The nice thing about this second deployment is that there isn't much downtime. While the deployment from step 1 is taking place, the old canary deployment is still serving traffic. While the deployment for step 2 is taking place, the deployment from step 1 is serving traffic. And after step 3, all traffic is being routed according to the assigned percentages.
 
 ## Summary
 
-In this post we looked at how Octopus and the Voyager Ingress Controller con be configured to provide canary deployments in Kubernetes.
+In this post, we looked at how Octopus and the Voyager Ingress Controller can be configured to provide canary deployments in Kubernetes.
 
-By modelling the progression of the canary rollout as environments, we created a solution that could incrementally increase the amount of traffic to a canary version, while providing the possibility of rolling back to a previous state.
+By modeling the progression of the canary rollout as environments, we created a solution that could incrementally increase the amount of traffic to a canary version, while providing the possibility of rolling back to a previous state.
