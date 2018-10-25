@@ -10,21 +10,13 @@ tags:
  - New Releases
 ---
 
-![Kubernetes Adoption Made Easy - Octopus Deploy 2018.9 release banner](blogimage-shipping-k8s-sml.png)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FZ8U5OuDyOw" frameborder="0" allowfullscreen></iframe>
 
 ## Kubernetes Adoption Made Easy
 
 Octopus is proud to ship our first-class support for Kubernetes deployments! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. Kubernetes, or K8s, is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. We took the approach to balance power and ease-of-use to give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
 `TODO: Add Kubernetes Ebook Banner graphic and link here`
-
-## In This Post
-
-!toc
-
-## Release Tour
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FZ8U5OuDyOw" frameborder="0" allowfullscreen></iframe>
 
 ## Kubernetes deployments made easy
 
