@@ -2,8 +2,8 @@
 title: Kubernetes deployments made easy - Octopus Deploy 2018.9 
 description: Kubernetes deployments made easy! Octopus 2018.9 includes our first-class support for Kubernetes Deployments including infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process.
 author: rob.pearson@octopus.com
-visibility: private
-published: 2018-10-25
+visibility: public
+published: 2018-10-26
 metaImage: blogimage-shipping-k8s-sml.png
 bannerImage: blogimage-shipping-k8s-sml.png
 tags:
