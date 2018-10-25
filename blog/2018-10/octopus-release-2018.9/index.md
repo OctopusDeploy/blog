@@ -18,28 +18,24 @@ Octopus Deploy is proud to ship our first-class support for [Kubernetes deployme
 
 Kubernetes (or K8s) is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity, and it can be overwhelming and difficult to learn the configuration options and deployment YAML.
 
-We took the approach to balance power and ease-of-use and give you the best of both worlds. This takes shape in the form of infrastructure support for Kubernetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
+We took the approach to balance power and ease-of-use to give you the best of both worlds. This takes shape in the form of infrastructure support for Kubernetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
 <a href='https://hello.octopus.com/kubernetes-ebook' target='_blank'> 
     <img src='https://i.octopus.com/blog/2018-10/octopus-release-2018.9/kubernetes-ebook-blog-cta.png'
          alt='The Ultimate Guide to Kubernetes Deployments with Octopus by Matthew Casperson'>
 </a>
 
-Our K8s feature set includes numerous improvements spanning infrastructure and deployment process areas.
+## In this post
 
-- Kubernetes deployment target
-- Helm Chart feeds
-- Deploy Containers to Kubernetes step and associated steps
-- `kubectl` CLI script step
-- Helm Update step
+!toc
 
-### Infrastructure
+## Kubernetes Infrastructure
 
 ![Kubernetes deployment targets](k8s-clusters.png "width=500")
 
 Octopus Deploy now supports adding Kubernetes Clusters as deployment targets and the associated configuration options. We also added support for Helm Chart feeds.
 
-### Deployment Process
+## Kubernetes Deployment Process
 
 ![Kubernetes deployment steps](k8s-steps.png "width=500")
 
