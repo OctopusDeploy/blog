@@ -4,13 +4,13 @@ description: Kubernetes adoption made easy! Octopus 2018.9 includes our first-cl
 author: rob.pearson@octopus.com
 visibility: private
 published: 2018-10-25
-metaImage: blogimage-shipping-2018-9.png
-bannerImage: blogimage-shipping-2018-9.png
+metaImage: blogimage-shipping-k8s.png
+bannerImage: blogimage-shipping-k8s.png
 tags:
  - New Releases
 ---
 
-![Kubernetes Adoption Made Easy - Octopus Deploy 2018.9 release banner](blogimage-shipping-2018-9.png)
+![Kubernetes Adoption Made Easy - Octopus Deploy 2018.9 release banner](blogimage-shipping-k8s.png)
 
 ## Kubernetes Adoption Made Easy
 
