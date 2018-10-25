@@ -3,7 +3,7 @@ title: Kubernetes deployments made easy - Octopus Deploy 2018.9
 description: Kubernetes deployments made easy! Octopus 2018.9 includes our first-class support for Kubernetes Deployments including infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process.
 author: rob.pearson@octopus.com
 visibility: public
-published: 2018-10-26
+published: 2018-10-25
 metaImage: blogimage-shipping-k8s-sml.png
 bannerImage: blogimage-shipping-k8s-sml.png
 tags:
@@ -18,7 +18,7 @@ Octopus Deploy is proud to ship our first-class support for [Kubernetes deployme
 
 Kubernetes (or K8s) is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity, and it can be overwhelming and difficult to learn the configuration options and deployment YAML.
 
-We took the approach to balance power and ease-of-use to give you the best of both worlds. This takes shape in the form of infrastructure support for Kubernetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
+We took the approach to balance power and ease-of-use to give you the best of both worlds. This takes shape in the form of infrastructure support for Kubernetes Clusters and rich deployment steps to simplify your deployment process.  Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
 <a href='https://hello.octopus.com/kubernetes-ebook' target='_blank'> 
     <img src='https://i.octopus.com/blog/2018-10/octopus-release-2018.9/kubernetes-ebook-blog-cta.png'
