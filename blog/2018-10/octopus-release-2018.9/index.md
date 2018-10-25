@@ -25,7 +25,13 @@ We took the approach to balance power and ease-of-use and give you the best of b
          alt='The Ultimate Guide to Kubernetes Deployments with Octopus by Matthew Casperson'>
 </a>
 
-Our K8s feature set includes improvements to both infrastructure as well as deployment processes including: 
+Our K8s feature set includes numerous improvements spanning infrastructure and deployment process areas.
+
+- Kubernetes deployment target
+- Helm Chart feeds
+- Deploy Containers to Kubernetes step and associated steps
+- `kubectl` CLI script step
+- Helm Update step
 
 ### Infrastructure
 
@@ -37,7 +43,7 @@ Octopus Deploy now supports adding Kubernetes Clusters as deployment targets and
 
 ![Kubernetes deployment steps](k8s-steps.png "width=500")
 
-Octopus Deploy ships with numerous new deployment step templates enabling teams to deploy Docker containers to Kubernetes, execute scripts directly with `kubectl`, and perform Helm upgrades.
+Octopus Deploy ships with numerous new deployment step templates enabling teams to deploy Docker containers to Kubernetes, execute scripts directly with `kubectl`, and a Helm Update step.
 
 ## Offline Drop Artifacts
 
