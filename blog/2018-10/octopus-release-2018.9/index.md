@@ -16,7 +16,14 @@ tags:
 
 Octopus is proud to ship our first-class support for Kubernetes deployments! Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform. Kubernetes, or K8s, is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity and it can be overwhelming and difficult to learn the configuration options and deployment YAML. We took the approach to balance power and ease-of-use to give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
-One of the best parts about our K8s deployments support 
+We believe that Kubernetes container orchestration is only the first half of the story and Octopus is the best option for the second half. Along side our first-calss support, you get:
+
+* Easy promotions between your environments. i.e. Dev &rarr; TEST &rarr; PROD
+* Rich variable replacement
+* Flexible deployment strategies
+* Multi-tenant deployments
+
+One of the best parts about our K8s deployments support is that it's complemented by our strengths with easy promotions between environments so you can  configuration variable replacement 
 
 `TODO: Add Kubernetes Ebook Banner graphic and link here`
 
