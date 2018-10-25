@@ -21,7 +21,7 @@ Kubernetes (or K8s) is a flexible, powerful platform for running applications an
 We took the approach to balance power and ease-of-use and give you the best of both worlds. This took shape in the form of infrastructure support for Kubenetes Clusters and rich deployment steps to simplify your deployment process. Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
 
-[![The Ultimate Guide to Kubernetes Deployments with Octopus](kubernetes-ebook-blog-cta.png)](https://hello.octopus.com/kubernetes-ebook)
+<a href='https://hello.octopus.com/kubernetes-ebook'> ![The Ultimate Guide to Kubernetes Deployments with Octopus](kubernetes-ebook-blog-cta.png) </a>
 
 ### Infrastructure
 
