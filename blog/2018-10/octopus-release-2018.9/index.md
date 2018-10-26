@@ -20,10 +20,7 @@ Kubernetes (or K8s) is a flexible, powerful platform for running applications an
 
 We took the approach to balance power and ease-of-use to give you the best of both worlds. This takes shape in the form of infrastructure support for Kubernetes Clusters and rich deployment steps to simplify your deployment process.  Teams can pick the right balance for them, from zero YAML configuration to full control over with `kubectl` and deployment YAML.
 
-<a href='https://hello.octopus.com/kubernetes-ebook' target='_blank'> 
-    <img src='https://i.octopus.com/blog/2018-10/octopus-release-2018.9/kubernetes-ebook-blog-cta.png'
-         alt='The Ultimate Guide to Kubernetes Deployments with Octopus by Matthew Casperson'>
-</a>
+<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><span class="hs-cta-node hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" id="hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" ><img class="hs-cta-img" id="hs-cta-img-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" style="border-width:0px;" height="237" width="629" src="https://no-cache.hubspot.com/cta/default/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc.png"  alt="New call-to-action"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(4676868, 'b7a09814-73d5-4ec1-97ec-4bdb9f432fdc', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
 
 ## In this post
 
