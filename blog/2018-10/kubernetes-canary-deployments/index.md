@@ -2,7 +2,7 @@
 title: Performing canary deployments in Kubernetes
 description: Learn how to use the Voyager ingress controller to implement canary deployments in Kubernetes
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
