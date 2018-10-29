@@ -4,8 +4,8 @@ description: Kubernetes deployments made easy! Octopus 2018.9 includes our first
 author: rob.pearson@octopus.com
 visibility: public
 published: 2018-10-25
-metaImage: blogimage-shipping-k8s-sml.png
-bannerImage: blogimage-shipping-k8s-sml.png
+metaImage: kubernetes-deployments-with-octopus-launch.png
+bannerImage: kubernetes-deployments-with-octopus-launch.png
 tags:
  - New Releases
 ---
