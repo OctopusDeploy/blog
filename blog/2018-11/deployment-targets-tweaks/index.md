@@ -20,7 +20,7 @@ Let's look at the problems we found and how we have tried to solve them.
 It's a little known fact that radio buttons don't necessarily scale very well for a large number of choices. We've also been introducing new deployment targets
 which exacerbates the problem. It felt like the number of choice reached a tipping point and therefore required some love.
 
-{Insert image of radio buttons}
+![](Old-radio-deployment-targets.png "width=500")
 
 **The Solution**
 We could have converted the radio buttons to cards and left it at that, however, that didn't feel like it solved the underlying problem and still would have
@@ -48,7 +48,7 @@ Because the images on the tentacle installer were so helpful, as part of the car
 **The Problem**
 During the usability testing we also saw users hit a dead end in the UI when adding a Polling Tentacle and not realising that when they set up a polling tentacle it would automatically be added to the Deployment Targets list.
 
-{insert image of old polling tentacle page}
+![](Old-polling-tentacle.png "width=500")
 
 **The Solution**
 We now make it clear that after installing a Polling Tentacle it will appear in the Deployment Target list and provide a link to go back to the Deployment Targets list.
