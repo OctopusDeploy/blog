@@ -1,9 +1,9 @@
 ---
-title: Deploy to Oracle Database using Octopus Deploy, Jenkins and Redgate
-description: In Part II in this series of deploying to Oracle databases we will expand on the existing process and swap out TeamCity with Jenkins.
+title: Add Post Deployment scripts Oracle Database CI/CD pipeline with Octopus Deploy, Jenkins and Redgate
+description: In Part II in this series of deploying to Oracle databases we will expand on the existing process to include post deployment scripts and swap out TeamCity with Jenkins.
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-11-07
+published: 2018-11-09
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
@@ -160,9 +160,7 @@ The same thing can be seen on the last step.  All the hardcoded values have been
 
 We are going to be adding two new steps to the process.  The first step will combine all the scripts found in the `DLMPostDeploymentScripts` folder into a single script and upload it as an artifact.  This will allow an approver to look through the script to ensure it isn't going to do anything crazy.
 
-I've created a step template in the library you can use called `File System - Combine all files in directory into single file`. The step will handle all the heavy lifting for you.  You just need to provide it the necessary parameters.
-
-**Please Note:** The variable `Project.Database.InstallPath` points to `Octopus.Action[Redgate - Create Oracle Release].Output.Package.InstallationDirectoryPath`.  I made it a variable in the event I ever rename the step which downloads the package or I want to add more post deployment steps to this process.  
+I've created a step template in the library you can use called `File System - Combine all files in directory into single file`. The step will handle all the heavy lifting for you.  You just need to provide it the necessary parameters.  
 
 ![](octopus-generate-postdeployment-script.png)
 
@@ -184,8 +182,12 @@ And the script was ran successfully.
 
 ## Conclusion
 
-With some minor modifications to the process we can now cover a lot more scenarios than before.  It will take a bit of discipline to use this process.  You will need to ensure the scripts can be run multiple times.  That you remember to remove the scripts after they have been run so you aren't running scripts over and over again.  The scripts will be manually written so there is a small to large chance you will run into errors the first time the scripts are run.  
+With some minor modifications to the process we can now cover a lot more scenarios than before.  It will take a bit of discipline to use this process.  You will need to ensure the scripts can be run multiple times.  You will also have to you remember to remove the scripts after they have been run so you aren't running scripts over and over.  The scripts will be manually written so there is a small to large chance you will run into errors the first time the scripts are run.  
 
-Hopefully, the effort is all worth it.  With this in place now you can start thinking about other things like initialization data, blue/green deployments, and other more complex scenarios.  And as a side bonus, now you know how to build an Octopus Deploy package and deploy that using Octopus Deploy with both TeamCity and Jenkins.  
+But those are some minor issues.  When I helped write this process at a previous company I was surprised how well people took to it.  Once they knew they could write their own scripts to handle data migration or anything else I started seeing some very unique uses out of it.  One use was running a series of scripts to insert some initialization, or seed, data into tables.  We extended the process even further to check to see if the database existed.  If the database did not then it would create it on the fly and initialize it with seed data.  This allowed us to spin up and down test environments and customers quickly.
+
+And that is just the start.  With this is in place it is possible to think about having a blue/green deployment strategy.  A process could be in place to finish the regular deployment and once a blue/green switch is finished and successfully tested a final database script could be ran to clean up the data.
+
+Finally, as a side bonus, now you now know how to build an Octopus Deploy package and deploy that using Octopus Deploy with both TeamCity and Jenkins.  
 
 Until next time, Happy Deployments!
