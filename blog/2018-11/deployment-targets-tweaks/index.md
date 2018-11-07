@@ -20,7 +20,7 @@ Let's look at the problems we found and how we tried to solve them.
 
 We've introduced quite a few new deployment target types recently. Users have always clicked the radio button to select the type of deployment target they are adding, but radio buttons don't scale very well with a large number of choices. It felt like the number of options reached a tipping point and therefore required some love.
 
-![](Old-radio-deployment-targets.png "width=500")
+![](old-radio-deployment-targets.png "width=500")
 
 **The Solution**
 
@@ -36,7 +36,7 @@ The usability studies made it clear we didn't do enough to explain our terminolo
 The deployment targets screen is one such screen. We had numerous customers get stuck and ask about the differences between Polling Tentacles and Listening Tentacles.
 It's even more confusing for new customers who don't know what a Tentacle is. It wasn’t until users installed a Tentacle that they saw this image that explains what a Tentacle is and the differences between the two types.
 
-![](Old-tentacle-images.png "width=500")
+![](old-tentacle-images.png "width=500")
 
 **The solution**
 
@@ -48,7 +48,7 @@ Because the images on the Tentacle installer were so helpful, as part of the car
 
 During the usability testing, we saw users hit a dead end in the UI when they were adding a Polling Tentacle. We didn't tell you Polling Tentacles are automatically added to the Deployment Targets list.
 
-![](Old-polling-tentacle.png "width=500")
+![](old-polling-tentacle.png "width=500")
 
 **The Solution**
 
