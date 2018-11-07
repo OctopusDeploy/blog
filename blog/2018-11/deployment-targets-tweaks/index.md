@@ -2,13 +2,15 @@
 title: Improvements to Adding a Deployment Target Experience and Interface
 description: Learn about some recent UI changes around deployment targets and why we made them.
 author: shaun.marx@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-deploymenttargetupdate.png
 metaImage: blogimage-deploymenttargetupdate.png
 tags:
-- Deployment Targets
+- New Releases
 - Usability
 ---
+
+![Illustration of an idea turning into the new deployment target UX](blogimage-deploymenttargetupdate.png)
 
 We want Octopus to be easy to use for both first-time and existing users, but when we looked at our telemetry data, we saw new users created lots of environments and not many deployment targets during their onboarding session.
 At the start of this year, we did some usability testing around the onboarding experience to identify any pain points our users were hitting, and as a result of those tests, we recently changed the user experience for adding new deployment targets.
