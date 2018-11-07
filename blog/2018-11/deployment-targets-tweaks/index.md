@@ -3,6 +3,7 @@ title: Improvements to Adding a Deployment Target Experience and Interface
 description: Learn about some recent UI changes around deployment targets and why we made them.
 author: shaun.marx@octopus.com
 visibility: public
+published: 2018-11-07
 bannerImage: blogimage-deploymenttargetupdate.png
 metaImage: blogimage-deploymenttargetupdate.png
 tags:
