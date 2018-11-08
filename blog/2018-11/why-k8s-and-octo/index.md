@@ -31,7 +31,7 @@ The Octopus allows you to model the environments your team are already using, wh
 
 ## Managing your Variables
 
-Helm provides an expressive templating language and allows variables to be supplied from multiple sources including a variables YAML file or from the command line. This functionality allows for complex and customizable deployments to be defined, making Helm the defacto Kubernetes package manager.
+Helm provides an expressive templating language and allows variables to be supplied from multiple sources including a variables YAML file or from the command line. This functionality allows complex and customizable deployments to be defined, making Helm the defacto Kubernetes package manager.
 
 But a templating language is only half the story. The other half of the story is  managing the variables that define a particular deployment.
 
@@ -102,7 +102,7 @@ Through the use of targets, Octopus encourages you to model your Kubernetes depl
 
 ## Centralized and Audited Cluster Administration
 
-Have you ever sent a config file via email or Slack? Have you ever been asked to report on a production outage only to have no idea what changed because undocumented changes were made from people's desktops?
+Have you ever sent a config file via email or Slack? Have you ever been asked to report on a production outage only to have no idea what changed because undocumented modifications were made from people's desktops?
 
 These scenarios are unfortunately quite common. As your Kubernetes cluster grows in complexity, it can become increasingly difficult to manage credentials and understand the impact of changes.
 
@@ -113,3 +113,7 @@ Octopus offers a solution through the Script Console. By using the Script Consol
 ![](tasklog.png "width=500")
 
 Through the Script Console, Octopus gives teams the ability to debug and manage their Kubernetes clusters, without needing to distribute credentials, and with an audit log recording each change.
+
+## Conclusion
+
+Octopus has a long history of delivering repeatable and reliable deployments, and has evolved to support the deployment patterns found in thousands of developments teams. By using Octopus to manage your Kubernetes deployments you get all the benefits of what is fast becoming the standard platform for managing high density infrastructure with the battle tested deployment strategies baked into Octopus.
