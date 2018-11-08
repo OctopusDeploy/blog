@@ -3,7 +3,7 @@ title: Add Post Deployment scripts Oracle Database CI/CD pipeline with Octopus D
 description: In Part II in this series of deploying to Oracle databases we will expand on the existing process to include post-deployment scripts and swap out TeamCity with Jenkins.
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-11-09
+published: 2018-11-12
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
@@ -94,7 +94,9 @@ Scroll down a little bit until you find the Octopus Deploy plug-in section.  Ent
 
 ![](jenkins-add-octopus-server.png)
 
-The Octopus Deploy plug-in will handle creating the release and deploying the release, but it doesn't handle packing and publishing those packages.  For this, we will use Octo.exe.  You can download the latest version at https://octopus.com/downloads.  I'm going to be putting octo.exe into a folder for the build to access.  In this case, it will be C:\Utilities\Octo
+The Octopus Deploy plug-in will handle creating the release and deploying the release, but it doesn't handle packing and publishing those packages.  For this, we will use Octo.exe.  You can download the latest version at https://octopus.com/downloads.  I'm going to be putting octo.exe into a folder for the build to access.  In this case, it will be `C:\Utilities\Octo`.
+
+**Please Note:** The Octopus Deploy plug-in was created by the Jenkins community.  They have done an awesome job.  But it doesn't have the exact functionality our other plug-ins have.
 
 ![](octo-exe-location.png)
 
@@ -128,7 +130,14 @@ That is it!  Let's kick off a build and see what happens!  It fails!  I think th
 
 ![](jenkins-first-build-failure.png)
 
-Let's make a couple of tweaks to the pack and push process.  Use %BUILD_NUMBER% instead of $BUILD_NUMBER have the second step do a push instead of a pack.
+Let's make a couple of tweaks to the pack and push process.  Use %BUILD_NUMBER% instead of $BUILD_NUMBER, have the second step do a push instead of a pack, and make a few other tweaks.
+
+Rather than trying to copy my text out of an image, here are the command lines for you to use.
+
+```
+C:\Utilities\Octo\Octo.exe Pack --Id=RedgateOracle --format=Zip --version=2018.11.1.%BUILD_NUMBER% --BasePath=db\src
+C:\Utilities\Octo\Octo.exe Push --Package=RedgateOracle.2018.11.1.%BUILD_NUMBER%.zip --Server=[Your Server URL] --ApiKey=[Your API Key]
+```
 
 ![](jenkins-correct-pack-and-push.png)
 
