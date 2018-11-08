@@ -1,6 +1,6 @@
 ---
 title: Octopus presenting at WinOps 2018 London 
-description: Derek Campbell will be presenting at WinOps 2018 event this month in London on how Octopus Deploy enables a successful DevOps journey. 
+description: Derek Campbell will be presenting at the WinOps 2018 event this month in London on how Octopus Deploy enables a successful DevOps journey. 
 author: derek.campbell@octopus.com
 visibility: public
 published: 2018-11-08
