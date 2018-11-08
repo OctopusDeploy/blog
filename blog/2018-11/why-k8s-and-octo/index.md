@@ -1,3 +1,18 @@
+---
+title: Why use Octopus for Kubernetes deployments?
+description: Understanding the value that Octopus brings to your Kubernetes deployments.
+author: matthew.casperson@octopus.com
+visibility: private
+bannerImage: blogimage-kubernetes.png
+metaImage: blogimage-kubernetes.png
+tags:
+- Kubernetes
+---
+
+With the release of 2018.9, Kubernetes is now a first class citizen in Octopus. But you may be asking why you would use Octopus to manage your Kubernetes deployments. Kubernetes already has a rich declarative model for all of its resources, a fully functional command line tool, and more dashboards than you can poke a stick at.
+
+So what advantages does Octopus bring to your Kubernetes deployments?
+
 ## Modelling your Environments
 
 A common practice in most development teams is to progress code through different environments. Although no two teams are the same, every team I have ever worked with has adopted some variation of the Development -> Test -> Production environment lifecycle.
@@ -8,15 +23,15 @@ Take this overview of an Octopus project as an example. The table clearly shows 
 
 ![](dashboard.png "width=500")
 
-The Kubernetes dashboard on the other hand has no concept of environments. It is concerned with displaying information about the Kubernetes resources such as pods, services and deployments. Although such information is valuable, using the Kubernetes dashboard to understand the state of your environments requires a great deal of investigation.
+The Kubernetes dashboard on the other hand is concerned with displaying information about the Kubernetes resources such as pods, services and deployments. This is a low level view of your cluster that can be used for debugging and monitoring.
 
 ![](k8sdashboard.png "width=500")
 
-The combination of Octopus and Kubernetes allows you to model the environments your team are already using while providing a low level resource view for debugging and other administration tasks.
+The Octopus allows you to model the environments your team are already using, while the Kubernetes dashboard provides a low level resource view for debugging and other administration tasks. Combining Octopus and Kubernetes gives you a top to bottom view of your infrastructure.
 
 ## Managing your Variables
 
-Helm provides an expressive templating language and allows variables to be supplied from multiple sources including a variables yaml file or from the command line. This functionality allows complex and customizable deployments to be defined, making Helm the "Kubernetes package manager".
+Helm provides an expressive templating language and allows variables to be supplied from multiple sources including a variables YAML file or from the command line. This functionality allows for complex and customizable deployments to be defined, making Helm the defacto Kubernetes package manager.
 
 But a templating language is only half the story. The other half of the story is  managing the variables that define a particular deployment.
 
@@ -28,7 +43,7 @@ By taking advantage of Octopus to manage variables, complex Helm and Kubernetes 
 
 ## Versioning your Containers
 
-Once a deployment process has been created, it will not typically change all that much. What will change between deployments are variables and container versions.
+Once a deployment process has been created, it will not typically change all that much. What will change between deployments are container versions.
 
 Octopus separates the design time process of building a deployment from the deploy time process of selecting package versions. What this means is that as you roll out new versions of your containers, Octopus will select those versions during deployment and incorporate them into the generated YAML file.
 
@@ -46,11 +61,13 @@ Octopus makes it easy to manage repeatable deployments by separating design and 
 
 Microservices are an increasingly popular development strategy that allows focused teams to deliver small changes quickly within larger ecosystem.
 
-However it is not an uncommon requirement to progress a set of individual microservices with known versions to the next environment. While such dependencies are generally discouraged in microservice architectures, company testing or external regulations may  demand that your environments be in a well known state at any point in time.
+However it is not an uncommon requirement to progress a set of individual microservices with known versions to the next environment. While such dependencies are discouraged in microservice architectures, company testing or external regulations may  demand that your environments be in a well known state at any point in time.
 
-Octopus can model these development strategies, Whether your teams will promote individual microservices through environments independently, or sets of microservices are promoted together.
+Octopus can model these development strategies, whether your teams will promote individual microservices through environments independently, or sets of microservices are promoted together.
 
 For teams that promote their own individual microservices independently, individual Octopus deployment projects can be used.
+
+![](individual.png "width=500")
 
 To promote a set of microservices with known versions and in a predictable order, a project taking advantage of the [Deploy a release step](https://octopus.com/blog/deploy-release-step/deploy-release-step) is used. By treating the deployments of other projects as deployable resources, the `Deploy a release` step allows teams to capture the state of an environment at a given point in time, and deploy that state to the next environment.
 
@@ -78,6 +95,8 @@ The [Center for Internet Security](https://www.cisecurity.org/benchmark/kubernet
 Octopus encourages deployments to individual namespaces using credentials with limited permissions by way of targets. A Kubernetes target in Octopus captures the cluster URL, and account and a namespace, and are scoped to roles and environments.
 
 Typically a Kubernetes target will have a unique namespace for each environment and role. The associated account is encouraged to have only the permissions it needs to deploy within that namespace. The result is that a Kubernetes target represents a permission boundary within the cluster. Following this pattern ensures that your deployments do not rely on a single admin account, and segregates resources within namespaces.
+
+![](targets.png "width=500")
 
 Through the use of targets, Octopus encourages you to model your Kubernetes deployments in a way that is secure and manageable.
 
