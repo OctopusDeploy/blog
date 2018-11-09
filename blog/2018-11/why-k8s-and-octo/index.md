@@ -94,7 +94,7 @@ The [Center for Internet Security](https://www.cisecurity.org/benchmark/kubernet
 
 Octopus encourages deployments to individual namespaces using credentials with limited permissions by way of targets. A Kubernetes target in Octopus captures the cluster URL, and account and a namespace, and are scoped to roles and environments.
 
-Typically a Kubernetes target will have a unique namespace for each environment and role. The associated account is encouraged to have only the permissions it needs to deploy within that namespace. The result is that a Kubernetes target represents a permission boundary within the cluster. Following this pattern ensures that your deployments do not rely on a single admin account, and segregates resources within namespaces.
+Typically a Kubernetes target will have a unique namespace for each environment and role. The associated account is encouraged to have only the permissions it needs to deploy within that namespace. The result is that a Kubernetes target represents a permission boundary within the cluster. Following this pattern ensures that your deployments do not rely on a single admin account, and segregates resources within namespaces. You can view a typical Kubernetes target on our [demo server](https://demo.octopus.com/app#/infrastructure/machines/Machines-321/settings).
 
 ![](targets.png "width=500")
 
