@@ -87,7 +87,7 @@ And if your deployments do span multiple technology stacks, you can be assured t
 
 ## Model Deployments With Best Practice
 
-The [Center for Internet Security](https://www.cisecurity.org/benchmark/kubernetes/) offers guideless on how to secure your Kubernetes infrastructure. In particular, two recommendations are particularly relevant to your deployment strategy:
+The [Center for Internet Security](https://www.cisecurity.org/benchmark/kubernetes/) offers guideless on how to secure your Kubernetes infrastructure. In particular, two recommendations are relevant to your deployment strategy:
 
 * 1.6.1 Ensure that the cluster-admin role is only used where required
 * 1.6.2 Create administrative boundaries between resources using namespaces
