@@ -10,7 +10,7 @@ tags:
  - Java
 ---
 
-WildFly and Red Hat JBoss Enterprise Application Platform are [amongst the most popular Java EE application servers available today](https://www.jetbrains.com/research/devecosystem-2017/java/). WildFly is available for free for development and production purposes, and this blog post takes a look at steps required to get WildFly up and running.
+WildFly and Red Hat JBoss Enterprise Application Platform are [amongst the most popular Java EE application servers available today](https://www.jetbrains.com/research/devecosystem-2017/java/).  WildFly is available for free for development and production purposes, and this blog post takes a look at steps required to get WildFly up and running.
 
 ## Relationship Between WildFly and JBoss EAP
 

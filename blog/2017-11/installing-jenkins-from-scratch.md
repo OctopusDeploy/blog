@@ -16,7 +16,7 @@ In the [2017 JetBrains developer ecosystem survey](https://www.jetbrains.com/res
 
 To start, I have a fresh install of Ubuntu 17.10.
 
-We need to install a bunch of handy tools that don’t come with the standard Ubuntu installation. Only `git` and `openjdk-8-jdk` are required for Jenkins, but I use the other tools commonly enough to warrant installing them as a matter of course.
+We need to install a bunch of handy tools that don’t come with the standard Ubuntu installation.  Only `git` and `openjdk-8-jdk` are required for Jenkins, but I use the other tools commonly enough to warrant installing them as a matter of course.
 
 ```
 sudo apt-get install htop vim iftop git openssh-server openjdk-8-jdk

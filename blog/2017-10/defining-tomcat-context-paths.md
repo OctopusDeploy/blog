@@ -10,7 +10,7 @@ tags:
  - Java
 ---
 
-The context path of a web application defines the URL that end users will access the application from. A simple context path like `myapp` means the web app can be accessed from a URL like http://localhost:8080/myapp. A nested context path like `myapp/v1` means the web app can be accessed from a URL like http://localhost:8080/myapp/v1.
+The context path of a web application defines the URL that end users will access the application from. A simple context path like `myapp` means the web app can be accessed from a URL like http://localhost:8080/myapp.  A nested context path like `myapp/v1` means the web app can be accessed from a URL like http://localhost:8080/myapp/v1.
 
 Tomcat provides a number of ways to define the context path of a web app, although the configuration is not quite as straight forward as you might expect.
 
