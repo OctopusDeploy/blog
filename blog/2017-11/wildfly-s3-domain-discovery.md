@@ -3,13 +3,14 @@ title: WildFly S3 Domain Discovery
 description: Learn how to use S3 buckets as a domain discovery mechanism in AWS.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-18
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
 ---
 
-When configuring a WildFly domain in a cloud environment, it is often not possible to rely on fixed IP addresses or network broadcasts to discover resources. One solution offered to AWS users for discovering domain controllers is to use a S3 bucket as a central configuration point. In this blog post we'll take a look at how to configure a simple WildFly domain in AWS using a S3 bucket for discovering domain controllers.
+When configuring a WildFly domain in a cloud environment, it is often not possible to rely on fixed IP addresses or network broadcasts to discover resources.  One solution offered to AWS users for discovering domain controllers is to use a S3 bucket as a central configuration point. In this blog post we'll take a look at how to configure a simple WildFly domain in AWS using a S3 bucket for discovering domain controllers.
 
 ## AWS IAM User
 
