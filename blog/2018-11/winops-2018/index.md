@@ -4,9 +4,13 @@ description: Derek Campbell will be presenting at the WinOps 2018 event this mon
 author: derek.campbell@octopus.com
 visibility: public
 published: 2018-11-08
+bannerImage: blogimage-winops-success.png
+metaImage: blogimage-winops-success.png
 tags:
  - Events
 ---
+
+![Derek Campbell speaking at WinOps London 2018 details](blogimage-winops-success.png)
 
 Technology is key to any good business strategy. The automation of your technology, applications and products is key and, without it, your business can quickly become irrelevant.
 What does success look like for you and your business? Release more often? Release more reliably? Removal of downtime? Less stress on your DevOps teams?
