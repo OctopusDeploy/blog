@@ -27,7 +27,7 @@ The Kubernetes dashboard on the other hand is concerned with displaying informat
 
 ![](k8sdashboard.png "width=500")
 
-The Octopus allows you to model the environments your team are already using, while the Kubernetes dashboard provides a low level resource view for debugging and other administration tasks. Combining Octopus and Kubernetes gives you a top to bottom view of your infrastructure.
+The Octopus dashboard allows you to model the environments your team are already using, while the Kubernetes dashboard provides a low level resource view for debugging and other administration tasks. Combining Octopus and Kubernetes gives you a top to bottom view of your infrastructure.
 
 ## Managing your Variables
 
