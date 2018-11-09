@@ -3,6 +3,7 @@ title: Defining Tomcat Context Paths
 description: Learn how Tomcat defines the context path of your web application.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-10-29
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
