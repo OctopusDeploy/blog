@@ -35,7 +35,7 @@ Helm provides an expressive templating language and allows variables to be suppl
 
 But a templating language is only half the story. The other half of the story is  managing the variables that define a particular deployment.
 
-Octopus provides a solution with comprehensive variable management features that includes secret storage and scoping rules. These variables can then be passed into Helm, used in the Kubernetes steps or consumed in custom steps. You can see an example of scoped variables on our [demo server](https://demo.octopus.com/app#/projects/urls/variables).
+Octopus provides a solution with comprehensive variable management features that includes secret storage and scoping rules. These variables can then be passed into Helm, used in the Kubernetes steps or consumed in custom steps. You can see an example of scoped variables on our [demo server](https://demo.octopus.com/app#/projects/configmap-urls/variables).
 
 ![](variables.png "width=500")
 
@@ -65,7 +65,7 @@ However it is not an uncommon requirement to progress a set of individual micros
 
 Octopus can model these development strategies, whether your teams will promote individual microservices through environments independently, or sets of microservices are promoted together.
 
-For teams that promote their own individual microservices independently, individual Octopus deployment projects can be used. You can see this project configured on our [demo server](https://demo.octopus.com/app#/projects/identity/overview).
+For teams that promote their own individual microservices independently, individual Octopus deployment projects can be used. You can see this project configured on our [demo server](https://demo.octopus.com/app#/projects/service-identity/overview).
 
 ![](individual.png "width=500")
 
