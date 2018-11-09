@@ -3,6 +3,7 @@ title: Installing WildFly From Scratch
 description: Learn the steps you'll need to configure a working instance of WildFly.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-10-27
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
