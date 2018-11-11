@@ -3,17 +3,20 @@ title: Defining Tomcat Context Paths
 description: Learn how Tomcat defines the context path of your web application.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-10-29
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
 ---
 
-The context path of a web application defines the URL that end users will access the application from. A simple context path like `myapp` means the web app can be accessed from a URL like http://localhost:8080/myapp. A nested context path like `myapp/v1` means the web app can be accessed from a URL like http://localhost:8080/myapp/v1.
+The context path of a web application defines the URL that end users will access the application from. A simple context path like `myapp` means the web app can be accessed from a URL like http://localhost:8080/myapp.  A nested context path like `myapp/v1` means the web app can be accessed from a URL like http://localhost:8080/myapp/v1.
 
 Tomcat provides a number of ways to define the context path of a web app, although the configuration is not quite as straight forward as you might expect.
 
 In this blog post we'll explore the various options Tomcat provides for deploying web applications and defining their context paths.
+
+<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><span class="hs-cta-node hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" id="hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" ><img class="hs-cta-img" id="hs-cta-img-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" style="border-width:0px;" height="237" width="629" src="https://no-cache.hubspot.com/cta/default/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc.png"  alt="New call-to-action"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(4676868, 'b7a09814-73d5-4ec1-97ec-4bdb9f432fdc', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
 
 ## The `<Host>` Configuration Element
 

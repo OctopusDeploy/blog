@@ -3,13 +3,14 @@ title: Installing WildFly From Scratch
 description: Learn the steps you'll need to configure a working instance of WildFly.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-10-27
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - Java
 ---
 
-WildFly and Red Hat JBoss Enterprise Application Platform are [amongst the most popular Java EE application servers available today](https://www.jetbrains.com/research/devecosystem-2017/java/). WildFly is available for free for development and production purposes, and this blog post takes a look at steps required to get WildFly up and running.
+WildFly and Red Hat JBoss Enterprise Application Platform are [amongst the most popular Java EE application servers available today](https://www.jetbrains.com/research/devecosystem-2017/java/).  WildFly is available for free for development and production purposes, and this blog post takes a look at steps required to get WildFly up and running.
 
 ## Relationship Between WildFly and JBoss EAP
 
@@ -36,6 +37,8 @@ Java 2 Platform, Enterprise Edition (J2EE) was introduced in 1999 with J2EE 1.2,
 In 2005 the name was changed to Java Enterprise Edition (Java EE) with the release of Java EE 5. The Java EE name has been used until 2017 with Java EE 8.
 
 In 2017 Oracle open sourced the Java EE platform, and it is now managed by the [Eclipse Foundation](https://projects.eclipse.org/projects/ee4j/faq) under the name Eclipse Enterprise for Java (EE4J).
+
+<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><span class="hs-cta-node hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" id="hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" ><img class="hs-cta-img" id="hs-cta-img-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" style="border-width:0px;" height="237" width="629" src="https://no-cache.hubspot.com/cta/default/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc.png"  alt="New call-to-action"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(4676868, 'b7a09814-73d5-4ec1-97ec-4bdb9f432fdc', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
 
 ## Servlet-Only vs Java EE
 

@@ -2,10 +2,10 @@
 title: Introducing long-term Support for Octopus Server
 description: In Q4 2018 we will be shipping our first release of Octopus Server with long-term support.
 author: michael.noonan@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2018-09-08
+published: 2018-09-17
 tags:
 - New Releases, LTS
 ---
@@ -141,4 +141,4 @@ Hopefully this imagined future helps clarify our plans.
 
 We are introducing long-term support (LTS) for Octopus, and you can bank on it.
 
-If you have any concerns our questions please reach out in the comments below!
+If you have any concerns or questions, please reach out in the comments below!

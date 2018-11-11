@@ -31,6 +31,8 @@ The Kubernetes functionality in Octopus 2018.8 is a preview only. The features d
 
 !toc
 
+<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><span class="hs-cta-node hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" id="hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" ><img class="hs-cta-img" id="hs-cta-img-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" style="border-width:0px;" height="237" width="629" src="https://no-cache.hubspot.com/cta/default/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc.png"  alt="New call-to-action"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(4676868, 'b7a09814-73d5-4ec1-97ec-4bdb9f432fdc', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
+
 ## Prerequisites
 
 To follow along with this blog post, you will need to have an Octopus instance, a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kubernetes service provided by Google Cloud, but any Kubernetes cluster will do.
@@ -41,7 +43,7 @@ To follow along with this blog post, you will need to have an Octopus instance, 
 
 ## Preparing the Octopus Server
 
-The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. Likewise the Helm steps require the `helm` executable to be available on the path. 
+The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. Likewise the Helm steps require the `helm` executable to be available on the path.
 
 If you run the Kubernetes steps from [Octopus workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
 
@@ -1066,113 +1068,84 @@ Create a `Run a kubectl CLI Script` step that targets an existing Kubernetes adm
 
 Define the following project variables:
 
-* ApiKey - The Octopus API key that will be used to create the account and targets.
-* ServerUrl - The Octopus server url.
-* EnvironmentName - The name of the environment that the Kubernetes account represents. This environment must already exist in Octopus.
-* ApplicationName - The name of the application that is being deployed to Kubernetes.
 * KubernetesUrl - The Kubernetes cluster URL.
-
-The script that we will run relies on the `Octopus.Client` package, which is available from the public Nuget feed at https://api.nuget.org/v3/index.json. We need to add this package to the script step, ensuring that it will be extracted.
-
-![](kubernetes-script-dll-package.png "width=500")
 
 Paste the following code as the script body.
 
 ```PowerShell
+# The account name is the project, environment and tenant
+$projectNameSafe = $($OctopusParameters["Octopus.Project.Name"].ToLower() -replace "[^A-Za-z0-9]","")
+$accountName = if (![string]::IsNullOrEmpty($OctopusParameters["Octopus.Deployment.Tenant.Id"])) {
+    $($OctopusParameters["Octopus.Project.Name"] -replace "[^A-Za-z0-9]","") + "-" + `
+    $($OctopusParameters["Octopus.Deployment.Tenant.Name"] -replace "[^A-Za-z0-9]","") + "-" + `
+    $($OctopusParameters["Octopus.Environment.Name"] -replace "[^A-Za-z0-9]","")
+} else {
+    $($OctopusParameters["Octopus.Project.Name"] -replace "[^A-Za-z0-9]","") + "-" + `
+    $($OctopusParameters["Octopus.Environment.Name"] -replace "[^A-Za-z0-9]","")
+}
+
+# The namespace is the acocunt name, but lowercase
+$namespace = $accountName.ToLower()
+#Save the namespace for other steps
+Set-OctopusVariable -name "Namespace" -value $namespace
+Set-OctopusVariable -name "AccountName" -value $accountName
+
 Set-Content -Path serviceaccount.yml -Value @"
 ---
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  name: $namespace
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: $($ApplicationName.ToLower())-deployer
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  name: $projectNameSafe-deployer
+  namespace: $namespace
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
-  name: $($ApplicationName.ToLower())-deployer-role
+  namespace: $namespace
+  name: $projectNameSafe-deployer-role
 rules:
 - apiGroups: ["", "extensions", "apps"]
-  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
-  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-- apiGroups: [""]
-  resources: ["namespaces"]
-  verbs: ["get"]    
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps", "namespaces"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]   
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: $($ApplicationName.ToLower())-deployer-binding
-  namespace: $($ApplicationName.ToLower())-$($EnvironmentName.ToLower())
+  name: $projectNameSafe-deployer-binding
+  namespace: $namespace
 subjects:
 - kind: ServiceAccount
-  name: $($ApplicationName.ToLower())-deployer
+  name: $projectNameSafe-deployer
   apiGroup: ""
 roleRef:
   kind: Role
-  name: $($ApplicationName.ToLower())-deployer-role
+  name: $projectNameSafe-deployer-role
   apiGroup: ""
 "@
 
 kubectl apply -f serviceaccount.yml
 
-$data = kubectl get secret $(kubectl get serviceaccount "$($ApplicationName.ToLower())-deployer" -o jsonpath="{.secrets[0].name}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())") -o jsonpath="{.data.token}" --namespace="$($ApplicationName.ToLower())-$($EnvironmentName.ToLower())"
+$data = kubectl get secret $(kubectl get serviceaccount "$projectNameSafe-deployer" -o jsonpath="{.secrets[0].name}" --namespace=$namespace) -o jsonpath="{.data.token}" --namespace=$namespace
 $Token = [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data))
 
-[Reflection.Assembly]::LoadFrom("Octopus.Client\lib\net45\Octopus.Client.dll")
+New-OctopusTokenAccount `
+	-name $accountName `
+    -token $Token `
+    -updateIfExisting
 
-$endpoint = new-object Octopus.Client.OctopusServerEndpoint($ServerUrl, $ApiKey)
-$repository = new-object Octopus.Client.OctopusRepository($endpoint)
-
-# Create the token account
-
-$accountName = $ApplicationName + "-" + $EnvironmentName
-$account = $repository.Accounts.FindByName($accountName)
-if ($account -eq $null) {
-  $tokenValue = new-object Octopus.Client.Model.SensitiveValue
-  $tokenValue.NewValue = $Token;
-  $tokenAccount = new-object Octopus.Client.Model.Accounts.TokenAccountResource
-  $tokenAccount.Name = $accountName;
-  $tokenAccount.Token = $tokenValue;
-  $account = $repository.Accounts.Create($tokenAccount);
-} else {
-  $tokenValue = new-object Octopus.Client.Model.SensitiveValue
-  $tokenValue.NewValue = $Token;
-  $account.Token = $tokenValue;
-  $account = $repository.Accounts.Modify($account);
-}
-
-# Find the environment
-
-$environment = $repository.Environments.FindByName($EnvironmentName)
-
-if ($environment -eq $null) {
-	Write-Error "Could not find the environemnt called $EnvironmentName"
-    exit 1
-}
-
-# Create the endpoint
-if ($repository.Machines.FindByName($accountName) -eq $null) {
-  $kubernetesEndpoint = new-object Octopus.Client.Model.Endpoints.KubernetesEndpointResource
-  $kubernetesEndpoint.ClusterUrl = $KubernetesUrl;
-  $kubernetesEndpoint.SkipTlsVerification = "True";
-  $kubernetesEndpoint.AccountId = $account.Id;
-
-  # Create the machine
-  $machine = new-object Octopus.Client.Model.MachineResource
-  $machine.Name = $accountName
-  $machine.Endpoint = $kubernetesEndpoint;
-  $machine.EnvironmentIds = new-object Octopus.Client.Model.ReferenceCollection $environment.Id
-  $machine.Roles = new-object Octopus.Client.Model.ReferenceCollection $ApplicationName
-
-  $repository.Machines.Create($machine);
-}
+New-OctopusKubernetesTarget `
+    -name $accountName `
+    -clusterUrl $KubernetesUrl `
+    -octopusRoles "Target Role" `
+    -octopusAccountIdOrName $accountName `
+    -namespace $namespace `
+    -updateIfExisting `
+    -skipTlsVerification True
 ```
 
 This script will then create the Kubernetes resources, get the token, and create the Octopus token account and Kubernetes target.
