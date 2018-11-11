@@ -42,12 +42,13 @@ Read more about this in our [Octopus Workers blog series](https://octopus.com/bl
 
 At this point we've decided to limit the use of workers and worker pools for different license kinds:
 
-1. Customers using a grandfathered `Community` (free), `Professional`, `Team`, or `Enterprise` license are limited to one worker and worker pool. This enables you to transition from using the built-in worker into [a more secure configuration](https://octopus.com/docs/administration/security/hardening-octopus#configuring-workers).
-1. Customers using a grandfathered `High Availability` license get **unlimited** workers and worker pools.
-1. Customers with one of the current `Standard` or `Data Center` licenses also get **unlimited** workers and worker pools. _These licenses were introduced around the Octopus 4.0 timeframe._
-1. [Octopus Cloud](https://octopus.com/cloud) customers also get **unlimited** workers and worker pools.
+1. Customers using a grandfathered `Community` (free), `Professional`, `Team`, or `Enterprise` license are limited to one worker. This enables you to transition from using the built-in worker into [a more secure configuration](https://octopus.com/docs/administration/security/hardening-octopus#configuring-workers).
+1. Customers using a grandfathered `High Availability` license get **unlimited** workers.
+1. Customers with one of the current `Standard` or `Data Center` licenses also get **unlimited** workers. _These licenses were introduced around the Octopus 4.0 timeframe._
+1. [Octopus Cloud](https://octopus.com/cloud) customers using a `Standard` subscription get **unlimited** workers.
+1. [Octopus Cloud](https://octopus.com/cloud) customers using a `Starter` subscription are limited to one worker. It's just for getting started after all.
 
-If you have any questions about your license and how it applies to workers and worker pools, please contact [sales@octopus.com](mailto:sales@octopus.com).
+We may decide to change these limits over time. If you have any questions about your license and how it applies to workers, please contact [sales@octopus.com](mailto:sales@octopus.com).
 
 ## Perf and Polish Improvements
 
