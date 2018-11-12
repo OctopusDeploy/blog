@@ -161,6 +161,8 @@ After some re-configuration, these are the variables I now have configured.
 
 In looking at the Redgate - Create Oracle Release step you can see all the spots where I used these variables.
 
+**Please Note:** Since my last article I have updated this step template based on feedback from users.  You now have more fine grained control.  
+
 ![](octopus-create-oracle-release-updated.png)
 
 The same thing can be seen on the last step.  All the hardcoded values have been replaced by the variables.
