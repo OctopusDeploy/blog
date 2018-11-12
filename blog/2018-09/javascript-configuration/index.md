@@ -22,7 +22,7 @@ It is common to develop a single page application (SPA) as a standalone Javascri
 
 Create a simple `config.json` file that contains the configuration needed for your application. The values in this configuration should just be the configuration you use for development time. There is no need to create a `config.staging.json` or `config.prod.json`, the environmental configuration will be provided by octopus at deploy time. Avoiding these "environmental" configuration files makes our CD process much more flexible and avoids leaking
 
-### NodeJs Application
+## NodeJs Application
 Node is really simple. So long as we include the config file in the distributed application, we can pull load it directly as if it were any other module.
 
 
