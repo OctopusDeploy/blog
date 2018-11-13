@@ -19,7 +19,7 @@ A common practice in most development teams is to progress code through differen
 
 And it is no coincidence that environmental progression is a core concept in Octopus. Environments are first class entities in Octopus, and managing deployments through to the production environment is baked into every part of the product. From lifecycles to channels to the dashboards, Octopus makes it easy to model how your teams work and to promote releases in a reliable and visible manner.
 
-Take this overview of an Octopus project as an example. The table clearly shows what release was make to which environment and at what time. And with a few clicks you can get more detailed information such as who performed the deployment and what versions of the packages were included.
+Take this overview of an Octopus project as an example. The table clearly shows what release was made to which environment and at what time. And with a few clicks you can get more detailed information such as who performed the deployment and what versions of the packages were included.
 
 ![](dashboard.png "width=500")
 
