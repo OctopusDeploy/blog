@@ -1,6 +1,6 @@
 ---
-title: Deploying Helm Charts with the benefits of Octopus Deploy
-description: Helm charts can now be deployed in a more reliable manner by using the first-class Octopus Deploy Helm step.
+title: Providing environment specific configuration for Javascript projects in a continuous deployment pipeline
+description: Wether it be a Ract, Angular or NodeJS application, you often need configuration to be supplied that differs from one environment to the next. The safest way to accomplish this is to make use of your deployment tooling.
 author: robert.erez@octopus.com
 visibility: private
 bannerImage: 
@@ -11,34 +11,46 @@ tags:
 - Patterns
 ---
 
-- Configuration in javascript - problems with environment variable approach
-- 12 factor app
+It is common to develop and deploy a single page application (SPA) as a standalone Javascript app, however there is a common question that comes up when it comes time to integrate these projects into a typical continuous deployment pipeline.
 
-- Load config.json
-- load 
+[![Twitter](twitter.png)](https://twitter.com/cnlawrence1183/status/1026901050131980289)
 
+Being good DevOps practitioners we know that we should be only building once and deploying many times, but how can we make this work for our front-end applications?
 
-It is common to develop a single page application (SPA) as a standalone Javascript app, hoeever a ommon quesion .
+### Javascript Configuration from JSON
 
-Create a simple `config.json` file that contains the configuration needed for your application. The values in this configuration should just be the configuration you use for development time. There is no need to create a `config.staging.json` or `config.prod.json`, the environmental configuration will be provided by octopus at deploy time. Avoiding these "environmental" configuration files makes our CD process much more flexible and avoids leaking
+#### First lets just get one approach off the table. 
+Some proponents swear by the commandments laid out in the [twelve-factor app](https://12factor.net/config) and take it as dogma that all configuration for your application should be pulled out of individual environment variables. In my humble opinion this approach is very limiting for a few reasons. 
 
-## NodeJs Application
-Node is really simple. So long as we include the config file in the distributed application, we can pull load it directly as if it were any other module.
+- First this obviously doesn't work easily for browser-based runtimes where you have a static website to serve and need to get that configuration in the browser. 
+- Secondly this adds complexity to your hosting environment, whereby you need to ensure that each processes that runs your application has it's own collection of environment variables which _persist across restarts_ and _doesn't leak across to other instances_ (for example where your testing VM hosts multiple instances of the same application). 
+- Lastly, this may be straight forward when you have just a single url which needs to differ between environments, but in many applications the configuration may include many different variables, some of which are deeply nested values. Trying to mange and consolidate hierarchical information through environment variables has a bunch of downsides.
 
+Ultimately the 12-factor app solution to not storing config in code is to store it in environment variables is a bit of a false dilemma. We know that storing configuration in code is neither the most flexible, nor secure way to provide configuration but is the proposed alternative. Any good deployment tool should also be capable of providing the environment specific variables needed to run your application in a self-contained manner.
+
+#### Configuration as JSON
+Create a simple `config.json` file that contains the configuration needed for your application. The values in this configuration can just be those you ned for development time. There is no need to create a `config.staging.json` or `config.prod.json` in your source code, the environmental configuration will be provided by Octopus (or your deployment tool of choice) at deploy time. Avoiding these "environmental" configuration files makes our CD process much more flexible and avoids leaking. At runtime, all our code needs to do is retrieve this `config.json` file from the server like any other resource. 
+
+![Variables from Octopus into configuration](environment-variables.png)
+
+Let' walk through a couple of examples of how this can be achieved. There are many ways that this pattern can be accomplished in whatever framework you are using so you may want to modify the following samples to suit your needs.
+
+## Examples
+### NodeJs Application
+NodeJs is a really simple use case. So long as we include the config file in the distributed application, we can load it directly as if it were any other module.
 
 ```javascript
 const config = require("./config");
 console.log(`Hello ${config.message}`);
 ```
-
 You couldnt get easier configuration than that if you tried.
 
 ![Node result](node-result.png)
 
-No need to muck around with detecting environments (where for testing you may have more than one on one machine), loading `config.prod.json` and combine with defaults in `config.json`!
+No need to muck around with detecting environments, loading `config.prod.json` and combining with defaults in `config.json` or consolidating with environment variables!
 
-### React Single Page App
-Using react we want to minify and combine all our application files into a single javascript file to optimize the run-time experience. We dont want to embed the configuration file into that single application file since that makes it more difficult for us to update at deploy-time with our environment specific values. Instead we have decided that we want to show a splash screen while the config file is loading (dont worry, since this is a statically served file it should be fairly quick) and which can be done with just a few files.
+### React App
+Using react we want to minify and combine all our application files into a single javascript file to optimize the run-time experience. We dont want to embed the configuration file into that single application file since that makes it more difficult for us to update at deploy-time with our environment specific values. Instead we have decided that we want to show a splash screen while the config file is loading. This can be done with just a few steps.
 
 ![React folder structure](react-folders.png)
 
@@ -106,9 +118,9 @@ export default class Home extends Component {
 }
 ```
 
-As you can see we are importing a `config` module. This is not the raw json file created above, this is a special module I will show below. Since this component wont render until the `ConfigLoader` component has loaded the `config.json` file we can assume that the config object has all the properties we need, in this case just `message`.
+As you can see we are importing a `config` module. This is not the raw json file created above, this is a special module I will show below. Since this component will not render until the `ConfigLoader` component has loaded the `config.json` file, we can assume that the config object has all the properties we need, in this case just `message`.
 
-The `ConfigLoader` component. simply calls a `load` method on our config object and renders the module provided via its props when the configuration has loaded.
+The `ConfigLoader` component simply calls a `load` method on our config module and renders the requested component via its props when the configuration has loaded.
 
 #### `components/ConfigLoader.js`
 ```javascript
@@ -120,6 +132,7 @@ export default class ConfigLoader extends Component {
 		super(props);
 		this.state = {isLoaded: false};
 	}
+  
   
   componentDidMount() {
      // Once the configuration is loaded set `isLoaded` to true so we know to render our component
@@ -161,17 +174,85 @@ function load() {
 export {load}
 ```
 
-The great this about this is that as we are developing we can modify the config file and webpack will trigger a refresh as if I were updating any other file. 
+The great thing about this is that as we are developing we can modify the config file and webpack will trigger a refresh as if I were updating any other file. 
 
 ![react result](react-result.png)
 
 _...and who said i wasn't a great designer_
 
-Everywhere in our app that we want to use the configuration (like the `Home` component above), we can load and simply use the `config.js`  module and access the properties directly since all modules are only rendered once the `ConfigLoader` component has retrieved the configuration. This is a fairly simple demonstration but depending on your use case you may want to dispatch the config into a redux store or you may also want to deal with more complex scenario's like cache busting etc. Hopefully the sample above gives some idea on how you can load a simple json file that Octopus performs replacements on into your application.
+Everywhere in our app that we want to use the configuration (like the `Home` component above), we can load and simply use the `config`  module and access the properties directly since all modules downwards are only rendered once the `ConfigLoader` component has retrieved the configuration. Remember that so long as we transform the `config.json` file as part of our CD pipeline we will then get the appropriate values supplied and consumed by our application.
 
+This is a fairly simple demonstration and depending on your use case you may want to dispatch the config into a redux store or you may also want to deal with more complex scenario's like cache busting etc.
 
+### Angular App
+Rather than go into too much detail reiterating the same points above for a different framework, im going to shamelessly plug another blog post by Pam Loahoud on creating Editable [config files](https://blogs.msdn.microsoft.com/premier_developer/2018/03/01/angular-how-to-editable-config-files/) for Angular since this essentially follows the same basic premise as the examples provided above.
 
+In Pam's example it boils down to creating a service to retrieve the statically hosted `config.json` file
 
-npx create-react-app react-versioning
-cd react-versioning
-yarn start
+```typescript
+import { Injectable } from '@angular/core’;
+import { Http, Response } from '@angular/http';
+import { environment } from '../environments/environment';
+import { IAppConfig } from './models/app-config.model';
+
+@Injectable()
+export class AppConfig {
+
+    static settings: IAppConfig;
+
+    constructor(private http: Http) {}
+
+    load() {
+        const jsonFile = `assets/config/config.${environment.name}.json`;
+        return new Promise<void>((resolve, reject) => {
+            this.http.get(jsonFile).toPromise().then((response : Response) => {
+               AppConfig.settings = <IAppConfig>response.json();
+               resolve();
+            }).catch((response: any) => {
+               reject(`Could not load file '${jsonFile}': ${JSON.stringify(response)}`);
+            });
+        });
+    }
+}
+
+```
+
+and then updating the `app.module.ts` file to invoke this service on startup 
+
+```typescript
+import { APP_INITIALIZER } from '@angular/core';
+import { AppConfig } from './app.config';
+
+export function initializeApp(appConfig: AppConfig) {
+  return () => appConfig.load();
+}
+@NgModule({
+    imports: [ , , , ],
+    declarations: [ . . . ],
+    providers: [
+       AppConfig,
+       { provide: APP_INITIALIZER,
+         useFactory: initializeApp,
+         deps: [AppConfig], multi: true }
+    ],
+    bootstrap: [
+      AppComponent
+    ]
+})
+export class AppModule { }
+```
+
+Just like with the react example, once this runs during startup you can then use the configuration throughout the app.
+
+``` javascript
+export class DataService {
+    protected apiServer = AppConfig.settings.apiServer;
+    . . .
+    if (AppConfig.settings.aad.requireAuth) { . . . }
+}
+```
+
+I like the added touch in this case of using typescript to provide type checking if the configuration at dev time. Once again with the single configuration file available in your built package, the key is to let your deployment tool to perform the appropriate configuration replacements and transforms.
+
+## Javascript Configuration
+To paraphrase a point made in one of my earlier blog posts [we need to start treating Javascript seriously in our CD pipelines](https://octopus.com/blog/deploying-nodejs), and part of this involves following the "build once, deploy many" mantra. Configuration shouldn't live alongside your code, but it seems natural to assume that the code itself knows what configuration is required. Let your CD tools like Octopus Deploy provide the configuration for your application at deploy time, making it just as simple and secure to deploy to 50 different environments as it is to deploy 1. 
