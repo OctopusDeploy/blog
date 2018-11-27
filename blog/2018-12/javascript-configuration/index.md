@@ -17,9 +17,9 @@ It is common to develop and deploy a single page application (SPA) as a standalo
 
 Being good DevOps practitioners we know that we should be only building once and deploying many times, but how can we make this work for our front-end applications?
 
-### Javascript Configuration from JSON
+## Javascript Configuration from JSON
 
-#### First lets just get one approach off the table. 
+### First lets just get one approach off the table. 
 Some proponents swear by the commandments laid out in the [twelve-factor app](https://12factor.net/config) and take it as dogma that all configuration for your application should be pulled out of individual environment variables. In my humble opinion this approach is very limiting for a few reasons. 
 
 - First this obviously doesn't work easily for browser-based runtimes where you have a static website to serve and need to get that configuration in the browser. 
@@ -28,7 +28,7 @@ Some proponents swear by the commandments laid out in the [twelve-factor app](ht
 
 Ultimately the 12-factor app solution to not storing config in code is to store it in environment variables is a bit of a false dilemma. We know that storing configuration in code is neither the most flexible, nor secure way to provide configuration but is the proposed alternative. Any good deployment tool should also be capable of providing the environment specific variables needed to run your application in a self-contained manner.
 
-#### Configuration as JSON
+### Configuration as JSON
 Create a simple `config.json` file that contains the configuration needed for your application. The values in this configuration can just be those you ned for development time. There is no need to create a `config.staging.json` or `config.prod.json` in your source code, the environmental configuration will be provided by Octopus (or your deployment tool of choice) at deploy time. Avoiding these "environmental" configuration files makes our CD process much more flexible and avoids leaking. At runtime, all our code needs to do is retrieve this `config.json` file from the server like any other resource. 
 
 ![Variables from Octopus into configuration](environment-variables.png)
