@@ -5,9 +5,12 @@ author: nick.josevski@octopus.com
 visibility: public
 bannerImage: blogimage-spaces.png
 metaImage: blogimage-spaces.png
+published: 2018-12-14
 tags:
 - Spaces
 ---
+
+![Octopus spaces illustration](blogimage-spaces.png)
 
 If you've ever found yourself scrolling through a long list of projects to find the one you're working on or you see drop-downs with hundreds of items and you struggle to find the one you're looking for, then a new feature is coming your way...
 
