@@ -1,13 +1,12 @@
 ---
 title: Spaces
-description: An introduction to Spaces.
+description: An Introduction to Spaces.
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-spaces.png
 metaImage: blogimage-spaces.png
 tags:
 - Spaces
-- Licensing
 ---
 
 If you've ever found yourself scrolling through a long list of projects to find the one you're working on or you see drop-downs with hundreds of items and you struggle to find the one you're looking for, then a new feature is coming your way...
@@ -23,7 +22,7 @@ Spaces is our answer, and they're coming in January 2019.
 Give each team their own Space, with their own projects, environments, tenants, step templates and more. The navigation bar lets you easily jump between Spaces, so instead of seeing dozens or hundreds of unrelated projects and other Octopus resources, you'll just see the resources for that Space.
 
 
-![](switcher.png "width=500")
+![switcher user interface](switcher.png "width=500")
 
 ## Put Team Leads in Control
 
@@ -33,7 +32,7 @@ One of the key driving factors for Spaces is the ability to delegate a set of re
 
 This allows the system administrator to focus on system concerns like adding new users, managing any system teams, and the configuration of the installation. For the administrator who wants or needs to be directly involved they can include themselves in the list of owners for any or all Spaces.
 
-![](spaces-configuration.png "width=500")
+![spaces configuration user interface](spaces-configuration.png "width=500")
 
 ## Space, When You Need It
 
@@ -43,13 +42,13 @@ The way you use Octopus today for the most part will not change, we will have sp
 
 ## Licensing
 
-![](blogimage-spaces-2.png "width=500")
+![licensing](blogimage-spaces-2.png "width=500")
 
 After talking with our existing customers, their ideas and desires for segregation of business units and various teams and infrastructure drove the design of Spaces.
 
 Deployment Targets that exist in each Space that represent the same physical hardware will each be counted towards your machine limit.
 
- ### Self-hosted
+#### Self-hosted
 
  - Customers using a grandfathered Community (free), Professional, Team, or Enterprise license are limited to one Space. You can upgrade to a newer license to split your Octopus into multiple Spaces.
  - Customers using a grandfathered High Availability license get unlimited Spaces.
