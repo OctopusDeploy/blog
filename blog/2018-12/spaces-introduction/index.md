@@ -49,7 +49,7 @@ After talking with our existing customers, their ideas and desires for segregati
 
 Deployment Targets that exist in each Space that represent the same physical hardware will each be counted towards your machine limit.
 
- #### Self-hosted
+ ### Self-hosted
 
  - Customers using a grandfathered Community (free), Professional, Team, or Enterprise license are limited to one Space. You can upgrade to a newer license to split your Octopus into multiple Spaces.
  - Customers using a grandfathered High Availability license get unlimited Spaces.
