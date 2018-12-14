@@ -1,5 +1,5 @@
 ---
-title: Spaces
+title: A new way to organise your Octopus Server
 description: An Introduction to Spaces.
 author: nick.josevski@octopus.com
 visibility: public
@@ -45,7 +45,7 @@ The way you use Octopus today for the most part will not change, we will have sp
 
 ## Licensing
 
-![licensing](blogimage-spaces-2.png "width=500")
+![Licensing](blogimage-spaces-2.png "width=500")
 
 After talking with our existing customers, their ideas and desires for segregation of business units and various teams and infrastructure drove the design of Spaces.
 
@@ -69,3 +69,4 @@ Deployment Targets that exist in each Space that represent the same physical har
 We can't wait for you to try Spaces and we're working hard to get it shipped as soon as possible. Stay tuned for another post coming soon with some further details.
 
 In the mean time if you haven't already have a look at our [recent webinar where we discussed spaces alongside workers](https://hello.octopus.com/webinar-spaces-workers/on-demand)
+ 
