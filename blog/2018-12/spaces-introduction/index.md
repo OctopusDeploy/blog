@@ -32,7 +32,7 @@ After speaking with customers, it was clear that one of the key driving factors 
 
 ## Hard Walls
 
-> A Project within Space A should not be able to deploy to a Machine from Space B”
+> A Project within Space A should not be able to deploy to a Machine from Space B
 
 Spaces is about isolation not about sharing. We wanted to ensure we got the security and isolation right first. It is easy to imagine scenarios for anything in Octopus to be shared. As we started to build Spaces and got into the implementation details it became clear to us that without true isolation the state of your Octopus could become very complicated.
 
