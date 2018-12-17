@@ -44,7 +44,7 @@ The way you use Octopus today for the most part will not change, we will have sp
 
 ## Licensing
 
-![licensing](blogimage-spaces-2.png "width=500")
+![Licensing](blogimage-spaces-2.png "width=500")
 
 After talking with our existing customers, their ideas and desires for segregation of business units and various teams and infrastructure drove the design of Spaces.
 
@@ -67,4 +67,3 @@ Deployment Targets that exist in each Space that represent the same physical har
 We've been working hard on Spaces and we're happy that it's nearly finished. We're planning to ship it in January 2019. Stay tuned for another post coming soon with some further details.
 
 In the meantime, if you haven't already, have a look at our [recent webinar where we discussed spaces alongside workers](https://hello.octopus.com/webinar-spaces-workers/on-demand)
-
