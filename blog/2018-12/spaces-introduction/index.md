@@ -1,6 +1,6 @@
 ---
-title: Spaces - A new way to organise your Octopus Server
-description: An Introduction to Spaces.
+title: Spaces - A new way to organize your Octopus Server
+description: An introduction to Spaces.
 author: nick.josevski@octopus.com
 visibility: private
 bannerImage: blogimage-spaces.png
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus spaces illustration](blogimage-spaces.png)
 
-Octopus Deploy helps teams automate their deployments but as time goes on, and as they keep adding projects, environments, and machines, it can become difficult to find the things they're working on. If you've ever been in this situation you might have scrolled for ages to find the project you want to deploy, horizontal scrolling to find the latest version deployed to an environment, or looking through drop-down lists with hundreds of items.
+Octopus Deploy helps teams automate the deployments of their application and services. As time goes on, and as they keep adding projects, environments, and machines, it can become difficult to find the things they're working on. If this sounds familiar, you might have scrolled for ages to find the project you want to deploy, scrolled horizontally to find the latest version deployed to an environment, or looking through drop-down lists with hundreds of items.
 
 This can be frustrating and we're very happy to share that we've been working on a solution called Spaces. Spaces are a new way to organize your Octopus Server. It will make it easy to group your team's projects, environments, machines, tenants, library resources and more into a 'Space' just for you and your team.
 
@@ -20,13 +20,13 @@ This can be frustrating and we're very happy to share that we've been working on
 
 Spaces is a feature built for teams.
 
-Most developers work in teams building and maintaining one or more projects and the associated infrastructure. This includes environments, machines, Azure or AWS accounts, step templates, variable sets and so on. Companies are different though. Some companies organize their teams by department. Some organize them by function. Spaces enables teams to organize their projects and infrastructure as it suits them and they can be a member of multiple spaces. Our Spaces switcher makes it easy to jump between Spaces, so instead of seeing dozens or hundreds of unrelated projects and other Octopus resources, you'll just see the resources for that Space.
+Most developers work in teams building and maintaining one or more projects and the associated infrastructure. This includes environments, machines, Azure or AWS accounts, step templates, variable sets and so on. Companies are different though. Some companies organize their teams by department. Some organize them by function. Spaces enables teams to organize their projects and infrastructure as it suits them and they can be a member of multiple Spaces. Our Spaces switcher makes it easy to jump between Spaces, so instead of seeing dozens or hundreds of unrelated projects and other Octopus resources, you'll just see the resources for that Space.
 
 ![switcher user interface](switcher.png "width=500")
 
 ## Space Owners
 
-From talking to customers one of the key driving factors for Spaces is being able to delegate a set of responsibilities. This way, Octopus administrators can hand over full control of a Space and be completely hands off if they choose. Leaving the administrator to help with system concerns like adding new users, managing any system teams, and the configuration of the installation. For the administrator who wants to be directly involved in a team's Space they can add themselves as a member of a team with Space access.
+After speaking with customers, it was clear that one of the key driving factors for Spaces is being able to delegate a set of responsibilities. This way, Octopus administrators can hand over full control of a Space and be completely hands off if they choose. Leaving the administrator to focus on system concerns like adding new users, managing any system teams, and the configuration of the installation. For the administrator who wants to be directly involved in a team's Space they can add themselves as a member of a team with Space access.
 
 ![spaces configuration user interface](spaces-configuration.png "width=500")
 
@@ -36,7 +36,7 @@ From talking to customers one of the key driving factors for Spaces is being abl
 
 Spaces is about isolation not about sharing. We wanted to ensure we got the security and isolation right first. It is easy to imagine scenarios for anything in Octopus to be shared. As we started to build Spaces and got into the implementation details it became clear to us that without true isolation the state of your Octopus could become very complicated.
 
-We’ve drawn a line in the sand for Spaces, and everything that’s fundamental in deploying your Projects to Targets in Environments and Tenants, is within a Space.
+We’ve drawn a line in the sand for Spaces, and everything that’s fundamental in deploying your projects to targets in environments and tenants, is within a Space.
 
 ## Space, When You Need It
 
@@ -68,4 +68,4 @@ Deployment Targets that exist in each Space that represent the same physical har
 
 We've been working hard on Spaces and we're happy that it's nearly finished. We're planning to ship it in January 2019. Stay tuned for another post coming soon with some further details.
 
-In the meantime, if you haven't already, have a look at our [recent webinar where we discussed spaces alongside workers](https://hello.octopus.com/webinar-spaces-workers/on-demand).
+In the meantime, if you haven't already, have a look at our [recent webinar where we discussed Spaces alongside Workers](https://hello.octopus.com/webinar-spaces-workers/on-demand).
