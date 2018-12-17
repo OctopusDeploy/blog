@@ -2,7 +2,7 @@
 title: Spaces - A new way to organize your Octopus Server
 description: An introduction to Spaces.
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-spaces.png
 metaImage: blogimage-spaces.png
 published: 2018-12-14
@@ -10,7 +10,7 @@ tags:
 - Spaces
 ---
 
-![Octopus spaces illustration](blogimage-spaces.png)
+![Teams using Octopus Spaces illustration](blogimage-spaces.png)
 
 Octopus Deploy helps teams automate the deployments of their application and services. As time goes on, and as they keep adding projects, environments, and machines, it can become difficult to find the things they're working on. If this sounds familiar, you might have scrolled for ages to find the project you want to deploy, scrolled horizontally to find the latest version deployed to an environment, or looking through drop-down lists with hundreds of items.
 
