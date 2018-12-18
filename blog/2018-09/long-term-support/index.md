@@ -47,7 +47,7 @@ We realize not every customer is the same. We want to make it really easy for an
 
 We want to give you the power to choose, along with simple guidance to help make an informed choice.
 
-### Introducing the Fast and Slow Lanes
+### Introducing the Fast and Slow Lanes {#fast-and-slow-lanes}
 
 Under the covers, we plan to keep working the same way we have for the last several years: shipping bug fixes and minor enhancements with a quick turnaround and working closely with our customers to design and test new features. What we are adding is a special release cadence, where the release is based on the most stable version at that point in time with some additional quality assurance, complete with the offer of six months long-term support.
 
@@ -75,7 +75,7 @@ You should choose the **fast lane releases** if this sounds like your scenario:
 - "We want the latest and greatest features and really fast turnaround on small enhancements and bug fixes."
 - "We want to engage closely with the Octopus team, so we can help them build the best automation tooling in the world!"
 
-## Q&A
+## Q&A {#qa}
 
 I've covered the broad details of our long-term support program, and I'll answer some common questions here. If you have any questions at all, please feel free to ask in the comments!
 
