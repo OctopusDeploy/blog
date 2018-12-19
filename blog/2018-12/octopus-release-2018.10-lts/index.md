@@ -12,7 +12,9 @@ tags:
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)
 
-Octopus Server `2018.10 LTS` is the first release in our [long-term support program](/blog/2018-09/long-term-support/index.md)(LTS). It comes with six months long-term support and we recommend this release for most self-hosted customers. Customers using Octopus Cloud are always in the [fast lane](/blog/2018-09/long-term-support/index.md#fast-and-slow-lanes) where we take care of upgrades on your behalf, and you get early access to the latest features.
+Octopus Server `2018.10 LTS` is the first release in our [long-term support program](/blog/2018-09/long-term-support/index.md)(LTS). It comes with six months long-term support and we recommend this release for most self-hosted customers. Our LTS releases will be in the slow lane with a new LTS release every three months, all of which have six months support. We'll also continue to put out new releases roughly once a month, the releases between LTS releases will be our fast lane releases that include the latest features.
+
+Customers using Octopus Cloud are always in the [fast lane](/blog/2018-09/long-term-support/index.md#fast-and-slow-lanes) where we take care of upgrades on your behalf, and you get early access to the latest features.
 
 Learn more about our LTS program in our [previous blog post](/blog/2018-09/long-term-support/index.md). This post has a [Q&A section](/blog/2018-09/long-term-support/index.md#qa) to help you understand how our releases fit best into your organisation.
 
@@ -24,7 +26,7 @@ Octopus Server `2018.10 LTS` is essentially the same as `2018.9`. It comes with 
 
 ## When should I install 2018.10 LTS?
 
-There is no time like the present! You can upgrade to Octopus Server `2018.10 LTS` any time from now. We've had thousands of customers upgrade smoothly to `2018.9` and the upgrade to `2018.10 LTS` is cut from the same code.
+There is no time like the present! You can upgrade to Octopus Server `2018.10 LTS` now. We've had thousands of customers upgrade smoothly to `2018.9` and the upgrade to `2018.10 LTS` is cut from the same code.
 
 ## Should I avoid upgrading and stay on my current release?
 
@@ -34,7 +36,7 @@ Please upgrade! Our preference, for your benefit and ours, is that you keep your
 - If you are using self-hosted Octopus Server, we recommend using releases with LTS.
   - When we ship a patch, like `2018.10.1 LTS`, you should patch your Octopus Server - it will be less risk to upgrade than to leave your Octopus Server unpatched.
   - When we ship a new release with LTS, you can choose to stay on your current version as long as it is still covered by our LTS program, but we recommend keeping up with the current release where possible.
-- If you are using self-hosted Octopus Server, but decide to stay in the fast lane, we highly recommend staying current just like Octopus Cloud. This gives us the best opportunity to support you. We are looking at options to make upgrades easier than ever before - reach out to our support team for help with autmating your upgrades. If you don't want to stay current, in line with Octopus Cloud, perhaps the releases with LTS are a better option for your scenario.
+- If you are using self-hosted Octopus Server, but decide to stay in the fast lane, we highly recommend staying current just like Octopus Cloud. This gives us the best opportunity to support you. We are looking at options to make upgrades easier than ever before - reach out to our support team for help with automating your upgrades. If you don't want to stay current, in line with Octopus Cloud, perhaps the releases with LTS are a better option for your scenario.
 
 ## When you ship a patch like 2018.10.1 LTS should I install it?
 
@@ -72,7 +74,7 @@ You should choose the **fast lane releases** if this sounds like your scenario:
 
 ## Will you still support me even if I don't upgrade?
 
-Absolutely, yes! Staying current with Octopus Server releases is mutually beneficial, but we will support any Octopus customer to the best of our ability regardless of which release you are running. If we fix a bug on your behalf, you will need to upgrade to get the bug fix anyhow. Staying current is in everyone's best interests!
+Absolutely, yes! Staying current with Octopus Server releases is mutually beneficial, but we will support all Octopus customers to the best of our ability regardless of which release you are running. If we fix a bug on your behalf, you will need to upgrade to get the bug fix anyhow. Staying current is in everyone's best interests!
 
 ## Wrapping up
 
