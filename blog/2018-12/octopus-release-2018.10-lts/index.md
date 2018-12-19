@@ -1,5 +1,5 @@
 ---
-title: Introducing our first long-term support release 2018.10 LTS
+title: Introducing our first release with long-term support - Octopus Server 2018.10 LTS
 description: Octopus Server 2018.10 LTS is the first release with six months of long-term support. We recommend this release for most self-hosted customers.
 author: michael.noonan@octopus.com
 visibility: private
@@ -12,7 +12,7 @@ tags:
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)
 
-Octopus Server `2018.10 LTS` is the first release in our [long-term support program] (/blog/2018-09/long-term-support/index.md#fast-and-slow-lanes)(LTS). It comes with six months long-term support and we recommend this release for most self-hosted customers. Customers using Octopus Cloud are always in the fast lane where we take care of upgrades on your behalf, and you get early access to the latest features.
+Octopus Server `2018.10 LTS` is the first release in our [long-term support program](/blog/2018-09/long-term-support/index.md)(LTS). It comes with six months long-term support and we recommend this release for most self-hosted customers. Customers using Octopus Cloud are always in the [fast lane](/blog/2018-09/long-term-support/index.md#fast-and-slow-lanes) where we take care of upgrades on your behalf, and you get early access to the latest features.
 
 Learn more about our LTS program in our [previous blog post](/blog/2018-09/long-term-support/index.md). This post has a [Q&A section](/blog/2018-09/long-term-support/index.md#qa) to help you understand how our releases fit best into your organisation.
 
@@ -24,7 +24,7 @@ Octopus Server `2018.10 LTS` is essentially the same as `2018.9`. It comes with 
 
 ## When should I install 2018.10 LTS?
 
-There is no time like the present! You can upgrade to Octopus Server `2018.10 LTS` any time from now. We've had thousands of customers upgrade smoothly to `2018.9` and the upgrade to `2018.10 LTS` is cut from the same code. We are all taking some time off over the holiday season for a well deserved rest, hopefully just like you! That being said, we will have support staff working through the holidays in case you need our help!
+There is no time like the present! You can upgrade to Octopus Server `2018.10 LTS` any time from now. We've had thousands of customers upgrade smoothly to `2018.9` and the upgrade to `2018.10 LTS` is cut from the same code.
 
 ## Should I avoid upgrading and stay on my current release?
 
@@ -32,11 +32,11 @@ Please upgrade! Our preference, for your benefit and ours, is that you keep your
 
 - If you are using Octopus Cloud, we take care of updates on your behalf, you're always in the fast lane with early access to the newest features.
 - If you are using self-hosted Octopus Server, we recommend using releases with LTS.
-  - When we ship a patch you should patch your Octopus Server - it will be less risk to upgrade than to leave your Octopus Server unpatched.
+  - When we ship a patch, like `2018.10.1 LTS`, you should patch your Octopus Server - it will be less risk to upgrade than to leave your Octopus Server unpatched.
   - When we ship a new release with LTS, you can choose to stay on your current version as long as it is still covered by our LTS program, but we recommend keeping up with the current release where possible.
-- If you are using self-hosted Octopus Server, but decide to stay in the fast lane, we highly recommend staying current just like Octopus Cloud. This gives us the best opportunity to support you. If you don't want to stay current, like Octopus Cloud, perhaps the releases with LTS are a better option for your scenario.
+- If you are using self-hosted Octopus Server, but decide to stay in the fast lane, we highly recommend staying current just like Octopus Cloud. This gives us the best opportunity to support you. We are looking at options to make upgrades easier than ever before - reach out to our support team for help with autmating your upgrades. If you don't want to stay current, in line with Octopus Cloud, perhaps the releases with LTS are a better option for your scenario.
 
-## When you ship a patch should I install it?
+## When you ship a patch like 2018.10.1 LTS should I install it?
 
 Absolutely, yes! We will use this rule of thumb when deciding what to include in a patch for releases with LTS: **Installing a patch should be safer than not installing that patch.** We will include something in an LTS patch when, for example:
 
@@ -55,9 +55,11 @@ We will not:
 
 ## Should I stay in the fast lane instead of installing 2018.10 LTS and moving to the slow lane?
 
-This is a decision you will have to make based on your scenario. We generally recommend self-hosted customers choose releases with LTS.
+By introducing the LTS program we are giving you the power to choose between upgrading in the [fast lane or the slow lane](/blog/2018-09/long-term-support/index.md#fast-and-slow-lanes). This is a decision you will have to make based on your scenario. Learn about [switching lanes](/blog/2018-09/long-term-support/index.md#switching-lanes).
 
-Choose the **slow lane releases with LTS** if this sounds like your scenario:
+We generally recommend self-hosted customers choose releases with LTS, and by installing `2018.10 LTS` you are switching to the slow lane.
+
+You should choose the **slow lane releases with LTS** if this sounds like your scenario:
 
 - "We prefer stability over having the latest features."
 - "We upgrade Octopus about every three months."
