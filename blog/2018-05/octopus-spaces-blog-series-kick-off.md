@@ -41,4 +41,4 @@ There's some detailed posts coming so be sure to check out our blog.
 Blog series posts:
 
 * [Team Configuration Improvements](/blog/2018-05/team-configuration-improvements.md)
-* [Introduction to Spaces] (/blog/2018-12/spaces-introduction/index.md)
+* [Introduction to Spaces](/blog/2018-12/spaces-introduction/index.md)
