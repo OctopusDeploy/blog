@@ -28,6 +28,10 @@ Learn more about our LTS program in our [previous blog post](/blog/2018-09/long-
 
 Octopus Server `2018.10 LTS` is essentially the same as `2018.9`. It comes with [workers and worker pools](/blog/2018-07/octopus-release-2018.7.md), [Kubernetes support](/blog/2018-10/octopus-release-2018.9/index.md), and everything we've done up until today including a small mountain of performance and security work.
 
+## Breaking changes
+
+We are not introducing any breaking changes, however `2018.10 LTS` will be the last version of Octopus which supports upgrades from older versions of Octopus. Learn about [upgrading older versions of Octopus](https://octopus.com/docs/administration/upgrading).
+
 ## When should I install 2018.10 LTS?
 
 There is no time like the present! You can upgrade to Octopus Server `2018.10 LTS` now. We've had thousands of customers upgrade smoothly to `2018.9` and the upgrade to `2018.10 LTS` is cut from the same code.
