@@ -2,7 +2,7 @@
 title: Introducing our first release with long-term support - Octopus Server 2018.10 LTS
 description: Octopus Server 2018.10 LTS is the first release with six months of long-term support. We recommend this release for most self-hosted customers.
 author: michael.noonan@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
 published: 2018-12-19
@@ -12,11 +12,15 @@ tags:
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)
 
-Octopus Server `2018.10 LTS` is the first release in our [long-term support program](/blog/2018-09/long-term-support/index.md)(LTS). It comes with six months long-term support and we recommend this release for most self-hosted customers. Our LTS releases will be in the slow lane with a new LTS release every three months, all of which have six months support. We'll also continue to put out new releases roughly once a month, the releases between LTS releases will be our fast lane releases that include the latest features.
+Octopus Server `2018.10 LTS` is the first release in our [long-term support program](/blog/2018-09/long-term-support/index.md)(LTS). It comes with six months long-term support and we recommend this release for most self-hosted customers.
+
+You can [download Octopus Server 2018.10 LTS](https://octopus.com/downloads) now!
+
+Our LTS releases will be in the slow lane with a new LTS release every three months, all of which have six months support. We'll also continue to put out new releases roughly once a month, the releases between LTS releases will be our fast lane releases that include the latest features.
 
 Customers using Octopus Cloud are always in the [fast lane](/blog/2018-09/long-term-support/index.md#fast-and-slow-lanes) where we take care of upgrades on your behalf, and you get early access to the latest features.
 
-Learn more about our LTS program in our [previous blog post](/blog/2018-09/long-term-support/index.md). This post has a [Q&A section](/blog/2018-09/long-term-support/index.md#qa) to help you understand how our releases fit best into your organisation.
+Learn more about our LTS program in our [previous blog post](/blog/2018-09/long-term-support/index.md). This post has a [Q&A section](/blog/2018-09/long-term-support/index.md#qa) to help you understand how our releases fit best into your situation.
 
 !toc
 
@@ -27,6 +31,8 @@ Octopus Server `2018.10 LTS` is essentially the same as `2018.9`. It comes with 
 ## When should I install 2018.10 LTS?
 
 There is no time like the present! You can upgrade to Octopus Server `2018.10 LTS` now. We've had thousands of customers upgrade smoothly to `2018.9` and the upgrade to `2018.10 LTS` is cut from the same code.
+
+You can [download Octopus Server 2018.10 LTS](https://octopus.com/downloads) now!
 
 ## Should I avoid upgrading and stay on my current release?
 
