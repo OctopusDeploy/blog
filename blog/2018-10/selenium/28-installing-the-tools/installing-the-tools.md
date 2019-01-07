@@ -14,7 +14,7 @@ If there is one justified criticism of UI testing, it is that it is far slower t
 
 > One year ago, one of our UI test suites took hours to run. Last month, it took 16 minutes. Today, it takes 39 seconds.
 
-This is the introduction to a [blog post](https://aws.amazon.com/blogs/devops/ui-testing-at-scale-with-aws-lambda/) on Amazon talking about how a development team dropped their UI testing times from hours to seconds with Chrome headless and AWS Lambda. This reduction in testing time is exactly what we are looking for, and in this lecture we'll learn how to run our UI tests at massive scale using AWS Lambda.
+This is the introduction to a [blog post](https://aws.amazon.com/blogs/devops/ui-testing-at-scale-with-aws-lambda/) on Amazon talking about how a development team dropped their UI testing times from hours to seconds with Chrome headless and AWS Lambda. This reduction in testing time is exactly what we are looking for, and in this post we'll learn how to run our UI tests at massive scale using AWS Lambda.
 
 
 Lambda is a service provided by AWS that allows short lived applications to be run at near infinite scale. Lambda takes care of provisioning the operating system and deploying your code, and you only pay for the time that you application is actually running. But the best feature of Lambda is that all the scaling is taken care of for you. As you make more requests to applications hosted in Lambda, the platform will scale up automatically to ensure that performance is maintained. And if requests drop off, Lambda will scale back down. This scaling is automatic and transparent to our code.
@@ -134,4 +134,4 @@ aws_secret_access_key = 0qY/ESbl8xzKaDXOQixFz66Lv2KJFo1quYt6ftjF
 ```
 
 We now have the Serverless application installed and the AWS credentials configured, meaning that we are now ready to use the Serverless application to deploy our code to AWS. However, unlike running a standalone Java application as a Lambda function, which would work without much additional configuration, we have some additional steps that need to be completed to provide an environment where WebDriver
-tests can be run, which we will address in the next lecture.
+tests can be run, which we will address in the next post.

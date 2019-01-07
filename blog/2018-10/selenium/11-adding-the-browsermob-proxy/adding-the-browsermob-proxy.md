@@ -11,7 +11,7 @@ tags:
 
 In this post we will add support for the BrowserMob proxy, which is a free and open source Java proxy server. We will then use BrowserMob to save a report containing all the network requests made during a test, and intercept some of the network requests.
 
-To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file.
+To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -38,7 +38,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-An instance of the BrowserMob proxy will then be created and destroyed by a new decorator called `BrowserMobDecorator`.
+An instance of the BrowserMob proxy will then be created and destroyed by a new decorator called `BrowserMobDecorator`:
 
 ```java
 package com.octopus.decorators;
@@ -88,14 +88,14 @@ public class BrowserMobDecorator extends AutomatedBrowserBase {
 
 Let's break the code in this class down.
 
-Inside the `getDesiredCapabilities()` method, we create an instance of the `BrowserMobProxyServer` class, and call its `start()` method. By passing `0` to the `start()` method we are exposing the proxy on any available port.
+Inside the `getDesiredCapabilities()` method, we create an instance of the `BrowserMobProxyServer` class, and call its `start()` method. By passing `0` to the `start()` method we are exposing the proxy on any available port:
 
 ```java
 proxy = new BrowserMobProxyServer();
 proxy.start(0);
 ```
 
-WebDriver proxy configuration information is saved in an instance of the `Proxy` class.
+WebDriver proxy configuration information is saved in an instance of the `Proxy` class:
 
 ```java
 final Proxy seleniumProxy = new Proxy();
@@ -105,20 +105,20 @@ We then need to build a string that represents the network address of the proxy.
 
 The port that the proxy is exposed on can change each time the test is run because we called the `start()` method with `0`, indicating that the BrowserMob proxy should take one of the available ports. We can get the port that was taken by calling the `getPort()` method on the `proxy`.
 
-These two strings combine to create a string like `localhost:57470`.
+These two strings combine to create a string like `localhost:57470`:
 
 ```java
 final String proxyStr = "localhost:" + proxy.getPort();
 ```
 
-We then configure the `Proxy` object to direct HTTP and HTTPS traffic to the local proxy.
+We then configure the `Proxy` object to direct HTTP and HTTPS traffic to the local proxy:
 
 ```java
 seleniumProxy.setHttpProxy(proxyStr);
 seleniumProxy.setSslProxy(proxyStr);
 ```
 
-Next we get a copy of the `DesiredCapabilities` object. If you remember from the last post, this object is used to configure settings that can be applied to any browser launched by WebDriver.
+Next, we get a copy of the `DesiredCapabilities` object. If you remember from the last post, this object is used to configure settings that can be applied to any browser launched by WebDriver:
 
 ```java
 final DesiredCapabilities desiredCapabilities =
@@ -129,19 +129,19 @@ The `DesiredCapabilities` instance is then configured with the `Proxy` instance.
 
 In the previous posts we noted that the `DesiredCapabilities` class is essentially a key/value store. You can see this in practice now as we save the `Proxy` instance against the `CapabilityType.PROXY` value.
 
-`CapabilityType.PROXY` is a string constant set to `proxy`, and this value is recognized by all browsers as containing proxy configuration settings.
+`CapabilityType.PROXY` is a string constant set to `proxy`, and this value is recognized by all browsers as containing proxy configuration settings:
 
 ```java
 desiredCapabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
 ```
 
-The `DesiredCapabilities` instance is then returned so other decorators can add to it, or use it to build a browser driver.
+The `DesiredCapabilities` instance is then returned so other decorators can add to it, or use it to build a browser driver:
 
 ```java
 return desiredCapabilities;
 ```
 
-The `AutomatedBrowserFactory` class is updated to create new instances of the `BrowserMobDecorator` class.
+The `AutomatedBrowserFactory` class is updated to create new instances of the `BrowserMobDecorator` class:
 
 ```java
 private AutomatedBrowser getChromeBrowser(final boolean headless) {
@@ -181,9 +181,9 @@ private AutomatedBrowser getFirefoxBrowserNoImplicitWait() {
 }
 ```
 
-Now our `AutomatedBrowserFactory` is configuring browsers to pass traffic to our instance of the BrowserMob proxy. This won't change how the tests are run just yet; proxies are designed to be largely invisible to the end user, and so our tests will run like they did before. However we now have the means to monitor and intercept network requests if we wish to do so.
+Now our `AutomatedBrowserFactory` is configuring browsers to pass traffic to our instance of the BrowserMob proxy. This won't change how the tests are run just yet; proxies are designed to be largely invisible to the end user, and so our tests will run like they did before. However, we now have the means to monitor and intercept network requests if we wish to do so.
 
-We can confirm that the BrowserMob proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the `finally` block.
+We can confirm that the BrowserMob proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the `finally` block:
 
 ```java
 @Test

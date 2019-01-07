@@ -100,7 +100,7 @@ Running this test reveals that the test always takes over 20 seconds to complete
 
 ![](image2.png "width=500")
 
-Let's try a third scenario, where we use a explicit wait time of 2 seconds for the div element that is created after 5 seconds. If you recall from a previous lecture, the div with the id of `newdiv_element` is created and dynamically added to the page using a JavaScript function after 5 seconds.
+Let's try a third scenario, where we use a explicit wait time of 2 seconds for the div element that is created after 5 seconds. If you recall from a previous post, the div with the id of `newdiv_element` is created and dynamically added to the page using a JavaScript function after 5 seconds.
 
 You may add steps like these to a test to ensure that a web application performs actions within an acceptable amount of time, and doesn't leave the user waiting to continue their progress.
 

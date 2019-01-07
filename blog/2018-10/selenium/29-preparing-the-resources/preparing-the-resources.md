@@ -89,7 +89,7 @@ Then click the `Make public` button.
 
 ![C:\\fd218d4d8cdf2041c6064402cda7c80a](image13.png "width=500")
 
-To find the URL that can be used to download these files, click the file and look at the Link in the `Overview` tab. Make a note of these URLs as we will need them in later lectures to download the files and prepare the Lambda environment.
+To find the URL that can be used to download these files, click the file and look at the Link in the `Overview` tab. Make a note of these URLs as we will need them in later posts to download the files and prepare the Lambda environment.
 
 ![C:\\83190cfd50328b1ba7f94aaa4c7aea2e](image14.png "width=500")
 

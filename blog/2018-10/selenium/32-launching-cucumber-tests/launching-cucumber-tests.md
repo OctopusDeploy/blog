@@ -544,7 +544,7 @@ public class AutomatedBrowserFactory {
 
 To deploy the new Lambda function, run the `package` Maven lifecycle, and run `serverless deploy` to upload the code to AWS.
 
-We are now ready to test the Lambda function by passing in a Gherkin feature file. However, if you recall from the last lecture we said that every input to a Lambda function must be valid JSON. Our Gherkin feature files most definitely are not written in JSON, so we need some way to convert text into a JSON string.
+We are now ready to test the Lambda function by passing in a Gherkin feature file. However, if you recall from the last post we said that every input to a Lambda function must be valid JSON. Our Gherkin feature files most definitely are not written in JSON, so we need some way to convert text into a JSON string.
 
 The following web page provides a very simple form that takes raw text and converts it into a JSON string.
 
@@ -667,4 +667,4 @@ The Gherkin feature is run with out Lambda function, and the results are passed 
 
 We now have the ability to run Cucumber tests as a Lambda function inside a headless instance of Chrome, and because Lambda functions will scale up to accommodate an essentially infinite number of requests (your budget not withstanding) we now have a solution that will allows us to run an enormous number of tests in parallel.
 
-However, having to run tests via the Lambda web console is not ideal. It would be much more convenient if we could launch these tests directly with a HTTP request, which is what we'll implement in the next lecture.
+However, having to run tests via the Lambda web console is not ideal. It would be much more convenient if we could launch these tests directly with a HTTP request, which is what we'll implement in the next post.

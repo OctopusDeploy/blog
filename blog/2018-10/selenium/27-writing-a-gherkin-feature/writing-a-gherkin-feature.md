@@ -13,7 +13,7 @@ Now that we know how to construct regular expressions to map methods to Gherkin 
 
 Notice that we don't add annotations for all the methods. Methods like `getTextFromElementWithId()`, which return a value, are not able to be used in Gherkin steps because Gherkin has no notion of variables, so the return values don't have any meaning. We also don't expose methods like `init()` and `destroy()`, as these lifecycle methods are called by the `openBrowser()` and `closeBrowser()` methods. There are some internal only methods like `getWebDriver()`, `getAutomatedBrowser()`, `setAutomatedBrowser()` and `getDesiredCapabilities()` that are only used by the decorators, and do not make any sense to expose as Gherkin steps.
 
-The remaining steps have Cucumber annotations applied to them, assigning regular expressions that follow the same logic that we saw in the last lecture.
+The remaining steps have Cucumber annotations applied to them, assigning regular expressions that follow the same logic that we saw in the last post.
 
 ```java
 package com.octopus.decoratorbase;
@@ -383,7 +383,7 @@ Feature: Test TicketMonster
     Then I close the browser
 ```
 
-Now either run the `CucumberTest` test class from IntelliJ, or commit the code to GitHub and let Travis CI run the test for you. We have just successfully replicated the journey through the TicketMonster application that we wrote in Java in a previous lecture.
+Now either run the `CucumberTest` test class from IntelliJ, or commit the code to GitHub and let Travis CI run the test for you. We have just successfully replicated the journey through the TicketMonster application that we wrote in Java in a previous post.
 
 If you read this test out aloud it almost sounds like instructions you would give a colleague if you were instructing them to complete a ticket purchase. But the format is still a bit clunky. Most of the steps end with the phrase `waiting up to "30" seconds`, and some of the locators like `tickets-1` don't give a lot of context.
 
