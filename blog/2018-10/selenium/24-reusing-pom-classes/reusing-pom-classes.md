@@ -220,3 +220,5 @@ We then finish the test cleaning up resources in the `finally` block.
 The public API we have created with the POM classes `MainPage`, `EventsPage` and `VenuePage` made writing this test quick and easy. Most of the logic required to get the web application to the point of displaying the ticket prices was already implemented, leaving us with just a few new methods to add to the `CheckoutPage` class.
 
 This is the power of the POM design pattern. It encapsulates implementation details into Java objects, leaving tests free to describe what they are testing rather than how it is tested. And should TicketMonster be updated in future with new element IDs, name attributes or rearranged screens, we have one central and reused API where the updates can be made rather than multiple tests with copy and paste code.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

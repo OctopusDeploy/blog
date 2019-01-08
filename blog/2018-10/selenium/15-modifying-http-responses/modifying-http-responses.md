@@ -218,3 +218,5 @@ public void mockRequests2() throws URISyntaxException {
 ```
 
 Modifying the response from an external service is an effective way of ensuring the response has the expected values, providing your test with reliable inputs, or allowing the test to simulate conditions that would otherwise be difficult to recreate. By making these changes in the proxy before the responses are received by the browser, we can accurately test how a web application would respond to the same responses if they were returned by live services.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

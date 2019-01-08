@@ -274,3 +274,5 @@ When we analyze the new HAR file we can see that there are no longer any warning
 ![](image9.png "width=500")
 
 HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next post we'll see how BrowserMob can block or modify requests.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

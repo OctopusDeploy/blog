@@ -321,3 +321,5 @@ public void formTestByIDHeadlessFirefox() throws URISyntaxException {
 Running tests on specialized browsers like PhantomJS that don't quite behave like "real" browsers used to be a pain point for testers but was a necessary evil. By supporting headless browsing, browsers like Chrome and Firefox have paved the way for testers to utilize the same browsers used by end users in automated tests on headless servers. We'll take advantage of these headless browsers in later posts as we integrate with platforms like Travis CI and AWS Lambda.
 
 In addition, by exposing the ability to configure browsers via the `DesiredCapabilities` class we have provided a hook that we can take advantage of with new decorators to add functionality such as custom proxies, which is exactly what we'll be doing in the next post.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

@@ -8,7 +8,7 @@ metaImage: webdriver.png
 tags:
 - Java
 ---
- 
+
 When running code as an AWS Lambda we are responsible for configuring the environment every time the application is run. Although Lambda is often referred to as "serverless" computing (which inspired the name for the Serverless application we installed in the last post), there is still a server involved. The term serverless refers to the fact that the server does not need to be provided or managed by us as the end user, and for the most part we can run our code without worrying too much about the details of the server that will be hosting it.
 
 However running WebDriver tests against a headless Chrome browser does require us to configure the environment to ensure that the resources we need are available. Namely we need to have the Chrome browser and the binary driver available for WebDriver to use.
@@ -96,3 +96,5 @@ To find the URL that can be used to download these files, click the file and loo
 ![C:\\aca44dddfa627539c0a74daa0d71722c](image15.png "width=500")
 
 With both the custom Chrome distribution and the appropriate Chrome driver uploaded to S3, we can move on to creating a package that contains the Java code that will be executed as a Lambda function.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

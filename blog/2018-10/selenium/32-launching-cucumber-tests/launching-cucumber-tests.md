@@ -666,3 +666,5 @@ The Gherkin feature is run with out Lambda function, and the results are passed 
 We now have the ability to run Cucumber tests as a Lambda function inside a headless instance of Chrome, and because Lambda functions will scale up to accommodate an essentially infinite number of requests (your budget not withstanding) we now have a solution that will allows us to run an enormous number of tests in parallel.
 
 However, having to run tests via the Lambda web console is not ideal. It would be much more convenient if we could launch these tests directly with a HTTP request, which is what we'll implement in the next post.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

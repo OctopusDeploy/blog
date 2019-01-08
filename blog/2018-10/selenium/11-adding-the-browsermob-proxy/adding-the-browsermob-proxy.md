@@ -239,3 +239,5 @@ Here we can see the proxy settings that we defined in code. This is confirmation
 ![](image3.png "width=500")
 
 Configuring a proxy server gives us the ability to observe and interact with the network requests being made during a test in ways that are not possible using WebDriver alone. The next step is to expose the features of the BrowserMob proxy that are useful to us. But before we do that, we'll take a look at a common misconfiguration that can arise when configuring proxies, and learn how to debug the errors that are displayed.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

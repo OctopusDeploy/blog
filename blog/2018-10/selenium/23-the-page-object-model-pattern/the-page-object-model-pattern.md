@@ -11,7 +11,7 @@ tags:
 
 While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some limitations.
 
-The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like: 
+The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like:
 
 ```java
 automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
@@ -498,3 +498,5 @@ Once the test is completed we clean up the resources in the `finally` block.
 ```
 
 By using the POM design pattern we have made our test much more readable, and abstracted away many of the details required to interact with pages like URL or locators, allowing tests to be written against a descriptive and fluent API.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

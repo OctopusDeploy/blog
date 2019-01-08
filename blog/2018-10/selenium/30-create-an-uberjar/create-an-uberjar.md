@@ -90,3 +90,5 @@ This will create a new configuration called `webdrivertraining [package]`. Click
 ![C:\\1eaaa83ad11078700649ee9e0810bd14](image8.png "width=500")
 
 The resulting UberJAR file provides a convenient, self contained package that we can easily distribute and run, and is what we will be deploying as an AWS Lambda. In the next post we'll add the code required to run a WebDriver test in Lambda, and use the Serverless application to publish the UberJAR file.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

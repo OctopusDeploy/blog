@@ -212,3 +212,5 @@ steps. All the remaining methods will use regular expressions with the
 some combination of the capture groups, non-capture groups, character
 classes and special characters that we have demonstrated with the
 previous methods.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

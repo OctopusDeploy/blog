@@ -136,3 +136,5 @@ aws_secret_access_key = 0qY/ESbl8xzKaDXOQixFz66Lv2KJFo1quYt6ftjF
 
 We now have the Serverless application installed and the AWS credentials configured, meaning that we are now ready to use the Serverless application to deploy our code to AWS. However, unlike running a standalone Java application as a Lambda function, which would work without much additional configuration, we have some additional steps that need to be completed to provide an environment where WebDriver
 tests can be run, which we will address in the next post.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

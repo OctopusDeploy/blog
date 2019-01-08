@@ -195,3 +195,5 @@ This time we get the expected result of a test that throws a `TimeoutException`.
 What these tests show us is that implicit and explicit waits are not mutually exclusive. Even though they are defined independently, and have no obvious impact on each other, implicit wait times do impact explicit wait operations.
 
 Because explicit waits allow us to write more robust tests that enforce the state of an element within a time period, as well as providing an individual duration for each interaction to be completed in, it makes sense to use explicit waits for our tests. What we have seen here is that to take advantage of explicit waits, we also need to disable implicit waits.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

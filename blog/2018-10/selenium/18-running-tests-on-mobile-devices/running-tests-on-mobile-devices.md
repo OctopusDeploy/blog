@@ -161,3 +161,5 @@ When you run the unit test again, IntelliJ will create a new JUnit configuration
 Running the test again it will create a new BrowserStack session, which again can be viewed by clicking {{Products,Automate}} in BrowserStack. The test will be run on a Samsung mobile device.
 
 The ability to run our tests across a huge range of devices shows just how flexible WebDriver is. With a few simple decorators we can configure our tests to run on the hundreds of devices supported by BrowserStack. But there are still some edge cases that we'll need to be mindful of when writing tests that work across desktop and mobile browsers, and in the next post we'll see an example where we need to work around some of the differences between environments.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

@@ -103,3 +103,5 @@ The link to open this file is shown in the Overview tab, and in this case the UR
 ![](image24.png "width=500")
 
 By uploading the files to S3 and making them public, we have effectively used S3 as a web host. This gives us a public URL that we can load as part of our tests, and means that we can start writing tests on platforms that do not have access to the local HTML files in our Java project. We will take advantage of this web site hosting in the next post where we run tests on BrowserStack, which will allow us to run tests across multiple browsers and mobile devices.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

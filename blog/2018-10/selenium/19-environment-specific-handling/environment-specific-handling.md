@@ -253,3 +253,5 @@ public class BrowserStackAndroidDecorator extends AutomatedBrowserBase {
 Here we have added an implementation of the `maximizeWindow()` method that does nothing. We know that any time we use the `BrowserStackAndroidDecorator` class, we must be working with a mobile browser, and so we simply ignore any request to maximize the window.
 
 This solution means our test code does not need to change when run on a desktop browser or a mobile one. Those writing and maintaining the tests are no longer required to account for the kinds of device that will be running the final test, which makes the test much more robust and easier to maintain.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

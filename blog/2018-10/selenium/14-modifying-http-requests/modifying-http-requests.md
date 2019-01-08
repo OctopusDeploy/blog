@@ -164,3 +164,5 @@ Remember that by not calling the `destory()` method, we are now responsible for 
 ![C:\\491bba4f05d276005b967a923068965a](image5.png "width=500")
 
 Blocking network requests to things like images can speed up WebDriver tests, and is especially useful when running tests against headless browsers, because there is no one watching the tests being run so there is little benefit to downloading images that will never be seen.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

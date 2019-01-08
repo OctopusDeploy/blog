@@ -368,3 +368,5 @@ Sure enough, we can see some requests for images have a response code of `0`, me
 ![](image24.png "width=500")
 
 This test of TicketMonster represents a real world example of how you can write end to end tests using WebDriver. The library we have created makes it quite easy to interact with the web application; however, having a test that directly lists every click, select and populate operation is quite low level. In the next post, we'll look at a design pattern that abstracts away the interactions with a web application to produce more reusable and maintainable code.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

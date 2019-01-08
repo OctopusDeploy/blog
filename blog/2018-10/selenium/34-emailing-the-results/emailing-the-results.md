@@ -251,3 +251,5 @@ If you don't see the email, check your spam folder. Outlook 365 constantly ident
 ![C:\\64fd79671c78abdc3a4f8f36373ecef3](image8.png "width=500")
 
 We now have a complete solution for launching WebDriver tests in Lambda from a HTTP request, and receiving the results as an email. Whether we launch 1 test or 1000, the infrastructure we have deployed here will scale seamlessly and reliably to accommodate our requests. This is the power of using cloud services like AWS.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

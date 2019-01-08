@@ -231,3 +231,5 @@ And our test Lambda function has executed successfully by returning `true`.
 ![C:\\25e8e70a701bd868bc63f982e0521af0](image7.png "width=500")
 
 Although this Lambda function doesn't do anything useful, it does prove that we have written a valid Lambda function and that it can be deployed using the Serverless application. With this work done we can move onto writing a Lambda function that actually runs a WebDriver test, which we'll do in the next post.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

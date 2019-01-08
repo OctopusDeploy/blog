@@ -290,3 +290,5 @@ These can be ignored, as they don't affect the outcome of the tests.
 We have now successfully checked-in code to a central Git repository hosted in GitHub, and Travis CI has detected the new code and automatically built it and run all the tests. This is the central idea to continuous integration, and it means that every time new code is checked-in it is automatically validated by our tests.
 
 You can view the Travis CI build for the same project [here](https://travis-ci.org/OctopusDeploy/WebDriverTraining).
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

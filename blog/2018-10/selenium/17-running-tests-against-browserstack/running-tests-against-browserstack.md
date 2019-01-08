@@ -306,3 +306,5 @@ This time the test will run successfully. You can view the test running by loggi
 You typically get 100 free minutes with a trail BrowserStack account, but thanks to the partnership between BrowserStack and Microsoft, those minutes will not be consumed by tests run against Edge.
 
 Now that we have the ability to run tests against the Edge browser, it is quite trivial to start running tests against any other browser provided by BrowserStack. We'll see this in the next post when we run our tests against a mobile device provided as part of the BrowserStack service.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

@@ -508,3 +508,5 @@ public void formTestWithSimpleBy() throws URISyntaxException {
 ```
 
 In my own experience, these new methods we have added to the `AutomatedBrowser` interface are far more convenient than methods that are tied to a specific locator. They remove the need to manually keep locators and the methods they are passed to in sync, and the code is more readable too. For this reason future posts will uses these new methods almost exclusively.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

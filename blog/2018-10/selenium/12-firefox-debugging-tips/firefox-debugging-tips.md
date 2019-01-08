@@ -101,3 +101,5 @@ public DesiredCapabilities getDesiredCapabilities() {
 ```
 
 In practice there are bugs in WebDriver library that will still cause this code to fail. However, the important thing to take away from this post is that when you see Firefox stack traces with URLs that start with `chrome://marionette/`, you can access the source of those files by entering the URL into Firefox directly in order to debug the root cause.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

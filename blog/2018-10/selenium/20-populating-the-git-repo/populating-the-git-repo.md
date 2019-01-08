@@ -142,3 +142,5 @@ Returning back to the repository in GitHub, we can see that the files were pushe
 ![](image26.png "width=500")
 
 Using a source control repository is generally considered good practice, as it allows changes to be tracked and audited, giving you the ability to identify code that caused an issue and undo those changes if need be. Hosted git repositories like those provided by GitHub means that your code is also backed up in a second location, and can be shared with a team of developers who may all be working on the same project. And storing code in GitHub makes it easy to integrate with other services, which we'll see in the next post when we link GitHub and Travis CI to build our code and run our tests automatically with each check-in.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).
