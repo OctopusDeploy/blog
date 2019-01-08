@@ -11,7 +11,7 @@ tags:
 
 In our test web page we have a `setTimeout()` method call that created a new `<div>` with the ID of `newdiv_element` after 5 seconds. Such dynamic updates are common in modern web development, and are used extensively with Single Page Applications (SPAs) written with libraries like React and Angular.
 
-These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element.
+These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element:
 
 ```java
 package com.octopus;
@@ -48,7 +48,7 @@ locate element: {"method":"id","selector":"newdiv_element"}
 
 This exception is not surprising. Our test is attempting to click an element that won't be created for another 5 seconds.
 
-We could wait a few seconds ourselves in the test. By adding the code `Thread.sleep(6000);` before the attempt to click the element, we can ensure that the element is available.
+We could wait a few seconds ourselves in the test. By adding the code `Thread.sleep(6000);` before the attempt to click the element, we can ensure that the element is available:
 
 ```java
 package com.octopus;
@@ -84,7 +84,7 @@ Fortunately WebDriver provides two methods for waiting for dynamic elements to b
 
 Implicit waits are the simpler of the two. With implicit waits, we define a global amount of time to wait for elements that our test is interacting with to be present in the web page.
 
-We can implement implicit waits with a new decorator called `ImplicitWaitDecorator`, which will make a call to `manage().timeouts().implicitlyWait()`.
+We can implement implicit waits with a new decorator called `ImplicitWaitDecorator`, which will make a call to `manage().timeouts().implicitlyWait()`:
 
 ```java
 package com.octopus.decorators;
@@ -116,8 +116,7 @@ public class ImplicitWaitDecorator extends AutomatedBrowserBase {
 }
 ```
 
-We can then make use of this decorator by editing the
-`AutomatedBrowserFactory` class.
+We can then make use of this decorator by editing the `AutomatedBrowserFactory` class:
 
 ```java
 private AutomatedBrowser getChromeBrowser() {
@@ -129,19 +128,19 @@ private AutomatedBrowser getChromeBrowser() {
 }
 ```
 
-With the implicit wait time configured we can run the original test (i.e. the one without `Thread.sleep()`), and it will pass. This is because WebDriver will wait for up to 10 seconds for any element we search for to be present in the web page. This gives our dynamic element, created after 5 seconds, plenty of time to appear on the page.
+With the implicit wait time configured, we can run the original test (i.e. the one without `Thread.sleep()`), and it will pass. This is because WebDriver will wait for up to 10 seconds for any element we search for to be present in the web page. This gives our dynamic element, created after 5 seconds, plenty of time to appear on the page.
 
 ![](image2.png "width=500")
 
 Explicit waits are the second method provided by WebDriver to wait for elements to be available. Unlike implicit waits, which apply to any element we attempt to find in the page, explicit waits can be used on an element-by-element case.
 
-To make use of explicit waits, we add a new method to the `AutomatedBrowser` interface that takes the amount of time to wait for an element as a parameter.
+To make use of explicit waits, we add a new method to the `AutomatedBrowser` interface that takes the amount of time to wait for an element as a parameter:
 
 ```java
 void clickElementWithId(String id, int waitTime);
 ```
 
-A default method is added to the `AutomatedBrowserBase` class.
+A default method is added to the `AutomatedBrowserBase` class:
 
 ```java
 @Override
@@ -152,7 +151,7 @@ public void clickElementWithId(final String id, final int waitTime) {
 }
 ```
 
-And then the method is then defined in the `WebDriverDecorator` class.
+And then the method is then defined in the `WebDriverDecorator` class:
 
 ```java
 @Override
@@ -168,7 +167,7 @@ public void clickElementWithId(final String id, final int waitTime) {
 
 There are three parts an explicit wait.
 
-We start by defining the amount of time that we wish to wait for an element. This is done by creating an instance of the `WebDriverWait` class.
+We start by defining the amount of time that we wish to wait for an element. This is done by creating an instance of the `WebDriverWait` class:
 
 ```java
 final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
@@ -176,9 +175,9 @@ final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
 
 We then call the `until()` method on the resulting `WebDriverWait` instance.
 
-Finally we use one of the static methods on the `ExpectedCondition` class to indicate what state the element we are searching for must be in before the element is returned to us.
+Finally, we use one of the static methods on the `ExpectedCondition` class to indicate what state the element we are searching for must be in before the element is returned to us.
 
-Because we are attempting to click on the element, we want to ensure that the element is clickable. This is done by calling the `ExpectedConditions.elementToBeClickable()` method.
+Because we are attempting to click on the element, we want to ensure that the element is clickable. This is done by calling the `ExpectedConditions.elementToBeClickable()` method:
 
 ```java
 wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).click();
@@ -186,7 +185,7 @@ wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).click();
 
 The end result of this code is that the element we are finding by an ID will only be clicked if it is in a clickable state within the duration specified.
 
-To test the explicit wait we create a new test that makes use of the new `clickElementWithId()` method.
+To test the explicit wait we create a new test that makes use of the new `clickElementWithId()` method:
 
 ```java
 @Test
@@ -209,11 +208,11 @@ As before, the test will wait for the dynamic element to be created before click
 
 But you may be asking why anyone would bother using explicit waits? They require more code to implement, so what is the benefit of explicit waits over implicit waits?
 
-To demonstrate why explicit waits are useful, let's attempt to click on the div with the id of `div3_element`. If you look back at the source code for the sample web page, you will see that this element is hidden with `style="display: none"`, and is un-hidden from the call to `setTimeout()`.
+To demonstrate why explicit waits are useful, let's attempt to click on the div with the ID of `div3_element`. If you look back at the source code for the sample web page, you will see that this element is hidden with `style="display: none"`, and is un-hidden from the call to `setTimeout()`.
 
 Although there is little difference to someone viewing the page between a hidden element and an element that simply does not exist, this distinction is very important to our tests.
 
-Let's create a test that relies on an implicit wait to click the hidden element.
+Let's create a test that relies on an implicit wait to click the hidden element:
 
 ```java
 @Test
@@ -242,7 +241,7 @@ org.openqa.selenium.ElementNotVisibleException: element not visible
 
 We get this exception because the implicit wait immediately returned the `<div>` since it was present on the web page. Implicit waits don't take into account if the element is disabled or hidden. If the element is available on the page, the implicit wait is satisfied, and the test continues. Or, in our case, fails, because you can not click on an invisible element.
 
-Compare this behaviour to a test that make use of explicit waits.
+Compare this behavior to a test that make use of explicit waits:
 
 ```java
 @Test
@@ -268,7 +267,7 @@ In practice explicit waits allow us to write much more robust tests. There is so
 
 Let's take a look at how the methods in `WebDriverDecorator` can be overloaded to take advantage of explicit waits.
 
-Selecting an option from a drop down list waits for the `<select>` element to be clickable.
+Selecting an option from a drop down list waits for the `<select>` element to be clickable:
 
 ```java
 @Override
@@ -282,7 +281,7 @@ public void selectOptionByTextFromSelectWithId(final String optionText, final St
 }
 ```
 
-Likewise we wait for elements like `<textarea>` to be clickable before trying to populate them.
+Likewise we wait for elements like `<textarea>` to be clickable before trying to populate them:
 
 ```java
 @Override
@@ -296,7 +295,7 @@ public void populateElementWithId(final String id, final String text, final int 
 }
 ```
 
-When returning the text from an element, it only needs to be present on the page, so we call `ExpectedConditions.presenceOfElementLocated()`.
+When returning the text from an element, it only needs to be present on the page, so we call `ExpectedConditions.presenceOfElementLocated()`:
 
 ```java
 @Override
@@ -314,7 +313,7 @@ public String getTextFromElementWithId(final String id, final int waitTime) {
 
 This same pattern is repeated with the methods that find elements using XPaths and CSS Selectors. We won't go over all these methods individually, but you can see them in the copy of the populated classes and interfaces below.
 
-Here is the `AutomatedBrowser` interface with all the methods defined for explicit waits.
+Here is the `AutomatedBrowser` interface with all the methods defined for explicit waits:
 
 ```java
 package com.octopus;
@@ -383,7 +382,7 @@ public interface AutomatedBrowser {
 }
 ```
 
-Here is the `AutomatedBrowserBase` class with default implementations for the new methods.
+Here is the `AutomatedBrowserBase` class with default implementations for the new methods:
 
 ```java
 package com.octopus.decoratorbase;
@@ -622,7 +621,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 }
 ```
 
-And here is the `WebDriverDecorator` class with explicit wait implementations for XPath and CSS Selector methods.
+And here is the `WebDriverDecorator` class with explicit wait implementations for XPath and CSS Selector methods:
 
 ```java
 package com.octopus.decorators;

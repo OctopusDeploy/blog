@@ -13,16 +13,15 @@ Now that we have the Maven project configured and imported in IntelliJ, we can s
 
 The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure.
 
-To create the new directory, right click on the top level project folder, select `New` → `Directory`.
+To create the new directory, right click on the top level project folder, select {{New,Directory}}.
 
 ![](image1.png "width=500")
 
-Enter `src/test/java/com/octopus` as the directory name and
-click the `OK` button.
+Enter `src/test/java/com/octopus` as the directory name and click the `OK` button.
 
 ![](image2.png "width=500")
 
-The new directory structure will be created. However IntelliJ does not yet recognize the new directories as locations where Java source files will be found. To refresh the IntelliJ project, which will result in these new directories being identified, click the `Reimport All Maven
+The new directory structure will be created. However, IntelliJ does not yet recognize the new directories as locations where Java source files will be found. To refresh the IntelliJ project, which will result in these new directories being identified, click the `Reimport All Maven
 Projects` button in the `Maven Projects` tool window.
 
 ![](image3.png "width=500")
@@ -31,8 +30,7 @@ Notice now that the `java` folder has a green icon. This is an indication that I
 
 ![](image4.png "width=500")
 
-Inside `octopus` directory we will create a class called
-`InitialTest`. To do this right click on the `octopus` directory and select `New` → `Java Class`.
+Inside the `octopus` directory we will create a class called `InitialTest`. To do this, right click on the `octopus` directory and select {{New,Java Class}}.
 
 ![](image5.png "width=500")
 
@@ -61,19 +59,19 @@ public class InitialTest {
 
 Let's break this code down.
 
-The first step is to get an instance of the driver class that matches the browser that will be under our control. In this case the browser that we wish to control is Google Chrome, whose corresponding driver class is `ChromeDriver`. This class comes from the `org.seleniumhq.selenium:selenium-java` dependency we added in the last post.
+The first step is to get an instance of the driver class that matches the browser that will be under our control. In this case the browser that we wish to control is Google Chrome, whose corresponding driver class is `ChromeDriver`. This class comes from the `org.seleniumhq.selenium:selenium-java` dependency we added in the last post:
 
 ```java
 final ChromeDriver chromeDriver = new ChromeDriver();
 ```
 
-Next we use the `get()` method to open up a URL. This is equivalent to entering the URL into the address bar and hitting the enter key.
+Next we use the `get()` method to open up a URL. This is equivalent to entering the URL into the address bar and hitting the enter key:
 
 ```java
 chromeDriver.get("https://octopus.com/");
 ```
 
-Finally we call the `quit()` method to close the browser and shutdown the driver.
+Finally we call the `quit()` method to close the browser and shutdown the driver:
 
 ```java
 chromeDriver.quit();
@@ -83,7 +81,7 @@ To run the test in IntelliJ, click the green icon next to the `openURL` method a
 
 ![](image7.png "width=500")
 
-Running this test then gives us the following error:
+Running this test gives us the following error:
 
 ```
 java.lang.IllegalStateException: The path to the driver executable must be set by the webdriver.chrome.driver system property; for more information, see
@@ -97,7 +95,7 @@ The `IllegalStateException` exception was thrown when we attempted to run the te
 
 Opening this link reveals a number of directories that correspond to the version of the driver executable. You will almost always want to get the latest version, although the sorting applied to the list does not make the latest version apparent.
 
-In the screenshot below you can see that the directories are sorted using a string comparison, which results in version 2.4 appearing after version 2.37. However from this list (and these versions will have changed by the time you read this) you actually want to download version 2.37, because this is the latest version available.
+In the screenshot below you can see that the directories are sorted using a string comparison, which results in version 2.4 appearing after version 2.37. However, from this list (and these versions will have changed by the time you read this) you actually want to download version 2.37 because this is the latest version available.
 
 ![](image9.png "width=500")
 
@@ -114,7 +112,7 @@ Inside these zip files is the driver executable. For Linux and Mac users, the ex
 
 The exception message tells us that we need to set the `webdriver.chrome.driver` system property to the location of the executable we extracted from the zip file.
 
-This is done by configuring the `maven-surefire-plugin` in the `pom.xml` file. Below is a snippet showing the new plugin configuration.
+This is done by configuring the `maven-surefire-plugin` in the `pom.xml` file. Below is a snippet showing the new plugin configuration:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -152,14 +150,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-In this example I have extracted the driver executable to
-`/Users/Shared/tools/chromedriver`.
+In this example I have extracted the driver executable to `/Users/Shared/tools/chromedriver`.
 
 The alternative to defining the `webdriver.chrome.driver` system property is to place the driver executable in a directory found in the `PATH` environment variable. When the driver executable is found on the `PATH`, you do not need to configure the `<systemPropertyVariables>` element as we did above, as the file can be automatically found.
 
 On a MacOS system, you can add new directories to the `PATH` environment variable by adding the directory to the file `/etc/paths`.
 
-In the example below you can see from the output of the `cat` command (which prints the contents of a file to the screen) that the directory `/Users/Shared/tools` has been added to the `/etc/paths` file.
+In the example below, you can see from the output of the `cat` command (which prints the contents of a file to the screen) that the directory `/Users/Shared/tools` has been added to the `/etc/paths` file:
 
 ```
 $ cat /etc/paths
@@ -172,7 +169,7 @@ $ cat /etc/paths
 /Users/Shared/tools
 ```
 
-You many need to log out and back in again for this change to take effect, and once it has you can confirm that the new directory is in the `PATH` environment variable by running `echo $PATH`.
+You many need to log out and back in again for this change to take effect, and once it has you can confirm that the new directory is in the `PATH` environment variable by running `echo $PATH`:
 
 ```
 $ echo $PATH
@@ -188,8 +185,7 @@ To add the `/opt/tools` directory to the `PATH`, add it to the `PATH` variable i
 
 ![](image13.png "width=500")
 
-In Windows you may want to save the driver to a path like
-`C:\tools\chromedriver.exe`. To add this directory to the `PATH`, we need to edit the system properties.
+In Windows you may want to save the driver to a path like `C:\tools\chromedriver.exe`. To add this directory to the `PATH`, we need to edit the system properties.
 
 To see the system properties, click the Windows Key + R to open the `Run` dialog, and enter `control sysdm.cpl,,3` as the command to run. Click the `OK` button.
 
@@ -211,9 +207,9 @@ Add `C:\tools` to the list. Then click the `OK` button on all the open dialogs t
 
 ![](image18.png "width=500")
 
-Given the option adding the driver executable to the path or setting the `webdriver.chrome.driver` system property, I usually prefer to extract the driver executables into a directory in the `PATH` environment variable. Having the driver executables for each browser saved in a common location will make it easier to switch between browsers without having to remember the specific system property to define for each, or juggle different file names depending on the operating system the test is running on.
+Given the option of adding the driver executable to the path or setting the `webdriver.chrome.driver` system property, I usually prefer to extract the driver executables into a directory in the `PATH` environment variable. Having the driver executables for each browser saved in a common location will make it easier to switch between browsers without having to remember the specific system property to define for each, or juggle different file names depending on the operating system the test is running on.
 
-So at this point we can now run the test without error. You will notice the Chrome browser launch, open up [https://octopus.com/](https://octopus.com/), and close again. We have now successfully run our first WebDriver test.
+So at this point, we can run the test without error. You will notice the Chrome browser launch, open up [https://octopus.com/](https://octopus.com/), and close again. We have now successfully run our first WebDriver test.
 
 ![](image19.png "width=500")
 
@@ -223,7 +219,7 @@ Sometimes it is useful to leave the browser open after a test has run. Especiall
 
 Leaving the browser open is as simple as not calling the `quit()` method on the driver object. Since it is the call to the `quit()` method that closes the browser and shuts down the driver, not making this call will leave the browser open after the test has finished.
 
-In the code below I have commented out the call to `chromeDriver.quit()`, and so when this test is run the Chrome browser it launches will remain open on the screen.
+In the code below I have commented out the call to `chromeDriver.quit()`, and so when this test is run the Chrome browser it launches will remain open on the screen:
 
 ```java
 package com.octopus;
@@ -244,9 +240,9 @@ public class InitialTest {
 
 A word of warning though. Not calling the `quit()` method will leave running instances of the driver executable, and it is up to you to manually end these processes.
 
-In the screenshot below you can see a number of `chromedriver` instances that have been left running because the driver's `quit()` method was not called. These instance have to be manually stopped, otherwise they will continue to accumulate with each test run, with each instancing consuming additional system memory.
+In the screenshot below you can see a number of `chromedriver` instances that have been left running because the driver's `quit()` method was not called. These instance have to be manually stopped, otherwise they will continue to accumulate with each test you run, with each instance consuming additional system memory.
 
-This screenshot shows the MacOS Activity Monitor, and in it we can see instances of `chromedriver` have been left running after the test has completed. These will need to be manually closed to reclaim the
+This screenshot shows the MacOS Activity Monitor, and in it we see instances of `chromedriver` have been left running after the test has completed. These will need to be manually closed to reclaim the
 resources that they consume.
 
 ![](image20.png "width=500")
@@ -271,7 +267,7 @@ The executable name for MacOS and Linux is `geckodriver`, and for Windows it is 
 
 Finally an instance of the `FirefoxDriver` class is created. This class has the same `get()` method as the `ChromeDriver` class, because they both inherit from `RemoteWebDriver`.
 
-You can see the `FirefoxDriver` class being created in the new `openURLFirefox()` method shown below.
+You can see the `FirefoxDriver` class being created in the new `openURLFirefox()` method shown below:
 
 ```java
 package com.octopus;

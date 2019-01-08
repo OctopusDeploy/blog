@@ -18,7 +18,7 @@ First we need to build the desired capabilities object to instruct BrowserStack 
 
 ![C:\2713f257ba961d58a8316e44e3691666](image1.png "width=500")
 
-We then take these settings and use them to build a new decorator class called `BrowserStackAndroidDecorator`.
+We then take these settings and use them to build a new decorator class called `BrowserStackAndroidDecorator`:
 
 ```java
 package com.octopus.decorators;
@@ -49,7 +49,7 @@ public class BrowserStackAndroidDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Then we make use of this class in our `AutomatedBrowserFactory`.
+Then we make use of this class in our `AutomatedBrowserFactory`:
 
 ```java
 package com.octopus;
@@ -96,7 +96,7 @@ public class AutomatedBrowserFactory {
 }
 ```
 
-We can then make use of this new `AutomatedBrowser` instance in our tests.
+We can then make use of this new `AutomatedBrowser` instance in our tests:
 
 ```java
 @Test
@@ -138,15 +138,13 @@ public void browserStackAndroidTest() {
 }
 ```
 
-If we run this test, an exception may once again be generated about invalid credentials. If you recall we previously defined the BrowserStack credentials as environment variables, but we did so against a single test only. It can get tedious adding these variables to each
-new test configuration, so to add these environment variables to all tests, we need to configure the default settings for all JUnit tests run by IntelliJ.
+If we run this test, an exception may once again be generated about invalid credentials. If you recall we previously defined the BrowserStack credentials as environment variables, but we did so against a single test only. It can get tedious adding these variables to each new test configuration, so to add these environment variables to all tests, we need to configure the default settings for all JUnit tests run by IntelliJ.
 
 Click the drop down list of configurations, and select `Edit Configurations...`
 
 ![C:\164b6a7a999aea368f833df845efd42f](image2.png "width=500")
 
-This time instead of adding the environment variables to the
-configuration of an individual test, we add them as the defaults of any JUnit configuration.
+This time instead of adding the environment variables to the configuration of an individual test, we add them as the defaults of any JUnit configuration.
 
 Expand the `Defaults` menu on the left hand side, select the `JUnit` option, and add `BROWSERSTACK_USERNAME` and `BROWSERSTACK_KEY` to the `Environment variables`.
 
@@ -160,6 +158,6 @@ When you run the unit test again, IntelliJ will create a new JUnit configuration
 
 ![](image5.png "width=500")
 
-Running the test again it will create a new BrowserStack session, which again can be viewed by clicking `Products` → `Automate` in BrowserStack. The test will be run on a Samsung mobile device.
+Running the test again it will create a new BrowserStack session, which again can be viewed by clicking {{Products,Automate}} in BrowserStack. The test will be run on a Samsung mobile device.
 
-The ability to run our tests across a huge range of devices shows just how flexible WebDriver is. With a few simple decorators we can configure our tests to run on the hundreds of devices supported by BrowserStack. But there are still some edge cases that we'll need to be mindful of when writing tests that work across desktop and mobile browsers, and in the next post we'll see and example where we need to work around some of the differences between environments.
+The ability to run our tests across a huge range of devices shows just how flexible WebDriver is. With a few simple decorators we can configure our tests to run on the hundreds of devices supported by BrowserStack. But there are still some edge cases that we'll need to be mindful of when writing tests that work across desktop and mobile browsers, and in the next post we'll see an example where we need to work around some of the differences between environments.

@@ -13,7 +13,7 @@ We now have the ability to run Gherkin features with an AWS Lambda function. But
 
 To allow tests to be executed without using the AWS Lambda console, we will configure a HTTP event in our Serverless configuration file. This event allows us to execute the Lambda function from a HTTP POST request, which in turn allows us to trigger tests using any standard HTTP tools or libraries.
 
-To configure the HTTP event we update the `serverless.yml` file.
+To configure the HTTP event we update the `serverless.yml` file:
 
 ```yaml
 service:
@@ -79,10 +79,10 @@ The purpose of this template is the same as the web page we wrote to convert pla
 
 | Pattern |	Meaning |
 |-|-|
-| " |	Print a literal double quote |
-| $util.escapeJavaScript($input.body) |	Take the raw text from the request held in `$input.body` (i.e. the text that was sent as the HTTP POST body), and pass to the `$util.escapeJavaScript()` function. |
-| .replaceAll("\'","'") |	The `escapeJavaScript()` function will escape single quotes, which is not valid JSON. So replace all escaped quotes with single quotes. |
-| " |	Print a literal double quote |
+| `"` |	Print a literal double quote |
+| `$util.escapeJavaScript($input.body)` |	Take the raw text from the request held in `$input.body` (i.e. the text that was sent as the HTTP POST body), and pass to the `$util.escapeJavaScript()` function. |
+| `.replaceAll("\'","'")` |	The `escapeJavaScript()` function will escape single quotes, which is not valid JSON. So replace all escaped quotes with single quotes. |
+| `"` |	Print a literal double quote |
 
 As a response, we would like to pass back the JSON returned by the Lambda function. We identify that the response returns JSON by setting the `Content-Type` header to the MIME type `application/json`.
 

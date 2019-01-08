@@ -27,7 +27,7 @@ An UberJAR is JAR file that includes all the classes required to run the applica
 
 To configure the Shade plugin, we need to add its configuration under the `<build><plugins>` element.
 
-This configuration specifies that the shade goal of the plugin should be run during the package phase. This means that when we package our code with Maven, the Shade plugin will be run automatically to generate the UberJAR.
+This configuration specifies that the shade goal of the plugin should be run during the package phase. This means that when we package our code with Maven, the Shade plugin will be run automatically to generate the UberJAR:
 
 ```xml
 <project xmlns=\"http://maven.apache.org/POM/4.0.0\"
@@ -89,4 +89,4 @@ This will create a new configuration called `webdrivertraining [package]`. Click
 
 ![C:\\1eaaa83ad11078700649ee9e0810bd14](image8.png "width=500")
 
-The resulting UberJAR file provides a convenient, self contained package that we can easily distribute and run, and is what we will be deploying as an AWS Lambda. In the next lecture we'll add the code required to run a WebDriver test in Lambda, and use the Serverless application to publish the UberJAR file.
+The resulting UberJAR file provides a convenient, self contained package that we can easily distribute and run, and is what we will be deploying as an AWS Lambda. In the next post we'll add the code required to run a WebDriver test in Lambda, and use the Serverless application to publish the UberJAR file.

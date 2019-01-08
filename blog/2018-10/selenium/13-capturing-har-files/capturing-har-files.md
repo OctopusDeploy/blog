@@ -17,13 +17,13 @@ You can generate a HAR file by opening the Chrome developer tools, clicking the 
 
 This will generate a HAR file that contains the details of all the network calls captured by the developer tools.
 
-Because HAR files have an open format, there are a number of tools online that you can use to inspect their contents. One such tool is the [HAR Analyser](https://toolbox.googleapps.com/apps/har_analyzer/). This tool allows you to upload a HAR file and then filter by HTTP response code, inspect the content associated with a request, and view the timing of each network call. This kind of information is invaluable when debugging an error with a web application, or to understand how well the site is responding.
+Because HAR files have an open format, there are a number of tools online that you can use to inspect their contents. One such tool is the [HAR Analyser](https://toolbox.googleapps.com/apps/har_analyzer/). This tool lets you upload a HAR file and then filter by HTTP response code, inspect the content associated with a request, and view the timing of each network call. This kind of information is invaluable when debugging an error with a web application, or to understand how well the site is responding.
 
 ![](image2.png "width=500")
 
-One of the useful features in BrowserMob is the ability to generate HAR files based on the network requests that pass through it.
+One useful feature in BrowserMob is the ability to generate HAR files based on the network requests that pass through it.
 
-To allow tests to capture HAR files, we will add two methods to the `AutomatedBrowser` interface.
+To allow tests to capture HAR files, we will add two methods to the `AutomatedBrowser` interface:
 
 ```java
 void captureHarFile();
@@ -33,7 +33,7 @@ void saveHarFile(String file);
 
 The `captureHarFile()` method is used to instruct BrowserMob to begin capturing network traffic, while the `saveHarFile()` method will take any captured traffic and save it to the specified file.
 
-Default methods are then added to `AutomatedBrowserBase`.
+Default methods are then added to `AutomatedBrowserBase`:
 
 ```java
 @Override
@@ -53,7 +53,7 @@ public void saveHarFile(final String file) {
 
 And the methods are implemented in the `BrowserMobDecorator` class.
 
-To start capturing network traffic, we make a call to `newHar()` on the BrowserMob proxy object.
+To start capturing network traffic, we make a call to `newHar()` on the BrowserMob proxy object:
 
 ```java
 @Override
@@ -62,7 +62,7 @@ public void captureHarFile() {
 }
 ```
 
-To save the captured traffic by calling `getHar().writeTo()`.
+To save the captured traffic by calling `getHar().writeTo()`:
 
 ```java
 @Override
@@ -75,9 +75,9 @@ public void saveHarFile(final String file) {
 }
 ```
 
-The checked exception `IOException` is caught and rethrown as the unchecked exception `SaveException`. This allows us to match the interface method signature, which does not specify any checked exceptions.
+The checked exception `IOException` is caught and re-thrown as the unchecked exception `SaveException`. This allows us to match the interface method signature, which does not specify any checked exceptions.
 
-Here is the code for `SaveException`. It extends the `RuntimeException` class, meaning it is an unchecked exception.
+Here is the code for `SaveException`. It extends the `RuntimeException` class, meaning it is an unchecked exception:
 
 ```java
 package com.octopus.exceptions;
@@ -102,7 +102,7 @@ public class SaveException extends RuntimeException {
 }
 ```
 
-Now all that is left is to use these methods as part of a test.
+Now all that is left is to use these methods as part of a test:
 
 ```java
 @Test
@@ -124,9 +124,9 @@ final AutomatedBrowser automatedBrowser =
 }
 ```
 
-Here we have made a call to `automatedBrowser.captureHarFile()` before we open the web page. This ensures that we are capturing all network traffic as part of this test.
+Here we made a call to `automatedBrowser.captureHarFile()` before we opened the web page. This ensures that we capture all network traffic as part of this test.
 
-In the `finally` block we then nest an additional `try`/`finally` block. Inside the nested `try` block we call `automatedBrowser.saveHarFile("test.har")`, which will write any captured traffic to the file `test.har`. This call is made in the `finally` block because we want to save this network traffic even if the test fails. The HAR file will often contain information that can be used to debug a failed test, so we want to make sure we save this file regardless of an errors during the tests.
+In the `finally` block we nest an additional `try`/`finally` block. Inside the nested `try` block we call `automatedBrowser.saveHarFile("test.har")`, which will write any captured traffic to the file `test.har`. This call is made in the `finally` block because we want to save this network traffic even if the test fails. The HAR file will often contain information that can be used to debug a failed test, so we want to make sure we save this file regardless of an errors during the tests.
 
 Inside the nested `finally` block we then call `automatedBrowser.destroy()`. Because the call to `destroy()` frees resources, we need to ensure that it runs if the test fails and if the attempt to save the HAR file fails. Nesting `try`/`finally` blocks in this way guarantees that the `destroy()` method is called regardless of any other failure.
 
@@ -174,7 +174,7 @@ The table then shows 7 columns.
 |Timing|	Displays a graph showing the events that made up the request and how long they took.|
 
 
-The timings of the responses are shown in a graph in the final column. Hovering the cursor over each of the colored columns shows what kind of even was taking place, and how long it took.
+The timings of the responses are shown in a graph in the final column. Hovering the cursor over each of the colored columns shows what kind of event was taking place, and how long it took.
 
 If the `Relative` timing type is selected, the graph represents the total time taken by all requests, with the colored columns showing how much time the individual request took relative to the total.
 
@@ -186,13 +186,13 @@ Clicking any of the rows shows more details about the request on the right hand 
 
 ![](image8.png "width=500")
 
-You'll notice that when a request is selected, a lot of the data is missing. This is because by default BrowserMob only captures a small subset of the data that can be saved in a HAR file. To capture all the information available, we create a new method called `captureCompleteHarFile()` in the `AutomatedBrowser` interface.
+You'll notice that when a request is selected, a lot of the data is missing. This is because by default BrowserMob only captures a small subset of the data that can be saved in a HAR file. To capture all the available information, we create a new method called `captureCompleteHarFile()` in the `AutomatedBrowser` interface:
 
 ```java
 void captureCompleteHarFile();
 ```
 
-We add the default implementation to the `AutomatedBrowserBase` class.
+We add the default implementation to the `AutomatedBrowserBase` class:
 
 ```java
 @Override
@@ -203,7 +203,7 @@ public void captureCompleteHarFile() {
 }
 ```
 
-Then we implement the method in the `BrowserMobDecorator` class.
+Then we implement the method in the `BrowserMobDecorator` class:
 
 ```java
 @Override
@@ -217,34 +217,34 @@ public void captureCompleteHarFile() {
 }
 ```
 
-The change here is to instruct BrowserMob to capture certain additional pieces of data that was sent and received. BrowserMob exposes an enum called `CaptureType` that defines all the kinds of details that can be saved in a HAR file. In addition, the `CaptureType` enum has some static methods that provide convenient groups of enums that represent collections of related kinds of details.
+The change here is to instruct BrowserMob to capture certain additional pieces of data that were sent and received. BrowserMob exposes an enum called `CaptureType` that defines all the kinds of details that can be saved in a HAR file. In addition, the `CaptureType` enum has some static methods that provide convenient groups of enums that represent collections of related kinds of details.
 
-We start with the predefined group of `CaptureType` enums that represent the content.
+We start with the predefined group of `CaptureType` enums that represent the content:
 
 ```java
 final EnumSet<CaptureType> captureTypes =
   CaptureType.getAllContentCaptureTypes();
 ```
 
-Then we add to that the predefined group of `CaptureType` enums that represent the headers.
+Then we add to that the predefined group of `CaptureType` enums that represent the headers:
 
 ```java
 captureTypes.addAll(CaptureType.getHeaderCaptureTypes());
 ```
 
-Finally we add the predefined group of `CaptureType` enums that represent the cookies.
+Finally we add the predefined group of `CaptureType` enums that represent the cookies:
 
 ```java
 captureTypes.addAll(CaptureType.getCookieCaptureTypes());
 ```
 
-These `CaptureType` enums are then passed to the `setHarCaptureTypes()` method to configure BrowserMob to save all these details into the resulting HAR file.
+These `CaptureType` enums are then passed to the `setHarCaptureTypes()` method to configure BrowserMob to save all these details into the resulting HAR file:
 
 ```java
 proxy.setHarCaptureTypes(captureTypes);
 ```
 
-Update the test to call the `captureCompleteHarFile()` method, and run it again.
+Update the test to call the `captureCompleteHarFile()` method, and run it again:
 
 ```java
 @Test
@@ -273,4 +273,4 @@ When we analyze the new HAR file we can see that there are no longer any warning
 
 ![](image9.png "width=500")
 
-HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next lecture we'll see how BrowserMob can block or modify requests.
+HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next post we'll see how BrowserMob can block or modify requests.

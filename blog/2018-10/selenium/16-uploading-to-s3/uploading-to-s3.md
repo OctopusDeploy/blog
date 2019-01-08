@@ -9,21 +9,21 @@ tags:
 - Java
 ---
 
-We have gotten by this far testing web pages loaded from the local disk, and with a few simple tests to public web sites. However as we start looking at the advanced features of WebDriver, we need the ability to host real public web sites that we can interact with.
+We have gotten by this far testing web pages loaded from the local disk, and with a few simple tests to public web sites. However, as we start looking at the advanced features of WebDriver, we need the ability to host real public web sites that we can interact with.
 
 There are a million ways to host a web site, but given that we'll be using Amazon Web Services (AWS) in later posts, hosting a web site using the S3 service is a logical choice for us.
 
 For those not familiar with it, AWS is a collection of services and platforms provided by Amazon that allow you to do things like create hosted virtual machines (via the EC2 service), create hosted database servers (via the RDS service), store files (via the S3 service), run functions (via the Lambda service) and much, much more. AWS has over 100 different services to take advantage of, although we will only be using a small number as part of this blog series.
 
-One of the nice things about AWS is that it offers a quite generous [free tier](https://aws.amazon.com/free/), which means you can get started with AWS without spending any money. The small web pages that we'll be hosting in AWS will easily sit within the limits of the free tier.
+One of the nice things about AWS is that it offers quite a generous [free tier](https://aws.amazon.com/free/), which means you can get started with AWS without spending any money. The small web pages that we'll be hosting in AWS will easily sit within the limits of the free tier.
 
 AWS S3 is a file hosting service that allows us to save data in the cloud and make it publicly accessible. S3 is often used to host the kind of content you might find on a typical network drive, like log files and documents, but it can also be used to host public websites. By uploading a HTML file and any other resources like images or CSS files and configuring S3 to host the files as a website, we can quickly and easily create a publicly available, highly reliable web site. This is exactly what we will do with our test website.
 
-To access the S3 console, click `Services` → `S3` from the AWS console.
+To access the S3 console, click {{Services,S3}} from the AWS console.
 
 ![](image6.png "width=500")
 
-We first need to create a bucket. A bucket is roughly analogous to a directory, but with the important caveat that the name of the bucket must be globally unique. This means the name of your bucket can not have been used by any other AWS customer.
+First, we need to create a bucket. A bucket is roughly analogous to a directory, but with the important caveat that the name of the bucket must be globally unique. This means the name of your bucket can not have been used by any other AWS customer.
 
 :::hint
 If you see S3 bucket names that are seemingly randomly generated, this is because all the common bucket names have long since been used by other AWS customers.
@@ -82,8 +82,7 @@ The review screen shows a summary of the options. Click the `Upload` button to u
 
 ![](image19.png "width=500")
 
-After a few seconds (the files are quite small, and so should be
-uploaded quickly) the files will be shown in the bucket.
+After a few seconds (the files are quite small, and so should be uploaded quickly) the files will be shown in the bucket.
 
 ![](image20.png "width=500")
 
@@ -103,4 +102,4 @@ The link to open this file is shown in the Overview tab, and in this case the UR
 
 ![](image24.png "width=500")
 
-By uploading the files to S3 and making them public, we have effectively used S3 as a web host. This gives us a public URL that we can load as part of our tests, and means that we can start writing tests on platforms that will not have access to the local HTML files in our Java project. We will take advantage of this web site hosting in the next post where we run tests on BrowserStack, which will allow us to run tests across multiple browsers and mobile devices.
+By uploading the files to S3 and making them public, we have effectively used S3 as a web host. This gives us a public URL that we can load as part of our tests, and means that we can start writing tests on platforms that do not have access to the local HTML files in our Java project. We will take advantage of this web site hosting in the next post where we run tests on BrowserStack, which will allow us to run tests across multiple browsers and mobile devices.

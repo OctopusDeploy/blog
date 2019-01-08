@@ -15,17 +15,12 @@ Another useful feature provided by BrowserMob is the ability to alter the respon
 
 When modifying responses, the network requests and responses follow the flow shown in this diagram.
 
-1.  The browser makes a request
-
-2.  The request is directed to the proxy
-
-3.  The proxy forwards the request to the external URL
-
-4.  The response from the external URL is passed through a response filter
-
-5.  The response filter alters the response
-
-6.  The altered response is passed back to the browser
+1.  The browser makes a request.
+2.  The request is directed to the proxy.
+3.  The proxy forwards the request to the external URL.
+4.  The response from the external URL is passed through a response filter.
+5.  The response filter alters the response.
+6.  The altered response is passed back to the browser.
 
 ![C:\27f6991bd6c9ae2c1606222d23b69bc0](image1.png "width=500")
 
@@ -96,15 +91,15 @@ Here is a screenshot of the page when opened in Chrome. The output highlights an
 
 ![C:\79c967b754cda70a95a2072218e5b76a](image2.png "width=500")
 
-Even without the bug in the time being returned, the sunset time is not a fixed value. Obviously throughout the year we can expect this time to change. But what if we needed our test to always have a sunset time of 7:00 pm? This is possible with Browermob response filters.
+Even without the bug in the time being returned, the sunset time is not a fixed value. Obviously throughout the year we can expect this time to change. But what if we needed our test to always have a sunset time of 7:00 pm? This is possible with BrowserMob response filters.
 
-We start by adding a new method to the `AutomatedBrowser` interface.
+We start by adding a new method to the `AutomatedBrowser` interface:
 
 ```java
 void alterResponseFrom(String url, int responseCode, String  responseBody);
 ```
 
-The usual default method is added to `the AutomatedBrowserBase` class.
+The usual default method is added to `the AutomatedBrowserBase` class:
 
 ```java
 @Override
@@ -115,7 +110,7 @@ public void alterResponseFrom(final String url, final int responseCode, final St
 }
 ```
 
-Then in the `BrowserMobDecorator` class we implement this method.
+Then in the `BrowserMobDecorator` class we implement this method:
 
 ```java
 @Override
@@ -131,29 +126,28 @@ public void alterResponseFrom(final String url, final int responseCode, final St
 }
 ```
 
-Like the `alterRequestTo()` method, the `alterResponseFrom()` method adds a Browsermob filter. However this time we add a response filter, which allows us to take an existing response and tweak it to suit our needs.
+Like the `alterRequestTo()` method, the `alterResponseFrom()` method adds a BrowserMob filter. However, this time we add a response filter, which allows us to take an existing response and tweak it to suit our needs.
 
-We start by making a call to `addResponseFilter()`.
+We start by making a call to `addResponseFilter()`:
 
 ```java
 proxy.addResponseFilter((response, contents, messageInfo) -> {
 ```
 
-As before we check to see if the URL regular expression matches the
-parameter passed to the `alterResponseFrom()` method.
+As before we check to see if the URL regular expression matches the parameter passed to the `alterResponseFrom()` method:
 
 ```java
 if (Pattern.compile(url).matcher(messageInfo.getOriginalUrl()).matches()) {
 ```
 
-If the URL does match, we replace the response body, and change the response HTTP code.
+If the URL does match, we replace the response body, and change the response HTTP code:
 
 ```java
 contents.setTextContents(responseBody);
 response.setStatus(HttpResponseStatus.valueOf(responseCode));
 ```
 
-To demonstrate this new functionality we will create a new test.
+To demonstrate this new functionality we will create a new test:
 
 ```java
 @Test
@@ -178,7 +172,7 @@ public void mockRequests() throws URISyntaxException {
 }
 ```
 
-The important part of this test is the call to the `alterResponeFrom()` method. It is here that we match the URL to the call to `query.yahooapis.com`, and replace the response with our own custom JSON. In this example the custom JSON defines the sunset time to be `7:00 pm`.
+The important part of this test is the call to the `alterResponeFrom()` method. It is here that we match the URL to the call to `query.yahooapis.com`, and replace the response with our own custom JSON. In this example the custom JSON defines the sunset time to be `7:00 pm`:
 
 ```java
 automatedBrowser.alterResponseFrom(
@@ -187,7 +181,7 @@ automatedBrowser.alterResponseFrom(
   "{\"query\":{\"count\":1,\"created\":\"2018-04-28T05:20:30Z\",\"lang\":\"en-US\",\"results\":{\"channel\":{\"astronomy\":{\"sunset\":\"7:00 pm\"}}}}}");
 ```
 
-After opening the web page, we then check that the message printed to the page reflects this hardcoded sunset time.
+After opening the web page, we then check that the message printed to the page reflects this hardcoded sunset time:
 
 ```java
 final String sunset = automatedBrowser.getTextFromElementWithId("sunset", 60);
@@ -198,7 +192,7 @@ The fact that this test passes proves that we have modified the response from th
 
 Knowing that the Yahoo API can return times like `7:4 pm`, it would be prudent to create a test that simulates this edge case. But given that the time returned by the API is not something we control, it would be quite difficult to test the scenario when an invalid time is sent back, because calling the API tomorrow may result in a perfectly valid time being returned.
 
-Here is another test, but this time one that returns the invalid sunset time. In this example our simple webpage displays this time as is, which may not be desirable, but by modifying the response with BrowserMob we can as testers ensure that this edge case is reliably captured in our tests.
+Here is another test, but this time one that returns the invalid sunset time. In this example our simple webpage displays this time as is, which may not be desirable, but by modifying the response with BrowserMob we can as testers ensure that this edge case is reliably captured in our tests:
 
 ```java
 @Test
@@ -223,4 +217,4 @@ public void mockRequests2() throws URISyntaxException {
 }
 ```
 
-Modifying the response from an external service is an effective way of ensuring the response is has the expected values, providing your test with reliable inputs, or allowing the test to simulate conditions that would otherwise be difficult to recreate. By making these changes in the proxy before the responses are received by the browser, we can accurately test how a web application would respond to the same responses if they were returned by live services.
+Modifying the response from an external service is an effective way of ensuring the response has the expected values, providing your test with reliable inputs, or allowing the test to simulate conditions that would otherwise be difficult to recreate. By making these changes in the proxy before the responses are received by the browser, we can accurately test how a web application would respond to the same responses if they were returned by live services.

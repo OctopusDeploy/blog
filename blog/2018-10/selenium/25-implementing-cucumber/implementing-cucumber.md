@@ -81,7 +81,7 @@ Cucumber works by attaching annotations to methods to match Gherkin steps to reg
 
 The annotations are called `@Given`, `@When`, `@And` and `@Then`. As with the Gherkin language itself, these annotations are interchangeable, and there is no requirement to match the annotation to the corresponding prefix used in a Gherkin step.
 
-For example, we may annotate a method to open up a given URL with the `@And` annotation.
+For example, we may annotate a method to open up a given URL with the `@And` annotation:
 
 ```java
 @And("^I open the URL \"([^\"]*)\"$")

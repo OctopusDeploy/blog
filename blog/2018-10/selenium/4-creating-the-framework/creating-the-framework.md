@@ -13,14 +13,13 @@ One of the strengths of the WebDriver API is that it is browser agnostic. You sa
 
 Although WebDriver allows us to write tests without worrying about which browser will run them, we are still required to create and configure the various driver classes such as `ChromeDriver` and `FirefoxDriver`. To make this process as flexible as possible, we'll create a factory class called `AutomatedBrowserFactory` to configure these objects for us.
 
-Before we can create this class, we first need to add a new directory to our project to hold our Java files. The directory `src/test/java/com/octopus` that we created in previous lectures is the default location for files that are used only in tests. There is a second directory under `src/main/java/com/octopus` that will hold regular Java classes, and we need to create this directory structure.
+Before we can create this class, we first need to add a new directory to our project to hold our Java files. The directory `src/test/java/com/octopus` that we created in previous posts is the default location for files that are used only in tests. There is a second directory under `src/main/java/com/octopus` that will hold regular Java classes, and we need to create this directory structure.
 
 Right click on the `src` directory, and select `New` → `Directory`.
 
 ![](image1.png "width=500")
 
-Enter `main/java/com/octopus` as the directory name and click
-`OK`.
+Enter `main/java/com/octopus` as the directory name and click `OK`.
 
 ![](image2.png "width=500")
 
@@ -36,8 +35,7 @@ The `java` directory is now shown with a blue icon, which indicates that it will
 
 ![](image5.png "width=500")
 
-We can now create the class `AutomatedBrowserFactory` in the
-`src/main/java/com/octopus` directory. To create the new click right click on the `octopus` folder and select `New` → `Java Class`.
+We can now create the class `AutomatedBrowserFactory` in the `src/main/java/com/octopus` directory. To create the new class right click on the `octopus` folder and select {{New,Java Class}}.
 
 ![](image11.png "width=500")
 
@@ -45,7 +43,7 @@ Enter `AutomatedBrowserFactory` in the `Name` field and click the `OK` button.
 
 ![](image12.png "width=500")
 
-In the snippet below, we have a factory skeleton with a method called `getAutomatedBrowser()` that accepts the name of the browser that we wish to test against. This method returns an instance of the `AutomatedBrowser` interface.
+In the snippet below, we have a factory skeleton with a method called `getAutomatedBrowser()` that accepts the name of the browser that we wish to test against. This method returns an instance of the `AutomatedBrowser` interface:
 
 ```java
 package com.octopus;
@@ -78,7 +76,7 @@ public class AutomatedBrowserFactory {
 
 The `AutomatedBrowser` interface will expose all the interactions we will perform against a browser. As a starting point we'll define some methods for initializing the WebDriver instance, opening a URL, and interacting with elements located by their ID.
 
-To create the `AutomatedBrowser` interface right click on the `octopus` directory and select `New` → `Java Class`.
+To create the `AutomatedBrowser` interface right click on the `octopus` directory and select {{New,Java Class}}.
 
 ![](image13.png "width=500")
 
@@ -86,7 +84,7 @@ Enter `AutomatedBrowser` in the `Name` field, select the `Interface` option from
 
 ![](image14.png "width=500")
 
-Then paste the following code into the new file.
+Then paste the following code into the new file:
 
 ```java
 package com.octopus;
@@ -130,11 +128,9 @@ To make it easier for us to create decorator classes, we'll create a class calle
 
 Because the `AutomatedBrowserBase` class provides an implementation of every method in the `AutomatedBrowser` interface, decorator classes extending `AutomatedBrowserBase` can override only the methods that are specific to them. This significantly cuts down on the amount of boiler plate code that is required to create a decorator.
 
-Note that `AutomatedBrowserBase` class is created in the
-`com.octopus.decoratorbase` package. Having this class in its
-own package will be an important design decision for features that we'll look at later on in the course.
+Note that `AutomatedBrowserBase` class is created in the `com.octopus.decoratorbase` package. Having this class in its own package will be an important design decision for features that we'll look at later on in the course.
 
-To create the new package, right click on the `octopus` directory and select `New` → `Package`.
+To create the new package, right click on the `octopus` directory and select {{New,Package}}.
 
 ![](image6.png "width=500")
 
@@ -146,8 +142,7 @@ The new package is then added to the directory structure.
 
 ![](image8.png "width=500")
 
-Inside the `com.octopus.decoratorbase` package create a new
-class called `AutomatedBrowserBase` with the following code. Each method defined in the `AutomatedBrowser` interface is implemented by passing it through to the `automatedBrowser` instance variable (if it is not `null`).
+Inside the `com.octopus.decoratorbase` package create a new class called `AutomatedBrowserBase` with the following code. Each method defined in the `AutomatedBrowser` interface is implemented by passing it through to the `automatedBrowser` instance variable (if it is not `null`):
 
 ```java
 package com.octopus.decoratorbase;
@@ -246,7 +241,7 @@ The `ChromeDecorator` class will be placed in the `com.octopus.decorators` packa
 
 Inside the `com.octopus.decorators` package create a class called `ChromeDecorator` with the following code.
 
-Notice that the `ChromeDecorator` class implements only one method. This is the benefit of extending the `AutomatedBrowserBase` class instead of the `AutomatedBrowser` interface.
+Notice that the `ChromeDecorator` class implements only one method. This is the benefit of extending the `AutomatedBrowserBase` class instead of the `AutomatedBrowser` interface:
 
 ```java
 package com.octopus.decorators;
@@ -270,8 +265,7 @@ public class ChromeDecorator extends AutomatedBrowserBase {
 }
 ```
 
-And we follow the same process to create the `FirefoxDecorator` class,
-which creates an instance of the `FirefoxDriver` class.
+And we follow the same process to create the `FirefoxDecorator` class, which creates an instance of the `FirefoxDriver` class:
 
 ```java
 package com.octopus.decorators;
@@ -306,7 +300,7 @@ The `WebDriverDecorator` class will host a `WebDriver` instance, and expose it t
 
 Notice that `WebDriverDecorator` has a default constructor. This is unlike `ChromeDecorator` and `FirefoxDecorator`, which both provide a single constructor that takes a `AutomatedBrowser`. This difference exists because `WebDriverDecorator` is intended to be the base `AutomatedBrowser` that other decorators wrap up. We'll see this in action when we update the `AutomatedBrowserFactory` class.
 
-We've already seen a lot of the code that goes into the `WebDriverDecorator` class in the last lecture, with the `webDriver.get()` method opening a URL, and the `webDriver.quit()` method closing the browser.
+We've already seen a lot of the code that goes into the `WebDriverDecorator` class in the last post, with the `webDriver.get()` method opening a URL, and the `webDriver.quit()` method closing the browser:
 
 ```java
 package com.octopus.decorators;
@@ -355,7 +349,7 @@ With the decorators done we need to update the `AutomatedBrowserFactory` to make
 
 Previously the `getChromeBrowser()` and `getFirefoxBrowser()` methods returned `null`. Now we can create instances of our decorator classes to build up customized instances of the `AutomatedBrowser` interface to open either Chrome or Firefox.
 
-Note how the decorator constructors wrap each other up. This is key to the decorator pattern, and means we can mix and match decorator classes to construct a wide range of objects, all without having to create deep class hierarchies with inheritance.
+Note how the decorator constructors wrap each other up. This is key to the decorator pattern, and means we can mix and match decorator classes to construct a wide range of objects, all without having to create deep class hierarchies with inheritance:
 
 ```java
 private AutomatedBrowser getChromeBrowser() {
@@ -378,7 +372,7 @@ The image below shows how decorators wrap each other up, and pass method calls t
 Let's create a test that makes use of our factory and the instances of `AutomatedBrowser` that it creates.
 
 Because this is a test class, it will be created in the
-`src/test/java/com/octopus` directory.
+`src/test/java/com/octopus` directory:
 
 ```java
 package com.octopus;
@@ -421,7 +415,7 @@ public class FactoryTest {
 
 The `FactoryTest` class makes use of JUnit parameterization to run the test method multiple times with different inputs. We'll use this functionality to run the test against both the Chrome and Firefox browsers with a single test method.
 
-To enable parameterization, the test class require the annotation `@RunWith(Parameterized.class)`.
+To enable parameterization, the test class require the annotation `@RunWith(Parameterized.class)`:
 
 ```java
 @RunWith(Parameterized.class)
@@ -430,7 +424,7 @@ public class FactoryTest {
 }
 ```
 
-It then needs a static method to return the values that will be passed to the `FactoryTest` constructor. In our case these values are strings for the name of the browsers that we will test against.
+It then needs a static method to return the values that will be passed to the `FactoryTest` constructor. In our case, these values are strings for the name of the browsers that we will test against:
 
 ```java
 @Parameterized.Parameters
@@ -442,7 +436,7 @@ public static Iterable data() {
 }
 ```
 
-Finally the `FactoryTest()` constructor is configured to accept a parameter, which will be set to one of the values returned by the `data()` method. In this case we save the parameter to the `browser` instance variable.
+Finally the `FactoryTest()` constructor is configured to accept a parameter, which will be set to one of the values returned by the `data()` method. In this case, we save the parameter to the `browser` instance variable:
 
 ```java
 private String browser;
@@ -455,7 +449,7 @@ public FactoryTest(final String browser) {
 The test method can then make use of the `browser` instance variable to launch either the Chrome or Firefox browser as part of the test.
 
 This ability to select a browser at run time through the
-`AutomatedBrowserFactory` will provide us with a great deal of flexibility in our testing later on.
+`AutomatedBrowserFactory` will provide us with a great deal of flexibility in our testing later on:
 
 ```java
 @Test

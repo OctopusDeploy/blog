@@ -47,7 +47,7 @@ Back in the SES console, we can now see that the email address has been verified
 
 Now that we have configured SES, we need to incorporate it into our code.
 
-In the `pom.xml` file, add the `com.amazonaws:aws-java-sdk-ses` dependency. This library contains the classes we need to create and send emails with SES.
+In the `pom.xml` file, add the `com.amazonaws:aws-java-sdk-ses` dependency. This library contains the classes we need to create and send emails with SES:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"

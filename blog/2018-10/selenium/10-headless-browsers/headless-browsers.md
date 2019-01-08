@@ -9,7 +9,7 @@ tags:
 - Java
 ---
 
-You will have noticed by now that running tests with WebDriver results in a browser window being opened and the web pages being loaded and interacted with as if by some invisible mouse pointer. While it can be useful to watch the progression of a test in the browser, there are times when it is desirable to have the tests complete off-screen. For example, running tests as part of a continuous deployment process does not require anyone to watch the browser as the tests are executed. Indeed, sometimes there is not even a monitor attached to the systems that are running the tests -  this is known as a headless environment. So how can we run tests in such headless environments?
+You will have noticed by now that running tests with WebDriver results in a browser window being opened and the web pages being loaded and interacted with as if by some invisible mouse pointer. While it can be useful to watch the progression of a test in the browser, there are times when it is desirable to have the tests complete off-screen. For example, running tests as part of a continuous deployment process does not require anyone to watch the browser as the tests are executed. Indeed, sometimes there is not even a monitor attached to the systems that are running the tests - this is known as a headless environment. So how can we run tests in such headless environments?
 
 This is a problem that projects like [PhantomJS](http://phantomjs.org/) were created to solve. PhantomJS is a web browser based on WebKit, which is the library that powers browsers like Apple Safari. Unlike a traditional browser though, PhantomJS has no GUI, and is designed to be controlled by technologies like WebDriver. Because it has no GUI, PhantomJS can be run on continuous integration servers that are traditionally hosted on headless servers. This means you can run WebDriver tests on a central server in response to application changes without having to launch a browser window in a desktop environment.
 
@@ -21,7 +21,7 @@ Before we start configuring headless browsers, we need to add some additional su
 
 WebDriver uses a class called `DesiredCapabilities` that serves as a generic container for browser driver settings. The `DesiredCapabilities` class is essentially a container for key/value pairs, with some convenience methods for configuring commonly used settings.
 
-First we add the method `getDesiredCapabilities()` to the `AutomatedBrowser` interface.
+First we add the method `getDesiredCapabilities()` to the `AutomatedBrowser` interface:
 
 ```java
 public interface AutomatedBrowser {
@@ -33,7 +33,7 @@ public interface AutomatedBrowser {
 
 Then we add a default method in the `AutomatedBrowserBase` class.
 
-This method differs a little from the typical default decorator method implementations in that if there is no parent `AutomatedBrowser` instance to return an instance of the `DesiredCapabilities` class, we return a new instance of `DesiredCapabilities` instead of `null`. This ensures that if no decorator has provided any `DesiredCapabilities`, we can always rely on a default instance being returned.
+This method differs a little from the typical default decorator method implementations in that if there is no parent `AutomatedBrowser` instance to return an instance of the `DesiredCapabilities` class, we return a new instance of `DesiredCapabilities` instead of `null`. This ensures that if no decorator has provided any `DesiredCapabilities`, we can always rely on a default instance being returned:
 
 ```java
 @Override
@@ -50,7 +50,7 @@ The `DesiredCapabilities` class is used for configuration settings that are comm
 
 Here is the code for the `ChromeDecorator` class updated to support these two configuration classes. We create an instance of the `ChromeOptions` class, `merge()` it with the common settings returned by `getDesiredCapabilities()`, and pass the merged result to the `ChromeDriver()` constructor.
 
-This code does not configure any additional settings yet, but does demonstrate how the `DesiredCapabilities` class is used in conjunction with the browser specific options class.
+This code does not configure any additional settings yet, but does demonstrate how the `DesiredCapabilities` class is used in conjunction with the browser specific options class:
 
 ```java
 package com.octopus.decorators;
@@ -78,7 +78,7 @@ public class ChromeDecorator extends AutomatedBrowserBase {
 }
 ```
 
-We follow the same pattern for the `FirefoxDecorator` class, merging the `FirefoxDriver` class with the `DesiredCapabilities` class.
+We follow the same pattern for the `FirefoxDecorator` class, merging the `FirefoxDriver` class with the `DesiredCapabilities` class:
 
 ```java
 package com.octopus.decorators;
@@ -109,7 +109,7 @@ Starting a browser in headless mode is done by configuring either the `ChromeOpt
 
 To launch Chrome in headless mode, we pass some arguments to the `chrome` executable. The `ChromeOptions` class provides a simple way to configure these arguments through the method `setHeadless()`.
 
-Let's take a look at the code for the `ChromeDecorator` class to allow us to run Chrome in headless mode.
+Let's take a look at the code for the `ChromeDecorator` class to allow us to run Chrome in headless mode:
 
 ```java
 package com.octopus.decorators;
@@ -147,7 +147,7 @@ public class ChromeDecorator extends AutomatedBrowserBase {
 }
 ```
 
-First we provide a instance variable called `headless` to track whether this instance of the Chrome browser should be run in headless mode or not. To set this variable we overload the constructor.
+First, we provide an instance variable called `headless` to track whether this instance of the Chrome browser should be run in headless mode or not. To set this variable we overload the constructor:
 
 ```java
 final boolean headless;
@@ -163,13 +163,13 @@ public ChromeDecorator(final boolean headless, final AutomatedBrowser automatedB
 }
 ```
 
-In the `init()` method we make a call to `setHeadless()` to enable or disable headless mode (although given headless mode is disabled by default, calling `setHeadless(false)` doesn't change anything).
+In the `init()` method we make a call to `setHeadless()` to enable or disable headless mode (although given headless mode is disabled by default, calling `setHeadless(false)` doesn't change anything):
 
 ```java
 options.setHeadless(headless);
 ```
 
-Taking a look at the `ChomeOptions.setHeadless()` method we can see that headless mode is enabled by passing the `--headless` and `--disable-gpu` arguments to Chrome.
+Taking a look at the `ChomeOptions.setHeadless()` method we can see that headless mode is enabled by passing the `--headless` and `--disable-gpu` arguments to Chrome:
 
 ```java
 public ChromeOptions setHeadless(boolean headless) {
@@ -184,7 +184,7 @@ public ChromeOptions setHeadless(boolean headless) {
 }
 ```
 
-We then update the `AutomatedBrowserFactory getChromeBrowser()` method with a parameter to define if the Chrome browser should be headless or not.
+We then update the `AutomatedBrowserFactory getChromeBrowser()` method with a parameter to define if the Chrome browser should be headless or not:
 
 ```java
 private AutomatedBrowser getChromeBrowser(final boolean headless) {
@@ -196,7 +196,7 @@ private AutomatedBrowser getChromeBrowser(final boolean headless) {
 }
 ```
 
-Finally we update the `getAutomatedBrowser()` method to allow a headless instance of Chrome to be created.
+Finally, we update the `getAutomatedBrowser()` method to allow a headless instance of Chrome to be created:
 
 ```java
 public AutomatedBrowser getAutomatedBrowser(String browser) {
@@ -214,7 +214,7 @@ public AutomatedBrowser getAutomatedBrowser(String browser) {
 
 With these changes in place, we can update the tests to run them against a headless instance of Chrome.
 
-When the tests are run, you will not see the browser window be displayed. But the test will execute in the background and pass as before.
+When the tests are run, you will not see the browser window displayed. But the test will execute in the background and pass as before:
 
 ```java
 @Test
@@ -228,7 +228,7 @@ public void formTestByIDHeadless() throws URISyntaxException {
 
 The process for creating a headless instance of Firefox is almost exactly the same as for Chrome.
 
-First the `FirefoxDecorator` class is updated with a constructor that sets the `headless` instance variable, and a call to `setHeadless()` in the options class configures the headless mode on the driver.
+First the `FirefoxDecorator` class is updated with a constructor that sets the `headless` instance variable, and a call to `setHeadless()` in the options class configures the headless mode on the driver:
 
 ```java
 package com.octopus.decorators;
@@ -265,7 +265,7 @@ public class FirefoxDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Looking at the `FirefoxOptions.setHeadless()` method, we can see that headless mode is enabled by passing the `-headless` argument to Firefox.
+Looking at the `FirefoxOptions.setHeadless()` method, we can see that headless mode is enabled by passing the `-headless` argument to Firefox:
 
 ```java
 public FirefoxOptions setHeadless(boolean headless) {
@@ -277,7 +277,7 @@ public FirefoxOptions setHeadless(boolean headless) {
 }
 ```
 
-The `AutomatedBrowserFactory getFirefoxBrowser()` method is then updated to support setting headless mode.
+The `AutomatedBrowserFactory getFirefoxBrowser()` method is then updated to support setting headless mode:
 
 ```java
 private AutomatedBrowser getFirefoxBrowser(final boolean headless) {
@@ -289,7 +289,7 @@ private AutomatedBrowser getFirefoxBrowser(final boolean headless) {
 }
 ```
 
-And the `getAutomatedBrowser()` method is updated to support creating headless instances of Firefox.
+And the `getAutomatedBrowser()` method is updated to support creating headless instances of Firefox:
 
 ```java
 public AutomatedBrowser getAutomatedBrowser(String browser) {
@@ -306,7 +306,7 @@ public AutomatedBrowser getAutomatedBrowser(String browser) {
 }
 ```
 
-Then, just as with the Chrome browser, the tests can be updated to use the headless version of Firefox.
+Then, just as with the Chrome browser, the tests can be updated to use the headless version of Firefox:
 
 ```java
 @Test
@@ -318,6 +318,6 @@ public void formTestByIDHeadlessFirefox() throws URISyntaxException {
 }
 ```
 
-Running tests on specialized browsers like PhantomJS that didn't quite behave like "real" browsers used to be a pain point for testers, but was a necessary evil. By supporting headless browsing, browsers like Chrome and Firefox have paved the way for testers to utilize the same browsers used by end users in automated tests on headless servers. We'll take advantage of these headless browsers in later lectures as we integrate with platforms like Travis CI and AWS Lambda.
+Running tests on specialized browsers like PhantomJS that don't quite behave like "real" browsers used to be a pain point for testers but was a necessary evil. By supporting headless browsing, browsers like Chrome and Firefox have paved the way for testers to utilize the same browsers used by end users in automated tests on headless servers. We'll take advantage of these headless browsers in later posts as we integrate with platforms like Travis CI and AWS Lambda.
 
 In addition, by exposing the ability to configure browsers via the `DesiredCapabilities` class we have provided a hook that we can take advantage of with new decorators to add functionality such as custom proxies, which is exactly what we'll be doing in the next post.

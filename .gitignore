@@ -5,3 +5,5 @@ _site/
 *.iml
 .idea
 .DS_Store
+.vs/*
+*/.vs/*

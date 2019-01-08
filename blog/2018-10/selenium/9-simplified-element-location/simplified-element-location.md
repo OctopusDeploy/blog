@@ -9,7 +9,7 @@ tags:
 - Java
 ---
 
-In the last lecture we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath and CSS Selector.
+In the last post we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath and CSS Selector.
 
 But wouldn't it be nice if we could call a single set of methods with the element identifier and let WebDriver work out which elements matched?
 
@@ -466,7 +466,7 @@ public String getTextFromElement(final String locator, final int waitTime) {
 
 Now we can complete the test, using a mix of IDs, CSS Selectors and XPaths. The new methods will automatically find any matching elements, and we don't need to worry about matching the correct locator to the correct method.
 
-The use of the `ChromeNoImplicitWait` configuration is very important here. If you recall from the last lecture, mixing implicit and explicit waits can lead some undesirable results, and this is once such case. Had we used a configuration that had implicit waits enabled, calls to the methods we implemented above could conceivably take nearly a minute to complete, as each of the 6 explicit waits end up waiting the 10 seconds we configured for the implicit wait. By using the `ChromeNoImplicitWait` configuration, we ensure that the explicit waits in the `SimpleByImpl` class take only a fraction of a second.
+The use of the `ChromeNoImplicitWait` configuration is very important here. If you recall from the last post, mixing implicit and explicit waits can lead some undesirable results, and this is once such case. Had we used a configuration that had implicit waits enabled, calls to the methods we implemented above could conceivably take nearly a minute to complete, as each of the 6 explicit waits end up waiting the 10 seconds we configured for the implicit wait. By using the `ChromeNoImplicitWait` configuration, we ensure that the explicit waits in the `SimpleByImpl` class take only a fraction of a second.
 
 ```java
 @Test
@@ -507,4 +507,4 @@ public void formTestWithSimpleBy() throws URISyntaxException {
 }
 ```
 
-In my own experience, these new methods we have added to the `AutomatedBrowser` interface are far more convenient than methods that are tied to a specific locator. They remove the need to manually keep locators and the methods they are passed to in sync, and the code is more readable too. For this reason future lectures will uses these new methods almost exclusively.
+In my own experience, these new methods we have added to the `AutomatedBrowser` interface are far more convenient than methods that are tied to a specific locator. They remove the need to manually keep locators and the methods they are passed to in sync, and the code is more readable too. For this reason future posts will uses these new methods almost exclusively.

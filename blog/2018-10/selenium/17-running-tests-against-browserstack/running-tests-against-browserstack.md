@@ -9,9 +9,9 @@ tags:
 - Java
 ---
 
-Our testing so far has been limited to desktop browsers like Chrome and Firefox. Depending on the operating system you are running, you may also be able to test browsers like Safari, Internet Explorer and Edge. But regardless of which operating system you are running, there is no easy way to run tests against all popular browsers. Safari is not supported on Windows, Internet Explorer and Edge are not supported on MacOS, and none of these browsers are supported in Linux. And while it is possible to emulate mobile browsers in a desktop or server environment, doing so is difficult to configure and maintain.
+Our testing so far has been limited to desktop browsers like Chrome and Firefox. Depending on the operating system you are running, you may also be able to test browsers like Safari, Internet Explorer, and Edge. But regardless of which operating system you are running, there is no easy way to run tests against all popular browsers. Safari is not supported on Windows, Internet Explorer and Edge are not supported on MacOS, and none of these browsers are supported in Linux. And while it is possible to emulate mobile browsers in a desktop or server environment, doing so is difficult to configure and maintain.
 
-To address these issues services like BrowserStack offer the ability to run WebDriver tests against a huge range of browsers, both desktop and mobile. By managing the various operating systems, browsers and mobile devices, services like BrowserStack make it quite easy to do large scale cross browser testing.
+To address these issues, services like BrowserStack offer the ability to run WebDriver tests against a huge range of browsers, both desktop and mobile. By managing the various operating systems, browsers and mobile devices, services like BrowserStack make it quite easy to do large-scale cross-browser testing.
 
 BrowserStack is not a free service, and to take advantage of most of its features you will need to pay for an account. But fortunately both Mozilla and Microsoft have teamed up with BrowserStack to offer free testing against the [Edge](https://www.browserstack.com/test-on-microsoft-edge-browser) and [Firefox](https://blog.mozilla.org/blog/2017/03/03/mozilla-browserstack-partner-drive-mobile-testing-real-devices/) browsers. We will take advantage of this service to build some remote tests that can be run without any cost. The good news is that once you have a test running against a browser like Edge or Firefox, it is quite trivial to reuse that code to run tests against any other browser offered by BrowserStack.
 
@@ -37,7 +37,7 @@ To run tests remotely against BrowserStack we need to create an instance of the 
 
 The BrowserStack documentation at [https://www.browserstack.com/automate/java](https://www.browserstack.com/automate/java) shows the URL that we need to connect to. It is in the format `https://<username>:<password>@hub-cloud.browserstack.com/wd/hub`. The username and password are embedded into the URL.
 
-To enable tests to be run against BrowserStack we will create a new decorator called `BrowserStackDecorator`.
+To enable tests to be run against BrowserStack we will create a new decorator called `BrowserStackDecorator`:
 
 ```java
 package com.octopus.decorators;
@@ -77,15 +77,14 @@ public class BrowserStackDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Because it is considered bad practice to embed passwords into
-applications, we'll get the username and password from environment variables. The username will be found in the `BROWSERSTACK_USERNAME` environment variable, while the password will be found in the `BROWSERSTACK_KEY` environment variable. We create constants for these strings so we can access them later on in the code.
+Because it is considered bad practice to embed passwords into applications, we'll get the username and password from environment variables. The username will be found in the `BROWSERSTACK_USERNAME` environment variable, while the password will be found in the `BROWSERSTACK_KEY` environment variable. We will create constants for these strings so we can access them later on in the code:
 
 ```java
 private static final String USERNAME_ENV = "BROWSERSTACK_USERNAME";
 private static final String AUTOMATE_KEY_ENV = "BROWSERSTACK_KEY";
 ```
 
-Next we construct the URL that will allow the `RemoteDriver` to contact the BrowserStack service. We use calls to `System.getenv()` to get the username and password from environment variables.
+Next we construct the URL that will allow the `RemoteDriver` to contact the BrowserStack service. We use calls to `System.getenv()` to get the username and password from environment variables:
 
 ```java
 final String url = "https://" +
@@ -98,13 +97,13 @@ There are only minor difference between the construction of the `RemoteDriver` c
 
 The `RemoteDriver()` constructor takes the URL of the service to connect to, and the desired capabilities.
 
-There is no equivalent to a class like `ChromeOptions` for the `RemoteDriver` class; it uses the `DesiredCapabilities` object directly.
+There is no equivalent to a class like `ChromeOptions` for the `RemoteDriver` class; it uses the `DesiredCapabilities` object directly:
 
 ```java
 final WebDriver webDriver = new RemoteWebDriver(new URL(url), getDesiredCapabilities());
 ```
 
-If the URL we constructed was not valid, a `MalformedURLException` is thrown. We catch this exception and wrap it in an unchecked exception called `ConfigurationException`.
+If the URL we constructed was not valid, a `MalformedURLException` is thrown. We catch this exception and wrap it in an unchecked exception called `ConfigurationException`:
 
 ```java
 catch (MalformedURLException ex) {
@@ -112,7 +111,7 @@ catch (MalformedURLException ex) {
 }
 ```
 
-The `ConfigurationException` class is used to indicate that the required environment variables have not been configured.
+The `ConfigurationException` class is used to indicate that the required environment variables have not been configured:
 
 ```java
 package com.octopus.exceptions;
@@ -143,7 +142,7 @@ We will start by testing against the Edge browser, which is available in Windows
 
 ![](image5.png "width=500")
 
-These desired capability settings will be defined in a new decorator called `BrowserStackEdgeDecorator`.
+These desired capability settings will be defined in a new decorator called `BrowserStackEdgeDecorator`:
 
 ```java
 package com.octopus.decorators;
@@ -175,9 +174,9 @@ public class BrowserStackEdgeDecorator extends AutomatedBrowserBase {
 
 To tie these two new decorators together we will create a new type of browser in our factory.
 
-Note that we do not use the `BrowserMobDecorator` class when constructing `AutomatedBrowser` instances to run tests in BrowserStack. BrowserMob is only available to browsers running on the local machine, because it was bound to a port on the localhost interface, meaning is not exposed to outside browsers like those running on the BrowserStack platform. So to avoid configuring the remote browsers with a local proxy that they do not have access to, we leave the `BrowserMobDecorator` class out of the decorator chain.
+Note that we do not use the `BrowserMobDecorator` class when constructing `AutomatedBrowser` instances to run tests in BrowserStack. BrowserMob is only available to browsers running on the local machine, because it was bound to a port on the localhost interface, meaning it is not exposed to outside browsers like those running on the BrowserStack platform. So to avoid configuring the remote browsers with a local proxy that they do not have access to, we leave the `BrowserMobDecorator` class out of the decorator chain.
 
-The order in which we nest the decorators is important here. The `BrowserStackDecorator` expects the desired capabilities to be set in a nested decorator, which is `BrowserStackEdgeDecorator` in this case. This means that `BrowserStackDecorator` has to have `BrowserStackEdgeDecorator` passed to its constructor, and not the other way around.
+The order in which we nest the decorators is important here. The `BrowserStackDecorator` expects the desired capabilities to be set in a nested decorator, which is `BrowserStackEdgeDecorator` in this case. This means that `BrowserStackDecorator` has to have `BrowserStackEdgeDecorator` passed to its constructor, and not the other way around:
 
 ```java
 package com.octopus;
@@ -226,7 +225,7 @@ public class AutomatedBrowserFactory {
 
 Now we can use this new browser in a test. Note that instead of accessing the HTML file from the local disk, we instead open the URL [https://s3.amazonaws.com/webdriver-testing-website/form.html](https://s3.amazonaws.com/webdriver-testing-website/form.html), which is the URL to the files we uploaded in S3 in a previous post.
 
-Had we tried to run the test against the local file, it would have failed. This is because the URL that the remote browser attempted to open would have looked something like `file:///Users/username/javaproject/src/test/resources/form.html` (depending on your local operating system). This file does not exist on the operating system running the remote browser, because the remote browser is running on an operating system managed by BrowserStack, and attempt to load the file would have failed.
+Had we tried to run the test against the local file, it would have failed. This is because the URL that the remote browser attempted to open would have looked something like `file:///Users/username/javaproject/src/test/resources/form.html` (depending on your local operating system). This file does not exist on the operating system running the remote browser, because the remote browser is running on an operating system managed by BrowserStack any attempt to load the file would have failed:
 
 ```java
 @Test
@@ -269,7 +268,7 @@ public void browserStackTest() {
 }
 ```
 
-Running this test will generate an exception like the following.
+Running this test will generate an exception like the following:
 
 ```
 org.openqa.selenium.WebDriverException: Invalid username or password
@@ -298,12 +297,11 @@ Variables`. Click the button to the right of this field.
 
 ![](image7.png "width=500")
 
-Enter the environment variables in the dialog, and save the changes.
-Click the `OK` button twice to save the changes.
+Enter the environment variables in the dialog, and save the changes. Click the `OK` button twice to save the changes.
 
 ![](image8.png "width=500")
 
-This time the test will run successfully. You can view the test running by logging into BrowserStack and clicking the `Products` → `Automate` link. By default the last test is shown. The screen to the right will show you the test being run live against the remote browser, or if the test has completed will provide a recorded video of the test.
+This time the test will run successfully. You can view the test running by logging into BrowserStack and clicking the {{Products,Automate}} link. By default, the last test is shown. The screen to the right will show you the test being run live against the remote browser, or if the test has completed will provide a recorded video of the test.
 
 You typically get 100 free minutes with a trail BrowserStack account, but thanks to the partnership between BrowserStack and Microsoft, those minutes will not be consumed by tests run against Edge.
 

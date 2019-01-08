@@ -22,7 +22,7 @@ We are at the point now where we can start writing the Lambda code. To do this w
 -   `com.amazonaws:aws-java-sdk-lambda`
 -   `commons-io:commons-io`
 
-The first two dependencies provide us with the libraries we need to run as an Lambda function. The third dependency provides some handy utility functions when working with files.
+The first two dependencies provide us with the libraries we need to run as an Lambda function. The third dependency provides some handy utility functions when working with files:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -230,4 +230,4 @@ And our test Lambda function has executed successfully by returning `true`.
 
 ![C:\\25e8e70a701bd868bc63f982e0521af0](image7.png "width=500")
 
-Although this Lambda function doesn't do anything useful, it does prove that we have written a valid Lambda function and that it can be deployed using the Serverless application. With this work done we can move onto writing a Lambda function that actually runs a WebDriver test, which we'll do in the next lecture.
+Although this Lambda function doesn't do anything useful, it does prove that we have written a valid Lambda function and that it can be deployed using the Serverless application. With this work done we can move onto writing a Lambda function that actually runs a WebDriver test, which we'll do in the next post.
