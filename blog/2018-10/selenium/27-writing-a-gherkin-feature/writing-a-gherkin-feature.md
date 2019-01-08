@@ -362,8 +362,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 
 With these annotations in place, we can now write a feature file to complete a test of a ticket purchase from TicketMonster.
 
-Save the following code to the file
-`src/test/resources/com/octopus/ticketmonster.feature`.
+Save the following code to the file `src/test/resources/com/octopus/ticketmonster.feature`.
 
 ```gherkin
 Feature: Test TicketMonster

@@ -9,8 +9,6 @@ tags:
 - Java
 ---
 
-## Launching Cucumber tests
-
 Now that we have a simple Lambda function that we can run, as well as a Serverless configuration that deploys our application, we can create a Lambda function that launches a WebDriver test.
 
 Below is the new code for the `LambdaEntry` class that will launch a WebDriver test from a Gherkin feature file.

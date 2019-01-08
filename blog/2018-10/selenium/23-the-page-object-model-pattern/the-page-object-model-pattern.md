@@ -11,7 +11,7 @@ tags:
 
 While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some limitations.
 
-The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like:
+The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like: 
 
 ```java
 automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);

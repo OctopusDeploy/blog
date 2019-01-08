@@ -13,7 +13,7 @@ We now have the ability to run Gherkin features with an AWS Lambda function. But
 
 To allow tests to be executed without using the AWS Lambda console, we will configure a HTTP event in our Serverless configuration file. This event allows us to execute the Lambda function from a HTTP POST request, which in turn allows us to trigger tests using any standard HTTP tools or libraries.
 
-To configure the HTTP event we update the `serverless.yml` file.
+To configure the HTTP event we update the `serverless.yml` file:
 
 ```yaml
 service:

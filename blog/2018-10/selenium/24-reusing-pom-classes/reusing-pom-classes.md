@@ -9,9 +9,7 @@ tags:
 - Java
 ---
 
-Now that we have rewritten our tests to use the POM design pattern,
-let's go ahead and add the second test that we alluded to earlier of
-verifying the prices for different sections.
+Now that we have rewritten our tests to use the POM design pattern, let's go ahead and add the second test that we alluded to earlier of verifying the prices for different sections.
 
 For this test we need to get to the checkout screen, but not actually
 proceed with the checkout. Instead we want to loop over each of the

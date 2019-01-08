@@ -22,7 +22,7 @@ We are at the point now where we can start writing the Lambda code. To do this w
 -   `com.amazonaws:aws-java-sdk-lambda`
 -   `commons-io:commons-io`
 
-The first two dependencies provide us with the libraries we need to run as an Lambda function. The third dependency provides some handy utility functions when working with files.
+The first two dependencies provide us with the libraries we need to run as an Lambda function. The third dependency provides some handy utility functions when working with files:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"

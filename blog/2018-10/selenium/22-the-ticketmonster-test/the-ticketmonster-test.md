@@ -11,7 +11,7 @@ tags:
 
 TicketMonster is a sample application created by RedHat to demonstrate a number of Java web technologies. The nice thing about TicketMonster (from the point of view of a WebDriver tutorial anyway) is that it has not been optimized for automated tests, meaning that to successfully test a typical journey through the application we can't rely on consistent network requests or all elements having convenient `id` attributes to locate them with.
 
-But in order to write tests for TicketMonster, we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at [https://developers.redhat.com/ticket-monster/whatisticketmonster/](https://developers.redhat.com/ticket-monster/whatisticketmonster/). However for this course we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
+But in order to write tests for TicketMonster, we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at [https://developers.redhat.com/ticket-monster/whatisticketmonster/](https://developers.redhat.com/ticket-monster/whatisticketmonster/). However for this post we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
 
 We will test the scenario of purchasing a ticket for an event, so let's first run through the process of buying a ticket manually.
 
@@ -41,7 +41,7 @@ The transaction is completed, and we have bought our pretend tickets to a fictio
 
 Although this scenario of buying tickets is not complex, testing it with WebDriver require a number of techniques that we have implemented in our library so far. We click elements like links and buttons, populate text boxes, select items from drop down lists, and interact with elements that are dynamically added to the page.
 
-Here is the test that completes this ticket purchasing scenario with WebDriver.
+Here is the test that completes this ticket purchasing scenario with WebDriver:
 
 ```java
 package com.octopus;
@@ -105,7 +105,7 @@ public class TicketMonsterTest {
 
 Let's break this code down line by line.
 
-We have a static instance of the `AutomatedBrowserFactory` class, which we will use to generate instances of the `AutomatedBrowser` class.
+We have a static instance of the `AutomatedBrowserFactory` class, which we will use to generate instances of the `AutomatedBrowser` class:
 
 ```java
 private static final AutomatedBrowserFactory AUTOMATED_BROWSER_FACTORY
@@ -120,7 +120,7 @@ We have quite a generous wait time here, because the application has been deploy
 private static final int WAIT_TIME = 30;
 ```
 
-For this test we will be using explicit waits, and also taking advantage of the simple element selection methods. For both of these to work as expected, we need to have an instance of `AutomatedBrowser` that does not implement implicit waits. By passing the `ChromeNoImplicitWait` option to the `AutomatedBrowserFactory` instance, we will receive a `AutomatedBrowser` instance that does not implement implicit waits.
+For this test we will be using explicit waits, and also taking advantage of the simple element selection methods. For both of these to work as expected, we need to have an instance of `AutomatedBrowser` that does not implement implicit waits. By passing the `ChromeNoImplicitWait` option to the `AutomatedBrowserFactory` instance, we will receive a `AutomatedBrowser` instance that does not implement implicit waits:
 
 ```java
 @Test
@@ -129,7 +129,7 @@ public void purchaseTickets() {
     AUTOMATED_BROWSER_FACTORY.getAutomatedBrowser("ChromeNoImplicitWait");
 ```
 
-We then initialize the `AutomatedBrowser` instance, and open up the TicketMonster URL.
+We then initialize the `AutomatedBrowser` instance, and open up the TicketMonster URL:
 
 ```java
 try {
@@ -141,7 +141,7 @@ From the main page we click the Buy tickets now link. Even though this element l
 
 ![](image7.png "width=500")
 
-This means that we can identify this element by its text. If you remember back to when we implemented the `SimpleBy` class, one of the methods that we used to identify an element was the `By.ByLinkText` class.
+This means that we can identify this element by its text. If you remember back to when we implemented the `SimpleBy` class, one of the methods that we used to identify an element was the `By.ByLinkText` class:
 
 ```java
 final By[] byInstances = new By[] {
@@ -154,7 +154,7 @@ final By[] byInstances = new By[] {
 };
 ```
 
-The `By.linkText()` method means we can use the text that makes up the link, which is `Buy tickets now`.
+The `By.linkText()` method means we can use the text that makes up the link, which is `Buy tickets now`:
 
 ```java
 automatedBrowser.clickElement("Buy tickets now", WAIT_TIME);
@@ -182,7 +182,7 @@ Once we make a venue selection, a new panel is displayed that provides some defa
 
 We do need to click the `Order tickets` button. Unlike the other button like element we have been clicking, this element is an actual form button. This means we can't use the text in the element as a way of identifying it. This element has a name of `bookButton`, and since the `By.name()` method is one of the ways `SimpleBy` identifies element, we can use this attribute to identify the button.
 
-This step is a good example of where explicit waits are valuable, as the elements we are interacting with are dynamically displayed and we can not assume that the element is immediately available to be clicked. Because we are using explicit waits, we can be assured that the test will only proceed when the elements are in the desired state, which in this case means that they are clickable.
+This step is a good example of where explicit waits are valuable, as the elements we are interacting with are dynamically displayed, and we can not assume that the element is immediately available to be clicked. Because we are using explicit waits, we can be assured that the test will only proceed when the elements are in the desired state, which in this case means that they are clickable.
 
 ![](image10.png "width=500")
 
@@ -190,8 +190,7 @@ This step is a good example of where explicit waits are valuable, as the element
 automatedBrowser.clickElement("bookButton", WAIT_TIME);
 ```
 
-The section is selected from a drop down list with an ID of
-`sectionSelect`.
+The section is selected from a drop down list with an ID of `sectionSelect`.
 
 ![](image11.png "width=500")
 
@@ -239,18 +238,18 @@ In these situations you have to use either an XPath or a CSS Selector to identif
 
 ![](image16.png "width=500")
 
-Right clicking on the element and selecting `Copy` → `Copy selector` to let Chrome generate a CSS Selector that uniquely identities the element.
+Right clicking on the element and selecting {{Copy,Copy selector}} to let Chrome generate a CSS Selector that uniquely identities the element.
 
 ![](image17.png "width=500")
 
-In this case the element holding the email address can be found with the CSS Selector `div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)`. We use this to identify the element and get its text content, which is then checked to ensure that it does hold the email address we entered earlier.
+In this case the element holding the email address can be found with the CSS Selector `div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)`. We use this to identify the element and get its text content, which is then checked to ensure that it does hold the email address we entered earlier:
 
 ```java
 final String email = automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)", WAIT_TIME);
 Assert.assertTrue(email.contains("email@example.org"));
 ```
 
-We follow the same process for identifying the paragraphs holding the venue and event, and verify the text those elements hold.
+We follow the same process for identifying the paragraphs holding the venue and event, and verify the text those elements hold:
 
 ```java
 final String event = automatedBrowser.getTextFromElement("div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(3)", WAIT_TIME);
@@ -260,7 +259,7 @@ final String venue = automatedBrowser.getTextFromElement("div.col-md-6:nth-child
 Assert.assertTrue(venue.contains("Roy Thomson Hall"));
 ```
 
-The test is then finished, and resources are cleaned up in the `finally` block.
+The test is then finished, and resources are cleaned up in the `finally` block:
 
 ```java
   } finally {
@@ -273,11 +272,11 @@ In testing a real world application like TicketMonster, we can observe three imp
 
 The first is that dynamic elements are everywhere in today's web applications. Whether these are elements that we need to interact with after a new page is loaded, or they are elements that are being manipulated by JavaScript, testing modern web applications means dealing with elements that are not always immediately available.
 
-Second, we have seen in this test just how rare it is to have unique IDs for the elements we want to interact with. Quite often we have had to rely on the `name` attribute, and even had to use CSS Selectors to identify some paragraph elements for our final validations.
+Second, we have seen in this test just how rare it is to have unique IDs for the elements we want to interact with. Quite often we had to rely on the `name` attribute, and we even had to use CSS Selectors to identify some paragraph elements for our final validations.
 
 Third, we have seen that just because two elements look the same on the screen, they can be based on completely different HTML elements. In TicketMonster, links using the `<a>` element and form buttons using the `<input>` element are visually identical. But these two elements have an impact on how we can write the tests. Namely that links can be identified by their text content, and form buttons can not.
 
-To run the test locally click the green icon next to the test, and select the `Run 'purchaseTickets()'` option.
+To run the test locally click the green icon next to the test, and select the `Run purchaseTickets()` option.
 
 ![](image18.png "width=500")
 
@@ -285,7 +284,7 @@ You will see Chrome open up, complete the purchase, and then the test will pass 
 
 ![](image19.png "width=500")
 
-This is a good opportunity to push the code changes to GitHub. Right click the root project directory and select `Git` → `Commit directory...`.
+This is a good opportunity to push the code changes to GitHub. Right click the root project directory and select {{Git,Commit directory...}}.
 
 ![](image20.png "width=500")
 
@@ -307,8 +306,7 @@ If you had a keen eye, you may have noticed some of the images didn't load corre
 
 ![](image3.png "width=500")
 
-Issues like this should be considered a bug, and is something we can detect as part of our test. Let's update the test to capture a HAR file, which we implemented when we added support for the BrowserMob
-proxy.
+Issues like this should be considered a bug, and is something we can detect as part of our test. Let's update the test to capture a HAR file, which we implemented when we added support for the BrowserMob proxy.
 
 ```java
 @Test
@@ -363,8 +361,7 @@ public void purchaseTickets() {
 }
 ```
 
-We can then load the resulting HAR file into [HAR
-Analyzer](https://toolbox.googleapps.com/apps/har_analyzer/) and look for network errors by filtering the HTTP response codes to 0, 4xx and 5xx. Responses in these ranges indicate an error.
+We can then load the resulting HAR file into [HAR Analyzer](https://toolbox.googleapps.com/apps/har_analyzer/) and look for network errors by filtering the HTTP response codes to 0, 4xx and 5xx. Responses in these ranges indicate an error.
 
 Sure enough, we can see some requests for images have a response code of `0`, meaning they did not complete successfully. So even though our test successfully completed the process of purchasing tickets, the HAR file can be used to identify other issues that may impact on the user experience.
 

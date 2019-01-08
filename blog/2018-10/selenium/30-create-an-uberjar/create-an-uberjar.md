@@ -27,7 +27,7 @@ An UberJAR is JAR file that includes all the classes required to run the applica
 
 To configure the Shade plugin, we need to add its configuration under the `<build><plugins>` element.
 
-This configuration specifies that the shade goal of the plugin should be run during the package phase. This means that when we package our code with Maven, the Shade plugin will be run automatically to generate the UberJAR.
+This configuration specifies that the shade goal of the plugin should be run during the package phase. This means that when we package our code with Maven, the Shade plugin will be run automatically to generate the UberJAR:
 
 ```xml
 <project xmlns=\"http://maven.apache.org/POM/4.0.0\"

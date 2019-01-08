@@ -11,7 +11,7 @@ tags:
 
 You may have noticed when running tests against the Edge browser in BrowserStack that the window was not maximized. It usually makes sense to run tests in a maximized window to ensure that the tests are run with web pages displayed with a consistent resolution, so let's add a new method to maximize the window.
 
-First we add the method `maximizeWindow()` to the `AutomatedBrowser` class.
+First, we add the method `maximizeWindow()` to the `AutomatedBrowser` class:
 
 ```java
 package com.octopus;
@@ -27,7 +27,7 @@ public interface AutomatedBrowser {
 }
 ```
 
-Then we add the default implementation to the `AutomatedBrowserBase` class.
+Then we add the default implementation to the `AutomatedBrowserBase` class:
 
 ```java
 package com.octopus.decoratorbase;
@@ -49,7 +49,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 }
 ```
 
-And then in the `WebDriverDecorator` class we add the code to maximize the browser window.
+And then in the `WebDriverDecorator` class we add the code to maximize the browser window:
 
 ```java
 package com.octopus.decorators;
@@ -75,7 +75,7 @@ public class WebDriverDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Now in our test we can maximize the window before the URL is opened with a call to `automatedBrowser.maximizeWindow()`.
+Now, in our test we can maximize the window before the URL is opened with a call to `automatedBrowser.maximizeWindow()`:
 
 ```java
 @Test
@@ -122,7 +122,7 @@ public void browserStackEdgeTest() {
 
 This test will now run and, as expected, the Edge browser window will be maximized before the URL is opened.
 
-But what happens if we run this same test against a mobile browser? Let's add the call to `automatedBrowser.maximizeWindow()` in a test that makes use of the `AutomatedBrowser` instance generated when we pass the string `BrowserStackAndroid` to the factory class.
+But what happens if we run this same test against a mobile browser? Let's add the call to `automatedBrowser.maximizeWindow()` in a test that makes use of the `AutomatedBrowser` instance generated when we pass the string `BrowserStackAndroid` to the factory class:
 
 ```java
 @Test
@@ -165,7 +165,8 @@ public void browserStackAndroidTest() {
 }
 ```
 
-This time we get an exception saying
+This time we get an exception saying:
+
 ```
 org.openqa.selenium.WebDriverException: Appium error: unknown error:
 operation is unsupported on Android.
@@ -217,7 +218,7 @@ This exception makes sense, because mobile browsers do not have the concept of r
 
 This does leave us with a problem though. Ideally we would like to be able to run our test code against any browser. Although we have been creating new test methods to demonstrate new browsers throughout these posts, in practice it is desirable to have a single test method that is called multiple times for different browsers. Running a single test method reduces the amount of duplicated code, making the tests easier to maintain.
 
-We could try to detect the device that the test is being run on inside the test, and wrap up the call to maximize the window in an `if` statement. The code below extracts the name of the device manufacturer, and if it is not `samsung`, we assume that the test is being run on a desktop device, and the call to `automatedBrowser.maximizeWindow()` is made.
+We could try to detect the device that the test is being run on inside the test, and wrap up the call to maximize the window in an `if` statement. The code below extracts the name of the device manufacturer, and if it is not `samsung`, we assume that the test is being run on a desktop device, and the call to `automatedBrowser.maximizeWindow()` is made:
 
 ```java
 String manufacturer = ((RemoteWebDriver) automatedBrowser.getWebDriver()).getCapabilities().getCapability("deviceManufacturer").toString();
@@ -229,7 +230,7 @@ if (!manufacturer.equalsIgnoreCase("samsung")) {
 
 This solution works, but it is not very elegant. The code only works if the only mobile devices we test against are manufactured by Samsung, meaning each new device we test against requires new code in our tests to see if it is a mobile device. It also clutters up our test with a lot of code that distracts from the interactions that we are actually interested in.
 
-A much more elegant solution is to override the `maximizeWindow()` method in the `BrowserStackAndroidDecorator` decorator class.
+A much more elegant solution is to override the `maximizeWindow()` method in the `BrowserStackAndroidDecorator` decorator class:
 
 ```java
 package com.octopus.decorators;
