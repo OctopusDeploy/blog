@@ -96,7 +96,7 @@ Click the `Next: permissions` button to continue.
 
 ![C:\1cfdcc00dd60c7c8695426caaa2b3896](image8.png "width=500")
 
-We'll give the new user administrator permissions. To do this click the Attach existing policies directly, and select the `AdministratorAccess` policy.
+We'll give the new user administrator permissions. To do this click the `Attach existing policies directly` button, and select the `AdministratorAccess` policy.
 
 Click the `Next: review` button to continue.
 
