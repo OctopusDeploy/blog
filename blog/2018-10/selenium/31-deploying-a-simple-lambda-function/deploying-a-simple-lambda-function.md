@@ -121,9 +121,9 @@ service:
 
 We then define the details of the cloud platform that we are deploying to. The Serverless application is cloud agnostic, and can be used to deploy to multiple cloud providers like AWS, Azure and Google Cloud. We are using AWS, and so the providers section will configure the global properties of the AWS Lambda service.
 
-The `name` property is the name of the cloud provider, set to aws in this case.
+The `name` property is the name of the cloud provider, set to `aws` in this case.
 
-The `runtime` property defines the language that our Lambda function is written in, which is java8.
+The `runtime` property defines the language that our Lambda function is written in, which is `java8`.
 
 The `region` property defines the AWS region that we will be deploying the Lambda to. AWS has many regions around the world, and you can find a complete list of regions that support Lambda at [https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region](https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region). We will use the `us-east-1` region here.
 
@@ -151,7 +151,7 @@ The `timeout` property sets the maximum amount of time this function can run. La
 
 The `memorySize` property defines how much memory our Lambda environment can use. We have limited ourselves to 512MB here. Note that this value include any memory used by external applications (like Chrome), as well as our own code.
 
-Increasing the timeout and `memorySize` increases the cost of each Lambda execution.
+Increasing the `timeout` and `memorySize` increases the cost of each Lambda execution.
 
 ```yaml
 functions:
@@ -208,7 +208,7 @@ To test that the function works, click the `Test` button.
 
 ![C:\\b24d832e8c4c491083526bb2ca815e1d](image4.png "width=500")
 
-Replace the test data with a string. Because the first parameter of our Lambda function accepts a string, we need to supply a string when testing.
+Replace the test data with a string (any string will do). Because the first parameter of our Lambda function accepts a string, we need to supply a string when testing.
 
 Lambda functions always take JSON as input, which is converted into a Java object. In this case a string is a valid JSON construct, which then gets converted into a Java string.
 
