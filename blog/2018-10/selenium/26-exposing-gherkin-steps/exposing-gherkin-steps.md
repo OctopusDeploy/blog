@@ -151,8 +151,7 @@ expression therefor needs to have 3 capture groups.
 ```java
 @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
 @Override
-public void selectOptionByTextFromSelectWithId(String optionText, String
-id, int waitTime) {
+public void selectOptionByTextFromSelectWithId(String optionText, String id, int waitTime) {
 // ...
 }
 ```
