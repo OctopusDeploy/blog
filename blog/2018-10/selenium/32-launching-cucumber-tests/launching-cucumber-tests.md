@@ -182,7 +182,7 @@ Now that we have all the files in place, we can run Cucumber.
 
 Previously we took advantage of the JUnit integration provided by Cucumber to launch feature files as part of a test class. But we are not running JUnit from our Lambda, so we need a new way to launch Cucumber.
 
-Fortunately Cucumber also provides a way to run it from the command line with a traditional static void `main() `method in the `cucumber.api.cli.Main` class. This `main()` method then calls the `run()` method. We use this `run()` method as a way of launching Cucumber as if it had been run from the command line directly.
+Fortunately Cucumber also provides a way to run it from the command line with a traditional `static void main() `method in the `cucumber.api.cli.Main` class. This `main()` method then calls the `run()` method. We use this `run()` method as a way of launching Cucumber as if it had been run from the command line directly.
 
 The first parameter to be passed to the `run()` method is a String array that holds the arguments that would normally has been provided on the command line. We have used a number of options to customize the output, link with out glue class, and save a report file.
 
