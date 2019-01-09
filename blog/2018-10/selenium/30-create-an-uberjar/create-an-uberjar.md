@@ -27,7 +27,7 @@ An UberJAR is JAR file that includes all the classes required to run the applica
 
 To configure the Shade plugin, we need to add its configuration under the `<build><plugins>` element.
 
-This configuration specifies that the shade goal of the plugin should be run during the package phase. This means that when we package our code with Maven, the Shade plugin will be run automatically to generate the UberJAR:
+This configuration specifies that the `shade` goal of the plugin should be run during the `package` phase. This means that when we package our code with Maven, the Shade plugin will be run automatically to generate the UberJAR:
 
 ```xml
 <project xmlns=\"http://maven.apache.org/POM/4.0.0\"
@@ -76,7 +76,7 @@ Looking at the contents of the UberJAR file we can see that it has significantly
 
 ![C:\\2f1e567c929f42473046a8ad3d364a97](image5.png "width=500")
 
-You will have noticed that running the package Maven lifecycle results in all the tests being run. Given that the tests we have written involve launching web browsers, these tests can get in the way if you just want to produce the JAR file. To prevent tests from being run, right click on the package lifecycle menu item and select the `Create
+You will have noticed that running the `package` Maven lifecycle results in all the tests being run. Given that the tests we have written involve launching web browsers, these tests can get in the way if you just want to produce the JAR file. To prevent tests from being run, right click on the package lifecycle menu item and select the `Create
 'webdrivertraining...'...` option.
 
 ![C:\\c00ed64c68f139e3bbf3bf836c200a12](image6.png "width=500")
