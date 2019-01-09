@@ -100,18 +100,19 @@ Let's break the regular expression assigned to the annotation down.
 
 | Pattern | Pattern	Meaning |
 |-|-|
-| ^ |	Match the start of the string |
-| I open the URL \" |	Matches the literal string `I open the URL "` |
-| ( |	Start a capture group |
-| [^"]* |	Match any character except the double quote zero or more times |
-| ) |	End a capture group|
-| \" |	Match the literal string `"` |
-| $ |	Match the end of the string |
+| `^` |	Match the start of the string |
+| `I open the URL \"` |	Matches the literal string `I open the URL "` |
+| `(` |	Start a capture group |
+| `[^"]*` |	Match any character except the double quote zero or more times |
+| `)` |	End a capture group|
+| `\"` |	Match the literal string `"` |
+| `$` |	Match the end of the string |
 
 
-To understand these regular expressions we can use an online tool like [http://regex-testdrive.com/en/](http://regex-testdrive.com/en/). Here we have entered the regular expression and a target string that we want to match to the regular expression. Clicking the Test button then shows us the results of this match.
+To understand these regular expressions we can use an online tool like [http://regex-testdrive.com/en/](http://regex-testdrive.com/en/). Here we have entered the regular expression and a target string that we want to match to the regular expression. Clicking the `Test` button then shows us the results of this
+match.
 
-You can see that this match returned two groups. Group 0 in a regular expression always returns the complete string that was matched, which in our case is the full sentence `I open the URL "http://google.com"`. Group 1 returns only the characters that were between the parentheses, which in this case was the URL [http://google.com.](http://google.com)
+You can see that this match returned two groups. Group 0 in a regular expression always returns the complete string that was matched, which in our case is the full sentence `I open the URL "http://google.com"`. Group 1 returns only the characters that were between the parentheses, which in this case was the URL [http://google.com](http://google.com).
 
 ![C:\a2b8c9a7303cc5bf8ca9c040bf678051](image1.png "width=500")
 
@@ -135,9 +136,9 @@ At first glance we might be able to place the annotations on the `WebDriverDecor
 
 The only other option is the `AutomatedBrowserBase` class, but this has been inherited by every decorator class, which is not supported by Cucumber.
 
-Fortunately, there is a work around to the limitation Cucumber places on extending classes with annotations. You may have noticed that we placed the `AutomatedBrowserBase` class alone in its own package called `com.octopus.decoratorbase`. It may have seemed odd to have a package for a single class, but this was done quite deliberately. By isolating the `AutomatedBrowserBase` class in a package away from all the decorator classes that extend it, we can work around Cucumbers limitations.
+Fortunately, there is a work around to the limitation Cucumber places on extending classes with annotations. You may have noticed that we placed the `AutomatedBrowserBase` class alone in its own package called `com.octopus.decoratorbase`. It may have seemed odd to have a package for a single class, but this was done quite deliberately. By isolating the `AutomatedBrowserBase` class in a package away from all the decorator classes that extend it, we can work around Cucumber's limitations.
 
-To see how this workaround works, lets start by creating a test class that makes use of the code we included with the `cucumber-junit` Maven dependency:
+To see how this workaround works, let's start by creating a test class that makes use of the code we included with the `cucumber-junit` Maven dependency.
 
 ```java
 package com.octopus;
@@ -164,7 +165,7 @@ same package as the test class and execute them:
 
 The second annotation is `@CucumberOptions`. This annotation is used to customize how Cucumber will run the `*.feature` files it finds. Here we have passed the package `com.octopus.decoratorbase` as containing "glue" classes. Glue classes are simply classes with the annotations `@Given`, `@When`, `@And` or `@Then`.
 
-Cucumber will catalogue the classes in this package, as well as any sub-packages. Glue classes found in an underneath this package must not extend one another.
+Cucumber will catalogue the classes in this package, as well as any sub-packages. Glue classes found in and underneath this package must not extend one another.
 
 What this means is that because the `AutomatedBrowserBase` class is the only class found in this package, Cucumber is satisfied that no illegal class hierarchies exist. It doesn't matter that all the decorator classes under the `com.octopus.decorators` package extend the `AutomatedBrowserBase` class, because Cucumber is unaware of these decorator classes.
 
@@ -214,7 +215,7 @@ Let's take a look at these two methods in more detail:
 
 The annotation `@Given("^I open the browser \"([^\"]*)\"$")` attached to the `openBrowser()` method works the same way as the previous example of `@And("^I open the URL \"([^\"]*)\"$")`. The annotations `@Given` and `@And` are interchangeable. Typically `@Given` is used on methods that perform some kind of initialization or management functionality, but this is just a convention rather than a rule.
 
-The regular expression assigned to the `@Given` annotation follows the same pattern of using the caret and dollar characters to bookend the expression, a literal match of the string `I open the browser`, and a non-greedy capture group inside quotes.
+The regular expression assigned to the `@Given` annotation follows the same pattern of using the caret (`^`) and dollar (`$`) characters to bookend the expression, a literal match of the string `I open the browser`, and a non-greedy capture group inside quotes.
 
 The value of the capture group is then passed to the parameter called `browser`:
 
@@ -261,7 +262,7 @@ Feature: A simple test
 
 Let's break this file down.
 
-All Gherkin feature files start with `Feature:` section. A feature is a group of related Scenarios.
+All Gherkin feature files start with a `Feature:` section. A feature is a group of related Scenarios.
 
 ```gherkin
 Feature: A simple test
@@ -278,7 +279,7 @@ Finally we have the two steps that we defined in the
 
 Notice that the step prefixes used here don't exactly match the names of the annotations. While it would be nice if these step matched up with the annotation names, this is not a requirement.
 
-Also notice that the regular expressions we defined do not capture the words `Given`, `When`, `Then` or `And`, even though the complete step always start with a word like this. The regular expressions we define start by matching the content of the step after this initial word.
+Also notice that the regular expressions we defined do not capture the words `Given`, `When`, `Then` or `And`, even though the complete step always start with a word like this. The regular expressions we define starts by matching the content of the step after this initial word.
 
 ```gherkin
 Given I open the browser "ChromeNoImplicitWait"
@@ -293,6 +294,6 @@ Running the test will find the `simpletest.feature` file and execute it. The fea
 
 ![C:\c7c63543a445275fbcae1e3ace817ee9](image4.png "width=500")
 
-We now have laid the foundation for creating a gherkin dialect that will allow us to write natural language tests in Gherkin that can be verified using WebDriver. However we still have a lot of work to do to create end to end tests. In the next post we will expose more of the `AutomatedBrowser` class to Cucumber, and work towards creating a readable end to end test.
+We now have laid the foundation for creating a Gherkin dialect that will allow us to write natural language tests that can be verified using WebDriver. However we still have a lot of work to do to create end to end tests. In the next post we will expose more of the `AutomatedBrowser` class to Cucumber, and work towards creating a readable end to end test.
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).

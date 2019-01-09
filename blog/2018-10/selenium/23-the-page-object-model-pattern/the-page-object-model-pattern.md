@@ -120,7 +120,7 @@ public MainPage openPage() {
 }
 ```
 
-The only action we are interested on on the main page is clicking the `Buy tickets now` link, which we do in a method called `buyTickets()`.
+The only action we are interested in on the main page is clicking the `Buy tickets now` link, which we do in a method called `buyTickets()`.
 
 If you recall from the previous post, how we interacted with elements like this link was not as easy as it might have appeared, because these elements could either be styled links (`<a>` elements), or form buttons (`<input>` elements). Depending on which kind of element was used, our first test had to use a different locator. Links could be identified by their text, while form buttons had to be identified by an `id` or `name` attribute.
 
@@ -482,10 +482,8 @@ Validating the details of the purchased tickets is also now much more streamline
 
 ```java
 Assert.assertTrue(confirmationPage.getEmail().contains("email@example.org"));
-Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of
-the decade"));
-Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson
-Hall"));
+Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of the decade"));
+Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson Hall"));
 ```
 
 Once the test is completed we clean up the resources in the `finally` block:
