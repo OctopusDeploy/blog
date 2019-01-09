@@ -17,7 +17,6 @@ If there is one justified criticism of UI testing, it is that it is far slower t
 
 This is the introduction to a [blog post](https://aws.amazon.com/blogs/devops/ui-testing-at-scale-with-aws-lambda/) on Amazon talking about how a development team dropped their UI testing times from hours to seconds with Chrome headless and AWS Lambda. This reduction in testing time is exactly what we are looking for, and in this post we'll learn how to run our UI tests at massive scale using AWS Lambda.
 
-
 Lambda is a service provided by AWS that allows short lived applications to be run at near infinite scale. Lambda takes care of provisioning the operating system and deploying your code, and you only pay for the time that you application is actually running. But the best feature of Lambda is that all the scaling is taken care of for you. As you make more requests to applications hosted in Lambda, the platform will scale up automatically to ensure that performance is maintained. And if requests drop off, Lambda will scale back down. This scaling is automatic and transparent to our code.
 
 Because we can quite often run UI tests concurrently, we can achieve a significant decrease in the total time it takes to execute a test suite by having our testing application hosted by Lambda thanks to this automatic scaling.
@@ -26,7 +25,7 @@ Let's start by looking at the AWS Lambda console. From the `Services` menu, clic
 
 ![C:\5d7441690ab4ca262ec5e50ff811e5c7](image1.png "width=500")
 
-Because we have not created any Lambda functions yet, the Lambda console provides a welcome page where we can start playing with a some sample code.
+Because we have not created any Lambda functions yet, the Lambda console provides a welcome page where we can start playing with some sample code.
 
 ![C:\2fd5e57c2c6430a4866aa46f08469702](image2.png "width=500")
 
@@ -44,11 +43,11 @@ So where is this Linux server that the code is running on? This is the beauty of
 
 Before we get started though, we do need to install some additional tools to make deploying Lambda functions easy.
 
-We'll use the [Serverless](https://serverless.com/) platform to deploy our Lambda functions to AWS. Serverless provides us with some simple commands that take care of uploading our code, deploying to to Lambda, and setting the various options required by Lambda.
+We'll use the [Serverless](https://serverless.com/) platform to deploy our Lambda functions to AWS. Serverless provides us with some simple commands that take care of uploading our code, deploying to Lambda, and setting the various options required by Lambda.
 
 Servless is a Node.js application, which means that we need to have Node.js installed locally to use it. You can download and install Node.js from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
-You can confirm that Node.js is installed by running the command `node --version` from a terminal or PowerShell.
+You can confirm that Node.js is installed by running the command `node --version` from a terminal or PowerShell:
 
 ```
 $ node --version
@@ -57,7 +56,7 @@ v8.11.2
 
 The Serverless application is then installed with `npm`, which is short for Node Package Manager. This command will download and install the Serverless application to your local machine.
 
-On a Linux or MacOS machine, you can install Serverless with the `sudo` command.
+On a Linux or MacOS machine, you can install Serverless with the `sudo` command:
 
 ```
 $ sudo npm install serverless -g
@@ -65,13 +64,13 @@ $ sudo npm install serverless -g
 
 On a Windows PC you can install Serverless with the following command.
 
-You may need to run this command from a Powershell or command line windows with Administrator privileges.
+Note, you may need to run this command from a Powershell or command line windows with Administrator privileges:
 
 ```
 $ npm install serverless -g
 ```
 
-You can then confirm that the serverless command is available by running `serverless --version`.
+You can then confirm that the serverless command is available by running `serverless --version`:
 
 ```
 $ serverless --version
@@ -122,11 +121,11 @@ When you are done, click the `Close` button.
 
 To allow these credentials to be used by the Serverless application, we need to create a file called `.aws/credentials` in our users home directory.
 
--   In Windows, this file is saved under `C:\Users\username\.aws\credentials`
--   In Linux, this file is saved under `/home/username/.aws/credentials`
--   In MacOS, this file is saved under `/Users/username/.aws/credentials`
+- In Windows, this file is saved under `C:\Users\username\.aws\credentials`
+- In Linux, this file is saved under `/home/username/.aws/credentials`
+- In MacOS, this file is saved under `/Users/username/.aws/credentials`
 
-The contents of the file should look like this, with the value of the keys replaced with the keys for your AWS user.
+The contents of the file should look like this, with the value of the keys replaced with the keys for your AWS user:
 
 ```
 [default]
@@ -134,7 +133,6 @@ aws_access_key_id = AKIAJM25BFQYTRVXQSNQ
 aws_secret_access_key = 0qY/ESbl8xzKaDXOQixFz66Lv2KJFo1quYt6ftjF
 ```
 
-We now have the Serverless application installed and the AWS credentials configured, meaning that we are now ready to use the Serverless application to deploy our code to AWS. However, unlike running a standalone Java application as a Lambda function, which would work without much additional configuration, we have some additional steps that need to be completed to provide an environment where WebDriver
-tests can be run, which we will address in the next post.
+We now have the Serverless application installed and the AWS credentials configured, meaning that we can use the Serverless application to deploy our code to AWS. However, unlike running a standalone Java application as a Lambda function, which would work without much additional configuration, we have some additional steps that need to be completed to provide an environment where WebDriver tests can be run, which we will address in the next post.
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).

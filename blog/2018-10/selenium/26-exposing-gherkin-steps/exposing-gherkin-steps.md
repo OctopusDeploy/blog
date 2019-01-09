@@ -13,7 +13,7 @@ Now that we have the basics in place to integrate the `AutomatedBrowserBase` cla
 
 The next step in most tests after opening the browser is to open a URL. We can expose this by annotating the `goTo()` method.
 
-We will use the regular expression `^I open the URL "([^\"]*)"$` to capture the URL that we wish to open and pass it to the `url` parameter. This regular expression follows the familiar pattern of using the caret and dollar signs to match the start and end of the string, some plain text that must be literally matched, and a single group inside quotes.
+We will use the regular expression `^I open the URL "([^\"]*)"$` to capture the URL that we wish to open and pass it to the `url` parameter. This regular expression follows the familiar pattern of using the caret and dollar signs to match the start and end of the string, some plain text that must be literally matched, and a single group inside quotes:
 
 ```java
 @And("^I open the URL \"([^\"]*)\"$")
@@ -23,7 +23,7 @@ public void goTo(String url) {
 }
 ```
 
-Now we need to expose some methods to interact with the web page. Here we have annotated the `clickElementWithId()` method.
+Now we need to expose some methods to interact with the web page. Here we have annotated the `clickElementWithId()` method:
 
 ```java
 @And("^I click the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\"$")
@@ -35,7 +35,7 @@ public void clickElementWithId(String id) {
 
 The regular expression we use to expose this method as a step involves a few new concepts.
 
-We have used some character classes to match common types of characters. A character class is a backslash followed by a character the defines the class.
+We have used some character classes to match common types of characters. A character class is a backslash followed by a character that defines the class.
 
 The `\w` character class matches any word character, which means it matches any lowercase character, any uppercase character, and any number.
 
@@ -47,19 +47,15 @@ We also use a non-capture group in this regular expression. A non-capture group 
 
 The pattern `\\w+(?:\\s+\\w+)*` matches zero or more words separated by spaces. So the following strings will all match this pattern:
 
--   text box
--   drop down list
--   textarea
--   radio button
--   checkbox
+- text box
+- drop down list
+- textarea
+- radio button
+- checkbox
 
-We have used this pattern to allow the element being interacted with to
-be described in what ever way is most natural. Because this pattern uses
-a non-capture group, Cucumber will not pass the matching text as a
-parameter to the method.
+We have used this pattern to allow the element being interacted with to be described in what ever way is most natural. Because this pattern uses a non-capture group, Cucumber will not pass the matching text as a parameter to the method.
 
-The table below is a breaks down the regular expression into its
-individual components.
+The table below is a breaks down the regular expression into its individual components.
 
 | Pattern	| Meaning |
 |-|-|
@@ -80,15 +76,15 @@ individual components.
 
 To understand the kind of steps that will match this regular expression, enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the following examples:
 
--   I click the text box with the id "email"
--   I click the check box with the id "option-1"
--   I click the big red button with the id "submit"
+- I click the text box with the id "email"
+- I click the check box with the id "option-1"
+- I click the big red button with the id "submit"
 
 ![C:\d117bb78328e97f7dab22e91ecfeae72](image1.png "width=500")
 
 Notice that there are only ever two groups captured: group 0 being the entire string, and group 1 being the ID of the element we want to click. Group 1 is what is then passed as the first parameter to the method.
 
-Next we expose the overloaded version of `clickElementWithId()` that implements explicit waits. This method has a second parameter called `waitTime` that takes an `int`.
+Next we expose the overloaded version of `clickElementWithId()` that implements explicit waits. This method has a second parameter called `waitTime` that takes an `int`:
 
 ```java
 @And("^I click the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
@@ -134,19 +130,9 @@ To understand the kind of steps that will match this regular expression, enter i
 
 ![C:\4f279d1029084cec389ed1a693b43b4e](image2.png "width=500")
 
-This regular expression has three capture groups. Again group 0 is the
-entire string. As was the case with the previous regular expression,
-group 1 is the ID of the element to click, and Cucumber passes this as
-the first parameter to the method. The new group 2 captures the explicit
-wait time, and Cucumber passes this as the second parameter to the
-method.
+This regular expression has three capture groups. Again group 0 is the entire string. As was the case with the previous regular expression, group 1 is the ID of the element to click, and Cucumber passes this as the first parameter to the method. The new group 2 captures the explicit wait time, and Cucumber passes this as the second parameter to the method.
 
-Let's look at what will be one of the most complicated regular
-expressions we'll use to define a step. The
-`selectOptionByTextFromSelectWithId()` method takes the name of the option
-in a drop down list to select, the ID of the drop down list, and the
-time to wait for the drop down list to be clickable. This regular
-expression therefor needs to have 3 capture groups.
+Let's look at what will be one of the most complicated regular expressions we'll use to define a step. The `selectOptionByTextFromSelectWithId()` method takes the name of the option in a drop down list to select, the ID of the drop down list, and the time to wait for the drop down list to be clickable. This regular expression therefor needs to have 3 capture groups:
 
 ```java
 @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
@@ -156,8 +142,7 @@ public void selectOptionByTextFromSelectWithId(String optionText, String id, int
 }
 ```
 
-The table below is a breaks down the regular expression into its
-individual components.
+The table below is a breaks down the regular expression into its individual components.
 
 | Pattern	| Meaning |
 |-|-|
@@ -185,31 +170,16 @@ individual components.
 | `$` |	Match the end of the string |
 
 
-To understand the kind of steps that will match this regular expression,
-enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the
-following examples:
+To understand the kind of steps that will match this regular expression, enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the following examples:
 
--   I select the option "Option One" from the drop down list with the
-    id "dropdownlist" waiting up to "1" second
--   I select the option "A very long option name" from the drop down
-    list with the id "the-select-element" waiting up to "10" seconds
--   I select the option "This is also a long name" from the list of
-    options with the id "alongid" waiting up to "5" seconds
+- I select the option "Option One" from the drop down list with the id "dropdownlist" waiting up to "1" second
+- I select the option "A very long option name" from the drop down list with the id "the-select-element" waiting up to "10" seconds
+- I select the option "This is also a long name" from the list of options with the id "alongid" waiting up to "5" seconds
 
 ![C:\98467ce11d951c72ec283e76b8d449e3](image3.png "width=500")
 
-Now we have 4 capture groups. As always group 0 is the entire string,
-then the first capture group is the name of the option to select, the
-second is the ID of the drop down list, and the third is the amount of
-time to wait for the element to be clickable.
+Now we have 4 capture groups. As always group 0 is the entire string, then the first capture group is the name of the option to select, the second is the ID of the drop down list, and the third is the amount of time to wait for the element to be clickable.
 
-As you can see, regular expressions are incredibly powerful, and we have
-only touched on a small number of the ways regular expressions can be
-used to match strings. However, these regular expressions demonstrate
-all the techniques that we will use when mapping methods to Gherkin
-steps. All the remaining methods will use regular expressions with the
-some combination of the capture groups, non-capture groups, character
-classes and special characters that we have demonstrated with the
-previous methods.
+As you can see, regular expressions are incredibly powerful, and we have only touched on a small number of the ways regular expressions can be used to match strings. However, these regular expressions demonstrate all the techniques that we will use when mapping methods to Gherkin steps. All the remaining methods will use regular expressions with the some combination of the capture groups, non-capture groups, character classes and special characters that we have demonstrated with the previous methods.
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
