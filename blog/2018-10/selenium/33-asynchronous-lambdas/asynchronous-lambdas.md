@@ -153,7 +153,7 @@ If you open up the Lambda console and view the function, you can now see that a 
 
 ![/C:/edb84ea8b782041656cd633e9368260c](image4.png "width=500")
 
-API Gateway is another AWS service that is used to build HTTP APIs, and it is the service that the serverless application built when we added HTTP events. It is API Gateway that is taking out HTTP requests, transforming them with the templates we defined, passing them to the Lambda function, transforming the response from the Lambda function, and passing the results back to the caller.
+API Gateway is another AWS service that is used to build HTTP APIs, and it is the service that the serverless application built when we added HTTP events. It is API Gateway that is taking our HTTP requests, transforming them with the templates we defined, passing them to the Lambda function, transforming the response from the Lambda function, and passing the results back to the caller.
 
 However, while a Lambda function can run for up to 5 minutes, a request made through the API Gateway can only stay open for 29 seconds. These are the limits imposed by AWS on these services, and we do not have the option of extending them.
 
