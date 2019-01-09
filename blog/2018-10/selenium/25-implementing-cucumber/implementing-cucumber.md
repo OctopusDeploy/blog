@@ -100,13 +100,13 @@ Let's break the regular expression assigned to the annotation down.
 
 | Pattern | Pattern	Meaning |
 |-|-|
-| ^ |	Match the start of the string |
-| I open the URL \" |	Matches the literal string `I open the URL "` |
-| ( |	Start a capture group |
-| [^"]* |	Match any character except the double quote zero or more times |
-| ) |	End a capture group|
-| \" |	Match the literal string `"` |
-| $ |	Match the end of the string |
+| `^` |	Match the start of the string |
+| `I open the URL \"` |	Matches the literal string `I open the URL "` |
+| `(` |	Start a capture group |
+| `[^"]*` |	Match any character except the double quote zero or more times |
+| `)` |	End a capture group|
+| `\"` |	Match the literal string `"` |
+| `$` |	Match the end of the string |
 
 
 To understand these regular expressions we can use an online tool like [http://regex-testdrive.com/en/](http://regex-testdrive.com/en/). Here we have entered the regular expression and a target string that we want to match to the regular expression. Clicking the Test button then shows us the results of this
