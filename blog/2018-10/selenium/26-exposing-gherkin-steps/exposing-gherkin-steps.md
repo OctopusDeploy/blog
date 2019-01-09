@@ -113,7 +113,7 @@ The table below is a breaks down the regular expression into its individual comp
 | `\\s+`	| Match one or more white space characters |
 | `\\w+`	| Match one or more word characters |
 | `)*`	|End the non-capture group, and match it zero or more times |
-with the id \"	| Match the literal string `with the id "` |
+| `with the id \"`	| Match the literal string `with the id "` |
 | `(`	|Start a capture group |
 | `[^"]*`	|Match any character except the double quote zero or more times |
 | `)`	|End the capture group |
