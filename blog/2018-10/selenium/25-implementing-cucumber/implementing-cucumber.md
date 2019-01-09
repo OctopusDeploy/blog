@@ -165,7 +165,7 @@ same package as the test class and execute them.
 
 The second annotation is `@CucumberOptions`. This annotation is used to customize how Cucumber will run the `*.feature` files it finds. Here we have passed the package `com.octopus.decoratorbase` as containing "glue" classes. Glue classes are simply classes with the annotations `@Given`, `@When`, `@And` or `@Then`.
 
-Cucumber will catalogue the classes in this package, as well as any sub-packages. Glue classes found in an underneath this package must not extend one another.
+Cucumber will catalogue the classes in this package, as well as any sub-packages. Glue classes found in and underneath this package must not extend one another.
 
 What this means is that because the `AutomatedBrowserBase` class is the only class found in this package, Cucumber is satisfied that no illegal class hierarchies exist. It doesn't matter that all the decorator classes under the `com.octopus.decorators` package extend the `AutomatedBrowserBase` class, because Cucumber is unaware of these decorator classes.
 
@@ -215,7 +215,7 @@ Let's take a look at these two methods in more detail.
 
 The annotation `@Given("^I open the browser \"([^\"]*)\"$")` attached to the `openBrowser()` method works the same way as the previous example of `@And("^I open the URL \"([^\"]*)\"$")`. The annotations `@Given` and `@And` are interchangeable. Typically `@Given` is used on methods that perform some kind of initialization or management functionality, but this is just a convention rather than a rule.
 
-The regular expression assigned to the `@Given` annotation follows the same pattern of using the caret and dollar characters to bookend the expression, a literal match of the string `I open the browser`, and a non-greedy capture group inside quotes.
+The regular expression assigned to the `@Given` annotation follows the same pattern of using the caret (`^`) and dollar (`$`) characters to bookend the expression, a literal match of the string `I open the browser`, and a non-greedy capture group inside quotes.
 
 The value of the capture group is then passed to the parameter called `browser`.
 
@@ -262,7 +262,7 @@ Feature: A simple test
 
 Let's break this file down.
 
-All Gherkin feature files start with `Feature:` section. A feature is a group of related Scenarios.
+All Gherkin feature files start with a `Feature:` section. A feature is a group of related Scenarios.
 
 ```gherkin
 Feature: A simple test
@@ -279,7 +279,7 @@ Finally we have the two steps that we defined in the
 
 Notice that the step prefixes used here don't exactly match the names of the annotations. While it would be nice if these step matched up with the annotation names, this is not a requirement.
 
-Also notice that the regular expressions we defined do not capture the words `Given`, `When`, `Then` or `And`, even though the complete step always start with a word like this. The regular expressions we define start by matching the content of the step after this initial word.
+Also notice that the regular expressions we defined do not capture the words `Given`, `When`, `Then` or `And`, even though the complete step always start with a word like this. The regular expressions we define starts by matching the content of the step after this initial word.
 
 ```gherkin
 Given I open the browser "ChromeNoImplicitWait"
@@ -294,6 +294,6 @@ Running the test will find the `simpletest.feature` file and execute it. The fea
 
 ![C:\c7c63543a445275fbcae1e3ace817ee9](image4.png "width=500")
 
-We now have laid the foundation for creating a gherkin dialect that will allow us to write natural language tests in Gherkin that can be verified using WebDriver. However we still have a lot of work to do to create end to end tests. In the next post we will expose more of the `AutomatedBrowser` class to Cucumber, and work towards creating a readable end to end test.
+We now have laid the foundation for creating a Gherkin dialect that will allow us to write natural language tests that can be verified using WebDriver. However we still have a lot of work to do to create end to end tests. In the next post we will expose more of the `AutomatedBrowser` class to Cucumber, and work towards creating a readable end to end test.
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
