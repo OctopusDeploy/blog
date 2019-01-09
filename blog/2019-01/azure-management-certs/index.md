@@ -17,7 +17,7 @@ Azure have deprecated the Azure Service Manager APIs and in order to make better
 ## The longer story
 The Azure Service Manager (ASM) API is the original mechanism for programmatically interacting with your Azure resources until the Azure Resource Manager (ARM) API became available in in [2014](https://channel9.msdn.com/Events/Build/2014/2-607). 
 
-The Azure Resource Manager API is the new(er) API used to interact with Azure's resources and as such they have begun to deprecate the older ASM. To quote [Naveed Aziz on an Azure Team Blog](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/)
+The Azure Resource Manager API is the new(er) API used to interact with Azure and introduces concepts like Resource Groups to better model interrelated resources as well as providing support for some of the newer services not available in the older API. As such they have begun to deprecate the older ASM. To quote [Naveed Aziz on an Azure Team Blog](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/)
 
 >  ... The Service Management APIs are archaic and not well suited for the modern cloud. 
 
