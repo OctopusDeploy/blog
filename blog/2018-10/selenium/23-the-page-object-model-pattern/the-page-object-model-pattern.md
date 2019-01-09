@@ -483,10 +483,8 @@ Validating the details of the purchased tickets is also now much more streamline
 
 ```java
 Assert.assertTrue(confirmationPage.getEmail().contains("email@example.org"));
-Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of
-the decade"));
-Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson
-Hall"));
+Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of the decade"));
+Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson Hall"));
 ```
 
 Once the test is completed we clean up the resources in the `finally` block.
