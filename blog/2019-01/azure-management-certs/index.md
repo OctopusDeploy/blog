@@ -44,7 +44,7 @@ you will be provided with a set of text fields.
 
 This change will be both on the [Azure Cloud Service Target](https://octopus.com/docs/infrastructure/deployment-targets/azure/cloud-service-targets) and Azure Cloud Service deployment step (if "legacy" mode is selected)
 
-![step](step.png "width=300")
+![step](step.png "width=200")
 ![target](target.png "width=300")
 
 ### Onwards and upwards
