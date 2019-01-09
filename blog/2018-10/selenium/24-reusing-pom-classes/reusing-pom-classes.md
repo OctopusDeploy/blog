@@ -17,7 +17,7 @@ section options and get the ticket prices for them.
 
 ![C:\9c18ad03019ca85e0721a66947cd11ef](image1.png "width=500")
 
-To support this new test we need to add some additional methods to the `CheckoutPage` class.
+To support this new test we need to add some additional methods to the `CheckoutPage` class:
 
 ```java
 public class CheckoutPage extends BasePage {
@@ -50,7 +50,7 @@ public class CheckoutPage extends BasePage {
 }
 ```
 
-First we define a regular expression `Pattern` that matches the price strings displayed by the application. The prices are displayed as strings like `@ $219.5`, `@ $149.5` (the missing zero on the end is probably a bug in Ticketmonster, but we'll ignore that for now). We want to be able to isolate the dollar amount from the at and dollar symbols, so we capture that part of the string in a group.
+First we define a regular expression `Pattern` that matches the price strings displayed by the application. The prices are displayed as strings like `@ $219.5`, `@ $149.5` (the missing zero on the end is probably a bug in Ticketmonster, but we'll ignore that for now). We want to be able to isolate the dollar amount from the at and dollar symbols, so we capture that part of the string in a group:
 
 ```java
 private static final Pattern TICKET_PRICE_REGEX = Pattern.compile("@ \\$(\\d+\\.\\d+)");
@@ -67,7 +67,7 @@ public CheckoutPage selectSection(final String section) {
 
 The new `getSectionAdultPrices()` method first gets the raw text from the element that displays the price. This raw text looks like `@ $219.5` or `@ $149.5`.
 
-It then passes that text to the method `getPriceFromTicketPriceString()`, which will convert it into a `float` value.
+It then passes that text to the method `getPriceFromTicketPriceString()`, which will convert it into a `float` value:
 
 ```java
 public float getSectionAdultPrices() {
@@ -80,7 +80,7 @@ The final addition is the `getPriceFromTicketPriceString()` method. This method 
 
 In this method we attempt to match the input to the regular expression `Pattern` that was defined earlier. If the match was successful, we extract group 1, which will contain strings like `219.5` or `149.5`. These strings are then converted to `float` values and returned.
 
-If the input did not match the regular expression, an exception is thrown.
+If the input did not match the regular expression, an exception is thrown:
 
 ```java
   private float getPriceFromTicketPriceString(String input) {
@@ -94,7 +94,7 @@ If the input did not match the regular expression, an exception is thrown.
 }
 ```
 
-With these changes to `CheckoutPage` in place we can now write the test.
+With these changes to `CheckoutPage` in place we can now write the test:
 
 ```java
 @Test
@@ -146,7 +146,7 @@ public void verifyPricesPageObjectModel() {
 }
 ```
 
-To get the web application to the point where the ticket prices can be found, we reuse the `MainPage`, `EventsPage` and `VenuePage` POM classes. The code here is almost identical to the previous test, but in this example though we have chosen a different event called `Shane's Sock Puppets`.
+To get the web application to the point where the ticket prices can be found, we reuse the `MainPage`, `EventsPage` and `VenuePage` POM classes. The code here is almost identical to the previous test, but in this example though we have chosen a different event called `Shane's Sock Puppets`:
 
 ```java
 @Test
