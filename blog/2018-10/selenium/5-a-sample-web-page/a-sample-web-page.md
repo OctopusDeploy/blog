@@ -423,3 +423,5 @@ assertEquals("Div Clicked", automatedBrowser.getTextFromElementWithId("message")
 ```
 
 With the `formTestByID()` test we have successfully clicked, checked, typed and selected options with a live, interactive web page, and verified the results. This, in a nutshell, is what writing WebDrivers tests is all about. However, we will not always have the luxury of locating elements based on an ID attribute. In these situations, WebDriver offers a number of other ways to locate elements in a web page, and we'll look at those next.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

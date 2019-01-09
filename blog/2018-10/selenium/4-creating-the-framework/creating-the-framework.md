@@ -475,3 +475,5 @@ To run the tests, click the green arrow next to the `FactoryTest` class and sele
 You will see both Chrome and Firefox open, display [https://octopus.com](https://octopus.com), and close again.
 
 Now that we have a simple framework to run tests against multiple browsers, we need to have a web page that we can interact with, which we will create in the next post.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

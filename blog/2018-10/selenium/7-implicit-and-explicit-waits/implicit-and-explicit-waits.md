@@ -852,3 +852,5 @@ public class WebDriverDecorator extends AutomatedBrowserBase {
 ```
 
 Now that we have seen how implicit and explicit waits work, it is important to understand some of unexpected consequences of using them at the same time. In the next post we'll learn about some unexpected behavior when implicit and explicit waits are mixed.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

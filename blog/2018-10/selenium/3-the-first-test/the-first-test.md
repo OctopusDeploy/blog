@@ -294,3 +294,5 @@ public class InitialTest {
 ```
 
 Running the `openURLFirefox()` unit test will open the Firefox browser, open the page at [https://octopus.com/](https://octopus.com/), and then close the browser again.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

@@ -96,3 +96,5 @@ The key take away from this blog is this:
 -   The terms WebDriver, Selenium, and Selenium WebDriver are used interchangeably, and usually refer to the Selenium API.
 
 Now that we know the differences between the WebDriver and Selenium APIs, we can for all practical purposes treat them as one and the same thing. All the code we will write from this point forward will use the Selenium API while discussing how to write WebDriver tests. So while you now know that the WebDriver and Selenium APIs are not *technically* the same thing, we typically refer to "Selenium WebDriver" as the platform through which we interact with a browser.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

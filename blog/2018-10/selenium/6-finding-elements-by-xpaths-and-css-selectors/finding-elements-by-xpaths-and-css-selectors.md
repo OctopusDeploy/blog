@@ -264,3 +264,5 @@ Unfortunately, because the `id` attribute has to be manually assigned to an elem
 Unlike the `id` attributes, all elements can be located using XPaths and CSS Selectors. So in the absence of a usable ID, you will have to fall back to one of these locators.
 
 CSS Selectors tend to be more familiar than XPaths, because CSS Selectors are used by web developers to design CSS rule sets. For this reason I would recommend CSS Selectors over XPaths.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).

@@ -290,3 +290,5 @@ Revert the change and package the project again, and you will notice that the wa
 ![](image20.png "width=500")
 
 And with that we have a minimal Maven project imported into IntelliJ. In the next post we will start writing some Java to implement our very first WebDriver test.
+
+Return to the [table of contents](../0-toc/webdriver-toc.md).
