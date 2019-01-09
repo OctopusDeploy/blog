@@ -177,7 +177,7 @@ individual components.
 | `(` |	Start a capture group |
 | `[^"]*` |	Match any character except the double quote zero or more times |
 | `)` |	End a capture group |
-| `\"` waiting up to \" |	Match the literal string `" waiting up to "` |
+| `\" waiting up to \"` |	Match the literal string `" waiting up to "` |
 | `(` |	Start a capture group |
 | `\\d+` |	Match one or more number characters |
 | `)` |	End a capture group |
