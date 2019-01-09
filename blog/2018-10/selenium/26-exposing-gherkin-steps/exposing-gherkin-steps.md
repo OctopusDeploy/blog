@@ -63,19 +63,19 @@ individual components.
 
 | Pattern	| Meaning |
 |-|-|
-| ^	| Match the start of the string |
-| I click the |	Match the literal string `I click the`  |
-| \\w+ |	Match one or more word characters  |
-| (?:	| Start a non-capture group  |
-| \\s+ |	Match one or more white space characters  |
-| \\w+ | Match one or more word characters  |
-| )* |	End the non-capture group, and match it zero or more times  |
-| with the id \" |	Match the literal string `with the id "`  |
-| (	| Start a capture group  |
-| [^"]*	| Match any character except the double quote zero or more times  |
-| )	| End the capture group  |
-| \" |	Match the literal string `"`  |
-| $	| Match the end of the string  |
+| `^`	| Match the start of the string |
+| `I click the` |	Match the literal string `I click the`  |
+| `\\w+` |	Match one or more word characters  |
+| `(?:`	| Start a non-capture group  |
+| `\\s+` |	Match one or more white space characters  |
+| `\\w+` | Match one or more word characters  |
+| `)*` |	End the non-capture group, and match it zero or more times  |
+| `with the id \"` |	Match the literal string `with the id "`  |
+| `(`	| Start a capture group  |
+| `[^"]*`	| Match any character except the double quote zero or more times  |
+| `)`	| End the capture group  |
+| `\"` |	Match the literal string `"`  |
+| `$`	| Match the end of the string  |
 
 
 To understand the kind of steps that will match this regular expression, enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the following examples:
@@ -106,24 +106,24 @@ The table below is a breaks down the regular expression into its individual comp
 
 | Pattern |	Meaning |
 |-|-|
-| ^	| Match the start of the string |
-| I click the |	Match the literal string `I click the` |
-| \\w+	| Match one or more word characters |
-| (?:	| Start a non-capture group |
-| \\s+	| Match one or more white space characters |
-| \\w+	| Match one or more word characters |
-| )*	|End the non-capture group, and match it zero or more times |
+| `^`	| Match the start of the string |
+| `I click the` |	Match the literal string `I click the` |
+| `\\w+`	| Match one or more word characters |
+| `(?:`	| Start a non-capture group |
+| `\\s+`	| Match one or more white space characters |
+| `\\w+`	| Match one or more word characters |
+| `)*`	|End the non-capture group, and match it zero or more times |
 with the id \"	| Match the literal string `with the id "` |
-| (	|Start a capture group |
-| [^"]*	|Match any character except the double quote zero or more times |
-| )	|End the capture group |
-| \" waiting up to \" |	Match the literal string `" waiting up to "` |
-| (	| Start a capture group |
-| \\d+	| Match one or more number characters |
-| )	| End the capture group |
-| \" second	| Match the literal string `" second` |
-| s?	| Match zero or one instance of the `s` character |
-| $	| Match the end of the string |
+| `(`	|Start a capture group |
+| `[^"]*`	|Match any character except the double quote zero or more times |
+| `)`	|End the capture group |
+| `\" waiting up to \"` |	Match the literal string `" waiting up to "` |
+| `(`	| Start a capture group |
+| `\\d+`	| Match one or more number characters |
+| `)`	| End the capture group |
+| `\" second`	| Match the literal string `" second` |
+| `s?`	| Match zero or one instance of the `s` character |
+| `$`	| Match the end of the string |
 
 
 To understand the kind of steps that will match this regular expression, enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the following examples:
@@ -162,28 +162,28 @@ individual components.
 
 | Pattern	| Meaning |
 |-|-|
-| ^ |	Match the start of the string |
-| I select the option \"	| Match the literal string `I select the option "` |
-| (	| Start a capture group |
-| [^"]* |	Match any character except the double quote zero or more times |
-| ) |	End the capture group |
-| \" | from the	Match the literal string `" from the` |
-| \\w+ |	Match one or more word characters |
-| (?: |	Start a non-capture group |
-| \\s+ |	Match one or more white space characters |
-| \\w+ |	Match one or more word characters |
-| )* |	End the non-capture group, and match it zero or more times |
-| with the id \" |	Match the literal string `with the id "` |
-| ( |	Start a capture group |
-| [^"]* |	Match any character except the double quote zero or more times |
-| ) |	End a capture group |
-| \" waiting up to \" |	Match the literal string `" waiting up to "` |
-| ( |	Start a capture group |
-| \\d+ |	Match one or more number characters |
-| ) |	End a capture group |
-| \" | second	Match the literal string `" second` |
-| s? |	Match zero or one instance of the `s` character |
-| $ |	Match the end of the string |
+| `^` |	Match the start of the string |
+| `I select the option \"`	| Match the literal string `I select the option "` |
+| `(`	| Start a capture group |
+| `[^"]*` |	Match any character except the double quote zero or more times |
+| `)` |	End the capture group |
+| `\"` | from the	Match the literal string `" from the` |
+| `\\w+` |	Match one or more word characters |
+| `(?:` |	Start a non-capture group |
+| `\\s+` |	Match one or more white space characters |
+| `\\w+` |	Match one or more word characters |
+| `)*` |	End the non-capture group, and match it zero or more times |
+| `with the id \"` |	Match the literal string `with the id "` |
+| `(` |	Start a capture group |
+| `[^"]*` |	Match any character except the double quote zero or more times |
+| `)` |	End a capture group |
+| `\"` waiting up to \" |	Match the literal string `" waiting up to "` |
+| `(` |	Start a capture group |
+| `\\d+` |	Match one or more number characters |
+| `)` |	End a capture group |
+| `\"` | second	Match the literal string `" second` |
+| `s?` |	Match zero or one instance of the `s` character |
+| `$` |	Match the end of the string |
 
 
 To understand the kind of steps that will match this regular expression,
