@@ -2,7 +2,7 @@
 title: Capturing HAR files
 description: In this post we learn how to capture HAR files through BrowserStack.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

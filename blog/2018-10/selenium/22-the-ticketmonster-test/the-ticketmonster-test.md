@@ -2,7 +2,7 @@
 title: The TicketMonster test
 description: In this post we learn how to test a real world Java web application.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

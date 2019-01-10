@@ -2,7 +2,7 @@
 title: Finding elements by XPaths and CSS Selectors
 description: In this post we learn how to locate elements in a HTML page via CSS Selectors and XPaths.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

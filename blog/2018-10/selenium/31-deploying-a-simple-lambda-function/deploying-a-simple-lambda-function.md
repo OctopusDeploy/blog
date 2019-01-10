@@ -2,7 +2,7 @@
 title: Deploying a simple Lambda function
 description: In this post we deploy the UberJAR to Lambda
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

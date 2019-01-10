@@ -2,7 +2,7 @@
 title: Reusing POM classes
 description: In this post we see how the POM design pattern promotes reusability.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

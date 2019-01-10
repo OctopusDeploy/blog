@@ -2,7 +2,7 @@
 title: The Maven POM File
 description: In this post we create a simple pom.xml file configuring the Selenium dependencies
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

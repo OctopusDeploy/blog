@@ -2,7 +2,7 @@
 title: Launching Cucumber tests
 description: In this post we launch a Cucumber test inside a Lambda
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

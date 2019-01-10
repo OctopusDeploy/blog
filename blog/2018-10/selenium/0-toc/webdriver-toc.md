@@ -2,7 +2,7 @@
 title: WebDriver Blog Series
 description: Learn how to create a WebDriver project in Java with this blog series.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

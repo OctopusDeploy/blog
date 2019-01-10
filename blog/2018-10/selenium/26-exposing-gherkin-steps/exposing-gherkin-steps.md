@@ -2,7 +2,7 @@
 title: Exposing Gherkin steps
 description: In this post we investigate the regular expressions that make up complex Gherkin steps
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

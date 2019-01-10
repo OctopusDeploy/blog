@@ -2,7 +2,7 @@
 title: Uploading the Web Page to S3
 description: In this post we learn how to host a public website with the AWS S3 service.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

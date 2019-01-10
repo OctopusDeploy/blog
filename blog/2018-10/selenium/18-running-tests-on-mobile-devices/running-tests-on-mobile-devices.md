@@ -2,7 +2,7 @@
 title: Running tests on mobile devices
 description: In this post we learn how to run tests against the mobile devices in BrowserStack.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

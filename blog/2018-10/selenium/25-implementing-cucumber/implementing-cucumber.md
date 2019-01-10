@@ -2,7 +2,7 @@
 title: Implementing Cucumber
 description: In this post we see how to integrate Cucumber with WebDriver.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

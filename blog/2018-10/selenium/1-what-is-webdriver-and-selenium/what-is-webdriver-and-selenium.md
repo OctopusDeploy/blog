@@ -2,7 +2,7 @@
 title: What is WebDriver and Selenium?
 description: Learn what the terms WebDriver and Selenium refer to
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

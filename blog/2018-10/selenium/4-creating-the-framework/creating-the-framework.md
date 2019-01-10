@@ -2,7 +2,7 @@
 title: Creating the framework
 description: In this post we start creating the framework for our WebDriver test classes.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

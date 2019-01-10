@@ -2,7 +2,7 @@
 title: Travis CI
 description: In this post we learn how to build and test our project with Travis CI
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

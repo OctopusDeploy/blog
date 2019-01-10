@@ -2,7 +2,7 @@
 title: The First WebDriver Test
 description: In this post we create the first WebDriver tests against Chrome and Firefox.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

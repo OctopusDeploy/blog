@@ -2,7 +2,7 @@
 title: The Page Object Model design pattern
 description: In this post we learn about the Page Object Model design pattern.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
