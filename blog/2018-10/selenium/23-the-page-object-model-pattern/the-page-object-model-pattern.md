@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some limitations.
 
 The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like:
