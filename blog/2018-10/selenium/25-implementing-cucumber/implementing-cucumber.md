@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 All of our code so far has been written in Java, and we have implemented design patterns like Page Object Model to increase the readability and maintainability of our code.
 
 But, at the end of the day, this code is still written in Java, and few of the stakeholders who are interested in designing, testing and maintaining web applications will be Java experts. This means that no matter how clean and well designed our code is, it will never be something that non-developers can read and understand.

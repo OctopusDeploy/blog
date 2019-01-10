@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 When it comes to testing web applications, you have probably heard of WebDriver and Selenium. Often the two terms are used interchangeably or even combined to refer to the platform on which a developer can write code to interact with a web browser. However, these two terms refer to slightly different things.
 
 Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at [https://www.w3.org/TR/webdriver1/](https://www.w3.org/TR/webdriver1/), and is freely available for anyone to implement.

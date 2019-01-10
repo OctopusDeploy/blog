@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 We now have the ability to run Gherkin features with an AWS Lambda function. But so far we have had to trigger the tests from the AWS console. This is fine while we test that the Lambda works, but it not a very convenient way to run tests.
 
 To allow tests to be executed without using the AWS Lambda console, we will configure a HTTP event in our Serverless configuration file. This event allows us to execute the Lambda function from a HTTP POST request, which in turn allows us to trigger tests using any standard HTTP tools or libraries.

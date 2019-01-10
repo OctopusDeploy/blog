@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 The Maven project we have used to build our code will package up our classes into a JAR file. We can create this JAR file by running the Maven package lifecycle. To do this, open the` Maven Projects` tool window, and double click the {{Lifecycle,package}} option.
 
 ![C:\\b4da756b8e562f2449a92910d5712a96](image1.png "width=500")

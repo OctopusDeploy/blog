@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 Now that we know how to construct regular expressions to map methods to Gherkin steps, we can go ahead and add annotations to all appropriate methods in the `AutomatedBrowserBase` class.
 
 Notice that we don't add annotations for all the methods. Methods like `getTextFromElementWithId()`, which return a value, are not able to be used in Gherkin steps because Gherkin has no notion of variables, so the return values don't have any meaning. We also don't expose methods like `init()` and `destroy()`, as these lifecycle methods are called by the `openBrowser()` and `closeBrowser()` methods. There are some internal only methods like `getWebDriver()`, `getAutomatedBrowser()`, `setAutomatedBrowser()` and `getDesiredCapabilities()` that are only used by the decorators, and do not make any sense to expose as Gherkin steps.

@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 In the last post we looked at how BrowserMob could be used to intercept requests and immediately return an empty response. This is a useful solution when you wish to block certain resources from being downloaded, which can speed up tests by preventing network requests for optional assets like images.
 
 Another useful feature provided by BrowserMob is the ability to alter the response from a website. This can be used to mock responses to ensure that tests are deterministic, or to allow tests to target particular edge cases.

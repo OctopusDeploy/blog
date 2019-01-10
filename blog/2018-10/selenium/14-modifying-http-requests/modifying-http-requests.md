@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including:
 
 - Simulating the failure of external services.

@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 We have gotten by this far testing web pages loaded from the local disk, and with a few simple tests to public web sites. However, as we start looking at the advanced features of WebDriver, we need the ability to host real public web sites that we can interact with.
 
 There are a million ways to host a web site, but given that we'll be using Amazon Web Services (AWS) in later posts, hosting a web site using the S3 service is a logical choice for us.

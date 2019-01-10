@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 One of the strengths of the WebDriver API is that it is browser agnostic. You saw from the previous post that it only took a new binary driver and a new driver class to launch Firefox instead of Chrome in our test.
 
 Although WebDriver allows us to write tests without worrying about which browser will run them, we are still required to create and configure the various driver classes such as `ChromeDriver` and `FirefoxDriver`. To make this process as flexible as possible, we'll create a factory class called `AutomatedBrowserFactory` to configure these objects for us.

@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 We've talked about the idea of a code repository, and in this post we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
 
 To start, open up [https://github.com](https://github.com). On the main page you will see a form that allows you to sign up for a free account.

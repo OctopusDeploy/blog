@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 In the last post we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath and CSS Selector.
 
 But wouldn't it be nice if we could call a single set of methods with the element identifier and let WebDriver work out which elements matched?

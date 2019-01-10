@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 Our testing so far has been limited to desktop browsers like Chrome and Firefox. Depending on the operating system you are running, you may also be able to test browsers like Safari, Internet Explorer, and Edge. But regardless of which operating system you are running, there is no easy way to run tests against all popular browsers. Safari is not supported on Windows, Internet Explorer and Edge are not supported on MacOS, and none of these browsers are supported in Linux. And while it is possible to emulate mobile browsers in a desktop or server environment, doing so is difficult to configure and maintain.
 
 To address these issues, services like BrowserStack offer the ability to run WebDriver tests against a huge range of browsers, both desktop and mobile. By managing the various operating systems, browsers and mobile devices, services like BrowserStack make it quite easy to do large-scale cross-browser testing.

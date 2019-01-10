@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 Now that we have the basis of the framework that we'll be using to write WebDriver tests, it is time to start interacting with a web page.
 
 To demonstrate the power of WebDriver, we'll start by creating a simple web page that contains common form elements, as well as other common HTML elements like images and divs.

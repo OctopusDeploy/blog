@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 We have seen that there are two types of waits: implicit and explicit. Both are implemented independently of one another, so what happens when you have both an implicit and an explicit wait in a single test?
 
 To find out, let's create a test that implements both kinds of waits.

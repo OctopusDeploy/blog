@@ -9,6 +9,8 @@ tags:
 - Java
 ---
 
+Return to the [table of contents](../0-toc/webdriver-toc.md).
+
 A common issue that I have run into on multiple occasions when using proxies is a subtle misconfiguration in Firefox that results in errors being thrown.
 
 To simulate this error lets attempt to configure the SOCKS proxy in the `BrowserMobDecorator` class.
