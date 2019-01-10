@@ -2,7 +2,8 @@
 title: Environment specific handing
 description: In this post we learn how to customize WebDriver operations based on the target environment.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

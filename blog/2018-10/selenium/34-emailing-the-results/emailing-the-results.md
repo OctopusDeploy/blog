@@ -3,6 +3,7 @@ title: Emailing the Results
 description: In this post we will send the results of a Cucumber test via email
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

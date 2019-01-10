@@ -3,6 +3,7 @@ title: Installing the tools
 description: In this post we install the serverless application
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

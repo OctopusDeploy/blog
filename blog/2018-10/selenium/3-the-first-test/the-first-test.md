@@ -3,6 +3,7 @@ title: The First WebDriver Test
 description: In this post we create the first WebDriver tests against Chrome and Firefox.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

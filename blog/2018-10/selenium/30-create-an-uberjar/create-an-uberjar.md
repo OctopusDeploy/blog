@@ -3,6 +3,7 @@ title: Creating an UberJAR
 description: In this post we create a self contained Jar file that can be deployed to AWS Lambda
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

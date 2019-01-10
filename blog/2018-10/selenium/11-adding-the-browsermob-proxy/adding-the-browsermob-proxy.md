@@ -2,7 +2,8 @@
 title: Adding the BrowserMob proxy
 description: In this post we learn how to add a proxy to the WebDriver tests.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

@@ -3,6 +3,7 @@ title: Writing a Gherkin feature
 description: In this post we write a complete test in Gherkin
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

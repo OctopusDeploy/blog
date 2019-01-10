@@ -3,6 +3,7 @@ title: Preparing the resources
 description: In this post we prepare the files that our Lambda will download
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-12-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
