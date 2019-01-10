@@ -246,13 +246,9 @@ Results :
 
 Tests in error:
 
-browserStackAndroidTest(academy.learnprogramming.FormTest): Invalid
-username or password (WARNING: The server did not provide any stacktrace
-information)(..)
+browserStackAndroidTest(academy.learnprogramming.FormTest): Invalid username or password (WARNING: The server did not provide any stacktrace information)(..)
 
-browserStackEdgeTest(academy.learnprogramming.FormTest): Invalid
-username or password (WARNING: The server did not provide any stacktrace
-information)(..)
+browserStackEdgeTest(academy.learnprogramming.FormTest): Invalid username or password (WARNING: The server did not provide any stacktrace information)(..)
 
 Tests run: 19, Failures: 0, Errors: 2, Skipped: 1
 ```
@@ -278,8 +274,7 @@ This time the build, and the associated tests, completes successfully.
 You may see log messages like these:
 
 ```
-GLib-GObject-CRITICAL **: g_object_ref: assertion
-'object-&gt;ref_count &gt; 0' failed
+GLib-GObject-CRITICAL **: g_object_ref: assertion 'object-&gt;ref_count &gt; 0' failed
 ```
 
 ![](image18.png "width=500")
