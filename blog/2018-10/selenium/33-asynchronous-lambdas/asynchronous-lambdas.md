@@ -49,7 +49,7 @@ functions:
             template: $util.parseJson($input.body)
 ```            
 
-The new `events` section adds a `http` event. The HTTP `method` is `post`, the `path` that we can access is called `runCucumber`, and because this event triggers a Lambda function the `integration` is set to `lambda`.
+The new `events` section adds a `http` event. The HTTP `method` is `post`, the `path` that we can access is called `runCucumber`, and because this event triggers a Lambda function the `integration` is set to `lambda`:
 
 ```yaml
 events:
@@ -75,7 +75,7 @@ The template that will process plain text requests, without the outermost quotes
 "$util.escapeJavaScript($input.body).replaceAll("\'","'")"
 ```
 
-The purpose of this template is the same as the web page we wrote to convert plain text into a JSON string. However this template is written using the Velocity Template Language, which is the template library used by AWS. The logic of this template is as follows:
+The purpose of this template is the same as the web page we wrote to convert plain text into a JSON string. However, this template is written using the Velocity Template Language, which is the template library used by AWS. The logic of this template is as follows:
 
 | Pattern |	Meaning |
 |-|-|
@@ -86,7 +86,7 @@ The purpose of this template is the same as the web page we wrote to convert pla
 
 As a response, we would like to pass back the JSON returned by the Lambda function. We identify that the response returns JSON by setting the `Content-Type` header to the MIME type `application/json`.
 
-Again we use a template to convert the response. This template takes the JSON string returned by the Lambda function, which is exposed as `$input.body`, and passes it to the `$util.parseJson()` function, which parses the JSON into an object to return to the sender.
+Again we use a template to convert the response. This template takes the JSON string returned by the Lambda function, which is exposed as `$input.body`, and passes it to the `$util.parseJson()` function, which parses the JSON into an object to return to the sender:
 
 ```yaml
 response:
@@ -127,13 +127,13 @@ To make a HTTP request, we'll use a tool called Postman, which you can download 
 
 The screenshot below shows the important fields that need to be populated to make this POST request.
 
--   Select `POST` from the drop down list at the top of the tab
--   Enter the URL into the textbox at the top of the tab
--   Select the `Body` tab
--   Select the `raw` option
--   Select `Text` from the content type drop down list
--   Paste in the Gherkin feature into the text area at the bottom of the tab
--   Click the `Send` button
+- Select `POST` from the drop down list at the top of the tab
+- Enter the URL into the textbox at the top of the tab
+- Select the `Body` tab
+- Select the `raw` option
+- Select `Text` from the content type drop down list
+- Paste in the Gherkin feature into the text area at the bottom of the tab
+- Click the `Send` button
 
 ![/C:/941191ba7e622160892a5123816cf59a](image1.png "width=500")
 
@@ -165,7 +165,7 @@ The solution is to run our Lambda asynchronously. This means API Gateway initiat
 
 To instruct API Gateway to call the Lambda asynchronously, we need to pass the `X-Amz-Invocation-Type` header with the value of `Event`.
 
-Here is the new `serverless.yml` file.
+Here is the new `serverless.yml` file:
 
 ```yaml
 service:
@@ -201,7 +201,7 @@ functions:
             template: $util.parseJson($input.body)
 ```            
 
-The following configuration is where we define that the `X-Amz-Invocation-Type` header is required (setting the value to `true` means it is required).
+The following configuration is where we define that the `X-Amz-Invocation-Type` header is required (setting the value to `true` means it is required):
 
 ```yaml
 request:
@@ -216,11 +216,11 @@ Redeploy the function with serverless. Once it has been updated, add the `X-Amz-
 Setting the `X-Amz-Invocation-Type` header value to `RequestResponse` restores the previous default synchronous behavior, which might be useful if you are sure that your test will complete in 29 seconds.
 :::
 
-The `X-Amz-Invocation-Type` header is documented in more detail at [https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html.](https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html)
+The `X-Amz-Invocation-Type` header is documented in more detail at [https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html.](https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html).
 
 ![/C:/c702d2a86f09873ae9edd675c653e749](image5.png "width=500")
 
-This request will return almost immediately, and with an empty object as the response.
+This request will return almost immediately, with an empty object as the response.
 
 Great, we now have a way to run Gherkin scripts by making a HTTP call, and without needing to worry about the time limits of requests made through the API Gateway. But now we have no way of knowing if the tests passed or failed. Running Lambda asynchronously means we get an empty response. Since the response from the `runCucumber` function is never captured, we no longer know what the result was.
 

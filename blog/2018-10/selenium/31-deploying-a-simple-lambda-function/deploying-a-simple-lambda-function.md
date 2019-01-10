@@ -11,16 +11,16 @@ tags:
 
 In the previous posts we configured all the prerequisites required by our Lambda function:
 
--   An AWS account was created and the credentials configured locally
--   The Serverless application was installed
--   The Lambda Chrome distribution and binary driver were uploaded to S3
--   The Maven build now produces an UberJAR
+- An AWS account was created and the credentials configured locally.
+- The Serverless application was installed.
+- The Lambda Chrome distribution and binary driver were uploaded to S3.
+- The Maven build now produces an UberJAR.
 
 We are at the point now where we can start writing the Lambda code. To do this we need to add three new dependencies:
 
--   `com.amazonaws:aws-lambda-java-core`
--   `com.amazonaws:aws-java-sdk-lambda`
--   `commons-io:commons-io`
+- `com.amazonaws:aws-lambda-java-core`
+- `com.amazonaws:aws-java-sdk-lambda`
+- `commons-io:commons-io`
 
 The first two dependencies provide us with the libraries we need to run as an Lambda function. The third dependency provides some handy utility functions when working with files:
 
@@ -65,15 +65,15 @@ In a traditional Java application, we start execution in a `static main()` metho
 returntype methodname(inputType input, Context context)
 ```
 
-or if the `Context` is not required (and it is not required for our purposes) then this signature is also valid:
+Or if the `Context` is not required (and it is not required for our purposes) then this signature is also valid:
 
 ```
 returntype methodname(inputType input)
 ```
 
-The return and input type from this method can be any type, and the method itself can have any name. Let's then write one of the most simple Lambda functions we can.
+The return and input type from this method can be any type, and the method itself can have any name. Let's write one of the most simple Lambda functions we can.
 
-The code below defines an Lambda function that returns a `boolean` type that is always `true`. This code isn't very useful, but it is enough to test that the Lambda works.
+The code below defines an Lambda function that returns a `boolean` type that is always `true`. This code isn't very useful, but it is enough to test that the Lambda works:
 
 ```java
 package com.octopus;
@@ -119,7 +119,7 @@ service:
   name: cucumber-chrome-aws
 ```
 
-We then define the details of the cloud platform that we are deploying to. The Serverless application is cloud agnostic, and can be used to deploy to multiple cloud providers like AWS, Azure and Google Cloud. We are using AWS, and so the providers section will configure the global properties of the AWS Lambda service.
+We then define the details of the cloud platform that we are deploying to. The Serverless application is cloud agnostic, and can be used to deploy to multiple cloud providers like AWS, Azure, and Google Cloud. We are using AWS, and so the providers section will configure the global properties of the AWS Lambda service.
 
 The `name` property is the name of the cloud provider, set to `aws` in this case.
 
@@ -134,7 +134,7 @@ provider:
   region: us-east-1
 ```
 
-The package section defines where the Lambda code can be found. In our case the Lambda code is in the file `target/webdrivertraining-1.0-SNAPSHOT.jar`, which we reference via the `artifact` property. Note that this file is the UberJAR, which has packaged up our entire application and its dependencies in a single file.
+The package section defines where the Lambda code can be found. In our case the Lambda code is in the file `target/webdrivertraining-1.0-SNAPSHOT.jar`, which we reference via the `artifact` property. Note that this file is the UberJAR, which has packaged up our entire application and its dependencies in a single file:
 
 ```yaml
 package:
@@ -161,7 +161,7 @@ functions:
     memorySize: 512
 ```
 
-Before we can deploy the Lambda function, we need to ensure that the file `target/webdrivertraining-1.0-SNAPSHOT.jar` is up to date. Serverless will not rebuild the application for us before deploying, so it is up to us to rebuild it manually. Click Maven `Projects` → `package` to rebuild the JAR file.
+Before we can deploy the Lambda function, we need to ensure that the file `target/webdrivertraining-1.0-SNAPSHOT.jar` is up to date. Serverless will not rebuild the application for us before deploying, so it is up to us to rebuild it manually. Click Maven {{Projects,package}} to rebuild the JAR file.
 
 ![C:\\929577e8ad0a8809d3e7d19cfcf21570](image2.png "width=500")
 

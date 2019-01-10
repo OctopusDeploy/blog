@@ -137,7 +137,7 @@ try {
   automatedBrowser.goTo("https://ticket-monster.herokuapp.com");
 ```
 
-From the main page we click the Buy tickets now link. Even though this element looks like a button, is it actually a link, or an `<a>` element.
+From the main page we click the `Buy tickets now` link. Even though this element looks like a button, is it actually a link, or an `<a>` element.
 
 ![](image7.png "width=500")
 
@@ -166,8 +166,7 @@ The `Concert and Rock concert of the decade` elements are also links, and so we 
 
 ```java
 automatedBrowser.clickElement("Concert", WAIT_TIME);
-automatedBrowser.clickElement("Rock concert of the decade",
-WAIT_TIME);
+automatedBrowser.clickElement("Rock concert of the decade", WAIT_TIME);
 ```
 
 The venue selection drop down list has an ID of `venueSelector`, so we use this to identify it. From this list we select the `Toronto : Roy Thomson Hall` option.
@@ -198,7 +197,7 @@ The section is selected from a drop down list with an ID of `sectionSelect`.
 automatedBrowser.selectOptionByTextFromSelect("A - Premier platinum reserve", "sectionSelect", WAIT_TIME);
 ```
 
-The text box defining the number of tickets to be purchased has a name of `tickets-1`. We use this to identify the element, and populate it with the text `2`.
+The text box defining the number of tickets to be purchased has a `name` of `tickets-1`. We use this to identify the element, and populate it with the text `2`.
 
 ![](image12.png "width=500")
 

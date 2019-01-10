@@ -69,7 +69,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-In the `LambdaEntry` class we'll create a new method called `sendEmail()`.
+In the `LambdaEntry` class we'll create a new method called `sendEmail()`:
 
 ```java
 package com.octopus;
@@ -105,13 +105,13 @@ public class LambdaEntry {
 }
 ```
 
-This method takes two parameters: the email address to send the results to, and the results themselves.
+This method takes two parameters: the email address to send the results to, and the results themselves:
 
 ```java
 private void sendEmail(final String to, final String results) {
 ```
 
-We then create a new `AmazonSimpleEmailService` instance, configured to work in the US East 1 region.
+We then create a new `AmazonSimpleEmailService` instance, configured to work in the US East 1 region:
 
 ```java
 try {
@@ -119,7 +119,7 @@ try {
     .withRegion(Regions.US_EAST_1).build();
 ```
 
-The `SendEmailRequest` class is used to construct the email itself. It has a fluent interface that allows us to define the destination, message body, email subject and sender address. Note that the sender address used here must be one of the email addresses that was verified in the SES console.
+The `SendEmailRequest` class is used to construct the email itself. It has a fluent interface that allows us to define the destination, message body, email subject and sender address. Note that the sender address used here must be one of the email addresses that was verified in the SES console:
 
 ```java
 final SendEmailRequest request = new SendEmailRequest()
@@ -135,13 +135,13 @@ new Destination().withToAddresses(to))
   .withSource("admin@matthewcasperson.com");
 ```
 
-The last step is to send the request with the client.
+The last step is to send the request with the client:
 
 ```java
 client.sendEmail(request);
 ```
 
-If anything goes wrong we write a message to the console.
+If anything goes wrong we write a message to the console:
 
 ```java
   } catch (final Exception ex) {
@@ -150,8 +150,7 @@ If anything goes wrong we write a message to the console.
 }
 ```
 
-To send the email we need to make a few small changes to the
-`runCucumber()` method.
+To send the email we need to make a few small changes to the `runCucumber()` method:
 
 ```java
 public String runCucumber(String feature) throws Throwable {
@@ -192,25 +191,25 @@ public String runCucumber(String feature) throws Throwable {
 }
 ```
 
-We create a variable to hold the temporary file where the test results will be written to.
+We create a variable to hold the temporary file where the test results will be written to:
 
 ```java
 File txtOutputFile = null;
 ```
 
-This variable is initialized with a temporary file that has the `.txt` extension.
+This variable is initialized with a temporary file that has the `.txt` extension:
 
 ```java
 txtOutputFile = Files.createTempFile("output", ".txt").toFile();
 ```
 
-We then pass an additional parameter to the `cucumber.api.cli.Main.run()` method to have the test results saved as a text file. The pretty output format in Cucumber produces pretty printed plain text log files.
+We then pass an additional parameter to the `cucumber.api.cli.Main.run()` method to have the test results saved as a text file. The pretty output format in Cucumber produces pretty printed plain text log files:
 
 ```java
 "--format", "pretty:" + txtOutputFile.toString(),
 ```
 
-Just before we return the JSON response, we call the `sendEmail()` method to email the plain text results. In this way we can get the results even if there is no longer any process listening to the return value of this method.
+Just before we return the JSON response, we call the `sendEmail()` method to email the plain text results. In this way we can get the results even if there is no longer any process listening to the return value of this method:
 
 ```java
 sendEmail("admin@matthewcasperson.com", FileUtils.readFileToString(txtOutputFile, Charset.defaultCharset()));

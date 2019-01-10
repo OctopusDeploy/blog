@@ -184,8 +184,7 @@ Unlike Firefox, Chrome is not available as an addon in Travis CI, so we have to 
 Just as we installed the Chrome binary drivers to a directory on the `PATH` locally, we do the same for the Travis CI build environment. Here we download the Chrome binary driver, unzip it, and copy the executable to the `/usr/bin` directory. The `/usr/bin` directory is on the `PATH` already, which means that any executable copied there are available for our code to run:
 
 ```yaml
-- wget
-https://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
+- wget https://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
 - unzip chromedriver_linux64.zip
 - sudo cp chromedriver /usr/bin
 ```
