@@ -17,7 +17,7 @@ Azure have deprecated the Azure Service Manager APIs and in order to make better
 ## The longer story
 The Azure Service Manager (ASM) API is the original mechanism for programmatically interacting with your Azure resources until the Azure Resource Manager (ARM) API became available in in [2014](https://channel9.msdn.com/Events/Build/2014/2-607). 
 
-The Azure Resource Manager API is the new(er) API used to interact with Azure and introduces concepts like Resource Groups to better model interrelated resources as well as providing support for some of the newer services not available in the older API. As such they have begun to deprecate the older ASM. To quote [Naveed Aziz on an Azure Team Blog](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/)
+The ARM API is the new(er) API used to interact with Azure and introduces concepts like Resource Groups to better model interrelated resources as well as providing support for some of the newer services not available in the older API. As such they have begun to deprecate the older ASM. To quote [Naveed Aziz on an Azure Team Blog](https://blogs.msdn.microsoft.com/appserviceteam/2018/03/12/deprecating-service-management-apis-support-for-azure-app-services/)
 
 >  ... The Service Management APIs are archaic and not well suited for the modern cloud. 
 
@@ -40,7 +40,7 @@ you will be provided with a set of text fields.
 
 ![before](after.png "width=500")
 
-(Incidently, this is actually not much different to how we originally expose these features.)
+(Incidently, this is actually not much different to how we originally exposed these features.)
 
 This change will be both on the [Azure Cloud Service Target](https://octopus.com/docs/infrastructure/deployment-targets/azure/cloud-service-targets) and Azure Cloud Service deployment step (if "legacy" mode is selected)
 
@@ -52,4 +52,4 @@ In order to continue to make it easier to integrate your deployments with more a
 
 > Supporting Service Management APIs any longer will hold us back from delivering a premium developer experience and control at planet scale.
 
-Although behind the scenes we will continue to provide the ability to perform deployments using Management Certificates to Cloud Services, the removal of these libraries from the portal means that we have had to remove some functionality that was previously available. Although we strive to always keep backwards compatibility a key part of our decision making, sometimes older functionality just has to be dropped.
+Although behind the scenes we will continue to provide the ability to perform deployments using Management Certificates to Cloud Services, the removal of these libraries from the Octopus Portal means that we have had to remove some functionality that was previously available. Despite striving to keep backwards compatibility a key part of our decision making, sometimes older functionality just has to be dropped.
