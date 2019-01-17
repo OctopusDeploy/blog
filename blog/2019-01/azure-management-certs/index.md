@@ -12,7 +12,7 @@ tags:
 
 ## tl;dr;
 
-Azure have deprecated the Azure Service Management APIs and in order to make better use of the new tooling, Octopus will no longer proactively retrieve Cloud Service or Storage Account details in the portal when using Azure Certificate Accounts. Despite these UI changes, deployments will continue to work and new steps using them can still be created.
+Azure have deprecated the Azure Service Management APIs and in order to make better use of the new tooling, from version `2018.12.0` Octopus will no longer proactively retrieve Cloud Service or Storage Account details in the portal from  when using Azure Certificate Accounts. Despite these UI changes, deployments will continue to work and new steps using them can still be created.
 
 ## The longer story
 The Azure Service Management (ASM) API is the original mechanism for programmatically interacting with your Azure resources until the Azure Resource Manager (ARM) API became available in [2014](https://channel9.msdn.com/Events/Build/2014/2-607). 
@@ -46,6 +46,8 @@ This change will be both on the [Azure Cloud Service Target](https://octopus.com
 
 ![step](step.png "width=200")
 ![target](target.png "width=300")
+
+These changes will be present from Octopus Server version `2018.12.0`.
 
 ### Onwards and upwards
 In order to continue to make it easier to integrate your deployments with more and more of what Azure have to offer, we need to take a page out of their book when [they say](https://azure.microsoft.com/en-au/updates/deprecating-service-management-apis-support-for-azure-app-service/):
