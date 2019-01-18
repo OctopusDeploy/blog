@@ -4,8 +4,8 @@ description: Once a week a few of us will gather to talk about some of the most 
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-01-18
-metaImage: 
-bannerImage: 
+metaImage: askoctopusthumbnail.png
+bannerImage: askoctopusthumbnail.png
 tags:
  - Company
 ---
