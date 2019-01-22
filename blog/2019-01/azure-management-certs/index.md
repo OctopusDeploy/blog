@@ -2,8 +2,8 @@
 title: What does Microsoft deprecating Azure Service Management APIs mean for Octopus Users?
 description: As Azure begin to deprecate their Azure Service Management APIs, this has knock-on effects for Octopus Users. Although Cloud Service deployments will keep working, Azure Certificate Management Accounts will no longer provide such a rich UX experience.
 author: robert.erez@octopus.com
-visibility: private
-published: 2020-10-16
+visibility: public
+published: 2019-01-23
 metaImage: 
 bannerImage: 
 tags:
