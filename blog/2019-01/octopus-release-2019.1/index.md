@@ -13,7 +13,7 @@ tags:
 
 ## Spaces !!
 
-Octopus Deploy is proud to ship Spaces.
+Octopus Deploy is proud to ship Spaces. The team have been working very hard and for a very long time to make all the necessary changes to Octopus Deploy and the permission system to support the "hard walls" isolation that comes with Spaces.
 
 
 ## In this post
@@ -28,7 +28,7 @@ Octopus Deploy now supports Spaces
 
 ## Breaking Changes
 
-This release includes some major breaking changes, it's best to review the full set here *TODO link to it*.
+Spaces is entirely opt-in. We have done extensive work and testing to ensure the feature is as backwards compatible as possible. But this release does include some major breaking changes. Before upgrading you should review the full set here *TODO link to it*.
 
 ## Upgrading
 
