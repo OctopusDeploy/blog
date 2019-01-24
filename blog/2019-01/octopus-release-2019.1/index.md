@@ -36,6 +36,6 @@ In order to support Spaces and to deliver improvements to how you can [configure
 
 ## Upgrading
 
-As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2019.1.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during their maintenance window.
+As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2019.1.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits this week during their maintenance window.
 
 That's it for this month. Feel free to leave us a comment and let us know what you think! Go forth and deploy!
