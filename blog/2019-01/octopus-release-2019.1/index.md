@@ -25,6 +25,7 @@ You can [download Octopus Server 2019.1 LTS](https://octopus.com/downloads) now!
 
 Octopus Deploy now has Spaces. We have been working very hard and for a very long time to make all the necessary changes to Octopus Deploy and the permission system to be able to give teams their own space.
 
+For more information about Spaces, have a look at our [Spaces blog series](https://octopus.com/blog/octopus-spaces-blog-series-kick-off)
 
 ## Breaking Changes
 
