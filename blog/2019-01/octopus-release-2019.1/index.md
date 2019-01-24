@@ -11,24 +11,24 @@ tags:
 ---
 
 
-## Spaces !!
+## Spaces
 
-Octopus Deploy is proud to ship Spaces. The team have been working very hard and for a very long time to make all the necessary changes to Octopus Deploy and the permission system to support the "hard walls" isolation that comes with Spaces.
+Octopus Deploy is proud to ship [Spaces](https://octopus.com/spaces). Focus on what matters to you with Spaces.
 
+You can [download Octopus Server 2019.1 LTS](https://octopus.com/downloads) now!
 
 ## In this post
 
 !toc
 
-## Spaces Spaces Spaces
+## Give teams their own space
 
-Octopus Deploy now supports Spaces
+Octopus Deploy now has Spaces. We have been working very hard and for a very long time to make all the necessary changes to Octopus Deploy and the permission system to be able to give teams their own space.
 
-## Workers
 
 ## Breaking Changes
 
-Spaces is entirely opt-in. We have done extensive work and testing to ensure the feature is as backwards compatible as possible. But this release does include some major breaking changes. Before upgrading you should review the full set here *TODO link to it*.
+Spaces is entirely opt-in. We have done extensive work and testing to ensure the feature is as backwards compatible as possible. But this release does include some major breaking changes. Before upgrading you should [review the full set here](https://octopus.com/downloads/compare?from=2018.12.1&to=2019.1.0).
 
 ## Upgrading
 
