@@ -41,9 +41,13 @@ Using Spaces is entirely opt-in. We have done extensive work and testing to ensu
 
 In order to support Spaces and to deliver improvements to how you can [configure teams](https://octopus.com/blog/team-configuration-improvements) we made some breaking API changes. Before upgrading you should [review the full set here](https://octopus.com/downloads/compare?from=2018.12.1&to=2019.1.0).
 
+## Integrations / Tentacle
+
+Once you have updated to 2019.1 and want to start making use of the Spaces feature in your Octopus instance you will need to upgrade your integrations including [Tentacle](https://octopus.com/downloads).
+
 ## Upgrading
 
-As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2019.1.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during their maintenance window.
+As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2019.1.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits in about 2 weeks during their maintenance window.
 
 That's it for this month. Feel free to leave us a comment and let us know what you think! Go forth and deploy!
 
