@@ -17,8 +17,7 @@ tags:
 
 Octopus Deploy is proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. Reduce the noise and work more efficiently. 
 
-* Self-hosted Octopus customer can download download [Octopus Server 2019.1](https://octopus.com/downloads) now!
-* Octopus Cloud customers will see this become available based on their account settings. 
+Self-hosted Octopus customers can download [Octopus Server 2019.1](https://octopus.com/downloads) now! Note that this is a [fastlane (non-LTS)](https://octopus.com/blog/octopus-release-2018.10-lts) release.
 
 ## In this post
 
