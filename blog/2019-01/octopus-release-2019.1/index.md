@@ -49,7 +49,7 @@ As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administr
 
 * Self-hosted Octopus customers can start using spaces today by installing [Octopus Server 2019.1](https://octopus.com/downloads). Note `2019.1` is a fast lane release without [long-term support](https://octopus.com/docs/administration/upgrading/long-term-support). Spaces will be included in a future [LTS](https://octopus.com/docs/administration/upgrading/long-term-support) release of Octopus at the end of Q1 2019.
 
-* Octopus Cloud customrs will start receiving the latest bits in about 2 weeks during their maintenance window.
+* Octopus Cloud customers will start receiving the latest bits in about 2 weeks during their maintenance window.
 
 That's it for this month. Feel free to leave us a comment and let us know what you think! Go forth and deploy!
 
