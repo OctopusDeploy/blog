@@ -11,10 +11,11 @@ tags:
  - Spaces
 ---
 
+`// TODO: Add Video link` 
 
-## Spaces
+## Focus on what matters to you with Spaces
 
-Octopus Deploy is proud to ship [Spaces](https://octopus.com/spaces). Our goal is to help teams focus on what matters by giving them their own space.
+Octopus Deploy is proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. Reduce the noise and work more efficiently. 
 
 You can [download Octopus Server 2019.1](https://octopus.com/downloads) now!
 
@@ -24,9 +25,15 @@ You can [download Octopus Server 2019.1](https://octopus.com/downloads) now!
 
 ## Give teams their own space
 
-We have been working very hard and for a very long time to make all the necessary changes to Octopus Deploy and the permission system to be able to give teams their own space.
+Spaces is a simple concept that has a big benefit for everyone. It allows teams to group the projects, environments, tenants, step templates and other resources into a Space. 
 
-For more information about Spaces, have a look at our [Spaces blog series](https://octopus.com/blog/octopus-spaces-blog-series-kick-off)
+Our updated navigation bar lets you easily jump between spaces. Instead of seeing dozens or hundreds of unrelated projects and other Octopus resources, you'll just see the resources for that space.
+
+## Put team leads in control with improved permissions
+
+As a part of building Spaces, we needed to revamp our security and permissions. The end result of this is that our security model is easier to manage and teams can now manage the security of the space indepedently. This can eliminate the need to submit requests to system admins.
+
+Our updated security model is flexible so you can customize it as needed.
 
 ## Breaking Changes
 
@@ -39,3 +46,10 @@ In order to support Spaces and to deliver improvements to how you can [configure
 As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2019.1.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during their maintenance window.
 
 That's it for this month. Feel free to leave us a comment and let us know what you think! Go forth and deploy!
+
+## Learn More
+
+- [Spaces home page](https://octopus.com/spaces)
+- [Spaces blog series](https://octopus.com/blog/octopus-spaces-blog-series-kick-off)
+- [Spaces documentation](https://g.octopushq.com/spaces)
+- [Spaces and Workes Webinar](https://hello.octopus.com/webinar-spaces-workers/on-demand?utm_referrer=http%3A%2F%2Foctopus.com%2Fblog%2Foctopus-release-2019.1)
