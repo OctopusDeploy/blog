@@ -1,5 +1,5 @@
 ---
-title: Deploying a simple Lambda function
+title: Selenium Series - Deploying a simple Lambda function
 description: In this post we deploy the UberJAR to Lambda
 author: matthew.casperson@octopus.com
 visibility: public

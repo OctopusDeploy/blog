@@ -1,5 +1,5 @@
 ---
-title: Exposing Gherkin steps
+title: Selenium Series - Exposing Gherkin steps
 description: In this post we investigate the regular expressions that make up complex Gherkin steps
 author: matthew.casperson@octopus.com
 visibility: public

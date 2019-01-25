@@ -1,5 +1,5 @@
 ---
-title: The First WebDriver Test
+title: Selenium Series - The First WebDriver Test
 description: In this post we create the first WebDriver tests against Chrome and Firefox.
 author: matthew.casperson@octopus.com
 visibility: public

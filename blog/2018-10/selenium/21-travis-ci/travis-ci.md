@@ -1,5 +1,5 @@
 ---
-title: Travis CI
+title: Selenium Series - Travis CI
 description: In this post we learn how to build and test our project with Travis CI
 author: matthew.casperson@octopus.com
 visibility: public

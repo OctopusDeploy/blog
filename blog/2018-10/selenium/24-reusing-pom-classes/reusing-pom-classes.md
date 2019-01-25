@@ -1,5 +1,5 @@
 ---
-title: Reusing POM classes
+title: Selenium Series - Reusing POM classes
 description: In this post we see how the POM design pattern promotes reusability.
 author: matthew.casperson@octopus.com
 visibility: public

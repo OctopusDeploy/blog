@@ -1,5 +1,5 @@
 ---
-title: Running tests on mobile devices
+title: Selenium Series - Running tests on mobile devices
 description: In this post we learn how to run tests against the mobile devices in BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public

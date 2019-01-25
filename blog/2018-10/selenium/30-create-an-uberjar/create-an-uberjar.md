@@ -1,5 +1,5 @@
 ---
-title: Creating an UberJAR
+title: Selenium Series - Creating an UberJAR
 description: In this post we create a self contained Jar file that can be deployed to AWS Lambda
 author: matthew.casperson@octopus.com
 visibility: public

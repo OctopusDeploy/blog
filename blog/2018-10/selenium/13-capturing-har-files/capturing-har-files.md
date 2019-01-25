@@ -1,5 +1,5 @@
 ---
-title: Capturing HAR files
+title: Selenium Series - Capturing HAR files
 description: In this post we learn how to capture HAR files through BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public

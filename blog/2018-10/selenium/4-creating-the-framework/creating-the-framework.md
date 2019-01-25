@@ -1,5 +1,5 @@
 ---
-title: Creating the framework
+title: Selenium Series - Creating the framework
 description: In this post we start creating the framework for our WebDriver test classes.
 author: matthew.casperson@octopus.com
 visibility: public

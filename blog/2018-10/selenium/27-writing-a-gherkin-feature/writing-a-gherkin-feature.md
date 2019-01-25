@@ -1,5 +1,5 @@
 ---
-title: Writing a Gherkin feature
+title: Selenium Series - Writing a Gherkin feature
 description: In this post we write a complete test in Gherkin
 author: matthew.casperson@octopus.com
 visibility: public

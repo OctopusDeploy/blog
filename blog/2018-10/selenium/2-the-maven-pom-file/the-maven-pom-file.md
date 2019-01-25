@@ -1,5 +1,5 @@
 ---
-title: The Maven POM File
+title: Selenium Series - The Maven POM File
 description: In this post we create a simple pom.xml file configuring the Selenium dependencies
 author: matthew.casperson@octopus.com
 visibility: public

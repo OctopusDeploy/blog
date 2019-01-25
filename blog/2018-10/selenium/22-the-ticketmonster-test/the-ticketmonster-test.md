@@ -1,5 +1,5 @@
 ---
-title: The TicketMonster test
+title: Selenium Series - The TicketMonster test
 description: In this post we learn how to test a real world Java web application.
 author: matthew.casperson@octopus.com
 visibility: public

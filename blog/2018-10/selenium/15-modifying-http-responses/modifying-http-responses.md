@@ -1,5 +1,5 @@
 ---
-title: Modifying HTTP Responses
+title: Selenium Series - Modifying HTTP Responses
 description: In this post we learn how to modify network responses passed through BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public

@@ -1,5 +1,5 @@
 ---
-title: What is WebDriver and Selenium?
+title: Selenium Series - What is WebDriver and Selenium?
 description: Learn what the terms WebDriver and Selenium refer to
 author: matthew.casperson@octopus.com
 visibility: public

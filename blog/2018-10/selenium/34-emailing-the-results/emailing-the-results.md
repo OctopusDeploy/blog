@@ -1,5 +1,5 @@
 ---
-title: Emailing the Results
+title: Selenium Series - Emailing the Results
 description: In this post we will send the results of a Cucumber test via email
 author: matthew.casperson@octopus.com
 visibility: public

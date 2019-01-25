@@ -1,5 +1,5 @@
 ---
-title: Headless Browsers
+title: Selenium Series - Headless Browsers
 description: In this post we learn how to run tests against headless browsers.
 author: matthew.casperson@octopus.com
 visibility: public
