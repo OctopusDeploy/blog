@@ -17,7 +17,8 @@ tags:
 
 Octopus Deploy is proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. Reduce the noise and work more efficiently. 
 
-You can [download Octopus Server 2019.1](https://octopus.com/downloads) now!
+* Self-hosted Octopus customer can download download [Octopus Server 2019.1](https://octopus.com/downloads) now!
+* Octopus Cloud customers will see this become available based on their account settings. 
 
 ## In this post
 
@@ -33,7 +34,7 @@ Our updated navigation bar lets you easily jump between spaces. Instead of seein
 
 As a part of building Spaces, we needed to revamp our security and permissions. The end result of this is that our security model is easier to manage and teams can now manage the security of the space indepedently. This can eliminate the need to submit requests to system admins.
 
-Our updated security model is flexible so you can customize it as needed.
+Our changed security model lets you manage access control at the Space or Team level more easily.
 
 ## Breaking Changes
 
