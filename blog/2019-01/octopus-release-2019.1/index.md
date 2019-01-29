@@ -25,11 +25,11 @@ We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces 
 
 Spaces is a simple concept that has a big benefit for everyone. It allows teams to group the projects, environments, tenants, step templates and other resources into a Space. 
 
-Our updated navigation bar lets you easily jump between spaces. Instead of seeing dozens or hundreds of unrelated projects and other Octopus resources, you'll just see the resources for that space.
+Our updated navigation bar lets you quickly jump between spaces. Instead of seeing dozens or hundreds of unrelated projects and other Octopus resources, you'll see the resources for that space.
 
 ## Put team leads in control with improved permissions
 
-As a part of building Spaces, we needed to revamp our security and permissions. The end result of this is that our security model is easier to manage and teams can now manage the security of the space indepedently. This can eliminate the need to submit requests to system admins.
+As a part of building Spaces, we needed to revamp our security and permissions. The end result of this is that our security model is easier to manage and teams can now manage the security of the space independently. This can eliminate the need to submit requests to system admins.
 
 Our changed security model lets you manage access control at the Space or Team level more easily.
 
@@ -58,4 +58,4 @@ That's it for this month. Feel free to leave us a comment and let us know what y
 - [Read](https://octopus.com/spaces) all about the benefits of Spaces
 - [Read](https://g.octopushq.com/spaces) the Spaces documentation
 - [Watch](https://hello.octopus.com/webinar-spaces-workers/on-demand?utm_referrer=http%3A%2F%2Foctopus.com%2Fblog%2Foctopus-release-2019.1) our webinar on 'Scaling your Octopus with Spaces and Workers'
-- [Read](https://octopus.com/blog/octopus-spaces-blog-series-kick-off) about our jouney building Spaces in our blog series
+- [Read](https://octopus.com/blog/octopus-spaces-blog-series-kick-off) about our journey building Spaces in our blog series
