@@ -15,7 +15,7 @@ tags:
 
 ## Focus on what matters to you with Spaces
 
-Octopus Deploy is proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. Reduce the noise and work more efficiently. 
+We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should the noise and allow teams to work more efficiently. 
 
 ## In this post
 
@@ -45,7 +45,7 @@ Once you have updated to 2019.1 and want to start making use of the Spaces featu
 
 ## Upgrading
 
-As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. 
+As usual, [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. 
 
 * Self-hosted Octopus customers can start using spaces today by installing [Octopus Server 2019.1](https://octopus.com/downloads). Note `2019.1` is a fast lane release without [long-term support](https://octopus.com/docs/administration/upgrading/long-term-support). Spaces will be included in a future [LTS](https://octopus.com/docs/administration/upgrading/long-term-support) release of Octopus at the end of Q1 2019.
 
@@ -55,7 +55,7 @@ That's it for this month. Feel free to leave us a comment and let us know what y
 
 ## Want to learn more
 
-- [Explore our Spaces home page](https://octopus.com/spaces)
-- [Read our Spaces blog series](https://octopus.com/blog/octopus-spaces-blog-series-kick-off)
-- [Review our Spaces documentation](https://g.octopushq.com/spaces)
-- [Watch our Spaces & Workers webinar recording on how to speed-up and scale out your deployments](https://hello.octopus.com/webinar-spaces-workers/on-demand?utm_referrer=http%3A%2F%2Foctopus.com%2Fblog%2Foctopus-release-2019.1)
+- [Read](https://octopus.com/spaces) all about the benefits of Spaces
+- [Read](https://g.octopushq.com/spaces) the Spaces documentation
+- [Watch](https://hello.octopus.com/webinar-spaces-workers/on-demand?utm_referrer=http%3A%2F%2Foctopus.com%2Fblog%2Foctopus-release-2019.1) our webinar on 'Scaling your Octopus with Spaces and Workers'
+- [Read](https://octopus.com/blog/octopus-spaces-blog-series-kick-off) about our jouney building Spaces in our blog series
