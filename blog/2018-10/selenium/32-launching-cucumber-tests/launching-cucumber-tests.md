@@ -1,9 +1,9 @@
 ---
-title: Launching Cucumber tests
+title: Selenium Series - Launching Cucumber tests
 description: In this post we launch a Cucumber test inside a Lambda
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

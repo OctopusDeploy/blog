@@ -1,9 +1,9 @@
 ---
-title: Mixing Implicit and Explicit Waits
+title: Selenium Series - Mixing Implicit and Explicit Waits
 description: In this post we learn how implicit and explicit waits can interfere with each other.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

@@ -1,9 +1,9 @@
 ---
-title: Firefox debugging tricks
+title: Selenium Series - Firefox debugging tricks
 description: In this post we learn how some tricks to debugging Firefox JavaScript stack traces.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

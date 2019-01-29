@@ -1,9 +1,9 @@
 ---
-title: Asynchronous Lambdas
+title: Selenium Series - Asynchronous Lambdas
 description: In this post we will learn how to launch Lambdas asynchronously from API Gateway
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

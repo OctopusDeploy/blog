@@ -1,9 +1,9 @@
 ---
-title: Finding elements by XPaths and CSS Selectors
+title: Selenium Series - Finding elements by XPaths and CSS Selectors
 description: In this post we learn how to locate elements in a HTML page via CSS Selectors and XPaths.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

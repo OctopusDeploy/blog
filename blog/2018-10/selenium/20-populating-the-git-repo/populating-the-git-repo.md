@@ -1,9 +1,9 @@
 ---
-title: Populating the Git repo
+title: Selenium Series - Populating the Git repo
 description: In this post we learn how to push our code to GitHub.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

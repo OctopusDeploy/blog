@@ -1,9 +1,9 @@
 ---
-title: Implicit and Explicit Waits
+title: Selenium Series - Implicit and Explicit Waits
 description: In this post we learn the strategies WebDriver implements for interacting with dynamic elements in web pages.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

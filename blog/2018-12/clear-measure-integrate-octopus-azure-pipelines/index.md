@@ -2,7 +2,7 @@
 title: WEBINAR - The Right Way to Integrate Octopus Deploy with Azure Pipelines
 description: Learn how to create your own end-to-end model for implementing an automated DevOps pipeline.
 author: andrew.maher@octopus.com
-visibility: private
+visibility: public
 published: 2018-12-06
 tags:
  - Webinar

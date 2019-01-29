@@ -1,9 +1,9 @@
 ---
-title: Running tests against BrowserStack
+title: Selenium Series - Running tests against BrowserStack
 description: In this post we learn how to run tests against the BrowserStack service.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

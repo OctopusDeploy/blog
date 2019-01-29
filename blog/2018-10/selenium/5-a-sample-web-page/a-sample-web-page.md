@@ -1,9 +1,9 @@
 ---
-title: A Sample Web Page
+title: Selenium Series - A Sample Web Page
 description: In this post we create a sample web page to run some tests against.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
