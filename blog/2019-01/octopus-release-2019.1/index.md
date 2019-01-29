@@ -15,7 +15,7 @@ tags:
 
 ## Focus on what matters to you with Spaces
 
-We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should reduce the noise and allow teams to work more efficiently. 
+We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organize their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should reduce the noise and allow teams to work more efficiently. 
 
 ## In this post
 
@@ -23,7 +23,7 @@ We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces 
 
 ## Give teams their own space
 
-Spaces is a simple concept that has a big benefit for everyone. It allows teams to group the projects, environments, tenants, step templates and other resources into a Space. 
+Spaces is a simple concept that has a big benefit for everyone. It allows teams to group the projects, environments, tenants, step templates, and other resources into a Space. 
 
 Our updated navigation bar lets you quickly jump between spaces. Instead of seeing dozens or hundreds of unrelated projects and other Octopus resources, you'll see the resources for that space.
 
@@ -47,7 +47,7 @@ Once you have updated to 2019.1 and want to start making use of the Spaces featu
 
 As usual, [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.1.0) for further information. 
 
-* Self-hosted Octopus customers can start using spaces today by installing [Octopus Server 2019.1](https://octopus.com/downloads). Note `2019.1` is a fast lane release without [long-term support](https://octopus.com/docs/administration/upgrading/long-term-support). Spaces will be included in a future [LTS](https://octopus.com/docs/administration/upgrading/long-term-support) release of Octopus at the end of Q1 2019.
+* Self-hosted Octopus customers can start using Spaces today by installing [Octopus Server 2019.1](https://octopus.com/downloads). Note `2019.1` is a fast lane release without [long-term support](https://octopus.com/docs/administration/upgrading/long-term-support). Spaces will be included in the next [LTS](https://octopus.com/docs/administration/upgrading/long-term-support) release of Octopus at the end of Q1 2019.
 
 * Octopus Cloud customers will start receiving the latest bits in about 2 weeks during their maintenance window.
 
@@ -56,6 +56,6 @@ That's it for this month. Feel free to leave us a comment and let us know what y
 ## Want to learn more
 
 - [Read](https://octopus.com/spaces) all about the benefits of Spaces
-- [Read](https://g.octopushq.com/spaces) the Spaces documentation
 - [Watch](https://hello.octopus.com/webinar-spaces-workers/on-demand?utm_referrer=http%3A%2F%2Foctopus.com%2Fblog%2Foctopus-release-2019.1) our webinar on 'Scaling your Octopus with Spaces and Workers'
+- [Read](https://g.octopushq.com/spaces) the Spaces documentation
 - [Read](https://octopus.com/blog/octopus-spaces-blog-series-kick-off) about our journey building Spaces in our blog series
