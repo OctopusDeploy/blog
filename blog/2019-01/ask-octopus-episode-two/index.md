@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus #2 - Service Accounts, Get Project by Name via API, Deployment Triggers
+title: Ask Octopus Episode 2 - Service Accounts, Get Project by Name via API, Deployment Triggers
 description: Once a week a few of us will gather to talk about some of the most interesting questions we have gotten over the past week and how we went about solving them.  
 author: ryan.rousseau@octopus.com
 visibility: public
