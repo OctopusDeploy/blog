@@ -13,11 +13,11 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9YztgS1wUmk" frameborder="0" allowfullscreen></iframe>
 
-## Focus on what matters to you with Spaces
+<h2>Focus on what matters to you with Spaces</h2>
 
 We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organize their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should reduce the noise and allow teams to work more efficiently. 
 
-## In this post
+<h2>In this post</h2>
 
 !toc
 
