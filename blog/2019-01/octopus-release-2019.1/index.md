@@ -15,7 +15,7 @@ tags:
 
 ## Focus on what matters to you with Spaces
 
-We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should the noise and allow teams to work more efficiently. 
+We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organise their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should reduce the noise and allow teams to work more efficiently. 
 
 ## In this post
 
