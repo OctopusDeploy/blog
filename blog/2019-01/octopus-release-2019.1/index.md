@@ -2,7 +2,7 @@
 title: Spaces - Octopus Deploy 2019.1
 description: Spaces
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 published: 2019-01-29
 metaImage: blogimage-spaces.png
 bannerImage: blogimage-spaces.png
@@ -17,7 +17,7 @@ tags:
 
 We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organize their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should reduce the noise and allow teams to work more efficiently. 
 
-<h2>In this post</h2>
+<h2>In this post </h2>
 
 !toc
 
