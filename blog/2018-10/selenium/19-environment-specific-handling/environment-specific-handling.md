@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 You may have noticed when running tests against the Edge browser in BrowserStack that the window was not maximized. It usually makes sense to run tests in a maximized window to ensure that the tests are run with web pages displayed with a consistent resolution, so let's add a new method to maximize the window.
 

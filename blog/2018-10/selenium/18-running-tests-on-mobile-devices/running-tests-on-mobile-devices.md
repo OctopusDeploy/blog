@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 So far we have limited our testing to desktop browsers, but no testing strategy would be complete without a way to also test mobile browsers. Mobile browser testing is one of the major features of a service like BrowserStack. It is quite easy to run tests against a huge variety of mobile browsers using the same code we have been developing and running against desktop browsers.
 

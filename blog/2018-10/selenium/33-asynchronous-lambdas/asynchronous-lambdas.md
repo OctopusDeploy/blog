@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 We now have the ability to run Gherkin features with an AWS Lambda function. But so far we have had to trigger the tests from the AWS console. This is fine while we test that the Lambda works, but it not a very convenient way to run tests.
 

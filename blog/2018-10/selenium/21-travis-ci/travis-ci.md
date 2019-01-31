@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 Now that we have our code in a public GitHub repository, we can link it with Travis CI to allow check-ins to trigger the building and testing of our code.
 

@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 TicketMonster is a sample application created by RedHat to demonstrate a number of Java web technologies. The nice thing about TicketMonster (from the point of view of a WebDriver tutorial anyway) is that it has not been optimized for automated tests, meaning that to successfully test a typical journey through the application we can't rely on consistent network requests or all elements having convenient `id` attributes to locate them with.
 

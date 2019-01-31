@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 In our test web page we have a `setTimeout()` method call that created a new `<div>` with the ID of `newdiv_element` after 5 seconds. Such dynamic updates are common in modern web development, and are used extensively with Single Page Applications (SPAs) written with libraries like React and Angular.
 
-These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element:
+These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element: 
 
 ```java
 package com.octopus;

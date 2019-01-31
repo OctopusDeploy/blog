@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 Now that we know how to construct regular expressions to map methods to Gherkin steps, we can go ahead and add annotations to all appropriate methods in the `AutomatedBrowserBase` class.
 

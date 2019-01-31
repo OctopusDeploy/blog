@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 All of our code so far has been written in Java, and we have implemented design patterns like Page Object Model to increase the readability and maintainability of our code.
 

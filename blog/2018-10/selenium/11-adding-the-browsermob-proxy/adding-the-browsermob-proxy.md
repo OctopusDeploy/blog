@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 In this post we will add support for the BrowserMob proxy, which is a free and open source Java proxy server. We will then use BrowserMob to save a report containing all the network requests made during a test, and intercept some of the network requests.
 
-To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file:
+To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file: 
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"

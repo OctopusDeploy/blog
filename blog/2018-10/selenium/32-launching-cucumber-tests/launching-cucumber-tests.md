@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 Now that we have a simple Lambda function that we can run, as well as a Serverless configuration that deploys our application, we can create a Lambda function that launches a WebDriver test.
 

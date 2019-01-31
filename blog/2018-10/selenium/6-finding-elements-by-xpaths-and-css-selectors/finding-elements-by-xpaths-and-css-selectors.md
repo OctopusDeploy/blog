@@ -18,7 +18,7 @@ Unlike ID attributes, every element in a web page has a unique XPath. An XPath (
 
 XPath queries can get quite complex. It is not uncommon for unique XPaths to look like `//*[@id="request-summary"]/div/div[2]/div/form/div[2]/input`.
 
-Fortunately Chrome and other browsers provide an easy way to generate unique XPaths for elements. Right clicking on the element in the `Elements` tab and selecting {{Copy,Copy XPath}} will place the most succinct unique XPath that identifies the element into the clipboard. This functionality means that you don't need to understand the nitty gritty details of XPaths in order to make use of them, as you can let the browser take care of generating the XPaths for you.
+Fortunately Chrome and other browsers provide an easy way to generate unique XPaths for elements. Right clicking on the element in the `Elements` tab and selecting {{Copy,Copy XPath}} will place the most succinct unique XPath that identifies the element into the clipboard. This functionality means that you don't need to understand the nitty gritty details of XPaths in order to make use of them, as you can let the browser take care of generating the XPaths for you. 
 
 ![](image1.png "width=500")
 

@@ -16,7 +16,7 @@ Now that we have the basis of the framework that we'll be using to write WebDriv
 
 To demonstrate the power of WebDriver, we'll start by creating a simple web page that contains common form elements, as well as other common HTML elements like images and divs.
 
-The complete webpage is shown below:
+The complete webpage is shown below: 
 
 ```html
 <!DOCTYPE html>

@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 We now have the ability to run Gherkin feature files from a HTTP POST request that is forwarded to an AWS Lambda, but because of the differing time limits of API Gateway and Lambda requests, we were forced to run the tests in an asynchronous manner. This means our original HTTP requests no longer receives the output of the test, so we need another solution for returning the test results.
 

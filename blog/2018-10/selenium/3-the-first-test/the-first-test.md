@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 Now that we have the Maven project configured and imported in IntelliJ, we can start adding some tests.
 
-The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure.
+The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure. 
 
 To create the new directory, right click on the top level project folder, select {{New,Directory}}.
 

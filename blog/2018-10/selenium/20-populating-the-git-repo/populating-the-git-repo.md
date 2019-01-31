@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 We've talked about the idea of a code repository, and in this post we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
 

@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 Until this point we have been running tests sequentially, either locally or on the Travis CI platform. However, running UI tests one after another does not scale particularly well. As more tests are added, and more combinations and edge cases are tested, it is not uncommon to find that UI test suite will take hours to complete.
 

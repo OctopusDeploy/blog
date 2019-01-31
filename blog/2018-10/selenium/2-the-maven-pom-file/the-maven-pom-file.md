@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 The first step in establishing our Java project is the creation of a Maven Project Object Model (POM) file. This is an XML document that defines how our code will be built, what additional dependencies it has access to, and how tests are run.
 
-We start with the POM file shown below:
+We start with the POM file shown below: 
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"

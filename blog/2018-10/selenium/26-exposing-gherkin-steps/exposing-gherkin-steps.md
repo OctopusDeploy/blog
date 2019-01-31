@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 Now that we have the basics in place to integrate the `AutomatedBrowserBase` class with Cucumber, it is time to start fleshing out the Gherkin dialect that we can use to write WebDriver tests.
 
