@@ -16,8 +16,8 @@ We're releasing the third episode of Ask Octopus a little bit early this week. I
 
 Here are the questions with direct links to where they start in the video:
 
-- [Bob answers](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=33s) "how can I run a step only when a specific step fails?"
-- [Derek discusses](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=6m48s) "tips and tricks when switching authentication providers."
+- [Bob answers](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=33s) "How can I run a step only when a specific step fails?"
+- [Derek discusses](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=6m48s) "Tips and tricks when switching authentication providers"
 - [Ryan answers](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=13m22s) "my release is missing? How can I find out what happened?"
 
 You can find more information on topics discussed today in our docs:
