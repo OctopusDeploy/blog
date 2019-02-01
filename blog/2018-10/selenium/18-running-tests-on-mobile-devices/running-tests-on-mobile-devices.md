@@ -141,7 +141,7 @@ public void browserStackAndroidTest() {
 }
 ```
 
-If we run this test, an exception may once again be generated about invalid credentials. If you recall we previously defined the BrowserStack credentials as environment variables, but we did so against a single test only. It can get tedious adding these variables to each new test configuration, so to add these environment variables to all tests, we need to configure the default settings for all JUnit tests run by IntelliJ.
+If we run this test,  an exception may once again be generated about invalid credentials. If you recall we previously defined the BrowserStack credentials as environment variables, but we did so against a single test only. It can get tedious adding these variables to each new test configuration, so to add these environment variables to all tests, we need to configure the default settings for all JUnit tests run by IntelliJ.
 
 Click the drop down list of configurations, and select `Edit Configurations...`
 

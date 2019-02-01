@@ -68,7 +68,7 @@ In a traditional Java application, we start execution in a `static main()` metho
 returntype methodname(inputType input, Context context)
 ```
 
-Or if the `Context` is not required (and it is not required for our purposes) then this signature is also valid:
+Or if the `Context` is not required (and it is not required for our purposes)  then this signature is also valid:
 
 ```
 returntype methodname(inputType input)

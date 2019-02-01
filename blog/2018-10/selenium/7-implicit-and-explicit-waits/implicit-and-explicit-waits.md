@@ -170,7 +170,7 @@ public void clickElementWithId(final String id, final int waitTime) {
 
 There are three parts an explicit wait.
 
-We start by defining the amount of time that we wish to wait for an element. This is done by creating an instance of the `WebDriverWait` class:
+We start by defining the amount of time that we wish to wait for an element.  This is done by creating an instance of the `WebDriverWait` class:
 
 ```java
 final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);

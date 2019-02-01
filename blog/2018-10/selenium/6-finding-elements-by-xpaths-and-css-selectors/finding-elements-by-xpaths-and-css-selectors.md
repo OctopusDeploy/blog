@@ -140,7 +140,7 @@ public void formTestByXPath() throws URISyntaxException {
 
 Like XPaths, all elements in a HTML document have a unique CSS Selector that they can be identified with.
 
-CSS Selectors are the same identifiers used in CSS rule sets. If you have done any web development then you will most likely be familiar CSS Selectors. But even if you aren't familiar with them, Chrome and other browsers provide a way to generate CSS Selectors for HTML elements. In Chrome, right click the element in the `Elements` tab, and select {{Copy,Copy Selector}}.
+CSS Selectors are the same identifiers used in CSS rule sets. If you have done any web development then you will most likely be familiar CSS Selectors. But even if you aren't familiar with them, Chrome and other browsers  provide a way to generate CSS Selectors for HTML elements. In Chrome, right click the element in the `Elements` tab, and select {{Copy,Copy Selector}}.
 
 ![](image2.png "width=500")
 

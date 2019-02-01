@@ -83,7 +83,7 @@ To create the `AutomatedBrowser` interface right click on the `octopus` director
 
 ![](image13.png "width=500")
 
-Enter `AutomatedBrowser` in the `Name` field, select the `Interface` option from the `Kind` field, and click the `OK` button.
+Enter `AutomatedBrowser` in the `Name`  field, select the `Interface` option from the `Kind` field, and click the `OK` button.
 
 ![](image14.png "width=500")
 

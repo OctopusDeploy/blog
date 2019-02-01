@@ -77,7 +77,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-All Maven POM files have a `<project>` element as the root element, and the attributes define the XML namespace and details of the Maven XML schema.
+All  Maven POM files have a `<project>` element as the root element, and the attributes define the XML namespace and details of the Maven XML schema.
 
 The `<modelVersion>` element defines the POM version. The only supported value for this element is `4.0.0`.
 

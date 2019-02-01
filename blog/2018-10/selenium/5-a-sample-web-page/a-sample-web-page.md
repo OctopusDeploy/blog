@@ -121,7 +121,7 @@ setTimeout(function() {
 }, 5000);
 ```
 
-We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons, etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented from trying to do a page reload on submission by returning `false`:
+We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons, etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented  from trying to do a page reload on submission by returning `false`:
 
 ```HTML
 <form id="form_element" onsubmit="interactionMessage('Form Submitted'); return false">
