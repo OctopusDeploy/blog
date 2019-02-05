@@ -29,11 +29,13 @@ Some proponents swear by the commandments laid out in the [twelve-factor app](ht
 Ultimately the 12-factor app solution to not storing config in code is to store it in environment variables is a bit of a false dilemma. We know that storing configuration in code is neither the most flexible, nor secure way to provide configuration but is the proposed alternative. Any good deployment tool should also be capable of providing the environment specific variables needed to run your application in a self-contained manner.
 
 ### Configuration as JSON
-Create a simple `config.json` file that contains the configuration needed for your application. The values in this configuration can just be those you ned for development time. There is no need to create a `config.staging.json` or `config.prod.json` in your source code, the environmental configuration will be provided by Octopus (or your deployment tool of choice) at deploy time. Avoiding these "environmental" configuration files makes our CD process much more flexible and avoids leaking. At runtime, all our code needs to do is retrieve this `config.json` file from the server like any other resource. 
+Create a simple `config.json` file that contains the configuration needed for your application. The values in this configuration can just be those you need for development time. There is no need to create a `config.staging.json` or `config.prod.json` in your source code, the environmental configuration will be provided by Octopus (or your deployment tool of choice) at deploy time. Avoiding these "environmental" configuration files makes our CD process much more flexible and avoids leaking our infrastructure phases into the source code. At runtime, all our code needs to do is retrieve this `config.json` file from the server like any other resource. 
 
 ![Variables from Octopus into configuration](environment-variables.png)
 
-Let' walk through a couple of examples of how this can be achieved. There are many ways that this pattern can be accomplished in whatever framework you are using so you may want to modify the following samples to suit your needs.
+For those who are concerned about having a `/config.json` available from the root of your application, remember that if these values were embedded in your javascript files that would be just as "in-the-open". If you are concerned about leaking sensitive information then perhaps the front-end isn't the right place for that information. One nice side effect is that it makes it super easy to check if the static content has been successfully deployed by just loading the config from your browser yourself. By including things like the build number and release date as properties in the config file, I can easily check that they have been deployed to the right place and they are getting through the various CDNs and caches.
+
+Let's walk through a couple of examples of how this can be achieved. There are many ways that this pattern can be accomplished in whatever framework you are using so you may want to modify the following samples to suit your needs.
 
 ## Examples
 ### NodeJs Application
