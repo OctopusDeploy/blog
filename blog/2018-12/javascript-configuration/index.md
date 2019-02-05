@@ -53,7 +53,7 @@ You couldn't get easier configuration than that if you tried.
 No need to muck around detecting environments, loading `config.prod.json` and combining with defaults in `config.json` or consolidating with environment variables!
 
 ### React App
-Using react, we want to minify and combine all our application files into a single JavaScript file to optimize the run-time experience. We don't want to embed the configuration file into that single application file since that makes it more difficult for us to update at deploy-time with our environment specific values. Instead, we have decided that we want to show a splash screen while the config file is loading. This can be done with just a few steps.
+Using React, we want to minify and combine all our application files into a single JavaScript file to optimize the run-time experience. We don't want to embed the configuration file into that single application file since that makes it more difficult for us to update at deploy-time with our environment specific values. Instead, we have decided that we want to show a splash screen while the config file is loading. This can be done with just a few steps.
 
 ![React folder structure](react-folders.png)
 
@@ -179,7 +179,7 @@ export {load}
 
 The great thing about this is that as we are developing we can modify the config file, and webpack will trigger a refresh as if we were updating any other file.
 
-![react result](react-result.png)
+![React result](react-result.png)
 
 _...and who said I wasn't a great designer_
 
@@ -245,7 +245,7 @@ export function initializeApp(appConfig: AppConfig) {
 export class AppModule { }
 ```
 
-Just like with the react example, when this runs during startup you can then use the configuration throughout the app:
+Just like with the React example, when this runs during startup you can then use the configuration throughout the app:
 
 ``` javascript
 export class DataService {
