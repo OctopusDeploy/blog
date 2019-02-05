@@ -229,7 +229,7 @@ public void formTestByIDHeadless() throws URISyntaxException {
 }
 ```
 
-The process for creating a headless instance of Firefox is almost exactly the same as for Chrome.
+The process for creating a headless instance of  Firefox is almost exactly the same as for Chrome.
 
 First the `FirefoxDecorator` class is updated with a constructor that sets the `headless` instance variable, and a call to `setHeadless()` in the options class configures the headless mode on the driver:
 

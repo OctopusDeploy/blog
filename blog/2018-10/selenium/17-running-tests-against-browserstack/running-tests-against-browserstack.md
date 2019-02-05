@@ -18,7 +18,7 @@ To address these issues, services like BrowserStack offer the ability to run Web
 
 BrowserStack is not a free service, and to take advantage of most of its features you will need to pay for an account. But fortunately both Mozilla and Microsoft have teamed up with BrowserStack to offer free testing against the [Edge](https://www.browserstack.com/test-on-microsoft-edge-browser) and [Firefox](https://blog.mozilla.org/blog/2017/03/03/mozilla-browserstack-partner-drive-mobile-testing-real-devices/) browsers. We will take advantage of this service to build some remote tests that can be run without any cost. The good news is that once you have a test running against a browser like Edge or Firefox, it is quite trivial to reuse that code to run tests against any other browser offered by BrowserStack.
 
-To create a BrowserStack account, go to [https://www.browserstack.com](https://www.browserstack.com). You will see links to sign up for a free trial, either on the main page, or in the top menu.
+To create a BrowserStack account,  go to [https://www.browserstack.com](https://www.browserstack.com). You will see links to sign up for a free trial, either on the main page, or in the top menu.
 
 Enter your email address, password and name, and continue to the next page.
 

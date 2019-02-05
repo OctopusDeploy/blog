@@ -38,7 +38,7 @@ To support modifying requests we add a new method to the `AutomatedBrowser` inte
 void blockRequestTo(String url, int responseCode);
 ```
 
-This method takes a URL of a request to modify, and the HTTP response code that should be returned when this URL is requested.
+This method takes a URL of a request to modify,  and the HTTP response code that should be returned when this URL is requested.
 
 We add the default method to the `AutomatedBrowserBase` class:
 

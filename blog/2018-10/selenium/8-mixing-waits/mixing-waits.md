@@ -173,7 +173,7 @@ public class AutomatedBrowserFactory {
 }
 ```
 
-We then recreate the same test using an explicit wait, waiting for a shorter period of time than it takes for the element to be generated. But this time we run the test without any implicit wait by passing the `ChromeNoImplicitWait` option to the factory.
+We then recreate  the same test using an explicit wait, waiting for a shorter period of time than it takes for the element to be generated. But this time we run the test without any implicit wait by passing the `ChromeNoImplicitWait` option to the factory.
 
 ```java
 @Test(expected = TimeoutException.class)

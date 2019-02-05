@@ -16,7 +16,7 @@ A common issue that I have run into on multiple occasions when using proxies is 
 
 To simulate this error lets attempt to configure the SOCKS proxy in the `BrowserMobDecorator` class.
 
-SOCKS proxies are used to proxy TCP packets, meaning they can be used with HTTP, HTTPS, FTP and a whole range of other higher level protocols. We won't be using BrowserMob as a SOCKS proxy, but configuring it here is a useful way to demonstrate the misconfiguration error. 
+SOCKS proxies are used to proxy TCP packets,  meaning they can be used with HTTP, HTTPS, FTP and a whole range of other higher level protocols. We won't be using BrowserMob as a SOCKS proxy, but configuring it here is a useful way to demonstrate the misconfiguration error. 
 
 We configure the SOCKS proxy by calling `seleniumProxy.setSocksProxy(proxyStr)`:
 

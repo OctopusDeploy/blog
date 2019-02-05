@@ -12,7 +12,7 @@ tags:
 
 Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
-Now that we have our code in a public GitHub repository, we can link it with Travis CI to allow check-ins to trigger the building and testing of our code.
+Now that we have our code in a public GitHub repository,  we can link it with Travis CI to allow check-ins to trigger the building and testing of our code.
 
 Start by opening [https://travis-ci.com/](https://travis-ci.com/) and clicking the `Sign in with GitHub` button.
 

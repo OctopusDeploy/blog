@@ -93,7 +93,7 @@ public interface ExpectedConditionCallback {
 }
 ```
 
-To represents errors encountered when locating elements with a generic locator, we create the `WebElementException` class.
+To represents errors encountered when locating elements with a generic locator,  we create the `WebElementException` class.
 
 ```java
 package com.octopus.exceptions;

@@ -22,7 +22,7 @@ One of the nice things about AWS is that it offers quite a generous [free tier](
 
 AWS S3 is a file hosting service that allows us to save data in the cloud and make it publicly accessible. S3 is often used to host the kind of content you might find on a typical network drive, like log files and documents, but it can also be used to host public websites. By uploading a HTML file and any other resources like images or CSS files and configuring S3 to host the files as a website, we can quickly and easily create a publicly available, highly reliable web site. This is exactly what we will do with our test website.
 
-To access the S3 console, click {{Services,S3}} from the AWS console.
+To access the S3 console,  click {{Services,S3}} from the AWS console.
 
 ![](image6.png "width=500")
 

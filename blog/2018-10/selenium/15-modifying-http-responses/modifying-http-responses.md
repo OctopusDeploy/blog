@@ -16,7 +16,7 @@ In the last post we looked at how BrowserMob could be used to intercept requests
 
 Another useful feature provided by BrowserMob is the ability to alter the response from a website. This can be used to mock responses to ensure that tests are deterministic, or to allow tests to target particular edge cases.
 
-When modifying responses, the network requests and responses follow the flow shown in this diagram.
+When modifying responses,  the network requests and responses follow the flow shown in this diagram.
 
 1.  The browser makes a request.
 2.  The request is directed to the proxy.
