@@ -25,9 +25,9 @@ Some proponents swear by the commandments laid out in the [twelve-factor app](ht
 
 - First, this doesn't work easily for browser-based runtimes where you have a static website to serve and need to get that configuration in the browser.
 - Secondly, this adds complexity to your hosting environment, whereby you need to ensure that each process that runs your application has its own collection of environment variables which _persist across restarts_ and _doesn't leak across to other instances_ (for example where your testing VM hosts multiple instances of the same application).
-- Lastly, this may be straight forward when you have just a single URL which needs to differ between environments, but in many applications, the configuration may include many different variables, some of which are deeply nested values. Trying to manage and consolidate hierarchical information through environment variables has a bunch of downsides.
+- Lastly, this may be straight forward when you have just one URL that needs to differ between environments, but in many applications, the configuration may include many different variables, some of which are deeply nested values. Trying to manage and consolidate hierarchical information through environment variables has a bunch of downsides.
 
-Ultimately the 12-factor app solution to not storing config in code is to store it in environment variables is a bit of a false dilemma. We know that storing configuration in code is neither the most flexible, nor secure way to provide configuration but is the proposed alternative. Any good deployment tool should also be capable of providing the environment specific variables needed to run your application in a self-contained manner.
+Ultimately, the 12-factor app solution of not storing config in code and to store it in environment variables instead is a bit of a false dilemma. We know that storing configuration in code is neither the most flexible nor secure way to provide configuration, but it is the proposed alternative. Any good deployment tool should also be capable of providing the environment specific variables needed to run your application in a self-contained manner.
 
 ### Configuration as JSON
 Create a simple `config.json` file that contains the configuration needed for your application. The values in this configuration can just be those you need for development time. There is no need to create a `config.staging.json` or `config.prod.json` in your source code, the environmental configuration will be provided by Octopus (or your deployment tool of choice) at deploy time. Avoiding these "environmental" configuration files makes our CD process much more flexible and avoids leaking our infrastructure phases into the source code. At runtime, all our code needs to do is retrieve this `config.json` file from the server like any other resource.
@@ -36,7 +36,7 @@ Create a simple `config.json` file that contains the configuration needed for yo
 
 For those who are concerned about having a `/config.json` available from the root of your application, remember that if these values were embedded in your javascript files that would be just as "in-the-open". If you are concerned about leaking sensitive information then perhaps the front-end isn't the right place for that information. One nice side effect is that it makes it super easy to check if the static content has been successfully deployed by just loading the config from your browser yourself. By including things like the build number and release date as properties in the config file, I can easily check that they have been deployed to the right place and they are getting through the various CDNs and caches.
 
-Let's walk through a couple of examples of how this can be achieved. There are many ways that this pattern can be accomplished in whatever framework you are using so you may want to modify the following samples to suit your needs.
+Let's walk through a couple of examples of how this can be achieved. There are many ways that this pattern can be accomplished in whatever framework you are using so you may want to modify the following examples to suit your needs.
 
 ## Examples
 ### NodeJs Application
@@ -64,7 +64,7 @@ Starting with a simple `config.json` file in our application we provide a value 
 { "message": "My Dev Machine" }
 ```
 
-In this scenario we are using webpack to develop our code, and as such we include a line to copy our `config.json` file to the output directory.
+In this scenario we are using Webpack to develop our code, and as such we include a line to copy our `config.json` file to the output directory:
 
 #### `webpack.config.js`
 ```javascript
@@ -85,7 +85,7 @@ module.exports = {
 };
 ```
 
-Our entrypoint `index.js` file will use a `ConfigLoader` component to load the configuration file at run time and display the `Home` component when it completes.
+Our entry point `index.js` file will use a `ConfigLoader` component to load the configuration file at runtime and display the `Home` component when it completes:
 
 #### `index.js`
 ```javascript
@@ -104,7 +104,7 @@ class App extends Component {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-the `Home` component displays the message provided via configuration.
+The `Home` component displays the message provided via configuration:
 
 #### `components/Home.js`
 ```javascript
@@ -121,9 +121,9 @@ export default class Home extends Component {
 }
 ```
 
-As you can see, we are importing a `config` module. This is not the raw JSON file created above this is a special module I will show below. Since this component will not render until the `ConfigLoader` component has loaded the `config.json` file, we can assume that the config object has all the properties we need, in this case just `message`.
+As you can see, we are importing a `config` module. This is not the raw JSON file created above. This is a special module I will show below. Since this component will not render until the `ConfigLoader` component has loaded the `config.json` file, we can assume that the config object has all the properties we need, in this case just `message`.
 
-The `ConfigLoader` component simply calls a `load` method on our config module and renders the requested component via its props when the configuration has loaded.
+The `ConfigLoader` component simply calls a `load` method on our config module and renders the requested component via its props when the configuration has loaded:
 
 #### `components/ConfigLoader.js`
 ```javascript
@@ -154,7 +154,7 @@ export default class ConfigLoader extends Component {
 }
 ```
 
-The real magic happens in our `config.json` component. We initially provide an empty object in place of our configuration. We do this so that when we load the config via the HTTP fetch command, we effectively _copy_ the properties from the loaded object onto the exported object. This is because the exported object is effectively cached the first time this module is loaded.
+The real magic happens in our `config.json` component. We initially provide an empty object in place of our configuration. We do this so that when we load the config via the HTTP fetch command, we effectively _copy_ the properties from the loaded object onto the exported object. This is because the exported object is effectively cached the first time this module is loaded:
 
 #### `components/config.js`
 ```javascript
@@ -177,13 +177,13 @@ function load() {
 export {load}
 ```
 
-The great thing about this is that as we are developing we can modify the config file, and webpack will trigger a refresh as if we were updating any other file.
+The great thing about this is that as we are developing we can modify the config file, and Webpack will trigger a refresh as if we were updating any other file.
 
 ![React result](react-result.png)
 
 _...and who said I wasn't a great designer_
 
-Everywhere in our app that we want to use the configuration (like the `Home` component above), we can load and simply use the `config`  module and access the properties directly since all modules downwards are only rendered once the `ConfigLoader` component has retrieved the configuration. Remember that so long as we transform the `config.json` file as part of our CD pipeline, we will then get the appropriate values supplied and consumed by our application.
+Everywhere in our app that we want to use the configuration (like the `Home` component above), we can load and simply use the `config` module and access the properties directly since all modules downwards are only rendered once the `ConfigLoader` component has retrieved the configuration. Remember that so long as we transform the `config.json` file as part of our CD pipeline, we will then get the appropriate values supplied and consumed by our application.
 
 This is a fairly simple demonstration, and depending on your use case you may want to dispatch the config into a redux store, or you may also want to deal with more complex scenarios like cache busting, etc.
 
