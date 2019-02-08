@@ -7,10 +7,10 @@ published: 2019-01-31
 metaImage: askoctopusthumbnail.png
 bannerImage: askoctopusthumbnail.png
 tags:
- - Company
+ - Ask Octopus
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ftd8ga0yi6Q" frameborder="0" allowfullscreen></iframe> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ftd8ga0yi6Q" frameborder="0" allowfullscreen></iframe>
 
 We're releasing the third episode of Ask Octopus a little bit early this week. In this episode, we cover some variable run conditions, some tips for switching authentication providers, and how to find a deleted release. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
 
@@ -18,7 +18,7 @@ Here are the questions with direct links to where they start in the video:
 
 - [Bob answers](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=33s) "How can I run a step only when a specific step fails?"
 - [Derek discusses](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=6m48s) "Tips and tricks when switching authentication providers"
-- [Ryan answers](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=13m22s) "my release is missing? How can I find out what happened?"
+- [Ryan answers](https://www.youtube.com/watch?v=Ftd8ga0yi6Q&t=13m22s) "My release is missing? How can I find out what happened?"
 
 You can find more information on topics discussed today in our docs:
 

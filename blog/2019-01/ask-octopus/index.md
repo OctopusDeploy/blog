@@ -7,10 +7,10 @@ published: 2019-01-18
 metaImage: askoctopusthumbnail.png
 bannerImage: askoctopusthumbnail.png
 tags:
- - Company
+ - Ask Octopus
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KVxdSdYAqQU" frameborder="0" allowfullscreen></iframe> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KVxdSdYAqQU" frameborder="0" allowfullscreen></iframe>
 
 Last year, Paul, our fearless CEO, did a couple of [Q&A webinars with Jeffrey Palermo](https://octopus.com/blog/webinar-devops-deep-dive) over at ClearMeasure.  Later in the year, Derek Campbell, Ryan Rousseau and I did a webinar on how to [speed up, scale out, and organize your Octopus Deploy server](https://hello.octopus.com/webinar-spaces-workers/on-demand).  And that is to name a few.  We did a handful more throughout the year.  
 
