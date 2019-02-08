@@ -16,7 +16,7 @@ It's our first ever Ask Octopus Brisbane Edition! In this episode, we cover recu
 
 Here are the questions with direct links to where they start in the video:
 
-- [Derek discusses](https://www.youtube.com/watch?v=xX65jNNW49U&t=54s) "Recurring cheduled deployments and their benefits"
+- [Derek discusses](https://www.youtube.com/watch?v=xX65jNNW49U&t=54s) "Recurring scheduled deployments and their benefits"
 - [Ryan answers](https://www.youtube.com/watch?v=xX65jNNW49U&t=6m35s) "How can two teams share a project without affecting each other's environments or variables?"
 - [Bob answers](https://www.youtube.com/watch?v=xX65jNNW49U&t=13m51s) "When would I use channel and version restrictions in Octopus Deploy?"
 
