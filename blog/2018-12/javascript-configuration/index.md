@@ -2,10 +2,10 @@
 title: Providing environment specific configuration for Javascript projects in a continuous deployment pipeline
 description: Wether it be a Ract, Angular or NodeJS application, you often need configuration to be supplied that differs from one environment to the next. The safest way to accomplish this is to make use of your deployment tooling.
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
 bannerImage: 
 metaImage: 
-published: 2019-07-19
+published: 2019-02-11
 tags:
 - Javascript
 - Patterns
