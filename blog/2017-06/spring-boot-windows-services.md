@@ -95,6 +95,5 @@ Start the service up, and open a browser to http://localhost:8080/greeting. Your
 ## Learn more
 
 * Deep Dive: [How to deploy Spring Boot fully executable JAR files to EC2 Linux instances as services](https://octopus.com/blog/spring-boot-as-a-service)
-* [How to deploy a Spring Boot web app to AWS Elastic Beanstalk](https://octopus.com/blog/will-it-deploy-episode-02)
 * Documentation: [Java Applications](https://octopus.com/docs/deployment-examples/java-applications)
 * Video: [Deploying a Spring Boot web application with Octopus Deploy](https://octopus.com/blog/will-it-deploy-episode-02)
