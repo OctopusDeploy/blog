@@ -1,5 +1,5 @@
 ---
-title: Modifying HTTP Requests
+title: Selenium Series - Modifying HTTP Requests
 description: In this post we learn how to modify network requests made through BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -12,7 +12,7 @@ tags:
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
 
-In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including:
+In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including: 
 
 - Simulating the failure of external services.
 - Preventing assets like images from being loaded, which can improve the performance of tests.
@@ -38,7 +38,7 @@ To support modifying requests we add a new method to the `AutomatedBrowser` inte
 void blockRequestTo(String url, int responseCode);
 ```
 
-This method takes a URL of a request to modify, and the HTTP response code that should be returned when this URL is requested.
+This method takes a URL of a request to modify,  and the HTTP response code that should be returned when this URL is requested.
 
 We add the default method to the `AutomatedBrowserBase` class:
 

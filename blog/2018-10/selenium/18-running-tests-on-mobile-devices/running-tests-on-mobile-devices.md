@@ -1,5 +1,5 @@
 ---
-title: Running tests on mobile devices
+title: Selenium Series - Running tests on mobile devices
 description: In this post we learn how to run tests against the mobile devices in BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 So far we have limited our testing to desktop browsers, but no testing strategy would be complete without a way to also test mobile browsers. Mobile browser testing is one of the major features of a service like BrowserStack. It is quite easy to run tests against a huge variety of mobile browsers using the same code we have been developing and running against desktop browsers.
 
@@ -141,7 +141,7 @@ public void browserStackAndroidTest() {
 }
 ```
 
-If we run this test, an exception may once again be generated about invalid credentials. If you recall we previously defined the BrowserStack credentials as environment variables, but we did so against a single test only. It can get tedious adding these variables to each new test configuration, so to add these environment variables to all tests, we need to configure the default settings for all JUnit tests run by IntelliJ.
+If we run this test,  an exception may once again be generated about invalid credentials. If you recall we previously defined the BrowserStack credentials as environment variables, but we did so against a single test only. It can get tedious adding these variables to each new test configuration, so to add these environment variables to all tests, we need to configure the default settings for all JUnit tests run by IntelliJ.
 
 Click the drop down list of configurations, and select `Edit Configurations...`
 

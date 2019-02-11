@@ -1,5 +1,5 @@
 ---
-title: The Maven POM File
+title: Selenium Series - The Maven POM File
 description: In this post we create a simple pom.xml file configuring the Selenium dependencies
 author: matthew.casperson@octopus.com
 visibility: public
@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 The first step in establishing our Java project is the creation of a Maven Project Object Model (POM) file. This is an XML document that defines how our code will be built, what additional dependencies it has access to, and how tests are run.
 
-We start with the POM file shown below:
+We start with the POM file shown below: 
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -77,7 +77,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-All Maven POM files have a `<project>` element as the root element, and the attributes define the XML namespace and details of the Maven XML schema.
+All  Maven POM files have a `<project>` element as the root element, and the attributes define the XML namespace and details of the Maven XML schema.
 
 The `<modelVersion>` element defines the POM version. The only supported value for this element is `4.0.0`.
 

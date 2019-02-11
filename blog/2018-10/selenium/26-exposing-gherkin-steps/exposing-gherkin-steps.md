@@ -1,5 +1,5 @@
 ---
-title: Exposing Gherkin steps
+title: Selenium Series - Exposing Gherkin steps
 description: In this post we investigate the regular expressions that make up complex Gherkin steps
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,9 +10,9 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
-Now that we have the basics in place to integrate the `AutomatedBrowserBase` class with Cucumber, it is time to start fleshing out the Gherkin dialect that we can use to write WebDriver tests.
+Now that we have the basics in place to integrate the `AutomatedBrowserBase` class with Cucumber,  it is time to start fleshing out the Gherkin dialect that we can use to write WebDriver tests.
 
 The next step in most tests after opening the browser is to open a URL. We can expose this by annotating the `goTo()` method.
 

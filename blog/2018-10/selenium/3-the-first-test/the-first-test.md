@@ -1,5 +1,5 @@
 ---
-title: The First WebDriver Test
+title: Selenium Series - The First WebDriver Test
 description: In this post we create the first WebDriver tests against Chrome and Firefox.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 Now that we have the Maven project configured and imported in IntelliJ, we can start adding some tests.
 
-The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure.
+The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure. 
 
 To create the new directory, right click on the top level project folder, select {{New,Directory}}.
 
@@ -96,7 +96,7 @@ http://chromedriver.storage.googleapis.com/index.html
 
 The `IllegalStateException` exception was thrown when we attempted to run the test because the driver executable could not be found. Helpfully the error points us to [http://chromedriver.storage.googleapis.com/index.html](http://chromedriver.storage.googleapis.com/index.html), where the driver can be downloaded.
 
-Opening this link reveals a number of directories that correspond to the version of the driver executable. You will almost always want to get the latest version, although the sorting applied to the list does not make the latest version apparent.
+Opening  this link reveals a number of directories that correspond to the version of the driver executable. You will almost always want to get the latest version, although the sorting applied to the list does not make the latest version apparent.
 
 In the screenshot below you can see that the directories are sorted using a string comparison, which results in version 2.4 appearing after version 2.37. However, from this list (and these versions will have changed by the time you read this) you actually want to download version 2.37 because this is the latest version available.
 

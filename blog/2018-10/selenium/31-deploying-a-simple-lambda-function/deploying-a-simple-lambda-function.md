@@ -1,5 +1,5 @@
 ---
-title: Deploying a simple Lambda function
+title: Selenium Series - Deploying a simple Lambda function
 description: In this post we deploy the UberJAR to Lambda
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,7 +10,7 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 In the previous posts we configured all the prerequisites required by our Lambda function:
 
@@ -68,7 +68,7 @@ In a traditional Java application, we start execution in a `static main()` metho
 returntype methodname(inputType input, Context context)
 ```
 
-Or if the `Context` is not required (and it is not required for our purposes) then this signature is also valid:
+Or if the `Context` is not required (and it is not required for our purposes)  then this signature is also valid:
 
 ```
 returntype methodname(inputType input)

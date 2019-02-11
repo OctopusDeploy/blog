@@ -1,5 +1,5 @@
 ---
-title: Simplified element location
+title: Selenium Series - Simplified element location
 description: In this post we learn how to remove explicit element searches by ID, XPath and CSS Selectors in favor of generic locators.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -16,7 +16,7 @@ In the last post we looked at the various ways elements could be located in a we
 
 But wouldn't it be nice if we could call a single set of methods with the element identifier and let WebDriver work out which elements matched?
 
-Imagine you were developing a web application using a test driven development approach. You might write a test like the following.
+Imagine you were developing a web application using a test driven development approach. You might write a test like the following. 
 
 ```java
 public void formTestWithSimpleBy() throws URISyntaxException {
@@ -93,7 +93,7 @@ public interface ExpectedConditionCallback {
 }
 ```
 
-To represents errors encountered when locating elements with a generic locator, we create the `WebElementException` class.
+To represents errors encountered when locating elements with a generic locator,  we create the `WebElementException` class.
 
 ```java
 package com.octopus.exceptions;

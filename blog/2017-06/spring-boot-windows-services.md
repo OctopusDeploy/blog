@@ -3,7 +3,7 @@ title: "Deploying Spring Boot Applications as Windows Services"
 visibility: public
 author: matthew.casperson@octopus.com
 description: "Learn how to deploy a Spring Boot application as a Windows service with Octopus Deploy"
-published: 2017-09-13
+published: 2022-09-13
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -91,3 +91,9 @@ Once deployed, the service will appear like any other Windows service.
 
 ## Conclusion
 Start the service up, and open a browser to http://localhost:8080/greeting. Your Spring Boot application is now running as a Windows service!
+
+## Learn more
+
+* Deep Dive: [How to deploy Spring Boot fully executable JAR files to EC2 Linux instances as services](https://octopus.com/blog/spring-boot-as-a-service)
+* Documentation: [Java Applications](https://octopus.com/docs/deployment-examples/java-applications)
+* Video: [Deploying a Spring Boot web application with Octopus Deploy](https://octopus.com/blog/will-it-deploy-episode-02)

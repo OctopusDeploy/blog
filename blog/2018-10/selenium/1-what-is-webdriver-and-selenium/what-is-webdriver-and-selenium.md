@@ -1,5 +1,5 @@
 ---
-title: What is WebDriver and Selenium?
+title: Selenium Series - What is WebDriver and Selenium?
 description: Learn what the terms WebDriver and Selenium refer to
 author: matthew.casperson@octopus.com
 visibility: public
@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 When it comes to testing web applications, you have probably heard of WebDriver and Selenium. Often the two terms are used interchangeably or even combined to refer to the platform on which a developer can write code to interact with a web browser. However, these two terms refer to slightly different things.
 
-Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at [https://www.w3.org/TR/webdriver1/](https://www.w3.org/TR/webdriver1/), and is freely available for anyone to implement.
+Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at [https://www.w3.org/TR/webdriver1/](https://www.w3.org/TR/webdriver1/), and is freely available for anyone to implement. 
 
 Most browser vendors implement the WebDriver API through an additional executable that is shipped separate to the browser itself. The list below shows where the major browsers provide this binary driver:
 
@@ -51,7 +51,7 @@ To interact with the API we need a tool that allows us to make HTTP requests. He
 
 The first step is to open the browser. This is done by creating a new session.
 
-To create a new session via the WebDriver API, we make a HTTP POST request to the `/session` endpoint. In addition we need to define the type of browser that we wish to open. This information is sent in a JSON object in the POST body. In this example we'll open Chrome:
+To create a  new session via the WebDriver API, we make a HTTP POST request to the `/session` endpoint. In addition we need to define the type of browser that we wish to open. This information is sent in a JSON object in the POST body. In this example we'll open Chrome:
 
 ```json
 {

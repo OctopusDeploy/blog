@@ -1,5 +1,5 @@
 ---
-title: The TicketMonster test
+title: Selenium Series - The TicketMonster test
 description: In this post we learn how to test a real world Java web application.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 TicketMonster is a sample application created by RedHat to demonstrate a number of Java web technologies. The nice thing about TicketMonster (from the point of view of a WebDriver tutorial anyway) is that it has not been optimized for automated tests, meaning that to successfully test a typical journey through the application we can't rely on consistent network requests or all elements having convenient `id` attributes to locate them with.
 
-But in order to write tests for TicketMonster, we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at [https://developers.redhat.com/ticket-monster/whatisticketmonster/](https://developers.redhat.com/ticket-monster/whatisticketmonster/). However for this post we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
+But in order to write tests for TicketMonster,  we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at [https://developers.redhat.com/ticket-monster/whatisticketmonster/](https://developers.redhat.com/ticket-monster/whatisticketmonster/). However for this post we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
 
 We will test the scenario of purchasing a ticket for an event, so let's first run through the process of buying a ticket manually.
 

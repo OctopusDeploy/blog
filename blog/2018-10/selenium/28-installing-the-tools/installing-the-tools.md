@@ -1,5 +1,5 @@
 ---
-title: Installing the tools
+title: Selenium Series - Installing the tools
 description: In this post we install the serverless application
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,9 +10,9 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
-Until this point we have been running tests sequentially, either locally or on the Travis CI platform. However, running UI tests one after another does not scale particularly well. As more tests are added, and more combinations and edge cases are tested, it is not uncommon to find that UI test suite will take hours to complete.
+Until this point we have been running tests sequentially,  either locally or on the Travis CI platform. However, running UI tests one after another does not scale particularly well. As more tests are added, and more combinations and edge cases are tested, it is not uncommon to find that UI test suite will take hours to complete.
 
 If there is one justified criticism of UI testing, it is that it is far slower than other forms of testing. Without a better way of running UI tests, they will become a bottleneck in the CI pipeline. So what can we do to make tests complete in a shorter period of time?
 

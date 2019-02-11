@@ -1,5 +1,5 @@
 ---
-title: Environment specific handing
+title: Selenium Series - Environment specific handing
 description: In this post we learn how to customize WebDriver operations based on the target environment.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,9 +10,9 @@ tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
-You may have noticed when running tests against the Edge browser in BrowserStack that the window was not maximized. It usually makes sense to run tests in a maximized window to ensure that the tests are run with web pages displayed with a consistent resolution, so let's add a new method to maximize the window.
+You may have noticed when running tests against the Edge browser in BrowserStack that the window was not maximized.  It usually makes sense to run tests in a maximized window to ensure that the tests are run with web pages displayed with a consistent resolution, so let's add a new method to maximize the window.
 
 First, we add the method `maximizeWindow()` to the `AutomatedBrowser` class:
 
