@@ -2,7 +2,7 @@
 title: "Managing Spaces with Octopus Data Center Manager RFC"
 description: "We are designing a new product to manage Octopus Servers at scale. This is a request-for-comments."
 published: 2017-05-10
-metaImage: odcm-metaimage.png 
+metaImage: odcm-metaimage.png
 bannerImage: odcm-blogimage.png
 visibility: public
 tags:
@@ -12,6 +12,16 @@ tags:
 <div style="background-color:#e9edf2;">
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Manager" src="https://i.octopus.com/blog/2017-05/odcm-blogimage.png" />
 </div>
+
+---
+:::warning
+
+**UPDATE JANUARY 2019**
+In the [2019.1](https://octopus.com/downloads) release of Octopus Deploy we have a new feature called [Spaces](https://octopus.com/blog/octopus-spaces-blog-series-kick-off) that has achieves the original goals proposed by the ODCM Feature.
+
+Have a look at [Spaces here](https://octopus.com/blog/octopus-release-2019.1), it's available for download now.
+
+:::
 
 ---
 In an [earlier post](octopuses.md) we talked about some of the real world problems our customers are having with Octopus at scale, and introduced some of our vision for solving those problems in Octopus 4.0.  In that post we floated the idea of a tool that centrally manages a number of Octopus servers.
