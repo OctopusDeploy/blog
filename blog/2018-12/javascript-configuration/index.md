@@ -21,7 +21,7 @@ Being good DevOps practitioners we know we should build once and deploy many tim
 
 ### First let's just get one approach off the table.
 
-Some proponents swear by the commandments laid out in the [twelve-factor app](https://12factor.net/config) and take it as dogma that all configuration for your application should be pulled out of individual environment variables. In my humble opinion, this approach is very limiting for a few reasons.
+Some proponents swear by the commandments laid out in the [twelve-factor app](https://12factor.net/config) and take it as dogma that all configuration for your application should be pulled out of individual environment variables.  In my humble opinion, this approach is very limiting for a few reasons.
 
 - First, this doesn't work easily for browser-based runtimes where you have a static website to serve and need to get that configuration in the browser.
 - Secondly, this adds complexity to your hosting environment, whereby you need to ensure that each process that runs your application has its own collection of environment variables which _persist across restarts_ and _doesn't leak across to other instances_ (for example where your testing VM hosts multiple instances of the same application).
