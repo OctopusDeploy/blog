@@ -124,6 +124,7 @@ Ding, ding, round three! In the previous examples, we used tooling that is built
 
 ```csharp
 #tool "nuget:?package=GitVersion.CommandLine&prerelease"
+#tool "nuget:?package=OctopusTools"
 
 using Path = System.IO.Path;
 using IO = System.IO;
@@ -210,16 +211,11 @@ Task("__Publish")
 Task("__Pack")
     .Does(() => {
 
-    StartProcess("dotnet", new ProcessSettings {
-        Arguments = new ProcessArgumentBuilder()
-            .Append("octo")
-            .Append("pack")
-            .Append($"--id={packageId}")
-            .Append($"--version={nugetVersion}")
-            .Append($"--basePath=\"{publishDir}\"")
-            .Append($"--outFolder=\"{artifactsDir}\"")
-        }
-    );
+    OctoPack(packageId, new OctopusPackSettings{
+        BasePath = publishDir,
+        Version=nugetVersion,
+        OutFolder=artifactsDir
+        });
 });
 
 Task("__Push")
@@ -229,15 +225,7 @@ Task("__Push")
 
     if (!isLocalBuild)
     {
-        StartProcess("dotnet", new ProcessSettings {
-            Arguments = new ProcessArgumentBuilder()
-                .Append("octo")
-                .Append("push")
-                .Append($"--server={octopusServer}")
-                .Append($"--apikey={octopusApikey}")
-                .Append($"--package=\"{packageFile}\"")
-            }
-        );
+        OctoPush(octopusServer, octopusApiKey, new FilePath(packageFile), new OctopusPushSettings());
     }
     else
     {
@@ -288,4 +276,8 @@ Another option is to install to a folder relative to the build working folder (e
 Woohoo! You stuck with me to the end, thank you! This did turn out to be a much bigger post than I had originally expected, but it's something we get asked about a bit, so hopefully, this will be something that will help a number of you out there.
 
 As always, if you have any questions or feedback, please let us know below.
+
+
+
+UPDATE 2019-02-11: Not long after this post was released the wonderful folks who look after the [Cake Octopus tooling](https://cakebuild.net/api/Cake.Common.Tools.OctopusDeploy/) released an update so it utilizes the Octopus dotnet CLI extension. The Cake script example has been updated to use `OctoPack` and `OctoPush`.
 
