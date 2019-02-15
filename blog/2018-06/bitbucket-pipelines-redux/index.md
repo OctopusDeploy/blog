@@ -53,7 +53,7 @@ Rather than repeating what Andy covered in [the previous post](https://octopus.c
 
 The configuration changes above show how it's easier than ever to integrate Octopus Deploy into your build systems, and the approach will work in most containerized build system from Bitbucket Pipelines to [CircleCI](https://circleci.com). Give it a try today and simplify your deployments, now with 100% more containers!
 
-### Learn more
+## Learn more
 
 * How to guide: [Setting up your own end-to-end CI/CD pipeline with Bitbucket and Octopus Deploy](https://hubs.ly/H0gCKZg0)
 * Blog: [Packages in script steps](https://hubs.ly/H0gCKJ90)
