@@ -10,7 +10,7 @@ tags:
  - Ask Octopus
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=8GOKCub2Bjg" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8GOKCub2Bjg" frameborder="0" allowfullscreen></iframe>
 
 After our first ever Ask Octopus Brisbane Edition we managed to get an interview with the Creator and CEO of Octopus Deploy [Paul Stovell](https://twitter.com/paulstovell). In this episode, we ask Paul about the history of Octopus and what's coming up. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
 
