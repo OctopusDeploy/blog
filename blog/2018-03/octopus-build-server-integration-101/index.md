@@ -193,3 +193,11 @@ Behind the scenes, these steps are really just UI wrappers around `Octo.exe`. So
 And that's it! I really hope this guide helps you integrate Octopus into your CI pipeline in a more organized fashion.
 
 Please keep in mind that this guide makes a lot of assumptions, and is mostly targeted to really basic CI pipelines. If you feel like the steps described here won't fit your process, [reach out in our support forum](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers#Octopus-Steps-Ask-for-help) and we'll give you a hand with it.
+
+### Learn more
+
+* [Deploying TeamCity to Kubernetes using Octopus Deploy](https://hubs.ly/H0gBSdy0)
+* Guide: [How to dynamically set TeamCity version numbers based on the current branch](https://hubs.ly/H0gBQDm0)
+* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gBSdB0)
+* Documentation: [API & integration](https://hubs.ly/H0gBQDp0)
+* Video: [How to deploy ASP.NET web app with AppVeyor & Octopus Deploy](https://hubs.ly/H0gBQDs0)

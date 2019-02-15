@@ -343,3 +343,14 @@ In this post we have seen how to configure a domain to create a cluster, and how
 We've then deployed a distributable web app to the domain, and forced traffic onto a new cluster node by shutting down the instance that created the original session.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+
+###Learn more: 
+
+* Documentation: [Java Applications](https://hubs.ly/H0gCMkg0)
+* [Configuring WildFly via XML Templates or CLI Scripts](https://hubs.ly/H0gCMGQ0)
+* [CloudFormation, WildFly and Deploying Maven Artifacts](https://hubs.ly/H0gCMH70)
+* [Deploying Certificates to WildFly](https://hubs.ly/H0gCMH70)
+* Tutorial: [Deploying Spring Boot Applications as Windows Services](https://hubs.ly/H0gCMH90)
+* Getting Started 101: [Installing Tomcat for your next Java project](https://hubs.ly/H0gCMkP0)
+* [Get up to speed on how Tomcat defines the context path of your web application](https://hubs.ly/H0gCMHk0)
+* Video: [Deploying a Spring Boot web app](https://hubs.ly/H0gCMkT0)

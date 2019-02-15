@@ -301,3 +301,15 @@ The admin user we created earlier has access to all aspects of the admin console
 In this post we have seen how to run WildFly manually and as a service in both Windows and Linux, configured an admin user, and opened the admin console.
 
 If you are interested in automating the deployment of your Java applications to WildFly, [download a trail copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+
+### Learn more
+
+* Documentation: [Java Applications](https://hubs.ly/H0gyFkB0)
+* [Configuring WildFly via XML Templates or CLI Scripts](https://hubs.ly/H0gyFHR0)
+* [CloudFormation, WildFly and Deploying Maven Artifacts](https://hubs.ly/H0gyFkQ0)
+* [How to create your own WildFly Cluster in AWS](https://hubs.ly/H0gyFJ40)
+* [Deploying Certificates to WildFly](https://hubs.ly/H0gyFJ70)
+* Video: [Deploying a Spring Boot web application with Octopus Deploy](https://hubs.ly/H0gyFld0)
+* Tutorial: [Deploying Spring Boot Applications as Windows Services](https://hubs.ly/H0gyFJ80)
+* Getting Started 101: [Installing Tomcat for your next Java project](https://hubs.ly/H0gyFlY0)
+* [Get up to speed on how Tomcat defines the context path of your web application](https://hubs.ly/H0gyFJ90)

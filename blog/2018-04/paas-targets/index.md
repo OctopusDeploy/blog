@@ -155,3 +155,11 @@ We are excited about this direction.  We feel it is a natural fit, and provides 
 But this work is also a key stepping-stone for other features we have planned.  We want to make it much easier to dynamically provision and deprovision entire environments (e.g. for feature-branches), and to execute operations processes against environments.  We will post more on these features in the coming months. 
 
 As always, we welcome your feedback.
+
+### Learn more
+
+* [Deep Dive - Azure App Integration and Octopus Accounts](https://hubs.ly/H0gCMKF0)
+* Tutorial: [Dynamic creation and teardown of Azure infrastructure, to create on-demand Web Apps per tester](https://hubs.ly/H0gCMp90)
+* [What does Microsoft deprecating Azure Service Management APIs mean for Octopus Users?](https://hubs.ly/H0gCMKM0)
+* [Expanding support for new Azure environments with Octopus Deploy](https://hubs.ly/H0gCMph0)
+* Documentation: [Azure Environments](https://hubs.ly/H0gCMpk0)

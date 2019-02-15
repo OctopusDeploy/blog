@@ -443,3 +443,13 @@ All things considered, it is not the end of the world.  That is still quite a lo
 You can run TeamCity in a Kubernetes Cluster.  In fact, it was rather easy to set up.  But you won't get the full functionality like you would if you ran TeamCity on VMs.  And depending on your use case, that may or may not be okay.  
 
 Well, I hope you learned a little more about Kubernetes and Octopus Deploy.  Happy Deployments!
+
+### Learn more
+
+* Integration 101: [Octopus and Build Servers](https://hubs.ly/H0gBMBp0)
+* [Deploying applications to Kubernetes with Octopus Deploy](https://hubs.ly/H0gBMBN0)
+* Guide: [How to dynamically set TeamCity version numbers based on the current branch](https://hubs.ly/H0gBN6B0)
+* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gBMC00)
+* Documentation: [Kubernetes](https://hubs.ly/H0gBN6F0)
+* Documentation: [TeamCity](https://hubs.ly/H0gBMCk0)
+* [2018.9 release blog post](https://hubs.ly/H0gBN6H0)

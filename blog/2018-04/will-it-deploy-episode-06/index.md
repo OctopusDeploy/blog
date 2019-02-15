@@ -68,3 +68,10 @@ This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Epis
 We hope you enjoyed this episode as we have many more in the works! If there's a framework or technology you'd like us to explore, let us know in the comments.
 
 Don't forget to subscribe to our [YouTube](https://youtube.com/octopusdeploy) channel as we're adding new videos regularly. Happy deployments! :)
+
+### Learn more
+
+* Guide: [How to deploy an ASP.NET web app to Azure](https://hubs.ly/H0gBQFp0)
+* [Packaging for .NETCore, on .NETCore, with Octopus](https://hubs.ly/H0gBQFz0)
+* [Deploying an ASP.NET Core web app to Linux](https://hubs.ly/H0gBSf00)
+* Documentation: [IIS Websites & Application Pools](https://hubs.ly/H0gBSf10)
