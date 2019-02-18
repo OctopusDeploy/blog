@@ -31,7 +31,7 @@ Wait, "release**s** in the deployment", isn't a deployment of **a** release? Yes
 
 Ok that was a mouthful, let's have a look at an example.
 
-![Work item accumulation](C:/Source/blog/blog/2019-02/work-items/accumulation.png)
+![Work item accumulation](accumulation.png)
 
 This diagram depicts a number of releases and deployments that have occurred over time, along with which work item details are included for each deployment. In this scenario each release was immediately deployed to the Dev environment, which results in the simplest accumulation because there is only a single release involved.
 
