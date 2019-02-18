@@ -410,3 +410,10 @@ The rest of this post will be used to show lots of real-world examples of how to
 
 If you're setting out to automate your IIS deployments for the first time, I hope you'll find the background information as well as the examples in this post useful. As I mentioned, you'll find all of these examples in [a GitHub repository](https://github.com/OctopusDeploy/PowerShell-IIS-Examples), and we run them against Windows 2008 R2 up to Windows Server 2016. If you find any problems or have ideas on other examples this post should include, let me know in the comments or send a pull request! 
 
+## Learn more
+
+* Using Octopus [output variables](http://bit.ly/2RRKCVl) in subsequent deployment steps
+* [How to invoke an executable from PowerShell with a dynamic number of parameters](http://bit.ly/2N0MDxQ)
+* Tips and tricks for dealing with [PowerShell exit codes](http://bit.ly/2UR5DS8)
+* Configuration Management with Octopus and [PowerShell DSC](http://bit.ly/2N0NkqW)
+* Documentation: [Running an Azure PowerShell script step](http://bit.ly/2GATRXT)

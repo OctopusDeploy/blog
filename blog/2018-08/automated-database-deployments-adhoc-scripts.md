@@ -256,3 +256,17 @@ Absolutely!  I have another project set up to do just that.  The question is, wh
 I will be the first to admit it, this process is far from perfect.  It will not work for every company.  The goal of this post was to provide an example of a process you could then modify for use in your company.  
 
 Until next time, happy deployments!
+
+More in the series:
+
+* Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCMtb0)
+* DevOps best practice: [Removing friction before automating database deployments](https://hubs.ly/H0gCMt_0)
+
+Learn more: 
+
+* Documentation: [SQL Server Databases](https://hubs.ly/H0gCM7n0)
+* [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCM7R0)
+* [How to deploy a SQL Server with a DACPAC](https://hubs.ly/H0gCMvZ0)
+* DevOps best practice: [How Octopus handles rollbacks](https://hubs.ly/H0gCM820)
+* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gCMwF0)
+* Video: [Deploying to SQL Server with Entity Framework Core](https://hubs.ly/H0gCMwJ0)

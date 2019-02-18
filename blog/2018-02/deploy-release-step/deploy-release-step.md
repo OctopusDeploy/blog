@@ -89,3 +89,11 @@ This allows output from a child deployment to be used by the parent process and 
 This feature will ship with Octopus version 2018.2, which will be released in early February.
 
 _Happy (multi-project) Deployments!_
+
+### Learn more:
+
+* Documentation: [How to deploy a release in Octopus](https://hubs.ly/H0gCMqV0)
+* Documentation: [Creating a deploy release step as part of your deployment process in Octopus](https://hubs.ly/H0gCMSL0)
+* Documentation: [AWS deployments](https://hubs.ly/H0gCMSP0)
+* Documentation: [Azure deployments](https://hubs.ly/H0gCMqX0)
+* Blog: [Azure PaaS targets with Octopus Deploy](https://hubs.ly/H0gCMq_0)

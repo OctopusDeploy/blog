@@ -100,3 +100,11 @@ The `octojs` library is open sourced on [GitHub](https://github.com/OctopusDeplo
 ## Let's Start Treating Node.js Like a Big-boy Language
 
 Node.js is a serious language, so we need to start treating it seriously in our CD pipelines. This means performing downloading dependencies and building (or transpiling) once on the build server and packaging the result along with its dependencies into a self-contained deployment package. Octopus JS libraries can help with this, but ultimately it doesn't matter what tool you use to package and deploy your application, what matters is that it's built once, and deployed across your environments. **[Friends may not let friends right-click publish](https://damianbrady.com.au/2018/02/01/friends-dont-let-friends-right-click-publish/), but it's also clear that they shouldn't let those friends npm install in production.**
+
+*Update:* Check out a [recent post](https://octopus.com/blog/javascript-configuration) where I provide some examples of how to get your environment specific configuration supplied at deploy-time.
+
+### Learn more
+
+* DevOps best practice: [How Octopus handles rollbacks](https://hubs.ly/H0gCHKh0)
+* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gCFzS0)
+* Documentation: [Node on Linux](https://hubs.ly/H0gCHKk0)

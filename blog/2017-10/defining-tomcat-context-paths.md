@@ -175,3 +175,10 @@ This table summaries the various context paths that will be assigned to web appl
 | `<Context path="/path/is/ignored"/>` in `conf/Catalina/localhost/mydemo#version1.xml` (i.e. config for `webapps/mydemo#version1.war`) | `/mydemo/version1` |
 
 If you are interested in automating the deployment of your Java applications to Tomcat, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+
+### Learn more
+
+* Tutorial: [Deploying Spring Boot Applications as Windows Services](https://hubs.ly/H0gBK-l0)
+* Getting Started 101: [Installing Tomcat for your next Java project](https://hubs.ly/H0gBK-H0)
+* Documentation: [Java Applications](https://hubs.ly/H0gBK-R0)
+* Video: [Deploying a Spring Boot web application with Octopus Deploy](https://hubs.ly/H0gBKKW0)
