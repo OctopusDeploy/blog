@@ -3,6 +3,7 @@ title: Creating a WildFly Cluster
 description: Learn how to use a shared database to create a WildFly cluster in AWS.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-18
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
@@ -11,7 +12,7 @@ tags:
 
 In the [previous blog post](https://octopus.com/blog/wildfly-s3-domain-discovery) we looked at how WildFly domains could be configured in an AWS environment with no fixed IP addresses or network broadcasts by centralizing configuration settings in an S3 bucket.
 
-In this blog post we'll take this configuration one step further by configuring a cluster of WildFly instances in AWS.
+In this blog post, we'll take this configuration one step further by configuring a cluster of WildFly instances in AWS.
 
 ## Domain vs Cluster
 
@@ -344,7 +345,7 @@ We've then deployed a distributable web app to the domain, and forced traffic on
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
 
-###Learn more: 
+## Learn more: 
 
 * Documentation: [Java Applications](https://hubs.ly/H0gCMkg0)
 * [Configuring WildFly via XML Templates or CLI Scripts](https://hubs.ly/H0gCMGQ0)
