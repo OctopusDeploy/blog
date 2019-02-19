@@ -66,7 +66,7 @@ Don't forget to subscribe to our [YouTube](https://youtube.com/octopusdeploy) ch
 
 Happy deployments! :)
 
-### Learn more
+## Learn more
 
 * [Build Pipelines and Application Packaging With .NETCore](https://hubs.ly/H0gBQDY0)
 * [Packaging for .NETCore, on .NETCore, with Octopus](https://hubs.ly/H0gBQF50)

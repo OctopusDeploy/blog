@@ -90,7 +90,7 @@ This feature will ship with Octopus version 2018.2, which will be released in ea
 
 _Happy (multi-project) Deployments!_
 
-### Learn more:
+## Learn more
 
 * Documentation: [How to deploy a release in Octopus](https://hubs.ly/H0gCMqV0)
 * Documentation: [Creating a deploy release step as part of your deployment process in Octopus](https://hubs.ly/H0gCMSL0)

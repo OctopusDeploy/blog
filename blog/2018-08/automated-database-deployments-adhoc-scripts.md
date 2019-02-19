@@ -262,7 +262,7 @@ More in the series:
 * Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCMtb0)
 * DevOps best practice: [Removing friction before automating database deployments](https://hubs.ly/H0gCMt_0)
 
-Learn more: 
+## Learn more
 
 * Documentation: [SQL Server Databases](https://hubs.ly/H0gCM7n0)
 * [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCM7R0)

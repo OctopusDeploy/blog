@@ -156,7 +156,7 @@ But this work is also a key stepping-stone for other features we have planned.  
 
 As always, we welcome your feedback.
 
-### Learn more
+## Learn more
 
 * [Deep Dive - Azure App Integration and Octopus Accounts](https://hubs.ly/H0gCMKF0)
 * Tutorial: [Dynamic creation and teardown of Azure infrastructure, to create on-demand Web Apps per tester](https://hubs.ly/H0gCMp90)

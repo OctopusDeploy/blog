@@ -302,7 +302,7 @@ In this post we have seen how to run WildFly manually and as a service in both W
 
 If you are interested in automating the deployment of your Java applications to WildFly, [download a trail copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
 
-### Learn more
+## Learn more
 
 * Documentation: [Java Applications](https://hubs.ly/H0gyFkB0)
 * [Configuring WildFly via XML Templates or CLI Scripts](https://hubs.ly/H0gyFHR0)

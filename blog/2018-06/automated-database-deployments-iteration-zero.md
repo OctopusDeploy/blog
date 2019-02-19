@@ -139,7 +139,7 @@ At first glance, this feels like a lot of prep-work.  The important thing to rem
 * Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCL070)
 * Octopus Deep Dive: [Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline](https://hubs.ly/H0gCLCl0)
 
-### Learn more: 
+## Learn more 
 
 * Documentation: [SQL Server Databases](https://hubs.ly/H0gCLCD0)
 * [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCL0b0)

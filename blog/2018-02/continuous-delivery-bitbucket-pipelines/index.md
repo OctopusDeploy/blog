@@ -188,7 +188,7 @@ Hopefully, this post empowers you to embrace a CD pipelines for your small perso
 
 Happy Deployments!
 
-### Learn more
+## Learn more
 
 * [CI/CD with containers, Bitbucket and Octopus Deploy](https://hubs.ly/H0gCKLy0)
 * DevOps best practice: [How Octopus handles rollbacks](https://hubs.ly/H0gCK-T0)

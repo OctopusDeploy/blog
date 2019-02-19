@@ -90,7 +90,7 @@ Absolutely, yes! Staying current with Octopus Server releases is mutually benefi
 
 LTS for Octopus Server has arrived, and you can bank on it. Happy long-term deployments!
 
-### Learn more:
+## Learn more
 
 * [Self-hosted? Download the latest version](https://hubs.ly/H0gCMqJ0)
 * Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCMRR0)

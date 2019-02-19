@@ -176,7 +176,7 @@ This table summaries the various context paths that will be assigned to web appl
 
 If you are interested in automating the deployment of your Java applications to Tomcat, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
 
-### Learn more
+## Learn more
 
 * Tutorial: [Deploying Spring Boot Applications as Windows Services](https://hubs.ly/H0gBK-l0)
 * Getting Started 101: [Installing Tomcat for your next Java project](https://hubs.ly/H0gBK-H0)

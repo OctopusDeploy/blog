@@ -72,7 +72,7 @@ We hope you enjoyed this episode as we have many more in the works! If there's a
 
 Don't forget to subscribe to our [YouTube](https://youtube.com/octopusdeploy) channel as we're adding new videos regularly. Happy deployments! :)
 
-### Learn more
+## Learn more
 
 * Guide: [How to deploy an ASP.NET web app to Azure](https://hubs.ly/H0gBQFS0)
 * [Packaging for .NETCore, on .NETCore, with Octopus](https://hubs.ly/H0gBQFW0)

@@ -100,7 +100,7 @@ Octopus is becoming the standard deployment tool at more and more companies, and
 We may not accomplish everything on this list in 2018, and we may do other things that aren't on this list as the year evolves. I'm sure everyone reading this will understand that that's the nature of a roadmap - this is our attempt to outline our plans and goals for the year, and it is likely to change. That said, I hope there's something on this list for everyone. Happy deployments!
 
 
-### Learn more
+## Learn more
 
 * [Introducing Octopus long-term support (LTS) - what it is and how it affects you](https://hubs.ly/H0gCMNW0)
 * [Announcing Octopus Cloud](https://hubs.ly/H0gCMq80)

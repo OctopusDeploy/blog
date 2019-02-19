@@ -444,7 +444,7 @@ You can run TeamCity in a Kubernetes Cluster.  In fact, it was rather easy to se
 
 Well, I hope you learned a little more about Kubernetes and Octopus Deploy.  Happy Deployments!
 
-### Learn more
+## Learn more
 
 * Integration 101: [Octopus and Build Servers](https://hubs.ly/H0gBMBp0)
 * [Deploying applications to Kubernetes with Octopus Deploy](https://hubs.ly/H0gBMBN0)

@@ -103,7 +103,7 @@ Node.js is a serious language, so we need to start treating it seriously in our 
 
 *Update:* Check out a [recent post](https://octopus.com/blog/javascript-configuration) where I provide some examples of how to get your environment specific configuration supplied at deploy-time.
 
-### Learn more
+## Learn more
 
 * DevOps best practice: [How Octopus handles rollbacks](https://hubs.ly/H0gCHKh0)
 * [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gCFzS0)

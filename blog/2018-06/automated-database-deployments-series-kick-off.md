@@ -67,7 +67,7 @@ Blog series posts:
 * DevOps best practice: [Removing friction before automating database deployments](https://hubs.ly/H0gCK_b0)
 * Octopus Deep Dive: [Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline](https://hubs.ly/H0gCLs_0)
 
-### Learn more: 
+## Learn more
 
 * Documentation: [SQL Server Databases](https://hubs.ly/H0gCK_f0)
 * [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCLtx0)

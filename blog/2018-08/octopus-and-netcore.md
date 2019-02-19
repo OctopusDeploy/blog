@@ -71,7 +71,7 @@ The one caveat to this is that `octo.exe` uses `Octopus.Client` for it's `push` 
 
 The .NET Core world is still a fast moving place, so this is a step in what I'm sure will be a longer journey. If you're building .NET Core applications, please give `dotnet octo` a spin and give us feedback below to help guide that journey.
 
-### Learn more
+## Learn more
 
 * Guide: [How to deploy an ASP.NET web app to Azure](https://hubs.ly/H0gBSdJ0)
 * [Setting up your own cloud-based CI/CD pipeline Using AppVeyor and Octopus to deploy an ASP.NET Core web app](https://hubs.ly/H0gBSdL0)
