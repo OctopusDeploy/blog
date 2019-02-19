@@ -3,7 +3,7 @@ title: Learn how to call the Jenkins REST API from Powershell
 description: A dive into the Jenkins REST API, with examples in Powershell for creating new jobs
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2019-19-02
+published: 2019-02-19
 tags:
  - Ecosystem
 ---
