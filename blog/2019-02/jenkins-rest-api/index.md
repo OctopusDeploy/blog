@@ -100,7 +100,7 @@ RawContent        : HTTP/1.1 201 Created
                     Server: Apache
                     X-Frame-Options: SAMEORIGIN
                     X-Content-Type-Options: nosniff
-                    Location: http://18.213.209.8/jenkins/queue/item/11/
+                    Location: http://jenkinsserver/jenkins/queue/item/11/
                     Content-L...
 Headers           : {[Date, System.String[]], [Server, System.String[]], [X-Frame-Options, System.String[]], [X-Content-Type-Options, System.String[]]...}
 RawContentLength  : 0
