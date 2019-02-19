@@ -3,8 +3,8 @@ title: Learn how to call the Jenkins REST API from Powershell
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2020-10-16
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - Ecosystem
 ---
@@ -49,7 +49,7 @@ Now that we have a crumb, we can use it to call the Jenkins REST API. You can fi
 
 ![](restapi.png "width=500")
 
-In this example we want to trigger the build of a Jenkins project, so we open the project and find that the `REST API` link points us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/api/. If we open this link we'll see a page of documentation describing the common operations that are available. In particular we are interested in the link that is embeded in the sentence `to programmatically schedule a new build, post to this URL.` The link takes us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/build.
+In this example we want to trigger the build of a Jenkins project, so we open the project and find that the `REST API` link points us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/api/. If we open this link we'll see a page of documentation describing the common operations that are available. In particular we are interested in the link that is embedded in the sentence `to programmatically schedule a new build, post to this URL.` The link takes us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/build.
 
 ![](restapidocs.png "width=500")
 
