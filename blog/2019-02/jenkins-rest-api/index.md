@@ -25,7 +25,7 @@ The Powershell below shows you how to generate a crumb.
 $user = 'user'
 $pass = 'password'
 
-# The header is the username and password concetenated together
+# The header is the username and password concatenated together
 $pair = "$($user):$($pass)"
 # The combined credentials are converted to Base 64
 $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
@@ -61,7 +61,7 @@ We now have the links that we need to trigger a build, and the crumb that is req
 $user = 'user'
 $pass = 'password'
 
-# The header is the username and password concetenated together
+# The header is the username and password concatenated together
 $pair = "$($user):$($pass)"
 # The combined credentials are converted to Base 64
 $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
