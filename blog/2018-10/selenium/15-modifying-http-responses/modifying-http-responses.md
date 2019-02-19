@@ -1,22 +1,22 @@
 ---
-title: Modifying HTTP Responses
+title: Selenium Series - Modifying HTTP Responses
 description: In this post we learn how to modify network responses passed through BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 In the last post we looked at how BrowserMob could be used to intercept requests and immediately return an empty response. This is a useful solution when you wish to block certain resources from being downloaded, which can speed up tests by preventing network requests for optional assets like images.
 
 Another useful feature provided by BrowserMob is the ability to alter the response from a website. This can be used to mock responses to ensure that tests are deterministic, or to allow tests to target particular edge cases.
 
-When modifying responses, the network requests and responses follow the flow shown in this diagram.
+When modifying responses,  the network requests and responses follow the flow shown in this diagram.
 
 1.  The browser makes a request.
 2.  The request is directed to the proxy.

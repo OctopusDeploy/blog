@@ -1,9 +1,9 @@
 ---
-title: Capturing HAR files
+title: Selenium Series - Capturing HAR files
 description: In this post we learn how to capture HAR files through BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
@@ -14,13 +14,13 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 HTTP Archive (HAR) files are a standard JSON formatted log of a browser's interaction with an external web application.
 
-You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`.
+You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`. 
 
 ![](image1.png "width=500")
 
 This will generate a HAR file that contains the details of all the network calls captured by the developer tools.
 
-Because HAR files have an open format, there are a number of tools online that you can use to inspect their contents. One such tool is the [HAR Analyser](https://toolbox.googleapps.com/apps/har_analyzer/). This tool lets you upload a HAR file and then filter by HTTP response code, inspect the content associated with a request, and view the timing of each network call. This kind of information is invaluable when debugging an error with a web application, or to understand how well the site is responding.
+Because HAR files have an open format,  there are a number of tools online that you can use to inspect their contents. One such tool is the [HAR Analyser](https://toolbox.googleapps.com/apps/har_analyzer/). This tool lets you upload a HAR file and then filter by HTTP response code, inspect the content associated with a request, and view the timing of each network call. This kind of information is invaluable when debugging an error with a web application, or to understand how well the site is responding.
 
 ![](image2.png "width=500")
 

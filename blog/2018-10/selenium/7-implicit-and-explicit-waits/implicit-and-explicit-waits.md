@@ -1,9 +1,9 @@
 ---
-title: Implicit and Explicit Waits
+title: Selenium Series - Implicit and Explicit Waits
 description: In this post we learn the strategies WebDriver implements for interacting with dynamic elements in web pages.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 In our test web page we have a `setTimeout()` method call that created a new `<div>` with the ID of `newdiv_element` after 5 seconds. Such dynamic updates are common in modern web development, and are used extensively with Single Page Applications (SPAs) written with libraries like React and Angular.
 
-These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element:
+These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element: 
 
 ```java
 package com.octopus;
@@ -170,7 +170,7 @@ public void clickElementWithId(final String id, final int waitTime) {
 
 There are three parts an explicit wait.
 
-We start by defining the amount of time that we wish to wait for an element. This is done by creating an instance of the `WebDriverWait` class:
+We start by defining the amount of time that we wish to wait for an element.  This is done by creating an instance of the `WebDriverWait` class:
 
 ```java
 final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);

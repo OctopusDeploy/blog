@@ -1,9 +1,9 @@
 ---
-title: The Page Object Model design pattern
+title: Selenium Series - The Page Object Model design pattern
 description: In this post we learn about the Page Object Model design pattern.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
@@ -12,9 +12,9 @@ tags:
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
 
-While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some limitations.
+While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster,  this style of testing where we define each interaction with the page in a sequential order has some limitations.
 
-The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like:
+The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like: 
 
 ```java
 automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);

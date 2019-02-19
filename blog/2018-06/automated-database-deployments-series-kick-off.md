@@ -61,3 +61,17 @@ The goal of the series is to provide you with some real-world examples using a v
 Blog series posts:
 
 * [Iteration Zero](/blog/2018-06/automated-database-deployments-iteration-zero.md)
+
+### More in the series:
+
+* DevOps best practice: [Removing friction before automating database deployments](https://hubs.ly/H0gCK_b0)
+* Octopus Deep Dive: [Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline](https://hubs.ly/H0gCLs_0)
+
+## Learn more
+
+* Documentation: [SQL Server Databases](https://hubs.ly/H0gCK_f0)
+* [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCLtx0)
+* [How to deploy a SQL Server with a DACPAC](https://hubs.ly/H0gCLtM0)
+* [DevOps best practice: How Octopus handles rollbacks](https://hubs.ly/H0gCK_k0)
+* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gCK_n0)
+* Video: [Deploying to SQL Server with Entity Framework Core](https://hubs.ly/H0gCLv20)

@@ -1,9 +1,9 @@
 ---
-title: Creating the framework
+title: Selenium Series - Creating the framework
 description: In this post we start creating the framework for our WebDriver test classes.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
@@ -16,7 +16,7 @@ One of the strengths of the WebDriver API is that it is browser agnostic. You sa
 
 Although WebDriver allows us to write tests without worrying about which browser will run them, we are still required to create and configure the various driver classes such as `ChromeDriver` and `FirefoxDriver`. To make this process as flexible as possible, we'll create a factory class called `AutomatedBrowserFactory` to configure these objects for us.
 
-Before we can create this class, we first need to add a new directory to our project to hold our Java files. The directory `src/test/java/com/octopus` that we created in previous posts is the default location for files that are used only in tests. There is a second directory under `src/main/java/com/octopus` that will hold regular Java classes, and we need to create this directory structure.
+Before we can create this class, we first need to add a new directory to our project to hold our Java files. The directory `src/test/java/com/octopus` that we created in previous posts is the default location for files that are used only in tests. There is a second directory under `src/main/java/com/octopus` that will hold regular Java classes, and we need to create this directory structure. 
 
 Right click on the `src` directory, and select `New` → `Directory`.
 
@@ -83,7 +83,7 @@ To create the `AutomatedBrowser` interface right click on the `octopus` director
 
 ![](image13.png "width=500")
 
-Enter `AutomatedBrowser` in the `Name` field, select the `Interface` option from the `Kind` field, and click the `OK` button.
+Enter `AutomatedBrowser` in the `Name`  field, select the `Interface` option from the `Kind` field, and click the `OK` button.
 
 ![](image14.png "width=500")
 

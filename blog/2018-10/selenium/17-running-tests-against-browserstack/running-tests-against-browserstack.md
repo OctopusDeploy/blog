@@ -1,16 +1,16 @@
 ---
-title: Running tests against BrowserStack
+title: Selenium Series - Running tests against BrowserStack
 description: In this post we learn how to run tests against the BrowserStack service.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
 Our testing so far has been limited to desktop browsers like Chrome and Firefox. Depending on the operating system you are running, you may also be able to test browsers like Safari, Internet Explorer, and Edge. But regardless of which operating system you are running, there is no easy way to run tests against all popular browsers. Safari is not supported on Windows, Internet Explorer and Edge are not supported on MacOS, and none of these browsers are supported in Linux. And while it is possible to emulate mobile browsers in a desktop or server environment, doing so is difficult to configure and maintain.
 
@@ -18,7 +18,7 @@ To address these issues, services like BrowserStack offer the ability to run Web
 
 BrowserStack is not a free service, and to take advantage of most of its features you will need to pay for an account. But fortunately both Mozilla and Microsoft have teamed up with BrowserStack to offer free testing against the [Edge](https://www.browserstack.com/test-on-microsoft-edge-browser) and [Firefox](https://blog.mozilla.org/blog/2017/03/03/mozilla-browserstack-partner-drive-mobile-testing-real-devices/) browsers. We will take advantage of this service to build some remote tests that can be run without any cost. The good news is that once you have a test running against a browser like Edge or Firefox, it is quite trivial to reuse that code to run tests against any other browser offered by BrowserStack.
 
-To create a BrowserStack account, go to [https://www.browserstack.com](https://www.browserstack.com). You will see links to sign up for a free trial, either on the main page, or in the top menu.
+To create a BrowserStack account,  go to [https://www.browserstack.com](https://www.browserstack.com). You will see links to sign up for a free trial, either on the main page, or in the top menu.
 
 Enter your email address, password and name, and continue to the next page.
 

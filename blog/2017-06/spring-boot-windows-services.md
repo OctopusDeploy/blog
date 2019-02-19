@@ -91,3 +91,9 @@ Once deployed, the service will appear like any other Windows service.
 
 ## Conclusion
 Start the service up, and open a browser to http://localhost:8080/greeting. Your Spring Boot application is now running as a Windows service!
+
+## Learn more
+
+* Deep Dive: [How to deploy Spring Boot fully executable JAR files to EC2 Linux instances as services](https://hubs.ly/H0gyGw90)
+* Documentation: [Java Applications](https://hubs.ly/H0gyHct0)
+* Video: [Deploying a Spring Boot web application with Octopus Deploy](https://hubs.ly/H0gyGwX0)

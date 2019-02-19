@@ -65,3 +65,11 @@ We hope you like this new series, and we hope it can help people around the worl
 Don't forget to subscribe to our [YouTube](https://youtube.com/octopusdeploy) channel as we're adding new videos regularly. If there's a framework or technology you'd like us to explore, let us know in the comments.
 
 Happy deployments! :)
+
+## Learn more
+
+* [Build Pipelines and Application Packaging With .NETCore](https://hubs.ly/H0gBQDY0)
+* [Packaging for .NETCore, on .NETCore, with Octopus](https://hubs.ly/H0gBQF50)
+* [Setting up your own cloud-based CI/CD pipeline Using AppVeyor and Octopus to deploy an ASP.NET web app](https://hubs.ly/H0gBSdY0)
+* Tutorial: [Deploying an ASP.NET Core web app to Linux](https://hubs.ly/H0gBQFc0)
+* Documentation: [ASP.NET Core Web Applications](https://hubs.ly/H0gBSdZ0)

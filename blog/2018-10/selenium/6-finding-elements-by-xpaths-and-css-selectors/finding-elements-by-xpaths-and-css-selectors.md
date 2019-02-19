@@ -1,9 +1,9 @@
 ---
-title: Finding elements by XPaths and CSS Selectors
+title: Selenium Series - Finding elements by XPaths and CSS Selectors
 description: In this post we learn how to locate elements in a HTML page via CSS Selectors and XPaths.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
@@ -18,7 +18,7 @@ Unlike ID attributes, every element in a web page has a unique XPath. An XPath (
 
 XPath queries can get quite complex. It is not uncommon for unique XPaths to look like `//*[@id="request-summary"]/div/div[2]/div/form/div[2]/input`.
 
-Fortunately Chrome and other browsers provide an easy way to generate unique XPaths for elements. Right clicking on the element in the `Elements` tab and selecting {{Copy,Copy XPath}} will place the most succinct unique XPath that identifies the element into the clipboard. This functionality means that you don't need to understand the nitty gritty details of XPaths in order to make use of them, as you can let the browser take care of generating the XPaths for you.
+Fortunately Chrome and other browsers provide an easy way to generate unique XPaths for elements. Right clicking on the element in the `Elements` tab and selecting {{Copy,Copy XPath}} will place the most succinct unique XPath that identifies the element into the clipboard. This functionality means that you don't need to understand the nitty gritty details of XPaths in order to make use of them, as you can let the browser take care of generating the XPaths for you. 
 
 ![](image1.png "width=500")
 
@@ -140,7 +140,7 @@ public void formTestByXPath() throws URISyntaxException {
 
 Like XPaths, all elements in a HTML document have a unique CSS Selector that they can be identified with.
 
-CSS Selectors are the same identifiers used in CSS rule sets. If you have done any web development then you will most likely be familiar CSS Selectors. But even if you aren't familiar with them, Chrome and other browsers provide a way to generate CSS Selectors for HTML elements. In Chrome, right click the element in the `Elements` tab, and select {{Copy,Copy Selector}}.
+CSS Selectors are the same identifiers used in CSS rule sets. If you have done any web development then you will most likely be familiar CSS Selectors. But even if you aren't familiar with them, Chrome and other browsers  provide a way to generate CSS Selectors for HTML elements. In Chrome, right click the element in the `Elements` tab, and select {{Copy,Copy Selector}}.
 
 ![](image2.png "width=500")
 

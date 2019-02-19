@@ -132,3 +132,18 @@ At first glance, this feels like a lot of prep-work.  The important thing to rem
 3. Wait for the pilot team to have several successful deployments to production
 4. Roll this out to other projects, one at a time.  Don't be surprised if each time you roll it out to a new project you come across something new requiring a change of some sort.  
 5. Don't be afraid to reach out and ask experts.  We can provide some initial guidance, but in some cases you will need more help.  In that case, there are several companies out there which provide consulting services which are happy to help.
+
+
+### More in the series:
+
+* Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCL070)
+* Octopus Deep Dive: [Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline](https://hubs.ly/H0gCLCl0)
+
+## Learn more 
+
+* Documentation: [SQL Server Databases](https://hubs.ly/H0gCLCD0)
+* [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCL0b0)
+* [How to deploy a SQL Server with a DACPAC](https://hubs.ly/H0gCLD10)
+* DevOps best practice: [How Octopus handles rollbacks](https://hubs.ly/H0gCL0d0)
+* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gCLDj0)
+* Video: [Deploying to SQL Server with Entity Framework Core](https://hubs.ly/H0gCLDx0)

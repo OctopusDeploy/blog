@@ -1,18 +1,18 @@
 ---
-title: Populating the Git repo
+title: Selenium Series - Populating the Git repo
 description: In this post we learn how to push our code to GitHub.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
 - Java
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+Return to the [table of contents](../0-toc/webdriver-toc.md). 
 
-We've talked about the idea of a code repository, and in this post we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
+We've talked about the idea of a code repository,  and in this post we'll sign up to GitHub, which is a free service that provides us with hosted Git code repositories we can use to manage our code.
 
 To start, open up [https://github.com](https://github.com). On the main page you will see a form that allows you to sign up for a free account.
 

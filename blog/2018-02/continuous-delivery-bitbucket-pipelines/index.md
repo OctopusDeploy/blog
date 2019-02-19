@@ -187,3 +187,11 @@ It's time to try it all out! Make a change to your code that will be identifiabl
 Hopefully, this post empowers you to embrace a CD pipelines for your small personal projects, in a way that is cost-effective and lightweight enough to extend to other projects as they arise. If nothing else, maybe it has inspired you to adopt a part of the process, and given you some ideas about what's possible in the future.
 
 Happy Deployments!
+
+## Learn more
+
+* [CI/CD with containers, Bitbucket and Octopus Deploy](https://hubs.ly/H0gCKLy0)
+* DevOps best practice: [How Octopus handles rollbacks](https://hubs.ly/H0gCK-T0)
+* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gCKLH0)
+* Video: [Deploying an ASP.NET Core app](https://hubs.ly/H0gCKLN0)
+* Video: [Deploying an ASP.NET Core web app to Linux](https://hubs.ly/H0gCLqZ0)

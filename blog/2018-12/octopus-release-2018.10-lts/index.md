@@ -89,3 +89,13 @@ Absolutely, yes! Staying current with Octopus Server releases is mutually benefi
 ## Wrapping up
 
 LTS for Octopus Server has arrived, and you can bank on it. Happy long-term deployments!
+
+## Learn more
+
+* [Self-hosted? Download the latest version](https://hubs.ly/H0gCMqJ0)
+* Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCMRR0)
+* [DevOps best practice: How Octopus handles rollbacks](https://hubs.ly/H0gCMRX0)
+* [Announcing Octopus Cloud](https://hubs.ly/H0gCMqM0)
+* Documentation: [Upgrading your Octopus](https://hubs.ly/H0gCMS40)
+* Documentation: [High Availability](https://hubs.ly/H0gCMqN0)
+* Documentation: [Spaces](https://hubs.ly/H0gCMSb0)

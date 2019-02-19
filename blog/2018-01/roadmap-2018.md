@@ -98,3 +98,15 @@ Octopus is becoming the standard deployment tool at more and more companies, and
 >  &mdash; <cite>Helmuth von Moltke</cite>
 
 We may not accomplish everything on this list in 2018, and we may do other things that aren't on this list as the year evolves. I'm sure everyone reading this will understand that that's the nature of a roadmap - this is our attempt to outline our plans and goals for the year, and it is likely to change. That said, I hope there's something on this list for everyone. Happy deployments!
+
+
+## Learn more
+
+* [Introducing Octopus long-term support (LTS) - what it is and how it affects you](https://hubs.ly/H0gCMNW0)
+* [Announcing Octopus Cloud](https://hubs.ly/H0gCMq80)
+* Release [2019.1 - Spaces](https://hubs.ly/H0gCMP20)
+* Release [2018.9 - Kubernetes](https://hubs.ly/H0gCMPb0)
+* Release [2018.8 - Container improvements](https://hubs.ly/H0gCMqc0)
+* Release [2018.7 - Workers](https://hubs.ly/H0gCMPj0)
+* Release [2018.4 - Recurring Scheduled Deployments](https://hubs.ly/H0gCMPm0)
+* Release [2018.2 - AWS support](https://hubs.ly/H0gCMPq0)

@@ -1,9 +1,9 @@
 ---
-title: A Sample Web Page
+title: Selenium Series - A Sample Web Page
 description: In this post we create a sample web page to run some tests against.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
@@ -16,7 +16,7 @@ Now that we have the basis of the framework that we'll be using to write WebDriv
 
 To demonstrate the power of WebDriver, we'll start by creating a simple web page that contains common form elements, as well as other common HTML elements like images and divs.
 
-The complete webpage is shown below:
+The complete webpage is shown below: 
 
 ```html
 <!DOCTYPE html>
@@ -121,7 +121,7 @@ setTimeout(function() {
 }, 5000);
 ```
 
-We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons, etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented from trying to do a page reload on submission by returning `false`:
+We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons, etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented  from trying to do a page reload on submission by returning `false`:
 
 ```HTML
 <form id="form_element" onsubmit="interactionMessage('Form Submitted'); return false">

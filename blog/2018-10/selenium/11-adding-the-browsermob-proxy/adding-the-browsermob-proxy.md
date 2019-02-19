@@ -1,9 +1,9 @@
 ---
-title: Adding the BrowserMob proxy
+title: Selenium Series - Adding the BrowserMob proxy
 description: In this post we learn how to add a proxy to the WebDriver tests.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2018-12-01
+published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
@@ -14,7 +14,7 @@ Return to the [table of contents](../0-toc/webdriver-toc.md).
 
 In this post we will add support for the BrowserMob proxy, which is a free and open source Java proxy server. We will then use BrowserMob to save a report containing all the network requests made during a test, and intercept some of the network requests.
 
-To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file:
+To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file: 
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -186,7 +186,7 @@ private AutomatedBrowser getFirefoxBrowserNoImplicitWait() {
 
 Now our `AutomatedBrowserFactory` is configuring browsers to pass traffic to our instance of the BrowserMob proxy. This won't change how the tests are run just yet; proxies are designed to be largely invisible to the end user, and so our tests will run like they did before. However, we now have the means to monitor and intercept network requests if we wish to do so.
 
-We can confirm that the BrowserMob proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the `finally` block:
+We can confirm that the BrowserMob  proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the `finally` block:
 
 ```java
 @Test

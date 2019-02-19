@@ -71,3 +71,13 @@ This episode's [GitHub repo](https://github.com/OctopusSamples/WillItDeploy-Epis
 We hope you enjoyed this episode as we have many more in the works! If there's a framework or technology you'd like us to explore, let us know in the comments.
 
 Don't forget to subscribe to our [YouTube](https://youtube.com/octopusdeploy) channel as we're adding new videos regularly. Happy deployments! :)
+
+## Learn more
+
+* Guide: [How to deploy an ASP.NET web app to Azure](https://hubs.ly/H0gBQFS0)
+* [Packaging for .NETCore, on .NETCore, with Octopus](https://hubs.ly/H0gBQFW0)
+* [Build Pipelines and Application Packaging With .NETCore](https://hubs.ly/H0gBQG00)
+* [Setting up your own cloud-based CI/CD pipeline Using AppVeyor and Octopus to deploy an ASP.NET web app](https://hubs.ly/H0gBSf60)
+* Video: [Deploying to SQL Server with Entity Framework Core](https://hubs.ly/H0gBQG20)
+* Documentation: [ASP.NET Core Web Applications](https://hubs.ly/H0gBQG40)
+* Documentation: [IIS Websites & Application Pools](https://hubs.ly/H0gBQG80)
