@@ -137,13 +137,17 @@ else
 
 With these new features we are going to put together a .NET Core DbUp console application to deploy to SQL Server.  Then we will put together a process in Octopus Deploy for it to run that console application.  
 
-**Please Note:** I chose .NET Core over .NET Framework because it could be built and run anywhere.  DbUp is a .NET Standard library.  It will work just as great in a .NET Framework application.
+All the code below be found on [GitHub](https://github.com/OctopusSamples/DbUpSample).
+
+**Please Note:** I chose .NET Core over .NET Framework because it could be built and run anywhere.  DbUp is a .NET Standard library.  DbUp will work just as great in a .NET Framework application.  
 
 Alright, let's fire up our IDE of choice and create an .NET Core Console Application.
 
 **Please Note:** I am using JetBrain's Rider to build this console application.  I prefer it over Visual Studio.
 
-Alright, we have the console created.  Now we need to bring in the DbUp NuGet packages.  Let's go to our NuGet Package Manager.
+### Scaffolding
+
+Alright, we have the console application created.  Now we need to bring in the DbUp NuGet packages.  Let's go to our NuGet Package Manager.
 
 ![](rider-managenugetpackagesselection.png)
 
@@ -154,6 +158,8 @@ Next we want to select the DbUp-SqlServer package.  This includes the core packa
 The console application needs some scripts to deploy.  I'm going to add three folders and populate them with some script files.  
 
 ![](rider-createfolderswithsamplescripts.png)
+
+**Please Note:** It is highly recommended you add a prefix such as 001, 002, etc to the start of your script file name.  DbUp runs the scripts in alphabetical order.  That prefix will help ensure scripts are run in the right order.
 
 By default .NET will not include those scripts files when the console application is built.  We want to include those script files as embedded resources.  Thankfully we can easily add a reference those files by including this code in the `.csproj` file.
 
@@ -170,3 +176,176 @@ The entire file would then look like.
 
 ![](rider-sampleprojectcsprojfile.png)
 
+### Program.cs file
+The final step to get this application going is to add in the necessary code in the `Program.cs` to call DbUp.  The application will accept parameters from the command line.  Octopus Deploy will be configured to send in those parameters.  The parameters we will create in this walkthrough will be:
+
+- ConnectionString -> No need to explain this one.  For this demo, we will be sending as a parameter instead of storing in the config file.  You can use the config file and Octopus Deploy's variable replacement in your code.  Up to you.
+- PreviewReportPath -> Full path where to save the preview report.  This is optional.  When it is sent in we will generate a preview html report for Octopus Deploy to make an artifact for.  When it is not sent in the code will do the actual deployment.
+
+Let's start with pulling the connection string from the command line argument.
+
+```C
+static void Main(string[] args)
+{    
+    var connectionString = args.FirstOrDefault(x => x.StartsWith("--ConnectionString", StringComparison.OrdinalIgnoreCase));
+
+    // We expect the connection string to be there.  If it doesn't this will throw an error.  
+    connectionString = connectionString.Substring(connectionString.IndexOf("=") + 1).Replace(@"""", string.Empty);
+```
+
+DbUp uses a fluent API.  We need to tell it about our folders, the type of script each folder is and the order we want to run scripts from that folder in.
+
+**Please Note:** If you use the Scripts Embedded In Assembly option with a "StartsWith" search you will need to supply the full NameSpace on your search.
+
+```C
+var upgradeEngineBuilder = DeployChanges.To
+    .SqlDatabase(connectionString, null)
+    // Pre-deployment scripts, set them to always run first
+    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
+    // Main Deployment scripts, they run once and run in the second group
+    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
+    // Post deployment scripts, always run these scripts and run after everything has been deployed
+    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
+    // By default all the scripts are run in the same transaction
+    .WithTransactionPerScript()
+    // Set this so it can report back to Octopus Deploy how things are going
+    .LogToConsole();
+
+var upgrader = upgradeEngineBuilder.Build();
+
+Console.WriteLine("Is upgrade required: " + upgrader.IsUpgradeRequired());
+```
+
+The upgrader has been built and it is ready to run.  This section is where will inject the check for the upgrade report parameter.  If that parameter is set, do not run the upgrade.  Instead, generate a report for Octopus Deploy to upload as an artifact.
+
+```C
+if (args.Any(a => a.StartsWith("--PreviewReportPath", StringComparison.InvariantCultureIgnoreCase)))
+{
+    // Generate a preview file so Octopus Deploy can generate an artifact for approvals
+    var report = args.FirstOrDefault(x => x.StartsWith("--PreviewReportPath", StringComparison.OrdinalIgnoreCase));
+    report = report.Substring(report.IndexOf("=") + 1).Replace(@"""", string.Empty);
+
+    var fullReportPath = Path.Combine(report, "UpgradeReport.html");
+
+    Console.WriteLine($"Generating the report at {fullReportPath}");
+    
+    upgrader.GenerateUpgradeHtmlReport(fullReportPath);
+}
+else
+{
+    var result = upgrader.PerformUpgrade();
+
+    // Display the result
+    if (result.Successful)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Success!");
+    }
+    else
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(result.Error);
+        Console.WriteLine("Failed!");
+    }
+}
+```
+
+When we put it all together it will look like this:
+
+```C
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using DbUp;
+using DbUp.Engine;
+using DbUp.Helpers;
+using DbUp.Support;
+
+namespace DbUpSample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var connectionString = args.FirstOrDefault(x => x.StartsWith("--ConnectionString", StringComparison.OrdinalIgnoreCase));
+
+            connectionString = connectionString.Substring(connectionString.IndexOf("=") + 1).Replace(@"""", string.Empty);
+
+            var upgradeEngineBuilder = DeployChanges.To
+                .SqlDatabase(connectionString, null)
+                .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.BeforeDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 0 })
+                .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.DeploymentScripts"), new SqlScriptOptions { ScriptType = ScriptType.RunOnce, RunGroupOrder = 1 })
+                .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), x => x.StartsWith("DbUpSample.PostDeploymentScripts."), new SqlScriptOptions { ScriptType = ScriptType.RunAlways, RunGroupOrder = 2 })
+                .WithTransactionPerScript()
+                .LogToConsole();
+
+            var upgrader = upgradeEngineBuilder.Build();
+
+            Console.WriteLine("Is upgrade required: " + upgrader.IsUpgradeRequired());
+            
+            if (args.Any(a => a.StartsWith("--PreviewReportPath", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                // Generate a preview file so Octopus Deploy can generate an artifact for approvals
+                var report = args.FirstOrDefault(x => x.StartsWith("--PreviewReportPath", StringComparison.OrdinalIgnoreCase));
+                report = report.Substring(report.IndexOf("=") + 1).Replace(@"""", string.Empty);
+
+                var fullReportPath = Path.Combine(report, "UpgradeReport.html");
+
+                Console.WriteLine($"Generating the report at {fullReportPath}");
+                
+                upgrader.GenerateUpgradeHtmlReport(fullReportPath);
+            }
+            else
+            {
+                var result = upgrader.PerformUpgrade();
+
+                // Display the result
+                if (result.Successful)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Success!");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(result.Error);
+                    Console.WriteLine("Failed!");
+                }
+            }
+        }
+    }
+}
+```
+
+Running the console application with the report parameter enabled generates the report we expected.
+
+![](dbup-samplecodereport.png)
+
+### Future Work
+
+Creating the scaffolding and writing the code for program.cs file should only need to be done once.  With what we have setup, all you should need to do is add files to the `PreDeployment,` `PostDeployment,` and `Deployment` folders.  
+
+The temptation is there to delete old files.  DbUp doesn't really like it when you do that.  The idea behind DbUp is it provides a history of all your database changes.  When you want to create a new database, for example on a new developer's machine, you just need to run this command line application.  It will go through and run all the scripts in order to get the database up and running.  Deleting a file might end up removing a key sequence, such as creating a table, adding an important column, or moving columns from one table to another.  There isn't much of a performance hit having extra files around.  DbUp will see they have run and exclude them from the run list.
+
+You could move around the older files into a new folder and add a new command line argument which to pick up those files.  
+
+## Octopus Deploy Configuration
+
+I'm going to assume you know how to build a .NET Core application and package it up.  If you do not, here is the quick TL;DR;  
+
+Run the `dotnet publish` command on the project.  Set the output path.
+Run `octo.exe pack` to package up the output path (or use the Octopus Deploy build server plug-in).
+Push the package to Octopus Deploy using `octo.exe push` command (or use the Octopus Deploy build server plug-in).
+
+To make your life easier for this demo I have included version 1.0.0.0 of the sample application as a zip file in GitHub repo.  You can find that file in the root directory of the repo.  A quick upload and we now have a package ready to deploy.
+
+![](octopusdeploy-uploadedpackage.png)
+
+I subscribe to the theory a Octopus Deploy project should be responsible for bootstrapping itself.  For database deployments, this means making sure the database exists prior to deployment and creating the necessary SQL Server Users.
+
+Before getting to the process, we need to define some variables.  Because this is a demo for a blog post, I am going to use the same database server for all environments.  
+
+![](octopusdeploy-demovariables.png)
+
+To create the database and user I am using the community step templates I created for earlier blog posts.  You can download those step templates to your Octopus Deploy instance by going to the [library](https://library.octopus.com) Or, you can go to the step template library on your Octopus Deploy instance on your instance and adding them yourself.
