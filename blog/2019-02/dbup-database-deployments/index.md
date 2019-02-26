@@ -334,9 +334,9 @@ You could move around the older files into a new folder and add a new command li
 
 I'm going to assume you know how to build a .NET Core application and package it up.  If you do not, here is the quick TL;DR;  
 
-Run the `dotnet publish` command on the project.  Set the output path.
-Run `octo.exe pack` to package up the output path (or use the Octopus Deploy build server plug-in).
-Push the package to Octopus Deploy using `octo.exe push` command (or use the Octopus Deploy build server plug-in).
+- Run the `dotnet publish` command on the project.  Set the output path.
+- Run `octo.exe pack` to package up the output path (or use the Octopus Deploy build server plug-in).
+- Push the package to Octopus Deploy using `octo.exe push` command (or use the Octopus Deploy build server plug-in).
 
 To make your life easier for this demo I have included version 1.0.0.0 of the sample application as a zip file in GitHub repo.  You can find that file in the root directory of the repo.  A quick upload and we now have a package ready to deploy.
 
@@ -348,4 +348,103 @@ Before getting to the process, we need to define some variables.  Because this i
 
 ![](octopusdeploy-demovariables.png)
 
-To create the database and user I am using the community step templates I created for earlier blog posts.  You can download those step templates to your Octopus Deploy instance by going to the [library](https://library.octopus.com) Or, you can go to the step template library on your Octopus Deploy instance on your instance and adding them yourself.
+To create the database and user I am using the community step templates I created for earlier blog posts.  You can download those step templates to your Octopus Deploy instance by going to the [library](https://library.octopus.com) Or, you can go to the step template library on your Octopus Deploy instance and add them.
+
+Adding in the first step presents us with a decision.  Where to run the step.  Should it run on a target or on a worker?  For right now, I am going to run this on a worker in the `Database Worker Pool.` I picked the worker pool because I am using SQL Authentication.  If I was using integrated security with this process there is some additional setup to be done.  I will cover that later in the post.  For now, I want to go through the process.
+
+![](octopusdeploy-createdatabasestep.png)
+
+With this process we first want to put the scaffolding in place to create the database, the user and assign the user database.  
+
+![](octopusdeploy-initialdatabasedeployscaffolding.png)
+
+The next set of steps will deploy the database changes from DbUp.  If you recall [my previous Redgate articles](https://octopus.com/blog/automated-database-deployments-redgate-sql-change-automation-state-based) this was done via four steps.
+
+1) Download Package
+2) Run Redgate Create Database Release
+3) DBA Approve Deployment
+4) Run Redgate Deploy Database Release
+
+I have a couple of problems with that process.  Namely, the download package step is designed to extract the package and leave it on the tentacle.  By default it will leave it there forever.  Unless [retention policies](https://octopus.com/docs/administration/retention-policies) are configured.  My problem with that is after the deployment is complete there is no need to keep that extracted package on the tentacle.  The SQL Scripts have been run.  The scripts are now just taking up space.  In addition, that process has steps 2 and 4 referencing step 1.  It feels like a lot of extra work.
+
+If you are using Octopus Deploy 2018.8 or higher the good news is we can now reference packages from the `Run a Script` step.  The package will be downloaded and extracted.  Once the step is complete it will delete the extracted package.  Aside from cleaning up unneeded content, using package references in the `Run a Script` step lends itself nicely to running this process on workers.  Each step is isolated from one another.  
+
+The first step in the deployment piece of this process will generate the HTML report and upload it as an artifact to Octopus Deploy.  First things first, we need to add a package reference to the step.  First click on the `Add` button.  
+
+![](octopusdeploy-addpackagereference.png)
+
+When the modal window appears choose the package to extract.
+
+![](octopusdeploy-addpackagereferencemodal.png)
+
+Now we can add a script to handle the deployment.  Running .NET Core console apps is a little different than running .NET Framework Console apps.
+
+```PS
+# How you reference the extracted path
+$packagePath = $OctopusParameters["Octopus.Action.Package[DbUpSample].ExtractedPath"]
+$connectionString = $OctopusParameters["Project.Database.ConnectionString"]
+$reportPath = $OctopusParameters["Project.HtmlReport.Location"]
+
+$dllToRun = "$packagePath\DbUpSample.dll"
+$generatedReport = "$reportPath\UpgradeReport.html"
+
+if ((test-path $reportPath) -eq $false){
+	New-Item $reportPath -ItemType "directory"
+}
+
+# How you run this .NET core app
+dotnet $dllToRun --ConnectionString="$connectionString" --PreviewReportPath="$reportPath"
+
+New-OctopusArtifact -Path "$generatedReport" 
+```
+
+The entire step will looks like this when you are done:
+
+![](octopusdeploy-createdeltareport.png)
+
+Nothing super fancy about the manual intervention.  In this example I configured it to run only in Staging and Production and have the DBAs approve this deployment.
+
+![](octopusdeploy-manualintervention.png)
+
+The deployment step is similar to the `Generate Delta Report` step except it will deploy the changes, not worry about generating the report.  The PowerShell for this step is:
+
+```PS
+# How you reference the extracted path
+$packagePath = $OctopusParameters["Octopus.Action.Package[DbUpSample].ExtractedPath"]
+$connectionString = $OctopusParameters["Project.Database.ConnectionString"]
+
+$dllToRun = "$packagePath\DbUpSample.dll"
+
+# How you run this .NET core app
+dotnet $dllToRun --ConnectionString="$connectionString" --GenerateReport="$reportPath"
+```
+
+![](octopusdeploy-deploychanges.png)
+
+The final process is now:
+
+![](octopusdeploy-finaldatabasedeploymentprocess.png)
+
+The variables are there.  The process is set.  Let's deploy some database changes.
+
+![](octopusdeploy-deployrelease.png)
+
+Whoops!  Forgot to install .NET Core on my worker.  One sec.
+
+![](octopusdeploy-missingdotnetcore.png)
+
+A quick jump over to the [Script Console](https://octopus.com/docs/administration/managing-infrastructure/script-console) to run a chocolatey install.
+
+![](octopusdeploy-scriptconsole.png)
+
+That is successful.  Good!
+
+![](octopusdeploy-scriptconsolesuccess.png)
+
+Let's try that release again.  Hindsight being what it is I could've told it to retry the release, but I decided to create a new one.  Why?  Reasons!
+
+![](octopusdeploy-anotherrelease.png)
+
+This one was successful (actually I had a few more failures because I was trying something else).  You can see the artifact created by the process.
+
+![](octopusdeploy-successfulrelease.png)
