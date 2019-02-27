@@ -468,7 +468,7 @@ If we take a look at the database, we see the items were created as expected.
 
 ## Integrated Security and Workers
 
-In this demo, I used SQL Authentication.  However, many of you are using integrated security.  For an additional layer of security, each environment has its own Active Directory.  That makes complete sense.  I recommend that approach.  
+In this demo, I used SQL Authentication.  However, many of you are using integrated security.  For an additional layer of security, each environment has its own Active Directory service account.  That makes complete sense.  I recommend that approach.  
 
 How can you accomplish this with the current generation of workers?  It is not as straight-forward as it should be (something we are hoping to address in workers v2).  I'll walk you through the necessary steps to set it up.
 
