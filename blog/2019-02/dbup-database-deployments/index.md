@@ -13,7 +13,7 @@ One of the most exciting aspects of database deployments is the number of tools 
 
 I'm going to switch gears a bit and focus on a different tool for this post, [DbUp](https://dbup.readthedocs.io/en/latest/).  DbUp is a free, open-source tool, which we use here at Octopus Deploy for our database deployments.  Anytime you install or upgrade Octopus Deploy, DbUp is the one who runs the scripts to update your database.  Our founder, Paul Stovell, wrote a [blog post back](https://github.com/DbUp/DbUp/graphs/contributors) in 2012 on how to use DbUp to deploy to a SQL Server.  For the most part, that blog post still holds up today.  Except for the old images.  Want to see what Octopus Deploy looked like years ago?  Check out that post.  
 
-This post is an update to that old post.  I am going to walk through some of the new features recently added to DbUp and create a process to use DbUp for production deployments.  It even includes a review step for a DBA to approve!  Read on!
+This post is an update to that old post.  A lot of new features have been added to DbUp as well as Octopus Deploy.  I am going to walk through some of the new features recently added to DbUp and create a process to use it for database deployments.  It even includes a review step for a DBA to approve!  Read on!
 
 !toc
 
