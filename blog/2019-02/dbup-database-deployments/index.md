@@ -359,9 +359,9 @@ Before getting to the process, we need to define some variables.  Because this i
 
 ![](octopusdeploy-demovariables.png)
 
-To create the database and user, the process will be using the community step templates I created for earlier blog posts.  You can download those step templates to your Octopus Deploy instance by going to the [library](https://library.octopus.com) Or, you can go to the step template library on your Octopus Deploy instance and add them.
+To create the database and user, the process will be using the community step templates I created for earlier blog posts.  Please see [the documentation](https://octopus.com/docs/deployment-process/steps/community-step-templates#adding-community-step-templates) on how to download and install those community step templates on your Octopus Server.
 
-Adding in the first step presents us with a decision.  Where to run the step.  Should it run on a target or a worker?  For right now, I am going to run this on a worker in the `Database Worker Pool.` I picked worker pools because I am using SQL Authentication.  I don't have to worry about integrated security and unique service accounts per environment.  If I was using integrated security with unique service accounts per environment with this process, there is some additional setup to be done.  I will cover that later in the post.  For now, I want to make this as simple as possible.
+Adding in the first step presents us with a decision.  Where to run the step.  Should it run on a target or a worker?  For right now, I am going to run this on a worker in the `Database Worker Pool.` I picked using a single worker pool because I am using SQL Authentication.  I don't have to worry about integrated security and unique service accounts per environment.  If I was using integrated security with unique service accounts per environment with this process, there is some additional setup to be done.  I will cover that later in the post.  For now, I want to make this as simple as possible.
 
 ![](octopusdeploy-createdatabasestep.png)
 
