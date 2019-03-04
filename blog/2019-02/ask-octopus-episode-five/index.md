@@ -4,8 +4,8 @@ description: Once a week a few of us will gather to talk about some of the most 
 author: derek.campbell@octopus.com
 visibility: public
 published: 2019-02-15
-metaImage: askoctopusthumbnail.png
-bannerImage: askoctopusthumbnail.png
+metaImage: ask-octopus-episode5-paul-stovell.png
+bannerImage: ask-octopus-episode5-paul-stovell.png
 tags:
  - Ask Octopus
 ---

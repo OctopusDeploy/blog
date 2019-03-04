@@ -4,11 +4,13 @@ description: In this webinar, Jeffrey Palermo and Paul Stovell answer all your D
 author: andrew.maher@octopus.com
 visibility: public
 published: 2019-02-26
+metaImage: webinar-database-devops.png
+bannerImage: webinar-database-devops.png
 tags:
  - Webinar
 ---
 
-<iframe width="560" height="315"  src="https://www.youtube.com/embed/RAl8rIj9MB8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RAl8rIj9MB8" frameborder="0" allowfullscreen></iframe>
 
 In this webinar, Jeffrey Palermo, Microsoft MVP and Clear Measure CEO, and Paul Stovell, Founder and CEO of Octopus Deploy, got together to answer all your database DevOps questions. We had a great response to this webinar and many of you asked some really great questions.
 
