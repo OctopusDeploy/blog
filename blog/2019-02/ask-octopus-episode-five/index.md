@@ -4,13 +4,13 @@ description: Once a week a few of us will gather to talk about some of the most 
 author: derek.campbell@octopus.com
 visibility: public
 published: 2019-02-15
-metaImage: ask-octopus-episode5-paul-stovell.png
-bannerImage: ask-octopus-episode5-paul-stovell.png
+metaImage: ask-octopus-paul-stovell-ep5.png
+bannerImage: ask-octopus-paul-stovell-ep5.png
 tags:
  - Ask Octopus
 ---
 
-<iframe width="580"  height="335" src="https://www.youtube.com/embed/8GOKCub2Bjg" frameborder="0" allowfullscreen></iframe>
+<iframe width="580" height="335" src="https://www.youtube.com/embed/8GOKCub2Bjg" frameborder="0" allowfullscreen></iframe>
 
 After our first ever Ask Octopus Brisbane Edition we managed to get an interview with the Creator and CEO of Octopus Deploy [Paul Stovell](https://twitter.com/paulstovell). In this episode, we ask Paul about the history of Octopus and what's coming up. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
 
