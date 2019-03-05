@@ -4,13 +4,13 @@ description: Special Ask Octopus session based at Octopus's annual kick off in B
 author: derek.campbell@octopus.com
 visibility: public
 published: 2019-02-22
-metaImage: askoctopusthumbnail.png
-bannerImage: askoctopusthumbnail.png
+metaImage: ask-octopus-spaces-nick-josevski-ep6.png
+bannerImage: ask-octopus-spaces-nick-josevski-ep6.png
 tags:
  - Ask Octopus
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wntIQYtVPKY" frameborder="0" allowfullscreen></iframe>
+<iframe width="560"  height="315" src="https://www.youtube.com/embed/wntIQYtVPKY" frameborder="0" allowfullscreen></iframe>
 
 After interviewing [Paul Stovell](https://twitter.com/paulstovell) last week we also managed to get some time with Mr Spaces [Nick Josevski](https://twitter.com/nickjosevski). In this episode, Nick discusses some of the challenges and problems Spaces helps resolve. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
 
