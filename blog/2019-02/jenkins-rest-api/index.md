@@ -3,6 +3,8 @@ title: Learn how to call the Jenkins REST API from Powershell
 description: A dive into the Jenkins REST API, with examples in Powershell for creating new jobs
 author: matthew.casperson@octopus.com
 visibility: public
+bannerImage: jenkins-rest-api-powershell.png
+metaImage: jenkins-rest-api-powershell.png
 published: 2019-02-19
 tags:
  - Ecosystem
@@ -12,7 +14,7 @@ Although the typical deployment workflow sees a CI system like Jenkins triggerin
 
 ## Jenkins CSRF Security
 
-Jenkins has a security feature to prevent [Cross Site Request Forgery](https://support.cloudbees.com/hc/en-us/articles/219257077-CSRF-Protection-Explained) attacks, which is found under {{Jenkins>Manage Jenkins>Configure Global Security>Prevent Cross Site Request Forgery exploits}}.
+Jenkins has a security feature to prevent  [Cross Site Request Forgery](https://support.cloudbees.com/hc/en-us/articles/219257077-CSRF-Protection-Explained) attacks, which is found under {{Jenkins>Manage Jenkins>Configure Global Security>Prevent Cross Site Request Forgery exploits}}.
 
 ![](csrf.png "width=500")
 
