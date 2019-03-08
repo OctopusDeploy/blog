@@ -3,8 +3,8 @@ title: Providing environment specific configuration for JavaScript projects in a
 description: Whether it's a React, Angular, or NodeJS application, you often need configuration to be supplied that differs from one environment to the next. The safest way to accomplish this is to make use of your deployment tooling.
 author: robert.erez@octopus.com
 visibility: public
-bannerImage: 
-metaImage: 
+bannerImage: environment-specific-javascript-configuration.png
+metaImage: environment-specific-javascript-configuration.png
 published: 2019-02-11
 tags:
 - JavaScript
