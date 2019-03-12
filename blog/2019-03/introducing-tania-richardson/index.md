@@ -13,7 +13,7 @@ tags:
 
 Hi, I’m Tania - I started at Octopus in September 2018 as a UX/UI designer.  I feel lucky to not only be in a company that is family-friendly but prides itself on building a product people love to use. 
 
-A little about me -  I started my career designing/building websites way back in the day of Geocities.  And after studying design I worked in various industries including advertising, a search engine, childcare, and travel - learning to design the best online experiences.  
+A little about me -  I started my career designing/building websites way back in the day of Geocities.  And after studying design I worked in various industries including advertising, a search engine, and travel - learning to design the best online experiences. In my last role I redesign a staff and parent facing app used in child care centres around Australia. 
 
 I love the process of understanding a person’s needs and motives when using a user interface - and then visually communicating something that gets them from A to B as quickly and easily as possible.  At Octopus, I aim to do this on our website, in product or in print. 
 
