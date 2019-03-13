@@ -22,7 +22,7 @@ What does that look like?  In the video, I glossed over the PowerShell doing the
 
 Before diving into the scripts and process, I want to take a step back and look at the specific problem we are trying to solve.  
 
-When I helped implement automated database deployments at previous companies, the DBAs are nervous.  The nervousness comes from a lack of trust in the process.  For so long a DBA would look over change scripts before going to Production.  More often than not, that policy came about after one too many late night pages woke up the on-call DBA in the middle of the night.  Some developer (sometimes me) wrote a bad database change which caused the CPU to spike to 100% when a specific job would run.    
+When I helped implement automated database deployments at previous companies, the DBAs were nervous.  The nervousness comes from a lack of trust in the process.  For so long a DBA would look over change scripts before going to Production.  More often than not, that policy came about after one too many late night pages woke up the on-call DBA in the middle of the night.  Some developer (sometimes me) wrote a bad database change which caused the CPU to spike to 100% when a specific job would run.    
 
 Manually reviewing all changes is possible when each application is deployed once a quarter.  At the start of the Automated Database Deployment process that policy is continued.  That policy works during the pilot phase, as a pilot might involve a few applications.  Even after the pilot, that policy still works.  But then something happens.  The time between deployments drops.  Once a quarter becomes once a month which then becomes once a fortnight before it settles on once a week.  The DBAs are inundated with requests to approve their changes.  
 
@@ -84,13 +84,13 @@ The final piece will be changing the run condition on the manual intervention st
 
 ![](autoapprove-runcondition.png)
 
-The release has changes which need to be reviewed.  The manual intervention step only runs in staging and production.  The process skipped the manual intervention step when it deployed to Development and Testing.  When the release is deployed to staging the manual intervention step will be triggered.
+This release has changes which need to be reviewed.  The manual intervention step only runs in staging and production.  The process skipped the manual intervention step when it deployed to Development and Testing.  When the release is deployed to staging the manual intervention step will be triggered.
 
 ![](autoapprove-foundscripts.png)
 
-On the next deployment to staging, there are no changes which require a DBA to review.  The manual intervention step is skipped.
+The next time this release is deployed to staging, there are no changes which require a DBA to review.  The manual intervention step is skipped.
 
-![](autoapprove-scriptlooksgood.png)
+![](autoapprove-scriptslookgood.png)
 
 As much as I would love to generate a community step template for everyone to use, the fact of the matter is every company will be different.  I'd rather show you the script I put together.  My hope is you can take something from it, modify it for your own usage, and add that to your step template library.
 
@@ -187,7 +187,7 @@ if ($approvalRequired -eq $false){
 Set-OctopusVariable -name "DBAApprovalRequired" -value $approvalRequired
 ```
 
-One caveat to my script.  I am parsing the HTML using PowerShell.  Behind the scenes, PowerShell is using Internet Explorer.  I got errors informing me that wasn't available because the initial setup hadn't been run for the user.  I got around it by running the initial setup.  It was annoying.  
+One caveat to my script.  I am parsing the HTML using PowerShell.  Behind the scenes, PowerShell is using Internet Explorer.  I got errors informing me that wasn't available because the initial setup hadn't been run for the user.  I got around it by running the initial setup on the machine.  But still...that is annoying.  
 
 ## Conclusion
 
