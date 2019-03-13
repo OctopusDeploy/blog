@@ -84,11 +84,11 @@ The final piece will be changing the run condition on the manual intervention st
 
 ![](autoapprove-runcondition.png)
 
-This release has changes which need to be reviewed.  The manual intervention step only runs in staging and production.  The process skipped the manual intervention step when it deployed to Development and Testing.  When the release is deployed to staging the manual intervention step will be triggered.
+Alright, let's test this.  I created a release which has changes which need to be reviewed.  The manual intervention step didn't fire when going to development or testing, but it does fire when it goes to staging.
 
 ![](autoapprove-foundscripts.png)
 
-The next time this release is deployed to staging, there are no changes which require a DBA to review.  The manual intervention step is skipped.
+As another test, I redeployed the same release to staging.  DBUp sees that all the scripts have been run.  There is nothing to approve.  The manual intervention step is skipped.
 
 ![](autoapprove-scriptslookgood.png)
 
