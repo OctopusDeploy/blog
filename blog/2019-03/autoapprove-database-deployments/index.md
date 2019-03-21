@@ -3,7 +3,7 @@ title: Auto Approvals in your Automated Database Deployment Process
 description: In this post, we will examine some techniques on how to auto approve database changes to stop overwhelming your DBAs.
 author: bob.walker@octopus.com
 visibility: public
-published: 2019-03-20
+published: 2019-03-21
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
@@ -52,7 +52,7 @@ For this article I want my script to look for:
 - Add Table, Drop Table, Drop Column, Drop View, Drop User, Add User, Alter User, Add User to Role, Create View, Create Select Stored Procedure, Merge Statements -> Require review
 - Everything Else -> Auto Approve
 
-The nice thing about SQL is there are only so many schema alteration statements.  This will allow us to use a regular expression (NO!!!!!!!!!) to parse the delta report.  
+The nice thing about SQL is there are only so many schema alteration statements.  This will allow us to use a regular expression to parse the delta report.  Yes regular expressions, don't worry, they will be simple.  I don't want to end up with additional complexity.
 
 When I started going down this path, I forgot something key in my previous article: Pre-Deployment and Post-Deployment scripts.  They would always be there.
 
