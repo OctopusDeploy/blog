@@ -41,25 +41,33 @@ The deployments for `1.0.3` illustrate a more complex accumulation of work items
 
 To make this work we have updated our build server plugins to include a new `Octopus Metadata` step. This step gather metadata about the build, including parsing the commit messages looking for work-item references, and includes all of this in a call to Octopus. It's similar to pushing a package, and requires the packageId and version of the package that the metadata relates to.
 
-The package doesn't have to be one you are pushing to Octopus though! This is an important part, Octopus is receiving the metadata for a given packageId and version, and it stores that away for use when creating releases and deployments. The package itself can of any format and be coming from any feed, including being a container image in a container repository.
+The package doesn't have to be one you are pushing to Octopus though! This is an important part, Octopus is receiving the metadata for a given packageId and version, and it stores that away for use when creating releases and deployments. The package itself can of **any format and be coming from any feed**, including being a container image in a container repository.
 
 For package that do get pushed to Octopus, you will see the metadata when you view them in the library.
 
 ![Package details metadata](package-detail.png)
 
-This metadata then also appears on the Release, Deployment Preview, and Task pages. Links to the build that created the package are included, as are the work-items. In the above example, the work-items were recognized as being from Jira and the new Jira extension is enabled, so the work-items render as external links into the Jira items. If the extension is disabled the work-items still render but are plain text.
+This metadata then also appears on the Release, Deployment Preview, and Task pages. Links to the build that created the package are included, as are the work-items.
 
-## Deploy a release step
+![Release metadata](release-work-items.png)
 
-When's a package not a package? When it's a child project in a _Deploy a Release_ step. That scenario is covered too. The metadata and work-items will not only be calculated on the releases/deployments in the child projects, they get aggregated into the releases on the "parent" project.
+## ReleaseChanges and Deployment Variables
 
-## Deployment variables
+As we mentioned above, the deployments have been extended to include "ReleaseChanges". An important point about this is that the **deployments will always aggregate release notes from the release(s)**, and the work items are also aggregated if they are in use.
 
-We wanted to call this out explicitly, because the new variable data we provide for deployments is a little different to what we provide on the release.
+The ReleaseChanges contains, for each release related to the deployment, a Version (Release Version), Release Notes, and a list of Work-items.
+
+We wanted to call this out explicitly, because the new variable data we provide for deployments is a little different to what we provide for release notes on the release.
 
 On a release you can enter release notes and we accept them in markdown format. This works fine if you know how you are wanting to consume them, you actually use markdown syntax if it suits and plain text if it doesn't. A common use of this information is on something like our Email step, and for it you want Html not straight Markdown.
 
-So we started down the path of generating a formatted notes field on the deployment and thought, "Wait, customers are going to want to consume this in different ways. If we make it Markdown that won't work for everyone, if we make it Html that won't work for everyone either". So what we settles on was providing the raw Json data in the variable and then you have complete control over how you want to format it. Our documentation **TODO!** has a sample of how to consume the data in the email step to format a message however you want it to look.
+So we started down the path of generating a formatted notes field on the deployment and thought, "Wait, customers are going to want to consume this in different ways. If we make it Markdown that won't work for anyone trying to use it for emails, if we make it Html that won't work for other scenarios". So what we settled on was providing the raw Json data in the variable and then you have complete control over how you want to format it. Our documentation **TODO!** has a sample of how to consume the data in the email step to format a message however you want it to look.
+
+## Deploy a release step
+
+When's a package not a package? When it's a child project in a _Deploy a Release_ step. That scenario is covered too. The metadata and work-items will not only be calculated on the releases/deployments in the child projects, they get aggregated into the releases/deployments on the "parent" project.
+
+Again, release notes will always be aggregated and work-items will too if they are in use.
 
 ## Build servers
 
@@ -75,6 +83,12 @@ So far everything we've talked about is actually build server and Octopus centri
 
 The new Jira Issue Tracker extension in Octopus ties in with the [deployment dashboard](https://confluence.atlassian.com/bamboo/viewing-bamboo-activity-in-jira-applications-399377384.html) functionality in Jira, so you can get deployment feedback the same as you would if you were using BitBucket Pipelines.
 
-As you do the deployments in Octopus, it is feeding information back to Jira in real-time.
+As you do the deployments in Octopus, it is feeding information back to Jira in real-time and you will see something like the following in Jira.
 
 ![Jira Deployments](jira-deployment.png)
+
+For more information on how to configure the integration with Jira, see our documentation. TODO Url
+
+## Wrap up
+
+And that's it! Well for now anyway. As the CI/CD world continues to mature and evolve we're expecting to see more and more examples of this richer integration and feedback throughout the pipeline, so watch this space. As always, please leave us feedback below and Happy Deployments!
