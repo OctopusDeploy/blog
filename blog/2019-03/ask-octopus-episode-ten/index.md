@@ -10,15 +10,15 @@ tags:
  - Ask Octopus
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XPlCdW-qt9M" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rKwYkDN_IPU" frameborder="0" allowfullscreen></iframe>
 
 In this episode, we cover Subscriptions, System Security and how to redeploy failed releases. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
 
 Here are the questions with direct links to where they start in the video:
 
-- [Ryan answers](https://www.youtube.com/watch?v=XPlCdW-qt9M&t=22s) "How can I be notified every time a production deployment happens?"
-- [Derek discusses](https://www.youtube.com/watch?v=XPlCdW-qt9M&t=693s) "System Security"
-- [Bob answers](https://www.youtube.com/watch?v=oyP6s5TFksM&t=436s) "How do I redeploy a previous successful release when the current one fails?"
+- [Ryan answers](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=22s) "How can I be notified every time a production deployment happens?"
+- [Derek discusses](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=693s) "System Security"
+- [Bob answers](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=436s) "How do I redeploy a previous successful release when the current one fails?"
 
 
 You can find more information on topics discussed today in our docs:
