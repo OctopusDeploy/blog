@@ -12,7 +12,7 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XPlCdW-qt9M" frameborder="0" allowfullscreen></iframe>
 
-In this episode, we cover Subscriptions, System Security and how to redeployed failed releases. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
+In this episode, we cover Subscriptions, System Security and how to redeploy failed releases. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
 
 Here are the questions with direct links to where they start in the video:
 
