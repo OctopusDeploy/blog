@@ -33,7 +33,7 @@ This diagram depicts multiple releases and deployments that have occurred over t
 
 The deployments for `1.0.3` illustrate a more complex roll-up of work-items. When `1.0.3` was deployed to the Staging environment, it included work-items from releases `1.0.2` and `1.0.3`. Similarly, when it was deployed to the Prod environment, it also included the work-items from `1.0.1`.
 
-## How does it work?
+## How Does it Work?
 
 To make this work we have updated our build server plugins to include a new `Octopus Metadata` step. This step gathers metadata about the build, including parsing the commit messages looking for work-item references and includes all of this in a call to Octopus. It's similar to pushing a package and requires the packageID and version of the package that the metadata describes.
 
@@ -61,7 +61,7 @@ On a release, you can enter release notes, and we accept them in markdown format
 
 So we started down the path of generating a formatted notes field on the deployment and thought, "Wait, this will be consumed in different ways in different scenarios. If we make it markdown that won't work for anyone trying to use it for emails, and if we make it HTML that won't work for other scenarios". So we settled on providing the raw JSON data in the variable and then you have complete control over how you will format it. Our documentation has a sample of how to consume the data in the [email step to format a message](/docs/api-and-integration/metadata/index.md#Deployment-Variables-and-the-Email-Step) however you want it to look.
 
-## Deploy a release step
+## Deploy a Release Step
 
 When is a package not a package? When it's a child project in a _Deploy a Release_ step. That scenario is covered too. The metadata and work-items will not only be calculated on the releases/deployments in the child projects, but they also get aggregated into the releases/deployments on the "parent" project.
 
