@@ -4,8 +4,8 @@ visibility: public
 description: "A brief introduction to Mark Ledwich"
 author: mark.ledwich@octopus.com
 published: 2019-03-12
-metaImage: mark-ledwich.png
-bannerImage: mark-ledwich.png
+metaImage: markledwich.png
+bannerImage: markledwich.png
 tags:
  - Company
 ---
@@ -19,4 +19,4 @@ Most of my experience is .NET development and UX/UI design for data integration 
 
 I live in the lovely city of Brisbane, and in my downtime I enjoy running and hiking. I'm an insatiable reader and podcast listener &mdash; particularity when about tech, science, economics, or philosophy. 
 
-As a user of Octopus Deploy in previous projects, I have been impressed by the product design and their transparency.  I'm quite proud to join the team here.
+As a user of Octopus Deploy in previous projects, I have been impressed by the product design and their transparency. I'm quite proud to join the team here.
