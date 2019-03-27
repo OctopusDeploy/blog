@@ -4,6 +4,8 @@ visibility: public
 description: "A brief introduction to Tania Richardson"
 author: tania.richardson@octopus.com
 published: 2019-02-28
+metaImage: tania-richardson.png
+bannerImage: tania-richardson.png
 tags:
  - Company
 ---

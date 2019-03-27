@@ -4,6 +4,8 @@ visibility: public
 description: "A brief introduction to Mark Ledwich"
 author: mark.ledwich@octopus.com
 published: 2019-03-12
+metaImage: mark-ledwich.png
+bannerImage: mark-ledwich.png
 tags:
  - Company
 ---
