@@ -17,7 +17,7 @@ In this episode, we cover automatically cancelling tasks, blocking release progr
 Here are the questions with direct links to where they start in the video:
 
 - [Bob answers](https://www.youtube.com/watch?v=IOnVE0R5lug&t=33s) "what is a good way to cancel long-running tasks?"
-- [Ryan answers](https://www.youtube.com/watch?v=IOnVE0R5lug&t=10m18s) "How do I stop this release from going out?"
+- [Ryan answers](https://www.youtube.com/watch?v=IOnVE0R5lug&t=10m18s) "how do I stop this release from going out?"
 - [Derek discusses](https://www.youtube.com/watch?v=IOnVE0R5lug&t=16m32s) "compliance."
 
 You can find more information on topics discussed today in our docs:
