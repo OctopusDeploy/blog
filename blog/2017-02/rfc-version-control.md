@@ -7,6 +7,10 @@ tags:
  - RFC
 ---
 
+:::tip
+Update: Learn about the [deployment process as code pattern](https://octopus.com/docs/deployment-patterns/deployment-process-as-code) where we will continue to provide the best approaches for storing your Octopus configuration in code. We are actively investing in an official [Octopus Terraform Provider](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy) for declarative configuration of Octopus.
+:::
+
 > The #6 highest voted item in our UserVoice is some way to [store Octopus data in source control](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration). It's something we think about a lot, and I've lost count of how many times we've drawn solutions for it on the whiteboard over the years. 
 
 We said we would do something about this in our [2017 roadmap](https://octopus.com/blog/roadmap-2017), but it's potentially a significant undertaking. Each time we've brainstormed how we could do this, our approaches have fallen into a few categories:
