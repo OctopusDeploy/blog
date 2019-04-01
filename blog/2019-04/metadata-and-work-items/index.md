@@ -88,11 +88,9 @@ When is a package not a package? When it's a child project in a _Deploy a Releas
 
 In the initial release, our Bamboo and TeamCity plugins have been updated to include the new Metadata step.
 
-**TODO: the following may or may not be true by the time we publish!!!!**
+We are still working on the updates for the Azure DevOps plugin, which should be available soon.
 
-We are still looking at/working on how this integration fits in with Azure DevOps.
-
-Jenkins support will be coming, but we don't have a timeframe for that right now.
+Jenkins support will also be coming, but we don't have a timeframe for that right now.
 
 ## Jira
 
