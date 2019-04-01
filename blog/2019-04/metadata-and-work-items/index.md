@@ -1,9 +1,8 @@
 ---
 title: Tracking your work from code to deployment
 description: A look at the new custom metadata capabilities in Octopus.
-author: shannon.lewis@octopus.com
 visibility: private
-published: 2019-03-28
+published: 2019-04-03
 metaImage:
 bannerImage:
 tags:
@@ -21,7 +20,7 @@ It follows then that we commonly want to track which features/issues/bugs have b
 
 The value work items brings, is an understanding of what is included in any given version of the software. The most common way to communicate this is with Release Notes.
 
-The introduction of work items hasn't changed the way Octopus handles release notes on a release itself, but we've added the build information and work items as separate information. What we've changed is that deployments now have release notes too, or rather **ReleaseChanges** as we're calling them. These aren't something you need to enter manually, they are automatically collected based on the releases in the deployment.
+The introduction of work items hasn't changed the way Octopus handles release notes on a release itself, but we've added the build information and work items as separate information. What we've changed is that deployments now have release notes too, or rather **Release Changes** as we're calling them. These aren't something you need to enter manually, they are automatically collected based on the releases in the deployment.
 
 "Wait," I hear you say. "Release**s** in the deployment? Don't we deploy **a** release?" Yes, we do, but remember building software is a cumulative process, so what we're deploying is the aggregate of any releases that have occurred since the last deployment to that environment/tenant.
 
@@ -49,17 +48,39 @@ This metadata also appears on the Release, Deployment Preview, and Task pages. F
 
 ![Release metadata](release-work-items.png)
 
-## Release Changes and Deployment Variables
+## Release Changes and Release Notes Templates
+
+Something else that you may have noticed about that last screenshot was the release notes. They were not created manually, they were created using another new feature, release notes templates.
+
+The template is defined in the project settings and is used during release creation. The template used to generate the release notes above looks like this
+
+```
+Here are the notes for the packages
+#{each package in Octopus.Release.Package}
+- #{package.PackageId} #{package.Version}
+#{each workItem in package.WorkItems}
+    - [#{workItem.Description}](#{workItem.LinkUrl})
+#{/each}
+#{/each}
+```
+
+You can use any valid markdown, as before, but now the variable substitution is applied as part of the create. Also note that if you edit a release you will see the text that resulted from the create, not the original template content. You can use variable binding in the edits and they will be applied on save.
+
+## Deployment Variables
 
 As we mentioned above, the deployments have been extended to include "Release Changes." An important point about this is that the **deployments will always aggregate release notes from the release(s)** into the Release Changes, even if there is no metadata and work items.
 
-For each release related to the deployment, the Release Changes includes a version (the release version), the release notes, and a list of work items.
+For each release related to the deployment, the Release Changes includes a version (the release version), the release notes (in markdown format), and a list of work items.
 
-We're calling this out explicitly because the new variable data we provide for deployments is a little different to what we provide for release notes on the release.
+A common use for this information would be in an Email step. Below is a sample email template, including a link back to the release and the release notes reformatted from Markdown to HTML.
 
-On a release, you can enter release notes, and we accept them in markdown format. This works fine if you know how you will consume them, you use markdown syntax if it suits and plain text if it doesn't. A common use of this information is on our Email step, and you will need HTML for that step, not straight markdown.
-
-So we started down the path of generating a formatted notes field on the deployment and thought, "Wait, this will be consumed in different ways in different scenarios. If we make it markdown that won't work for anyone trying to use it for emails, and if we make it HTML that won't work for other scenarios". So we settled on providing the raw JSON data in the variable and then you have complete control over how you will format it. Our documentation has a sample of how to consume the data in the [email step to format a message](/docs/api-and-integration/metadata/index.md#Deployment-Variables-and-the-Email-Step) however you want it to look.
+```
+<p>Here are the notes customized for email</p>
+#{each change in Octopus.Deployment.Changes}
+<strong><a href="(#{Octopus.Web.ServerUri}#{Octopus.Web.ReleaseLink}">#{change.Version}</a></strong></br>
+#{change.ReleaseNotes | MarkdownToHtml}</br>
+#{/each}
+```
 
 ## Deploy a Release Step
 
@@ -69,7 +90,7 @@ When is a package not a package? When it's a child project in a _Deploy a Releas
 
 In the initial release, our Bamboo and TeamCity plugins have been updated to include the new Metadata step.
 
-TODO: the following may or may not be true by the time we publish!!!!
+**TODO: the following may or may not be true by the time we publish!!!!**
 
 We are still looking at/working on how this integration fits in with Azure DevOps.
 
@@ -85,10 +106,8 @@ As you do the deployments in Octopus, it feeds information back to Jira in real-
 
 ![Jira Deployments](jira-deployment.png)
 
-For more information on how to configure the integration with Jira, see our [documentation](/docs/api-and-integration/metadata/jira.md).
+A subset of the Jira integration features are also available for those with an On-Premise instance, see our [documentation](https://g.octopushq.com/JiraIssueTracker) for more details.
 
 ## Wrap up
 
-And that's it! Well for now anyway. As the CI/CD world continues to mature and evolve we're expecting to see more and more examples of this richer integration and feedback throughout the pipeline. Watch this space.
-
-As always, please leave us feedback below and happy deployments!
+And that's it! Well for now anyway. As the CI/CD world continues to mature and evolve we're expecting to see more and more examples of this richer integration and feedback throughout the pipeline, so watch this space.
