@@ -1,5 +1,5 @@
 ---
-title: Tracking your work from code to deployment
+title: Tracking Your Work From Code to Deployment
 description: A look at the new custom metadata capabilities in Octopus.
 visibility: private
 published: 2019-04-03
@@ -14,13 +14,11 @@ In this post, we're excited to announce some new features in Octopus that are fo
 
 ## Build Information and Work Items
 
-Inherent in building software is the idea that over time the product is the accumulation of the features/issues/bugs that have been built/released/deployed.
+Inherent in building software is the idea that over time the product is the accumulation of the features, issues, and bugs that have been built, released, and deployed.
 
-It follows then that we commonly want to track which features/issues/bugs have been added into each release of the software, and then which ones are being deployed. For our purposes, we're using the generalized term **work item** to refer to a feature, issue or bug. To put it another way, Octopus will now be able to track work items from code to build to deployment.
+It follows then that we want to track which features, issues, and bugs have been added into each release of the software, and then which ones are being deployed. We're using the generalized term **work item** to refer to a feature, issue, or bug. To put it another way, Octopus can track work items from code to build to deployment, which provides a deeper understanding of what is included in any given version of the software.
 
-The value work items brings, is an understanding of what is included in any given version of the software. The most common way to communicate this is with Release Notes.
-
-The introduction of work items hasn't changed the way Octopus handles release notes on a release itself, but we've added the build information and work items as separate information. What we've changed is that deployments now have release notes too, or rather **Release Changes** as we're calling them. These aren't something you need to enter manually, they are automatically collected based on the releases in the deployment.
+The most common way to communicate changes between releases is with release notes, and the introduction of work items hasn't changed the way Octopus handles release notes on a release itself, but we have added the build information and work items as separate additional information. One change we've made is that deployments now have release notes too, or rather **Release Changes** as we're calling them. These are automatically collected based on the releases in the deployment so you don't need to enter them manually.
 
 "Wait," I hear you say. "Release**s** in the deployment? Don't we deploy **a** release?" Yes, we do, but remember building software is a cumulative process, so what we're deploying is the aggregate of any releases that have occurred since the last deployment to that environment/tenant.
 
@@ -44,15 +42,15 @@ For packages that do get pushed to Octopus, you will see the metadata when you v
 
 ![Package details metadata](package-detail.png)
 
-This metadata also appears on the Release, Deployment Preview, and Task pages. For packages from external feeds, the Release is the first point at which you will see the package's metadata in the Octopus portal.
+This metadata also appears on the release, deployment preview, and task pages. For packages from external feeds, the release is the first point at which you will see the package's metadata in the Octopus portal.
 
 ![Release metadata](release-work-items.png)
 
 ## Release Changes and Release Notes Templates
 
-Something else that you may have noticed about that last screenshot was the release notes. They were not created manually, they were created using another new feature, release notes templates.
+Something else that you may have noticed about that last screenshot was the release notes. They were not created manually, instead, they were created using another new feature, the release notes templates.
 
-The template is defined in the project settings and is used during release creation. The template used to generate the release notes above looks like this
+The template is defined in the project settings and is used during release creation. The template used to generate the release notes above looks like this:
 
 ```
 Here are the notes for the packages
@@ -64,15 +62,15 @@ Here are the notes for the packages
 #{/each}
 ```
 
-You can use any valid markdown, as before, but now the variable substitution is applied as part of the create. Also note that if you edit a release you will see the text that resulted from the create, not the original template content. You can use variable binding in the edits and they will be applied on save.
+You can use any valid markdown, as before, but now the variable substitution is applied as part of the create. Also note that if you edit a release, you will see the text that resulted from the create, not the original template content. You can use variable binding in the edits, and they will be applied on save.
 
 ## Deployment Variables
 
 As we mentioned above, the deployments have been extended to include "Release Changes." An important point about this is that the **deployments will always aggregate release notes from the release(s)** into the Release Changes, even if there is no metadata and work items.
 
-For each release related to the deployment, the Release Changes includes a version (the release version), the release notes (in markdown format), and a list of work items.
+For each release related to the deployment, the release changes includes a version (the release version), the release notes (in markdown format), and a list of work items.
 
-A common use for this information would be in an Email step. Below is a sample email template, including a link back to the release and the release notes reformatted from Markdown to HTML.
+A common use for this information would be in an email step. Below is a sample email template, including a link back to the release and the release notes reformatted from markdown to HTML:
 
 ```
 <p>Here are the notes customized for email</p>
@@ -94,11 +92,11 @@ In the initial release, our Bamboo and TeamCity plugins have been updated to inc
 
 We are still looking at/working on how this integration fits in with Azure DevOps.
 
-Jenkins support will be coming, but we don't have a timeframe on that at this point.
+Jenkins support will be coming, but we don't have a timeframe for that right now.
 
 ## Jira
 
-So far everything we've talked about is build server and Octopus centric and holds true for anyone using Octopus. Let's have a look now at what else you get if you're using hosted Jira.
+So far everything we've talked about is build server and Octopus centric and holds true for anyone using Octopus. Let's look at what else you get if you're using hosted Jira.
 
 The new Jira Issue Tracker extension in Octopus ties in with the [deployment dashboard](https://confluence.atlassian.com/bamboo/viewing-bamboo-activity-in-jira-applications-399377384.html) functionality in Jira, so you can get deployment feedback the same as if you were using BitBucket Pipelines.
 
@@ -106,8 +104,8 @@ As you do the deployments in Octopus, it feeds information back to Jira in real-
 
 ![Jira Deployments](jira-deployment.png)
 
-A subset of the Jira integration features are also available for those with an On-Premise instance, see our [documentation](https://g.octopushq.com/JiraIssueTracker) for more details.
+A subset of the Jira integration features are also available for those with an on-premises instance, see our [documentation](https://g.octopushq.com/JiraIssueTracker) for more details.
 
 ## Wrap up
 
-And that's it! Well for now anyway. As the CI/CD world continues to mature and evolve we're expecting to see more and more examples of this richer integration and feedback throughout the pipeline, so watch this space.
+And that's it! Well, for now anyway. As the CI/CD world continues to mature and evolve, we're expecting to see more and more examples of this richer integration and feedback throughout the pipeline, so watch this space.
