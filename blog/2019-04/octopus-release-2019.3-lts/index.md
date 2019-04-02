@@ -28,7 +28,7 @@ Octopus Server `2019.3 LTS` is essentially the same as `2019.2`. It comes with [
 
 `2019.3 LTS` Includes Spaces, which has significant a large set of breaking changes, the complete list of changes are [here](https://octopus.com/downloads/compare?from=2018.10.5&to=2019.2.8).
 
-In order to support Spaces and deliver improvements to how you [configure teams](https://octopus.com/blog/team-configuration-improvements) we made some breaking API changes in this area.
+While we try our best to minimise breaking changes, in order to support Spaces and deliver long needed improvements to how you [configure teams](https://octopus.com/blog/team-configuration-improvements), unfortunately we were forced to change the API change in a few areas.
 
 ## When should I install 2019.3 LTS?
 
