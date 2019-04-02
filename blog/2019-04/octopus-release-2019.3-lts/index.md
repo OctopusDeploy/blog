@@ -18,7 +18,7 @@ Octopus Server `2019.3 LTS` is the second release in our long-term support progr
 
 You can [download](https://octopus.com/downloads) Octopus Server 2019.3 LTS now!
 
-Our LTS releases will be in the slow lane with a new LTS release every three months, for all the LTS related details please have a [read here](https://octopus.com/docs/administration/upgrading/long-term-support).
+Our LTS releases will be in the slow lane with a new LTS release approximately every three months, for all the LTS related details please have a [read here](https://octopus.com/docs/administration/upgrading/long-term-support).
 
 ## What features does 2019.3 LTS have?
 
