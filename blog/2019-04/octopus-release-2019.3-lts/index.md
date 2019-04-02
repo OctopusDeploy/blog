@@ -2,7 +2,7 @@
 title: Introducing our second release with long-term support - Octopus Server 2019.3 LTS
 description: Octopus Server 2019.3 LTS is the second release with six months of long-term support. We recommend this release for most self-hosted customers.
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
 published: 2019-04-02
@@ -22,7 +22,7 @@ Our LTS releases will be in the slow lane with a new LTS release approximately e
 
 ## What features does 2019.3 LTS have?
 
-Octopus Server `2019.3 LTS` is essentially the same as `2019.2`. It comes with [Spaces](https://octopus.com/blog/octopus-release-2019.1). A great deal of enhancements and bug fixes in a variety of areas including; Kubernetes and the Octopus Migrator. Along with the Database Performance and Cloud Dependency updates from `2018.11`. 
+Octopus Server `2019.3 LTS` is essentially the same as `2019.2`. It comes with [Spaces](https://octopus.com/blog/octopus-release-2019.1). A great deal of enhancements and bug fixes in a variety of areas including; Kubernetes and the Octopus Migrator. Along with the Database Performance and Cloud Dependency updates from `2018.11`. So have a read through [the change log](https://octopus.com/downloads/compare?from=2018.10.5&to=2019.2.8).
 
 ## Breaking Changes
 
