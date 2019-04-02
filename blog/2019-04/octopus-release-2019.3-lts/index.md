@@ -22,7 +22,7 @@ Our LTS releases will be in the slow lane with a new LTS release every three mon
 
 ## What features does 2019.3 LTS have?
 
-Octopus Server `2019.3 LTS` is essentially the same as `2019.2`. It comes with [Spaces](https://octopus.com/blog/octopus-release-2019.1)
+Octopus Server `2019.3 LTS` is essentially the same as `2019.2`. It comes with [Spaces](https://octopus.com/blog/octopus-release-2019.1). A great deal of enhancements and bug fixes in a variety of areas including; Kubernetes and the Octopus Migrator. Along with the Database Performance and Cloud Dependency updates from `2018.11`. 
 
 ## Breaking Changes
 
@@ -32,7 +32,7 @@ While we try our best to minimise breaking changes, in order to support Spaces a
 
 ## When should I install 2019.3 LTS?
 
-There is no time like the present! You can upgrade to Octopus Server `2019.3 LTS` now. We've had thousands of customers upgrade smoothly to `2018.9` and the upgrade to `2019.3 LTS` is cut from the same code.
+There is no time like the present! You can upgrade to Octopus Server `2019.3 LTS` now. We've had hundreds of customers upgrade smoothly to `2019.2` and the upgrade to `2019.3 LTS` is cut from the same code.
 
 You can [download Octopus Server 2019.3 LTS](https://octopus.com/downloads) now!
 
