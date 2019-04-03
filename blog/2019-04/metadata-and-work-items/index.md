@@ -1,16 +1,19 @@
 ---
 title: Tracking Your Work From Code to Deployment
 description: A look at the new custom metadata capabilities in Octopus.
-visibility: private
+visibility: public
 published: 2019-04-03
 metaImage:
 bannerImage:
 tags:
  - Jira
  - Work Items
+ - Release Notes
 ---
 
 In this post, we're excited to announce some new features in Octopus that are focused on tightening the feedback loop in your CI/CD pipeline. These features strengthen the integration between the build servers and Octopus by passing more information about the build down the line.
+
+These features include build and work item information in Octopus, integration with Jira, and Release Notes Templates. We're going to cover [Release Notes Templates](/blog/release-notes-templates) in a separate post, let's have a look at the rest of the features now.
 
 ## Build Information and Work Items
 
@@ -46,39 +49,11 @@ This metadata also appears on the release, deployment preview, and task pages. F
 
 ![Release metadata](release-work-items.png)
 
-## Release Changes and Release Notes Templates
-
-Something else that you may have noticed about that last screenshot was the release notes. They were not created manually, instead, they were created using another new feature, the release notes templates.
-
-The template is defined in the project settings and is used during release creation. The template used to generate the release notes above looks like this:
-
-```
-Here are the notes for the packages
-#{each package in Octopus.Release.Package}
-- #{package.PackageId} #{package.Version}
-#{each workItem in package.WorkItems}
-    - [#{workItem.Description}](#{workItem.LinkUrl})
-#{/each}
-#{/each}
-```
-
-You can use any valid markdown, as before, but now the variable substitution is applied as part of the create. Also note that if you edit a release, you will see the text that resulted from the create, not the original template content. You can use variable binding in the edits, and they will be applied on save.
-
 ## Deployment Variables
 
 As we mentioned above, the deployments have been extended to include "Release Changes." An important point about this is that the **deployments will always aggregate release notes from the release(s)** into the Release Changes, even if there is no metadata and work items.
 
-For each release related to the deployment, the release changes includes a version (the release version), the release notes (in markdown format), and a list of work items.
-
-A common use for this information would be in an email step. Below is a sample email template, including a link back to the release and the release notes reformatted from markdown to HTML:
-
-```
-<p>Here are the notes customized for email</p>
-#{each change in Octopus.Deployment.Changes}
-<strong><a href="(#{Octopus.Web.ServerUri}#{Octopus.Web.ReleaseLink}">#{change.Version}</a></strong></br>
-#{change.ReleaseNotes | MarkdownToHtml}</br>
-#{/each}
-```
+We're going to talk about this more in [another post](/blog/release-notes-templates).
 
 ## Deploy a Release Step
 
@@ -106,4 +81,4 @@ A subset of the Jira integration features are also available for those with an o
 
 ## Wrap up
 
-And that's it! Well, for now anyway. As the CI/CD world continues to mature and evolve, we're expecting to see more and more examples of this richer integration and feedback throughout the pipeline, so watch this space.
+Tighter integration between the links in the CI/CD pipeline helps streamline the flow of information. These new integration features with Jira are a great example of this, so if you're using Jira and Octopus now's the time to integrate!
