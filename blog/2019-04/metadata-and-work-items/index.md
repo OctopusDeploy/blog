@@ -2,6 +2,7 @@
 title: Tracking Your Work From Code to Deployment
 description: A look at the new custom metadata capabilities in Octopus.
 visibility: public
+author: shannon.lewis@octopus.com
 published: 2019-04-03
 metaImage:
 bannerImage:
@@ -11,11 +12,17 @@ tags:
  - Release Notes
 ---
 
-In this post, we're excited to announce some new features in Octopus that are focused on tightening the feedback loop in your CI/CD pipeline. These features strengthen the integration between the build servers and Octopus by passing more information about the build down the line.
+In this post, we're excited to announce some new features in Octopus Deploy 2019.4 that are focused on tightening the feedback loop in your CI/CD pipeline. These features strengthen the integration between the build servers and Octopus by passing more information about the build down the line.
 
-These features include build and work item information in Octopus, integration with Jira, and Release Notes Templates. We're going to cover [Release Notes Templates](/blog/release-notes-templates) in a separate post, let's have a look at the rest of the features now.
+Octopus 2019.4 includes:
 
-## Build Information and Work Items
+* Build information and work item tracking
+* Release notes templates and automatic release notes generation
+* Octopus integration with Jira
+
+ We're going to cover [Release Notes Templates](/blog/release-notes-templates) in a separate post, let's have a look at the rest of the features now.
+
+## Build Information and Work Item Tracking
 
 Inherent in building software is the idea that over time the product is the accumulation of the features, issues, and bugs that have been built, released, and deployed.
 
@@ -81,4 +88,4 @@ A subset of the Jira integration features are also available for those with an o
 
 ## Wrap up
 
-Tighter integration between the links in the CI/CD pipeline helps streamline the flow of information. These new integration features with Jira are a great example of this, so if you're using Jira and Octopus now's the time to integrate!
+Tighter integration between the major parts in the CI/CD pipeline helps streamline the flow of information. These new integration features with Jira are a great example of this, so if you're using Jira and Octopus now's the time to integrate!

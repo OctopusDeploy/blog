@@ -2,6 +2,7 @@
 title: Enhancing your release notes
 description: A look at release notes templates in Octopus.
 visibility: public
+author: shannon.lewis@octopus.com
 published: 2019-04-03
 metaImage:
 bannerImage:
@@ -10,9 +11,9 @@ tags:
  - Release Notes
 ---
 
-This post follows on from our announcement about [Tracking Your Work From Code to Deployment](/blog/metadata-and-work-items).
+This post follows on from our Octopus Deploy 2019.4 announcement about [Tracking Your Work From Code to Deployment](/blog/metadata-and-work-items).
 
-An important part of the tracking is visibility and traceability, and we've already seen in the previous post how the Jira integration can help with that. In this post we're going to look at another new feature, Release Notes Templates.
+An important part of the tracking is visibility and traceability, and we've already seen in the previous post how the Jira integration can help with that. In this post we're going to look at another new feature, Release Notes Templates and automatic release notes generation.
 
 This is a feature that came out of the Jira integration, but isn't actually dependent on that integration and in itself can make managing your release notes simpler. So if you're managing release notes in Octopus, please read on.
 
@@ -24,7 +25,7 @@ With this thought in our minds we set about adding new variables in the deployme
 
 This was great. It felt really useful. But the output was only useful if you were receiving the email. What about in the Octopus portal, wouldn't it be nice to see this information in there? Yes it would, so we did that.
 
-In the first iteration of that we would pass the information to the portal and render it in a fixed control. This was great. It felt really useful. But the rendering was fixed, would it fit all of the use cases that people would come up with?
+In the first iteration, we rendered it in a fixed read-only control. This was great and it felt really useful but it was read-only. Would it fit all of the use cases that people would come up with?
 
 History tells us no :) So we iterated with the focus on "How do we allow customization of the release notes layout?". The result is Release Notes Templates.
 
@@ -64,4 +65,4 @@ Like our example from earlier, a common use for this information would be in an 
 
 ## Wrap up
 
-We've had a number of requests for variations of this feature over time and we're really excited to finally be bringing it to Octopus. If you're using release notes in Octopus please give it a go and let us know what you think.
+We've had numerous requests for release notes enhancements and we're really excited to finally be shipping it. If you're using release notes in Octopus or keen to, please give it a go and let us know what you think.
