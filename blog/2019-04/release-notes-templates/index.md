@@ -1,9 +1,9 @@
 ---
-title: Enhancing your release notes
+title: Release notes templates and automatic release notes generation
 description: A look at release notes templates in Octopus.
 visibility: public
 author: shannon.lewis@octopus.com
-published: 2019-04-03
+published: 2019-04-04
 metaImage:
 bannerImage:
 tags:

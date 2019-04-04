@@ -3,7 +3,7 @@ title: Tracking Your Work From Code to Deployment
 description: A look at the new custom metadata capabilities in Octopus.
 visibility: public
 author: shannon.lewis@octopus.com
-published: 2019-04-03
+published: 2019-04-04
 metaImage:
 bannerImage:
 tags:
