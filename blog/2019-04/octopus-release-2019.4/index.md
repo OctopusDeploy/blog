@@ -1,5 +1,5 @@
 ---
-title: Automatic Release Notes and Rich Build and Work Item Tracking - Octopus Deploy 2019.4
+title: Automatic Release Notes and Work Item Tracking - Octopus Deploy 2019.4
 description: Octopus 2019.4 introduces automatic release notes generation and rich build and work item tracking.
 author: rob.pearson@octopus.com
 visibility: private
@@ -13,7 +13,7 @@ tags:
  - Release Notes
 ---
 
-We are shipping Octopus 2019.4 with a focus on enhancing the feedback loop in your CI/CD pipeline. If you have ever wanted better traceability of your requirements through build and deployment, this update is for you. 
+We are shipping Octopus Deploy 2019.4 with a focus on enhancing the feedback loop in your CI/CD pipeline. If you have ever wanted better traceability of your requirements through build and deployment, this update is for you. 
 
 This release includes some great updates: 
 
