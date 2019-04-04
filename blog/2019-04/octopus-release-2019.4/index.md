@@ -33,7 +33,7 @@ NOTE: We're working to update our Azure DevOps extension and it should be availa
 
 ## Breaking Changes
 
-There are no breaking changes in this release.
+There are some very slight changes to the format of the output returned by the `Octopus.Server.exe` `show-configuration` command. This is unlikely to affect you, but if you are using this to drive automation, please test the new release before upgrading.
 
 ## Upgrading
 
