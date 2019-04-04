@@ -33,7 +33,7 @@ NOTE: We're working to update our Azure DevOps extension and it should be availa
 
 ## Breaking Changes
 
-There are no breaking changes in this release however we've made some changes to how configuration is stored (moving some settings from the config file to the database) so we recommend taking a backup of your `OctopusServer.config` file before upgrade. 
+There are no breaking changes in this release.
 
 ## Upgrading
 
