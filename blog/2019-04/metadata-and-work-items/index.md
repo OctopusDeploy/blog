@@ -42,7 +42,7 @@ The deployments for `1.0.3` illustrate a more complex roll-up of work items. Whe
 
 ## How Does it Work?
 
-To make this work we have updated our build server plugins to include a new `Octopus Metadata` step. This step gathers metadata about the build, including parsing the commit messages looking for work item references and includes all of this in a call to Octopus. It's similar to pushing a package and requires the packageID and version of the package that the metadata describes.
+To make this work we have updated our build server plugins to include a new `Octopus Metadata` step. This step gathers metadata about the build and the commits and includes all of this in a call to Octopus. It's similar to pushing a package and requires the packageID and version of the package that the metadata describes.
 
 The package itself doesn't have to be one you are pushing to Octopus. This is an important part, Octopus is receiving the metadata for a given packageID and version, and it stores that for use when creating releases and deployments. The package itself can be of **any format and from any feed**, including container images from a container repository.
 
