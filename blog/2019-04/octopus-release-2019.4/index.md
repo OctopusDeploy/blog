@@ -33,11 +33,11 @@ NOTE: We're working to update our Azure DevOps extension and it should be availa
 
 ## Breaking Changes
 
-There are some very slight changes to the format of the output returned by the `Octopus.Server.exe` `show-configuration` command, and how values are stored in the Server configuration file. This is unlikely to affect you, but if you are using this to drive automation, please test the new release before upgrading.
+There are some very slight changes to the format of the output returned by the `Octopus.Server.exe` `show-configuration` command. This is unlikely to affect you, but if you are using this to drive automation, please test the new release before upgrading.
 
 ## Upgrading
 
-As usual, please follow the [normal steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading). On top of this, we recommend taking a backup of your [config file](https://octopus.com/docs/administration/managing-infrastructure/server-configuration-and-file-storage#ServerconfigurationandFilestorage-FileStorageFilestorage). Please see the [release notes](https://octopus.com/downloads/compare?to=2019.4.0) for further information.
+As usual, please follow the [normal steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/compare?to=2019.4.0) for further information.
 
 * Self-hosted Octopus customers can start using these features today by installing [Octopus Server 2019.4](https://octopus.com/downloads). Note `2019.4` is a fast lane release without [long-term support](https://octopus.com/docs/administration/upgrading/long-term-support). This featureset will be included in the next [LTS](https://octopus.com/docs/administration/upgrading/long-term-support) release of Octopus at the end of Q2 2019.
 
