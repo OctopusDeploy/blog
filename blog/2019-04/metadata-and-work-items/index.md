@@ -1,18 +1,18 @@
 ---
 title: Tracking your work from code to deployment
 description: A look at the new custom metadata capabilities in Octopus.
-visibility: private
 author: shannon.lewis@octopus.com
-published: 2019-04-04
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-04-08
+metaImage: blogimage-shipping-2019-4.png
+bannerImage: blogimage-shipping-2019-4.png
 tags:
  - Jira
  - Work Items
  - Release Notes
 ---
 
-In this post, we're excited to announce some new features in Octopus Deploy 2019.4 that are focused on tightening the feedback loop in your CI/CD pipeline. These features strengthen the integration between the build servers and Octopus by passing more information about the build down the line.
+In this post, we're excited to announce some new features in Octopus Deploy 2019.4 that are focused on tightening the feedback loop in your CI/CD pipeline.  These features strengthen the integration between the build servers and Octopus by passing more information about the build down the line.
 
 Octopus 2019.4 includes:
 
