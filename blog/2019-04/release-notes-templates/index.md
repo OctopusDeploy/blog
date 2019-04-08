@@ -11,7 +11,7 @@ tags:
  - Release Notes
 ---
 
-This post follows on from our Octopus Deploy 2019.4 announcement about TODO Fix Link: Tracking Your Work From Code to Deployment - (../metadata-and-work-items/index.md).
+This post follows on from our Octopus Deploy 2019.4 announcement about [Tracking Your Work From Code to Deployment](../metadata-and-work-items/index.md).
 
 An important part of the tracking is visibility and traceability, and we've already seen in the previous post how the Jira integration can help with that. In this post we're going to look at another new feature, Release Notes Templates and automatic release notes generation.
 

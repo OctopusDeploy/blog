@@ -20,7 +20,7 @@ Octopus 2019.4 includes:
 * Release notes templates and automatic release notes generation
 * Octopus integration with Jira
 
- We're going to cover TODO Fix Links: Release Notes Templates-  (../release-notes-templates/index.md) in a separate post, let's have a look at the rest of the features now.
+ We're going to cover [Release Notes Templates](../release-notes-templates/index.md) in a separate post, let's have a look at the rest of the features now.
 
 ## Build Information and Work Item Tracking
 
@@ -60,7 +60,7 @@ This metadata also appears on the release, deployment preview, and task pages. F
 
 As we mentioned above, the deployments have been extended to include "Release Changes." An important point about this is that the **deployments will always aggregate release notes from the release(s)** into the Release Changes, even if there is no metadata and work items.
 
-We're going to talk about this more in TODO Fix Links: another post - (../release-notes-templates/index.md).
+We're going to talk about this more in [another post](../release-notes-templates/index.md).
 
 ## Deploy a Release Step
 

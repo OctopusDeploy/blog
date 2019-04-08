@@ -17,8 +17,8 @@ We are shipping Octopus Deploy 2019.4 with a focus on enhancing the feedback loo
 
 This release includes some great updates: 
 
-* TODO: Fix link Build information and work item tracking - (../metadata-and-work-items/index.md) captures metadata about work items and build details and surfaces them with links to the appropriate sites.
-* TODO: Fix link Release notes templates -(../release-notes-templates/index.md) and automatic release notes generation makes it easy to generate and share the changes that are going into your releases.
+* [Build information and work item tracking](../metadata-and-work-items/index.md) captures metadata about work items and build details and surfaces them with links to the appropriate sites.
+* [Release notes templates](../release-notes-templates/index.md) and automatic release notes generation makes it easy to generate and share the changes that are going into your releases.
 * [Octopus integration with Jira](https://g.octopushq.com/JiraIssueTracker) which provides two-way links between your Jira issues and your deployments.
 
 ## Integrations
