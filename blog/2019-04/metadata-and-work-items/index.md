@@ -4,8 +4,8 @@ description: A look at the new custom metadata capabilities in Octopus.
 author: shannon.lewis@octopus.com
 visibility: public
 published: 2019-04-08
-metaImage: blogimage-shipping-2019-4.png
-bannerImage: blogimage-shipping-2019-4.png
+metaImage: 
+bannerImage: 
 tags:
  - Jira
  - Work Items

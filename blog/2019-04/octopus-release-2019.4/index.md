@@ -4,8 +4,8 @@ description: Octopus 2019.4 introduces automatic release notes generation and ri
 author: rob.pearson@octopus.com
 visibility: public
 published: 2019-04-08
-metaImage: 
-bannerImage: 
+metaImage: blogimage-shipping-2019-4.png
+bannerImage: blogimage-shipping-2019-4.png
 tags:
  - New Releases
  - Jira
