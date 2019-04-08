@@ -27,9 +27,9 @@ To take full advantage of the features in this release, you will need to update 
 
 * [JetBrains TeamCity plugin](https://octopus.com/downloads/2019.4.0)
 * [Atlassian Bamboo Plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on)
-* [Atlassian Jira Plugin](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-jira-plugin)
+* Atlassian Jira Plugin - This is waiting for approval but we'll add the link as soon as it's available.
 
-NOTE: We're working to update our Azure DevOps extension and it should be available soon.
+NOTE: We're also updating our Azure DevOps web extension and it should be available soon.
 
 ## Breaking Changes
 
