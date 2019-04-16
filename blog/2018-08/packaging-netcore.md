@@ -36,8 +36,6 @@ To that end, in all of the following examples there is one underlying pattern be
 
 Now [OctoPack](https://g.octopushq.com/ExternalToolOctoPack) also uses these same three conceptual steps it just does them internally, so it isn't necessarily obvious. The issue with OctoPack is that it has its own way of doing the publish, rather than deferring to the Microsoft tooling that's built to handle all of the newer application types you could be packaging.
 
-<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><span class="hs-cta-node hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" id="hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" ><img class="hs-cta-img" id="hs-cta-img-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" style="border-width:0px;" height="237" width="629" src="https://no-cache.hubspot.com/cta/default/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc.png"  alt="New call-to-action"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(4676868, 'b7a09814-73d5-4ec1-97ec-4bdb9f432fdc', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
-
 ## TeamCity
 
 All right, without further ado, let's get into our first example. Here's a sneak peek at what our build steps are going to look like when we're finished.
