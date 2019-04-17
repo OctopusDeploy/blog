@@ -10,7 +10,7 @@ tags:
  - Multi-Tenancy
 ---
 
-Recently I had a chance to meet with a customer to talk about their development and deployment process.  Full disclosure: I'm going to paraphrase the meeting a bit, so my apologies to them if I grossly simplify their concerns.  The customer had a common scenario.  They have three teams of developers and four "main" applications.  There are some dependencies between the four main applications.  Application A might call Application B which calls Application C and so on.  There isn't a clear "line in the sand" on which team can work on which application.  At any given point, two teams might be working on the same application.  For example:
+Recently I had a chance to meet with a customer to talk about their development and deployment process.  Full disclosure: I'm going to paraphrase the meeting a bit, my apologies to them if they are reading this and if I grossly simplify their concerns.  They have three teams of developers and four "main" applications.  There are some dependencies between the four main applications.  Application A might call Application B which calls Application C and so on.  There isn't a clear "line in the sand" on which team can work on which application.  At any given point, two teams might be working on the same application.  For example:
 
 - Team A is adding a new feature to Application A
 - Team B is making some bug fixes to Application A
@@ -18,9 +18,9 @@ Recently I had a chance to meet with a customer to talk about their development 
 
 Their concern was how Team A could push up changes to Application A for their QA engineers to test and business owners to verify without stepping all over Team B's work.  As an added kicker, how can Team C make changes to their application without stopping Team B from pushing a set of bug fixes through?
 
-I ran into this scenario multiple times at different jobs before working at Octopus Deploy.  The tooling, and the collective lack of knowledge, at the time, led to some, let's say, unusual solutions.  Team C was told that whatever changes they made had to be backwards compatible from the start.  Hide it behind a feature flag if you must.  You cannot stop work for Teams A and B.  Team A was told to hold off pushing their changes until Team B had finished their work.  That is just three teams.  I've worked for companies with 10+ development teams.  Imagine trying to juggle all that!
+I ran into this scenario multiple times at different jobs before working at Octopus Deploy.  At the time, the tooling, and the collective lack of knowledge, led to some, let's say, unusual solutions.  Team C was told that whatever changes they made had to be backwards compatible.  Hide it behind a feature flag if you must.  You cannot stop work for Teams A and B.  Team A was told to hold off pushing their changes until Team B had finished their work.  Depending on how long that took, Team A might try to sneak in a few minor changes as well, outside the scope of their feature.  That is just three teams.  I've worked for companies with 10+ development teams.  Imagine trying to juggle all that!
 
-The final kicker is sometimes a developer will be working on a spike or another change, and they want to get feedback from someone.  This feedback could come from another developer, or it could come from a business owner.  In the past when I did this, I had the developer and/or business owner connect directly to my machine.  Connecting directly to my machine was a significant pain on my end as I could be in the middle of tweaking something else and the code might not be in a usable state.  It would've been nice to have someplace I could push the change without breaking everyone.
+The final kicker is sometimes a developer will be working on a spike or another change, and they want to get feedback from someone.  This feedback could come from another developer, or it could come from a business owner.  In the past when I did this, I had the developer and/or business owner connect directly to my machine.  Connecting directly to my machine was a significant pain for me as I could be in the middle of tweaking something else and the code might not be in a usable state.  It would've been nice to have someplace I could push to a development server.  At the time if I did that it would go up to the "main" development server and potentially break things.  
 
 A much more ideal solution is each team, as well as developers, get their own "sandbox" hosting all of the applications.  
 
@@ -29,25 +29,33 @@ A much more ideal solution is each team, as well as developers, get their own "s
 - Team A and B are not aware of Team C's changes because they are pointing to their own copy of Application B.  
 - Once Team C's changes have been verified, then Teams A and B will need to update their sandbox to get the latest and greatest changes.
 
-In this article, I am going to walk you through how to configure that using the multi-tenancy feature in Octopus Deploy.
+In this article, I am going to walk you through how to configure a private testing sandbox for teams and developers using the [multi-tenancy feature](https://octopus.com/multi-tenant-deployments) in Octopus Deploy.
 
 **Please Note:** You have to have your entire deployment process automated for this to work.  You can't have your code (C#/JS/TS/PHP/etc.) being deployed through Octopus Deploy while your databases are deployed manually.  
+
+!toc
 
 ## Configuring Octopus Deploy
 
 Before diving into the configuration, let's take a step back and look at some use cases.  Hopefully, at the end of the article, we meet all of them.  
 
 - As a developer, I want to be able to make and push changes to Application B without affecting the work of other teams working on Application A.
-- As a developer working on Application A, I want to be able to pull changes made to Application B in once they are completed and verified.
+- As a developer working on Application A, I want to be able to pull changes made to Application B once they are completed and verified.
 - As a developer, I always want to be able to test what is currently in production in a non-production environment.
 - As a developer, I want to be able to make changes and push them up for verification from a business owner without affecting my team.
 - As a developer on Application A, I want to know what version of Application B I am connecting to and testing against.
 - As a developer, I want to be able to push a hotfix directly to staging without having to go through development or testing first.
 - As a developer, I want to be able to push my team's changes to a testing area where customers can provide feedback.  Getting customer feedback isn't going to happen all the time, but I would like that opportunity.
 
+As stated earlier, we are going to use Octopus Deploy's [multi-tenancy feature](https://octopus.com/multi-tenant-deployments) to solve this.  I chose this solution over creating seperate environments for teams and developers for a few reasons.
+
+1) When you add a new environment you don't know all the variables you need to configure.  With Octopus Deploy's multi-tenancy feature there is a concept of variable templates.  If a tenant is missing a variable there is an indicator in the UI.
+2) It keeps the lifecycle simple.  I am in the camp that any given instance of Octopus Deploy should have 10 or less environments.  
+3) It can scale up as the teams and developers grow.  When someone new starts I can add them as a tenant and get a testing sandbox configured for them in minutes.
+
 ## Tenant Tags
 
-I am going to create a tenant tag set called `Tenant Type` for grouping and organizational purposes.  Based on my use cases, I am going to need three tags in the `Tenant Type` tag set.
+I am going to create a tenant tag set called `Tenant Type` for grouping and organizational purposes.  Based on the use cases, I am going to need three tags in the `Tenant Type` tag set.
 
 - Release (main or master and hotfix)
 - Teams (for the team to test with)
@@ -61,21 +69,21 @@ For my instance, I have two variable sets.  `Global` is to be used across all th
 
 ![](variable-sets.png)
 
-I am going to host all my tenants on the same SQL Server and Web Server used in each environment.  I have one web server for `Development` and two web servers in the `Testing` environments.  That single `Development` web server will host not only the main website but also all my tenant websites.  Each tenant will get their subdomain.  The naming convention I am going to use for tenants assigned to the Teams or Person `Tenant Type` will be [EnvironmentShortName][TenantShortName][ApplicationName].OctopusDemos.com.  For Bob's copy of the OctoFx application in Development, the name will be DevBobOctoFx.OctopusDemos.com.  For release `Tenant Type` the naming convention will be [EnvironmentShortName][ApplicationName].OctopusDemos.com.  The master version of OctoFx in Development will be DevOctoFx.OctopusDemos.com.
+Each environment has their own SQL Server and web servers.  I am going to host my tenants on those servers.  Each tenant will get their subdomain.  The naming convention I am going to use for tenants assigned to the Teams or Person `Tenant Type` will be [EnvironmentShortName][TenantShortName][ApplicationName].OctopusDemos.com.  For example, for Bob's copy of the OctoFx application in Development, the name will be DevBobOctoFx.OctopusDemos.com.  For the release `Tenant Type` the naming convention will be [EnvironmentShortName][ApplicationName].OctopusDemos.com.  The master version of OctoFx in Development will be DevOctoFx.OctopusDemos.com.
 
 I am using the same SQL for both Dev and Testing, so my database names will be rather odd looking at first.  [EnvironmentPrefix]-[TenantShortName]-[ApplicationName] for tenants assigned to the Teams or Person `Tenant Type`.  Bob's copy of the OctoFx database in `Development` would be `d-Bob-OctoFx`.  Tenants assigned to the Release `Tenant Type` will be [EnvironmentPrefix]-[ApplicationName].  The master version of OctoFx in `Development` will be `d-octofx`.
 
-First I am going to create a variable in Global to store the environment short name as well as the environment prefix variable.  
+First I am going to create a couple of variables in Global to store the environment short name as well as the environment prefix variable.  
 
 ![](environment-short-name-global-variable.png)
 
-**Please Note:** I like to use the naming scheme [VariableSet].[Component].[Name] to name my variables.  The naming scheme makes them easier to find when trying to reference them.  Moreover, when looking at all variables for a project, they group a lot better.
+**Please Note:** I like to use the naming scheme [VariableSet].[Component].[Name].  It makes them easier to find when trying to reference them.  Moreover, when looking at all variables for a project, they are easier to find.
 
 Then I am going to jump over to the `Variable Templates` tab and add a new template.  I will need to populate this when I create my tenants and assign them to the projects.
 
 ![](variable-sets-templates.png)
 
-Now I can jump back over variables tab and add two variables, one for the subdomain name and another for the database name.  You can scope variables to tenant tags.
+Now I can jump back over variables tab and add two variables, one for the subdomain name and another for the database name.  You can scope variables to tenant tags.  Make note that I am only scoping one variable to the `Tenant Type` tenant tag.  This is because I want any "normal" release to have the same naming convention, even if the project isn't using tenants.
 
 ![](variable-set-with-scoped-variables.png)
 
@@ -145,11 +153,11 @@ Now is as good as time as any to discuss branching strategies.  The branching st
 - Team Branch ([TeamName]/*): Can only go to Development -> Testing -> Staging.  This branch will have a pre-release tag appended to the package name.
 - Developer Branch ([DeveloperName]/*): Can only go to Development -> Testing.  This branch will have a pre-release tag appended to the package name.
 
-In Octopus Deploy I created the following lifecycles.
+In Octopus Deploy I created the following lifecycles.  The Team and Dev Lifecycle has the `Development` and `Testing` environment set as optional.  This is to give the freedom to pick and choose which environments are updated.
 
 ![](lifecycles-overview.png)
 
-In each project, I added the following channels.
+Each project will have a the following channels to support the various use cases.
 
 ![](channeloverview.png)
 
@@ -328,8 +336,32 @@ So if Derek wanted to bring it over, we would first change the release to my rel
 
 ![](octopusdeploy-derek-bringing-in-release.png)
 
+## Standing up an entire sandbox
+
+So far we have been focused on a single application, OctoFx.  I'm willing to bet you have more than one application in your development shop.  To solve for that, I created a project called `Deploy All The Things`.  The project's lifecycle only allows it to go to staging.  It is intended to be used by tenants with the Person or Team `Tenant Type` tenant tag.  
+
+![](deploy-all-the-things.png)
+
+Right now it is only deploying OctoFx.  In the future it can deploy other applications, and in the order they need to be deployed.
+
+![](deploy-all-the-things-process.png)
+
+One note about the deploy a release step, when you create a release that is when you choose the release version of the child projects.  It is entirely possible with this project to have a release only be deployed to a single tenant on an environment.  
+
+![](deploy-all-the-things-select-release.png)
+
 ## Conclusion
 
-It takes a bit of setup, but it is possible to configure Octopus Deploy, so each team and each developer have their own sandbox to deploy to.  Having a separate sandbox will allow teams and developers to get feedback on in-progress work without having to step all over the main code base.
+It takes a bit of setup, but it is possible to configure Octopus Deploy, so each team and each developer have their own sandbox to deploy to.  Having a separate sandbox will allow teams and developers to get feedback on in-progress work without having to step all over the main code base.  Let's go through the use cases one more time to make sure we solved them.
 
-One final thought, I included a hotfix tenant.  You don't have to include that.  I did that because the customer I was talking to had a separate "hotfix" subdomain in their staging environment.  It made sense for them.  It might not make sense for you.  I would encourage you to test this out for yourself and tweak the process to meet your needs.
+- As a developer, I want to be able to make and push changes to Application B without affecting the work of other teams working on Application A. -> Solved, each team has their own sandbox.  The team working on Application B would push to their sandbox for testing.
+- As a developer working on Application A, I want to be able to pull changes made to Application B once they are completed and verified. -> Solved, the teams can wait until the changes are merged into a release branch and pushed up to the main tenant or they can choose the release created for the tenant and pull that into their sandbox.
+- As a developer, I always want to be able to test what is currently in production in a non-production environment. -> Solved, the main tenant in the non-production environments will only be changed once a feature has been verified in a team sandbox.  The amount of time a change sits in the lower environments on a main tenant should be low since it has already been tested.
+- As a developer, I want to be able to make changes and push them up for verification from a business owner without affecting my team. -> Solved, each developer gets their own tenant, which means they get their own sandbox.
+- As a developer on Application A, I want to know what version of Application B I am connecting to and testing against. -> Solved, each team and developer have full control over what version is in their sandbox.
+- As a developer, I want to be able to push a hotfix directly to staging without having to go through development or testing first. -> Solved, with the channels and hotfix tenant it is possible to push a change directly to staging.
+- As a developer, I want to be able to push my team's changes to a testing area where customers can provide feedback.  Getting customer feedback isn't going to happen all the time, but I would like that opportunity. -> Solved, any tenant with the Team `Tenant Type` has the ability to push to staging.
+
+One final thought about the hotfix tenant.  You don't have to include that.  I did that because the customer I was talking to had a separate "hotfix" subdomain in their staging environment.  It made sense for them.  It might not make sense for you.  I would encourage you to test this out for yourself and tweak the process to meet your needs.
+
+Until next time, Happy Deployments!
