@@ -391,12 +391,6 @@ Disconnected networks have multiple teams working in their own Spaces, then push
 
 ![Octopus 4.0 Disconnected Architecture](rrp-disconnected-architecture.png)
 
-## Roll-out
-
-We are planning to implement Remote Release Promotions in the second half of 2018. 
-
-Some components of this feature are quite independent, and we feel they will add value outside of Remote Promotions. For example: per-environment variable-templates and comparing releases. Wherever possible we intend to implement these and get them into your hands as quickly as we can. 
-
 ## Feedback
 
 Hopefully you can tell we have put a lot of thought into this set of features. We have tried to cover all of the scenarios and nuances we've encountered in our relationship with a variety of customers. There is a lot to digest here,so thanks for sticking with us to the end. You're ace.
