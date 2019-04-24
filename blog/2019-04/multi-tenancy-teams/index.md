@@ -3,14 +3,14 @@ title: Leveraging Multi-Tenancy to create team and developer sandboxes
 description: The software we write often has dependencies on other team's applications.  Learn how you can use the multi-tenancy feature in Octopus Deploy to carve out sandboxes for each team.
 author: bob.walker@octopus.com
 visibility: public
-published: 2019-04-18
+published: 2019-04-29
 metaImage: tenant-sandboxes.png
 bannerImage: tenant-sandboxes.png
 tags:
  - Multi-Tenancy
 ---
 
-Recently I had a chance to meet with a customer to talk about their development process.  They wanted to know if it was possible to alter their CI/CD pipeline to make it easier and faster to test changes.  
+Recently I had a chance to meet with a customer to talk about their development process.  They wanted to know if it was possible to alter their CI/CD pipeline to make it easier and faster to test changes.  When they started describing their scenario I couldn't help but smile because I ran into it many times over the past 10+ years.  
 
 They have three teams of developers and four main applications.  There are some dependencies between the four main applications.  Application A might call Application B which calls Application C and so on.  There isn't a clear "line in the sand" on which team can work on which application.  At any given point, two teams might be working on the same application.  For example:
 
@@ -26,7 +26,7 @@ I ran into this scenario multiple times at different jobs before working at Octo
 
 That is just three teams.  I've worked for companies with 10+ development teams.  Imagine trying to juggle all that!
 
-That doesn't scale well.  Too many manual gates.  Too easy to step on toes and cause work to slow down.  Each team needs their own "sandbox."  Each team's sandbox has a copy of every application needed by the each team or developer.  This makes the above scenario much easier to handle.  
+The root problem is the above solution doesn't scale well.  Too many manual gates.  Too easy to step on toes and cause work to slow down.  Each team needs their own "sandbox."  Each team's sandbox has a copy of every application needed by the each team or developer.  This makes the above scenario much easier to handle.  
 
 - Team A can push a new feature to their sandbox for testing without stepping all over Team B.  
 - Team C can push changes to their sandbox for testing and not break Teams A and B.  
