@@ -37,9 +37,19 @@ Sometimes a developer will be working on a spike or another change, and they wan
 
 This is a perfect use case for Octopus Deploy's [multi-tenancy feature](https://octopus.com/multi-tenant-deployments). In this article, I am going to walk you through how to configure a private testing sandbox for teams and developers using the multi-tenancy feature in Octopus Deploy.
 
-**Please Note:** This will require the entire application to have automated deployments. You can't have your code (C#/JS/TS/PHP/etc.) being deployed through Octopus Deploy while your databases are deployed manually.
-
 !toc
+
+## Caveats to this solution
+
+There are a couple of significant caveats to this solution.  
+
+For starters, this will require the entire application to have automated deployments. You can't have your code (C#/JS/TS/PHP/etc.) being deployed through Octopus Deploy while your databases are deployed manually.
+
+Secondly, this solution goes against the mantra of "always be integrating."  It would be best if you were testing against the latest and greatest code as soon as possible.  For example, I worked on a loan origination system, and it depended on a service to pull customer information.  When testing my changes, I want to be pointed at the latest and greatest of the customer service.  Testing against the latest and greatest can find issues sooner, thus reducing the cost.  The solution detailed below pushes that integration to later in the software development life cycle.  
+
+There is some risk in running your code against the latest and greatest as soon as possible.  A bug because of a new feature in the customer service could cause testing on the loan origination system to slow down.  Hard to have a loan without a customer.   When that happened - and it happened just often enough, but on other services as well - I wanted a stable copy of the dependent services to point to.  Once testing has been completed on the new customer service, then I would bring that version into my sandbox.  The risk to that approach is that I might not find out about a bug in my application till later.  That bug might require additional code changes, which adds cost.  Especially if the code changes need to occur in the customer service and it has been recently pushed to production.  
+
+There is risk either way.  It is up to you to determine where you want that risk to occur.  
 
 ## Configuring Octopus Deploy
 
