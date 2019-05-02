@@ -17,6 +17,12 @@ tags:
 
 We recently shipped our Octopus Deploy plugin for Jira and I thought I explore it a bit as it unlocks some really cool scnearios. Octopus is specifically focused on devops tooling and deployment automation. If we had one job, it's to make deploy and operations processes awesome. This enables us to focus on this single goal and build an easy-to-use yet feature rich product however this also means we ignore 
 
+Our Octopus plugin for Jira unlocks three fantastic benefits: 
+
+* **See when features or hotfixes are done and deployed to Prod.** 'Done' means deployed to production and this is now visible directly in your Jira issues. See if your team has completed a new feature or fix and see if it's been deployed to production. 
+* **See the Jira issues included in Octopus releases.** It's now possible to see what Jira issues (work items) are included in Octopus releases with links back to Jira for further details.
+* **Generate release notes automatically.** Octopus can now intelligently generate release notes visible directly your deployments to your environments like test and production. Share them with your team, management or executives via email, slack and more.
+
 ## See when features or hotfixes are done and deployed to Prod
 
 > Done means deployed to production
