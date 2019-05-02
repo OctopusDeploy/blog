@@ -12,6 +12,8 @@ tags:
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)
 
+**Heads up: The LTS program launched in January 2019. Learn more about [how the LTS program affects you](https://octopus.com/docs/administration/upgrading/long-term-support).**
+
 We are planning to ship our very first release of Octopus Server with **long-term support (LTS)** in Q4 2018. This post explains our plans for Octopus Server in an LTS world, and how you will benefit. We also explore some of the background to this decision and some of the mechanics we'll use behind the scenes.
 
 We think a lot of self-hosted customers will want to predominantly use Octopus Server releases with long-term support, but if you use self-hosted and want to keep right up to date with everything we're doing, you can keep enjoying that cake too!
