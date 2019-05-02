@@ -36,7 +36,7 @@ Spinnaker is a deployment tool written by Netflix, and it has been open sourced 
 
 So, contrary to the answer on StackOverflow, Netflix treats blue/green and red/black as the same thing. The documentation even includes a nice diagram colored in blue and green to drive the point home.
 
-![Deployment Strategies](deployment-stratigies.png)
+![Deployment Strategies](deployment-strategies.png)
 
 The Armory blog post [Spinnaker Feature - Blue/Green (AKA Red/Black) Deployments](https://blog.armory.io/spinnaker-feature-blue-green-aka-red-black-deployments-2/) also talks about blue/green and red/black as the same thing.
 
