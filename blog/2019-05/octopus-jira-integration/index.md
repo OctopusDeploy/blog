@@ -1,5 +1,5 @@
 ---
-title: From Idea to Production - Octopus Deploy plugin for Alassian Jira Software Cloud
+title: From Idea to Production - Octopus plugin for Alassian Jira Software Cloud
 description: Our new Octopus Deploy plugin for Jira makes it easy to plan, track and ship software with end-to-end visibility of software pipeline.
 author: rob.pearson@octopus.com
 visibility: public
@@ -19,11 +19,13 @@ We recently shipped our [Octopus Deploy plugin for Jira](https://marketplace.atl
 
 Octopus is focused on automating DevOps and deployment processes. This enables us to focus on this single goal and build the best DevOps tool available  however it also means we ignore other areas of the software development process and CI/CD pipeline. That's why it's exciting for us to launch our 
 
+Talk about Jira more. Steal my line from the video script.
+
 Integrating Octopus and Jira unlocks three key scenarios: 
 
-* **[See when features or bug fixes are deployed to Prod](#See-when-features-or-bug-fixes-are-deployed-to-Prod).** 'Done' means deployed to production and this is now visible directly in your Jira issues. See if your team has completed a new feature or fix and see if it's been deployed to production. 
-* **[See the Jira issues included in Octopus releases](#See-the-Jira-issues-included-in-Octopus-Releases).** It's now possible to see what Jira issues (work items) are included in Octopus releases with links back to Jira for further details.
-* **[Generate release notes automatically](#Generate-and-share-Release-Notes-automatically).** Octopus can now intelligently generate release notes visible directly your deployments to your environments like test and production. Share them with your team, management or executives via email, slack and more.
+* **[See when features or bug fixes are deployed to Prod](/blog/2019-05/octopus-jira-integration/index.md#See-when-features-or-bug-fixes-are-deployed-to-Prod).** 'Done' means deployed to production and this is now visible directly in your Jira issues. See if your team has completed a new feature or fix and see if it's been deployed to production. 
+* **[See the Jira issues included in Octopus releases](/blog/2019-05/octopus-jira-integration/index.md#See-the-Jira-issues-included-in-Octopus-Releases).** It's now possible to see what Jira issues (work items) are included in Octopus releases with links back to Jira for further details.
+* **[Generate release notes automatically](/blog/2019-05/octopus-jira-integration/index.md#Generate-and-share-Release-Notes-automatically).** Octopus can now intelligently generate release notes visible directly your deployments to your environments like test and production. Share them with your team, management or executives via email, slack and more.
 
 ## See when features or bug fixes are deployed to Prod
 
