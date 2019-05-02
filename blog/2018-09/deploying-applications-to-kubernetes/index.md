@@ -31,8 +31,6 @@ The Kubernetes functionality in Octopus 2018.8 is a preview only. The features d
 
 !toc
 
-<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><span class="hs-cta-node hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" id="hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" ><img class="hs-cta-img" id="hs-cta-img-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" style="border-width:0px;" height="237" width="629" src="https://no-cache.hubspot.com/cta/default/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc.png"  alt="New call-to-action"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(4676868, 'b7a09814-73d5-4ec1-97ec-4bdb9f432fdc', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
-
 ## Prerequisites
 
 To follow along with this blog post, you will need to have an Octopus instance, a Kubernetes cluster already configured, and with Helm installed. This blog post will use the Kubernetes service provided by Google Cloud, but any Kubernetes cluster will do.

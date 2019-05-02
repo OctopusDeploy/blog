@@ -26,8 +26,6 @@ There's quite a bit of theory at the start of this post before we get into the p
 
 !toc
 
-<!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><span class="hs-cta-node hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" id="hs-cta-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" ><img class="hs-cta-img" id="hs-cta-img-b7a09814-73d5-4ec1-97ec-4bdb9f432fdc" style="border-width:0px;" height="237" width="629" src="https://no-cache.hubspot.com/cta/default/4676868/b7a09814-73d5-4ec1-97ec-4bdb9f432fdc.png"  alt="New call-to-action"/></a></span><script charset="utf-8" src="https://js.hscta.net/cta/current.js"></script><script type="text/javascript"> hbspt.cta.load(4676868, 'b7a09814-73d5-4ec1-97ec-4bdb9f432fdc', {}); </script></span><!-- end HubSpot Call-to-Action Code -->
-
 ## How IIS Configuration is stored
 
 If you open up the **IIS Manager** user interface and browse around any web site or application pool, you'll find no shortage of knobs and dials that you can tweak. There are thousands of potential settings, from what authentication methods to use, to how log files should be written, to how often the application pool that runs your process should recycle. 
