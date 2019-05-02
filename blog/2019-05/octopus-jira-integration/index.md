@@ -53,8 +53,8 @@ Using multiple tools can make it hard to track which features are included in wh
 
 ![Octopus release notes](octopus-release-notes.png "width=500")
 
-Reading releases for a deployment to production in Octopus is nice but sharing them via email or slack to your project management group or leadership team is far more valuable. Octopus makes it easy to format the underlying data which can be shared.  
+Reading releases in Octopus is useful but sharing them via email, slack or other mediums is even better. Octopus makes it easy to send release notes to your project management group or leadership team after every successful deployment to production keeping everyone in the loop. 
 
 ## Wrap up
 
-Something clever. Feel free to leave us a comment and let us know what you think! Happy deployments!
+Octopus and Jira make it easy to get end-to-end visibility of your software development pipeline - from idea to production. Everything discussed in this post is available today and I encourage you to try it.
