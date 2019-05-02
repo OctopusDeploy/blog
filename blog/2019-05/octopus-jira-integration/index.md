@@ -37,11 +37,13 @@ This enables greater visibility and insight for your team, managers and executiv
 
 ## See the Jira issues included in Octopus Releases
 
-Text
+Software normally runs through a CI/CD pipeline on it's way to production. Developers push code to source code repositories like GitHub, build servers, like Bamboo and TeamCity, build it and Octopus deploys it. Traditionally, the linkages between each of those steps can be lost but this is a now a thing of the past. 
 
-Screen shot 
+Using our Jira plugin and one of our build server plugins, it's now possible to retain and see work item and build details directly in Octopus. 
 
-More text.
+![Octopus release details](octopus-release-details.png "width=500")
+
+This allows teams to see the build and requirements details (Jira issues) that contributed to to a release giving end-to-end tracability from issue to deployment. You can click through to Jira for more information.
 
 ## Generate and share Release Notes automatically
 
