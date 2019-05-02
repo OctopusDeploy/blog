@@ -15,11 +15,11 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
+**Should I go with the intro below or start with the pain of building great software nowadays?!?**
+
 We recently shipped our [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira) and I thought I explore it a bit as it unlocks some really cool scenarios and benefits. 
 
-Octopus is focused on automating DevOps and deployment processes. This enables us to focus on this single goal and build the best DevOps tool available  however it also means we ignore other areas of the software development process and CI/CD pipeline. That's why it's exciting for us to launch our 
-
-Talk about Jira more. Steal my line from the video script.
+Octopus is focused on automating DevOps and deployment processes. This enables us to focus on this single goal and build the best DevOps tool available  however it also means we ignore other areas of the software development process and CI/CD pipeline. That's why it's exciting for us to launch our official [Jira](https://atlassian.com/jira) plugin. Jira helps teams to plan, track, and release great software. Octopus is the leader in DevOps tooling and deployment automation. Together, they enable teams to track their work from idea to production improving visibility and tracability.
 
 Integrating Octopus and Jira unlocks three key scenarios: 
 
@@ -49,11 +49,11 @@ This allows teams to see the build and requirements details (Jira issues) that c
 
 ## Generate and share Release Notes automatically
 
-Text
+Using multiple tools can make it hard to track which features are included in which release. It's hard to find which commits and builds contributed to release and deployments. Project managers and release notes make this much easier to find and understand but it's generally a manual process. Integrating Octopus and Jira enables this process to be fully automated. Release notes are calculated automatically when deploying. Octopus knows which issues have already been deployed to an environment so it can easily generate release notes showing what's new in test or production environments. 
 
-Screen shot 
+![Octopus release notes](octopus-release-notes.png "width=500")
 
-More text.
+Reading releases for a deployment to production in Octopus is nice but sharing them via email or slack to your project management group or leadership team is far more valuable. Octopus makes it easy to format the underlying data which can be shared.  
 
 ## Wrap up
 
