@@ -1,9 +1,9 @@
 ---
 title: Adding notifications for every production deployment
-description: A look at release notes templates and automatic release notes generation in Octopus.
+description: An introductory guide to using subscriptions with webhooks.
 author: ryan.rousseau@octopus.com
-visibility: private
-published: 2019-05-08
+visibility: public
+published: 2019-05-03
 metaImage:
 bannerImage:
 tags:
@@ -335,7 +335,7 @@ Perfect! This code is starting to look a lot better.
 
 ## Authorization
 
-We haven't addressed authorization for our webhook yet. As it stands, anyone can send a request that matches the structure we expect. That is because I'm using a public Firebase Cloud function. If you're using an internal service or something hosted but with locked down access, you might not worry about this portion too much.
+We haven't addressed authorization for our webhook yet. As it stands, anyone can send a request that matches the structure we expect. That is because I'm using a public Firebase Cloud Function. If you're using an internal service or something hosted but with locked down access, you might not worry about this portion too much.
 
 We can fix that by adding a header to our request that contains an authorization token that we trust on the webhook side.
 
