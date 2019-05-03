@@ -1,6 +1,6 @@
 ---
-title: From Idea to Production - Octopus plugin for Jira
-description: Our new Octopus Deploy plugin for Jira makes it easy to plan, track and ship software with end-to-end visibility of software pipeline.
+title: Octopus plugin for Jira - Better visibility for your software pipeline
+description: Our new Octopus Deploy plugin for Jira makes it easy to plan, track and ship software with better end-to-end visibility of your software pipeline.
 author: rob.pearson@octopus.com
 visibility: public
 published: 2019-05-06
