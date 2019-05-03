@@ -15,15 +15,15 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
-We recently shipped our [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira), and I thought I'd explore it a bit as it unlocks some very useful scenarios. 
+We recently shipped our [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira), and I thought I'd explore it a bit as it unlocks some pretty useful scenarios. 
 
-Building great software often requires using multiple tools and services, but finding the right ones and getting them to talk to each other can be a headache. Atlassian's [Jira](https://atlassian.com/jira) is a popular application that helps teams to plan, track, and release great software whereas Octopus Deploy helps teams automate their development and operations processes in a fast, repeatable and reliable manner. Together, they enable teams to get better visibility and traceability into their software pipeline from idea to production.
+Building great software often requires using multiple tools and services, but finding the right ones and getting them to talk to each other can be a headache. Atlassian's [Jira](https://atlassian.com/jira) is a popular application that helps teams to plan, track, and manage software releases whereas Octopus Deploy helps teams automate their development and operations processes in a fast, repeatable and reliable manner. Together, they enable teams to get better visibility and traceability into their software pipeline from idea to production.
 
 Integrating Octopus and Jira unlocks three key scenarios: 
 
-* **[See when features or bug fixes are deployed to Prod](/blog/2019-05/octopus-jira-integration/index.md#See-when-features-or-bug-fixes-are-deployed-to-Prod).** 'Done' means deployed to production and this is now visible directly in your Jira issues. See when your team finishes a new feature or bug fix and deploys it to production. 
-* **[See the Jira issues included in Octopus releases](/blog/2019-05/octopus-jira-integration/index.md#See-the-Jira-issues-included-in-Octopus-Releases).** It's now possible to see which Jira issues (work items) Octopus includes in releases with links back to Jira for further details.
-* **[Generate release notes automatically](/blog/2019-05/octopus-jira-integration/index.md#Generate-and-share-Release-Notes-automatically).** Octopus can now intelligently generate release notes visible directly your deployments to your environments like test and production. Share them with your team, management or executives via email, slack and more.
+* **[See when features or bug fixes are deployed to Prod](/blog/2019-05/octopus-jira-integration/index.md#see-when-features-or-bug-fixes-are-deployed-to-prod).** 'Done' means deployed to production and this is now visible directly in your Jira issues. See when your team finishes a new feature or bug fix and deploys it to production. 
+* **[See the Jira issues included in Octopus releases](/blog/2019-05/octopus-jira-integration/index.md#see-the-jira-issues-included-in-octopus-releases).** It's now possible to see which Jira issues (work items) Octopus includes in releases with links back to Jira for further details.
+* **[Generate release notes automatically](/blog/2019-05/octopus-jira-integration/index.md#generate-and-share-release-notes-automatically).** Octopus can now generate release notes visible directly within your deployments to your environments like test and production. Share them with your team, managers or executives via email, slack and more.
 
 Note: The Octopus Deploy plugin is only compatible with Jira Cloud as Jira Server does not support the APIs required to enable this functionality.
 
@@ -59,9 +59,9 @@ Reading releases in Octopus is useful but sharing them via email, slack or other
 
 In summary, [Jira](https://atlassian.com/jira) and [Octopus Deploy](https://octopus.com) work together to give you better end-to-end visibility of your software pipeline.
 
-If your already using Jira and Octopus Deploy, I highly recommend downloading the [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira) and trying this out. Read our [docs](https://octopus.com/docs/api-and-integration/metadata/jira) about how to connect the two applications and that's it. 
+If you're already using Jira and Octopus Deploy, I highly recommend downloading the [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira) and trying this out. Read our [docs](https://octopus.com/docs/api-and-integration/metadata/jira) about how to connect the two applications, and get started.
 
-I also recommend looking at our build server plugins so you can take full advantage of the features above. 
+I also recommend installing one of our build server plugins so you can take full advantage of the features above. 
 
 * [Atlassian Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on)
 * [Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) - _Full support for Jira issues is coming soon!_
