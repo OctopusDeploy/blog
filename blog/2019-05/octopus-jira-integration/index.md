@@ -68,7 +68,7 @@ I also recommend installing one of our build server plugins so you can take full
 
 If your team is using either Jira or Octopus Deploy, you can try the other service for free to see how it works for you. 
 
-[Try Octopus Deploy for free](https://octopus.com/trial)
-[Try Jira Software Cloud for free](https://www.atlassian.com/software/jira/try)
+* [Try Octopus Deploy for free](https://octopus.com/trial)
+* [Try Jira Software Cloud for free](https://www.atlassian.com/software/jira/try)
 
 Happy deployments!
