@@ -12,13 +12,13 @@ tags:
 
 ## Intro
 
-Hey there! For an episode of [Ask Octopus](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=22s), I talked about how using Octopus [Subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) and custom webhooks could solve many problems. I presented the use case of Sending a slack notification for every production deployment. I wanted to explore this idea in more detail which led me to write this post. So let's get to it and set up Slack notifications for all of our production deployments.
+Hey there! In a recent episode of [Ask Octopus](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=22s), I talked about how using Octopus [Subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) and custom webhooks can solve many problems. I presented the use case of sending a slack notification for every production deployment. I wanted to explore this idea in more detail which led me to write this post. So let's get to it and set up Slack notifications for all of our production deployments.
 
 !toc
 
 ## Setup
 
-I have six existing projects without any notifications built into the process. The number of projects isn't essential here. The same approach will work whether you have one project or hundreds.
+I have six existing projects without any notifications built into their processes. The number of projects isn't essential here. The same approach will work whether you have one project or hundreds.
 
 ![Projects on dashboard](dashboard.png)
 
@@ -50,7 +50,7 @@ I have also set the Payload URL to my webhook's URL.
 
 After running a deployment, I pulled the payload body from the function logs. There's a lot of information here, including the details of the subscription that triggered the request.
 
-The information that we are most interested is in the Payload.Event section. In particular, we are going to use Category, Message, and RelatedDocumentIds.
+The information we are most interested is in the Payload.Event section. In particular, we are going to use Category, Message, and RelatedDocumentIds.
 
 ```javascript
 {
@@ -226,7 +226,7 @@ return sendSlackMessage({
 
 ![First Slack messages received](messages-to-channels.png)
 
-Great! Now let's add some flair to our messages using the category. Like how we set up the channel mapping, we can set up a mapping from a category to an emoji.
+Great! Now let's add some flair to our messages using the category. In the same way we set up the channel mapping, we can set up a mapping from a category to an emoji.
 
 ```javascript
 const categoryToEmoji = {
@@ -335,11 +335,11 @@ Perfect! This code is starting to look a lot better.
 
 ## Authorization
 
-We haven't addressed authorization for our webhook yet. As it stands, anyone can send a request that matches the structure we expect. That is because I'm using a public Firebase Cloud Function. If you're using an internal service or something hosted but with locked down access, you might not worry about this portion too much.
+We haven't addressed authorization for our webhook yet. As it stands, anyone can send a request that matches the structure we expect. That is because I'm using a public Firebase Cloud function. If you're using an internal service or something hosted but with locked down access, you might not worry about this portion too much.
 
 We can fix that by adding a header to our request that contains an authorization token that we trust on the webhook side.
 
-I've named my header octolog-token, but you can name it anything you'd like. You may even choose to use a standard header name like Authorization. It's also important to note here that the header value is stored in plain text. You'll want to keep that in mind when deciding what header values to use and what teams to grant access to subscriptions.
+I've named my header octolog-token, but you can name it anything you like. You may even choose to use a standard header name like Authorization. It's also important to note here that the header value is stored in plain text. You'll want to keep that in mind when deciding what header values to use and what teams to grant access to subscriptions.
 
 ![Webhook with token](webhook-with-token.png)
 
