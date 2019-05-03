@@ -29,31 +29,29 @@ Note: The Octopus Deploy plugin is only compatible with Jira Cloud as Jira Serve
 
 ## See when features or bug fixes are deployed to Prod
 
-> Done means deployed to production
-
-If you've ever worked with development teams, you would have heard someone say it's 98% done and then it takes week for it to go live. This lead to teams saying work is only done when it's been deployed to production. It's now simple to see if a new feature or hotfix is marked done and also deployed to prod. You can click through to Octopus for further details.
-
 ![Jira issue with deployment details](jira-issue-with-deployments.png "width=500")
 
-This enables greater visibility and insight for your team, managers and executives in the tool they're most comfortable with. 
+> Done means deployed to production
+
+If you've ever worked with development teams, you've probably heard someone say a new feature is 98% done and then it takes weeks for it be completed and deployed to production. This common situation has lead teams to say done means deployed to production. 
+
+Our Octopus plugin for Jira makes this it visible to see if an enhancement or bug fix is done and deployed to production or if it's still a work in progress. This new information is available directly in your Jira issues, and you can click through to Octopus for further details.  This enables greater visibility and insight for your team and company in the tool they're most comfortable with. 
 
 ## See the Jira issues included in Octopus Releases
 
-Software normally runs through a CI/CD pipeline on it's way to production. Developers push code to source code repositories like GitHub, build servers, like Bamboo and TeamCity, build it and Octopus deploys it. Traditionally, the linkages between each of those steps can be lost but this is a now a thing of the past. 
-
-Using our Jira plugin and one of our build server plugins, it's now possible to retain and see work item and build details directly in Octopus. 
-
 ![Octopus release details](octopus-release-details.png "width=500")
 
-This allows teams to see the build and requirements details (Jira issues) that contributed to to a release giving end-to-end tracability from issue to deployment. You can click through to Jira for more information.
+Software usually runs through a CI/CD pipeline on it's way to production. Developers push code to source code repositories like GitHub, build servers, like Bamboo and TeamCity, build it, and Octopus deploys it. Traditionally, the linkages between each of those steps can be lost, but this is now a thing of the past. 
+
+Using our Jira plugin and one of our build server plugins ([see below for links](/blog/2019-05/octopus-jira-integration/index.md#wrap-up)), it's now possible to see your Jira issues and build details directly in Octopus. This allows teams to see the build and requirements details (Jira issues) that contributed to a release giving end-to-end traceability from issue to deployment. You can click through to Jira for more information. It can also help aid in finding the changes that introduce bugs into releases.
 
 ## Generate and share Release Notes automatically
 
-Using multiple tools can make it hard to track which features are included in which release. It's hard to find which commits and builds contributed to release and deployments. Project managers and release notes make this much easier to find and understand but it's generally a manual process. Integrating Octopus and Jira enables this process to be fully automated. Release notes are calculated automatically when deploying. Octopus knows which issues have already been deployed to an environment so it can easily generate release notes showing what's new in test or production environments. 
-
 ![Octopus release notes](octopus-release-notes.png "width=500")
 
-Reading releases in Octopus is useful but sharing them via email, slack or other mediums is even better. Octopus makes it easy to send release notes to your project management group or leadership team after every successful deployment to production keeping everyone in the loop. 
+Using multiple tools can make it hard to track application releases and the features they include. It's hard to find which features, bug fixes and enhancements contribute to releases and deployments. Project managers often write release notes to make this easier to understand, but it's generally a manual process. Integrating Octopus and Jira enables this process to be fully automated. Octopus knows which issues have already been deployed to an environment so it can quickly generate release notes showing what's new in test or production environments. 
+
+Reading release notes in Octopus is useful but sharing them via email, slack or other mediums is even better. Using our [email notification step](https://octopus.com/docs/deployment-process/steps/email-notifications) or community contributed step templates, like [slack](https://library.octopus.com/step-templates/99e6f203-3061-4018-9e34-4a3a9c3c3179/actiontemplate-slack-send-simple-notification) or [Microsoft teams](https://library.octopus.com/step-templates/110a8b1e-4da4-498a-9209-ef8929c31168/actiontemplate-microsoft-teams-post-a-message), you can send release notes to your team, managers or executives after every successful deployment to production. This makes it quick and easy to keep everyone in the loop. 
 
 ## Wrap up
 
