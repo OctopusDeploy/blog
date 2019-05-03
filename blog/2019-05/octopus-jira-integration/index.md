@@ -17,7 +17,7 @@ tags:
 
 We recently shipped our [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira), and I thought I'd explore it a bit as it unlocks some pretty useful scenarios. 
 
-Building great software often requires using multiple tools and services, but finding the right ones and getting them to talk to each other can be a headache.  Atlassian's [Jira](https://atlassian.com/jira) is a popular application that helps teams to plan, track, and manage software releases whereas Octopus Deploy helps teams automate their development and operations processes in a fast, repeatable and reliable manner. Together, they enable teams to get better visibility and traceability into their software pipeline from idea to production.
+Building great software often requires using multiple tools and services, but finding the right ones and getting them to talk to each other can be a headache. Atlassian's [Jira](https://atlassian.com/jira) is a popular application that helps teams to plan, track, and manage software releases whereas Octopus Deploy helps teams automate their development and operations processes in a fast, repeatable and reliable manner. Together, they enable teams to get better visibility and traceability into their software pipeline from idea to production.
 
 Integrating Octopus and Jira unlocks three key scenarios: 
 
@@ -33,7 +33,7 @@ Note: The Octopus Deploy plugin is only compatible with Jira Cloud as Jira Serve
 
 > Done means deployed to production
 
-If you've ever worked with development teams, you've probably heard someone say a new feature is 98% done and then it takes weeks for it be completed and deployed to production. This common situation has lead teams to say done means deployed to production. 
+If you've ever worked with development teams, you've probably heard someone say a new feature is 98% done and then it takes weeks for it to be completed and deployed to production. This common situation has lead teams to say 'done' means deployed to production. 
 
 Our Octopus plugin for Jira makes this it visible to see if an enhancement or bug fix is done and deployed to production or if it's still a work in progress. This new information is available directly in your Jira issues, and you can click through to Octopus for further details.  This enables greater visibility and insight for your team and company in the tool they're most comfortable with. 
 
@@ -41,9 +41,9 @@ Our Octopus plugin for Jira makes this it visible to see if an enhancement or bu
 
 ![Octopus release details](octopus-release-details.png "width=500")
 
-Software usually runs through a CI/CD pipeline on it's way to production. Developers push code to source code repositories like GitHub, build servers, like Bamboo and TeamCity, build it, and Octopus deploys it. Traditionally, the linkages between each of those steps can be lost, but this is now a thing of the past. 
+Software usually runs through a CI/CD pipeline on it's way to production. Developers push code to source code repositories like GitHub, build servers, like Bamboo and TeamCity, build it, and Octopus deploys it. Traditionally, the linkages between each of those steps can be lost, but this is now possible.
 
-Using our Jira plugin and one of our build server plugins ([see below for links](/blog/2019-05/octopus-jira-integration/index.md#wrap-up)), it's now possible to see your Jira issues and build details directly in Octopus. This allows teams to see the build and requirements details (Jira issues) that contributed to a release giving end-to-end traceability from issue to deployment. You can click through to Jira for more information. It can also help aid in finding the changes that introduce bugs into releases.
+Using our Jira plugin and one of our build server plugins ([see below for links](/blog/2019-05/octopus-jira-integration/index.md#wrap-up)), it's now possible to see your Jira issues and build details directly in Octopus. This allows teams to see the Jira issues and build details that contributed to a release giving end-to-end traceability from issue to deployment. You can click through to Jira for more information. It can also help aid in finding the changes that introduce bugs into releases.
 
 ## Generate and share Release Notes automatically
 
