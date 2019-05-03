@@ -12,7 +12,7 @@ tags:
 
 Recently I had a chance to meet with a customer to talk about their development process. They wanted to know if it's possible to alter their CI/CD pipeline to make it easier and faster to test changes. When they started describing their scenario I couldn't help but smile because I've run into it many times over the past 10+ years.
 
-They have three teams of developers and four main applications. There are some dependencies between the four main applications. Application A might call Application B which calls Application C and so on. There isn't a clear "line in the sand" regarding which team can work on which application. At any given point, two teams might be working on the same application. For example:
+They have three teams of developers and four main applications. There are some dependencies between the four main applications. Application A might call Application B which calls Application C and so on. There isn't a clear "line in the sand" regarding which team can work on which application. At any given point, two teams might be working on the same application. For example: 
 
 - Team A is adding a new feature to Application A.
 - Team B is making some bug fixes to Application A.
