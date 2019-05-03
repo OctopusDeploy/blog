@@ -17,7 +17,7 @@ tags:
 
 We recently shipped our [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira), and I thought I'd explore it a bit as it unlocks some pretty useful scenarios. 
 
-Building great software often requires using multiple tools and services, but finding the right ones and getting them to talk to each other can be a headache. Atlassian's [Jira](https://atlassian.com/jira) is a popular application that helps teams to plan, track, and manage software releases whereas Octopus Deploy helps teams automate their development and operations processes in a fast, repeatable and reliable manner. Together, they enable teams to get better visibility and traceability into their software pipeline from idea to production.
+Building great software often requires using multiple tools and services, but finding the right ones and getting them to talk to each other can be a headache.  Atlassian's [Jira](https://atlassian.com/jira) is a popular application that helps teams to plan, track, and manage software releases whereas Octopus Deploy helps teams automate their development and operations processes in a fast, repeatable and reliable manner. Together, they enable teams to get better visibility and traceability into their software pipeline from idea to production.
 
 Integrating Octopus and Jira unlocks three key scenarios: 
 
