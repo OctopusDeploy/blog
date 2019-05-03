@@ -30,9 +30,9 @@ Note: The Octopus Deploy plugin is only compatible with Jira Software Cloud as J
 
 ## See when features or bug fixes are deployed to Prod
 
-![Jira issue with deployment details](jira-issue-with-deployments.png "width=500")
-
 > Done means deployed to production
+
+![Jira issue with deployment details](jira-issue-with-deployments.png "width=500")
 
 If you've ever worked with development teams, you've probably heard someone say a new feature is 98% done and then it takes weeks for it to be completed and deployed to production. This common situation has lead teams to say 'done' means deployed to production. 
 
