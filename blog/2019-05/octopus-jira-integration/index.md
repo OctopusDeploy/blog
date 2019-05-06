@@ -25,19 +25,19 @@ Integrating Octopus and Jira Software unlocks three key scenarios:
 * **[See the Jira issues included in Octopus releases](/blog/2019-05/octopus-jira-integration/index.md#see-the-jira-issues-included-in-octopus-releases).** It's now possible to see which Jira issues (work items) Octopus includes in releases with links back to Jira for further details.
 * **[Generate release notes automatically](/blog/2019-05/octopus-jira-integration/index.md#generate-and-share-release-notes-automatically).** Octopus can now generate release notes visible directly within your deployments to your environments like test and production. Share them with your team, managers, or executives via email, slack, and more.
 
-**[Getting started](/blog/2019-05/octopus-jira-integration/index.md#getting-started).** - Learn how to connect the applications and get started.
+**[Getting started](/blog/2019-05/octopus-jira-integration/index.md#getting-started)** - Learn how to connect the applications and get started.
 
 Note: The Octopus Deploy plugin is only compatible with Jira Software Cloud as Jira Server (on-prem) does not support the APIs required to enable this functionality.
 
 ## See when features or bug fixes are deployed to Prod
 
-> Done means deployed to production
-
 ![Jira issue with deployment details](jira-issue-with-deployments.png "width=500")
+
+> Done means deployed to production
 
 If you've ever worked with development teams, you've probably heard someone say a new feature is 98% done and then it takes weeks for it to be completed and deployed to production. This common situation has led teams to say 'done' means deployed to production.
 
-Our Octopus plugin for Jira Software makes it possible to see if an enhancement or bug fix is done and deployed to production or if it's still a work in progress. This new information is available directly in your Jira issues, and you can click through to Octopus for further details.  This enables greater visibility and insight for your team and company in the tool they're most comfortable with.
+Our Octopus plugin for Jira Software makes it possible to see if an enhancement or bug fix is done and deployed to production or if it's still a work in progress. This new information is available directly in your Jira issues, and you can click through to Octopus for further details. This enables greater visibility and insight for your team and company in the tool that they're most comfortable with.
 
 ## See the Jira issues included in Octopus Releases
 
