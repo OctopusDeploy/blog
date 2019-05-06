@@ -27,9 +27,13 @@ In the case of C#, this is achieved by a `#load <scriptmodulefilename.csx>` call
 
 The help text above the body of your Script Module will show the exact syntax you need.
 
+## Usage
+
 Another great feature we're proud to talk about is Script Module usage. We've surfaced where your Script Module has been used, so that it's easy to see what projects might be impacted by your change. This will mean less suprises during your deployments, which is always a great thing. We now show which projects and releases have references:
 
 ![Script Module Usages](script-module-usage.png "width=500")
+
+We've also got plans to show this usage on Variable Sets very soon. Stay tuned!
 
 Take a look at [the Script Modules documentation](https://octopus.com/docs/deployment-examples/custom-scripts/script-modules) for a walkthrough and examples for each language.
 
