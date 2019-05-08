@@ -11,11 +11,11 @@ tags:
  - Script Modules
 ---
 
-For a long while now, we've been [hearing requests](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9653631-c-script-in-script-modules) for [Script Module](https://octopus.com/docs/deployment-examples/custom-scripts/script-modules) support for languages other than PowerShell. We're happy to share that this has just shipped in our latest release - 2019.5.0!
+For a long while now, we've been [hearing requests](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9653631-c-script-in-script-modules) for [Script Module](https://octopus.com/docs/deployment-examples/custom-scripts/script-modules) support for languages other than PowerShell. We're happy to share this has just shipped in our latest release - 2019.5.0!
 
 For some people, this is awesome news. For others, you're probably asking _"What's a Script Module?"_
 
-A Script Module is a collection of functions that can be shared across mutiple projects. These can make your life easier by allowing functions to be centrally defined and managed, instead of copying and pasting around code between your projects.
+A Script Module is a collection of functions that can be shared across mutiple projects. These can make your life easier by allowing functions to be centrally defined and managed, instead of copying and pasting code between your projects.
 
 ![New C# Script Module](new-script-module.png "width=500")
 
@@ -29,7 +29,7 @@ The help text above the body of your Script Module will show the exact syntax yo
 
 ## Usage
 
-Another great feature we're proud to talk about is Script Module usage. We've surfaced where your Script Module has been used, so that it's easy to see what projects might be impacted by your change. This will mean less suprises during your deployments, which is always a great thing. We now show which projects and releases have references:
+Another great feature we're proud to talk about is Script Module usage. We've surfaced where your Script Module has been used, so that it's easy to see what projects might be impacted by your changes. This will mean less suprises during your deployments, which is always a great thing. We now show which projects and releases have references:
 
 ![Script Module Usages](script-module-usage.png "width=500")
 
