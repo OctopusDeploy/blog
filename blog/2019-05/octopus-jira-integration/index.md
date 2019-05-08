@@ -25,7 +25,7 @@ Integrating Octopus and Jira Software unlocks three key scenarios:
 * **[See the Jira issues included in Octopus releases](/blog/2019-05/octopus-jira-integration/index.md#see-the-jira-issues-included-in-octopus-releases).** It's now possible to see which Jira issues (work items) Octopus includes in releases with links back to Jira for further details.
 * **[Generate release notes automatically](/blog/2019-05/octopus-jira-integration/index.md#generate-and-share-release-notes-automatically).** Octopus can now generate release notes when deploying to your environments like dev, test or production. Share them with your team, managers, or executives via email, slack, and more.
 
-**[Getting started](/blog/2019-05/octopus-jira-integration/index.md#getting-started)** - Learn how to connect the applications and get started.
+Learn how to **[connect Octopus Deploy and Jira Software](/blog/2019-05/octopus-jira-integration/index.md#connect-octopus-deploy-and-jira-software)** and get started.
 
 Note: The Octopus Deploy plugin is only compatible with Jira Software Cloud as Jira Server (on-prem) does not support the APIs required to enable this functionality.
 
@@ -55,7 +55,7 @@ Using multiple tools can make it hard to track application releases and the feat
 
 Reading release notes in Octopus is useful but sharing them via email, slack, or other mediums is even better. Using our [email notification step](https://octopus.com/docs/deployment-process/steps/email-notifications) or community contributed step templates, like [slack](https://library.octopus.com/step-templates/99e6f203-3061-4018-9e34-4a3a9c3c3179/actiontemplate-slack-send-simple-notification) or [Microsoft teams](https://library.octopus.com/step-templates/110a8b1e-4da4-498a-9209-ef8929c31168/actiontemplate-microsoft-teams-post-a-message), you can send release notes to your team, managers, or executives after every successful deployment to production. This makes it quick and easy to keep everyone in the loop.
 
-## Getting started
+## Connect Octopus Deploy and Jira Software
 
 If you're team is already using Jira Software and Octopus Deploy, I highly recommend downloading our plugin and trying it out. Read our [docs](https://octopus.com/docs/api-and-integration/metadata/jira) about how to connect the two applications and get started.
 
