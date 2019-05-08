@@ -23,7 +23,7 @@ Integrating Octopus and Jira Software unlocks three key scenarios:
 
 * **[See when features or bug fixes are deployed to Prod](/blog/2019-05/octopus-jira-integration/index.md#see-when-features-or-bug-fixes-are-deployed-to-prod).** 'Done' means deployed to production, and this is now visible directly in your Jira issues. See when your team finishes a new feature or bug fix and deploys it to production.
 * **[See the Jira issues included in Octopus releases](/blog/2019-05/octopus-jira-integration/index.md#see-the-jira-issues-included-in-octopus-releases).** It's now possible to see which Jira issues (work items) Octopus includes in releases with links back to Jira for further details.
-* **[Generate release notes automatically](/blog/2019-05/octopus-jira-integration/index.md#generate-and-share-release-notes-automatically).** Octopus can now generate release notes visible directly within your deployments to your environments like test and production. Share them with your team, managers, or executives via email, slack, and more.
+* **[Generate release notes automatically](/blog/2019-05/octopus-jira-integration/index.md#generate-and-share-release-notes-automatically).** Octopus can now generate release notes when deploying to your environments like dev, test or production. Share them with your team, managers, or executives via email, slack, and more.
 
 **[Getting started](/blog/2019-05/octopus-jira-integration/index.md#getting-started)** - Learn how to connect the applications and get started.
 
