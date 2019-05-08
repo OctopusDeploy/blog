@@ -4,13 +4,13 @@ description: Derek Campbell will be hosting a Webinar with Jetbrains on "Turboch
 author: derek.campbell@octopus.com
 visibility: public
 published: 2019-05-08
-bannerImage: blogimage-winops-success.png
-metaImage: blogimage-winops-success.png
+bannerImage: turbocharging-teamcity.png
+metaImage: turbocharging-teamcity.png
 tags:
  - Events
 ---
 
-![Derek Campbell hosting a Webinar in conjunction with Jetbrains on "Turbocharging TeamCity with Octopus Deploy"](blogimage-jetbrains-AWAITING)
+![Derek Campbell hosting a Webinar in conjunction with Jetbrains on "Turbocharging TeamCity with Octopus Deploy"](turbocharging-teamcity.png)
 
 TeamCity and Octopus Deploy go together like cheese and crackers, or peanut butter and jelly for our American friends. In this webinar, [Derek Campbell](https://twitter.com/octoderek) will start with a blank TeamCity and Octopus installation and show you how to integrate TeamCity and Octopus Deploy, build a solution and take you through deploying to Development, Test and finally to Production in under an hour to both Azure and AWS.
 
