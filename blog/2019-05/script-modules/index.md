@@ -19,7 +19,7 @@ A Script Module is a collection of functions that can be shared across mutiple p
 
 ![New C# Script Module](new-script-module.png "width=500")
 
-Once you've defined your Script Module, you can use it in your projects. One thing to note is that the new languages require explicit imports - they are not imported automatically as is the case with PowerShell Script Modules, to prevent naming collisions and unexpected behaviour.
+Once you've defined your Script Module, you can use it in your projects. One thing to note is that the new languages require explicit imports; they are not imported automatically as is the case with PowerShell Script Modules. This has the benefit of making the script module dependency more explicit and prevents naming collisions and unexpected behavior.
 
 In the case of C#, this is achieved by a `#load <scriptmodulefilename.csx>` call at the top of the script:
 
