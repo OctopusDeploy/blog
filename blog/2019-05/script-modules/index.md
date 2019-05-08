@@ -15,7 +15,7 @@ For a long while now, we've been [hearing requests](https://octopusdeploy.uservo
 
 For some people, this is awesome news. For others, you're probably asking _"What's a Script Module?"_
 
-A Script Module is a collection of functions that can be shared across mutiple projects. These can make your life easier by allowing functions to be centrally defined and managed, instead of copying and pasting code between your projects.
+A Script Module is a collection of functions that can be shared across mutiple projects. These can make your life easier by allowing functions to be centrally defined and managed, instead of copying and pasting code between your projects. Find them under Library -> Script Modules.
 
 ![New C# Script Module](new-script-module.png "width=500")
 
