@@ -2,7 +2,7 @@
 title: Expanded Script Modules Support
 description: Octopus Deploy now supports script modules for Bash, C#, F# and Python!
 author: matt.richardson@octopus.com
-visibility: private
+visibility: public
 published: 2019-05-07
 metaImage:
 bannerImage:
