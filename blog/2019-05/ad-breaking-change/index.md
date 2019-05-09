@@ -10,11 +10,11 @@ tags:
   - Security
 ---
 
-We recently announced in version 2019.5 that there was a breaking change for Active Directory and I wanted to write a blog to help people understand what it means for your organisation, infosec team and most importantly Administrators of Octopus. [Github Issue](https://github.com/OctopusDeploy/Issues/issues/5549)
+We recently announced in version 2019.5 that there was a breaking change for Active Directory and I wanted to write a blog to help people understand what it means for your organisation, infosec team and most importantly Administrators of Octopus and you can see the issue on [Github](https://github.com/OctopusDeploy/Issues/issues/5549)
 
 ## The background & issue
 
-In most organisations, they sensibly use [Principle of Least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). What this means is that technical staff has a standard user as part of the domain for their regular duties such as writing documentation, reading emails and browsing the web. They also a privileged account which they use in their day to technical duties which may include Deployments, Development, resetting users passwords and accessing sensitive systems.  
+In most organisations, they sensibly use [Principle of Least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). What this means is that technical staff has a standard user as part of the domain for their regular duties such as writing documentation, reading emails and browsing the web. They also have access to a privileged account which they use in their day to technical duties which may include Deployments, Development, resetting users passwords and accessing sensitive systems.  
 
 Before version 2019.5.0 Octopus treated user Emails like a key and expected them to be unique. This caused an issue with Active Directory, where there are no such constraints and when multiple users have the same email address Octopus thinks they are the same user. They are the same person, but not the same user in an Active Directory sense. No other provider works this way, but to prevent issues with Active Directory when it's being used this way we need to drop the uniqueness constraint and assume the same person can be using different user accounts tied to one email address.
 
@@ -30,7 +30,7 @@ If the user accounts you use do not share email addresses, then you are not affe
 
 If you do share email accounts between non-administrative and administrator accounts, then you are affected, and we recommend doing a Proof of Concept upgrade and testing that administrator accounts have the required access after the upgrade. 
 
-If you're reading this and you've accidentally locked yourself out of Octopus after a Proof of Concept upgrade, we have a handy way to manage admin accounts in our [docs](https://octopus.com/docs/api-and-integration/octopus.server.exe-command-line/admin). 
+If you're reading this after the fact and you've accidentally locked yourself out of Octopus after a Proof of Concept upgrade, we have a handy way to manage admin accounts in our [docs](https://octopus.com/docs/api-and-integration/octopus.server.exe-command-line/admin). This should grant you access to your Octopus instance but please do contact [Support](mailto:Support@Octopus.com) if you are struggling to recover. 
 
 ## Conclusion
 
