@@ -24,6 +24,6 @@ When I used Octopus for the first time back in the day, it left me with a grin I
 To this day it continues to hold a special place in my little developer heart. It's been exciting to watch Octopus grow over the last few years.
 To join Octopus itself at this stage is a privilege and I'm excited to work to bring its sanity-inducing magic to more customers than ever.
 
-When I'm not at the keyboard, you'll probably find me outside on a bicycle, mountain, beach, or hanging out with my hilariously eccentric 3 year old son.
+When I'm not at the keyboard, you'll probably find me outside on a bicycle, mountain, beach, or hanging out with my hilariously eccentric 3 year old son. 
 
 Happy Deployments!
