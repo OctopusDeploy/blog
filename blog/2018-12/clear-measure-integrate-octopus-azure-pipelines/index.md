@@ -14,7 +14,7 @@ tags:
 
 In this webinar, Microsoft MVP Jeffrey Palermo demonstrates how to integrate Octopus Deploy with Azure Pipelines. By the end of the webinar, you should have a clear idea of how to get the most out of both tools for a fully automated, streamlined CI/CD pipeline.
 
-Some of the highlights:
+Some of the highlights :
 *  Why would you need Octopus Deploy? (7:25)
 * Overview architecture of Octopus Deploy with Azure DevOps Services (14:20)
 * Octopus Deployment Pipeline (28:59)
