@@ -18,4 +18,4 @@ Some of the highlights:
 *  Why would you need Octopus Deploy? (7:25)
 * Overview architecture of Octopus Deploy with Azure DevOps Services (14:20)
 * Octopus Deployment Pipeline (28:59)
-* Packaging with NuGet (33:20) 
+* Packaging with NuGet (33:20)
