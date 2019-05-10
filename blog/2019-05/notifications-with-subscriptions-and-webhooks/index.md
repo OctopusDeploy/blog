@@ -4,8 +4,8 @@ description: An introductory guide to using subscriptions with webhooks.
 author: ryan.rousseau@octopus.com
 visibility: public
 published: 2019-05-03
-metaImage: production-notifications-1.png
-bannerImage: production-notifications-1.png
+metaImage: production-notifications.png
+bannerImage: production-notifications.png
 tags:
  - Subscriptions
 ---
@@ -452,4 +452,4 @@ That's it! We started with nothing and built a webhook function that not only se
 
 I hope that was a helpful walkthrough for you. I've saved the sample payload and function file over at [Github](https://gist.github.com/ryanrousseau/2f9b42f4c20681f73001c42205d6c5c3).
 
-Please leave any feedback or ask any questions below in the comments. If you've had success with subscriptions and webhooks, share your story with us!
+Please leave any feedback or ask any questions below in the comments.  If you've had success with subscriptions and webhooks, share your story with us!
