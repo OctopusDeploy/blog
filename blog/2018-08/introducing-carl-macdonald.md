@@ -3,6 +3,8 @@ title: "Introducing Carl MacDonald"
 visibility: public
 description: "A brief introduction to Carl MacDonald"
 published: 2018-08-31
+metaImage: carl-macdonald.png
+bannerImage: carl-macdonald.png
 tags:
  - Company
 ---
@@ -10,7 +12,7 @@ tags:
 <img alt="Profile Pic" src="https://i.octopus.com/site/team/CarlMac.jpg" height="140" width="140" />
 </div>
 
-Hello! I’m Carl and I joined Octopus as an Account Manager in August 2018.
+Hello! I’m Carl and I joined Octopus as an Account Manager in August 2018. 
 
 I started in sales back in 2001 straight after graduating from my Business degree. I’ve had a variety of roles selling everything from Internet connectivity, shared and dedicated web hosting, reversable debugging software, and most recently selling commercial licenses of CCleaner for Piriform Software, London. I spent 10 years at Red Gate Software starting in New Business sales, progressing to Business Development and then as an Account Manager. I’m excited to join Octopus having known about them and their great reputation for a good few years. I’m looking forward to working with new and existing customers (predominantly UK based) and helping them on their Octopus journey.
 

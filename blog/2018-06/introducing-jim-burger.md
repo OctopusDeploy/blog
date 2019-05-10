@@ -3,6 +3,8 @@ title: "Introducing Jim Burger"
 visibility: public
 description: "A brief introduction to Jim Burger"
 published: 2018-06-12
+metaImage: jim-burger.png
+bannerImage: jim-burger.png
 tags:
  - Company
 ---

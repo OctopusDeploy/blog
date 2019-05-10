@@ -4,6 +4,8 @@ visibility: public
 description: "A brief introduction to Roy Wallace"
 author: roy.wallace@octopus.com
 published: 2018-10-05
+metaImage: roy-wallace.png
+bannerImage: roy-wallace.png
 tags:
  - Company
 ---
