@@ -5,7 +5,7 @@ author: ryan.rousseau@octopus.com
 visibility: public
 published: 2019-05-03
 metaImage: production-notifications.png
-bannerImage: production-notification.png
+bannerImage: production-notifications.png
 tags:
  - Subscriptions
 ---
