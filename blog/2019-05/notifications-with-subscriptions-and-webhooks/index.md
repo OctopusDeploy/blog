@@ -14,7 +14,7 @@ tags:
 
 ## Intro
 
-Hey there! In a recent episode of [Ask Octopus](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=22s), I talked about how using Octopus [Subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) and custom webhooks can solve many problems. I presented the use case of sending a slack notification for every production deployment. I wanted to explore this idea in more detail which led me to write this post. So let's get to it and set up Slack notifications for all of our production deployments.
+Hey there! In a recent episode of [Ask Octopus](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=22s), I talked about how using Octopus [Subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) and custom webhooks can solve many problems. I presented the use case of sending a slack notification for every production deployment. I wanted to explore this idea in more detail which led me to write this post.  So let's get to it and set up Slack notifications for all of our production deployments.
 
 ## Setup
 
@@ -164,7 +164,7 @@ The initial webhook is configured. The subscription is sending events over to it
 
 First, we check if we have a payload. If we don't have one, we send back a Bad Request response.
 
-Then we extract the subscription name and message and use that to create a Slack message.
+Then we extract the Subscription name and message and use that to create a Slack message.
 
 ```javascript
 exports.logOctopusEvent = functions.https.onRequest((req, res) => {
