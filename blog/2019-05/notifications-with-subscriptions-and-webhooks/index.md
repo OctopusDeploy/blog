@@ -4,8 +4,8 @@ description: An introductory guide to using subscriptions with webhooks.
 author: ryan.rousseau@octopus.com
 visibility: public
 published: 2019-05-03
-metaImage: production-notifications.png
-bannerImage: production-notifications.png
+metaImage: production-notifications-1.png
+bannerImage: production-notifications-1.png
 tags:
  - Subscriptions
 ---
@@ -24,7 +24,7 @@ I have six existing projects without any notifications built into their processe
 
 ## Webhook
 
-I'm going to start with configuring the webhook for two reasons. The first reason is that I need a webhook URL to configure the subscription. The second is that I want to use the webhook to inspect the payload so that I know what data to expect. I'll start with a simple function that accepts the web request and logs the body of that request. I'm using Firebase Cloud Functions as my endpoint for this demo.
+I'm going to start with configuring the webhook for two reasons. The first reason is that I need a webhook URL to configure the subscription. The second is that I want to use the webhook to inspect the payload so that I know what data to expect. I'll start with a simple function that accepts the web request and logs the body of that request. I'm using Firebase Cloud Functions as my endpoint for this demo. 
 
 ```javascript
 exports.logOctopusEvent = functions.https.onRequest((req, res) => {
