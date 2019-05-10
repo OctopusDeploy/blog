@@ -18,7 +18,7 @@ Hey there! In a recent episode of [Ask Octopus](https://www.youtube.com/watch?v=
 
 ## Setup
 
-I have six existing projects without any notifications built into their processes. The number of projects isn't essential here. The same approach will work whether you have one project or hundreds.
+I have six existing projects without any notifications built into their processes. The number of projects isn't essential here. The same approach will work whether you have one project or hundreds. 
 
 ![Projects on dashboard](dashboard.png)
 
