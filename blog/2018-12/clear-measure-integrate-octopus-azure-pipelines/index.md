@@ -1,9 +1,11 @@
 ---
-title: WEBINAR - The Right Way to Integrate Octopus Deploy with Azure Pipelines
+title: Webinar - The Right Way to Integrate Octopus Deploy with Azure Pipelines
 description: Learn how to create your own end-to-end model for implementing an automated DevOps pipeline.
-author: andrew.maher@octopus.com
+author: rob.pearson@octopus.com
 visibility: public
 published: 2018-12-06
+metaImage: webinar-azure-pipelines.png
+bannerImage: webinar-azure-pipelines.png
 tags:
  - Webinar
 ---
@@ -16,4 +18,4 @@ Some of the highlights:
 *  Why would you need Octopus Deploy? (7:25)
 * Overview architecture of Octopus Deploy with Azure DevOps Services (14:20)
 * Octopus Deployment Pipeline (28:59)
-* Packaging with NuGet (33:20)
+* Packaging with NuGet (33:20) 

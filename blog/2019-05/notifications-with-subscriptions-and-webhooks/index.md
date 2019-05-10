@@ -4,8 +4,8 @@ description: An introductory guide to using subscriptions with webhooks.
 author: ryan.rousseau@octopus.com
 visibility: public
 published: 2019-05-03
-metaImage:
-bannerImage:
+metaImage: production-notifications.png
+bannerImage: production-notification.png
 tags:
  - Subscriptions
 ---

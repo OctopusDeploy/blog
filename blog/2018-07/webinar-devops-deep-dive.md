@@ -1,14 +1,16 @@
 ---
-title: WEBINAR - DevOps Deep Dive
+title: Webinar - DevOps Deep Dive
 description: All your DevOps questions answered
-author: rebecca.mcneil@octopus.com
+author: rob.pearson@octopus.com
 visibility: public
 published: 2018-07-31
+metaImage: webinar-deep-dive.png
+bannerImage: webinar-deep-dive.png
 tags:
  - Webinar
 ---
 
-<iframe width="560" height="315"  src="https://www.youtube.com/embed/0LbFjC9MKxs" frameborder="0" allowfullscreen></iframe>
+<div class="embed-responsive"><iframe class="embed-responsive-item" width="560" height="315"  src="https://www.youtube.com/embed/0LbFjC9MKxs" frameborder="0" allowfullscreen></iframe></div>
 
 In this webinar, Microsoft MVP, Jeffrey Palermo and Octopus Deploy Founder and CEO, Paul Stovell, team up to answer all your DevOps questions, no matter how technical! 
 
@@ -25,7 +27,7 @@ It was a great discussion that covered a lot of questions including:
 * The vision behind tenants (54:17)
 * Managing tons and tons of variables (1:00:28)
 * How can I store my entire Octopus configuration in Git so that when I change it, hotfix branches from weeks ago can still be deployed? (1:06:54)
-* Using different production networks separate from the one you can access (1:09:50).
+* Using different production networks separate from the one you can access (1:09:50). 
 
 
 
