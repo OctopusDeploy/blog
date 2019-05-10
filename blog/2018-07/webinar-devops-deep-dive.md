@@ -10,7 +10,7 @@ tags:
  - Webinar
 ---
 
-<div class="embed-responsive"><iframe class="embed-responsive-item" width="560" height="315"  src="https://www.youtube.com/embed/0LbFjC9MKxs" frameborder="0" allowfullscreen></iframe></div>
+<iframe width="560" height="315"  src="https://www.youtube.com/embed/0LbFjC9MKxs" frameborder="0" allowfullscreen></iframe>
 
 In this webinar, Microsoft MVP, Jeffrey Palermo and Octopus Deploy Founder and CEO, Paul Stovell, team up to answer all your DevOps questions, no matter how technical! 
 
