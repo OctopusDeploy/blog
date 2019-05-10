@@ -17,6 +17,6 @@ Over the years I've introduced Octopus Deploy to several businesses. The result 
 
 I started out as a junior programmer in the late nineties, had some time off to learn the automotive trade and then rejoined the software game in the .NET 1.1 days. I've been involved in software ever since. More recently I've been leading a team to build payment systems and along that journey I discovered that I get into the security & compliance related aspects of development & testing.
 
-When I'm not automating all the things, I like to hang out with my wonderful family, learn about reverse engineering and security, play guitar, and make a mess in my kitchen.
+When I'm not automating all the things, I like to hang out with my wonderful family, learn about reverse engineering and security, play guitar, and making a mess in my kitchen.
 
 Happy Deployments!
