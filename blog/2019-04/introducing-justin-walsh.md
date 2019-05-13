@@ -3,7 +3,7 @@ title: "Introducing Justin Walsh"
 visibility: public
 description: "A brief introduction to Justin Walsh"
 author: justin.walsh@octopus.com
-published: 2019-04-08
+published: 2019-05-13
 tags:
  - Company
 ---
@@ -18,3 +18,4 @@ I have been a systems administrator and support engineer for many years now, sta
 Throughout that time, I've always derived the greatest enjoyment from helping users successfully use the products under my purview, and hearing feedback about how their lives are positively impacted because of them! I look forward to continuing this for Octopus and its users moving forward!
 
 When not working in front of my computer, I enjoy working on my farm with my family, where we grow hay and straw for local farmers, as well as manage a small menagerie of assorted livestock.
+
