@@ -4,8 +4,8 @@ description: An introductory guide to using subscriptions with webhooks.
 author: ryan.rousseau@octopus.com
 visibility: public
 published: 2019-05-03
-metaImage:
-bannerImage:
+metaImage: production-notifications.png
+bannerImage: production-notifications.png
 tags:
  - Subscriptions
 ---
@@ -14,17 +14,17 @@ tags:
 
 ## Intro
 
-Hey there! In a recent episode of [Ask Octopus](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=22s), I talked about how using Octopus [Subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) and custom webhooks can solve many problems. I presented the use case of sending a slack notification for every production deployment. I wanted to explore this idea in more detail which led me to write this post. So let's get to it and set up Slack notifications for all of our production deployments.
+Hey there! In a recent episode of [Ask Octopus](https://www.youtube.com/watch?v=rKwYkDN_IPU&t=22s), I talked about how using Octopus [Subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) and custom webhooks can solve many problems. I presented the use case of sending a slack notification for every production deployment. I wanted to explore this idea in more detail which led me to write this post.  So let's get to it and set up Slack notifications for all of our production deployments.
 
 ## Setup
 
-I have six existing projects without any notifications built into their processes. The number of projects isn't essential here. The same approach will work whether you have one project or hundreds.
+I have six existing projects without any notifications built into their processes.  The number of projects isn't essential here. The same approach will work whether you have one project or hundreds. 
 
 ![Projects on dashboard](dashboard.png)
 
 ## Webhook
 
-I'm going to start with configuring the webhook for two reasons. The first reason is that I need a webhook URL to configure the subscription. The second is that I want to use the webhook to inspect the payload so that I know what data to expect. I'll start with a simple function that accepts the web request and logs the body of that request. I'm using Firebase Cloud Functions as my endpoint for this demo.
+I'm going to start with configuring the webhook for two reasons. The first reason is that I need a webhook URL to configure the subscription. The second is that I want to use the webhook to inspect the payload so that I know what data to expect. I'll start with a simple function that accepts the web request and logs the body of that request. I'm using Firebase Cloud Functions as my endpoint for this demo. 
 
 ```javascript
 exports.logOctopusEvent = functions.https.onRequest((req, res) => {
@@ -164,7 +164,7 @@ The initial webhook is configured. The subscription is sending events over to it
 
 First, we check if we have a payload. If we don't have one, we send back a Bad Request response.
 
-Then we extract the subscription name and message and use that to create a Slack message.
+Then we extract the Subscription name and message and use that to create a Slack message.
 
 ```javascript
 exports.logOctopusEvent = functions.https.onRequest((req, res) => {
@@ -452,4 +452,4 @@ That's it! We started with nothing and built a webhook function that not only se
 
 I hope that was a helpful walkthrough for you. I've saved the sample payload and function file over at [Github](https://gist.github.com/ryanrousseau/2f9b42f4c20681f73001c42205d6c5c3).
 
-Please leave any feedback or ask any questions below in the comments. If you've had success with subscriptions and webhooks, share your story with us!
+Please leave any feedback or ask any questions below in the comments.  If you've had success with subscriptions and webhooks, share your story with us!

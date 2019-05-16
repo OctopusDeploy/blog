@@ -13,7 +13,7 @@ tags:
 <img alt="Profile Pic" src="https://i.octopus.com/site/team/mark-ledwich.jpg" height="140" width="140" />
 </div>
 
-Hey there! I'm excited to join Octopus as a Solution Architect.
+Hey there! I'm excited to join Octopus as a Solution Architect. 
 
 Most of my experience is .NET development and UX/UI design for data integration and visualisation. I'm interested in understanding decision making within complexity, and human behaviour when interacting with data. My influences in this area are Daniel Kahneman, Gerd Gigerenzer, and Nassim Taleb. I believe that information &mdash; when presented promptly, beautifully and practically &mdash; can be extremely influential (usually for the better). 
 
