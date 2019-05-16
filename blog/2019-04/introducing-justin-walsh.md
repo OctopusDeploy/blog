@@ -4,6 +4,8 @@ visibility: public
 description: "A brief introduction to Justin Walsh"
 author: justin.walsh@octopus.com
 published: 2019-05-13
+metaImage: justinwalsh.png
+bannerImage: justinwalsh.png
 tags:
  - Company
 ---
