@@ -1,6 +1,6 @@
 ---
 title: Ending support for Octopus Server on Windows Server 2008. Introducing Octopus Server on Linux!
-description: Octopus Server 2019.3 LTS will be the final version of Octopus Server which can be hosted on Windows Server 2008. We are doing this to pave the way for a truly cross-platform Octopus Server which can be hosted on any modern Windows or Linux operating system, or in a container of your choice on those platforms.
+description: Octopus Server 2019.3 LTS will be the final version of Octopus Server which can be hosted on Windows Server 2008, paving the way for Octopus Server on Linux!
 author: michael.noonan@octopus.com
 visibility: private
 published: 2019-05-20
@@ -11,7 +11,7 @@ tags:
 
 **Octopus Server 2019.3 LTS will be the final version of Octopus Server you can host on Windows Server 2008.**
 
-This decision paves the way for a truly cross-platform Octopus Server. In the very near future you will be able to host Octopus Server on any modern Windows or Linux operating system, or a container on either platform. To make this happen we need to move our **minimum requirements for hosting Octopus Server to Windows Server 2008 R2**.
+This decision paves the way for a truly cross-platform Octopus Server. In the very near future you will be able to host Octopus Server on any modern Windows or Linux operating system, or a container on either platform. To make this happen we need to move our minimum requirements for hosting Octopus Server up to **Windows Server 2008 R2**.
 
 It's also worth noting Microsoft is [ending extended support for Windows Server 2008 and 2008 R2 in January 2020](https://docs.microsoft.com/en-us/windows-server/get-started/installation-and-upgrade) and thankfully you can [perform an in-place upgrade](https://docs.microsoft.com/en-us/windows-server/get-started/installation-and-upgrade). If Octopus Server is a critical resource in your business, you really should consider hosting it on a modern operating system for improved security and performance.
 
@@ -26,6 +26,12 @@ You will only be affected if:
 2. You want to upgrade Octopus Server beyond `2019.3 LTS`.
 
 Don't worry, the Octopus Server installer will prevent you from accidentally upgrading. If you do want to upgrade Octopus Server beyond `2019.3 LTS` you will need to upgrade your host operating system.
+
+## Question: Can we still host Octopus Server on Windows Server 2008 R2?
+
+Yes, Windows Server 2008 R2 will stil be a supported host for Octopus Server.
+
+There is no practical reason for us to exclude Windows Server 2008 R2 right now, even though Microsoft is ending extended support for Windows Server 2008 R2 in January 2020.
 
 ## Question: Will my deployments be affected?
 
