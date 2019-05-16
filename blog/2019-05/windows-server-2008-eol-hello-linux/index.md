@@ -6,7 +6,8 @@ visibility: private
 published: 2019-05-20
 metaImage: 
 bannerImage: 
-tags: New Releases
+tags: 
+- New Releases
 ---
 
 **Octopus Server 2019.3 LTS will be the final version of Octopus Server you can host on Windows Server 2008.**
