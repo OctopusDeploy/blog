@@ -12,7 +12,7 @@ tags:
   - New Releases
 ---
 
-We recently announced in version 2019.5 that there was a breaking change for Active Directory and I wanted to write a blog to help people understand what it means for your organisation, infosec team and most importantly Administrators of Octopus and you can see the issue on [Github](https://github.com/OctopusDeploy/Issues/issues/5549).
+We announced in version 2019.5 that there was a breaking change for Active Directory and I wanted to write a blog to help people understand what it means for your organisation, infosec team and most importantly Administrators of Octopus and you can see this issue on [Github](https://github.com/OctopusDeploy/Issues/issues/5549).
 
 ## The background & issue
 
@@ -30,12 +30,12 @@ If only the administrator account has access to Octopus, then you are not affect
 
 If the user accounts you use do not share email addresses, then you are not affected. 
 
-If you do share email accounts between non-administrative and administrator accounts, then you are affected, and we recommend doing a proof of poncept upgrade and testing that administrator accounts have the required access after the upgrade. 
+If you do share email accounts between non-administrative and administrator accounts, then you are affected, and we recommend doing a proof of concept upgrade and testing that administrator accounts have the required access after the upgrade. 
 
 If you previously had used the same email address in the past on both users, then you will now be able to have separated accounts that won't be matched and merged based on email address. 
 
-If you're reading this after the fact and you've accidentally locked yourself out of Octopus after a Proof of Concept upgrade, we have a handy way to manage admin accounts in our [docs](https://octopus.com/docs/api-and-integration/octopus.server.exe-command-line/admin). This should grant you access to your Octopus instance but please do contact [Support](mailto:Support@Octopus.com) if you are struggling to recover. 
+If you're reading this after the fact and you've accidentally locked yourself out of Octopus after a proof of oncept upgrade, we have a way to gain access to an admin account in our [docs](https://octopus.com/docs/api-and-integration/octopus.server.exe-command-line/admin). This will grant you access to your Octopus instance but if you get stuck then get in touch with [Support](mailto:Support@Octopus.com). 
 
 ## Conclusion
 
-We believe this is the right approach to this particular issue for our customers, but if you have any issues, please get in touch with [Support](mailto:Support@Octopus.com). 
+We believe this is the correct approach to this particular issue for our customers, but if you have any issues, please get in touch with [Support](mailto:Support@Octopus.com). 
