@@ -11,7 +11,7 @@ tags:
 
 **Octopus Server 2019.3 LTS will be the final version of Octopus Server you can host on Windows Server 2008.**
 
-This decision paves the way for a truly cross-platform Octopus Server. In the very near future you will be able to host Octopus Server on any modern Windows or Linux operating system, or a container on either platform. To make this happen we need to move our minimum requirements for hosting Octopus Server up to **Windows Server 2008 R2**.
+This decision paves the way for a truly cross-platform Octopus Server. In the near future you will be able to host Octopus Server on any modern Windows or Linux operating system, or a container on either platform. To make this happen we need to move our minimum requirements for hosting Octopus Server up to **Windows Server 2008 R2**.
 
 It's also worth noting Microsoft is [ending extended support for Windows Server 2008 and 2008 R2 in January 2020](https://docs.microsoft.com/en-us/windows-server/get-started/installation-and-upgrade) and thankfully you can [perform an in-place upgrade](https://docs.microsoft.com/en-us/windows-server/get-started/installation-and-upgrade). If Octopus Server is a critical resource in your business, you really should consider hosting it on a modern operating system for improved security and performance.
 
@@ -49,4 +49,4 @@ We will continue to support Octopus Server `2019.3 LTS` under our [long-term sup
 
 ## Question: When can I host Octopus Server on Linux?
 
-Very soon. We are already doing this ourselves internally. Octopus Server `2019.5`, our current release in the fast lane, will start to introduce cross-platform capabilities. After this we will focus on the stability and performance of Octopus Server on Linux, followed by a fully supported release of Octopus Server running on Linux.
+In the near future. We are already doing this ourselves internally. Octopus Server `2019.5`, our current release in the fast lane, will start to introduce cross-platform capabilities. After this we will focus on the stability and performance of Octopus Server on Linux, followed by a fully supported release of Octopus Server running on Linux.
