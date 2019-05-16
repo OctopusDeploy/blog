@@ -4,6 +4,8 @@ visibility: public
 description: "A brief introduction to Shawn Sesna"
 author: shawn.sesna@octopus.com
 published: 2019-05-13
+metaImage: shawnsesna.png
+bannerImage: shawnsesna.png
 tags:
  - Company
 ---
