@@ -2,10 +2,10 @@
 title: Ending support for Octopus Server on Windows Server 2008. Introducing Octopus Server on Linux!
 description: Octopus Server 2019.3 LTS will be the final version of Octopus Server which can be hosted on Windows Server 2008, paving the way for Octopus Server on Linux!
 author: michael.noonan@octopus.com
-visibility: private
-published: 2019-05-20
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2019-05-21
+metaImage: blogimage-octopusserverlinux-2.png
+bannerImage: blogimage-octopusserverlinux-2.png
 tags: 
 - New Releases
 ---
