@@ -19,6 +19,7 @@ It's also worth noting Microsoft is [ending extended support for Windows Server 
 The rest of this blog post should answer the most common questions. As always, please reach out to [our support team](https://octopus.com/support) if you have any questions or concerns!
 Happy Deployments!
 
+
 ## Question: Will I be affected?
 
 You will only be affected if:
