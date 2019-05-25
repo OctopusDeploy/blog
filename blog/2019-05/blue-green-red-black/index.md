@@ -26,9 +26,9 @@ The answer then goes on to say that:
 
 >  But red-black deployment is a newer term being used by Netflix, Istio, and other frameworks/platforms that support container orchestration
 
-I've frequently seen the term red/black being attributed to tools created by Netflix, so let's go to their documentation to see how they define these strategies.
+I've frequently seen the term red/black being attributed to tools created by Netflix and container platforms in general, so let's go to their documentation to see how they define these strategies.
 
-## Netflix and Istio say...
+## Netflix, Kubernetes and Istio say...
 
 Spinnaker is a deployment tool written by Netflix, and it has been open sourced and is available for anyone to use. The tool includes some documentation on the concepts it implements, including a section on [deployment strategies](https://www.spinnaker.io/concepts/#deployment-strategies):
 
@@ -38,7 +38,9 @@ So, contrary to the answer on StackOverflow, Netflix treats blue/green and red/b
 
 ![Deployment Strategies](deployment-strategies.png)
 
-The Armory blog post [Spinnaker Feature - Blue/Green (AKA Red/Black) Deployments](https://blog.armory.io/spinnaker-feature-blue-green-aka-red-black-deployments-2/) also talks about blue/green and red/black as the same thing.
+Slides from a Kubernetes presentation titled [Deployment Strategies on Kubernetes](https://www.cncf.io/wp-content/uploads/2018/03/CNCF-Presentation-Template-K8s-Deployment.pdf) made by the Cloud Native Computing Foundation also document blue/green and red/black as synonyms.
+
+![Deployment Strategies on Kubernetes](kubernetes-blue-green.png)
 
 Likewise the [Istio blog](https://istio.io/blog/2017/0.1-canary/) refers to blue/green and red/black as the same thing:
 
@@ -46,6 +48,6 @@ Likewise the [Istio blog](https://istio.io/blog/2017/0.1-canary/) refers to blue
 
 ## Conclusion
 
-Over the years I have heard many different descriptions for the differences between blue/green and red/black. Some related to how the traffic was directed (DNS vs load balancer), some referenced solutions targeting physical servers vs containerized applications, some distinguished between a hard cut over of all traffic vs session draining. I have also never seen these distinctions used with any consistency, and indeed when you dig into how terms like blue/green and red/black are used by the tools that implement them, often they are used interchangeably or explicitly called out as being the same thing.
+Over the years I have heard many different descriptions for the differences between blue/green and red/black. Some related to how the traffic was directed (DNS vs load balancer), some referenced solutions targeting physical servers vs containerized applications, some distinguished between a hard cut over of all traffic vs session draining. However I have  never seen these distinctions used with any consistency, and indeed when you dig into how terms like blue/green and red/black are used by the tools that implement them, often they are used interchangeably or explicitly called out as being interchangeable.
 
-It is safe to say that you can not reliably determine a specific technical aspect of a deployment strategy simply because it has been referred to as implementing either the blue/green or red/black strategy. At a high level (and explicitly called out in product documentation for tools like Spinnaker), both these terms refer to the same thing, and any technical difference between the two will likely be meaningful only within a particular team or company.
+It is safe to say that you can not reliably determine a specific technical aspect of a deployment strategy simply because it has been referred to as implementing either the blue/green or red/black strategy. At a high level (and explicitly called out in product documentation for tools like Spinnaker, Kubernetes and Istio), both these terms refer to the same thing, and any technical difference between the two will likely be meaningful only within a particular team or company.
