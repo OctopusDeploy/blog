@@ -12,6 +12,8 @@ tags:
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)
 
+**Heads up: The LTS program launched in January 2019. Learn more about [how the LTS program affects you](https://octopus.com/docs/administration/upgrading/long-term-support).**
+
 We are planning to ship our very first release of Octopus Server with **long-term support (LTS)** in Q4 2018. This post explains our plans for Octopus Server in an LTS world, and how you will benefit. We also explore some of the background to this decision and some of the mechanics we'll use behind the scenes.
 
 We think a lot of self-hosted customers will want to predominantly use Octopus Server releases with long-term support, but if you use self-hosted and want to keep right up to date with everything we're doing, you can keep enjoying that cake too!
@@ -112,30 +114,6 @@ If you prefer a more predictable cadence choose the slow lane releases with long
 Not really, no. We will pick the next release number for each release of Octopus Server [just like we do today](/blog/2018-01/version-change-2018.md) with some extra context:
 
 - We will add `LTS` to some part of the version for releases which come with long-term support.
-
-Let's imagine a possible future based on our current plans. _Please don't bet the farm on these exact dates, version numbers, nor features lists - this is just an example to help you imagine how our release history might look after a while, and how these will map to your scenario._
-
-- `2018.7` shipped in July 2018 primarily with support for workers - [see release notes](/blog/2018-07/octopus-release-2018.7.md).
-- `2018.8` shipped in September 2018 with support for multiple packages in steps and Kubernetes support in alpha - [see release notes](/blog/2018-09/octopus-release-2018.8/index.md).
-- `2018.9` ships in late September 2018 with the Kubernetes support in full release.
-- `2018.10 LTS` ships in early October 2018 based on the most reputable release of `2018.9` (including Kubernetes support, excluding Spaces because that comes in `2018.11`). This release comes with six months of long-term support.
-- `2018.11` ships in late October as the first installment of Spaces.
-- `2018.12` ships in late November with battle hardened Spaces and other good things.
-- `2019.1 LTS` ships in January 2019 as the next release with six months of long-term support rolling up all the good things we did since `2018.10 LTS`.
-
-  - At this point in time both `2018.10 LTS` and `2019.1 LTS` will be covered by long-term support.
-  - Notice the version numbers are not really the important part - it's the `LTS` component and the offer of support which really matters.
-
-- `2019.2` ships in late January 2019 with more good things.
-- `2019.3` ships in February 2019 with, you guessed it, even more good things.
-- `2019.4` ships in March 2019...
-- `2019.5 LTS` ships in April 2019 as the next release with six months of long-term support, rolling up all the good things we did since `2019.1 LTS`.
-
-  - At this point in time we will discontinue support for `2018.10 LTS`, with `2019.1 LTS` and `2019.5 LTS` becoming the two current releases covered by long-term support.
-
-One thing you might notice in this imagined future: there were three fast lane releases between `2019.1 LTS` and `2019.5 LTS`. We plan to ship fast lane releases at our discretion, and we plan to ship a new LTS release on a three month cadence. The most important part is to choose the releases from the best lane for you, and don't pay too much attention to the version number attached.
-
-Hopefully this imagined future helps clarify our plans.
 
 ## Wrapping Up
 
