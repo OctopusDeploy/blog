@@ -4,8 +4,8 @@ description: The term blue/green and red/black are used to describe deployment s
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2019-05-02
-metaImage:
-bannerImage:
+metaImage: blogimage-kubernetes.png
+bannerImage: blogimage-kubernetes.png
 tags:
   - Patterns
 ---
