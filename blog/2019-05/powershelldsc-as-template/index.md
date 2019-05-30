@@ -54,12 +54,12 @@ Configuration data file WebServer.psd1
 				@{
 					Name = "Web-Server" 
 					Ensure = "Present"
-					Source = "d:\\sources\\sxs"
+					Source = "d:\sources\sxs"
 				},
 				@{
 					Name = "Web-Asp-Net45"
 					Ensure = "Present"
-					Source = "d:\\sources\\sxs"
+					Source = "d:\sources\sxs"
 				}
 			)
 		}
@@ -541,7 +541,7 @@ We'll start by logging into our Octopus Deploy instance and clicking on the Libr
 
 Click on the Add button
 
-![](StepTemplates_add.png)
+![](StepTemplates_Add.png)
 
 Choose the Run a Script template
 
