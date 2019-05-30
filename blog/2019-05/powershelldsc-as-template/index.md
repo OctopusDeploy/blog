@@ -54,12 +54,12 @@ Configuration data file WebServer.psd1
 				@{
 					Name = "Web-Server" 
 					Ensure = "Present"
-					Source = "d:\sources\sxs"
+					Source = "d:\\sources\\sxs"
 				},
 				@{
 					Name = "Web-Asp-Net45"
 					Ensure = "Present"
-					Source = "d:\sources\sxs"
+					Source = "d:\\sources\\sxs"
 				}
 			)
 		}
