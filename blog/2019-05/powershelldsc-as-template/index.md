@@ -40,7 +40,6 @@ Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 
 In his example, the Node data is contained within the script itself and the features to be configured are static.  If we separate the Node data from the script into a Configuration data file, we can make our DSC script more dynamic.
 
-Configuration data file WebServer.psd1
 ```PS
 @{
     AllNodes =  @(
@@ -69,7 +68,6 @@ Configuration data file WebServer.psd1
 
 With the Node data now separated, the DSC script can be changed to be dynamic, installing features that have been specified in the configuration data file
 
-New DSC script
 ```PS
 Configuration WebServerConfiguration
 {
@@ -97,7 +95,6 @@ Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 
 Great!  We've got a good start for our web server implementation, but there's more to configuring a web server than installing Windows Features.  Let's add some more data to our configuration data file by adding some additional Windows Features, Sites, Applications, setting a default log path for IIS Sites, and harden our security with Ciphers, Hashes, Protocols, Key Exchanges, and specifying our Cipher Suite order.  NOTE: This is just for demonstration purposes, consult your Security team to determine which settings are best for your organization.
 
-Configuration data file WebServer.psd1
 ```PS
 @{
     AllNodes =  @(
@@ -645,7 +642,7 @@ When done, your step should look something like this
 Just like Step 1, this will be a Deploy a Package step, except we will not configure a Custom Install Directory.
 
 ##Step 3: Our Custom Step Template##
-The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be something like c:\dsc (or whatever you want), and Configuration Data File name is going to be what you named the file, in this example we we've been using WebServer.psd1.
+The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be something like c:\dsc (or whatever you want), and Configuration Data File name is going to be what you named the file, I called mine WebServer.psd1.
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
 
@@ -656,3 +653,78 @@ Once the deployment has completed, we should see something like the following
 Logging into our Web server, we should find that IIS has been installed with Sites, Application Pools, and Applications defined
 
 ![](WebServer.png)
+
+But wait!  In our configuration data file, we've statically set where the IIS Sites log to, what if I want something different per project?  This is where we can use the Substitute Variables in Files feature of Octopus Deploy!  
+
+Let's change the `LogPath = "c:\logs"` to `LogPath = "#{LogPath}"` line in our configuration data file.  The #{LogPath} is Octopus Deploy syntax for where the variable LogPath will go.  Don't forget to check the change in so it can be delivered to Octopus Deploy!
+
+Now that we've specified the place holder, we need to enable the Substitute Variables in Files feature for our configuration data file deployment step (Step 2).  To do this, we'll edit Step 2 and click on Configure Features like we did for Step 1.
+
+![](ConfigureFeatures.png)
+
+Enable Substitute Variables in Files
+
+![](VarSub.png)
+
+Specify which file it is that needs substitution
+
+![](SpecifyVarFile.png)
+
+Wait a sec, we've specified WebServer.psd1 in two spots now, what if it changes?  You're right!  We should change to use a variable instead, let's use ConfigurationDataFile as our varialble and update Step 3 while we're at it.
+
+![](SpecifyVarFile2.png)
+
+Okay, let's create some variables!  Click on the Variables tab of your project, and enter the variables like this
+
+![](ProjectVars)
+
+With our variables defined and our new configuration data file package delivered to Octopus Deploy, we can create a new release and deploy!  Once the deployment is complete, we'll pop over to our IIS server and we should see that the log file path has been updated.
+
+![](UpdatedLogPath.png)
+
+Wow!  That's awesome!  I can deploy server configuration changes just like I would an application on them!  What if someone was naughty and made a change manually?  Didn't you say something about monitoring for drift?  Yup, sure did!  We can tweak Paul's Machine Policy script to show us which items are no longer in desired state, mark the machine as unhealthy and use Subscriptions to let us know :)
+
+Paul's Machine Policy for monitoring drift looked like this
+
+```PS
+$result = Test-DscConfiguration -Verbose -ErrorAction SilentlyContinue
+
+if ($result -eq $false) {
+    Write-Host "Machine has drifted"
+    Fail-HealthCheck "Machine has drifted"
+} elseif ($result -eq $true) {
+    Write-Host "Machine has not drifted"
+} else {
+    Write-Host "No configuration has been applied to the machine yet"
+}
+```
+If we change a few things, we can easily list which resources have drifted
+
+```PS
+# Capture the detailed results
+$result = Test-DscConfiguration -Detailed
+
+# Check to see if anything is in the NotInDesiredState collection
+if ($result.ResourcesNotInDesiredState.Count -gt 0)
+{
+	# Loop through the resources
+	foreach ($resource in $result.ResourcesNotInDesiredState)
+	{
+		# Display warning
+		Write-Warning "Resource $($resource.ResourceId) has drifted!"
+	}
+
+	# Fail the health check
+	Fail-HealthCheck "Machine has drifted."
+}
+else
+{
+	# All good!
+	Write-Host "Machine has not drifted."
+}
+```
+
+Let's test it by stopping the OctopusDeploy.com web site on our IIS server.  After stopping the site, we should see someething like this when running a Health Check on the machine
+
+![](FailedHealthCheck.png)
+
