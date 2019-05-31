@@ -360,23 +360,22 @@ Great!  We've got a good start for our web server implementation, but there's mo
 ```
 As you might have guessed, we'll need to update our DSC script to configure the options we've specified in our configuration data file
 
-
 ```PS
 Configuration WebServerConfiguration
 {
     Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
     Import-DscResource -Module xWebAdministration
 
-	Node $AllNodes.NodeName
+    Node $AllNodes.NodeName
     {
-		# loop through features list and install
+        # loop through features list and install
         ForEach($Feature in $Node.WindowsFeatures)
         {
             WindowsFeature "$($Feature.Name)"
             {
                 Ensure = $Feature.Ensure
                 Name = $Feature.Name
-				Source = $Feature.Source # Needed if for some reason the resource isn't on the OS already and needs to be retrieved from something like a mounted ISO
+                Source = $Feature.Source # Needed if for some reason the resource isn't on the OS already and needs to be retrieved from something like a mounted ISO
             }
         }
 
@@ -387,7 +386,7 @@ Configuration WebServerConfiguration
             Name = "Default Web Site"
             State = "Stopped"
             PhysicalPath = "c:\inetpub\wwwroot"
-			DependsOn = "[WindowsFeature]Web-Server"
+            DependsOn = "[WindowsFeature]Web-Server"
         }
 
         # loop through list of default app pools and stop them
@@ -402,8 +401,8 @@ Configuration WebServerConfiguration
             {
                 Name = $Pool
                 State = "Stopped"
-				Ensure = "Absent"				 
-				DependsOn = "[WindowsFeature]Web-Server"
+                Ensure = "Absent"				 
+                DependsOn = "[WindowsFeature]Web-Server"
             }
         }
 
@@ -429,14 +428,13 @@ Configuration WebServerConfiguration
             # create the site app pool
             xWebAppPool $Site.Name
             {
-                #Name = $Site.Name
-				Name = $(if($Site.Pool.Name) {$Site.Pool.Name} else {$Site.Name})
+                Name = $(if($Site.Pool.Name) {$Site.Pool.Name} else {$Site.Name})
                 Ensure = $(if ($Site.Ensure) {$Site.Ensure} else {"Present"})
                 ManagedPipelineMode = "$($Site.Pool.Pipeline)"
                 managedRuntimeVersion = "$($Site.Pool.RuntimeVersion)"
-				State = $Site.Pool.State
-				IdentityType = $(if ($Site.Pool.IdentityType) {$Site.Pool.IdentityType} else {"ApplicationPoolIdentity"})
-				Credential = $(if (($Credentials | Where-Object {$_.Name -eq "$($Site.Name).AppPoolIdentity"}) -ne $null) {($Credentials | Where-Object {$_.Name -eq "$($Site.Name).AppPoolIdentity"}).Credential} else {$null} )
+                State = $Site.Pool.State
+                IdentityType = $(if ($Site.Pool.IdentityType) {$Site.Pool.IdentityType} else {"ApplicationPoolIdentity"})
+                Credential = $(if (($Credentials | Where-Object {$_.Name -eq "$($Site.Name).AppPoolIdentity"}) -ne $null) {($Credentials | Where-Object {$_.Name -eq "$($Site.Name).AppPoolIdentity"}).Credential} else {$null} )
             }
             
             # create the site
