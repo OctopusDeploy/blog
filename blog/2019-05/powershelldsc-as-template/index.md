@@ -10,7 +10,7 @@ tags:
  - PowerShell DSC
 ---
 
-In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to manage infrastructure, use Machine Policies to monitor for drift, and even automatically correct drift with a Project Trigger.  This blog post will expand on that idea by separating the Configuration data into a Configuration Data File (.psd1), turning a PowerShell DSC script into a step template, capturing the items that have drifted in a Machine Policy, and taking advantage of the Substitute Variables in Files feature to set properties that need to change for an Environment or Project.
+In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to manage infrastructure, use Machine Policies to monitor for drift, and even automatically correct drift with a Project Trigger.  This blog post will expand on that idea by separating the configuration data into a configuration data file (.psd1), turning a PowerShell DSC script into a step template, capturing the items that have drifted in a Machine Policy, and taking advantage of the Substitute Variables in Files feature to set properties that need to change for an Environment or Project.
 
 The code sample that Mr. Stovell provided for DSC was a good example of a basic script,
 
@@ -38,7 +38,7 @@ WebServerConfiguration -OutputPath "C:\DscConfiguration"
 Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 ```
 
-In his example, the Node data is contained within the script itself and the features to be configured are static.  If we separate the Node data from the script into a Configuration data file, we can make our DSC script more dynamic.
+In his example, the Node data is contained within the script itself and the features to be configured are static.  If we separate the Node data from the script into a Configuration Data File, we can make our DSC script more dynamic.
 
 ```PS
 @{
@@ -75,14 +75,14 @@ Configuration WebServerConfiguration
 
     Node $AllNodes.NodeName
     {
-		# loop through features list and install
+        # loop through features list and install
         ForEach($Feature in $Node.WindowsFeatures)
         {
             WindowsFeature "$($Feature.Name)"
             {
                 Ensure = $Feature.Ensure
                 Name = $Feature.Name
-				Source = $Feature.Source # Needed if for some reason the resource isn't on the OS already and needs to be retrieved from something like a mounted ISO
+                Source = $Feature.Source # Needed if for some reason the resource isn't on the OS already and needs to be retrieved from something like a mounted ISO
             }
         }
     }
