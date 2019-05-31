@@ -459,19 +459,19 @@ Configuration WebServerConfiguration
                     }
                 )
 
-				# Set logging path
+                # Set logging path
                 LogPath = $Node.LogPath
 
-				# Set Authentication mechanisms
-				AuthenticationInfo = MSFT_xWebAuthenticationInformation {
-					Anonymous = $Site.Authentication.Anonymous
-					Basic = $Site.Authentication.Basic
-					Digest = $Site.Authentication.Digest
-					Windows = $Site.Authentication.Windows
+                # Set Authentication mechanisms
+                AuthenticationInfo = MSFT_xWebAuthenticationInformation {
+                    Anonymous = $Site.Authentication.Anonymous
+                    Basic = $Site.Authentication.Basic
+                    Digest = $Site.Authentication.Digest
+                    Windows = $Site.Authentication.Windows
 				}
             }
 
-            # loop through site application collection and create folders
+            # Loop through site application collection and create folders
             ForEach($Application in $Site.Applications)
             {
                 File "$($Site.Name)-$($Application.Name)"
@@ -479,7 +479,7 @@ Configuration WebServerConfiguration
                     Type = "Directory"
                     DestinationPath = "$($Node.Rootpath)\$($Site.Name)\$($Application.FolderName)"
                     Ensure = $(if ($Application.Ensure) {$Application.Ensure} else {"Present"})
-					Force = $true
+                    Force = $true
                 }
 
 
@@ -491,10 +491,10 @@ Configuration WebServerConfiguration
                     State = $Application.Pool.State
                     ManagedPipelineMode = $Application.Pool.Pipeline
                     managedRuntimeVersion = "$($Application.Pool.RuntimeVersion)"
-					idleTimeout = $Application.Pool.IdleTimeout
-					restartTimeLimit = $Application.Pool.RestartTimeLimit
-					IdentityType = $(if ($Application.Pool.IdentityType) {$Application.Pool.IdentityType} else {"ApplicationPoolIdentity"})
-					Credential = $(if (($Credentials | Where-Object {$_.Name -eq "$($Application.Name).AppPoolIdentity"}) -ne $null) {($Credentials | Where-Object {$_.Name -eq "$($Application.Name).AppPoolIdentity"}).Credential} else {$null} )
+                    idleTimeout = $Application.Pool.IdleTimeout
+                    restartTimeLimit = $Application.Pool.RestartTimeLimit
+                    IdentityType = $(if ($Application.Pool.IdentityType) {$Application.Pool.IdentityType} else {"ApplicationPoolIdentity"})
+                    Credential = $(if (($Credentials | Where-Object {$_.Name -eq "$($Application.Name).AppPoolIdentity"}) -ne $null) {($Credentials | Where-Object {$_.Name -eq "$($Application.Name).AppPoolIdentity"}).Credential} else {$null} )
                 }
 
                 # create application
