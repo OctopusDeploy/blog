@@ -557,7 +557,7 @@ This step will need the Control type of "A previous deployment step name" so we 
 ## DSC Path
 This is the path where the .MOF file will be written to when DSC executes.
 
-![](DSCPath.pn)
+![](DSCPath.png)
 
 ## Configuration Data File name
 This is the name of the configuration data file we created, WebServer.psd1
@@ -612,7 +612,7 @@ Presumabely, you have placed your configuration data file and referenced PowerSh
 ## Configure your project
 Now that we have our configuration data file package and our PowerShell DSC Modules package, we can configure our project!
 
-##Step 1: Deploy the Powershell DSC Modules##
+Step 1: Deploy the Powershell DSC Modules
 PowerShell DSC will use the paths defined in $env:PSModulePath to find modules.  For the purposes of this demonstration, we're going to place our modules in `c:\Program Files\WindowsPowerShell\Modules`.
 
 Add a new step to our Project by clicking on Add Step
@@ -631,16 +631,16 @@ Enable Custom Installation Directory
 
 ![](CustomInstallDir.png)
 
-Enter `c:\Program Files\WindowsPowerShell\Modules` in the Install To text box.  Warning!  Do **not** choose Purge this directory before installation, there are other modules that PowerShell needs in there.
+Enter `c:\Program Files\WindowsPowerShell\Modules` in the Install To text box.  Warning!  Do **not** choose Purge this directory before installation, there are other modules that PowerShell needs in there.  
 
 When done, your step should look something like this
 
 ![](Step1Done.png)
 
-##Step 2: Deploy configuration data file##
+Step 2: Deploy configuration data file
 Just like Step 1, this will be a Deploy a Package step, except we will not configure a Custom Install Directory.
 
-##Step 3: Our Custom Step Template##
+Step 3: Our Custom Step Template
 The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be something like c:\dsc (or whatever you want), and Configuration Data File name is going to be what you named the file, I called mine WebServer.psd1.
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
