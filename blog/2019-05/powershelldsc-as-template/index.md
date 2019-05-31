@@ -180,7 +180,7 @@ Great!  We've got a good start for our web server implementation, but there's mo
 
             # define IIS Sites
             Sites = @(
-                @{
+                 @{
 					Name = "OctopusDeploy.com"
 					Ensure = "Present"
 					State = "Started"
