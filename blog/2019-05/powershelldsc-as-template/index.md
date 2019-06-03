@@ -673,7 +673,7 @@ Okay, let's create another variable!  Create a variable called LogPath for the l
 
 ![](LogPath.png)
 
-Let's change the `LogPath = "c:\logs"` to `LogPath = "#{LogPath}"` line in our configuration data file.  The #{LogPath} is Octopus Deploy syntax for where the variable LogPath will go.  Don't forget to check the change in so it can be delivered to Octopus Deploy!
+Let's change the `LogPath = "c:\logs"` to `LogPath = "#{Project.LogPath}"` line in our configuration data file.  The #{LogPath} is Octopus Deploy syntax for where the variable LogPath will go.  Don't forget to check the change in so it can be delivered to Octopus Deploy!
 
 Now that we've specified the place holder, we need to enable the Substitute Variables in Files feature for our configuration data file deployment step (Step 2).  To do this, we'll edit Step 2 and click on Configure Features like we did for Step 1.
 
@@ -685,8 +685,7 @@ Enable Substitute Variables in Files
 
 Specify which file it is that needs substitution
 
-![](SpecifyVarFile.png)
-
+![](SubstituionFile.png)
 
 With our variables defined and our new configuration data file package delivered to Octopus Deploy, we can create a new release and deploy!  Once the deployment is complete, we'll pop over to our IIS server and we should see that the log file path has been updated.
 
