@@ -527,7 +527,7 @@ WebServerConfiguration -ConfigurationData "C:\DscConfiguration\WebServer.psd1" -
 Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 ```
 
-This isn't a post on how to do PowerShell DSC, so I won't go over everthing that was added.  However, I did want to highlight one line, `Import-DscResource -Module xWebAdministration`.  This DSC resource isn't one that is installed by default, like PSDesiredStateConfiguration, and will need to be included when we do a deployment.  We'll discuss more on that later in this post.
+This isn't a post on how to do PowerShell DSC, so I won't go over everthing that was added.  However, I did want to highlight one line, `Import-DscResource -Module xWebAdministration`.  This xWebAdministration isn't one that is installed by default, like PSDesiredStateConfiguration, and will need to be included when we do a deployment.  We'll discuss more on that later in this post.
 
 Okay!  We have our configuration data separated into its own file, and we've got a DSC script that will configure an IIS Web server.  Now let's start hooking it all together in Octopus Deploy and make our DSC script a Step Template!
 
@@ -612,7 +612,7 @@ Presumabely, you have placed your configuration data file and referenced PowerSh
 ## Configure your project
 Now that we have our configuration data file package and our PowerShell DSC Modules package, we can configure our project!
 
-Step 1: Deploy the Powershell DSC Modules
+Step 1: Deploy the Powershell DSC Modules <br />
 PowerShell DSC will use the paths defined in $env:PSModulePath to find modules.  For the purposes of this demonstration, we're going to place our modules in `c:\Program Files\WindowsPowerShell\Modules`.
 
 Add a new step to our Project by clicking on Add Step
@@ -637,10 +637,10 @@ When done, your step should look something like this
 
 ![](Step1Done.png)
 
-Step 2: Deploy configuration data file
+Step 2: Deploy configuration data file <br />
 Just like Step 1, this will be a Deploy a Package step, except we will not configure a Custom Install Directory.
 
-Step 3: Our Custom Step Template
+Step 3: Our Custom Step Template <br />
 The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be something like c:\dsc (or whatever you want), and Configuration Data File name is going to be what you named the file, I called mine WebServer.psd1.
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
