@@ -612,8 +612,14 @@ Presumabely, you have placed your configuration data file and referenced PowerSh
 ## Configure your project
 Now that we have our configuration data file package and our PowerShell DSC Modules package, we can configure our project!
 
+Before we define our process, let's create some variables that will be used in our deployment; Project.PowerShellModulePath, Project.DSCPath, and Project.ConfigurationDataFile.  Click on the Variables tab and fill in the variables like this
+
+![](Variables1.png)
+
+Now let's define our deployment process.
+
 Step 1: Deploy the Powershell DSC Modules <br />
-PowerShell DSC will use the paths defined in $env:PSModulePath to find modules.  For the purposes of this demonstration, we're going to place our modules in `c:\Program Files\WindowsPowerShell\Modules`.
+PowerShell DSC will use the paths defined in $env:PSModulePath to find modules.  For the purposes of this demonstration, we're going to place our modules in `c:\Program Files\WindowsPowerShell\Modules` that we defined in our variable Project.PowerShellModulePath variable.  
 
 Add a new step to our Project by clicking on Add Step
 
@@ -631,17 +637,25 @@ Enable Custom Installation Directory
 
 ![](CustomInstallDir.png)
 
-Enter `c:\Program Files\WindowsPowerShell\Modules` in the Install To text box.  Warning!  Do **not** choose Purge this directory before installation, there are other modules that PowerShell needs in there.  
+To reference a variable, click on the #{} to bring up the list
+and choose Project.PowershellModulePath.  Then click Save. <br />
+Warning!  Do **not** choose Purge this directory before installation, there are other modules that PowerShell needs in there.
+
+![](ReferenceVariable.png)
+
+![](ReferenceVariable2.png)
 
 When done, your step should look something like this
 
-![](Step1Done.png)
+![](Step1.png)
 
+
+![](Step1Done.png)
 Step 2: Deploy configuration data file <br />
 Just like Step 1, this will be a Deploy a Package step, except we will not configure a Custom Install Directory.
 
 Step 3: Our Custom Step Template <br />
-The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be something like c:\dsc (or whatever you want), and Configuration Data File name is going to be what you named the file, I called mine WebServer.psd1.
+The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be the variable Project.DSCPath, and Configuration Data File name is going to be the variable Project.ConfigurationDatafile.
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
 
@@ -654,6 +668,10 @@ Logging into our Web server, we should find that IIS has been installed with Sit
 ![](WebServer.png)
 
 But wait!  In our configuration data file, we've statically set where the IIS Sites log to, what if I want something different per project?  This is where we can use the Substitute Variables in Files feature of Octopus Deploy!  
+
+Okay, let's create another variable!  Create a variable called LogPath for the log location and let's create a variable for our Configuration Data File as well.
+
+![](LogPath.png)
 
 Let's change the `LogPath = "c:\logs"` to `LogPath = "#{LogPath}"` line in our configuration data file.  The #{LogPath} is Octopus Deploy syntax for where the variable LogPath will go.  Don't forget to check the change in so it can be delivered to Octopus Deploy!
 
@@ -669,13 +687,6 @@ Specify which file it is that needs substitution
 
 ![](SpecifyVarFile.png)
 
-Wait a sec, we've specified WebServer.psd1 in two spots now, what if it changes?  You're right!  We should change to use a variable instead, let's use ConfigurationDataFile as our varialble and update Step 3 while we're at it.
-
-![](SpecifyVarFile2.png)
-
-Okay, let's create some variables!  Click on the Variables tab of your project, and enter the variables like this
-
-![](ProjectVars)
 
 With our variables defined and our new configuration data file package delivered to Octopus Deploy, we can create a new release and deploy!  Once the deployment is complete, we'll pop over to our IIS server and we should see that the log file path has been updated.
 
