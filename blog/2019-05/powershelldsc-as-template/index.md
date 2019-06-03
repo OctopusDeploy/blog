@@ -172,8 +172,8 @@ Great!  We've got a good start for our web server implementation, but there's mo
 				}
 			)
 
-			# default IIS Site log path
-			LogPath = "c:\logs"
+            # default IIS Site log path
+            LogPath = "c:\logs"
 
 			# Define root path for IIS Sites
 			RootPath = "C:\inetpub\wwwroot"
