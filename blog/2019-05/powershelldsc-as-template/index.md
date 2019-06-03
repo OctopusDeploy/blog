@@ -649,13 +649,13 @@ When done, your step should look something like this
 
 ![](Step1.png)
 
-
-![](Step1Done.png)
 Step 2: Deploy configuration data file <br />
 Just like Step 1, this will be a Deploy a Package step, except we will not configure a Custom Install Directory.
 
 Step 3: Our Custom Step Template <br />
 The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be the variable Project.DSCPath, and Configuration Data File name is going to be the variable Project.ConfigurationDatafile.
+
+![](Step3.png)
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
 
