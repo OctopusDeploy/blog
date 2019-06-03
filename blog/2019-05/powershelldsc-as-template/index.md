@@ -1,5 +1,5 @@
 ---
-title: Treating PowerShell Desired State Configuration (DSC) like an App with Octopus Deploy
+title: Deploying PowerShell Desired State Configuration (DSC) like an App with Octopus Deploy
 description: Use custom step templates and configuration data files to deploy your Infrascture as Code using PowerShell DSC
 author: shawn.sesna@octopus.com
 visibility: public
@@ -691,7 +691,7 @@ With our variables defined and our new configuration data file package delivered
 
 ![](UpdatedLogPath.png)
 
-Wow!  That's awesome!  I can deploy server configuration changes just like I would an application on them!  What if someone was naughty and made a change manually?  Didn't you say something about monitoring for drift?  Yup, sure did!  We can tweak Paul's Machine Policy script to show us which items are no longer in desired state, mark the machine as unhealthy and use Subscriptions to let us know :)
+Wow!  That's awesome!  I can deploy server configuration changes just like I would an application!  What if someone was naughty and made a change manually?  Didn't you say something about monitoring for drift?  Yup, sure did!  We can tweak Paul's Machine Policy script to show us which items are no longer in desired state, mark the machine as unhealthy.
 
 Paul's Machine Policy for monitoring drift looked like this
 
@@ -737,3 +737,5 @@ Let's test it by stopping the OctopusDeploy.com web site on our IIS server.  Aft
 
 ![](FailedHealthCheck.png)
 
+##Summary##
+In this post, we created a PowerShell DSC script, converted it into an Octopus Deploy Step Template, separated Node data into a configuration data file, and created a Machine Policy for monitoring for drift.
