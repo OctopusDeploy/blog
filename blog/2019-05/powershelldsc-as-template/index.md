@@ -669,7 +669,7 @@ Logging into our Web server, we should find that IIS has been installed with Sit
 
 But wait!  In our configuration data file, we've statically set where the IIS Sites log to, what if I want something different per project?  This is where we can use the Substitute Variables in Files feature of Octopus Deploy!  
 
-Okay, let's create another variable!  Create a variable called LogPath for the log location and let's create a variable for our Configuration Data File as well.
+Let's create a variable called Project.LogPath for the log location.
 
 ![](LogPath.png)
 
@@ -737,5 +737,5 @@ Let's test it by stopping the OctopusDeploy.com web site on our IIS server.  Aft
 
 ![](FailedHealthCheck.png)
 
-##Summary##
+## Summary
 In this post, we created a PowerShell DSC script, converted it into an Octopus Deploy Step Template, separated Node data into a configuration data file, and created a Machine Policy for monitoring for drift.
