@@ -699,7 +699,7 @@ Fill in the parameters that we created with variables from our project.
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
 
-## Final result
+## PowerShell DSC and Octopus Deploy combine, form of Awesome!
 
 Once the deployment has completed, we should see something like the following
 
@@ -709,6 +709,8 @@ Logging into our Web server, we should find that IIS has been installed with Sit
 
 ![](WebServer.png)
 
+## More awesomeness with variable substitution!
+
 But wait!  In our configuration data file, we've statically set where the IIS Sites log to, what if I want something different per project?  This is where we can use the Substitute Variables in Files feature of Octopus Deploy!  
 
 Let's create a variable called Project.LogPath for the log location.
@@ -717,21 +719,13 @@ Let's create a variable called Project.LogPath for the log location.
 
 Let's change the `LogPath = "c:\logs"` to `LogPath = "#{Project.LogPath}"` line in our configuration data file.  The #{LogPath} is Octopus Deploy syntax for where the variable LogPath will go.  Don't forget to check the change in so it can be delivered to Octopus Deploy!
 
-Now that we've specified the place holder, we need to enable the Substitute Variables in Files feature for our configuration data file deployment step (Step 2).  To do this, we'll edit Step 2 and click on Configure Features like we did for Step 1.
-
-![](ConfigureFeatures.png)
-
-Enable Substitute Variables in Files
-
-![](VarSub.png)
-
-Specify which file it is that needs substitution
-
-![](SubstituionFile.png)
+Since we enabled the Substitute Variables in Files feature in our custom step template, we're already set up to handle this!
 
 With our variables defined and our new configuration data file package delivered to Octopus Deploy, we can create a new release and deploy!  Once the deployment is complete, we'll pop over to our IIS server and we should see that the log file path has been updated.
 
 ![](UpdatedLogPath.png)
+
+## Monitoring for naughtyness with Machine Policies
 
 Wow!  That's awesome!  I can deploy server configuration changes just like I would an application!  What if someone was naughty and made a change manually?  Didn't you say something about monitoring for drift?  Yup, sure did!  We can tweak Paul's Machine Policy script to show us which items are no longer in desired state, mark the machine as unhealthy.
 
@@ -762,7 +756,7 @@ if ($result.ResourcesNotInDesiredState.Count -gt 0)
 	foreach ($resource in $result.ResourcesNotInDesiredState)
 	{
 		# Display warning
-		Write-Warning "Resource $($resource.ResourceId) has drifted!"
+		Write-Warning "Resource $($resource.ResourceId) is not in desired state!"
 	}
 
 	# Fail the health check
