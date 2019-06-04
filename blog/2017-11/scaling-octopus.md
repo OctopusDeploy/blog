@@ -3,6 +3,7 @@ title: Scaling Octopus
 description: Outlines the changes we are going to make to better allow Octopus to scale with your organization 
 author: michael.richardson@octopus.com
 visibility: private
+published: 2017-11-01
 tags:
  - Architecture
  - Performance

@@ -3,6 +3,7 @@ title: Breaking Packages API in 4.2
 description: Why the previous api for searching packages in Octopus no longer fits.
 author: robert.erez@octopus.com
 visibility: private
+published: 2018-01-01
 tags:
  - New Releases
  - Architecture
