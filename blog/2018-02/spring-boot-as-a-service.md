@@ -5,6 +5,7 @@ author: matthew.casperson@octopus.com
 visibility: public
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
+published: 2018-02-18
 tags:
  - Java
  - Cloud

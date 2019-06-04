@@ -3,6 +3,7 @@ title: CloudFormation, WildFly and Deploying Maven Artifacts
 description: Take a look at how you can tie together a number of the new features from recent releases to deploy Java apps to the cloud.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-02-11
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

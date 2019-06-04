@@ -3,6 +3,7 @@ title: Creating a Selenium WebDriver Test Framework
 description: Learn how to create a WebDriver project in Java with this blog series.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-10-02
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:

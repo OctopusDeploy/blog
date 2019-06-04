@@ -3,6 +3,7 @@ title: Why you should take a look at Kotlin's standard library
 description: See how run, let, also and apply can improve your Kotlin code.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-01-18
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

@@ -5,6 +5,7 @@ author: matthew.casperson@octopus.com
 visibility: public
 bannerImage: blogimage-kubernetes.png
 metaImage: blogimage-kubernetes.png
+published: 2018-11-13
 tags:
 - Kubernetes
 ---

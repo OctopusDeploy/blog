@@ -3,6 +3,7 @@ title: "Loading External Variables During a Deployment"
 description: It turns out that combining a few variable features provides a simple mechanism for dynamically loading and using external variables
 author: robert.erez@octopus.com
 visibility: private
+published: 2018-08-01
 tags:
  - New Releases
 ---
