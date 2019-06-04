@@ -10,9 +10,14 @@ tags:
  - PowerShell DSC
 ---
 
-In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to manage infrastructure, use Machine Policies to monitor for drift, and even automatically correct drift with a Project Trigger.  This blog post will expand on that idea by separating the configuration data into a configuration data file (.psd1), turning a PowerShell DSC script into a step template, capturing the items that have drifted in a Machine Policy, and taking advantage of the Substitute Variables in Files feature to set properties that need to change for an Environment or Project.
+In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to manage infrastructure, use Machine Policies to monitor for drift, and even automatically correct drift with a Project Trigger.  This blog post will expand on that idea by separating the configuration data into a configuration data file (.psd1), turning a PowerShell DSC script into a step template, capturing the items that have drifted in a Machine Policy, and taking advantage of the Substitute Variables in Files feature to set properties that need to change for an Environment or Project.  With these items configured, we will be able to use Octopus Deploy to deploy PowerShell DSC just like applications!  [Need more work here, come back later]
 
-The code sample that Mr. Stovell provided for DSC was a good example of a basic script,
+!toc
+
+## PowerShell DSC
+
+### Paul's original script
+The code sample that Paul provided for DSC was a good example of a basic script,
 
 ```PS
 Configuration WebServerConfiguration
@@ -37,6 +42,8 @@ WebServerConfiguration -OutputPath "C:\DscConfiguration"
 
 Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 ```
+
+### Separating Node data
 
 In his example, the Node data is contained within the script itself and the features to be configured are static.  If we separate the Node data from the script into a Configuration Data File, we can make our DSC script more dynamic.
 
@@ -66,6 +73,8 @@ In his example, the Node data is contained within the script itself and the feat
 }
 ```
 
+### Making the DSC script more dynamic
+
 With the Node data now separated, the DSC script can be changed to be dynamic, installing features that have been specified in the configuration data file
 
 ```PS
@@ -92,6 +101,8 @@ WebServerConfiguration -ConfigurationData "C:\DscConfiguration\WebServer.psd1" -
 
 Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 ```
+
+### Filling in more details of the configuration data file
 
 Great!  We've got a good start for our web server implementation, but there's more to configuring a web server than installing Windows Features.  Let's add some more data to our configuration data file by adding some additional Windows Features, Sites, Applications, setting a default log path for IIS Sites, and harden our security with Ciphers, Hashes, Protocols, Key Exchanges, and specifying our Cipher Suite order.  NOTE: This is just for demonstration purposes, consult your Security team to determine which settings are best for your organization.
 
@@ -358,6 +369,9 @@ Great!  We've got a good start for our web server implementation, but there's mo
     )
 }
 ```
+
+### A more complete DSC script
+
 As you might have guessed, we'll need to update our DSC script to configure the options we've specified in our configuration data file
 
 ```PS
@@ -529,6 +543,8 @@ Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 
 This isn't a post on how to do PowerShell DSC, so I won't go over everthing that was added.  However, I did want to highlight one line, `Import-DscResource -Module xWebAdministration`.  This xWebAdministration isn't one that is installed by default, like PSDesiredStateConfiguration, and will need to be included when we do a deployment.  We'll discuss more on that later in this post.
 
+## Making the DSC script a step template
+
 Okay!  We have our configuration data separated into its own file, and we've got a DSC script that will configure an IIS Web server.  Now let's start hooking it all together in Octopus Deploy and make our DSC script a Step Template!
 
 We'll start by logging into our Octopus Deploy instance and clicking on the Library tab, then Step Templates
@@ -541,30 +557,56 @@ Click on the Add button
 
 Choose the Run a Script template
 
-![](RunAScript.png)
+![](DeployAPackageTemplate.png)
+
+### Settings
 
 Fill in Settings
 
 ![](Settings.png)
 
-We'll define three Parameters, Configuration Data File step, DSC Path, and Configuration Data file name.  These will be used by our DSC script.
+### Parameters
 
-## Configuration Data File step
-This step will need the Control type of "A previous deployment step name" so we can retrieve the location of where the datafile was extracted to.
+We'll define three Parameters, DSC Path, Configuration Data File step, and Configuration Data file name.  These will be used by our DSC script.
 
-![](ConfigurationDatafile.png)
-
-## DSC Path
+#### DSC Path
 This is the path where the .MOF file will be written to when DSC executes.
 
 ![](DSCPath.png)
 
-## Configuration Data File name
+#### Configuration Data File name
 This is the name of the configuration data file we created, WebServer.psd1
 
 ![](DataFileName.png)
 
-On the Step tab, choose Inline Source Code and past in the PowerShell DSC script that we've created.
+#### Package ID
+This is the ID of the package from the Library that will be used for deployment.
+
+![](PackageId.png)
+
+### Step tab
+
+#### Configure Features
+On the Step tab, click the Configure Features button
+
+![](ConfigureFeatures_Template.png)
+
+Enable Custom Deployment Scripts and Substitue Variables in Files
+
+![](TemplateEnabledFeatures.png)
+
+#### Setting Package variable
+On the Step tab, under Package Details, click the chain link icon to enable binding to a variable
+
+![](ChainLinkIcon.png)
+
+Now, click on the #{} to bring up the list of variables, and choose the DSCPackageId Parameter we created
+
+![](PackageIdVariable.png)
+
+#### Implementing the DSC Script
+
+Expand Custom Deployment Scripts and paste our PowerShell DSC script into the Deployment script box
 
 ![](StepCode.png)
 
@@ -585,7 +627,7 @@ To
 Set-Location -Path $DSCTempPath
 
 # get the configuration data file
-$ConfigurationDataFile = (Get-ChildItem -Path $OctopusParameters["Octopus.Action[$NuGetPackageStep].Output.Package.InstallationDirectoryPath"] | Where-Object {$_.Name -eq $DataFileName}).FullName
+$ConfigurationDataFile = (Get-ChildItem -Path $OctopusParameters["Octopus.Action.Package.InstallationDirectoryPath"] | Where-Object {$_.Name -eq $DataFileName}).FullName
 
 # Display which file it's using
 Write-Host "The configuration data file is: $ConfigurationDataFile"
@@ -597,9 +639,12 @@ WebServerConfiguration -ConfigurationData $ConfigurationDataFile -OutputPath $DS
 Start-DscConfiguration -Wait -Verbose -Path $DSCTempPath
 ```
 
-Exit Full Screen and click Save
+#### Set up Variable Substitution
+Expand the Substitute Variables in Files section.  For Target files, click on #{} and choose the DataFileName variable
 
-![](SaveTemplate.png)
+![](TemplateVarSub.png)
+
+Now, save the template
 
 Cool!  We've just created a dynamic, re-usable Step Template that will configure IIS Web servers using PowerShell DSC!  Now we need to create a new project to use it.
 
@@ -612,14 +657,16 @@ Presumabely, you have placed your configuration data file and referenced PowerSh
 ## Configure your project
 Now that we have our configuration data file package and our PowerShell DSC Modules package, we can configure our project!
 
-Before we define our process, let's create some variables that will be used in our deployment; Project.PowerShellModulePath, Project.DSCPath, and Project.ConfigurationDataFile.  Click on the Variables tab and fill in the variables like this
+### Create Project Variables
+
+Before we define our process, let's create some variables that will be used in our deployment; Project.PowerShellModulePath, Project.DSCPath, Project.PackageId, and Project.ConfigurationDataFile.  Click on the Variables tab and fill in the variables like this
 
 ![](Variables1.png)
 
-Now let's define our deployment process.
+### Define deployment process
 
-Step 1: Deploy the Powershell DSC Modules <br />
-PowerShell DSC will use the paths defined in $env:PSModulePath to find modules.  For the purposes of this demonstration, we're going to place our modules in `c:\Program Files\WindowsPowerShell\Modules` that we defined in our variable Project.PowerShellModulePath variable.  
+#### Step 1: Deploy the Powershell DSC Modules 
+PowerShell DSC will use the paths defined in $env:PSModulePath to find modules.  For the purposes of this demonstration, we're going to place our modules in `c:\Program Files\WindowsPowerShell\Modules` that we defined in our variable Project.PowerShellModulePath.  
 
 Add a new step to our Project by clicking on Add Step
 
@@ -629,11 +676,7 @@ Choose the Deploy a Package template
 
 ![](DeployAPackage.png)
 
-To specify a specific location, click on Configure Features button
-
-![](ConfigureFeatures.png)
-
-Enable Custom Installation Directory
+To specify a specific location, click on Configure Features button and enable Custom Installation Directory
 
 ![](CustomInstallDir.png)
 
@@ -641,23 +684,22 @@ To reference a variable, click on the #{} to bring up the list
 and choose Project.PowershellModulePath.  Then click Save. <br />
 Warning!  Do **not** choose Purge this directory before installation, there are other modules that PowerShell needs in there.
 
-![](ReferenceVariable.png)
-
-![](ReferenceVariable2.png)
-
 When done, your step should look something like this
 
 ![](Step1.png)
 
-Step 2: Deploy configuration data file <br />
-Just like Step 1, this will be a Deploy a Package step, except we will not configure a Custom Install Directory.
+#### Step 2: Our Custom Step Template 
+The second step will be our custom step template that we created previously.  Add this step by choosing the Library Step Templates category and then choosing the step, in this case, it is Web Server PowerShell DSC.
 
-Step 3: Our Custom Step Template <br />
-The third and final step will be our custom step template that we just created.  For the Configuration Data File step, choose Step 2.  DSC Path will be the variable Project.DSCPath, and Configuration Data File name is going to be the variable Project.ConfigurationDatafile.
+![](CustomStepTemplate.png)
 
-![](Step3.png)
+Fill in the parameters that we created with variables from our project.
+
+![](Step2.png)
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
+
+## Final result
 
 Once the deployment has completed, we should see something like the following
 
