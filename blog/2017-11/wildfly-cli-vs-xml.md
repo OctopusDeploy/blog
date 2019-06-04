@@ -3,6 +3,7 @@ title: Configuring WildFly via XML Templates or CLI Scripts
 description: Configuring a WildFly server can be done either by editing the XML files directly, or by running CLI script. But which is the best choice?
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-07
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

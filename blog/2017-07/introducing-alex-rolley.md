@@ -2,6 +2,7 @@
 title: "Introducing Alex Rolley"
 visibility: public
 description: "A brief introduction to Alex Rolley"
+published: 2017-07-14
 tags:
  - Company
 ---

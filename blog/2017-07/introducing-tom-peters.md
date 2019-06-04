@@ -2,6 +2,7 @@
 title: "Introducing Tom Peters"
 visibility: public
 description: "A brief introduction to Tom Peters"
+published: 2017-07-03
 tags:
  - Company
 ---

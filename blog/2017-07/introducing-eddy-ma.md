@@ -2,6 +2,7 @@
 title: "Introducing Eddy Ma"
 visibility: public
 description: "A brief introduction to Eddy Ma"
+published: 2017-07-11
 tags:
  - Company
 ---

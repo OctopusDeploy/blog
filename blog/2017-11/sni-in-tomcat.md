@@ -3,6 +3,7 @@ title: SNI in Tomcat
 description: SNI allows Tomcat to respond with multiple HTTPS certificates on on single port. This blog post looks at how to configure SNI.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-21
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

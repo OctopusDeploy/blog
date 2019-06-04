@@ -2,6 +2,7 @@
 title: "Introducing Cam MacFarland"
 visibility: public
 description: "A brief introduction to Cam MacFarland"
+published: 2017-06-27
 tags:
  - Company
 ---

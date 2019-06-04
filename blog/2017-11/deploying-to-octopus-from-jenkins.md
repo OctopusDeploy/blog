@@ -3,6 +3,7 @@ title: Deploying to Octopus from Jenkins Using Pipelines
 description: Learn how to craft a Jenkins Pipeline that builds a Java project and deploys it to Octopus.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-11
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

@@ -3,6 +3,7 @@ title: Using the WildFly CLI
 description: Learn how to use the WildFly CLI to query and configure a WildFly application server.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-10
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

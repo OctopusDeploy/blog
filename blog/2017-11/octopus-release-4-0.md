@@ -3,6 +3,7 @@ title: "Octopus Deploy Release 4.0"
 description: Octopus Deploy 4.0 includes a great new UI refresh and a great user experience!
 author: rob.pearson@octopus.com
 visibility: public
+published: 2017-11-21
 metaImage: metaimage-shipping-4.png
 bannerImage: blogimage-shipping-4.png
 tags:

@@ -3,6 +3,7 @@ title: An Introduction to Arquillian Testing
 description: Testing Java EE code requires more than just a unit test. This blog post looks at how Arquillian solves the problem of testing Java EE apps.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-28
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

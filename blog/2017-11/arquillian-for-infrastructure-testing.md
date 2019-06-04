@@ -3,6 +3,7 @@ title: Arquillian for Infrastructure Testing
 description: Arquillian's ability to spin up real application servers and integrate them with unit tests makes it a powerful solution for infrastructure testing.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-28
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

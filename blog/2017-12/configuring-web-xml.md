@@ -3,6 +3,7 @@ title: Configuring the web.xml file during deployment
 description: Learn how a Java web.xml file can be customized during an Octopus deployment
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2018-01-17
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

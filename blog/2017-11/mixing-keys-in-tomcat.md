@@ -3,6 +3,7 @@ title: Mixing Keys in Tomcat
 description: Learn how to configure Tomcat to support both RSA and ECDSA certificates on a single HTTPS port.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-25
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

@@ -3,6 +3,7 @@ title: Building the Apache Portable Runtime (APR)
 description: Depending on your Linux distro, you may have to build the APR from scratch to take advantage of the higher performance of the OpenSSL library in Tomcat.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-10-31
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

@@ -3,6 +3,7 @@ title: Deploying a Secured Web App to Tomcat with Octopus
 description: Learn how to go from a fresh Tomcat download to a secured web app deployment using the new features in Octopus 4.1
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-30
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

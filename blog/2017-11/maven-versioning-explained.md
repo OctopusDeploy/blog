@@ -3,6 +3,7 @@ title: Maven Versions Explained
 description: There is more than meets the eye when it comes to Maven versions.
 author: matthew.casperson@octopus.com
 visibility: public
+published: 2017-11-05
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:

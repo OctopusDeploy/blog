@@ -2,6 +2,7 @@
 title: "Introducing Shaun Marx"
 visibility: public
 description: "A brief introduction to Shaun Marx"
+published: 2017-11-03
 tags:
  - Company
 ---
