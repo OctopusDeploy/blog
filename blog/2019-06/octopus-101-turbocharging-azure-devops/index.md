@@ -10,15 +10,15 @@ tags:
  - Webinar
 ---
 
-We've started hosting regular Webinars and up next in our Continuous Integration Webinar series [Derek](https://twitter.com/OctoDerek) is going to tackle [Turbo Charging Azure DevOps with Octopus Deploy](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA). This session will run on July 17th, 2019, 4.30pm UTC. 
+We've started hosting regular Webinars and up next in our Continuous Integration series [Derek](https://twitter.com/OctoDerek), and [Ryan](https://twitter.com/ryanrousseau) are going to discuss [Turbo Charging Azure DevOps with Octopus Deploy](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA). 
 
-We often still see, organisations and members of the Dev and Ops teams have automated the build & test but still, need to deploy manually and out of hours. 
+We often still see, organizations and members of the Dev and Ops teams have automated the build & test but still, need to deploy manually and out of hours. In this session, Derek and Ryan will take you through how to integrate Azure DevOps and Octopus Deploy using the extension. They will then configure an Azure pipeline and lastly pass this through to Octopus Deploy which will then deploy to Azure from a single build and test to Production.
 
-[Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/) and Octopus Deploy go together like cheese and crackers, or peanut butter and jelly for our american cousins, and are easily integrated and can be used to deploy to Azure [IaaS](https://azure.microsoft.com/en-gb/overview/what-is-iaas/) & [PaaS](https://azure.microsoft.com/en-gb/overview/what-is-paas/), [AWS EC2](https://aws.amazon.com/ec2/) and on-Premise. 
+[Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/) and Octopus Deploy go together like peanut butter and jelly and is easily integrated and used to deploy to [Azure IaaS](https://azure.microsoft.com/en-gb/overview/what-is-iaas/), [Azure PaaS](https://azure.microsoft.com/en-gb/overview/what-is-paas/), [AWS EC2](https://aws.amazon.com/ec2/) and on-Premise. 
 
-In this session, Derek and Ryan will take you through how to integrate Azure DevOps and Octopus Deploy using the extension. They will then configure an Azure pipeline and lastly pass this through to Octopus Deploy which will then deploy to Azure from a single build and test to Production.
+This session will run on July 17th, 2019, 4.30pm UTC/10.30am ET, and you can register [here](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA). 
 
-Additionally, we have been running some [Octopus 101: Getting Started Webinars](https://octopus.zoom.us/webinar/register/WN_5ZaCOiP5SXSUhSztPPuSgQ), and the next one is on June 26th, where Derek and Ryan will cover the core concepts of Octopus. 
+Additionally, we have been running [Octopus 101: Getting Started Webinars](https://octopus.zoom.us/webinar/register/WN_5ZaCOiP5SXSUhSztPPuSgQ), and the next one is on June 26th, where Derek and Ryan will cover the core concepts of Octopus. 
 
 Moreover, if you haven't seen them yet, check out our [Ask Octopus series](https://www.youtube.com/playlist?list=PLAGskdGvlaw3-cd9rPiwhwfUo7kDGnOBh).
 
