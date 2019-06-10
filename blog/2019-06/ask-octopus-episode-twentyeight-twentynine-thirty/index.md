@@ -1,6 +1,6 @@
 ---
 title: Ask Octopus Episode 28-30 - JSON configuration substitution, Octopus server as cattle & Active Directory breaking changes. 
-description: Once a week a few of us will gather to talk about some of the most interesting questions we have gotten over the past week and how we went about solving them.
+description: A couple of times a week we meet up and talk about some of the most interesting questions we have gotten and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public
 published: 2019-06-10
