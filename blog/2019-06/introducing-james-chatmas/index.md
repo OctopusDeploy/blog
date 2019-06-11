@@ -3,6 +3,8 @@ title: "Introducing James Chatmas"
 visibility: public
 description: "A brief introduction to James Chatmas"
 author: james.chatmas@octopus.com
+bannerImage: james-chatmas.png
+metaImage: james-chatmas.png
 published: 2019-06-10
 tags:
  - Company
