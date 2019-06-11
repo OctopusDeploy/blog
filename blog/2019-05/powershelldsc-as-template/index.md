@@ -788,3 +788,5 @@ Let's test it by stopping the OctopusDeploy.com web site on our IIS server.  Aft
 
 ## Summary
 In this post, we created a PowerShell DSC script, converted it into an Octopus Deploy Step Template, separated Node data into a configuration data file, and created a Machine Policy for monitoring for drift.
+
+Source code for this post is available at https://github.com/OctopusSamples/DSC-as-a-template
