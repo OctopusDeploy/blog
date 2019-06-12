@@ -562,21 +562,21 @@ Okay!  We have our configuration data separated into its own file, and we've got
 
 We'll start by logging into our Octopus Deploy instance and clicking on the Library tab, then Step Templates:
 
-![](StepTemplates.png)
+![](step-templates.png)
 
 Click on the Add button:
 
-![](StepTemplates_Add.png)
+![](step-templates-add.png)
 
 Choose the Run a Script template:
 
-![](DeployAPackageTemplate.png)
+![](deploy-a-package-template.png)
 
 ### Settings
 
 Fill in Settings:
 
-![](Settings.png)
+![](settings.png)
 
 ### Parameters
 
@@ -585,47 +585,47 @@ We'll define three Parameters, DSC Path, Configuration Data File step, and Confi
 #### DSC Path
 This is the path where the .MOF file will be written to when DSC executes:
 
-![](DSCPath.png)
+![](dsc-path.png)
 
 #### Configuration Data File Name
 This is the name of the configuration data file we created, WebServer.psd1:
 
-![](DataFileName.png)
+![](data-file-name.png)
 
 #### Package ID
 This is the ID of the package from the Library that will be used for deployment:
 
-![](PackageId.png)
+![](package-id.png)
 
 ### Step Tab
 
 #### Configure Features
 On the Step tab, click the Configure Features button:
 
-![](ConfigureFeatures_Template.png)
+![](configure-features-template.png)
 
 Enable Custom Deployment Scripts and Substitute Variables in Files:
 
-![](TemplateEnabledFeatures.png)
+![](template-enabled-features.png)
 
 #### Setting Package Variable
 On the Step tab, under Package Details, click the chain link icon to enable binding to a variable:
 
-![](ChainLinkIcon.png)
+![](chain-link-icon.png)
 
 Now, click on the #{} to bring up the list of variables, and choose the DSCPackageId Parameter we created:
 
-![](PackageIdVariable.png)
+![](package-id-variable.png)
 
 #### Implementing the DSC Script
 
 Expand Custom Deployment Scripts and paste our PowerShell DSC script into the Deployment script box:
 
-![](StepCode.png)
+![](step-code.png)
 
 Enter Full Screen mode by clicking on the opposing arrows so we can more easily tweak our script to use the Parameters we've defined:
 
-![](FullScreen.png)
+![](full-screen.png)
 
 Scroll to the bottom and change:
 
@@ -655,7 +655,7 @@ Start-DscConfiguration -Wait -Verbose -Path $DSCTempPath
 #### Set up Variable Substitution
 Expand the Substitute Variables in Files section.  For Target files, click on #{} and choose the DataFileName variable:
 
-![](TemplateVarSub.png)
+![](template-var-sub.png)
 
 Now, save the template.
 
@@ -674,7 +674,7 @@ Now that we have our configuration data file package and our PowerShell DSC Modu
 
 Before we define our process, let's create some variables that will be used in our deployment; Project.PowerShellModulePath, Project.DSCPath, Project.PackageId, and Project.ConfigurationDataFile.  Click on the Variables tab and fill in the variables like this:
 
-![](Variables1.png)
+![](variables-1.png)
 
 ### Define Deployment Process
 
@@ -683,15 +683,15 @@ PowerShell DSC will use the paths defined in $env:PSModulePath to find modules. 
 
 Add a new step to our Project by clicking on Add Step:
 
-![](AddStep.png)
+![](add-step.png)
 
 Choose the Deploy a Package template:
 
-![](DeployAPackage.png)
+![](deploy-a-package.png)
 
 To specify a specific location, click on Configure Features button and enable Custom Installation Directory:
 
-![](CustomInstallDir.png)
+![](custom-install-dir.png)
 
 To reference a variable, click on the #{} to bring up the list and choose Project.PowershellModulePath.  Then click Save.
 
@@ -699,16 +699,16 @@ Warning!  Do **not** choose Purge this directory before installation, there are 
 
 When done, your step should look something like this:
 
-![](Step1.png)
+![](step-1.png)
 
 #### Step 2: Our Custom Step Template
 The second step will be our custom step template that we created previously.  Add this step by choosing the Library Step Templates category and then choosing the step, in this case, it is Web Server PowerShell DSC:
 
-![](CustomStepTemplate.png)
+![](custom-step-template.png)
 
 Fill in the parameters that we created with variables from our project:
 
-![](Step2.png)
+![](step-2.png)
 
 And that's it!  Once we've saved our Project, we can create a release and configure a server!
 
@@ -716,11 +716,11 @@ And that's it!  Once we've saved our Project, we can create a release and config
 
 Once the deployment has completed, we should see something like the following:
 
-![](DeploymentComplete.png)
+![](deployment-complete.png)
 
 Logging into our Web server, we should find that IIS has been installed with Sites, Application Pools, and Applications defined:
 
-![](WebServer.png)
+![](web-server.png)
 
 ## More Awesomeness with Variable substitution!
 
@@ -728,7 +728,7 @@ But wait!  In our configuration data file we've statically set where the IIS Sit
 
 Let's create a variable called Project.LogPath for the log location:
 
-![](LogPath.png)
+![](log-path.png)
 
 Let's change the `LogPath = "c:\logs"` line in our configuration data file to `LogPath = "#{Project.LogPath}"`.  The #{LogPath} is Octopus Deploy syntax for where the variable LogPath will go.  Don't forget to check the change in so it can be delivered to Octopus Deploy!
 
@@ -736,7 +736,7 @@ Since we enabled the Substitute Variables in Files feature in our custom step te
 
 With our variables defined and our new configuration data file package delivered to Octopus Deploy, we can create a new release and deploy!  Once the deployment is complete, we'll pop over to our IIS server and we should see that the log file path has been updated:
 
-![](UpdatedLogPath.png)
+![](updated-log-path.png)
 
 ## Monitoring for Naughtiness with Machine Policies
 
@@ -784,7 +784,7 @@ else
 
 Let's test it by stopping the OctopusDeploy.com web site on our IIS server.  After stopping the site, we should see something like this when running a Health Check on the machine:
 
-![](FailedHealthCheck.png)
+![](failed-health-check.png)
 
 ## Summary
 In this post, we created a PowerShell DSC script, converted it into an Octopus Deploy Step Template, separated Node data into a configuration data file, and created a Machine Policy for monitoring for drift.
