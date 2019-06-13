@@ -1,9 +1,11 @@
 ---
-title: WEBINAR - CI/CD Pipelines - Real-World, Expert Optimization Tips & Tricks
+title: Webinar - CI/CD Pipelines - Real-World, Expert Optimization Tips & Tricks
 description: Practical advice for optimizing your CI CD pipeline
 author: rob.pearson@octopus.com
 visibility: public
 published: 2018-11-05
+metaImage: paulstovell.png
+bannerImage: paulstovell.png
 tags:
  - Webinar
 ---
