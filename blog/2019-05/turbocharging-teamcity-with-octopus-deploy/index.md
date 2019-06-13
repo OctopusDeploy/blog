@@ -4,8 +4,8 @@ description: Derek Campbell hosted a Webinar with Jetbrains on "Turbocharging Te
 author: derek.campbell@octopus.com
 visibility: public
 published: 2019-05-16
-bannerImage: turbochargingteamcity.png
-metaImage: turbochargingteamcity.png
+bannerImage: turbocharging-teamcity.png
+metaImage: turbocharging-teamcity.png
 tags:
  - Webinar
 ---
