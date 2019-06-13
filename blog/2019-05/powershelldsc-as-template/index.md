@@ -117,7 +117,11 @@ Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 
 ### Filling in More Details of the Configuration Data File
 
-Great!  We've got a good start for our web server implementation, but there's more to configuring a web server than installing Windows Features.  Let's add some more data to our configuration data file by adding some additional Windows Features, Sites, Applications, setting a default log path for IIS Sites, and harden our security with Ciphers, Hashes, Protocols, Key Exchanges, and specifying our Cipher Suite order.  NOTE: This is just for demonstration purposes, consult your security team to determine which settings are best for your organization:
+Great!  We've got a good start for our web server implementation, but there's more to configuring a web server than installing Windows Features.  Let's add some more data to our configuration data file by adding some additional Windows Features, Sites, Applications, setting a default log path for IIS Sites, and harden our security with Ciphers, Hashes, Protocols, Key Exchanges, and specifying our Cipher Suite order.  
+
+NOTE: This is just for demonstration purposes, consult your security team to determine which settings are best for your organization.
+
+The following is a snippet, the complete file can be found on our Examples GitHub repository at https://github.com/OctopusSamples/DSC-as-a-template/blob/master/src/CompleteScript/WebServer.psd1:
 
 ```PS
 @{
@@ -129,71 +133,13 @@ Great!  We've got a good start for our web server implementation, but there's mo
 
             # required windows features
             WindowsFeatures = @(
+				...
 				@{
 					Name = "Web-Server"
 					Ensure = "Present"
 					Source = "d:\sources\sxs"
 				},
-				@{
-					Name = "Web-Mgmt-Tools"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Default-Doc"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Http-Errors"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Static-Content"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Http-Logging"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-ISAPI-Ext"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-ISAPI-Filter"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Asp-Net45"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Asp-Net"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Http-Redirect"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Http-Tracing"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				},
-				@{
-					Name = "Web-Windows-Auth"
-					Ensure = "Present"
-					Source = "d:\sources\sxs"
-				}
+				...
 			)
 
             # default IIS Site log path
@@ -204,6 +150,7 @@ Great!  We've got a good start for our web server implementation, but there's mo
 
             # define IIS Sites
             Sites = @(
+				...
                  @{
 					Name = "OctopusDeploy.com"
 					Ensure = "Present"
@@ -229,6 +176,7 @@ Great!  We've got a good start for our web server implementation, but there's mo
 							State = "Started"
 						}
 					Applications = @(
+						...
 						@{
 							Name = "OctoFX"
 							FolderName = "OctoFX"
@@ -244,16 +192,7 @@ Great!  We've got a good start for our web server implementation, but there's mo
 							}
 
 						},
-						@{
-							Name = "OctopusPetShop"
-							FolderName = "OctopusPetShop"
-							Ensure = "Present"
-							Pool = @{
-								Pipeline = "Integrated"
-								RuntimeVersion = "v4.0"
-								State = "Started"
-							}
-						}
+						...
 					)
 				}
             )
@@ -261,122 +200,38 @@ Great!  We've got a good start for our web server implementation, but there's mo
             # fill in this section to enable or disable encryption protocols, hashes, ciphers, and specify cipher suite ordering
             Encryption = @{
 				Ciphers = @(
+					...
 					@{
 						Name = "DES 56/56"
 						Enabled = "0" # Disabled = 0, Enabled = -1
 					},
-					@{
-						Name = "NULL"
-						Enabled = "0"
-					},
-					@{
-						Name = "RC2 128/128"
-						Enabled = "0"
-					},
-					@{
-						Name = "RC2 40/128"
-						Enabled = "0"
-					},
-					@{
-						Name = "RC2 56/128"
-						Enabled = "0"
-					},
-					@{
-						Name = "RC4 64/128"
-						Enabled = "0"
-					},
-					@{
-						Name = "AES 128/128"
-						Enabled = "-1"
-					},
-					@{
-						Name = "AES 256/256"
-						Enabled = "-1"
-					},
-					@{
-						Name = "Triple DES 168/168"
-						Enabled = "-1"
-					},
-					@{
-						Name = "RC4 40/128"
-						Enabled = "0"
-					},
-					@{
-						Name = "RC4 56/128"
-						Enabled = "0"
-					},
-					@{
-						Name = "RC4 128/128"
-						Enabled = "0"
-					}
+					...
 				)
 				Hashes = @(
+					...
 					@{
 						Name = "MD5"
 						Enabled = "0"
 					},
-					@{
-						Name = "SHA"
-						Enabled = "0"
-					},
-					@{
-						Name = "SHA256"
-						Enabled = "-1"
-					},
-					@{
-						Name = "SHA384"
-						Enabled = "-1"
-					},
-					@{
-						Name = "SHA512"
-						Enabled = "-1"
-					}
+					...
 				)
 				Protocols = @(
+					...
 					@{
 						Name = "Multi-Protocol Unified Hello"
 						Enabled = "0"
 					},
-					@{
-						Name = "PCT 1.0"
-						Enabled = "0"
-					},
-					@{
-						Name = "SSL 2.0"
-						Enabled = "0"
-					},
-					@{
-						Name = "SSL 3.0"
-						Enabled = "0"
-					},
-					@{
-						Name = "TLS 1.0"
-						Enabled = "0"
-					},
-					@{
-						Name = "TLS 1.1"
-						Enabled = "-1"
-					},
-					@{
-						Name = "TLS 1.2"
-						Enabled = "-1"
-					}
+					...
 				)
 				KeyExchanges = @(
+					...
 					@{
 						Name = "Diffie-Hellman"
 						Enabled = "-1"
 					},
-					@{
-						Name = "ECDH"
-						Enabled = "-1"
-					},
-					@{
-						Name = "PKCS"
-						Enabled = "-1"
-					}
+					...
 				)
-				CipherSuiteOrder = @("TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384", "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256", "TLS_RSA_WITH_AES_256_GCM_SHA384", "TLS_RSA_WITH_AES_128_GCM_SHA256", "TLS_RSA_WITH_AES_256_CBC_SHA256", "TLS_RSA_WITH_AES_128_CBC_SHA256")
+				CipherSuiteOrder = @("TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", ...)
 			}
 		}
     )
@@ -385,7 +240,9 @@ Great!  We've got a good start for our web server implementation, but there's mo
 
 ### A More Complete DSC Script
 
-As you might have guessed, we'll need to update our DSC script to configure the options we've specified in our configuration data file:
+As you might have guessed, we'll need to update our DSC script to configure the options we've specified in our configuration data file.
+
+The following is a snippet, the complete file can be found on our Examples GitHub repository at https://github.com/OctopusSamples/DSC-as-a-template/blob/master/src/CompleteScript/IISDSC-Complete.ps1:
 
 ```PS
 Configuration WebServerConfiguration
@@ -400,20 +257,14 @@ Configuration WebServerConfiguration
         {
             WindowsFeature "$($Feature.Name)"
             {
-                Ensure = $Feature.Ensure
-                Name = $Feature.Name
-                Source = $Feature.Source # Needed if for some reason the resource isn't on the OS already and needs to be retrieved from something like a mounted ISO
+                ...
             }
         }
 
         # stop default web site
         xWebSite DefaultSite
         {
-            Ensure = "Absent"
-            Name = "Default Web Site"
-            State = "Stopped"
-            PhysicalPath = "c:\inetpub\wwwroot"
-            DependsOn = "[WindowsFeature]Web-Server"
+            ...
         }
 
         # loop through list of default app pools and stop them
@@ -426,19 +277,14 @@ Configuration WebServerConfiguration
         {
             xWebAppPool $Pool
             {
-                Name = $Pool
-                State = "Stopped"
-                Ensure = "Absent"				 
-                DependsOn = "[WindowsFeature]Web-Server"
+                ...
             }
         }
 
         # make sure log path exists
         File LoggingPath
         {
-            Type = "Directory"
-            DestinationPath = $Node.LogPath
-            Ensure = "Present"
+            ...
         }
 
         # loop through the sites
@@ -447,55 +293,19 @@ Configuration WebServerConfiguration
             # create the folder
             File $Site.Name
             {
-                Type = "Directory"
-                DestinationPath = "$($Node.Rootpath)\$($Site.Name)"
-                Ensure = $(if ($Site.Ensure) {$Site.Ensure} else {"Present"})
+                ...
             }
 
             # create the site app pool
             xWebAppPool $Site.Name
             {
-                Name = $(if($Site.Pool.Name) {$Site.Pool.Name} else {$Site.Name})
-                Ensure = $(if ($Site.Ensure) {$Site.Ensure} else {"Present"})
-                ManagedPipelineMode = "$($Site.Pool.Pipeline)"
-                managedRuntimeVersion = "$($Site.Pool.RuntimeVersion)"
-                State = $Site.Pool.State
-                IdentityType = $(if ($Site.Pool.IdentityType) {$Site.Pool.IdentityType} else {"ApplicationPoolIdentity"})
-                Credential = $(if (($Credentials | Where-Object {$_.Name -eq "$($Site.Name).AppPoolIdentity"}) -ne $null) {($Credentials | Where-Object {$_.Name -eq "$($Site.Name).AppPoolIdentity"}).Credential} else {$null} )
+                ...
             }
 
             # create the site
             xWebSite $Site.Name
             {
-                Ensure = $(if ($Site.Ensure) {$Site.Ensure} else {"Present"})
-                Name = $Site.Name
-                State = $Site.State
-                PhysicalPath = "$($Node.Rootpath)\$($Site.Name)"
-                ApplicationPool = $(if($Site.Pool.Name) {$Site.Pool.Name} else {$Site.Name})
-                BindingInfo = @(
-                    # loop through the binding information
-                    ForEach($BindingInfo in $Site.BindingInformation)
-                    {
-                    # check for keyword CertificateStoreName
-                        MSFT_xWebBindingInformation
-                        {
-                            Port = $BindingInfo.Port
-                            IPAddress  = $BindingInfo.IPAddress
-                            Protocol = $BindingInfo.Protocol
-                        }                   
-                    }
-                )
-
-                # Set logging path
-                LogPath = $Node.LogPath
-
-                # Set Authentication mechanisms
-                AuthenticationInfo = MSFT_xWebAuthenticationInformation {
-                    Anonymous = $Site.Authentication.Anonymous
-                    Basic = $Site.Authentication.Basic
-                    Digest = $Site.Authentication.Digest
-                    Windows = $Site.Authentication.Windows
-				}
+                ...
             }
 
             # Loop through site application collection and create folders
@@ -503,43 +313,20 @@ Configuration WebServerConfiguration
             {
                 File "$($Site.Name)-$($Application.Name)"
                 {
-                    Type = "Directory"
-                    DestinationPath = "$($Node.Rootpath)\$($Site.Name)\$($Application.FolderName)"
-                    Ensure = $(if ($Application.Ensure) {$Application.Ensure} else {"Present"})
-                    Force = $true
+                    ...
                 }
 
 
                 # create application pool
                 xWebAppPool $Application.Name
                 {
-                    Name = $(if($Application.Pool.Name) {$Application.Pool.Name} else {$Application.Name})
-                    Ensure = $(if ($Application.Ensure) {$Application.Ensure} else {"Present"})
-                    State = $Application.Pool.State
-                    ManagedPipelineMode = $Application.Pool.Pipeline
-                    managedRuntimeVersion = "$($Application.Pool.RuntimeVersion)"
-                    idleTimeout = $Application.Pool.IdleTimeout
-                    restartTimeLimit = $Application.Pool.RestartTimeLimit
-                    IdentityType = $(if ($Application.Pool.IdentityType) {$Application.Pool.IdentityType} else {"ApplicationPoolIdentity"})
-                    Credential = $(if (($Credentials | Where-Object {$_.Name -eq "$($Application.Name).AppPoolIdentity"}) -ne $null) {($Credentials | Where-Object {$_.Name -eq "$($Application.Name).AppPoolIdentity"}).Credential} else {$null} )
+                    ...
                 }
 
                 # create application
                 xWebApplication $Application.Name
                 {
-                    #Name = $Application.Name
-					Name = $(if($Application.Name -eq $Application.FolderName) {$Application.Name} else {$Application.FolderName.Replace("\", "/")})
-                    Website = $Site.Name
-                    WebAppPool = $(if($Application.Pool.Name) {$Application.Pool.Name} else {$Application.Name})
-                    PhysicalPath = "$($Node.Rootpath)\$($Site.Name)\$($Application.FolderName)"
-                    Ensure = $(if ($Application.Ensure) {$Application.Ensure} else {"Present"})
-					# Set Authentication mechanisms
-					AuthenticationInfo = MSFT_xWebApplicationAuthenticationInformation {
-						Anonymous = $Application.Authentication.Anonymous
-						Basic = $Application.Authentication.Basic
-						Digest = $Application.Authentication.Digest
-						Windows = $Application.Authentication.Windows
-					}
+                    ...
                 }
             }
         }
@@ -568,7 +355,7 @@ Click on the Add button:
 
 ![](step-templates-add.png)
 
-Choose the Run a Script template:
+Choose the Deploy a Package template:
 
 ![](deploy-a-package-template.png)
 
