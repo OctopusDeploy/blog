@@ -1,18 +1,20 @@
 ---
 title: WEBINAR - CI/CD Pipelines - Real-World, Expert Optimization Tips & Tricks
-description: Practical advice for optimizing your CI/CD pipeline
-author: andrew.maher@octopus.com
+description: Practical advice for optimizing your CI CD pipeline
+author: rob.pearson@octopus.com
 visibility: public
 published: 2018-11-05
+bannerImage: paul-stovell-pipeline.png
+metaImage: paul-stovell-pipeline.png
 tags:
  - Webinar
 ---
 
 <iframe width="560" height="315"  src="https://www.youtube.com/embed/Zfp_KZs6u_Q" frameborder="0" allowfullscreen></iframe>
 
-In this webinar, you’ll learn from Microsoft MVP, Jeffrey Palermo and Octopus Deploy Founder and CEO, Paul Stovell as they share tips and tricks to optimize your CI/CD pipeline. 
+In this webinar, you’ll learn from Microsoft MVP, Jeffrey Palermo and Octopus Deploy Founder and CEO, Paul Stovell as they share tips and tricks to optimize your CI/CD pipeline.
 
-Some of the questions covered include:
+Some of the questions covered include :
 *  How often should you deploy? 5 times a day? 1 time per week? Or just the ability to deploy whenever you want/need to? (10:02)
 * We have a lot of teams using Octopus, but each team uses Octopus differently. How can we encourage consistency between teams? (14:09)
 * When should I chose Octopus Deploy over TeamCity or Azure DevOps Services? (21:00)
