@@ -12,9 +12,9 @@ tags:
 
 We've started hosting regular Webinars and up next in our Continuous Integration series [Derek](https://twitter.com/OctoDerek), and [Ryan](https://twitter.com/ryanrousseau) are going to discuss [Turbo Charging Azure DevOps with Octopus Deploy](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA). 
 
-We often still see, organizations and members of the Dev and Ops teams have automated the build & test but still, need to deploy manually and out of hours. In this session, Derek and Ryan will take you through how to integrate Azure DevOps and Octopus Deploy using the extension. They will then configure an Azure pipeline and lastly pass this through to Octopus Deploy which will then deploy to Azure from a single build and test to Production.
+We often still see, organizations and members of the Dev and Ops teams have automated the build & test but still, need to deploy manually and out of hours. In this session, Derek and Ryan will take you through how to integrate Azure DevOps and Octopus Deploy using the [Azure DevOps & TFS extension](https://octopus.com/downloads). They will then configure an Azure pipeline and lastly pass this through to Octopus Deploy which will then deploy to Azure from a single build and test from Development all the way to Production.
 
-[Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/) and Octopus Deploy go together like peanut butter and jelly and is easily integrated and used to deploy to [Azure IaaS](https://azure.microsoft.com/en-gb/overview/what-is-iaas/), [Azure PaaS](https://azure.microsoft.com/en-gb/overview/what-is-paas/), [AWS EC2](https://aws.amazon.com/ec2/) and on-Premise. 
+[Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/) and Octopus Deploy go together like peanut butter and jelly and are easily integrated and used to deploy to [Azure IaaS](https://azure.microsoft.com/en-gb/overview/what-is-iaas/), [Azure PaaS](https://azure.microsoft.com/en-gb/overview/what-is-paas/), [AWS EC2](https://aws.amazon.com/ec2/) and on-premise. 
 
 This session will run on July 17th, 2019, 4.30pm UTC/10.30am ET, and you can register [here](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA). 
 
