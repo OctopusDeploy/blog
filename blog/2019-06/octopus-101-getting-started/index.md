@@ -4,8 +4,8 @@ description: Ryan Rousseau and Derek Campbell hosted a webinar on how to get sta
 author: ryan.rousseau@octopus.com
 visibility: public
 published: 2019-06-07
-bannerImage: octo-101.png
-metaImage: octo-101.png
+bannerImage: octopus-101.png
+metaImage: octopus-101.png
 tags:
  - Webinar
 ---
@@ -16,7 +16,7 @@ Last month we launched a new webinar series, "Octopus 101 - Getting Started." In
 
 We'll be hosting this webinar monthly.  If you're getting started with Octopus or have some new team members that would benefit from the overview and Q&A, [register here](https://octopus.zoom.us/webinar/register/WN_5ZaCOiP5SXSUhSztPPuSgQ) and join us live.
 
-We're planning more webinars on advanced topics. Up first, Derek is going to tackle [Turbo Charging Azure DevOps with Octopus Deploy](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA). Is there a topic you'd like to see in a webinar? Let us know in the comments!
+We're planning more webinars on advanced topics. Up first, Derek is going to tackle [Turbo Charging Azure DevOps with Octopus Deploy](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA).  Is there a topic you'd like to see in a webinar? Let us know in the comments!
 
 And if you haven't seen them yet, check out our [Ask Octopus series](https://www.youtube.com/playlist?list=PLAGskdGvlaw3-cd9rPiwhwfUo7kDGnOBh).
 
