@@ -10,9 +10,9 @@ tags:
  - Webinar
 ---
 
-<iframe width="570" height="325" src="https://www.youtube.com/embed/RAl8rIj9MB8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/B7xqDBTRpGQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-In this webinar, Jeffrey Palermo, Microsoft MVP and Clear Measure CEO, and Paul Stovell, Founder and CEO of Octopus Deploy, got together to answer all your database DevOps questions. We had a great response to this webinar and many of you asked some really great questions.
+In this webinar, you’ll learn how to accelerate your software cycles, and improve code quality, simultaneously. See a complete roadmap to establish DevOps-Centered Software Engineering discipline in your company. And, learn first-hand how you and your team can move fast, build smart, and run with confidence – with release cycles measured in hours. 
 
 Some of the highlights:
 * When it comes to deployments, the database is fundamentally different. Why is that? [7:22](https://www.youtube.com/watch?v=RAl8rIj9MB8&t=7m22s)
