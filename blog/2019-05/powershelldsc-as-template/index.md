@@ -576,7 +576,7 @@ Choose the Run a Script template:
 
 Fill in Settings:
 
-![](settings.png)
+![](settings-page.png)
 
 ### Parameters
 
