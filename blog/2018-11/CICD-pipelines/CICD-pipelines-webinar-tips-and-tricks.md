@@ -4,8 +4,6 @@ description: Practical advice for optimizing your CI CD pipeline
 author: rob.pearson@octopus.com
 visibility: public
 published: 2018-11-05
-bannerImage: paul-stovell-pipeline.png
-metaImage: paul-stovell-pipeline.png
 tags:
  - Webinar
 ---
