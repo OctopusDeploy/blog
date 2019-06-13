@@ -23,7 +23,7 @@ This blog post will expand on that idea by:
  - Capturing the items that have drifted in a Machine Policy.
  - Taking advantage of the Substitute Variables in Files feature to set properties that need to change for an Environment or Project.  
 
-By the end of this post, we'll have created a re-usable PowerShell DSC script as a step template that can be used in a deployment.  We'll also have created a Machine Policy that will report any items that have drifted and mark the machine has unhealthy.
+By the end of this post, we'll have created a re-usable PowerShell DSC script as a step template that can be used in a deployment.  We'll also have created a Machine Policy that will report any items that have drifted and mark the machine as unhealthy.
 
 !toc
 
@@ -634,7 +634,8 @@ WebServerConfiguration -ConfigurationData "C:\DscConfiguration\WebServer.psd1" -
 
 Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 ```
-To
+To:
+
 ```PS
 # set location for mof files
 Set-Location -Path $DSCTempPath
@@ -664,7 +665,7 @@ Cool!  We've just created a dynamic, re-usable Step Template that will configure
 ## Caveat for PowerShell DSC Resource Modules
 Earlier in this post, I talked about the `Import-DscResource -Module xWebAdministration` line in our DSC script.  This is a reference to the xWebAdministration PowerShell DSC resource module, which will need to be downloaded from either the [PowerShell Gallery](https://www.powershellgallery.com/packages?q=xwebadministration) or from [GitHub](https://github.com/PowerShell/xWebAdministration).  The caveat to this is that any DSC Modules referenced in your script must be installed **before** the DSC script executes.  
 
-## Make Your Configuration Data File and Your Referenced Powershell Dsc Modules Deployable Packages
+## Make Your Configuration Data File and Your Referenced PowerShell DSC Modules Deployable Packages
 Presumably, you have placed your configuration data file and referenced PowerShell DSC modules into source control.  Once in source control, your build server can easily package them and ship them to Octopus Deploy for deployment.
 
 ## Configure your Project
@@ -678,7 +679,7 @@ Before we define our process, let's create some variables that will be used in o
 
 ### Define Deployment Process
 
-#### Step 1: Deploy the Powershell DSC Modules
+#### Step 1: Deploy the PowerShell DSC Modules
 PowerShell DSC will use the paths defined in $env:PSModulePath to find modules.  For the purposes of this demonstration, we're going to place our modules in `c:\Program Files\WindowsPowerShell\Modules` that we defined in our variable Project.PowerShellModulePath.  
 
 Add a new step to our Project by clicking on Add Step:
@@ -689,7 +690,7 @@ Choose the Deploy a Package template:
 
 ![](deploy-a-package.png)
 
-To specify a specific location, click on Configure Features button and enable Custom Installation Directory:
+To specify a specific location, click on the Configure Features button and enable Custom Installation Directory:
 
 ![](custom-install-dir.png)
 
@@ -740,7 +741,7 @@ With our variables defined and our new configuration data file package delivered
 
 ## Monitoring for Naughtiness with Machine Policies
 
-Wow!  That's awesome!  I can deploy server configuration changes just like I would an application!  What if someone was naughty and made a change manually?  Didn't you say something about monitoring for drift?  Yup, sure did!  We can tweak Paul's Machine Policy script to show us which items are no longer in desired state, mark the machine as unhealthy.
+Wow!  That's awesome!  I can deploy server configuration changes just like I would an application!  What if someone was naughty and made a change manually?  Didn't you say something about monitoring for drift?  Yup, sure did!  We can tweak Paul's Machine Policy script to show us which items are no longer in desired state, and mark the machine as unhealthy.
 
 Paul's Machine Policy for monitoring drift looked like this:
 
@@ -756,7 +757,7 @@ if ($result -eq $false) {
     Write-Host "No configuration has been applied to the machine yet"
 }
 ```
-If we change a few things, we can easily list which resources have drifted
+If we change a few things, we can easily list which resources have drifted:
 
 ```PS
 # Capture the detailed results
