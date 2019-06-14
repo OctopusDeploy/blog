@@ -162,7 +162,7 @@ The `% { $_ }` line unwraps the top-level array that is being returned, which se
 ### Download Calamari for linux-arm
 
 ```powershell
-curl https://octopus.myget.org/F/octopus-dependencies/api/v2/package/Calamari.linux-arm/4.4.15 -L -o "c:\Program Files\Octopus Deploy\Octopus\Calamari.linux-arm.nupkg"
+curl https://f.feedz.io/octopus-deploy/dependencies/packages/Calamari.linux-arm/4.4.15/download -L -o "c:\Program Files\Octopus Deploy\Octopus\Calamari.linux-arm.nupkg"
 ```
 
 Replace the output path, `-o`, with the path to your Octopus Installation, if required.
