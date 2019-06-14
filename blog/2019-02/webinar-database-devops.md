@@ -1,7 +1,7 @@
 ---
-title: WEBINAR - Database DevOps
+title: Webinar - Database DevOps
 description: In this webinar, Jeffrey Palermo and Paul Stovell answer all your Database DevOps questions.
-author: andrew.maher@octopus.com
+author: rob.pearson@octopus.com
 visibility: public
 published: 2019-02-26
 metaImage: webinar-database-devops.png
