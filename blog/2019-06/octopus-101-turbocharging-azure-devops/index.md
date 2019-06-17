@@ -2,8 +2,8 @@
 title: Turbocharging Azure DevOps with Octopus Deploy
 description: Derek Campbell and Ryan Rousseau will host a webinar on Azure DevOps and Octopus Deploy
 author: Derek.Campbell@Octopus.com
-visibility: private
-published: 2019-06-13
+visibility: public
+published: 2019-06-17
 bannerImage: azure-webinar.png
 metaImage: azure-webinar.png
 tags:
