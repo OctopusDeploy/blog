@@ -14,7 +14,17 @@ tags:
 
 <h2>Octopus Deploy 2019.6 LTS</h2>
 
-Octopus Deploy `2019.6 LTS` is now available for teams running Octopus self-hosted. This is our third release with six months of long term support and we're very happy to get it into our customers hands. We recommend this release for our self-hosted customers. It's represents our most stable release and `XXYY`
+Octopus Deploy `2019.6 LTS` is now available for teams running a self-hosted Octopus Server and we recommend this release for our self-hosted customers. Our [long-term support program (LTS)](https://octopus.com/docs/administration/upgrading/long-term-support) includes releases with six months of support including critical bug fixes and security patches. They do not include new features, minor enhancements, or minor bug fixes; these are rolled up into the next LTS release.
+
+[Download](https://octopus.com/downloads) Octopus Deploy `2019.6 LTS` now!
+
+This is our third release with six months of long term support and the following table shows our current LTS releases.
+
+| Release               | Long term support           | 
+| --------------------- | --------------------------- | 
+| Octopus 2019.6        | Yes                         | 
+| Octopus 2019.3        | Yes                         | 
+| Octopus 2018.10       | Expired                     | 
 
 Keep reading to learn about what's in this release and any breaking changes. 
 
@@ -30,15 +40,17 @@ Done means deployed to production. Our new Octopus plugin for Jira Cloud enables
 
 ## Tracking your work from idea to production
 
-TODO
+This release introduces build information and work item tracking, it’s now possible to see build, commit and issue details directly in Octopus. This allows teams to view the issues and build details that contributed to a release giving end-to-end traceability from issue to production. You can even click deep links for more information. We support GitHub Issues, Jira Issues and support for Azure DevOps is coming soon. 
 
-[Learn more](https://octopus.com/blog/octopus-jira-integration)
+[Learn more](https://octopus.com/blog/metadata-and-work-items)
 
-## Better Release Notes
+## Generate and share release notes automatically
 
-TODO
+Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what’s new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. 
 
-[Learn more](https://octopus.com/blog/octopus-jira-integration)
+This feature shipped with support for GitHub Issues, Jira Issues and support for Azure DevOps is coming soon. 
+
+[Learn more](https://octopus.com/blog/release-notes-templates)
 
 ## Script Module support for C# (and F# and Bash and Python)
 
