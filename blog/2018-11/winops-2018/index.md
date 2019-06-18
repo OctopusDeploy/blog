@@ -12,7 +12,7 @@ tags:
 
 ![Derek Campbell speaking at WinOps London 2018 details](blogimage-winops-success.png)
 
-Technology is key to any good business strategy. The automation of your technology, applications and products is key and, without it, your business can quickly become irrelevant.
+Technology is key to any good business strategy.  The automation of your technology, applications and products is key and, without it, your business can quickly become irrelevant.
 What does success look like for you and your business? Release more often? Release more reliably? Removal of downtime? Less stress on your DevOps teams?
  
 Why not all of them?
