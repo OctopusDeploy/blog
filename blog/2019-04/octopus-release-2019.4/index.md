@@ -19,7 +19,7 @@ This release includes some great updates:
 
 * [Build information and work item tracking](../metadata-and-work-items/index.md) captures metadata about work items and build details and surfaces them with links to the appropriate sites.
 * [Release notes templates](../release-notes-templates/index.md) and automatic release notes generation makes it easy to generate and share the changes that are going into your releases.
-* [Octopus integration with Jira](https://g.octopushq.com/JiraIssueTracker) which provides two-way links between your Jira issues and your deployments.
+* [Octopus integration with Jira](../../2019-05/octopus-jira-integration/index.md) which provides two-way links between your Jira issues and your deployments.
 
 ## Integrations
 
