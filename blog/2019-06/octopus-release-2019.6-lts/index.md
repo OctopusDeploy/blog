@@ -40,13 +40,13 @@ Done means deployed to production. Our new Octopus plugin for Jira Cloud enables
 
 ## Tracking Your Work From Idea to Production
 
-This release introduces build information and work item tracking; it's now possible to see build, commit, and issue details directly in Octopus. This functionality allows teams to view the issues and build details that contributed to a release giving end-to-end traceability from issue to production. You can even click deep links for more information. We support GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
+This release introduces build information and work item tracking. It's now possible to see build, commit, and issue details directly in Octopus. This functionality allows teams to view the issues and build details that contributed to a release giving end-to-end traceability from issue to production. You can even click deep links for more information. We support GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
 
 [Learn more](https://octopus.com/blog/metadata-and-work-items)
 
 ## Generate and Share Release Notes Automatically
 
-Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what's new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. We support for GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
+Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what's new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. We support  GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
 
 [Learn more](https://octopus.com/blog/release-notes-templates)
 
@@ -66,10 +66,10 @@ We'd love feedback so join the discussion on our [community slack](https://octop
 
 ## Breaking Changes
 
-This includes some minor breaking changes:
+This release includes some minor breaking changes:
 
 * There are some very slight changes to the format of the output returned by the `Octopus.Server.exe` `show-configuration` command. This is unlikely to affect teams, but if you are using this to drive automation, please test the new release before upgrading.
-* In order to support some customers who have Active Directory configurations where users share email addresses, we have had to remove the uniqueness restriction on user email.  
+* In order to support some customers who have Active Directory configurations where users share email addresses, we have removed the uniqueness restriction on user email.  
 * Health check properties of machine policies have changed to accommodate Linux Tentacle. `TentacleEndpointHealthCheckPolicy` has been renamed to `PowerShellHealthCheckPolicy` and `SshEndpointHealthCheckPolicy` has been renamed to `BashHealthCheckPolicy`. Any custom tools that create machine policies should use the new property names.
 * The `OnlyConnectivity` option that was configured on SSH health check policies is now a policy-wide setting. This setting is commonly used for raw scripting on SSH targets. If you are using this setting, a new machine policy will be created during the Octopus Server upgrade. Please refer to this GitHub issue for details; you may need to take action.
 
