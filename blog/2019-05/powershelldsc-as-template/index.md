@@ -3,7 +3,7 @@ title: Deploying PowerShell Desired State Configuration (DSC) like an App with O
 description: Use custom step templates and configuration data files to deploy your Infrastructure as Code using PowerShell DSC
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2019-05-08
+published: 2019-06-19
 bannerImage:
 metaImage:
 tags:
