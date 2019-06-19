@@ -26,7 +26,7 @@ This is our third release with six months of long term support and the following
 | Octopus 2019.3        | Yes                         | 
 | Octopus 2018.10       | Expired                     | 
 
-Keep reading to learn about what's in this release and any breaking changes. 
+Keep reading to learn about what's in this release and any breaking changes.
 
 <h2>In this post </h2>
 
@@ -34,27 +34,25 @@ Keep reading to learn about what's in this release and any breaking changes.
 
 ## Jira Integration 
 
-Done means deployed to production. Our new Octopus plugin for Jira Cloud enables teams to see the status of their releases and deployments directly in their Jira issues with deep links back to Octopus for further details. This enables greater visibility and insight for your team and company in the tool that they're most comfortable with. 
+Done means deployed to production. Our new Octopus plugin for Jira Cloud enables teams to see the status of their releases and deployments directly in their Jira issues with deep links back to Octopus for further details. This functionality enables greater visibility and insight for your team and company in the tool that they're most comfortable with.
 
 [Learn more](https://octopus.com/blog/octopus-jira-integration)
 
 ## Tracking your work from idea to production
 
-This release introduces build information and work item tracking, it’s now possible to see build, commit and issue details directly in Octopus. This allows teams to view the issues and build details that contributed to a release giving end-to-end traceability from issue to production. You can even click deep links for more information. We support GitHub Issues, Jira Issues and support for Azure DevOps is coming soon. 
+This release introduces build information and work item tracking; it's now possible to see build, commit and issue details directly in Octopus. This functionality allows teams to view the issues and build details that contributed to a release giving end-to-end traceability from issue to production. You can even click deep links for more information. We support GitHub Issues, Jira Issues and support for Azure DevOps is coming soon.
 
 [Learn more](https://octopus.com/blog/metadata-and-work-items)
 
 ## Generate and share release notes automatically
 
-Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what’s new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. 
-
-This feature shipped with support for GitHub Issues, Jira Issues and support for Azure DevOps is coming soon. 
+Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what's new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. We support for GitHub Issues, Jira Issues and support for Azure DevOps is coming soon. 
 
 [Learn more](https://octopus.com/blog/release-notes-templates)
 
-## Script Module support for C# (and F# and Bash and Python)
+## Script Module support for C#, F#, Bash and Python
 
-We added support for script modules in all our support langauges. Now you can centrally manage common Bash, C#, F# and Python script functions, and even see where the Script Modules are being used. 
+We added support for script modules in all our support languages. Now you can centrally manage common Bash, C#, F# and Python script functions, and even see which projects are using the Script Modules.
 
 [Learn more](https://octopus.com/blog/script-modules)
 
@@ -66,18 +64,21 @@ We'd love feedback so join the discussion on our [community slack](https://octop
 
 [Learn more](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle)
 
-## Breaking Changes
+## Breaking changes
 
 This includes some minor breaking changes:
 
-* There are some very slight changes to the format of the output returned by the Octopus.Server.exe show-configuration command. This is unlikely to affect you, but if you are using this to drive automation, please test the new release before upgrading.
+* There are some very slight changes to the format of the output returned by the `Octopus.Server.exe` `show-configuration` command. This is unlikely to affect teams, but if you are using this to drive automation, please test the new release before upgrading.
 * In order to support some customers who have Active Directory configurations where users share email addresses, we have had to remove the uniqueness restriction on user email.  
-* Health check properties of machine policies have changed to accommodate Linux Tentacle. TentacleEndpointHealthCheckPolicy has been renamed to PowerShellHealthCheckPolicy and SshEndpointHealthCheckPolicy has been renamed to BashHealthCheckPolicy. Any custom tools that create machine policies should use the new property names. 
-* The OnlyConnectivity option that was configured on SSH health check policies is now a policy-wide setting. This setting is commonly used for raw scripting on SSH targets. If you are using this setting a new machine policy will be created during the Octopus Server upgrade. Please refer to this GitHub issue for details, you may need to take action.
+* Health check properties of machine policies have changed to accommodate Linux Tentacle. `TentacleEndpointHealthCheckPolicy` has been renamed to `PowerShellHealthCheckPolicy` and `SshEndpointHealthCheckPolicy` has been renamed to `BashHealthCheckPolicy`. Any custom tools that create machine policies should use the new property names. 
+* The `OnlyConnectivity` option that was configured on SSH health check policies is now a policy-wide setting. This setting is commonly used for raw scripting on SSH targets. If you are using this setting a new machine policy will be created during the Octopus Server upgrade. Please refer to this GitHub issue for details, you may need to take action.
 
-As usual, please follow the [normal steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading).
+## Octopus 2019.7 is shipping soon
+
+We'd also like to mention that we're shipping Octopus 2019.7 next. This release is not a part of our LTS program (i.e. fast-lane), and it includes our latest and greatest features. This release builds upon the work shipped in Octopus 2019.6, but it doesn't have any user-facing features. It includes technical changes to retarget Octopus Deploy to NETCORE so Octopus can run on Linux natively and thus can run in containers. We made these changes to reduce our costs running Octopus Cloud, but it has the side effect that we can also improve its performance and scalability. Further, the ability to run Octopus self-hosted on Linux is coming soon.
+
+Watch our blog for some great technical blog posts on what this involved and our lessons learned.
 
 ## Wrapping up
 
-Octopus Server is the LTS for Octopus Server has arrived, and you can bank on it. Happy long-term deployments!
-
+Octopus Server 2019.6 has arrived, and you can bank on it. Happy long-term deployments!
