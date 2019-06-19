@@ -14,9 +14,9 @@ tags:
 
 <h2>Octopus Deploy 2019.6 LTS</h2>
 
-Octopus Deploy `2019.6 LTS` is now available for teams running a self-hosted Octopus Server and we recommend this release for our self-hosted customers. Our [long-term support program (LTS)](https://octopus.com/docs/administration/upgrading/long-term-support) includes releases with six months of support including critical bug fixes and security patches. They do not include new features, minor enhancements, or minor bug fixes; these are rolled up into the next LTS release.
+Octopus Deploy `2019.6 LTS` is now available for teams running Octopus Deploy self-hosted and we recommend this release for our self-hosted customers. Our [long-term support program (LTS)](https://octopus.com/docs/administration/upgrading/long-term-support) includes releases with six months of support including critical bug fixes and security patches. They do not include new features, minor enhancements, or minor bug fixes; these are rolled up into the next LTS release.
 
-[Download](https://octopus.com/downloads) Octopus Deploy `2019.6 LTS` now!
+<button type="button" class="btn btn-success">Download</button> Octopus Deploy `2019.6 LTS` now!
 
 This is our third release with six months of long term support and the following table shows our current LTS releases.
 
