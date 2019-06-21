@@ -3,8 +3,8 @@ title: Working at Octopus - a story of silicon and steel
 description: A history of the computers I have enjoyed as a result of the Octopus Deploy computer policy.
 author: shane.gill@octopus.com
 visibility: private
-bannerImage: 
-metaImage: 
+bannerImage: blogimage-laptopprogram.png
+metaImage: blogimage-laptopprogram.png
 published: 2019-06-21
 tags:
 - company
