@@ -22,7 +22,7 @@ For the fifth anniversary computer, I set out to make the ultimate code compilin
 
 This configuration is what I came up with:
 
-![An amazing desktop computer](octobox-v.jpg width="600")
+![An amazing desktop computer](octobox-v.jpg "width=600")
 
 Ryzen 7 2700X, 32GB DDR4 3200, RTX 2070, 1TB PCIe, 2TB SATA
 
