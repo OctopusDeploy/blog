@@ -7,7 +7,7 @@ bannerImage:
 metaImage: 
 published: 2019-06-21
 tags:
-- computer policy, work life
+- company
 ---
 
 My fifth anniversary at Octopus is fast approaching. To celebrate, I decided to take advantage of the Octopus policy that provides the tool I use most every day: the computer. Among the great benefits of working at Octopus is the computer program, a policy that lets me refresh my hardware every few years and keep (or donate) my old hardware.
