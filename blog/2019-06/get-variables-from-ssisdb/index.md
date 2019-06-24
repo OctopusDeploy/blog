@@ -24,7 +24,7 @@ As the original author of Deploy ispac SSIS project from a package, I can tell y
 
 ### The script
 
-**The following script is provided for demonstration purposes.**  The script below pulls variables and values from SSISDB and creates them as project variables in Octopus Deploy!  This saved a TON of time and the devs departed my office, satiated that their demands had been met.
+**The following script is provided for demonstration purposes.**  The script below pulls variables and values from the SSISDB Environment and creates them as project variables in Octopus Deploy!  This saved a TON of time and the devs departed my office, satiated that their demands had been met.
 
 ```PS
 # Define functions
