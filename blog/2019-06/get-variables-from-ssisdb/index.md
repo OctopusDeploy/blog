@@ -12,11 +12,11 @@ tags:
 
 ## Introduction
 
-If you've ever used the [Deploy ispac SSIS project from a package](https://library.octopus.com/step-templates/bf005449-60c2-4746-8e07-8ba857f93605/actiontemplate-deploy-ispac-ssis-project-from-a-package) step template, then you know that it can extract Project Parameters and Connection Manager information from your SSIS package and create them as Environment variables in SSISDB.  You also know that when doing this, every property of a Connection Manager is created as a separate Environment variable and if you don't have a variable named the same in your Octopus project, you get a message:
+If you've ever used the [Deploy ispac SSIS project from a package](https://library.octopus.com/step-templates/bf005449-60c2-4746-8e07-8ba857f93605/actiontemplate-deploy-ispac-ssis-project-from-a-package) step template, then you know that it can extract Project Parameters and Connection Manager information from your SSIS package and create them as Environment variables in SSISDB.  You also know that when doing this, every property of a Connection Manager is created as a separate Environment variable. If you don't have a variable named the same in your Octopus project, you get a message:
 
 OctopusParameters collection is empty or CM.OctoDemoSql.AdventureWorks2017.sa.ConnectUsingManagedIdentity not in the collection
 
-The variable is still created in the SSISDB Environment, however, it defaults to the design time values.  If your SSIS package has large number of Project Paramaters and or Connection Managers, the list of variables can be quite extensive and, let's be honest, quite tedious to create one-by-one.  
+The variable is still created in the SSISDB Environment, however, it defaults to the design time values.  If your SSIS package has large number of Project Paramaters and/or Connection Managers, the list of variables can be quite extensive and, let's be honest, quite tedious to create one-by-one.  
 
 ## Automation to the rescue!
 
@@ -24,7 +24,7 @@ As the original author of Deploy ispac SSIS project from a package, I can tell y
 
 ### The script
 
-**The following script is provided for demonstration purposes.**  Using the following script, I was able to connect to SSISDB and copy the variables and values and add them as project variables to Octopus Deploy!  This saved a TON of time and the devs departed my office, satiated that their demands had been met.
+**The following script is provided for demonstration purposes.**  The script below pulls variables and values from SSISDB and creates them as project variables in Octopus Deploy!  This saved a TON of time and the devs departed my office, satiated that their demands had been met.
 
 ```PS
 # Define functions
@@ -243,4 +243,4 @@ catch
 ```
 
 ## Summary
-In this post I showed you a quick way to populate the Octopus Depoloy project variables by connecting to SSISDB and copying the Environment variables.  This solution does require the SSIS package be deployed at least once so that the Environment variables get populated in SSISDB.  Though this example was specific to SSISDB, the general approach of using the API to programatically add variables to an Octopus Deploy project can be used in a wide variety of sources.
+In this post I showed you a quick way to populate the Octopus Deploy project variables by connecting to SSISDB and copying the Environment variables.  This solution does require the SSIS package be deployed at least once so that the Environment variables get populated in SSISDB.  Though this example was specific to SSISDB, the general approach of using the API to programatically add variables to an Octopus Deploy project can be used with a wide variety of sources.
