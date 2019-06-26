@@ -1,6 +1,6 @@
 ---
 title: Thoughts from my User Experience Journey
-description: Thoughts and takeaways from my recent journey with the Onboarding team, diving into user-experience.
+description: Thoughts and takeaways from my recent journey with the Onboarding team, diving further into user-experience.
 author: mark.siedle@octopus.com
 visibility: private
 bannerImage:
@@ -24,7 +24,7 @@ _"I feel GOOD, I feel GREAT, I feel WONDERFUL"_
 
 _(now loudly sobbing) "I FEEL GOOD, I FEEL GREAT, I FEEL WONDERFUL!"_
 
-Hi. My name's Mark, but I'm a Bob (Or am I the therapist? Sometimes I'm not sure). You've heard from me before. I'm one of the UX folks here at Octopus currently leading the onboarding efforts. We want new customers to be successful, so we want to get out of their way as much as possible and present them with something simple, free of distractions. Today I wanted to share some of the things we've been working on this last quarter and why we think they'll make your life easier.
+Hi. My name's Mark, but I'm a Bob (Or am I the therapist? Sometimes I'm not sure). You've heard from me before. I'm one of the UX folks here at Octopus currently leading our onboarding efforts. We want new customers to be successful, so we want to get out of their way as much as possible and present them with something simple, free of distractions. Today I wanted to share some of the things we've been working on this last quarter and why we think they'll make your life easier.
 
 Approaching UX from a customer's point of view is something we greatly value, and as your app grows in features, it's important to take a step back every now and then and think about new users who will be experiencing your interface for the first time.
 
@@ -121,7 +121,7 @@ We decided on a sidebar of helpful information that is both readily available an
 
 **TODO: screenshot of sidebar**
 
-Having the supporting text contained to the sidebar also meant we could remove it from the top of many screens, freely up valuable screen real estate.
+Having the supporting text contained to the sidebar also meant we could remove it from the top of many screens, freeing up valuable screen real estate.
 
 This feature provides you with a little extra help if you need it, but also gets out of your way. That's usually the balance we look for on any screen.
 
