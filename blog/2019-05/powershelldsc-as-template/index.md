@@ -10,7 +10,7 @@ tags:
  - PowerShell DSC
 ---
 
-In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to:
+In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to: 
 
  - Manage infrastructure.
  - Use Machine Policies to monitor for drift.
