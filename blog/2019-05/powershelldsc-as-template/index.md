@@ -4,8 +4,8 @@ description: Use custom step templates and configuration data files to deploy yo
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2019-06-19
-bannerImage:
-metaImage:
+bannerImage: img_powershell_dsc.png
+metaImage: img_powershell_dsc.png
 tags:
  - PowerShell DSC
 ---
