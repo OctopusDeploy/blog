@@ -441,7 +441,7 @@ Start-DscConfiguration -Wait -Verbose -Path $DSCTempPath
 ```
 
 #### Set up Variable Substitution
-Expand the Substitute Variables in Files section.  For Target files, click on #{} and choose the DataFileName variable:
+Expand the Substitute Variables in Files section. For Target files, click on #{} and choose the DataFileName variable:
 
 ![](template-var-sub.png)
 
