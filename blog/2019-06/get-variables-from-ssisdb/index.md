@@ -24,9 +24,18 @@ As the original author of Deploy ispac SSIS project from a package, I can tell y
 
 ### The script
 
-**The following script is provided for demonstration purposes.**  The script below pulls variables and values from the SSISDB Environment and creates them as project variables in Octopus Deploy!  This saved a TON of time and the devs departed my office, satiated that their demands had been met.
+:::warning
+The following script is provided for demonstration purposes.
+:::
+  The script below pulls variables and values from the SSISDB Environment and creates them as project variables in Octopus Deploy!  This saved a TON of time and the devs departed my office, satiated that their demands had been met.
 
 ```PS
+# Define parameters
+param(
+    $OctopusServerUrl,
+    $APIKey
+)
+
 # Define functions
 Function Get-EnvironmentVariablesFromSSISDB
 {
@@ -232,7 +241,7 @@ try
     }
 
     # Update the project 
-    Update-ProjectVariables -ProjectVariables $octopusProjectVariables -ApiKey "<Your API key here>" -OctopusServerUrl "<Your URL Here>" 
+    Update-ProjectVariables -ProjectVariables $octopusProjectVariables -ApiKey $APIKey -OctopusServerUrl $OctopusServerUrl
 }
 catch
 {
