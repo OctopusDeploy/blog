@@ -135,20 +135,26 @@ You have to trust your feelings when it comes to UX, because when it _is_ right,
 
 ## Closing Thoughts for UX Teams
 
-This process requires a lot of trust within your team. You have to be prepared to give and get hard feedback, which means preparing your team members for this style of respectful but open feedback. You have to be considerate of how much work has gone into something, but also make hard decisions about whether something's even moving in the right direction in terms of design.
+In my experience, this process requires a lot of trust within your team. You have to be prepared to give and get hard feedback if you really want to grow, which means preparing your team for this style of respectful but open feedback. You have to be considerate of how much work has gone into something, but also make hard decisions about whether a design's even moving in the right direction.
 
-I have this talk with everyone on my team to help prepare them:
+Talking about this up-front can help ease people into the process and avoid some more difficult conversations later. I generally approach it this way:
 
-> _"We're going to openly talk in this team. We're going to give each other very open feedback and we encourage you to do the same. You cannot get too attached to your work, because you may have to throw days of progress away and pivot in a different direction. It will hurt, but know that it's never a step backwards. Every step is moving forward because we learn from all these iterations and ultimately get to somewhere great."_
+> _"We ask and encourage everyone to be open about how a design makes them feel and to trust their instincts. You cannot get too attached to any one piece of work, because you may have to throw away days of progress and pivot in a different direction. It may hurt, but know that it's never a step backwards. We're always moving forward because we learn from all these iterations and ultimately get to somewhere great together."_
 
-### Main Takeaways
+There _will_ be times when you have to walk away from some design/code that you worked _really_ hard on because something's just not feeling right, or you've shown it to people and they're not reacting or connecting with it in the way you'd hoped.
 
-- Consider who's consuming your software
-- Encourage discussion on how a particular design makes you _feel_ to the point where you turn off your engineering/design brains and role play as a customer
-- Keep everyone focused on the primary value you're wanting the customer to experience
-- Know that small UX changes can make big differences in people's lives
+On reflection, it's these moments that teach you a lot about yourself (and who you're working with).
 
-Start doing these things and I believe you'll be heading in the right direction. Opportunities will present themselves to improve a customer's experience and good things will happen.
+The good news is that you can care deeply about your code/design without attaching yourself to it. The trick seems to be:
+
+- keep team-communication open _(express those feels)_
+- keep reviews and feedback regular _(don't let pieces of work reach boiling point)_
+- keep meetings short and to-the-point _(have an agenda, get in, get out, get it done)_
+- regularly see things through the customer's eyes _(not literally, that's just weird)_
+
+Start doing these things and I believe you'll be heading in the right direction. Know that small UX changes can make a big difference in people's lives. Let this thought guide you and opportunities will present themselves to improve a customer's experience and good things will happen.
+
+And with everything going on in your hectic little worlds, always try to maintain perspective. I.e. What is the _primary value_ you're wanting the customer to experience? Everything else might just be noise :)
 
 Keep smiling and happy deployments.
 
