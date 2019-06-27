@@ -32,7 +32,7 @@ Do the concepts make sense? Are there any distractions that take them away from 
 
 ## Minimising Distractions
 
-**TODO: small image of cat focusing intently on a piece of string**
+![This is Meatball, the kitty](kitty6.png "width=400")
 
 Alignment matters (equally in our code, design and implementation) because, as consumers, it reduces the cognitive load on our brains, which makes it easier for us to onboard new information.
 
