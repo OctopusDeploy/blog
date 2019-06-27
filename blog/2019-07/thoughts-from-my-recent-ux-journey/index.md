@@ -3,16 +3,14 @@ title: Thoughts from my User Experience Journey
 description: Thoughts and takeaways from my recent journey with the Onboarding team, diving further into user-experience.
 author: mark.siedle@octopus.com
 visibility: private
-bannerImage:
-metaImage:
+bannerImage: blogimage-ux-journey.png
+metaImage: blogimage-ux-journey.png
 published: 2019-07-01
 tags:
 - company
 - onboarding
 - user-experience
 ---
-
-**TODO: psychology chair image, hinting at the What About Bob movie - https://www.youtube.com/watch?v=1bYO-mm_MvM**
 
 _"I feel good, I feel great, I feel wonderful"_
 
@@ -24,7 +22,7 @@ _"I feel GOOD, I feel GREAT, I feel WONDERFUL"_
 
 _(now loudly sobbing) "I FEEL GOOD, I FEEL GREAT, I FEEL WONDERFUL!"_
 
-Hi. My name's Mark, but I'm a Bob (Or am I the therapist? Sometimes I'm not sure). You've heard from me before. I'm one of the UX folks here at Octopus currently leading our onboarding efforts. We want new customers to be successful, so we want to get out of their way as much as possible and present them with something simple, free of distractions. Today I wanted to share some of the things we've been working on this last quarter and why we think they'll make your life easier.
+Hi. My name's Mark, and I'm a <a href="https://www.youtube.com/watch?v=1bYO-mm_MvM" target="_blank">Bob</a> (Or am I the therapist? Sometimes I'm not sure). You've heard from me before. I'm one of the UX folks here at Octopus currently leading our onboarding efforts. We want new customers to be successful, so we want to get out of their way as much as possible and present them with something simple, free of distractions. Today I wanted to share some of the things we've been working on this last quarter and why we think they'll make your life easier.
 
 Approaching UX from a customer's point of view is something we greatly value, and as your app grows in features, it's important to take a step back every now and then and think about new users who will be experiencing your interface for the first time.
 
@@ -32,7 +30,7 @@ Do the concepts make sense? Are there any distractions that take them away from 
 
 ## Minimising Distractions
 
-![This is Meatball, the kitty](kitty6.png "width=400")
+![](kitty-distracted.png)
 
 Alignment matters (equally in our code, design and implementation) because, as consumers, it reduces the cognitive load on our brains, which makes it easier for us to onboard new information.
 
@@ -90,9 +88,11 @@ Because the engineering is what's important to them. They care about the code. A
 
 But the customer cares about the user-experience, because that's what they interact with; that's what inspires them; that's what holds their hand and takes them on this magical journey.
 
-_"Yer a Wizard, Harry"_
+![](kitty-wizard.png)
 
-Their journey is only made possible by the underlying engineering, but if it's not presented in an intuitive way, free of noise and distraction, then the customer won't connect with the beauty of the engineering or design and we'll have failed in our delivery.
+<small>_"Yer a Wizard, Harry"_</small>
+
+A customer's journey is only made possible by the underlying engineering. But if it's not presented in an intuitive way, free of noise and distraction, then they won't connect with the beauty of the engineering and we'll have failed in our delivery.
 
 :::hint
 **Think of it this way**
@@ -119,7 +119,7 @@ We want new users to be successful, and as a part of that goal, we looked at how
 
 We decided on a sidebar of helpful information that is both readily available and easily dismissible. This sidebar provides a quick summary of concepts related to the page you're viewing, as well as links to our documentation and additional helpful resources for people beginning their journey with Octopus.
 
-**TODO: screenshot of sidebar**
+![The Octopus Help Sidebar](sidebar.png)
 
 Having the supporting text contained to the sidebar also meant we could remove it from the top of many screens, freeing up valuable screen real estate.
 
@@ -151,3 +151,5 @@ I have this talk with everyone on my team to help prepare them:
 Start doing these things and I believe you'll be heading in the right direction. Opportunities will present themselves to improve a customer's experience and good things will happen.
 
 Keep smiling and happy deployments.
+
+![](kitty-focused.png)
