@@ -76,10 +76,14 @@ We'd love feedback so join the discussion on our [community slack](https://octop
 
 This release includes some minor breaking changes:
 
-* There are some very slight changes to the format of the output returned by the `Octopus.Server.exe` `show-configuration` command. This is unlikely to affect teams, but if you are using this to drive automation, please test the new release before upgrading. [Learn more](https://github.com/OctopusDeploy/Issues/issues/5392)
-* In order to support some customers who have Active Directory configurations where users share email addresses, we have removed the uniqueness restriction on user email. [Learn more](https://github.com/OctopusDeploy/Issues/issues/5549)
-* Health check properties of machine policies have changed to accommodate Linux Tentacle. `TentacleEndpointHealthCheckPolicy` has been renamed to `PowerShellHealthCheckPolicy` and `SshEndpointHealthCheckPolicy` has been renamed to `BashHealthCheckPolicy`. Any custom tools that create machine policies should use the new property names. [Learn more](https://github.com/OctopusDeploy/Issues/issues/5544)
-* The `OnlyConnectivity` option that was configured on SSH health check policies is now a policy-wide setting. This setting is commonly used for raw scripting on SSH targets. If you are using this setting, a new machine policy will be created during the Octopus Server upgrade. Please refer to this GitHub issue for details; you may need to take action. [Learn more](https://github.com/OctopusDeploy/Issues/issues/5544)
+* There are some very slight changes to the format of the output returned by the `Octopus.Server.exe` `show-configuration` command. This is unlikely to affect teams, but if you are using this to drive automation, please test the new release before upgrading. 
+[Learn more](https://github.com/OctopusDeploy/Issues/issues/5392)
+* In order to support some customers who have Active Directory configurations where users share email addresses, we have removed the uniqueness restriction on user email. 
+[Learn more](https://github.com/OctopusDeploy/Issues/issues/5549)
+* Health check properties of machine policies have changed to accommodate Linux Tentacle. `TentacleEndpointHealthCheckPolicy` has been renamed to `PowerShellHealthCheckPolicy` and `SshEndpointHealthCheckPolicy` has been renamed to `BashHealthCheckPolicy`. Any custom tools that create machine policies should use the new property names. 
+[Learn more](https://github.com/OctopusDeploy/Issues/issues/5544)
+* The `OnlyConnectivity` option that was configured on SSH health check policies is now a policy-wide setting. This setting is commonly used for raw scripting on SSH targets. If you are using this setting, a new machine policy will be created during the Octopus Server upgrade. Please refer to this GitHub issue for details; you may need to take action. 
+[Learn more](https://github.com/OctopusDeploy/Issues/issues/5544)
 
 ## Wrapping up
 
