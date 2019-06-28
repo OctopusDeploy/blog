@@ -32,31 +32,39 @@ Keep reading to learn about what's in this release and any breaking changes.
 
 !toc
 
-## Jira Integration
+## Jira integration
+
+![Atlassian Jira Integration](jira-issue-with-deployments.png "width=500")
 
 Done means deployed to production. Our new Octopus plugin for Jira Cloud enables teams to see the status of their releases and deployments directly in their Jira issues with deep links back to Octopus for further details. This functionality enables greater visibility and insight for your team and company in the tool that they're most comfortable with.
 
 [Learn more](https://octopus.com/blog/octopus-jira-integration)
 
-## Tracking Your Work From Idea to Production
+## Tracking your work from idea to production
+
+![Octopus Release Details with build and work items information](octopus-release-details.png "width=500")
 
 This release introduces build information and work item tracking. It's now possible to see build, commit, and issue details directly in Octopus. This functionality allows teams to view the issues and build details that contributed to a release giving end-to-end traceability from issue to production. You can even click deep links for more information. We support GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
 
 [Learn more](https://octopus.com/blog/metadata-and-work-items)
 
-## Generate and Share Release Notes Automatically
+## Generate and share release notes automatically
+
+![Octopus Deployment with release notes showing what's new](octopus-release-notes.png "width=500")
 
 Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what's new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. We support  GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
 
 [Learn more](https://octopus.com/blog/release-notes-templates)
 
-## Script Module Support for C#, F#, Bash, and Python
+## Script module support for C#, F#, Bash, and Python
 
 We added support for script modules in all our support languages. Now you can centrally manage common Bash, C#, F#, and Python script functions, and even see which projects are using the Script Modules.
 
 [Learn more](https://octopus.com/blog/script-modules)
 
-## Linux Tentacle Early Access
+## Linux Tentacle early access
+
+![Linux Tentacle configuration](linux-tentacle.png "width=500")
 
 This release also includes early-access for our upcoming Linux Tentacle. [Octopus 3.0](https://octopus.com/blog/deployment-targets-in-octopus-3) introduced support for Linux deployments over SSH; however, in highly secure environments inbound ports cannot be opened on production servers. Our Linux Tentacle agent solves this security concern with support for communication between the Octopus Server and Linux deployment targets in listening and polling modes. Polling mode specifically removes the requirement for open ports as the polling Tentacle establishes communication with the Octopus Server.
 
@@ -64,7 +72,7 @@ We'd love feedback so join the discussion on our [community slack](https://octop
 
 [Learn more](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle)
 
-## Breaking Changes
+## Breaking changes
 
 This release includes some minor breaking changes:
 
@@ -73,12 +81,6 @@ This release includes some minor breaking changes:
 * Health check properties of machine policies have changed to accommodate Linux Tentacle. `TentacleEndpointHealthCheckPolicy` has been renamed to `PowerShellHealthCheckPolicy` and `SshEndpointHealthCheckPolicy` has been renamed to `BashHealthCheckPolicy`. Any custom tools that create machine policies should use the new property names.
 * The `OnlyConnectivity` option that was configured on SSH health check policies is now a policy-wide setting. This setting is commonly used for raw scripting on SSH targets. If you are using this setting, a new machine policy will be created during the Octopus Server upgrade. Please refer to this GitHub issue for details; you may need to take action.
 
-## Octopus 2019.7 is Shipping Soon
-
-We'd also like to mention that we're shipping Octopus 2019.7 next. This release is not a part of our LTS program (i.e., fast-lane), and it includes our latest and greatest features. This release builds upon the work shipped in Octopus 2019.6, but it doesn't have any user-facing features. It includes technical changes to retarget Octopus Deploy to NETCORE so Octopus can run on Linux natively and thus can run in containers. We made these changes to reduce our costs running Octopus Cloud, but it has the side effect that we can also improve its performance and scalability. Further, the ability to run Octopus self-hosted on Linux is coming soon.
-
-Watch our blog for some great technical blog posts on what this involved and our lessons learned.
-
-## Wrapping Up
+## Wrapping up
 
 Octopus Server 2019.6 has arrived, and you can bank on it. Happy long-term deployments!
