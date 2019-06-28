@@ -152,7 +152,7 @@ The good news is that you can care deeply about your code/design without attachi
 - keep meetings short and to-the-point _(have an agenda, get in, get out, get it done)_
 - regularly see things through the customer's eyes _(not literally, that's just weird)_
 
-Start doing these things and I believe you'll be heading in the right direction. Know that small UX changes can make a big difference in people's lives. Let this thought guide you and opportunities will present themselves to improve a customer's experience and good things will happen.
+Start doing these things and I believe you'll be heading in the right direction. Know that small UX changes can make a big difference in people's lives, opportunities will present themselves to improve a customer's experience and good things will happen.
 
 And with everything going on in your hectic little worlds, always try to maintain perspective. I.e. What is the _primary value_ you're wanting the customer to experience? Everything else might just be noise :)
 
