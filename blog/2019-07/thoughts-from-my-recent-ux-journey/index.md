@@ -119,7 +119,7 @@ We want new users to be successful, and as a part of that goal, we looked at how
 
 We decided on a sidebar of helpful information that is both readily available and easily dismissible. This sidebar provides a quick summary of concepts related to the page you're viewing, as well as links to our documentation and additional helpful resources for people beginning their journey with Octopus.
 
-![The Octopus Help Sidebar](sidebar.png)
+![The Octopus Help Sidebar](sidebar.png "width=600")
 
 Having the supporting text contained to the sidebar also meant we could remove it from the top of many screens, freeing up valuable screen real estate.
 
