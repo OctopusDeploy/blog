@@ -3,7 +3,7 @@ title: Importing variables from SSISDB
 description: Use PowerShell and the Octopus Deploy API to automate importing variables from SSISB
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2019-06-19
+published: 2019-06-28
 bannerImage:
 metaImage:
 tags:
