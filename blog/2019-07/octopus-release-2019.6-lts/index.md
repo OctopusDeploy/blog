@@ -34,7 +34,7 @@ Keep reading to learn about what's in this release and any breaking changes.
 
 ## Jira integration
 
-![Atlassian Jira Integration](jira-issue-with-deployments.png "width=500")
+![Atlassian Jira Integration](jira-issue-with-deployments.png "width=600")
 
 Done means deployed to production. Our new Octopus plugin for Jira Cloud enables teams to see the status of their releases and deployments directly in their Jira issues with deep links back to Octopus for further details. This functionality enables greater visibility and insight for your team and company in the tool that they're most comfortable with.
 
@@ -42,7 +42,7 @@ Done means deployed to production. Our new Octopus plugin for Jira Cloud enables
 
 ## Tracking your work from idea to production
 
-![Octopus Release Details with build and work items information](octopus-release-details.png "width=500")
+![Octopus Release Details with build and work items information](octopus-release-details.png "width=600")
 
 This release introduces build information and work item tracking. It's now possible to see build, commit, and issue details directly in Octopus. This functionality allows teams to view the issues and build details that contributed to a release giving end-to-end traceability from issue to production. You can even click deep links for more information. We support GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
 
@@ -50,7 +50,7 @@ This release introduces build information and work item tracking. It's now possi
 
 ## Generate and share release notes automatically
 
-![Octopus Deployment with release notes showing what's new](octopus-release-notes.png "width=500")
+![Octopus Deployment with release notes showing what's new](octopus-release-notes.png "width=600")
 
 Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what's new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. We support  As with work item tracking, we support GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
 
