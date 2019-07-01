@@ -2,10 +2,10 @@
 title: Octopus Server 2019.6 with Long Term Support (LTS)
 description: Octopus Server 2019.6 LTS is the third release with six months of long-term support. We recommend this release for self-hosted customers.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2019-06-19
+published: 2019-07-01
 tags:
 - New Releases, LTS
 ---
@@ -52,7 +52,7 @@ This release introduces build information and work item tracking. It's now possi
 
 ![Octopus Deployment with release notes showing what's new](octopus-release-notes.png "width=600")
 
-Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what's new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. We support  As with work item tracking, we support GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
+Octopus can now generate release notes by leveraging metadata from your source code commits and build process to determine what's new in an environment. It can show you which issues and changes are new since your last deployment. You can even share this with your team on Slack or send it to your customers via email. As with work item tracking, we support GitHub Issues, Jira Issues, and support for Azure DevOps is coming soon.
 
 [Learn more](https://octopus.com/blog/release-notes-templates)
 
