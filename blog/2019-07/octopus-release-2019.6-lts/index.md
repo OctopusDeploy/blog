@@ -2,10 +2,10 @@
 title: Octopus Server 2019.6 with Long Term Support (LTS)
 description: Octopus Server 2019.6 LTS is the third release with six months of long-term support. We recommend this release for self-hosted customers.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2019-06-19
+published: 2019-07-01
 tags:
 - New Releases, LTS
 ---
