@@ -78,7 +78,7 @@ VerticalStack(alignment: .leading) {
 }
 ```
 
-[https://www.youtube.com/watch?v=g4ChTL-3c3o](https://www.youtube.com/watch?v=g4ChTL-3c3o)
+<a href="https://www.youtube.com/watch?v=g4ChTL-3c3o" target="_blank">^ My Vietnam War</a>
 
 I feel most engineers write code like the first example, but at times (and often only in small ways) implement and introduce their design to customers like the second example.
 
