@@ -18,9 +18,9 @@ _"I feel good, I feel great, I feel wonderful"_
 
 _"I feel GOOD, I feel GREAT, I feel WONDERFUL"_
 
-[Sees missing help information over here, too much help information over there, and more styling issues]
+[Sees missing help options, too much information making a screen very distracting and _more_ styling issues]
 
-_(now loudly sobbing) "I FEEL GOOD, I FEEL GREAT, I FEEL WONDERFUL!"_
+**_(now loudly sobbing) "I FEEL GOOD, I FEEL GREAT, I FEEL WONDERFUL!"_**
 
 Hi. My name's Mark, and I'm a <a href="https://www.youtube.com/watch?v=1bYO-mm_MvM" target="_blank">Bob</a> (Or am I the therapist? Sometimes I'm not sure). You've heard from me before. I'm one of the UX folks here at Octopus currently leading our onboarding efforts. We want new customers to be successful, so we want to get out of their way as much as possible and present them with something simple, free of distractions. Today I wanted to share some of the things we've been working on this last quarter and why we think they'll make your life easier.
 
