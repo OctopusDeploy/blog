@@ -11,8 +11,6 @@ tags:
 - Tentacle
 ---
 
-![Octopus Linux Illustration](blogimage-octopusserverlinux-2.png)
-
 ## Intro
 
 Octopus is expanding our list of supported deployment targets (the servers and cloud services that you can deploy to) by introducing a native Linux Tentacle. Tentacles have always been our most popular deployment targets. The way they can be configured to communicate with the Octopus Server provides the most flexibility, but the downside is they were exclusive to Windows.
@@ -23,7 +21,9 @@ The existing approach for deploying to a Linux server is to configure them as SS
 
 So how does a native Linux Tentacle solve this problem? Tentacles support a polling mode, and with this configuration, Tentacle polls the Octopus Server to periodically check if there are any tasks for it to perform. The biggest advantage is that the target server doesn't require any firewall changes, it only requires a single open port on the Octopus Server. This functionality removes the need to run the SSH server on your Linux machines, which addresses the security concerns for many teams.
 
-## Example 1: Octopus Cloud Deploying to Linux Servers
+![Linux deployment targets page](linux-tentacle-early-access.png)
+
+## Example 1: Octopus Cloud deploying to Linux servers
 
 Suppose your team is using Octopus Cloud to deploy several microservices to multiple Linux servers. With the current version of Octopus, your Linux targets need to be running an SSH server that is publicly accessible over the internet. While SSH is considered to be one of the more secure remote access methods, some companies operate in highly secure environments where it's not possible to open port 22 on production servers.
 
@@ -38,6 +38,8 @@ Suppose your team is trying to deploy to highly secured Linux servers running in
 Solution: This is where Tentacle polling mode really shines, it allows your Tentacles to actively poll the Octopus Server without the Octopus Server having to know anything about the IP addresses of the Linux targets.
 
 ## Linux Tentacle Early Access
+
+![Octopus Linux Illustration](linux-tentacle.png)
 
 We are currently providing early access for Linux Tentacle to get feedback and validate its design. [Our docs](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) cover all the details on how to get started.
 We're building both DEB (Ubuntu/Debian) and RPM (CentOS/Fedora) packages, as well as .tar.gz archive for manual installations. Tentacle is built with .NET Core 2.x, so if your version of Linux is [supported](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) you should be able to run Tentacle.
