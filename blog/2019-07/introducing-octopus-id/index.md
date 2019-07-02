@@ -17,9 +17,9 @@ When Octopus Cloud [was announced](https://octopus.com/blog/announcing-octopus-c
 
 We want to make your experience interacting with Octopus as simple as possible, so today we're introducing our plans for single sign-on using Octopus ID, starting with a few new account features that we hope will make your life easier, and get you deploying quicker than ever.
 
-![Octopus ID signin form](signin.png "width=300")
-
 ## Log in easily with Google or Microsoft
+
+![Octopus ID signin form](signin.png "width=300")
 
 You can now [log in](https://account.octopus.com/) to your account using your existing Google or Microsoft account. For existing users with an old email and password account, don't worry, we continue to support that, and we'll automatically link multiple authentication methods based on your email address. You'll just need to verify your email address as shown below.
 
