@@ -2,7 +2,7 @@
 title: Introducing Octopus ID
 description: Introducing our plans for single sign-on and new account features, using Octopus ID.
 author: roy.wallace@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-octopusid.png
 metaImage: metaimage-octopusid.png
 published: 2019-07-02
