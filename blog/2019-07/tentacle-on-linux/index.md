@@ -1,5 +1,5 @@
 ---
-title: Introducing Linux Tentacle for more secure deployments
+title: Introducing Linux Tentacle for Highly Secured Linux Servers
 description: Octopus Deploy now supports Tentacles on Linux
 author: tom.williams@octopus.com
 visibility: public
