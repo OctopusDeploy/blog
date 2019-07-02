@@ -15,7 +15,7 @@ tags:
 
 Octopus is expanding our list of supported deployment targets (the servers and cloud services that you can deploy to) by introducing a native Linux Tentacle. Tentacles have always been our most popular deployment targets. The way they can be configured to communicate with the Octopus Server provides the most flexibility, but the downside is they were exclusive to Windows.
 
-We have been working hard to bring first-class support to Linux deployment targets, and we're happy to announce **[early access to Linux Tentacle](/blog/2019-07/tentacle-on-linux/index.md#linux-tentacle-early-access).**. If you prefer to wait until the official release, you can keep an eye on this feature and others on our [roadmap](https://octopus.com/company/roadmap) page, you can even register for updates.
+We have been working hard to bring first-class support to Linux deployment targets, and we're happy to announce **[early access to Linux Tentacle](/blog/2019-07/tentacle-on-linux/index.md#linux-tentacle-early-access)**. If you prefer to wait until the official release, you can keep an eye on this feature and others on our [roadmap](https://octopus.com/company/roadmap) page, you can even register for updates.
 
 The existing approach for deploying to a Linux server is to configure them as SSH targets in Octopus, and while this approach works well for most applications, it does require the target machine to have an open SSH connection. Unfortunately, some companies operate in highly secure environments where it's not possible to open port 22 on production servers.
 
