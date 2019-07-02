@@ -21,7 +21,7 @@ The existing approach for deploying to a Linux server is to configure them as SS
 
 So how does a native Linux Tentacle solve this problem? Tentacles support a polling mode, and with this configuration, Tentacle polls the Octopus Server to periodically check if there are any tasks for it to perform. The biggest advantage is that the target server doesn't require any firewall changes, it only requires a single open port on the Octopus Server. This functionality removes the need to run the SSH server on your Linux machines, which addresses the security concerns for many teams.
 
-![Linux deployment targets page](linux-tentacle-early-access.png)
+![Linux deployment targets page](linux-tentacle-early-access.png "width=600")
 
 ## Example 1: Octopus Cloud Deploying to Linux Servers
 
