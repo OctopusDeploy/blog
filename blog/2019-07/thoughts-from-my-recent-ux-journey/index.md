@@ -43,6 +43,7 @@ var body: some View {
             .font(.headline)
             .padding(.leading, 15)
             .padding(.top, 5)
+
         ScrollView(showsHorizontalIndicator: false) {
             HorizontalStack(alignment: .top, spacing: 0) {
                 ForEach(self.items) { landmark in
@@ -55,7 +56,7 @@ var body: some View {
 }
 ```
 
-Just by glancing at this code, you can easily reason about what's happening because everything is aligned correctly and consistently. If there was a bug in this code, I'd be confident an engineer on my team could find it quickly and efficiently.
+Just by glancing at this code, you can easily reason about what's happening because everything is aligned correctly and consistently. If there was a bug in this code, I'd be confident any engineer could find it quickly and easily.
 
 Now let's take that same code sample, but this time, write it in that special way that makes our eyes twitch:
 
@@ -70,9 +71,10 @@ VerticalStack(alignment: .leading) {
       HorizontalStack(alignment: .top, spacing: 0) {
         ForEach(self.items) { landmark in
                 CategoryItem(landmark: landmark)
-        }
+                 }
         }
     }
+
  .frame(height: 185)
  }
 }
