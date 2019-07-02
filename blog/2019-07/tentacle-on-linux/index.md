@@ -21,7 +21,7 @@ So how does a native Linux Tentacle solve this problem? Tentacles support a poll
 
 ![Linux deployment targets page](linux-tentacle-early-access.png "width=600")
 
-## Example 1: Octopus Cloud Deploying to Linux Servers
+## Example 1: Octopus Cloud deploying to Linux servers
 
 Suppose your team is using Octopus Cloud to deploy several microservices to multiple Linux servers. With the current version of Octopus, your Linux targets need to be running an SSH server that is publicly accessible over the internet. While SSH is considered to be one of the more secure remote access methods, some companies operate in highly secure environments where it's not possible to open port 22 on production servers.
 
@@ -35,7 +35,7 @@ Suppose your team is trying to deploy to highly secured Linux servers running in
 
 Solution: This is where Tentacle polling mode really shines, it allows your Tentacles to actively poll the Octopus Server without the Octopus Server having to know anything about the IP addresses of the Linux targets.
 
-## Linux Tentacle Early Access
+## Linux Tentacle early access
 
 ![Octopus Linux Illustration](linux-tentacle.png)
 
