@@ -23,7 +23,7 @@ So how does a native Linux Tentacle solve this problem? Tentacles support a poll
 
 ![Linux deployment targets page](linux-tentacle-early-access.png)
 
-## Example 1: Octopus Cloud deploying to Linux servers
+## Example 1: Octopus Cloud Deploying to Linux Servers
 
 Suppose your team is using Octopus Cloud to deploy several microservices to multiple Linux servers. With the current version of Octopus, your Linux targets need to be running an SSH server that is publicly accessible over the internet. While SSH is considered to be one of the more secure remote access methods, some companies operate in highly secure environments where it's not possible to open port 22 on production servers.
 
