@@ -7,38 +7,42 @@ published: 2019-07-02
 metaImage: blogimage-octopusserverlinux-2.png
 bannerImage: blogimage-octopusserverlinux-2.png
 tags: 
-- Deployment Targets Linux Tentacle
+- Linux 
+- Tentacle
 ---
 
 ![Octopus Linux Illustration](blogimage-octopusserverlinux-2.png)
 
 ## Intro
 
-While Octopus Deploy supports many types of deployment targets, the most common are Tentacles as they provide the most flexibility in the way they can be configured to communicate to the Octopus Server, the downside being they have been exclusive to Windows.
+Octopus is expanding our list of supported deployment targets (i.e. servers and cloud services that you can deploy to) by introducing a native Linux Tentacle. Tentacle is our most popular and provides the most flexibility in the way they can be configured to communicate to the Octopus Server, the downside being they have been exclusive to Windows.
 
-The existing approach for deploying to a Linux Target has been to configure them as SSH targets in Octopus, and while this approach works well for most applications, it does require that the target machine has an open SSH connection.
+We have been working hard away at bringing first-class support to Linux deployment targets, and we are happy to announce we are providing * **[early access to Linux Tentacle](/blog/2019-07/tentacle-on-linux/index.md#linux-tentacle-early-access).**. If you prefer to wait until the official release, you can keep an eye on this feature and others on our [roadmap](https://octopus.com/company/roadmap) page as well as the ability to register for updates.
 
-So how does a native Linux version of Tentacle solve this problem? Tentacles support a polling mode, and in this configuration, Tentacle polls the Octopus server periodically to check if there are any tasks for it to perform. The advantage of a Polling Tentacle is that you don't need to make any firewall changes on the Tentacle side, you only need to allow access to a port on the Octopus server. This functionality is where Tentacles have an advantage over SSH targets. They don't need to have the SSH server running on your Linux targets, which for many teams can pose serious security concerns.
+The existing approach for deploying to a Linux server has been to configure them as SSH targets in Octopus, and while this approach works well for most applications, it does require that the target machine has an open SSH connection. Unfortunately, some companies operate in highly secure environments where it's not possible to open port 22 on production servers.
 
-We have been working hard away at bringing first-class support to Linux deployment targets, and we are happy to announce public beta access to [Linux Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). If you prefer to wait until the official release, you can keep an eye on this feature and others on our [roadmap](https://octopus.com/company/roadmap) page as well as the ability to register for updates.
+So how does a native Linux Tentacle solve this problem? Tentacles support a polling mode, and in this configuration, Tentacle polls the Octopus Server periodically to check if there are any tasks for it to perform. The biggest advantage of this is that the target server doesn't require any firewall changes, it only requires a single open port on the Octopus Server. This functionality removes the need to run the SSH server on your Linux machines, which addresses the security concerns for many teams.
 
-## Example Scenarios 1
+## Example 1: Octopus Cloud deploying to Linux servers
 
-Suppose that you are using Octopus Cloud for deploying your applications. You have an application that you need to deploy to 1 or more Linux machines. With the current version of Octopus, your Linux targets would need to be running an SSH server that is publicly accessible over the internet. While SSH is considered to be one of the more secure remote access methods, it is still advisable that SSH is not open on a public network.
+Suppose your team is using Octopus Cloud to deploy several microservices to multiple Linux servers. With the current version of Octopus, your Linux targets would need to be running an SSH server that is publicly accessible over the internet. While SSH is considered to be one of the more secure remote access methods, some companies operate in highly secure environments where it's not possible to open port 22 on production servers.
 
 In this scenario, configuring your Linux targets as SSH Targets is the only option and due to security concerns, might not be possible.
 Solution: Linux Tentacles! We can now set up the Linux Targets to run the Tentacle service and configure it to communicate to the Octopus Server in polling mode. Using this method we don't require that any inbound ports to be open, we only require that the Linux machine can communicate on a single outbound port (default 10943) and port 80 or 443 to access the Octopus Server web portal.
 
-## Example Scenario 2
+## Example 2: : Servers in a DMZ with HTTPS only
 
-Another scenario where Polling Linux Tentacles have an advantage over SSH is if your Linux deployment targets have dynamic IP addresses or are behind a NAT gateway, as Octopus Server requires a valid IP address or DNS record for communicating to SSH deployment targets. In this scenario using a Polling Linux Tentacle allows your Tentacles to actively poll the Octopus Server without the Octopus Server having to know anything about the IP address of Linux target.
+Suppose your team is trying to deploy to highly secured Linux servers running in a DMZ with no incoming connections permitted other than HTTPS for web traffic. Security and compliance restrictions in our industry make it impossible to grant access for SSH.
+Solution: This is where a Tentacle polling mode really shines, it allows your Tentacles to actively poll the Octopus Server without the Octopus Server having to know anything about the IP address of Linux target.
 
-## Linux Tentacle Beta Access
+## Linux Tentacle Early Access
 
-We are currently providing [public beta access](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) to Linux Tentacle. Our docs cover all the details on how to get started.
-Currently, we are building both DEB (Ubuntu/Debian) and RPM (CentOS/Fedora) packages, as well as .tar.gz archive for manual installations. Tentacle is built with .NET core 2.x, so if your version of Linux is [supported](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) you should be able to run Tentacle.
+We are currently providing early access for Linux Tentacle to get feedback and validate its design. [Our docs](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) cover all the details on how to get started. 
+We're building both DEB (Ubuntu/Debian) and RPM (CentOS/Fedora) packages, as well as .tar.gz archive for manual installations. Tentacle is built with .NET core 2.x, so if your version of Linux is [supported](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) you should be able to run Tentacle.
+We'd love feedback so join the discussion on our [community slack](https://octopus.com/slack) in the `#linux-tentacle` channel.
 
 ## Wrapping up
 
-While SSH targets are still useful for many scenarios, it has always felt that deploying to Linux has been slightly less feature-rich than deploying to Windows. It has been the goal of this feature to bring all the same features to the Linux ecosystem that we already provide Windows. If you are interested in this feature, you can register for updates on our [roadmap](https://octopus.com/company/roadmap) page.
+Linux Tentacle provides greater flexibility for teams deploying to Linux in highly secured environments and compliments our existing SSH deployment target support. Our goal is to bring all the same features to the Linux ecosystem that we already provide Windows.
+Don't forget to register for updates on our [public roadmap](https://octopus.com/company/roadmap) page.
 
