@@ -1,5 +1,5 @@
 ---
-title: Tentacle on Linux
+title: Introducing Linux Tentacle for more secure deployments
 description: Octopus Deploy now supports Tentacles on Linux
 author: tom.williams@octopus.com
 visibility: public
@@ -10,8 +10,6 @@ tags:
 - Linux
 - Tentacle
 ---
-
-## Intro
 
 Octopus is expanding our list of supported deployment targets (the servers and cloud services that you can deploy to) by introducing a native Linux Tentacle. Tentacles have always been our most popular deployment targets. The way they can be configured to communicate with the Octopus Server provides the most flexibility, but the downside is they were exclusive to Windows.
 
