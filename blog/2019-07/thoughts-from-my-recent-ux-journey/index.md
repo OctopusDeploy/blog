@@ -82,13 +82,13 @@ VerticalStack(alignment: .leading) {
 
 ![](eye-twitch.gif "width=40")
 
-I feel most engineers write code like the first example, but at times (and often only in small ways) implement and introduce their design to customers like the second example.
+I feel most engineers write code like the first example, but at times (and often only in small ways) we implement and introduce our design to customers like the second example.
 
 Why?
 
-Because the engineering is what's important to them. They care about the code. And that's good. They're engineers after all.
+Because the code is what we see most of the time - it's staring us in the face as we work. We care about the code and that's good! We're engineers after all.
 
-But the customer cares about the user-experience, because that's what they interact with; that's what inspires them; that's what holds their hand and takes them on this magical journey.
+The customer, on the other hand, cares about the user-experience, because that's what they interact with; that's what inspires them; that's what holds their hand and takes them on this magical journey.
 
 ![](kitty-wizard.png)
 
