@@ -2,10 +2,10 @@
 title: Thoughts from my User Experience Journey
 description: Thoughts and takeaways from my recent journey with the Onboarding team, diving further into user-experience.
 author: mark.siedle@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ux-journey.png
 metaImage: blogimage-ux-journey.png
-published: 2019-07-01
+published: 2019-07-05
 tags:
 - company
 - onboarding
