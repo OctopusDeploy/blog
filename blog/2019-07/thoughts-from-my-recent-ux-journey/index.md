@@ -80,7 +80,7 @@ VerticalStack(alignment: .leading) {
 }
 ```
 
-![](eye-twitch.gif "width=40")
+![](eye-twitch-40.gif "width=40")
 
 I feel most engineers write code like the first example, but at times (and often only in small ways) we implement and introduce our design to customers like the second example.
 
