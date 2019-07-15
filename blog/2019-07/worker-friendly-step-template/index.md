@@ -12,7 +12,7 @@ tags:
 
 ## Introduction
 
-In September of 2018, Michael Richardson wrote a [blog post](https://octopus.com/blog/script-step-packages) introducing the feature of referencing packages within script steps. The second scenario described in "Why?" explains that prior to this feature, you needed to push the package to a target first, then the script task could execute against what was extracted.  Michael goes on to explain that this method was both more complicated and wouldn't run on an Octopus server or a worker.
+In September of 2018, Michael Richardson wrote a [blog post](https://octopus.com/blog/script-step-packages) introducing the feature of referencing packages within script steps.  The second scenario described in "Why?" explains that prior to this feature, you needed to push the package to a target first, then the script task could execute against what was extracted.  Michael goes on to explain that this method was both more complicated and wouldn't run on an Octopus server or a worker.
 
 ## Custom Step Templates
 
