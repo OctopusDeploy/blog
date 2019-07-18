@@ -26,4 +26,4 @@ This configuration is what I came up with:
 
 Ryzen 7 2700X, 32GB DDR4 3200, RTX 2070, 1TB PCIe, 2TB SATA
 
-So how does it perform? Compile times have reduced 65% compared to the back-breakingly powerful laptop Octobox-V is replacing. It is completely silent. There is plenty of space for the process dumps and database backups prevalent in performance investigations (so send them in to support@octopus.com). For work away-from-home I have an ultrabook that I use to remote desktop via VPN to Octopus-V, so there is no compromise between performance and portability. Best of all, it plays a mean game of StarCraft.
+So how does it perform? Compile times have reduced 65% compared to the back-breakingly powerful laptop Octobox-V is replacing. It is completely silent. There is plenty of space for the process dumps and database backups prevalent in performance investigations (so send them in to support@octopus.com). For work away-from-home I have an ultrabook that I use to remote desktop via VPN to Octobox-V, so there is no compromise between performance and portability. Best of all, it plays a mean game of StarCraft.
