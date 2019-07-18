@@ -1,11 +1,11 @@
 ---
-title: Verify appSettings for parameters
-description: How to make verify appSettings have parameters.
+title: Verify appSettings have matching Octopus Deploy variables
+description: How to programatically verify that all of your AppSettings have a matching Octopus Deploy variable defined.
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: 
 metaImage: 
-published: 2019-07-09
+published: 2019-07-20
 tags:
  - Octopus
 ---
@@ -56,4 +56,4 @@ foreach($appSetting in $configManager.AppSettings.Settings)
 And that's it!  Now, before a deployment starts, we check to make sure that all app settings keys are present in the Octopus Parameters collection and fail the deployment if it's not found!
 
 ## Conclusion
-This post demonstrated a method to detect missing Octopus Deploy variables that are present in the app settings of a .config file.  You could apply a similar idea Substitue variables in files looking for any #{} placeholders, however, you would need to place the code in either Deployment or Post-deployment script windows as the substitution occurs after the Pre-deployment script executes.
+This post demonstrated a method to detect missing Octopus Deploy variables that are present in the app settings of a .config file.  You could apply a similar idea to 'Substitue variables in files' looking for any #{} placeholders, however, you would need to place the code in either Deployment or Post-deployment script windows as the substitution occurs after the Pre-deployment script executes.
