@@ -129,6 +129,8 @@ foreach ($file in $fileList)
 }
 ```
 
+And there you have it!  You're now able to proactively verify that your files have the values!
+
 ## Conclusion
 This post demonstrated a couple of ways to make sure that variables are getting replaced as desired.  While not an exhuastive list, these methods should cover the most commonly encountered issues related to variable replacement.
 
