@@ -3,8 +3,8 @@ title: Verify AppSettings or Variable Replacement
 description: How to programmatically verify that your AppSettings have a matching Octopus Deploy variable defined and/or verify all variable replacement in files succeeded.
 author: shawn.sesna@octopus.com
 visibility: public
-bannerImage: 
-metaImage: 
+bannerImage: blogimage-verifyvariables.png
+metaImage: blogimage-verifyvariables.png
 published: 2019-07-22
 tags:
  - Octopus
