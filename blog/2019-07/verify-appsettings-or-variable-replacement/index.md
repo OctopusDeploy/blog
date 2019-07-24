@@ -11,7 +11,7 @@ tags:
 ---
 
 ## Introduction
-There is nothing worse than having surprises in a deployment process, heck that's one of the reasons Octopus Deploy exists!  To combat surprises, Octopus Deploy provides both consistency and reliability by ensuring the deployment process is always the same from environment to environment.  However, there is one thing that can change when deploying to different environments, Variables.  Since variables can be changed from one environment to the next, we need to check we've spelled them the same and scoped them accordingly.  This post provides some examples of how to detect missing or unchanged variables in deployment steps.
+There is nothing worse than having surprises in a deployment process, heck that's one of the reasons Octopus Deploy exists!  To combat surprises, Octopus Deploy provides both consistency and reliability by ensuring the deployment process is always the same from environment to environment.  However, there is one thing that can change when deploying to different environments, Variables.  Since variables can be changed from one environment to the next, we need to check we've spelled them the same and scoped them accordingly. This post provides some examples of how to detect missing or unchanged variables in deployment steps.
 
 ## .NET .config Files
 Values within a .config file often need to be different based on the environment where you software is being deployed, i.e., connection strings or app settings.  These .config files are often maintained by developers who may not have access to Octopus Deploy. In those cases, it's easy to miss updating or adding the variable, and the problem might not be noticed until the application is deployed to production.
