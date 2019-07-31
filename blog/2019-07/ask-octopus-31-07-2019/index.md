@@ -14,7 +14,7 @@ tags:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/asyp3cpCt2M" frameborder="0" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UFRGKOpao1g" frameborder="0" allowfullscreen></iframe>
 
-In these episodes, we cover LTS 2019.6, restarting VMs during deployments & Automatic Release Creation. You can submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page, join our community [Slack](https://octopus.com/slack) or email your questions to [mailto:Advice@Octopus.com].
+In these episodes, we cover LTS 2019.6, restarting VMs during deployments & Automatic Release Creation. You can submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page, join our community [Slack](https://octopus.com/slack) or email your questions to <Advice@Octopus.com>.
 
 Here are the questions with direct links to the individual videos:
 
