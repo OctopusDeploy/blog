@@ -14,7 +14,7 @@ tags:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/iUG5LQQIx7U" frameborder="0" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hU397T4_DpA" frameborder="0" allowfullscreen></iframe>
 
-In these episodes, we cover data migration, installing the Linux Tentacle & connecting on-premise servers to Octopus Cloud. You can submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page, join our community [Slack](https://octopus.com/slack) or email your questions to [mailto:Advice@Octopus.com].
+In these episodes, we cover data migration, installing the Linux Tentacle & connecting on-premise servers to Octopus Cloud. You can submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page, join our community [Slack](https://octopus.com/slack) or email your questions to <Advice@Octopus.com>.
 
 Here are the questions with direct links to the individual videos:
 
