@@ -14,7 +14,7 @@ tags:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KQRQ3DSyMkg" frameborder="0" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vMoRq58AwuE" frameborder="0" allowfullscreen></iframe>
 
-In these episodes, we cover end of life support for Server 2008 & Octopus server on Linux, Project Templates for specific scenarios & binding variables to multiple roles. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
+In these episodes, we cover end of life support for Server 2008 & Octopus server on Linux, Project Templates for specific scenarios & binding variables to multiple roles. YYou can submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page, join our community [Slack](https://octopus.com/slack) or email your questions to <Advice@Octopus.com>.
 
 Here are the questions with direct links to the individual videos:
 
