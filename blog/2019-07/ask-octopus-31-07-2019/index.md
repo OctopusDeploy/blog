@@ -19,8 +19,8 @@ In these episodes, we cover LTS 2019.6, restarting VMs during deployments & Auto
 Here are the questions with direct links to the individual videos:
 
 - [Derek discusses](https://www.youtube.com/watch?v=xokK-j14Cr0) "LTS 2019.6"
-- [Derek discusses](https://www.youtube.com/watch?v=asyp3cpCt2M) "restarting VMs during deployments"
-- [Bob discusses](https://www.youtube.com/watch?v=UFRGKOpao1g) "Automatic Release Creation"
+- [Bob discusses](https://www.youtube.com/watch?v=asyp3cpCt2M) "restarting VMs during deployments"
+- [Ryan discusses](https://www.youtube.com/watch?v=UFRGKOpao1g) "Automatic Release Creation"
 
 You can find more information on topics discussed in our docs:
 
