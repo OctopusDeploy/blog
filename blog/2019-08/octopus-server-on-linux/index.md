@@ -13,7 +13,11 @@ tags:
 
 ## Why
 
-In July 2018, we launched Octopus Cloud, our hosted version of Octopus, for customers who prefer to use an online of Octopus without managing infrastructure. Octopus Cloud runs in AMazon Web Services and each customer gets their own virual machine. This is great for isolation, scalabilty and something else but it's also quite expensive to run. So we embarked on a second iteration of Octopus Cloud to provide a stable, scalable solution for our customers but in a more cost effective way. Our goal was to blah blah blah. 
+In July 2018, we launched Octopus Cloud, our hosted version of Octopus, for customers who prefer to use an online version of Octopus without worrying about the infrastructure to run it.  Octopus Cloud runs in Amazon Web Services, and each customer's instance ran in a dedicated virtual machine and a mix of other infrastructure. We [wrote about its architecture](link to post on octopus cloud 1.0 arch) if you're interested in learning more. This structure allowed us to bring the product to market quickly and it provided an isolated, secure and stable solution for our customers. The trade-off was that it was quite expensive to run, we hit xxx problems which required our team to respond day or night, and we regularly hit the limits of AWS's services and had to request changes. 
+
+## Goal
+
+So once Octopus Cloud stabilised, and we were confident with its operation, we embarked on a second iteration. Our goal for Octopus Cloud 2.0 was to maintain the positive aspects of our the first iteration but also reduce it's running costs, reduce the support requirements and improve its scalability. 
 
 ## Journey
 
