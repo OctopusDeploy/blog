@@ -11,6 +11,8 @@ tags:
  - Linux
 ---
 
+Octopus Deploy 2019.7 ship with change to retarget Octopus Server to Microsoft's .NET Core framework unlocking the ability to run on Linux. Read on to learn about our journey, why we embarked on it and its benefits. 
+
 ## Why
 
 In July 2018 we launched Octopus Cloud, our hosted version of Octopus, for customers who prefer to use an online version of Octopus without worrying about the infrastructure to run it. Octopus Cloud currently runs in Amazon Web Services, and each customer's instance executes in a dedicated virtual machine with a mix of other infrastructure. Rather than rebuild our entire product from the ground up as a multi-tentanted SaaS product, we decided the simplest MVP would be to run each customer on their own VM. This structure allowed us to bring the product to market quickly, and it provided an isolated, secure and stable solution for our customers. We [wrote about its architecture](https://octopus.com/blog/building-the-octopus-cloud-in-aws) if you're interested in learning more. The trade-off was that it was quite expensive to run, we had various stability problems which required our team to respond day or night, and we regularly hit the limits of AWS's services and had to request changes. We were proud to bring this service to market, but it was clear we needed to iterate. 
