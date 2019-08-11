@@ -58,12 +58,12 @@ There is nothing wrong with this process, and it works as intended so long as ev
 To enable this decision to be made, the deployment process must be interrupted. For example, we may first deploy the application to a test environment, allow the appropriate parties to verify the changes, and then when everyone is happy the release is promoted to production.
 
 This single decision point means our once machine-driven equation now:
-Requires a UI to expose the releases that have been made to the testing environments.
-Introduces auditing and security concerns so we can limit and then review who promoted what where.
-Requires a UI to allow deployments to be promoted to the next environment.
-Requires a system that can model environments in a first-class manner so they can be reliably secured and managed through the UI, API and reporting interfaces.
+* Requires a UI to expose the releases that have been made to the testing environments
+* Introduces auditing and security concerns so we can limit and then review who promoted what where
+* Requires a UI to allow deployments to be promoted to the next environment
+* Requires a system that can model environments in a first-class manner so they can be reliably secured and managed through the UI, API and reporting interfaces
 
-This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step performed once the code has been compiled.
+This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step automatically performed once the code has been compiled.
 
 A good example of this is the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) which recommends that the test and production environments be modelled as stages in a CI pipeline.
 
