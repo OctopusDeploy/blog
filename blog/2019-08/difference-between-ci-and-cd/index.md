@@ -3,8 +3,8 @@ title: What is the difference between Continuous Integration and Continuous Depl
 description: CI/CD are frequently merged into a single acronym with the idea that they are a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
 visibility: private
-metaImage: meta.png
-bannerImage: meta.png
+metaImage: 
+bannerImage:
 tags:
  - Octopus
 ---
