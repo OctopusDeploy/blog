@@ -71,6 +71,6 @@ This focus on the human element is frequently lost when CI/CD is presented as no
 
 At first glance, this example appears to provide a point in the process for a human to approve the deployment. But what happens to a build that was never intended to be pushed to production?  Such a build would be cancelled before the application is exposed to customers, resulting in a failed build. These failed builds are difficult to distinguish from builds that failed to compile or failed their tests, even though not promoting to production is a perfectly valid outcome of the CD process.
 
-In short, a good CD tool facilitates the human decision-making process that is so common (if not essential) to deployments, while also automating the deployment so promotions between environments are easy and reliable.
+In short, a good CD tool facilitates the human decision-making process that is so common (if not essential) to deployments, or at the very least surfaces the current state of the deployments between environments, while also automating the deployment so promotions between environments are easy and reliable.
 
 Recognizing the different requirements between a machine-driven CI process and a human-driven CD process is essential to delivering features to your customers in a fast, reliable and repeatable manner, which is why using dedicated tools for CI and CD can make sense.
