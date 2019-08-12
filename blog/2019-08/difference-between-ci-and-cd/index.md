@@ -3,8 +3,8 @@ title: The Differences Between Continuous Integration and Continuous Deployment
 description: CI/CD are frequently referred to by a single acronym as if they were a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
 visibility: private
-metaImage: meta.png
-bannerImage: meta.png
+metaImage:
+bannerImage:
 tags:
  - Octopus
 ---
@@ -53,6 +53,7 @@ Where CI is machine-driven, for many teams, CD is human-driven. Much of the grun
 ## Why Use Separate CI and CD Tools?
 
 ![ci-cd-pipeline-diagram](ci-cd-pipeline-diagram.png "width=500")
+*A typical CI/CD pipeline, with no distinction between the two.*
 
 This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]) that hit my inbox recently. It is a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
 
