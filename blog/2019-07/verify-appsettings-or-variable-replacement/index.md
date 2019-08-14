@@ -101,7 +101,11 @@ function CheckSubstitutions($file)
     Write-Output "Verifying file $file"
    
     # Check to make sure file exists
+<<<<<<< HEAD
     if ((Test-Path -Path "$file" -PathType leaf) -eq $true)
+=======
+    if ((Test-Path -Path "$file") -eq $true)
+>>>>>>> 3f8c532f19cdc681fbaebfc6b9c7d20d21154786
     {       
         # Read file
         $stringData = Get-Content -Path "$file" -Raw
