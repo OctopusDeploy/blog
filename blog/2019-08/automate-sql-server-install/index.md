@@ -13,7 +13,7 @@ A few years ago, before joining Octopus Deploy, I had a bit of a problem on my h
 
 That is when I discovered it was possible to install SQL Server using the command line. [Microsoft's documentation](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-from-the-command-prompt?view=sql-server-2017) provides a good starting point. However, let's face it; there is a lot to digest in that documentation. It took me quite a bit of time to get everything working to our standards. 
 
-If that all happened a few years ago, why write about it now? I work for a different company now. Well, a funny thing happened recently. I watched as one of our senior engineers sit with a new engineer to help them get set up.  He walked the new engineer through the GUI to have him select what options to choose on how to install SQL Server on his machine. I had to solve that a few years ago. I should write something up to help out new hires to make our onboarding smoother. Someone suggested to me, why not make that a blog post?
+If that all happened a few years ago, why write about it now? I work for a different company now. Well, a funny thing happened recently. I watched one of our senior engineers sit with a new engineer to help them get set up.  He walked the new engineer through the GUI to have him select what options to choose on how to install SQL Server on his machine. I had to solve that a few years ago. I should write something up to help out new hires to make our onboarding smoother. Someone suggested to me, why not make that a blog post?
 
 The goal of this blog post is to provide a working example using PowerShell from that documentation you can use. My hope is you can learn from my mistakes and get something working a lot quicker.
 
@@ -120,7 +120,7 @@ NPENABLED="0"
 BROWSERSVCSTARTUPTYPE="Automatic"
 ```
 
-On my development machine, I like to enable TCP and Named Pipes. Makes my life a lot easier, especially when trying to get .NET to connect to it. I also need to add in a SA Password.
+On my development machine, I like to enable TCP and Named Pipes. Doing so makes my life a lot easier, especially when trying to get .NET to connect to it. For my configuration I opted for mix mode authentication, which means I need to add in a SA Password.  By default, the installer sets SQL Server to use integrated security only.  My personal preference is to have both modes enabled for my development machine.  If you opt to keep integrated security only then you won't have to worry about an SA Password.
 
 ```
 ; Specify 0 to disable or 1 to enable the TCP/IP protocol. 
@@ -213,6 +213,14 @@ Dismount-DiskImage -InputObject $drive
 Write-Host "If no red text then SQL Server Successfully Installed!"
 ```
 
+## Post Installation
+
+After running that script you should have a fresh install of SQL Server Developer Edition.  Which is great, but applications typically like to have databases to connect to.  This raises an interesting question, what should create those databases?  And depending on the authentication mode, what should create the database users?  I've seen it where the application itself will create an empty database if it can't find one.  If that is what your applications are doing, awesome.  You can skip to the next section.  For everyone else, your PowerShell script will need to create empty databases and users.  Depending on the database deployment tooling you are using, you might be able to automate the creation of the schema.  I can't provide scripts for every database deployment tool, but I can provide scripts to create databases, user accounts, and assign that user to newly created databases.  You can find those scripts in the sample GitHub repo for this blog post.
+
+- [Create Database](https://github.com/OctopusSamples/SQLServerInstall/blob/master/CreateDatabase.ps1)
+- [Create SQL Account](https://github.com/OctopusSamples/SQLServerInstall/blob/master/CreateSQLAccount.ps1)
+- [Create Database User and Assign them a role](https://github.com/OctopusSamples/SQLServerInstall/blob/master/CreateDatabaseUserAndAssignRole.ps1)
+
 ## Troubleshooting
 
 The installer output is very verbose. Prepare yourself for that. If something fails, you will need to scroll through it to find out why the failure occurred. The good news is the installer is very good at letting you know what went wrong. 
@@ -221,8 +229,8 @@ If for some reason, the PowerShell script doesn't output the install log, then y
 
 ## Conclusion
 
-Here is the part where I tell you that after doing this, everything worked out great when I did this a few years ago. The script ran correctly the first time, every time. For the most part, that was the case. On new developer machines, I didn't see many issues. There seemed to be a direct correlation between the age of the computer and the number of problems I saw when running this script. Some developers already had an older version of SQL Server installed. Others had a strange setup where they somehow had a D:\ drive where they installed apps to. I updated the scripts as best I could to cover the majority of the scenarios. 
+Now you should have a fully automated install of SQL Server for your developers to run.  Before ending this post I wanted to talk about some lessons I learned after I handed this script over to developers.  The first lesson I quickly learned was it is important to have realistic expectations.  For the most part, the script ran correctly the first time.  Especially when it was run on a fresh install of Windows.  There seemed to be a direct correlation between the age of the computer and the number of problems I saw when running this script. Some developers already had an older version of SQL Server installed. Others had a strange setup where they somehow had a D:\ drive where they installed apps to.  Even with the issues, it was successful.  But I didn't think it at the time.  I needed to take a step back and go, wow, we were able to roll this out in a few weeks, and 80% of the developers had something working in less than 20 minutes.  
 
-I learned to have realistic expectations when starting. If people are going to be running this script on a fresh install of Windows, then it should work 90-95% of the time on the first try. Maybe a permission error or two. If they are running on older machines, then I expect it to work 70% of the time. More is better, but keep things realistic. 
+This leads me to my second lesson.  I wanted to help the developers who ran into issues as much as I could.  I spent time researching and altering the script to cover a lot of different scenarios.  Eventually I reached a point where some developers' machines had such a unique configuration that it didn't make sense to spend the time and effort to update the script to solve it.  To account for that I provided documentation on which options to select and if I needed to, I would sit with the developer and walk them through the GUI.  Thankfully this was only the case for a handful of developers.  
 
-The other lesson I learned was to be flexible and update the script as you learn more. But at the same time, have a line where you need to say "sorry, you're going to have to install this manually."  If they have SQL Server already installed, then you might have to say "you'll need to uninstall the older version and install the newer version with our standards." Provide them the ConfigurationFile.ini, so they know which options they need to set through the GUI. Or sit with them as they install it. The focus should be to cover the majority of the common use cases, not every last little one.
+In the end, it was worth it.  Before we had to have an external connection.config and localconnection.config the web.config file would point to.  It caused such a headache when a developer accidentally checked in their personal connection.config file.  I didn't know how that was possible with that file included in the .gitignore file, but somehow that happened.  By doing this we were able to standardize on our configuration.  We could have a standard local connection string in our web.config file.  
