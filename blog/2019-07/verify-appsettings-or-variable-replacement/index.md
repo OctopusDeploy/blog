@@ -101,7 +101,7 @@ function CheckSubstitutions($file)
     Write-Output "Verifying file $file"
    
     # Check to make sure file exists
-    if ((Test-Path -Path "$file") -eq $true)
+    if ((Test-Path -Path "$file" -PathType leaf) -eq $true)
     {       
         # Read file
         $stringData = Get-Content -Path "$file" -Raw
