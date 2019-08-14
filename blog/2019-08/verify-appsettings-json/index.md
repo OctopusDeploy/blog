@@ -146,3 +146,4 @@ foreach ($appSetting in $appSettings)
 ```
 
 ## Conclusion
+This post is an example of what you can do to help prevent deployments that may have missing values in the .json configuration file(s).  It most likley doesn't cover all scenarios, but gives you an idea of what actions you can take for preventative measures.
