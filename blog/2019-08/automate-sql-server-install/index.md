@@ -25,7 +25,7 @@ This post provides a working example with PowerShell, that automates installing 
 
 First, you need to download the [SQL Server Developer ISO](https://www.microsoft.com/en-us/sql-server/sql-server-downloads). When the download has finished, run the .exe file and select the `Download Media` option to download the .iso file. 
 
-![](SqlServerInstallerDownload.png)
+![](sqlserverinstallerdownloadmedia.png)
 
 I recommend putting that .iso in a shared directory on your network. That way, you can make a standard PowerShell install file for everyone to use. 
 
@@ -33,7 +33,7 @@ I recommend putting that .iso in a shared directory on your network. That way, y
 
 I recommend going through the GUI installer and setting the options you want everybody on the team to use, but don't install SQL Server using the GUI. The reason for doing this is the installer creates a `ConfigurationFile.ini` as you go through the installation, and it tells you the location of the file. 
 
-![](SqlServerInstaller.png)
+![](sqlserverinstallerinifile.png)
 
 Copy the `ConfigurationFile.ini` file from that directory to a new location. That will be the *master* copy of the file for others to use. 
 
