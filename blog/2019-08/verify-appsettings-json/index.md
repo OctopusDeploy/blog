@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: blogimage-verifyvariables.png
 metaImage: blogimage-verifyvariables.png
-published: 15-08-2019
+published: 2019-08-15
 tags:
  - configuration
 ---
