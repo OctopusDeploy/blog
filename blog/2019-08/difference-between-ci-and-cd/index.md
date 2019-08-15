@@ -2,9 +2,10 @@
 title: The Differences Between Continuous Integration and Continuous Deployment
 description: CI/CD are frequently referred to by a single acronym as if they were a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
-visibility: private
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-08-19
+metaImage: img_comparecicd_2019.png
+bannerImage: img_comparecicd_2019.png
 tags:
  - Octopus
 ---
