@@ -7,7 +7,7 @@ bannerImage: blogimage-verifyvariables.png
 metaImage: blogimage-verifyvariables.png
 published: 2019-07-22
 tags:
- - Octopus
+ - configuration
 ---
 
 ## Introduction
@@ -96,8 +96,39 @@ Another common pain point when dealing with variables is the Substitute Variable
 Variable replacement occurs during the Deployment phase, so we're unable to use the Pre-deployment component in this case.  The good news is that the Deployment custom script executes just after Pre-deployment but before the step processes so we can still fail the deployment before the Deploy to IIS step swaps to the newly created folder (note, if you're using Custom Installation Directory, this may not work as expected).  Just like before, we'll expand the Custom Deployment Scripts section of the Deploy to IIS step and paste the following code in the Deployment script window:
 
 ```PS
+function CheckSubstitutions($file)
+{
+    Write-Output "Verifying file $file"
+   
+    # Check to make sure file exists
+<<<<<<< HEAD
+    if ((Test-Path -Path "$file" -PathType leaf) -eq $true)
+=======
+    if ((Test-Path -Path "$file") -eq $true)
+>>>>>>> 3f8c532f19cdc681fbaebfc6b9c7d20d21154786
+    {       
+        # Read file
+        $stringData = Get-Content -Path "$file" -Raw
+        
+        # Find placeholders
+        $placeholders = [regex]::Matches($stringData, "(#{.*?})")
+
+        # Check for token
+        if ($placeholders.Count -gt 0)
+        {
+            # Something wasn't transformed
+            throw "$file still contains #{} syntax. $placeholders"
+        }
+    }
+    else
+    {
+        # Display message
+        Write-Output "Unable to find file $file."
+    }
+}
+
 # Get list of files that were specified for substitution
-$fileList = $OctopusParameters['Octopus.Action.SubstituteInFiles.TargetFiles']
+$fileList = $OctopusParameters['Octopus.Action.SubstituteInFiles.TargetFiles'].Split([Environment]::NewLine)
 
 # Get base install path
 $basePath = $OctopusParameters['Octopus.Action.Package.InstallationDirectoryPath']
@@ -112,23 +143,19 @@ if (!$basePath.EndsWith("\"))
 # Loop through list of files that were marked for substitution
 foreach ($file in $fileList)
 {
-	# Check to make sure file exists
-    if ((Test-Path -Path "$($basePath + $file)") -eq $true)
+    if ($file -Match "\*")
     {
-    	# Read file
-        $stringData = Get-Content -Path "$($basePath + $file)"
-        
-        # Check for token
-        if ($stringData.IndexOf("#{") -gt -1)
+        Write-Output "$file contains wildcard. Get files by mask $($basePath + $file)"
+        $files = Get-ChildItem -Path "$($basePath + $file)"
+
+        foreach ($childFile in $files)
         {
-        	# Something wasn't transformed
-            throw "$file still contains #{} syntax."
+            CheckSubstitutions($childFile)
         }
     }
-    else
+    else 
     {
-    	# Display message
-        Write-Output "Unable to find file $file."
+        CheckSubstitutions($($basePath + $file))
     }
 }
 ```
