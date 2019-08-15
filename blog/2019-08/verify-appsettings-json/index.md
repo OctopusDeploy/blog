@@ -10,19 +10,11 @@ tags:
  - Octopus
 ---
 
-<<<<<<< HEAD
 In my [last post](https://octopus.com/blog/verify-appsettings-or-variable-replacement), I showed you how to verify all of your App Settings in a web.config file had corresponding Octopus project variables, and how to ensure all of your files configured for variable replacement don't leave any placeholders behind. This post will focus on verifying application settings stored in a JSON configuration file. In this case, we're looking at at .NET Core appSettings.json file but it could be extended to any JSON config file.
 
 ## Comparing Environmental Files
 
 It is not uncommon to have environmental app settings files for a .NET core application such as appSettings.Developement.json.  The caveat to using this approach is that if something is added to the appSettings.Deveopment.json file, it needs to be added to the appSettings.json file as well.  To address this issue, we can create a PowerShell Function with a recursive call to traverse the JSON file keys and then compare the entries to the environmental files.  Similar to the last post, we can define any settings we want to ignore using the `$settingsToIgnore` array:
-=======
-In my [last post](https://octopus.com/blog/verify-appsettings-or-variable-replacement), I showed you how to verify all of your App Settings in a web.config file had corresponding Octopus project variables, and how to ensure all of your files configured for variable replacement don't leave any placeholders behind. This post will focus on verifying App Settings in .NET Core appSettings.json.
-
-## Comparing Environmental Files
-
-It is not uncommon to have environmental App Settings files for a .NET core application such as appSettings.Developement.json.  The caveat to using this approach is that if something is added to the appSettings.Deveopment.json file, it needs to be added to the appSettings.json file as well.  To address this issue, we can create a PowerShell Function with a recursive call to traverse the JSON file keys and then compare the entries to the environmental files.  Similar to the last post, we can define any settings we want to ignore using the `$settingsToIgnore` array:
->>>>>>> 3f8c532f19cdc681fbaebfc6b9c7d20d21154786
 
 ```PS
 Function Get-AppSettings
@@ -153,5 +145,6 @@ foreach ($appSetting in $appSettings)
 }
 ```
 
-## Conclusion
-This post is an example of what you can do to help prevent deployments that may have missing values in the .json configuration file(s).  It most likley doesn't cover all scenarios, but gives you an idea of what actions you can take for preventative measures.
+With these steps in place, you can help prevent deployments with missing values in the .json configuration file(s). Of course, this solution doesn't cover every scenario, but hopefully it gives you an idea of the preventative measures you can put in place.
+
+Happy Deployments!
