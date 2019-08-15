@@ -7,7 +7,7 @@ bannerImage: blogimage-verifyvariables.png
 metaImage: blogimage-verifyvariables.png
 published: 
 tags:
- - Octopus
+ - configuration
 ---
 
 In my [last post](https://octopus.com/blog/verify-appsettings-or-variable-replacement), I showed you how to verify all of your App Settings in a web.config file had corresponding Octopus project variables, and how to ensure all of your files configured for variable replacement don't leave any placeholders behind. This post will focus on verifying application settings stored in a JSON configuration file. In this case, we're looking at at .NET Core appSettings.json file but it could be extended to any JSON config file.

@@ -7,7 +7,7 @@ bannerImage: blogimage-verifyvariables.png
 metaImage: blogimage-verifyvariables.png
 published: 2019-07-22
 tags:
- - Octopus
+ - configuration
 ---
 
 ## Introduction
