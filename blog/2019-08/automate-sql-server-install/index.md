@@ -2,9 +2,10 @@
 title: Automating SQL Server Developer Installation
 description: Learn how to automate SQL Server Developer installation using PowerShell and SQL Server's built-in tooling.
 author: bob.walker@octopus.com
-visibility: private
-metaImage:
-bannerImage:
+visibility: public
+metaImage: img_blog_automatingsql_navy_2019.png
+bannerImage: img_blog_automatingsql_navy_2019.png
+published: 2019-08-21
 tags:
  - Developer Machine Setup
 ---
