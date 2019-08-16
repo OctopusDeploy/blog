@@ -75,6 +75,6 @@ If your team is using either Jira Software or Octopus Deploy, you can try the ot
 
 ## Wrap-up
 
-In summary, [Jira Software](https://atlassian.com/jira) and [Octopus Deploy](https://octopus.com) work together to give you better end-to-end visibility into their your software pipelines from idea to production.
+In summary, [Jira Software](https://atlassian.com/jira) and [Octopus Deploy](https://octopus.com) work together to give you better end-to-end visibility into your software pipelines from idea to production.
 
 Happy deployments!
