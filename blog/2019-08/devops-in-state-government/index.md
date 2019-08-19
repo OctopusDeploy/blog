@@ -1,6 +1,6 @@
 ---
 title: Implementing DevOps in State government
-description: The story of how I took my State government agency from completely manual to completely automated deployments
+description: The story of how I implemented DevOps practices at a State government agency
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: 
