@@ -1,3 +1,14 @@
+---
+title: Implementing DevOps in State government
+description: The story of how I took my State government agency from completely manual to completely automated deployments
+author: shawn.sesna@octopus.com
+visibility: public
+bannerImage: 
+metaImage: 
+published: 2019-08-15
+tags:
+ - configuration
+---
 ## Implementing DevOps in State government
 
 We’ve all heard the phrase “the speed of government” when describing things that move slowly.  It is true that in a bureaucratic setting, things tend to move at a snail's pace as compared to the rapid and sometimes chaotic environment of a start-up.  Though snails move slowly, they do eventually get where they need to be.  Like the snail analogy, implementing change is possible in government.
