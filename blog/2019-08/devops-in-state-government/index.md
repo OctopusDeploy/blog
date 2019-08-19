@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: 
 metaImage: 
-published: 2019-08-15
+published: 
 tags:
  - configuration
 ---
