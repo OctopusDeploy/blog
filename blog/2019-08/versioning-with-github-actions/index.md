@@ -9,15 +9,15 @@ tags:
  - Octopus
 ---
 
-[GitHub Actions](https://github.com/features/actions) are slowing rolling out to users as a beta, and provide a way for GitHub users to execute builds and deployments directly from their code on infrastructure managed by GitHub. While Actions are incredibly powerful and flexible, I immediately ran into the issue of versioning my builds.
+[GitHub Actions](https://github.com/features/actions) are slowing rolling out to users as a beta, and provide a way for GitHub users to execute builds and deployments directly from their code using infrastructure managed by GitHub. This provides a lot of opportunities for developers, but while Actions are incredibly powerful and flexible, I immediately ran into the issue of versioning my builds.
 
-Typically a CI system will include some kind of incrementing counter that can be used as the patch release for any build. This means each build is automatically assigned a new number, and any resulting artifacts can inherit a meaningful version. In the current beta of GitHub Actions there is no equivalent to a build number. The build environment exposes [information like Git SHAs, repositories, users and events](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/), but no build number.
+Typically a CI system will include some kind of incrementing counter that can be used as the patch release for any build. This means each build is automatically assigned a new number, and any resulting artifacts can inherit a meaningful version. Unfortunately in the current beta of GitHub Actions there is no equivalent to a build number. The build environment exposes [information like Git SHAs, repositories, users and events](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/), but no build number.
 
-This is inconvenient to say the least, but fortunately there is a solution.
+This is inconvenient to say the least, but there is a solution.
 
 ## Implementing GitVersion
 
-[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a tool that generates SemVer version numbers based on the tags in a Git repository. This is ideal for use with GitHub Actions, because it means that the Git repository itself is the source of truth for versioning, and no special tools beyond the Git client is required to manage the version numbers.
+[GitVersion](https://gitversion.readthedocs.io/en/latest/) is a tool that generates SemVer version numbers based on the tags in a Git repository. This is ideal for use with GitHub Actions, because it means that the Git repository itself is the source of truth for versioning, and no special tools beyond the Git client are required to manage the version numbers.
 
 GitVersion also supplies a [Docker image](https://hub.docker.com/r/gittools/gitversion/), which can be directly used by GitHub Actions.
 
@@ -25,7 +25,7 @@ This means that, in theory, we have everything we need to generate meaningful ve
 
 ## GitHub Actions and Shared Variables
 
-GitHub Actions is based on the idea of individual jobs. These jobs can run on the underlying VM, or be run in a Docker container. Composing builds in this way offers great flexibility, but one downside is that it is difficult to capture the output of one job and use it in another. CI servers often work around this problem by capturing the output between special markers. For example, Team City can watch for the output in the format `##teamcity[setParameter name='env.whatever' value='myvalue']` and create a variable in response. Unfortunately the beta of GitHub Actions does not provide any support for passing variables around.
+GitHub Actions is based on the idea of individual jobs. These jobs can run on the underlying VM, or be run in a Docker container. Composing builds in this way offers great flexibility, but one downside is that it is difficult to capture the output of one job and use it in another. CI servers often work around this problem by capturing the output with special markers. For example, Team City can watch for output in the format `##teamcity[setParameter name='env.whatever' value='myvalue']` and create a variable in response. Unfortunately the beta of GitHub Actions does not provide any support for passing variables around.
 
 What we do have shared between steps is the filesystem. Jobs run directly on the VM can access the path `/home/runner/work/RepoName/RepoName/` (where `RepoName` is replaced with the name of the GitHub repository), while Docker jobs have that same path mounted to `/github/workspace`.
 
@@ -89,12 +89,12 @@ jobs:
 The first interesting part of this workflow is where we call the GitVersion docker image.
 
 ::hint
-I'm using `mcasperson/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` instead of `gitversion/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` because GitHub Actions appears to ignore the `WORKDIR` directive in Docker images. This in turn means Docker images that try to execute `ENTRYPOINT ["dotnet", "GitVersion.dll"]` will respond with the rather unhelpful message of `Did you mean to run dotnet SDK commands?` because `GitVersion.dll` was not found. A recent [PR for GitVersion](https://github.com/GitTools/GitVersion/pull/1787) addresses this issue though, so the official images will be usable with GitHub Actions soon.
+I'm using `mcasperson/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` instead of `gitversion/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` because GitHub Actions appears to ignore the `WORKDIR` directive in Docker images. This in turn means Docker images that try to execute something like `ENTRYPOINT ["dotnet", "GitVersion.dll"]` will respond with the rather unhelpful message of `Did you mean to run dotnet SDK commands?` because `GitVersion.dll` was not found. A recent [PR for GitVersion](https://github.com/GitTools/GitVersion/pull/1787) addresses this issue though, so the official images will be usable with GitHub Actions soon.
 ::
 
-The trick here is to call GitVersion in a way that it will save the resulting SemVer version to a file instead of printing it to the console output. We do this by setting the `/exec` argument to `/bin/sh`, and setting the `/execargs` argument to `"-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""`. These options result in GitVersion executing the shell, which in turn writes the value of the environment variable `GitVersion_FullSemVer` defined for us by GitVersion to the file `/github/workspace/version.txt`.
+The trick here is to call GitVersion in a way that will save the resulting SemVer version to a file instead of printing it to the console output. We do this by setting the `/exec` argument to `/bin/sh`, and setting the `/execargs` argument to `"-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""`. These options result in GitVersion executing the shell, which in turn writes the value of the environment variable `GitVersion_FullSemVer` (defined for us by GitVersion) to the file `/github/workspace/version.txt`.
 
-The end result of this job is a file called `/github/workspace/version.txt` or `/home/runner/work/RepoName/RepoName/version.txt` depending on whether or not the job is running inside a Docker container.
+The end result of this job is a file called `/github/workspace/version.txt` or `/home/runner/work/RepoName/RepoName/version.txt`, depending on whether or not the job is running inside a Docker container.
 
 ::hint
 The environment variable `$GitVersion_FullSemVer` is just one of many provided by GitVersion. Any of the fields in the JSON below can be prefixed with `GitVersion_` and read as an environment variable.
@@ -135,7 +135,7 @@ The environment variable `$GitVersion_FullSemVer` is just one of many provided b
 ```
 ::
 
-```
+```yaml
 - name: Get Git Version
   uses: docker://mcasperson/gitversion:5.0.2-linux-centos-7-netcoreapp2.2
   with:
@@ -148,7 +148,7 @@ To consume the version we will use the [Octopus CLI tools](https://octopus.com/d
 The Octopus CLI tools are also available as a [Docker image](https://hub.docker.com/r/octopusdeploy/octo), and so we could use these tools from the workflow with `uses: docker://octopusdeploy/octo:6.12.0`. However, calling docker images directly makes it difficult to use shell expansions, which we will need to extract the value of the file `version.txt` and pass it as a command line argument. This is why we extract the tool locally instead.
 ::
 
-```
+```yaml
 - name: Extract Octopus Tools
   run: |
     mkdir /opt/octo
@@ -160,7 +160,7 @@ The Octopus CLI tools are also available as a [Docker image](https://hub.docker.
 
 Once the Octopus CLI tools are extracted, we can call them to package up the application. Note how we use shell expansion with the argument `--version $(cat /home/runner/work/AWSSamExample/AWSSamExample/version.txt)` to read the value of the `version.txt` file create by GitVersion. This is how we pass variables between jobs.
 
-```
+```yaml
 - name: Pack Application
   run: >-
     /opt/octo/Octo pack .
@@ -173,7 +173,7 @@ Once the Octopus CLI tools are extracted, we can call them to package up the app
 
 We use the Octopus CLI in a similar way to push the resulting application to the Octopus Server.
 
-```
+```yaml
 - name: Push to Octopus
   run: >-
     /opt/octo/Octo push
