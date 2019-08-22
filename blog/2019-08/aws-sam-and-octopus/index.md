@@ -202,7 +202,7 @@ At this point we have now replicated the functionality of the `sam package` comm
 
 The next step is to deploy the SAM template.
 
-# Deploying the Template with Octopus
+## Deploying the Template with Octopus
 
 The final step is to deploy the SAM template as a CloudFormation template.
 
