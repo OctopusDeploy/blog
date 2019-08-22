@@ -2,6 +2,7 @@
 title: Adding versions to your GitHub Actions
 description: GitHub Actions are a powerful new feature for GitHub users, but lack any native versioning capabilities. In this blog post we'll see how to implement versioning.
 author: matthew.casperson@octopus.com
+published: 2019-08-22
 visibility: private
 metaImage:
 bannerImage:
