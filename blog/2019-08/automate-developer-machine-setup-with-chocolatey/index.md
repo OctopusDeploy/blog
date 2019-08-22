@@ -3,12 +3,14 @@ title: Automating Developer Machine Setup With Chocolatey
 description: Learn how to automate a developer machine setup using Chocolatey
 author: bob.walker@octopus.com
 visibility: public
-metaImage: 
-bannerImage: 
-published: 2019-08-30
+metaImage: automate_machine_chocolately.png
+bannerImage: automate_machine_chocolately.png
+published: 2019-08-26
 tags:
  - Developer Machine Setup
 ---
+
+![Illustration showing chocolately packages being installed on a developer machine](automate_machine_chocolately.png)
 
 There is nothing quite like a fresh install of Windows, especially on a developer machine. With the hardware we get these days, the computer is screaming fast. However, that feeling of bliss is quickly broken, as it is time to install the applications and frameworks needed. The first step is to crack open IE Edge to download Chrome, Firefox, or any other browser. Next up, find all the websites, then manually download and install all the necessary tooling. All of this reminds me a lot of my university days. Back when I was at university, I would reinstall Windows every six months or so. I went to university back in the days of Windows 9x/ME. It seemed everyone, from websites to TechTV, recommended doing that, and that was around twenty years ago. 
 
