@@ -155,7 +155,7 @@ These packages are then pushed to the Octopus server with jobs calling `octo pus
 
 At this point we have the application code and the templates uploaded to the Octopus server, ready to be deployed. We have replicated the bundling functionality of the `sam package` application, and the next step is to replicate the push to S3.
 
-## Deploying with Octopus
+## Uploading the Package with Octopus
 
 Before we push to S3, we will first create the bucket. This will be done with a standard CloudFormation template. In this template we will specify that files in this S3 bucket are removed after a certain amount of time.
 
@@ -195,3 +195,11 @@ The application package is then uploaded with the `Upload a package to an AWS S3
 The only thing of note in this step is that we have again used a variables for the bucket name and AWS region.
 
 ![](s3-upload.png "width=500")
+
+At this point we have now replicated the functionality of the `sam package` command by bundling up a self contained deployment using GitHub Actions, and pushing it to S3 using Octopus. We have also ensured that the packages we upload have readable names like `AwsSamLambda.0.1.0+71.zip` which clearly indicate the application and version that they contain. As you can see from the screenshot below, the packages uploaded by us (`AwsSamLambda.0.1.0+xx.zip`) offer a lot more context than the packages uploaded by `sam package` (`fecddec7c6c40bd9de28f1775cd11e0e`).
+
+![](s3-console.png "width=500")
+
+The next step is to deploy the SAM template.
+
+# Deploying the Template with Octopus
