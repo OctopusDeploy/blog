@@ -5,9 +5,10 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: 
 metaImage: 
-published: 
+published: 2019-08-28
 tags:
- - configuration
+ - DevOps
+ - Government
 ---
 
 We’ve all heard the phrase “the speed of government” when describing things that move slowly. It is true that in a bureaucratic setting, things tend to move at a snail’s pace compared to the rapid and sometimes chaotic environment of a start-up. Though in the snail’s defense, they move slowly, but they eventually get where they need to be. Implementing change in government is possible, but it helps if you keep the snail analogy in mind.
