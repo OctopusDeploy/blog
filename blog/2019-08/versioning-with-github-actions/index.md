@@ -1,6 +1,6 @@
 ---
 title: Adding Versions to your GitHub Actions
-description: GitHub Actions are a powerful new feature for GitHub users but lack any native versioning capabilities. In this blog post, we'll see how to implement versioning.
+description: GitHub Actions are a powerful new feature for GitHub users but lack any native versioning capabilities. In this blog post, we’ll see how to implement versioning.
 author: matthew.casperson@octopus.com
 published: 2019-08-22
 visibility: private
@@ -26,7 +26,7 @@ This means that, in theory, we have everything we need to generate meaningful ve
 
 ## GitHub Actions and Shared Variables
 
-GitHub Actions is based on the idea of individual jobs. These jobs can run on the underlying VM, or in a Docker container. Composing builds in this way offers great flexibility, but on the downside, it's difficult to capture the output of one job and use it in another. CI servers often work around this problem by capturing the output with special markers. For example, TeamCity can watch for output in the format `##teamcity[setParameter name='env.whatever' value='myvalue']` and create a variable in response. Unfortunately, the beta of GitHub Actions does not provide any support for passing variables.
+GitHub Actions is based on the idea of individual jobs. These jobs can run on the underlying VM, or in a Docker container. Composing builds in this way offers great flexibility, but on the downside, it’s difficult to capture the output of one job and use it in another. CI servers often work around this problem by capturing the output with special markers. For example, TeamCity can watch for output in the format `##teamcity[setParameter name='env.whatever' value='myvalue']` and create a variable in response. Unfortunately, the beta of GitHub Actions does not provide any support for passing variables.
 
 What we do have shared between jobs is the filesystem. Jobs that run directly on the VM can access the path `/home/runner/work/RepoName/RepoName/` (where `RepoName` is replaced with the name of the GitHub repository). Docker jobs have that same path mounted to `/github/workspace`.
 
@@ -90,7 +90,7 @@ jobs:
 The first interesting part of this workflow is where we call the GitVersion docker image.
 
 :::hint
-Note, I'm using `mcasperson/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` instead of `gitversion/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` because GitHub Actions appears to ignore the `WORKDIR` directive in Docker images. This means Docker images that try to execute something like `ENTRYPOINT ["dotnet", "GitVersion.dll"]` will respond with the rather unhelpful message of `Did you mean to run dotnet SDK commands?` because `GitVersion.dll` was not found. A recent [PR for GitVersion](https://github.com/GitTools/GitVersion/pull/1787) addresses this issue though, so the official images will be usable with GitHub Actions soon.
+Note, I’m using `mcasperson/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` instead of `gitversion/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` because GitHub Actions appears to ignore the `WORKDIR` directive in Docker images. This means Docker images that try to execute something like `ENTRYPOINT ["dotnet", "GitVersion.dll"]` will respond with the rather unhelpful message of `Did you mean to run dotnet SDK commands?` because `GitVersion.dll` was not found. A recent [PR for GitVersion](https://github.com/GitTools/GitVersion/pull/1787) addresses this issue though, so the official images will be usable with GitHub Actions soon.
 :::
 
 The trick here is to call GitVersion in a way that will save the resulting SemVer version to a file instead of printing it to the console output. We do this by setting the `/exec` argument to `/bin/sh`, and setting the `/execargs` argument to `"-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""`. These options result in GitVersion executing the shell, which writes the value of the environment variable `GitVersion_FullSemVer` (defined for us by GitVersion) to the file `/github/workspace/version.txt`.
@@ -182,4 +182,4 @@ We use the Octopus CLI in a similar way to push the resulting application to the
 
 ## Conclusion
 
-GitHub Actions are a powerful new feature for developers, but there are some rough edges in the beta that you'll have to work around for production scenarios. GitVersion provides a neat solution to the lack of build numbers and allows GitHub actions to interact with platforms like Octopus.
+GitHub Actions are a powerful new feature for developers, but there are some rough edges in the beta that you’ll have to work around for production scenarios. GitVersion provides a neat solution to the lack of build numbers and allows GitHub actions to interact with platforms like Octopus.
