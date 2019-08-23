@@ -134,6 +134,7 @@ The second part is where we create the zip file with a meaningful version number
 
 ::hint
 We use the `zip` tool to package up the Python code instead of the `octo` cli because AWS is very particular about the [permissions](https://docs.aws.amazon.com/lambda/latest/dg/deployment-package-v2.html) of files inside the zip file. The `zip` tool creates the correct permissions, whereas the `octo pack` command would result in a ZIP file that could not be deployed.
+::
 
 ```yaml
 - name: Pack Application
