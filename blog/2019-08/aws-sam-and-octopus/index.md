@@ -40,7 +40,7 @@ Or to [quote the SAM developers themselves](https://github.com/awslabs/aws-sam-c
 
 > Yes, “sam package” is rudimentary. Real solution is to create a better package command that will do content addressing better (may be using git sha, or content sha, or customer-provided naming function).
 
-We’ll take a slightly different approach by managing the packaging and uploading, and creating a generic template file that can be updated by Octopus during deployment. This will provide us with sane filenames and create reusable templates.
+We’ll take a slightly different approach by managing packaging and uploading the package, and creating a generic template file that can be updated by Octopus during deployment. This will provide us with sane filenames and create reusable templates.
 
 We’ll implement this with GitHub Actions with the following workflow YAML:
 
