@@ -272,10 +272,28 @@ Like we did before, the CloudFormation teplate will be deployed from a file. Aga
 
 Throughout the templates and steps we have used variables to reference the AWS region, the S3 bucket names and the CloudFormation stack names. Here is a screenshot of those variables.
 
-![](octopus-variables.png "width=500")
+![](octopus-variables-3.png "width=500")
 
 ## Deploying to a Single Environment
 
 At this point we have everything we need to deploy our SAM application to a single environment using Octopus.
 
 ![](deployment-uat.png "width=500")
+
+We have successfully created a deployment process in Octopus that replicates the SAM CLI tools.
+
+Having the ability to perform repeatable deployments to a single environment is great, but the real power of Octopus is scaling up to multiple environments.
+
+## Deploying to a Second Environment
+
+Because we have moved all the environment specific configuration out into variables, updating our project to deploy to a second environment is as simple as scoping variables to environments.
+
+In this case we add a new values for the `CloudFormationStackS3Bucket`, `CloudFormationStackSam` and `S3BucketName` variables, scoped to the next environment called `Prod` in this case. The existing values are then scoped to the `UAT` environment.
+
+This means the new `Prod` environment will create its own specific CloudFormation stack to create a new S3 bucket, and create a second environment specific Cloudformation stack for the SAM application.
+
+![](octopus-variables-multiple.png "width=500")
+
+And with those few changes, we have the ability to deploy independent copies of our application into two different environments.
+
+![](uat-prod-dashboard.png "width=500")
