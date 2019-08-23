@@ -143,7 +143,7 @@ The environment variable `$GitVersion_FullSemVer` is just one of many provided b
 
 To consume the version, we will use the [Octopus CLI tools](https://octopus.com/docs/octopus-rest-api/octo.exe-command-line). In the following job, we download and extract the CLI package so it can be used in subsequent steps.
 
-The Octopus CLI tools are also available as a [Docker image](https://hub.docker.com/r/octopusdeploy/octo), and so we could use these tools from the workflow with `uses: docker://octopusdeploy/octo:6.12.0`. However, calling docker images directly makes it difficult to use shell expansions, which we will need to extract the content of the file `version.txt` and pass it as a command-line argument. This is why we extract the tool locally instead.
+The Octopus CLI tools are also available as a [Docker image](https://hub.docker.com/r/octopusdeploy/octo), and so we could use these tools from the workflow with `uses: docker://octopusdeploy/octo:6.12.0`. However, calling docker images directly makes it difficult to use shell expansions, which we will need to extract the content of the file `version.txt` and pass it as a command-line argument. This is why we extract the tool locally instead:
 
 ```yaml
 - name: Extract Octopus Tools
