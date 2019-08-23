@@ -14,7 +14,7 @@ As development patterns like microservices become increasingly popular, cloud pr
 
 The AWS Serverless Application Model (AWS SAM) ties together the AWS services commonly used when deploying serverless applications. AWS SAM builds on CloudFormation, and removes much of the common boiler plate code, making serverless application deployments quick and easy.
 
-In this blog post we'll look at how you can move from the simple deployment processes provided by AWS SAM to repeatable deployments across multiple environments in Octopus.
+In this blog post, we'll look at how you can move from the simple deployment processes provided by AWS SAM to repeatable deployments across multiple environments in Octopus.
 
 The source code for this blog post can be found [here](https://github.com/OctopusDeploy/AWSSamExample).
 
