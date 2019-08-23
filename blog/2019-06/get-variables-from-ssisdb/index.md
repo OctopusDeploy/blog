@@ -1,5 +1,5 @@
 ---
-title: Importing variables from SSISDB
+title: Importing Variables from SSISDB
 description: Use PowerShell and the Octopus Deploy API to automate importing variables from SSISB
 author: shawn.sesna@octopus.com
 bannerImage: importing_variables_from_ssisdb.png
@@ -20,11 +20,11 @@ OctopusParameters collection is empty or CM.OctoDemoSql.AdventureWorks2017.sa.Co
 
 The variable is still created in the SSISDB Environment, however, it defaults to the design time values.  If your SSIS package has large number of Project Paramaters and/or Connection Managers, the list of variables can be quite extensive and, let's be honest, quite tedious to create one-by-one.  
 
-## Automation to the rescue!
+## Automation to the Rescue!
 
 As the original author of Deploy ispac SSIS project from a package, I can tell you that my SSIS developers came pounding on my office door with pitchforks and torches, ranting at how time consuming it was to create all those variables.  To avoid death from the daggers in their eyes, I turned to PowerShell and the Octopus Deploy API to come up with a method to retrieve the variables from the SSISDB Environment and import them into their Octopus Deploy projects.
 
-### The script
+### The Script
 
 :::warning
 The following script is provided for demonstration purposes.

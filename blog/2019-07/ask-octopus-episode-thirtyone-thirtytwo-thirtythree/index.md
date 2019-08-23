@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus Episode 31-33 - Incremental changes, using Octopus.Client with different Spaces and Auto Scaling groups with Octopus Deploy
+title: Ask Octopus Episode 31-33 - Incremental Changes, Using Octopus.Client with Different Spaces and Auto Scaling Groups with Octopus Deploy
 description: A couple of times a week we meet up and talk about some of the most interesting questions we have gotten and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public
