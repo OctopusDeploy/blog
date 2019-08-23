@@ -38,7 +38,7 @@ Chocolatey falls outside of the two buckets described above. If you are a .NET d
 First, you need to install Chocolatey. You can do that by running the scripts [found here](https://chocolatey.org/install). After you do that, you can start using Chocolatey to install applications. You can find which applications are available by going to the [Chocolatey Package page](https://chocolatey.org/packages). I don't have VLC installed on my computer, so I will install that by typing in: 
 
 ```
-choco install vlc.
+choco install vlc
 ``` 
 
 Which causes a prompt to appear:
@@ -52,7 +52,7 @@ That prompt is kind of annoying. However, it does tell me I can avoid it by incl
 Now I have VLC installed on my machine. If I want to update it, I need to run the command:
 
 ```
-choco upgrade vlc -y.
+choco upgrade vlc -y
 ``` 
 
 As you can see, because I just installed it, I have the latest version.
@@ -101,7 +101,7 @@ If you are a web developer for Windows, there is an excellent chance you will ne
 To find out what features are available to you, you can run the command:
 
 ```
-Dism /online /Get-Features.
+Dism /online /Get-Features
 ```
 
 ![](get-dism-features.png)
