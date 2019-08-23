@@ -16,6 +16,8 @@ The AWS Serverless Application Model (AWS SAM) ties together the AWS services co
 
 In this blog post we'll look at how you can move from the simple deployment processes provided by AWS SAM to repeatable deployments across multiple environments in Octopus.
 
+The source code for this blog post can be found [here](https://github.com/OctopusDeploy/AWSSamExample).
+
 ## The Hello World App
 
 We'll start with the Python Hello World application created with the SAM CLI tool. The process of creating this application is documented [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html#serverless-getting-started-hello-world-initialize).
@@ -301,7 +303,7 @@ Having the ability to perform repeatable deployments to a single environment is 
 
 Because we have moved all the environment specific configuration into Octopus variables, updating our project to deploy to a second environment is as simple as scoping variable values to environments.
 
-In this case we add a new values for the `CloudFormationStackS3Bucket`, `CloudFormationStackSam` and `S3BucketName` variables, scoped to the next environment called `Prod`. 
+In this case we add a new values for the `CloudFormationStackS3Bucket`, `CloudFormationStackSam` and `S3BucketName` variables, scoped to the next environment called `Prod`.
 
 This means the new `Prod` environment will create its own specific CloudFormation stack to create a new S3 bucket, and create a second environment specific Cloudformation stack for the SAM application.
 
