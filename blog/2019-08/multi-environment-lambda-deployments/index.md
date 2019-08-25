@@ -1,6 +1,6 @@
----
-title: Considerations for deploying AWS serverless applications to multiple environments
-description: There a many approaches to running Lambdas across logical environments, but you need to be wary of the pitfalls of some common approaches.
+context---
+title: Why you should not use Lambda aliases to define environments
+description: There a many approaches to running Lambdas across logical environments, but you need to be wary of the pitfalls when using aliases.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2019-08-26
@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Getting started with serverless applications is relatively easy these days. Tools like [Serverless](https://serverless.com/) and [AWS SAM](https://aws.amazon.com/serverless/sam/) abstract away much of the boilerplate code and the finer points of the interactions between services to get you up and running quickly.
+Getting started with serverless applications is relatively easy these days. Tools like [Serverless](https://serverless.com/) and [AWS SAM](https://aws.amazon.com/serverless/sam/) abstract away much of the boilerplate code and hide the finer interactions between services to get you up and running quickly.
 
 Moving from the proof of concept stage to testable and repeatable deployments inevitably means deploying your code across multiple environments. We've seen how to [migrate from the SAM CLI to Octopus](/blog/2019-08/aws-sam-and-octopus/index.md) in order to implement these multi-environment deployments. This previous post advocated for independent CloudFormation stacks as a way of implementing multi-environment deployments, but what about solutions like Lambda aliases?
 
@@ -18,9 +18,9 @@ In this post we'll take a look at Lambda aliases, and highlight some of the pitf
 
 ## What are Lambda Aliases?
 
-Lambda aliases are essentially named versions of a Lambda deployment. By default there is a single version called `$LATEST` that always represents the last copy of the Lambda that was deployed. You can then publish a version, which creates an immutable snapshot of the Lambda code and configuration. The newly published version has an automatically assigned version number. By assigning a name, or alias, to one of these version numbers, it is possible to reference snapshots that represent your logical environments.
+Lambda aliases are essentially named versions of a Lambda deployment. By default there is a single version called `$LATEST` that always represents the last copy of the Lambda that was deployed. You can then publish a version, which creates an immutable snapshot of the Lambda code and configuration. The newly published version has an automatically assigned version number, but by assigning a name, or alias, to one of these version numbers, it is possible to define a set of Lambda versions that represent an environment.
 
-For example, the alias `Prod` might point to a version of a Lambda created a month ago. Because the published versions are immutable, developers can continue to update the Lambda with their code, but the alias called `Prod` will continue to reference a known stable version.
+For example, the alias `Prod` might point to a version of a Lambda created a month ago. Because the published versions are immutable, developers can continue to update the Lambda, but the alias called `Prod` will always reference a known stable version.
 
 Likewise the `Test` alias might point to a newly published version of the Lambda with the intention of performing testing against it. Then the `Dev` alias can point to the `$LATEST` version, thus creating a development environment that always points to the latest code that was deployed.
 
@@ -32,7 +32,7 @@ The concept of aliases is easy enough to understand, but there are some things t
 
 ## What is an Environment Exactly?
 
-To understand how aliases can go wrong, we first need to ask the rather simple question of *What is an environment?*.
+To understand how aliases can go wrong, we first need to ask the rather simple question of *What is an environment?*
 
 In the days of on-premises deployments, and environment was a dedicated server or virtual machine. For example, you would have had a production server and a test server. Code and infrastructure deployed to those servers made up the production or test environments.
 
@@ -40,21 +40,21 @@ This topology was very easy to reason about: The production environment was the 
 
 Now consider the case where an AWS lambda hosts both test and production code. You may even find yourself in the situation where the `Test` alias points to the same version as the `Prod` alias. How do we describe an environment with this topology?
 
-It is tempting to say that the Lambda environment is the alias, which is to say the production environment is the set of Lambda versions that the `Prod` alias points to. But this description breaks down when we need to talk about non-functional requirements like security and performance.
+It is tempting to say that the Lambda environment is the alias, which is to say the production environment is the set of Lambda versions that the `Prod` aliases points to, and the test environment is the set of Lambda versions the `Test` aliases point to. But this description breaks down when we need to implement non-functional requirements like security and performance.
 
-Let's say you are writing a medical application that processes sensitive information that you are required not to disclose. This means you have to consider that the log files generated by your code, even if it is a stack trace that shows the path your application took, could contain legally sensitive information.
+Let's say you are writing a medical application that processes sensitive information that you are required not to disclose. This means you have to consider that the log files generated by your code, even if it is a stack trace that shows the path your application took, could contain or imply legally sensitive information.
 
 When a production environment can be described as simply as "the code running on the production servers", then security can be implemented as "only people authorized to access the production servers can read the logs". OK, so in practice security isn't quite this easy, but at least there is no ambiguity as to where the production log files come from.
 
-When using aliases though, the concept of a production environment becomes murkier. You may be forced to describe the production environment like "when a Lambda is called from the production URL https://myapp.com", and then describe the test environment as "when a Lambda is called from the production URL https://test.myapp.com".
+When using aliases though, the concept of a production environment becomes murkier. You may be forced to describe the production environment as "when a Lambda is called from the production host myapp.com", and then describe the test environment as "when a Lambda is called from the test host URL test.myapp.com".
 
 We are now in a situation where were have pushed the concept of environmental awareness down from the infrastructure into the code. Our Lambda code has to be aware of the context in which it was called (by tracking the request hostname for example), and tag any log files accordingly. This then means our security rules need to consider whether the log entry was tagged with "test" or "production".
 
 You challenge now is to create an security rule that scans each CloudWatch log for a specific tag, and limits access to log entries accordingly.
 
-Or consider the case where a Lambda eventually interacts with a database. You would be hard pressed to find anyone who advocates for placing test and production data in the same database, which means you will have different databases for each environment. Just as our code had to be made aware of the context that they were called in to tag log files appropriately, they also need to know which database they should be interacting with. Even if your Lambda doesn't interact with a database, it will eventually call one that does, and so needs to pass this environmental awareness along with each call.
+Or consider the case where a Lambda eventually interacts with a database. You would be hard pressed to find anyone who advocates for placing test and production data in the same database, which means you will have different databases for each environment. Just as our code had to be made aware of the context that they were called in to tag log entries appropriately, they also need to know which database they should be interacting with. Even if your Lambda doesn't interact with a database, it will eventually call one that does, and so needs to pass this environmental awareness along with each call.
 
-Your challenge now is to create a security rule that allows only a Lambda called in the production context to interact with production data. Keep in mind the production Lambda might be exactly the same as the Test lambda.
+Your challenge now is to create a security rule that allows only a Lambda called in the production context to interact with production data. Keep in mind the production Lambda might be exactly the same as the Test lambda, and the only thing differentiating it is the conext in which it is called.
 
 As you can see these two seeming trivial security exercises become unmanageable very quickly, and we haven't even got to rate limiting, network segmentation, distributed tracing...
 
@@ -76,7 +76,7 @@ We've seen how to use separate CloudFormation stacks in a [previous blog post](/
 
 Using different AWS regions is the next logic step, although you may find that the networking overhead of physical regions interferes with testing or performance monitoring.
 
-For ultimate segregation, you can take the next step of creating regions through separate AWS accounts. In the video [Testing and Deployment Best Practices for AWS Lambda-Based Applications](https://www.youtube.com/watch?v=zJQDAsWm-5k) the AWS developer advocate Chis Munns talks about using accounts in this way, and it appears that AWS themselves have embraced potentially using hundreds of accounts to achieve this kind of separation.
+For ultimate segregation, you can take the next step of creating environments through separate AWS accounts. In the video [Testing and Deployment Best Practices for AWS Lambda-Based Applications](https://www.youtube.com/watch?v=zJQDAsWm-5k) AWS developer advocate Chis Munns talks about using accounts in this way, and it appears that AWS themselves have embraced potentially using hundreds of accounts to achieve this kind of separation.
 
 Fortunately, implementing any of these strategies is as simple as scoping the appropriate Octopus variables to an environment, meaning you can easily manage your multi-environment deployments regardless of which strategy you decided to implement.
 
@@ -85,3 +85,5 @@ Fortunately, implementing any of these strategies is as simple as scoping the ap
 For very simple or proof of concept deployments, Lambda aliases can provide a solution for multiple environments. But as we have seen aliases quickly introduce problems as deployments become more complex.
 
 Independent CloudFormation stacks, AWS regions or accounts provide much cleaner environment boundaries, which in turn means security and monitoring are much more reliable.
+
+Octopus supports each of these environment boundaries by scoping variable values like CloudFormation stack names, AWS region name or AWS accounts to environments, meaning your multi-environment deployments are easy to mange and reliable to deploy.
