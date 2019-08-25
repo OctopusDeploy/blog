@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus Episode 19-21 - Installing Octopus, Staging deployment packages & Retrying rolling deployments
+title: Ask Octopus Episode 19-21 - Installing Octopus, Staging Deployment Packages & Retrying Rolling Deployments
 description: Once a week a few of us will gather to talk about some of the most interesting questions we have gotten over the past week and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public

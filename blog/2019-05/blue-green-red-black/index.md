@@ -1,5 +1,5 @@
 ---
-title: What is the difference between blue/green and red/black deployments?
+title: What Is the Difference Between Blue/Green and Red/Black Deployments?
 description: The term blue/green and red/black are used to describe deployment strategies, but do they mean different things?
 author: matthew.casperson@octopus.com
 visibility: public

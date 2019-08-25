@@ -1,5 +1,5 @@
 ---
-title: Introducing our second release with long-term support - Octopus Server 2019.3 LTS
+title: Introducing Our Second Release with Long-term Support - Octopus Server 2019.3 LTS
 description: Octopus Server 2019.3 LTS is the second release with six months of long-term support. We recommend this release for most self-hosted customers.
 author: nick.josevski@octopus.com
 visibility: public

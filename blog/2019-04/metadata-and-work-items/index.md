@@ -1,5 +1,5 @@
 ---
-title: Tracking your work from code to deployment
+title: Tracking Your Work from Code to Deployment
 description: A look at the new custom metadata capabilities in Octopus.
 author: shannon.lewis@octopus.com
 visibility: public

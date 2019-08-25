@@ -1,5 +1,5 @@
 ---
-title: Leveraging Multi-Tenancy to create team and developer sandboxes
+title: Leveraging Multi-tenancy to Create Team and Developer Sandboxes
 description: The software we write often has dependencies on other team's applications. Learn how you can use the multi-tenancy feature in Octopus Deploy to carve out sandboxes for each team.
 author: bob.walker@octopus.com
 visibility: public
