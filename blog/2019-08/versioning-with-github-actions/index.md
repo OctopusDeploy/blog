@@ -47,7 +47,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Get Git Version
-      uses: docker://mcasperson/gitversion:5.0.2-linux-centos-7-netcoreapp2.2
+      uses: docker://gittools/gitversion:5.0.2-beta1-27-linux-centos-7-netcoreapp2.2
       with:
         args: /github/workspace /nofetch /exec /bin/sh /execargs "-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""
     - name: Set up Python 3.7
@@ -88,10 +88,6 @@ jobs:
 ```
 
 The first interesting part of this workflow is where we call the GitVersion docker image.
-
-::hint
-I'm using `mcasperson/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` instead of `gitversion/gitversion:5.0.2-linux-centos-7-netcoreapp2.2` because GitHub Actions appears to ignore the `WORKDIR` directive in Docker images. This in turn means Docker images that try to execute something like `ENTRYPOINT ["dotnet", "GitVersion.dll"]` will respond with the rather unhelpful message of `Did you mean to run dotnet SDK commands?` because `GitVersion.dll` was not found. A recent [PR for GitVersion](https://github.com/GitTools/GitVersion/pull/1787) addresses this issue though, so the official images will be usable with GitHub Actions soon.
-::
 
 The trick here is to call GitVersion in a way that will save the resulting SemVer version to a file instead of printing it to the console output. We do this by setting the `/exec` argument to `/bin/sh`, and setting the `/execargs` argument to `"-c \"echo $GitVersion_FullSemVer > /github/workspace/version.txt\""`. These options result in GitVersion executing the shell, which in turn writes the value of the environment variable `GitVersion_FullSemVer` (defined for us by GitVersion) to the file `/github/workspace/version.txt`.
 
