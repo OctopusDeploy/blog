@@ -80,7 +80,7 @@ Moving these network concerns out of the applications and into the infrastructur
 * Standard Kubernetes dashboards can be used to view and manage the networking configuration.
 * Operators only need to understand the specific implementation details of a small number of Service Meshes rather than every networking library that has been bundled into the deployed applications.
 
-# What is the distinction between Ingress controller and service mesh?
+## What is the distinction between Ingress controller and service mesh?
 
 Kubernetes natively exposes [Ingress resources](https://kubernetes.io/docs/concepts/services-networking/ingress/), which are used to direct traffic from a (usually shared) load balancer. The network traffic is directed to a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/), which in turn directs the traffic to a Kubernetes Pod.
 
