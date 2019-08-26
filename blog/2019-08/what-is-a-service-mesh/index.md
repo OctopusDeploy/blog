@@ -12,7 +12,7 @@ tags:
 
 If you have used Kubernetes for any length of time, you will have heard the term Service Mesh. Several big companies are backing service mesh projects, such as Google with [Istio](https://istio.io/) and the Cloud Native Computing Foundation with [Linkerd](https://linkerd.io/).
 
-So what is a Service Mesh, and how is it different from the standard Services and Ingress resources native to Kubernetes?
+So what is a Service Mesh, and how is it different from the standard Service and Ingress resources native to Kubernetes?
 
 ## What is a Service Mesh?
 
@@ -30,8 +30,6 @@ Louis Ryan offers this view:
 
 >We view it as an abstraction  of the network so the application has to think less about the network. Hopefully operators also have to think less about the structure of the network, and that becomes particularly relevant as the [...] deployment size grows.
 
->You don't really want any of those concerns bleeding up into the application layer - that would be a bad thing.
-
 So why would you use a Service Mesh?
 
 ## Life without a Service Mesh
@@ -40,7 +38,7 @@ To understand why we would use a Service Mesh, let's first look at how networkin
 
 A standard solution to dealing with network issues in microservice applications is to retry requests. Given that HTTP GETs and PUTs are idempotent, consumers of these endpoints can expect to be able to retry a failed network call.
 
-There are many libraries out there that make these retries easy for developers to implement. [Spring retry](https://github.com/spring-projects/spring-retry) and [Polly](https://github.com/App-vNext/Polly#retry) come to mind as two such examples, and both go beyond simply retrying loops to offer features like configurable backoff processes.
+There are many libraries out there that make these retries easy for developers to implement. [Spring retry](https://github.com/spring-projects/spring-retry) and [Polly](https://github.com/App-vNext/Polly#retry) come to mind as two such examples, and both go beyond simply retrying loops to offer features like configurable backoff formulas.
 
 Here is an example of a function in a Spring service that will retry a network call with a custom backoff formula.
 
@@ -51,7 +49,7 @@ public Double getCurrentRate() {
 }
 ```
 
-Polly offers similar retry logic.
+Polly offers similar retry logic:
 
 ```CSharp
 Policy
@@ -80,7 +78,7 @@ Moving these network concerns out of the applications and into the infrastructur
 * Kuberenetes will maintain the configuration, taking advantage of any security or auditing policies.
 * The standard `kubectl` command-line tool is now used to view or update the networking configuration.
 * Standard Kubernetes dashboards can be used to view and manage the networking configuration.
-* Operators only need to understand the specific implementation details of a small number of service meshes rather than every networking library that has been bundled into the deployed applications.
+* Operators only need to understand the specific implementation details of a small number of Service Meshes rather than every networking library that has been bundled into the deployed applications.
 
 # What is the distinction between Ingress controller and service mesh?
 
