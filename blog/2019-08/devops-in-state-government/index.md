@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: blogimage-devopgovernment.png
 metaImage: blogimage-devopgovernment.png
-published: 2019-08-28
+published: 2019-09-04
 tags:
  - DevOps
  - Government
