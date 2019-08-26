@@ -1,5 +1,5 @@
 ---
-title: Why you should not use Lambda aliases to define environments
+title: Why You Should Not Use Lambda Aliases to Define Environments
 description: There a many approaches to running Lambdas across logical environments, but you need to be wary of the pitfalls when using aliases.
 author: matthew.casperson@octopus.com
 visibility: private
