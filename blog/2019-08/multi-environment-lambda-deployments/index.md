@@ -50,7 +50,7 @@ When using aliases though, the concept of a production environment becomes murki
 
 We are now in a situation where were have pushed the concept of environmental awareness down from the infrastructure into the code. Our Lambda code has to be aware of the context in which it was called (by tracking the request hostname for example), and tag any log entries accordingly. This then means our security rules need to consider whether the log entry was tagged with "test" or "production".
 
-You challenge now is to create an security rule that scans each CloudWatch log for a specific tag, and limits access to log entries accordingly.
+You challenge now is to tag each log entry, catch all exceptions, create an security rule that scans each CloudWatch log for a specific tag, and limits access to log entries accordingly.
 
 Or consider the case where a Lambda eventually interacts with a database. You would be hard pressed to find anyone who advocates for placing test and production data in the same database, which means you will have different databases for each environment. Just as our code had to be made aware of the context that they were called in to tag log entries appropriately, they also need to know which database they should be interacting with. Even if your Lambda doesn't directly interact with a database, it will eventually call one that does, and so needs to pass this environmental awareness along with each call.
 
