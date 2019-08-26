@@ -22,7 +22,7 @@ The variable is still created in the SSISDB Environment, however, it defaults to
 
 ## Automation to the Rescue!
 
-As the original author of Deploy ispac SSIS project from a package, I can tell you that my SSIS developers came pounding on my office door with pitchforks and torches, ranting at how time consuming it was to create all those variables.  To avoid death from the daggers in their eyes, I turned to PowerShell and the Octopus Deploy API to come up with a method to retrieve the variables from the SSISDB Environment and import them into their Octopus Deploy projects.
+As the original author of Deploy ispac SSIS project from a package, I can tell you that my SSIS developers came pounding on my office door with pitchforks and torches, ranting at how time consuming it was to create all those variables. To avoid death from the daggers in their eyes, I turned to PowerShell and the Octopus Deploy API to come up with a method to retrieve the variables from the SSISDB Environment and import them into their Octopus Deploy projects.
 
 ### The Script
 
