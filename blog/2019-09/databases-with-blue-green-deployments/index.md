@@ -10,6 +10,8 @@ tags:
  - Database Deployments
 ---
 
+## TODO: Replace intro with "real world story" from when I was a developer
+
 Blue/Green deployments are near and dear to my heart.  It is something I've sort of done in the past, but I ran into some interesting hiccups.  If you're not familiar with blue/green deployments, it is when you have two identical production environments labeled blue and green.  At any given time, only one of those environments, for example, blue, is live.  Deployment is done to the non-live environment, for example, green, which is then verified.  After verification is complete, a switchover occurs, and the live environment becomes green.  
 
 ![](https://i.octopus.com/docs/deployment-patterns/blue-green-deployments/images/3278250.png)
