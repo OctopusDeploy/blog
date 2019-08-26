@@ -54,7 +54,7 @@ You challenge now is to tag each log entry, catch all exceptions, create an secu
 
 Or consider the case where a Lambda eventually interacts with a database. You would be hard pressed to find anyone who advocates for placing test and production data in the same database, which means you will have different databases for each environment. Just as our code had to be made aware of the context that they were called in to tag log entries appropriately, they also need to know which database they should be interacting with. Even if your Lambda doesn't directly interact with a database, it will eventually call one that does, and so needs to pass this environmental awareness along with each call.
 
-Your challenge now is to create a security rule that allows only a Lambda called in the production context to interact with production data. Keep in mind the production Lambda might be exactly the same as the Test lambda, and the only thing differentiating it is the conext in which it is called.
+Your challenge now is to create a security rule that allows only a Lambda called in the production context to interact with production data. Keep in mind the production Lambda might be exactly the same as the Test lambda, and the only thing differentiating it is the context in which it is called.
 
 As you can see these two seeming trivial security exercises become unmanageable very quickly, and we haven't even got to rate limiting, network segmentation, distributed tracing...
 
