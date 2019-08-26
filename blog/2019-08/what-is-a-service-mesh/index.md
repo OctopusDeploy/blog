@@ -94,6 +94,6 @@ So a Service Mesh can be an Ingress Controller, and Ingress Controllers can impl
 
 ## Conclusion
 
-A Service Mesh provides Kubernetes with a consistent infrastructure layer with rich network monitoring, reliability and security features. A Service Mesh removes the need for each individual application to expose this functionality, and means common Kubernetes security, CLI tools, dashboards and auditing can be leveraged to maintain the infrastructure layer.
+A Service Mesh provides Kubernetes with a consistent infrastructure layer with rich network monitoring, reliability and security features. A Service Mesh removes the need for each individual application to expose this networking functionality, and means existing Kubernetes security, CLI tools, dashboards and auditing can be leveraged to maintain the infrastructure layer.
 
 The term Service Mesh is not well defined though, and over time expect to see Service Mesh like functionality to find its way into many of the projects that are being used as Ingress Controllers today.
