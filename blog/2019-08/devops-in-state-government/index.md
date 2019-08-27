@@ -13,6 +13,8 @@ tags:
 
 ![Illustration showing an inifite feedback loop surrounding a government building](blogimage-devopgovernment.png)
 
+!toc
+
 ## Introduction
 
 We’ve all heard the phrase “the speed of government” when describing things that move slowly. It is true that in a bureaucratic setting, things tend to move at a snail’s pace compared to the rapid and sometimes chaotic environment of a start-up. Though in the snail’s defense, they move slowly, but they eventually get where they need to be. Implementing change in government is possible, but it helps if you keep the snail analogy in mind.
@@ -29,7 +31,7 @@ At that time, web code builds were done on developer machines, zipped, and copie
 
 Things needed to change, badly.
 
-## From manual to automagic
+## The saga begins
 
 I started at the beginning of the process with the builds so I could eliminate the adage, “worked on my machine, ops problem now.” The team was using Microsoft Team Foundation Server for source control, so the build controller technology was already present. I installed the controller as well as a couple of agents so that all software was built against an independent machine. This quickly brought to light any dependencies that were present on the developer machines that were not available on the servers and needed to be installed. Though this helped identify what had to be installed on the server, the web admins still occasionally forgot to install the dependencies on all the servers and deployment failures still occurred. That issue didn’t get resolved for several years.
 
@@ -49,7 +51,7 @@ A contractor happened to be working on a project that used my solution and gave 
 
 As things became more automated, tension between teams began to ease as constant fire-fighting fell by the wayside. An organic byproduct was cross-team communication increased and became collaborative discussions versus heated finger-pointing.  Where once DBAs would respond with, “It’s not the database server; it has to be your code.” They started saying, “Let’s take a look at the execution plan and see if there can be some efficiencies gained.” Your problem became our problem.  Developers stopped coming directly to me, red in the face, yelling about how my team was impossible to work with.  Instead, they consulted the DBA team to see if a design might be improved, a stored procedure could be enhanced, or if they could come up with index recommendations.
 
-## Implementation of Infrastructure as Code
+## Infrastructure as Code
 
 One issue that continued to plague us was inconsistent environments. I learned about Infrastructure as Code and was immediately on board with the concept. Having no experience in any of the existing technologies (Chef, Puppet, Ansible, PowerShell DSC, etc…), I decided to try PowerShell DSC (Desired State Configuration). I quickly learned why all of the PowerShell courses say something like, “... and then there’s PowerShell DSC, but that’s a whole course in itself.” 
 
