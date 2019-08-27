@@ -21,7 +21,7 @@ So how does a native Linux Tentacle solve this problem? Tentacles support a poll
 
 ![Linux deployment targets page](linux-tentacle-early-access.png "width=600")
 
-## Example 1: Octopus Cloud deploying to Linux servers
+## Example 1: Octopus Cloud Deploying to Linux Servers
 
 Suppose your team is using Octopus Cloud to deploy several microservices to multiple Linux servers. With the current version of Octopus, your Linux targets need to be running an SSH server that is publicly accessible over the internet. While SSH is considered to be one of the more secure remote access methods, some companies operate in highly secure environments where it's not possible to open port 22 on production servers.
 
@@ -35,7 +35,7 @@ Suppose your team is trying to deploy to highly secured Linux servers running in
 
 Solution: This is where Tentacle polling mode really shines, it allows your Tentacles to actively poll the Octopus Server without the Octopus Server having to know anything about the IP addresses of the Linux targets.
 
-## Linux Tentacle early access
+## Linux Tentacle Early Access
 
 ![Octopus Linux Illustration](linux-tentacle.png)
 
@@ -43,7 +43,7 @@ We are currently providing early access for Linux Tentacle to get feedback and v
 We're building both DEB (Ubuntu/Debian) and RPM (CentOS/Fedora) packages, as well as .tar.gz archive for manual installations. Tentacle is built with .NET Core 2.x, so if your version of Linux is [supported](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) you should be able to run Tentacle.
 We'd love feedback so join the discussion on our [community slack](https://octopus.com/slack) in the `#linux-tentacle` channel.
 
-## Wrapping up
+## Wrapping Up
 
 Linux Tentacle provides greater flexibility for teams deploying to Linux in highly secured environments and complements our existing SSH deployment target support. Our goal is to bring all the same features to the Linux ecosystem that we already provide for Windows.
 Don't forget to register for updates on our [public roadmap](https://octopus.com/company/roadmap) page.

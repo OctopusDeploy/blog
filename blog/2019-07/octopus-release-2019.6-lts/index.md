@@ -32,7 +32,7 @@ Keep reading to learn about what's in this release and any breaking changes.
 
 !toc
 
-## Jira integration
+## Jira Integration
 
 ![Atlassian Jira Integration](jira-issue-with-deployments.png "width=600")
 
@@ -40,7 +40,7 @@ Done means deployed to production. Our new Octopus plugin for Jira Cloud enables
 
 [Learn more](https://octopus.com/blog/octopus-jira-integration)
 
-## Tracking your work from idea to production
+## Tracking Your Work From Idea to Production
 
 ![Octopus Release Details with build and work items information](octopus-release-details.png "width=600")
 
@@ -48,7 +48,7 @@ This release introduces build information and work item tracking. It's now possi
 
 [Learn more](https://octopus.com/blog/metadata-and-work-items)
 
-## Generate and share release notes automatically
+## Generate and Share Release Notes Automatically
 
 ![Octopus Deployment with release notes showing what's new](octopus-release-notes.png "width=600")
 
@@ -56,13 +56,13 @@ Octopus can now generate release notes by leveraging metadata from your source c
 
 [Learn more](https://octopus.com/blog/release-notes-templates)
 
-## Script module support for C#, F#, Bash, and Python
+## Script Module Support for C#, F#, Bash, and Python
 
 We added support for script modules in all our support languages. Now you can centrally manage common Bash, C#, F#, and Python script functions, and even see which projects are using the Script Modules.
 
 [Learn more](https://octopus.com/blog/script-modules)
 
-## Linux Tentacle early access
+## Linux Tentacle Early Access
 
 ![Linux Tentacle configuration](linux-tentacle.png "width=500")
 
@@ -72,7 +72,7 @@ We'd love feedback so join the discussion on our [community slack](https://octop
 
 [Learn more](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle)
 
-## Breaking changes
+## Breaking Changes
 
 This release includes some minor breaking changes:
 
@@ -81,6 +81,6 @@ This release includes some minor breaking changes:
 * Health check properties of machine policies have [changed](https://github.com/OctopusDeploy/Issues/issues/5544) to accommodate Linux Tentacle. `TentacleEndpointHealthCheckPolicy` has been renamed to `PowerShellHealthCheckPolicy` and `SshEndpointHealthCheckPolicy` has been renamed to `BashHealthCheckPolicy`. Any custom tools that create machine policies should use the new property names. 
 * The `OnlyConnectivity` option that was configured on SSH health check policies is now a [policy-wide setting](https://github.com/OctopusDeploy/Issues/issues/5544). This setting is commonly used for raw scripting on SSH targets. If you are using this setting, a new machine policy will be created during the Octopus Server upgrade. 
 
-## Wrapping up
+## Wrapping Up
 
 Octopus Server 2019.6 has arrived, and you can bank on it. Happy long-term deployments!

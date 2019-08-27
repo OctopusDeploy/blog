@@ -20,7 +20,7 @@ You can [download](https://octopus.com/downloads) Octopus Server 2019.3 LTS now!
 
 Our LTS releases will be in the slow lane with a new LTS release approximately every three months - for all the LTS related details please have a read of our [long term support documentation](https://octopus.com/docs/administration/upgrading/long-term-support).
 
-## What features does 2019.3 LTS have?
+## What Features Does 2019.3 LTS Have?
 
 Octopus Server `2019.3 LTS` is essentially the same as `2019.2`. It comes with [Spaces](https://octopus.com/blog/octopus-release-2019.1). A great deal of enhancements and bug fixes in a variety of areas including; Kubernetes and the Octopus Migrator. Along with the Database Performance and Cloud Dependency updates from `2018.11`. So have a read through [the change log](https://octopus.com/downloads/compare?from=2018.10.5&to=2019.2.8).
 
@@ -30,17 +30,17 @@ Octopus Server `2019.3 LTS` is essentially the same as `2019.2`. It comes with [
 
 While we try our best to minimise breaking changes, in order to support Spaces and deliver long needed improvements to how you [configure teams](https://octopus.com/blog/team-configuration-improvements), unfortunately we were forced to change the API change in a few areas. If you have automation around Teams, User Roles and Permissions they will need to change.
 
-## When should I install 2019.3 LTS?
+## When Should I Install 2019.3 LTS?
 
 There is no time like the present! You can upgrade to Octopus Server `2019.3 LTS` now. We've had hundreds of customers upgrade smoothly to `2019.2` and the upgrade to `2019.3 LTS` is cut from the same code.
 
 You can [download Octopus Server 2019.3 LTS](https://octopus.com/downloads) now!
 
-## Wrapping up
+## Wrapping Up
 
 LTS for Octopus Server has arrived, and you can bank on it. Happy long-term deployments!
 
-## Learn more
+## Learn More
 
 * [Self-hosted? Download the latest version](https://hubs.ly/H0gCMqJ0)
 * Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCMRR0)

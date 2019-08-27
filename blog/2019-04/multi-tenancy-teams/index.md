@@ -39,7 +39,7 @@ This is a perfect use case for Octopus Deploy's [multi-tenancy feature](https://
 
 !toc
 
-## Caveats to this solution
+## Caveats to This Solution
 
 There are a couple of significant caveats to this solution.  
 
@@ -326,7 +326,7 @@ The final piece is telling your build server, in my case TeamCity, to monitor al
 
 ![](teamcity-monitor-all-branches.png)
 
-## Seeing it in action
+## Seeing It In Action
 
 Time to test this. I created a test branch for my developer and pushed it up to the server.
 
@@ -352,7 +352,7 @@ So if Derek wanted to bring those changes into his sandbox, we would first chang
 
 ![](octopusdeploy-derek-bringing-in-release.png)
 
-## Standing up an entire sandbox
+## Standing Up an Antire Sandbox
 
 So far we have been focused on a single application, OctoFx. I'm willing to bet you have more than one application in your development shop. To solve for that, I created a project called `Deploy All The Things`. The project's lifecycle allows it to go to Development, Testing, and Staging, with Development and Testing optional. It is intended to be used by tenants with the Person or Team `Tenant Type` tenant tag.
 

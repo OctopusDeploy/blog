@@ -455,7 +455,7 @@ Earlier in this post, I talked about the `Import-DscResource -Module xWebAdminis
 ## Make Your Configuration Data File and Your Referenced PowerShell DSC Modules Deployable Packages
 Presumably, you have placed your configuration data file and referenced PowerShell DSC modules into source control.  Once in source control, your build server can easily package them and ship them to Octopus Deploy for deployment.
 
-## Configure your Project
+## Configure Your Project
 Now that we have our configuration data file package and our PowerShell DSC Modules package, we can configure our project!
 
 ### Create Project Variables
@@ -510,7 +510,7 @@ Logging into our Web server, we should find that IIS has been installed with Sit
 
 ![](web-server.png)
 
-## More Awesomeness with Variable substitution!
+## More Awesomeness with Variable Substitution!
 
 But wait!  In our configuration data file we've statically set where the IIS Sites log to, but what if I want something different per project?  This is where we can use the Substitute Variables in Files feature of Octopus Deploy!  
 
