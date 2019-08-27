@@ -3,8 +3,8 @@ title: Worker Friendly Custom Step Templates
 description: How to make worker friendly custom step templates.
 author: shawn.sesna@octopus.com
 visibility: public
-bannerImage: worker-friendly-custom-step-templates.png
-metaImage: worker-friendly-custom-step-templates.png
+bannerImage: blogimage-worker-friendly-step-templates.png
+metaImage: blogimage-worker-friendly-step-templates.png
 published: 2019-07-09
 tags:
  - Octopus
@@ -33,7 +33,7 @@ $OctopusParameters["Octopus.Action.Package[$myPackageId].ExtractedPath"]
 
 ## What About Specialized Software?
 
-There are times when simply having the files available on a worker isn't enough to make them worker compatible such as deploying SSIS packages to a SQL server.  The worker will have the .ispac file available to it, but it doesn't have the software installed to know what to do with it.  One way to solve this is to install the software on all of your workers.  This adds complexity in that all of your workers need to be maintained to make sure the right version of the software is installed and/or updated.  Another method is to make use of the PowerShell Gallery to install the necessary PowerShell modules at deploy-time. For the SSIS example, the SqlServer module in the PowerShell Gallery contains the necessary .dlls needed to allow a worker to deploy the .ispac to SQL server.
+There are times when simply having the files available on a worker isn't enough to make them worker compatible such as deploying SSIS packages to a SQL server.  The worker will have the .ispac file available to it, but it doesn't have the software installed to know what to do with it.  One way to solve this is to install the software on all of your workers.  This adds complexity in that all of your workers need to be maintained to make sure the right version of the software is installed and/or updated. Another method is to make use of the PowerShell Gallery to install the necessary PowerShell modules at deploy-time. For the SSIS example, the SqlServer module in the PowerShell Gallery contains the necessary .dlls needed to allow a worker to deploy the .ispac to SQL server.
 
 :::warning
 The following scripts are provided for demonstration purposes.
