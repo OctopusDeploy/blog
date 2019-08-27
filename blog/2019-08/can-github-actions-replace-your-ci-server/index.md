@@ -12,7 +12,7 @@ tags:
 
 With the introduction of GitHub Actions (albeit in beta), the worlds source code repository now includes the ability to host and execute your CI/CD pipelines. Now that hosting code is essentially commoditized, it was natural and inevitable that running build scripts would be commoditized next.
 
-The interesting thing about CI is that it is a machine driven process that will run when the inputs (like your latest commit) are available, and generates the outputs (like your artifacts and test results) without intervention. Over the years we have seen every major CI platform has continue to distil the build pipeline down to this formula through the concept of pipelines as code, with the result being that CI user interfaces are used as little more than a read only dashboard, and CI servers become build agent orchestrators.
+The interesting thing about CI is that it is a machine driven process that will run when the inputs (like your latest commit) are available, and generates the outputs (like your artifacts and test results) without intervention. Over the years we have seen every major CI platform continue to distil the build pipeline down to this formula through the concept of pipelines as code, with the result being that CI user interfaces are used as little more than a read only dashboard, and CI servers become build agent orchestrators.
 
 So given GitHub Actions hosts the code, exposes the build pipeline as code, provides the execution environment to run those pipelines, and provides a repository to host the resulting artifacts, do you even need a CI server any more?
 
