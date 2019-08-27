@@ -49,6 +49,9 @@ While [GitHub provides an impressive list of operating systems to run your build
 
 Finally, the GitHub UI is still repository centric. Knowing which repos have actions defined, let alone trying to view the state of your builds, is clunky at best. Expect to click around *a lot* if you have many projects built with GitHub Actions.
 
+![](no-dashboard.png "width=500")
+*You won't find the status of your builds on this homepage.*
+
 ## Conclusion
 
 GitHub Actions is ideal if you maintain a small number of open source projects. Contributors can fork your code and build environments, and you no longer have to maintain any separate build infrastructure.
