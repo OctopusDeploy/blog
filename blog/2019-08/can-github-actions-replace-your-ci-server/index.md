@@ -33,13 +33,13 @@ Composing your build environment in this way is brilliant because every major de
 
 Having GitHub host the execution environment now means that forks also inherit the build environments. This is a huge win for open source project maintainers, who no longer have to consume code changes in order to run complex regression tests in their own build environments, and contributors can be confident that their changes will pass any required tests.
 
-And, let's face it, *everyone* is going to hop on the GitHub Actions train.
+And, let's face it, *everyone* is going to hop on the GitHub Actions train. Your favorite integration tools are guaranteed to have either a custom Action one or a Docker container easily used as an Action.
 
 ## But GitHub Actions Aren't Quite Ready
 
 There are some gaps in GitHub Actions that you will need to consider before making the jump though.
 
-First, versioning your builds is kind of a pain. [GitVersion provides a workaround](/blog/2019-08/versioning-with-github-actions/index.md), but the lack of an incrementally increasing build variable to use inside your workflows is a surprising oversight.
+First, versioning your builds is kind of a pain. [GitVersion provides a workaround](/blog/2019-08/versioning-with-github-actions/index.md), but the lack of an incrementally increasing build number variable to use inside your workflows is a surprising oversight.
 
 There is no easy way to share secrets between repositories, which means if your microservice CI/CD pipeline includes a push to a cloud provider, every repository needs to include a copy of your credentials. This will be difficult to maintain as keys are cycled.
 
