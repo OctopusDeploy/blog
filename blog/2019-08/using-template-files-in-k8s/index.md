@@ -54,7 +54,7 @@ While both these tools are open source, getting binary builds can be challenging
 
 ## Downloading and Extracting the Docker Image
 
-Let's take a look at the script, run by the Octopus `Run a script` step, that will download, extract and save the contents of a file from a Docker image.
+Let's take a look at the bash script, run by the Octopus `Run a script` step, that will download, extract and save the contents of a file from a Docker image.
 
 ```
 read_file () {
