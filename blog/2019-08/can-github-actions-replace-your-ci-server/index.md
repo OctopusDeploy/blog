@@ -3,7 +3,7 @@ title: Can GitHub Actions replace your CI server?
 description: With the beta release of GitHub Actions now available, is it time to retire your in house CI server?
 author: matthew.casperson@octopus.com
 visibility: private
-published:
+published: 2019-08-28
 metaImage:
 bannerImage:
 tags:
