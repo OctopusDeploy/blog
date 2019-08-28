@@ -14,7 +14,7 @@ tags:
 
 We announced in version 2019.5 that there was a breaking change for Active Directory and I wanted to write a blog to help people understand what it means for your organisation, infosec team and most importantly Administrators of Octopus and you can see this issue on [Github](https://github.com/OctopusDeploy/Issues/issues/5549).
 
-## The Background and the Issue
+## The background & issue
 
 In most organizations, they use [Principle of Least Privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). What this means is that technical staff have a standard user as part of the Active Directory domain for their regular duties such as writing documentation, reading emails and browsing the web. They also have access to a privileged account which they use in their daily technical duties which may include deployments, development, resetting users passwords and accessing sensitive systems.  
 
@@ -22,7 +22,7 @@ Before version 2019.5.0, Octopus treated user emails like a key and expected the
 
 Active Directory login checking also needs to be changed to support detecting the duplicates and also still detecting if a user has been modified in AD versus a new user logging in for the first time. This is the cover the scenarios where Active Directory admins pick users up and move them to another OU or assign them all new UPNs or SamAccountNames. We've had several customers do this in the past and lose all access to their Octopus instances because the users all suddenly looked different and we treated them as new users.
 
-## The Fix and Who Is Affected?
+## The fix and who is affected?
 
 Our fix to this issue which was to ensure that these accounts were not matched and merged based on the email address. This was to ensure if a user named Robert.Jones who has a named Active Directory user Work\Robert.Jones and an admin account named Work\admin-RJ, who both had the email address of Robert.Jones@Work.com were not matched to the same Octopus account. 
 

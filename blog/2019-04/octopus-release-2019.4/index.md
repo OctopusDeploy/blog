@@ -43,6 +43,6 @@ As usual, please follow the [normal steps for upgrading Octopus Deploy](https://
 
 * Octopus Cloud customers will start receiving the latest bits in about 2 weeks during their maintenance window.
 
-## Wrap Up
+## Wrap up
 
 That's it for this month. Feel free to leave us a comment and let us know what you think! Happy deployments!

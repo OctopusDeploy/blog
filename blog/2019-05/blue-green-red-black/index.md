@@ -14,7 +14,7 @@ When deploying new versions of a centralized application like a web service, the
 
 So why is this strategy referred to as both green/blue and red/black? Do these colors imply technical differences?
 
-## StackOverflow Says...
+## StackOverflow says...
 
 Our first stop is to StackOverflow, where we find the question [What's the difference between Red/Black deployment and Blue/Green Deployment?](https://stackoverflow.com/questions/45259589/whats-the-difference-between-red-black-deployment-and-blue-green-deployment).
 
@@ -28,7 +28,7 @@ The answer then goes on to say that:
 
 I've frequently seen the term red/black being attributed to tools created by Netflix and container platforms in general, so let's go to their documentation to see how they define these strategies.
 
-## Netflix, Kubernetes, and Istio Say...
+## Netflix, Kubernetes, and Istio say...
 
 Spinnaker is a deployment tool written by Netflix, and it has been open sourced and is available for anyone to use. The tool includes some documentation on the concepts it implements, including a section on [deployment strategies](https://www.spinnaker.io/concepts/#deployment-strategies):
 

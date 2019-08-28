@@ -28,7 +28,7 @@ Manually reviewing all changes is possible when each application is deployed onc
 
 Hiring more DBAs will not solve this problem.  It isn't something you can answer with a [human wave approach](https://youtu.be/EF3g4Ua5e7k?t=12).  The process should be smart enough to have DBAs review changes when they need to.
 
-## When Should a DBA Get Involved?
+## When should a DBA get involved?
 
 It sounds so simple, "have the DBAs review changes when they need to."  Simple to say, but much harder to execute.  When working with DBAs in the past they have said something along the lines of, "I want any standards violations to cause a failure, I shouldn't even see those.  They shouldn't even be deployed. On the other hand, I want to see scripts which make specific schema changes where I could get paged at two in the morning."
 
