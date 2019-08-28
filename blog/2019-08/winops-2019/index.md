@@ -42,4 +42,6 @@ In this session, I will take you through how to integrate Azure DevOps and Octop
 
 There is still time to register!  You can use the code _**Octopus10**_ to register with a 10% Discount and can get your tickets [here](https://www.winops.org/london/#TicketCTA)
 
+WinOps is running The All Women Track which is Track 1 on the agenda which is a dedicated track for Female speakers. You can see the full agenda [here](https://www.winops.org/london/agenda/)
+
 If you're already coming, then be sure to say hi to the team and grab some Octopus stickers!
