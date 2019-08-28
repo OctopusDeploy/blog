@@ -20,7 +20,7 @@ So given GitHub Actions hosts the code, exposes the build pipeline as code, prov
 To answer the question of maintaining a dedicated CD server, you should read the post [The Differences Between Continuous Integration and Continuous Deployment](/blog/2019-08/difference-between-ci-and-cd/index.md).
 ::
 
-## Top Reasons to Ditch Your CI Server and Move to GitHub Actions
+## Top reasons to ditch your CI server and move to GitHub Actions
 
 As an experiment I decided to migrate an open source project to GitHub Actions. This allowed me to replicate a reasonably complex test and build pipeline on GitHub's new service, and it revealed a lot of reasons to love it.
 
@@ -35,7 +35,7 @@ Having GitHub host the execution environment now means that forks also inherit t
 
 And, let's face it, *everyone* is going to hop on the GitHub Actions train. Your favorite integration tools are guaranteed to have either a custom Action one or a Docker container easily used as an Action.
 
-## But GitHub Actions Aren't Quite Ready
+## But GitHub Actions aren't quite ready
 
 There are some gaps in GitHub Actions that you will need to consider before making the jump though.
 

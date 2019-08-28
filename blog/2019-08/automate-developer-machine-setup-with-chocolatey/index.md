@@ -1,5 +1,5 @@
 ---
-title: Automating Developer Machine Setup With Chocolatey
+title: Automating developer machine setup With Chocolatey
 description: Learn how to automate a developer machine setup using Chocolatey
 author: bob.walker@octopus.com
 visibility: public
@@ -33,7 +33,7 @@ The second bucket contains heavy-handed tools like SCCM. The tools I've used hav
 
 Chocolatey falls outside of the two buckets described above. If you are a .NET developer, then you should be familiar with NuGet. Chocolatey is NuGet for Windows. If Linux is your preferred OS, then Chocolatey is the package manager, such as apt or RPM. It falls outside of those two buckets because it is light-weight, a quick script installs it, and it installs the latest version of packages by default. It will also install any dependencies the package needs, such as a hotfix or another package. A package in Chocolatey wraps an MSI. It could be an Octopus Tentacle, Visual Studio, or the .NET Core SDK. 
 
-## Getting Started
+## Getting started
 
 First, you need to install Chocolatey. You can do that by running the scripts [found here](https://chocolatey.org/install). After you do that, you can start using Chocolatey to install applications. You can find which applications are available by going to the [Chocolatey Package page](https://chocolatey.org/packages). I don't have VLC installed on my computer, so I will install that by typing in: 
 
@@ -59,7 +59,7 @@ As you can see, because I just installed it, I have the latest version.
 
 ![](choco-upgrade-vlc.png)
 
-## Automating Development Machine Setup
+## Automating development machine setup
 
 When I first started using Chocolatey, my PowerShell knowledge was lacking, so my scripts looked something like this:
 
@@ -94,7 +94,7 @@ if ([string]::IsNullOrWhiteSpace($chocolateyAppList) -eq $false){   
 }
 ```
 
-### Windows Features
+### Windows features
 
 If you are a web developer for Windows, there is an excellent chance you will need IIS installed on your machine. IIS is not an MSI, but a Windows feature. The good news is that Chocolatey can install those as well. It does this by leveraging what is known as [DISM, or Deployment Imaging Service Management](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/what-is-dism). 
 
@@ -136,13 +136,13 @@ if ([string]::IsNullOrWhiteSpace($dismAppList) -eq $false){
 }
 ```
 
-### Visual Studio and Other Missing Applications
+### Visual Studio and other missing applications
 
 At the time of writing this, the latest version of Visual Studio in Chocolatey is Visual Studio 2017. Visual Studio 2019 came out in April of 2019. The lack of the latest Visual Studio highlights the one weakness of the Chocolatey public repository. You are at the mercy of the company who creates the app to create the package or someone from the community to update the package. However, you do have the ability to [create your own packages](https://chocolatey.org/docs/create-packages). You can even set up an [internal repository](https://chocolatey.org/docs/how-to-host-feed) (just like you can with NuGet packages). Internal repositories are free but consider [purchasing Chocolatey](https://chocolatey.org/pricing) for your team or the company. 
 
 **Post Publish Note:** Visual Studio 2019 is up there; my `Google Fu` was weak on the day I wrote the post.  You can find [Visual Studio 2019 Enterprise](https://chocolatey.org/packages/visualstudio2019enterprise), [Visual Studio 2019 Professional](https://chocolatey.org/packages/visualstudio2019professional), and [Visual Studio 2019 Community Edition](https://chocolatey.org/packages/visualstudio2019community).  Because I didn't find Visual Studio 2019, I included a note about that being a weakness of the Chocolatey public repo.  Anyone can publish a package if a company does not, which one could argue makes that a strength, not a weakness.  Which is an excellent counter-point, the ability for anyone to publish a package is a big strength.  There is a reason why there are thousands upon thousands of applications in the public repo.  The takeaway from this is: there is an excellent chance the public repo has the latest and greatest of any tool you will need.  However, there is that small chance the tool of your choice isn't on the public repository.  Especially if the tool is internally built and maintained, it is easy to create a package for that tool.  However, where you publish that package will be based on your company policy and the tool.  Hopefully, you can contribute back to the community and publish the package to the public repo.  But if you can't publish to the public repo, then creating an internal repo is still very much an option.  If you do opt for an internal repo, consider [purchasing Chocolatey](https://chocolatey.org/pricing) for your team or the company.
 
-### Creating a Re-usable Script
+### Creating a re-usable script
 
 So far, all the script examples had hardcoded variable values for a small team or company that works fine. As more teams use this, you need to provide some flexibility. I've seen several situations where .NET teams in the same company use a different toolset due to the applications they work on. One team might need WIX for a Windows Form application while another team only works on Angular Websites with ASP.NET WebApi back ends. The script should accept parameters.
 
@@ -198,7 +198,7 @@ $dismAppList = "IIS-ASPNET45,IIS-CertProvider,IIS-ManagementService"
 Invoke-Expression "InstallApps.ps1 ""$chocolateyAppList"" ""$dismAppList"""
 ```
 
-## Additional Usage
+## Additional usage
 
 Take a look at the above PowerShell scripts and answer this question, is there anything development machine-specific to those scripts? There is not. Now, that is an interesting thought as you can use the script to bootstrap Windows Server machines, not just development machines. Which raises the next question, why do that instead of creating an image or using a tool such as DSC? Portability and ease of configuration. 
 

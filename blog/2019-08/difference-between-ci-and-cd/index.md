@@ -1,5 +1,5 @@
 ---
-title: The Differences Between Continuous Integration and Continuous Deployment
+title: The differences between Continuous Integration and Continuous Deployment
 description: CI/CD are frequently referred to by a single acronym as if they were a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -18,7 +18,7 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 * The features provided by good CD tools.
 * Why you may consider using separate tools for your CI/CD workflow.
 
-## What is Continuous Integration?
+## What is continuous integration?
 
 At a high level, CI is all about taking the code written by developers and compiling it into an artifact, running automated tests, and capturing the log files so any failed builds or tests can be resolved. A CI server facilities this process by running builds and tests with each commit.
 
@@ -34,7 +34,7 @@ This means that the CI process is machine-driven, so much so that it is common f
 
 The other important aspect of the CI equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the CI server.
 
-## What is Continuous Deployment?
+## What is continuous deployment?
 
 Taken literally, CD takes the compiled artifacts from a successful build performed by the CI server and deploys them into the production environment. In this scenario, CD is quite rightly an extension of CI, and the distinction between the two becomes arbitrary.
 
@@ -52,7 +52,7 @@ But while fully automated deployments have many benefits, it is not uncommon for
 
 Where CI is machine-driven, for many teams, CD is human-driven. Much of the grunt work of performing a deployment will still be automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
-## Why Use Separate CI and CD Tools?
+## Why use separate CI and CD tools?
 
 ![ci-cd-pipeline-diagram](ci-cd-pipeline-diagram.png "width=500")
 *A typical CI/CD pipeline, with no distinction between the two.*

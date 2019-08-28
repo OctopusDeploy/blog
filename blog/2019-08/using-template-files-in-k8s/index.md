@@ -18,7 +18,7 @@ Docker image files aren't quite as easy to work with. For a start, there is some
 
 The good news is that we can take advantage of some open source tools created by the community for download and unpacking Docker images, and then use the native ability in Kubernetes to mount individual files into Pods to achieve much the same end result as deploying a modified package.
 
-## The Sample Application
+## The sample application
 
 To demonstrate template file processing we have a very simple Docker image based on HTTPD that will display a HTML page with the name of the current environment. The code for this image can be found on [GitHub](https://github.com/OctopusDeploy/DockerFileReplacementDemo), and has been published as the image [mcasperson/dockerfilereplacement](https://hub.docker.com/r/mcasperson/dockerfilereplacement).
 
@@ -43,7 +43,7 @@ As you would expect, running this Docker image locally displays the web page in 
 ![](local-docker.png "width=500")
 *When run directly by Docker, the web server exposes the raw template file.*
 
-## Working with Docket Images, Without Using Docker
+## Working with Docker images, without using Docker
 
 As we move the deployment to Octopus, the first step is to download and unpack a Docker image. Typically all interaction with Docker images and repositories is done with the `docker` cli tool. Always having to run the Docker daemon isn't terribly efficient though, and so additional third party tools have been developed to work with Docker images outside of the Docker daemon.
 
@@ -53,7 +53,7 @@ The second tool is called [umoci](https://umo.ci/). We'll use `umoci` to unpack 
 
 While both these tools are open source, getting binary builds can be challenging. For this exercise I am using a SUSE Linux Enterprise VM as an [Octopus worker](https://octopus.com/docs/infrastructure/workers). SUSE created `umoci` and provides [binary downloads from the GitHub releases page](https://github.com/openSUSE/umoci/releases), while the standard SUSE package repositories contain a build of `skopeo`, which means we don't have to go through the pain of trying to build these tools ourselves.
 
-## Downloading and Extracting the Docker Image
+## Downloading and extracting the Docker image
 
 Let's take a look at the bash script, run by the Octopus `Run a script` step, that will download, extract and save the contents of a file from a Docker image.
 
@@ -165,7 +165,7 @@ For convenience, this Pod will be exposed directly by a LoadBalancer service. Th
 ![](service-ports.png "width=500")
 *The service exposes port 80 from the Pod.*
 
-## The Processed Result
+## The processed result
 
 Once this deployment completes, we will have a public IP  that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
 

@@ -32,7 +32,7 @@ Louis Ryan offers this view:
 
 So why would you use a Service Mesh?
 
-## Life Without a Service Mesh
+## Life without a Service Mesh
 
 To understand why we would use a Service Mesh, let’s first look at how networking functionality is implemented in individual applications.
 
@@ -65,7 +65,7 @@ Policy
 
 These two examples are not particularly complicated, and yet may allow code to survive a momentary connection fault with any services they consume. For this reason, retry logic like this is very commonplace.
 
-## Moving the Network Logic to the Network Layer
+## Moving the network logic to the network layer
 
 While this code may be widespread, its configuration is not standard. You can’t expect code written in Java using the Spring retry library to share the same configuration as .NET code using the Polly library.
 
@@ -80,7 +80,7 @@ Moving these network concerns out of the applications and into the infrastructur
 * Standard Kubernetes dashboards can be used to view and manage the networking configuration.
 * Operators only need to understand the specific implementation details of a small number of Service Meshes rather than every networking library that has been bundled into the deployed applications.
 
-## What is the Distinction Between Ingress Controller and Service Mesh?
+## What is the distinction between Ingress Controller and Service Mesh?
 
 Kubernetes natively exposes [Ingress resources](https://kubernetes.io/docs/concepts/services-networking/ingress/), which are used to direct traffic from a (usually shared) load balancer. The network traffic is directed to a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/), which in turn directs the traffic to a Kubernetes Pod.
 

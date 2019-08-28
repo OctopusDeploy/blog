@@ -16,7 +16,7 @@ Moving from the proof of concept stage to testable and repeatable deployments in
 
 In this post, we’ll take a look at Lambda aliases, and highlight some of the pitfalls that may not be immediately obvious when using them.
 
-## What Are Lambda Aliases?
+## What are Lambda aliases?
 
 Lambda aliases are essentially named versions of a Lambda deployment. By default, there is a single version called `$LATEST` that always represents the most recent copy of the Lambda that was deployed. You can then publish a version, which creates an immutable snapshot of the Lambda code and configuration. The newly published version has an automatically assigned version number, but by assigning a name, or an alias, to one of these version numbers, it is possible to define a set of Lambda versions that represent an environment.
 
@@ -30,7 +30,7 @@ Here is a screenshot from the AWS documentation that illustrates the concept of 
 
 The concept of aliases is easy enough to understand, but there are some things to consider before implementing this strategy.
 
-## What Exactly is an Environment?
+## What exactly is an environment?
 
 To understand how aliases can go wrong, we first need to ask the rather simple question: *What is an environment?*
 
@@ -58,7 +58,7 @@ Now your challenge is to create a security rule that allows only a Lambda called
 
 As you can see, these two seeming trivial security exercises become unmanageable very quickly, and we haven’t even discussed rate limiting, network segmentation, distributed tracing...
 
-## Hell Is Not Being Able to Describe Your Environments
+## Hell is not being able to describe your environments
 
 Most non-functional requirements eventually need to be expressed in the form of security, networking, or monitoring rules, and these rules need to be defined per environment. It seems obvious, but this implies that you need to be able to define environments.
 
@@ -68,7 +68,7 @@ When environmental awareness is pushed down from the infrastructure layer into t
 
 > I do not recommend you (or anyone) use aliases for various environments. The biggest concern I have with this is that you are running the risk of impacting prod with a change to test or dev. You are creating a bigger blast radius in the event something goes wrong with a deploy. My other concern is around the security of your functions. You may have to add credentials or policies specific to dev or test which will or could be replicated in prod. I suggest splitting out dev, test, and prod into separate CloudFormation stacks so that each environment is isolated from each other. You then only have to manage the one CloudFormation template and can deploy it through your CI/CD system at an environment level. You will still only be managing one Lambda function (through SAM), but this setup will reduce the blast radius for deployments and isolate your different environment’s functions and resources.
 
-## Using Stacks, Regions or Accounts for Environments
+## Using stacks, regions or accounts for environments
 
 Rather than trying to use aliases for environments, it is a much better idea to split environments based on other boundaries like CloudFormation stacks, AWS regions, or completely separate AWS accounts.
 

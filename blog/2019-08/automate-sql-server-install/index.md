@@ -1,5 +1,5 @@
 ---
-title: Automating SQL Server Developer Installation
+title: Automating SQL Server Developer installation
 description: Learn how to automate SQL Server Developer installation using PowerShell and SQL Server's built-in tooling.
 author: bob.walker@octopus.com
 visibility: public
@@ -30,7 +30,7 @@ First, you need to download the [SQL Server Developer ISO](https://www.microsoft
 
 I recommend putting that .iso in a shared directory on your network. That way, you can make a standard PowerShell install file for everyone to use. 
 
-## SQL Server GUI Installer
+## SQL server GUI installer
 
 I recommend going through the GUI installer and setting the options you want everybody on the team to use, but don't install SQL Server using the GUI. The reason for doing this is the installer creates a `ConfigurationFile.ini` as you go through the installation, and it tells you the location of the file. 
 
@@ -38,7 +38,7 @@ I recommend going through the GUI installer and setting the options you want eve
 
 Copy the `ConfigurationFile.ini` file from that directory to a new location. That will be the *master* copy of the file for others to use. 
 
-## Modify the ConfigurationFile.ini File
+## Modify the ConfigurationFile.ini file
 
 We need to modify the *master* `ConfigurationFile.ini` so that it can work through the command line.
 
@@ -143,7 +143,7 @@ SAPWD="CHANGE THIS PASSWORD"
 
 That was a lot of changes. To see a complete sample file, please go to the GitHub repo where you'll see the sample [ConfigurationFile.ini]](https://github.com/OctopusSamples/SQLServerInstall/blob/master/ConfigurationFile.ini) file created for this blog post. 
 
-## PowerShell Script
+## PowerShell script
 
 In this example, we are going to run the installer from PowerShell. PowerShell gives us a lot of control over what is happening and provides some helpful built-in commands to mount and dismount ISO files.
 
@@ -214,7 +214,7 @@ Dismount-DiskImage -InputObject $drive
 Write-Host "If no red text then SQL Server Successfully Installed!"
 ```
 
-## Post Installation
+## Post installation
 
 After running the script, you will have a fresh install of SQL Server Developer Edition. Next, you need to decide what will create the databases your applications will connect to, and depending on the authentication mode, what should create the database users? If your applications create an empty database if they can't find an existing database, you can skip the next section. 
 
@@ -230,7 +230,7 @@ The installer output is very verbose. If something fails, be prepared to scroll 
 
 If for some reason, the PowerShell script doesn't output the install log, then you will need to find it. Typically it is found at `C:\Program Files\Microsoft SQL Server\[Version]\Setup Bootstrap\Log\[DateTimeStamp]\`. That path is dependent on the version you are installing and if Microsoft has changed the log file destination. The version is the internal version number. For instance, SQL Server 2017 is Version 14 of SQL Server.
 
-## Lessons Learned
+## Lessons learned
 
 Now you should have a fully automated install of SQL Server for your developers to run.  Before ending this post, I wanted to share some lessons I learned after I handed this script over to developers.
 
@@ -241,5 +241,3 @@ This leads me to my second lesson. I wanted to help the developers who ran into 
 ## Conclusion
 
 Even with some of the issues we ran into, the installation was successful. We rolled this out across the company in a few weeks, and 80% of the developers had something working in less than 20 minutes. In the end, it was worth it, and we standardized our configuration and provided an automated way to install SQL Server Developer.
-
- 
