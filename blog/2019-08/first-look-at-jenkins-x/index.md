@@ -34,10 +34,6 @@ Just as you would run short lived commands to build your applications and Docker
 
 Just as you would host Docker image or other image artifact repositories like [Nexus](https://www.sonatype.com/nexus-repository-sonatype) with as services to be booted with the OS, so too can you deploy these same applications to Kubernetes.
 
-::hint
-Jenkins X configures your Kubernetes cluster with an opinioned set of open source tools that allow applications to be built and deployed to Kubernetes.
-::
-
 By installing Jenkins X, you will have a self contained Kubernetes cluster complete with a selection of hand picked and custom configured services ready to start building and deploying applications.
 
 ## Then extends to your local development environment
@@ -83,15 +79,11 @@ When the pipeline is complete:  jx get applications
 For more help on available commands see: https://jenkins-x.io/developing/browsing/
 ```
 
-::hint
-Jenkins X configures your code and repository with an opinioned set of build tools and hooks to establish a continuous build pipeline.
-::
-
 ## The build and deploy ties it all together
 
 If there is one benefit to traditional CI servers, it is that because you set everything up by hand, you have a fair idea of how code flows from the source code repository to the final deployment.
 
-Because Jenkins X has done so much of the work for us, it can be hard to appreciate what actually happens as part of a build.
+Because Jenkins X has done so much of the work for us, it can be hard to appreciate what actually happens as part of a build. So let's have a look at some of the work that goes on behind the scenes.
 
 As part of the Kubernetes cluster initialization, Jenkins X installed the Nexus repository manager. What we can see after our build is completed that the Java dependencies that our application relied on are now cached locally. This means any subsequent builds will complete much faster.
 
@@ -117,10 +109,18 @@ entries:
 generated: "2019-08-28T19:32:00Z"
 ```
 
-Jenkins X also took care of publishing the Docker image to a local container registry. Because I ran Jenkins X in a Google Cloud Kubernetes cluster, Jenkins X defaulted to using the Google Container Registry. However, had that service not been available, Jenkins X would have installed a Docker registry in the Kubernetes cluster.
+Jenkins X also took care of publishing the Docker image to a local container registry. Because we ran Jenkins X in a Google Cloud Kubernetes cluster, Jenkins X defaulted to using the Google Container Registry. However, had that service not been available, Jenkins X would have installed a Docker registry in the Kubernetes cluster.
 
 ![](container-registry.png "width=500")
 
 Finally we can see that the Helm chart has been deployed in the cluster, and the ingress rules have been created by [exposecontroller](https://jenkins-x.io/faq/technology/#whats-is-exposecontroller).
 
 ![](services.png)
+
+## Conclusion
+
+When you first encounter Jenkins X, it can be hard to understand exactly what it is. If there is one take away from this post, it is to forget everything you know about CI servers, and to appreciate Jenkin X on its own terms.
+
+Far from being simply a way of running builds, Jenkins X provides a complete build ecosystem and opinionated workflows that start with preparing your local code structure and end with a deployed Kubernetes application.
+
+Appreciating Jenkins X requires a mental shift from the way most developers interact with a development pipeline, but the benefits are a well structured workflow and tightly configured toolchain.
