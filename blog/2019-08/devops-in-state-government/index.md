@@ -13,17 +13,24 @@ tags:
 
 ![Illustration showing an inifite feedback loop surrounding a government building](blogimage-devopgovernment.png)
 
-!toc
-
 ## Introduction
 
 We’ve all heard the phrase “the speed of government” when describing things that move slowly. It is true that in a bureaucratic setting, things tend to move at a snail’s pace compared to the rapid and sometimes chaotic environment of a start-up. Though in the snail’s defense, they move slowly, but they eventually get where they need to be. Implementing change in government is possible, but it helps if you keep the snail analogy in mind.
 
 Start-ups and government agencies both suffer from issues with standardization of builds, testing, consistent infrastructure, and reliable deployment processes. The biggest challenge with implementing a concept like DevOps is change. Let’s be honest, change is hard, but it doesn’t have to be bad. 
 
-In 2011, I was hired as a Configuration Manager at a small state government agency. I was tasked with automating the manual processes to improve the reliability of software deployment, reduce the length of time it took to deliver, and to try eliminating the need to deploy on weekends. 
+In 2011, I was hired as a Configuration Manager at a small US state government agency. I was tasked with automating the manual processes to improve the reliability of software deployment, reduce the length of time it took to deliver, and to try eliminating the need to deploy on weekends. This was a challenging mandate and it took years to achieve.
 
-At that time, web code builds were done on developer machines, zipped, and copied to a file share. Database changes were handled similarly by zipping up a bunch of scripts with a document explaining in which order to run them, then copying them to a file share for the DBAs to pick up. Inevitably, deployments would fail for any one of the following reasons:
+In this post, I'll explore the approaches I took to achieve this and cover some of the common pitfalls that you may face in a similar environment. 
+
+- Prioritising and tackling the biggest problems first
+- Building vs buying tools
+- Communication and collaboration
+- Modernize the infrastructure with infrastructure as code
+
+## Prioritising and tackling the biggest problems first
+
+The environment I joined had a lot of problems and the first thing I needed to do was learn how everything was currently structured and setup. This government agency had a number of in-house appliations and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled similarly by zipping up a bunch of scripts with a document explaining in which order to run them, then copying them to a file share for the DBAs to pick up. Inevitably, deployments would fail for any one of the following reasons:
 
 - A developer neglected to mention there was a third-party dependency that needed to be installed on the web server. 
 - The scripts for the database changes weren’t tested to make sure they worked with the current state of the production database.
@@ -31,9 +38,7 @@ At that time, web code builds were done on developer machines, zipped, and copie
 
 Things needed to change, badly.
 
-## The saga begins
-
-I started at the beginning of the process with the builds so I could eliminate the adage, “worked on my machine, ops problem now.” The team was using Microsoft Team Foundation Server for source control, so the build controller technology was already present. I installed the controller as well as a couple of agents so that all software was built against an independent machine. This quickly brought to light any dependencies that were present on the developer machines that were not available on the servers and needed to be installed. Though this helped identify what had to be installed on the server, the web admins still occasionally forgot to install the dependencies on all the servers and deployment failures still occurred. That issue didn’t get resolved for several years.
+I felt the highest priority was to start at the beginning of the process with the builds so I could eliminate the adage, “worked on my machine, ops problem now.” The team was using Microsoft Team Foundation Server for source control, so the build controller technology was already present. I installed the controller as well as a couple of agents so that all software was built against an independent machine. This quickly brought to light any dependencies that were present on the developer machines that were not available on the servers and needed to be installed. Though this helped identify what had to be installed on the server, the web admins still occasionally forgot to install the dependencies on all the servers and deployment failures still occurred. That issue didn’t get resolved for several years.
 
 Next, I tackled web code deployments. I learned about Microsoft Web Deploy and wrote a small console application that used it to consistently deploy the web code. This required a small change in the build process to produce the zip file in a way that Web Deploy expected. Using web.config transforms, we got most of the way to automating web code deployments, but we still had to update connection strings manually. Not great, but it was a start.
 
@@ -43,7 +48,7 @@ With these two console applications, we reduced the failed deployment rate as we
 
 The console applications were eventually combined into an automated deployment solution that consisted of a server, agents on target machines, and a web-based interface. Developers had the ability to pull directly from source control, build, and schedule deployments for a later date and time. This solution further reduced the failed deployment rate and sped up the deployment process all but eliminating the need for weekend work. Eventually, the developers outgrew the solution and needed something more than my programming skills could deliver.
 
-## A better way
+## Building vs buying tools
 
 A contractor happened to be working on a project that used my solution and gave us a demonstration of a tool he’d come across for automating deployments, Octopus Deploy. After the demonstration, one developer was adamant we needed Octopus. As the proud papa of my solution, I was reluctant to abandon my creation.  By this time, I’d taken on the additional responsibility of being the Data Team supervisor, so I had less time to code, and I could no longer keep up with feature requests from the development teams. Octopus Deploy had a team of developers doing this as their full-time job, and I was just one person with limited availability. The final nail in my solution’s coffin was when a developer showed me he had to answer 14 questions to set up a deployment.  Compared to Octopus, this was both cumbersome and inefficient. Setting my pride aside, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
 
@@ -74,5 +79,7 @@ None of this happened overnight. At this point, we’re at the beginning of 2019
 I remember a compliment from a developer who said he loved the fact he could click merge, go get coffee, and when he got back, his app was deployed. 
 
 ## Conclusion
+
+Introducing change and implementing DevOps in a government organisation can be slow and challenging but it's definiely possible. I was able to be successful by prioritising and tackling the biggest problems first, buying tools to simplify and standardise, focus on communication and collaboration to get other teams on board and finally modernize our infrastructure once the higher priority items has been resolved.
 
 Our pace was slow, but like the snail, we were inching toward our end goal of being a DevOps shop. I’ve been gone almost five months from my previous job, but I’ve kept in contact with the team, and they’ve continued down the path that I started. It may be slow, but implementing change such as the DevOps concept in state government is indeed possible.
