@@ -99,7 +99,7 @@ This file is then unpacked with `umoci`.
 umoci unpack --image image --rootless bundle
 ```
 
-At this point we have the files that make up the Docker image extracted locally. The template file we are interested in is `/usr/local/apache/htdocs/template.html`. Using the bash function we created earlier, the contents of this file is read into a variable called `TemplateHtml`. The contents of the file is printed to the screen with `echo` to confirm that we have the content we expect.
+At this point we have the files that make up the Docker image extracted locally. The template file we are interested in is `/usr/local/apache/htdocs/template.html`. Using the bash function we created earlier, the contents of this file is read into a variable called `TemplateHtml`. We also dump the contents of this variable to the screen with `echo` to confirm that we have the content we expect.
 
 ```
 cd bundle/rootfs/usr/local/apache2/htdocs
@@ -159,3 +159,13 @@ For convenience, this Pod will be exposed directly by a LoadBalancer service. Th
 Once this deployment completes, we will get a public IP  that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
 
 ![](k8s-pod.png "width=500")
+
+If we then progress this deployment to the next environment, we can see that the newly created load balancer exposes a Pod with the environment name `Test` placed into `template.html`.
+
+![](k8s-test-pod.png "width=500")
+
+## Conclusion
+
+File variable replacements are a convenient way to create generic packages that can be deployed to any environment. Although it takes a few additional steps, this same workflow can be applied to Kubernetes deployments.
+
+By taking advantage of `skopeo` and `umoci` to download and extract the Docker images, and then using ConfigMaps as volume mounts in Kubernetes, we can in effect replace templated files during deployments without having to publish environment specific Docker images.
