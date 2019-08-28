@@ -7,7 +7,7 @@ published: 2019-08-27
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Octopus
 ---
 
 Working with cloud infrastructure can be a daunting task. Each cloud provider maintains their own CLI tools and preferred deployment strategies, cross-platform tools like Terraform, Ansible, Puppet, and Chef take a significant investment to learn, and once you’ve spun up the base infrastructure, you may then be faced with managing yet more deployments to platforms like Docker or Kubernetes.
