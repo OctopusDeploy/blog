@@ -1,7 +1,7 @@
 ---
 title: Streamlined deployment process editor, Tenant cloning and more - Octopus Deploy 2019.4
 description: Octopus 2019.8 introduces our redesigned deployment process editor, Tenant cloning,
-author: rob.pearson@octopus.com
+author: michael.richardson@octopus.com 
 visibility: public
 published: 2019-08-28
 metaImage: blogimage-shipping-2019-8.png
@@ -12,42 +12,65 @@ tags:
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)
 
-We are shipping Octopus Deploy 2019.8 which is a roll-up of some small yet fantastic features. The most visible of the improvements is our new streamlined deployment process editor. The largest  with a focus on enhancing the feedback loop in your CI/CD pipeline.  If you have ever wanted better traceability of your requirements through build and deployment, this update is for you. 
+We are shipping Octopus Deploy 2019.8.  The most visible change is an improvement to the deployment process editor, but there are a bunch of other enhancements our users have requested.  Hopefully there's something for everyone in this release. 
 
-This release includes some great updates: 
+## Streamlined deployment process editor
 
+2019.8 brings an improved experience when navigating between steps in a deployment process:
 
-## Streamlined deployment process editor 
+![Deployment Process Step Sidebar](deployment-process-editor-sidebar.gif "width=500")
 
-We're please to ship the first iteration of a more streamlined deployment process editor with side-by-side step editing and process filtering. 
+This delivers two key advantages:
 
-## Tenant Cloning support
+- Visibility: You can now see the entire process while editing a step 
+- Usability:  Jumping between deployment steps could previously be painful, especially for processes with many steps.  This change will hopefully save some precious seconds (and reduce the wear on your mouse). 
 
+## Cloning Tenants 
 
+While we're speaking of saving mouse clicks... 
+Creating a new tenant, applying the applicable tags, linking it to the projects and environments, and entering the variable values can be labourious.  Existing tenants can now be easily cloned. 
 
-## New Variable Filter expressions
+## More health check scheduling options 
 
-This release also includes new variable filter expressions. Whoa. That's a mouthful. Although this sounds confusing, it enables teams to do some really powerful transofrmations of their variables in scripts and blah.
+Machine policies previously allowed only the interval between health checks to be configured. 2019.8 brings the ability to supply a cron expression, or to configure health checks to never run. 
 
-## Configurable health checks 
-
+![Health Check Cron Expression](health-check-cron.png "width=500")
 
 ## Allow overriding namespace in Kubernetes steps
 
+While the _Upgrade a Helm Chart_ allowed specifying the namespace, the other Kubernetes steps always used the namespace from the Kubernetes deployment target.  From 2019.8, the ability to override the target namespace by specifying it directly on the step has been added to all Kubernetes step types. 
 
-## Other small enhancements that improve deployments
+![Namespace on Kubernetes step](kubernetes-step-namespace.png "width=500")
 
-## Deploy a Release steps can now be used in rolling deployments
+## Deploy Release steps can now be used in rolling deployments
 
+[Deploy Release steps](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step) were prevented from being used in [rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments).  As many of you pointed out, there are certainly scenarios where this makes sense. [So now they can](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step#rolling-deployments). 
 
+## New Variable Filter expressions
 
-## Support providing certificates via portal by directly pasting as text
+We've added some new [variable filters](https://octopus.com/docs/deployment-process/variables/variable-filters) to help with slicing and dicing variable values:
 
+- `Trim`
+- `Substring`
+- `Truncate`
+- `UriEscape` 
+- `UriDataEscape` 
 
+For example, given a variable `Application` with a value of `Octopus Deploy`
 
-## Breaking Changes
+```
+#{ Application | Substring 7}
+```
 
-`TODO!!!`
+would evaluate to `Octopus`
+
+## Copy and paste to add certificates 
+
+Uploading certificates into the Octopus certificate library previously required selecting the certificate as a file. This is inconvenient when the base64 or PEM representation is sitting in your clipboard. 
+
+Now you can paste a certificate directly into the portal when storing a certificate.
+
+![Paste certificate as text](certificate-text.png "width=500")
 
 ## Upgrading
 
@@ -59,4 +82,6 @@ As usual, please follow the [normal steps for upgrading Octopus Deploy](https://
 
 ## Wrap up
 
-That's it for this month. Feel free to leave us a comment and let us know what you think! Happy deployments!
+That's it for this month. Feel free to leave us a comment and let us know what you think. 
+
+Happy deployments!
