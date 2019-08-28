@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)
 
-We are shipping Octopus Deploy 2019.8.  The most visible change is an improvement to the deployment process editor, but there are a bunch of other enhancements our users have requested.  Hopefully there's something for everyone in this one. 
+We are shipping Octopus Deploy 2019.8.  The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully there's something for everyone in this one. 
 
 ## Streamlined deployment process editor
 
@@ -70,7 +70,7 @@ would evaluate to `Octopus`
 
 Uploading certificates into the Octopus certificate library previously required selecting the certificate as a file. This is inconvenient when the base64 or PEM representation is sitting in your clipboard. 
 
-Now you can paste a certificate directly into the portal when storing a certificate.
+Now when storing a certificate it can be pasted directly into the portal. 
 
 ![Paste certificate as text](certificate-text.png "width=500")
 
