@@ -1,6 +1,6 @@
 ---
 title: A first look at Jenkins X
-description:
+description: Jenkins X is a complete mental shift from the traditional role of a CI server. In this post we take a high level look at Jenkins X and highlight why you need to appreciate it on its own terms.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2019-08-29
@@ -12,7 +12,7 @@ tags:
 
 As a free and open source build server, Jenkins is [used by millions](https://www.cloudbees.com/press/jenkins-community-announces-record-growth-and-innovation-2017), so most developers have either used or at least heard about Jenkins. Like most build servers, Jenkins is typically installed on a server to consume source code, execute a build process on build agents, and either deploy or publish the resulting artifact.
 
-Conceptually this model of a build server was easy for me to understand, and it applies to most of the popular solutions available today like Team City, Azure DevOps, Bamboo etc. So when it came time to working with [Jenkins X](https://jenkins-x.io/about/) for the first time, naturally I tried to understand it with the same conceptual model. This turned out to be a mistake.
+Conceptually this model of a build server was easy for me to understand, and it applies to most of the popular solutions available today like Team City, Azure DevOps, Bamboo etc. So when working with [Jenkins X](https://jenkins-x.io/about/) for the first time, naturally I tried to understand it with the same conceptual model. This turned out to be a mistake.
 
 I genuinely struggled to understand what Jenkins X was, but after some trial and error I went back and reread the [Jenkin X About Page](https://jenkins-x.io/about/what/). Two sentences buried deep in the text are critical to understanding Jenkins X:
 
@@ -24,7 +24,7 @@ Internalizing these two statements is essential to appreciating what Jenkins X i
 
 ## It starts with the Kubernetes cluster
 
-In a literal sense, Kubernetes is a container orchestrator. You describe the containers you want to run, how they communicate with each other, what resources they need, and Kubernetes does the hard work of running everything. Typically, Kubernetes hosts long running applications like web servers that continually wait for requests, and one of the great features of Kubernetes is that it will monitor these long running processes and restart them if they fail.
+In a literal sense, Kubernetes is a container orchestrator. You describe the containers you want to run, how they communicate with each other, what resources they need, and Kubernetes does the hard work of executing everything. Typically, Kubernetes hosts long running applications like web servers that continually wait for requests, and one of the great features of Kubernetes is that it will monitor these long running processes and restart them if they fail.
 
 This traditional view of Kubernetes is the first thing you have to forget. To understand Jenkins X, think of Kubernetes more like a cloud operating system.
 
