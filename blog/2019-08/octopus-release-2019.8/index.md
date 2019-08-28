@@ -1,5 +1,5 @@
 ---
-title: Redesigned deployment process editor, Tenant cloning and more - Octopus Deploy 2019.4
+title: Streamlined deployment process editor, Tenant cloning and more - Octopus Deploy 2019.4
 description: Octopus 2019.8 introduces our redesigned deployment process editor, Tenant cloning,
 author: rob.pearson@octopus.com
 visibility: public
@@ -32,15 +32,18 @@ This release also includes new variable filter expressions. Whoa. That's a mouth
 ## Configurable health checks 
 
 
+## Allow overriding namespace in Kubernetes steps
 
 
 ## Other small enhancements that improve deployments
 
-This release also incldues some other small improvements 
+## Deploy a Release steps can now be used in rolling deployments
 
-* Allow overriding namespace in Kubernetes steps
-* Deploy a Release steps can now be used in rolling deployments
-* Support providing certificates via portal by directly pasting as text
+
+
+## Support providing certificates via portal by directly pasting as text
+
+
 
 ## Breaking Changes
 
