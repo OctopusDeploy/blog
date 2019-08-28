@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus Episode 34-36 - Server 2008 EOL, Project Templates for Specific Scenarios & Binding Variables to Multiple Roles
+title: Ask Octopus Episode 34-36 - Server 2008 EOL, Project Templates for specific scenarios & binding Variables to multiple roles
 description: A couple of times a week we meet up and talk about some of the most interesting questions we have received and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public

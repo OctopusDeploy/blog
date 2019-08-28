@@ -1,5 +1,5 @@
 ---
-title: Adding Notifications for Every Production Deployment
+title: Adding notifications for every production deployment
 description: An introductory guide to using subscriptions with webhooks.
 author: ryan.rousseau@octopus.com
 visibility: public

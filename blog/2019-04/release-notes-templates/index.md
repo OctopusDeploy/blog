@@ -1,5 +1,5 @@
 ---
-title: Better Release Notes with Templates and Automatic Generation
+title: Better release notes with templates and automatic generation
 description: A look at release notes templates and automatic release notes generation in Octopus.
 author: shannon.lewis@octopus.com
 visibility: public

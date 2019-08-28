@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus Episode 13-15 - Blue/Green Deployments, HA Cluster Configuration & Exposing Links in Deployment Logs
+title: Ask Octopus Episode 13-15 - Blue/Green Deployments, HA Cluster configuration & Exposing links in deployment logs
 description: Once a week a few of us will gather to talk about some of the most interesting questions we have gotten over the past week and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public

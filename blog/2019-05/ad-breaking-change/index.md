@@ -1,5 +1,5 @@
 ---
-title: Active Directory Breaking Change in 2019.5
+title: Active Directory Breaking change in 2019.5
 description: What does the Active Directory breaking change mean for my organisation?
 author: derek.campbell@octopus.com
 visibility: public
@@ -16,7 +16,7 @@ We announced in version 2019.5 that there was a breaking change for Active Direc
 
 ## The background & issue
 
-In most organizations, they use [Principle of Least Privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). What this means is that technical staff have a standard user as part of the Active Directory domain for their regular duties such as writing documentation, reading emails and browsing the web. They also have access to a privileged account which they use in their daily technical duties which may include deployments, development, resetting users passwords and accessing sensitive systems.  
+In most organisations, they use [Principle of Least Privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege). What this means is that technical staff have a standard user as part of the Active Directory domain for their regular duties such as writing documentation, reading emails and browsing the web. They also have access to a privileged account which they use in their daily technical duties which may include deployments, development, resetting users passwords and accessing sensitive systems.  
 
 Before version 2019.5.0, Octopus treated user emails like a key and expected them to be unique. This caused an issue with Active Directory, where there are no such constraints and when multiple users have the same email address Octopus thinks they are the same user. They are the same person, but not the same user in an Active Directory sense. No other authentication provider works this way, but to prevent issues with Active Directory when it's being used this way we need to drop the uniqueness constraint and assume the same person can be using different user accounts tied to one email address.
 

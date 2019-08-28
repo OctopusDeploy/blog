@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus Episode 22-24 - Different Package for Different Step Templates, Moving Octopus & Octopus Server Version Comparison
+title: Ask Octopus Episode 22-24 - Different package for different step templates, moving Octopus & Octopus Server version comparison
 description: Once a week a few of us will gather to talk about some of the most interesting questions we have gotten over the past week and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public

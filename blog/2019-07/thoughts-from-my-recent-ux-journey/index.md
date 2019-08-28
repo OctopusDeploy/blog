@@ -1,5 +1,5 @@
 ---
-title: Thoughts from My User Experience Journey
+title: Thoughts from my User Experience Journey
 description: Thoughts and takeaways from my recent journey with the Onboarding team, diving further into user-experience.
 author: mark.siedle@octopus.com
 visibility: public

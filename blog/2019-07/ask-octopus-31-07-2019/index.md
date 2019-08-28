@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus Episodes 43-45 - LTS 2019.6, Restarting Vms During Deployments & Automatic Release Creation
+title: Ask Octopus Episodes 43-45 - LTS 2019.6, restarting VMs during deployments & Automatic Release Creation. 
 description: A couple of times a week we meet up and talk about some of the most interesting questions we have received and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public

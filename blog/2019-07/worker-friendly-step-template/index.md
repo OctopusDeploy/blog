@@ -1,5 +1,5 @@
 ---
-title: Worker Friendly Custom Step Templates
+title: Worker friendly custom step templates
 description: How to make worker friendly custom step templates.
 author: shawn.sesna@octopus.com
 visibility: public

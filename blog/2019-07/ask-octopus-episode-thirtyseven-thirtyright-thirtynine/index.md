@@ -1,5 +1,5 @@
 ---
-title: Ask Octopus Episodes 37-39 - Diagnostic Logging, Restarting a Failed Upgrade & Deployment Channels with Child Projects
+title: Ask Octopus Episodes 37-39 - Diagnostic logging, restarting a failed upgrade & deployment channels with child projects. 
 description: A couple of times a week we meet up and talk about some of the most interesting questions we have received and how we went about solving them.
 author: derek.campbell@octopus.com
 visibility: public
