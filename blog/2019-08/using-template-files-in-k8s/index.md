@@ -1,6 +1,6 @@
 ---
 title: Using template files in Kubernetes
-description: With the help of some open source Docker image tools and mounting options in Kuberenetes, it is possible to deploy a single image across multiple environments that include templated files.
+description: With the help of some open source Docker image tools and mounting options in Kubernetes, it’s possible to deploy a single image across multiple environments that include templated files.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2019-08-29
@@ -14,15 +14,15 @@ If you have ever deployed an application in Octopus before, you have probably ma
 
 Replacing files in application packages like ZIPs or NUPKGs is straight forward because theses files are standard archives, and can be easily modified after they are downloaded from the artifact repository but before they are deployed to their final target.
 
-Docker image files aren't quite as easy to work with. For a start, there is some magic in the way the layers are built up to ensure that both new and deleted files are respected, meaning unpacking a Docker image file is not as simple as untar-ing the individual layers. Second, Kubernetes expects to pull down an image directly from a repository, which removes Octopus from the pipeline as far as distributing customized artifacts is concerned.
+Docker image files aren’t quite as easy to work with. For a start, there is some magic in the way the layers are built up to ensure that both new and deleted files are respected, meaning unpacking a Docker image file is not as simple as untar-ing the individual layers. Second, Kubernetes expects to pull down an image directly from a repository, which removes Octopus from the pipeline as far as distributing customized artifacts is concerned.
 
-The good news is that we can take advantage of some open source tools created by the community for download and unpacking Docker images, and then use the native ability in Kubernetes to mount individual files into Pods to achieve much the same end result as deploying a modified package.
+The good news is that we can take advantage of some open source tools created by the community for downloading and unpacking Docker images, and then use the native ability in Kubernetes to mount individual files into Pods to achieve much the same end result as deploying a modified package.
 
 ## The sample application
 
-To demonstrate template file processing we have a very simple Docker image based on HTTPD that will display a HTML page with the name of the current environment. The code for this image can be found on [GitHub](https://github.com/OctopusDeploy/DockerFileReplacementDemo), and has been published as the image [mcasperson/dockerfilereplacement](https://hub.docker.com/r/mcasperson/dockerfilereplacement).
+To demonstrate template file processing we have a very simple Docker image based on HTTPD that will display a HTML page with the name of the current environment. The code for this image can be found on [GitHub](https://github.com/OctopusDeploy/DockerFileReplacementDemo) and has been published as the image [mcasperson/dockerfilereplacement](https://hub.docker.com/r/mcasperson/dockerfilereplacement).
 
-The HTML file that is displayed by the Docker app is shown below. The string `#{Octopus.Environment.Name}` is intended to be replaced with the name of the environment once the deployment has been completed with Octopus.
+The HTML file that is displayed by the Docker app is shown below. The string `#{Octopus.Environment.Name}` is intended to be replaced with the name of the environment once the deployment has been completed with Octopus:
 
 ```html
 <html>
@@ -32,7 +32,7 @@ The HTML file that is displayed by the Docker app is shown below. The string `#{
 </html>
 ```
 
-To see this Docker image in action, we'll run the Docker image locally with the following command:
+To see this Docker image in action, we’ll run the Docker image locally with the following command:
 
 ```
 docker run -p 8888:80 mcasperson/dockerfilereplacement:0.0.1
@@ -45,17 +45,17 @@ As you would expect, running this Docker image locally displays the web page in 
 
 ## Working with Docker images, without using Docker
 
-As we move the deployment to Octopus, the first step is to download and unpack a Docker image. Typically all interaction with Docker images and repositories is done with the `docker` cli tool. Always having to run the Docker daemon isn't terribly efficient though, and so additional third party tools have been developed to work with Docker images outside of the Docker daemon.
+As we move the deployment to Octopus, the first step is to download and unpack a Docker image. Typically, interactions with Docker images and repositories are done with the `docker` CLI tool. Always having to run the Docker daemon isn’t terribly efficient though, and so additional third-party tools have been developed to work with Docker images outside of the Docker daemon.
 
-The first tool is called [skopeo](https://github.com/containers/skopeo). We'll use `skopeo` to download a Docker image and save it as a single, self contained file on the local disk.
+The first tool is called [skopeo](https://github.com/containers/skopeo). We’ll use `skopeo` to download a Docker image and save it as a single, self-contained file on the local disk.
 
-The second tool is called [umoci](https://umo.ci/). We'll use `umoci` to unpack the file downloaded by `skopeo`, allowing us access to the final directory structure created by all the individual layers in a Docker image.
+The second tool is called [umoci](https://umo.ci/). We’ll use `umoci` to unpack the file downloaded by `skopeo`, allowing us access to the final directory structure created by all the individual layers in a Docker image.
 
-While both these tools are open source, getting binary builds can be challenging. For this exercise I am using a SUSE Linux Enterprise VM as an [Octopus worker](https://octopus.com/docs/infrastructure/workers). SUSE created `umoci` and provides [binary downloads from the GitHub releases page](https://github.com/openSUSE/umoci/releases), while the standard SUSE package repositories contain a build of `skopeo`, which means we don't have to go through the pain of trying to build these tools ourselves.
+While both these tools are open source, getting binary builds can be challenging. For this exercise, I am using a SUSE Linux Enterprise VM as an [Octopus worker](https://octopus.com/docs/infrastructure/workers). SUSE created `umoci` and provides [binary downloads from the GitHub releases page](https://github.com/openSUSE/umoci/releases), while the standard SUSE package repositories contain a build of `skopeo`, which means we don’t have to go through the pain of trying to build these tools ourselves.
 
 ## Downloading and extracting the Docker image
 
-Let's take a look at the bash script, run by the Octopus `Run a script` step, that will download, extract and save the contents of a file from a Docker image.
+Let’s take a look at the bash script, run by the Octopus `Run a script` step, that will download, extract and save the contents of a file from a Docker image:
 
 ```bash
 read_file () {
@@ -76,7 +76,7 @@ echo -e $TemplateHtml
 set_octopusvariable "TemplateHtml" ${TemplateHtml}
 ```
 
-We start with a bash function that reads the contents of the file, supplied as the first argument, line by line. The resulting string is then saved back into a global variable, whose name is passed in as the second argument (because bash functions can only return integer exit codes), using `printf`.
+We start with a bash function that reads the contents of the file, supplied as the first argument, line by line. The resulting string is then saved back into a global variable, whose name is passed in as the second argument (because bash functions can only return integer exit codes), using `printf`:
 
 ```bash
 read_file () {
@@ -88,19 +88,19 @@ read_file () {
 }
 ```
 
-The Docker image is downloaded by `skopeo`, and saved in an Open Container Initiative (OCI) bundle called `image`.
+The Docker image is downloaded by `skopeo`, and saved in an Open Container Initiative (OCI) bundle called `image`:
 
 ```bash
 skopeo copy docker://mcasperson/dockerfilereplacement:0.0.1 oci:image:latest
 ```
 
-This file is then unpacked with `umoci`.
+This file is then unpacked with `umoci`:
 
 ```bash
 umoci unpack --image image --rootless bundle
 ```
 
-At this point we have the files that make up the Docker image extracted locally. The template file we are interested in is `/usr/local/apache/htdocs/template.html`. Using the bash function we created earlier, the contents of this file is read into a variable called `TemplateHtml`. We also dump the contents of this variable to the screen with `echo` to confirm that we have the content we expect.
+At this point, we have the files that make up the Docker image extracted locally. The template file we are interested in is `/usr/local/apache/htdocs/template.html`. Using the bash function we created earlier, the contents of this file is read into a variable called `TemplateHtml`. We also dump the contents of this variable to the screen with `echo` to confirm that we have the content we expect:
 
 ```bash
 cd bundle/rootfs/usr/local/apache2/htdocs
@@ -108,7 +108,7 @@ read_file template.html TemplateHtml
 echo -e $TemplateHtml
 ```
 
-Once we have the contents of the file, we save it as an [output variable](https://octopus.com/docs/deployment-process/variables/output-variables).
+Once we have the contents of the file, we save it as an [output variable](https://octopus.com/docs/deployment-process/variables/output-variables):
 
 ```bash
 set_octopusvariable "TemplateHtml" ${TemplateHtml}
@@ -116,9 +116,9 @@ set_octopusvariable "TemplateHtml" ${TemplateHtml}
 
 ## Creating the ConfigMap
 
-With the contents of the file saved as an Octopus variable, the next step is to create a ConfigMap that holds the processed value. We'll do this with the `Deploy raw Kubernetes YAML` step in Octopus.
+With the contents of the file saved as an Octopus variable, the next step is to create a ConfigMap that holds the processed value. We’ll do this with the `Deploy raw Kubernetes YAML` step in Octopus.
 
-The following is the Kubernetes YAML that the step will deploy to create the ConfigMap.
+The following is the Kubernetes YAML that the step will deploy to create the ConfigMap:
 
 ```yaml
 apiVersion: v1
@@ -131,13 +131,13 @@ data:
 
 The `template.html` field is the important part of this config map. The key defines the filename that we are replacing, and the value of `"#{Octopus.Action[Extract File].Output.TemplateHtml}"` will result in the contents of the file that we extracted in the last step being processed and then assigned to this key. Importantly this means that any nested variables references in the variable `Octopus.Action[Extract File].Output.TemplateHtml` will be replaced.
 
-The end result is a ConfigMap that holds the original contents of the `template.html` file, but with any variable replacements performed.
+The end result is a ConfigMap that holds the original contents of the `template.html` file but with any variable replacements performed.
 
 ## Mounting the ConfigMap
 
-The final step is to take the value from the ConfigMap and have it mounted back into the Kubernetes Pod, thus replacing the original, unprocessed file. We'll do this through the `Deploy Kubernetes containers` step in Octopus.
+The final step is to take the value from the ConfigMap and have it mounted back into the Kubernetes Pod, thus replacing the original, unprocessed file. We’ll do this through the `Deploy Kubernetes containers` step in Octopus.
 
-This is done by defining a Volume that references the ConfigMap created in the pervious step.
+This is done by defining a Volume that references the ConfigMap created in the previous step.
 
 ![](volumes.png "width=500")
 *The summary of the Volume.*
@@ -145,9 +145,9 @@ This is done by defining a Volume that references the ConfigMap created in the p
 ![](volume.png "width=500")
 *The details of the Volume.*
 
-The ConfigMap is then mounted into the Pod. The trick here is to set the `Mount path` to the full path of the individual file to be replaced, and set the `Sub path` to the entry from the ConfigMap that has the contents of the file.
+The ConfigMap is then mounted into the Pod. The trick here is to set the `Mount path` to the full path of the individual file to be replaced and set the `Sub path` to the entry from the ConfigMap that has the contents of the file.
 
-With this configuration we will mount a single file in the Pod containing the value from the ConfigMap, thus replacing the original generic file.
+With this configuration we will mount a single file in the Pod containing the value from the ConfigMap, replacing the original generic file.
 
 ![](volume-mount.png "width=500")
 *A volume mount that adds a single file to the Kubernetes container.*
@@ -167,7 +167,7 @@ For convenience, this Pod will be exposed directly by a LoadBalancer service. Th
 
 ## The processed result
 
-Once this deployment completes, we will have a public IP  that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
+Once this deployment completes, we will have a public IP that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
 
 ![](k8s-pod.png "width=500")
 *HTTPD presenting the processed template.html file from the Dev environment.*
