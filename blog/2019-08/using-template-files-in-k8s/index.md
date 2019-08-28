@@ -18,9 +18,33 @@ Docker image files aren't quite as convenient. For a start, there is some magic 
 
 The good news is that we can take some open source tools created by the community for download and unpacking Docker images, and then use the native ability in Kubernetes to mount files into Pods to achieve much the same result.
 
+## The Sample Application
+
+To demonstrate template file processing we have a very simple Docker image based on HTTPD that will display a HTML page with the name of the current environment. The code for this image can be found on [GitHub](https://github.com/OctopusDeploy/DockerFileReplacementDemo).
+
+The HTML file that is displayed by the Docker app is shown below. The string `#{Octopus.Environment.Name}` is intended to be replaced with the name of the environment once the deployment has been completed with Octopus.
+
+```html
+<html>
+<body>
+<h1>#{Octopus.Environment.Name}</h1>
+</body>
+</html>
+```
+
+To see this Docker image in action, we'll run the Docker image locally.
+
+```
+docker run -p 8888:80 mcasperson/dockerfilereplacement:0.0.1
+```
+
+As you would expect, running this image locally displays the web page in its unprocessed form.
+
+![](local-docker.png "width=500")
+
 ## Working with Docket Images, Without Using Docker
 
-The first step in this process is to download and unpack a Docker image. Typically all interaction with Docker images and repositories had to be done with the `docker` cli tool. Always having to run the Docker daemon isn't terribly efficient though, and so additional third party tools have been developed to handle Docker images outside of the Docker daemon.
+As we move the deployment to Octopus, the first step is to download and unpack a Docker image. Typically all interaction with Docker images and repositories had to be done with the `docker` cli tool. Always having to run the Docker daemon isn't terribly efficient though, and so additional third party tools have been developed to handle Docker images outside of the Docker daemon.
 
 The first tool is called [skopeo](https://github.com/containers/skopeo). We'll use `skopeo` to download a Docker image and save it as a single, self container file on the local disk.
 
@@ -30,14 +54,14 @@ While both these tools are open source, getting binary builds can be challenging
 
 ## Downloading and Extracting the Docker Image
 
-Let's take a look at the script that will download, extract and save the contents of a file from a Docker image.
+Let's take a look at the script, run by the Octopus `Run a script` step, that will download, extract and save the contents of a file from a Docker image.
 
 ```
 read_file () {
-	CONTENTS=""
+  CONTENTS=""
   while read -r line || [ -n "$line" ]; do
-		CONTENTS="${CONTENTS}${line}";
-	done < ${1}
+    CONTENTS="${CONTENTS}${line}";
+  done < ${1}
   printf -v "${2}" '%s' "${CONTENTS}"
 }
 
@@ -55,10 +79,10 @@ We start with a bash function that reads the contents of the file, supplied as t
 
 ```
 read_file () {
-	CONTENTS=""
+  CONTENTS=""
   while read -r line || [ -n "$line" ]; do
-		CONTENTS="${CONTENTS}${line}";
-	done < ${1}
+    CONTENTS="${CONTENTS}${line}";
+  done < ${1}
   printf -v "${2}" '%s' "${CONTENTS}"
 }
 ```
@@ -108,14 +132,30 @@ The end result is a ConfigMap that holds the original contents of the `template.
 
 ## Mouting the ConfigMap
 
-The final step is to take the value from the ConfigMap and have it mounted back into the Kubernetes Pod, thus replacing the original, unprocessed file.
+The final step is to take the value from the ConfigMap and have it mounted back into the Kubernetes Pod, thus replacing the original, unprocessed file. We'll do this through the `Deploy Kubernetes containers` step in Octopus.
 
 This is done by defining a Volume that references the ConfigMap created in the pervious step.
+
+![](volumes.png "width=500")
 
 ![](volume.png "width=500")
 
 The ConfigMap is then mounted into the Pod. The trick here is to set the `Mount path` to the full path of the individual file to be replaced, and set the `Sub path` to the entry from the ConfigMap that has the contents of the file.
 
-With this configuration we will mount a single file in the Pod using the value from the ConfigMap, replacing the contents of the original file.
+With this configuration we will mount a single file in the Pod using the value from the ConfigMap, replacing the original file.
 
 ![](volume-mount.png "width=500")
+
+For completeness, this is the Container section from the `Deploy Kubernetes containers` step. You can see we are deploying the image `mcasperson/dockerfilereplacement` (which is an image generated from the [sample project](https://github.com/OctopusDeploy/DockerFileReplacementDemo)), exposing port 80, and mounting the ConfigMap as a volume.
+
+![](k8s-container.png "width=500")
+
+For convenience, this Pod will be exposed directly by a LoadBalancer service. This gives us a public IP address that we can use to interact with the Pod.
+
+![](service.png "width=500")
+
+## The Processed Result
+
+Once this deployment completes, we will get a public IP  that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
+
+![](k8s-pod.png "width=500")
