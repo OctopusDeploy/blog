@@ -1,9 +1,9 @@
 ---
-title: Streamlined deployment process editor, Tenant cloning and more - Octopus Deploy 2019.4
-description: Octopus 2019.8 introduces our redesigned deployment process editor, Tenant cloning,
+title: Octopus Deploy 2019.8 - Streamlined deployment process editor, Tenant cloning, and more ...  
+description: Octopus 2019.8 introduces our redesigned deployment process editor, tenant cloning, and more ...
 author: michael.richardson@octopus.com 
 visibility: public
-published: 2019-08-28
+published: 2019-08-29
 metaImage: blogimage-shipping-2019-8.png
 bannerImage: blogimage-shipping-2019-8.png
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)
 
-We are shipping Octopus Deploy 2019.8.  The most visible change is an improvement to the deployment process editor, but there are a bunch of other enhancements our users have requested.  Hopefully there's something for everyone in this release. 
+We are shipping Octopus Deploy 2019.8.  The most visible change is an improvement to the deployment process editor, but there are a bunch of other enhancements our users have requested.  Hopefully there's something for everyone in this one. 
 
 ## Streamlined deployment process editor
 
@@ -45,6 +45,8 @@ While the _Upgrade a Helm Chart_ allowed specifying the namespace, the other Kub
 ## Deploy Release steps can now be used in rolling deployments
 
 [Deploy Release steps](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step) were prevented from being used in [rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments).  As many of you pointed out, there are certainly scenarios where this makes sense. [So now they can](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step#rolling-deployments). 
+
+![Rolling deploy release step](rolling-deploy-release.png "width=500")
 
 ## New Variable Filter expressions
 
