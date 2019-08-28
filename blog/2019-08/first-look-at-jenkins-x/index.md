@@ -84,5 +84,43 @@ For more help on available commands see: https://jenkins-x.io/developing/browsin
 ```
 
 ::hint
-Jenkins X configures your code and repository with an opinioned set of build tools and hooks to establish a continuous build pipeline. 
+Jenkins X configures your code and repository with an opinioned set of build tools and hooks to establish a continuous build pipeline.
 ::
+
+## The build and deploy ties it all together
+
+If there is one benefit to traditional CI servers, it is that because you set everything up by hand, you have a fair idea of how code flows from the source code repository to the final deployment.
+
+Because Jenkins X has done so much of the work for us, it can be hard to appreciate what actually happens as part of a build.
+
+As part of the Kubernetes cluster initialization, Jenkins X installed the Nexus repository manager. What we can see after our build is completed that the Java dependencies that our application relied on are now cached locally. This means any subsequent builds will complete much faster.
+
+![](nexus.png "width=500")
+
+Another service installed by Jenkins X is ChartMuseum, which is a Helm repository. By downloading the `index.yaml` file we can see that Jenkins X has created and published a Helm chart to this internal repository.
+
+```
+curl http://chartmuseum.jx.35.194.232.107.nip.io/index.yaml
+apiVersion: v1
+entries:
+  jenkinx-spring-demo:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: "2019-08-28T19:25:22.445582847Z"
+    description: A Helm chart for Kubernetes
+    digest: 9e048b78247da2a28562771742454484dbaf35b10d14a0c0a668c3ba826d02c4
+    icon: https://raw.githubusercontent.com/jenkins-x/jenkins-x-platform/master/images/java.png
+    name: jenkinx-spring-demo
+    urls:
+    - charts/jenkinx-spring-demo-0.0.1.tgz
+    version: 0.0.1
+generated: "2019-08-28T19:32:00Z"
+```
+
+Jenkins X also took care of publishing the Docker image to a local container registry. Because I ran Jenkins X in a Google Cloud Kubernetes cluster, Jenkins X defaulted to using the Google Container Registry. However, had that service not been available, Jenkins X would have installed a Docker registry in the Kubernetes cluster.
+
+![](container-registry.png "width=500")
+
+Finally we can see that the Helm chart has been deployed in the cluster, and the ingress rules have been created by [exposecontroller](https://jenkins-x.io/faq/technology/#whats-is-exposecontroller).
+
+![](services.png)
