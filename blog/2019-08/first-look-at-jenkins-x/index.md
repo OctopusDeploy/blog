@@ -32,7 +32,9 @@ Just as you would use `apt-get` to install an application in Linux, Kubernetes c
 
 Just as you would run short lived commands to build your applications and Docker images with the `docker` CLI, Kubernetes can build software and Docker images with [Skaffold](https://github.com/GoogleContainerTools/skaffold).
 
-Just as you would host Docker image or other image artifact repositories like [Nexus](https://www.sonatype.com/nexus-repository-sonatype) with as services to be booted with the OS, so too can you deploy these same applications to Kubernetes.
+Just as you would host Docker images or other image artifact repositories like [Nexus](https://www.sonatype.com/nexus-repository-sonatype) as services to be booted with the OS, so too can you deploy these same applications to Kubernetes.
+
+Jenkins X treats your Kubernetes cluster as an environment in which to run builds, as a way of hosting artifact repositories, as an install target for Helm charts, and finally as a place to deploy and run your built applications.
 
 By installing Jenkins X, you will have a self contained Kubernetes cluster complete with a selection of hand picked and custom configured services ready to start building and deploying applications.
 
@@ -85,7 +87,7 @@ If there is one benefit to traditional CI servers, it is that because you set ev
 
 Because Jenkins X has done so much of the work for us, it can be hard to appreciate what actually happens as part of a build. So let's have a look at some of the work that goes on behind the scenes.
 
-As part of the Kubernetes cluster initialization, Jenkins X installed the Nexus repository manager. What we can see after our build is completed that the Java dependencies that our application relied on are now cached locally. This means any subsequent builds will complete much faster.
+As part of the Kubernetes cluster initialization, Jenkins X installed the Nexus repository manager. What we can see after our build has completed is that the Java dependencies that our application relied on are now cached locally. This cache means any subsequent builds will now complete much faster.
 
 ![](nexus.png "width=500")
 
@@ -113,7 +115,7 @@ Jenkins X also took care of publishing the Docker image to a local container reg
 
 ![](container-registry.png "width=500")
 
-Finally we can see that the Helm chart has been deployed in the cluster, and the ingress rules have been created by [exposecontroller](https://jenkins-x.io/faq/technology/#whats-is-exposecontroller).
+Finally we can see that the Helm chart has been deployed in the cluster, and the ingress rules have been created by [exposecontroller](https://jenkins-x.io/faq/technology/#whats-is-exposecontroller), resulting in our application being exposed with a custom hostname.
 
 ![](services.png)
 
