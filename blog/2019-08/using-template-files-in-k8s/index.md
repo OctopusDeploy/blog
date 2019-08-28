@@ -154,6 +154,8 @@ For convenience, this Pod will be exposed directly by a LoadBalancer service. Th
 
 ![](service.png "width=500")
 
+![](service-ports.png "width=500")
+
 ## The Processed Result
 
 Once this deployment completes, we will get a public IP  that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
