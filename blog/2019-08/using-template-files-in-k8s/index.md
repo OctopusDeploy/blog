@@ -130,7 +130,7 @@ The `template.html` field is the important part of this config map. The key defi
 
 The end result is a ConfigMap that holds the original contents of the `template.html` file, but with any variable replacements performed.
 
-## Mouting the ConfigMap
+## Mounting the ConfigMap
 
 The final step is to take the value from the ConfigMap and have it mounted back into the Kubernetes Pod, thus replacing the original, unprocessed file. We'll do this through the `Deploy Kubernetes containers` step in Octopus.
 
