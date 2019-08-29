@@ -30,6 +30,8 @@ This delivers two key advantages:
 While we're speaking of saving mouse clicks... 
 Creating a new tenant, applying the applicable tags, linking it to the projects and environments, and entering the variable values can be labourious.  Existing tenants can now be easily cloned. 
 
+![Clone a tenant](tenant-clone.png "width=500")
+
 ## More health check scheduling options 
 
 Machine policies previously allowed only the interval between health checks to be configured. 2019.8 brings the ability to supply a cron expression, or to configure health checks to never run. 
