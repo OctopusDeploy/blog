@@ -153,7 +153,7 @@ The Octopus CLI tools are also available as a [Docker image](https://hub.docker.
     chmod +x /opt/octo/Octo
 ```
 
-After the Octopus CLI tools are extracted, we can call them to package the application. Note how we use shell expansion with the argument `--version $(cat /home/runner/work/AWSSamExample/AWSSamExample/version.txt)` to read the value of the `version.txt` file create by GitVersion (`AWSSamExample` is the name of my GitHub repo). This is how we pass variables between jobs:
+After the Octopus CLI tools are extracted, we can call them to package the application. Note how we use shell expansion with the argument `--version $(cat /home/runner/work/AWSSamExample/AWSSamExample/version.txt)` to read the value of the `version.txt` file created by GitVersion (`AWSSamExample` is the name of my GitHub repo). This is how we pass variables between jobs:
 
 ```yaml
 - name: Pack Application
