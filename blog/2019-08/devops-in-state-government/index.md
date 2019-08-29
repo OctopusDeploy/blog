@@ -15,7 +15,7 @@ tags:
 
 ## Introduction
 
-We’ve all heard the phrase “the speed of government” when describing things that move slowly. It is true that in a bureaucratic setting, things tend to move at a snail’s pace compared to the rapid and sometimes chaotic environment of a start-up. Though in the snail’s defense, they move slowly, but they eventually get where they need to be. Implementing change in government is possible, but it helps if you keep the snail analogy in mind.
+We’ve all heard the phrase “the speed of government” when describing things that move slowly. Implementing change in government is possible, but it's all about slow and steady progress. 
 
 Start-ups and government agencies both suffer from issues with standardization of builds, testing, consistent infrastructure, and reliable deployment processes. The biggest challenge with implementing a concept like DevOps is change. Let’s be honest, change is hard, but it doesn’t have to be bad. 
 
@@ -30,13 +30,13 @@ In this post, I'll cover the approaches I took to achieve this and cover some of
 
 ## Prioritising and tackling the biggest problems first
 
-The agency I joined had a lot of problems and the first thing I needed to do was learn how everything was currently operating and structured. Once I settled in and learned more about their processes, I was able to priotise my first steps to improve things. This agency had a number of in-house appliations and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled similarly by zipping up a bunch of scripts with a document explaining in which order to run them, then copying them to a file share for the DBAs to pick up. Inevitably, deployments would fail for any one of the following reasons:
+The agency I joined had a lot of problems and the first thing I needed to do was learn how everything was currently operating and structured. Once I settled in and learned their processes, I was able to priotise my first steps to improve things. This agency had a number of in-house appliations and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled similarly by zipping up a bunch of scripts with a document explaining in which order to run them, then copying them to a file share for the DBAs to pick up. Inevitably, deployments would fail for any one of the following reasons:
 
 - A developer neglected to mention there was a third-party dependency that needed to be installed on the web server. 
 - The scripts for the database changes weren’t tested to make sure they worked with the current state of the production database.
 - Good old-fashion human error. 
 
-Things needed to change, badly. 
+Things needed to change, badly.
 
 I felt the highest priority was to start at the beginning of the process with the builds so I could eliminate the adage, “worked on my machine, ops problem now.” The team was using Microsoft Team Foundation Server for source control, so the build controller technology was already present. I installed the controller as well as a couple of agents so that all software was built against an independent machine. This quickly brought to light any dependencies that were present on the developer machines that were not available on the servers and needed to be installed. Though this helped identify what had to be installed on the server, the web admins still occasionally forgot to install the dependencies on all the servers and deployment failures still occurred. That issue didn’t get resolved for several years.
 
@@ -50,7 +50,11 @@ The console applications were eventually combined into an automated deployment s
 
 ## Building vs buying tools
 
-A contractor happened to be working on a project that used my solution and gave us a demonstration of a tool he’d come across for automating deployments, Octopus Deploy. After the demonstration, one developer was adamant we needed Octopus. As the proud papa of my solution, I was reluctant to abandon my creation.  By this time, I’d taken on the additional responsibility of being the Data Team supervisor, so I had less time to code, and I could no longer keep up with feature requests from the development teams. Octopus Deploy had a team of developers doing this as their full-time job, and I was just one person with limited availability. The final nail in my solution’s coffin was when a developer showed me he had to answer 14 questions to set up a deployment.  Compared to Octopus, this was both cumbersome and inefficient. Setting my pride aside, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
+The team was happily using my in-house deployment solution when a contractor gave us a demonstration of a tool he’d come across for automating deployments, Octopus Deploy. After the demonstration, one developer was adamant we needed Octopus. As the proud papa of my solution, I was reluctant to abandon my creation.  By this time, I’d taken on the additional responsibility of being the Data Team supervisor, so I had less time to code, and I could no longer keep up with feature requests from the development teams. Octopus Deploy had a team of developers doing this as their full-time job, and I was just one person with limited availability. The final nail in my solution’s coffin was when a developer showed me he had to answer 14 questions to set up a deployment.  Compared to Octopus, this was both cumbersome and inefficient. Setting my pride aside, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
+
+This illustrates the classic problem of building in-house tools vs buying commercial ones. I'm happy we chose an off-the-shelf solution in this instance. Sometimes it's an advantage to build and maintain in-house tools but it's important to ask the question and weigh up the costs. 
+
+Development tools can be a great enabler of teams to automate processes and solve problems but people and communication are critical to the success of DevOps and achieving change.
 
 ## From confrontation to collaboration
 
