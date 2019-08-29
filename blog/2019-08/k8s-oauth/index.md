@@ -26,7 +26,7 @@ Select the **Other** option, and set the name of the client to **minikube**.
 
 ![](other-client.png "width=500")
 
-You will now see two codes: the **Client ID** and the **Client secret**. Make a note of both these codes, as we'll need them later on.
+You will now see two codes: the **Client ID** and the **Client secret**. Make a note of both these codes, as we’ll need them later on.
 
 ![](codes.png "width=500")
 
@@ -133,7 +133,7 @@ You may be familiar with OAuth logins already, as they are commonly used to auth
 
 However, authenticating users from a console application is a little different. We still need the user to open a web page and verify themselves with Google, but `kubectl` won’t interact with a web browser by itself, so we need some other way to generate these codes.
 
-This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser which will display the required Google token. We then paste back into the console, and `k8s-oidc-helper` generates the codes that `kubectl` requires to authenticate a user. Let's see how this process works.
+This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser which will display the required Google token. We then paste back into the console, and `k8s-oidc-helper` generates the codes that `kubectl` requires to authenticate a user. Let’s see how this process works.
 
 To install `k8s-oidc-user`, make sure you have the [Go tools installed](https://golang.org/doc/install), and then run:
 
@@ -162,7 +162,7 @@ Opening the URL presents the familiar Google login page. Once you confirm your a
 
 `k8s-oidc-helper` will then give you a partially complete copy of the `~/.kube/config` file for you to save locally.
 
-The code under the `users` section is all we need, so replace the existing `users` section in the `~/.kube/config` file, and change the `contexts.user` parameter to the new user name. You'll end up with a `~/.kube/config` file something like this:
+The code under the `users` section is all we need, so replace the existing `users` section in the `~/.kube/config` file, and change the `contexts.user` parameter to the new user name. You’ll end up with a `~/.kube/config` file something like this:
 
 ```yaml
 apiVersion: v1
