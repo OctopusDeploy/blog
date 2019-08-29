@@ -12,7 +12,7 @@ tags:
 
 ![Illustration showing GitHub CI processes with versions](blogimg_versioning_githubactions.png)
 
-[GitHub Actions](https://github.com/features/actions) are slowing rolling out to users as a beta. This new feature gives GitHub users a way to execute builds and deployments directly from their code using infrastructure managed by GitHub. This provides a lot of opportunities for developers, but while Actions are incredibly powerful and flexible, I immediately ran into the issue of versioning my builds.
+[GitHub Actions](https://github.com/features/actions) are slowly rolling out to users as a beta. This new feature gives GitHub users a way to execute builds and deployments directly from their code using infrastructure managed by GitHub. This provides a lot of opportunities for developers, but while Actions are incredibly powerful and flexible, I immediately ran into the issue of versioning my builds.
 
 Typically, a CI system will include some kind of incrementing counter that can be used as the patch release for any build. This means each build is automatically assigned a new number, and any resulting artifacts inherit a meaningful version. Unfortunately, in the current beta of GitHub Actions, there is no equivalent to a build number. The build environment exposes [information like Git SHAs, repositories, users, and events](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/) but no build number.
 
