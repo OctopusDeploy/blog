@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)
 
-Octopus Deploy 2019.8 is now available. The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully there's something for everyone in this one. 
+Octopus Deploy 2019.8 is now available, and it includes a bunch of small but significant enhancements to make your day-to-day deployments better. The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully, there's something for everyone in this one. 
 
 ## Streamlined deployment process editor
 
@@ -20,10 +20,10 @@ Octopus Deploy 2019.8 is now available. The most visible change is an improvemen
 
 ![Deployment Process Step Sidebar](deployment-process-editor-sidebar.gif "width=500")
 
-This delivers two key advantages:
+This update delivers two key advantages:
 
 - Visibility: You can now see the entire process while editing a step.  This is very useful when referencing other steps names in custom scripts or variables.
-- Usability:  Jumping between deployment steps could previously be painful, especially for processes with many steps.  This change will hopefully save some precious seconds (and reduce the wear on your mouse). 
+- Usability: Jumping between deployment steps could previously be painful, especially for processes with many steps.  This change will hopefully save some precious seconds (and reduce the wear on your mouse). 
 
 ## Cloning Tenants 
 
