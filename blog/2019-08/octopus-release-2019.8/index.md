@@ -2,7 +2,7 @@
 title: Octopus Deploy 2019.8 - Streamlined deployment process editor, Tenant cloning, and more ...  
 description: Octopus 2019.8 introduces our streamlined deployment process editor, tenant cloning, and numerous other enhancements and improvements.
 author: michael.richardson@octopus.com 
-visibility: private
+visibility: public
 published: 2019-08-29
 metaImage: blogimage-shipping-2019-8.png
 bannerImage: blogimage-shipping-2019-8.png
