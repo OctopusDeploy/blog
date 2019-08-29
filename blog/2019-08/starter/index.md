@@ -4,8 +4,6 @@ description: TODO
 author: paul.stovell@octopus.com
 visibility: private
 published: 2019-09-02
-bannerImage: blogimage-winops-turbocharging-azure.png
-metaImage: blogimage-winops-turbocharging-azure.png
 tags:
  - Company
 ---
