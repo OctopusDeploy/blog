@@ -10,6 +10,8 @@ tags:
  - Octopus
 ---
 
+![Illustration of two deep sea masks representing CI and CD](img_comparecicd_2019.png)
+
 The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without any distinction between the two. From this, it is easy to assume that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
 
 Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this blog post, we'll look at:
