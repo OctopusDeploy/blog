@@ -27,6 +27,8 @@ This update delivers two key advantages:
 - Visibility: You can now see the entire process while editing a step.  This is particularly useful when referencing other steps names in scripts or variables.
 - Usability: Jumping between deployment steps could previously be painful, especially for processes with many steps.  This change will hopefully save some precious seconds (and reduce the wear on your mouse). 
 
+This represents the first iteration of our deployment process editor improvements, and we'd love your feedback in the comments. 
+
 ## Cloning Tenants 
 
 While we're speaking of saving mouse clicks, it's now possible to clone tenants. Creating a new tenant, applying the relevant tags, linking it to the appropriate projects and environments, and entering the variable values can be tedious.  This process can now be skipped by cloning an existing tenant. 
