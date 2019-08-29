@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)
 
-Octopus Deploy 2019.8 is now availabe and it includes a bunch of small but signficiant enhancements to make your day-to-day deployment lives better. The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully there's something for everyone in this one. 
+Octopus Deploy 2019.8 is now available. The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully there's something for everyone in this one. 
 
 ## Streamlined deployment process editor
 
