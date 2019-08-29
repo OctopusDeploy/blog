@@ -13,11 +13,15 @@ tags:
 
 ![Illustration showing an infinite feedback loop surrounding a government building](blogimage-devopgovernment.png)
 
-Governments are often known as slow moving bureaucracies, but that doesn’t mean it’s impossible to implement better processes within government agencies. 
+Governments are often slow moving bureaucracies, but that doesn’t mean it’s impossible to implement better processes within government agencies. 
 
-In 2011, I was hired as a Configuration Manager at a small US state government agency. I was tasked with automating the manual processes to improve the reliability of software deployment, reduce the length of time it took to deliver, and to try eliminating the need to deploy on weekends. This was a challenging mandate and it took years to achieve.
+In 2011, I was hired as a Configuration Manager at a small US state government agency. I was  given a challenging mandate that took years to achieve:
 
-In this post, I'll cover the approaches I took to achieve this and cover some of the common pitfalls that you may face in a similar environment. 
+- Automate the manual processes to improve the reliability of software deployment.
+- Reduce the length of time it took to deliver.
+- Eliminate the need to deploy on weekends. 
+
+In this post, I'll cover the approaches I took to achieve this, and I’ll cover some of the common pitfalls you might face in a similar environment. 
 
 - Prioritizing and tackling the biggest problems first.
 - Building vs buying tools.
@@ -27,13 +31,13 @@ In this post, I'll cover the approaches I took to achieve this and cover some of
 
 ## Prioritizing and tackling the biggest problems first
 
-The agency I joined had a lot of problems, and the first thing I needed to do was learn how everything was structured and operated. After I’d settled in and learned their processes, I prioritized my first steps to improve things. The agency had a number of in-house applications and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled by zipping up a bunch of scripts with a document listing the execution order, which were copied to a file share for the DBAs to pick up. Inevitably, deployments failed for any one of the following reasons:
+The agency I joined had a lot of problems, and the first thing I did was learn how everything was structured and operated. Then, I prioritized my first steps to improve things. The agency had a number of in-house applications and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled by zipping up a bunch of scripts with a document listing the execution order, which was then copied to a file share for the DBAs to pick up. Inevitably, deployments failed for any one of the following reasons:
 
 - A developer didn’t mention a third-party dependency that needed to be installed on the web server. 
 - The scripts for the database changes weren’t tested to make sure they worked with the current state of the production database.
 - Good old-fashion human error. 
 
-Things needed to change, badly.
+Things had to change.
 
 ## Early wins
 
@@ -41,7 +45,7 @@ I started at the beginning with the builds to eliminate the adage, “Worked on 
 
 Next, I wrote a couple of small console applications to deploy the web code and the databases. The first used Microsoft Web Deploy to automate consistent deployments of the web code. We still updated connection strings manually, which isn't great, but it was a start. The second console application ran a series of database scripts within a single transaction and rolled back the database deployment in the event of a failure. This method reduced the error rate and the time it took for deployments since the DBAs no longer had to open the scripts and manually execute them.
 
-With these two improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process and all but eliminating the need for weekend work. This progress made for much happier devs and operations folks.
+With these two improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process and all but eliminated the need for weekend work. This progress made for much happier devs and operations folks.
 
 ## Building vs buying tools
 
@@ -55,11 +59,11 @@ As we automated more processes, tension between the teams, and the constant fing
 
 ## Constant progress and next steps
 
-At this point, we’d made great progess, and we’d automated the vast majority of our development and deployment processes. The next step was to review our priorities across development and operations. One issue that continued to plague us was inconsistent environments. I learned about Infrastructure as Code and was immediately on board with the concept. Having no experience in any of the existing technologies (Chef, Puppet, Ansible, PowerShell DSC, etc…), I decided to try PowerShell DSC (Desired State Configuration). I quickly learned why all of the PowerShell courses say something like, “... and then there’s PowerShell DSC, but that’s a whole course in itself.” 
+At this point, we’d made great progess, the vast majority of our development and deployment processes were automated, and the next step was to review our priorities across development and operations. One issue that plagued us was inconsistent environments. I learned about Infrastructure as Code and was immediately on board with the concept. Having no experience with any of the existing technologies (Chef, Puppet, Ansible, PowerShell DSC, etc…), I decided to try PowerShell DSC (Desired State Configuration), and I quickly learned why all of the PowerShell courses say something like, “... and then there’s PowerShell DSC, but that’s a whole course in itself.” 
 
-Octopus Deploy gave me a great PowerShell experience, but DSC was definitely a different animal. After a bit of learning, I could demonstrate how to configure a bare metal server (a VM, to be honest) to functional IIS server in minutes. Not only that, I showed how I could combine the deployment power of Octopus Deploy with PowerShell DSC and push out configuration to servers just like an application deployment! Now that I had the web administrators on board, I turned to the database administrators. Working with the DBA team, we created a DSC script that would install, configure, and maintain SQL Servers and hooked that up to Octopus as well. The DBA team could now keep tabs on their servers and change things whenever they wanted. This reduced the friction between the Operations team and the DBA team.
+Octopus Deploy gave me a great PowerShell experience, but DSC was a different animal. After a bit of learning, I could demonstrate how to configure a bare metal server (a VM, to be honest) to functional IIS server in minutes. Not only that, I could combine the deployment power of Octopus Deploy with PowerShell DSC and push out configuration to servers just like an application deployment! Now that I had the web administrators on board, I turned to the database administrators. Working with the DBA team, we created a DSC script that would install, configure, and maintain SQL Servers and hooked that up to Octopus as well. The DBA team could now keep tabs on their servers and change things whenever they wanted. This reduced the friction between the Operations team and the DBA team.
 
-DSC also reduced friction between operations and application development.  Operations no longer needed to be involved in the installation or configuration of either IIS or SQL Server; their job was solely focused on hardware and Virtual Machine (VM) health.  DSC was being executed through Octopus Deploy using service accounts, which meant non-operations personnel no longer needed administrator rights to servers, which made security personnel very happy. Because DSC is self-documenting and version controlled, if operations needed to see what or how something was being configured, they could consult what was in version control.
+DSC also reduced friction between operations and application development because Operations no longer needed to be involved in the installation or configuration of either IIS or SQL Server; their job was solely focused on hardware and Virtual Machine (VM) health.  DSC was being executed through Octopus Deploy using service accounts, which meant non-operations personnel no longer needed administrator rights to servers, which made security personnel very happy. Because DSC is self-documenting and version controlled, if operations needed to see how something was being configured, they could consult version control.
 
 ## The (eventual) result
 
@@ -77,4 +81,4 @@ I remember a compliment from a developer who said he loved the fact he could cli
 
 ## Conclusion
 
-Introducing change and DevOps concepts in a government organization can be slow and challenging but it’s definitely possible. I was successful by prioritising and tackling the biggest problems first, buying tools to simplify and standardise, focusing on communication and collaboration to get other teams on board, and constant progress allowed us to tackle other priorities.
+Introducing change and DevOps concepts in a government organization can be slow and challenging, but it’s definitely possible. I was successful by prioritising and tackling the biggest problems first, buying tools to simplify and standardise, and by focusing on communication and collaboration to get other teams on board we made constant progress that allowed us to chip away at the obstacles one by one.
