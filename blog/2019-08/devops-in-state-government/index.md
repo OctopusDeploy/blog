@@ -41,7 +41,7 @@ Things had to change.
 
 ## Early wins
 
-I started at the beginning with the builds to eliminate the adage, “Worked on my machine, ops problem now.” The team used Microsoft Team Foundation Server for source control, which meant the build controller technology was already present. I installed the controller and a couple of agents so that all the software was built against an independent machine. This highlighted dependencies that were present on the developer machines and needed to be installed on the servers.
+I started at the beginning of the process with the builds so I could eliminate the adage, “worked on my machine, ops problem now.” The team used Microsoft Team Foundation Server for source control, which meant the build controller technology was already present. I installed the controller and a couple of agents so that all the software was built against an independent machine. This highlighted dependencies that were present on the developer machines and needed to be installed on the servers.
 
 Next, I wrote a couple of small console applications to deploy the web code and the databases. The first used Microsoft Web Deploy to automate consistent deployments of the web code. We still updated connection strings manually, which isn’t great, but it was a start. The second console application ran a series of database scripts within a single transaction and rolled back the database deployment in the event of a failure. This method reduced the error rate and the time it took for deployments since the DBAs no longer had to open the scripts and manually execute them.
 
