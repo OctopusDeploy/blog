@@ -10,31 +10,7 @@ tags:
  - Database Deployments
 ---
 
-It's 2:00 AM on Saturday sometime in the fall of 2011.  I'm up for one reason, to help deploy some software to production.  At 10 minutes to 2:00 AM, everyone jumps on a conference call.  
-
-- Me: Alright, let's get this party started.
-- Ops: Alright, I'll add [app_offline.htm](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/advanced-enterprise-web-deployment/taking-web-applications-offline-with-web-deploy#task-overview) to both servers
-- QA: Verified, getting a maintenance message for the application
-- Me: DBA, go ahead and start running the database scripts
-- DBA: Starting
-- Me: Ops, go ahead and start deploying the code
-- Ops: Okay, taking Server A out of the load balancer
-- QA: Confirmed, Server A is out of the load balancer
-- Ops: Deploying Code, and I'm done for Server A, removing app_offline.htm
-- QA: Getting an error on the server, something about a column missing
-- Me: I don't think the database scripts have finished
-- DBA: Nope, still running them
-- QA: Let me know when they're finished
-- DBA: Okay, now they are done
-- QA: Code has been verified on Server A
-- Ops: Adding Server A into the load balancer, removing Server B and removing app_offline.htm
-- QA: Verified Server A is in the load balancer, but I am getting an error about missing columns on Server B
-- Ops: I haven't deployed to Server B yet
-- QA: Ah, okay, let me know when you're done
-
-Sadly, that kind of deployment was very, very common for the first 11 years of my career as a developer.  Fast deployments for that application took two hours; average deployments took long enough to see the sunrise.  When deployments take at least two hours to deploy the code, run the database scripts, and verify the changes, there is no way we could do them in the middle of the day.  We had a robust load balancer and plenty of hypervisors to run VMs in production.  Why weren't we doing Blue/Green deployments?  With Blue/Green deployments, we could deploy the code to production in the middle of the day to inactive servers in production and verify them.  At night (even 2:00 AM Saturday), run a script to tell the load balancer to point all traffic to the new servers.  Simple, it was the database.
-
-I have a feeling that the database is what is preventing a lot of you from doing Blue/Green deployments.  More often than not, there is a single database which 1 to N VMs points to.  It is possible to do Blue/Green deployments with a database such as SQL Server, Oracle, MySql, or PostgreSQL.  In this post, I will walk through some techniques on how to do that.  
+The worst time to deploy software is 2:00 AM on Saturday.  It ruins Friday night, can't do anything fun because I have to go to bed early.  And it ruins Saturday day because I am so tired from waking up in the middle of the night.  I learned that fact by working on an application where that deployment time was mandated.  Fast deployments for that application took two hours; average deployments took long enough to see the sunrise.  What frustrated me was a load balancer was in front of the VMs hosting the application.  I wanted deploy to a VMs not in the load balancer during the middle of the day, verify the code when we are not exhausted, and at night run a quick script to change the load balancer. In other words, why weren't we doing Blue/Green deployments?  Simple, it was the database which tripped everything up.  This was back in 2010/2011 and it was for a ASP.NET Webforms application.  The .NET stack, and my experience has come a long way since then.  It is possible to do Blue/Green deployments with a database such as SQL Server, Oracle, MySql, or PostgreSQL.  In this post, I will walk through some techniques on how to do that.  
 
 !toc
 
@@ -44,11 +20,9 @@ Before diving into the weeds, a brief intro on Blue/Green deployments.  Blue/Gre
 
 ![](https://i.octopus.com/docs/deployment-patterns/blue-green-deployments/images/3278250.png)
 
-There are several advantages to doing this.  Rollbacks should be easy, only a matter of switching from blue to green or green to blue.  When a switchover does occur, it should be seamless as the code has already been running, there is no need to wait for it to compile or "warm-up."  And changes can be verified in production without having any customers hitting the code, making the deployment much less risky.  If something doesn't work, don't make the switch, try again at a later time.
+There are several advantages to doing this.  Rollbacks should be easy, only a matter of switching from blue to green or green to blue.  When a switchover does occur, it should be seamless as the code has already been running, there is no need to wait for it to compile or "warm-up."  And changes can be verified in production without having any customers hitting the code, making the deployment much less risky.  If something doesn't work, don't make the switch, try again at a later time. 
 
-## Not All Applications Can use a Blue/Green Deployment Strategy
-
-//TODO: Write this section
+Before diving into too much farther into the article, I should point out not all applications can take advantage of Blue/Green deployments.  It is a combination of architecture, how stateful the application is, and the technology used.  The more stateless and decoupled the application is, the better chance it can be deployed using the Blue/Green deployment strategy.  A .NET Core Web API with a Angular front-end is suited much better for Blue/Green deployments than a ASP.NET WebForms application without a business logic or data layer and requires the sticky sessions from the load balancer.
 
 ## The Scenario
 
@@ -105,6 +79,8 @@ Avoid the following if at all possible:
 ## Backfill the new column with data
 
 With Blue/Green deployments, the script to backfill the new column had to be run twice in our scenario.  Even then, there is the risk of the second run taking a while or getting missing data from API requests.  There are too many what-ifs.  It is easy to go a little overboard thinking of all the possible scenarios.  This is why I recommend taking the backfill script out of the equation.  In other words, but don't write scripts to backfill `CustomerFullName`.  Have the code backfill the data over time as well as contain the logic to handle when no data is found.
+
+//TODO: Reword this a bit, because we can do a backfill script, but it is done through the API not SQL
 
 There is not a set in stone solution on how to have the code accomplish backfilling of the `CustomerFullName` column.  Every application has its own rules about patterns and practices to follow.  I am going to suggest a couple of approaches, but use them as guidelines.  Follow your application's patterns and practices.  It is better to have consistency in the code than it is to do something which you feel is correct "correct."  
 
@@ -415,7 +391,7 @@ After the code has been deployed and has been running for a while, then it is fi
 
 ## Common Database Change Scenarios
 
-This post covered a very complex scenario, the combination of two columns into one.  There are several other database change scenarios to see which of the above techniques and recommendations can be used.
+This post covered a very complex scenario, the combination of two columns into one.  There are several other database change scenarios detailed in the list below.  I've included which of the above sections could be applied to the scenario.
 
 - Add a new column -> follow all the steps except deleting old columns and handling legacy columns
 - Renaming a column -> Don't rename.  Follow the steps above to add a new column and delete the old column.
@@ -426,3 +402,12 @@ This post covered a very complex scenario, the combination of two columns into o
 - Adding a new view/stored procedure -> Very similar to adding a new column.  The updated code will use the new view/stored procedure; the old code will not use the view/stored procedure. 
 - Updating an existing view/stored procedure -> As long as columns aren't removed from a view, this should be fine.  If columns are removed, then the process to delete columns from above should be followed.
 - Removing a view/stored procedure -> Very similar process to removing columns.  Except there won't be data, just references in code and potentially other stored procedures.
+
+## Multiple Applications connecting to a single database
+
+I've worked on an application which was one of dozen or so which connected to the same database.  The application list was split amongst three or four teams.  To keep things somewhat organized all common tables and stored procedures were in the `dbo` schema, while tables and stored procedures only used by a single application where in an application schema.  That reduces possible database changes to add only to the `dbo` schema, while having a bit more flexibility in the application schema.  
+
+## Wrapping Up
+
+If you takeaway anything from this post it is this: Blue/Green deployments with a database will require more planning on how a change is implemented than doing a standard deployment with an outage.  It is a lot like playing chess, where you will have to think several steps ahead.  Blue/Green deployments are not for every application.  It requires the right alignment of architecture, infrastructure and tooling.  If you are considering Blue/Green deployments, take a feature with a database change and walk through what it would take to implement that using a Blue/Green deployment strategy.  Do you have to change anything in your application's architecture?  Is the necessary infrastructure, such as a load balancer and additional VMs, in place?  Can your CI/CD tool support blue/green deployments?
+
