@@ -1,5 +1,5 @@
 ---
-title: Automating developer machine setup With Chocolatey
+title: Automating developer machine setup with Chocolatey
 description: Learn how to automate a developer machine setup using Chocolatey
 author: bob.walker@octopus.com
 visibility: public
