@@ -18,4 +18,4 @@ The format of DevOpsDays London includes a single track of 30-minute talks in th
 
 There is still time to register!  You can use the code _**DODL19_OCTOPUS20**_ to get a 20% discount, and you can register [here](https://devopsdays.org/events/2019-london/registration/).
 
-If you’re already coming, be sure to say hi to the team, and grab some stickers. We have some Octopus T-Shirts to give away to, so get in early!
+If you’re already coming, be sure to say hi to the team, and grab some stickers. We have some Octopus T-Shirts to give away too, so get in early!
