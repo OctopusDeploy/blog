@@ -12,13 +12,13 @@ tags:
 
 Managing disconnected user databases is a major pain point, not to mention security hole, for any piece of infrastructure in an organization. Kubernetes is no exception, because by default any users of the system are managed by Kubernetes itself.
 
-A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means exiting login providers like Google or Microsoft can be used to verify a users credentials.
+A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means exiting login providers like Google or Microsoft can be used to verify user credentials.
 
 In this blog post we'll look at how to integrate Minikube with Google to provide browser based logins in Kubernetes.
 
 ## Create the OAuth client
 
-The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop down list. Then from the **Create Credentials** dropdown select the **OAuth Client ID** option.
+The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop down list, ore create a new project. Then from the **Create Credentials** dropdown select the **OAuth Client ID** option.
 
 ![](oauth-client-id.png "width=500")
 
@@ -29,6 +29,8 @@ Select the **Other** option, and set the name of the client to **minikube**.
 You will now see two codes: the **Client ID** and the **Client secret**. Make a note of both these codes, as we'll need them later on.
 
 ![](codes.png "width=500")
+
+With these codes generated we can boot up Minikube.
 
 ## Configure Minikube with the OAuth details
 
@@ -89,7 +91,7 @@ minikube   Ready    master   4m49s   v1.15.2
 
 In preparation for our new Google user we need to define a `ClusterRole` to give them administrator access, and a `ClusterRoleBinding` to bind the user to the role.
 
-Here is the `ClusterRole` YAML which gives our user administrator access to the Minikube cluster:
+Here is the `ClusterRole` YAML which gives a user administrator access to the Minikube cluster:
 
 ```yaml
 kind: ClusterRole
@@ -102,7 +104,7 @@ rules:
   verbs: ["*"]
 ```
 
-Here is the `ClusterRoleBinding` YAML which maps the new user (myself as `matthew.casperson@octopus.com` in this case) to the role we defined above.
+Here is the `ClusterRoleBinding` YAML which maps the new user (myself as `matthew.casperson@octopus.com` in this case) to the role we defined above:
 
 ```yaml
 kind: ClusterRoleBinding
@@ -118,7 +120,7 @@ roleRef:
   name: admin-role
 ```
 
-Save the contents of these files to `clusterrole.yaml` and `clusterrolebinding.yaml`, and then apply them with the commands
+Save the contents of these files to `clusterrole.yaml` and `clusterrolebinding.yaml`, and then apply them with the commands:
 
 ```
 kubectl apply -f clusterrole.yaml
@@ -129,9 +131,9 @@ kubectl apply -f clusterrolebinding.yaml
 
 You may be familiar with OAuth logins already, as they are commonly used to authenticate users in web applications.
 
-Authenticating users from a console application is a little different. We still need the user to open a web page and verify themselves with Google, but `kubectl` won't interact with a a web browser by itself, so we need some other way to generate these codes.
+However, authenticating users from a console application is a little different. We still need the user to open a web page and verify themselves with Google, but `kubectl` won't interact with a web browser by itself, so we need some other way to generate these codes.
 
-This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser to generate the codes that `kubectl` needs in order to authenticate a user.
+This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser to generate, which in turn will supply the codes that `kubectl` needs in order to authenticate a user.
 
 To install `k8s-oidc-user`, make sure you have the [Go tools installed](https://golang.org/doc/install), and then run:
 
@@ -162,7 +164,7 @@ Opening the URL presents the familiar Google login page. Once you confirm your a
 
 The code under the `users` section is all we need, so replace the existing `users` section in the `~/.kube/config` file, and change the `contexts.user` parameter to the new user name. You'll end up with a `~/.kube/config` file something like this:
 
-```
+```yaml
 apiVersion: v1
 clusters:
 - cluster:
