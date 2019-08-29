@@ -27,26 +27,25 @@ This update delivers two key advantages:
 
 ## Cloning Tenants 
 
-While we're speaking of saving mouse clicks... 
-Creating a new tenant, applying the applicable tags, linking it to the projects and environments, and entering the variable values can be labourious.  Existing tenants can now be easily cloned. 
+While we're speaking of saving mouse clicks, it's now possible to clone tenants. Previously, you would have to create a new tenant, apply the relevant tags, link it to the appropriate projects and environments, and enter the variable values.  This laborious process is now something quick and straightforward.
 
 ![Clone a tenant](tenant-clone.png "width=500")
 
 ## More health check scheduling options 
 
-Machine policies previously allowed only the interval between health checks to be configured. 2019.8 brings the ability to supply a cron expression, or to configure health checks to never run. 
+Previously, you could only configure the interval between health checks in a machines policy. Octopus 2019.8 brings the ability to supply a cron expression, or to configure health checks never to run. 
 
 ![Health Check Cron Expression](health-check-cron.png "width=500")
 
-## Allow overriding namespace in Kubernetes steps
+## Overriding the namespace available in all Kubernetes step types
 
-While the _Upgrade a Helm Chart_ allowed specifying the namespace, the other Kubernetes steps always used the namespace from the Kubernetes deployment target.  From 2019.8, the ability to override the target namespace by specifying it directly on the step has been added to all Kubernetes step types. 
+While the _Upgrade a Helm Chart_ step allowed specifying the namespace, the other Kubernetes steps always used the namespace from the Kubernetes deployment target.  From Octopus 2019.8, the ability to override the target namespace by specifying it directly on the step is available to all Kubernetes step types. 
 
 ![Namespace on Kubernetes step](kubernetes-step-namespace.png "width=500")
 
-## Deploy Release steps can now be used in rolling deployments
+## Rolling deployments can now include Deploy Release steps
 
-[Deploy Release steps](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step) were prevented from being used in [rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments).  As many of you pointed out, there are certainly scenarios where this makes sense. [So now they can](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step#rolling-deployments). 
+[Rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments) can now include [Deploy Release steps](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step#rolling-deployments).  Previously, rolling deployments excluded this step type but as many of you pointed out, there are specific scenarios where this makes sense. 
 
 ![Rolling deploy release step](rolling-deploy-release.png "width=500")
 
@@ -70,9 +69,9 @@ would evaluate to `Octopus`
 
 ## Copy and paste to add certificates 
 
-Uploading certificates into the Octopus certificate library previously required selecting the certificate as a file. This is inconvenient when the base64 or PEM representation is sitting in your clipboard. 
+Uploading certificates into the Octopus certificate library previously required selecting the certificate as a file. This requirement was inconvenient when the base64 or PEM representation was sitting in your clipboard. 
 
-Now when storing a certificate it can be pasted directly into the portal. 
+Now when storing a certificate, it can be pasted directly into the portal. 
 
 ![Paste certificate as text](certificate-text.png "width=500")
 
