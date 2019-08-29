@@ -12,22 +12,24 @@ tags:
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)
 
-Octopus Deploy 2019.8 is now available, and it includes a bunch of small but significant enhancements to make your day-to-day deployments better. The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully, there's something for everyone in this one. 
+Octopus Deploy 2019.8 is now available. 
+
+The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully, there's something for everyone in this one. 
 
 ## Streamlined deployment process editor
 
 2019.8 brings an improved experience when navigating between steps in a deployment process:
 
-![Deployment Process Step Sidebar](deployment-process-editor-sidebar.gif "width=500")
+![Deployment Process Step Sidebar](deployment-process-sidebar.gif "width=500")
 
 This update delivers two key advantages:
 
-- Visibility: You can now see the entire process while editing a step.  This is very useful when referencing other steps names in custom scripts or variables.
+- Visibility: You can now see the entire process while editing a step.  This is particularly useful when referencing other steps names in scripts or variables.
 - Usability: Jumping between deployment steps could previously be painful, especially for processes with many steps.  This change will hopefully save some precious seconds (and reduce the wear on your mouse). 
 
 ## Cloning Tenants 
 
-While we're speaking of saving mouse clicks, it's now possible to clone tenants. Previously, you would have to create a new tenant, apply the relevant tags, link it to the appropriate projects and environments, and enter the variable values.  This laborious process is now something quick and straightforward.
+While we're speaking of saving mouse clicks, it's now possible to clone tenants. Creating a new tenant, applying the relevant tags, linking it to the appropriate projects and environments, and entering the variable values can be tedious.  This process can now be skipped by cloning an existing tenant. 
 
 ![Clone a tenant](tenant-clone.png "width=500")
 
@@ -45,7 +47,7 @@ While the _Upgrade a Helm Chart_ step allowed specifying the namespace, the othe
 
 ## Rolling deployments can now include Deploy Release steps
 
-[Rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments) can now include [Deploy Release steps](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step#rolling-deployments).  Previously, rolling deployments excluded this step type but as many of you pointed out, there are specific scenarios where this makes sense. 
+[Rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments) can now include [Deploy Release steps](https://octopus.com/docs/deployment-process/projects/coordinating-multiple-projects/deploy-release-step#rolling-deployments).  Previously, rolling deployments excluded this step type but as many of you pointed out, there are scenarios where this makes sense. 
 
 ![Rolling deploy release step](rolling-deploy-release.png "width=500")
 
