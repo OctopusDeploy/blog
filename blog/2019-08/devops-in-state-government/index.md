@@ -11,7 +11,7 @@ tags:
  - Government
 ---
 
-![Illustration showing an inifite feedback loop surrounding a government building](blogimage-devopgovernment.png)
+![Illustration showing an infinite feedback loop surrounding a government building](blogimage-devopgovernment.png)
 
 Governments are often known as slow moving bureaucracies, but that doesn't mean it's impossible to implement better processes within government agencies. 
 
@@ -35,27 +35,25 @@ The agency I joined had a lot of problems, and the first thing I needed to do wa
 
 Things needed to change, badly.
 
+## Early wins
+
 I started at the beginning of the process with the builds to eliminate the adage, “Worked on my machine, ops problem now.” The team used Microsoft Team Foundation Server for source control, which meant the build controller technology was already present. I installed the controller and a couple of agents so that all software was built against an independent machine. This highlighted dependencies that were present on the developer machines but not on the servers and needed to be installed.
 
-Next, I tackled web code deployments. I learned about Microsoft Web Deploy and wrote a small console application that used it to consistently deploy the web code. This required a small change in the build process to produce the zip file in a way that Web Deploy expected. Using web.config transforms, we got most of the way to automating web code deployments, but we still had to update connection strings manually. Not great, but it was a start.
+Next, I wrote a couple of small console applications to deploy the web code and the databases. The first used Microsoft Web Deploy to automate consistent deployments of the web code. We still had to update connection strings manually, which isn't great, but it was a start. The second console application ran a series of database scripts within a single transaction and rolled back the database deployment in the event of a failure. This method reduced the error rate and the time it took for deployments since the DBAs no longer had to open the scripts one at a time to execute.
 
-For database code, I wrote another small console application that read an XML file that specified the order to run the scripts. Unlike the manual way of running the scripts, the console application ran the scripts within a single transaction and rolled back in the event of a failure. Not only did this method reduce the error rate, but it also reduced the time it took for deployments since the DBAs no longer had to open the scripts one at a time and execute.
-
-With these two console applications, we reduced the failed deployment rate as well as reduced the time it took to complete them. The skepticism and “that’s how we’ve always done it,” mentality morphed into acceptance. Weekend deployments weren’t completely eliminated, but they were significantly reduced, which made for happier devs and operations folks.
-
-The console applications were eventually combined into an automated deployment solution that consisted of a server, agents on target machines, and a web-based interface. Developers had the ability to pull directly from source control, build, and schedule deployments for a later date and time. This solution further reduced the failed deployment rate and sped up the deployment process all but eliminating the need for weekend work. Eventually, the developers outgrew the solution and needed something more than my programming skills could deliver.
+With these two improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process all but eliminating the need for weekend work. This progress made for much happier devs and operations folks.
 
 ## Building vs buying tools
 
-The team was happily using my in-house deployment solution when a contractor gave us a demonstration of a tool he’d come across for automating deployments, Octopus Deploy. After the demonstration, one developer was adamant we needed Octopus. As the proud papa of my solution, I was reluctant to abandon my creation.  By this time, I’d taken on the additional responsibility of being the Data Team supervisor, so I had less time to code, and I could no longer keep up with feature requests from the development teams. Octopus Deploy had a team of developers doing this as their full-time job, and I was just one person with limited availability. The final nail in my solution’s coffin was when a developer showed me he had to answer 14 questions to set up a deployment.  Compared to Octopus, this was both cumbersome and inefficient. Setting my pride aside, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
+The team used my in-house deployment solution until a contractor demonstrated a tool he used for automating deployments, Octopus Deploy. I was reluctant to abandon my creation, but by this time, I’d taken on the additional responsibility of being the Data Team supervisor, which meant I had less time to code, and I couldn't keep up with feature requests. Octopus Deploy, on the other hand, had a team of developers doing this as their full-time job. Setting my pride aside, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
 
-This illustrates the classic problem of building in-house tools vs buying commercial ones. I'm happy we chose an off-the-shelf solution in this instance. Sometimes it's an advantage to build and maintain in-house tools but it's important to ask the question and weigh up the costs. 
+I was happy to implement some early improvements with the in-house tool I developed, but moving to an off-the-shelf solution was the right move for the long term.
 
 ## From confrontation to collaboration
 
 Development tools can be a great enabler of teams to automate processes and solve problems but people and communication are critical to the success of DevOps and achieving change. As we automated more processes, tension between teams began to ease as constant fire-fighting fell by the wayside. An organic byproduct was cross-team communication increased and became collaborative discussions versus heated finger-pointing.  Where once DBAs would respond with, “It’s not the database server; it has to be your code.” They started saying, “Let’s take a look at the execution plan and see if there can be some efficiencies gained.” Your problem became our problem.  Developers stopped coming directly to me, red in the face, yelling about how my team was impossible to work with.  Instead, they consulted the DBA team to see if a design might be improved, a stored procedure could be enhanced, or if they could come up with index recommendations.
 
-This is a great example of development teams and operations teams working together. It was difficult at first but we slowly built trust and teams started worked togther more and more. This was one of the most rewarding parts of the journey. 
+This is a great example of development teams and operations teams working together. It was difficult at first but we slowly built trust and teams started worked together more and more. This was one of the most rewarding parts of the journey. 
 
 One of the greatest lessons here was to talk to separate teams first to get them on board and then bring them together to agree on new processes. No one likes surprises and this approach worked very well. 
 
