@@ -15,7 +15,7 @@ tags:
 
 Governments are often slow moving bureaucracies, but that doesn’t mean it’s impossible to implement better processes within government agencies. 
 
-In 2011, I was hired as a Configuration Manager at a small US state government agency. I was  given a challenging mandate that took years to achieve:
+In 2011, I was hired as a Configuration Manager at a small US state government agency. I had a challenging mandate that took years to achieve:
 
 - Automate the manual processes to improve the reliability of software deployment.
 - Reduce the length of time it took to deliver.
@@ -24,14 +24,14 @@ In 2011, I was hired as a Configuration Manager at a small US state government a
 In this post, I’ll cover the approaches I took to achieve this and some of the common pitfalls you might face in a similar environment. 
 
 - Prioritizing and tackling the biggest problems first.
-- Building vs buying tools.
+- Building vs. buying tools.
 - Communication and collaboration.
 - Constant progress and next steps.
 - The (eventual) result.
 
 ## Prioritizing and tackling the biggest problems first
 
-The agency I joined had a lot of problems, so the first thing I did was learn how everything was structured and operated. Then, I prioritized my first steps to improve things. The agency had a number of in-house applications and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled by zipping up a bunch of scripts with a document listing the execution order, which was then copied to a file share for the DBAs to pick up. Inevitably, deployments failed for any one of the following reasons:
+The agency I joined had a lot of problems, so the first thing I did was learn how everything was structured and operated. Then, I prioritized my first steps to improve things. The agency had several in-house applications, and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled by zipping up a bunch of scripts with a document listing the execution order, which was then copied to a file share for the DBAs to pick up. Inevitably, deployments failed for any one of the following reasons:
 
 - A developer didn’t mention a third-party dependency that needed to be installed on the web server. 
 - The scripts for the database changes weren’t tested against the current state of the production database.
@@ -43,11 +43,11 @@ Things had to change.
 
 I started at the beginning with the builds to eliminate the adage, “Worked on my machine, ops problem now.” The team used Microsoft Team Foundation Server for source control, which meant the build controller technology was already present. I installed the controller and a couple of agents so that all the software was built against an independent machine. This highlighted dependencies that were present on the developer machines and needed to be installed on the servers.
 
-Next, I wrote a couple of small console applications to deploy the web code and the databases. The first used Microsoft Web Deploy to automate consistent deployments of the web code. We still updated connection strings manually, which isn't great, but it was a start. The second console application ran a series of database scripts within a single transaction and rolled back the database deployment in the event of a failure. This method reduced the error rate and the time it took for deployments since the DBAs no longer had to open the scripts and manually execute them.
+Next, I wrote a couple of small console applications to deploy the web code and the databases. The first used Microsoft Web Deploy to automate consistent deployments of the web code. We still updated connection strings manually, which isn’t great, but it was a start. The second console application ran a series of database scripts within a single transaction and rolled back the database deployment in the event of a failure. This method reduced the error rate and the time it took for deployments since the DBAs no longer had to open the scripts and manually execute them.
 
 With these two improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process, all but eliminating the need for weekend work. This progress made for much happier devs and operations folks.
 
-## Building vs buying tools
+## Building vs. buying tools
 
 The team used my in-house deployment solution until a contractor demonstrated a tool he used for automating deployments, Octopus Deploy. I was reluctant to abandon my creation, but I’d also taken on the responsibilities of the Data Team supervisor, which meant I had less time to code, and I couldn’t keep up with feature requests. Octopus Deploy, on the other hand, had a team of developers doing this as their full-time job. Setting aside my pride, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
 
@@ -55,7 +55,7 @@ I was happy to implement some early improvements with the in-house tools I devel
 
 ## From confrontation to collaboration
 
-As we automated more processes, tension between the teams, and the constant finger pointing, began to ease. With well defined and automated processes in place, the teams started working together to solve problems instead of looking for ways to blame each other. It was difficult at first, but I built trust with the teams by talking to them individually to get them on board, and then together to agree on new processes.
+As we automated more processes, the tension between the teams, and the constant finger-pointing, began to ease. With well defined and automated processes in place, the teams started working together to solve problems instead of looking for ways to blame each other. It was difficult at first, but I built trust with the teams by talking to them individually to get them on board, and then together to agree on new processes.
 
 ## Constant progress and next steps
 
@@ -81,4 +81,4 @@ I remember a compliment from a developer who said he loved the fact he could cli
 
 ## Conclusion
 
-Introducing change and DevOps concepts in a government organization can be slow and challenging, but it’s definitely possible. I was successful by prioritising and tackling the biggest problems first, buying tools to simplify and standardise, and by focusing on communication and collaboration to get other teams on board we made constant progress that allowed us to chip away at the obstacles one by one.
+Introducing change and DevOps concepts in a government organization can be slow and challenging, but it’s definitely possible. I was successful by prioritizing and tackling the biggest problems first, buying tools to simplify and standardize, and by focusing on communication and collaboration to get other teams on board we made constant progress that allowed us to chip away at the obstacles one by one.
