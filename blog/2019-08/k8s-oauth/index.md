@@ -22,7 +22,7 @@ The first step is to create an OAuth client in Google. Open https://console.clou
 
 ![](oauth-client-id.png "width=500")
 
-Select the **Other** option, and set the name of the client to **Minikube**.
+Select the **Other** option, and set the name of the client to **minikube**.
 
 ![](other-client.png "width=500")
 
@@ -36,7 +36,7 @@ To allow Minikube to accept Google logins, we need to pass the following paramet
 
 * --extra-config=apiserver.authorization-mode=RBAC
 * --extra-config=apiserver.oidc-issuer-url="https://accounts.google.com"
-* --extra-config=apiserver.oidc-client-id=<Client ID>
+* --extra-config=apiserver.oidc-client-id=\<Client ID\>
 * --extra-config=apiserver.oidc-username-claim=email
 
 These values enable RBAC security, configure the OAuth Client ID we just created, and specify that the email address of the Google user becomes the Kubernetes username.
