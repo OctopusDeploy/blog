@@ -10,6 +10,10 @@ tags:
  - Octopus
 ---
 
+Getting started with a test Kubernetes cluster has been made simple thanks to the [Minikube project](https://kubernetes.io/docs/tasks/tools/install-minikube/). By using the HyperV functionality is Windows 10, a test Kubernetes cluster can be created in just a few minutes.
+
+In this blog post we'll run through the process of configuring HyperV, installing `kubectl` and Minikube, and interacting with the test Kubernetes cluster.
+
 ## Create an external switch
 
 Minikube requires an external HyperV switch to operate, and you may find that you don’t have one by default.
@@ -153,3 +157,11 @@ The command will be executed via the worker tentacle to interact with the local 
 
 ![](script-result.png "width=500")
 *The script result, which mirrors the result when running kubectl locally.*
+
+## Conclusion
+
+Minikube is an easy way to get a test Kubernetes cluster up and running. In Windows, Minikube utilizes HyperV, and requires an external switch to operate. Once started, Minikube configures `kubectl` and we can start running commands against the test cluster.
+
+It is also possible to interact with the Minikube cluster from Octopus. By using a worker tentacle on the same VM as the Minikube, a Kubernetes target can issue commands to the private IP of the cluster.
+
+For more information on deploying to Kubernetes, please see [our documentation](https://octopus.com/docs/deployment-examples/kubernetes-deployments).
