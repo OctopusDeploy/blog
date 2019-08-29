@@ -1,6 +1,6 @@
 ---
 title: Integrating OAuth with Kubernetes
-description: In this blog post we'll look at integrating Google OAuth into a Kubernetes cluster.
+description: In this blog post we’ll look at integrating Google OAuth into a Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2020-01-01
