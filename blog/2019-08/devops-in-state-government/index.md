@@ -13,25 +13,21 @@ tags:
 
 ![Illustration showing an inifite feedback loop surrounding a government building](blogimage-devopgovernment.png)
 
-## Introduction
-
-We’ve all heard the phrase “the speed of government” when describing things that move slowly. Implementing change in government is possible, but it's all about slow and steady progress. 
-
-Start-ups and government agencies both suffer from issues with standardization of builds, testing, consistent infrastructure, and reliable deployment processes. The biggest challenge with implementing a concept like DevOps is change. Let’s be honest, change is hard, but it doesn’t have to be bad. 
+Governments are often known as slow moving bureaucracies, but that doesn't mean it's impossible to implement better processes within government agencies. 
 
 In 2011, I was hired as a Configuration Manager at a small US state government agency. I was tasked with automating the manual processes to improve the reliability of software deployment, reduce the length of time it took to deliver, and to try eliminating the need to deploy on weekends. This was a challenging mandate and it took years to achieve.
 
 In this post, I'll cover the approaches I took to achieve this and cover some of the common pitfalls that you may face in a similar environment. 
 
-- Prioritising and tackling the biggest problems first
-- Building vs buying tools
-- Communication and collaboration
-- Constant progress and next steps
-- The (eventual) result
+- Prioritizing and tackling the biggest problems first.
+- Building vs buying tools.
+- Communication and collaboration.
+- Constant progress and next steps.
+- The (eventual) result.
 
-## Prioritising and tackling the biggest problems first
+## Prioritizing and tackling the biggest problems first
 
-The agency I joined had a lot of problems and the first thing I needed to do was learn how everything was currently operating and structured. Once I settled in and learned their processes, I was able to priotise my first steps to improve things. This agency had a number of in-house appliations and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled similarly by zipping up a bunch of scripts with a document explaining in which order to run them, then copying them to a file share for the DBAs to pick up. Inevitably, deployments would fail for any one of the following reasons:
+The agency I joined had a lot of problems, and the first thing I needed to do was learn how everything was structured and operated. After I'd settled in and learned their processes, I prioritized my first steps to improve things. The agency had a number of in-house applications and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled by zipping up a bunch of scripts with a document listing the execution order, then copying them to a file share for the DBAs to pick up. Inevitably, deployments failed for any one of the following reasons:
 
 - A developer neglected to mention there was a third-party dependency that needed to be installed on the web server. 
 - The scripts for the database changes weren’t tested to make sure they worked with the current state of the production database.
@@ -39,7 +35,7 @@ The agency I joined had a lot of problems and the first thing I needed to do was
 
 Things needed to change, badly.
 
-I felt the highest priority was to start at the beginning of the process with the builds so I could eliminate the adage, “worked on my machine, ops problem now.” The team was using Microsoft Team Foundation Server for source control, so the build controller technology was already present. I installed the controller as well as a couple of agents so that all software was built against an independent machine. This quickly brought to light any dependencies that were present on the developer machines that were not available on the servers and needed to be installed. Though this helped identify what had to be installed on the server, the web admins still occasionally forgot to install the dependencies on all the servers and deployment failures still occurred. That issue didn’t get resolved for several years.
+I started at the beginning of the process with the builds to eliminate the adage, “Worked on my machine, ops problem now.” The team used Microsoft Team Foundation Server for source control, which meant the build controller technology was already present. I installed the controller and a couple of agents so that all software was built against an independent machine. This highlighted dependencies that were present on the developer machines but not on the servers and needed to be installed.
 
 Next, I tackled web code deployments. I learned about Microsoft Web Deploy and wrote a small console application that used it to consistently deploy the web code. This required a small change in the build process to produce the zip file in a way that Web Deploy expected. Using web.config transforms, we got most of the way to automating web code deployments, but we still had to update connection strings manually. Not great, but it was a start.
 
