@@ -2,13 +2,15 @@
 title: Adding versions to your GitHub Actions
 description: GitHub Actions are a powerful new feature for GitHub users, but they lack native versioning capabilities. In this blog post, we’ll see how to implement versioning.
 author: matthew.casperson@octopus.com
-published: 2019-08-22
-visibility: private
-metaImage:
-bannerImage:
+published: 2019-08-29
+visibility: public
+metaImage: blogimg_versioning_githubactions.png
+bannerImage: blogimg_versioning_githubactions.png
 tags:
  - Octopus
 ---
+
+![Illustration showing GitHub CI processes with versions](blogimg_versioning_githubactions.png)
 
 [GitHub Actions](https://github.com/features/actions) are slowing rolling out to users as a beta. This new feature gives GitHub users a way to execute builds and deployments directly from their code using infrastructure managed by GitHub. This provides a lot of opportunities for developers, but while Actions are incredibly powerful and flexible, I immediately ran into the issue of versioning my builds.
 
