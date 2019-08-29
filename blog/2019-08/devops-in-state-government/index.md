@@ -21,7 +21,7 @@ Start-ups and government agencies both suffer from issues with standardization o
 
 In 2011, I was hired as a Configuration Manager at a small US state government agency. I was tasked with automating the manual processes to improve the reliability of software deployment, reduce the length of time it took to deliver, and to try eliminating the need to deploy on weekends. This was a challenging mandate and it took years to achieve.
 
-In this post, I'll explore the approaches I took to achieve this and cover some of the common pitfalls that you may face in a similar environment. 
+In this post, I'll cover the approaches I took to achieve this and cover some of the common pitfalls that you may face in a similar environment. 
 
 - Prioritising and tackling the biggest problems first
 - Building vs buying tools
@@ -30,13 +30,13 @@ In this post, I'll explore the approaches I took to achieve this and cover some 
 
 ## Prioritising and tackling the biggest problems first
 
-The environment I joined had a lot of problems and the first thing I needed to do was learn how everything was currently structured and setup. This government agency had a number of in-house appliations and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled similarly by zipping up a bunch of scripts with a document explaining in which order to run them, then copying them to a file share for the DBAs to pick up. Inevitably, deployments would fail for any one of the following reasons:
+The agency I joined had a lot of problems and the first thing I needed to do was learn how everything was currently operating and structured. Once I settled in and learned more about their processes, I was able to priotise my first steps to improve things. This agency had a number of in-house appliations and their deployment process left them wide open to problems. Web app builds were done on developer machines, zipped, and copied to a file share. Database changes were handled similarly by zipping up a bunch of scripts with a document explaining in which order to run them, then copying them to a file share for the DBAs to pick up. Inevitably, deployments would fail for any one of the following reasons:
 
 - A developer neglected to mention there was a third-party dependency that needed to be installed on the web server. 
 - The scripts for the database changes weren’t tested to make sure they worked with the current state of the production database.
 - Good old-fashion human error. 
 
-Things needed to change, badly.
+Things needed to change, badly. 
 
 I felt the highest priority was to start at the beginning of the process with the builds so I could eliminate the adage, “worked on my machine, ops problem now.” The team was using Microsoft Team Foundation Server for source control, so the build controller technology was already present. I installed the controller as well as a couple of agents so that all software was built against an independent machine. This quickly brought to light any dependencies that were present on the developer machines that were not available on the servers and needed to be installed. Though this helped identify what had to be installed on the server, the web admins still occasionally forgot to install the dependencies on all the servers and deployment failures still occurred. That issue didn’t get resolved for several years.
 
