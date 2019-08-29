@@ -10,6 +10,8 @@ tags:
  - Developer Machine Setup
 ---
 
+![Illustration showing developers installing SQL Server](img_blog_automatingsql_navy_2019.png)
+
 A few years ago, I worked at a company that made a big push to automate database deployments using Redgate's tooling. We opted for the dedicated database model, rather than the shared database model, which meant the 100+ developers at the company all had to install SQL Server Developer on their laptops.
 
 My team was the first to adopt the new tooling. At first, we tried going through each screen in the installation wizard together to ensure a similar setup, but that wasn't going to scale to 100+ developers, and we didn't want to repeat that process every time a new developer joined the organization. 
