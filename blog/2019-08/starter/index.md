@@ -1,6 +1,6 @@
 ---
 title: "Octopus Starter edition: Free for small teams"
-description: 
+description: TODO
 author: paul.stovell@octopus.com
 visibility: private
 published: 2019-09-02
