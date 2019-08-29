@@ -88,7 +88,7 @@ Once the installation has completed, we can interact with the Minikube cluster v
 
 ## Running some commands
 
-The minikube installation will update the file at `~/.kube/config`, which is the config file used by `kubectl`, with the details of the test cluster:
+The minikube installation will update the file at `~/.kube/config`, which is the configuration file used by `kubectl`, with the details of the test cluster:
 
 ```PowerShell
 PS C:\Users\Matthew> cat ~/.kube/config
@@ -152,7 +152,7 @@ We can now create a Kubernetes target pointing to the local URL of the Minikube 
 server: https://10.1.1.122:8443
 ```
 
-The Kubernetes target will use the certificate we uploaded eralier for authentication, and skip TLS verification for convenience.
+The Kubernetes target will use the certificate we uploaded earlier for authentication, skip TLS verification for convenience, and use the local tentacle worker by default.
 
 ::hint
 You could upload the certificate reference by the `certificate-authority` property in the `~/.kube/config` file and set that as the server certificate if you wanted to.
@@ -176,7 +176,7 @@ The command will be executed via the worker tentacle to interact with the local 
 
 ## Conclusion
 
-Minikube is an easy way to get a test Kubernetes cluster up and running. In Windows, Minikube utilizes HyperV, and requires an external switch to operate. Once started, Minikube configures `kubectl` and we can start running commands against the test cluster.
+Minikube is an easy way to get a test Kubernetes cluster up and running. In Windows Minikube utilizes HyperV, and requires an external switch to operate. Once started, Minikube configures `kubectl` and we can start running commands against the test cluster.
 
 It is also possible to interact with the Minikube cluster from Octopus. By using a worker tentacle on the same VM as the Minikube, a Kubernetes target can issue commands to the private IP of the cluster.
 
