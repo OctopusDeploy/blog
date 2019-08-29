@@ -1,5 +1,5 @@
 ---
-title: Octopus Starter edition: Free for small teams
+title: "Octopus Starter edition: Free for small teams"
 description: 
 author: paul.stovell@octopus.com
 visibility: private
