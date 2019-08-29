@@ -172,12 +172,14 @@ clusters:
 contexts:
 - context:
     cluster: minikube
+    # Make sure this is the same as the user below
     user: matthew.casperson@octopus.com
   name: minikube
 current-context: minikube
 kind: Config
 preferences: {}
 users:
+# This section came from k8s-oidc-helper
 - name: matthew.casperson@octopus.com
   user:
     auth-provider:
@@ -191,10 +193,12 @@ users:
 
 ```
 
-At this point you can use `kubectl` and you will be authenticated as the Google user.
+At this point when you use `kubectl` you will be authenticated as the Google user.
 
+::hint
 Note that potentially any Google user can generate codes to use with `kubectl`, but without a corresponding `ClusterRoleBinding`, these users will be effectively unauthorized to do anything.
+::
 
 ## Conclusion
 
-Integrating Kubernetes with OAuth providers removes the need to maintain a disconnected user database managed by Kubernetes itself, and allows you to leverage any existing account providers you may already have configured. The `k8s-oidc-user` allows users to generate the required codes, and after that `kubectl` works like it does for any other Kubernetes account.
+Integrating Kubernetes with OAuth providers removes the need to maintain a yet another disconnected user database managed by Kubernetes itself, and allows you to leverage any existing account providers you may already have configured. The `k8s-oidc-user` provides a way to generate the required codes, and after that `kubectl` works like it does for any other Kubernetes account.
