@@ -1,8 +1,8 @@
 ---
 title: Octopus Deploy 2019.8 - Streamlined deployment process editor, Tenant cloning, and more ...  
-description: Octopus 2019.8 introduces our redesigned deployment process editor, tenant cloning, and more ...
+description: Octopus 2019.8 introduces our streamlined deployment process editor, tenant cloning, and numerous other enhancements and improvements.
 author: michael.richardson@octopus.com 
-visibility: public
+visibility: private
 published: 2019-08-29
 metaImage: blogimage-shipping-2019-8.png
 bannerImage: blogimage-shipping-2019-8.png
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)
 
-We are shipping Octopus Deploy 2019.8.  The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully there's something for everyone in this one. 
+Octopus Deploy 2019.8 is now availabe and it includes a bunch of small but signficiant enhancements to make your day-to-day deployment lives better. The most visible change is an improvement to the deployment process editor, but there are many other enhancements, all of which have come from user requests.  Hopefully there's something for everyone in this one. 
 
 ## Streamlined deployment process editor
 
@@ -22,7 +22,7 @@ We are shipping Octopus Deploy 2019.8.  The most visible change is an improvemen
 
 This delivers two key advantages:
 
-- Visibility: You can now see the entire process while editing a step 
+- Visibility: You can now see the entire process while editing a step.  This is very useful when referencing other steps names in custom scripts or variables.
 - Usability:  Jumping between deployment steps could previously be painful, especially for processes with many steps.  This change will hopefully save some precious seconds (and reduce the wear on your mouse). 
 
 ## Cloning Tenants 
