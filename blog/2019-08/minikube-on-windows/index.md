@@ -88,7 +88,7 @@ Once the installation has completed, we can interact with the Minikube cluster v
 
 ## Running some commands
 
-The minikube installation will update the file at `~/.kube/config`, which is the configuration file used by `kubectl`, with the details of the test cluster:
+The minikube installation will update the file at `~/.kube/config`, the configuration file used by `kubectl`, with the details of the test cluster:
 
 ```PowerShell
 PS C:\Users\Matthew> cat ~/.kube/config
