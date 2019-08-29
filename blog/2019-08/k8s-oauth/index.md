@@ -10,15 +10,15 @@ tags:
  - Octopus
 ---
 
-Managing disconnected user databases is a major pain point, not to mention security hole, for any piece of infrastructure in an organization. Kubernetes is no exception, because by default any users of the system are managed by Kubernetes itself.
+Managing disconnected user databases is a major pain point, not to mention security hole, for any piece of infrastructure in an organization. Kubernetes is no exception, because by default the users of the system are specific to Kubernetes itself.
 
 A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means exiting login providers like Google or Microsoft can be used to verify user credentials.
 
-In this blog post we'll look at how to integrate Minikube with Google to provide browser based logins in Kubernetes.
+In this blog post we’ll look at how to integrate Minikube with Google to provide browser based logins in Kubernetes.
 
 ## Create the OAuth client
 
-The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop down list, ore create a new project. Then from the **Create Credentials** dropdown select the **OAuth Client ID** option.
+The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop down list, or create a new project. Then from the **Create Credentials** dropdown select the **OAuth Client ID** option.
 
 ![](oauth-client-id.png "width=500")
 
@@ -36,10 +36,10 @@ With these codes generated we can boot up Minikube.
 
 To allow Minikube to accept Google logins, we need to pass the following parameters:
 
-* --extra-config=apiserver.authorization-mode=RBAC
-* --extra-config=apiserver.oidc-issuer-url="https://accounts.google.com"
-* --extra-config=apiserver.oidc-client-id=\<Client ID\>
-* --extra-config=apiserver.oidc-username-claim=email
+* `--extra-config=apiserver.authorization-mode=RBAC`
+* `--extra-config=apiserver.oidc-issuer-url="https://accounts.google.com"`
+* `--extra-config=apiserver.oidc-client-id=<Client ID>`
+* `--extra-config=apiserver.oidc-username-claim=email`
 
 These values enable RBAC security, configure the OAuth Client ID we just created, and specify that the email address of the Google user becomes the Kubernetes username.
 
@@ -79,7 +79,7 @@ PS C:\Users\Matthew> minikube start --extra-config=apiserver.authorization-mode=
 * Done! kubectl is now configured to use "minikube"
 ```
 
-At this point Minikube has configured a local `~/.kube/config` file with administrator credentials, so we can use `kubectl` straight away.
+At this point Minikube has configured a local `~/.kube/config` file with administrator credentials, so we can use `kubectl` straight away. However, any actions will be performed as the local Kubernetes administrator rather than a Google user. This is OK though, as we have some additional configuration to do.
 
 ```
 PS C:\Users\Matthew> kubectl get nodes
@@ -131,9 +131,9 @@ kubectl apply -f clusterrolebinding.yaml
 
 You may be familiar with OAuth logins already, as they are commonly used to authenticate users in web applications.
 
-However, authenticating users from a console application is a little different. We still need the user to open a web page and verify themselves with Google, but `kubectl` won't interact with a web browser by itself, so we need some other way to generate these codes.
+However, authenticating users from a console application is a little different. We still need the user to open a web page and verify themselves with Google, but `kubectl` won’t interact with a web browser by itself, so we need some other way to generate these codes.
 
-This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser to generate, which in turn will supply the codes that `kubectl` needs in order to authenticate a user.
+This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser which will display the required Google token. We then paste back into the console, and `k8s-oidc-helper` generates the codes that `kubectl` requires to authenticate a user. Let's see how this process works.
 
 To install `k8s-oidc-user`, make sure you have the [Go tools installed](https://golang.org/doc/install), and then run:
 
@@ -188,9 +188,9 @@ users:
       config:
         client-id: 471129667683-049fg2q12m993hk8c5hq1jhf0ji1ske5.apps.googleusercontent.com
         client-secret: Cz2FbfSsue2RI_KKd2EawEjG
-        id-token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY2ZjgwZjM3ZjIxYzIzZTYxZjJiZTQyMzFlMjdkMjY5ZDY2OTUzMjkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNDcxMTI5NjY3NjgzLTA0OWZnMnExMm05OTNoazhjNWhxMWpoZjBqaTFza2U1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNDcxMTI5NjY3NjgzLTA0OWZnMnExMm05OTNoazhjNWhxMWpoZjBqaTFza2U1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyNjAzOTY1MzQzNTAzMjY0MDc5IiwiaGQiOiJvY3RvcHVzLmNvbSIsImVtYWlsIjoibWF0dGhldy5jYXNwZXJzb25Ab2N0b3B1cy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InlMSjhGRHZVdjhQVUktVDduN0hRSEEiLCJpYXQiOjE1NjcwNDk1MTIsImV4cCI6MTU2NzA1MzExMn0.Rhz_aiPvUVt3kotiv6nPeqK0JYJHjaOaaCPhMpEuEWUcNNaQjmFhIrMvbRYggtvSSnD7NYlrY02fTl9XfeBCssqhMcNpYpzehO08844w7_mjPZOLPRygZrVnWWTHvMdIHk4_oolDBYA1w6_whJ7T2ZTlRViEJJMEwkTaRCaG8BXdNg0CgvzhCpNB7BC-Dv9Xc2hvRmkzwZBJyDbtnkFfeDX9TDrQtdwbKtrhjWlTFdtlq8o0lJQKSfXRrL6fF36kQvWwSTHbB8GSfAZESsT6yaBfhKHsoByzahPw5uYjt3n5dtOoUt8kVgJfSTBzNedpsiVwpNM1YLzaBJQUGYNypQ
+        id-token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY2ZjgwZjM3ZjIxYzIzZTYxZjJiZTQyMzFlMjdkMjY5ZDY2OTUzMjkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNDcxMTI5NjY3NjgzLTA0OWZnMnExMm05OTNoazhjNWhxMWpoZjBqaTFza2U1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNDcxMTI5NjY3NjgzLTA0OWZnMnExMm05OTNoazhjNWhxMWpoZjBqaTFza2U1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyNjAzOTY1MzQzNTAzMjY0MDc5IiwiaGQiOiJvY3RvcHVzLmNvbSIsImVtYWlsIjoibUVFYufyutfBV5jYXNwZXJzb25Ab2N0b3B1cy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InlMSjhGRHZVdjhQVUktVDduN0hRSEEiLCJpYXQiOjE1NjcwNDk1MTIsImV4wegvfiye2NzA1MzExMn0.Rhz_aiPvUVt3kotiv6nPeqK0JYJHjaOaaCPhMpEuEWUcNNaQjmFhIrMvbRYggtvSSnD7NYlrY02fTl9XfeBCssqhMcNpYpzehO08844w7_mjPZOLPRygZrVnWWTHvMdIHk4_oolDBYA1w6_whJ7T2ZTlRViEJJMEwkTaRCaG8BXdNg0CgvzhCpNB7BC-Dv9Xc2hvRmkzwZBJyDbtnkFfeDX9TDrQtdwbKtrhjWlTFdtlq8o0lJQKSfXRrL6fF36kQvWwSTHbB8GSfAZESsT6yaBfhKHsoByzahPw5uYjt3n5dtOoUt8kVgJfSTBzNedpsiVwpNM1YLzaBJQUGYNypQ
         idp-issuer-url: https://accounts.google.com
-        refresh-token: 1/_fU4tKG3ymsn4ybwrLZWqPVNtggmDFgrYIqDfKrpSzVK0ZjefdoNX2ze9cyNc3-b
+        refresh-token: 1/_lGBydf3ymsn4ybwrLZWqPVNtggmDFgrYIqDfKrpSzVK0ZjkigfuNX2ze9cyNc3-b
       name: oidc
 
 ```
