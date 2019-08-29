@@ -26,7 +26,8 @@ In this post, I'll cover the approaches I took to achieve this and cover some of
 - Prioritising and tackling the biggest problems first
 - Building vs buying tools
 - Communication and collaboration
-- Modernize the infrastructure with infrastructure as code
+- Constant progress and next steps
+- The (eventual) result
 
 ## Prioritising and tackling the biggest problems first
 
@@ -54,15 +55,17 @@ The team was happily using my in-house deployment solution when a contractor gav
 
 This illustrates the classic problem of building in-house tools vs buying commercial ones. I'm happy we chose an off-the-shelf solution in this instance. Sometimes it's an advantage to build and maintain in-house tools but it's important to ask the question and weigh up the costs. 
 
-Development tools can be a great enabler of teams to automate processes and solve problems but people and communication are critical to the success of DevOps and achieving change.
-
 ## From confrontation to collaboration
 
-As things became more automated, tension between teams began to ease as constant fire-fighting fell by the wayside. An organic byproduct was cross-team communication increased and became collaborative discussions versus heated finger-pointing.  Where once DBAs would respond with, “It’s not the database server; it has to be your code.” They started saying, “Let’s take a look at the execution plan and see if there can be some efficiencies gained.” Your problem became our problem.  Developers stopped coming directly to me, red in the face, yelling about how my team was impossible to work with.  Instead, they consulted the DBA team to see if a design might be improved, a stored procedure could be enhanced, or if they could come up with index recommendations.
+Development tools can be a great enabler of teams to automate processes and solve problems but people and communication are critical to the success of DevOps and achieving change. As we automated more processes, tension between teams began to ease as constant fire-fighting fell by the wayside. An organic byproduct was cross-team communication increased and became collaborative discussions versus heated finger-pointing.  Where once DBAs would respond with, “It’s not the database server; it has to be your code.” They started saying, “Let’s take a look at the execution plan and see if there can be some efficiencies gained.” Your problem became our problem.  Developers stopped coming directly to me, red in the face, yelling about how my team was impossible to work with.  Instead, they consulted the DBA team to see if a design might be improved, a stored procedure could be enhanced, or if they could come up with index recommendations.
 
-## Infrastructure as Code
+This is a great example of development teams and operations teams working together. It was difficult at first but we slowly built trust and teams started worked togther more and more. This was one of the most rewarding parts of the journey. 
 
-One issue that continued to plague us was inconsistent environments. I learned about Infrastructure as Code and was immediately on board with the concept. Having no experience in any of the existing technologies (Chef, Puppet, Ansible, PowerShell DSC, etc…), I decided to try PowerShell DSC (Desired State Configuration). I quickly learned why all of the PowerShell courses say something like, “... and then there’s PowerShell DSC, but that’s a whole course in itself.” 
+One of the greatest lessons here was to talk to separate teams first to get them on board and then bring them together to agree on new processes. No one likes surprises and this approach worked very well. 
+
+## Constant progress and next steps
+
+At this point, we had made great process and we had automated the vast majority of our development and deployment processes. The next step was to review our priorities across development and operations.  One issue that continued to plague us was inconsistent environments. I learned about Infrastructure as Code and was immediately on board with the concept. Having no experience in any of the existing technologies (Chef, Puppet, Ansible, PowerShell DSC, etc…), I decided to try PowerShell DSC (Desired State Configuration). I quickly learned why all of the PowerShell courses say something like, “... and then there’s PowerShell DSC, but that’s a whole course in itself.” 
 
 Octopus Deploy gave me some great PowerShell experience, but DSC was definitely a different animal. After a bit of learning, I could demonstrate how to configure a bare metal server (a VM, to be honest) to functional IIS server in minutes. Not only that, I showed how I could combine the deployment power of Octopus Deploy with PowerShell DSC and push out configuration to servers just like an application deployment! Now that I had the web administrators on board, I turned to the database administrators. Working with the DBA team, we created a DSC script that would install, configure, and maintain SQL Servers and hooked that up to Octopus as well. The DBA team could now keep tabs on their servers and change things whenever they wanted. This reduced the friction between the Operations team and the DBA team.
 
@@ -84,6 +87,4 @@ I remember a compliment from a developer who said he loved the fact he could cli
 
 ## Conclusion
 
-Introducing change and implementing DevOps in a government organisation can be slow and challenging but it's definiely possible. I was able to be successful by prioritising and tackling the biggest problems first, buying tools to simplify and standardise, focus on communication and collaboration to get other teams on board and finally modernize our infrastructure once the higher priority items has been resolved.
-
-Our pace was slow, but like the snail, we were inching toward our end goal of being a DevOps shop. I’ve been gone almost five months from my previous job, but I’ve kept in contact with the team, and they’ve continued down the path that I started. It may be slow, but implementing change such as the DevOps concept in state government is indeed possible.
+Introducing change and introducing DevOps concepts in a government organisation can be slow and challenging but it's definiely possible. I was able to be successful by prioritising and tackling the biggest problems first, buying tools to simplify and standardise, focus on communication and collaboration to get other teams on board and constant progress allowed us to tackle other priorities.
