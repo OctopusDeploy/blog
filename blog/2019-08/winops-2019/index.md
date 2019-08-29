@@ -3,7 +3,7 @@ title: WinOps 2019 - Octopus talk and workshop
 description: We’re at WinOps 2019, and we’re running a workshop on Turbocharging your CI/CD pipeline and a talk on Turbocharging Azure DevOps with Octopus Deploy. 
 author: derek.campbell@octopus.com
 visibility: public
-published: 2019-08-29
+published: 2019-08-30
 bannerImage: blogimage-winops-turbocharging-azure.png
 metaImage: blogimage-winops-turbocharging-azure.png
 tags:
