@@ -178,6 +178,6 @@ The command will be executed via the worker tentacle to interact with the local 
 
 Minikube is an easy way to get a test Kubernetes cluster up and running. In Windows Minikube utilizes HyperV, and requires an external switch to operate. Once started, Minikube configures `kubectl` and we can start running commands against the test cluster.
 
-It is also possible to interact with the Minikube cluster from Octopus. By using a worker tentacle on the same VM as the Minikube, a Kubernetes target can issue commands to the private IP of the cluster.
+It is also possible to interact with the Minikube cluster from Octopus. By using a worker tentacle on the same PC as the Minikube VM, a Kubernetes target can issue commands to the private IP of the cluster.
 
 For more information on deploying to Kubernetes, please see [our documentation](https://octopus.com/docs/deployment-examples/kubernetes-deployments).
