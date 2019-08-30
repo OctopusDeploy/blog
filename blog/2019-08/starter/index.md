@@ -21,7 +21,7 @@ Octopus Deploy: Starter is a new edition of Octopus Deploy. It allows small team
     <li class="check">All users have administrator-level permissions and can't be restricted</li>
     <li class="check">You can only run two deployments in parallel</li>
     <li class="check">Not a time-limited trial</li>
-    <li class="check">Production and commercial use *is* permitted</li>
+    <li class="check">Production and commercial use <strong>is</strong> permitted</li>
 </ul>
 
 [Register for a Starter license](https://octopus.com/starter). 
