@@ -20,7 +20,7 @@ I genuinely struggled to understand what Jenkins X was, but after some trial and
 
 > The critical thing to note is that you need to clear your mind from any Jenkins experience you might already have.
 
-Internalizing these two statements is essential to appreciating what Jenkins X is. With that in mind, let's take a high-level look at Jenkins X.
+Internalizing these two statements is essential to appreciating what Jenkins X is. With that in mind, let’s take a high-level look at Jenkins X.
 
 ## It starts with the Kubernetes cluster
 
