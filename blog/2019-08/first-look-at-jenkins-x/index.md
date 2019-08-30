@@ -97,17 +97,17 @@ Another service installed by Jenkins X is ChartMuseum, which is a Helm repositor
 curl http://chartmuseum.jx.35.194.232.107.nip.io/index.yaml
 apiVersion: v1
 entries:
- jenkinx-spring-demo:
- - apiVersion: v1
-  appVersion: 0.0.1
-  created: "2019-08-28T19:25:22.445582847Z"
-  description: A Helm chart for Kubernetes
-  digest: 9e048b78247da2a28562771742454484dbaf35b10d14a0c0a668c3ba826d02c4
-  icon: https://raw.githubusercontent.com/jenkins-x/jenkins-x-platform/master/images/java.png
-  name: jenkinx-spring-demo
-  urls:
-  - charts/jenkinx-spring-demo-0.0.1.tgz
-  version: 0.0.1
+  jenkinx-spring-demo:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: "2019-08-28T19:25:22.445582847Z"
+    description: A Helm chart for Kubernetes
+    digest: 9e048b78247da2a28562771742454484dbaf35b10d14a0c0a668c3ba826d02c4
+    icon: https://raw.githubusercontent.com/jenkins-x/jenkins-x-platform/master/images/java.png
+    name: jenkinx-spring-demo
+    urls:
+    - charts/jenkinx-spring-demo-0.0.1.tgz
+    version: 0.0.1
 generated: "2019-08-28T19:32:00Z"
 ```
 
