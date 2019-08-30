@@ -4,9 +4,13 @@ description: TODO
 author: paul.stovell@octopus.com
 visibility: private
 published: 2019-09-02
+metaImage: blogimage-freestarterlicense.png
+bannerImage: blogimage-freestarterlicense.png
 tags:
  - Company
 ---
+
+![Octopus Free Starter license - free for small teams](blogimage-freestarterlicense.png)
 
 Years ago we had a free version of Octopus. Then we removed it. 
 
