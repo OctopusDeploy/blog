@@ -2,7 +2,7 @@
 title: "Octopus Starter edition: Free for small teams"
 description: "Octopus Deploy: Starter is a new edition of Octopus Deploy. It allows small teams to run a self-hosted Octopus Server, and deploy up to 10 targets, all free."
 author: paul.stovell@octopus.com
-visibility: private
+visibility: public
 published: 2019-09-02
 metaImage: blogimage-freestarterlicense.png
 bannerImage: blogimage-freestarterlicense.png
