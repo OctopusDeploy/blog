@@ -3,7 +3,7 @@ title: Installing Minikube in Windows
 description: Learn how to get a test Kubernetes environment in Windows with Minikuke
 author: matthew.casperson@octopus.com
 visibility: private
-published:
+published: 3000-01-01
 metaImage:
 bannerImage:
 tags:
