@@ -24,7 +24,7 @@ To view the list of switches, open the `HyperV Manager` and select `Virtual Swit
 
 *The HyperV actions menu.*
 
-In the screenshot below you can see that there are no existing external switches, so we need to create one by selecting the `External` option and clicking the `Create Virtual Switch` button.
+In the screenshot below, you can see there are no existing external switches, so we need to create one by selecting the `External` option and clicking the `Create Virtual Switch` button.
 
 ![](create-virtual-switch.png "width=500")
 
@@ -36,7 +36,7 @@ Connect the virtual switch to the PCs local network adapter (in this example, th
 
 *Creating a new HyperV external switch.*
 
-You will receive a warning that the network connection will de disrupted. Click `Yes` to continue.
+You will receive a warning that the network connection will be disrupted. Click `Yes` to continue.
 
 ![](warning.png "width=500")
 
@@ -44,14 +44,14 @@ You will receive a warning that the network connection will de disrupted. Click 
 
 ## Install kubectl
 
-The command line tool used to interact with Kubernetes is called `kubectl`, which we will install before we configure Minikube. `kubectl` can be installed 2 ways:
+The command-line tool used to interact with Kubernetes is called `kubectl`, which we will install before we configure Minikube. `kubectl` can be installed 2 ways:
 
 * With [Chocolatey](https://chocolatey.org/packages/kubernetes-cli) using the command `choco install kubernetes-cli`.
 * Manually downloaded from [https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/windows/amd64/kubectl.exe](https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/windows/amd64/kubectl.exe).
 
-::hint
+:::hint
 Note that the version of the latest download can be found at [https://storage.googleapis.com/kubernetes-release/release/stable.txt](https://storage.googleapis.com/kubernetes-release/release/stable.txt). Simply replace the `v1.15.0` in the first URL with the version returned by the second URL.
-::
+:::
 
 ## Install Minikube
 
@@ -113,7 +113,7 @@ users:
     client-key: C:\Users\Matthew\.minikube\client.key
 ```
 
-We can test that the installation is working by listing the nodes:
+We can test the installation is working by listing the nodes:
 
 ```PowerShell
 PS C:\Users\Matthew> kubectl get nodes
@@ -123,7 +123,7 @@ minikube   Ready    master   6m47s   v1.15.2
 
 ## Connecting Octopus to Minikube
 
-To use Minikube from Octopus, we need to upload the client certificate. Minikube splits the certificate and key into two files (referenced by the `client-certificate` and `client-key` properties in the `~/.kube/config` file), so we use [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html) to merge them into a single PFX file.
+To use Minikube from Octopus, we need to upload the client certificate. Minikube splits the certificate and key into two files (referenced by the `client-certificate` and `client-key` properties in the `~/.kube/config` file), so we use [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html) to merge them into a single PFX file:
 
 ```PowerShell
 & "C:\Program Files\OpenSSL-Win64\bin\openssl.exe" pkcs12 `
@@ -144,7 +144,7 @@ To allow Octopus to communicate with the local virtual machine, we need to creat
 
 ![](worker.png "width=500")
 
-*A polling worker tentacle running on the same mahcine as the minikube cluster.*
+*A polling worker tentacle running on the same machine as the minikube cluster.*
 
 We can now create a Kubernetes target pointing to the local URL of the Minikube cluster, which can be found from this line in the `~/.kube/config` file:
 
@@ -154,9 +154,9 @@ server: https://10.1.1.122:8443
 
 The Kubernetes target will use the certificate we uploaded earlier for authentication, skip TLS verification for convenience, and use the local tentacle worker by default.
 
-::hint
+:::hint
 You could upload the certificate reference by the `certificate-authority` property in the `~/.kube/config` file and set that as the server certificate if you wanted to.
-::
+:::
 
 ![](k8s-target.png "width=500")
 
@@ -176,7 +176,7 @@ The command will be executed via the worker tentacle to interact with the local 
 
 ## Conclusion
 
-Minikube is an easy way to get a test Kubernetes cluster up and running. In Windows Minikube utilizes HyperV, and requires an external switch to operate. Once started, Minikube configures `kubectl` and we can start running commands against the test cluster.
+Minikube is an easy way to get a test Kubernetes cluster up and running. In Windows Minikube utilizes HyperV, and requires an external switch to operate. Once started, Minikube configures `kubectl`, and we can start running commands against the test cluster.
 
 It is also possible to interact with the Minikube cluster from Octopus. By using a worker tentacle on the same PC as the Minikube VM, a Kubernetes target can issue commands to the private IP of the cluster.
 
