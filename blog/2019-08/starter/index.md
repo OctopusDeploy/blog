@@ -1,6 +1,6 @@
 ---
 title: "Octopus Starter edition: Free for small teams"
-description: TODO
+description: "Octopus Deploy: Starter is a new edition of Octopus Deploy. It allows small teams to run a self-hosted Octopus Server, and deploy up to 10 targets, all free."
 author: paul.stovell@octopus.com
 visibility: private
 published: 2019-09-02
@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Free Starter license - free for small teams](blogimage-freestarterlicense.png)
 
-Octopus Deploy: Starter is a new edition of Octopus Deploy. It allows small teams to run a self-hosted Octopus Server, and deploy up to 10 targets, all free. Here's a summary of the capabilities and limits:
+Octopus Deploy: Starter is a new edition of Octopus Deploy. It allows small teams to run a self-hosted Octopus Server, and deploy up to 10 targets, all free. Forever. Here's a summary of the capabilities and limits:
 
 <ul class="icon-list">
     <li class="check">Up to 10 active deployment targers</li>
@@ -46,3 +46,12 @@ However, if those limits seem fine, and you'd rather have your money back, we're
 
 To arrange a refund, contact sales@octopus.com with your license serial number. 
 
+## Your Octopus account
+
+When you create your free Starter license, you'll also create an **Octopus Account**. If you use Octopus Cloud, or have used our [support forum](https://help.octopus.com) recently, you've probably created an account already. You can also use your Octopus Account to manage self-hosted licenses, including your paid license keys, finding old orders, and renewing existing licenses. 
+
+Each Starter license is issued with a 12 month validity period. This is because under the old Community license, we never knew how many people were still using their license or not, so it was hard to estimate how many Octopus instances there were out there. With Starter, we ask you to sign in to your Octopus account and renew your Starter license (just by clicking a button) every 12 months just so we know you're still using it. 
+
+I hope this post explains what the new Starter license can be used for, why we re-introduced a free tier, and what it means for you. If you have any questions, please ask in the comments below. 
+
+Happy deployments!
