@@ -16,6 +16,10 @@ A common solution to this problem is to allow users to authenticate with Kuberne
 
 In this blog post we’ll look at how to integrate Minikube with Google to provide browser based logins in Kubernetes.
 
+::hint
+See the post [Installing Minikube on Windows](/blog/2019-08/minikube-on-windows/index.md) to learn how to install and configure Minikube.
+::
+
 ## Create the OAuth client
 
 The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop down list, or create a new project. Then from the **Create Credentials** dropdown select the **OAuth Client ID** option.
