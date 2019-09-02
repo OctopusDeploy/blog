@@ -111,6 +111,22 @@ Importantly, this ZIP file is not something we can deploy to Beanstalk in its cu
 
 ![](code-package.png "width=500")
 
+## Preparing the Octopus project
+
+Before we can start deploying anything, our Octopus project needs to have a number of variables configured. Here is a table of the variables that we must define.
+
+|Name|Description|
+|-|-|
+| `Application`  | The name of the Beanstalk Application  |
+| `AppSettings:EnvironmentName`  | The value of the `EnvironmentName` property in the `appsettings.json` file. This variable is used by the JSON Configuration Variables feature. |
+| `AWS`   | The AWS account that will be used to perform the deployments.   |
+| `BucketName`   | The name of the S3 bucket that will hold the Beanstalk deployment archive.  |
+| `Environment`   | A mapping of the Octopus environments to the Beanstalk Environments.  |
+
+![](variables.png "width=500")
+
+*The variables defined for the Octopus project.*
+
 ## The Octopus deployment
 
 Now that we have the Beanstalk Application and Environments created, and our .NET Core application code packaged and uploaded to Octopus, it is time to implement the deployment.
@@ -179,7 +195,7 @@ function Wait-FromEnvironmentToBeReady($application, $environment) {
   .PARAMETER version The name of the Beanstalk application version
   #>
   function Update-Environment($application, $environment, $version) {
-    Write-Host "Updating Enviroinment $environment to $version"
+    Write-Host "Updating Environment $environment to $version"
     aws elasticbeanstalk update-environment `
         --application-name $application `
         --environment-name $environment `
@@ -313,7 +329,31 @@ The end result of calling the function is a file called `aws-windows-deployment-
 
 Now that we have the manifest file and the processed contents of the .NET Core application archive, we need to recompress everything to create the nested archive expected by Beanstalk.
 
-The first step is to ZIP up the extracted contents of the .NET Core application archive into a file called `site.zip`.
+The .NET application archive is included in this step as a reference package. We have set this package to be extracted during deployment, which means the contents of the package can be found under the path referenced by the `$OctopusParameters["Octopus.Action.Package[RandomQuotes].ExtractedPath"]` variable.
+
+![](referenced-package.png "width=500")
+
+*The summary of the referenced package.*
+
+![](referenced-package-details.png "width=500")
+
+*The details of the referenced package.*
+
+Because we have enabled the `JSON Configuration Variables` feature and configured it to process the file called `appsettings.json`, the value of the Octopus variable `AppSettings:EnvironmentName` will replace the existing `EnvironmentName` in the JSON file. In this way we have created an environment specific deployment from a generic application bundle.
+
+:::hint
+You can take advantage of the `Substitute Variables in Files` feature in the same way.
+:::
+
+![](features.png "width=500")
+
+*The step features.*
+
+![](feature-config.png "width=500")
+
+*The JSON Configuration Variables*
+
+Having taken advantage of Octopus to extract and process the contents of the .NET Core application package, we ZIP the files back into a file called `site.zip`.
 
 ```powershell
 # Compress the extracted DotNET application code
@@ -355,6 +395,10 @@ function Add-File($file, $s3Bucket, $s3Key) {
 
 With the code in S3, we can create a new Application Version to associate the artifact with a version label.
 
+:::hint
+The variables `$Application` and `$BucketName` are provided by Octopus, and map to the values from the project variables.
+:::
+
 ```powershell
 # Use the new file in S3 to create a Beanstalk application version
 New-ApplicationVersion $Application $VersionLabel $BucketName "$VersionLabel.zip"
@@ -376,6 +420,10 @@ function New-ApplicationVersion($application, $version, $s3Bucket, $s3Key) {
 ## Wait for the environment to be able to accept an new application version
 
 If for some reason the Beanstalk Environment is already being updated (perhaps by a change made through the Amazon console), we need to wait for it to be in the `Ready` state. We do this will a call to `Wait-FromEnvironmentToBeReady`.
+
+:::hint
+The variable `$Environment` has been provided by Octopus, and maps to the value of the variable scoped to the current deployment environment.
+:::
 
 ```powershell
 Wait-FromEnvironmentToBeReady $Application $Environment
@@ -417,7 +465,7 @@ In Beanstalk, "updating" and Environment with an Application Version is how we d
 
 ```powershell
 function Update-Environment($application, $environment, $version) {
-  Write-Host "Updating Enviroinment $environment to $version"
+  Write-Host "Updating Environment $environment to $version"
   aws elasticbeanstalk update-environment `
       --application-name $application `
       --environment-name $environment `
@@ -434,3 +482,7 @@ We make one last final call to `Wait-FromEnvironmentToBeReady` to wait for the n
 # Wait for the new deployment to finish
 Wait-FromEnvironmentToBeReady $Application $Environment
 ```
+
+## Performing the deployment
+
+Let's go ahead and perform the deployment.
