@@ -27,6 +27,7 @@ As an experiment, I decided to migrate an open source project to GitHub Actions.
 At the heart of GitHub Actions is the idea of composing your build environment from Docker containers. At a high level, your workflow is a series of jobs, and each job can either be a script run directly on the underlying virtual machine or execute a Docker container that shares the virtual machine’s file system through a volume mount.
 
 ![](volume-mounting.png "width=500")
+
 *The highlighted area shows the mounting of the virtual machine file system into a Docker container used as an Action.*
 
 Composing your build environment in this way is brilliant because every major development tool already has a supported Docker container ready to use, and you are forced to no longer maintain build agents that are works of art (which is to say, build agents that have been manually tweaked and maintained over the years). There is some overhead to getting the workflow jobs just right, but this effort pays off multiple times over in the long run. It also means incremental changes to the build process can be tested in a branch without spinning up custom build agents, which is increasingly important when you consider that even dinosaurs like Java and .NET now have major releases every six months.
@@ -50,6 +51,7 @@ While [GitHub provides an impressive list of operating systems to run your build
 Finally, the GitHub UI is still repository centric. Knowing which repos have actions defined, let-alone trying to view the state of your builds is clunky at best. Expect to click around *a lot* if you have many projects built with GitHub Actions.
 
 ![](no-dashboard.png "width=500")
+
 *You won't find the status of your builds on this homepage.*
 
 ## Conclusion
