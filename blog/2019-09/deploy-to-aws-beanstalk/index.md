@@ -111,6 +111,12 @@ Importantly, this ZIP file is not something we can deploy to Beanstalk in its cu
 
 ![](code-package.png "width=500")
 
+## Creating the Beanstalk Application
+
+We now need to create the Beanstalk Application and Environments. Here we have an Application called `Random Quotes` with two Environments: `Development` and `Test`.
+
+![](beanstalk-application.png "width=500")
+
 ## Preparing the Octopus project
 
 Before we can start deploying anything, our Octopus project needs to have a number of variables configured. Here is a table of the variables that we must define.
