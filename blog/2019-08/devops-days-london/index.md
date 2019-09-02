@@ -3,12 +3,14 @@ title: Octopus will be at DevOps Days London 2019
 description: Octopus is a silver sponsor of this years DevOps Days London. 
 author: derek.campbell@octopus.com
 visibility: public
-published: 2019-09-02
+published: 2019-09-04
 bannerImage: blogimage-devopsdays-london.png
 metaImage: blogimage-devopsdays-london.png
 tags:
  - Events
 ---
+
+![Octopus Deploy at DevOps Days London illustration](blogimage-devopsdays-london.png)
 
 At Octopus Deploy, we are passionate about automation, be it code, databases, or infrastructure, which is why we are excited to announce that we are sponsoring [DevOps Days London](https://devopsdays.org/events/2019-london/welcome/) on September 26-27, 2019 at the QEII Centre in Westminster, London, UK.
 
