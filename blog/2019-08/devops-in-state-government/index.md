@@ -8,7 +8,6 @@ metaImage: blogimage-devopgovernment.png
 published: 2019-09-04
 tags:
  - DevOps
- - Government
 ---
 
 ![Illustration showing an infinite feedback loop surrounding a government building](blogimage-devopgovernment.png)
