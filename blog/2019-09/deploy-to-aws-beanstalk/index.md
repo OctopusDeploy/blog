@@ -485,4 +485,42 @@ Wait-FromEnvironmentToBeReady $Application $Environment
 
 ## Performing the deployment
 
-Let's go ahead and perform the deployment.
+Let's go ahead and perform the deployment to the `Dev` environment.
+
+![](deployment-dev.png "width=500")
+
+*The deployment logs.*
+
+The log message `Performing JSON variable replacement on 'C:\Octopus\Work\20190902230557-24738-504\RandomQuotes\appsettings.json'` shows that Octopus has successfully process the `appsettings.json` file and injected the values we wanted to override.
+
+The Beanstalk application package is then uploaded to S3.
+
+![](s3.png "width=500")
+
+*The S3 bucket.*
+
+The Application Version was created.
+
+![](application-version.png "width=500")
+
+*The Application Versions.*
+
+Finally the Environment was updated with the new Application Version.
+
+![](environment-deployment.png "width=500")
+
+*The Environment.*
+
+If we open up the resulting deployed application, we can see that it shows the environment we deployed to was called `Dev`. This is a subtle change from the default value in the `appsettings.json` file, which listed the environment as `DEV` (in all capitals).
+
+![](random-quotes-dev.png "width=500")
+
+*The deployed application in the Dev environment.*
+
+Promoting the deployment to the `Test` environment makes the substitution clearer.
+
+![](random-quotes-test.png "width=500")
+
+*The deployed application in the Test environment.*
+
+## Conclusion
