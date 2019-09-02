@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Elastic Beanstalk is a Platform as a Service (PaaS) offering provided by AWS that allows developers to deploy code written in a variety of languages such as .NET, Java, PHP, Node.js, Go, Python and Ruby onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+Elastic Beanstalk is a Platform as a Service (PaaS) offering from AWS that allows developers to deploy code written in a variety of languages such as .NET, Java, PHP, Node.js, Go, Python and Ruby onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
 
 The lifecycle of a Beanstalk application shares much in common with Octopus. Beanstalk defines the idea of an application being deployed to multiple isolated environments, with each environment potentially having unique settings. The overlap means Octopus can add a lot of value to deployments in Beanstalk.
 
@@ -20,7 +20,7 @@ However Beanstalk has some unique requirements that we need to take into account
 
 Before we can deploy to Beanstalk we need to understand how Beanstalk is organized.
 
-At the top level of any Beanstalk deployment is the Application. Conceptually, a Application is a space that contains Application Versions and Environments. Typically a Application would be named to identify the deployment that it represents. In this blog post we will be deploying the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes) application, so the Beanstalk Application will be called Random Quotes.
+At the top level of any Beanstalk infrastructure is the Application. Conceptually, an Application is a space that contains Application Versions and Environments. Typically an Application would be named to identify the deployment that it represents. In this blog post we will be deploying the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes) application, so the Beanstalk Application will be called Random Quotes.
 
 An Application Version is a copy of the code that is deployed to an Environment. Each Application Version has a unique Version Label. The Version Label doesn't mandate any particular versioning scheme though, just that each is unique.
 
@@ -28,11 +28,11 @@ Finally we have the Environments. An Environment is the physical infrastructure 
 
 ![](workflow.png "width=500")
 
-*The relationship between applications, application versions and environments.*
+*The Beanstalk deployment lifecycle.*
 
 ## The Beanstalk application packaging requirements
 
-The other major consideration we need to take into account is how Beanstalk packages code for deployment.
+The other major consideration we need to take into account is how Beanstalk expects packages to be structured for deployment.
 
 The types of packages accepted by Beanstalk depends largely on the programming language that was used to create the code.
 
@@ -46,21 +46,21 @@ In the case of .NET Core, the deployable artifact is a ZIP file containing a JSO
 
 *The contents of a ZIP file containing a .NET Core application to be deployed to Beanstalk.*
 
-We will have to keep these nested archives in mind as take full advantage of the features provided by Octopus as part of the deployment process.
+We will have to keep these nested archives in mind in order to take full advantage of the features provided by Octopus as part of the deployment process.
 
 ## The sample application
 
-The sample application we will be deploying is called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes). This is a simple .NET Core web application, which hasn't been designed to necessarily be deployed to Beanstalk.
+The sample application we will be deploying is called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes). This is a simple .NET Core web application, which hasn't necessarily been designed to be deployed to Beanstalk.
 
 The generic nature of this application highlights some challenges that deployments to Beanstalk must take into account, specifically concerning how environment specific settings can be implemented without maintaining environment specific artifacts.
 
 Beanstalk Environments can define their own set of environment variables, which is the preferred way to configure the environment specific aspects of the applications they run. Storing all configuration in environment variables is the approach recommended by the [12 Factor App](https://12factor.net/config) methodology.
 
-But our sample application still has configuration baked into files, specifically the [appsettings.json](https://github.com/OctopusSamples/RandomQuotes/blob/master/RandomQuotes/appsettings.json) file. While we could leverage the `ASPNETCORE_ENVIRONMENT` environment variable to [select an appropriate settings file](https://visualstudiomagazine.com/articles/2019/03/01/managing-production-and-development.aspx), for this deployment process we'll customize the `appsettings.json` file during deployment.
+But our sample application still has configuration baked into files, specifically the [appsettings.json](https://github.com/OctopusSamples/RandomQuotes/blob/master/RandomQuotes/appsettings.json) file. While we could leverage the `ASPNETCORE_ENVIRONMENT` environment variable to [select an appropriate settings file](https://visualstudiomagazine.com/articles/2019/03/01/managing-production-and-development.aspx), for this deployment process we'll customize the `appsettings.json` file directly during deployment.
 
 To allow Octopus to modify files during deployment, we can not package the compiled code in a nested ZIP archive. Octopus has may features to replace values in files like [variable substitution](https://octopus.com/docs/deployment-process/configuration-features/substitute-variables-in-files) and [JSON configuration variables](https://octopus.com/docs/deployment-process/configuration-features/json-configuration-variables-feature), but these features all rely on processing archives that contain text files rather than additional nested archives.
 
-This means that the packaged code hosted by Octopus will contain the result of a call to `dotnet package`. It is then going to be up to us to repackage this file into the nested archive expected by Beanstalk.
+This means that the packaged code hosted by Octopus will contain the result of a call to `dotnet package`. It is then going to be up to us to repackage this file into the nested archive required by Beanstalk.
 
 Random Quotes has leveraged GitHub Actions to build the code, and you can see the workflow [here](https://github.com/OctopusSamples/RandomQuotes/blob/master/.github/workflows/aspnetcore.yml). There are 4 important jobs in this workflow that highlight how we package this application.
 
