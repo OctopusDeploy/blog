@@ -2,13 +2,15 @@
 title: Can GitHub Actions replace your CI server?
 description: With the beta release of GitHub Actions now available, is it time to retire your in house CI server?
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2019-08-28
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-09-03
+metaImage: blogimg_versioning_githubactions.png
+bannerImage: blogimg_versioning_githubactions.png
 tags:
  - Octopus
 ---
+
+![Illustration showing GitHub CI processes with versions](blogimg_versioning_githubactions.png)
 
 With the introduction of GitHub Actions (albeit in beta), the world’s source code repository now includes the ability to host and execute your CI/CD pipelines. Now that hosting code is essentially commoditized, it was natural and inevitable that running build scripts would be commoditized next.
 
