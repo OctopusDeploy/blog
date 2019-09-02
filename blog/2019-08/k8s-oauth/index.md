@@ -16,9 +16,9 @@ A common solution to this problem is to allow users to authenticate with Kuberne
 
 In this blog post we’ll look at how to integrate Minikube with Google to provide browser based logins in Kubernetes.
 
-::hint
+:::hint
 See the post [Installing Minikube on Windows](/blog/2019-08/minikube-on-windows/index.md) to learn how to install and configure Minikube.
-::
+:::
 
 ## Create the OAuth client
 
@@ -201,9 +201,9 @@ users:
 
 At this point when you use `kubectl` you will be authenticated as the Google user.
 
-::hint
+:::hint
 Note that potentially any Google user can generate codes to use with `kubectl`, but without a corresponding `ClusterRoleBinding`, these users will be effectively unauthorized to do anything.
-::
+:::
 
 ## Conclusion
 
