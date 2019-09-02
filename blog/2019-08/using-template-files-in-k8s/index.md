@@ -41,6 +41,7 @@ docker run -p 8888:80 mcasperson/dockerfilereplacement:0.0.1
 As you would expect, running this Docker image locally displays the web page in its unprocessed form.
 
 ![](local-docker.png "width=500")
+
 *When run directly by Docker, the web server exposes the raw template file.*
 
 ## Working with Docker images, without using Docker
@@ -140,9 +141,11 @@ The final step is to take the value from the ConfigMap and have it mounted back 
 This is done by defining a Volume that references the ConfigMap created in the previous step.
 
 ![](volumes.png "width=500")
+
 *The summary of the Volume.*
 
 ![](volume.png "width=500")
+
 *The details of the Volume.*
 
 The ConfigMap is then mounted into the Pod. The trick here is to set the `Mount path` to the full path of the individual file to be replaced and set the `Sub path` to the entry from the ConfigMap that has the contents of the file.
@@ -150,19 +153,23 @@ The ConfigMap is then mounted into the Pod. The trick here is to set the `Mount 
 With this configuration we will mount a single file in the Pod containing the value from the ConfigMap, replacing the original generic file.
 
 ![](volume-mount.png "width=500")
+
 *A volume mount that adds a single file to the Kubernetes container.*
 
 For completeness, this is the Container section from the `Deploy Kubernetes containers` step. You can see we are deploying the image `mcasperson/dockerfilereplacement`, exposing port 80, and mounting the ConfigMap as a volume.
 
 ![](k8s-container.png "width=500")
+
 *The summary of the Kubernetes container configuration.*
 
 For convenience, this Pod will be exposed directly by a LoadBalancer service. This gives us a public IP address that we can use to interact with the Pod.
 
 ![](service.png "width=500")
+
 *The Pod is exposed by a LoadBalancer service.*
 
 ![](service-ports.png "width=500")
+
 *The service exposes port 80 from the Pod.*
 
 ## The processed result
@@ -170,11 +177,13 @@ For convenience, this Pod will be exposed directly by a LoadBalancer service. Th
 Once this deployment completes, we will have a public IP that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
 
 ![](k8s-pod.png "width=500")
+
 *HTTPD presenting the processed template.html file from the Dev environment.*
 
 If we then progress this deployment to the next environment, we can see that the newly created load balancer exposes a Pod with the environment name `Test` placed into `template.html`.
 
 ![](k8s-test-pod.png "width=500")
+
 *The same template.html file after the deployment was pushed to the Test environment.*
 
 ## Conclusion

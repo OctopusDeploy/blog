@@ -73,6 +73,7 @@ One of the goals of the CNAB specification is to allow bundles to be saved in a 
 Finally, for a tool that targets operations folk, creating standalone installers requires a lot of undocumented development tools to be installed. You will need at least Node.js, Python, and a C++ compiler like Visual Studio Tools, and even then you can expect to be debugging esoteric errors during the build. And CNAB hasn’t quite reached the critical mass of Stack Overflow posts to make solving these errors easy.
 
 ![](build-errors.png "width=500")
+
 *Even as a developer, this sea of red was almost enough to walk away from this build.*
 
 Despite these challenges, I was pleasantly surprised at how easy the Visual Studio Code plugins made working with Duffle projects, and after a few initial setbacks, I was happily building and packaging my CNAB bundles. I particularly like the ability to build self-contained and executing installers and the fact that CNAB deals with credentials.

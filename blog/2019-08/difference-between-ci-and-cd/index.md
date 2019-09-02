@@ -48,7 +48,7 @@ But while fully automated deployments have many benefits, it is not uncommon for
 * Acquiring sign-off from product owners.
 * Usability testing that is impossible to automate.
 * Regulatory requirements.
-* Dogfooding your own product.
+* Dog-fooding your own product.
 * Integrating deployments with backend changes like databases.
 * Not having 100% confidence in your tests.
 
@@ -57,6 +57,7 @@ Where CI is machine-driven, for many teams, CD is human-driven. Much of the grun
 ## Why use separate CI and CD tools?
 
 ![ci-cd-pipeline-diagram](ci-cd-pipeline-diagram.png "width=500")
+
 *A typical CI/CD pipeline, with no distinction between the two.*
 
 This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]) that hit my inbox recently. It is a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
@@ -73,7 +74,8 @@ This single decision point means our once machine-driven equation now:
 * Requires a system that can model environments in a first-class manner so they can be reliably secured and managed through the UI, API, and reporting interfaces.
 
 ![](dashboard.png "width=500")
-*Dashbords with deploy buttons for humans.*
+
+*Dashboards with deploy buttons for humans.*
 
 This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step automatically performed after the code has been compiled. For instance, the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) recommends that the test and production environments are modeled as stages in a CI pipeline.
 
