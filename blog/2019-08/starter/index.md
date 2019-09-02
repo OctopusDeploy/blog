@@ -15,7 +15,7 @@ tags:
 Octopus Deploy: Starter is a new edition of Octopus Deploy. It allows small teams to run a self-hosted Octopus Server, and deploy up to 10 targets, all free. Forever. Here's a summary of the capabilities and limits:
 
 <ul class="icon-list">
-    <li class="check">Up to 10 active deployment targers</li>
+    <li class="check">Up to 10 active deployment targets</li>
     <li class="check">A single <a href="https://octopus.com/docs/administration/spaces">space</a></li>
     <li class="check">A single <a href="https://octopus.com/docs/administration/high-availability">Octopus Server node</a></li>
     <li class="check">All users have administrator-level permissions and can't be restricted</li>
