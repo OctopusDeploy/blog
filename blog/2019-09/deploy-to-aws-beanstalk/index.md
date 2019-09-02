@@ -524,3 +524,13 @@ Promoting the deployment to the `Test` environment makes the substitution cleare
 *The deployed application in the Test environment.*
 
 ## Conclusion
+
+In this post we discused the high level architecture of the Beanstalk service, and then implemented a custom Powershell script that deploys an application to Beanstalk by:
+
+* Creating a Beanstalk manifest file.
+* Creating a Beanstalk archive including the .NET Core application archive and the manifest file.
+* Uploading the file to S3.
+* Creating an Application Version from the file in S3.
+* Updating the Environment with the Application Version.
+
+We've constructed this process in a such a way as to allow us to take advantage of the Octopus features like JSON Configuration Variables. This allowed us to deploy environment specific applications without relying solely on environment variables.
