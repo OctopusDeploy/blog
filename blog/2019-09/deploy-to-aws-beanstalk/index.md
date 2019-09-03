@@ -265,7 +265,7 @@ function Wait-ForEnvironmentToBeReady ($application, $environment) {
 
 Let's break this code down. We'll start at the end where we call the custom functions that make up the deployment process, and then discuss the functions themselves.
 
-### Creating the Application Version label
+### Creating the Application Version Label
 
 To begin we create a Application Version Label. If you recall, this label has to be unique, but otherwise doesn't enforce any particular format. This code will create a label containing the Octopus package ID, the package version, and the Octopus deployment ID. This combination ensures that any given deployment performed by Octopus will result in a unique Version Label.
 
