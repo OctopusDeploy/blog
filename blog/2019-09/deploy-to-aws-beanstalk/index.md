@@ -359,7 +359,7 @@ You can take advantage of the `Substitute Variables in Files` feature in the sam
 
 ![](feature-config.png "width=500")
 
-*The JSON Configuration Variables*
+*The JSON Configuration Variables settings.*
 
 Having taken advantage of Octopus to extract and process the contents of the .NET Core application package, we ZIP the files back into a file called `site.zip`.
 
@@ -370,7 +370,7 @@ Compress-Archive `
     -DestinationPath "site.zip"
 ```
 
-Then we create a second archive that contains the Beanstalk manifest file and the .NET Core application archive.
+Then we create a second archive containing the Beanstalk manifest file and the .NET Core application archive.
 
 ```yaml
 # Compress the application code with the manifest file to create the Beanstalk deployment    
@@ -412,7 +412,7 @@ The variables `$Application` and `$BucketName` are provided by Octopus, and map 
 New-ApplicationVersion $Application $VersionLabel $BucketName "$VersionLabel.zip"
 ```
 
-The AWS CLI is used to consume the file we uploaded to S3 and assign it a version label. Once this is complete, our Beanstalk Application will have a new Application Version that can be deployed to an Environment.
+The AWS CLI is used to consume the file we uploaded to S3 and assign it a Version Label. Once this is complete, our Beanstalk Application will have a new Application Version that can be deployed to an Environment.
 
 ```powershell
 function New-ApplicationVersion($application, $version, $s3Bucket, $s3Key) {
@@ -427,7 +427,7 @@ function New-ApplicationVersion($application, $version, $s3Bucket, $s3Key) {
 
 ### Wait for the environment to be able to accept an new application version
 
-If for some reason the Beanstalk Environment is already being updated (perhaps by a change made through the AWS console), we need to wait for it to be in the `Ready` state. We do this will a call to `Wait-ForEnvironmentToBeReady `.
+If for some reason the Beanstalk Environment is already being updated (perhaps by a change made through the AWS console), we need to wait for it to be in the `Ready` state. We do this with a call to `Wait-ForEnvironmentToBeReady`.
 
 :::hint
 The variable `$Environment` has been provided by Octopus, and maps to the value of the variable scoped to the current deployment environment.
@@ -462,7 +462,7 @@ function Wait-ForEnvironmentToBeReady ($application, $environment) {
 
 ### Create the application version, and update the environment
 
-We now have a new Application Version created in Beanstalk, so the next step is to deploy it to an environment. The call to `Update-Environment` is where the deployment to Beanstalk takes place.
+We now have a new Application Version created in Beanstalk, so the next step is to deploy it to an Environment. The call to `Update-Environment` is where the deployment to Beanstalk takes place.
 
 ```powershell
 # Deploy the application version to the environment
@@ -499,7 +499,7 @@ Let's go ahead and perform the deployment to the `Dev` environment.
 
 *The deployment logs.*
 
-The log message `Performing JSON variable replacement on 'C:\Octopus\Work\20190902230557-24738-504\RandomQuotes\appsettings.json'` shows that Octopus has successfully process the `appsettings.json` file and injected the values we wanted to override.
+The log message `Performing JSON variable replacement on 'C:\Octopus\Work\20190902230557-24738-504\RandomQuotes\appsettings.json'` shows that Octopus has successfully processed the `appsettings.json` file and injected the values we wanted to override.
 
 The Beanstalk application package was uploaded to S3.
 
