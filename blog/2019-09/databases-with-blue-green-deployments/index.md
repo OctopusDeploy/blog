@@ -13,6 +13,8 @@ tags:
 
 The worst time to deploy software is 2:00 AM on Saturday.  It ruins Friday night, can't do anything fun because I have to go to bed early.  And it ruins Saturday day because I am so tired from waking up in the middle of the night.  I learned that fact by working on an application where that deployment time was mandated.  Fast deployments for that application took two hours; average deployments took long enough to see the sunrise.  What frustrated me was a load balancer was in front of the VMs hosting the application.  I wanted to deploy to VMs not in the load balancer during the middle of the day.  After the deployment was complete, verify the code.  Do this work when people are not exhausted. Once everything looks good, then later in the night run a quick script to change the load balancer. In other words, why weren't we doing Blue/Green deployments?  Simple, it was the database which tripped everything up.  I was doing 2:00 AM Saturday deployments back in 2010/2011, and it was for an ASP.NET Webforms application.  The .NET stack and my experience have come a long way since then.  It is possible to do Blue/Green deployments with a database such as SQL Server, Oracle, MySql, or PostgreSQL.  In this post, I will walk through some techniques on how to do that.  
 
+**Please Note:** This post will cover high level concepts and recommendations.  It won't cover how to do Blue/Green deployments with Octopus Deploy.  That will be covered in a later post.
+
 !toc
 
 ## A Brief Intro to Blue/Green Deployments
@@ -417,3 +419,4 @@ Blue/Green deployments with a database will require more planning on how a chang
 
 In terms of time, the initial cost to do Blue/Green deployments can be high.  That cost is worth it when it is possible to deploy a change in the middle of the day.  Being able to do that opens up so many different possibilities.  Soon the conversation will move from "how can I deploy in the middle of the day" to "with Blue/Green deployments in place, now what can I do?"  Blue/Green Deployments, or seamless daytime deployments, feels like it is the end of the CI/CD journey.  I'd argue that it is just the beginning.
 
+Until next time, Happy Deployments!
