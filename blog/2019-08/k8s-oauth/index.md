@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Managing disconnected user databases is a major pain point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
+Managing disconnected user databases is a major pain-point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
 
 A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means existing login providers like Google or Microsoft can be used to verify user credentials.
 
@@ -30,7 +30,7 @@ Select the **Other** option, and set the name of the client to **minikube**:
 
 ![](other-client.png "width=500")
 
-You will now see two codes: the **Client ID** and the **Client secret**. Make a note of both these codes, as we’ll need them later on:
+You will now see two codes: the **Client ID** and the **Client secret**. Make a note of both of these codes, as we’ll need them later on:
 
 ![](codes.png "width=500")
 
@@ -93,7 +93,7 @@ minikube   Ready    master   4m49s   v1.15.2
 
 ## Adding cluster roles
 
-In preparation for our new Google user, we need to define a `ClusterRole` to give them administrator access, and a `ClusterRoleBinding` to bind the user to the role.
+In preparation for our new Google user, we need to define a `ClusterRole` to give them administrator access and a `ClusterRoleBinding` to bind the user to the role.
 
 Here is the `ClusterRole` YAML which gives a user administrator access to the Minikube cluster:
 
