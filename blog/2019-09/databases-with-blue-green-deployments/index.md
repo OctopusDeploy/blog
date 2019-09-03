@@ -8,6 +8,7 @@ bannerImage:
 published: 2019-09-30
 tags:
  - Database Deployments
+ - Blue/Green Deployments
 ---
 
 The worst time to deploy software is 2:00 AM on Saturday.  It ruins Friday night, can't do anything fun because I have to go to bed early.  And it ruins Saturday day because I am so tired from waking up in the middle of the night.  I learned that fact by working on an application where that deployment time was mandated.  Fast deployments for that application took two hours; average deployments took long enough to see the sunrise.  What frustrated me was a load balancer was in front of the VMs hosting the application.  I wanted deploy to a VMs not in the load balancer during the middle of the day, verify the code when we are not exhausted, and at night run a quick script to change the load balancer. In other words, why weren't we doing Blue/Green deployments?  Simple, it was the database which tripped everything up.  This was back in 2010/2011 and it was for a ASP.NET Webforms application.  The .NET stack, and my experience has come a long way since then.  It is possible to do Blue/Green deployments with a database such as SQL Server, Oracle, MySql, or PostgreSQL.  In this post, I will walk through some techniques on how to do that.  
@@ -66,7 +67,7 @@ Admittedly, that scenario is fairly complex.  Most database changes don't combin
 
 **Please Note:** These are recommendations only.  There is no way I can cover every possible change you can make to a database.  My goal is to provide you with something which you can then modify to meet your own needs.  
 
-## Adding the New Columns
+## Adding the New Column
 
 Keep it simple; add the new column `CustomerFullName` as a nullable column.  It takes most databases (SQL Server, Oracle) quite a bit of time to add a new non-nullable column with a default value.  This is because it has to update each record on the table.  Adding a nullable column requires updating the table definition (metadata) which takes a few milliseconds.  
 
@@ -78,11 +79,11 @@ Avoid the following if at all possible:
 
 ## Backfill the new column with data
 
-With Blue/Green deployments, the script to backfill the new column had to be run twice in our scenario.  Even then, there is the risk of the second run taking a while or getting missing data from API requests.  There are too many what-ifs.  It is easy to go a little overboard thinking of all the possible scenarios.  This is why I recommend taking the backfill script out of the equation.  In other words, but don't write scripts to backfill `CustomerFullName`.  Have the code backfill the data over time as well as contain the logic to handle when no data is found.
+Most backfill scripts I've seen are nothing more than a SQL Script to update the underlying data.  With Blue/Green deployments, that script has to be run at least twice, before verification and after the swap from `Green` to `Blue`.  That second run is probably the most risky and will require quite a bit of testing.  It is easy to go a little overboard thinking of all the possible scenarios and possible what-ifs.  
 
-//TODO: Reword this a bit, because we can do a backfill script, but it is done through the API not SQL
+This is why I recommend waiting to run the backfill or migration script until after the swap to `Green` to `Blue` is complete.  In addition, don't make it a SQL script.  Update the code to backfill the data and handle all the possible missing data scenarios.  The backfill script should instead be a PowerShell script or a BashScript which invokes the API.  
 
-There is not a set in stone solution on how to have the code accomplish backfilling of the `CustomerFullName` column.  Every application has its own rules about patterns and practices to follow.  I am going to suggest a couple of approaches, but use them as guidelines.  Follow your application's patterns and practices.  It is better to have consistency in the code than it is to do something which you feel is correct "correct."  
+**Please Note:** There is not a set in stone solution on how to have the code accomplish backfilling of the `CustomerFullName` column.  Every application has its own rules about patterns and practices to follow.  I am going to suggest a couple of approaches, but use them as guidelines.  Follow your application's patterns and practices.  It is better to have consistency in the code than it is to do something which you feel is correct "correct."  
 
 Some example code for this would be:
 
@@ -184,166 +185,7 @@ public class CustomerDataAdapter
 
 ```
 
-I recommend this approach for a number of reasons.
-
-1. All the timing concerns are taken care of.  There is no need to worry about running the backfill script multiple times to make sure a record isn't missed somehow.  No need to worry about how long it will take to finish running.  It will help make the transition from `Green` to `Blue` be as seamless as possible.
-2. This change needs to happen anyway to prevent errors from happening.  While `Blue` is being deployed and verified, users will be making database updates on `Green` after the first run of the backfill script.  If the person or automated process doing the verification on `Blue` happens to hit one of those records and the code wasn't updated, then an error would occur. 
-3. The code also needs to change in the event the application somehow gets a request without the `CustomerFullName` property populated.  Could come from a SPA application or for some other reason.  With or without a backfill script, setting that column in the database to `Null` after it has been populated would not be great.  But if it did happen the code would be able to handle it.  
-4. Backfill scripts are SQL Scripts.  SQL is a great language for querying databases.  It is not a great language to write functional programming, integration tests, or unit tests.  The code should be the only place where the logic of backfilling the `CustomerFullName` column is located.  Having a backfill script AND the code contains that logic opens the door to errors.  Any change in rules will require an update to both the code and the script.
-5. Most database deployment tools, be it Redgate, DBUp, RoundhousE, or SSDT don't have a great mechanism for running specific scripts multiple times.  If the tooling does have that functionality, or a hack is put into place to implement that functionality, then guard clauses will have to be put in place around the script to make sure data isn't overwritten by accident.
-
-## Stored Procedures and Views
-
-I am a big believer in the database should be used as a data store only.  Keep as much logic as possible out of the database.  This includes stored procedures and views.  Business logic in the database includes, but not limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, and filtering more than just by an Id.  
-
-It is far too easy to end up copying/pasting that logic between stored procedures.  Imagine the application had two stored procedures:
-
-- usp_GetCustomerById
-- usp_GetAllCustomers
-
-Fundamentally they do the same thing, get customers from the database.  The CustomerFullName is a new column, but it is null.  Rather than having a function in the code check to see if `CustomerFullName` is null, that logic is placed in the database.
-
-```SQL
-Select CustomerFirstName,
-       CustomerLastName,
-       IsNull(CustomerFullName, CustomerFirstName + ' ' + CustomerLastName) as CustomerFullName
-from dbo.Customer
-```
-
-That only hides bad or missing data; it doesn't solve bad or missing data.  It is a one-liner, and oh so easy to copy-paste to other stored procedures.  In this example, it is only one other stored procedure.  Then one day someone adds a new stored procedure, and they forget to include that.  But, it has been long enough the `CustomerFullName` column is populated for 90% of the records.  It is only a matter of time before an error occurs.  And when it comes time to remove `CustomerFirstName` and `CustomerLastName` from the database they could miss that IsNullCheck.  Imagine if a stored procedure had 50 columns.  `CustomerFullName` was added towards the bottom of the list while `CustomerFirstName` and `CustomerLastName` were towards the top of the list. 
-
-Retrieve stored procedures and views should return the data as is, without any null checks or formatting.  
-
-```SQL
-Select CustomerFirstName,
-       CustomerLastName,
-       CustomerFullName
-from dbo.Customer
-```
-
-Create or update stored procedures are slightly different.  `Green` will be active while `Blue` is being verified.  `Green` has no concept of `CustomerFullName` which means it will call stored procedures without including that new column.  Just like adding the column to the table as nullable, the parameter for `CustomerFullName` should be nullable.  In the code section above, 
-
-```SQL
-ALTER procedure [dbo].[usp_UpdateCustomer] (
-    @CustomerId int,
-    @CustomerFirstName varchar(128),
-    @CustomerLastName varchar(128),
-    @CustomerFullName varchar(256) = null
-)
-Begin
-    Update dbo.Customer
-        set CustomerFirstName = @CustomerFirstName,
-            CustomerLastName = @CustomerLastName,
-            CustomerFullName = @CustomerFullName
-    where CustomerId = @CustomerId
-End
-Go
-```
-
-While it is possible to run an insert command without specifying the columns, don't do that.  Specify all the columns.  It only causes headaches down the line.
-
-```SQL
-Insert into dbo.Customer (CustomerFirstName, CustomerLastName, CustomerFullName)
-    value (@CustomerFirstName, @CustomerLastName, @CustomerFullName)
-
-
-select SCOPE_IDENTITY()  
-```
-
-I've worked on applications where views were created for other teams, such as Business Intelligence (BI) teams, to suck in data from the application's database into their data warehouse databases.  The views were created because the other teams are not experts on the application; they don't know the schema, and their import process shouldn't be tied directly to the schema.  Views provide a layer of abstraction for them.  This is when I see the "no business logic in databases" rule gets broken.  The data needs to be presented in such a way to make it easy to import into a data warehouse.  For example, when I was working on a loan origination system, the BI team said they wanted the view to show "loans with their customers."  A loan could have 1 to N number of customers, so I did an inner join on the loan and customers table and called it good.  The BI team then asked why they kept getting duplicate loans.  What they really wanted was "loans with the primary customer," which required me to add `IsPrimary = 1` as a where clause into the view.  
-
-My advice is still to provide a view which gives the data in its rawest form as possible.  In my example for the loan origination system, I should've added the column `IsPrimary` to the view and let the BI team filter out what they didn't want.  For the `CustomerFullName` example, it would be all three columns, `CustomerFirstName`, `CustomerLastName`, and `CustomerFullName`.  Communicate to them and let them know `CustomerFirstName` and `CustomerLastName` is going to be dropped, now is the time to start updating their reports and cubes and all that other fun stuff they create.  
-
-**Please Note:** I realize moving business logic out of the database is quite the change.  If you do decide to make that switch, be pragmatic about it.  Don't try to change everything at once.  The code and the database is working fine now.  This section is about changes to the database going forward.  My rule of thumb is to leave the database and code in a better place than when I found it.  Meaning, if I am making a change to a column and I come across a business rule in the database for that column, then I fix it at that time.  I don't tear through all the code and start making mass changes.  That is a surefire way to end up doing an emergency deployment on the weekend.
-
-## Handling Legacy Columns
-
-`CustomerFullName` is a combination of `CustomerFirstName` and `CustomerLastName`, which means at some point `CustomerFirstName` and `CustomerLastName` will be deleted.  Those two columns won't be deleted right away.  While `Blue` is being verified, `Green` will be saving data to them.  Once `Blue` goes live, it will be getting the `CustomerFullName` field from the UI, it will no longer get `CustomerFirstName` or `CustomerLastName`.  The application shouldn't set those columns to `Null` or an empty string when it previously had a value.  On the flip side of that, the code shouldn't attempt to populate those columns on an insert of a new record.  It never had the data, and it never will.
-
-First, set the `CustomerFirstName` and `CustomerLastName` columns to nullable in the database if they currently are set to non-nullable. `Null` is the absence of a value.  The temptation is there to set those columns to an empty string in the code.  An empty string is a value.  The code will no longer get a value from the UI.  The database should reflect that.
-
-Next, if there are insert stored procedures and update stored procedures, then change the parameters for `CustomerFirstName` and `CustomerLastName` to have a default value of null.  This will handle the cases where the code no longer sends in a value.
-
-```SQL
-ALTER procedure [dbo].[usp_InsertCustomer] (    
-    @CustomerFirstName varchar(128) = null,
-    @CustomerLastName varchar(128) = null,
-    @CustomerFullName varchar(256) = null
-)
-Begin
-    Insert into dbo.Customer (CustomerFirstName, CustomerLastName, CustomerFullName)
-        value (@CustomerFirstName, @CustomerLastName, @CustomerFullName)
-
-
-    select SCOPE_IDENTITY()  
-End
-Go
-
-ALTER procedure [dbo].[usp_UpdateCustomer] (
-    @CustomerId int,
-    @CustomerFirstName varchar(128) = null,
-    @CustomerLastName varchar(128) = null,
-    @CustomerFullName varchar(256) = null
-)
-Begin
-    Update dbo.Customer
-        set CustomerFirstName = @CustomerFirstName,
-            CustomerLastName = @CustomerLastName,
-            CustomerFullName = @CustomerFullName
-    where CustomerId = @CustomerId
-End
-Go
-```
-
-Finally, the code which updates the customer record will need to be changed to first pull in the existing customer record.  When the UI sends in `Null` for  `FirstName` and `LastName`, and the database has data in those columns then use the value from the database.
-
-```C#
-public Interface ICustomer
-{
-    string FirstName {get;}
-    string LastName {get;}
-    string FullName {get;}
-}
-
-public Interface ICustomerDataAdapter
-{
-    void InsertCustomer(ICustomer customer);
-    void UpdateCustomer(ICustomer customer);
-    ICustomer GetCustomerById(int customerId);
-}
-
-public class CustomerFacade 
-{
-    private ICustomerDataAdapter _customerDataAdapter;
-
-    public CustomerFacade(ICustomerDataAdapter customerDataAdapter)
-    {
-        _customerDataAdapter = customerDataAdapter
-    }
-
-    public void UpdateCustomer(ICustomer customer)
-    {
-        var existingCustomer = _customerDataAdapter.GetCustomerById(customer.CustomerId);
-
-        customer.FirstName = string.IsNullOrEmpty(customer.FirstName) ? existingCustomer?.FirstName : null;
-        customer.LastName = string.IsNullOrEmpty(customer.LastName) ? existingCustomer?.LastName : null;
-
-        _customerDataAdapter.UpdateCustomer(customer);
-    }
-}
-```
-
-## Removing Columns
-
-At some point, the `CustomerFirstName` and `CustomerLastName` columns will be removed.  Blue/Green deployments make that more complex as well.  Assume `CustomerFullName` has been deployed to `Blue`, and it is active.  Running a script to delete `CustomerFirstName` and `CustomerLastName` from all the tables, views, functions, and stored procedures will cause errors.   The code running on `Blue` is using the `CustomerFirstName` and `CustomerLastName` fields to populate `CustomerFullName` when `CustomerFullName` is null.  
-
-How can the `CustomerFirstName` and `CustomerLastName` columns get removed with that restriction in place?  To answer that, consider what a deployment would look like if an outage was taken.
-
-1. Run a backfill script to take care of the remaining records.
-2. Remove references in the code to `CustomerFirstName` and `CustomerLastName`.
-3. Delete `CustomerFirstName` and `CustomerLastName` 
-
-Each of those steps will be a separate deployment.  The first step, run a backfill script, seems to counter my previous thought, which is don't write a backfill script.  My main complaint about typical backfill scripts remain true; they are typically written in SQL, which means the script has to duplicate logic from C#.  The trend towards making all APIs RESTful eliminates that concern because the script can invoke the API.  The only time a script has to touch the database is to find a list of customers who have the `CustomerFullName` set to `Null`.
+As stated earlier, the backfill script can be PowerShell or Bash.  It can query the database to find a list of customers and then use that list of customers to hit the API.  Unlike the typical SQL Script, the only time a script has to touch the database is to find a list of customers who have the `CustomerFullName` set to `Null`.
 
 ```PowerShell
 $url = "https://myapp/api"
@@ -383,11 +225,168 @@ foreach($customerRow in $customerTable)
 }
 ```
 
-That script is invoking code which is currently running in production.  It is most likely getting hit thousands of times per day.  And there are hopefully automated tests around it as well.  It will take much longer to run the script than a simple SQL update script.  But it is nondestructive, and it can be run at any time.  Because it can be run at any time, it doesn't need to occur during deployment.  Having it run outside of deployment means it isn't holding anything, it can be kicked off, and it can plug away for as long as it needs to.  
+That script will be invoking code which is currently running in production.  It is most likely getting hit thousands of times per day.  And there should be automated tests around it as well.  It will take much longer to run the script than a simple SQL update script.  But it is nondestructive, and it can be run at any time.  Because it can be run at any time, it doesn't need to occur during deployment.  Having it run outside of deployment means it isn't holding anything, it can be kicked off, and it can plug away for as long as it needs to.  
 
-While the script is running a branch can be created to remove references to `CustomerFirstName` and `CustomerLastName` in the code.  Once the script finishes running and the code is tested by the appropriate people it can be deployed to production.  
+I recommend this approach for a number of reasons.
 
-After the code has been deployed and has been running for a while, then it is finally time to write the script to delete `CustomerFistName` and `CustomerLastName` from the database.  After that has been tested by the appropriate people, that script can go out on the next deployment to production. 
+1. All the timing concerns are taken care of.  There is no need to worry about running the backfill script multiple times to make sure a record isn't missed somehow.  No need to worry about how long it will take to finish running.  It will help make the transition from `Green` to `Blue` be as seamless as possible.
+2. This change needs to happen anyway to prevent errors from happening.  While `Blue` is being deployed and verified, users will be making database updates on `Green` after the first run of the backfill script.  If the person or automated process doing the verification on `Blue` happens to hit one of those records and the code wasn't updated, then an error would occur. 
+3. The code also needs to change in the event the application somehow gets a request without the `CustomerFullName` property populated.  Could come from a SPA application or for some other reason.  With or without a backfill script, setting that column in the database to `Null` after it has been populated would not be great.  But if it did happen the code would be able to handle it.  
+4. Backfill scripts are SQL Scripts.  SQL is a great language for querying databases.  It is not a great language to write functional programming, integration tests, or unit tests.  The code should be the only place where the logic of backfilling the `CustomerFullName` column is located.  Having a backfill script AND the code contains that logic opens the door to errors.  Any change in rules will require an update to both the code and the script.
+5. Most database deployment tools, be it Redgate, DBUp, RoundhousE, or SSDT don't have a great mechanism for running specific scripts multiple times.  If the tooling does have that functionality, or a hack is put into place to implement that functionality, then guard clauses will have to be put in place around the script to make sure data isn't overwritten by accident.
+
+## Stored Procedures, Views and Legacy Columns
+
+I am a big believer in the database should be used as a data store only.  Keep as much logic as possible out of the database.  This includes stored procedures and views.  Business logic in the database includes, but not limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, and filtering more than just by an Id.  
+
+It is far too easy to end up copying/pasting that logic between stored procedures.  Imagine the application had two stored procedures:
+
+- usp_GetCustomerById
+- usp_GetAllCustomers
+
+Fundamentally they do the same thing, get customers from the database.  The CustomerFullName is a new column, but it is null.  Rather than having a function in the code check to see if `CustomerFullName` is null, that logic is placed in the database.
+
+```SQL
+Select CustomerFirstName,
+       CustomerLastName,
+       IsNull(CustomerFullName, CustomerFirstName + ' ' + CustomerLastName) as CustomerFullName
+from dbo.Customer
+```
+
+That only hides bad or missing data; it doesn't solve bad or missing data.  It is a one-liner, and oh so easy to copy-paste to other stored procedures.  In this example, it is only one other stored procedure.  Then one day someone adds a new stored procedure, and they forget to include that.  But, it has been long enough the `CustomerFullName` column is populated for 90% of the records.  It is only a matter of time before an error occurs.  And when it comes time to remove `CustomerFirstName` and `CustomerLastName` from the database they could miss that IsNullCheck.  Imagine if a stored procedure had 50 columns.  `CustomerFullName` was added towards the bottom of the list while `CustomerFirstName` and `CustomerLastName` were towards the top of the list. 
+
+Retrieve stored procedures and views should return the data as is, without any null checks or formatting.  
+
+```SQL
+Select CustomerFirstName,
+       CustomerLastName,
+       CustomerFullName
+from dbo.Customer
+```
+
+Create or update stored procedures are slightly different.  `Green` will be active while `Blue` is being verified.  `Green` has no concept of `CustomerFullName` which means it will call stored procedures without including that new column.  Once `Blue` goes active it will no longer be sending in `CustomerFirstName` and `CustomerLastName` fields to the stored procedures.  The stored procedures need to be able to accept both scenarios.  
+
+That brings up an interesting scenario.  Once `Blue` goes active, there will still be data in the `CustomerFirstName` and `CustomerLastName` columns.  It would be bad for the code to set that data to null.  With new records, that data won't be present.  The code shouldn't try to guess how to split up the first name and last name.  For existing records the code should leave the data as is.  For new records it needs to set those columns to `Null`.  Because of that, if the column doesn't allow `Null` then it needs to be modified to accept that.  Don't set the value to an empty string.  An empty string is a value.  `Null` is the absence of a value.
+
+Just like adding the column to the table as nullable, the parameter for `CustomerFullName` should be nullable to support when `Green` is active. The parameters for `CustomerFirstName` and `CustomerLastName` should be nullable to support when `Blue` is active.
+
+```SQL
+ALTER procedure [dbo].[usp_UpdateCustomer] (
+    @CustomerId int,
+    @CustomerFirstName varchar(128) = null,
+    @CustomerLastName varchar(128) = null,
+    @CustomerFullName varchar(256) = null
+)
+Begin
+    Update dbo.Customer
+        set CustomerFirstName = @CustomerFirstName,
+            CustomerLastName = @CustomerLastName,
+            CustomerFullName = @CustomerFullName
+    where CustomerId = @CustomerId
+End
+Go
+```
+
+While it is possible to run an insert command without specifying the columns, don't do that.  Specify all the columns.  It only causes headaches down the line.
+
+```SQL
+ALTER procedure [dbo].[usp_InsertCustomer] (    
+    @CustomerFirstName varchar(128) = null,
+    @CustomerLastName varchar(128) = null,
+    @CustomerFullName varchar(256) = null
+)
+Begin
+    Insert into dbo.Customer (CustomerFirstName, CustomerLastName, CustomerFullName)
+        value (@CustomerFirstName, @CustomerLastName, @CustomerFullName)
+
+
+    select SCOPE_IDENTITY()  
+End
+Go  
+```
+
+Just like before, the temptation is there to make the update statement check for null in the parameter. 
+
+```SQL
+    set CustomerFirstName = IsNull(@CustomerFirstName, CustomerFirstName)
+```
+
+The code for `Blue` should be where that null check lives.  Putting the `IsNull` check in the database hides logic.  That makes it harder to test, as writing unit tests for SQL Server, even with a tool like tSQLt, is much harder than writing unit tests for code.  
+
+```C#
+public Interface ICustomer
+{
+    string FirstName {get;}
+    string LastName {get;}
+    string FullName {get;}
+}
+
+public Interface ICustomerDataAdapter
+{
+    void InsertCustomer(ICustomer customer);
+    void UpdateCustomer(ICustomer customer);
+    ICustomer GetCustomerById(int customerId);
+}
+
+public class CustomerFacade 
+{
+    private ICustomerDataAdapter _customerDataAdapter;
+
+    public CustomerFacade(ICustomerDataAdapter customerDataAdapter)
+    {
+        _customerDataAdapter = customerDataAdapter
+    }
+
+    public void UpdateCustomer(ICustomer customer)
+    {
+        var existingCustomer = _customerDataAdapter.GetCustomerById(customer.CustomerId);
+
+        customer.FirstName = string.IsNullOrEmpty(customer.FirstName) ? existingCustomer?.FirstName : null;
+        customer.LastName = string.IsNullOrEmpty(customer.LastName) ? existingCustomer?.LastName : null;
+
+        _customerDataAdapter.UpdateCustomer(customer);
+    }
+}
+```
+
+I have mixed feelings about views.  They provide a great layer of abstraction and when written correctly, can provide a nice performance boost.  However, I've seen too many of them written poorly and end up causing more performance problems.  A lot of people love to abuse Common Table Expressions (CTE) in views, which is where a lot of performance problems stem.  To help resolve those performance problems, the "no business logic in the database" rule get broken.  In this scenario, keep your views changes as simple as possible.  Just like stored procedures, return all three columns, `CustomerFirstName`, `CustomerLastName`, and `CustomerFullName`.
+
+A common use case for views is to help data warehousing.  The abstraction layer views provides makes it easy for a process to come through and copy all the data over to a data warehouse for business intelligence teams to create reports from.  There isn't a good automated way to make this change known to the data warehouse.  My recommendation is to notify them of the change as soon as possible.  
+
+**Please Note:** I realize moving business logic out of the database is quite the change.  If you do decide to make that switch, be pragmatic about it.  Don't try to change everything at once.  The code and the database are working fine now.  This section is about changes to the database going forward.  My rule of thumb is to leave the database and code in a better place than when I found it.  Meaning, if I am making a change to a column and I come across a business rule in the database for that column, then I do some analysis.  If the change is fairly easy to make then I will make it then.  If it is complex, then I will create a card and put it on our technical debt backlog to be fixed later.  Hopefully.  Sometimes backlogs are where work goes to die.  I don't tear through all the code and stored procedures and start making mass changes.  That is a surefire way to end up doing an emergency deployment on the weekend.
+
+## Removing Columns
+
+At some point, the `CustomerFirstName` and `CustomerLastName` columns will be removed.  Blue/Green deployments make that more complex as well.  Assume `CustomerFullName` has been deployed to `Blue`, and it is active.  Running a script to delete `CustomerFirstName` and `CustomerLastName` from all the tables, views, functions, and stored procedures will cause errors.   The code running on `Blue` is using the `CustomerFirstName` and `CustomerLastName` fields to populate `CustomerFullName` when `CustomerFullName` is null.  
+
+How can the `CustomerFirstName` and `CustomerLastName` columns get removed with that restriction in place?  To answer that, consider what a deployment would look like if an outage was taken.
+
+1. Remove references in the code to `CustomerFirstName` and `CustomerLastName`.
+2. Delete `CustomerFirstName` and `CustomerLastName` from the database.
+
+Each of those steps will be a separate deployment.  They don't have to be deployed within days of each other.  I've seen several months go between those two deployments.  This is to allow other applications to make the necessary adjustments to stop referencing those columns.
+
+I've worked on an application which was one of dozen or so which connected to the same database.  The application list was split amongst three or four teams.  To keep things somewhat organized all common tables and stored procedures were in the `dbo` schema, while tables and stored procedures only used by a single application where in an application schema.  That reduces possible database changes to add only to the `dbo` schema, while having a bit more flexibility in the application schema.  In some cases, it might not be possible to remove columns or tables.  I hope that isn't the case, but be prepared for that scenario.  In this case, communication, planning and effort are key.  If it is really important to remove those columns then the effort should be made to do so.  I'd argue the effort is worth it.  
+
+## Versioning Stored Procedures, Views and APIs
+
+The typical rule of thumb is "if you make a breaking change, then version the API/Stored Procedure/View."  On paper that is a good rule to follow.  In practice, that rule can fall apart quickly.  The biggest problem I've seen is it puts a larger burden on the people maintaining the code because now there are multiple code paths they need to worry about.  The longer an older version sticks around the harder and harder it will be to get off the old versions.  I've seen companies spends a lot of time and money on projects just to get people off of old versions.  
+
+I recommend the default position should be to make changes as backwards compatible as possible.  Have a single code base, single stored procedure, single view, which everyone uses.  This will make maintenance easier and it will make it easier for changes to be made (over time).  Look at multiple deployments to make small changes over a course of time compared to a big bang.  Explorer all the options.  Versioning should considered after all other options are exhausted.  
+
+## Deploying Database Changes
+
+Do the database changes need to be deployed at the same time as the code?  Taking everything from this article into account for the test scenario, is that required.  I'd argue the database changes are not required to be deployed at the same time as the code.  The only thing that is required is the database changes have to be deployed before the code.   In fact, deploying a database change days or even weeks prior to deploying the code might have an added benefit.  If another application is using the same database (even if it just for a view), this will give them time to change and test their code.  Once the database change is up there, they can deploy when they're ready.  
+
+My recommendation is do what makes sense.  My preference is to store the code and database in the same repository.  Get everything working in a feature branch then checked in and push at the same time.  But some people opt for separate repositories.  Which works great too.  However, if you find yourself pushing out multiple database changes to production for the same feature because the code keeps changing; then it is probably time to hold off pushing more changes to production until the code is closer to a working state.  
+
+The key takeaway from this section is knowing that the option to deploy database changes days or even a week before the code is now available.  
+
+## Testing and Verification
+
+Automated testing and verification of `Blue` prior to swapping with `Green` (and vice versa) makes everything go a lot faster.  Computers can test a heck of a lot faster than people, there can be more tests and it provides a nice level of confidence.  Depending on your deployment tool, manual testing and verification is still an option.  Tools such as Octopus Deploy have the manual intervention step which can pause a deployment and wait until someone gives to go ahead to proceed.  
+
+The simple fact of the matter is most people starting Blue/Green deployments will not have a full test suite they can run in Production on day one.  The key is to start somewhere.  It will take time to build out that test suite and over come technical hurdles.  Depending on the tooling, even a simple scenario, changing from the URL for `Blue` with `Green` could take a bit to figure out.  As tests come online include them in the deployment pipeline to help automate the verification.  Hopefully the time will come where the vast majority of use cases can be verified and the manual intervention step can be removed.
 
 ## Common Database Change Scenarios
 
@@ -403,11 +402,9 @@ This post covered a very complex scenario, the combination of two columns into o
 - Updating an existing view/stored procedure -> As long as columns aren't removed from a view, this should be fine.  If columns are removed, then the process to delete columns from above should be followed.
 - Removing a view/stored procedure -> Very similar process to removing columns.  Except there won't be data, just references in code and potentially other stored procedures.
 
-## Multiple Applications connecting to a single database
-
-I've worked on an application which was one of dozen or so which connected to the same database.  The application list was split amongst three or four teams.  To keep things somewhat organized all common tables and stored procedures were in the `dbo` schema, while tables and stored procedures only used by a single application where in an application schema.  That reduces possible database changes to add only to the `dbo` schema, while having a bit more flexibility in the application schema.  
-
 ## Wrapping Up
 
-If you takeaway anything from this post it is this: Blue/Green deployments with a database will require more planning on how a change is implemented than doing a standard deployment with an outage.  It is a lot like playing chess, where you will have to think several steps ahead.  Blue/Green deployments are not for every application.  It requires the right alignment of architecture, infrastructure and tooling.  If you are considering Blue/Green deployments, take a feature with a database change and walk through what it would take to implement that using a Blue/Green deployment strategy.  Do you have to change anything in your application's architecture?  Is the necessary infrastructure, such as a load balancer and additional VMs, in place?  Can your CI/CD tool support blue/green deployments?
+Blue/Green deployments with a database will require more planning on how a change is implemented than doing a standard deployment with an outage.  It is a lot like playing chess, where you will have to think several steps ahead.  Blue/Green deployments are not for every application.  It requires the right alignment of architecture, infrastructure and tooling.  If you are considering Blue/Green deployments, take a feature with a database change and walk through what it would take to implement that using a Blue/Green deployment strategy.  Do you have to change anything in your application's architecture?  Is the necessary infrastructure, such as a load balancer and additional VMs, in place?  Can your CI/CD tool support blue/green deployments?
+
+In terms of time, the initial cost to do Blue/Green deployments can be high.  That cost is worth it when it is possible to deploy a change in the middle of the day.  Being able to do that opens up so many different possibilities.  Soon the conversation will move from "how can I deploy in the middle of the day" to "with Blue/Green deployments in place, am I now able to beta test new features with some customers?"  Blue/Green Deployments feels like it is the end of the CI/CD journey.  Once the deployments reach that point, everything will be awesome.  I'd argue that is just the beginning.
 
