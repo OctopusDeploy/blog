@@ -1,6 +1,6 @@
 ---
 title: Integrating OAuth with Kubernetes
-description: In this blog post we’ll look at integrating Google OAuth into a Kubernetes cluster.
+description: Integrating Google OAuth into a Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2020-01-01
@@ -10,11 +10,11 @@ tags:
  - Octopus
 ---
 
-Managing disconnected user databases is a major pain point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception, because by default the users of the system are specific to Kubernetes itself.
+Managing disconnected user databases is a major pain point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
 
 A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means exiting login providers like Google or Microsoft can be used to verify user credentials.
 
-In this blog post we’ll look at how to integrate Minikube with Google to provide browser based logins in Kubernetes.
+In this blog post, we’ll look at how to integrate Minikube with Google to provide browser-based logins in Kubernetes.
 
 :::hint
 See the post [Installing Minikube on Windows](/blog/2019-08/minikube-on-windows/index.md) to learn how to install and configure Minikube.
@@ -22,19 +22,19 @@ See the post [Installing Minikube on Windows](/blog/2019-08/minikube-on-windows/
 
 ## Create the OAuth client
 
-The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop down list, or create a new project. Then from the **Create Credentials** dropdown select the **OAuth Client ID** option.
+The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop-down list, or create a new project. Then from the **Create Credentials** drop-down select the **OAuth Client ID** option:
 
 ![](oauth-client-id.png "width=500")
 
-Select the **Other** option, and set the name of the client to **minikube**.
+Select the **Other** option, and set the name of the client to **minikube**:
 
 ![](other-client.png "width=500")
 
-You will now see two codes: the **Client ID** and the **Client secret**. Make a note of both these codes, as we’ll need them later on.
+You will now see two codes: the **Client ID** and the **Client secret**. Make a note of both these codes, as we’ll need them later on:
 
 ![](codes.png "width=500")
 
-With these codes generated we can boot up Minikube.
+With these codes generated, we can boot up Minikube.
 
 ## Configure Minikube with the OAuth details
 
@@ -83,7 +83,7 @@ PS C:\Users\Matthew> minikube start --extra-config=apiserver.authorization-mode=
 * Done! kubectl is now configured to use "minikube"
 ```
 
-At this point Minikube has configured a local `~/.kube/config` file with administrator credentials, so we can use `kubectl` straight away. However, any actions will be performed as the local Kubernetes administrator rather than a Google user. This is OK though, as we have some additional configuration to do.
+At this point, Minikube has configured a local `~/.kube/config` file with administrator credentials, so we can use `kubectl` straight away. However, any actions will be performed as the local Kubernetes administrator rather than a Google user. This is OK, though, as we have some additional configuration to do:
 
 ```
 PS C:\Users\Matthew> kubectl get nodes
@@ -93,7 +93,7 @@ minikube   Ready    master   4m49s   v1.15.2
 
 ## Adding cluster roles
 
-In preparation for our new Google user we need to define a `ClusterRole` to give them administrator access, and a `ClusterRoleBinding` to bind the user to the role.
+In preparation for our new Google user, we need to define a `ClusterRole` to give them administrator access, and a `ClusterRoleBinding` to bind the user to the role.
 
 Here is the `ClusterRole` YAML which gives a user administrator access to the Minikube cluster:
 
@@ -133,7 +133,7 @@ kubectl apply -f clusterrolebinding.yaml
 
 ## Generating the OAuth tokens
 
-You may be familiar with OAuth logins already, as they are commonly used to authenticate users in web applications.
+You may already be familiar with OAuth logins as they are commonly used to authenticate users in web applications.
 
 However, authenticating users from a console application is a little different. We still need the user to open a web page and verify themselves with Google, but `kubectl` won’t interact with a web browser by itself, so we need some other way to generate these codes.
 
@@ -145,7 +145,7 @@ To install `k8s-oidc-user`, make sure you have the [Go tools installed](https://
 go get github.com/micahhausler/k8s-oidc-helper
 ```
 
-Once installed we can run `k8s-oidc-helper` with the **Client ID** and **Client secret** generated in a previous step.
+Once installed we can run `k8s-oidc-helper` with the **Client ID** and **Client secret** generated in a previous step:
 
 ```
 k8s-oidc-helper --client-id 471129667683-049fg2q12m993hk8c5hq1jhf0ji1ske5.apps.googleusercontent.com --client-secret Cz2FbfSsue2RI_KKd2EawEjG
@@ -160,7 +160,7 @@ Open this url in your browser: https://accounts.google.com/o/oauth2/auth?redirec
 Enter the code Google gave you:  
 ```
 
-Opening the URL presents the familiar Google login page. Once you confirm your account details, Google will provide a code to be pasted back into the console.
+Opening the URL presents the familiar Google login page. Once you confirm your account details, Google will provide a code to be pasted back into the console:
 
 ![](code.png "width=500")
 
@@ -199,7 +199,7 @@ users:
 
 ```
 
-At this point when you use `kubectl` you will be authenticated as the Google user.
+At this point, when you use `kubectl` you will be authenticated as the Google user.
 
 :::hint
 Note that potentially any Google user can generate codes to use with `kubectl`, but without a corresponding `ClusterRoleBinding`, these users will be effectively unauthorized to do anything.
@@ -207,4 +207,4 @@ Note that potentially any Google user can generate codes to use with `kubectl`, 
 
 ## Conclusion
 
-Integrating Kubernetes with OAuth providers removes the need to maintain a yet another disconnected user database managed by Kubernetes itself, and allows you to leverage any existing account providers you may already have configured. The `k8s-oidc-user` provides a way to generate the required codes, and after that `kubectl` works like it does for any other Kubernetes account.
+Integrating Kubernetes with OAuth providers removes the need to maintain yet another disconnected user database managed by Kubernetes itself, and it allows you to leverage any existing account providers you may have already configured. The `k8s-oidc-user` provides a way to generate the required codes, and after that `kubectl` works as it does for any other Kubernetes account.
