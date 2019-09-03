@@ -108,6 +108,10 @@ Let's break this code down.
 
 We start by importing the `powershell-yaml` module. This will give us access to functions like `ConvertFrom-Yaml` later on.
 
+:::hint
+Consuming packages from the Powershell Gallery Nuget feed and exposing them to script steps via referenced packages is a convenient way to write advanced Powershell scripts in Octopus.
+:::
+
 ```
 Import-Module -Name .\powershell-yaml
 ```
@@ -189,3 +193,9 @@ We can then see the new Kubernetes target in the Infrastructure page.
 ![](k8s-target.png "width=500")
 
 *The Kubernetes target created by the call to New-OctopusKubernetesTarget.*
+
+## Conclusion
+
+Creating EKS clusters was previous a complex process that involved multiple steps configuring the control plane, the worker nodes and all the associated networking and security.
+
+Today, using the `eksctl` tool, creating a complete EKS cluster can be done with a single command. In this post we saw how to script the execution of `eksctl` in Octopus to create both the EKS cluster and the Octopus Kubernetes target.
