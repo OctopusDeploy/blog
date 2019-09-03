@@ -2,7 +2,7 @@
 title: Three ways to use custom Terraform plugins
 description: Terraform does not yet support repositories for custom plugins, but here are three ways to utilize your custom plugins.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-01-01
 metaImage:
 bannerImage:
@@ -12,11 +12,11 @@ tags:
 
 There is an [ongoing discussion](https://github.com/hashicorp/terraform/issues/15252) in the Hashicorp GitHub repository about the possibility of supporting custom plugin repositories for Terraform. As it stands today though only the official Terraform plugins will be downloaded on demand, and custom plugins need to be manually distributed.
 
-In this post we'll look at the three different ways to have custom plugins accessible from your Terraform templates.
+In this post, we'll look at the three different ways to have custom plugins accessible from your Terraform templates.
 
 ## The sample project
 
-To demonstrate loading a custom plugin we'll create a very simple Terraform template that utilizes the [Octopus plugin](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy).
+To demonstrate loading a custom plugin, we'll create a very simple Terraform template that uses the [Octopus plugin](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy).
 
 To add a dependency on the Octopus provider, we have the following code in a file called `octopus.tf`:
 
@@ -42,7 +42,7 @@ variable "space" {
 }
 ```
 
-With these two files in a local directory, we run `terraform init`. The result is a failure because Terraform has no idea how to get the Octppus plugin.
+With these two files in a local directory, we run `terraform init`. The result is a failure because Terraform has no idea how to get the Octopus plugin.
 
 ![](failure.png "width=500")
 
@@ -52,13 +52,13 @@ With these two files in a local directory, we run `terraform init`. The result i
 
 The first option to resolve the error is to save the plugin file to `~\AppData\Roaming\terraform.d\plugins` in Windows or `~/.terraform.d/plugins` for Linux and MacOS.
 
-You have to be careful about the filename. For Windows the Octopus plugin will have the filename `terraform-provider-octopusdeploy_v0.5.0.exe`, and for Linux and MacOS the filename will be `terraform-provider-octopusdeploy_v0.5.0` (replace `0.5.0` with the plugin version). Any other filename will result in an obscure error about the registry service being unreachable.
+You have to be careful about the filename. For Windows, the Octopus plugin will have the filename `terraform-provider-octopusdeploy_v0.5.0.exe`, and for Linux and MacOS, the filename will be `terraform-provider-octopusdeploy_v0.5.0` (replace `0.5.0` with the plugin version). Any other filename will result in an obscure error about the registry service being unreachable.
 
 ![](bad-filename.png "width=500")
 
 *An unexpected filename will generate this unhelpful error.*
 
-But once you have the correct filename, the `init` command will complete successfully.
+But when you have the correct filename, the `init` command will complete successfully.
 
 ![](success.png "width=500")
 
@@ -78,9 +78,9 @@ The next option is to save the plugin in the `.terraform/plugins/<arch>` directo
 
 ## The plugin-dir option
 
-The final option is to save the plugin executable in a folder of your choice, and reference it using the `--plugin-dir` argument.
+The final option is to save the plugin executable in a folder of your choice and reference it using the `--plugin-dir` argument.
 
-When you use the `--plugin-dir` argument there is no special requirement for the directory name. Here I have called `terraform init --plugin-dir C:\Users\Matthew\Desktop\plugins\whatever` to prove that the directory name has no significance.
+When you use the `--plugin-dir` argument, there is no special requirement for the directory name. Here I have called `terraform init --plugin-dir C:\Users\Matthew\Desktop\plugins\whatever` to prove that the directory name has no significance.
 
 ![](plugin-dir-whatever.png "width=500")
 
