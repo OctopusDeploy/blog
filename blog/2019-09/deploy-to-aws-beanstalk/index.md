@@ -147,7 +147,7 @@ The code below is the content of the Octopus step that will perform the deployme
 .PARAMETER application The name of the Beanstalk application
 .PARAMETER environment The name of the Beanstalk environment
 #>
-function Wait-FromEnvironmentToBeReady($application, $environment) {
+function Wait-ForEnvironmentToBeReady ($application, $environment) {
     do {
       $result = aws elasticbeanstalk describe-environments `
           --environment-names $environment `
@@ -254,20 +254,20 @@ function Wait-FromEnvironmentToBeReady($application, $environment) {
   New-ApplicationVersion $Application $VersionLabel $BucketName "$VersionLabel.zip"
 
   # Wait for any pending changes to the environment to finish
-  Wait-FromEnvironmentToBeReady $Application $Environment
+  Wait-ForEnvironmentToBeReady  $Application $Environment
 
   # Deploy the application version to the environment
   Update-Environment $Application $Environment $VersionLabel
 
   # Wait for the new deployment to finish
-  Wait-FromEnvironmentToBeReady $Application $Environment
+  Wait-ForEnvironmentToBeReady  $Application $Environment
 ```
 
-Let's break this code down. We'll start at the end where we call the custom functions that make up the deployment process.
+Let's break this code down. We'll start at the end where we call the custom functions that make up the deployment process, and then discuss the functions themselves.
 
 ### Creating the Application Version label
 
-To begin we create a Application Version Label. If you recall, this label has to be unique, but otherwise doesn't force any particular format. This code will create a label containing the Octopus package ID, the package version, and the Octopus deployment ID. This combination ensures that any given deployment performed by Octopus will result in a unique version label.
+To begin we create a Application Version Label. If you recall, this label has to be unique, but otherwise doesn't enforce any particular format. This code will create a label containing the Octopus package ID, the package version, and the Octopus deployment ID. This combination ensures that any given deployment performed by Octopus will result in a unique Version Label.
 
 The end result of this is a string that looks like `RandomQuotes.1.0.1+45.Deployments-4147`.
 
@@ -279,13 +279,13 @@ $VersionLabel = $OctopusParameters["Octopus.Action.Package[RandomQuotes].Package
     $OctopusParameters["Octopus.Deployment.Id"]
 ```
 
+### Creating the manifest file
+
 As we discussed earlier, the archive deployed to Beanstalk contains a manifest file and a nested archive containing the application code. The artifact we uploaded to Octopus contained only the compiled  .NET code, and not the manifest file. So here we create the [manifest file](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/dotnet-manifest.html#dotnet-manifest-dotnetcore).
 
 ```powershell
 New-ManifestFile "random-quotes" "site.zip"
 ```
-
-### Creating the manifest file
 
 The `New-ManifestFile` function saves a JSON file called `aws-windows-deployment-manifest.json`.
 
@@ -333,9 +333,9 @@ The end result of calling the function is a file called `aws-windows-deployment-
 
 ### Creating the Beanstalk deployment archive
 
-Now that we have the manifest file and the processed contents of the .NET Core application archive, we need to recompress everything to create the nested archive expected by Beanstalk.
+Now that we have the manifest file, we need to add it to ZIP archive along with a nested archive containing the application code.
 
-The .NET application archive is included in this step as a reference package. We have set this package to be extracted during deployment, which means the contents of the package can be found under the path referenced by the `$OctopusParameters["Octopus.Action.Package[RandomQuotes].ExtractedPath"]` variable.
+The .NET application archive is included in this step as a reference package. We called this package `RandomQuotes` and have set it to be extracted during deployment, which means the contents of the package can be found under the path referenced by the `$OctopusParameters["Octopus.Action.Package[RandomQuotes].ExtractedPath"]` variable.
 
 ![](referenced-package.png "width=500")
 
@@ -399,7 +399,7 @@ function Add-File($file, $s3Bucket, $s3Key) {
 
 ### Create the application versions
 
-With the code in S3, we can create a new Application Version to associate the artifact with a version label.
+With the code in S3, we can create a new Application Version to associate the artifact with a Version Label.
 
 :::hint
 The variables `$Application` and `$BucketName` are provided by Octopus, and map to the values from the project variables.
@@ -425,20 +425,20 @@ function New-ApplicationVersion($application, $version, $s3Bucket, $s3Key) {
 
 ## Wait for the environment to be able to accept an new application version
 
-If for some reason the Beanstalk Environment is already being updated (perhaps by a change made through the Amazon console), we need to wait for it to be in the `Ready` state. We do this will a call to `Wait-FromEnvironmentToBeReady`.
+If for some reason the Beanstalk Environment is already being updated (perhaps by a change made through the AWS console), we need to wait for it to be in the `Ready` state. We do this will a call to `Wait-ForEnvironmentToBeReady `.
 
 :::hint
 The variable `$Environment` has been provided by Octopus, and maps to the value of the variable scoped to the current deployment environment.
 :::
 
 ```powershell
-Wait-FromEnvironmentToBeReady $Application $Environment
+Wait-ForEnvironmentToBeReady  $Application $Environment
 ```
 
-The `Wait-FromEnvironmentToBeReady` function polls the Environment description waiting for the status to be either `Ready` or `Terminated`.
+The `Wait-ForEnvironmentToBeReady ` function polls the Environment description waiting for the status to be either `Ready` or `Terminated`.
 
 ```
-function Wait-FromEnvironmentToBeReady($application, $environment) {
+function Wait-ForEnvironmentToBeReady ($application, $environment) {
     do {
       $result = aws elasticbeanstalk describe-environments `
           --environment-names $environment `
@@ -460,7 +460,7 @@ function Wait-FromEnvironmentToBeReady($application, $environment) {
 
 ### Create the application version, and update the environment
 
-All the work to this point has been to get our Beanstalk application bundle into S3 so we can then deploy it to Beanstalk. The call to `Update-Environment` is where the deployment to Beanstalk takes place.
+We now have a new Application Version created in Beanstalk, so the next step is to deploy it to an environment. The call to `Update-Environment` is where the deployment to Beanstalk takes place.
 
 ```powershell
 # Deploy the application version to the environment
@@ -482,11 +482,11 @@ function Update-Environment($application, $environment, $version) {
 
 ### Wait for the deployment to finish
 
-We make one last final call to `Wait-FromEnvironmentToBeReady` to wait for the new Application Version to be deployed to the Environment.
+We make one last final call to `Wait-ForEnvironmentToBeReady ` to wait for the new Application Version to be deployed to the Environment. Once this call completes, the deployment is done.
 
 ```powershell
 # Wait for the new deployment to finish
-Wait-FromEnvironmentToBeReady $Application $Environment
+Wait-ForEnvironmentToBeReady  $Application $Environment
 ```
 
 ## Performing the deployment
@@ -499,7 +499,7 @@ Let's go ahead and perform the deployment to the `Dev` environment.
 
 The log message `Performing JSON variable replacement on 'C:\Octopus\Work\20190902230557-24738-504\RandomQuotes\appsettings.json'` shows that Octopus has successfully process the `appsettings.json` file and injected the values we wanted to override.
 
-The Beanstalk application package is then uploaded to S3.
+The Beanstalk application package was uploaded to S3.
 
 ![](s3.png "width=500")
 
