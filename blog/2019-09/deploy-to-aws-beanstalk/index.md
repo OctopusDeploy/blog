@@ -423,7 +423,7 @@ function New-ApplicationVersion($application, $version, $s3Bucket, $s3Key) {
 }
 ```
 
-## Wait for the environment to be able to accept an new application version
+### Wait for the environment to be able to accept an new application version
 
 If for some reason the Beanstalk Environment is already being updated (perhaps by a change made through the AWS console), we need to wait for it to be in the `Ready` state. We do this will a call to `Wait-ForEnvironmentToBeReady `.
 
