@@ -18,6 +18,12 @@ Fortunately today we have [eksctl](https://eksctl.io), which is a command line t
 
 In this blog post well look at how to get a simple EKS cluster deployed and integrated into Octopus using `eksctl`.
 
+## Preparing the Octopus server
+
+Using Kubernetes clusters and EKS especially with Octopus means having the `kubectl` and `aws-iam-authenticator` binaries available on the Octopus server.
+
+Information on installing `kubectl` can be found in the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows), and You can find more information on `aws-iam-authenticator` from the [AWS documentation](http://g.octopushq.com/AWSEKSKubectl).
+
 ## Preparing the Octopus library
 
 For this example we will be using `eksctl` directly from Octopus. To make `eksctl` available in our scripts, we first need to download the binary from the [eksctl GitHub releases](https://github.com/weaveworks/eksctl/releases) page.
