@@ -18,6 +18,12 @@ Fortunately today we have [eksctl](https://eksctl.io), which is a command line t
 
 In this blog post well look at how to get a simple EKS cluster deployed and integrated into Octopus using `eksctl`.
 
+## Preparing the Octopus server
+
+Using Kubernetes clusters and EKS especially with Octopus means having the `kubectl` and `aws-iam-authenticator` binaries available on the Octopus server.
+
+Information on installing `kubectl` can be found in the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows), and You can find more information on `aws-iam-authenticator` from the [AWS documentation](http://g.octopushq.com/AWSEKSKubectl).
+
 ## Preparing the Octopus library
 
 For this example we will be using `eksctl` directly from Octopus. To make `eksctl` available in our scripts, we first need to download the binary from the [eksctl GitHub releases](https://github.com/weaveworks/eksctl/releases) page.
@@ -28,7 +34,7 @@ The file you download will be called something like `eksctl_Windows_amd64.zip`. 
 
 *The eksctl package uploaded to the built-in feed.*
 
-We are also going to need to inspect YAML files to extract properties from them. Powershell does not natively support YAML parsing, which means we will need to use a third party library.
+We are also going to need to inspect YAML files to extract their values. Powershell does not natively support YAML parsing, which means we will need to use a third party library.
 
 An easy way to consume Powershell modules is to add the [Powershell Gallery](https://www.powershellgallery.com/) Nuget feed to Octopus. The URL of the feed is https://www.powershellgallery.com/api/v2/.
 
@@ -59,15 +65,29 @@ The first thing we need to set up in our Octopus project are the variables. The 
 
 ![](octopus-variables.png "width=500")
 
-Now we can add a `Run an AWS CLI Script` step to call `eksctl` to create the EKS cluster and create the Octopus Kubernetes target.
+*The project variables, defining a single variable pointing to an AWS account.*
+
+Now we can add a `Run an AWS CLI Script` step to call `eksctl` to create the EKS cluster, and then create the Octopus Kubernetes target.
 
 The step references the AWS Account variable we set up earlier to perform the login, and defines an AWS region in which the deployment will take place.
 
 ![](step-1.png "width=500")
 
+*The credentials and region used by the AWS CLI script step.*
+
 Our script will refernce two additional packages: the packaging containing the `eksctl` executable, and the `powershell-yaml` module from the Powershell Gallery feed. Both additional packages are set to be extracted.
 
+:::hint
+Here we've taken advantage of referenced packages to enrich the deployment in two different ways.
+
+The `eksctl` package is an example of using reference packages to provide additional binary tools to our script. The AWS ecosystem in particular has an abundance of first and third party CLI tools (e.g. [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html), [S3cmd](https://github.com/s3tools/s3cmd), [eksctl](https://eksctl.io), [Beanstalk CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-getting-started.html) and [ECS CLI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html)) that can be bundled up in this way.
+
+The `powershell-yaml` package is an example of utilizing the Powershell Gallery to expose modules to our Powershell script. This avoids the need to make these modules globally available, or bundle them up alongside the custom script.
+:::
+
 ![](step-2.png "width=500")
+
+*The referenced packages, which will be downloaded and extracted during deployment.*
 
 Finally we have the script itself. Here is the complete code.
 
@@ -106,34 +126,32 @@ New-OctopusKubernetesTarget `
 
 Let's break this code down.
 
-We start by importing the `powershell-yaml` module. This will give us access to functions like `ConvertFrom-Yaml` later on.
+We start by importing the `powershell-yaml` module, which was sourced from the Powershell Gallery Nuget feed. This will give us access to functions like `ConvertFrom-Yaml` later on.
 
-:::hint
-Consuming packages from the Powershell Gallery Nuget feed and exposing them to script steps via referenced packages is a convenient way to write advanced Powershell scripts in Octopus.
-:::
-
-```
+```PowerShell
 Import-Module -Name .\powershell-yaml
 ```
 
 The name of the EKS cluster is defined in a variable, as it will be used a number of times in the script.
 
-```
+```PowerShell
 $clusterName = "mycluster"
 ```
 
-We then check to see if the EKS cluster already exists.
+We then check to see if the EKS cluster already exists by calling `eksctl`.
 
-Octopus steps should be designed to be idempotent, which means they can be run multiple times regardless of the state of any external system. Unfortunately, `eksclt` doesn't expose idempotent commands, which means if you try to create a cluster that already exists, you will receive an error. By checking to see if the cluster already exists, we can implement our own create or update logic.
+Octopus steps should be designed to be idempotent, which means they can be run multiple times regardless of the state of any external system. Unfortunately, `eksclt` doesn't expose idempotent commands, which means if you try to create a cluster that already exists, you will receive an error. By checking to see if the cluster already exists, we can implement our own *create or update* logic.
 
-```
+Note that the `eksctl` executable has been extracted to the `eksctl` directory, hence our call to `eksctl\eksctl`.
+
+```PowerShell
 # Check to see if the cluster exists
 eksctl\eksctl get cluster --name $clusterName 2>&1
 ```
 
 If the cluster does not exist (which we determine from the return code of the call to `eksctl get cluster`), we create it. The `--name` parameter defines the name of the EKS cluster, and the `--kubeconfig` parameter defines the filename that will hold the details that a client needs to connect to the cluster.
 
-```
+```PowerShell
 # If the cluster does not exist, create it. Otherwise get the kubeconfig file
 if ($LASTEXITCODE -ne 0) {
 	eksctl\eksctl create cluster --name $clusterName --kubeconfig eks.yaml
@@ -142,17 +160,17 @@ if ($LASTEXITCODE -ne 0) {
 
 In the event that the cluster already exists, we save the kubeconfig details.
 
-```
+```PowerShell
 else {
  eksctl\eksctl utils write-kubeconfig --name $clusterName --kubeconfig eks.yaml
 }
 ```
 
-At this point, regardless of whether the EKS cluster was newly created or already existed, we have a file called `eks.yaml` that contains the details that a client needs to connect to the cluster. Normally this config file would be used by the `kubectl` command line tool directly, but in this example we want to take the details of that file to create an Octopus Kubernetes target.
+At this point, regardless of whether the EKS cluster was newly created or already existed, we have a file called `eks.yaml` that contains the details that a client needs to connect to the cluster. Normally this config file would be used by the `kubectl` command line tool directly, but in this example we want to take the details of that file and use them to create an Octopus Kubernetes target.
 
-To get the details of the file, we convert it from raw YAML into a Powershell object using the `ConvertFrom-Yaml` function that was imported as part of the `powershell-yaml` library.
+To extract the details of the file, we convert it from raw YAML into a Powershell object using the `ConvertFrom-Yaml` function that was imported as part of the `powershell-yaml` library.
 
-```
+```PowerShell
 # Convert the kubeconfig from YAML
 $kubeConfig = Get-Content -Path eks.yaml -Raw
 $kubeConfigObject = ConvertFrom-Yaml $kubeConfig
@@ -160,16 +178,16 @@ $kubeConfigObject = ConvertFrom-Yaml $kubeConfig
 
 We then extract the URL of the EKS cluster.
 
-```
+```PowerShell
 # Extract the cluster URL
 $clusterUrl = $kubeConfigObject.clusters[0].cluster.server
 ```
 
 The final step is to use the `New-OctopusKubernetesTarget` function to create a new Kubernetes target in Octopus. This function is documented [here](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure/kubernetes-target).
 
-Note that the `$AWS` variable is provided to use by Octopus, and is set to the ID of the AWS account.
+Note that the `$AWS` variable is provided by Octopus, and is set to the ID of the AWS account.
 
-```
+```PowerShell
 # Create an Octopus target
 New-OctopusKubernetesTarget `
     -name $clusterName `
