@@ -12,7 +12,7 @@ tags:
 
 Managing disconnected user databases is a major pain point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
 
-A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means exiting login providers like Google or Microsoft can be used to verify user credentials.
+A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means existing login providers like Google or Microsoft can be used to verify user credentials.
 
 In this blog post, we’ll look at how to integrate Minikube with Google to provide browser-based logins in Kubernetes.
 
@@ -22,7 +22,7 @@ See the post [Installing Minikube on Windows](/blog/2019-08/minikube-on-windows/
 
 ## Create the OAuth client
 
-The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop-down list, or create a new project. Then from the **Create Credentials** drop-down select the **OAuth Client ID** option:
+The first step is to create an OAuth client in Google. Open https://console.cloud.google.com/apis/credentials and select a project from the drop-down list, or create a new project. Next, from the **Create Credentials** drop-down select the **OAuth Client ID** option:
 
 ![](oauth-client-id.png "width=500")
 
@@ -38,14 +38,14 @@ With these codes generated, we can boot up Minikube.
 
 ## Configure Minikube with the OAuth details
 
-To allow Minikube to accept Google logins, we need to pass the following parameters:
+To allow Minikube to accept Google logins we need to pass the following parameters:
 
 * `--extra-config=apiserver.authorization-mode=RBAC`
 * `--extra-config=apiserver.oidc-issuer-url="https://accounts.google.com"`
 * `--extra-config=apiserver.oidc-client-id=<Client ID>`
 * `--extra-config=apiserver.oidc-username-claim=email`
 
-These values enable RBAC security, configure the OAuth Client ID we just created, and specify that the email address of the Google user becomes the Kubernetes username.
+These values enable RBAC security, configure the OAuth Client ID we just created, and specify that the email address of the Google user becomes their Kubernetes username.
 
 Because I am running Windows and PowerShell, my Minikube start command looks like this:
 
@@ -83,7 +83,7 @@ PS C:\Users\Matthew> minikube start --extra-config=apiserver.authorization-mode=
 * Done! kubectl is now configured to use "minikube"
 ```
 
-At this point, Minikube has configured a local `~/.kube/config` file with administrator credentials, so we can use `kubectl` straight away. However, any actions will be performed as the local Kubernetes administrator rather than a Google user. This is OK, though, as we have some additional configuration to do:
+At this point, Minikube has configured a local `~/.kube/config` file with administrator credentials, so we can use `kubectl` straight away. However, any actions will be performed as the local Kubernetes administrator rather than as a Google user. This is OK, though, as we have some additional configuration to do:
 
 ```
 PS C:\Users\Matthew> kubectl get nodes
@@ -137,7 +137,7 @@ You may already be familiar with OAuth logins as they are commonly used to authe
 
 However, authenticating users from a console application is a little different. We still need the user to open a web page and verify themselves with Google, but `kubectl` won’t interact with a web browser by itself, so we need some other way to generate these codes.
 
-This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser which will display the required Google token. We then paste back into the console, and `k8s-oidc-helper` generates the codes that `kubectl` requires to authenticate a user. Let’s see how this process works.
+This is where [k8s-oidc-helper](https://github.com/micahhausler/k8s-oidc-helper) comes in. This tool generates a URL that we can open in a browser. The URL displays the required Google token, which we can then paste back into the console, and `k8s-oidc-helper` generates the codes that `kubectl` requires to authenticate the user. Let’s see how this process works.
 
 To install `k8s-oidc-user`, make sure you have the [Go tools installed](https://golang.org/doc/install), and then run:
 
