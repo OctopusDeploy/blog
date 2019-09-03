@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-There is an [ongoing discussion](https://github.com/hashicorp/terraform/issues/15252) in the Hashicorp GitHub repository about the possibility of supporting custom plugin repositories for Terraform plugins. As it stands today though only the official Terraform plugins will be downloaded on demand, and custom plugins need to be manually distributed.
+There is an [ongoing discussion](https://github.com/hashicorp/terraform/issues/15252) in the Hashicorp GitHub repository about the possibility of supporting custom plugin repositories for Terraform. As it stands today though only the official Terraform plugins will be downloaded on demand, and custom plugins need to be manually distributed.
 
-In this post we'll look at the three different ways to have custom plugins included in your Terraform templates.
+In this post we'll look at the three different ways to have custom plugins accessible from your Terraform templates.
 
 ## The sample project
 
@@ -52,7 +52,7 @@ With these two files in a local directory, we run `terraform init`. The result i
 
 The first option to resolve the error is to save the plugin file to `~\AppData\Roaming\terraform.d\plugins` in Windows or `~/.terraform.d/plugins` for Linux and MacOS.
 
-You have to be careful about the filename. For windows the Octopus plugin will have the filename `terraform-provider-octopusdeploy_v0.5.0.exe`, and for Linux and MacOS the filename will be `terraform-provider-octopusdeploy_v0.5.0` (replace `0.5.0` with the plugin version). Any other filename will result in an obscure error about the registry service being unreachable.
+You have to be careful about the filename. For Windows the Octopus plugin will have the filename `terraform-provider-octopusdeploy_v0.5.0.exe`, and for Linux and MacOS the filename will be `terraform-provider-octopusdeploy_v0.5.0` (replace `0.5.0` with the plugin version). Any other filename will result in an obscure error about the registry service being unreachable.
 
 ![](bad-filename.png "width=500")
 
