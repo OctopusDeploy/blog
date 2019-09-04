@@ -20,7 +20,7 @@ In this blog post well look at how to get a simple EKS cluster deployed and inte
 
 ## Preparing the Octopus server
 
-Using Kubernetes clusters and EKS especially with Octopus means having the `kubectl` and `aws-iam-authenticator` binaries available on the Octopus server.
+Using Kubernetes clusters and EKS specifically with Octopus means having the `kubectl` and `aws-iam-authenticator` binaries available on the Octopus server.
 
 Information on installing `kubectl` can be found in the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows), and You can find more information on `aws-iam-authenticator` from the [AWS documentation](http://g.octopushq.com/AWSEKSKubectl).
 
