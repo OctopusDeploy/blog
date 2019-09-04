@@ -4,15 +4,15 @@ description: With the beta release of GitHub Actions now available, is it time t
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2019-09-03
-metaImage: blogimg_versioning_githubactions.png
-bannerImage: blogimg_versioning_githubactions.png
+metaImage: img_can_github_replace_ci_server.png
+bannerImage: img_can_github_replace_ci_server.png
 tags:
  - Octopus
 ---
 
 ![Illustration showing GitHub CI processes with versions](blogimg_versioning_githubactions.png)
 
-With the introduction of GitHub Actions (albeit in beta), the world’s source code repository now includes the ability to host and execute your CI/CD pipelines. Now that hosting code is essentially commoditized, it was natural and inevitable that running build scripts would be commoditized next.
+With the introduction of GitHub Actions (albeit in beta), the world’s source code repository now includes the ability to host and execute your CI/CD pipelines.  Now that hosting code is essentially commoditized, it was natural and inevitable that running build scripts would be commoditized next.
 
 The interesting thing about CI is that it’s a machine driven process that will run when the inputs (like your latest commit) are available, and generates the outputs (like your artifacts and test results) without intervention. Over the years we’ve seen every major CI platform continue to distill the build pipeline down to this formula through the concept of pipelines as code, with the result being that CI user interfaces are used as little more than a read-only dashboard, and CI servers become build agent orchestrators.
 
