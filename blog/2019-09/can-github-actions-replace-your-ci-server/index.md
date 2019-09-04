@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-![Illustration showing GitHub CI processes with versions](blogimg_versioning_githubactions.png)
+![Illustration showing GitHub CI processes with versions](img_can_github_replace_ci_server.png)
 
 With the introduction of GitHub Actions (albeit in beta), the world’s source code repository now includes the ability to host and execute your CI/CD pipelines.  Now that hosting code is essentially commoditized, it was natural and inevitable that running build scripts would be commoditized next.
 
