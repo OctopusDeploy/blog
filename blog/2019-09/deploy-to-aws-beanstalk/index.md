@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Elastic Beanstalk is a Platform as a Service (PaaS) offering from AWS that lets developers deploy code written in a variety of languages, such as .NET, Java, PHP, Node.js, Go, Python and Ruby, onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+Elastic Beanstalk is a Platform as a Service (PaaS) offering from AWS that lets developers deploy code written in a variety of languages, such as .NET, Java, PHP, Node.js, Go, Python, and Ruby, onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
 
 The lifecycle of a Beanstalk application and Octopus have much in common, for instance, Beanstalk deploys applications to multiple isolated environments, with each environment potentially having unique settings. This overlap means Octopus can help with Beanstalk deployments.
 
@@ -269,7 +269,7 @@ Let’s break this code down. We’ll start at the end where we call the custom 
 
 ### Creating the application version label
 
-To begin, we create an application version label. If you recall, this label has to be unique, but otherwise doesn’t enforce any particular format. This code will create a label containing the Octopus package ID, the package version, and the Octopus deployment ID. This combination ensures that given deployment performed by Octopus will result in a unique version label.
+To begin, we create an application version label. If you recall, this label has to be unique, but otherwise doesn’t enforce any particular format. This code will create a label containing the Octopus package ID, the package version, and the Octopus deployment ID. This combination ensures that any deployment performed by Octopus will result in a unique version label.
 
 The end result of this is a string that looks like `RandomQuotes.1.0.1+45.Deployments-4147`.
 
@@ -425,7 +425,7 @@ function New-ApplicationVersion($application, $version, $s3Bucket, $s3Key) {
 }
 ```
 
-### Wait for the environment to be able to accept a new application version
+### Wait for the environment to be in a ready state
 
 If for some reason the Beanstalk environment is already being updated (perhaps by a change made through the AWS console), we need to wait for it to be in the `Ready` state. We do this with a call to `Wait-ForEnvironmentToBeReady`.
 
@@ -437,7 +437,7 @@ The variable `$Environment` has been provided by Octopus and maps to the value o
 Wait-ForEnvironmentToBeReady  $Application $Environment
 ```
 
-The `Wait-ForEnvironmentToBeReady ` function polls the environment description waiting for the status to be either `Ready` or `Terminated`:
+The `Wait-ForEnvironmentToBeReady ` function polls the environment description and waits for the status to be either `Ready` or `Terminated`:
 
 ```
 function Wait-ForEnvironmentToBeReady ($application, $environment) {
@@ -511,7 +511,7 @@ The application version was created.
 
 ![](application-version.png "width=500")
 
-*The application version.*
+*The application versions.*
 
 Finally, the environment was updated with the new application version.
 
