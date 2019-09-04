@@ -2,7 +2,7 @@
 title: Deploying to AWS Elastic Beanstalk with Octopus
 description: This blog post looks at the process of deploying a .NET Core application to AWS Elastic Beanstalk.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-01-01
 metaImage:
 bannerImage:
@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Elastic Beanstalk is a Platform as a Service (PaaS) offering from AWS that lets developers to deploy code written in a variety of languages such as .NET, Java, PHP, Node.js, Go, Python and Ruby onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+Elastic Beanstalk is a Platform as a Service (PaaS) offering from AWS that lets developers deploy code written in a variety of languages, such as .NET, Java, PHP, Node.js, Go, Python and Ruby, onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
 
 The lifecycle of a Beanstalk application and Octopus have much in common, for instance, Beanstalk deploys applications to multiple isolated environments, with each environment potentially having unique settings. This overlap means Octopus can help with Beanstalk deployments.
 
@@ -18,9 +18,9 @@ However, Beanstalk has some unique requirements that we need to take into accoun
 
 ## An overview of the Beanstalk infrastructure
 
-Before we can deploy to Beanstalk we need to understand how Beanstalk is organized.
+Before we can deploy to Beanstalk, we need to understand how Beanstalk is organized.
 
-At the top level of any Beanstalk infrastructure is the application. Conceptually, an application is a space that contains application versions and environments. Typically an application is named to identify the deployment that it represents. In this post we will deploy the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes) application, so the Beanstalk application will be called Random Quotes.
+At the top level of any Beanstalk infrastructure is the application. Conceptually, an application is a space that contains application versions and environments. Typically an application is named to identify the deployment that it represents. In this post, we will deploy the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes) application, so the Beanstalk application will be called Random Quotes.
 
 An application version is a copy of the code that is deployed to an environment. Each application version has a unique version label. The version label doesn’t mandate any particular versioning scheme though, just that each is unique.
 
@@ -38,7 +38,7 @@ The types of packages Beanstalk accepts depends largely on the programming langu
 
 For simple deployments, Beanstalk accepts a standard ZIP file, or in the case of Java a JAR or WAR file. These files work well with Octopus as they can all be stored in the built-in feed and easily consumed in deployment steps.
 
-However, in some cases Beanstalk expects to receive nested archives, and .NET Core deployments are one example where nested archives are required.
+However, in some cases, Beanstalk expects to receive nested archives, and .NET Core deployments are one example where nested archives are required.
 
 In the case of .NET Core, the deployable artifact is a ZIP file containing a JSON manifest file and a second nested ZIP file containing the application code. You can see these files in the screenshot below. The file `aws-windows-deployment-manifest.json` is the Beanstalk manifest file, and the file `site.zip` contains the .NET Core code.
 
@@ -52,9 +52,9 @@ We need to keep these nested archives in mind in order to take full advantage of
 
 The sample application we are deploying is called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes). This is a simple .NET Core web application, which hasn’t necessarily been designed for deployment to Beanstalk.
 
-The generic nature of this application highlights some challenges that deployments to Beanstalk must take into account, for instance, how environment specific settings can be implemented without maintaining environment specific artifacts.
+The generic nature of this application highlights some challenges that deployments to Beanstalk must take into account, for instance, how environment-specific settings can be implemented without maintaining environment-specific artifacts.
 
-Beanstalk environments can define their own set of environment variables, which is the preferred way to configure the environment specific aspects of the applications they run. Storing all configuration in environment variables is the approach recommended by the [12 Factor App](https://12factor.net/config) methodology.
+Beanstalk environments can define their own set of environment variables, which is the preferred way to configure the environment-specific aspects of the applications they run. Storing all configuration in environment variables is the approach recommended by the [12 Factor App](https://12factor.net/config) methodology.
 
 But our sample application still has configuration baked into files, specifically the [appsettings.json](https://github.com/OctopusSamples/RandomQuotes/blob/master/RandomQuotes/appsettings.json) file. While we could leverage the `ASPNETCORE_ENVIRONMENT` environment variable to [select an appropriate settings file](https://visualstudiomagazine.com/articles/2019/03/01/managing-production-and-development.aspx), for this deployment process, we’ll customize the `appsettings.json` file directly during deployment.
 
@@ -113,7 +113,7 @@ Importantly, this ZIP file is not something we can deploy to Beanstalk in its cu
 
 ## Creating the Beanstalk Application
 
-We now need to create the Beanstalk application and environments. There are many ways to create the Beanstalk infrastructure, but for the sake of simplicity we‘ve created it here via the AWS console.
+We now need to create the Beanstalk application and environments. There are many ways to create the Beanstalk infrastructure, but for the sake of simplicity, we‘ve created it here via the AWS console.
 
 So we have an application called `Random Quotes` with two environments: `Development` and `Test`.
 
@@ -269,7 +269,7 @@ Let’s break this code down. We’ll start at the end where we call the custom 
 
 ### Creating the application version label
 
-To begin we create an application version label. If you recall, this label has to be unique, but otherwise doesn’t enforce any particular format. This code will create a label containing the Octopus package ID, the package version, and the Octopus deployment ID. This combination ensures that given deployment performed by Octopus will result in a unique version label.
+To begin, we create an application version label. If you recall, this label has to be unique, but otherwise doesn’t enforce any particular format. This code will create a label containing the Octopus package ID, the package version, and the Octopus deployment ID. This combination ensures that given deployment performed by Octopus will result in a unique version label.
 
 The end result of this is a string that looks like `RandomQuotes.1.0.1+45.Deployments-4147`.
 
@@ -347,7 +347,7 @@ The .NET application archive is included in this step as a reference package. We
 
 *The details of the referenced package.*
 
-Because we have enabled the `JSON configuration variables` feature and configured it to process the file called `appsettings.json`, the value of the Octopus variable `AppSettings:EnvironmentName` will replace the existing `EnvironmentName` in the JSON file. In this way we have created an environment specific deployment from a generic application bundle.
+Because we have enabled the `JSON configuration variables` feature and configured it to process the file called `appsettings.json`, the value of the Octopus variable `AppSettings:EnvironmentName` will replace the existing `EnvironmentName` in the JSON file. In this way, we have created an environment-specific deployment from a generic application bundle.
 
 :::hint
 You can use the `substitute variables in files` feature in the same way.
@@ -425,7 +425,7 @@ function New-ApplicationVersion($application, $version, $s3Bucket, $s3Key) {
 }
 ```
 
-### Wait for the environment to be able to accept an new application version
+### Wait for the environment to be able to accept a new application version
 
 If for some reason the Beanstalk environment is already being updated (perhaps by a change made through the AWS console), we need to wait for it to be in the `Ready` state. We do this with a call to `Wait-ForEnvironmentToBeReady`.
 
@@ -460,7 +460,7 @@ function Wait-ForEnvironmentToBeReady ($application, $environment) {
   }
 ```
 
-### Create the application version, and update the environment
+### Create the application version and update the environment
 
 We now have a new application version created in Beanstalk, so the next step is to deploy it to an environment. The call to `Update-Environment` is where the deployment to Beanstalk takes place:
 
@@ -533,7 +533,7 @@ Promoting the deployment to the `Test` environment makes the substitution cleare
 
 ## Conclusion
 
-In this post we discused the high level architecture of the Beanstalk service, and then implemented a custom PowerShell script that deploys an application to Beanstalk by:
+In this post, we discussed the high-level architecture of the Beanstalk service, and then implemented a custom PowerShell script that deploys an application to Beanstalk by:
 
 * Creating a Beanstalk manifest file.
 * Creating a Beanstalk archive including the .NET Core application archive and the manifest file.
