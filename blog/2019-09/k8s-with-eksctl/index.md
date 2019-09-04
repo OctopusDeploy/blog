@@ -34,12 +34,12 @@ The file you download will be called something like `eksctl_Windows_amd64.zip`. 
 
 *The eksctl package uploaded to the built-in feed.*
 
-We are also going to need to inspect YAML files to extract their values. Powershell does not natively support YAML parsing, which means we will need to use a third party library.
+We are also going to need to inspect YAML files to extract their values. PowerShell does not natively support YAML parsing, which means we will need to use a third party library.
 
-An easy way to consume Powershell modules is to add the [Powershell Gallery](https://www.powershellgallery.com/) Nuget feed to Octopus. The URL of the feed is https://www.powershellgallery.com/api/v2/.
+An easy way to consume PowerShell modules is to add the [PowerShell Gallery](https://www.powershellgallery.com/) Nuget feed to Octopus. The URL of the feed is https://www.powershellgallery.com/api/v2/.
 
 ![](powershell-gallery-feed.png "width=500")
-*The Powershell Gallery Nuget feed.*
+*The PowerShell Gallery Nuget feed.*
 
 ## Preparing the credentials
 
@@ -75,14 +75,14 @@ The step references the AWS Account variable we set up earlier to perform the lo
 
 *The credentials and region used by the AWS CLI script step.*
 
-Our script will refernce two additional packages: the packaging containing the `eksctl` executable, and the `powershell-yaml` module from the Powershell Gallery feed. Both additional packages are set to be extracted.
+Our script will refernce two additional packages: the packaging containing the `eksctl` executable, and the `powershell-yaml` module from the PowerShell Gallery feed. Both additional packages are set to be extracted.
 
 :::hint
 Here we've taken advantage of referenced packages to enrich the deployment in two different ways.
 
 The `eksctl` package is an example of using reference packages to provide additional binary tools to our script. The AWS ecosystem in particular has an abundance of first and third party CLI tools (e.g. [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html), [S3cmd](https://github.com/s3tools/s3cmd), [eksctl](https://eksctl.io), [Beanstalk CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-getting-started.html) and [ECS CLI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html)) that can be bundled up in this way.
 
-The `powershell-yaml` package is an example of utilizing the Powershell Gallery to expose modules to our Powershell script. This avoids the need to make these modules globally available, or bundle them up alongside the custom script.
+The `powershell-yaml` package is an example of utilizing the PowerShell Gallery to expose modules to our PowerShell script. This avoids the need to make these modules globally available, or bundle them up alongside the custom script.
 :::
 
 ![](step-2.png "width=500")
@@ -126,7 +126,7 @@ New-OctopusKubernetesTarget `
 
 Let's break this code down.
 
-We start by importing the `powershell-yaml` module, which was sourced from the Powershell Gallery Nuget feed. This will give us access to functions like `ConvertFrom-Yaml` later on.
+We start by importing the `powershell-yaml` module, which was sourced from the PowerShell Gallery Nuget feed. This will give us access to functions like `ConvertFrom-Yaml` later on.
 
 ```PowerShell
 Import-Module -Name .\powershell-yaml
@@ -168,7 +168,7 @@ else {
 
 At this point, regardless of whether the EKS cluster was newly created or already existed, we have a file called `eks.yaml` that contains the details that a client needs to connect to the cluster. Normally this config file would be used by the `kubectl` command line tool directly, but in this example we want to take the details of that file and use them to create an Octopus Kubernetes target.
 
-To extract the details of the file, we convert it from raw YAML into a Powershell object using the `ConvertFrom-Yaml` function that was imported as part of the `powershell-yaml` library.
+To extract the details of the file, we convert it from raw YAML into a PowerShell object using the `ConvertFrom-Yaml` function that was imported as part of the `powershell-yaml` library.
 
 ```PowerShell
 # Convert the kubeconfig from YAML
