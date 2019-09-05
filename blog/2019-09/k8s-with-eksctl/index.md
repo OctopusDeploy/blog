@@ -16,7 +16,7 @@ Previously it was your responsibility to create all these resources yourself, an
 
 Fortunately today we have [eksctl](https://eksctl.io), which is a command-line tool exposing a familiar verb/noun argument structure for creating and managing EKS clusters.
 
-In this blog post well look at how to get a simple EKS cluster deployed and integrated into Octopus using `eksctl`.
+In this blog post we’ll look at how to get a simple EKS cluster deployed and integrated into Octopus using `eksctl`.
 
 ## Preparing the Octopus server
 
@@ -150,7 +150,7 @@ Note that the `eksctl` executable has been extracted to the `eksctl` directory, 
 eksctl\eksctl get cluster --name $clusterName 2>&1
 ```
 
-If the cluster doesn’t exist (which we determine from the return code of the call to `eksctl get cluster`), we create it. The `--name` parameter defines the name of the EKS cluster, and the `--kubeconfig` parameter defines the filename that will hold the details that a client needs to connect to the cluster:
+If the cluster doesn’t exist (which we determine from the return code of the call to `eksctl get cluster`), we create it. The `--name` parameter defines the name of the EKS cluster, and the `--kubeconfig` parameter defines the filename that will hold the details clients needs to connect to the cluster:
 
 ```PowerShell
 # If the cluster does not exist, create it. Otherwise get the kubeconfig file
