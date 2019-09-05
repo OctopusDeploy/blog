@@ -1,5 +1,5 @@
 ---
-title: Creating a EKS cluster with eksctl
+title: Creating an EKS cluster with eksctl
 description: Creating EKS clusters is now a trivial task with eksctl. In this post we'll learn how to create a cluster and integrate it with Octopus.
 author: matthew.casperson@octopus.com
 visibility: private
