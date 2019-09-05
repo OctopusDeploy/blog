@@ -39,6 +39,8 @@ This post will be covering a complex scenario.  The following changes will be ma
 
 Admittedly, that scenario is relatively complex.  Most database changes don't combine two columns into one and try to backfill the new column.  This article will walk through how to solve that scenario.   That scenario touches on a lot of different changes which must be done for blue-green deployments.  If that scenario can be solved, then the majority of other scenarios can be solved.  It will walk through each change, the questions to consider, and recommendations on how to solve them.
 
+While it is possible to do blue-green deployments with a shared database, it requires a lot of communication and coordination between teams.  This scenario is a complex change to a database, I didn't want to muddy the waters with the inclusion of shared databases.  
+
 For this entire article, when talking about deployments, `Green` is currently live, while `Blue` is inactive.  When we deploy, it will be to `Blue`.  Once `Blue` is verified it will become the live environment and `Green` will be inactive.
 
 **Please Note:** These are recommendations only.  There is no way I can cover every possible change you can make to a database.  My goal is to provide you with something which you can then modify to meet your own needs.  
