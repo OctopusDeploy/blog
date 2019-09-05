@@ -1,6 +1,6 @@
 ---
 title: Automated Database Blue/Green Deployments 
-description: Learn some techniques on how to automate database deployments when using a Blue/Green deployment strategy.
+description: Learn some techniques for automating database deployments when using a Blue/Green deployment strategy.
 author: bob.walker@octopus.com
 visibility: public
 metaImage: 
