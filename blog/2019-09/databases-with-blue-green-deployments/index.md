@@ -1,5 +1,5 @@
 ---
-title: Automated Database Blue/Green Deployments 
+title: Automated database blue/green deployments 
 description: Learn some techniques for automating database deployments when using a Blue/Green deployment strategy.
 author: bob.walker@octopus.com
 visibility: public
@@ -17,7 +17,7 @@ The worst time to deploy software is 2:00 AM on Saturday.  It ruins Friday night
 
 !toc
 
-## A Brief Intro to Blue/Green Deployments
+## A brief intro to blue/green deployments
 
 Before diving into the weeds, a brief intro on Blue/Green deployments.  Blue/Green deployments are when there are two identical production environments labeled `Blue` and `Green`.  At any given time, only one of those environments, for example, `Blue`, is live.  Deployment is done to the non-live environment, for example, `Green`, which is then verified.  After verification is complete, a switchover occurs, and the live environment becomes `Green`.  
 
@@ -27,13 +27,13 @@ There are several advantages to doing this.  Rollbacks should be easy, only a ma
 
 Before diving into too much farther into the article, I should point out not all applications can take advantage of Blue/Green deployments.  It is a combination of architecture, how stateful the app is, and the technology used.  The more stateless and decoupled the application is, the better the chance it can be deployed using the Blue/Green deployment strategy.  A .NET Core Web API with an Angular front-end is suited much better for Blue/Green deployments than an ASP.NET WebForms application without a business logic or data layer and requires the sticky sessions from the load balancer.
 
-## The Scenario
+## The scenario
 
 This post will be covering a complex scenario.  A new column `CustomerFullName` is added, which is a combination of `CustomerFirstName` and `CustomerLastName` columns.  In the UI, there used to be two fields, `First Name` and `Last Name`, but the decision was made to combine the two columns.  Some cultures have multiple names which do not fit into the `First Name` and `Last Name` commonly seen in the US.  A script was written to backfill `CustomerFullName` with `CustomerFirstName` and `CustomerLastName` during the deployment.  The `CustomerFirstName` and `CustomerLastName` columns will no longer be needed in the database; an additional script will be written to delete them.
 
 For this entire article, when talking about deployments, `Green` is currently live, while `Blue` is inactive.  All deployments will go to `Blue` and once verified, will be with `Green` to become live.    
 
-## How Database Changes Add Complexity
+## How database changes add complexity
 
 After-hours deployments are done to avoid users accessing the application during the deployment.  Specifically, preventing people from accessing the application while the backfill script is running.
 
@@ -71,7 +71,7 @@ Admittedly, that scenario is relatively complex.  Most database changes don't co
 
 **Please Note:** These are recommendations only.  There is no way I can cover every possible change you can make to a database.  My goal is to provide you with something which you can then modify to meet your own needs.  
 
-## Adding the New Column
+## Adding the new column
 
 Keep it simple; add the new column `CustomerFullName` as a nullable column.  It takes most databases (SQL Server, Oracle) quite a bit of time to add a new non-nullable column with a default value.  That is because the database has to update each record on the table.  Adding a nullable column requires updating the table definition (metadata) which takes a few milliseconds.  Typically, adding a column as nullable, setting a value, and then setting as non-nullable is faster than adding a new column with a default value.  
 
@@ -242,7 +242,7 @@ I recommend this approach for several reasons.
 5. Most database deployment tools, be it Redgate, DBUp, RoundhousE, or SSDT don't have a mechanism for running specific SQL scripts multiple times.  Without that built-in functionality, a hack will have to put into place to support it.  
 6. Each time the script runs, it will come across "correct" data.  Guard clauses - which are hard to test in SQL Scripts - will have to be put into place to prevent overwriting of data.
 
-## Stored Procedures, Views and Legacy Columns
+## Stored procedures, views, and legacy columns
 
 I am a big believer in the database should be used as a data store only.  Keep as much logic as possible out of the database, including stored procedures and views.  Business logic in the database includes, but not limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, default values, and filtering more than just by an Id.  
 
@@ -362,7 +362,7 @@ An everyday use case for views is to help data warehousing.  The abstraction lay
 
 **Please Note:** I realize moving business logic out of the database is quite the change.  If you do decide to make that switch, be pragmatic about it.  Don't try to change everything at once.  The code and the database are working fine now.  This section is about changes to the database going forward.  My rule of thumb is to leave the database and code in a better place than when I found it.  Meaning, if I am making a change to a column and I come across a business rule in the database for that column, then I do some analysis.  If the change is relatively easy to make, then I will make it then.  If it is complex, then I will create a card and put it on our technical debt backlog to be fixed later (hopefully).  Sometimes backlogs are where work goes to die.  I don't tear through all the code and stored procedures and start making mass changes.  That is a surefire way to end up doing an emergency deployment on the weekend.
 
-## Removing Columns
+## Removing columns
 
 At some point, the `CustomerFirstName` and `CustomerLastName` columns will be removed.  Blue/Green deployments make that more complex as well.  Assume `CustomerFullName` has been deployed to `Blue`, and it is active.  Running a script to delete `CustomerFirstName` and `CustomerLastName` from all the tables, views, functions, and stored procedures will cause errors.   The code running on `Blue` is using the `CustomerFirstName` and `CustomerLastName` fields to populate `CustomerFullName` when `CustomerFullName` is null.  
 
@@ -377,7 +377,7 @@ I've worked on an application which was one of dozen or so which connected to th
 
 In some cases, it might not be possible to remove columns or tables.  I hope that isn't the case, but be prepared for that scenario.  In this case, communication, planning, and effort are essential.  If it is essential to remove those columns, then the effort should be made to do so.  I'd argue the effort is worth it.  Be pragmatic about it; if it is going to take 1000 hours to make the change, I'd say the effort isn't worth it.
 
-## Versioning Stored Procedures, Views, and APIs
+## Versioning stored procedures, views, and APIs
 
 The typical rule of thumb is "if you make a breaking change, then version the API/Stored Procedure/View."  On paper, that is a good rule to follow.  In practice, that rule can fall apart quickly.  Versioning puts a significant burden on the people maintaining the code.  The maintainers now there are multiple code paths or multiple instances they need to worry about.  The longer an older version sticks around, the harder and harder it will be to get off the old versions.  I've seen companies spends hundreds of hours on projects to get people off of past versions.  
 
@@ -393,13 +393,13 @@ My preference is to store the code and database in the same repository.  Get eve
 
 What I do like about Blue/Green deployments is the flexibility it gives for database deployments.  Before Blue/Green deployments, everything had to go out at the same time during the deployment.  Now there is a choice.  
 
-## Testing and Verification
+## Testing and verification
 
 Automated testing and verification of `Blue` before swapping with `Green` (and vice versa) makes everything go a lot faster.  Computers can test a heck of a lot faster than people.  Computers can perform more tests in less time, which makes everyone more confident in the deployment.  Automated testing and verification isn't a requirement for Blue/Green deployments.  They help a whole lot.  Deployment tools such as Octopus Deploy have the manual intervention step which can pause a deployment and wait until someone gives to go-ahead to proceed.  
 
 Most people starting Blue/Green deployments will not have a full test suite they can run in Production on day one.  The key is to start somewhere.  It will take time to build out that test suite and overcome technical hurdles.  Depending on the tooling, even a simple scenario, changing from the URL for `Blue` with `Green` could take a bit to figure out.  As tests come online include them in the deployment pipeline to help automate the verification.  Hopefully, the time will come where the vast majority of use cases can be verified, and the manual intervention step can be removed.
 
-## Common Database Change Scenarios
+## Common database change scenarios
 
 This post covered a very complex scenario, the combination of two columns into one.  There are several other database change scenarios detailed in the list below.  I've included which of the above sections could be applied to the scenario.
 
@@ -413,7 +413,7 @@ This post covered a very complex scenario, the combination of two columns into o
 - Updating an existing view/stored procedure -> As long as columns aren't removed from a view, this should be fine.  If columns are removed, then the process to delete columns from above should be followed.
 - Removing a view/stored procedure -> Very similar process to removing columns.  Except there won't be data, just references in code and potentially other stored procedures.
 
-## Wrapping Up
+## Wrapping-up
 
 Blue/Green deployments with a database will require more planning on how a change is implemented than doing a standard deployment with an outage.  It is a lot like playing chess, where you will have to think several steps ahead.  Blue/Green deployments are not for every application.  It requires the right alignment of architecture, infrastructure, and tooling.  If you are considering Blue/Green deployments, take a feature with a database change and walk through what it would take to implement that using a Blue/Green deployment strategy.  Do you have to change anything in your application's architecture?  Is the necessary infrastructure, such as a load balancer and additional VMs, in place?  Can your CI/CD tool support blue/green deployments?
 
