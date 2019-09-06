@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-In the previous blog post we deployed a few simple web applications into a Kubernetes cluster as Deployments, and linked everything up with standard Services.
+In the previous blog post we deployed a few simple Node.js web applications into a Kubernetes cluster as Deployments, and linked everything up with standard Services.
 
-Because the webserver Service matches the labels for Pods created by both the `webserverv1` and `webserverv2` Deployments, calling the proxy will return the content any one of the webserver pods. This means we see the proxy returning the static content `WebServer V1` or `WebServer V2` with any given page refresh.
+The networking so far has only used standard Kubernetes resources to configure it. This works, but falls a little short when it comes to directing traffic between different versions of upstream APIs. You will have noticed that the `proxy` application is returning content from the Pods created by both the `webserverv1` and `webserverv2` Deployments, which is unlikely to be the desired result had this been a real world deployment.
 
 In this post we'll look at what a VirtualService is, how it relates to a standard Ingress, and add a VirtualService to the cluster to route and modify the requests made by the `proxy` Pod to the `webserver` Service.
 
@@ -20,15 +20,15 @@ In this post we'll look at what a VirtualService is, how it relates to a standar
 
 A VirtualService is a Custom Resource Definition (CRD) provided by Istio. A VirtualService acts in much the same capacity as a traditional Kubernetes Ingress, in that a VirtualService matches traffic and directs it to a Service.
 
-However, a VirtualService can be much more specific in the traffic it matches and where that traffic is sent, and offers a lot of additional functionality to manipulate the traffic.
+However, a VirtualService can be much more specific in the traffic it matches and where that traffic is sent, and offers a lot of additional functionality to manipulate the traffic along the way.
 
-An Ingress can match incoming traffic based on the HTTP host and path. Depending on the Ingress Controller that is installed in the cluster, the path can match wildcard values or even accept regular expressions. But such advanced features are not universal among Ingress Controllers; for example, the [Nginx Ingress Controller supports regex paths](https://kubernetes.github.io/ingress-nginx/user-guide/ingress-path-matching/), while the Google Kubernetes Engine Ingress Controller only supports very [selective uses of the asterisk as a wildcard](https://cloud.google.com/kubernetes-engine/docs/concepts/ingress#multiple_backend_services).
+For comparison, an Ingress can match incoming traffic based on the HTTP host and path. Depending on the Ingress Controller that is installed in the cluster, the path can match wildcard values or even accept regular expressions. But such advanced features are not universal among Ingress Controllers; for example, the [Nginx Ingress Controller supports regex paths](https://kubernetes.github.io/ingress-nginx/user-guide/ingress-path-matching/), while the Google Kubernetes Engine Ingress Controller only supports very [selective uses of the asterisk as a wildcard](https://cloud.google.com/kubernetes-engine/docs/concepts/ingress#multiple_backend_services).
 
 A VirtualService on the other hand can match traffic based on HTTP host, path (with full regular expression support), method, headers, ports, query parameters and more.
 
-Once an Ingress has matched the incoming traffic, it is then directed to a Service. This is true of a VirtualService, however when combined with a RouteDestination, a VirtualService can direct traffic to specific subsets of Pods referenced by a Service. We'll see this in the next blog post.
+Once an Ingress has matched the incoming traffic, it is then directed to a Service. This is also true of a VirtualService, however when combined with a RouteDestination, a VirtualService can direct traffic to specific subsets of Pods referenced by a Service. For example, you may want to direct traffic only to pods that have the `version: v2` label applied. We'll see this in the next blog post.
 
-Perhaps the biggest difference between an Ingress and a VirtualService is that a VirtualService can intelligently manage the traffic it matches by allowing requests to be retried, injecting faults or delays for testing, and rewriting or redirecting requests. Implementing this functionality in the infrastructure removes the need for each individual application to implement and manage it themselves, providing for a much more consistent networking experience.
+Perhaps the biggest difference between an Ingress and a VirtualService is that a VirtualService can intelligently manage the traffic it matches by allowing requests to be retried, injecting faults or delays for testing, and rewriting or redirecting requests. Implementing this functionality in the infrastructure layer removes the need for each individual application to implement and manage it themselves, providing for a much more consistent networking experience.
 
 Now that we know what a VirtualService can do, lets add some to the network to see the effects that they have.
 
@@ -56,21 +56,23 @@ We start with the hostname of a request that this VirtualService will match. Her
 
 ```YAML
 hosts:
-- "webserver"
+- webserver
 ```
 
-We then create some rules to direct any HTTP traffic that matches the hostname by configuring the `http` property. Under that property we define the `route` which sets the `destination` to another Service.
+We then create some rules to direct any HTTP traffic that matches the hostname by configuring the `http` property. Under that property we define the `route` which sets the `destination` to another Service called `webserverv1`.
 
 ```YAML
 http:
 - route:
   - destination:
-      host: webserverv1.default.svc.cluster.local
+      host: webserverv1
 ```
 
-When this VirtualService is created in the cluster, we will see that requests made by the `proxy` are now routed to the `webserverv1` Service instead of the original `webserver` Service. The end result is that our proxy will only ever request content from the Pods created by the `webserverv1` Deployment, meaning we will only ever see messages like `Proxying value: WebServer V1 from ...` when the `proxy` application is called.
+When this VirtualService is created in the cluster, we will see that requests made by the `proxy` application are now routed to the `webserverv1` Service instead of the original `webserver` Service. The end result is that our proxy will only request content from the Pods created by the `webserverv1` Deployment, meaning we will only see messages like `Proxying value: WebServer V1 from ...` when the `proxy` application is called.
 
 ![](basic.png "width=500")
+
+*This VirtualService directs all traffic to the webserverv1 Service.*
 
 ## Injecting network faults
 
@@ -97,7 +99,7 @@ spec:
 
 The `fault` property has been configured to abort 50% of requests with a HTTP response code of 400.
 
-```
+```YAML
 fault:
   abort:
     percentage:
@@ -109,9 +111,11 @@ We can see these failed requests printed by the proxy as the request it makes to
 
 ![](faults.png "width=500")
 
+*50% of requests will now fail like this.*
+
 ## Injecting network delays
 
-The response from a network call can be artificially delayed, giving you a chance to test how poor networking can affect your applications. The VirtualService below has been configured to add random delays to network requests.
+The response from a network call can be artificially delayed, giving you a chance to test how poor networking or unresponsive applications can affect your code. The VirtualService below has been configured to add random delays to network requests.
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -146,9 +150,11 @@ We can see these delays in the timing information presented by the `proxy` appli
 
 ![](delay.png "width=500")
 
+*50% of network calls from the proxy application will now take 5 seconds to complete.*
+
 ## Redirecting requests
 
-HTTP requests can be redirected (i.e. by returning a 301 response code) to direct the client to a new location. The VirtualService below redirects requests made to the root path of one Service, and redirects them to a new path on a new Service.
+HTTP requests can be redirected (i.e. by returning a HTTP 301 response code) to direct the client to a new location. The VirtualService below redirects requests made to the root path of one Service to a new path on a new Service.
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -181,6 +187,8 @@ We have used an exact match to the root path to redirect the request to http://w
 The `proxy` shows the details of the redirected call.
 
 ![](redirect.png "width=500")
+
+*The proxied application is now called on the path /redirected.*
 
 ## Rewriting requests
 
@@ -217,9 +225,11 @@ rewrite:
 
 ![](rewritten.png "width=500")
 
+*The proxied application is now called on the path /rewritten.*
+
 ## Retying requests
 
-Retrying failed requests is a common strategy to dealing with network errors. The VirtualService below will retry failed requests.
+Retrying failed requests is a common strategy to dealing with network errors or unresponsive applications. The VirtualService below will retry failed requests.
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -259,6 +269,8 @@ timeout: "10s"
 We can see that requests that result in proxied requests to an endpoint that should fail 25% of the time only rarely respond with a 500 code, but the requests can take seconds as the retries are delayed.
 
 ![](retry.png "width=500")
+
+*The /failssometimes path will return a 500 code 25% of the time, but with retries we rarely see a failure.*
 
 ## Conclusion
 
