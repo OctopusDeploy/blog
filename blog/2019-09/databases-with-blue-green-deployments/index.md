@@ -11,39 +11,46 @@ tags:
  - Blue-Green Deployments
 ---
 
-I hate when deployments are scheduled for 2:00 AM Saturday.  It ruins Friday night and Saturday because it throws off my sleep schedule.  Several years ago I was working on an application and 2:00 AM Saturday is the only time an extended outage can be taken.  A quick deployment and verification took two hours.  A typical deployment took four hours.  I wanted to do blue-green deployments, which is a pattern for zero downtime deployments, to stop that madness.  So why weren't we doing blue-green deployments?  It was the database, which made everything much more complicated; enough to stop us from implementing blue-green deployments.  In this post I will walk through some techniques I've learned since that time to make blue-green deployments with a database achievable and straight-forward.      
+I hate it when deployments are scheduled for 2:00 AM Saturday.  It ruins both Friday night and Saturday because it throws off my sleep schedule.  Several years ago I worked on an application and 2:00 AM Saturday was the only time an extended outage can be taken.  A quick deployment and verification took two hours.  A typical deployment took four hours.  I wanted to do blue-green deployments, which is a pattern for zero downtime deployments, to stop that madness.  But the thing that stopped us from doing blue-green deployments was the database. The database made everything much more complicated and was enough to stop us from implementing blue-green deployments.  In this post, I’ll walk through some techniques I’ve learned since that time to make blue-green deployments with a database achievable and straight-forward.      
 
-**Please Note:** This post will cover high level concepts and recommendations.  It won't cover how to do blue-green deployments with Octopus Deploy.  That will be covered in a later post.
+This post covers high-level concepts and recommendations.  It doesn’t cover how to do blue-green deployments with Octopus Deploy.  That will be covered in a later post.
 
 !toc
 
-## A brief intro to blue-green deployments
+## A brief introduction to blue-green deployments
 
-Before diving into the weeds, a brief intro on blue-green deployments.  blue-green deployments are when there are two identical production environments labeled `Blue` and `Green`.  At any given time, only one of those environments, for example, `Blue`, is live.  Deployment is done to the non-live environment, for example, `Green`, which is then verified.  After verification is complete, a switchover occurs, and the live environment becomes `Green`.  
+First, a brief introduction to blue-green deployments.  Blue-green deployments have two identical production environments labeled `Blue` and `Green`.  Only one of the environments is ever live and deployments are done to the non-live environment. For example, if `Blue` is the live environment, deployment is done to the `Green` (non-live) environment, and after verification has occurred, a switchover occurs, and the `Green` environment becomes the live environment, and the `Blue` environment becomes the non-live environment.
 
 ![](https://i.octopus.com/docs/deployment-patterns/blue-green-deployments/images/3278250.png)
 
-There are several advantages to doing this.  Rollbacks should be easy, only a matter of switching from blue to green or green to blue.  When a switchover does occur, it should be seamless as the code has already been running, there is no need to wait for it to compile or "warm-up."  And changes can be verified in production without having any customers hitting the code, making the deployment much less risky.  If something doesn't work, don't make the switch, try again at a later time. 
+There are several advantages to this approach.  Rollbacks are only a matter of switching from blue to green or green to blue.  When switchovers occur, they should be seamless as the code has already been running, there is no need to wait for it to compile or “warm-up.”  Changes are verified in production without any customers hitting the code, making deployments much less risky.  If something doesn’t work, you don’t make the switch, and can try again at a later time. 
 
-Before diving into too much farther into the article, I should point out not all applications can take advantage of blue-green deployments.  It is a combination of architecture, how stateful the app is, and the technology used.  The more stateless and decoupled the application is, the better the chance it can be deployed using the blue-green deployment strategy.  A .NET Core Web API with an Angular front-end is suited much better for blue-green deployments than an ASP.NET WebForms application without a business logic or data layer and requires the sticky sessions from the load balancer.
+Before diving too much further into the article, I should point out not all applications can take advantage of blue-green deployments.  It’s a combination of architecture, how stateful the app is, and the technology used.  The more stateless and decoupled the application is, the better the chance it can be deployed using the blue-green deployment strategy.  A .NET Core Web API with an Angular front-end is better suited for blue-green deployments than an ASP.NET WebForms application without a business logic or data layer and that requires the sticky sessions from the load balancer.
 
 ## The scenario
 
-This post will be covering a complex scenario.  The following changes will be made to an [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application)(SPA) with an ASP.NET Web API back-end connecting to a dedicated database.  
+This post covers a complex scenario and uses a [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application)(SPA) with an ASP.NET Web API back-end connected to a dedicated database. The following changes will be made to the app:
 
-- In the UI, there used to be two fields, `First Name` and `Last Name`, but the decision was made to combine the two fields into one called `Full Name`.  Some cultures have multiple names which do not fit into the `First Name` and `Last Name` commonly seen in the US.  
-- To support this, a new column `CustomerFullName` will be added to the customer table.
+- In the UI, the fields `First Name` and `Last Name` are being combined into a single field called `Full Name` because some cultures have names that do not fit the `First Name` and `Last Name` pattern.  
+- A new column called `CustomerFullName` will be added to the customer table.
 - The pre-existing `CustomerFirstName` and `CustomerLastName` columns are also on the customer table.  
 - `CustomerFullName` will be populated by combining `CustomerFirstName` and `CustomerLastName` when `CustomerFullName` is `Null`. 
 - If data exists in `CustomerFirstName` and `CustomerLastName` and an API request is sent with only `CustomerFullName` then do not set those columns to `Null`.  In addition, do not try to split up `CustomerFullName` as that is very difficult and prone to error.
 
-Admittedly, that scenario is relatively complex.  Most database changes don't combine two columns into one and try to backfill the new column.  This article will walk through how to solve that scenario.   That scenario touches on a lot of different changes which must be done for blue-green deployments.  If that scenario can be solved, then the majority of other scenarios can be solved.  It will walk through each change, the questions to consider, and recommendations on how to solve them.
+Admittedly, this scenario is relatively complex.  Most database changes don't combine two columns into one and try to backfill a new column.  This article walks through how to solve this scenario and touches on a lot of different changes that must be completed for blue-green deployments.  If this scenario can be solved, then the majority of other scenarios can be solved too.  We’ll walk through each change, the questions to consider, and recommendations for how to solve them.
 
-While it is possible to do blue-green deployments with a shared database, it requires a lot of communication and coordination between teams.  This scenario is a complex change to a database, I didn't want to muddy the waters with the inclusion of shared databases.  
+While it is possible to do blue-green deployments with a shared database, it requires a lot of communication and coordination between teams.  This scenario is a complex change to a database, I didn't want to complicate things further with the inclusion of shared databases.  
 
-For this entire article, when talking about deployments, `Green` is currently live, while `Blue` is inactive.  When we deploy, it will be to `Blue`.  Once `Blue` is verified it will become the live environment and `Green` will be inactive.
+For this entire article, when talking about deployments:
 
-**Please Note:** These are recommendations only.  There is no way I can cover every possible change you can make to a database.  My goal is to provide you with something which you can then modify to meet your own needs.  
+ - `Green` is live.
+ - `Blue` is inactive.  
+
+We’ll deploy to `Blue`, and after `Blue` is verified it will become the live environment, and `Green` will become inactive.
+
+:::warning
+These are recommendations only.  There is no way I can cover every possible change you can make to a database.  My goal is to provide you with something you can then modify to meet your needs.  
+:::
 
 ## How database changes add complexity
 
