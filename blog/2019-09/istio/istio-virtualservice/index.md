@@ -43,11 +43,11 @@ metadata:
   name: webserver
 spec:
   hosts:
-  - "webserver"
+  - webserver
   http:
   - route:
     - destination:
-        host: webserverv1.default.svc.cluster.local
+        host: webserverv1
 ```
 
 Let's break this file down.
@@ -72,7 +72,7 @@ When this VirtualService is created in the cluster, we will see that requests ma
 
 ## Injecting network faults
 
-Injecting faults into requests is a great way to test how your applications respond to failed requests.
+Injecting faults into requests is a great way to test how your applications respond to failed requests. Here is the YAML of a VirtualService that has been configured to inject random network faults.
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -85,7 +85,7 @@ spec:
   http:
   - route:
     - destination:
-        host: webserverv1.default.svc.cluster.local
+        host: webserverv1
     fault:
       abort:
         percentage:
@@ -109,6 +109,151 @@ We can see these failed requests printed by the proxy as the request it makes to
 
 ## Injecting network delays
 
+The response from a network call can be artificially delayed, giving you a chance to test how poor networking can affect your applications. The VirtualService below has been configured to add random delays to network requests.
 
+```YAML
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - route:
+    - destination:
+        host: webserverv1
+    fault:
+      delay:
+        percentage:
+          value: 50
+        fixedDelay: 5s  
+```
+
+The `fault` property has been configured to add a delay of 5 seconds to 50% of network requests.
+
+```YAML
+fault:
+  delay:
+    percentage:
+      value: 50
+    fixedDelay: 5s  
+```
+
+We can see these delays in the timing information presented by the `proxy` application.
 
 ![](delay.png "width=500")
+
+## Redirecting requests
+
+HTTP requests can be redirected (i.e. by returning a 301 response code) to direct the client to a new location. The VirtualService below redirects requests made to the root path of one Service, and redirects them to a new path on a new Service.
+
+```YAML
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - match:
+    - uri:
+        exact: "/"
+    redirect:
+      uri: /redirected
+      authority: webserverv1
+```
+
+We have used an exact match to the root path to redirect the request to http://webserverv1/redirected.
+
+```YAML
+- match:
+  - uri:
+      exact: "/"
+  redirect:
+    uri: /redirected
+    authority: webserverv1
+```
+
+The `proxy` shows the details of the redirected call.
+
+![](redirect.png "width=500")
+
+## Rewriting requests
+
+Rewriting requests is much like redirecting them, only the routing is all done server side and the client does not know that the request was changed to a new path. The VirtualService below rewrites requests made to the root path of one Service and routes them to a new path on a new Service.
+
+```Yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - route:
+    - destination:
+        host: webserverv1  
+    match:
+    - uri:
+        exact: "/"
+    rewrite:
+      uri: /rewritten
+```
+
+We have used an exact match to the root path to rewrite the request to http://webserverv1/rewritten.
+
+```
+match:
+- uri:
+    exact: "/"
+rewrite:
+  uri: /rewritten
+```
+
+![](rewritten.png "width=500")
+
+## Retying requests
+
+Retrying failed requests is a common strategy to dealing with network errors. The VirtualService below will retry failed requests.
+
+```YAML
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: webserver
+spec:
+  hosts:
+  - webserver
+  http:
+  - route:
+    - destination:
+        host: webserver
+        subset: v1    
+    retries:
+      attempts: 3
+      perTryTimeout: "2s"
+      retryOn: "5xx"      
+    timeout: "10s"         
+```
+
+Here we configure the VirtualService to retry any request that resulted in a 500 error code up to 3 times.
+
+```
+retries:
+  attempts: 3
+  perTryTimeout: 2s
+  retryOn: "5xx
+```
+
+The timeout was set to work around a [bug in Istio](https://github.com/kubernetes/ingress-gce/issues/181) that sets `perTryTimeout` to `0` if the `timeout` is not set.
+
+```
+timeout: "10s"
+```
+
+We can see that requests that result in proxied requests to an endpoint that should fail 25% of the time only rarely respond with a 500 code, but the requests can take seconds as the retries are delayed.
+
+![](retry.png "width=500")
