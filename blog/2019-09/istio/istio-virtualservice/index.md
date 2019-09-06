@@ -30,7 +30,7 @@ Once an Ingress has matched the incoming traffic, it is then directed to a Servi
 
 Perhaps the biggest difference between an Ingress and a VirtualService is that a VirtualService can intelligently manage the traffic it matches by allowing requests to be retried, injecting faults or delays for testing, and rewriting or redirecting requests. Implementing this functionality in the infrastructure removes the need for each individual application to implement and manage it themselves, providing for a much more consistent networking experience.
 
-Now that we know what a VirtualService can do, lets add one to the network to see it in action.
+Now that we know what a VirtualService can do, lets add some to the network to see the effects that they have.
 
 ## A minimal example
 
@@ -52,7 +52,7 @@ spec:
 
 Let's break this file down.
 
-We start with the hostname of a request that this VirtualService will match. Here we have matched any call to the `webserver` service, which if you recall from the architecture diagram is the service that our `proxy` application calls.
+We start with the hostname of a request that this VirtualService will match. Here we have matched any call to the `webserver` Service, which if you recall from the architecture diagram is the Service that our `proxy` application calls.
 
 ```YAML
 hosts:
@@ -69,6 +69,8 @@ http:
 ```
 
 When this VirtualService is created in the cluster, we will see that requests made by the `proxy` are now routed to the `webserverv1` Service instead of the original `webserver` Service. The end result is that our proxy will only ever request content from the Pods created by the `webserverv1` Deployment, meaning we will only ever see messages like `Proxying value: WebServer V1 from ...` when the `proxy` application is called.
+
+![](basic.png "width=500")
 
 ## Injecting network faults
 
