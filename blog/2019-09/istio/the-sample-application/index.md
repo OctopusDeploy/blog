@@ -32,9 +32,9 @@ Inside this same repository we have a two text files [here](https://raw.githubus
 
 ## The internal webservers
 
-We'll make use of HTTPD to run simple web servers inside our cluster. HTTPD will expose any file under the `/usr/local/apache2/htdocs` directory, and so we'll mount files via ConfigMap resources to create web servers with distinct content. The blog post [Deploying applications to Kubernetes with Octopus](https://octopus.com/blog/deploying-applications-to-kubernetes#volumes-and-configmaps) goes into more detail about how to map ConfigMap resources as volumes inside a Pod.
+For the internal web servers we will run a second Node.js application that returns some static text, `Webserver V1` and `Webserver V2` in our case, along with the hostname of the container that is running the image. We will spin up 3 instances for each version, which means that we will have 6 instances running 2 versions of the server.
 
-We'll create two such HTTPD pods, with the first returning `Webserver V1`, and the second returning `Webserver V2`.
+The different versions of the webserver will be labeled with `version: v1` or `version: v2`. This configuration will provide us with the opportunity to route and manage network traffic in interesting ways when we start looking at Istio's VirtualService and DestinationRule resources.
 
 ## An architecture diagram
 
