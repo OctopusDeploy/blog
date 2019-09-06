@@ -105,7 +105,7 @@ fault:
     httpStatus: 400
 ```
 
-We can see these failed requests printed by the proxy as the request it makes to the next service is aborted by Istio.
+We can see these failed requests printed by the proxy as the request it makes to the next Service is aborted by Istio.
 
 ![](faults.png "width=500")
 
