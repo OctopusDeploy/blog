@@ -58,19 +58,18 @@ After-hours deployments are done to avoid users accessing the application while 
 
 A very simplified deployment process for that change would look like this:
 
-1. Disable access to users or turn off the website.
+1. Disable user access or turn off the website.
 2. Run the script to add the column `CustomerFullName`.
 3. Deploy the code to `Production`.
 4. Run the backfill script to populate `CustomerFullName`.
 5. Run the script to remove `CustomerFirstName` and `CustomerLastName`.
 6. Verify the code in `Production`.
-7. Profit.
 
-To accomplish the same changes with blue-green deployments requires a lot more planning.  Without blue-green deployments, the only worry was someone is using the application before everything is deployed and verified.  If the user gets an error indicating the column `CustomerFirstName` is missing during the deployment, no worries, they shouldn't be in the system at that point anyhow.  That is not the case with blue-green deployments.  Users will be in the application; they will be running on the `Green` servers.  That means data is going to get manipulated and queried.  
+To accomplish the same changes with blue-green deployments requires a lot more planning.  Without blue-green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating the column `CustomerFirstName` is missing during the deployment, no worries, they shouldn't be in the system at that point anyway.  That is not the case with blue-green deployments.  Users will be in the application; they will be running on the `Green` servers.  That means data is going to get manipulated and queried.  
 
 Here are some of the scenarios to consider when doing the same change with blue-green deployments: 
 
-- The application and database changes will be deployed to `Blue` which include the new column `CustomerFirstName`.  Does the application use any stored procedures?  Specifically around inserting/updating data into the customer table?  The code running on `Green` won't know about any new parameters added to those stored procedures.
+- The application and database changes will be deployed to `Blue`, including the new column `CustomerFirstName`.  Does the application use any stored procedures?  Specifically around inserting/updating data into the customer table?  The code running on `Green` won't know about any new parameters added to those stored procedures.
 - When the changes are deployed to `Blue` there will be no data in the `CustomerFirstName` column.  The temptation will be there to use the same backfill script as before.  The thought being the backfill script will help with verification and make the transition from `Green` to `Blue` seamless.
 - Verification will need to happen after the changes to the application and database are deployed to `Blue`. During that time, users will be using the application on `Green`.  `Green` is still running code referencing `CustomerFirstName` and `CustomerLastName` columns.  Those columns cannot be deleted until after verification is complete and `Blue` becomes active.  When should those columns be deleted?  As soon as `Blue` becomes active?  
 - While the updated code and database is being verified on `Blue` users will be adding and updating records in the customer table using the code on `Green`.  Those changes could be made while the backfill script is running or after the backfill script finishes.  To pick up those new changes the backfill script will need to be rerun.
