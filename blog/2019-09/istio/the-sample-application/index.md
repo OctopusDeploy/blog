@@ -32,7 +32,7 @@ Inside this same repository we have a two text files [here](https://raw.githubus
 
 ## The internal webservers
 
-For the internal web servers we will run a second Node.js application that returns some static text, `Webserver V1` and `Webserver V2` in our case, along with the hostname of the container that is running the image. We will spin up 3 instances for each version, which means that we will have 6 instances running 2 versions of the server.
+For the internal web servers we will run a second Node.js application that returns  static text, `Webserver V1` and `Webserver V2` in our case, along with the hostname of the container that is running the image. We will spin up 3 instances for each version, which means that we will have 6 instances running 2 versions of the server.
 
 The different versions of the webserver will be labeled with `version: v1` or `version: v2`. This configuration will provide us with the opportunity to route and manage network traffic in interesting ways when we start looking at Istio's VirtualService and DestinationRule resources.
 
