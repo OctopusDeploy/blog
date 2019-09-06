@@ -241,7 +241,7 @@ spec:
 
 Here we configure the VirtualService to retry any request that resulted in a 500 error code up to 3 times.
 
-```
+```YAML
 retries:
   attempts: 3
   perTryTimeout: 2s
@@ -250,10 +250,18 @@ retries:
 
 The timeout was set to work around a [bug in Istio](https://github.com/kubernetes/ingress-gce/issues/181) that sets `perTryTimeout` to `0` if the `timeout` is not set.
 
-```
+```YAML
 timeout: "10s"
 ```
 
 We can see that requests that result in proxied requests to an endpoint that should fail 25% of the time only rarely respond with a 500 code, but the requests can take seconds as the retries are delayed.
 
 ![](retry.png "width=500")
+
+## Conclusion
+
+In this blog post we have seen the major features of the Istio VirtualService. The networking in our sample application has been redirected, retried, and artificially slowed down or failed all from the VirtualService, and without modifying the code from the original applications.
+
+This shows the power of lifting this kind of networking responsibility from the application code to the infrastructure layer.
+
+In the next post we'll see how to further customize the function of the network through the DestinationRule CRD.
