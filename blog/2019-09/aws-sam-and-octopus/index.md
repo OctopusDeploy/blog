@@ -2,13 +2,15 @@
 title: Deploying AWS SAM templates with Octopus
 description: Learn how to integrate SAM templates with Octopus deployments for AWS serverless applications.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2019-08-22
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-09-10
+metaImage: blogimage_deploy_aws_sam_apps.png
+bannerImage: blogimage_deploy_aws_sam_apps.png
 tags:
- - Octopus
+ - Product
 ---
+
+![Illustration showing an AWS SAM deployment with Octopus Deploy](blogimage_deploy_aws_sam_apps.png)
 
 As development patterns like microservices become increasingly popular, cloud providers are investing heavily in serverless computing platforms as a way of managing and executing many small and independent applications.
 
