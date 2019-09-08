@@ -3,7 +3,7 @@ title: What is a Service Mesh?
 description: This post looks at what a Service Mesh is, how it’s different to an Ingress Controller, and why you would use one.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2019-09-10
+published: 2019-09-09
 metaImage: blogimage-servicemesh.png
 bannerImage: blogimage-servicemesh.png
 tags:
