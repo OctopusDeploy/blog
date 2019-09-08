@@ -74,6 +74,19 @@ When this VirtualService is created in the cluster, we will see that requests ma
 
 *This VirtualService directs all traffic to the webserverv1 Service.*
 
+## Observations from the minimal example
+
+The typical flow of traffic through standard Kubernetes Ingress and Service resources is easy to understand:
+
+1. External traffic hits an external load balancer.
+2. The traffic is directed to an ingress controller.
+3. The ingress controller directs traffic to Service resources based on the rules defined in Ingress resources, and modifies the traffic based on timeout, security, redirection and other rules.
+4. Once external traffic has been routed internally, the ingress controller no longer plays a role.
+
+What surprised me when initially working with service mesh technologies like Istio is that internal requests, such as the request made by the `proxy` application to it's downstream services via the `webserver` Service, are no longer direct. As we can see with the minimal example above, a previously direct internal request to http://webserver can be rerouted to http://webserverv1 using a VirtualService.
+
+Realizing that service meshes are all about extending the kind of routing and configuration provided by an ingress controller to all traffic - external to internal, internal to internal and internal to external - is all you need to know to understand the purpose of a service mesh.
+
 ## Injecting network faults
 
 Injecting faults into requests is a great way to test how your applications respond to failed requests. Here is the YAML of a VirtualService that has been configured to inject random network faults.
@@ -270,7 +283,7 @@ We can see that requests that result in proxied requests to an endpoint that sho
 
 ![](retry.png "width=500")
 
-*The /failssometimes path will return a 500 code 25% of the time, but with retries we rarely see a failure.*
+*The /failssometimes path will return a 500 code 25% of the time. With retries we rarely see a failure, but do see delays.*
 
 ## Conclusion
 
