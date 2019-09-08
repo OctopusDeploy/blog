@@ -85,7 +85,7 @@ The typical flow of traffic through standard Kubernetes Ingress and Service reso
 
 What surprised me when initially working with service mesh technologies like Istio is that internal requests, such as the request made by the `proxy` application to it's downstream services via the `webserver` Service, are no longer direct. As we can see with the minimal example above, a previously direct internal request to http://webserver can be rerouted to http://webserverv1 using a VirtualService.
 
-Realizing that service meshes are all about extending the kind of routing and configuration provided by an ingress controller to all traffic - external to internal, internal to internal and internal to external - is all you need to know to understand the purpose of a service mesh.
+Realizing that service meshes take the kind of routing and configuration provided by an ingress controller and apply those to all traffic - external to internal, internal to internal and internal to external - is all you need to know to understand the purpose of a service mesh.
 
 ## Injecting network faults
 
