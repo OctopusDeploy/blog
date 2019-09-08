@@ -10,6 +10,8 @@ tags:
  - Engineering
 ---
 
+![Illustration showing a service mesh](blogimage-servicemesh.png)
+
 If you have used Kubernetes for any length of time, you will have heard the term Service Mesh. Several big companies are backing service mesh projects, such as Google with [Istio](https://istio.io/) and the Cloud Native Computing Foundation with [Linkerd](https://linkerd.io/).
 
 So what is a Service Mesh, and how is it different from the standard Service and Ingress resources native to Kubernetes?
