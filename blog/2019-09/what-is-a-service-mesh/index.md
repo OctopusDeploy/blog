@@ -2,12 +2,12 @@
 title: What is a Service Mesh?
 description: This post looks at what a Service Mesh is, how it’s different to an Ingress Controller, and why you would use one.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2019-08-26
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-09-10
+metaImage: blogimage-servicemesh.png
+bannerImage: blogimage-servicemesh.png
 tags:
- - Octopus
+ - Engineering
 ---
 
 If you have used Kubernetes for any length of time, you will have heard the term Service Mesh. Several big companies are backing service mesh projects, such as Google with [Istio](https://istio.io/) and the Cloud Native Computing Foundation with [Linkerd](https://linkerd.io/).
