@@ -72,7 +72,7 @@ When environmental awareness is pushed down from the infrastructure layer into t
 
 Rather than trying to use aliases for environments, it is a much better idea to split environments based on other boundaries like CloudFormation stacks, AWS regions, or completely separate AWS accounts.
 
-We’ve seen how to use separate CloudFormation stacks in a [previous blog post](/blog/2019-08/aws-sam-and-octopus/index.md).
+We’ve seen how to use separate CloudFormation stacks in a [previous blog post](/blog/2019-09/aws-sam-and-octopus/index.md).
 
 Using different AWS regions is the next logical step, although you may find the networking overhead of physical regions interferes with testing or performance monitoring.
 
