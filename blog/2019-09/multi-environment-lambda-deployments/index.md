@@ -12,7 +12,7 @@ tags:
 
 Getting started with serverless applications is relatively easy these days. Tools like [Serverless](https://serverless.com/) and [AWS SAM](https://aws.amazon.com/serverless/sam/) abstract away much of the boilerplate code and hide the finer interactions between services to get you up and running quickly.
 
-Moving from the proof of concept stage to testable and repeatable deployments inevitably means deploying your code across multiple environments. We’ve seen how to [migrate from the SAM CLI to Octopus](/blog/2019-08/aws-sam-and-octopus/index.md) to implement these multi-environment deployments. That previous post advocated for independent CloudFormation stacks as a way of implementing multi-environment deployments, but what about solutions like Lambda aliases?
+Moving from the proof of concept stage to testable and repeatable deployments inevitably means deploying your code across multiple environments. We’ve seen how to [migrate from the SAM CLI to Octopus](/blog/2019-09/aws-sam-and-octopus/index.md) to implement these multi-environment deployments. That previous post advocated for independent CloudFormation stacks as a way of implementing multi-environment deployments, but what about solutions like Lambda aliases?
 
 In this post, we’ll take a look at Lambda aliases, and highlight some of the pitfalls that may not be immediately obvious when using them.
 
