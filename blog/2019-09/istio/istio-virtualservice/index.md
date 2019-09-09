@@ -50,7 +50,7 @@ spec:
         host: webserverv1
 ```
 
-We start with the hostname of a request that this VirtualService resource will match. Here we have matched any call to the `webserver` Service, which if you recall from the [architecture diagram](/blog/2019-09/istio/istio-the-sample-application/index.md) is the Service resource that our `proxy` application calls.
+We start with the hostname of a request that this VirtualService resource will match. Here we have matched any call to the `webserver` Service, which if you recall from the [architecture diagram](/blog/2019-09/istio/the-sample-application/index.md) is the Service resource that our `proxy` application calls.
 
 ```YAML
 hosts:
