@@ -72,6 +72,12 @@ When this VirtualService resource is created in the cluster, we will see that re
 
 *This VirtualService directs all traffic to the webserverv1 Service.*
 
+Here is the new network diagram showing the VirtualService resource.
+
+![](istio-virtualservice.svg "width=500")
+
+*The architecture diagram with the new VirtualService resource.*
+
 ## Observations from the minimal example
 
 The typical flow of traffic through standard Kubernetes Ingress and Service resources is easy to understand:
