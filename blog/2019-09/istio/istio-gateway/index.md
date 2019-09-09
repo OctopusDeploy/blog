@@ -12,7 +12,7 @@ tags:
 
 Up until this point our Kubernetes cluster has taken traffic from a standard load balancer Service resource, which thanks to the fact that our cluster is hosted by AWS, is exposed by an ELB with a public IP. External traffic hitting this load balancer is directed to our `proxy` application, and from here we have used Istio to route the internal traffic.
 
-As well as routing internal traffic, Istio can also route external traffic entering the cluster. The Gateway resource is used by Istio to receive external traffic and route it as it enters the cluster.
+As well as routing internal traffic, Istio can also route external traffic entering the cluster. The [Gateway resource](https://istio.io/docs/reference/config/networking/v1alpha3/gateway/) is used by Istio to receive external traffic and route it as it enters the cluster.
 
 In this post we'll add a Gateway resource to the cluster to replace the load balancer Service resource we have been relying on.
 
@@ -48,6 +48,10 @@ namespace: istio-system
 
 This is because this Gateway resource is going to be bound to a load balancer Service resource created when Istio was installed. The Service resource is called `istio-ingressgateway`, and has a label of `istio: ingressgateway`.
 
+:::hint
+Specifically the `ingressgateway` was created because the Helm option `gateways.istio-ingressgateway.enabled` defaults to `true`. See the [documentation](https://istio.io/docs/reference/config/installation-options/) for more details.
+:::
+
 ![](ingressgateway.png "width=500")
 
 *The load balancer service created by Istio during installation.*
@@ -69,3 +73,41 @@ This Gateway resource will accept all HTTP traffic from any host.
     number: 80
     protocol: HTTP
 ```
+
+## Routing external traffic
+
+Just as we did with [internal traffic](/blog/2019-09/istio/istio-virtualservice/index.md), we'll use a VirtualService resource to direct traffic from the Gateway resource.
+
+```YAML
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: proxy
+spec:
+  gateways:
+  - istio-system/default-gateway
+  hosts:
+  - "*"
+  http:
+  - route:
+    - destination:
+        host: proxy
+```
+
+The difference between the VirtualService resource above and those that we used to direct internal traffic is the fact that this VirtualService resource is bound to the gateway.
+
+```YAML
+gateways:
+- istio-system/default-gateway
+```
+
+We'll reuse the existing load balancer called `proxy` as the Service resource that we direct traffic to. However, now it is no longer necessary for the `proxy` Service to a be public load balancer, as the `istio-ingressgateway` Service will be accepting the external traffic.
+
+```
+http:
+- route:
+  - destination:
+      host: proxy
+```
+
+![](istio-gateway.svg "width=500")
