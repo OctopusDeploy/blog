@@ -90,7 +90,7 @@ With this combination of ServiceEntry, VirtualService and DestinationRule resour
 
 ![](istio-serviceentry.svg "width=500")
 
-*The architecture diagram with the ServiceEntry resource (in blue).*
+*The architecture diagram with the ServiceEntry resource (in purple).*
 
 ## Conclusion
 
