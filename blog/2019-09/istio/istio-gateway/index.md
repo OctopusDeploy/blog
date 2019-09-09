@@ -110,4 +110,18 @@ http:
       host: proxy
 ```
 
+Here is the architecture diagram showing the load balancer `istio-gateway` directing traffic to the `proxy` Gateway, which in turn has traffic routed via the `proxy` VirtualService to the `proxy` cluster IP Service.
+
 ![](istio-gateway.svg "width=500")
+
+*The architecture diagram, with the Gateway (in blue).*
+
+The end result is that we can access the `proxy` application via the hostname assigned to the `istio-ingressgateway` Service. This doesn't change any of the functionality that we saw in the previous blog posts, but does mean that Istio is now effectively implementing the role of an ingress controller by directing traffic from a shared load balancer.
+
+![](browser.png "width=500")
+
+*We access our proxy application through a new hostname, and everything works like it did before.*
+
+## Conclusion
+
+Gateway resources allow Istio to route external traffic entering the cluster in much the same way a standard ingress controller would. This allows the Kubernetes cluster to expose a single public IP address or hostname, and have external traffic routed to internal Service resources as needed.
