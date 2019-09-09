@@ -209,4 +209,4 @@ spec:
 
 In this post we have seen how a DestinationRule resource can be used to implement low level networking options that are closely tied to the implementation of the underlying service including defining subsets, load balancing algorithms, and network connection settings such as timeouts and max connections.
 
-In the next post we will look at the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource, and how it is used to expose endpoints outside the Kubernetes cluster.
+In the [next post](/blog/2019-09/istio/istio-serviceentry/index.md) we will look at the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource, and how it is used to expose endpoints outside the Kubernetes cluster.
