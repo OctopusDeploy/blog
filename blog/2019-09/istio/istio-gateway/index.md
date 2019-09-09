@@ -94,14 +94,14 @@ spec:
         host: proxy
 ```
 
-The difference between the VirtualService resource above and those that we used to direct internal traffic is the fact that this VirtualService resource is bound to the gateway.
+The difference between the VirtualService resource above and those that we used to direct internal traffic is the fact that this VirtualService resource is bound to the Gateway resource.
 
 ```YAML
 gateways:
 - istio-system/default-gateway
 ```
 
-We'll reuse the existing load balancer called `proxy` as the Service resource that we direct traffic to. However, now it is no longer necessary for the `proxy` Service to a be public load balancer, as the `istio-ingressgateway` Service will be accepting the external traffic.
+We'll reuse the existing load balancer called `proxy` as the Service resource that this VirtualService resource will direct traffic to. However, now it is no longer necessary for the `proxy` Service to a be public load balancer, as the `istio-ingressgateway` Service will be accepting the external traffic.
 
 ```
 http:
@@ -110,13 +110,15 @@ http:
       host: proxy
 ```
 
-Here is the architecture diagram showing the load balancer `istio-gateway` directing traffic to the `proxy` Gateway, which in turn has traffic routed via the `proxy` VirtualService to the `proxy` cluster IP Service.
+Here is the architecture diagram showing the load balancer `istio-ingressgateway` directing traffic to the `proxy` Gateway, which in turn has traffic routed via the `proxy` VirtualService to the `proxy` cluster IP Service.
 
 ![](istio-gateway.svg "width=500")
 
 *The architecture diagram, with the Gateway (in blue).*
 
-The end result is that we can access the `proxy` application via the hostname assigned to the `istio-ingressgateway` Service. This doesn't change any of the functionality that we saw in the previous blog posts, but does mean that Istio is now effectively implementing the role of an ingress controller by directing traffic from a shared load balancer.
+The end result is that we can access the `proxy` application via the hostname assigned to the `istio-ingressgateway` load balancer Service.
+
+This change doesn't affect any of the functionality that we saw in the previous blog posts, but does mean that Istio is now effectively assuming the role of an ingress controller by directing traffic from a shared load balancer.
 
 ![](browser.png "width=500")
 
