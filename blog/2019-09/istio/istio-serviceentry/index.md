@@ -43,7 +43,7 @@ With the external service now part of the Istio service registry, we need to dir
 As before we are matching requests to the `webserver` host, and using the rewriting functionality to redirect the request to another location. However, unlike the pervious blogs, we are redirecting the traffic to an external location.
 
 :::hint
-It is important to set the `authority` to the same value as the `destination` `host`, because a large number of external services expect the host field in the HTTP request to be defined correctly. Failure to set the `authority` field can lead to 404 errors.
+It is important to set the `authority` to the same value as the `destination.host`, because a large number of external services expect the host field in the HTTP request to be defined correctly. Failure to set the `authority` field can lead to odd 404 errors.
 :::
 
 ```YAML
