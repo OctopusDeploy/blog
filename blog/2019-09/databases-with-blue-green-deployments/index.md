@@ -1,6 +1,6 @@
 ---
-title: Automated database blue-green deployments 
-description: Learn some techniques for automating database deployments when using a blue-green deployment strategy.
+title: Automated database blue/green deployments 
+description: Learn some techniques for automating database deployments when using a blue/green deployment strategy.
 author: bob.walker@octopus.com
 visibility: public
 metaImage: 
@@ -11,21 +11,21 @@ tags:
  - Blue-Green Deployments
 ---
 
-I hate it when deployments are scheduled for 2:00 AM Saturday.  It ruins both Friday night and Saturday because it throws off my sleep schedule.  Several years ago I worked on an application and 2:00 AM Saturday was the only time an extended outage can be taken.  A quick deployment and verification took two hours.  A typical deployment took four hours.  I wanted to do blue-green deployments, which is a pattern for zero downtime deployments, to stop that madness.  But the thing that stopped us from doing blue-green deployments was the database. The database made everything much more complicated and was enough to stop us from implementing blue-green deployments.  In this post, I’ll walk through some techniques I’ve learned since that time to make blue-green deployments with a database achievable and straight-forward.      
+I hate it when deployments are scheduled for 2:00 AM Saturday.  It ruins both Friday night and Saturday because it throws off my sleep schedule.  Several years ago I worked on an application and 2:00 AM Saturday was the only time an extended outage can be taken.  A quick deployment and verification took two hours.  A typical deployment took four hours.  I wanted to do blue/green deployments, which is a pattern for zero downtime deployments, to stop that madness.  But the thing that stopped us from doing blue/green deployments was the database. The database made everything much more complicated and was enough to stop us from implementing blue/green deployments.  In this post, I’ll walk through some techniques I’ve learned since that time to make blue/green deployments with a database achievable and straight-forward.      
 
-This post covers high-level concepts and recommendations.  It doesn’t cover how to do blue-green deployments with Octopus Deploy.  That will be covered in a later post.
+This post covers high-level concepts and recommendations.  It doesn’t cover how to do blue/green deployments with Octopus Deploy.  That will be covered in a later post.
 
 !toc
 
-## A brief introduction to blue-green deployments
+## A brief introduction to blue/green deployments
 
-First, a brief introduction to blue-green deployments.  Blue-green deployments have two identical production environments labeled `Blue` and `Green`.  Only one of the environments is ever live and deployments are done to the non-live environment. For example, if `Blue` is the live environment, deployment is done to the `Green` (non-live) environment, and after verification has occurred, a switchover occurs, and the `Green` environment becomes the live environment, and the `Blue` environment becomes the non-live environment.
+First, a brief introduction to blue/green deployments.  Blue-green deployments have two identical production environments labeled `Blue` and `Green`.  Only one of the environments is ever live and deployments are done to the non-live environment. For example, if `Blue` is the live environment, deployment is done to the `Green` (non-live) environment, and after verification has occurred, a switchover occurs, and the `Green` environment becomes the live environment, and the `Blue` environment becomes the non-live environment.
 
-![](https://i.octopus.com/docs/deployment-patterns/blue-green-deployments/images/3278250.png)
+![](https://i.octopus.com/docs/deployment-patterns/blue/green-deployments/images/3278250.png)
 
 There are several advantages to this approach.  Rollbacks are only a matter of switching from blue to green or green to blue.  When switchovers occur, they should be seamless as the code has already been running, there is no need to wait for it to compile or “warm-up.”  Changes are verified in production without any customers hitting the code, making deployments much less risky.  If something doesn’t work, you don’t make the switch, and can try again at a later time. 
 
-Before diving too much further into the article, I should point out not all applications can take advantage of blue-green deployments.  It’s a combination of architecture, how stateful the app is, and the technology used.  The more stateless and decoupled the application is, the better the chance it can be deployed using the blue-green deployment strategy.  A .NET Core Web API with an Angular front-end is better suited for blue-green deployments than an ASP.NET WebForms application without a business logic or data layer and that requires the sticky sessions from the load balancer.
+Before diving too much further into the article, I should point out not all applications can take advantage of blue/green deployments.  It’s a combination of architecture, how stateful the app is, and the technology used.  The more stateless and decoupled the application is, the better the chance it can be deployed using the blue/green deployment strategy.  A .NET Core Web API with an Angular front-end is better suited for blue/green deployments than an ASP.NET WebForms application without a business logic or data layer and that requires the sticky sessions from the load balancer.
 
 ## The scenario
 
@@ -37,9 +37,9 @@ This post covers a complex scenario and uses a [Single Page Application](https:/
 - `CustomerFullName` will be populated by combining `CustomerFirstName` and `CustomerLastName` when `CustomerFullName` is `Null`. 
 - If data exists in `CustomerFirstName` and `CustomerLastName` and an API request is sent with only `CustomerFullName` then do not set those columns to `Null`.  In addition, do not try to split up `CustomerFullName` as that is very difficult and prone to error.
 
-Admittedly, this scenario is relatively complex.  Most database changes don't combine two columns into one and try to backfill a new column.  This article walks through how to solve this scenario and touches on a lot of different changes that must be completed for blue-green deployments.  If this scenario can be solved, then the majority of other scenarios can be solved too.  We’ll walk through each change, the questions to consider, and recommendations for how to solve them.
+Admittedly, this scenario is relatively complex.  Most database changes don't combine two columns into one and try to backfill a new column.  This article walks through how to solve this scenario and touches on a lot of different changes that must be completed for blue/green deployments.  If this scenario can be solved, then the majority of other scenarios can be solved too.  We’ll walk through each change, the questions to consider, and recommendations for how to solve them.
 
-While it is possible to do blue-green deployments with a shared database, it requires a lot of communication and coordination between teams.  This scenario is a complex change to a database, I didn't want to complicate things further with the inclusion of shared databases.  
+While it is possible to do blue/green deployments with a shared database, it requires a lot of communication and coordination between teams.  This scenario is a complex change to a database, I didn't want to complicate things further with the inclusion of shared databases.  
 
 For this entire article, when talking about deployments:
 
@@ -65,9 +65,9 @@ A very simplified deployment process for that change would look like this:
 5. Run the script to remove `CustomerFirstName` and `CustomerLastName`.
 6. Verify the code in `Production`.
 
-To accomplish the same changes with blue-green deployments requires a lot more planning.  Without blue-green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating the column `CustomerFirstName` is missing during the deployment, no worries, they shouldn't be in the system at that point anyway.  That is not the case with blue-green deployments.  Users will be in the application; they will be running on the `Green` servers.  That means data is going to get manipulated and queried.  
+To accomplish the same changes with blue/green deployments requires a lot more planning.  Without blue/green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating the column `CustomerFirstName` is missing during the deployment, no worries, they shouldn't be in the system at that point anyway.  That is not the case with blue/green deployments.  Users will be in the application; they will be running on the `Green` servers.  That means data is going to get manipulated and queried.  
 
-Here are some of the scenarios to consider when doing the same change with blue-green deployments: 
+Here are some of the scenarios to consider when doing the same change with blue/green deployments: 
 
 - The application and database changes will be deployed to `Blue`, including the new column `CustomerFirstName`.  Does the application use any stored procedures?  Specifically around inserting/updating data into the customer table?  The code running on `Green` won't know about any new parameters added to those stored procedures.
 - When the changes are deployed to `Blue` there will be no data in the `CustomerFirstName` column.  The temptation will be there to use the same backfill script as before.  The thought being the backfill script will help with verification and make the transition from `Green` to `Blue` seamless.
@@ -75,7 +75,7 @@ Here are some of the scenarios to consider when doing the same change with blue-
 - While the updated code and database is being verified on `Blue` users will be adding and updating records in the customer table using the code on `Green`.  Those changes could be made while the backfill script is running or after the backfill script finishes.  To pick up those new changes the backfill script will need to be rerun.
 - With this being a SPA App, the JavaScript won't know when `Blue` becomes live and `Green` becomes inactive.  The JavaScript is stored in the user's browser.  Users using the application when `Blue` becomes live will be sending API requests with only the fields for `CustomerFirstName` and `CustomerLastName`.   The `CustomerFullName` field will not be sent in during this time.  It could take anywhere from one minute to several days before users start requesting updated JavaScript files from the server.   
 
-The first stab at the blue-green deployment process for this change would look like:
+The first stab at the blue/green deployment process for this change would look like:
 
 1. Run the script to add the column `CustomerFullName`.
 2. Run the backfill script to populate `CustomerFullName`.
@@ -84,22 +84,22 @@ The first stab at the blue-green deployment process for this change would look l
 5. Swap the live environment from `Green` to `Blue`.
 6. Run the backfill script to populate `CustomerFullName`.
 
-That is not the ideal blue-green deployment process. It runs the backfill script multiple times.  It doesn't answer when `CustomerFirstName` and `CustomerLastName` should be deleted.  But it is a start.  The rest of this post will walk through techniques on how to answer those questions and how to make an ideal blue-green deployment process.
+That is not the ideal blue/green deployment process. It runs the backfill script multiple times.  It doesn't answer when `CustomerFirstName` and `CustomerLastName` should be deleted.  But it is a start.  The rest of this post will walk through techniques on how to answer those questions and how to make an ideal blue/green deployment process.
 
 ## Database changes
 
-I am firmly in the database should only store data camp.  The database should not contain business rules or business logic.  Only the code should store business rules and business logic.  A business rule would be a default value on a column.  When the database stores business rules or business logic it makes blue-green deployments much harder.
+I am firmly in the database should only store data camp.  The database should not contain business rules or business logic.  Only the code should store business rules and business logic.  A business rule would be a default value on a column.  When the database stores business rules or business logic it makes blue/green deployments much harder.
 
 Even if it is an empty string or zero.  Those are values.  If a column doesn't have a value it needs to be set to `Null`, which is the absence of a value.  Business logic in the database includes, but not limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, default values, and filtering more than just by an Id.  Having business rules and business logic in the database is asking for trouble.  Compared to code, such as C#, JavaScript or Java, they are much harder to write unit tests for, even when using a tool such as tSQLt.  They are much harder for developers to find, as typically most developers will search using their IDE of choice which excludes databases.
 
-This section will walk through recommendations for table changes, stored procedure and view changes to support blue-green deployments.  It will also cover techniques on how to avoid having business rules and business logic in the database which can trip up blue-green deployments.
+This section will walk through recommendations for table changes, stored procedure and view changes to support blue/green deployments.  It will also cover techniques on how to avoid having business rules and business logic in the database which can trip up blue/green deployments.
 
 ### Table Changes
 
-Make non-destructive database changes when doing blue-green deployments.  In our scenario, that means making the `CustomerFullName` nullable when it is added.  Making a column non-nullable without a default value would be a destructive change.  Insert statements on `Green` would stop working because it doesn't know about that new column.  That doesn't mean the column should be made non-nullable with a default value, even an empty string.  As said before, a default value is a business rule.
+Make non-destructive database changes when doing blue/green deployments.  In our scenario, that means making the `CustomerFullName` nullable when it is added.  Making a column non-nullable without a default value would be a destructive change.  Insert statements on `Green` would stop working because it doesn't know about that new column.  That doesn't mean the column should be made non-nullable with a default value, even an empty string.  As said before, a default value is a business rule.
 
 The other problem is it takes quite a bit of time for most database servers (IE SQL Server or Oracle) to add a non-nullable column.  When a non-nullable column is added the table definition is updated along with every record.  When a nullable column is added only the table definition is updated.  If you do have to have a default value then the script should add a column as nullable, update all the records, then set the column to non-nullable.  That script can be tuned to run surprisingly fast.  
-Some other examples of destructive database changes would be reusing an existing column or renaming an existing column.  With blue-green deployments that will fail as the code in `Green` will start throwing errors or showing inaccurate data.   
+Some other examples of destructive database changes would be reusing an existing column or renaming an existing column.  With blue/green deployments that will fail as the code in `Green` will start throwing errors or showing inaccurate data.   
 
 So far this section has covered adding the new column, `CustomerFullName` to the customers table.  What about the older `CustomerFirstName` and `CustomerLastName` columns?  In the scenario section it essentially says to leave `CustomerFirstName` and `CustomerLastName` alone.  Don't overwrite it with `Null` and don't try to guess what those values will be.  In addition, once `Blue` goes live with these changes any new records will never have a value for `CustomerFirstName` and `CustomerLastName`.  Because of that `CustomerFirstName` and `CustomerLastName` should be made nullable.
 
@@ -398,7 +398,7 @@ public class CustomerFacade
 
 Most backfill scripts I've seen are nothing more than a SQL Script to update the underlying data.  This means the formatting logic will exist in both the code and the backfill script.  It is very easy to update the code to handle an update to the formatting rule and forget to update the backfill script.  
 
-In addition, with blue-green deployments, there is that question of when should that script run?  After the code has been deployed to `Blue` and the database changes have been pushed out but before verification starts?  After `Blue` goes live and `Green` is inactive?  A traditional backfill SQL script is updating low level data and it could be locking the table.  Depending on the number of records it could take a long time.  Maybe the decision is made to update 1000 records at a time in the SQL script.  What if users are updating the same record as the script and a deadlock occurs and the script wins the deadlock, not the user update?  Is that okay?  Depending on when the script runs, it may need to have guard clauses in place to prevent an accidental update.
+In addition, with blue/green deployments, there is that question of when should that script run?  After the code has been deployed to `Blue` and the database changes have been pushed out but before verification starts?  After `Blue` goes live and `Green` is inactive?  A traditional backfill SQL script is updating low level data and it could be locking the table.  Depending on the number of records it could take a long time.  Maybe the decision is made to update 1000 records at a time in the SQL script.  What if users are updating the same record as the script and a deadlock occurs and the script wins the deadlock, not the user update?  Is that okay?  Depending on when the script runs, it may need to have guard clauses in place to prevent an accidental update.
 
 As an added bit of fun, most database deployment tools, be it Redgate, DBUp, RoundhousE, or SSDT don't have a mechanism for running specific SQL scripts multiple times.  Without that built-in functionality, a hack will have to put into place to support it. 
 
@@ -460,13 +460,13 @@ The real question is, does it make sense to deploy the database changes days or 
 
 My preference is to store the code and database in the same repository.  Get everything working in a feature branch.  Merge all the changes in the feature branch at the same time and test and verify at the same time.  
 
-What I do like about blue-green deployments is the flexibility it gives for database deployments.  Before blue-green deployments, everything had to go out at the same time during the deployment.  Now there is a choice.  
+What I do like about blue/green deployments is the flexibility it gives for database deployments.  Before blue/green deployments, everything had to go out at the same time during the deployment.  Now there is a choice.  
 
 ## Testing and verification
 
-Automated testing and verification of `Blue` before swapping with `Green` (and vice versa) makes everything go a lot faster.  Computers can test a heck of a lot faster than people.  Computers can perform more tests in less time, which makes everyone more confident in the deployment.  Automated testing and verification isn't a requirement for blue-green deployments.  They help a whole lot.  Deployment tools such as Octopus Deploy have the manual intervention step which can pause a deployment and wait until someone gives to go-ahead to proceed.  
+Automated testing and verification of `Blue` before swapping with `Green` (and vice versa) makes everything go a lot faster.  Computers can test a heck of a lot faster than people.  Computers can perform more tests in less time, which makes everyone more confident in the deployment.  Automated testing and verification isn't a requirement for blue/green deployments.  They help a whole lot.  Deployment tools such as Octopus Deploy have the manual intervention step which can pause a deployment and wait until someone gives to go-ahead to proceed.  
 
-Most people starting blue-green deployments will not have a full test suite they can run in Production on day one.  The key is to start somewhere.  It will take time to build out that test suite and overcome technical hurdles.  Depending on the tooling, even a simple scenario, changing from the URL for `Blue` with `Green` could take a bit to figure out.  As tests come online include them in the deployment pipeline to help automate the verification.  Hopefully, the time will come where the vast majority of use cases can be verified, and the manual intervention step can be removed.
+Most people starting blue/green deployments will not have a full test suite they can run in Production on day one.  The key is to start somewhere.  It will take time to build out that test suite and overcome technical hurdles.  Depending on the tooling, even a simple scenario, changing from the URL for `Blue` with `Green` could take a bit to figure out.  As tests come online include them in the deployment pipeline to help automate the verification.  Hopefully, the time will come where the vast majority of use cases can be verified, and the manual intervention step can be removed.
 
 ## Common database change scenarios
 
@@ -484,9 +484,9 @@ This post covered a very complex scenario, the combination of two columns into o
 
 ## Wrapping-up
 
-As you can see, blue-green deployments with a database requires a few minor shifts in how you write code and making database changes.  It also requires more planning on how a change is implemented than doing a standard deployment with an outage.  It is a lot like playing chess, where you will have to think several steps ahead. 
+As you can see, blue/green deployments with a database requires a few minor shifts in how you write code and making database changes.  It also requires more planning on how a change is implemented than doing a standard deployment with an outage.  It is a lot like playing chess, where you will have to think several steps ahead. 
 
-The first stab at a blue-green deployment process looked like this:
+The first stab at a blue/green deployment process looked like this:
 
 1. Run the script to add the column `CustomerFullName`.
 2. Run the backfill script to populate `CustomerFullName`.
@@ -504,8 +504,8 @@ That process has now evolved into this:
 
 The backfill script is not included at all, it is run after the deployment to help populate the new `CustomerFullName` column.  In fact, that script doesn't need to run until the code needs to be changed to remove the `CustomerFirstName` and `CustomerLastName` columns.  
 
-Before ending this post I do want to point out blue-green deployments are not for every application.  It requires the right alignment of architecture, infrastructure, and tooling.  If you are considering blue-green deployments, take a feature with a database change and walk through what it would take to implement that using a blue-green deployment strategy.  Do you have to change anything in your application's architecture?  Is the necessary infrastructure, such as a load balancer and additional VMs, in place?  Can your CI/CD tool support blue-green deployments?
+Before ending this post I do want to point out blue/green deployments are not for every application.  It requires the right alignment of architecture, infrastructure, and tooling.  If you are considering blue/green deployments, take a feature with a database change and walk through what it would take to implement that using a blue/green deployment strategy.  Do you have to change anything in your application's architecture?  Is the necessary infrastructure, such as a load balancer and additional VMs, in place?  Can your CI/CD tool support blue/green deployments?
 
-In terms of time, the initial cost to do blue-green deployments can be high.  That cost is worth it when it is possible to deploy a change in the middle of the day.  Being able to do that opens up so many different possibilities.  Soon the conversation will move from "how can I deploy in the middle of the day" to "with blue-green deployments in place, now what can I do?"  Blue-green Deployments, or seamless daytime deployments, feels like it is the end of the CI/CD journey.  I'd argue that it is just the beginning.
+In terms of time, the initial cost to do blue/green deployments can be high.  That cost is worth it when it is possible to deploy a change in the middle of the day.  Being able to do that opens up so many different possibilities.  Soon the conversation will move from "how can I deploy in the middle of the day" to "with blue/green deployments in place, now what can I do?"  Blue-green Deployments, or seamless daytime deployments, feels like it is the end of the CI/CD journey.  I'd argue that it is just the beginning.
 
 Until next time, Happy Deployments!
