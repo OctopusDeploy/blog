@@ -88,6 +88,10 @@ With this combination of ServiceEntry, VirtualService and DestinationRule resour
 
 *Internal requests are now directed to an external host.*
 
+![](istio-serviceentry.svg "width=500")
+
+*The architecture diagram with the ServiceEntry resource (in blue).*
+
 ## Conclusion
 
 Istio requires that any external resources contacted by internal applications be exposed as part of the service registry. In this post we exposed a text file hosted by GitHub via a ServiceEntry resource, directed traffic to it via a VirtualService resource, and configured the TLS settings required to access the HTTPS site via a DestinationRule resource. The end result was that our sample application made requests to the external location, without having to modify any code.

@@ -76,7 +76,7 @@ Here is the new network diagram showing the VirtualService resource.
 
 ![](istio-virtualservice.svg "width=500")
 
-*The architecture diagram with the new VirtualService resource.*
+*The architecture diagram with the new VirtualService resource (brown oval).*
 
 ## Observations from the minimal example
 

@@ -64,7 +64,7 @@ spec:
 
 ![](istio-destinationrule.svg "width=500")
 
-*The architecture diagram with a DestinationRule resource.*
+*The architecture diagram with a DestinationRule resource (brown rectangle).*
 
 ## Load balancing algorithms
 
