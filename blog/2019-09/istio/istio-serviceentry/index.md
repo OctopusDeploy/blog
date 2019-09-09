@@ -16,7 +16,7 @@ In this post we'll add a ServiceEntry resource to the Kubernetes cluster in orde
 
 ## Redirecting internal requests to external resources
 
-To demonstrate the ServiceEntry resource we'll direct the requests to `http://webserver` from the `proxy` to https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/externalservice1.txt. This is a plain text file hosted by GitHub, which we are using to simulate an external API endpoint.
+To demonstrate the ServiceEntry resource we'll direct the requests to `http://webserver` from the `proxy` to https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/externalservice1.txt. This is a plain text file containing the text `External Service 1` hosted by GitHub. We are using this text file to simulate an external API endpoint.
 
 The first step is to expose the host `raw.githubusercontent.com` to the Istio service registry, which is achieved with a ServiceEntry resource.
 
@@ -81,3 +81,11 @@ spec:
     tls:
       mode: SIMPLE
 ```
+
+With this combination of ServiceEntry, VirtualService and DestinationRule we can point our `proxy` application out to the text files hosted by GitHub.
+
+![](proxy-example.png "width=500")
+
+## Conclusion
+
+Istio requires that any external resources contacted by internal applications be exposed as part of the service registry. In this post we exposed a text file hosted by GitHub via a ServiceEntry resource, directed traffic to it via a VirtualService, and configured the TLS settings required to access the HTTPS site via a DestinationRule. The end result was that our sample application made requests to the external location, but without having to modify any code.
