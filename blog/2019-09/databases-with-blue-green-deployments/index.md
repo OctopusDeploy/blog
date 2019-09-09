@@ -11,7 +11,7 @@ tags:
  - Blue-Green Deployments
 ---
 
-Nobody wants to do deployments at 2 a.m. on Saturday morning, but several years ago, I worked on an application and that was the only time an extended outage can be scheduled. A quick deployment and verification took two hours. A typical deployment took four hours.  I wanted to implement blue/green deployments, which allow for zero downtime deployments, but the database for the application made everything complicated enough to stop us from doing blue/green deployments.  
+Nobody wants to do deployments at 2 a.m. on Saturday morning, but several years ago, I worked on an application and that was the only time an extended outage could be scheduled. A quick deployment and verification took two hours. A typical deployment took four hours.  I wanted to implement blue/green deployments, which allow for zero downtime deployments, but the database for the application made everything complicated enough to stop us from doing blue/green deployments.  
 
 In this post, I’ll walk through some techniques I’ve learned since that time to make blue/green deployments with a database achievable and straight-forward.      
 
@@ -49,14 +49,14 @@ For this post, when talking about the environments for our deployments:
 That means, we’ll deploy to `Blue`, and after `Blue` is verified it will become the live environment, and `Green` will then become inactive.
 
 :::warning
-These are recommendations only.  There is no way I can cover every possible change you can make to a database.  My goal is to provide you with something you can modify to meet your needs.  
+These are recommendations only and do not cover every possible change you can make to a database. My goal is to provide you with something you can modify to meet your needs.  
 :::
 
 ## How database changes add complexity
 
-After-hours deployments are done to avoid users accessing the application while the code and database changes are being deployed and verified.  Because all the changes are happening at once, a backfill script will be written to set `CustomerFullName` to `CustomerFirstName` and `CustomerLastName`.  Having a user access the application while all this is happening will cause errors and confusion.
+After-hours deployments are done to avoid users accessing the application while the code and database changes are being deployed and verified.  Because all the changes happen at once, a backfill script will be written to set `CustomerFullName` to `CustomerFirstName` and `CustomerLastName`.  If a user accessed the application when these changes are happening, it would cause errors and confusion.
 
-A very simplified deployment process for that change would look like this:
+A very simplified deployment process for that change could look like this:
 
 1. Disable user access or turn off the website.
 2. Run the script to add the column `CustomerFullName`.
@@ -65,65 +65,67 @@ A very simplified deployment process for that change would look like this:
 5. Run the script to remove `CustomerFirstName` and `CustomerLastName`.
 6. Verify the code in `Production`.
 
-To accomplish the same changes with blue/green deployments requires a lot more planning.  Without blue/green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating the column `CustomerFirstName` is missing during the deployment, no worries, they shouldn’t be in the system at that point anyway.  That is not the case with blue/green deployments.  Users will be in the application; they will be running on the `Green` servers.  That means data is going to get manipulated and queried.  
+To accomplish the same changes with blue/green deployments requires a lot more planning.  Without blue/green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating the column `CustomerFirstName` is missing during the deployment, no worries, they shouldn’t be in the system at that point anyway.  That is not the case with blue/green deployments.  Users will be in the application; they will be running on the `Green` servers which means data is going to be manipulated and queried.  
 
 Here are some of the scenarios to consider when doing the same change with blue/green deployments: 
 
 - The application and database changes will be deployed to `Blue`, including the new column `CustomerFirstName`.  Does the application use any stored procedures?  Specifically around inserting/updating data into the customer table?  The code running on `Green` won’t know about any new parameters added to those stored procedures.
-- When the changes are deployed to `Blue` there will be no data in the `CustomerFirstName` column.  The temptation will be there to use the same backfill script as before.  The thought being the backfill script will help with verification and make the transition from `Green` to `Blue` seamless.
-- Verification will need to happen after the changes to the application and database are deployed to `Blue`. During that time, users will be using the application on `Green`.  `Green` is still running code referencing `CustomerFirstName` and `CustomerLastName` columns.  Those columns cannot be deleted until after verification is complete and `Blue` becomes active.  When should those columns be deleted?  As soon as `Blue` becomes active?  
+- When the changes are deployed to `Blue` there will be no data in the `CustomerFirstName` column.  The temptation will be there to use the same backfill script to help with verification and make the transition from `Green` to `Blue` seamless.
+- Verification needs to happen after the changes to the application and database are deployed to `Blue`. During that time, users will be using the application on `Green` which is still running code referencing `CustomerFirstName` and `CustomerLastName` columns.  Those columns cannot be deleted until after verification is complete and `Blue` becomes active.  When should those columns be deleted?  As soon as `Blue` becomes active?  
 - While the updated code and database is being verified on `Blue` users will be adding and updating records in the customer table using the code on `Green`.  Those changes could be made while the backfill script is running or after the backfill script finishes.  To pick up those new changes the backfill script will need to be rerun.
-- With this being a SPA App, the JavaScript won’t know when `Blue` becomes live and `Green` becomes inactive.  The JavaScript is stored in the user’s browser.  Users using the application when `Blue` becomes live will be sending API requests with only the fields for `CustomerFirstName` and `CustomerLastName`.   The `CustomerFullName` field will not be sent in during this time.  It could take anywhere from one minute to several days before users start requesting updated JavaScript files from the server.   
+- Because this is an SPA App, the JavaScript won’t know when `Blue` becomes live and `Green` becomes inactive.  The JavaScript is stored in the user’s browser.  Users using the application when `Blue` becomes live will be sending API requests with only the fields for `CustomerFirstName` and `CustomerLastName`.   The `CustomerFullName` field will not be sent in during this time.  It could take anywhere from one minute to several days before users start requesting updated JavaScript files from the server.
 
-The first stab at the blue/green deployment process for this change would look like:
+The first try at the blue/green deployment process for this change could look like this:
 
 1. Run the script to add the column `CustomerFullName`.
 2. Run the backfill script to populate `CustomerFullName`.
-3. Deploy code to `Blue` environment.
+3. Deploy code to the `Blue` environment.
 4. Verify the code and database changes in the `Blue` environment.
 5. Swap the live environment from `Green` to `Blue`.
 6. Run the backfill script to populate `CustomerFullName`.
 
-That is not the ideal blue/green deployment process. It runs the backfill script multiple times.  It doesn’t answer when `CustomerFirstName` and `CustomerLastName` should be deleted.  But it is a start.  The rest of this post will walk through techniques on how to answer those questions and how to make an ideal blue/green deployment process.
+That’s not the ideal blue/green deployment process. It runs the backfill script multiple times.  It doesn’t answer when `CustomerFirstName` and `CustomerLastName` should be deleted, but it is a start.
 
 ## Database changes
 
 I am firmly in the database should only store data camp.  The database should not contain business rules or business logic.  Only the code should store business rules and business logic.  A business rule would be a default value on a column.  When the database stores business rules or business logic it makes blue/green deployments much harder.
 
-Even if it is an empty string or zero.  Those are values.  If a column doesn’t have a value it needs to be set to `Null`, which is the absence of a value.  Business logic in the database includes, but not limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, default values, and filtering more than just by an Id.  Having business rules and business logic in the database is asking for trouble.  Compared to code, such as C#, JavaScript or Java, they are much harder to write unit tests for, even when using a tool such as tSQLt.  They are much harder for developers to find, as typically most developers will search using their IDE of choice which excludes databases.
+Even if it is an empty string or zero, those are values.  If a column doesn’t have a value it needs to be set to `Null`, which is the absence of a value.  Business logic in the database includes, but isn’t limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, default values, and filtering more than just by an Id.  Having business rules and business logic in the database is asking for trouble.  Compared to code, such as C#, JavaScript, or Java, they are much harder to write unit tests for, even when using a tool such as tSQLt.  They are also much harder for developers to find, as typically most developers will search using their IDE of choice which excludes databases.
 
 This section will walk through recommendations for table changes, stored procedure and view changes to support blue/green deployments.  It will also cover techniques on how to avoid having business rules and business logic in the database which can trip up blue/green deployments.
 
 ### Table Changes
 
-Make non-destructive database changes when doing blue/green deployments.  In our scenario, that means making the `CustomerFullName` nullable when it is added.  Making a column non-nullable without a default value would be a destructive change.  Insert statements on `Green` would stop working because it doesn’t know about that new column.  That doesn’t mean the column should be made non-nullable with a default value, even an empty string.  As said before, a default value is a business rule.
+Make non-destructive database changes when doing blue/green deployments.  In our scenario, that means making the `CustomerFullName` nullable when it is added.  Making a column non-nullable without a default value would be a destructive change.  Insert statements on `Green` would stop working because it doesn’t know about that new column.  That doesn’t mean the column should be made non-nullable with a default value; even an empty string.  A default value is a business rule.
 
-The other problem is it takes quite a bit of time for most database servers (IE SQL Server or Oracle) to add a non-nullable column.  When a non-nullable column is added the table definition is updated along with every record.  When a nullable column is added only the table definition is updated.  If you do have to have a default value then the script should add a column as nullable, update all the records, then set the column to non-nullable.  That script can be tuned to run surprisingly fast.  
-Some other examples of destructive database changes would be reusing an existing column or renaming an existing column.  With blue/green deployments that will fail as the code in `Green` will start throwing errors or showing inaccurate data.   
+The other problem is it takes quite a bit of time for most database servers (IE SQL Server or Oracle) to add a non-nullable column.  When a non-nullable column is added the table definition is updated along with every record.  When a nullable column is added only the table definition is updated.  If you must have a default value, then the script should add a column as nullable, update all the records, and then set the column to non-nullable. That script can be tuned to run surprisingly fast. 
 
-So far this section has covered adding the new column, `CustomerFullName` to the customers table.  What about the older `CustomerFirstName` and `CustomerLastName` columns?  In the scenario section it essentially says to leave `CustomerFirstName` and `CustomerLastName` alone.  Don’t overwrite it with `Null` and don’t try to guess what those values will be.  In addition, once `Blue` goes live with these changes any new records will never have a value for `CustomerFirstName` and `CustomerLastName`.  Because of that `CustomerFirstName` and `CustomerLastName` should be made nullable.
+Some other examples of destructive database changes include reusing an existing column or renaming an existing column.  With blue/green deployments that will fail because the code in `Green` will start throwing errors or showing inaccurate data.   
+
+So far this section has covered adding the new column, `CustomerFullName` to the customers table.  What about the older `CustomerFirstName` and `CustomerLastName` columns?  In the scenario section it essentially says to leave `CustomerFirstName` and `CustomerLastName` alone.  Don’t overwrite it with `Null` and don’t try to guess what those values will be.  In addition, once `Blue` goes live with these changes any new records will never have a value for `CustomerFirstName` and `CustomerLastName`, which means `CustomerFirstName` and `CustomerLastName` should be made nullable.
 
 At some point, the `CustomerFirstName` and `CustomerLastName` columns will be removed.  Blue-green deployments make that more complex as well.  Assume `CustomerFullName` has been deployed to `Blue`, and it is active.  Running a script to delete `CustomerFirstName` and `CustomerLastName` from all the tables, views, functions, and stored procedures will cause errors.   The code running on `Blue` is using the `CustomerFirstName` and `CustomerLastName` fields to populate `CustomerFullName` when `CustomerFullName` is null.  
 
 It will take multiple deployments to delete those columns from the database.  
 
 1. Deployment adds `CustomerFullName` to the customer table.  `CustomerFistName` and `CustomerLastName` are needed because the older code still references them.
-2. Deployment occurs where the code removes all references to `CustomerFirstName` and `CustomerLastName`.
+2. Another deployment occurs where the code removes all references to `CustomerFirstName` and `CustomerLastName`.
 3. Final deployment to delete `CustomerFirstName` and `CustomerLastName` from the database.
+
 How can the `CustomerFirstName` and `CustomerLastName` columns get removed with that restriction in place?  To answer that, look at a typical standard deployment with an outage.
 
-Those deployments don’t have to be deployed within days of each other.  I’ve seen several months go between those each deployments.  
+Those deployments don’t have to be deployed within days of each other.  I’ve seen several months go between each of those deployments.  
 
-I’ve worked on an application which was one of dozen or so which connected to the same database.  Having a shared database makes removing columns very, very tricky.  In this case, communication, planning, and effort are essential.  If it is essential to remove those columns, then the effort should be made to do so.  I’d argue the effort is worth it.  Be pragmatic about it; if it is going to take 1000 hours to make the change, I’d say the effort isn’t worth it.  
+I worked on an application which was one of a dozen or so which connected to the same database.  Having a shared database makes removing columns very tricky.  In this case, communication, planning, and effort are essential.  If it is essential to remove those columns, then the effort should be made to do so.  I’d argue the effort is worth it.  Be pragmatic about it; if it’s going to take 1000 hours to make the change, maybe the effort isn’t worth it.  
 
 ### Stored procedures and views
 
 Imagine the application had two stored procedures:
 
-- usp_GetCustomerById
-- usp_GetAllCustomers
+- `usp_GetCustomerById`
+- `usp_GetAllCustomers`
 
-Fundamentally they do the same thing, get customers from the database.  The `CustomerFullName` is a new column, but it is null.  As seen earlier, the backfill script raised a lot of questions.  One option would be to skip the backfill script completely, and have the stored procedures do a quick IsNull check.
+Fundamentally, they both get customers from the database.  The `CustomerFullName` is a new column, but it is null.  As seen earlier, the backfill script raised a lot of questions.  One option is to skip the backfill script completely, and have the stored procedures do a quick IsNull check:
 
 ```SQL
 Select CustomerFirstName,
@@ -132,9 +134,9 @@ Select CustomerFirstName,
 from dbo.Customer
 ```
 
-That only hides bad or missing data; it doesn’t solve missing data.  It is a one-liner, and oh so easy to copy-paste to other stored procedures.  In this example, it is only one other stored procedure.  Then one day someone adds a new stored procedure, and they forget to include that.  It is also possible to forget to update the stored procedures when it comes time to remove `CustomerFirstName` and `CustomerLastName` from the database.  Imagine if a stored procedure had 50 columns and `CustomerFullName` had several dozen lines between it and `CustomerFirstName` and `CustomerLastName`.
+That only hides bad or missing data; it doesn’t solve missing data.  It is a one-liner and easy to copy-paste to other stored procedures.  In this example, there is only one other stored procedure, but if anybody ever adds a new stored procedure, they’d need to remember to include it.  It’s also possible to forget to update the stored procedures when it comes time to remove `CustomerFirstName` and `CustomerLastName` from the database.  Imagine if a stored procedure had 50 columns and `CustomerFullName` had several dozen lines between it and `CustomerFirstName` and `CustomerLastName`.
 
-Retrieve stored procedures and views should return the data as is, without any null checks or formatting.  
+Retrieve stored procedures and views should return the data as is, without any null checks or formatting:
 
 ```SQL
 Select CustomerFirstName,
@@ -143,7 +145,7 @@ Select CustomerFirstName,
 from dbo.Customer
 ```
 
-Create or update stored procedures are slightly different.  `Green` will be active while `Blue` is being verified.  `Green` has no concept of `CustomerFullName` which means it will call stored procedures without including that new column.  Once `Blue` goes active, it will no longer be sending in `CustomerFirstName` and `CustomerLastName` fields to the stored procedures.  The stored procedures need to be able to handle either `Blue` or `Green` calling it. 
+Create or update stored procedures is slightly different.  `Green` will be active while `Blue` is being verified.  `Green` has no concept of `CustomerFullName` which means it will call stored procedures without including that new column.  When `Blue` goes active, it will no longer be sending in `CustomerFirstName` and `CustomerLastName` fields to the stored procedures.  The stored procedures needs to handle calls from either `Blue` or `Green`: 
 
 ```SQL
 ALTER procedure [dbo].[usp_UpdateCustomer] (
@@ -162,7 +164,7 @@ End
 Go
 ```
 
-While it is possible to run an insert command without specifying the columns, don’t do that.  Specify all the columns.  It only causes headaches down the line as the order of the columns in the insert statement have to match order of the columns in the table.  If a column is added in the middle of the table (which happens!) the insert statements will start randomly failing or inserting data into the wrong column.  The insert stored procedure will be similar to the update stored procedure, all the parameters, in this case, have the default value set to `Null` to handle both `Blue` and `Green` calling it.  
+It is possible to run an insert command without specifying the columns, but you shouldn’t do that.  Specify all the columns.  It only causes headaches down the line as the order of the columns in the insert statement have to match the order of the columns in the table.  If a column is added in the middle of the table (which happens!) the insert statements will start randomly failing or inserting data into the wrong column.  The insert stored procedure will be similar to the update stored procedure, all the parameters, in this case, have the default value set to `Null` to handle both `Blue` and `Green` calling it:
 
 ```SQL
 ALTER procedure [dbo].[usp_InsertCustomer] (    
@@ -180,29 +182,32 @@ End
 Go  
 ```
 
-Views are great at providing a layer of abstraction, and when written correctly, can give a nice performance boost.  However, I’ve seen too many of them written poorly and end up causing more performance problems.  A lot of people love to abuse Common Table Expressions (CTE) in views, which is where a lot of performance problems stem.  To help resolve those performance problems, the “no business logic in the database” rule get broken.  I recommend avoiding that as much as possible.  Just like stored procedures, return all three columns, `CustomerFirstName`, `CustomerLastName`, and `CustomerFullName`.
+Views are great at providing a layer of abstraction, and when written correctly, can give a nice performance boost.  However, I’ve seen too many of that are written poorly and end up causing performance problems. To help resolve those performance problems, the *no business logic in the database* rule gets broken.  I recommend avoiding that as much as possible.  Just like stored procedures, return all three columns, `CustomerFirstName`, `CustomerLastName`, and `CustomerFullName`.
 
-An everyday use case for views is to help data warehousing.  The abstraction layer views provide makes it easy for a process to come through and copy all the data over to a data warehouse for business intelligence teams to create reports from.  There isn’t a right automated way to make this change known to the data warehouse.  My recommendation is to notify them of the change as soon as possible.  
+An everyday use case for views is to help data warehousing.  The abstraction layer views provide makes it easy for a process to come through and copy all the data over to a data warehouse that business intelligence teams can use to create their reports.  There isn’t a right automated way to make this change known to the data warehouse.  My recommendation is to notify them of the change as soon as possible.
 
-**Please Note:** I realize moving business logic out of the database is quite the change.  If you do decide to make that switch, be pragmatic about it.  Don’t try to change everything at once.  The code and the database are working fine now.  This section is about changes to the database going forward.  My rule of thumb is to leave the database and code in a better place than when I found it.  Meaning, if I am making a change to a column and I come across a business rule in the database for that column, then I do some analysis.  If the change is relatively easy to make, then I will make it then.  If it is complex, then I will create a card and put it on our technical debt backlog to be fixed later (hopefully).  Sometimes backlogs are where work goes to die.  I don’t tear through all the code and stored procedures and start making mass changes.  That is a surefire way to end up doing an emergency deployment on the weekend.
+```warning
+I realize moving business logic out of the database is quite a change.  If you do decide to make that switch, be pragmatic about it.  Don’t try to change everything at once.  The code and the database are working fine now.  This section is about changes to the database going forward.  I always try to leave the database and code in a better state than when I found it.  Meaning, if I make a change to a column and I come across a business rule in the database for that column, I do some analysis.  If the change is relatively easy to make, I will make it then.  If it’s complex, I will create a card and put it on our technical debt backlog to be fixed later (hopefully).
+```
 
 ## Code Changes
 
 As stated in the database changes section, business rules and business logic should exist in the code.  The scenario defined a couple of business rules which need to be placed into the code.  
 
 - `CustomerFullName` will be populated by combining `CustomerFirstName` and `CustomerLastName` when `CustomerFullName` is `Null`. 
-- If data exists in `CustomerFirstName` and `CustomerLastName` and an API request is sent with only `CustomerFullName` then do not set those columns to `Null`.  In addition, do not try to split up `CustomerFullName` as that is very difficult and prone to error.
+- If data exists in `CustomerFirstName` and `CustomerLastName` and an API request is sent with only `CustomerFullName` then do not set those columns to `Null`.  In addition, do not try to split up `CustomerFullName` as that is very difficult and error prone.
 
-This section will walk through the techniques on how to put those rules into code using C# as the example language.  
+The next section walks through the techniques for how to put those rules into code using C# as the example language.  
 
 ### Handling Null in CustomerFullName
-I’m not going to lie, it is very easy to put a check like this in a stored procedure.  But as stated before, that is not a good idea for a variety of reasons.
+
+It is very easy to put a check like this in a stored procedure, but as stated earlier, it’s not a good idea for a variety of reasons:
 
 ```SQL
 IsNull(CustomerFullName, CustomerFirstName + ' ' + CustomerLastName) as CustomerFullName
 ```
 
-One option would be to put that formatting rule in the model representing the customer table.
+One alternative option is to put that formatting rule in the model representing the customer table:
 
 ```C#
 public class CustomerModel 
@@ -243,9 +248,9 @@ public class CustomerModel
 }
 ```
 
-That works fine if the same model is used by all layers, the UI, business, and database.  In my experience, it takes a great deal of discipline as the models, and the database has to be a one to one match.  However, that is rarely the case.  I’ve seen ApiModels, ViewModels, or some other phrase which indicates there is a difference in the model and the database.  
+That works fine if the same model is used by all layers, the UI, business, and database.  That takes a great deal of discipline as the models, and the database have to be a one to one match, and that often isn’t the case. 
 
-An alternative to putting all the logic in the model would be:
+An alternative to putting all the logic in the model is:
 
 ```C#
 public Interface ICustomer
@@ -348,15 +353,16 @@ public class CustomerFacade
 ```
 
 ### Do not overwrite CustomerFirstName or CustomerLastName
-Once all the changes on `Blue` go live, there will still be data in the `CustomerFirstName` and `CustomerLastName` columns.  It would be bad for the code to set that data to null.  With new records, that data won’t be present.  The code shouldn’t try to guess how to split up the first name and last name.  For existing records, the code should leave the data as-is.  For new records, it needs to set those columns to `Null`.  
 
-Just like before, the temptation is there to make the update statement check for null in the parameter.  It is only one line, what is the harm?
+After all the changes on `Blue` go live, there will still be data in the `CustomerFirstName` and `CustomerLastName` columns.  It would be bad for the code to set that data to null.  With new records, that data won’t be present.  The code shouldn’t try to guess how to split up the first name and last name.  For existing records, the code should leave the data as-is.  For new records, it needs to set those columns to `Null`.  
+
+Just like before, there’s temptation to make the update statement check for null in the parameter (It is only one line, what is the harm?):
 
 ```SQL
     set CustomerFirstName = IsNull(@CustomerFirstName, CustomerFirstName)
 ```
 
-The code for `Blue` should be where that null check lives.  Putting the `IsNull` check in the database hides a business rule, which is what we want to avoid.
+The code for `Blue` should be where that null check lives.  Putting the `IsNull` check in the database hides a business rule, which is what we want to avoid:
 
 ```C#
 public Interface ICustomer
