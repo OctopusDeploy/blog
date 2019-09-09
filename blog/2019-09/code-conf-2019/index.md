@@ -3,11 +3,11 @@ title: Octopus will be at Code Conf 2019
 description: Octopus are silver sponsors of Code Conf in Copenhagen this year. 
 author: derek.campbell@octopus.com
 visibility: public
-published: 2019-09-09
+published: 2019-09-11
 bannerImage: blogimage-code-conf-copenhagen.png
 metaImage: blogimage-code-conf-copenhagen.png
 tags:
- - Events
+ - Events and webinars
 ---
 
 At Octopus Deploy, we are passionate about getting out and talking with customers and giving back to the community, which is why we are excited to announce that we are attending and sponsoring [Code Conf](https://www.code-conf.com/2019/code-conf/) on October 28, 2019 at the QDI - Danish Industry, H.C. Andersens Boulevard 18, Copenhagen, Denmark.
