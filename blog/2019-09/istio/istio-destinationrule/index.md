@@ -62,6 +62,10 @@ spec:
       version: v2
 ```
 
+![](istio-destinationrule.svg "width=500")
+
+*The architecture diagram with a DestinationRule resource.*
+
 ## Load balancing algorithms
 
 Istio offers multiple different [load balancing](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#LoadBalancerSettings) algorithms to distribute traffic. The default is the round robin algorithm, with cycles through the available targets one by one.
