@@ -56,11 +56,6 @@
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="394.902,370.044 389.991,360 384.902,369.955 "/>
   </g>
   <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="389.5" y1="508" x2="389.5" y2="549.426"/>
-    <polygon style="fill: #000000" points="384.5,549.426 389.5,559.426 394.5,549.426 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="384.5,549.426 389.5,559.426 394.5,549.426 "/>
-  </g>
-  <g>
     <rect style="fill: #c7e8ac" x="-260" y="360" width="293.7" height="201"/>
     <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-260" y="360" width="293.7" height="201"/>
     <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-113.15" y="464.4">
@@ -103,11 +98,6 @@
     <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="-110.5" y1="415" x2="-110.098" y2="370"/>
     <polygon style="fill: #000000" points="-105.098,370.044 -110.009,360 -115.098,369.955 "/>
     <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-105.098,370.044 -110.009,360 -115.098,369.955 "/>
-  </g>
-  <g>
-    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="-110.5" y1="508" x2="-110.5" y2="549.426"/>
-    <polygon style="fill: #000000" points="-115.5,549.426 -110.5,559.426 -105.5,549.426 "/>
-    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-115.5,549.426 -110.5,559.426 -105.5,549.426 "/>
   </g>
   <g>
     <g>
