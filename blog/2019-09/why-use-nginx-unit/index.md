@@ -1,6 +1,6 @@
 ---
-title:
-description:
+title: Why would you use NGINX Unit?
+description: What features does NGINX Unit have that make it an attractive solution for modern deployments?
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-01-01
