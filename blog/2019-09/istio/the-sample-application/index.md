@@ -20,8 +20,8 @@ This sample application will then be used as we explore the major features of Is
 
 * [The VirtualService resource.](/blog/2019-09/istio/istio-virtualservice/index.md)
 * [The DestinationRule resource](/blog/2019-09/istio/istio-destinationrule/index.md)
-* [The ServiceEntry resource](/blog/2019-09/istio/istio-serviceentry/index.md)
-* [The Gateway resource](/blog/2019-09/istio/istio-gateway/index.md)
+* [The ServiceEntry resource.](/blog/2019-09/istio/istio-serviceentry/index.md)
+* [The Gateway resource.](/blog/2019-09/istio/istio-gateway/index.md)
 
 ## The proxy application
 
