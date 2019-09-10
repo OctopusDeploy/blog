@@ -72,7 +72,7 @@ Combine this ability to apply changes to a live system with the consistent netwo
 
 NGINX Unit installs in seconds, is started with a single command, and will host your first application with a single update to the configuration. It doesn't require agents, control planes, databases or a dedicated cluster to run.
 
-When you compare this to the about of work that has to go into your average cloud deployment or getting a Kubernetes cluster up an running for the first time, NGINX Unit is a breath of fresh air.
+When you compare this to the amount of work that has to go into your average cloud deployment or getting a Kubernetes cluster up an running for the first time, NGINX Unit is a breath of fresh air.
 
 What you see is what you get with NGINX Unit, making it easy to deploy, reason about and diagnose.
 
