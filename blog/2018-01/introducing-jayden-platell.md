@@ -1,6 +1,6 @@
 ---
 title: "Introducing Jayden Platell"
-visibility: public
+visibility: private
 description: "A brief introduction to Jayden Platell"
 published: 2018-01-30
 tags:

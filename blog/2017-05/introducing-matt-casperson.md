@@ -1,6 +1,6 @@
 ---
 title: "Introducing Matt Casperson"
-visibility: public
+visibility: private
 description: "Hi - I've just started with Octopus Deploy. Let me tell you a bit about myself."
 published: 2017-05-10
 tags:

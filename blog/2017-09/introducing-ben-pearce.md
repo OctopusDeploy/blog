@@ -1,6 +1,6 @@
 ---
 title: Introducing Ben Pearce
-visibility: public
+visibility: private
 description: A brief introduction to Ben Pearce
 published: 2017-10-06
 tags:

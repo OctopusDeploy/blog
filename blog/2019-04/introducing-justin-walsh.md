@@ -1,6 +1,6 @@
 ---
 title: "Introducing Justin Walsh"
-visibility: public
+visibility: private
 description: "A brief introduction to Justin Walsh"
 author: justin.walsh@octopus.com
 published: 2019-05-13

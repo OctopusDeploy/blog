@@ -1,6 +1,6 @@
 ---
 title: "Introducing Michael Compton"
-visibility: public
+visibility: private
 description: "A brief introduction to Michael Compton"
 published: 2017-09-25
 tags:

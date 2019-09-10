@@ -1,6 +1,6 @@
 ---
 title: "Introducing Jason Brown"
-visibility: public
+visibility: private
 description: "A brief introduction of Jason Brown"
 published: 2017-06-05
 tags:

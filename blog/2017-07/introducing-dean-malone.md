@@ -1,6 +1,6 @@
 ---
 title: "Introducing Dean Malone"
-visibility: public
+visibility: private
 description: "A brief introduction to Dean Malone"
 published: 2017-07-14
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "Introducing Bob Walker"
-visibility: public
+visibility: private
 description: "A brief introduction to Bob Walker"
 published: 2018-05-08
 tags:

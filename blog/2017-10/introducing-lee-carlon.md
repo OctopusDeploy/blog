@@ -1,6 +1,6 @@
 ---
 title: Introducing Lee Carlon
-visibility: public
+visibility: private
 description: A brief introduction to Lee Carlon
 published: 2017-10-05
 tags:

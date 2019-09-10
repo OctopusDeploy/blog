@@ -1,6 +1,6 @@
 ---
 title: "Introducing Ryan Rousseau"
-visibility: public
+visibility: private
 description: "A brief introduction to Ryan Rousseau"
 published: 2018-05-10
 tags:

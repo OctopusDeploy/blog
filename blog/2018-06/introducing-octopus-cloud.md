@@ -2,7 +2,7 @@
 title: "Introducing Octopus Cloud"
 description: "Octopus Cloud has been a while in the making. In this post we look at how and why Octopus Cloud came to be, and what the future may look like"
 author: andrew.katsivas@octopus.com
-visibility: public
+visibility: private
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
 published: 2018-06-14

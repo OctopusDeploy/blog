@@ -1,6 +1,6 @@
 ---
 title: "Introducing Andrew Katsivas"
-visibility: public
+visibility: private
 description: "I'm new around here - let's get you up to speed"
 published: 2017-09-22
 tags:

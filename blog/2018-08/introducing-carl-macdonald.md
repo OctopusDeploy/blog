@@ -1,6 +1,6 @@
 ---
 title: "Introducing Carl MacDonald"
-visibility: public
+visibility: private
 description: "A brief introduction to Carl MacDonald"
 published: 2018-08-31
 metaImage: carl-macdonald.png

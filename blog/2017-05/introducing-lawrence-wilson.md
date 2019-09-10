@@ -1,6 +1,6 @@
 ---
 title: "Introducing Lawrence Wilson"
-visibility: public
+visibility: private
 description: "A brief introduction of Lawrence Wilson"
 published: 2017-05-10
 tags:

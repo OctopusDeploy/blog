@@ -1,6 +1,6 @@
 ---
 title: "Introducing Derek Campbell"
-visibility: public
+visibility: private
 description: "A brief introduction to Derek Campbell"
 published: 2018-08-27
 metaImage: derek-campbell.png

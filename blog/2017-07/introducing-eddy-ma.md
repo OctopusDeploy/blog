@@ -1,6 +1,6 @@
 ---
 title: "Introducing Eddy Ma"
-visibility: public
+visibility: private
 description: "A brief introduction to Eddy Ma"
 published: 2017-07-11
 tags:

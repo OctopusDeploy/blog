@@ -1,6 +1,6 @@
 ---
 title: "Introducing Jim Burger"
-visibility: public
+visibility: private
 description: "A brief introduction to Jim Burger"
 published: 2018-06-12
 metaImage: jim-burger.png

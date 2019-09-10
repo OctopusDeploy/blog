@@ -1,6 +1,6 @@
 ---
 title: "Introducing Chris van Dal"
-visibility: public
+visibility: private
 description: "A brief introduction to Chris van Dal"
 published: 2017-11-01
 tags:

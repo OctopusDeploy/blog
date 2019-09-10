@@ -1,6 +1,6 @@
 ---
 title: Introducing Tom Williams
-visibility: public
+visibility: private
 description: A brief introduction to Tom Williams
 published: 2017-10-23
 tags:

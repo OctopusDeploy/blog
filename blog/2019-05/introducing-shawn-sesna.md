@@ -1,6 +1,6 @@
 ---
 title: "Introducing Shawn Sesna"
-visibility: public
+visibility: private
 description: "A brief introduction to Shawn Sesna"
 author: shawn.sesna@octopus.com
 published: 2019-05-13
