@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-In order to be able to make a network request, the destination host must be part of the Istio service registry. By default any Service in a Kubernetes cluster is part of the service registry, but external URLs are not. To expose external network applications to Istio we use the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource.
+In order to be able to make a network request, the destination host must be part of the Istio service registry. By default any Service resource in a Kubernetes cluster is part of the service registry, but external URLs are not. To expose external network applications to Istio we use the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource.
 
 In this post we'll add a ServiceEntry resource to the Kubernetes cluster in order to direct our `proxy` application to an external resource.
 
@@ -40,7 +40,7 @@ spec:
 
 With the external service now part of the Istio service registry, we need to direct traffic to it. This is achieved with the VirtualService resource.
 
-[As before](/blog/2019-09/istio/istio-virtualservice/index.md) we are matching requests to the `webserver` host, and using the rewriting functionality to redirect the request to another location. However, unlike the pervious blogs, we are rewriting the traffic to point to an external location.
+[As before](/blog/2019-09/istio/istio-virtualservice/index.md) we are matching requests to the `webserver` host, and using the rewriting functionality to route the request to another location. However, unlike the pervious blogs, we are rewriting the traffic to point to an external location.
 
 :::hint
 It is important to set the `authority` to the same value as the `destination.host`, because a large number of external services expect the HOST header in the HTTP request to be defined correctly. Failure to set the `authority` field can lead to odd 404 errors.
@@ -68,7 +68,7 @@ spec:
           number: 443
 ```
 
-Because we have redirected a HTTP call to an internal Service resource to a HTTPS external location, we need to configure a DestinationRule resource to act as a TLS client. In the YAML below we have configured the DestinationRule resource to `SIMPLE` TLS mode, which indicates that requests to the host should be contacted over a TLS connection.
+Because we have redirected a HTTP call to an internal Service resource to a HTTPS external location, we need to configure a DestinationRule resource to act as a TLS client. In the YAML below we have configured the DestinationRule resource to `SIMPLE` TLS mode, which indicates that requests to the host should be conducted over a TLS connection.
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -82,11 +82,13 @@ spec:
       mode: SIMPLE
 ```
 
-With this combination of ServiceEntry, VirtualService and DestinationRule resources we have pointed our `proxy` application out to the text files hosted by GitHub.
+With this combination of ServiceEntry, VirtualService and DestinationRule resources we have pointed our `proxy` application out to the text file hosted by GitHub.
 
 ![](proxy-example.png "width=500")
 
 *Internal requests are now directed to an external host.*
+
+Here is the architecture diagram showing the ExternalService resource, and the new flow of requests to the external resources.
 
 ![](istio-serviceentry.svg "width=500")
 
