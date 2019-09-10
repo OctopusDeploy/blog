@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-NGINX is one of the most popular web servers and reverse proxies available today. It offers high performance, almost infinite configurability, and is a commonly used component in modern stacks like Kubernetes. Now the NGINX team has a new offering called NGINX Unit, which is aimed at solving the challenges of modern development processes.
+NGINX is one of the most popular web servers and reverse proxies available today. It offers high performance, almost infinite configurability, and is a commonly used component in modern stacks like Kubernetes. Now the NGINX team has a new offering called NGINX Unit, which is aimed at solving some common challenges of modern development processes.
 
 If you jump to the [NGINX Unit documentation](https://unit.nginx.org/#about), you'll find a wonderful [live demo from NGINX Conf 17](https://youtu.be/I4IWEz2lBWU). There is also an [overview session](https://www.youtube.com/watch?v=EU78CIR3CeU) from the same conference. These presentations did a good job of answering what NGINX Unit does, but still left me wondering why someone would choose to use NGINX Unit.
 
