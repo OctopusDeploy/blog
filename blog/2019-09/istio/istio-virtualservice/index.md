@@ -12,9 +12,9 @@ tags:
 
 In the [previous blog](/blog/2019-09/istio/the-sample-application/index.md) post we deployed two simple Node.js web applications into a Kubernetes cluster as Deployment resources, and linked everything up with standard Service resources.
 
-The networking so far has only used standard Kubernetes resources to configure it. This works, but falls a little short when it comes to directing traffic between different versions of upstream APIs. You will have noticed that the `proxy` application is returning content from the Pod resources created by both the `webserverv1` and `webserverv2` Deployment resources, which is unlikely to be the desired result had this been a real world deployment. istio can address this limitation with the [VirtualService resource](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/).
+The networking so far has only used standard Kubernetes resources to configure it. This works, but falls a little short when it comes to directing traffic between different versions of upstream APIs. You will have noticed that the `proxy` application is returning content from the Pod resources created by both the `webserverv1` and `webserverv2` Deployment resources, which is unlikely to be the desired result had this been a real world deployment. Istio can address this limitation with the [VirtualService resource](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/).
 
-In this post we'll look at what a VirtualService resource is, how it relates to a standard Ingress resources, and add a VirtualService resource to the cluster to route and modify the requests made by the `proxy` Pod to the `webserver` Service.
+In this post we'll look at what a VirtualService resource is, how it relates to a standard Ingress resource, and add a VirtualService resource to the cluster to route and modify the requests made by the `proxy` Pod to the `webserver` Service.
 
 ## An overview of the VirtualService resource
 
@@ -26,11 +26,11 @@ For comparison, an Ingress resource can match external traffic based on the HTTP
 
 A VirtualService resource on the other hand can match traffic based on HTTP host, path (with full regular expression support), method, headers, ports, query parameters and more.
 
-Once an Ingress resource has matched the incoming traffic, it is then directed to a Service resource. This is also true of a VirtualService resource, however when combined with a RouteDestination resource, a VirtualService resource can direct traffic to specific subsets of Pod resources referenced by a Service resource. For example, you may want to direct traffic only to pods that have the `version: v2` label applied. We'll see this in the [next blog post](/blog/2019-09/istio/istio-destinationrule/index.md).
+Once an Ingress resource has matched the incoming traffic, it is then directed to a Service resource. This is also true of a VirtualService resource, however when combined with a DestinationRule resource, a VirtualService resource can direct traffic to specific subsets of Pod resources referenced by a Service resource. For example, you may want to direct traffic only to pods that have the `version: v2` label applied. We'll see this in the [next blog post](/blog/2019-09/istio/istio-destinationrule/index.md).
 
 Perhaps the biggest difference between an Ingress resource and a VirtualService resource is that a VirtualService resource can intelligently manage the traffic it matches by allowing requests to be retried, injecting faults or delays for testing, and rewriting or redirecting requests. Implementing this functionality in the infrastructure layer removes the need for each individual application to implement and manage it themselves, providing for a much more consistent networking experience.
 
-Now that we know what a VirtualService resource can do, lets add some to the network to see the effects that they have.
+Now that we know what a VirtualService resource can do, let's add some to the network to see the effects that they have.
 
 ## A minimal example
 
@@ -246,7 +246,7 @@ rewrite:
 
 ## Retying requests
 
-[Retrying failed requests](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/#HTTPRetry) is a common strategy to dealing with network errors or unresponsive applications. The VirtualService resource below will retry failed requests.
+[Retrying failed requests](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/#HTTPRetry) is a common strategy for dealing with network errors or unresponsive applications. The VirtualService resource below will retry failed requests.
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -268,7 +268,7 @@ spec:
     timeout: "10s"         
 ```
 
-Here we configure the VirtualService resource to retry any request that resulted in any 500 error code up to 3 times, with a delay.
+Here we configure the VirtualService resource to retry any request that resulted in any 500 error code, up to 3 times, and with a delay.
 
 ```YAML
 retries:
@@ -283,7 +283,7 @@ The timeout was set to work around a [bug in Istio](https://github.com/kubernete
 timeout: "10s"
 ```
 
-We can see that requests that result in proxied requests to an endpoint that will fail 25% of the time only rarely respond with a 500 code, but the requests can take seconds as the retries are delayed.
+We can see that proxied requests to an endpoint that will fail 25% of the time only now rarely respond with a 500 code, but the requests can take seconds as the retries are delayed.
 
 ![](retry.png "width=500")
 
