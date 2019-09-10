@@ -2,7 +2,7 @@
 title: Exploring Istio - The DestinationRule Resource
 description: In this blog post we'll dive into the major features of the DestinationRule resources
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-01-01
 metaImage:
 bannerImage:

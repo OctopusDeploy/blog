@@ -2,7 +2,7 @@
 title: Exploring Istio - The ServiceEntry Resource
 description: In this post we'll expose external URLs to Istio with the ServiceEntry resource.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-01-01
 metaImage:
 bannerImage:
