@@ -1,6 +1,6 @@
 ---
 title: "Introducing Mark Ledwich"
-visibility: public
+visibility: private
 description: "A brief introduction to Mark Ledwich"
 author: mark.ledwich@octopus.com
 published: 2019-03-12

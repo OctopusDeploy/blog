@@ -1,6 +1,6 @@
 ---
 title: "Introducing Roy Wallace"
-visibility: public
+visibility: private
 description: "A brief introduction to Roy Wallace"
 author: roy.wallace@octopus.com
 published: 2018-10-05

@@ -1,6 +1,6 @@
 ---
 title: "Introducing Tania Richardson"
-visibility: public
+visibility: private
 description: "A brief introduction to Tania Richardson"
 author: tania.richardson@octopus.com
 published: 2019-02-28

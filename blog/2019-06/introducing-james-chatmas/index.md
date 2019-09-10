@@ -1,6 +1,6 @@
 ---
 title: "Introducing James Chatmas"
-visibility: public
+visibility: private
 description: "A brief introduction to James Chatmas"
 author: james.chatmas@octopus.com
 bannerImage: james-chatmas.png

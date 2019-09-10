@@ -1,6 +1,6 @@
 ---
 title: "Introducing Frank Lin"
-visibility: public
+visibility: private
 description: "A brief introduction to Frank Lin"
 author: frank-lin@octopus.com
 bannerImage: intro-frank-lin.png
