@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="61cm" height="54cm" viewBox="-462 -376 1203 1068" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffbbb1" x="-460" y="-300" width="1200" height="878.5"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-460" y="-300" width="1200" height="878.5"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-451" y="143.15">
+      <tspan x="-451" y="143.15"></tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-440" y="-260">
+    <tspan x="-440" y="-260">Kubernetes Cluster</tspan>
+  </text>
+  <g>
+    <rect style="fill: #c7e8ac" x="20" y="-140" width="293.7" height="201"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="20" y="-140" width="293.7" height="201"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="166.85" y="-35.6">
+      <tspan x="166.85" y="-35.6"></tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #a3d977" x="91" y="-85" width="157" height="93"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="91" y="-85" width="157" height="93"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="169.5" y="-34.6">
+      <tspan x="169.5" y="-34.6">proxy</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #a3d977" x="-20" y="-109" width="40" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-20" y="-109" width="40" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="0" y="-86.1">
+      <tspan x="0" y="-86.1">D</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #a3d977" x="-22.8" y="-8.6" width="42.6" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-22.8" y="-8.6" width="42.6" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1.5" y="14.3">
+      <tspan x="-1.5" y="14.3">1</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffeca9" x="130.325" y="-195" width="79.35" height="54"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="130.325" y="-195" width="79.35" height="54"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="170" y="-172.1">
+      <tspan x="170" y="-172.1">http-web</tspan>
+      <tspan x="170" y="-156.1">80</tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="37.5" y="-117.5">
+    <tspan x="37.5" y="-117.5">proxy</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="169.5" y1="-85" x2="169.902" y2="-130"/>
+    <polygon style="fill: #000000" points="174.902,-129.956 169.991,-140 164.902,-130.045 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="174.902,-129.956 169.991,-140 164.902,-130.045 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="166.85" y1="61" x2="166.532" y2="169.5"/>
+    <polygon style="fill: #000000" points="161.532,169.485 166.503,179.5 171.532,169.515 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="161.532,169.485 166.503,179.5 171.532,169.515 "/>
+  </g>
+  <g>
+    <g>
+      <path style="fill: #ffeca9" d="M 67.8333 -320 L 259.167,-320 C 285.584,-320 307,-311.046 307,-300 C 307,-288.954 285.584,-280 259.167,-280 L 67.8333,-280 C 41.4157,-280 20,-288.954 20,-300 C 20,-311.046 41.4157,-320 67.8333,-320z"/>
+      <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 67.8333 -320 L 259.167,-320 C 285.584,-320 307,-311.046 307,-300 C 307,-288.954 285.584,-280 259.167,-280 L 67.8333,-280 C 41.4157,-280 20,-288.954 20,-300 C 20,-311.046 41.4157,-320 67.8333,-320"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="163.5" y="-296">
+        <tspan x="163.5" y="-296">proxy</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="-28" y="-318" width="48" height="40"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-28" y="-318" width="48" height="40"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-4" y="-294.1">
+        <tspan x="-4" y="-294.1">LB</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="121.825" y="-374" width="79.35" height="54"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="121.825" y="-374" width="79.35" height="54"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="161.5" y="-351.1">
+        <tspan x="161.5" y="-351.1">http-web</tspan>
+        <tspan x="161.5" y="-335.1">80</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="163.5" y1="-280" x2="169.161" y2="-205.968"/>
+    <polygon style="fill: #000000" points="164.176,-205.587 169.924,-195.997 174.147,-206.349 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="164.176,-205.587 169.924,-195.997 174.147,-206.349 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="166.5" y1="225.5" x2="166.943" y2="300.764"/>
+    <polygon style="fill: #000000" points="166.987,308.264 161.928,298.294 166.943,300.764 171.928,298.235 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="166.987,308.264 161.928,298.294 166.943,300.764 171.928,298.235 "/>
+  </g>
+  <g>
+    <rect style="fill: #bfaa5d" x="58" y="310.5" width="218" height="47"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="58" y="310.5" width="218" height="47"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="167" y="337.9">
+      <tspan x="167" y="337.9">github</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <path style="fill: #bfaa5d" d="M 75.5 180.5 L 257.5,180.5 C 282.629,180.5 303,190.574 303,203 C 303,215.426 282.629,225.5 257.5,225.5 L 75.5,225.5 C 50.371,225.5 30,215.426 30,203 C 30,190.574 50.371,180.5 75.5,180.5z"/>
+      <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 75.5 180.5 L 257.5,180.5 C 282.629,180.5 303,190.574 303,203 C 303,215.426 282.629,225.5 257.5,225.5 L 75.5,225.5 C 50.371,225.5 30,215.426 30,203 C 30,190.574 50.371,180.5 75.5,180.5"/>
+      <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="166.5" y="207">
+        <tspan x="166.5" y="207">webserver</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #bfaa5d" x="-7.45" y="183.5" width="38.9" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-7.45" y="183.5" width="38.9" height="38"/>
+      <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="12" y="206.4">
+        <tspan x="12" y="206.4">VS</tspan>
+      </text>
+    </g>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="140" y="139.25">
+    <tspan x="140" y="139.25"></tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="140" y="139.25">
+    <tspan x="140" y="139.25"></tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffa9f4" x="95" y="436.5" width="147" height="105"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="95" y="436.5" width="147" height="105"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="168.5" y="492.9">
+      <tspan x="168.5" y="492.9">github</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="167" y1="357.5" x2="168.315" y2="426.766"/>
+    <polygon style="fill: #000000" points="168.458,434.264 163.269,424.361 168.315,426.766 173.267,424.171 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="168.458,434.264 163.269,424.361 168.315,426.766 173.267,424.171 "/>
+  </g>
+  <g>
+    <path style="fill: #ffffff" d="M -120.75 652.5 L 456.75,652.5 L 456.75,686.786 C 341.25,681.071 283.5,681.071 168,686.786 C 52.5,692.5 -5.25,692.5 -120.75,686.786 L -120.75,652.5z"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M -120.75 652.5 L 456.75,652.5 L 456.75,686.786 C 341.25,681.071 283.5,681.071 168,686.786 C 52.5,692.5 -5.25,692.5 -120.75,686.786 L -120.75,652.5"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="168" y="670.786">
+      <tspan x="168" y="670.786">https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/externalservice1.txt</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="168.5" y1="541.5" x2="168.044" y2="642.764"/>
+    <polygon style="fill: #000000" points="168.01,650.264 163.055,640.242 168.044,642.764 173.055,640.287 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="168.01,650.264 163.055,640.242 168.044,642.764 173.055,640.287 "/>
+  </g>
+</svg>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="61cm" height="64cm" viewBox="-462 -376 1207 1273" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffbbb1" x="-460" y="-300" width="1200" height="1196.5"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-460" y="-300" width="1200" height="1196.5"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-451" y="302.15">
+      <tspan x="-451" y="302.15"></tspan>
+    </text>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-440" y="-260">
+    <tspan x="-440" y="-260">Kubernetes Cluster</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="-93.5" y1="716" x2="-93.0982" y2="671"/>
+    <polygon style="fill: #000000" points="-88.0984,671.044 -93.0089,661 -98.098,670.955 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-88.0984,671.044 -93.0089,661 -98.098,670.955 "/>
+  </g>
+  <g>
+    <g>
+      <path style="fill: #ffeca9" d="M 84.8333 501 L 276.167,501 C 302.584,501 324,509.954 324,521 C 324,532.046 302.584,541 276.167,541 L 84.8333,541 C 58.4157,541 37,532.046 37,521 C 37,509.954 58.4157,501 84.8333,501z"/>
+      <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 84.8333 501 L 276.167,501 C 302.584,501 324,509.954 324,521 C 324,532.046 302.584,541 276.167,541 L 84.8333,541 C 58.4157,541 37,532.046 37,521 C 37,509.954 58.4157,501 84.8333,501"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="180.5" y="525">
+        <tspan x="180.5" y="525">webserver</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="-11" y="503" width="48" height="40"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-11" y="503" width="48" height="40"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="13" y="526.9">
+        <tspan x="13" y="526.9">CIP</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="138.825" y="447" width="79.35" height="54"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="138.825" y="447" width="79.35" height="54"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="178.5" y="469.9">
+        <tspan x="178.5" y="469.9">http-web</tspan>
+        <tspan x="178.5" y="485.9">80</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <g>
+      <path style="fill: #ffeca9" d="M -335.167 501 L -143.833,501 C -117.416,501 -96,509.954 -96,521 C -96,532.046 -117.416,541 -143.833,541 L -335.167,541 C -361.584,541 -383,532.046 -383,521 C -383,509.954 -361.584,501 -335.167,501z"/>
+      <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M -335.167 501 L -143.833,501 C -117.416,501 -96,509.954 -96,521 C -96,532.046 -117.416,541 -143.833,541 L -335.167,541 C -361.584,541 -383,532.046 -383,521 C -383,509.954 -361.584,501 -335.167,501"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-239.5" y="525">
+        <tspan x="-239.5" y="525">webserverv1</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="-431" y="503" width="48" height="40"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-431" y="503" width="48" height="40"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-407" y="526.9">
+        <tspan x="-407" y="526.9">CIP</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="-281.176" y="447" width="79.35" height="54"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-281.176" y="447" width="79.35" height="54"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-241.501" y="469.9">
+        <tspan x="-241.501" y="469.9">http-web</tspan>
+        <tspan x="-241.501" y="485.9">80</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <g>
+      <path style="fill: #ffeca9" d="M 504.833 501 L 696.167,501 C 722.584,501 744,509.954 744,521 C 744,532.046 722.584,541 696.167,541 L 504.833,541 C 478.416,541 457,532.046 457,521 C 457,509.954 478.416,501 504.833,501z"/>
+      <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 504.833 501 L 696.167,501 C 722.584,501 744,509.954 744,521 C 744,532.046 722.584,541 696.167,541 L 504.833,541 C 478.416,541 457,532.046 457,521 C 457,509.954 478.416,501 504.833,501"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="600.5" y="525">
+        <tspan x="600.5" y="525">webserverv2</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="409" y="503" width="48" height="40"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="409" y="503" width="48" height="40"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="433" y="526.9">
+        <tspan x="433" y="526.9">CIP</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="558.824" y="447" width="79.35" height="54"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="558.824" y="447" width="79.35" height="54"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="598.499" y="469.9">
+        <tspan x="598.499" y="469.9">http-web</tspan>
+        <tspan x="598.499" y="485.9">80</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="-239.5" y1="541" x2="-141.01" y2="625.822"/>
+    <polygon style="fill: #000000" points="-144.273,629.61 -133.433,632.347 -137.747,622.033 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-144.273,629.61 -133.433,632.347 -137.747,622.033 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="132.667" y1="541" x2="-43.4653" y2="628.123"/>
+    <polygon style="fill: #000000" points="-45.6821,623.641 -52.4287,632.557 -41.2484,632.605 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-45.6821,623.641 -52.4287,632.557 -41.2484,632.605 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="228.333" y1="541" x2="358.151" y2="626.929"/>
+    <polygon style="fill: #000000" points="355.392,631.098 366.49,632.448 360.911,622.759 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="355.392,631.098 366.49,632.448 360.911,622.759 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="600.5" y1="541" x2="456.114" y2="627.354"/>
+    <polygon style="fill: #000000" points="453.548,623.063 447.532,632.487 458.681,631.645 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="453.548,623.063 447.532,632.487 458.681,631.645 "/>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #c7e8ac" x="20" y="-140" width="293.7" height="201"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="20" y="-140" width="293.7" height="201"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="166.85" y="-35.6">
+        <tspan x="166.85" y="-35.6"></tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #a3d977" x="91" y="-85" width="157" height="93"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="91" y="-85" width="157" height="93"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="169.5" y="-34.6">
+        <tspan x="169.5" y="-34.6">proxy</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #a3d977" x="-20" y="-109" width="40" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-20" y="-109" width="40" height="38"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="0" y="-86.1">
+        <tspan x="0" y="-86.1">D</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #a3d977" x="-22.8" y="-8.6" width="42.6" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-22.8" y="-8.6" width="42.6" height="38"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1.5" y="14.3">
+        <tspan x="-1.5" y="14.3">1</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="130.325" y="-195" width="79.35" height="54"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="130.325" y="-195" width="79.35" height="54"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="170" y="-172.1">
+        <tspan x="170" y="-172.1">http-web</tspan>
+        <tspan x="170" y="-156.1">80</tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="37.5" y="-117.5">
+      <tspan x="37.5" y="-117.5">proxy</tspan>
+    </text>
+    <g>
+      <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="169.5" y1="-85" x2="169.902" y2="-130"/>
+      <polygon style="fill: #000000" points="174.902,-129.956 169.991,-140 164.902,-130.045 "/>
+      <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="174.902,-129.956 169.991,-140 164.902,-130.045 "/>
+    </g>
+    <g>
+      <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="169.5" y1="8" x2="169.5" y2="49.4264"/>
+      <polygon style="fill: #000000" points="164.5,49.4264 169.5,59.4264 174.5,49.4264 "/>
+      <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="164.5,49.4264 169.5,59.4264 174.5,49.4264 "/>
+    </g>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="166.85" y1="61" x2="166.532" y2="169.5"/>
+    <polygon style="fill: #000000" points="161.532,169.485 166.503,179.5 171.532,169.515 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="161.532,169.485 166.503,179.5 171.532,169.515 "/>
+  </g>
+  <g>
+    <g>
+      <path style="fill: #ffeca9" d="M 67.8333 -320 L 259.167,-320 C 285.584,-320 307,-311.046 307,-300 C 307,-288.954 285.584,-280 259.167,-280 L 67.8333,-280 C 41.4157,-280 20,-288.954 20,-300 C 20,-311.046 41.4157,-320 67.8333,-320z"/>
+      <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 67.8333 -320 L 259.167,-320 C 285.584,-320 307,-311.046 307,-300 C 307,-288.954 285.584,-280 259.167,-280 L 67.8333,-280 C 41.4157,-280 20,-288.954 20,-300 C 20,-311.046 41.4157,-320 67.8333,-320"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="163.5" y="-296">
+        <tspan x="163.5" y="-296">proxy</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="-28" y="-318" width="48" height="40"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-28" y="-318" width="48" height="40"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-4" y="-294.1">
+        <tspan x="-4" y="-294.1">LB</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="121.825" y="-374" width="79.35" height="54"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="121.825" y="-374" width="79.35" height="54"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="161.5" y="-351.1">
+        <tspan x="161.5" y="-351.1">http-web</tspan>
+        <tspan x="161.5" y="-335.1">80</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="163.5" y1="-280" x2="169.161" y2="-205.968"/>
+    <polygon style="fill: #000000" points="164.176,-205.587 169.924,-195.997 174.147,-206.349 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="164.176,-205.587 169.924,-195.997 174.147,-206.349 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="166.5" y1="225.5" x2="128.852" y2="272.313"/>
+    <polygon style="fill: #000000" points="124.151,278.158 126.522,267.231 128.852,272.313 134.315,273.498 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="124.151,278.158 126.522,267.231 128.852,272.313 134.315,273.498 "/>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #bfaa5d" x="69" y="317.5" width="218" height="47"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="69" y="317.5" width="218" height="47"/>
+      <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="178" y="344.9">
+        <tspan x="178" y="344.9">webserver</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #bfaa5d" x="103.3" y="279.9" width="38.9" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="103.3" y="279.9" width="38.9" height="38"/>
+      <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="122.75" y="302.8">
+        <tspan x="122.75" y="302.8">v1</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #bfaa5d" x="213.3" y="279.9" width="38.9" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="213.3" y="279.9" width="38.9" height="38"/>
+      <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="232.75" y="302.8">
+        <tspan x="232.75" y="302.8">v2</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <g>
+      <path style="fill: #bfaa5d" d="M 75.5 180.5 L 257.5,180.5 C 282.629,180.5 303,190.574 303,203 C 303,215.426 282.629,225.5 257.5,225.5 L 75.5,225.5 C 50.371,225.5 30,215.426 30,203 C 30,190.574 50.371,180.5 75.5,180.5z"/>
+      <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 75.5 180.5 L 257.5,180.5 C 282.629,180.5 303,190.574 303,203 C 303,215.426 282.629,225.5 257.5,225.5 L 75.5,225.5 C 50.371,225.5 30,215.426 30,203 C 30,190.574 50.371,180.5 75.5,180.5"/>
+      <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="166.5" y="207">
+        <tspan x="166.5" y="207">webserver</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #bfaa5d" x="-7.45" y="183.5" width="38.9" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-7.45" y="183.5" width="38.9" height="38"/>
+      <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="12" y="206.4">
+        <tspan x="12" y="206.4">VS</tspan>
+      </text>
+    </g>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="178" y1="364.5" x2="178.441" y2="437.264"/>
+    <polygon style="fill: #000000" points="178.486,444.764 173.426,434.794 178.441,437.264 183.426,434.734 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="178.486,444.764 173.426,434.794 178.441,437.264 183.426,434.734 "/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="140" y="298.25">
+    <tspan x="140" y="298.25"></tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="140" y="298.25">
+    <tspan x="140" y="298.25"></tspan>
+  </text>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="151" y="611">
+    <tspan x="151" y="611">Traffic does not flow here </tspan>
+    <tspan x="151" y="627">because of the subset</tspan>
+  </text>
+  <g>
+    <g>
+      <rect style="fill: #c7e8ac" x="257" y="661" width="293.7" height="201"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="257" y="661" width="293.7" height="201"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="403.85" y="765.4">
+        <tspan x="403.85" y="765.4"></tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #a3d977" x="328" y="716" width="157" height="93"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="328" y="716" width="157" height="93"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="406.5" y="766.4">
+        <tspan x="406.5" y="766.4">httpd</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #a3d977" x="217" y="692" width="40" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="217" y="692" width="40" height="38"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="237" y="714.9">
+        <tspan x="237" y="714.9">D</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #a3d977" x="214.2" y="792.4" width="42.6" height="38"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="214.2" y="792.4" width="42.6" height="38"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="235.5" y="815.3">
+        <tspan x="235.5" y="815.3">3</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffeca9" x="367.324" y="606" width="79.35" height="54"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="367.324" y="606" width="79.35" height="54"/>
+      <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="406.999" y="628.9">
+        <tspan x="406.999" y="628.9">http-web</tspan>
+        <tspan x="406.999" y="644.9">80</tspan>
+      </text>
+    </g>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="274.5" y="683.5">
+      <tspan x="274.5" y="683.5">webserverv2</tspan>
+    </text>
+    <g>
+      <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="406.5" y1="716" x2="406.901" y2="671"/>
+      <polygon style="fill: #000000" points="411.901,671.044 406.99,661 401.901,670.955 "/>
+      <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="411.901,671.044 406.99,661 401.901,670.955 "/>
+    </g>
+  </g>
+  <g>
+    <g>
+      <g>
+        <rect style="fill: #c7e8ac" x="-243" y="661" width="293.7" height="201"/>
+        <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-243" y="661" width="293.7" height="201"/>
+        <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-96.15" y="765.4">
+          <tspan x="-96.15" y="765.4"></tspan>
+        </text>
+      </g>
+      <g>
+        <rect style="fill: #a3d977" x="-172" y="716" width="157" height="93"/>
+        <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-172" y="716" width="157" height="93"/>
+        <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-93.5" y="766.4">
+          <tspan x="-93.5" y="766.4">httpd</tspan>
+        </text>
+      </g>
+      <g>
+        <rect style="fill: #a3d977" x="-283" y="692" width="40" height="38"/>
+        <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-283" y="692" width="40" height="38"/>
+        <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-263" y="714.9">
+          <tspan x="-263" y="714.9">D</tspan>
+        </text>
+      </g>
+      <g>
+        <rect style="fill: #a3d977" x="-285.8" y="792.4" width="42.6" height="38"/>
+        <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-285.8" y="792.4" width="42.6" height="38"/>
+        <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-264.5" y="815.3">
+          <tspan x="-264.5" y="815.3">3</tspan>
+        </text>
+      </g>
+      <g>
+        <rect style="fill: #ffeca9" x="-132.675" y="606" width="79.35" height="54"/>
+        <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-132.675" y="606" width="79.35" height="54"/>
+        <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-93" y="628.9">
+          <tspan x="-93" y="628.9">http-web</tspan>
+          <tspan x="-93" y="644.9">80</tspan>
+        </text>
+      </g>
+      <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-225.5" y="683.5">
+        <tspan x="-225.5" y="683.5">webserverv1</tspan>
+      </text>
+    </g>
+    <g>
+      <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="-93.5" y1="716" x2="-93.0869" y2="669.736"/>
+      <polygon style="fill: #000000" points="-93.02,662.236 -88.1094,672.28 -93.0869,669.736 -98.109,672.191 "/>
+      <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-93.02,662.236 -88.1094,672.28 -93.0869,669.736 -98.109,672.191 "/>
+    </g>
+  </g>
+</svg>
