@@ -20,7 +20,7 @@ In the [previous blog post](/blog/2019-09/istio/istio-virtualservice/index.md) w
 
 Having multiple versions of Pod resources is quite a common scenario, and while it is possible to create multiple Service resources in order to direct traffic to Pod resources with specific label combinations, Istio has a more concise solution.
 
-A DestinationRule resource can define [subsets](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#Subset), which can identify Pod resources with more specific label combinations than the Service resource that the DestinationRule is configured against. In the example below we have created two subsets within the Pod resources referenced by the `webserver` Service. The subsets, named `v1` and `v2`, match the `version` labels on the Pod resources.
+A DestinationRule resource can define [subsets](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#Subset), which identify Pod resources with more specific label combinations than the Service resource that the DestinationRule is configured against. In the example below we have created two subsets within the Pod resources referenced by the `webserver` Service. The subsets, named `v1` and `v2`, match the `version` labels on the Pod resources.
 
 We also then target the `v1` subset of the `webservice` Service resource from the VirtualService resource.
 
@@ -68,7 +68,7 @@ spec:
 
 ## Load balancing algorithms
 
-Istio offers multiple different [load balancing](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#LoadBalancerSettings) algorithms to distribute traffic. The default is the round robin algorithm, with cycles through the available targets one by one.
+Istio offers multiple different [load balancing](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#LoadBalancerSettings) algorithms to distribute traffic. The default is the round robin algorithm, which cycles through the available targets one by one.
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -149,7 +149,7 @@ The result is somewhat similar to the random algorithm, although we don't see re
 
 ## Security options
 
-Istio can configure [TLS settings](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#TLSSettings) to insure that the communication between Pods is encrypted through Mutual TLS (mtls).
+Istio can configure [TLS settings](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#TLSSettings) to insure that the communication between Pod resources are encrypted through Mutual TLS (mtls).
 
 The effects of these options are transparent to our application, but would prevent traffic from being snooped if Pod resources were to communicate across nodes.
 
