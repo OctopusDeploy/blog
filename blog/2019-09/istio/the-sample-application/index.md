@@ -102,6 +102,8 @@ server.listen(port, (err) => {
 
 Here is a top level overview of the sample application, using the [Kubernetes Deployment Language](https://blog.openshift.com/kdl-notation-kubernetes-app-deploy/) (KDL).
 
+The YAML at https://github.com/mcasperson/NodejsProxy/blob/master/kubernetes/example.yaml is a deployable example of this sampel project.
+
 We have a load balancer Service resource directing traffic to the Pod resource created by the `proxy` Deployment resource, which in turn requests the content from the Pod resources created by the Deployment resources `webserverv1` and `webserverv2`. The web server content is then returned back to the browser.
 
 Meanwhile there are two additional cluster IP Service resources called `webserverv1` and `webserverv2` that aren't currently accessed. These have been created in preparation for Istio policies that will direct traffic in a more fine grained manner than we have established with this initial implementation.
