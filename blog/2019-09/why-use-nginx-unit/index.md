@@ -40,7 +40,7 @@ But using regular expressions to modify configuration files is not a pleasant ex
 
 NGINX Unit addresses this by utilizing JSON for its configuration. There is no longer any ambiguity as to how to structure the configuration data, and it is much easier to update configuration values programmatically. Relying on a common data format makes NGINX Unit much easier to manage.
 
-## Configuration API
+## HTTP configuration API
 
 Every modern computing platform has a rich CLI tool backed by a well structured API. It is easy to take this functionality for granted until you find yourself running `sed` against a configuration file and then restarting a service.
 
