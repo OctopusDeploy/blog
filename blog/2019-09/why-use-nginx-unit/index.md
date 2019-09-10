@@ -42,7 +42,7 @@ NGINX Unit addresses this by utilizing JSON for its configuration. There is no l
 
 ## Configuration API
 
-Every modern computing platform has a rich CLI tool based by a well structured API. It is easy to take this functionality for granted until you find yourself running `sed` against a configuration file and then restarting a service.
+Every modern computing platform has a rich CLI tool backed by a well structured API. It is easy to take this functionality for granted until you find yourself running `sed` against a configuration file and then restarting a service.
 
 While NGINX Unit doesn't provide a CLI tool (all the examples in the documentation use `curl`), it does expose all of the configuration via an easy to understand HTTP API. This provides you with a great deal of flexibility in choosing how to expose the API (i.e. expose it on localhost or [securely proxy it to make it publicly available](https://unit.nginx.org/howto/integration/#securely-proxying-unit-api)), and means you can use any scripting tool of your choice to interact with it.
 
@@ -56,15 +56,15 @@ The declarative configuration model makes NGINX Unit far more approachable for t
 
 ## Consistent networking layer
 
-Polyglot development is increasingly popular. Whether it is because your team has found a mix of languages best suits their needs or because your infrastructure includes third party products written in a mix of languages, it is not uncommon to find your application stack contains a selection of programming languages.
+Polyglot development is increasingly popular. Whether it is because your team has found a mix of languages best suits their needs or because your infrastructure includes third party products written in a mix of languages, it is not uncommon to have an application stack that contains a selection of programming languages.
 
 However, the networking layer still needs to be treated in a cohesive way, which is challenging when every application has a network component that is configured in a slightly different way.
 
-NGINX Unit is part of a growing trend to lift the networking concerns out of the individual applications make it the responsibility of the infrastructure layer. NGINX Unit consolidates networking concerns by exposing a common API and handling common networking tasks like security and routing.
+NGINX Unit is part of a growing trend to lift the networking concerns out of the individual applications to make it the responsibility of the infrastructure layer. NGINX Unit consolidates networking concerns by exposing a common API and handling common networking tasks like security and routing.
 
 ## Reconfiguration without restarts
 
-NGINX Unit provides a very clean separation between the application processes it hosts and the networking layer it places over the top. This means that it is possible to change the networking configuration without restarting the hosted applications. It also means that networking changes can be applied to a running system with no downtime.
+NGINX Unit provides a very clean separation between the application processes it hosts and the networking layer it places over the top. This makes it is possible to change the networking configuration without restarting the hosted applications. It also means that networking changes can be applied to a running system with no downtime.
 
 Combine this ability to apply changes to a live system with the consistent network configuration that all applications hosted by NGINX Unit can take advantage of, and you have a system that can easily scale up as the number of deployments and application versions increase.
 
@@ -85,8 +85,8 @@ There are some downsides, or at least issues to be aware of, when using NGINX Un
 
 ## Conclusion
 
-Overall I get the impression that NGINX Unit is what NGINX would look like if it was written today. It offers a configuration model based on JSON exposed by a HTTP API and provides a declarative model for configuring the most common networking use cases, all while being light weight and simple to run.
+Overall I get the impression that NGINX Unit is what NGINX would look like if it was written today. It offers a configuration model based on JSON, exposes that configuration via a HTTP API, and provides a declarative model for configuring the most common networking use cases, all while being light weight and simple to run.
 
 This back-to-basics approach does mean that some use cases currently supported by NGINX are not possible in NGINX Unit, but with a [new release every few months](https://unit.nginx.org/CHANGES.txt), I would expect the functionality of NGINX Unit to grow.
 
-If the functionality provided by NGINX Unit meets your needs today, it would be the natural choice over deploying the traditional NGINX service. However you may find that NGINX Unit doesn't natively support some more common deployment patterns like canary deployments.
+ You will find that NGINX Unit doesn't natively support some more common deployment patterns like canary deployments. However, if the functionality provided by NGINX Unit meets your needs today, it would be the natural choice over deploying the traditional NGINX service.
