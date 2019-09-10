@@ -1,5 +1,5 @@
 ---
-title: A look at the Istio DestinationRule
+title: Exploring Istio - The DestinationRule Resource
 description: In this blog post we'll dive into the major features of the DestinationRule resources
 author: matthew.casperson@octopus.com
 visibility: private

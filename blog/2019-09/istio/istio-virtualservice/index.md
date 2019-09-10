@@ -1,5 +1,5 @@
 ---
-title: A look at the Istio VirtualService
+title: Exploring Istio - The VirtualService Resource
 description: In this blog post we add a VirtualService resource to the cluster to perform network routing
 author: matthew.casperson@octopus.com
 visibility: private
