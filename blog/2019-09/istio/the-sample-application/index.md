@@ -25,7 +25,7 @@ This sample application will then be used as we explore the major features of Is
 
 ## The proxy application
 
-The public facing application in our example is a very simple Node.js application. This application makes a second network request to the service it is proxying, wraps up the response and returns it along with the time it took to make the request.
+The public facing application in our example is a very simple Node.js web server. This application makes a second network request to the service it is proxying, wraps up the response and returns it along with the time it took to make the request.
 
 We'll use this proxy frontend to observe how network requests are routed across the network, to display any failed network requests, and to measure how long the requests took.
 
@@ -109,9 +109,9 @@ server.listen(port, (err) => {
 
 Here is a top level overview of the sample application, using the [Kubernetes Deployment Language](https://blog.openshift.com/kdl-notation-kubernetes-app-deploy/) (KDL).
 
-The YAML at https://github.com/mcasperson/NodejsProxy/blob/master/kubernetes/example.yaml is a deployable example of this sampel project.
+The YAML at https://github.com/mcasperson/NodejsProxy/blob/master/kubernetes/example.yaml is a deployable example of this sample project.
 
-We have a load balancer Service resource directing traffic to the Pod resource created by the `proxy` Deployment resource, which in turn requests the content from the Pod resources created by the Deployment resources `webserverv1` and `webserverv2`. The web server content is then returned back to the browser.
+We have a load balancer Service resource directing traffic to the Pod resource created by the `proxy` Deployment resource, which in turn requests the content from the Pod resources created by the Deployment resources `webserverv1` and `webserverv2`. The proxied content is then returned back to the browser.
 
 Meanwhile there are two additional cluster IP Service resources called `webserverv1` and `webserverv2` that aren't currently accessed. These have been created in preparation for Istio policies that will direct traffic in a more fine grained manner than we have established with this initial implementation.
 
@@ -119,7 +119,7 @@ Meanwhile there are two additional cluster IP Service resources called `webserve
 
 *The sample application Kubernetes archtiecture.*
 
-When we open the application, we'll see the proxy wrapping up the response from either `webserverv1` or `webserverv2` (because the service points to both pods, and so will contact either one for any given request). We can also see the time it took to retrieve the proxied value.
+When we open the application, we'll see the proxy wrapping up the response from either `webserverv1` or `webserverv2`, because the Service resource points to all the web server Pod resources, and so will contact any of them for any given request. We can also see the time it took to retrieve the proxied value.
 
 ![](output.png "width=500")
 
@@ -127,6 +127,6 @@ When we open the application, we'll see the proxy wrapping up the response from 
 
 ## Conclusion
 
-The example application shown here is trivial and does not attempt to replicate any real world scenario. However it is well suited as a starting point from which we can add new networking functionality with Istio.
+The example application shown here is trivial and does not attempt to replicate any real world scenario. However it is well suited as a starting point to which we can add new networking functionality with Istio.
 
 In the [next post](/blog/2019-09/istio/istio-virtualservice/index.md) we'll introduce the Istio VirtualService resource.
