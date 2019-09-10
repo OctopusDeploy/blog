@@ -64,15 +64,17 @@ NGINX Unit is part of a growing trend to lift the networking concerns out of the
 
 ## Reconfiguration without restarts
 
-NGINX Unit provides a very clean separation between the application processes it hosts and the networking layer it places over the top. This makes it is possible to change the networking configuration without restarting the hosted applications. It also means that networking changes can be applied to a running system with no downtime.
+NGINX Unit provides a clean separation between the application processes it hosts and the networking layer it places over the top. This makes it is possible to change the networking configuration without restarting the hosted applications. It also means that networking changes can be applied to a running system with no downtime.
 
-Combine this ability to apply changes to a live system with the consistent network configuration that all applications hosted by NGINX Unit can take advantage of, and you have a system that can easily scale up as the number of deployments and application versions increase.
+Combine this ability to apply changes to a live system with the consistent network configuration that all applications hosted by NGINX Unit can take advantage of, and you have an infrastructure that can easily scale up as the number of deployments and application versions increase.
 
 ## Low barrier to adoption
 
 NGINX Unit installs in seconds, is started with a single command, and will host your first application with a single update to the configuration. It doesn't require agents, control planes, databases or a dedicated cluster to run.
 
 When you compare this to the about of work that has to go into your average cloud deployment or getting a Kubernetes cluster up an running for the first time, NGINX Unit is a breath of fresh air.
+
+What you see is what you get with NGINX Unit, making it easy to deploy, reason about and diagnose.
 
 ## Downsides to using Unit
 
@@ -89,4 +91,4 @@ Overall I get the impression that NGINX Unit is what NGINX would look like if it
 
 This back-to-basics approach does mean that some use cases currently supported by NGINX are not possible in NGINX Unit, but with a [new release every few months](https://unit.nginx.org/CHANGES.txt), I would expect the functionality of NGINX Unit to grow.
 
- You will find that NGINX Unit doesn't natively support some more common deployment patterns like canary deployments. However, if the functionality provided by NGINX Unit meets your needs today, it would be the natural choice over deploying the traditional NGINX service.
+If the functionality provided by NGINX Unit meets your needs today, it would be the natural choice over deploying the traditional NGINX service.
