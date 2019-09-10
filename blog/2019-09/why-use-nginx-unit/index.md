@@ -76,6 +76,12 @@ When you compare this to the about of work that has to go into your average clou
 
 What you see is what you get with NGINX Unit, making it easy to deploy, reason about and diagnose.
 
+## Managing applications as services
+
+How do you manage your production deployments of Node.js applications today? Node.js itself doesn't really provide a solution here, which has spawned a host of solutions like [PM2](https://pm2.keymetrics.io/), [forever](https://www.npmjs.com/package/forever), nohup or native service management via systemd.
+
+NGINX Unit is a capable alternative for hosting applications that have traditionally relied on third party solutions to boot, run and restart processes, with the added benefit that it can host applications written in multiple languages.
+
 ## Downsides to using Unit
 
 There are some downsides, or at least issues to be aware of, when using NGINX Unit.
