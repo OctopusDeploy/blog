@@ -56,7 +56,7 @@ The declarative configuration model makes NGINX Unit far more approachable for t
 
 ## Consistent networking layer
 
-Polyglot development is increasingly popular. Whether it is because your team has found a mix of languages best suits their needs or because your infrastructure includes third party products written in a mix of languages, it is not uncommon to have an application stack that contains a selection of programming languages.
+Polyglot development is increasingly popular. Whether it is because your team has found a mix of languages best suits their needs or because your infrastructure includes third party products written in multiple languages, it is not uncommon to have an application stack that contains a selection of programming languages.
 
 However, the networking layer still needs to be treated in a cohesive way, which is challenging when every application has a network component that is configured in a slightly different way.
 
