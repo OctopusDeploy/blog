@@ -4,12 +4,13 @@ description: We recently updated our Azure DevOps extension and it has some grea
 author: rob.pearson@octopus.com
 visibility: public
 published: 2019-08-28
-metaImage: 
-bannerImage: 
+metaImage: blogimage-azureintegration.png
+bannerImage: blogimage-azureintegration.png
 tags:
- - New Releases
- - Azure DevOps
+ - Product
 ---
+
+![Illustration showing Azure DevOps and Octopus Deploy work great together](blogimage-azureintegration.png)
 
 We recently shipped an update to our [Octopus Deploy integration for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) that improves the day-to-day lives of developers using Azure DevOps and Octopus Deploy.
 
