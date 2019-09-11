@@ -476,7 +476,7 @@ My recommendation is that the default position should be to make changes as back
 
 Taking everything from this post into account for the test scenario; I’d argue the database changes are not required to be deployed at the same time as the code.  The only requirement is the database changes have to be deployed before the code.  Deploying a database change days or even weeks before deploying the code might have an added benefit.  If another application is using the same database (even just for a view), this will give them time to change and test their code.  Once the database change is up there, the other teams can deploy when they’re ready.  
 
-The real question is, does it make sense to deploy the database changes days or even a week before the code?  That is a bit trickier to answer.  My recommendation is to do what makes sense dependent upon the scenario,  but the less change made during a deployment, the better.  Generally, fewer changes mean less risk.  Pushing database changes to production before the code includes risks as well.  Once development, testing, or UAT starts, additional database changes might be required.  If the first change makes it to production, other changes will require another push to production.  
+The real question is, does it make sense to deploy the database changes days or even a week before the code?  That is a bit trickier to answer.  My recommendation is to do what makes sense dependent upon the scenario,  but the fewer changes made during a deployment, the better.  Generally, fewer changes mean less risk.  Pushing database changes to production before the code includes risks as well.  Once development, testing, or UAT starts, additional database changes might be required.  If the first change makes it to production, other changes will require another push to production.  
 
 My preference is to store the code and database in the same repository.  Get everything working in a feature branch.  Merge all the changes in the feature branch at the same time and test and verify at the same time.  
 
@@ -490,17 +490,17 @@ Most people starting blue/green deployments will not have a full test suite they
 
 ## Common database change scenarios
 
-This post covered a very complex scenario, the combination of two columns into one.  There are several other database change scenarios detailed in the list below.  I’ve included which of the above sections could be applied to the scenario.
+This post covered a very complex scenario, the combination of two columns into one.  There are several other database change scenarios detailed in the list below.  For each scenario, I’ve included which sections could be applied to the scenario.
 
-- Add a new column -> follow all the steps except deleting old columns and handling legacy columns.
-- Renaming a column -> Don’t rename.  Follow the steps above to add a new column and remove the old column.
-- Adding a new table -> Similar to adding a new column
-- Renaming a table -> Don’t rename.  Follow the steps above to add a new column and delete the old columns.
-- Moving a column to another table -> Very similar to adding a new column and removing the old column.  The only difference is where the column was added.
-- Deleting a table -> Very similar to deleting a column.  Hopefully, that table isn’t used anymore, and all the data has been migrated to other tables.
-- Adding a new view/stored procedure -> Very similar to adding a new column.  The updated code will use the new view/stored procedure; the old code will not use the view/stored procedure. 
-- Updating an existing view/stored procedure -> As long as columns aren’t removed from a view, this should be fine.  If columns are removed, then the process to delete columns from above should be followed.
-- Removing a view/stored procedure -> Very similar process to removing columns.  Except there won’t be data, just references in code and potentially other stored procedures.
+- **Adding a new column**: Follow all the steps except deleting old columns and handling legacy columns.
+- **Renaming a column**: Don’t rename. Follow the steps above to add a new column and remove the old column.
+- **Adding a new table**: Similar to adding a new column.
+- **Renaming a table**: Don’t rename.  Follow the steps above to add a new column and delete the old columns.
+- **Moving a column to another table**: Very similar to adding a new column and removing the old column.  The only difference is where the column was added.
+- **Deleting a table**: Very similar to deleting a column.  Hopefully, that table isn’t used anymore, and all the data has been migrated to other tables.
+- **Adding a new view/stored procedure**: Very similar to adding a new column.  The updated code will use the new view/stored procedure; the old code will not use the view/stored procedure. 
+- **Updating an existing view/stored procedure**: As long as columns aren’t removed from a view, this should be fine.  If columns are removed, then the process to delete columns from above should be followed.
+- **Removing a view/stored procedure**: Very similar process to removing columns.  Except there won’t be data, just references in code and potentially other stored procedures.
 
 ## Wrapping-up
 
