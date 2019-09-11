@@ -21,11 +21,11 @@ I’ll cover high-level concepts and recommendations, but I won’t go into deta
 
 ## A brief introduction to blue/green deployments
 
-Blue-green deployments have two identical production environments, one is labeled `Blue` and the other is labeled `Green`.  Only one of the environments is ever live, and deployments are always done to the other inactive environment. For example, if `Green` is the live environment, deployment is done to the `Blue` (inactive) environment, and after verification has occurred, a switchover happens, which makes the `Blue` environment the live environment, and the `Green` environment inactive.
+Blue-green deployments have two identical production environments, one is labeled `Blue` and the other is labeled `Green`.  Only one of the environments is ever live, and deployments are always done to the inactive environment. For example, if `Green` is the live environment, deployment is done to the `Blue` (inactive) environment, and after verification has occurred, a switchover happens, which makes the `Blue` environment the live environment, and the `Green` environment inactive.
 
 ![Blue/Green Deployments](blue-green-deployments.png)
 
-There are several advantages to this approach.  Rollbacks are just a matter of switching from blue to green or green to blue.  When switchovers occur, they are seamless because the code has already been running, and there is no need to wait for it to compile or warm-up.  Changes are verified in production without any customers hitting the code, which reduces the risk in the deployments.  If something doesn’t work, you don’t make the switch, and you can try again. 
+There are several advantages to this approach.  Rollbacks are just a matter of switching from `Blue` to `Green` or `Green` to `Blue`.  When switchovers occur, they are seamless because the code has already been running, and there is no need to wait for it to compile or warm-up.  Changes are verified in production without any customers hitting the code, which reduces the risk in the deployments.  If something doesn’t work, you don’t make the switch, and you can try again. 
 
 It’s important to note that not all applications can take advantage of blue/green deployments.  It’s a combination of architecture, how stateful the app is, and the technology being used.  The more stateless and decoupled the application, the better the chance the blue/green deployment strategy is suitable. For instance, a .NET Core Web API with an Angular front-end is better suited for blue/green deployments than an ASP.NET WebForms application that requires sticky sessions from the load balancer and doesn't have a business logic or data layer.
 
@@ -65,14 +65,14 @@ A very simplified deployment process for that change could look like this:
 5. Run the script to remove `CustomerFirstName` and `CustomerLastName`.
 6. Verify the code in `Production`.
 
-To accomplish the same changes with blue/green deployments requires a lot more planning.  Without blue/green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating the column `CustomerFirstName` is missing during the deployment, no worries, they shouldn’t be in the system at that point anyway.  That is not the case with blue/green deployments.  Users will be in the application; they will be running on the `Green` servers, which means data is going to be manipulated and queried.  
+To accomplish the same changes with blue/green deployments requires a lot more planning.  Without blue/green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating a column is missing, no worries, they shouldn’t be in the system at that point anyway.  That is not the case with blue/green deployments.  Users will be in the application; they will be running on the `Green` servers, which means data is going to be manipulated and queried.  
 
 Here are some of the scenarios to consider when doing the same change with blue/green deployments: 
 
 - The application and database changes will be deployed to `Blue`, including the new column `CustomerFullName`.  Does the application use any stored procedures?  Specifically, around inserting/updating data into the customer table?  The code running on `Green` won’t know about any new parameters added to those stored procedures.
-- When the changes are deployed to `Blue`, there will be no data in the `CustomerFullName` column.  The temptation will be there to use the same backfill script to help with verification and make the transition from `Green` to `Blue` seamless.
+- When the changes are deployed to `Blue`, there will be no data in the `CustomerFullName` column.  When should that column be backfilled?  Using the same backfill script created for a downtime deployment?  
 - Verification needs to happen after the changes to the application and database are deployed to `Blue`. During that time, users will be using the application on `Green` which is still running code referencing `CustomerFirstName` and `CustomerLastName` columns.  Those columns cannot be deleted until after verification is complete and `Blue` becomes active.  When should those columns be deleted?  As soon as `Blue` becomes active?  
-- While the updated code and database is being verified on `Blue` users will be adding and updating records in the customer table using the code on `Green`.  Those changes could be made while the backfill script is running or after the backfill script finishes.  To pick up those new changes, the backfill script needs to be rerun.
+- While the updated code and database is being verified on `Blue` users will be adding and updating records in the customer table using the code on `Green`.  If a backfill script is run prior to verification, those changes would not be picked up.  Should the backfill script be rerun?
 - Because this is an SPA App, the JavaScript won’t know when `Blue` becomes live, and `Green` becomes inactive.  The JavaScript is stored in the user’s browser.  Users using the application when `Blue` becomes live will be sending API requests with only the fields for `CustomerFirstName` and `CustomerLastName`.   The `CustomerFullName` field will not be sent in during this time.  It could take anywhere from one minute to several days before users start requesting updated JavaScript files from the server.
 
 The first try at the blue/green deployment process for this change could look like this:
@@ -88,15 +88,15 @@ That’s not the ideal blue/green deployment process. It runs the backfill scrip
 
 ## Database changes
 
-I firmly believe databases should only store data.  The database should not contain business rules or business logic.  Only the code should store business rules and business logic.  A business rule would be a default value on a column.  When the database stores business rules or business logic, it makes blue/green deployments much harder.
+I firmly believe databases should only store data.  The database should not contain business rules or business logic.  Only the code should store business rules and business logic.  When the database stores business rules or business logic, it makes blue/green deployments much harder.
 
-Even if it is an empty string or zero, those are values.  If a column doesn’t have a value, it needs to be set to `Null`, which is the absence of a value.  Business logic in the database includes, but isn’t limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, default values, and filtering more than just by an ID.  Having business rules and business logic in the database is asking for trouble.  Compared to code, such as C#, JavaScript, or Java, they are much harder to write unit tests for, even when using a tool such as tSQLt.  They are also much harder for developers to find, as typically most developers search using their IDE of choice which excludes databases.
+Business logic in the database includes, but isn’t limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, default values, and filtering more than just by an ID.  Even if it is an empty string or zero, those are values.  If a column doesn’t have a value, it needs to be set to `Null`, which is the absence of a value.  Having business rules and business logic in the database is asking for trouble.  Compared to code, such as C#, JavaScript, or Java, they are much harder to write unit tests for, even when using a tool such as tSQLt.  They are also much harder for developers to find, as typically most developers search using their IDE of choice which excludes databases.
 
 This section walks through recommendations for table changes, stored procedure, and view changes to support blue/green deployments.  It will also cover techniques on how to avoid having business rules and business logic in the database.
 
 ### Table Changes
 
-You should make non-destructive database changes when doing blue/green deployments.  In our scenario, that means making the `CustomerFullName` nullable when it is added.  Making a column non-nullable without a default value would be a destructive change.  Insert statements on `Green` would stop working because it doesn’t know about that new column.  That doesn’t mean the column should be made non-nullable with a default value; even an empty string.  A default value is a business rule.
+You should make non-destructive database changes when doing blue/green deployments.  In our scenario, that means making the `CustomerFullName` nullable when it is added.  Making a column non-nullable without a default value would be a destructive change.  Insert statements on `Green` would stop working because it doesn’t know about that new column.  That doesn’t mean the column should be made non-nullable with a default value; even an empty string.  Remember, a default value is a business rule.
 
 The other problem is that it takes quite a bit of time for most database servers (i.e., SQL Server or Oracle) to add a non-nullable column.  When a non-nullable column is added, the table definition is updated along with every record.  When a nullable column is added, only the table definition is updated.  If you must have a default value, then the script should add a column as nullable, update all the records, and then set the column to non-nullable. That script can be tuned to run surprisingly fast. 
 
@@ -115,8 +115,6 @@ It will take multiple deployments to delete those columns from the database.
 How can the `CustomerFirstName` and `CustomerLastName` columns get removed with that restriction in place?  To answer that, look at a typical standard deployment with an outage.
 
 Those deployments don’t have to be deployed within days of each other.  I’ve seen several months go between each of those deployments.  
-
-I worked on an application that was one of a dozen or so which connected to the same database.  Having a shared database makes removing columns very tricky.  In this case, communication, planning, and effort are essential.  If it is essential to remove those columns, then the effort should be made to do so.  I’d argue the effort is worth it, but be pragmatic about it; if it’s going to take 1000 hours to make the change, maybe the effort isn’t worth it.  
 
 ### Stored procedures and views
 
@@ -201,7 +199,7 @@ The next section walks through the techniques for how to put those rules into co
 
 ### Handling Null in CustomerFullName
 
-It is very easy to put a check like this in a stored procedure, but as stated earlier, it’s not a good idea for a variety of reasons:
+It is very easy to put a check like this in a stored procedure, but as stated earlier, it’s not a good idea.
 
 ```SQL
 IsNull(CustomerFullName, CustomerFirstName + ' ' + CustomerLastName) as CustomerFullName
@@ -402,7 +400,7 @@ public class CustomerFacade
 
 ## Backfill the new column with data
 
-Most backfill scripts I’ve seen are nothing more than an SQL script to update the underlying data.  This means the formatting logic will exist in both the code and the backfill script.  It is very easy to update the code to handle an update to the formatting rule but forget to update the backfill script.  
+Most backfill scripts I’ve seen are nothing more than an SQL script to update the underlying data.  This means the formatting logic will exist in both the code and the backfill script.  It is very easy to update the code to update to the formatting rule but forget to update the backfill script.  I've had that happen to me.  Trust me, it makes for a bad day.
 
 In addition, with blue/green deployments, you have to decide when to run the script:
 
@@ -476,7 +474,7 @@ My recommendation is that the default position should be to make changes as back
 
 Taking everything from this post into account for the test scenario; I’d argue the database changes are not required to be deployed at the same time as the code.  The only requirement is the database changes have to be deployed before the code.  Deploying a database change days or even weeks before deploying the code might have an added benefit.  If another application is using the same database (even just for a view), this will give them time to change and test their code.  Once the database change is up there, the other teams can deploy when they’re ready.  
 
-The real question is, does it make sense to deploy the database changes days or even a week before the code?  That is a bit trickier to answer.  My recommendation is to do what makes sense dependent upon the scenario,  but the fewer changes made during a deployment, the better.  Generally, fewer changes mean less risk.  Pushing database changes to production before the code includes risks as well.  Once development, testing, or UAT starts, additional database changes might be required.  If the first change makes it to production, other changes will require another push to production.  
+The real question is, does it make sense to deploy the database changes days or even a week before the code?  That is a bit trickier to answer.  My recommendation is to do what makes sense dependent upon the scenario, but the fewer changes made during a deployment, the better.  Generally, fewer changes mean less risk.  Pushing database changes to production before the code includes risks as well.  Once development, testing, or UAT starts, additional database changes might be required.  If the first change makes it to production, other changes will require another push to production.  
 
 My preference is to store the code and database in the same repository.  Get everything working in a feature branch.  Merge all the changes in the feature branch at the same time and test and verify at the same time.  
 
