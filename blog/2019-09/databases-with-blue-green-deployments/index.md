@@ -23,7 +23,7 @@ I’ll cover high-level concepts and recommendations, but I won’t go into deta
 
 Blue-green deployments have two identical production environments, one is labeled `Blue` and the other is labeled `Green`.  Only one of the environments is ever live, and deployments are always done to the other inactive environment. For example, if `Green` is the live environment, deployment is done to the `Blue` (inactive) environment, and after verification has occurred, a switchover happens, which makes the `Blue` environment the live environment, and the `Green` environment inactive.
 
-![](https://i.octopus.com/docs/deployment-patterns/blue/green-deployments/images/3278250.png)
+![](blue-green-deployments.png)
 
 There are several advantages to this approach.  Rollbacks are just a matter of switching from blue to green or green to blue.  When switchovers occur, they are seamless because the code has already been running, and there is no need to wait for it to compile or warm-up.  Changes are verified in production without any customers hitting the code, which reduces the risk in deployments.  If something doesn’t work, you don’t make the switch, and you can try again. 
 
