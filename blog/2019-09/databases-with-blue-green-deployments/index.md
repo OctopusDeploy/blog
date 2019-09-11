@@ -108,7 +108,7 @@ At some point, the `CustomerFirstName` and `CustomerLastName` columns will be re
 
 It will take multiple deployments to delete those columns from the database.  
 
-1. The deployment adds `CustomerFullName` to the customer table.  `CustomerFistName` and `CustomerLastName` are needed because the older code still references them.
+1. The deployment adds `CustomerFullName` to the customer table.  `CustomerFirstName` and `CustomerLastName` are needed because the older code still references them.
 2. Another deployment occurs and the code removes all references to `CustomerFirstName` and `CustomerLastName`.
 3. Final deployment deletes `CustomerFirstName` and `CustomerLastName` from the database.
 
@@ -468,7 +468,7 @@ The typical rule of thumb is:
 
 > If you make a breaking change, then version the API/Stored Procedure/View.
 
-On paper, that's a good rule to follow.  In practice, that rule can fall apart quickly.  Versioning puts a significant burden on the people maintaining the code.  The maintainers know there are multiple code paths or multiple instances they need to worry about.  The longer an older version sticks around, the harder it will be to move to the new version.  I’ve seen companies spends hundreds of hours on projects to get people off old versions.  
+On paper, that's a good rule to follow.  In practice, that rule can fall apart quickly.  Versioning puts a significant burden on the people maintaining the code.  The maintainers know there are multiple code paths or multiple instances they need to worry about.  The longer an older version sticks around, the harder it will be to move to the new version.  I’ve seen companies spend hundreds of hours on projects to get people off old versions.  
 
 My recommendation is that the default position should be to make changes as backward compatible as possible.  Have a single code base, single stored procedure, single view, which everyone uses.  A single code base will make maintenance easier, and it will make it easier for changes to be made (over time).  Look at multiple deployments to make small changes over time compared to a big bang.  Explore all the options before jumping into the versioning pool.  Versioning should be considered after all other options are exhausted.  
 
