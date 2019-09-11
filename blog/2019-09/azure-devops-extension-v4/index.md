@@ -14,7 +14,7 @@ tags:
 
 We recently shipped an update to our [Octopus Deploy integration for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) that improves the day-to-day lives of developers using Azure DevOps and Octopus Deploy.
 
-Octopus complements Azure DevOps suite of services and it's very common for teams to use Azure Pipelines to build their apps and use Octopus to deploy them. This takes advantage of the strengths of both tools and together, they enable teams to get better end-to-end visibility into their software pipelines from idea to production.
+Octopus complements the Azure DevOps suite of services and it's very common for teams to use Azure Pipelines to build their apps and use Octopus to deploy them. This takes advantage of the strengths of both tools and together, they enable teams to get better end-to-end visibility into their software pipelines from idea to production.
 
 This release brings our Azure DevOps extension to parity with our TeamCity and Bamboo plugins. We've added support for our build information and work item tracking and this opens up some fantastic new scenarios: 
 
@@ -30,7 +30,7 @@ Learn how to [install or update our extension](/blog/2019-08/azure-devops-extens
 
 ![Octopus release with Azure DevOps work items](todo.png)
 
-It's common for teams using Azure DevOps to use its work item tracking including Kanban boards and backlogs to plan and organize their projects. This update brings support to parse commits messages and track which work items contributed to which builds and Octopus releases giving end-to-end traceability from work item to deployment. You can also click through to Azure DevOps for more information. This can aid in identifying changes that introduce bugs into releases.
+It's common for teams using Azure DevOps to use its work item tracking including Kanban boards and backlogs to plan and organize their projects. This update brings support to identify work items associated with Azure DevOps builds and Octopus releases giving end-to-end traceability from work item to deployment. You can also click through to Azure DevOps for more information. This can aid in identifying changes that introduce bugs into releases.
 
 NOTE: Octopus also supports [GitHub issues](https://octopus.com/docs/deployment-process/issue-tracking/github) and [Jira issues](https://octopus.com/docs/deployment-process/issue-tracking/jira). [Read our docs](https://octopus.com/docs/deployment-process/issue-tracking) for more information.
 
@@ -52,7 +52,7 @@ Reading release notes in Octopus is handy but sharing them via email, slack, or 
 
 ## Improved Spaces Support
 
-![Configure your Octopus Space in an Azure Pipelines build process](todo.png)
+![Configure your Octopus Space in an Azure Pipelines build process](azure-devops-spaces-support.png)
 
 Our updated extension includes full support to retrieve all the [Spaces](https://octopus.com/spaces) from your Octopus server so it's now easy to select the one for your team. 
 
