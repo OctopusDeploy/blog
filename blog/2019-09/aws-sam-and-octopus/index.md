@@ -18,7 +18,7 @@ The AWS Serverless Application Model (AWS SAM) ties together the AWS services co
 
 In this blog post, we’ll look at how you can move from the simple deployment processes provided by AWS SAM to repeatable deployments across multiple environments in Octopus.
 
-The source code for this blog post is [here](https://github.com/OctopusDeploy/AWSSamExample).
+The source code for this blog post is [here](https://github.com/OctopusDeploy/AWSSamExample). An example deployment project is available on the [Demo Octopus site](https://demo.octopus.com/app#/Spaces-22/projects/aws-sam-deployment/process).
 
 ## The Hello World app
 
