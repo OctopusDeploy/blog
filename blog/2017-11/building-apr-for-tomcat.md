@@ -7,7 +7,7 @@ published: 2017-10-31
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 The [Apache Portable Runtime (APR)](https://tomcat.apache.org/tomcat-9.0-doc/apr.html) is used by Tomcat to provide a number of enhanced features and performance. For example, the APR needs to be present in order to get the increased performance provided by OpenSSL for HTTPS.

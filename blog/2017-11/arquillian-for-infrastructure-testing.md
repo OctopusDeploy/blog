@@ -7,7 +7,7 @@ published: 2017-11-28
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 In a [previous blog post](/blog/2017-11/arquillian-testing.md) we had a look at how Arquillian solves the problem of testing real objects as they exist in a real application server. While this is perhaps the more traditional way Arquillian is used, it is not the only way.

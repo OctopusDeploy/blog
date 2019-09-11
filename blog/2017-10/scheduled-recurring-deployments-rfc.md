@@ -5,7 +5,7 @@ author: henrik.andersson@octopus.com
 published: 2017-10-24
 visibility: public
 tags:
- - RFC
+ - Product
 ---
 
 > The #5 highest voted item in our UserVoice is to be able to [schedule recurring deployments](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments).

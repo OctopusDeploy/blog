@@ -7,7 +7,7 @@ visibility: public
 metaImage: metaimage-release3-17.png
 bannerImage: blogimage-release-3-17.png
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octopus 3.17 release announcement](blogimage-release-3-17.png)

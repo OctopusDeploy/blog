@@ -7,7 +7,7 @@ published: 2017-11-05
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - Engineering
 ---
 
 Version strings are usually easy to understand, but Maven has a number of rules and edge cases that are not immediately obvious. In this blog post we'll take a look at how Maven version strings work.

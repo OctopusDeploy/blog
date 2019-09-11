@@ -7,7 +7,7 @@ published: 2017-11-18
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 In the [previous blog post](https://octopus.com/blog/wildfly-s3-domain-discovery) we looked at how WildFly domains could be configured in an AWS environment with no fixed IP addresses or network broadcasts by centralizing configuration settings in an S3 bucket.

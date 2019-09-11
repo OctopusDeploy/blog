@@ -7,7 +7,7 @@ published: 2017-10-27
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 WildFly and Red Hat JBoss Enterprise Application Platform are [amongst the most popular Java EE application servers available today](https://www.jetbrains.com/research/devecosystem-2017/java/).  WildFly is available for free for development and production purposes, and this blog post takes a look at steps required to get WildFly up and running.

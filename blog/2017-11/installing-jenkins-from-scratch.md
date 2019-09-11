@@ -7,7 +7,7 @@ published: 2017-11-11
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 In the [2017 JetBrains developer ecosystem survey](https://www.jetbrains.com/research/devecosystem-2017/team-tools/) Jenkins topped the list of CI systems. With a wealth of plugins and a huge user base, Jenkins is a powerful solution for building your software projects, and in this blog post we'll take a look at how to get a basic Jenkins instance up and running.

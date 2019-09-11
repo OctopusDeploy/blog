@@ -7,7 +7,7 @@ published: 2017-11-28
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 Let's create a simple EJB application with two classes. The first, called `EnterpriseJavaBean`, writes a UUID to the console, sleeps for a period of time, and writes the same UUID to the console again.

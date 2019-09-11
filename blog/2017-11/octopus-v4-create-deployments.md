@@ -7,7 +7,7 @@ metaImage: 4.0deployments_metaimage.png
 bannerImage: 4.0deployments_blogimage.png
 published: 2017-11-07
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octopus 4.0 new create release page](4.0deployments_blogimage.png)

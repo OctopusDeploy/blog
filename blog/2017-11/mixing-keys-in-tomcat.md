@@ -7,7 +7,7 @@ published: 2017-11-25
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - Engineering
 ---
 
 In a [previous blog post](/blog/2017-11/sni-in-tomcat.md) we looked at how Tomcat 8.5+ uses SNI to map certificates to the hostname of a request.

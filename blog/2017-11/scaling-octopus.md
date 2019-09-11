@@ -5,8 +5,7 @@ author: michael.richardson@octopus.com
 visibility: private
 published: 2017-11-01
 tags:
- - Architecture
- - Performance
+ - Product
 ---
 
 A key focus of our thoughts over the past year has been how to best allow Octopus to scale, to gracefully cater for our biggest customers.

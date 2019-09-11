@@ -4,9 +4,7 @@ description: Real-world examples tested on Windows 2008 R2 through to 2016. Crea
 author: paul.stovell@octopus.com
 visibility: public
 tags: 
- - Walkthrough
- - Scripting
- - Ecosystem
+ - DevOps
 published: 2017-03-16
 ---
 

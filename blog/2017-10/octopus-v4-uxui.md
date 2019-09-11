@@ -7,7 +7,7 @@ metaImage: 4.0uxui_metaimage.png
 bannerImage: 4.0uxui_blogimage.png
 published: 2017-10-26
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octopus 4.0 coming soon](4.0uxui_blogimage.png)

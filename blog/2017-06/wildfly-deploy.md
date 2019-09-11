@@ -7,7 +7,7 @@ published: 2017-06-09
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - Product
 ---
 
 <div style="background-color:#e9edf2;">
