@@ -186,6 +186,7 @@ Resources:
       LifecycleConfiguration:
         Rules:
           - NoncurrentVersionExpirationInDays: 3
+            ExpirationInDays: 5
             Status: Enabled
 ```
 
