@@ -1,5 +1,5 @@
 ---
-title: Verify App Settings with JSON
+title: Verify app settings with JSON
 description: How to programmatically verify that your App Settings have a matching Octopus Deploy variable defined and/or verify environment configs have the same JSON structure.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -10,9 +10,11 @@ tags:
  - configuration
 ---
 
+![Illustration showing Octopus variables being scanned](blogimage-verifyvariables.png)
+
 In my [last post](https://octopus.com/blog/verify-appsettings-or-variable-replacement), I showed you how to verify all of your App Settings in a web.config file had corresponding Octopus project variables, and how to ensure all of your files configured for variable replacement don't leave any placeholders behind. This post will focus on verifying application settings stored in a JSON configuration file. In this case, we're looking at at .NET Core appSettings.json file but it could be extended to any JSON config file.
 
-## Comparing Environmental Files
+## Comparing environmental files
 
 It is not uncommon to have environmental app settings files for a .NET core application such as appSettings.Developement.json.  The caveat to using this approach is that if something is added to the appSettings.Deveopment.json file, it needs to be added to the appSettings.json file as well.  To address this issue, we can create a PowerShell Function with a recursive call to traverse the JSON file keys and then compare the entries to the environmental files.  Similar to the last post, we can define any settings we want to ignore using the `$settingsToIgnore` array:
 
@@ -119,7 +121,7 @@ foreach ($otherFile in $otherAppSettingsFiles)
 
 Now, if we forget to add a setting to the main appsettings.json file, we can detect it and prevent the deployment from executing!
 
-## Ensuring App Settings have Octopus Parameters
+## Ensuring app settings have Octopus parameters
 
 Using the function `Get-AppSettings` defined above and the `$settingsToIgnore` array, we can use the following code to ensure the settings defined in App Settings have corresponding Octopus Deploy Variables:
 

@@ -2,17 +2,17 @@
 title: Importing variables from SSISDB
 description: Use PowerShell and the Octopus Deploy API to automate importing variables from SSISB
 author: shawn.sesna@octopus.com
+bannerImage: importing_variables_from_ssisdb.png
+metaImage: importing_variables_from_ssisdb.png
 visibility: public
 published: 2019-06-28
-bannerImage:
-metaImage:
 tags:
  - SSIS
 ---
 
 ## Introduction
 
-If you've ever used the [Deploy ispac SSIS project from a package](https://library.octopus.com/step-templates/bf005449-60c2-4746-8e07-8ba857f93605/actiontemplate-deploy-ispac-ssis-project-from-a-package) or [Deploy ispac SSIS project from Referenced Package](https://library.octopus.com/step-templates/0c8167e9-49fe-4f2a-a007-df5ef2e63fac/actiontemplate-deploy-ispac-ssis-project-from-referenced-package) step template, then you know that it can extract Project Parameters and Connection Manager information from your SSIS package and create them as Environment variables in SSISDB.  You also know that when doing this, every property of a Connection Manager is created as a separate Environment variable. If you don't have a variable named the same in your Octopus project, you get a message:
+If you've ever used the [Deploy ispac SSIS project from a package](https://library.octopus.com/step-templates/bf005449-60c2-4746-8e07-8ba857f93605/actiontemplate-deploy-ispac-ssis-project-from-a-package) or [Deploy ispac SSIS project from Referenced Package](https://library.octopus.com/step-templates/0c8167e9-49fe-4f2a-a007-df5ef2e63fac/actiontemplate-deploy-ispac-ssis-project-from-referenced-package) step template, then you know that it can extract Project Parameters and Connection Manager information from your SSIS package and create them as Environment variables in SSISDB.  You also know that when doing this, every property of a Connection Manager is created as a separate Environment variable.  If you don't have a variable named the same in your Octopus project, you get a message:
 
 OctopusParameters collection is empty or CM.OctoDemoSql.AdventureWorks2017.sa.ConnectUsingManagedIdentity not in the collection
 
@@ -20,7 +20,7 @@ The variable is still created in the SSISDB Environment, however, it defaults to
 
 ## Automation to the rescue!
 
-As the original author of Deploy ispac SSIS project from a package, I can tell you that my SSIS developers came pounding on my office door with pitchforks and torches, ranting at how time consuming it was to create all those variables.  To avoid death from the daggers in their eyes, I turned to PowerShell and the Octopus Deploy API to come up with a method to retrieve the variables from the SSISDB Environment and import them into their Octopus Deploy projects.
+As the original author of Deploy ispac SSIS project from a package, I can tell you that my SSIS developers came pounding on my office door with pitchforks and torches, ranting at how time consuming it was to create all those variables. To avoid death from the daggers in their eyes, I turned to PowerShell and the Octopus Deploy API to come up with a method to retrieve the variables from the SSISDB Environment and import them into their Octopus Deploy projects.
 
 ### The script
 

@@ -1,5 +1,5 @@
 ---
-title: The Differences Between Continuous Integration and Continuous Deployment
+title: Continuous Integration vs Continuous Deployment
 description: CI/CD are frequently referred to by a single acronym as if they were a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,7 +10,9 @@ tags:
  - Octopus
 ---
 
-The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without any distinction between the two. From this, it is easy to assume that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
+![Illustration of two deep sea masks representing CI and CD](img_comparecicd_2019.png)
+
+The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without any distinction between the two. CI and CD are distinct processes even if this combining of terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
 
 Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this blog post, we'll look at:
 
@@ -18,7 +20,7 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 * The features provided by good CD tools.
 * Why you may consider using separate tools for your CI/CD workflow.
 
-## What is Continuous Integration?
+## What is continuous integration?
 
 At a high level, CI is all about taking the code written by developers and compiling it into an artifact, running automated tests, and capturing the log files so any failed builds or tests can be resolved. A CI server facilities this process by running builds and tests with each commit.
 
@@ -34,7 +36,7 @@ This means that the CI process is machine-driven, so much so that it is common f
 
 The other important aspect of the CI equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the CI server.
 
-## What is Continuous Deployment?
+## What is continuous deployment?
 
 Taken literally, CD takes the compiled artifacts from a successful build performed by the CI server and deploys them into the production environment. In this scenario, CD is quite rightly an extension of CI, and the distinction between the two becomes arbitrary.
 
@@ -46,15 +48,16 @@ But while fully automated deployments have many benefits, it is not uncommon for
 * Acquiring sign-off from product owners.
 * Usability testing that is impossible to automate.
 * Regulatory requirements.
-* Dogfooding your own product.
+* Dog-fooding your own product.
 * Integrating deployments with backend changes like databases.
 * Not having 100% confidence in your tests.
 
 Where CI is machine-driven, for many teams, CD is human-driven. Much of the grunt work of performing a deployment will still be automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
-## Why Use Separate CI and CD Tools?
+## Why use separate CI and CD tools?
 
 ![ci-cd-pipeline-diagram](ci-cd-pipeline-diagram.png "width=500")
+
 *A typical CI/CD pipeline, with no distinction between the two.*
 
 This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]) that hit my inbox recently. It is a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
@@ -71,7 +74,8 @@ This single decision point means our once machine-driven equation now:
 * Requires a system that can model environments in a first-class manner so they can be reliably secured and managed through the UI, API, and reporting interfaces.
 
 ![](dashboard.png "width=500")
-*Dashbords with deploy buttons for humans.*
+
+*Dashboards with deploy buttons for humans.*
 
 This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step automatically performed after the code has been compiled. For instance, the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) recommends that the test and production environments are modeled as stages in a CI pipeline.
 
