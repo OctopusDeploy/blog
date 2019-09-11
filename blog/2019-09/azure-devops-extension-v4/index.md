@@ -28,7 +28,7 @@ Learn how to [install or update our extension](/blog/2019-08/azure-devops-extens
 
 ## See what's included in a new release
 
-![Octopus release with Azure DevOps work items](todo.png)
+![Octopus release with Azure DevOps work items](octopus-release-notes-azure-devops.png)
 
 It's common for teams using Azure DevOps to use its work item tracking including Kanban boards and backlogs to plan and organize their projects. This update brings support to identify work items associated with Azure DevOps builds and Octopus releases giving end-to-end traceability from work item to deployment. You can also click through to Azure DevOps for more information. This can aid in identifying changes that introduce bugs into releases.
 
@@ -36,7 +36,7 @@ NOTE: Octopus also supports [GitHub issues](https://octopus.com/docs/deployment-
 
 ## See What's New in Production
 
-![Octopus deployment with Azure DevOps work items](todo.png)
+![Octopus deployment with Azure DevOps work items](octopus-deployment-azure-devops-work-items.png)
 
 Figuring out what has changed since you last deployed to an environment can sometimes be a bit of guess work. This is no longer the case as Octopus can intelligently determine which work items have changed since your last deployment. This gives you the power to clearly see 'What's New' in production or any other environment and it rolls up the release notes and all relevant changes. 
 
@@ -44,7 +44,7 @@ This is useful to see at a glance what has changed during deployments and very h
 
 ## Share Release Notes with your team and managers
 
-![Share Octopus release notes automatically](todo.png)
+![Share Octopus release notes automatically](octopus-deployment-release-notes.png)
 
 Writing release notes is generally a manual task and while this is easier using tools like [Azure Boards](https://azure.microsoft.com/en-us/services/devops/boards/) or [Jira](https://www.atlassian.com/software/jira), it's still time consuming. Integrating Octopus and Azure DevOps enables this process to be fully automated. Octopus knows which issues have already been deployed to an environment so it can quickly generate release notes showing what's new in test or production environments.
 
@@ -58,11 +58,9 @@ Our updated extension includes full support to retrieve all the [Spaces](https:/
 
 ## How to install or update your Azure DevOps extension
 
-![Upgrade your Azure DevOps extension](todo.png)
-
 If you're using Azure DevOps but haven't installed the Octopus Deploy extension, it's available for free on the Visual Studio Marketplace: **[Octopus Deploy integration for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks)**.
 
-If you're team is already using Azure DevOps and Octopus Deploy, I highly recommend you upgrade to the latest version of our extension to take advantage of this update. This release bumps the version of the extension from v3 to v4 so you'll need to ask your Azure DevOps administrator to update the extension before it's ready for teams to use. [Read our docs](https://octopus.com/docs/packaging-applications/build-servers/tfs-azure-devops) for more information.
+If you're team is already using Azure DevOps and Octopus Deploy, I highly recommend you upgrade to the latest version of our extension to take advantage of this update. This release bumps the version of the extension from v3 to v4 so you'll need to select the newer version of each task. [Read our docs](https://octopus.com/docs/packaging-applications/build-servers/tfs-azure-devops) for more information.
 
 If your using using Azure DevOps and looking to improve your deployments, you can install our extenison and [try Octopus Deploy for free](https://octopus.com/trial).
 
