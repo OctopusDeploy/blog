@@ -11,7 +11,7 @@ tags:
  - Blue-Green Deployments
 ---
 
-Nobody wants to do deployments at 2 a.m. on Saturday, but several years ago, I worked on an application, and that was the only time an extended outage could be scheduled. A quick deployment and verification took two hours. A typical deployment took four hours.  I wanted to implement blue/green deployments, which allow for zero-downtime deployments, but the database for the application made everything complicated enough to stop us from moving to blue/green deployments.  
+Nobody wants to do deployments at 2 a.m. on Saturday morning, but several years ago, I worked on an application, and that was the only time an extended outage could be scheduled. A quick deployment and verification took two hours. A typical deployment took four hours.  I wanted to implement blue/green deployments, which allow for zero-downtime deployments, but the database for the application made everything complicated enough to stop us from moving to blue/green deployments.  
 
 In this post, I’ll walk through some techniques I’ve learned since that time to make blue/green deployments with a database achievable and straightforward.      
 
@@ -23,9 +23,9 @@ I’ll cover high-level concepts and recommendations, but I won’t go into deta
 
 Blue-green deployments have two identical production environments, one is labeled `Blue` and the other is labeled `Green`.  Only one of the environments is ever live, and deployments are always done to the other inactive environment. For example, if `Green` is the live environment, deployment is done to the `Blue` (inactive) environment, and after verification has occurred, a switchover happens, which makes the `Blue` environment the live environment, and the `Green` environment inactive.
 
-![](blue-green-deployments.png)
+![Blue/Green Deployments](blue-green-deployments.png)
 
-There are several advantages to this approach.  Rollbacks are just a matter of switching from blue to green or green to blue.  When switchovers occur, they are seamless because the code has already been running, and there is no need to wait for it to compile or warm-up.  Changes are verified in production without any customers hitting the code, which reduces the risk in deployments.  If something doesn’t work, you don’t make the switch, and you can try again. 
+There are several advantages to this approach.  Rollbacks are just a matter of switching from blue to green or green to blue.  When switchovers occur, they are seamless because the code has already been running, and there is no need to wait for it to compile or warm-up.  Changes are verified in production without any customers hitting the code, which reduces the risk in the deployments.  If something doesn’t work, you don’t make the switch, and you can try again. 
 
 It’s important to note that not all applications can take advantage of blue/green deployments.  It’s a combination of architecture, how stateful the app is, and the technology being used.  The more stateless and decoupled the application, the better the chance the blue/green deployment strategy is suitable. For instance, a .NET Core Web API with an Angular front-end is better suited for blue/green deployments than an ASP.NET WebForms application that requires sticky sessions from the load balancer and doesn't have a business logic or data layer.
 
@@ -41,7 +41,7 @@ This post covers a complex scenario using a [Single Page Application](https://en
 
 Admittedly, this scenario is relatively complex.  Most database changes don’t combine two columns into one and try to backfill a new column, but if this scenario can be solved, the majority of other scenarios can too.  We’ll walk through each change, the questions to consider, recommendations for how to solve them, and a lot of different changes that must be completed for successful blue/green deployments.
 
-For this post, when talking about the environments for our deployments:
+The blue and green environments for our deployments in this post, look like this:
 
  - `Green` is live.
  - `Blue` is inactive.  
@@ -49,7 +49,7 @@ For this post, when talking about the environments for our deployments:
 That means, we’ll deploy to `Blue`, and after `Blue` is verified, it will become the live environment, and `Green` will become inactive.
 
 :::warning
-These are recommendations only and do not cover every possible change you can make to a database. My goal is to provide you with something you can modify to meet your needs.  
+The specific steps in this post are recommendations only and do not cover every possible change you can make to a database. My goal is to provide you with something you can modify to meet your needs.  
 :::
 
 ## How database changes add complexity
@@ -88,7 +88,7 @@ That’s not the ideal blue/green deployment process. It runs the backfill scrip
 
 ## Database changes
 
-I am firmly believe databases should only store data.  The database should not contain business rules or business logic.  Only the code should store business rules and business logic.  A business rule would be a default value on a column.  When the database stores business rules or business logic, it makes blue/green deployments much harder.
+I firmly believe databases should only store data.  The database should not contain business rules or business logic.  Only the code should store business rules and business logic.  A business rule would be a default value on a column.  When the database stores business rules or business logic, it makes blue/green deployments much harder.
 
 Even if it is an empty string or zero, those are values.  If a column doesn’t have a value, it needs to be set to `Null`, which is the absence of a value.  Business logic in the database includes, but isn’t limited to, formatting, calculation, the inclusion of IsNull checks, if/then statements, while statements, default values, and filtering more than just by an ID.  Having business rules and business logic in the database is asking for trouble.  Compared to code, such as C#, JavaScript, or Java, they are much harder to write unit tests for, even when using a tool such as tSQLt.  They are also much harder for developers to find, as typically most developers search using their IDE of choice which excludes databases.
 
@@ -102,7 +102,7 @@ The other problem is that it takes quite a bit of time for most database servers
 
 Some other examples of destructive database changes include reusing an existing column or renaming an existing column.  With blue/green deployments that will fail because the code in `Green` will throw errors or show inaccurate data.   
 
-So far this section has covered adding the new column, `CustomerFullName` to the customer table.  What about the older `CustomerFirstName` and `CustomerLastName` columns?  In the scenario section, it essentially says to leave `CustomerFirstName` and `CustomerLastName` alone.  Don’t overwrite it with `Null` and don’t try to guess what those values will be.  In addition, once `Blue` goes live with these changes any new records will never have a value for `CustomerFirstName` and `CustomerLastName`, which means `CustomerFirstName` and `CustomerLastName` should be made nullable.
+So far this section has covered adding the new column, `CustomerFullName` to the customer table.  What about the older `CustomerFirstName` and `CustomerLastName` columns?  In the scenario section, it essentially says to leave `CustomerFirstName` and `CustomerLastName` alone.  Don’t overwrite it with `Null` and don’t try to guess what those values will be.  In addition, once `Blue` goes live with these changes, any new records will never have a value for `CustomerFirstName` and `CustomerLastName`, which means `CustomerFirstName` and `CustomerLastName` should be made nullable.
 
 At some point, the `CustomerFirstName` and `CustomerLastName` columns will be removed.  Blue-green deployments make that more complex as well.  Assume `CustomerFullName` has been deployed to `Blue`, and it is active.  Running a script to delete `CustomerFirstName` and `CustomerLastName` from all the tables, views, functions, and stored procedures will cause errors. The code running on `Blue` is using the `CustomerFirstName` and `CustomerLastName` fields to populate `CustomerFullName` when `CustomerFullName` is null.  
 
@@ -134,7 +134,7 @@ Select CustomerFirstName,
 from dbo.Customer
 ```
 
-That only hides bad or missing data; it doesn’t solve missing data.  It is a one-liner and easy to copy-paste to other stored procedures.  In this example, there is only one other stored procedure, but if anybody ever adds a stored procedure, they’d need to remember to include the one-liner.  It’s also possible to forget to update the stored procedures when it comes time to remove `CustomerFirstName` and `CustomerLastName` from the database.  Imagine if a stored procedure had 50 columns and `CustomerFullName` had several dozen lines between it and `CustomerFirstName` and `CustomerLastName`.
+That only hides bad or missing data; it doesn’t solve missing data.  It is a one-liner and easy to copy-paste to other stored procedures.  In this example, there is only one other stored procedure, but if anybody ever adds a stored procedure, they’d need to remember to include that one-liner.  It’s also possible to forget to update the stored procedures when it comes time to remove `CustomerFirstName` and `CustomerLastName` from the database.  Imagine if a stored procedure had 50 columns and `CustomerFullName` had several dozen lines between it and `CustomerFirstName` and `CustomerLastName`.
 
 Retrieved stored procedures and views should return the data as is, without any null checks or formatting:
 
@@ -186,9 +186,9 @@ Views are great at providing a layer of abstraction, and when written correctly,
 
 An everyday use case for views is to help data warehousing.  The abstraction layer views provide, make it easy for a process to come through and copy all the data over to a data warehouse that business intelligence teams can use to create their reports.  There isn’t a right automated way to make this change known to the data warehouse.  My recommendation is to notify them of the change as soon as possible.
 
-```warning
+:::warning
 I realize moving business logic out of the database is quite a change.  If you do decide to make that switch, be pragmatic about it.  Don’t try to change everything at once.  The code and the database are working fine now.  This section is about changes to the database going forward.  I always try to leave the database and code in a better state than when I found it.  Meaning, if I make a change to a column and I come across a business rule in the database for that column, I do some analysis.  If the change is relatively easy to make, I will make it then.  If it’s complex, I will create a card and put it on our technical debt backlog to be fixed later (hopefully).
-```
+:::
 
 ## Code Changes
 
