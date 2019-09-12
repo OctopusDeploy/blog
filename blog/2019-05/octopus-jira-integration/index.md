@@ -66,7 +66,7 @@ I also recommend installing one of our build server plugins so you can take full
 * [Atlassian Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on)
 * [Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) - _Full support for Jira issues is coming soon!_
 * [Jetbrains TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration)
-* [Microsoft Azure DevOps extension]() - _Full support for Jira issues is coming soon!_
+* [Microsoft Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks)
 
 If your team is using either Jira Software or Octopus Deploy, you can try the other service for free to see how it works for you.
 
@@ -75,6 +75,6 @@ If your team is using either Jira Software or Octopus Deploy, you can try the ot
 
 ## Wrap-up
 
-In summary, [Jira Software](https://atlassian.com/jira) and [Octopus Deploy](https://octopus.com) work together to give you better end-to-end visibility into their your software pipelines from idea to production.
+In summary, [Jira Software](https://atlassian.com/jira) and [Octopus Deploy](https://octopus.com) work together to give you better end-to-end visibility into your software pipelines from idea to production.
 
 Happy deployments!
