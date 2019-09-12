@@ -101,7 +101,7 @@ gateways:
 - istio-system/default-gateway
 ```
 
-We’ll reuse the existing `proxy` Service for this VirtualService resource to direct traffic to. However, now it is no longer necessary for the `proxy` Service to a be public load balancer, as the `istio-ingressgateway` Service will accept the external traffic:
+We’ll reuse the existing `proxy` Service for this VirtualService resource to direct traffic to. However, now it is no longer necessary for the `proxy` Service to be a public load balancer, as the `istio-ingressgateway` Service will accept the external traffic:
 
 ```YAML
 http:
