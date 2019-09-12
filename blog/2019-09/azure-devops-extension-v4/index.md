@@ -3,7 +3,7 @@ title: Better Octopus Integration with Azure DevOps
 description: We recently updated our Azure DevOps extension and it has some great new features that can improve your delivery pipeline.
 author: rob.pearson@octopus.com
 visibility: public
-published: 2019-08-28
+published: 2019-09-12
 metaImage: blogimage-azureintegration.png
 bannerImage: blogimage-azureintegration.png
 tags:
