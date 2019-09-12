@@ -12,9 +12,7 @@ tags:
 
 ![Illustration showing Azure DevOps and Octopus Deploy work great together](blogimage-azureintegration.png)
 
-We recently shipped an update to our [Octopus Deploy integration for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) that improves the day-to-day lives of developers using Azure DevOps and Octopus Deploy.
-
-Octopus complements the Azure DevOps suite of services.  It’s very common for teams to use Azure Pipelines to build their apps and use Octopus to deploy them. This approach takes advantage of the strengths of both tools and together, they enable teams to get better end-to-end visibility into their software pipelines from idea to production.
+Octopus complements the Azure DevOps suite of services and we recently shipped an update to our [Octopus Deploy integration for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) to make the integration even better. It’s very common for teams to use Azure Pipelines to build their apps and use Octopus to deploy them. This approach takes advantage of the strengths of both tools and together, they enable teams to get better end-to-end visibility into their software pipelines from idea to production.
 
 This release brings our Azure DevOps extension to parity with our TeamCity and Bamboo plugins. We’ve added support for our build information and work item tracking, and this opens up some fantastic new scenarios: 
 
