@@ -11,33 +11,31 @@ tags:
  - Database Deployments
 ---
 
-For quite some time, SQL Server has been a docker image.  Running SQL Server on Docker could solve two of the major headaches I have with running SQL Server Developer edition as a Windows Service.  Namely, it is running all the time, consuming resources, and I have to patch it.  It may be hard to believe, but installing SQL Server Developer edition is not one of those concerns.  I've [automated that problem away in a previous article](https://octopus.com/blog/automate-sql-server-install).  When I was a full-time developer, I needed to run SQL Server all the time.  With my new role, I only want SQL Server running some of the time, and I don't want to worry about having to patch it.  
+Running SQL Server on a development machine is [key part in automating database deployments](https://octopus.com/blog/automated-database-deployments-iteration-zero#moving-to-dedicated-databases).  Typically, running SQL Server locally is accomplished by [installing SQL Server Developer edition](https://octopus.com/blog/automate-sql-server-install).  The downside to doing that is the SQL Server Windows Service needs to run all the time, which consumes resources, the installer adds a bunch of extra applications, and the developer is responsible for upgrading it.  
 
-In this article, I will walk through how I got SQL Server running on Docker.
+Is it possible to get the best of both worlds?  Run SQL Server locally, but only when it is needed and make it easy to upgrade?  For quite some time, SQL Server has been a Docker image, which looks like it can solve those headaches.  The real question is, how hard is it to set up?  In this article, I aim to answer that question and help you get SQL Server running in a Docker container.
 
 !toc
 
-## The Scenario
+## Windows Based Containers
 
-In a couple of months, I will be speaking at [TechBash 2019](https://techbash.com/sessions). The presentation will cover how my automated database deployment process progressed as I learned more about automation.  The presentation will start with TeamCity and then move onto Octopus Deploy.  I don't need or want all of that running all the time.  Only when I am prepping or practicing my demo.  In other words, I want to spin up and down an entire CI/CD pipeline on my laptop.  So why not use Docker?
-
-Please note, this is Part 1 of a 2 part series on setting up a CI/CD pipeline in Docker.  This article will cover getting SQL Server up and running in Docker.
+I have been developing on Windows since I was in university.  I know the core concepts of Linux, but I am no means an expert.  Learning Linux AND learning Docker at the same time is quite a bit to bite off.  Docker provides the ability to run both Linux and Windows based containers.  Microsoft provides a [Windows based container for SQL Server Developer Edition](https://hub.docker.com/r/microsoft/mssql-server-windows-developer).  To make things easier to learn, I am going to be using that container for this article.  
 
 ## Prep Work
 
 This article will assume you have a passing familiarity with Docker.  If you are not familiar with the core concepts of Docker, I encourage you to read the [Docker overview page](https://docs.docker.com/engine/docker-overview/).  
 
-My laptop is running Windows 10 professional.  I will be using [Docker Desktop](https://docs.docker.com/docker-for-windows/), which is sometimes known as Docker for Windows.  Some prep-work will be needed before I can jump in and start writing scripts.
+My laptop is running Windows 10 professional.  I will be using [Docker Desktop](https://docs.docker.com/docker-for-windows/), which is sometimes known as Docker for Windows.  Some prep-work will be needed before I can jump in and start using Docker.
 
 ### Enable CPU Virtualization
 When it comes down to it, Docker is a virtualization host.  Just like any other virtualization host, the CPU has to support virtualization, and that feature has to be enabled.  Typically virtualization is enabled in the BIOS.  Which means you'll have to do a Google search on how to enable it in your computer manufacturer's BIOS.  Intel calls their virtualization technology [Intel VT](https://www.intel.com/content/www/us/en/virtualization/virtualization-technology/intel-virtualization-technology.html), along with Intel VTx.  AMD calls their virtualization technology [AMD V](https://www.amd.com/en/technologies/virtualization), sometimes you'll see it called VDI or SVM.  
 
 ### Installing Docker for Windows
-After the quick BIOS update, it is time to install Docker Desktop, which includes Docker Compose and the Docker CLI.  The whole process to install Docker for Windows is [nicely documentation](https://docs.docker.com/docker-for-windows/install/).  No need to repeat that.
+After the quick BIOS update, it is time to install Docker Desktop, which includes Docker Compose and the Docker CLI.  The whole process to install Docker for Windows is [nicely documented](https://docs.docker.com/docker-for-windows/install/).  No need to repeat that.
 
 One thing to note, if you don't have Hyper-V enabled, the installer will enable it for you.  That will require a restart of the computer.
 
-As I stated earlier, I want to run my entire CI/CD pipeline on Docker eventually.  At the time of this writing, the Octopus Deploy image is for Windows-based containers only.  After Docker Desktop has been installed, I need to switch over to Windows containers.  That is done by right-clicking on the Docker Desktop icon in the taskbar and selecting `Switch to Windows containers...`.  
+As I stated earlier, I am going to be using Windows based containers.  After Docker Desktop has been installed, I need to switch over to Windows containers.  That is done by right-clicking on the Docker Desktop icon in the taskbar and selecting `Switch to Windows containers...`.  
 
 ![](docker-desktop-switch-to-windows-containers.png)
 
@@ -53,30 +51,16 @@ One downside of running a Windows container (aside from the space overhead), is 
 
 ![](extracted-docker-files-windows.png)
 
-## Bootstrapping
-When setting up SQL Server, TeamCity, or Octopus Deploy in Docker, you will go through the same process.
-
-1. Get the container running.
-2. Configure something, such as create a database, add a build agent, create a service account.
-3. Stopping the container.
-4. Updating the Docker Compose file or the script kicking off Docker to use that item.
-5. Restarting the container.
-
-I wish I could provide you with a single PowerShell script which will bootstrap everything.  But that would require configuring several components in Docker by hand.  Creating a database in SQL Server or adding a service account in Octopus Deploy only needs to happen once.  It doesn't make sense to handwrite a complex bootstrap script to avoid a few minutes of work.
-
 ## Configuring the SQL Server Developer Container
-As stated before, by default, all containers are stateless.  That stateless default makes things a bit tricky as SQL Server, TeamCity, and Octopus Deploy are stateful applications.  For each of the containers I will be running in my CI/CD pipeline I need to solve for the following:
+It's easy to get a container, even SQL Server, up and running.  I want to be able to use this for actual development work.  Which means I need to solve the following:
 
 1. Get the container up and running with no extra configuration.
-2. Persist data created in a container, such as a SQL Database, to a volume.
-3. Have a static IP or hostname to keep configuration easy.
-4. Communicate between containers, such as Octopus Deploy -> SQL Server or TeamCity -> Octopus Deploy.
-5. Start everything at the same time.
-
-This article will solve the first 3 of those problems.  
+2. Connect to it via SSMS.
+3. Persist databases created in a container.
+4. Have a static IP or hostname to keep configuration easy.
 
 ### Running SQL Server Developer Container for the first time
-That is a pretty ambitious list to solve Docker newbies such as myself.  I want to take it a step of a time.  I am first going to pull down the SQL Server Windows Developer image from Docker Hub.
+That list can seem quite daunting, especially if you are new to Docker.  I want to take it a step of a time.  First, let's run a simple command to pull down the SQL Server Windows Developer image from Docker Hub.
 
 ```PowerShell
 docker pull microsoft/mssql-server-windows-developer
@@ -94,7 +78,9 @@ docker run --name SQLServer -d -p 1433:1433 -e sa_password=Password_01 -e ACCEPT
 
 ![](docker-run-sql-server-developer.png)
 
-The SQL Server container is running.  But what is the IP Address to connect to it via SSMS?  The container is assigned a dynamic IP Address, such as `172.19.1.0`.  This is different than running SQL Server as a Windows Service where it is possible to connect to it via `.` or `127.0.0.1`.  The below command will get the IP address of that instance.
+### Connecting to the container from SSMS on the host
+
+The SQL Server container is running.  But what is the IP Address to connect to it via SSMS from the host?  The container is assigned a dynamic IP Address, such as `172.19.1.0`.  This is different than running SQL Server as a Windows Service where it is possible to connect to it via `.` or `127.0.0.1`.  The below command will get the IP address of that instance.
 
 ```PowerShell
 $docker = docker inspect SQLServer | convertfrom-json
@@ -113,6 +99,8 @@ Just like regular SQL Server, everything works as expected.  I can create a data
 
 ![](create-table-inside-instance.png)
 
+### Persisting databases created in a container
+
 What happens if the container needs to be restarted?
 
 ```PowerShell
@@ -128,7 +116,7 @@ But, the database still exists after the restart.
 
 ![](test-database-after-restart-only.png)
 
-But what about if the container needs to be recreated?  Typically that would be done when the container configuration changes or a new version is released.  In addition to the `stop` command, I'll need to run the `rm` command, which removes the container.
+What if container needs to be recreated?  Typically that would be done when the container configuration changes or a new version is released.  In addition to the `stop` command, I'll need to run the `rm` command, which removes the container.
 
 ```PowerShell
 docker stop SQLServer
@@ -138,13 +126,12 @@ docker run --name SQLServer -d -p 1433:1433 -e sa_password=Password_01 -e ACCEPT
 
 ![](restart-docker-container.png)
 
-And as expected, the databases were all deleted.  
+In this case, the databases were all deleted.  
 
 ![](restart-container-no-new-databases.png)
 
 What is needed is a way to persist data to handle both restarting of the container and the recreation of the container.
 
-### Persisting Data
 The database files need to be persisted.  That will be accomplished using a volume will be pointed at `C:\Docker \Volumes\SQLServer`. There are [many](https://blog.sixeyed.com/docker-volumes-on-windows-the-case-of-the-g-drive/), [many articles](https://github.com/docker/labs/blob/master/windows/sql-server/part-3.md) about [Docker Volumes](https://docs.docker.com/storage/volumes/).  The TL;DR; is add the `--volume` switch to `docker run` to add a volume.  If the container is already running, it needs to be destroyed before adding a volume.
 
 ```PowerShell
@@ -153,7 +140,7 @@ docker rm SQLServer
 docker run --name SQLServer -d -p 1433:1433 --volume c:\Docker\Volumes\SQLServer:c:\SQLData -e sa_password=Password_01 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer
 ```
 
-All the database create commands need to specify `C:\SQLData\` as the directory for the data.  I know I will need a database for Octopus Deploy and another for TeamCity.
+All the database create commands need to specify `C:\SQLData\` as the directory for the data.  Let's say I wanted this SQL Server container to host the databases for Octopus Deploy and TeamCity.  The commands would be:
 
 ```SQL
 CREATE DATABASE [OctopusDeploy]
@@ -172,7 +159,7 @@ CREATE DATABASE [TeamCity]
 GO
 ```
 
-The databases were created successfully.
+No big surprise, the databases were created successfully.
 
 ![](create-teamcity-octopus-databases.png)
 
@@ -201,7 +188,7 @@ $docker = docker inspect SQLServer | convertfrom-json
 $docker[0].NetworkSettings.Networks.nat.IpAddress
 ```
 
-As I build out my CI/CD pipeline, I don't want to have to calculate the IP address each time the container is spun up.  That is going to make it tricky to connect via SSMS or through a web browser for Octopus Deploy and TeamCity. What would be even better is not to have to worry about IP Addresses at all.  This is where [Docker Compose](https://docs.docker.com/compose/) enters the picture.  Docker Compose handles a lot of the behind the scenes work for us.  All it takes is converting the existing commands we have been using to a YAML file.
+What would be even better is not to have to worry about IP Addresses at all.  This is where [Docker Compose](https://docs.docker.com/compose/) enters the picture.  Docker Compose handles a lot of the behind the scenes work for us.  All it takes is converting the existing commands we have been using to a YAML file.
 
 ```YAML
 version: '3.7'
@@ -235,6 +222,6 @@ Now I can access my SQL Server, which is running in Docker, by connecting to loc
 
 ## Wrapping Up
 
-Getting SQL Server running in Docker turned out to be a lot less work than I thought it would be.  I was expecting hours upon hours of work, but in the end, I had something up and running after a couple of hours.  And that included the necessary time to research Docker.  My hope is this article gave you enough direction for you to take the dive yourself into Docker and realize it is not so big and scary.  And maybe, just maybe, you'll use Docker to host SQL Server on your development machine instead of installing SQL Server Developer.
+Getting SQL Server running in Docker turned out to be a lot less work than I thought it would be.  I was expecting hours upon hours of work, but in the end, I had something up and running within an hour.  To be fair, that didn't include research into how Docker works.  My hope is this article gave you enough direction for you to take the dive yourself into Docker and realize it is not so big and scary.  And maybe, just maybe, you'll use Docker to host SQL Server on your development machine instead of installing SQL Server Developer.
 
 Until next time, Happy Deployments!
