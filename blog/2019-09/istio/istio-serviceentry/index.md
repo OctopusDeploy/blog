@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-In order to be able to make a network request, the destination host must be part of the Istio service registry. By default any Service resource in a Kubernetes cluster is part of the service registry, but external URLs are not. To expose external network applications to Istio, we use the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource.
+In order to make a network request, the destination host must be part of the Istio service registry. By default, any Service resource in a Kubernetes cluster is part of the service registry, but external URLs are not. To expose external network applications to Istio, we use the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource.
 
-In this post we’ll add a ServiceEntry resource to the Kubernetes cluster in order to direct our `proxy` application to an external resource.
+In this post, we’ll add a ServiceEntry resource to the Kubernetes cluster in order to direct our `proxy` application to an external resource.
 
 ## Redirecting internal requests to external resources
 
-To demonstrate the ServiceEntry resource we’ll direct the requests to `http://webserver` from the `proxy` to https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/externalservice1.txt. This is a plain text file containing the text `External Service 1` that is hosted by GitHub. We’re using this text file to simulate an external API endpoint.
+To demonstrate the ServiceEntry resource, we’ll direct the requests to `http://webserver` from the `proxy` to https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/externalservice1.txt. This is a plain text file containing the text `External Service 1` that is hosted by GitHub. We’re using this text file to simulate an external API endpoint.
 
 The first step is to expose the host `raw.githubusercontent.com` to the Istio service registry, which is achieved with a ServiceEntry resource.
 
@@ -82,7 +82,7 @@ spec:
       mode: SIMPLE
 ```
 
-With this combination of ServiceEntry, VirtualService, and DestinationRule resources we have pointed our `proxy` application out to the text file hosted by GitHub:
+With this combination of ServiceEntry, VirtualService, and DestinationRule resources, we have pointed our `proxy` application out to the text file hosted by GitHub:
 
 ![](proxy-example.png "width=500")
 
@@ -96,6 +96,6 @@ Here is the architecture diagram showing the ExternalService resource and the ne
 
 ## Conclusion
 
-Istio requires that any external resources contacted by internal applications be exposed as part of the service registry. In this post we exposed a text file hosted by GitHub via a ServiceEntry resource, directed traffic to it via a VirtualService resource, and configured the TLS settings required to access the HTTPS site via a DestinationRule resource. The end result is that our sample application made requests to the external location without having to modify any code.
+Istio requires that any external resources contacted by internal applications be exposed as part of the service registry. In this post, we exposed a text file hosted by GitHub via a ServiceEntry resource, directed traffic to it via a VirtualService resource, and configured the TLS settings required to access the HTTPS site via a DestinationRule resource. The end result is that our sample application made requests to the external location without having to modify any code.
 
 In the [next post](/blog/2019-09/istio/istio-gateway/index.md) we will look at the Gateway resource, and how it is used to direct external traffic into the cluster.

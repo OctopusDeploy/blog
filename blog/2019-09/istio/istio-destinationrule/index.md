@@ -1,6 +1,6 @@
 ---
 title: Exploring Istio - The DestinationRule resource
-description: In this blog post we'll dive into the major features of the DestinationRule resources
+description: In this blog post we’ll dive into the major features of the DestinationRule resources
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-01-01
@@ -68,7 +68,7 @@ spec:
 
 ## Load balancing algorithms
 
-Istio offers multiple different [load balancing](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#LoadBalancerSettings) algorithms to distribute traffic. The default is the round robin algorithm, which cycles through the available targets one by one:
+Istio offers multiple different [load balancing](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#LoadBalancerSettings) algorithms to distribute traffic. The default is the round-robin algorithm, which cycles through the available targets one by one:
 
 ```YAML
 apiVersion: networking.istio.io/v1alpha3
@@ -89,11 +89,11 @@ spec:
       version: v2
 ```
 
-Here we can see how traffic was distributed with the round robin algorithm.
+Here we can see how traffic was distributed with the round-robin algorithm.
 
 Note that you have to disable keeplive connections to see this pattern. If you open the URL in a browser, you won’t see the clear cycling through targets because browsers enable keepalive connections. Also, it is a known issue that some targets are used twice, which you can see in the output below with the call to `webserverv1-6786d88d65-cp28t`. These issues are all discussed [here](https://github.com/kubernetes/minikube/issues/343).
 
-Otherwise you can clearly see how requests are cycled through the targets with the round robin algorithm:
+Otherwise, you can clearly see how requests are cycled through the targets with the round-robin algorithm:
 
 ![](round-robin.png "width=500")
 
@@ -149,7 +149,7 @@ The result is somewhat similar to the random algorithm, although we don’t see 
 
 ## Security options
 
-Istio can configure [TLS settings](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#TLSSettings) to insure that the communication between Pod resources are encrypted through Mutual TLS (mtls).
+Istio can configure [TLS settings](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#TLSSettings) to ensure that the communication between Pod resources are encrypted through Mutual TLS (mtls).
 
 The effects of these options are transparent to our application, but would prevent traffic from being snooped if Pod resources were to communicate across nodes:
 
@@ -205,8 +205,8 @@ spec:
 
 ## Summary
 
-[We’ve seen how a VirtualService resource can be used to route traffic](/blog/2019-09/istio/istio-virtualservice/index.md), simulate network failures or delays, and implement networking rules that only require an understanding of a service’s public API such as URL redirection/rewriting, timeouts and retries.
+[We’ve seen how a VirtualService resource can be used to route traffic](/blog/2019-09/istio/istio-virtualservice/index.md), simulate network failures or delays, and implement networking rules that only require an understanding of a service’s public API such as URL redirection/rewriting, timeouts, and retries.
 
-In this post, we have seen how a DestinationRule resource can be used to implement low level networking options that are closely tied to the implementation of the underlying service including defining subsets, load balancing algorithms, and network connection settings such as timeouts and max connections.
+In this post, we have seen how a DestinationRule resource can be used to implement low-level networking options that are closely tied to the implementation of the underlying service including defining subsets, load balancing algorithms, and network connection settings such as timeouts and max connections.
 
 In the [next post](/blog/2019-09/istio/istio-serviceentry/index.md), we will look at the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource and how it is used to expose endpoints outside the Kubernetes cluster.

@@ -12,7 +12,7 @@ tags:
 
 In the [previous blog](/blog/2019-09/istio/the-sample-application/index.md) post, we deployed two simple Node.js web applications into a Kubernetes cluster as Deployment resources and linked everything up with standard Service resources.
 
-The networking so far has only used standard Kubernetes resources to configure it. This works, but falls a little short when it comes to directing traffic between different versions of upstream APIs. You will have noticed that the `proxy` application is returning content from the Pod resources created by both the `webserverv1` and `webserverv2` Deployment resources, which is unlikely to be the desired result had this been a real world deployment. Istio can address this limitation with the [VirtualService resource](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/).
+The networking so far has only used standard Kubernetes resources to configure it. This works but falls a little short when it comes to directing traffic between different versions of upstream APIs. You will have noticed that the `proxy` application is returning content from the Pod resources created by both the `webserverv1` and `webserverv2` Deployment resources, which is unlikely to be the desired result had this been a real-world deployment. Istio can address this limitation with the [VirtualService resource](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/).
 
 In this post, we’ll look at what a VirtualService resource is, how it relates to a standard Ingress resource, and add a VirtualService resource to the cluster to route and modify the requests made by the `proxy` Pod to the `webserver` Service.
 
@@ -24,13 +24,13 @@ However, a VirtualService resource can be much more specific in the traffic it m
 
 For comparison, an Ingress resource can match external traffic based on the HTTP host and path. Depending on the Ingress Controller that is installed in the cluster, the path can match wildcard values or even accept regular expressions. But such advanced features are not universal among Ingress Controllers; for example, the [Nginx Ingress Controller supports regex paths](https://kubernetes.github.io/ingress-nginx/user-guide/ingress-path-matching/), while the Google Kubernetes Engine Ingress Controller only supports very [selective uses of the asterisk as a wildcard](https://cloud.google.com/kubernetes-engine/docs/concepts/ingress#multiple_backend_services).
 
-A VirtualService resource on the other hand can match traffic based on HTTP host, path (with full regular expression support), method, headers, ports, query parameters, and more.
+A VirtualService resource, on the other hand, can match traffic based on HTTP host, path (with full regular expression support), method, headers, ports, query parameters, and more.
 
-Once an Ingress resource has matched the incoming traffic, it is then directed to a Service resource. This is also true of a VirtualService resource, however when combined with a DestinationRule resource, a VirtualService resource can direct traffic to specific subsets of Pod resources referenced by a Service resource. For example, you may want to direct traffic only to pods that have the `version: v2` label applied. We’ll see this in the [next blog post](/blog/2019-09/istio/istio-destinationrule/index.md).
+Once an Ingress resource has matched the incoming traffic, it is then directed to a Service resource. This is also true of a VirtualService resource; however, when combined with a DestinationRule resource, a VirtualService resource can direct traffic to specific subsets of Pod resources referenced by a Service resource. For example, you may want to direct traffic only to pods that have the `version: v2` label applied. We’ll see this in the [next blog post](/blog/2019-09/istio/istio-destinationrule/index.md).
 
 Perhaps the biggest difference between an Ingress resource and a VirtualService resource is that a VirtualService resource can intelligently manage the traffic it matches by allowing requests to be retried, injecting faults or delays for testing, and rewriting or redirecting requests. Implementing this functionality in the infrastructure layer removes the need for each individual application to implement and manage it themselves, providing for a much more consistent networking experience.
 
-Now that we know what a VirtualService resource can do, let’s add some to the network to see the effects that they have.
+Now that we know what a VirtualService resource can do let’s add some to the network to see the effects that they have.
 
 ## A minimal example
 
@@ -57,7 +57,7 @@ hosts:
 - webserver
 ```
 
-We then create rules to direct any HTTP traffic that matches the specified hostname by configuring the `http` property. Under that property we define the `route` which sets the `destination` to another Service resource called `webserverv1`:
+We then create rules to direct any HTTP traffic that matches the specified hostname by configuring the `http` property. Under that property, we define the `route` which sets the `destination` to another Service resource called `webserverv1`:
 
 ```YAML
 http:
@@ -84,7 +84,7 @@ The typical flow of traffic through standard Kubernetes Ingress and Service reso
 
 1. External traffic hits an external load balancer.
 2. The traffic is directed to an ingress controller.
-3. The ingress controller directs traffic to Service resources based on the rules defined in Ingress resources, and modifies the traffic based on timeout, security, redirection, and other rules.
+3. The ingress controller directs traffic to Service resources based on the rules defined in Ingress resources and modifies the traffic based on timeout, security, redirection, and other rules.
 4. Once external traffic has been routed internally, the ingress controller no longer plays a role.
 
 What stands out initially when working with service mesh technologies like Istio is that internal requests, such as the request made by the `proxy` application to its downstream services via the `webserver` Service, are no longer direct. As we can see with the minimal example above, a previously direct internal request to http://webserver can be rerouted to http://webserverv1 using a VirtualService resource.
@@ -209,7 +209,7 @@ The `proxy` shows the details of the redirected call:
 
 ## Rewriting requests
 
-[Rewriting requests](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/#HTTPRewrite) is much like redirecting them, only the routing is all done server side and the client does not know that the request was changed to a new path. The VirtualService resource below rewrites requests made to the root path of one Service resource and routes them to a new path on a new Service resource:
+[Rewriting requests](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/#HTTPRewrite) is much like redirecting them, only the routing is all done server-side, and the client does not know that the request was changed to a new path. The VirtualService resource below rewrites requests made to the root path of one Service resource and routes them to a new path on a new Service resource:
 
 ```Yaml
 apiVersion: networking.istio.io/v1alpha3
