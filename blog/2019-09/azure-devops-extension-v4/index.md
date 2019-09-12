@@ -18,13 +18,13 @@ Octopus complements the Azure DevOps suite of services.  It's very common for te
 
 This release brings our Azure DevOps extension to parity with our TeamCity and Bamboo plugins. We've added support for our build information and work item tracking, and this opens up some fantastic new scenarios: 
 
-* **[See release details including new features and fixes](/blog/2019-08/azure-devops-extension-v4/index.md#see-release-details-including-new-features-and-fixes)**. Our work item tracking enables you to see which features, bug fixes and updates an Octopus release contains.
-* **[See What's New in Production](/blog/2019-08/azure-devops-extension-v4/index.md#see-whats-new-in-production)** Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see 'What's New' in production or any other environment.
-* **[Share release notes with your team and managers](/blog/2019-08/azure-devops-extension-v4/index.md#share-release-notes-with-your-team-and-managers)**. Octopus can now generate release notes when deploying to your environments like dev, test or production. Share them with your team, managers, or executives via email, Slack, and more.
+* **[See release details including new features and fixes](/blog/2019-09/azure-devops-extension-v4/index.md#see-release-details-including-new-features-and-fixes)**. Our work item tracking enables you to see which features, bug fixes and updates an Octopus release contains.
+* **[See What's New in Production](/blog/2019-09/azure-devops-extension-v4/index.md#see-whats-new-in-production)** Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see 'What's New' in production or any other environment.
+* **[Share release notes with your team and managers](/blog/2019-09/azure-devops-extension-v4/index.md#share-release-notes-with-your-team-and-managers)**. Octopus can now generate release notes when deploying to your environments like dev, test or production. Share them with your team, managers, or executives via email, Slack, and more.
 
-This release also includes **[improved Space's support]**(/blog/2019-08/azure-devops-extension-v4/index.md#improved-spaces-support) so teams can select their team's Space more easily.
+This release also includes **[improved Space's support]**(/blog/2019-09/azure-devops-extension-v4/index.md#improved-spaces-support) so teams can select their team's Space more easily.
 
-Learn how to [install or update our extension](/blog/2019-08/azure-devops-extension-v4/index.md#how-to-install-or-update-your-azure-devops extension).
+Learn how to [install or update our extension](/blog/2019-09/azure-devops-extension-v4/index.md#how-to-install-or-update-your-azure-devops extension).
 
 ## See release details including new features and fixes
 
