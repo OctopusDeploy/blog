@@ -67,7 +67,7 @@ server.listen(port, (err) => {
 
 Inside this same repository we have two text files [here](https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/externalservice1.txt) and [here](https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/externalservice2.txt). These will serve as mock external services for our proxy to consume thanks to the fact that GitHub allows you to view the raw contents of a file in a hosted repository. This means we don’t have to go to the trouble of deploying a public service to return static content.
 
-## The internal webservers
+## The internal web servers
 
 For the internal web servers we will run a second Node.js application that returns static text, `Webserver V1` and `Webserver V2` in our case, along with the hostname of the container that is running the image. We will spin up 3 instances for each version, which means that we will have 6 instances running 2 versions of the server.
 
