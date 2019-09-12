@@ -60,7 +60,7 @@ If you’re using Azure DevOps but haven’t installed the Octopus Deploy extens
 
 If your team is already using Azure DevOps and Octopus Deploy, I highly recommend upgrading to the latest version of our extension. This release bumps the version of the extension from v3 to v4 so you’ll need to select the newer version of each task. [Read our docs](https://octopus.com/docs/packaging-applications/build-servers/tfs-azure-devops) for more information.
 
-If you’re using Azure DevOps and looking to mature your deployments, you can install [our extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [try Octopus Deploy for free](https://octopus.com/trial).
+If you’re using Azure DevOps and looking to improve your deployments, you can install [our extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [try Octopus Deploy for free](https://octopus.com/trial).
 
 ## Wrap-up
 
