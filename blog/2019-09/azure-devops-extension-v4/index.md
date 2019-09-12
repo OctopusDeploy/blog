@@ -44,7 +44,7 @@ This is useful to see at a glance what has changed during deployments and very h
 
 ## Share Release Notes with your team and managers
 
-![Share Octopus release notes automatically](octopus-deployment-release-notes.png)
+![Share Octopus release notes automatically](octopus-deploy-azure-devops-share-release-notes.png)
 
 Writing release notes is generally a manual task and while this is easier using tools like [Azure Boards](https://azure.microsoft.com/en-us/services/devops/boards/) or [Jira](https://www.atlassian.com/software/jira), it's still time consuming. Integrating Octopus and Azure DevOps enables this process to be fully automated. Octopus knows which issues have already been deployed to an environment so it can quickly generate release notes showing what's new in test or production environments.
 
