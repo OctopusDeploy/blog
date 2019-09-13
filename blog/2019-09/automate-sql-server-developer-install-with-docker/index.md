@@ -33,7 +33,7 @@ When it comes down to it, Docker is a virtualization host.  Just like any other 
 
 ### Installing Docker for Windows
 
-After the quick BIOS update, it‘s time to install Docker Desktop, which includes Docker Compose and the Docker CLI.  The whole process to install Docker for Windows is [nicely documented](https://docs.docker.com/docker-for-windows/install/).  No need to repeat that here.
+After the quick BIOS update, it’s time to install Docker Desktop, which includes Docker Compose and the Docker CLI.  The whole process to install Docker for Windows is [nicely documented](https://docs.docker.com/docker-for-windows/install/).  No need to repeat that here.
 
 One thing to note, if you don’t have Hyper-V enabled, the installer will enable it for you.  That will require a restart of the computer.
 
@@ -47,11 +47,11 @@ By default, Docker treats all containers as stateless.  Expect any changes made 
 
 ![](docker-shared-folders.png)
 
-It’s important to note that if I were running these as Linux based containers, I‘d need to follow the steps listed in the [Docker documentation on sharing drives](https://docs.docker.com/docker-for-windows/#shared-drives).
+It’s important to note that if I were running these as Linux based containers, I’d need to follow the steps listed in the [Docker documentation on sharing drives](https://docs.docker.com/docker-for-windows/#shared-drives).
 
 ### Anti-Virus configuration
 
-One downside of running a Windows container (aside from the space overhead), is that anti-virus software can and will block them from downloading.  That blocking occurs because of how Docker stores images on the Windows file system.  Essentially, another folder called Windows will appear in what appears to be a random location.  When anti-virus scanners see that they freak out.  Make sure you are using the latest version of your anti-virus of choice.  Don't be surprised if you have to exclude `C:\ProgramData\Docker` from scanning.
+One downside of running a Windows container (aside from the space overhead), is that anti-virus software can and will block them from downloading.  That blocking occurs because of how Docker stores images on the Windows file system.  Essentially, another folder called Windows will appear in what appears to be a random location.  When anti-virus scanners see that they freak out.  Make sure you are using the latest version of your anti-virus of choice.  Don’t be surprised if you have to exclude `C:\ProgramData\Docker` from scanning.
 
 ![](extracted-docker-files-windows.png)
 
@@ -97,7 +97,7 @@ In this example, the IP Address is `172.19.98.212`.
 
 ![](docker-get-ip-address-of-sql-server.png)
 
-Now it‘s just a matter of entering that IP Address, along with `sa` as the username/password defined above, to connect SQL Server Management Studio(SSMS) to that database.  
+Now it’s just a matter of entering that IP Address, along with `sa` as the username/password defined above, to connect SQL Server Management Studio(SSMS) to that database.  
 
 ![](ssms-connected-to-docker-image.png)
 
@@ -229,6 +229,6 @@ Now I can access my SQL Server, which is running in Docker, by connecting to loc
 
 ## Conclusion 
 
-Getting SQL Server running in Docker turned out to be a lot easier than I thought it would be.  I was expecting hours upon hours of work, but in the end, I had something up and running within an hour.  To be fair, that didn't include research into how Docker works.  My hope is this article gave you enough direction for you to take the dive yourself into Docker and realize it is not so big and scary.  And maybe, just maybe, you’ll use Docker to host SQL Server on your development machine instead of installing SQL Server Developer.
+Getting SQL Server running in Docker turned out to be a lot easier than I thought it would be.  I was expecting hours upon hours of work, but in the end, I had something up and running within an hour.  To be fair, that didn’t include research into how Docker works.  My hope is this article gave you enough direction for you to take the dive yourself into Docker and realize it is not so big and scary.  And maybe, just maybe, you’ll use Docker to host SQL Server on your development machine instead of installing SQL Server Developer.
 
 Until next time, Happy Deployments!
