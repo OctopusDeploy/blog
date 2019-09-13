@@ -86,11 +86,7 @@ docker run --name SQLServer -d -p 1433:1433 -e sa_password=Password_01 -e ACCEPT
 
 ### Connecting to the container from SSMS on the host
 
-The SQL Server container is running, but how can we connect to it via SSMS from the host?  In the run command I used the switch `-p`, which is short for publish.  Essentially, the port 1433 was published to the host, which means we can access it via `localhost`.
-
-![](docker-get-ip-address-of-sql-server.png)
-
-Now it’s just a matter of entering that `localhost`, along with `sa` as the username/password defined above, to connect SQL Server Management Studio(SSMS) to that database.  
+The SQL Server container is running, but how can we connect to it via SSMS from the host?  In the run command I used the switch `-p`, which is short for publish.  Essentially, the port 1433 was published to the host, which means we can access it via `localhost`. All I need to do to connect SSMS to my Docker SQL Sever is enter `localhost`, along with `sa` as the username/password defined above.  
 
 ![](ssms-connected-to-docker-image.png)
 
