@@ -97,7 +97,7 @@ In this example, the IP Address is `172.19.98.212`.
 
 ![](docker-get-ip-address-of-sql-server.png)
 
-Now it‘s just a matter entering that IP Address, along with `sa` as the username/password defined above, to connect SQL Server Management Studio(SSMS) to that database.  
+Now it‘s just a matter of entering that IP Address, along with `sa` as the username/password defined above, to connect SQL Server Management Studio(SSMS) to that database.  
 
 ![](ssms-connected-to-docker-image.png)
 
@@ -118,11 +118,11 @@ The IP Address changes when the container is restarted.
 
 ![](restart-docker-container-no-remove.png)
 
-But, the database still exists after the restart.  
+But the database still exists after the restart.  
 
 ![](test-database-after-restart-only.png)
 
-What if the container needs to be recreated?  Typically, that would be done when the container configuration changes or a new version is released.  In addition to the `stop` command, I’ll need to run the `rm` command, which removes the container:
+What if the container needs to be recreated?  Typically, that is done when the container configuration changes or a new version is released.  In addition to the `stop` command, I’ll need to run the `rm` command, which removes the container:
 
 ```PowerShell
 docker stop SQLServer
@@ -146,7 +146,7 @@ docker rm SQLServer
 docker run --name SQLServer -d -p 1433:1433 --volume c:\Docker\Volumes\SQLServer:c:\SQLData -e sa_password=Password_01 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer
 ```
 
-All the database create commands need to specify `C:\SQLData\` as the directory for the data.  Let’s say I want this SQL Server container to host the databases for Octopus Deploy and TeamCity.  The commands is:
+All the database create commands need to specify `C:\SQLData\` as the directory for the data.  Let’s say I want this SQL Server container to host the databases for Octopus Deploy and TeamCity.  The commands are:
 
 ```SQL
 CREATE DATABASE [OctopusDeploy]
@@ -195,7 +195,7 @@ $docker = docker inspect SQLServer | convertfrom-json
 $docker[0].NetworkSettings.Networks.nat.IpAddress
 ```
 
-What would be even better is not having to worry about IP Addresses at all.  This is where [Docker Compose](https://docs.docker.com/compose/) enters the picture.  Docker Compose handles a lot of the behind the scenes work for us.  All it takes is converting the existing commands we have been using to a YAML file:
+It would be even better if we didn’t have to worry about IP Addresses at all.  This is where [Docker Compose](https://docs.docker.com/compose/) enters the picture.  Docker Compose handles a lot of the behind the scenes work for us.  All it takes is converting the existing commands we‘ve been using to a YAML file:
 
 ```YAML
 version: '3.7'
