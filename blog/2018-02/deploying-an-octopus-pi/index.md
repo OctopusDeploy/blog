@@ -7,7 +7,7 @@ metaImage: metaimage-raspberrypi.png
 bannerImage: blogimage-raspberrypi.png
 published: 2018-02-21
 tags:
- - Walkthrough
+ - Engineering
 ---
 ![Octopus enjoying a Raspberry Pi](blogimage-raspberrypi.png)
 

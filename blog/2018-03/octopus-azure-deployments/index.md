@@ -7,7 +7,7 @@ published: 2018-03-30
 metaImage: metaimage-azure.png
 bannerImage: blogimage-azure.png
 tags:
- - Azure
+ - Engineering
 ---
 
 ![Octopus Juggling Azure Balls](blogimage-azure.png)

@@ -7,7 +7,7 @@ published: 2018-12-06
 metaImage: webinar-azure-pipelines.png
 bannerImage: webinar-azure-pipelines.png
 tags:
- - Webinar
+ - Events and webinars
 ---
 
 <iframe width="560" height="315"  src="https://www.youtube.com/embed/NAAHowy83iY" frameborder="0" allowfullscreen></iframe>

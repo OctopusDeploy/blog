@@ -7,7 +7,7 @@ metaImage: 4.0config_metaimage.png
 bannerImage: 4.0config_blogimage.png
 published: 2017-11-14
 tags:
- - Product
+ - Engineering
 ---
 
 ![Octopus 4.0 new configuration API and UI](4.0config_blogimage.png)

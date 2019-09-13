@@ -7,8 +7,7 @@ bannerImage: blogimage-kubernetes-containers-update.png
 metaImage: metaimage-kubernetes-containers-update.png
 published: 2018-07-19
 tags:
-- Containers
-- Docker
+- Product
 ---
 
 ![Octopus sailing Kubernetes](blogimage-kubernetes-containers-update.png "width=500")

@@ -7,7 +7,7 @@ published: 2018-04-19
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
- - Will it Deploy
+ - Product
 ---
 
 Welcome to another **Will it Deploy?** episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy an ASP.NET MVC 5 web app to a Microsoft Azure App Service. We also explore setting up a cloud-based delivery pipeline with [AppVeyor](https://appveyor.com) and [Octopus](https://octopus.com/cloud).

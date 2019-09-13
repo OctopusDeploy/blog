@@ -7,8 +7,7 @@ published: 2018-06-22
 metaImage: metaimage-bitbucket.png
 bannerImage: blogimage-bitbucket.png
 tags:
- - Integration
- - Docker
+ - Engineering
 ---
 
 ![Bitbucket pipelinse and Octopus Deploy](blogimage-bitbucket.png)

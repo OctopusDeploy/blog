@@ -7,8 +7,7 @@ published: 2018-01-25
 metaImage: metaImage-react-permissions.png
 bannerImage: blogImage-react-permissions.png
 tags:
- - Permissions
- - React
+ - Engineering
 ---
 
 As part of our UI overhaul in Octopus 4.0, we made the move [from Angular to React](https://octopus.com/blog/octopus-v4-angular-to-react), some great background details are covered in that post. 

@@ -7,7 +7,7 @@ bannerImage: blogimage-verifyvariables.png
 metaImage: blogimage-verifyvariables.png
 published: 2019-08-15
 tags:
- - configuration
+ - Engineering
 ---
 
 ![Illustration showing Octopus variables being scanned](blogimage-verifyvariables.png)

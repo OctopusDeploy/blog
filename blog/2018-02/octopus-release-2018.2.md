@@ -7,7 +7,7 @@ metaImage: metaimage-shipping-2018-2.png
 bannerImage: blogimage-shipping-2018-2.png
 published: 2018-02-08
 tags:
- - New Releases
+ - Product
 ---
 
 Octopus 2018.2 brings a number of exciting new features including the [much requested step to deploy a release](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj), the ability to deploy AWS CloudFormation templates, delete existing CloudFormation stacks, and run scripts with the AWS CLI.

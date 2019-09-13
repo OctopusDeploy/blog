@@ -7,7 +7,7 @@ metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
 published: 2018-06-28
 tags:
- - Octopus Cloud
+ - Engineering
 ---
 
 ![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)

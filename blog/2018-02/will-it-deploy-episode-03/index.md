@@ -7,7 +7,7 @@ published: 2018-02-24
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
- - Will it Deploy
+ - Product
 ---
 
 Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy.  In this episode, we're trying to deploy a Microsoft SQL Server database using Entity Framework Core migrations to an Amazon Web Services (AWS) virtual machine (VM).

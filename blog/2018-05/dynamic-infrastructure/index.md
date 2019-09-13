@@ -7,8 +7,7 @@ published: 2018-05-31
 metaImage: metaimage-dynamic-targets.png
 bannerImage: blogimage-dynamic-targets.png
 tags:
- - Walkthrough
- - Azure
+ - Engineering
 ---
 
 ![Dynamic targets](blogimage-dynamic-targets.png)

@@ -7,7 +7,7 @@ published: 2018-06-08
 metaImage: metaimage-database-kickoff.png
 bannerImage: blogimage-database-kickoff.png
 tags:
- - Database Deployments
+ - Engineering
 ---
 
 The most nerve-racking part (for me), in any deployment is the database.  Deploying code is far less stressful.  If something isn't right the code can be rolled back. By the time it reaches production, there should be zero surprises.  It is same code that was tested in dev, QA, and pre-production.    

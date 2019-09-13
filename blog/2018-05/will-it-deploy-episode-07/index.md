@@ -7,7 +7,7 @@ published: 2018-05-09
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
- - Will it Deploy
+ - Product
 ---
 
 Welcome to another **Will it Deploy?** episode where we try to automate the deployment of different technologies with Octopus Deploy. In this episode, we're trying to deploy an ASP.NET Core 2.0 web app to an Amazon Web Services (AWS) Ubuntu Linux Virtual Machine (VM) with SQL Server for Linux. We also explore setting up a cloud-based delivery pipeline with [AppVeyor](https://appveyor.com) and [Octopus](https://octopus.com/cloud).

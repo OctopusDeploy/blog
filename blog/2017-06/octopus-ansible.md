@@ -7,7 +7,7 @@ published: 2017-07-11
 metaImage: linux-metaimage.png
 bannerImage: linux-blogimage.png
 tags:
- - Product
+ - DevOps
 ---
 
 <div style="background-color:#e9edf2;">

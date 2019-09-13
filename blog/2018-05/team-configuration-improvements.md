@@ -7,10 +7,8 @@ published: 2018-05-09
 metaImage: metaimage-team-permissions.png
 bannerImage: blogimage-team-permissions.png
 tags:
- - Teams
- - Spaces
+ - Engineering
 ---
-
 
 ## Team Configuration Improvements
 

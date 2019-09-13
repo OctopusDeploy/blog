@@ -7,7 +7,7 @@ published: 2017-11-11
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Product
+ - DevOps
 ---
 
 In the [previous blog post](/blog/2017-11/installing-jenkins-from-scratch.md) I showed you how to get a basic instance of Jenkins up and running with the tools required to build a Maven project and publish it to Octopus.

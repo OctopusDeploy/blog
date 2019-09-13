@@ -7,7 +7,7 @@ published: 2019-06-10
 metaImage: askoctopusthumbnail.png
 bannerImage: askoctopusthumbnail.png
 tags:
- - Ask Octopus
+ - Product
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/82AOIo_8zVo" frameborder="0" allowfullscreen></iframe>

@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 Elastic Beanstalk is a Platform as a Service (PaaS) offering from AWS that lets developers deploy code written in a variety of languages, such as .NET, Java, PHP, Node.js, Go, Python, and Ruby, onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.

@@ -7,9 +7,7 @@ bannerImage: amazon-elastic-containers-octopus-deploy.png
 metaImage: amazon-elastic-containers-octopus-deploy.png
 published: 2018-09-19
 tags:
-- Containers
-- Docker
-- AWS
+- Product
 ---
 
 ![Octopus Juggling AWS ECS and Docker](amazon-elastic-containers-octopus-deploy.png)

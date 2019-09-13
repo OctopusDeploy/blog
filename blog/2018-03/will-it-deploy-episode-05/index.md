@@ -7,7 +7,7 @@ published: 2018-03-29
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
- - Will it Deploy
+ - Product
 ---
 
 Welcome to another **Will it Deploy?** Episode where we try to automate the deployment of different technologies with Octopus Deploy. In this special double-episode, we're trying to deploy a multi-tenant SaaS web app to different customers running  on Amazon Web Services (AWS) virtual machines.

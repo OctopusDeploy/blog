@@ -7,7 +7,7 @@ published: 2018-10-11
 metaImage: blogimage-dockertok8.png
 bannerImage: blogimage-dockertok8.png
 tags:
- - Kubernetes
+ - Engineering
 ---
 
 ![Octopus deploying a TeamCity container to Kubernetes illustration](blogimage-dockertok8.png)

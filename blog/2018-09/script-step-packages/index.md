@@ -7,7 +7,7 @@ metaImage: metaimage-script-step-packages.png
 bannerImage: blogimage-script-step-packages.png
 published: 2018-09-04
 tags:
-- Scripting
+- Product
 ---
 
 In [Octopus 2018.8](https://octopus.com/blog/octopus-release-2018.8) Script Steps are evolving, and gaining some new super-powers.

@@ -7,7 +7,7 @@ author: andrew.katsivas@octopus.com
 metaImage: metaimage-bitbucket.png
 bannerImage: blogimage-bitbucket.png
 tags:
- - Integration
+ - DevOps
 ---
 
 ![Bitbucket pipelinse and Octopus Deploy](blogimage-bitbucket.png)

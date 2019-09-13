@@ -7,7 +7,7 @@ published: 2019-08-19
 metaImage: img_comparecicd_2019.png
 bannerImage: img_comparecicd_2019.png
 tags:
- - Octopus
+ - DevOps
 ---
 
 ![Illustration of two deep sea masks representing CI and CD](img_comparecicd_2019.png)

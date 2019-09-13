@@ -7,9 +7,7 @@ published: 2019-04-08
 metaImage: 
 bannerImage: 
 tags:
- - Jira
- - Work Items
- - Release Notes
+ - Product
 ---
 
 In this post, we're excited to announce some new features in Octopus Deploy 2019.4 that are focused on tightening the feedback loop in your CI/CD pipeline.  These features strengthen the integration between the build servers and Octopus by passing more information about the build down the line.

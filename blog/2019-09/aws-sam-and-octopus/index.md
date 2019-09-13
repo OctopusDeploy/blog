@@ -7,7 +7,7 @@ published: 2019-09-10
 metaImage: blogimage_deploy_aws_sam_apps.png
 bannerImage: blogimage_deploy_aws_sam_apps.png
 tags:
- - Product
+ - Engineering
 ---
 
 ![Illustration showing an AWS SAM deployment with Octopus Deploy](blogimage_deploy_aws_sam_apps.png)

@@ -7,9 +7,10 @@ published: 2018-02-02
 metaImage: install-and-configure-nginx/metaimage-nginx.png
 bannerImage: install-and-configure-nginx/blogimage-nginx.png
 tags:
- - Walkthrough
+ - DevOps
 ---
 
+Hello deployers!  Over the past few days I have learned a lot about configuring NGINX. I have configured a simple reverse proxy for two web applications and hope to never do it again. For the sake of my future self I have setup a project in Octopus to do the work. A configuration change, certificate expiry or deployment to another machine can be completed at the push of a button, rather than trying to remember all of the tweaking I have done over the past days. Here's how it works:
 Hello deployers!  Over the past few days I have learned a lot about configuring NGINX. I have configured a simple reverse proxy for two web applications and hope to never do it again. For the sake of my future self I have setup a project in Octopus to do the work. A configuration change, certificate expiry or deployment to another machine can be completed at the push of a button, rather than trying to remember all of the tweaking I have done over the past days. Here's how it works:
 
 ![NGINX deployment process](install-and-configure-nginx/nginx-deployment-process.png)

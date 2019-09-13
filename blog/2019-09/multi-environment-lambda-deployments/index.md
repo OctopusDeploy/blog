@@ -7,7 +7,7 @@ published: 2019-08-26
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 Getting started with serverless applications is relatively easy these days. Tools like [Serverless](https://serverless.com/) and [AWS SAM](https://aws.amazon.com/serverless/sam/) abstract away much of the boilerplate code and hide the finer interactions between services to get you up and running quickly.

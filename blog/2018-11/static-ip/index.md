@@ -5,7 +5,7 @@ description: "Simplify your Octopus Cloud networking and firewall configuration 
 author: roy.wallace@octopus.com
 published: 2018-11-16
 tags:
- - Octopus Cloud
+ - Product
 ---
 
 You can now assign a **static IP address** to your Octopus Cloud instance! This opens up new possibilities for simplifying and securing your configuration, for example:

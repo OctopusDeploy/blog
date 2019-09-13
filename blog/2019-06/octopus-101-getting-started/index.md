@@ -7,7 +7,7 @@ published: 2019-06-07
 bannerImage: octopus-101.png
 metaImage: octopus-101.png
 tags:
- - Webinar
+ - Events and webinars
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Vpuyr_WTamU" frameborder="0" allowfullscreen></iframe>

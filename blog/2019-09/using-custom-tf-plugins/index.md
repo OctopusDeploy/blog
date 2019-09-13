@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 There is an [ongoing discussion](https://github.com/hashicorp/terraform/issues/15252) in the Hashicorp GitHub repository about the possibility of supporting custom plugin repositories for Terraform. As it stands today though only the official Terraform plugins will be downloaded on demand, and custom plugins need to be manually distributed.

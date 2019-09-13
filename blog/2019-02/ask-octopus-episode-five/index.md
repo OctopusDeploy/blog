@@ -7,7 +7,7 @@ published: 2019-02-15
 metaImage: ask-octopus-paul-stovell-ep5.png
 bannerImage: ask-octopus-paul-stovell-ep5.png
 tags:
- - Ask Octopus
+ - Product
 ---
 
 <iframe width="580" height="335" src="https://www.youtube.com/embed/8GOKCub2Bjg" frameborder="0" allowfullscreen></iframe>

@@ -7,8 +7,7 @@ bannerImage: blogimage-docker-compose.png
 metaImage: metaimage-docker-compose.png
 published: 2018-09-05
 tags:
-- Containers
-- Docker
+- Product
 ---
 
 ![Octopus working with Docker Compose illustration](blogimage-docker-compose.png)

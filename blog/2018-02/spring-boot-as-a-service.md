@@ -7,8 +7,7 @@ metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 published: 2018-02-18
 tags:
- - Java
- - Cloud
+ - Product
 ---
 
 Spring Boot supports building JAR files that can be executed like regular bash scripts in Unix environments. These files are called [fully executable JARs](https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html), and they make deploying Spring Boot applications as Linux services very convenient. In this blog post we'll take a look at how we can deploy a fully executable JAR file to an EC2 instance created via a CloudFormation template with Octopus.

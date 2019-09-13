@@ -7,7 +7,7 @@ published: 2019-02-26
 metaImage: webinar-database-devops.png
 bannerImage: webinar-database-devops.png
 tags:
- - Webinar
+ - Events and webinars
 ---
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/B7xqDBTRpGQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

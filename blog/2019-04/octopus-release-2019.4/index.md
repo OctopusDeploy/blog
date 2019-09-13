@@ -7,10 +7,7 @@ published: 2019-04-08
 metaImage: blogimage-shipping-2019-4.png
 bannerImage: blogimage-shipping-2019-4.png
 tags:
- - New Releases
- - Jira
- - Work Items
- - Release Notes
+ - Product
 ---
 
 We are shipping Octopus Deploy 2019.4 with a focus on enhancing the feedback loop in your CI/CD pipeline.  If you have ever wanted better traceability of your requirements through build and deployment, this update is for you. 

@@ -7,7 +7,7 @@ metaImage: metaimage-shipping-2018-6.png
 bannerImage: blogimage-shipping-2018-6.png
 published: 2018-06-08
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octopus Deploy 2018.6 release banner](blogimage-shipping-2018-6.png)

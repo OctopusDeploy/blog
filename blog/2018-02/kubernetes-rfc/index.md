@@ -7,7 +7,7 @@ metaImage: metaimage-kubernetes-rfc.png
 bannerImage: blogimage-kubernetes-rfc.png
 published: 2018-02-19
 tags:
- - RFC 
+ - Product
 ---
 
 ![Octopus sailing Kubernetes](blogimage-kubernetes-rfc.png)

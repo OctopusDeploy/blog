@@ -7,7 +7,7 @@ visibility: public
 metaImage: blogimg_versioning_githubactions.png
 bannerImage: blogimg_versioning_githubactions.png
 tags:
- - Octopus
+ - DevOps
 ---
 
 ![Illustration showing GitHub CI processes with versions](blogimg_versioning_githubactions.png)

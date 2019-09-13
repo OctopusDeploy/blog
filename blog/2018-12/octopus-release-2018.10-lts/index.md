@@ -7,7 +7,7 @@ bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
 published: 2018-12-19
 tags:
-- New Releases, LTS
+- Engineering
 ---
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)

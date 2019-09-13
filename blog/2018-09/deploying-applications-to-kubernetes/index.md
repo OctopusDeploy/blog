@@ -7,7 +7,7 @@ published: 2018-09-07
 metaImage: metaimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
- - Kubernetes
+ - Product
 ---
 
 ![Octopus steering the Kubernetes ship illustration](blogimage-kubernetes.png)

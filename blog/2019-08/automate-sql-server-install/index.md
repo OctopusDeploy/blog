@@ -7,7 +7,7 @@ metaImage: img_blog_automatingsql_navy_2019.png
 bannerImage: img_blog_automatingsql_navy_2019.png
 published: 2019-08-21
 tags:
- - Developer Machine Setup
+ - Engineering
 ---
 
 ![Illustration showing developers installing SQL Server](img_blog_automatingsql_navy_2019.png)

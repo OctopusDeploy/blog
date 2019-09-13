@@ -7,7 +7,7 @@ author: jason.brown@octopus.com
 metaImage: metaimage-powershell.png
 bannerImage: blogimage-powershell.png
 tags:
- - PowerShell
+ - DevOps
 ---
 
 Classically, Octopus Deploy is an engine for pushing out applications - historically speaking, .NET applications - to servers.  But these days, it's a lot more than that. 

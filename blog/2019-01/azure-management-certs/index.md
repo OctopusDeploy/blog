@@ -7,7 +7,7 @@ published: 2019-01-23
 metaImage: 
 bannerImage: 
 tags:
- - Azure
+ - Product
 ---
 
 ## tl;dr;

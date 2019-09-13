@@ -7,7 +7,7 @@ published: 2018-03-13
 metaImage: metaimage-azurefunctions.png
 bannerImage: blogimage-azurefunctions.png
 tags:
- - New Releases
+ - Product
 ---
 
 ![Azure Functions in the Cloud](blogimage-azurefunctions.png)

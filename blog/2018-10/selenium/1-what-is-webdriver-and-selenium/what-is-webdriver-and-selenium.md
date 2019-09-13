@@ -7,7 +7,7 @@ bannerImage: webdriver.png
 metaImage: webdriver.png
 published: 2018-10-01
 tags:
-- Java
+- DevOps
 ---
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).

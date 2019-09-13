@@ -7,7 +7,7 @@ metaImage: automate_machine_chocolately.png
 bannerImage: automate_machine_chocolately.png
 published: 2019-08-26
 tags:
- - Developer Machine Setup
+ - Engineering
 ---
 
 ![Illustration showing Chocolately packages being installed on a developer machine](automate_machine_chocolately.png)

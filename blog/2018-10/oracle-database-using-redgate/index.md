@@ -7,7 +7,7 @@ published: 2018-10-16
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
- - Database Deployments
+ - Engineering
 ---
 
 Many years prior to joining Octopus Deploy, I worked on a .NET application with Oracle as its database for about 3 years.  I started working there a couple of years before Octopus Deploy version 1.0 was released.  Those were tough deployments.  Everything was manual.  And we could only deploy on Saturday mornings at 2 AM.  Which led the never ending debate, should I go to sleep before the deployment, or should I stay up.  The deployments took anywhere from 2 to 4 hours.  The answer, go to sleep.  And set 3 alarms.

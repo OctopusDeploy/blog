@@ -7,8 +7,7 @@ published: 2019-04-08
 metaImage:
 bannerImage:
 tags:
- - Work Items
- - Release Notes
+ - Product
 ---
 
 This post follows on from our Octopus Deploy 2019.4 announcement about [Tracking Your Work From Code to Deployment](../metadata-and-work-items/index.md).
