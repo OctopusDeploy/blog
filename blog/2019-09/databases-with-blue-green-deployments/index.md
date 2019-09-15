@@ -3,13 +3,15 @@ title: Automated blue/green database deployments
 description: Learn some techniques for automating database deployments when using a blue/green deployment strategy.
 author: bob.walker@octopus.com
 visibility: public
-metaImage: 
-bannerImage: 
-published: 2020-09-30
+metaImage: img-blog-database-deployments-blue-green.png
+bannerImage: img-blog-database-deployments-blue-green.png
+published: 2019-09-17
 tags:
  - Database Deployments
- - Blue-Green Deployments
+ - DevOps
 ---
+
+![Illustration showing two database (one green and one blue) on a seesaw](img-blog-database-deployments-blue-green.png)
 
 Nobody wants to do deployments at 2 a.m. on Saturday morning, but several years ago, I worked on an application, and that was the only time an extended outage could be scheduled. A quick deployment and verification took two hours. A typical deployment took four hours.  I wanted to implement blue/green deployments, which allow for zero-downtime deployments, but the database for the application made everything complicated enough to stop us from moving to blue/green deployments.  
 
