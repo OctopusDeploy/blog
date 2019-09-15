@@ -10,6 +10,8 @@ tags:
  - DevOps
 ---
 
+![Docker whale with a cloud native application bundle on its back](img-blog_whatis_cnab.png)
+
 Working with cloud infrastructure can be a daunting task. Each cloud provider maintains their own CLI tools and preferred deployment strategies, cross-platform tools like Terraform, Ansible, Puppet, and Chef take a significant investment to learn, and once you’ve spun up the base infrastructure, you may then be faced with managing yet more deployments to platforms like Docker or Kubernetes.
 
 It is safe to say that these days cloud deployments almost always require multiple tools and credentials, and the Cloud Native Application Bundle (CNAB) specification is a response to the growing complexity of deploying and managing cloud infrastructure.
