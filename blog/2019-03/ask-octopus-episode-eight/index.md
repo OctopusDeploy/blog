@@ -8,6 +8,7 @@ metaImage: askoctopusthumbnail.png
 bannerImage: askoctopusthumbnail.png
 tags:
  - Product
+ - Ask Octopus
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tcPtD14f0_I" frameborder="0" allowfullscreen></iframe>
