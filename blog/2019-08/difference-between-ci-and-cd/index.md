@@ -24,11 +24,11 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 
 At a high level, CI is all about taking the code written by developers and compiling it into an artifact, running automated tests, and capturing the log files so any failed builds or tests can be resolved. A CI server facilities this process by running builds and tests with each commit.
 
-![CI inputs and outpus graphic](input-output-graphic.png)
-
 The CI process can be described as the equation:
 
 `code + dependencies + build tools + execution environment = test results + logs + compiled artifact`
+
+![CI inputs and outpus graphic](input-output-graphic.png)
 
 The left side of the equation takes the code written by developers, any dependencies of the code, a build tool, and the environment where the build and tests are executed. When these inputs are available, a CI server completes the build to produce the elements on the right side of the equation.
 
