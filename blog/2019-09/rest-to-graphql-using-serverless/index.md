@@ -7,7 +7,10 @@ published: 2019-09-20
 metaImage: placeholder.png
 bannerImage: placeholder.png
 tags:
-  -  # ?
+  - GraphQL
+  - Serverless
+  - AWS
+  - AWS AppSync
 ---
 
 ![PLACEHOLDER IMAGE](placeholder.png)
