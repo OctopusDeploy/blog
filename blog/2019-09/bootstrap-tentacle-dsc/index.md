@@ -19,11 +19,12 @@ Infrastructure as Code is an awesome and powerful concept.  Having the ability t
 ## Install the NuGet Package Provider
 There is a drawback to using DSC, any external module that you use will need to be present on the machine before the DSC script will run.  What this means is that you have to separate the installation of the external module from the DSC script itself.
 
-In order to download the external modules, we first need to install the NuGet package provider.  Depending on your server configuration, it may be necessary to enforce use of TLS 1.2.
+In order to download the external modules, we first need to install the NuGet package provider.  Depending on your server configuration, it may be necessary to include use of TLS 1.2.
 
 ```PS
-# Force use of TLS 1.2
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+# Include use of TLS 1.2
+[System.Net.ServicePointManager]::SecurityProtocol += [System.Net.SecurityProtocolType]::Tls12
+
 
 # check to see if Nuget is installed
 if($null -eq (Get-PackageProvider | Where-Object {$_.Name -eq "NuGet"}))
@@ -45,7 +46,7 @@ if ($null -eq (Get-Package | Where-Object {$_.Name -eq "OctopusDSC"}))
 ```
 
 ## Setting up the DSC resource
-Now that we've taken care of the pre-requisite components, it's time to set up our OctopusDSC resource!  There are a bunch of parameters that we can pass to this resource outlined [here](https://github.com/OctopusDeploy/OctopusDSC/blob/master/README-cTentacleAgent.md).  For this example, we'll be configuring a Listening tentacle as a deployment target.  If we wanted this to be a worker instead, we'd empty out the Role and Environment arrays and define the entries we want in the WorkerPools array.
+Now that we've taken care of the pre-requisite components, it's time to set up our OctopusDSC cTentacleAgent resource!  There are a bunch of parameters that we can pass to this resource outlined [here](https://github.com/OctopusDeploy/OctopusDSC/blob/master/README-cTentacleAgent.md).  For this example, we'll be configuring a Listening tentacle as a deployment target.  If we wanted this to be a worker instead, we'd empty out the Role and Environment arrays and define the entries we want in the WorkerPools array.
 
 ```PS
 
@@ -108,7 +109,6 @@ $WorkerPools = @()
 # Set the APIKey
 $OctopusAPIKey = "API-XXXXXXXXXXXXXXXXXXXXXX"
 
-
 # Set the Octopus Server URL
 $OctopusServerUrl = "https://<YourOctoupsServer>"
 
@@ -140,8 +140,8 @@ $remoteSession = New-PSSession -ComputerName <ComputerName> -Credential $elevate
 
 # Download and install the Nuget package provider
 Invoke-Command -Session $remoteSession -ScriptBlock {
-    # Force use of TLS 1.2
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+    # Include use of TLS 1.2
+    [System.Net.ServicePointManager]::SecurityProtocol += [System.Net.SecurityProtocolType]::Tls12
 
     # check to see if Nuget is installed
     if((Get-PackageProvider | Where-Object {$_.Name -eq "NuGet"}) -eq $null)
@@ -209,7 +209,6 @@ Invoke-Command -Session $remoteSession -ScriptBlock{
 	    }
     }
 
-
     # Example roles
     $OctopusRoles = @("ExampleRole")
 
@@ -238,23 +237,38 @@ Invoke-Command -Session $remoteSession -ScriptBlock{
 
 ```
 
-## Installation isn't the only thing DSC can do
-As the name implies, DSC is what we want the Desired state to be.  For example, the above configuration configured the Tentacle to have the role and only the role of ExampleRole.  If someone were to add an additional role to this Tentacle, it would no longer be in the desired state.  We're able to determine this by running
+## Testing for drift and Octopus machine policies
+As the name implies, DSC is what we want the desired state to be.  For example, the above configuration configured the Tentacle to have the role and only the role of ExampleRole.  If someone were to add an additional role to this Tentacle, it would no longer be in the desired state.  We're able to determine this by running
 
 ```PS
 (Test-DscConfiguration -Detailed).ResourcesNotInDesiredState
 ```
+Using the Machine Policy feature of Octopus Deploy, we can create a new policy that will automatically correct drift it it is detected.
 
-If we combine this functionality with the of Machine Policies, we can configure Octopus Deploy to automatically correct drift if it is detected
+To accomplish this, navigate to the Infrastructure tab and click on Macine Policies.  Once there, click the Add Machine Policy button
+
+![](add-new-machine-policy.png)
+
+Select the Use Custom Script radio button and paste the following
+
+![](machine-policy-powershell.png)
 
 ```PS
 $tentacleConfiguration = (Test-Configuration -Detailed)
 
 if ($null -ne $tentacleConfiguration.ResourcesNotInDesiredState)
 {
+    # Display what resources are not in desired state
+    foreach ($resource in $tentacleConfiguration.ResourcesNotInDesiredState)
+    {
+        Write-Warning "Resource $($resource.ResourceId) is not in desired state!"
+    }
+
+    Write-Output "Running last DSC configuration to correct drift..."
     Start-DscConfiguration -Path "c:\dsc"
 }
 ```
+Now, when drift is detected it will automatically run the last DSC configuration for us and put the machine back in the desired state!  In our example above, where someone added an additional role to a Tentacle, this policy will detect the drift and remove the added role.  If the role is something that is needed, you will need to add it to the `$OctopusRoles` variable in our original script and then run the new configuration to set the new desired state.
 
 ## Summary
 In this post I demonstrated how to install and configure a Tentacle machine with one simple script as well as a method for detecting drift.  Utlizing a method such as DSC helps to ensure that all of your installations are done consistently.
