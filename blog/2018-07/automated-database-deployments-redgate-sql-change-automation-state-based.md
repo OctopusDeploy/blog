@@ -8,6 +8,7 @@ metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
  - Engineering
+ - Database Deployments
 ---
 
 ## Introduction

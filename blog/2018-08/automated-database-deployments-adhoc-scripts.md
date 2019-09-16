@@ -8,6 +8,7 @@ metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
  - Engineering
+ - Database Deployments
 ---
 
 ![Octopus worker deploying an adhoc SQL script illustration](blogimage-sqlscript.png)

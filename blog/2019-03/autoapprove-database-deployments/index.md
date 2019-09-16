@@ -8,6 +8,7 @@ metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
  - Engineering
+ - Database Deployments
 ---
 
 A really excellent question was asked within a few hours of my blog post [Using DbUp and Workers to Automate Database Deployments](https://octopus.com/blog/dbup-database-deployments) going live.

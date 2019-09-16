@@ -8,6 +8,7 @@ metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
  - Engineering
+ - Database Deployments
 ---
 
 In my previous [article](https://octopus.com/blog/oracle-database-using-redgate), I walked through how to set up a CI/CD pipeline to deploy to Oracle using TeamCity as the build server, Octopus Deploy (of course) as the deployment server with Redgate handling all the heavy lifting.  There are some core concepts in that previous article that are important for this article.  If you haven't had the chance, please read that and then come back to this post.  Trust me, this article isn't going anywhere.
