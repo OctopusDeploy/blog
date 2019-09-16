@@ -1,5 +1,5 @@
 ---
-title: What is CNAB
+title: What is CNAB?
 description: A look at the Cloud Native Application Bundle (CNAB) specification, what problems it solves, and the pros and cons of the tooling.
 author: matthew.casperson@octopus.com
 visibility: public
