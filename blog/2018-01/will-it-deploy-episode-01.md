@@ -8,6 +8,7 @@ metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
  - Product
+ - Will it Deploy
 ---
 
 Today, we're launching **Will it Deploy?** This is our brand new video series where we try to automate the deployment of different technologies with Octopus Deploy.
