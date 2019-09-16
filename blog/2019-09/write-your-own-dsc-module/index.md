@@ -12,10 +12,10 @@ tags:
 ---
 
 ## Introduction
-So, you've discovered PowerShell Desired State Configuration (DSC), got some experience under your belt, but have encountered a situation where the available modules don't quite fit what you want to do.  Doing some research, you've found that you can write [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource).  However, they don't scale well, are difficult to pass parameters to, and tend not to encrypt credentials leaving passwords in clear text in the resulting MOF files.  You say to yourself, "I know!  I'll write my own module!  Can't be that hard, can it?"
+So, you've discovered PowerShell Desired State Configuration (DSC), got some experience under your belt, but you have encountered a situation where the available modules don't quite fit what you want to do.  Doing some research, you've found that you can write [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource) to do what you want.  You'll eventually come to the realization that they don't scale well, are difficult to pass parameters to, and do not to provide a method for encryption leaving passwords in clear text.  You say to yourself, "I know!  I'll write my own module!  Can't be that hard, can it?"
 
 ## Tool to help you write your module
-Writing your own module isn't really that hard.  The most difficult part about writing your own module is getting the files and folders in the correct locations, DSC is quite specific in what goes where.  Microsoft recognizes that this can be quite tedious and has developed a resource to help you get started, [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner).  Using this module, you can easily define what  properties your resource needs to have and it will generate the entire module structure for you, including the MOF schema file.  If you're a first timer, I highly suggest using this module, it could save you quite a bit of frustration (take it from this author).
+Writing your own module isn't really that hard.  The most difficult part is getting the files and folders in the correct locations, DSC is quite specific in what goes where.  Microsoft recognizes that this can be quite frustrating and has developed a PowerShell module to help you get started, [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner).  Using this module, you can easily define what properties your resource needs to have and it will generate the entire module structure for you, including the MOF schema file.  If you're a first timer, I highly suggest using this module, it could save you quite a bit of frustration (take it from this author).
 
 ### Installing xDscResourceDesigner
 Installing the module is no different than installing any other module onto your system
@@ -24,10 +24,10 @@ Installing the module is no different than installing any other module onto your
 Install-Module -Name xDscResourceDesigner
 ```
 
-As the [Microsoft article](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner) points out, if you have a version of PowerShell prior to version 5, you may need to install the PowerShellGet module for that to work.
+As the [Microsoft article](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner) points out, if you have a version of PowerShell prior to version 5, you may need to install the PowerShellGet module for installation to work.
 
 ### Using xDscResourceDesigner
-Using the xDscResourceDesigner is actually pretty easy, there are only two functions; New-xDscResource and New-DscResourceProperty.  New-DscResourceProperty is what you use to define the properties of your DSC resource.  Once you've done that, you pump that information to New-xDscResource function and it generates everything you need to implement your resource!
+Using the xDscResourceDesigner is actually pretty easy, there are only two functions; New-DscResourceProperty and New-xDscResource.  New-DscResourceProperty is what you use to define the properties of your DSC resource.  Once you've done that, you pump that information to New-xDscResource function and it generates everything you need to implement your resource!
 
 ```PS
 # Import the module for use
@@ -41,11 +41,10 @@ $property3 = New-xDscResourceProperty -Name Property3 -Type String -Attribute Re
 # Create my DSC Resource
 New-xDscResource -Name DemoResource1 -Property $property1, $property2, $property3 -Path 'c:\Program Files\WindowsPowerShell\Modules' -ModuleName DemoModule
 ```
-
-And there you have it, your very own DSC module!  Now we can open it up and define the rest of what we need to do.
+And there you have it, your very own DSC module with all the stubs generated!
 
 #### Understanding resource Attribute property
-For Attribute component of a Resource Property within DSC, there are three possible values
+For the Attribute component of a Resource Property within DSC, there are four possible values
 
 - Key
 - Read
@@ -63,7 +62,6 @@ $property3 = New-xDscResourceProperty -Name Property3 -Type String -Attribute Re
 $property4 = New-xDscResourceProperty -Name Property4 -Type String -Attribute Key
 $property5 = New-xDscResourceProperty -Name Property5 -Type String -Attribute Key
 ```
-
 In this example, property1, property4, and property5 are what make up the unique value for the node.  Key attributes are always writable and are required.
 
 ##### Read
@@ -76,7 +74,7 @@ Required attributes are assignable properties that must be specified when declar
 Write attributes are optional attributes that you specify a value to when defining the node.  In our example, Property2 is defined as a Write attribute.
 
 #### ValidateSet switch
-The ValidateSet switch is someting that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we've specified that Property3 can only be either "Absent" or "Present"  Any other value specified will result in an error.
+The ValidateSet switch is someting that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we've specified that Property3 can only be either "Absent" or "Present".  Any other value will result in an error.
 
 ## DSC module file and folder structure
 Whether you decided to [do it yourself](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringResourceMOF) or use the tool, the folder and file structure will look like the following
@@ -110,7 +108,113 @@ The MOF file will only contain the properties that we are going to be using in o
 The psm1 file is where the bulk of our code is going to be.  This file will contain three required functions
 
 - Get-TargetResource
-- Set-TargetResource
 - Test-TargetResource
+- Set-TargetResource
 
 #### Get-TargetResource
+Get-TargetResource returns the current value(s) of what the resource is responsible for.  Our stubbed function from using xDscResourceDesigner would look like the following
+
+```PS
+function Get-TargetResource
+{
+    [CmdletBinding()]
+    [OutputType([System.Collections.Hashtable])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [System.String]
+        $Property1,
+
+        [parameter(Mandatory = $true)]
+        [ValidateSet("Present","Absent")]
+        [System.String]
+        $Property3
+    )
+
+    #Write-Verbose "Use this cmdlet to deliver information about command processing."
+
+    #Write-Debug "Use this cmdlet to write debug information while troubleshooting."
+
+
+    <#
+    $returnValue = @{
+    Property1 = [System.String]
+    Property2 = [System.Management.Automation.PSCredential]
+    Property3 = [System.String]
+    }
+
+    $returnValue
+    #>
+}
+```
+Note that the optional parameter (Write attribute) Property2 is not required for this function.
+
+#### Test-TargetResource
+The Test-TargetResource function returns a boolean value of whether or not the resource is in desired state.  From our generated example, the function would look like this,
+
+```PS
+function Test-TargetResource
+{
+    [CmdletBinding()]
+    [OutputType([System.Boolean])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [System.String]
+        $Property1,
+
+        [System.Management.Automation.PSCredential]
+        $Property2,
+
+        [parameter(Mandatory = $true)]
+        [ValidateSet("Present","Absent")]
+        [System.String]
+        $Property3
+    )
+
+    #Write-Verbose "Use this cmdlet to deliver information about command processing."
+
+    #Write-Debug "Use this cmdlet to write debug information while troubleshooting."
+
+
+    <#
+    $result = [System.Boolean]
+    
+    $result
+    #>
+}
+```
+
+#### Set-TargetResource
+The Set-TargetResource function is used to configure the resource to the specified desired state.  Our generated example would look like this,
+
+```PS
+function Set-TargetResource
+{
+    [CmdletBinding()]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [System.String]
+        $Property1,
+
+        [System.Management.Automation.PSCredential]
+        $Property2,
+
+        [parameter(Mandatory = $true)]
+        [ValidateSet("Present","Absent")]
+        [System.String]
+        $Property3
+    )
+
+    #Write-Verbose "Use this cmdlet to deliver information about command processing."
+
+    #Write-Debug "Use this cmdlet to write debug information while troubleshooting."
+
+    #Include this line if the resource requires a system reboot.
+    #$global:DSCMachineStatus = 1
+}
+```
+
+## Summary
+Whether simplistic or complex, the steps for creating your own DSC module would be the same.  This post is aimed at getting you started in the right direction.  From here, you can create your module to fit whatever resource you need to configure and keep in desired state.
