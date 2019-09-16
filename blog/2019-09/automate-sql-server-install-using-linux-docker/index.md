@@ -3,7 +3,7 @@ title: Running SQL Server Developer in a Linux Based Docker Container
 description: The previous article walked through how to get SQL Server Developer running in Windows based Docker container. How hard will it be to switch over to Linux?
 author: bob.walker@octopus.com
 visibility: public
-published: 2019-09-30
+published: 2020-09-30
 metaImage: 
 bannerImage: 
 tags:
