@@ -20,9 +20,11 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 * The features provided by good CD tools.
 * Why you may consider using separate tools for your CI/CD workflow.
 
-## What is continuous integration?
+## What is continuous integration?  
 
 At a high level, CI is all about taking the code written by developers and compiling it into an artifact, running automated tests, and capturing the log files so any failed builds or tests can be resolved. A CI server facilities this process by running builds and tests with each commit.
+
+![CI inputs and outpus graphic](Input-Output-horizontal.png)
 
 The CI process can be described as the equation:
 
