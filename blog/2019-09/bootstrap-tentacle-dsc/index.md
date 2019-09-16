@@ -12,6 +12,8 @@ tags:
 ---
 
 ## Introduction
+Manually installing Tentacle on deployment targets is fairly painless when you have a small amount of machines, it takes just a couple of minutes.  It is not uncommon for the number of machines to increase exponentially as Octopus Deploy becomes more prevalent, especially in large organizations.  In more advanced implementations, targets are sometimes created dynamically as part of scaling and having to manually install Tentacle just isn't feasible.  This is where Infrastructure as Code (IaC) comes in handy.
+
 Infrastructure as Code is an awesome and powerful concept.  Having the ability to programmatically define how your Infrastructure should be set up leads to consistency and predictability for application deployments.  Desired State Configuration (DSC) also gives us the added benefit of being able to monitor the machine for drift and correct automatically.  In this post, I'll be walking you through using the OctopusDSC DSC module to install and configure a tentacle machine.
 
 !toc
