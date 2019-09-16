@@ -5,7 +5,7 @@ author: bob.walker@octopus.com
 visibility: public
 metaImage: img-blog-database-deployments-blue-green.png
 bannerImage: img-blog-database-deployments-blue-green.png
-published: 2019-09-17
+published: 2019-09-16
 tags:
  - Database Deployments
  - DevOps
