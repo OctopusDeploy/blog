@@ -2,12 +2,12 @@
 title: Running SQL Server Developer in a Linux-based Docker Container
 description: How to run SQL Server Developer in a Linux-based Docker container.
 author: bob.walker@octopus.com
-visibility: private
+visibility: public
 published: 2020-09-30
 metaImage: 
 bannerImage: 
 tags:
- - Developer Machine Setup
+ - Engineering
  - Database Deployments
 ---
 
