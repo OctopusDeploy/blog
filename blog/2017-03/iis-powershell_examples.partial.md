@@ -20,9 +20,9 @@ New-IISSite -Name "Website1" -BindingInformation "*:80:" -PhysicalPath "C:\Sites
 
 ### Creating sites (advanced)
 
-Most likely, you'll want to specify a few extra settings when creating a real site. To do that, you can get the site after creating it, and add the extra settings. Since we are making multiple changes, we can use delayed commits to write them all to applicationHost.config at once.
+Most likely, you’ll want to specify a few extra settings when you create a real site. To do that, you can get the site after creating it, and add the extra settings. Since we are making multiple changes, we can use delayed commits to write them all to applicationHost.config at once.
 
-Here we'll add an additional binding, and set the site ID.
+Here we’ll add an additional binding, and set the site ID:
 
 ```powershell WebAdministration
 Import-Module WebAdministration
@@ -48,7 +48,7 @@ $manager.CommitChanges()
 
 ### Creating applications in virtual directories
 
-Most of the time, when people think of deploying a .NET app to a "virtual directory", they mean creating an *application* underneath a web site. The example below creates an application that would be viewable at `http://site/MyApp`. We also assign an application pool. 
+Most of the time, when people think of deploying a .NET app to a *virtual directory*, they mean creating an *application* underneath a web site. The example below creates an application that would be viewable at `http://site/MyApp`. We also assign an application pool:
 
 ```powershell WebAdministration
 Import-Module WebAdministration
@@ -68,7 +68,7 @@ $manager.CommitChanges()
 
 You need to assign each application (website or application in a virtual directory) to an *application pool*. The application pool defines the executable process in which requests to the application are handled. 
 
-IIS comes with a handful of application pools already defined for common options, but I always recommend creating your own application pool for each website or application that you deploy. This provides process-level isolation between applications and lets you set different permissions around what each application can do. The examples below show many of the common application pool settings. For the IIS Administration module, there are no built-in CmdLets to create application pools, so you have to do it with the `ServerManager` object directly.
+IIS comes with a handful of application pools already defined for common options, but I always recommend creating your own application pool for each website or application that you deploy. This provides process-level isolation between applications and lets you set different permissions around what each application can do. The examples below show many of the common application pool settings. For the IIS Administration module, there are no built-in CmdLets to create application pools, so you have to do it with the `ServerManager` object directly:
 
 ```powershell WebAdministration
 Import-Module WebAdministration
@@ -185,7 +185,7 @@ $manager.CommitChanges()
 
 ### Assigning application pools
 
-Once you've defined your application pool, you must assign applications to it. The examples below show you how to assign websites or applications in a virtual directory to your new application pool.
+Once you’ve defined your application pool, you must assign applications to it. The examples below show you how to assign websites or applications in a virtual directory to your new application pool:
 ```powershell WebAdministration
 Import-Module WebAdministration
 
@@ -212,9 +212,9 @@ $website.Applications["/MyApp"].ApplicationPoolName = "My Pool"
 $manager.CommitChanges()
 ```
 
-### Check whether sites, virtual directories or application pools already exist
+### Check whether sites, virtual directories, or application pools already exist
 
-You'll re-deploy your application to IIS many times over the course of a project, so you can't assume the script is being run for the first time. The examples below show a pattern for checking whether a site, application, or application pool already exists before making a change. 
+You’ll re-deploy your application to IIS many times over the course of a project, so you can’t assume the script is being run for the first time. The examples below show a pattern for checking whether a site, application, or application pool already exists before making a change:
 
 ```powershell WebAdministration
 Import-Module WebAdministration
@@ -264,7 +264,7 @@ $manager.CommitChanges()
 
 ### Change physical path of a site or application
 
-When deploying a new version of an application, my preference (and the way Octopus Deploy works) is to deploy to a fresh, new folder on disk, then update IIS to point to it. So you begin with:
+When deploying a new version of an application, my preference (and the way Octopus Deploy works) is to deploy to a fresh new folder on disk, then update IIS to point to it. So you begin with:
 
     C:\Sites\Website1\1.0   <--- IIS points here
 
@@ -312,14 +312,14 @@ $manager.CommitChanges()
 
 ### Changing authentication methods
 
-IIS supports a number of authentication methods. As described above, these are "locked" to `applicationHost.config` by default - so if you want to automatically enable them. The examples below show how to enable/disable: 
+IIS supports a number of authentication methods. As described above, these are *locked* to `applicationHost.config` by default, if you want to automatically enable them, the examples below show how to enable/disable: 
 
  - Anonymous authentication
  - Basic authentication
  - Digest authentication
  - Windows authentication
 
-IIS Manager also shows "ASP.NET impersonation" and "Forms authentication" as settings at the same level, but these are actually set in your app's `web.config` file so I've left them out of here. 
+IIS Manager also shows `ASP.NET impersonation` and `Forms authentication` as settings at the same level, but these are actually set in your app’s `web.config` file so I’ve left them out here:
 ```powershell WebAdministration
 Import-Module WebAdministration
 
@@ -375,7 +375,7 @@ $manager.CommitChanges()
 
 ### Changing logging settings
 
-HTTP request logging is provided by IIS and can be specified server-wide or on an individual site level. Applications and virtual directories can disable logging, but they can't do any logging of their own. The examples below show how to set logging at the site level. 
+HTTP request logging is provided by IIS and can be specified server-wide or at the individual site level. Applications and virtual directories can disable logging, but they can’t do any logging of their own. The examples below show how to set logging at the site level. 
 
 Logging settings are stored in `applicationHost.config` underneath the site:
 
@@ -425,9 +425,9 @@ $manager.CommitChanges()
 
 ### Running application pools as a specific user
 
-You can usually get by running your application pools as the `ApplicationPoolIdentity` accounts. This creates a virtual account for each different application pool automatically, isolating them from each other. On the local machine, you can grant access to resources like the file system to each separate application pool. For remote resources (like a SQL Server on a different machine), the application pool identities act as Network Service, so you can grant access at the machine level. Learn more about [application pool identities](https://www.iis.net/learn/manage/configuring-security/application-pool-identities). 
+You can usually get by running your application pools as the `ApplicationPoolIdentity` accounts. This creates a virtual account for each different application pool automatically, isolating them from each other. On the local machine, you can grant access to resources like the file system to each separate application pool. For remote resources (like an SQL Server on a different machine), the application pool identities act as Network Service, so you can grant access at the machine level. Learn more about [application pool identities](https://www.iis.net/learn/manage/configuring-security/application-pool-identities). 
 
-For more control over what the application pool can do, you should run it under a specific, custom user account. You'll want to use [`aspnet_regiis`](https://msdn.microsoft.com/en-us/library/k6h9cz8h.aspx) to give your custom account all the permissions it needs to run as an application pool and execute ASP.NET requests. You can then set your application pool to run as that user.
+For more control over what the application pool can do, you should run it under a specific, custom user account. You’ll want to use [`aspnet_regiis`](https://msdn.microsoft.com/en-us/library/k6h9cz8h.aspx) to give your custom account all the permissions it needs to run as an application pool and execute ASP.NET requests. You can then set your application pool to run as that user:
 
 ```powershell WebAdministration
 Import-Module WebAdministration
