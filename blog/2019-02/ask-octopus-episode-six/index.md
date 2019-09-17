@@ -7,7 +7,8 @@ published: 2019-02-22
 metaImage: ask-octopus-spaces-nick-josevski-ep-6.png
 bannerImage: ask-octopus-spaces-nick-josevski-ep-6.png
 tags:
- - Product
+ - Events and webinars
+ - Ask Octopus
 ---
 
 <iframe width="560" height="316" src="https://www.youtube.com/embed/wntIQYtVPKY" frameborder="0" allowfullscreen></iframe>
