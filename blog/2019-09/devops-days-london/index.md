@@ -7,7 +7,7 @@ published: 2019-09-04
 bannerImage: blogimage-devopsdays-london.png
 metaImage: blogimage-devopsdays-london.png
 tags:
- - Events and webinars
+ - Events and Webinars
 ---
 
 ![Octopus Deploy at DevOps Days London illustration](blogimage-devopsdays-london.png)

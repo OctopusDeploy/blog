@@ -7,7 +7,7 @@ published: 2019-09-11
 bannerImage: blogimage-code-conf-copenhagen.png
 metaImage: blogimage-code-conf-copenhagen.png
 tags:
- - Events and webinars
+ - Events and Webinars
 ---
 
 At Octopus Deploy, we are passionate about getting out and talking with customers and giving back to the community, which is why we are excited to announce that we are attending and sponsoring [Code Conf](https://www.code-conf.com/2019/code-conf/) on October 28, 2019 at the QDI - Danish Industry, H.C. Andersens Boulevard 18, Copenhagen, Denmark.

@@ -7,7 +7,7 @@ published: 2018-07-31
 metaImage: webinar-deep-dive.png
 bannerImage: webinar-deep-dive.png
 tags:
- - Events and webinars
+ - Events and Webinars
 ---
 
 <iframe width="560" height="315"  src="https://www.youtube.com/embed/0LbFjC9MKxs" frameborder="0" allowfullscreen></iframe>

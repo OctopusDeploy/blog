@@ -7,7 +7,7 @@ published: 2019-02-15
 metaImage: ask-octopus-paul-stovell-ep5.png
 bannerImage: ask-octopus-paul-stovell-ep5.png
 tags:
- - Events and webinars
+ - Events and Webinars
  - Ask Octopus
 ---
 

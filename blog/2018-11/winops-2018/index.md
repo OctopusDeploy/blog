@@ -7,7 +7,7 @@ published: 2018-11-08
 bannerImage: blogimage-winops-success.png
 metaImage: blogimage-winops-success.png
 tags:
- - Events and webinars
+ - Events and Webinars
 ---
 
 ![Derek Campbell speaking at WinOps London 2018 details](blogimage-winops-success.png)

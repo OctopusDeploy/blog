@@ -7,7 +7,7 @@ published: 2019-05-16
 bannerImage: turbocharging-teamcity.png
 metaImage: turbocharging-teamcity.png
 tags:
- - Events and webinars
+ - Events and Webinars
 ---
 
 ![Derek Campbell hosted a Webinar in conjunction with Jetbrains on "Turbocharging TeamCity with Octopus Deploy"](turbocharging-teamcity.png)
