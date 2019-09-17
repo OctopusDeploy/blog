@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Engineering
+ - Octopus
 ---
 
 Managing disconnected user databases is a major pain-point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
