@@ -7,7 +7,7 @@ published: 2019-08-29
 metaImage:
 bannerImage:
 tags:
- - DevOps
+ - Octopus
 ---
 
 As a free and open source build server, Jenkins is [used by millions](https://www.cloudbees.com/press/jenkins-community-announces-record-growth-and-innovation-2017), so most developers have either used or at least heard about Jenkins. Like most build servers, Jenkins is typically installed on a server to consume source code, execute a build process on build agents, and either deploy or publish the resulting artifact.
