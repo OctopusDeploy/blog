@@ -3,12 +3,14 @@ title: Deploying to AWS Elastic Beanstalk with Octopus
 description: This blog post looks at the process of deploying a .NET Core application to AWS Elastic Beanstalk.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-01-01
-metaImage:
-bannerImage:
+published: 2019-09-18
+metaImage: img-blog-deploy-netcore-to-aws-elastic-beanstalk.png
+bannerImage: img-blog-deploy-netcore-to-aws-elastic-beanstalk.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Slingshot deploying a new application release to a beanstalk vine](img-blog-deploy-netcore-to-aws-elastic-beanstalk.png)
 
 Elastic Beanstalk is a Platform as a Service (PaaS) offering from AWS that lets developers deploy code written in a variety of languages, such as .NET, Java, PHP, Node.js, Go, Python, and Ruby, onto preconfigured infrastructure. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
 
