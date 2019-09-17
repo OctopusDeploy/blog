@@ -1,14 +1,16 @@
 ---
-title: What is CNAB
+title: What is CNAB?
 description: A look at the Cloud Native Application Bundle (CNAB) specification, what problems it solves, and the pros and cons of the tooling.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2019-08-27
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-09-17
+metaImage: img-blog_whatis_cnab.png
+bannerImage: img-blog_whatis_cnab.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Docker Whale with a Cloud Native Application Bundle on its back](img-blog_whatis_cnab.png)
 
 Working with cloud infrastructure can be a daunting task. Each cloud provider maintains their own CLI tools and preferred deployment strategies, cross-platform tools like Terraform, Ansible, Puppet, and Chef take a significant investment to learn, and once you’ve spun up the base infrastructure, you may then be faced with managing yet more deployments to platforms like Docker or Kubernetes.
 

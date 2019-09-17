@@ -7,7 +7,7 @@ published: 2020-09-30
 metaImage: 
 bannerImage: 
 tags:
- - Developer Machine Setup
+ - Engineering
  - Database Deployments
 ---
 
@@ -62,7 +62,7 @@ It’s easy to get a container, even SQL Server, up and running.  I want to use 
 1. Get the container up and running with no extra configuration.
 2. Connect to it via SSMS.
 3. Persist databases created in a container.
-4. Have a static IP or hostname to keep configuration easy.
+4. Saving the image configuration for others to use.
 
 ### Running SQL Server Developer Container for the first time
 
@@ -76,7 +76,7 @@ If you are following along step by step, brew up some tea or coffee and sit back
 
 ![](docker-download-sql-server.png)
 
-Now that the image is downloaded, it’s time to get it fired up and run some SQL scripts.  Thankfully, the documentation [Microsoft added to Docker Hub](https://hub.docker.com/r/microsoft/mssql-server-windows-developer) makes this easy.  Please make a note of the `--name` parameter being sent in.  That parameter will make it easier later when we need to figure out how to connect to it.  Along with naming the instance, I will set the port to the default SQL Server port, `1433`:
+Now that the image is downloaded, it’s time to get it fired up and run some SQL scripts.  Thankfully, the documentation [Microsoft added to Docker Hub](https://hub.docker.com/r/microsoft/mssql-server-windows-developer) makes this easy.  Please make a note of the `--name` parameter being sent in.  That parameter will make it easier to work with later.  Along with naming the instance, I will set the port to the default SQL Server port, `1433`:
 
 ```PowerShell
 docker run --name SQLServer -d -p 1433:1433 -e sa_password=Password_01 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer
@@ -86,18 +86,7 @@ docker run --name SQLServer -d -p 1433:1433 -e sa_password=Password_01 -e ACCEPT
 
 ### Connecting to the container from SSMS on the host
 
-The SQL Server container is running, but what is the IP Address to connect to it via SSMS from the host?  The container is assigned a dynamic IP Address, such as `172.19.1.0`.  This is different than running SQL Server as a Windows Service where it is possible to connect to it via `.` or `127.0.0.1`.  The below command will get the IP address of that instance:
-
-```PowerShell
-$docker = docker inspect SQLServer | convertfrom-json
-$docker[0].NetworkSettings.Networks.nat.IpAddress
-```
-
-In this example, the IP Address is `172.19.98.212`.
-
-![](docker-get-ip-address-of-sql-server.png)
-
-Now it’s just a matter of entering that IP Address, along with `sa` as the username/password defined above, to connect SQL Server Management Studio(SSMS) to that database.  
+The SQL Server container is running, but how can we connect to it via SSMS from the host?  In the run command I used the switch `-p`, which is short for publish.  Essentially, the port 1433 was published to the host, which means we can access it via `localhost`. All I need to do to connect SSMS to my Docker SQL Sever is enter `localhost`, along with `sa` as the username/password defined above.  
 
 ![](ssms-connected-to-docker-image.png)
 
@@ -114,11 +103,7 @@ docker stop SQLServer
 docker start SQLServer
 ```
 
-The IP Address changes when the container is restarted.
-
-![](restart-docker-container-no-remove.png)
-
-But the database still exists after the restart.  
+The database, along with all the tables, still exists after the restart.  
 
 ![](test-database-after-restart-only.png)
 
@@ -129,8 +114,6 @@ docker stop SQLServer
 docker rm SQLServer
 docker run --name SQLServer -d -p 1433:1433 -e sa_password=Password_01 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer
 ```
-
-![](restart-docker-container.png)
 
 In this case, the databases were all deleted.  
 
@@ -186,16 +169,9 @@ Those databases are now mounted when the container is recreated.
 
 ![](attach-dbs-with-sql-server.png)
 
-### Setting the IP Address and Host Name
+### Saving the Configuration in Docker Compose
 
-Up until this point I have been using this command to get the IP Address for the SQL Server container:
-
-```PowerShell
-$docker = docker inspect SQLServer | convertfrom-json
-$docker[0].NetworkSettings.Networks.nat.IpAddress
-```
-
-It would be even better if we didn’t have to worry about IP Addresses at all.  This is where [Docker Compose](https://docs.docker.com/compose/) enters the picture.  Docker Compose handles a lot of the behind the scenes work for us.  All it takes is converting the existing commands we‘ve been using to a YAML file:
+So far, I have been making heavy use of the command line, specifically `docker stop`, `docker rm` and `docker run`.  To be honest, I have been copying and pasting the commands from above rather than having to retype them.  One option is to leverage [Docker Compose](https://docs.docker.com/compose/).  The Docker container configuration is stored in a YAML file instead of a script file.
 
 ```YAML
 version: '3.7'
@@ -223,7 +199,7 @@ Set-Location C:\Docker
 docker-compose up -d
 ```
 
-Now I can access my SQL Server, which is running in Docker, by connecting to localhost instead of an IP address:
+And I get the same results.  I prefer to use this because it is easier to read and as a result, easier to modify.  It is also very easy to run.
 
 ![](docker-compose-ssms-sucess.png)
 
