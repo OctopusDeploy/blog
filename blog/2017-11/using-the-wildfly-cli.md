@@ -10,9 +10,9 @@ tags:
  - Java
 ---
 
-The WildFly CLI is a powerful administration tool, exposing both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this blog post we’ll take a high level look at how to use the CLI.
+The WildFly CLI is a powerful administration tool, exposing both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this blog post, we’ll take a high level look at how to use the CLI.
 
-## Logging In
+## Logging in
 
 Download WildFly 11, extract it, and run `bin/standalone.sh` or `bin\standalone.bat`. This will start WildFly with the default configuration, which is to bind the management interface to localhost on port 9990.
 
@@ -30,16 +30,16 @@ WARNING: All illegal access operations will be denied in a future release
 
 From the example output above we can see three important things have happened.
 
-First, Java 9 has reported some “Illegal reflective access” warnings. This sounds dire, but is because of some intentional changes introduced with the Java 9 module system (known as [Jigsaw](http://www.baeldung.com/project-jigsaw-java-modularity)). I expect that over time these warnings will be resolved, but for now they can be ignored.
+First, Java 9 has reported some *Illegal reflective access* warnings. This sounds dire, but is because of some intentional changes introduced with the Java 9 module system (known as [Jigsaw](http://www.baeldung.com/project-jigsaw-java-modularity)). I expect that over time these warnings will be resolved, but for now they can be ignored.
 
-Second, we have connected to the default host (localhost) and port (9990) using the default protocol (remote+http). These could be specified manually with the `--controller` option.
+Second, we have connected to the default host (localhost) and port (9990) using the default protocol (remote+http). These could be specified manually with the `--controller` option:
 
 ```
 ./jboss-cli.sh --connect --controller=remote+http://localhost:9990
 ```
 
 :::hint
-The CLI accepts a number of different protocols. By default `remote+http` or `http-remoting` can be used. If the management interface is protected with SSL, then the protocols `remote+https` or `https-remoting` can be used.
+The CLI accepts a number of different protocols. By default, `remote+http` or `http-remoting` can be used. If the management interface is protected with SSL, then the protocols `remote+https` or `https-remoting` can be used.
 
 Older versions of WildFly exposed a native management port on `9999` by default, which required the protocol `remoting`. WildFly 11 does not expose the native management port by default.
 :::
@@ -54,11 +54,11 @@ If you deny write access to the `auth` directory, silent authentication will fai
 See [Configuring Admin Users](https://octopus.com/blog/installing-wildfly-from-scratch#configuring-admin-users) for details on creating an admin user that can be used to log into the CLI.
 :::
 
-## Looking Around
+## Looking around
 
 The CLI is structured like a file system, and can be navigated with the same commands you would use in a shell like Bash.
 
-The `ls` command will list the contents of the current directory.
+The `ls` command will list the contents of the current directory:
 
 ```
 [standalone@localhost:9990 /] ls
@@ -71,14 +71,14 @@ path                                       management-minor-version=0           
 socket-binding-group                       name=matthews-mbp                          release-codename=Kenny                     uuid=ca421018-3df9-43e1-8b3f-ff843ebd38ee  
 ```
 
-The `pwd` command shows the current working directory.
+The `pwd` command shows the current working directory:
 
 ```
 [standalone@localhost:9990 /] pwd
 /
 ```
 
-The `cd` command will change the current directory. Often the directory will be a category like `subsystem` and an instance like `undertow` with an equals character in between.
+The `cd` command will change the current directory. Often the directory will be a category like `subsystem` and an instance like `undertow` with an equals character in between:
 
 ```
 [standalone@localhost:9990 /] cd subsystem=undertow
@@ -88,7 +88,7 @@ buffer-cache                       servlet-container                  default-se
 configuration                      default-security-domain=other      default-virtual-host=default-host  
 ```
 
-The `help` command shows a list of the available commands.
+The `help` command shows a list of the available commands:
 
 ```
 [standalone@localhost:9990 subsystem=undertow] help
@@ -114,7 +114,7 @@ Usage:
 
 The `quit` command will exit the CLI.
 
-## Tab Completion
+## Tab completion
 
 These commands also have a number of options. The easiest way to see these options is to use tab complete. Here we have typed `ls ` (the space on the end is important) and pressed tab to see what additional options are available.
 
@@ -124,9 +124,9 @@ These commands also have a number of options. The easiest way to see these optio
 --help                       -l                           buffer-cache                 server             
 ```
 
-## Performing Operations
+## Performing operations
 
-In any given directory there are a number of operations that can be performed. Operations start with the `:` character. Using tab completion we can see the list of available operations.
+In any given directory there are a number of operations that can be performed. Operations start with the `:` character. Using tab completion we can see the list of available operations:
 
 ```
 [standalone@localhost:9990 http-listener=default] :
@@ -137,7 +137,7 @@ list-get                    map-remove                  read-children-names     
 list-remove                 query                       read-children-resources     read-resource-description   write-attribute   
 ```
 
-The `:read-operation-names` operation shows the same list as the tab completion.
+The `:read-operation-names` operation shows the same list as the tab completion:
 
 ```
 [standalone@localhost:9990 http-listener=default] :read-operation-names
@@ -233,7 +233,7 @@ WildFly represents objects using the [Dynamic Model Representation (DMR)](http:/
 }
 ```
 
-Individual attributes can be read using the `:read-attribute` operation.
+Individual attributes can be read using the `:read-attribute` operation:
 
 ```
 [standalone@localhost:9990 http-listener=default] :read-attribute(name=enabled)
@@ -243,23 +243,23 @@ Individual attributes can be read using the `:read-attribute` operation.
 }
 ```
 
-Attributes can be written with the `:write-attribute` operation.
+Attributes can be written with the `:write-attribute` operation:
 
 ```
 [standalone@localhost:9990 http-listener=default] :write-attribute(name=enabled, value=false)
 {"outcome" => "success"}
 ```
 
-Attributes can be undefined with the `:undefine-attribute` operation.
+Attributes can be undefined with the `:undefine-attribute` operation:
 
 ```
 [standalone@localhost:9990 http-listener=default] :undefine-attribute(name=write-timeout)
 {"outcome" => "success"}
 ```
 
-## Special Characters
+## Special characters
 
-To define a value with a space, wrap the string up in quotes.
+To define a value with a space, wrap the string up in quotes:
 
 ```
 [standalone@localhost:9990 /] /system-property=test:write-attribute(name=value, value="value with space")
@@ -271,7 +271,7 @@ To define a value with a space, wrap the string up in quotes.
 }
 ```
 
-To use quotes, escape them with a backslash.
+To use quotes, escape them with a backslash:
 
 ```
 [standalone@localhost:9990 /] /system-property=test:write-attribute(name=value, value="\"quoted value with space\"")
@@ -283,7 +283,7 @@ To use quotes, escape them with a backslash.
 }
 ```
 
-Backslashes are themselves escaped with a backslash.
+Backslashes are themselves escaped with a backslash:
 
 ```
 [standalone@localhost:9990 /] /system-property=test:write-attribute(name=value, value="\"quoted value with space and a backslash \\\"")
@@ -295,9 +295,9 @@ Backslashes are themselves escaped with a backslash.
 }
 ```
 
-## Reloading the Server
+## Reloading the server
 
-Changing some settings requires the server to be reloaded. You can check the state of the server by reading the `server-state` attribute in the root directory. In this example we have some settings that require a reload.
+Changing some settings requires the server to be reloaded. You can check the state of the server by reading the `server-state` attribute in the root directory. In this example, we have some settings that require a reload:
 
 ```
 [standalone@localhost:9990 /] :read-attribute(name=server-state)
@@ -308,7 +308,7 @@ Changing some settings requires the server to be reloaded. You can check the sta
 }
 ```
 
-The `:reload` operation will reload the server.
+The `:reload` operation will reload the server:
 
 ```
 [standalone@localhost:9990 /] :reload
@@ -318,7 +318,7 @@ The `:reload` operation will reload the server.
 }
 ```
 
-## Batching Operations
+## Batching operations
 
 Some operations in WildFly need to be run as an atomic unit, or you may want all commands to succeed or fail as one. The `batch` and `run-batch` commands provide this functionality.
 
@@ -334,7 +334,7 @@ When in batch mode, a `#` character will appear in the prompt.
 The batch executed successfully
 ```
 
-The `discard-batch` command will discard any batched commands and exit the batch mode.
+The `discard-batch` command will discard any batched commands and exit the batch mode:
 
 ```
 [standalone@localhost:9990 /] batch
@@ -343,7 +343,7 @@ The `discard-batch` command will discard any batched commands and exit the batch
 [standalone@localhost:9990 /]
 ```
 
-The `list-batch` command will show the pending batched commands, and the `clear-batch` command will clear any batched commands but leave you in batched mode.
+The `list-batch` command will show the pending batched commands, and the `clear-batch` command will clear any batched commands but leave you in batched mode:
 
 ```
 [standalone@localhost:9990 /] batch
@@ -358,11 +358,11 @@ The batch is empty.
 
 For more information on using batches in WildFly, see [CLI Batch Mode](https://developer.jboss.org/wiki/CLIBatchMode).
 
-## Backing up the Configuration
+## Backing up the configuration
 
 You may wish to backup the current configuration before making any changes. This can as be done with the `:take-snapshot` operation.
 
-The result of this operation tells you where the backup was saved.
+The result of this operation tells you where the backup was saved:
 
 ```
 [standalone@localhost:9990 /] :take-snapshot
@@ -372,11 +372,11 @@ The result of this operation tells you where the backup was saved.
 }
 ```
 
-## Running CLI Scripts
+## Running CLI scripts
 
 CLI commands can be added to a script file and run non-interactively.
 
-For example, save this script to a file called `test.cli`.
+For example, save this script to a file called `test.cli`:
 
 ```
 connect
@@ -386,7 +386,7 @@ batch
 run-batch
 ```
 
-It can then be run using the `--file` command line option.
+It can then be run using the `--file` command line option:
 
 ```
 ./jboss-cli.sh --file=test.cli
@@ -396,7 +396,7 @@ It can then be run using the `--file` command line option.
 In this test script we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
 :::
 
-To disable the `Press any key to continue ...` prompt when you run the `jboss-cli.bat` file in Windows, set the `NOPAUSE` environment variable to `true`.
+To disable the `Press any key to continue ...` prompt when you run the `jboss-cli.bat` file in Windows, set the `NOPAUSE` environment variable to `true`:
 
 ```
 PS C:\Users\matth\Downloads\wildfly-11.0.0.Final\bin> $env:NOPAUSE="true"
@@ -405,11 +405,11 @@ PS C:\Users\matth\Downloads\wildfly-11.0.0.Final\bin> .\jboss-cli.bat --connect
 PS C:\Users\matth\Downloads\wildfly-11.0.0.Final\bin>
 ```
 
-## Flow Control Statements
+## Flow control statements
 
 CLI supports flow control statements like if/else and try/catch/finally.
 
-For example, you can add the following code to a CLI script, and it will set the system property `test` to `true` if it has not been defined.
+For example, you can add the following code to a CLI script, and it will set the system property `test` to `true` if it has not been defined:
 
 ```
 if (outcome != success) of /system-property=test:read-resource
@@ -417,7 +417,7 @@ if (outcome != success) of /system-property=test:read-resource
 end-if
 ```
 
-You can run the same commands in an interactive mode as well.
+You can run the same commands in an interactive mode as well:
 
 ```
 [standalone@localhost:9990 /] if (outcome != success) of /system-property=test:read-resource
@@ -426,7 +426,7 @@ You can run the same commands in an interactive mode as well.
 {"outcome" => "success"}
 ```
 
-The try/catch/finally flow control works much the same as in Java. The following will attempt to add a data source, and will remove and add the data source if there was an exception. Finally the data source is enabled.
+The try/catch/finally flow control works much the same as in Java. The following will attempt to add a data source, and will remove and add the data source if there was an exception. Finally the data source is enabled:
 
 ```
 try
@@ -439,9 +439,9 @@ finally
 end-try
 ```
 
-## Multiline Commands
+## Multiline commands
 
-Commands can be split over multiple lines by ending each line with a `\` character.
+Commands can be split over multiple lines by ending each line with a `\` character:
 
 ```
 [standalone@localhost:9990 /] /subsystem=datasources/data-source=myds:add( \
@@ -453,7 +453,7 @@ Commands can be split over multiple lines by ending each line with a `\` charact
 
 ## Running the CLI GUI
 
-The CLI has a GUI mode which provides a file browser like interface for navigating around the WildFly settings directory structure.
+The CLI has a GUI mode which provides a file browser like interface for navigating around the WildFly settings directory structure:
 
 ```
 ./jboss-cli.sh --gui
@@ -463,6 +463,6 @@ The CLI has a GUI mode which provides a file browser like interface for navigati
 
 ## Conclusion
 
-In this post we have taken a high level look at how the CLI works and what you can do with it. You can find more resources on the [JBoss Wiki](https://developer.jboss.org/wiki/CommandLineInterface) that goes into more detail and provides examples of administrative tasks.
+In this post, we took a high level look at how the CLI works and what you can do with it. You can find more resources on the [JBoss Wiki](https://developer.jboss.org/wiki/CommandLineInterface) which goes into more detail and provides examples of administrative tasks.
 
 If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
