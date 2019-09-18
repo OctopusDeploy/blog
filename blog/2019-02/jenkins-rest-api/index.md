@@ -1,6 +1,6 @@
 ---
-title: Learn how to call the Jenkins REST API from Powershell
-description: A dive into the Jenkins REST API, with examples in Powershell for creating new jobs
+title: Learn how to call the Jenkins REST API from PowerShell
+description: A dive into the Jenkins REST API, with examples in PowerShell for creating new jobs
 author: matthew.casperson@octopus.com
 visibility: public
 bannerImage: jenkins-rest-api-powershell.png
@@ -10,17 +10,17 @@ tags:
  - Ecosystem
 ---
 
-Although the typical deployment workflow sees a CI system like Jenkins triggering a deployment in Octopus, it is sometimes useful to have the reverse where Octopus trigger builds in Jenkins. In this blog post we'll look at how you can trigger a Jenkins deployment using its REST API and Powershell.
+Although the typical deployment workflow sees a CI system like Jenkins trigger a deployment in Octopus, it’s sometimes useful to have the reverse where Octopus trigger builds in Jenkins. In this blog post, we’ll look at how you can trigger a Jenkins deployment using its REST API and PowerShell.
 
-## Jenkins CSRF Security
+## Jenkins CSRF security
 
 Jenkins has a security feature to prevent  [Cross Site Request Forgery](https://support.cloudbees.com/hc/en-us/articles/219257077-CSRF-Protection-Explained) attacks, which is found under {{Jenkins>Manage Jenkins>Configure Global Security>Prevent Cross Site Request Forgery exploits}}.
 
 ![](csrf.png "width=500")
 
-In practical terms this means that each request to the Jenkins API needs to have what is known as a crumb defined in the headers. To generate this crumb, we need to make a request to http://jenkinsserver/jenkins/crumbIssuer/api/json.
+In practical terms, this means that each request to the Jenkins API needs to have what is known as a crumb defined in the headers. To generate this crumb, we need to make a request to http://jenkinsserver/jenkins/crumbIssuer/api/json.
 
-The Powershell below shows you how to generate a crumb.
+The PowerShell below shows you how to generate a crumb:
 
 ```
 $user = 'user'
@@ -44,19 +44,19 @@ $parsedJson = $json | ConvertFrom-Json
 Write-Host "The Jenkins crumb is $($parsedJson.crumb)"
 ```
 
-## REST API Links
+## REST API links
 
-Now that we have a crumb, we can use it to call the Jenkins REST API. You can find the URL to call to interact with the Jenkins system with the `REST API` link in the bottom right hand corner of each screen.
+Now that we have a crumb, we can use it to call the Jenkins REST API. You can find the URL to call to interact with the Jenkins system with the `REST API` link in the bottom right hand corner of each screen:
 
 ![](restapi.png "width=500")
 
-In this example we want to trigger the build of a Jenkins project, so we open the project and find that the `REST API` link points us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/api/. If we open this link we'll see a page of documentation describing the common operations that are available. In particular we are interested in the link that is embedded in the sentence `to programmatically schedule a new build, post to this URL.` The link takes us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/build.
+In this example, we want to trigger the build of a Jenkins project, so we open the project and find the `REST API` link points us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/api/. If we open this link, we see documentation page describing the common operations that are available. In particular, we are interested in the link that is embedded in the sentence `to programmatically schedule a new build, post to this URL.` The link takes us to a URL like http://jenkinsserver/jenkins/job/Run%20a%20script/build.
 
 ![](restapidocs.png "width=500")
 
-## Triggering the Build
+## Triggering the build
 
-We now have the links that we need to trigger a build, and the crumb that is required by Jenkins with each API request. Let's finish off the Powershell script that will make this final request to start a build in Jenkins.
+We now have the links we need to trigger a build and the crumb that’s required by Jenkins with each API request. Let’s finish off the PowerShell script that makes this final request to start a build in Jenkins:
 
 ```
 $user = 'user'
@@ -86,7 +86,7 @@ $BuildHeaders = @{
 Invoke-WebRequest -Uri "http://jenkinsserver/jenkins/job/Run%20a%20script/build" -Headers $BuildHeaders -Method Post
 ```
 
-Running this script will display the crumb value, as well as the result of the API call to start a job. Notice that the result was a HTTP 201 code. This code indicates that a job was created on the Jenkins server.
+Running this script will display the crumb value, as well as the result of the API call to start a job. Notice that the result was a HTTP 201 code. This code indicates that a job was created on the Jenkins server:
 
 ```
 PS C:\Users\Matthew\Desktop> .\jenkins.ps1
