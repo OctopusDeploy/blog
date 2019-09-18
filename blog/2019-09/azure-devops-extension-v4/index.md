@@ -22,7 +22,7 @@ This release brings our Azure DevOps extension to parity with our TeamCity and B
 
 This release also includes **[improved Space’s support](/blog/2019-09/azure-devops-extension-v4/index.md#improved-spaces-support)** so teams can select their team’s space more easily.
 
-Learn how to [install or update the extension](/blog/2019-09/azure-devops-extension-v4/index.md#how-to-install-or-update-your-azure-devops-extension).
+Learn how to [install or update the extension](/blog/2019-09/azure-devops-extension-v4/index.md#how-to-install-or-update-your-azure-devops extension).
 
 ## See release details including new features and fixes
 
