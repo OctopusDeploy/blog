@@ -12,10 +12,7 @@ tags:
 ---
 
 ## Introduction
-When you become experienced at using PowerShell Desired State Configuration (DSC), you may enounter situations where existing modules don't solve your specific need.  In this post, I'll show you how to create your own DSC modules to solve those situations.
-
-## Scenario
-While implenting DSC at my previous job, there was a need to give the identity assigned to an IIS App Pool permissions to read an installed cerificate.  Certificates installed to certificate stores are just files in a specific location, once you find the correct file, simply access the ACL and you can assign or remove permissions.  Using PowerShell, I was able to connect to the certificate store and find the certificate I needed.  According to my research, the filename was located in the `$certificate.PrivateKey.CspKeyContainerInfo.UniqueKeyContainerName` property.  The issue was `PrivateKey` was null despite the `$certificate.HasPrivateKey` being `true`.  After scouring the Internet for solutions, I came across [this post](https://www.sysadmins.lv/blog-en/retrieve-cng-key-container-name-and-unique-name.aspx) which provided the solution I was looking for.  Rather than try to write a Script Resource, I decided to write my own module.
+So, you've discovered PowerShell Desired State Configuration (DSC), got some experience under your belt, but you have encountered a situation where the available modules don't quite fit what you want to do.  Doing some research, you've found that you can write [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource) to do what you want.  You'll eventually come to the realization that they don't scale well, are difficult to pass parameters to, and do not to provide a method for encryption leaving passwords in clear text.  You say to yourself, "I know!  I'll write my own module!  Can't be that hard, can it?"
 
 ## Tool to help you write your module
 Writing your own module isn't really that hard.  The most difficult part is getting the files and folders in the correct locations, DSC is quite specific in what goes where.  Microsoft recognizes that this can be quite frustrating and has developed a PowerShell module to help you get started, [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner).  Using this module, you can easily define what properties your resource needs to have and it will generate the entire module structure for you, including the MOF schema file.  If you're a first timer, I highly suggest using this module, it could save you quite a bit of frustration (take it from this author).
@@ -37,15 +34,12 @@ Using the xDscResourceDesigner is actually pretty easy, there are only two funct
 Import-Module -Name xDscResourceDesigner
 
 # Define properties
-$Thumbprint = New-xDscResourceProperty -Name Thumbprint -Type String -Attribute Key
-$Location = New-xDscResourceProperty -Name Location -Type String -Attribute Key -ValidateSet "LocalMachine", "CurrentUser"
-$Store = New-xDscResourceProperty -Name Store -Type String -Attribute Key
-$Ensure = New-xDscResourceProperty -Name Ensure -Type String -Attribute Required -ValidateSet "Present", "Absent"
-$UserAccount = New-xDscResourceProperty -Name UserAccount -Type String -Attribute Write
-$Permission = New-xDscResourceProperty -Name Permission -Type String -ValidateSet "Read", "FullControl" -Attribute Write
+$property1 = New-xDscResourceProperty -Name Property1 -Type String -Attribute Key
+$property2 = New-xDscResourceProperty -Name Property2 -Type PSCredential -Attribute Write
+$property3 = New-xDscResourceProperty -Name Property3 -Type String -Attribute Required -ValidateSet "Present", "Absent"
 
 # Create my DSC Resource
-New-xDscResource -Name xCertificatePermission -Property $Thumbprint, $Location, $Store, $Ensure, $UserAccount, $Permission -Path 'c:\Program Files\WindowsPowerShell\Modules' -ModuleName xCertificatePermission
+New-xDscResource -Name DemoResource1 -Property $property1, $property2, $property3 -Path 'c:\Program Files\WindowsPowerShell\Modules' -ModuleName DemoModule
 ```
 And there you have it, your very own DSC module with all the stubs generated!
 
@@ -58,52 +52,59 @@ For the Attribute component of a Resource Property within DSC, there are four po
 - Write
 
 ##### Key
-Every node that uses your resource must have a key that makes the node unique.  Similar to database tables, this key need not be a single property, but can be made up of several properties, each bearing the Key attribute.  
+Every node that uses your resource must have a key that makes the node unique.  Similar to database tables, this key need not be a single property, but can be made up of several properties, each bearing the Key attribute.  In our example above, Property1 is our Key for the resource.  However, it could also be done this way
+
+```PS
+# Define properties
+$property1 = New-xDscResourceProperty -Name Property1 -Type String -Attribute Key
+$property2 = New-xDscResourceProperty -Name Property2 -Type PSCredential -Attribute Write
+$property3 = New-xDscResourceProperty -Name Property3 -Type String -Attribute Required -ValidateSet "Present", "Absent"
+$property4 = New-xDscResourceProperty -Name Property4 -Type String -Attribute Key
+$property5 = New-xDscResourceProperty -Name Property5 -Type String -Attribute Key
+```
+In this example, property1, property4, and property5 are what make up the unique value for the node.  Key attributes are always writable and are required.
 
 ##### Read
 Read attributes are read-only and cannot have values assigned to them.
 
 ##### Required
-Required attributes are assignable properties that must be specified when declaring the configuration.  
+Required attributes are assignable properties that must be specified when declaring the configuration.  Using our example from above when we created our resource, the Property3 property is set to be required.  
 
 ##### Write
-Write attributes are optional attributes that you specify a value to when defining the node.  
+Write attributes are optional attributes that you specify a value to when defining the node.  In our example, Property2 is defined as a Write attribute.
 
 #### ValidateSet switch
-The ValidateSet switch is someting that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we've specified that Ensure can only be either "Absent" or "Present".  Any other value will result in an error.
+The ValidateSet switch is someting that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we've specified that Property3 can only be either "Absent" or "Present".  Any other value will result in an error.
 
 ## DSC module file and folder structure
 Whether you decided to [do it yourself](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringResourceMOF) or use the tool, the folder and file structure will look like the following
 
 ```
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
-    |- xCertificatePermission (folder)
+    |- DemoModule (folder)
         |- DSCResources (folder)
-            |- xCertificatePermission (folder)
-                |- xCertificatePermission.psd1 (file, optional)
-                |- xCertificatePermission.psm1 (file, required)
-                |- xCertificatePermission.schema.mof (file, required)
+            |- DemoResource1 (folder)
+                |- DemoResource1.psd1 (file, optional)
+                |- DemoResource1.psm1 (file, required)
+                |- DemoResource1.schema.mof (file, required)
 ```
 
 ### The MOF file
 MOF stands for Managed Object Format and is the language used to describe Common Information Model (CIM) classes.  Using the example from the 'Tool to help you write your module' section, the resulting MOF file would be
 
 ```
-[ClassVersion("1.0.0.0"), FriendlyName("xCertificatePermission")]
-class xCertificatePermission : OMI_BaseResource
+[ClassVersion("1.0.0.0"), FriendlyName("DemoResource1")]
+class DemoResource1 : OMI_BaseResource
 {
-    [Key] String Thumbprint;
-    [Key, ValueMap{"LocalMachine","CurrentUser"}, Values{"LocalMachine","CurrentUser"}] String Location;
-    [Key] String Store;
-    [Required, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
-    [Write] String UserAccount;
-    [Write, ValueMap{"Read","FullControl"}, Values{"Read","FullControl"}] String Permission;
+    [Key] String Property1;
+    [Write, EmbeddedInstance("MSFT_Credential")] String Property2;
+    [Required, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Property3;
 };
 ```
 
 The MOF file will only contain the properties that we are going to be using in our module, along with their attributes and data types.  Unless we're adding or removing properties, this is pretty much all we do with the MOF file.
 
-### The psm1 file
+### the psm1 file
 The psm1 file is where the bulk of our code is going to be.  This file will contain three required functions
 
 - Get-TargetResource
@@ -122,21 +123,12 @@ function Get-TargetResource
     (
         [parameter(Mandatory = $true)]
         [System.String]
-        $Thumbprint,
-
-        [parameter(Mandatory = $true)]
-        [ValidateSet("LocalMachine","CurrentUser")]
-        [System.String]
-        $Location,
-
-        [parameter(Mandatory = $true)]
-        [System.String]
-        $Store,
+        $Property1,
 
         [parameter(Mandatory = $true)]
         [ValidateSet("Present","Absent")]
         [System.String]
-        $Ensure
+        $Property3
     )
 
     #Write-Verbose "Use this cmdlet to deliver information about command processing."
@@ -146,12 +138,9 @@ function Get-TargetResource
 
     <#
     $returnValue = @{
-    Thumbprint = [System.String]
-    Location = [System.String]
-    Store = [System.String]
-    Ensure = [System.String]
-    UserAccount = [System.String]
-    Permission = [System.String]
+    Property1 = [System.String]
+    Property2 = [System.Management.Automation.PSCredential]
+    Property3 = [System.String]
     }
 
     $returnValue
@@ -172,28 +161,15 @@ function Test-TargetResource
     (
         [parameter(Mandatory = $true)]
         [System.String]
-        $Thumbprint,
+        $Property1,
 
-        [parameter(Mandatory = $true)]
-        [ValidateSet("LocalMachine","CurrentUser")]
-        [System.String]
-        $Location,
-
-        [parameter(Mandatory = $true)]
-        [System.String]
-        $Store,
+        [System.Management.Automation.PSCredential]
+        $Property2,
 
         [parameter(Mandatory = $true)]
         [ValidateSet("Present","Absent")]
         [System.String]
-        $Ensure,
-
-        [System.String]
-        $UserAccount,
-
-        [ValidateSet("Read","FullControl")]
-        [System.String]
-        $Permission
+        $Property3
     )
 
     #Write-Verbose "Use this cmdlet to deliver information about command processing."
@@ -220,28 +196,15 @@ function Set-TargetResource
     (
         [parameter(Mandatory = $true)]
         [System.String]
-        $Thumbprint,
+        $Property1,
 
-        [parameter(Mandatory = $true)]
-        [ValidateSet("LocalMachine","CurrentUser")]
-        [System.String]
-        $Location,
-
-        [parameter(Mandatory = $true)]
-        [System.String]
-        $Store,
+        [System.Management.Automation.PSCredential]
+        $Property2,
 
         [parameter(Mandatory = $true)]
         [ValidateSet("Present","Absent")]
         [System.String]
-        $Ensure,
-
-        [System.String]
-        $UserAccount,
-
-        [ValidateSet("Read","FullControl")]
-        [System.String]
-        $Permission
+        $Property3
     )
 
     #Write-Verbose "Use this cmdlet to deliver information about command processing."
@@ -250,8 +213,6 @@ function Set-TargetResource
 
     #Include this line if the resource requires a system reboot.
     #$global:DSCMachineStatus = 1
-
-
 }
 ```
 
