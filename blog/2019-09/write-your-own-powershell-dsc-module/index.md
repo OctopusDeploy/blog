@@ -1,5 +1,5 @@
 ---
-title: Writing your own Desired State Configuration (DSC) module
+title: Write your own Desired State Configuration (DSC) module
 description: How to write your own PowerShell Desired State Configuration (DSC) module
 author: shawn.sesna@octopus.com
 visibility: public
@@ -11,11 +11,11 @@ tags:
  - powershell
 ---
 
-As you gain experience with PowerShell Desired State Configuration (DSC) you might encounter situations where the available modules don’t quite fit what you want to do.  You could write your own [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource) but they don't scale well, passing parameters is difficult, and they do not provide a method for encryption, leaving passwords in clear text, however, you can write your own modules.
+As you gain experience with PowerShell Desired State Configuration (DSC) you might encounter situations where the available modules don’t quite fit what you want to do.  You could write your own [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource), but they don't scale well, passing parameters is difficult, and they do not provide a method for encryption, leaving passwords in clear text, however, you can write your own DSC modules.
 
-## A Tool to help you write your module
+## A tool to help you write your module
 
-Writing your own module isn’t really that hard.  The most difficult part is getting the files and folders in the correct locations, DSC is quite specific in what goes where.  Microsoft recognizes that this can be quite frustrating and has developed a PowerShell module to help you get started, [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner).  Using this module, you can easily define what properties your resource needs to have and it will generate the entire module structure for you, including the MOF schema file.  If you’re a first timer, I highly suggest using this module, it could save you quite a bit of frustration (take it from this author).
+Writing your own module isn’t really that hard.  The most difficult part is getting the files and folders in the correct locations, DSC is quite specific in what goes where.  Microsoft recognizes that this can be quite frustrating and has developed [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner) a PowerShell module to help you get started.  Using this module, you can easily define what properties your resource needs and it will generate the entire module structure for you, including the MOF schema file.  If you’re a first-timer, I highly recommend using this module, it could save you quite a bit of frustration (take it from this author).
 
 ## Installing xDscResourceDesigner
 
@@ -29,7 +29,7 @@ As this [Microsoft article](https://docs.microsoft.com/en-us/powershell/dsc/reso
 
 ## Using xDscResourceDesigner
 
-Using the xDscResourceDesigner is actually pretty easy, there are only two functions: New-DscResourceProperty and New-xDscResource.  New-DscResourceProperty is what you use to define the properties of your DSC resource.  After you’ve done that, you send that information to New-xDscResource function, and it generates everything you need to implement your resource:
+Using the xDscResourceDesigner is actually pretty easy, there are only two functions: New-DscResourceProperty and New-xDscResource.  New-DscResourceProperty is what you use to define the properties of your DSC resource.  After you’ve done that, you send that information to the New-xDscResource function, and it generates everything you need to implement your resource:
 
 ```PS
 # Import the module for use
@@ -57,7 +57,7 @@ For the Attribute component of a Resource Property within DSC, there are four po
 
 ### Key
 
-Every node that uses your resource must have a key that makes the node unique.  Similar to database tables, this key need not be a single property, but it can be made up of several properties, each bearing the Key attribute.  In our example above, Property1 is our Key for the resource.  However, it could also be done this way:
+Every node that uses your resource must have a key that makes the node unique.  Similar to database tables, this key doesn’t need to be a single property, but it can be made up of several properties, each bearing the Key attribute.  In the example above, `Property1` is our Key for the resource.  However, it could also be done this way:
 
 ```PS
 # Define properties
@@ -68,7 +68,7 @@ $property4 = New-xDscResourceProperty -Name Property4 -Type String -Attribute Ke
 $property5 = New-xDscResourceProperty -Name Property5 -Type String -Attribute Key
 ```
 
-In this example, property1, property4, and property5 are what make up the unique value for the node.  Key attributes are always writable and are required.
+In this example, `property1`, `property4`, and `property5` are what make up the unique value for the node.  Key attributes are always writable and are required.
 
 ### Read
 
@@ -76,15 +76,15 @@ Read attributes are read-only and cannot have values assigned to them.
 
 ### Required
 
-Required attributes are assignable properties that must be specified when declaring the configuration.  Using our example from above when we created our resource, the Property3 property is set to be required.  
+Required attributes are assignable properties that must be specified when declaring the configuration.  Using our example from above when we created our resource, the `Property3` property is set to be required.  
 
 ### Write
 
-Write attributes are optional attributes that you specify a value to when defining the node.  In our example, Property2 is defined as a Write attribute.
+Write attributes are optional attributes that you specify a value to when defining the node.  In the example, `Property2` is defined as a Write attribute.
 
 ### ValidateSet switch
 
-The ValidateSet switch is someting that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we’ve specified that Property3 can only be either `Absent` or `Present`.  Any other value will result in an error.
+The ValidateSet switch is someting that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we’ve specified that `Property3` can only be either `Absent` or `Present`.  Any other value will result in an error.
 
 ## DSC module file and folder structure
 
@@ -126,7 +126,7 @@ The psm1 file is where the bulk of our code is going to be.  This file will cont
 
 ### Get-TargetResource
 
-Get-TargetResource returns the current value(s) of what the resource is responsible for.  Our stubbed function from using xDscResourceDesigner looks like the following:
+The `Get-TargetResource` function returns the current value(s) of what the resource is responsible for.  Our stubbed function from using xDscResourceDesigner looks like the following:
 
 ```PS
 function Get-TargetResource
@@ -161,11 +161,11 @@ function Get-TargetResource
     #>
 }
 ```
-Note that the optional parameter (Write attribute) Property2 is not required for this function.
+Note that the optional parameter (Write attribute) `Property2` is not required for this function.
 
 ### Test-TargetResource
 
-The Test-TargetResource function returns a boolean value of whether or not the resource is in the desired state.  From our generated example, the function looks like this:
+The `Test-TargetResource` function returns a boolean value of whether or not the resource is in the desired state.  From our generated example, the function looks like this:
 
 ```PS
 function Test-TargetResource
@@ -202,7 +202,7 @@ function Test-TargetResource
 
 ### Set-TargetResource
 
-The Set-TargetResource function is used to configure the resource to the specified desired state.  Our generated example looks like this:
+The `Set-TargetResource` function is used to configure the resource to the specified desired state.  Our generated example looks like this:
 
 ```PS
 function Set-TargetResource
