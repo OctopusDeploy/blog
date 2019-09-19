@@ -7,7 +7,7 @@ metaImage: metaimage-shipping-2018-6.png
 bannerImage: blogimage-shipping-2018-6.png
 published: 2018-06-20
 tags:
- - OctopusCloud
+ - Engineering
 ---
 
 Octopus Deploy has a couple of major storage demands that we needed to solve for the release of Octopus Cloud. The first that will spring to mind for most existing Octopus Customers is the Database backend, but of equal importance is the disk, where your config files, logs, artifacts and packages live.

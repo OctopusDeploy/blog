@@ -5,7 +5,7 @@ published: 2017-02-24
 visibility: public
 author: paul.stovell@octopus.com
 tags: 
- - Security
+ - Product
 ---
 
 ![SHA1ttered logo](shattered-logo.png)

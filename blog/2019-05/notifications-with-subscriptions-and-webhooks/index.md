@@ -7,7 +7,7 @@ published: 2019-05-03
 metaImage: production-notifications.png
 bannerImage: production-notifications.png
 tags:
- - Subscriptions
+ - Product
 ---
 
 !toc

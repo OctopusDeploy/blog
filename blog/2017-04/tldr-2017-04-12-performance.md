@@ -5,8 +5,7 @@ author: paul.stovell@octopus.com
 published: 2017-04-12
 visibility: public
 tags:
- - Company
- - Performance
+ - Engineering
 ---
 
 Every Wednesday morning we have a short company-wide meeting, which we call the "TL;DR". It's an open invitation for any team member to present anything that they think is relevant or interesting, and that they want the rest of the company to know about. They cover a variety of topics, from feature design, to lessons learned as a result of support incidents, to patterns developers might want to use when building the software. 

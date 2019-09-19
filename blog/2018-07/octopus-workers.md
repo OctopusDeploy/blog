@@ -7,7 +7,7 @@ bannerImage: blogimage-workers2.png
 metaImage: metaimage-workers2.png
 published: 2018-07-06
 tags:
- - Workers
+ - Engineering
 ---
 
 ![Octopus Workers illustration](blogimage-workers2.png)

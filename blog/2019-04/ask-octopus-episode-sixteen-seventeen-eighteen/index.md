@@ -7,6 +7,7 @@ published: 2019-04-30
 metaImage: askoctopusthumbnail.png
 bannerImage: askoctopusthumbnail.png
 tags:
+ - Events and Webinars
  - Ask Octopus
 ---
 

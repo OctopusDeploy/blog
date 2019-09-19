@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 NGINX is one of the most popular web servers and reverse proxies available today. It offers high performance, almost infinite configurability, and is a commonly used component in modern stacks like Kubernetes. Now the NGINX team has a new offering called NGINX Unit, which is aimed at solving some common challenges of modern development processes.

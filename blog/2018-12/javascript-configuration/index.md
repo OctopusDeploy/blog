@@ -7,8 +7,7 @@ bannerImage: environment-specific-javascript-configuration.png
 metaImage: environment-specific-javascript-configuration.png
 published: 2019-02-11
 tags:
-- JavaScript
-- Patterns
+- Engineering
 ---
 
 It is common to develop and deploy a single page application (SPA) as a standalone JavaScript app; however, there is a common question that comes up when it's time to integrate these projects into a typical continuous deployment pipeline.

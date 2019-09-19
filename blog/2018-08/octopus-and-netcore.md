@@ -7,9 +7,7 @@ metaImage: metaimage-package-netcore.png
 bannerImage: blogimage-package-netcore.png
 published: 2018-08-06
 tags:
- - OctoExe
- - .NET Core
- - NuGet
+ - Product
 ---
 
 ![Octopus Packaging .NET Core banner](blogimage-package-netcore.png)

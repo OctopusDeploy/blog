@@ -7,8 +7,7 @@ published: 2018-04-20
 metaImage: metaimage-paas.png
 bannerImage: blogimage-paas.png
 tags:
- - New Releases
- - Cloud
+ - Engineering
 ---
 
 ![Azure PaaS deployment targets banner](blogimage-paas.png)

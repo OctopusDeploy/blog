@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 In the [previous blog](/blog/2019-09/istio/the-sample-application/index.md) post, we deployed two simple Node.js web applications into a Kubernetes cluster as Deployment resources and linked everything up with standard Service resources.

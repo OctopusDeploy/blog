@@ -6,10 +6,7 @@ published: 2017-04-04
 visibility: public
 bannerImage: shipping-3-12_blogimage.png
 tags:
- - New Releases
- - Step Templates
- - PowerShell Debugging
- - Certificates
+ - Product
 ---
 
 ![Octopus 3.12 release announcement](shipping-3-12_blogimage.png)

@@ -7,7 +7,7 @@ published: 2018-09-27
 bannerImage: blogimage-runningtests.png
 metaImage: metaimage-runningtests.png
 tags:
-- AWS
+- Engineering
 ---
 
 ![Octopus Professor running tests in a lab with chemicals and beakers](blogimage-runningtests.png)

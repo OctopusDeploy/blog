@@ -5,7 +5,7 @@ author: bob.walker@octopus.com
 visibility: public
 published: 2018-10-03
 tags:
- - Events
+ - Events and Webinars
 ---
 
 DevOps will change your life!  DevOps will solve all your problems!  You should being doing DevOps right now! DevOps! DevOps! DevOps!  Okay, now that I have your attention, let's calm down a bit and talk about what that actually means.  Just like any new practice being introduced to the IT community, there are a lot of definitions out there.  The definition I prefer is "Development and Operations teams working together towards a common goal."  

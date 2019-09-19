@@ -6,8 +6,7 @@ visibility: public
 published: 2017-05-03
 bannerImage: shipping-3-13-blogimage.png
 tags:
- - New Releases
- - Azure Service Fabric
+ - Product
 ---
 
 ![Octopus 3.13 release announcement](shipping-3-13-blogimage.png)

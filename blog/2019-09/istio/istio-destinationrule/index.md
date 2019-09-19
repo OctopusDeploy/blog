@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 The Istio [DestinationRule](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#LoadBalancerSettings) resource provides a way to configure traffic once it has been routed by a VirtualService resource. A DestinationRule resource can be used to configure load balancing, security and connection details like timeouts and maximum numbers of connections.

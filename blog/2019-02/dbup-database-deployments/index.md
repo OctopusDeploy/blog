@@ -7,6 +7,7 @@ published: 2019-02-28
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
+ - Engineering
  - Database Deployments
 ---
 One of the most exciting aspects of database deployments is the number of tools released in the last ten years.  Looking at my [previous posts](https://octopus.com/blog/tag/Database%20Deployments) on this topic and I have shown a clear bias towards Redgate's tooling.  I do have a bit of a bias towards their tools.  I'm a [friend of Redgate](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) for a reason.  

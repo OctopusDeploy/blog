@@ -7,9 +7,7 @@ bannerImage: blogimage-targetroles.png
 metaImage: blogimage-targetroles.png
 published: 2018-10-01
 tags:
- - Best Practices
- - Tenants
- - Roles
+ - Engineering
 ---
 
 ![Octopus Labeling Machines](blogimage-targetroles.png)

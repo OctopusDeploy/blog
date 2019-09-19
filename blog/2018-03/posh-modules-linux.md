@@ -7,7 +7,7 @@ published: 2018-03-08
 metaImage: metaimage-powershell-linux.png
 bannerImage: blogimage-powershell-linux.png
 tags:
- - Walkthrough
+ - Product
 ---
 
 ![Tux the Penguin reading a Powershell book](blogimage-powershell-linux.png)

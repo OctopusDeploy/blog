@@ -7,7 +7,7 @@ bannerImage: jenkins-rest-api-powershell.png
 metaImage: jenkins-rest-api-powershell.png
 published: 2019-02-19
 tags:
- - Ecosystem
+ - DevOps
 ---
 
 Although the typical deployment workflow sees a CI system like Jenkins trigger a deployment in Octopus, it’s sometimes useful to have the reverse where Octopus trigger builds in Jenkins. In this blog post, we’ll look at how you can trigger a Jenkins deployment using its REST API and PowerShell.

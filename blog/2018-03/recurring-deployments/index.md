@@ -7,7 +7,7 @@ published: 2018-03-19
 metaImage: metaimage-recurring-deployments.png
 bannerImage: blogimage-recurring-deployments.png
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octo-Cuckoo clock illustating recurring deployments](blogimage-recurring-deployments.png)

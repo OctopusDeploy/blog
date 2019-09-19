@@ -7,7 +7,7 @@ bannerImage: webinar-starting-devops-journey.png
 metaImage: webinar-starting-devops-journey.png
 published: 2018-07-20
 tags:
- - Webinar
+ - Events and Webinars
 ---
 
 <iframe width="560" height="315"  src="https://www.youtube.com/embed/uxvhNdgh-20" frameborder="0" allowfullscreen></iframe>

@@ -4,7 +4,7 @@ description: We want to build a great experience for people who want to store th
 author: paul.stovell@octopus.com
 published: 2017-02-22
 tags: 
- - RFC
+ - Product
 ---
 
 :::tip

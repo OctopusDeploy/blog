@@ -7,7 +7,7 @@ metaImage: metaimage-octopuscloudlaunch.png
 bannerImage: blogimage-octopuscloudlaunch.png
 published: 2018-07-02
 tags:
- - Octopus Cloud
+ - Product
 ---
 
 ![Octopus Clouds launch fireworks illustration](blogimage-octopuscloudlaunch.png)

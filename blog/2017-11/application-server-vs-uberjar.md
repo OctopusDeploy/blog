@@ -7,7 +7,7 @@ published: 2017-11-03
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 Not too long ago if you wanted to deploy a Java web application, you compiled a WAR file and hosted it in an application server. Today though Java web applications can just as easily be deployed as self contained UberJARs.

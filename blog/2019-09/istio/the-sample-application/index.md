@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 [Istio](https://istio.io/) is one of the most popular and powerful service meshes available for Kubernetes today. To understand the features it provides, it’s useful to have a very simple sample application to make network requests that we can manipulate and configure via Istio.

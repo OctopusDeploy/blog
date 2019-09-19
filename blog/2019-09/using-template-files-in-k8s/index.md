@@ -7,7 +7,7 @@ published: 2019-08-29
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 If you have ever deployed an application in Octopus before, you have probably made use of variable replacements in files as a way of taking a generic application package and injecting environment specific configuration during deployment. This process is convenient because you can produce a single application artifact, and each environment is then responsible for customizing it to match the local infrastructure.

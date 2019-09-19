@@ -7,7 +7,7 @@ published: 2017-11-21
 metaImage: metaimage-shipping-4.png
 bannerImage: blogimage-shipping-4.png
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octopus Deploy 4.0 has shipped](blogimage-shipping-4.png)

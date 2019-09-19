@@ -5,8 +5,7 @@ author: robert.erez@octopus.com
 visibility: private
 published: 2018-01-01
 tags:
- - New Releases
- - Architecture
+ - Product
 ---
 Building APIs is hard, and in our case, _all_ user interaction with Octopus is through our API. Whether that's through the built-in web portal, the `Octopus.Client` libraries, various 3rd party CI plugins, or even directly through a curl request, the Octopus Server API is the common language that all these clients speak to. Our recent built-in support for (https://octopus.com/blog/octopus-release-3-17#swagger-support-for-the-octopus-api)[Swagger] helps consumers of the API somewhat. However the internal implementations are starting to feel growing pains. The endpoints that search for packages were made back when the built-in feed and NuGet feeds were the only options available in Octopus. This design has become a sub-optimal fit as we expand our support to other feed types, and as such, this particular API endpoint needed to be redesigned.
 

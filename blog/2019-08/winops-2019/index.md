@@ -7,8 +7,7 @@ published: 2019-08-30
 bannerImage: blogimage-winops-turbocharging-azure.png
 metaImage: blogimage-winops-turbocharging-azure.png
 tags:
- - Events
- - Workshops
+ - Events and Webinars
 ---
 
 WinOps London is happening on 23-24 September, and Octopus will be there! I’m excited to share that I’m leading a DevOps workshop and speaking about how to turbocharge Azure DevOps deployments with Octopus.

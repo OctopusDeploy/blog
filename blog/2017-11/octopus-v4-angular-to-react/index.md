@@ -7,7 +7,7 @@ metaImage: 4.0react_metaimage.png
 bannerImage: 4.0react_blogimage.png
 published: 2017-11-09
 tags:
- - New Releases
+ - Engineering
 ---
 
 ![Octopus 4.0 was rewritten in React](4.0react_blogimage.png)

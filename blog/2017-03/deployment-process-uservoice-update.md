@@ -5,7 +5,7 @@ published: 2017-03-03
 visibility: public
 author: henrik.andersson@octopus.com
 tags: 
- - New releases
+ - Product
 ---
 
 One of the big parts of our [2017 roadmap](https://octopus.com/blog/roadmap-2017) is our goal for UserVoice:

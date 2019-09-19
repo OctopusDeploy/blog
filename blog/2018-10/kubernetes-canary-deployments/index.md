@@ -7,7 +7,7 @@ published: 2018-10-10
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
- - Kubernetes
+ - Engineering
 ---
 
 When rolling out new versions of an application, it can be useful to direct a small amount of traffic to the new version and watch for any errors. This strategy, known as a canary deployment, means that any errors that are present in the new version can only affect a small number of users. Incrementally increasing the amount of traffic to the new version provides an increasing degree of confidence that there are no issues, and the deployment can be rolled back to the previous version if any issues are present.

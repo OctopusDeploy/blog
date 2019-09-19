@@ -7,7 +7,7 @@ metaImage: metaimage-flexiblework.png
 bannerImage: blogimage-flexiblework.png
 published: 2018-06-22
 tags:
- - Flexible Work Week
+ - Company
 ---
 
 ![Octo-flexi](blogimage-flexiblework.png)

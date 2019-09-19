@@ -7,7 +7,7 @@ published: 2018-10-02
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
 This blog series steps through the process of writing WebDriver UI tests in Java from the first line of code through to running tests at scale in the cloud.

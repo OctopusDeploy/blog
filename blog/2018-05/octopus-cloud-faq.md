@@ -7,8 +7,7 @@ metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
 published: 2018-05-30
 tags:
- - Octopus Cloud
- - FAQ
+ - Company
 ---
 
 We've been talking about it for a while now, and Octopus Cloud is almost here - [welcome to the world of tomorrow](https://www.youtube.com/watch?v=aiwA0JrGfjA)! Since early in 2018 we've been in closed testing with a handful of users putting the platform through its paces, and in June 2018 we are opening it up to another group of early-access users, ahead of a public launch in Q3 2018. 

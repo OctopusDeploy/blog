@@ -7,7 +7,7 @@ metaImage: metaimage-shipping-2018-3.png
 bannerImage: blogimage-shipping-2018-3.png
 published: 2018-03-07
 tags:
- - New Releases
+ - Product
 ---
 
 This month, we've greatly improved our support for _infrastructure as code_ unlocking some incredible deployment automation and infrastructure automation scenarios. Octopus `2018.3` introduces support for GitHub repositories as feeds and first-class Terraform support as well as some awesome smaller features like deployment variable preview and highlight messages/artifacts.  Read on for all the exciting details!

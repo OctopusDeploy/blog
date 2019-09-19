@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 Up until this point, our Kubernetes cluster has taken traffic from a standard load balancer Service resource, which thanks to the fact that our cluster is hosted by AWS, is exposed by an ELB with a public IP. External traffic hitting this load balancer is directed to our `proxy` application, and from here we have used Istio to route the internal traffic.

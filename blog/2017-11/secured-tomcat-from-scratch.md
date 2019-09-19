@@ -7,7 +7,7 @@ published: 2017-11-30
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - Product
 ---
 
 With Octopus 4.1 you can now deploy applications from Maven repositories and configure certificates managed by Octopus. In this blog post we'll look at how some of these new steps can be used to deploy and secure a web application in Tomcat.

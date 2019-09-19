@@ -7,8 +7,7 @@ metaImage: metaimage-deploy-release-step.png
 bannerImage: blogimage-deploy-release-step.png
 published: 2018-01-29
 tags:
- - New Releases
- - Patterns 
+ - Product
 ---
 
 Unless you are building a genuine monolith, your projects don't exist in isolation. More and more our industry is moving in a direction where systems are composed of more granular components. Some call it service-oriented architecture, some call it microservices, but the key point from a release-management perspective is that it requires coordination.  

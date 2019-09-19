@@ -7,7 +7,7 @@ metaImage: metaimage-shipping-4-1.png
 bannerImage: blogimage-shipping-4-1.png
 published: 2017-12-05
 tags:
- - New Releases
+ - Product
 ---
 
 This December release of Octopus continues the support for Java that was [introduced back in 3.17](/blog/2017-09/octopus-release-3-17.md), with the ability to export certificates as Java KeyStores, as well as configuring certificates directly within existing Tomcat 7+, WildFly 10+ and Red Hat JBoss EAP 6+ application servers. This release also allows Maven repositories to be configured as external Octopus feeds, meaning Octopus can now consume Maven artifacts as part of a deployment.  Read on for all the exciting details!

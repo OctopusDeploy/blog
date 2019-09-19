@@ -7,7 +7,7 @@ metaImage: metaimage-shipping-2018-1.png
 bannerImage: blogimage-shipping-2018-1.png
 published: 2018-01-24
 tags:
- - New Releases
+ - Product
 ---
 
 This January release of Octopus Deploy is primarily a security release driven by [Octopus Cloud](https://octopus.com/cloud) and will also benefit each of our customers running Octopus Deploy on-premises. We highly recommend upgrading.

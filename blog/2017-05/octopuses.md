@@ -6,8 +6,7 @@ metaImage: 4.0-kickoff-metaimage.png
 bannerImage: 4.0-kickoff-blogimage.png
 visibility: public
 tags:
- - Architecture
- - Performance
+ - Product
 ---
 
 <div style="background-color:#e9edf2;">

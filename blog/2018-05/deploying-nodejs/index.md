@@ -7,7 +7,7 @@ metaImage: metaimage-nodejs.png
 bannerImage: blogimage-nodejs.png
 published: 2018-06-12
 tags:
- - New Releases
+ - Engineering
 ---
 
 Node.js has become one of the hottest programming languages to work with in recent years. JavaScript has been ranked as the most popular programming language in the [Stack Overflow developer surveys](https://insights.stackoverflow.com/survey/2018) for several years running and it’s not hard to see why.

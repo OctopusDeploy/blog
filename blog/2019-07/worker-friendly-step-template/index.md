@@ -7,7 +7,7 @@ bannerImage: blogimage-worker-friendly-step-templates.png
 metaImage: blogimage-worker-friendly-step-templates.png
 published: 2019-07-09
 tags:
- - Octopus
+ - Engineering
 ---
 
 ## Introduction

@@ -7,9 +7,7 @@ metaImage: metaimage-pipeline.png
 bannerImage: blogimage-pipeline.png
 published: 2018-08-24
 tags:
- - OctoExe
- - .NET Core
- - NuGet
+ - Engineering
 ---
 
 ![Octopus Packaging .NET Core banner](blogimage-pipeline.png)

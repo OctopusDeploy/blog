@@ -7,7 +7,7 @@ published: 2018-01-18
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - Engineering
 ---
 
 As we add support for Java deployments at [Octopus](https://octopus.com/download), more integration code is being written in Kotlin. As a long time Java developer, I took the opportunity to learn some of the improvements that the Kotlin language designers added to their language over Java.

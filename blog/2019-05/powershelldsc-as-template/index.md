@@ -7,7 +7,7 @@ published: 2019-06-19
 bannerImage: img_powershell_dsc.png
 metaImage: img_powershell_dsc.png
 tags:
- - PowerShell DSC
+ - Engineering
 ---
 
 In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to: 

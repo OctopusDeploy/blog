@@ -7,8 +7,7 @@ metaImage: 4.0infrastructure_metaimage.png
 bannerImage: 4.0infrastructure_blogimage.png
 published: 2017-11-02
 tags:
- - New Releases
- - Infrastructure
+ - Engineering
 ---
 
 ![Octopus 4.0 new infrastructure page can help you find a needle in a haystack](4.0infrastructure_blogimage.png)

@@ -7,6 +7,7 @@ published: 2018-10-16
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
+ - Engineering
  - Database Deployments
 ---
 

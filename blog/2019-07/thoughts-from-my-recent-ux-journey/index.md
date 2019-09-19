@@ -7,9 +7,7 @@ bannerImage: blogimage-ux-journey.png
 metaImage: blogimage-ux-journey.png
 published: 2019-07-05
 tags:
-- company
-- onboarding
-- user-experience
+- Engineering
 ---
 
 _"I feel good, I feel great, I feel wonderful"_

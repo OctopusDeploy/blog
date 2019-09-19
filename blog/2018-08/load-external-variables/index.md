@@ -5,7 +5,7 @@ author: robert.erez@octopus.com
 visibility: private
 published: 2018-08-01
 tags:
- - New Releases
+ - Product
 ---
 At Octopus Deploy, we pride ourselves on the level of support that we provide to our customers and always attempt to respond to tickets within a business day. Sometimes they are bug reports (not that _I_ ever write buggy code right?) but often it is just users looking for some guidance on how to help them achieve some particular deployment pattern in Octopus. An interesting question was brought to my attention last week that resulted in uncovering a useful ability that could be accomplished by combining a couple of our [variable](https://octopus.com/docs/deployment-process/variables) features. It's a question I had heard before so thought it might be a nice trick to share.
 

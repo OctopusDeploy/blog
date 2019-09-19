@@ -7,7 +7,7 @@ published: 3000-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 Getting started with a test Kubernetes cluster has been made easier thanks to the [Minikube project](https://kubernetes.io/docs/tasks/tools/install-minikube/). By using the HyperV functionality in Windows 10, a test Kubernetes cluster can be created in just a few minutes.

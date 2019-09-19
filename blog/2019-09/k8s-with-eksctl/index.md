@@ -7,7 +7,7 @@ published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Engineering
 ---
 
 EKS is a managed Kubernetes service provided by AWS. At a high-level, EKS is comprised of two components: the managed EKS control plane and the worker nodes. The EKS control plane is a dedicated resource in AWS, having the CloudFormation type [AWS::EKS::Cluster](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html). The worker nodes, on the other hand, are simply EC2 instances that are configured during deployment to join the Kubernetes cluster.
