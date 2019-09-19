@@ -126,7 +126,7 @@ Start-DscConfiguration -Path "c:\dsc" -Verbose -Wait
 
 ```
 
-# Putting it all together
+## Putting it all together
 So far, we've set up individual components which is good so that you get an understanding of what we're trying to do.  Now, let's take all of this and put it into a single script!
 
 :::hint
