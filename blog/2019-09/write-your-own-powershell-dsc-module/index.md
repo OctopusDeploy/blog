@@ -217,4 +217,4 @@ function Set-TargetResource
 ```
 
 ## Summary
-Whether simplistic or complex, the steps for creating your own DSC module would be the same.  This post is aimed at getting you started in the right direction.  From here, you can create your module to fit whatever resource you need to configure and keep in desired state.
+Whether simplistic or complex, the steps for creating your own DSC module would be the same.  This post is aimed at getting you started in the right direction.  From here, you can create your module to fit whatever resource you need to configure and keep in desired state.  For the full example of a working module check out [xCertificatePermission](https://github.com/twerthi/xCertificatePermission) on my GitHub repo.
