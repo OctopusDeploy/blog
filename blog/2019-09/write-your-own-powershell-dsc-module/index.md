@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: 
 metaImage: 
-published: 
+published: 2020-09-01
 tags:
  - configuration
  - powershell
