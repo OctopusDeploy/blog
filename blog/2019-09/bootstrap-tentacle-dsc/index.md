@@ -13,13 +13,13 @@ tags:
 
 ## Introduction
 
-Manually installing Tentacles on deployment targets is fairly painless when you have a small number of machines, just a couple of clicks and you’re done.  However, it’s not uncommon for the number of machines to increase exponentially as adoption of Octopus Deploy becomes more prevalent, especially in large organizations.  In more advanced implementations, targets are sometimes created dynamically as part of scaling, and manually installing Tentacles isn’t feasible.  This is where Infrastructure as Code (IaC) comes in handy.
+Manually installing Tentacles on deployment targets is fairly painless when you have a small number of machines, with just a couple of clicks you’re done.  However, it’s not uncommon for the number of machines to increase exponentially as adoption of Octopus Deploy becomes more prevalent, especially in large organizations.  In more advanced implementations, targets are sometimes created dynamically, and manually installing Tentacles isn’t feasible.  This is where Infrastructure as Code (IaC) comes in handy.
 
-Infrastructure as Code is an awesome and powerful concept.  Having the ability to programmatically define how your infrastructure should be set up leads to consistency and predictability for application deployments.  One method of IaC is PowerShell Desired State Configuration (DSC).  Not only can DSC configure a machine, it also gives us the added benefit of monitoring the machine for drift and correcting it automatically.  In this post, I’ll walk you through using the OctopusDSC DSC module to install and configure a Tentacle machine.
+Infrastructure as Code is an awesome and powerful concept.  Having the ability to programmatically define how your infrastructure should be set up leads to consistency and predictability for application deployments.  One method of IaC is PowerShell Desired State Configuration (DSC).  Not only can DSC configure a machine, it also gives us the added benefit of monitoring the machine for drift and using Octopus to automatically return the machine to the desired state.  In this post, I’ll walk you through using the OctopusDSC module to install and configure a Tentacle machine.
 
 ## Install the NuGet package provider
 
-There is a drawback to using DSC, any external module that you use needs to be present on the machine before the DSC script runs.  This means you have to separate the installation of the external module from the DSC script itself.
+There is a drawback to using DSC, any external module you use needs to be present on the machine before the DSC script runs.  This means you have to separate the installation of the external module from the DSC script itself.
 
 In order to download external modules, we first need to install the NuGet package provider.  Depending on your server configuration, it may be necessary to include TLS 1.2:
 
@@ -131,10 +131,10 @@ Start-DscConfiguration -Path "c:\dsc" -Verbose -Wait
 
 ## Putting it all together
 
-So far, we’ve set up individual components so you can see what we’re trying to do.  Now, let’s take all of this and put it into a single script.
+So far, we’ve set up individual components to demonstrate what we’re trying to achieve.  Now, let’s take all of this and put it into a single script.
 
 :::hint
-Even though we will run the script blocks on a remote computer, the PowerShell is evaluated on our local machine first.  If you recall, the DSC resource must exist before it’ll work, this means we need to have the OctopusDSC resource on the machine we’re running from.  Annoying, I know, but that’s how it works.
+Even though we will run the script blocks on a remote computer, the PowerShell is evaluated on our local machine first.  If you recall, the DSC resource must exist before it’ll work, which means we need to have the OctopusDSC resource on the machine we’re running the script from.  Annoying, I know, but that’s how it works.
 :::
 
 ```PS
@@ -243,7 +243,7 @@ Invoke-Command -Session $remoteSession -ScriptBlock{
 
 ```
 
-Using this script, we can install and configure a Tentacle machine without having to RDP to it. This is especially useful in the scaling scenarios I mentioned earlier.
+Using this script, we can install and configure a Tentacle machine without having to RDP to it. This is especially useful when the scaling infrastructure dynamically.
 
 ## Testing for drift and Octopus machine policies
 
@@ -282,4 +282,4 @@ Now, when drift is detected it will automatically run the last DSC configuration
 
 ## Conclusion
 
-In this post, I demonstrated how to install and configure a Tentacle machine with one simple script as well as a method for detecting drift.  Using a method like DSC helps to ensure that all of your installations are done consistently.
+In this post, I demonstrated how to install and configure a Tentacle machine with one simple script as well as a method for detecting and correcting drift.  Using a method like DSC helps to ensure that all of your installations are done consistently.
