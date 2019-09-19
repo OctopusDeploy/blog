@@ -11,7 +11,7 @@ tags:
 ---
 
 ## Introduction
-In a world of cloud-based applications with scaling capabilities, it's essential that you have infrastructure automation in place.  Amazon Web Services (AWS) has taken out the heavy lifting by providing CloudFormation templates for automatic provisioning of cloud-based resources.  While this takes care of provisioning of resources, you still need a method for automatically attaching your newly created EC2 instance with Octopus Deploy so your application can be deployed.  In this post, I will demonstrate how to install and configure a Linux tentacle when using a Linux-based EC2 instance.
+In a world of cloud-based applications with scaling capabilities, it's essential that you have infrastructure automation in place.  Amazon Web Services (AWS) has taken out the heavy lifting by providing CloudFormation templates for automatic provisioning of cloud-based resources.  While this takes care of provisioning of resources, you still need a method for automatically attaching your newly created EC2 instance with Octopus Deploy so your applications and services can be deployed.  In this post, I will demonstrate how to install and configure a Tentacle for Linux when using a Linux-based EC2 instance.
 
 ## Sample CloudFormation template
 :::warning
