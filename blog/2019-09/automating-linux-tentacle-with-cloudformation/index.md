@@ -1,6 +1,6 @@
 ---
 title: Automating installation of Linux Tentacle with Cloudformation templates
-description: How to automate the installation of Linux Tentacle when using an AWS Cloudformation template.
+description: Automating Tentacle for Linux installation with an AWS CloudFormation template.
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: 
