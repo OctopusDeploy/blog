@@ -14,7 +14,7 @@ tags:
 In a world of cloud-based applications with scaling capabilities, it's essential that you have infrastructure automation in place.  Amazon Web Services (AWS) has taken out the heavy lifting by providing CloudFormation templates for automatic provisioning of cloud-based resources.  While this takes care of provisioning of resources, you still need a method for automatically attaching your newly created EC2 instance with Octopus Deploy so your applications and services can be deployed.  In this post, I will demonstrate how to install and configure a Tentacle for Linux when using a Linux-based EC2 instance.
 
 ## UserData in CloudFormation template
-AWS provides a section within the CloudFormation template where we can include script called UserData.  Using the code provided on our [Tentacle for Linux](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) documentation page, we can include a series of statements that will execute once the EC2 instance has been provisioned.  In this example, I am creating an EC2 Linux instance to host [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a .NET core application.  To accomplish this, I'll need to
+AWS provides a section within the CloudFormation template where we can include script called UserData.  In this example, I am creating an EC2 Linux instance to host [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a .NET core application.  To accomplish this, I'll need to
 
 - Install Tentacle for Linux
 - Configure the Tentacle
@@ -33,8 +33,8 @@ sudo apt-get update # Make sure everything else is up-to-date
 sudo apt-get install tentacle # Install Tentacle for Linux
 ```
 
-### Configure the tentacle
-When dealing with cloud-hosted Virtual Machines (VM) that can be spun up dynamically, it makes the most sense to configure the tentacle as a polling tentacle so we don't have to deal with as many firewall configurations. 
+### Configure the Tentacle
+When dealing with cloud-hosted Virtual Machines (VM) that can be spun up dynamically, it makes the most sense to configure the Tentacle as a polling Tentacle so we don't have to deal with as many firewall configurations. 
 
 ```bash
 serverUrl="https://YourOctopusServer" # Url to our Octopus server
@@ -52,18 +52,18 @@ applicationPath="/home/Octopus/Applications/" # Location where deployed applicat
 # Create a new self-signed certificate for secure communication with Octopus server
 /opt/octopus/tentacle/Tentacle new-certificate --if-blank
 
-# Configure the tentacle specifying it is not a listening tentacle and setting where depoloyed applications go
+# Configure the Tentacle specifying it is not a listening Tentacle and setting where depoloyed applications go
 /opt/octopus/tentacle/Tentacle configure --noListen True --reset-trust --app "$applicationPath"
 ```
 
-### Register the tentacle with Octopus server
+### Register the Tentacle with Octopus server
 Now that we've configured the tentalce, we need to register it with the Octopus server.  This script uses some of the variables that were defined in the previous section
 
 ```bash
-# Display that we're going to register the tentacle and to where with environments and roles
+# Display that we're going to register the Tentacle and to where with environments and roles
 echo "Registering the Tentacle $name with server $serverUrl in environment $environment with role $role"
 
-# Register the tentacle with our Octopus server - note that we've included more environments and roles than the ones defined in variables above
+# Register the Tentacle with our Octopus server - note that we've included more environments and roles than the ones defined in variables above
 /opt/octopus/tentacle/Tentacle register-with --server "$serverUrl" --apiKey "$apiKey" --name "$name" --env "$environment" --env "TearDown" --role "$role" --role "OctoPetShop-Web" --role "OctoPetShop-ProductService" --role "OctoPetShop-ShoppingCartService" --comms-style "TentacleActive" --server-comms-port $serverCommsPort
 ```
 
@@ -201,4 +201,4 @@ And there you have it!  Anytime this CloudFormation template is used to create n
 ![](octopetshop-project-trigger.png)
 
 ## Summary
-Combining the power of automatic provisioning with automating Tentacle installations is an absolute necessity when implementing applications with scaling capabilties.  In this post, I demonstrated using an AWS CloudFormation template to provision a Linux-based EC2 instance, install a Linux tentacle and run as a service, register with an Octopus server, and configure your project to automatically deploy when a machine is created.
+Combining the power of automatic provisioning with automating Tentacle installations is an absolute necessity when implementing applications with scaling capabilties.  In this post, I demonstrated using an AWS CloudFormation template to provision a Linux-based EC2 instance, install a Linux Tentacle and run as a service, register with an Octopus server, and configure your project to automatically deploy when a machine is created.
