@@ -3,9 +3,9 @@ title: Bootstrap Tentacle installation with DSC
 description: Install and configure Tentacles using the power of Desired State Configuration (DSC)
 author: shawn.sesna@octopus.com
 visibility: public
+published: 2019-10-01
 bannerImage: 
 metaImage: 
-published: 2020-09-04
 tags:
  - DevOps
  - Desired State Configuration
