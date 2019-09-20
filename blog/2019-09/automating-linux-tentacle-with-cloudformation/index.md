@@ -68,7 +68,7 @@ echo "Registering the Tentacle $name with server $serverUrl in environment $envi
 ```
 
 ### Create the Unit file
-At this point, Tentacle for Linux will only start when we issue if done by command line.  We need to create a Unit file so Tentacle for Linux will start automatically and stay running.
+At this point, Tentacle for Linux will only start from the command line.  We need to create a Unit file so Tentacle for Linux will start automatically and stay running.
 
 ```bash
 # Use cat to write the service file
