@@ -2,8 +2,8 @@
 title: Exploring Istio - The Gateway Resource
 description: This post exposes an Istio Gateway resource to direct external traffic into the cluster.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2020-01-01
+visibility: PublicNotListedOnMainBlog
+published: 2019-09-23
 metaImage:
 bannerImage:
 tags:

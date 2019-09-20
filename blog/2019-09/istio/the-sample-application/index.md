@@ -2,8 +2,8 @@
 title: Exploring Istio - The sample application
 description: In this post, we look at a very simple sample application that we’ll use to explore the functionality of Istio.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2020-01-01
+visibility: public
+published: 2019-09-23
 metaImage:
 bannerImage:
 tags:
