@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: 
 metaImage: 
-published: 
+published: 2020-10-01
 tags:
  - DevOps
 ---
@@ -14,7 +14,7 @@ tags:
 In a world of cloud-based applications with scaling capabilities, it's essential that you have infrastructure automation in place.  Amazon Web Services (AWS) has taken out the heavy lifting by providing CloudFormation templates for automatic provisioning of cloud-based resources.  While this takes care of provisioning of resources, you still need a method for automatically attaching your newly created EC2 instance with Octopus Deploy so your applications and services can be deployed.  In this post, I will demonstrate how to install and configure a Tentacle for Linux when using a Linux-based EC2 instance.
 
 ## UserData in CloudFormation template
-AWS provides a section within the CloudFormation template where we can include script called UserData.  In this example, I am creating an EC2 Linux instance to host [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a .NET core application.  To accomplish this, I'll need to
+AWS provides a section within the CloudFormation template where we can include script called UserData.  In this example, I am creating an EC2 Linux instance to host [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a .NET core application.  To accomplish this, I'll need to:
 
 - Install Tentacle for Linux
 - Configure the Tentacle
@@ -24,7 +24,7 @@ AWS provides a section within the CloudFormation template where we can include s
 - Install .NET core
 
 ### Install Tentacle for Linux
-After the EC2 instance is provisioned, the first thing we need to do is install Tentacle for Linux.  We first need to add the Octopus public key, then add the add the Octopus repository to the authorized list for apt.  Once those commands have run, we're able to install Tentacle for Linux.
+After the EC2 instance is provisioned, the first thing we need to do is install Tentacle for Linux.  We first need to add the Octopus public key, then add the add the Octopus repository to the authorized list for apt.  Once those commands have run, we're able to install Tentacle for Linux:
 
 ```bash
 sudo apt-key adv --fetch-keys https://apt.octopus.com/public.key # Add Octopus public key to apt
@@ -34,7 +34,7 @@ sudo apt-get install tentacle # Install Tentacle for Linux
 ```
 
 ### Configure the Tentacle
-When dealing with cloud-hosted Virtual Machines (VM) that can be spun up dynamically, it makes the most sense to configure the Tentacle as a polling Tentacle so we don't have to deal with as many firewall configurations. 
+When dealing with cloud-hosted Virtual Machines (VM) that can be spun up dynamically, it makes the most sense to configure the Tentacle as a polling Tentacle so we don't have to deal with as many firewall configurations:
 
 ```bash
 serverUrl="https://YourOctopusServer" # Url to our Octopus server
@@ -68,7 +68,7 @@ echo "Registering the Tentacle $name with server $serverUrl in environment $envi
 ```
 
 ### Create the Unit file
-At this point, Tentacle for Linux will only start from the command line.  We need to create a Unit file so Tentacle for Linux will start automatically and stay running.
+At this point, Tentacle for Linux will only start from the command line.  We need to create a Unit file so Tentacle for Linux will start automatically and stay running:
 
 ```bash
 # Use cat to write the service file
@@ -91,7 +91,7 @@ EOL
 ```
 
 ### Configure the Tentacle to run as a Linux Service
-With our Unit file created, we can now configure Tentacle to start when the OS starts
+With our Unit file created, we can now configure Tentacle to start when the OS starts:
 
 ```bash
 # Copy the unit file
@@ -106,7 +106,7 @@ sudo systemctl enable tentacle
 ```
 
 ### Install .NET core
-The last thing our script needs to do is install .NET core so our OctoPetShop application will run
+The last thing our script needs to do is install .NET core so our OctoPetShop application will run:
 
 ```bash
 # Download and install the Microsoft packages
@@ -128,7 +128,7 @@ sudo apt-get install dotnet-sdk-2.2 --assume-yes
 
 ## Sample CloudFormation template
 :::warning
-The following is an excerpt from the CloudFormation template, click [here](SampleCloudFormation.yaml) for the entire template.
+The following is an excerpt from the CloudFormation template, click [here](https://github.com/OctopusSamples/CloudFormation-LinuxTentacle/blob/master/src/SampleCloudFormation.yaml) for the entire template.
 :::
 
 ```
