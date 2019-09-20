@@ -2,13 +2,15 @@
 title: Installing Minikube on Windows
 description: Learn how to get a test Kubernetes environment on Windows with Minikube
 author: matthew.casperson@octopus.com
-visibility: private
-published: 3000-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-09-25
+metaImage: installing_minikube_on_windows.png
+bannerImage: installing_minikube_on_windows.png
 tags:
  - Engineering
 ---
+
+![Octopus driving a Kubernetes speedboat](installing_minikube_on_windows.png)
 
 Getting started with a test Kubernetes cluster has been made easier thanks to the [Minikube project](https://kubernetes.io/docs/tasks/tools/install-minikube/). By using the HyperV functionality in Windows 10, a test Kubernetes cluster can be created in just a few minutes.
 
