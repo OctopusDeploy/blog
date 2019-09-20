@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-My [previous article](/blog/2019-09/automate-sql-server-developer-install-with-docker/index.md) walked through how to get SQL Server running in a Windows-based Docker Container. However, Docker was designed to host Linux-based containers, which offer the following advantages over Windows-based containers.  
+My [previous article](/blog/2019-09/running-sql-server-developer-install-with-docker/index.md) walked through how to get SQL Server running in a Windows-based Docker Container. However, Docker was designed to host Linux-based containers, which offer the following advantages over Windows-based containers.  
 
 - Much less overhead.
 - More features available.
@@ -24,7 +24,7 @@ SQL Server can run on Linux based containers. In this article, I will go through
 
 ## Prep work
 
-This article uses [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows). My previous article walks through the steps to [install Docker Desktop](/blog/2019-09/automate-sql-server-developer-install-with-docker/index.md), so I won’t repeat that here.
+This article uses [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows). My previous article walks through the steps to [install Docker Desktop](/blog/2019-09/running-sql-server-developer-install-with-docker/index.md), so I won’t repeat that here.
 
 The only downside with Docker Desktop is you can’t run both Windows-based containers and Linux-based containers. If you’ve been using Windows-based containers, you can switch to Linux containers by right-clicking on the Docker icon in the taskbar and selecting `Switch to Linux containers...`. By default, Docker Desktop starts with Linux containers:
 
