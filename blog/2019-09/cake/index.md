@@ -25,7 +25,7 @@ Speaking of source control, your Cake script lives in your project repository. Y
 
 ## Example Cake Script
 
-You can see a full example Cake script for our OctoPetShop sample project at Github.
+Our sample project, OctoPetShop, has a [full example Cake script](https://github.com/OctopusSamples/OctoPetShop/blob/master/build.cake) that we'll be exploring in this post.
 
 ### Tools, Addins, and Modules
 
