@@ -12,6 +12,16 @@ tags:
 
 ![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
 
+This is part three in a series of posts exploring Istio, a popular service mesh available for Kubernetes. In this post, I'll look at what a DestinationRule resource is and where it fits in this stack.
+
+* [The Sample application.](/blog/2019-09/istio/the-sample-application/index.md)
+* [The VirtualService resource.](/blog/2019-09/istio/istio-virtualservice/index.md)
+* **The DestinationRule resource.**
+* [The ServiceEntry resource.](/blog/2019-09/istio/istio-serviceentry/index.md)
+* [The Gateway resource.](/blog/2019-09/istio/istio-gateway/index.md)
+
+---
+
 The Istio [DestinationRule](https://istio.io/docs/reference/config/networking/v1alpha3/destination-rule/#LoadBalancerSettings) resource provides a way to configure traffic once it has been routed by a VirtualService resource. A DestinationRule resource can be used to configure load balancing, security and connection details like timeouts and maximum numbers of connections.
 
 In this blog post, we’ll add a DestinationRule resource to our cluster to see how it affects our application.

@@ -12,6 +12,16 @@ tags:
 
 ![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
 
+This is part five in a series of posts exploring Istio, a popular service mesh available for Kubernetes. In this post, I'll look at what a Gateway resource is and where it fits in this stack.
+
+* [The Sample application.](/blog/2019-09/istio/the-sample-application/index.md)
+* [The VirtualService resource.](/blog/2019-09/istio/istio-virtualservice/index.md)
+* [The DestinationRule resource.](/blog/2019-09/istio/istio-destinationrule/index.md)
+* [The ServiceEntry resource.](/blog/2019-09/istio/istio-serviceentry/index.md)
+* **The Gateway resource.**
+
+---
+
 Up until this point, our Kubernetes cluster has taken traffic from a standard load balancer Service resource, which thanks to the fact that our cluster is hosted by AWS, is exposed by an ELB with a public IP. External traffic hitting this load balancer is directed to our `proxy` application, and from here we have used Istio to route the internal traffic.
 
 As well as routing internal traffic, Istio can also route external traffic entering the cluster. The [Gateway resource](https://istio.io/docs/reference/config/networking/v1alpha3/gateway/) is used by Istio to receive external traffic and route it as it enters the cluster.

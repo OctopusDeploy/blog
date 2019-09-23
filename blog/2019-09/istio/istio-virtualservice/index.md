@@ -12,6 +12,16 @@ tags:
 
 ![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
 
+This is part two in a series of posts exploring Istio, a popular service mesh available for Kubernetes. In this post, I'll look at what a VirtualService resource is and where it fits in this stack.
+
+* [The Sample application.](/blog/2019-09/istio/the-sample-application/index.md)
+* **The VirtualService resource.**
+* [The DestinationRule resource.](/blog/2019-09/istio/istio-destinationrule/index.md)
+* [The ServiceEntry resource.](/blog/2019-09/istio/istio-serviceentry/index.md)
+* [The Gateway resource.](/blog/2019-09/istio/istio-gateway/index.md)
+
+---
+
 In the [previous blog](/blog/2019-09/istio/the-sample-application/index.md) post, we deployed two simple Node.js web applications into a Kubernetes cluster as Deployment resources and linked everything up with standard Service resources.
 
 The networking so far has only used standard Kubernetes resources to configure it. This works but falls a little short when it comes to directing traffic between different versions of upstream APIs. You will have noticed that the `proxy` application is returning content from the Pod resources created by both the `webserverv1` and `webserverv2` Deployment resources, which is unlikely to be the desired result had this been a real-world deployment. Istio can address this limitation with the [VirtualService resource](https://istio.io/docs/reference/config/networking/v1alpha3/virtual-service/).
