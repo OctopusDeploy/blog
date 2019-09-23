@@ -12,7 +12,7 @@ tags:
 
 In a world of cloud-based applications with scaling capabilities, it’s essential to have infrastructure automation in place.  Amazon Web Services (AWS) has removed the heavy lifting by providing CloudFormation templates for automatic provisioning of cloud-based resources, but you still need a method to automatically connect your newly created EC2 instances to Octopus Deploy so your applications and services can be deployed.  In this post, I‘ll demonstrate how to install and configure a Tentacle for Linux when using a Linux-based EC2 instance.
 
-## UserData in CloudFormation template
+## UserData in the CloudFormation template
 
 AWS provides a section within the CloudFormation template where we can include a script called UserData.  In this example, I am creating an EC2 Linux instance to host [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a .NET core application.  To accomplish this, I need to:
 
