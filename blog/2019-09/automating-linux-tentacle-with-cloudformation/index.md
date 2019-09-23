@@ -201,8 +201,10 @@ Resources:
             sudo apt-get install dotnet-sdk-2.2 --assume-yes
 ```
 
-## Conclusion 
-
-Anytime this CloudFormation template is used to create a new EC2 instance, it will automatically download, install and configure the Tentacle for Linux, attach the Tentacle to your Octopus server, set up the Tentacle as a Linux service, and install .NET core making our new instance ready to host the `OctoPetShop` application.  We can even use a [Project Trigger](https://octopus.com/docs/deployment-process/project-triggers) to configure the `OctoPetShop` application to automatically deploy whenever a new machine becomes available.  Now, when our application scales up, it will automatically deploy `OctoPetShop` to the newly created machine.
+We can take this automation even further and use a [Project Trigger](https://octopus.com/docs/deployment-process/project-triggers) to configure the `OctoPetShop` application to automatically deploy whenever a new machine becomes available.  Now, when our application scales up, it will automatically deploy `OctoPetShop` to the newly created machine.
 
 ![](octopetshop-project-trigger.png)
+
+## Conclusion 
+
+Anytime this CloudFormation template is used to create a new EC2 instance, it will automatically download, install and configure the Tentacle for Linux, attach the Tentacle to your Octopus server, set up the Tentacle as a Linux service, and install .NET core making our new instance ready to host the `OctoPetShop` application.
