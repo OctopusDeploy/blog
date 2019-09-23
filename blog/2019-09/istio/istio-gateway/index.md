@@ -4,11 +4,13 @@ description: This post exposes an Istio Gateway resource to direct external traf
 author: matthew.casperson@octopus.com
 visibility: PublicNotListedOnMainBlog
 published: 2019-09-23
-metaImage:
-bannerImage:
+metaImage: exploring-istio.png
+bannerImage: exploring-istio.png
 tags:
  - Engineering
 ---
+
+![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
 
 Up until this point, our Kubernetes cluster has taken traffic from a standard load balancer Service resource, which thanks to the fact that our cluster is hosted by AWS, is exposed by an ELB with a public IP. External traffic hitting this load balancer is directed to our `proxy` application, and from here we have used Istio to route the internal traffic.
 

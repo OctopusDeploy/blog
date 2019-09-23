@@ -4,11 +4,13 @@ description: In this blog post, we add a VirtualService resource to the cluster 
 author: matthew.casperson@octopus.com
 visibility: PublicNotListedOnMainBlog
 published: 2019-09-23
-metaImage:
-bannerImage:
+metaImage: exploring-istio.png
+bannerImage: exploring-istio.png
 tags:
  - Engineering
 ---
+
+![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
 
 In the [previous blog](/blog/2019-09/istio/the-sample-application/index.md) post, we deployed two simple Node.js web applications into a Kubernetes cluster as Deployment resources and linked everything up with standard Service resources.
 
