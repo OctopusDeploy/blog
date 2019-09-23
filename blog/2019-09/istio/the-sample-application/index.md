@@ -16,7 +16,7 @@ tags:
 
 The canonical example provided by the Istio project is [Bookinfo](https://istio.io/docs/examples/bookinfo/). Bookinfo is a small polyglot microservice application whose output can be tweaked by modifying network policies.
 
-However, I found Bookinfo too high level to really understand the features of Istio, and so instead, we’ll present a very simple Kubernetes deployment with Node.js applications proxying the requests from various web servers, both internal and external to the cluster. By keeping things very simple, it is easy to see exactly what Istio is doing as network requests are being made.
+However, I found Bookinfo too high level to really understand the features of Istio, and so instead, I’ll present a very simple Kubernetes deployment with Node.js applications proxying the requests from various web servers, both internal and external to the cluster. By keeping things very simple, it is easy to see exactly what Istio is doing as network requests are being made.
 
 This sample application will then be used as we explore the major features of Istio including:
 
@@ -109,7 +109,7 @@ server.listen(port, (err) => {
 
 ## An architecture diagram
 
-Here is a top-level overview of the sample application, using the [Kubernetes Deployment Language](https://blog.openshift.com/kdl-notation-kubernetes-app-deploy/) (KDL).
+Here is a top-level overview of the sample application using the [Kubernetes Deployment Language](https://blog.openshift.com/kdl-notation-kubernetes-app-deploy/) (KDL).
 
 The YAML at https://github.com/mcasperson/NodejsProxy/blob/master/kubernetes/example.yaml is a deployable example of this sample project.
 
