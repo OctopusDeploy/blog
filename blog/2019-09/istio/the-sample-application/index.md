@@ -1,14 +1,16 @@
 ---
-title: Exploring Istio - The sample application
+title: Exploring Istio by Example
 description: In this post, we look at a very simple sample application that we’ll use to explore the functionality of Istio.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2019-09-23
-metaImage:
-bannerImage:
+metaImage: exploring-istio.png
+bannerImage: exploring-istio.png
 tags:
  - Engineering
 ---
+
+![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
 
 [Istio](https://istio.io/) is one of the most popular and powerful service meshes available for Kubernetes today. To understand the features it provides, it’s useful to have a very simple sample application to make network requests that we can manipulate and configure via Istio.
 
