@@ -40,7 +40,7 @@ Connect the virtual switch to the PCs local network adapter (in this example, th
 
 You will receive a warning that the network connection will be disrupted. Click `Yes` to continue.
 
-![](warning.png "width=500")
+![](warning-01.png "width=300")
 
 *A warning about network interruption as a result of creating a new switch.*
 
