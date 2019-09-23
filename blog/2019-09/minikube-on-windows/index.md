@@ -22,7 +22,7 @@ Minikube requires an external HyperV switch to operate, and you may find that yo
 
 To view the list of switches, open the `HyperV Manager` and select `Virtual Switch Manager...` from the list of actions:
 
-![](hyperv-actions.png "width=500")
+![](hyperv-actions.png "width=150")
 
 *The HyperV actions menu.*
 
