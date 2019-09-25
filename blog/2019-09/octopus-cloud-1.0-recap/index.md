@@ -3,21 +3,20 @@ title: Reflecting on the launch of Octopus Cloud 1.0
 description: We reflect on the launch of our Octopus Cloud - the SaaS version of Octopus - and how it's shaped our plans for Octopus Cloud 2.0.
 author: andrew.katsivas@octopus.com
 visibility: public
-published: 2019-09-03
+published: 2019-09-30
 metaImage: octopus-cloud-recap.png
 bannerImage: octopus-cloud-recap.png
 tags:
- - Octopus Cloud
- - Behind the Scenes
+ - Engineering
 ---
 
 ![Octopus in the balloon looking ahead to Octopus Cloud version 2.0](octopus-cloud-recap.png)
 
 ## Octopus Cloud 1.0 - Reflection
 
-About a year ago we launched Octopus Cloud (link to launch post) - a SaaS (term definition link needed) version of Octopus - as an experiment to see whether it would deliver significant value to our users, and simplify their deployment story. We wanted to empower developers to just focus on their deployment needs, and leave the management of the infrastructure to us.
+About a year ago [we launched Octopus Cloud](https://octopus.com/blog/announcing-octopus-cloud) - a SaaS version of Octopus - as an experiment to see whether it would deliver significant value to our customers, and simplify their deployment story. We wanted to empower developers to just focus on their deployment needs, and leave the management of the infrastructure to us.
 
-Overall, we think it’s been a huge success - enough for us to invest the last year in rebuilding almost the entire platform from the ground up (link to a 2.0 launch post if there is one?). I was a part of the team that shipped the current version of Octopus Cloud, and wanted to take some time to celebrate a few of our wins, and reflect on the lessons we learnt that have shaped our redesign.
+Overall, we think it’s been a huge success - enough for us to invest the last year in rebuilding almost the entire platform from the ground up. I was a part of the team that shipped the current version of Octopus Cloud, and wanted to take some time to celebrate a few of our wins, and reflect on the lessons we learnt that have shaped our redesign.
 
 ## We went down the rabbithole
 
