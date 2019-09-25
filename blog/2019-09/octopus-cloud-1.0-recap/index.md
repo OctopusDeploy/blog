@@ -37,9 +37,11 @@ This is one of the great fallacies, and it’s enduring because it’s just so l
 
 Our solution was to build an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) based on our best estimates, and test the market that way. We were so committed to this we were prepared to lose $1M on the whole project if it totally bombed and no-one used it.
 
+Ultimately we were victims of our own success (cheeky humblebrag). We built it, and it felt like everyone came at once! 
+
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Wow, this Octopus Cloud thing has taken off - more than our initial expectations. We&#39;ve temporarily put a hold on new signups while we get Amazon to build some new Data Centers (read: we&#39;re scaling our infra). <a href="https://twitter.com/hashtag/DevOps?src=hash&amp;ref_src=twsrc%5Etfw">#DevOps</a> <a href="https://t.co/gCp6ATxiYf">pic.twitter.com/gCp6ATxiYf</a></p>&mdash; OctopusDeploy (@OctopusDeploy) <a href="https://twitter.com/OctopusDeploy/status/1015048915605831680?ref_src=twsrc%5Etfw">July 6, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Ultimately we were victims of our own success (cheeky humblebrag). We built it, and it felt like everyone came at once! In the first few days we had over 500 new cloud trials spin up - and more than a few sleepless nights for the team as we had to rapidly work around unexpected hidden service limits. This caused a few issues as we scaled, and at one point we had to pause new signups while we tried to provision more headroom.
+In the first few days we had over 500 new cloud trials spin up - and more than a few sleepless nights for the team as we had to rapidly work around unexpected hidden service limits. This caused a few issues as we scaled, and at one point we had to pause new signups while we tried to provision more headroom.
 
 ## There’s more to SaaS than autoscaling
 
