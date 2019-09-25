@@ -35,7 +35,7 @@ This is one of the great fallacies, and it’s enduring because it’s just so l
 
 Our solution was to build an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) based on our best estimates and test the market that way. We were so committed to this, we were prepared to lose $1M on the whole project even if it totally bombed and no-one used it.
 
-Ultimately we were victims of our own success (cheeky humblebrag). We built it, and it felt like everyone came at once! 
+However, we were victims of our own success (cheeky humblebrag). We built it, and it felt like everyone came at once! 
 
 In the first few days we had over 500 new cloud trials spin up, and more than a few sleepless nights for the team as we rapidly worked around unexpected hidden service limits. This caused a few issues as we scaled, and at one point, we had to pause new signups while we tried to provision more headroom.
 
@@ -57,11 +57,11 @@ Two months in we started having some very serious conversations about our $100k 
 
 [Octopus Deploy as a company](https://octopus.com/company) is not publically listed or VC funded, and we’ve been bootstrapped and profitable since Octopus 1.0. However, this means that our business needs to remain sustainable, as we can’t rely on multi-million-dollar investments to bail us out. We want to continue to produce quality software for many years to come, so we needed to either make Octopus Cloud sustainable or decide to abandon the experiment.
 
-Ultimately, we took the lessons we were learning and started a huge body of work we internally called **Hosted v2**, a reimagining of Octopus Cloud, built to scale sustainably.
+We decided to take the lessons we were learning and start a huge body of work we internally called **Hosted v2**, a reimagining of Octopus Cloud, built to scale sustainably.
 
 ## Starting over
 
-Deciding to rebuild something from scratch is brutal, it can feel like your earlier attempt was wasted time and effort, and that work is being thrown in the bin. However, we needed to recognize that a second step is only ever possible because a first step was taken, and every lesson learned along the way is essential input. 
+Deciding to rebuild something from scratch is brutal, it can feel like your earlier attempt was wasted time and effort, and that work is being thrown out. However, we needed to recognize that a second step was only possible because a first step was taken, and every lesson learned along the way was essential input. 
 
 A lot of things under the hood are changing with v2, but one major aspect is still the same: we remain fully committed to using Octopus as the tool to orchestrate our cloud platform. The benefit we get from being our *own customers* in this regard is immeasurable, and it will hopefully drive numerous enhancements to come.
 
