@@ -4,10 +4,22 @@ description: In this post, we’ll expose external URLs to Istio with the Servic
 author: matthew.casperson@octopus.com
 visibility: PublicNotListedOnMainBlog
 published: 2019-09-23
-metaImage:
-bannerImage:
+metaImage: exploring-istio.png
+bannerImage: exploring-istio.png
 tags:
  - Engineering
+---
+
+![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
+
+This is part four in a series of posts exploring Istio, a popular service mesh available for Kubernetes. In this post, I'll look at what a ServiceEntry resource is and where it fits in this stack.
+
+* [The Sample application.](/blog/2019-09/istio/the-sample-application/index.md)
+* [The VirtualService resource.](/blog/2019-09/istio/istio-virtualservice/index.md)
+* [The DestinationRule resource.](/blog/2019-09/istio/istio-destinationrule/index.md)
+* **The ServiceEntry resource.**
+* [The Gateway resource.](/blog/2019-09/istio/istio-gateway/index.md)
+
 ---
 
 In order to make a network request, the destination host must be part of the Istio service registry. By default, any Service resource in a Kubernetes cluster is part of the service registry, but external URLs are not. To expose external network applications to Istio, we use the [ServiceEntry](https://istio.io/docs/reference/config/networking/v1alpha3/service-entry/) resource.

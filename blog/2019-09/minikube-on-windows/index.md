@@ -22,7 +22,7 @@ Minikube requires an external HyperV switch to operate, and you may find that yo
 
 To view the list of switches, open the `HyperV Manager` and select `Virtual Switch Manager...` from the list of actions:
 
-![](hyperv-actions.png "width=500")
+![](hyperv-actions-01.png "width=300")
 
 *The HyperV actions menu.*
 
@@ -40,7 +40,7 @@ Connect the virtual switch to the PCs local network adapter (in this example, th
 
 You will receive a warning that the network connection will be disrupted. Click `Yes` to continue.
 
-![](warning.png "width=500")
+![](warning-01.png "width=300")
 
 *A warning about network interruption as a result of creating a new switch.*
 
