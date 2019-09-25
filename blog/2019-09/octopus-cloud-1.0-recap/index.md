@@ -3,7 +3,7 @@ title: Reflecting on the launch of Octopus Cloud 1.0
 description: We reflect on the launch of our Octopus Cloud - the SaaS version of Octopus - and how it's shaped our plans for Octopus Cloud 2.0.
 author: andrew.katsivas@octopus.com
 visibility: public
-published: 2020-09-30
+published: 2019-09-30
 metaImage: octopus-cloud-recap.png
 bannerImage: octopus-cloud-recap.png
 tags:
@@ -55,7 +55,7 @@ Unfortunately this was one of the most painful lessons we learnt, because the de
 
 Two months in we started to have some very serious conversations about our $100k USD monthly AWS spend, with very little revenue to compare it with:
 
-TODO: AWS bill screenshot
+![Octopus Cloud AWS is $100000 plus per month](octopus-cloud-aws-bill.png)
 
 [Octopus Deploy as a company](https://octopus.com/company) is not publically listed or VC funded - we have been bootstrapped and profitable since Octopus 1.0. However, this means that our business needs to always be sustainable, as we can’t rely on multi-million-dollar investments to bail us out. We want to continue to produce quality software for many years to come, so we needed to either make Octopus Cloud sustainable, or decide to abandon the experiment.
 
