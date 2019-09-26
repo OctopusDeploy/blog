@@ -1,5 +1,5 @@
 ---
-title: Have Your Cake and Build It Too
+title: Using Cake build scripts for your .NET Core web apps
 description: Using Cake's C# makefiles to script your application build process
 author: ryan.rousseau@octopus.com
 visibility: public
@@ -7,9 +7,10 @@ bannerImage: blogimage-.png
 metaImage: blogimage-.png
 published: 2019-11-25
 tags:
- - Build Automation
- - Cake
+ - DevOps
 ---
+
+Cake is a build automation system for .NET Developers to script their build process using a C# Domain Specific Language (DSL). In this post, we'll explore the benefits of Cake, look at its major features using a concrete working example to achieve a flexible, maintainable automated build process.
 
 You might have heard about Make and makefiles in the past, but don't worry if you haven't because you are about to. Make is a build automation tool, and a makefile is a file that contains the instructions Make needs to build an application. It can also be used to run related tasks like cleaning the build directory.
 
@@ -19,17 +20,21 @@ In the .NET world, you have a few options based on your language of choice. Ther
 
 ## Benefits of Cake
 
-One of the top benefits of using Cake is that you can use the same script to build your applications locally and from your CI server. Think about that for a second. Barring any environmental issues on your build agent, the same Cake script will run on your machine, your team member's machine, and on your CI server. Your CI project configuration could be simplified to Step 1, check out from source control and Step 2, run this Cake script.
+One of the top benefits of using Cake is that your build script will be written in a C# DSL. Your team can use the language that you're most familiar with to automate your builds instead of XML, JSON, or YAML.
+
+Another benefit that shouldn't be overlooked is that you can execute the Cake script locally and from your CI server. Think about that for a second. Barring any environmental issues on your build agent, the same Cake script will run on your machine, your team member's machine, and on your CI server. Your CI project configuration could be simplified to Step 1, check out from source control and Step 2, run this Cake script.
 
 Speaking of source control, your Cake script lives in your project repository. Your build process is versioned and can be changed and reviewed with the same code review process as your application code. Committing your script also couples your application code with the build process so that you won't have to change the build steps separately in your CI server. This linking of the application and build script is one of the reasons that YAML is becoming a popular choice for modeling build pipelines. Cake has the added benefit that you can run those build steps right on your machine.
 
+Cake has [built-in support for a lot of tools](https://cakebuild.net/dsl/) (including Octopus Deploy) and many others through [community-contributed add-ins](https://cakebuild.net/addins/). There's a good chance that the tools you are using for your build are supported and if not, you can create an add-in to use in your script.
+
 ## Example Cake Script
 
-Our sample project, OctoPetShop, has a [full example Cake script](https://github.com/OctopusSamples/OctoPetShop/blob/master/build.cake) that we'll be exploring in this post.
+Our sample project, OctoPetShop, has a [full example Cake script](https://github.com/OctopusSamples/OctoPetShop/blob/a9254521a67db6364ff4ac888fa56873ae07f7c8/build.cake) that we'll be exploring in this post. That link is to the version used at time of writing. If you want to review the latest version you can check [this link](https://github.com/OctopusSamples/OctoPetShop/blob/master/build.cake).
 
 ### Tools, Addins, and Modules
 
-The first section in your Cake script will be to import any external tools, addins, or modules that you will use in your build process. In our case, we have added a #tool directive and specified that we want OctopusTools version 6.13.1 from NuGet. Then we add a using statement for the `Cake.Common.Tools.OctopusDeploy` namespace.
+The first section in your Cake script will be to import any external tools, add-ins, or modules that you will use in your build process. In our case, we have added a #tool directive and specified that we want OctopusTools version 6.13.1 from NuGet. Then we add a using statement for the `Cake.Common.Tools.OctopusDeploy` namespace.
 
 ```cs
 #tool "nuget:?package=OctopusTools&version=6.13.1"
@@ -43,7 +48,7 @@ We're only using the Octopus Deploy tooling in this script so far, but Cake has 
 
 In the next section, we set up some arguments and variables to use during the script execution.
 
-With the Argument alias, Cake will give you the value of an argument that was provided to from the command line or a default value that you specify. We have arguments for the target task to run, what build configuration to use, what version and prerelease tag to use for versioning, and information for integrating with our Octopus server.
+With the Argument alias, Cake will give you the value of an argument that was provided from the command line or a default value that you specify. We have arguments for the target task to run, what build configuration to use, what version and prerelease tag to use for versioning, and information for integrating with our Octopus server.
 
 After that, we have a simple class for collecting information on our projects and a few variables that we'll populate in `Setup`.
 
@@ -61,6 +66,7 @@ class ProjectInformation
     public string Name { get; set; }
     public string FullPath { get; set; }
     public string Runtime { get; set; }
+    public bool IsTestProject { get; set; }
 }
 
 string packageVersion;
@@ -89,7 +95,8 @@ Setup(context =>
     {
         Name = p.GetFilenameWithoutExtension().ToString(),
         FullPath = p.GetDirectory().FullPath,
-        Runtime = p.GetFilenameWithoutExtension().ToString() == "OctopusSamples.OctoPetShop.Database" ? databaseRuntime : null
+        Runtime = p.GetFilenameWithoutExtension().ToString() == "OctopusSamples.OctoPetShop.Database" ? databaseRuntime : null,
+        IsTestProject = p.GetFilenameWithoutExtension().ToString().EndsWith(".Tests")
     }).ToList();
 
     Information("Building OctoPetShop v{0}", packageVersion);
@@ -98,7 +105,7 @@ Setup(context =>
 
 ### Tasks
 
-Tasks define your build process. They are analogous to build steps in your traditional CI project or pipeline.
+Tasks define your build process. They are analogous to build steps in your traditional Continuous Integration (CI) project or pipeline.
 
 Let's take a look at our first task, `Clean`. We define it with the `Task` method and provide a name. Then we use the `Does` method to define what this task does. In this case, we're cleaning our publish and package directories and then calling `DotNetCoreClean` for our projects.
 
@@ -146,46 +153,29 @@ Task("Build")
     });
 ```
 
-We have another task named `Publish` that depends on `Build`. Running the `Publish` task will run `Clean`, `Restore`, and `Build` first.
+We have another task named `RunUnitTests` that depends on `Build`. Running the `RunUnitTests` task will trigger `Clean`, `Restore`, and `Build`.
 
 ```cs
-Task("Pack")
-    .IsDependentOn("Publish")
+Task("RunUnitTests")
+    .IsDependentOn("Build")
     .Does(() =>
     {
-        foreach(var project in projects)
+        foreach(var project in projects.Where(p => p.IsTestProject))
         {
-            OctoPack(
-                project.Name,
-                new OctopusPackSettings()
-                {
-                    Format = OctopusPackFormat.NuPkg,
-                    BasePath = System.IO.Path.Combine("./publish", project.Name),
-                    OutFolder = "./package",
-                    Version = packageVersion
-                });
+            DotNetCoreTest(project.FullPath, new DotNetCoreTestSettings { Configuration = configuration });
         }
-
-        // pack infrastructure
-        OctoPack(
-            "OctopusSamples.OctoPetShop.Infrastructure",
-            new OctopusPackSettings()
-            {
-                Format = OctopusPackFormat.NuPkg,
-                BasePath = System.IO.Path.Combine("./publish", "OctopusSamples.OctoPetShop.Infrastructure"),
-                OutFolder = "./package",
-                Version = packageVersion
-            });
     });
 ```
 
-Finally, we have these lines at the end of our script. This creates a Default task that will run the Build task and its dependencies.
+If you continue reading through the script, you'll see tasks for publishing the apps, packaging them using the Octopus tools, pushing the packages to Octopus, and creating and deploying a release with Octopus.
 
-The last line calling the RunTarget method is what kicks off the build process. Here we pass in the global variable `target` which is provided by the user, CI server, or defaults to "Default".
+Finally, we have these lines at the end of our script. This creates a Default task that will run the RunUnitTests task and its dependencies.
+
+The last line calling the RunTarget method is what kicks off the build process. Here we pass in the global variable `target` which is provided by the user, CI server, or defaults to the task named `Default`.
 
 ```cs
 Task("Default")
-    .IsDependentOn("Build");
+    .IsDependentOn("RunUnitTests");
 
 RunTarget(target);
 ```
@@ -203,14 +193,15 @@ That's it! The script starts up and after a short wait, we have our NuGet packag
 ```
 Task                          Duration
 --------------------------------------------------
-Setup                         00:00:00.1393865
-Clean                         00:00:04.3372474
-Restore                       00:00:04.7199868
-Build                         00:00:10.4872332
-Publish                       00:00:06.7151122
-Pack                          00:00:12.4005419
+Setup                         00:00:00.1432566
+Clean                         00:00:05.4768163
+Restore                       00:00:06.1162465
+Build                         00:00:09.6114684
+RunUnitTests                  00:00:04.3110846
+Publish                       00:00:06.9924016
+Pack                          00:00:12.7274733
 --------------------------------------------------
-Total:                        00:00:38.7995080
+Total:                        00:00:45.3787473
 ```
 
 We can upload those packages to our Octopus server directly or commit our changes, knowing that our build works.
@@ -234,19 +225,20 @@ After running a build, not only do we get the full output of the cake script in 
 ```
 Task                          Duration
 --------------------------------------------------
-Setup                         00:00:00.0403755
-Clean                         00:00:13.3532270
-Restore                       00:01:08.3918289
-Build                         00:00:27.3176623
-Publish                       00:00:06.2938190
-Pack                          00:00:11.7965962
-PushPackages                  00:00:14.1897835
-CreateRelease                 00:00:05.4657168
-DeployRelease                 00:02:08.3872655
+Setup                         00:00:00.0434025
+Clean                         00:00:18.1795863
+Restore                       00:01:07.9769173
+Build                         00:00:36.6475174
+RunUnitTests                  00:00:21.3958462
+Publish                       00:00:06.2555954
+Pack                          00:00:12.0804766
+PushPackages                  00:00:16.0161892
+CreateRelease                 00:00:05.4893287
+DeployRelease                 00:02:09.6799635
 --------------------------------------------------
-Total:                        00:04:35.2362747
+Total:                        00:05:13.7648231
 ```
 
 ## Wrap Up
 
-Build automation frameworks like Cake let your team apply your development process to build scripts and run builds locally with the same steps as your CI server without losing the benefits of a CI server or access to other tools.
+Build automation frameworks like Cake offer many benefits to you and your team. With Cake, you can script your builds using a familiar C# DSL. It enables you to apply your development process to your build. You can run the same steps locally and from your CI server. And Cake's extensive built-in tooling support and community add-ins should cover most, if not all, of your scripting needs.
