@@ -12,7 +12,13 @@ tags:
 
 ![Octopus in the balloon looking ahead to Octopus Cloud version 2.0](octopus-cloud-recap.png)
 
-About a year ago [we launched Octopus Cloud](https://octopus.com/blog/announcing-octopus-cloud), a SaaS version of Octopus, as an experiment to see whether it would deliver significant value to our customers and simplify their deployments. We wanted to empower developers to focus on their deployment needs and leave the management of the infrastructure to us.
+We're publishing a series about our engineering journey with Octopus Cloud. It's the story of our v1 launch of Octopus Cloud on AWS; of our $100K/month AWS bills; of MVP's and testing customer demand; of spending 6 months of engineering effort and then running the service at a loss; of spending another 9 months rebuilding it from the ground-up; and of all the considerations we made when rebuilding Octopus Cloud v2, including switching from AWS to Azure, going all-in on Kubernetes, and more.
+
+In this first post in the series, we'll look at the design choices we made in v1, why it cost so much, and why we decided to start over.
+
+--- 
+
+About a year ago [we launched Octopus Cloud](https://octopus.com/blog/announcing-octopus-cloud), a SaaS version of Octopus, as an experiment to see whether it would deliver significant value to our customers and simplify their deployments. We wanted to empower developers to focus on their deployment needs and leave the management of the infrastructure to us, but we had no idea how difficult it would be to implement or how much time and money it cost to get up and running.
 
 Overall, we think it has been a huge success; enough for us to invest the last year in rebuilding almost the entire platform from the ground up. I was a part of the team that shipped the current version of Octopus Cloud, and I wanted to take some time to celebrate a few of our wins and reflect on the lessons we learned that have shaped our redesign.
 
