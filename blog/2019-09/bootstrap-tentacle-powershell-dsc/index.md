@@ -4,11 +4,13 @@ description: Install and configure Tentacles using the power of Desired State Co
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2019-10-01
-bannerImage: 
-metaImage: 
+bannerImage: bootstrapping_tentacle_installation_dsc.png
+metaImage: bootstrapping_tentacle_installation_dsc.png
 tags:
  - DevOps
 ---
+
+![Tentacles rising from the ocean to install software on a server](bootstrapping_tentacle_installation_dsc.png)
 
 Manually installing Tentacles on deployment targets is fairly painless when you have a small number of machines, with just a couple of clicks you’re done.  However, it’s not uncommon for the number of machines to increase exponentially as adoption of Octopus Deploy becomes more prevalent, especially in large organizations.  In more advanced implementations, targets are sometimes created dynamically, and manually installing Tentacles isn’t feasible.  This is where Infrastructure as Code (IaC) comes in handy.
 
