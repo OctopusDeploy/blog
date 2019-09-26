@@ -1,5 +1,5 @@
 ---
-title: Exploring Istio by Example
+title: Exploring Istio by example
 description: In this post, we look at a very simple sample application that we’ll use to explore the functionality of Istio.
 author: matthew.casperson@octopus.com
 visibility: public
