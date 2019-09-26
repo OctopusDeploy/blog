@@ -3,7 +3,7 @@ title: Reflections on the launch of Octopus Cloud 1.0
 description: Reflections on the launch of Octopus Cloud, the SaaS version of Octopus, and how it shaped our plans for Octopus Cloud 2.0.
 author: andrew.katsivas@octopus.com
 visibility: public
-published: 2019-09-30
+published: 2019-10-07
 metaImage: octopus-cloud-recap.png
 bannerImage: octopus-cloud-recap.png
 tags:
