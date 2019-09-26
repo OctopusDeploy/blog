@@ -45,7 +45,9 @@ However, in some cases, Beanstalk expects to receive nested archives, and .NET C
 In the case of .NET Core, the deployable artifact is a ZIP file containing a JSON manifest file and a second nested ZIP file containing the application code. You can see these files in the screenshot below. The file `aws-windows-deployment-manifest.json` is the Beanstalk manifest file, and the file `site.zip` contains the .NET Core code.
 
 <figure class="figure">
+
 ![](package.png "width=500")
+
 <figcaption class="figure-caption text-center">The contents of a ZIP file containing a .NET Core application to be deployed to Beanstalk.</figcaption>
 </figure>
 
