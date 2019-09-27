@@ -1,6 +1,6 @@
 ---
 title: Using Cake build scripts for your .NET Core web apps
-description: Using Cake's C# makefiles to script your application build process
+description: Using Cake’s C# makefiles to script your application build process
 author: ryan.rousseau@octopus.com
 visibility: public
 bannerImage: 
@@ -10,23 +10,23 @@ tags:
  - DevOps
 ---
 
-Cake is a build automation system for .NET Developers to script their build processes using a C# Domain Specific Language (DSL). In this post, we’ll explore the benefits of Cake and its major features, using a concrete working example to achieve a flexible, maintainable, automated build process.
+Cake is a build automation system for .NET Developers to script their build processes using a C# Domain Specific Language (DSL). In this post, we’ll explore the benefits of Cake and its major features with a concrete working example to achieve a flexible, maintainable, automated build process.
 
 You might have heard about Make and makefiles in the past, but don’t worry if you haven’t because you are about to. Make is a build automation tool, and a makefile is a file that contains the instructions Make needs to build an application. It can also be used to run related tasks like cleaning the build directory.
 
-Many variants of Make have appeared over the years as developers wanted to use their preferred languages to define their build processes. Rake (Ruby Make) became very popular alongside Ruby on Rails.
+Many variants of Make have appeared over the years as developers want to use their preferred languages to define their build processes. Rake (Ruby Make) became very popular alongside Ruby on Rails.
 
 In the .NET world, you have a few options based on your language of choice. There’s [PSake](https://github.com/psake/psake) (PowerShell), [FAKE](https://fake.build/) (F#), and [Cake](https://cakebuild.net/) (C#). We’re focusing on Cake today, but check out the others if you’d rather script with PowerShell or F#.
 
 ## Benefits of Cake
 
-One of the main benefits of using Cake is that your build script will be written in a C# DSL. Your team can use the language that they’re most familiar with to automate your builds instead of using XML, JSON, or YAML.
+One of the main benefits of using Cake is that your build script will be written in a C# DSL. Your team can use the language they’re most familiar with to automate their builds instead of using XML, JSON, or YAML.
 
-Another benefit not to be overlooked is the ability to execute Cake scriptS locally and from your CI server. Think about that for a second. Barring any environmental issues on your build agent, the same Cake script will run on your machine, your team member’s machine, and on your CI server. Your CI project configuration could be simplified to Step 1, check out from source control, and Step 2, run this Cake script.
+Another benefit not to be overlooked is the ability to execute Cake scripts locally and from your CI server. Think about that for a second. Barring any environmental issues on your build agent, the same Cake script will run on your machine, your team member’s machine, and on your CI server. Your CI project configuration could be simplified to Step 1, check out from source control, and Step 2, run this Cake script.
 
 Speaking of source control, your Cake script lives in your project repository. Your build process is versioned and can be changed and reviewed with the same code review process as your application code. Committing your script also couples your application code with the build process so you don’t have to change the build steps separately in your CI server. This linking of the application and build script is one of the reasons YAML is becoming a popular choice for modeling build pipelines. Cake has the added benefit of running those build steps right on your machine.
 
-Cake has [built-in support for a lot of tools](https://cakebuild.net/dsl/) (including Octopus Deploy) and many others through [community-contributed add-ins](https://cakebuild.net/addins/). There’s a good chance the tools you’re using for your build are supported and if not, you can create an add-in to use in your script.
+Cake has [built-in support for lots of tools](https://cakebuild.net/dsl/) (including Octopus Deploy) and many others through [community-contributed add-ins](https://cakebuild.net/addins/). There’s a good chance the tools you’re using for your build are supported and if not, you can create an add-in to use in your script.
 
 ## Example Cake script
 
@@ -34,7 +34,7 @@ Our sample project, OctoPetShop, has a [full example Cake script](https://github
 
 ### Tools, add-ins, and modules
 
-The first section in your Cake script imports any external tools, add-ins, or modules you will use in your build process. In our case, we’ve added a #tool directive and specified that we want OctopusTools version 6.13.1 from NuGet. Then we add a `using` statement for the `Cake.Common.Tools.OctopusDeploy` namespace:
+The first section in your Cake script imports any external tools, add-ins, or modules you use in your build process. In our case, we’ve added a #tool directive and specified that we want OctopusTools version 6.13.1 from NuGet. Then we’ve add a `using` statement for the `Cake.Common.Tools.OctopusDeploy` namespace:
 
 ```cs
 #tool "nuget:?package=OctopusTools&version=6.13.1"
@@ -48,9 +48,9 @@ We’re only using the Octopus Deploy tooling in this script so far, but Cake ha
 
 In the next section, we set up some arguments and variables to use during the script execution.
 
-With the argument alias, Cake will give you the value of an argument that was provided from the command line or a default value that you specify. We have arguments for the target task to run, what build configuration to use, what version and prerelease tag to use for versioning, and information for integrating with our Octopus server.
+With the argument alias, Cake will give you the value of an argument that was provided from the command line or a default value that you specify. We have arguments for the target task to run, what build configuration to use, which version and prerelease tag to use for versioning, and information for integrating with our Octopus server.
 
-After that, we have a simple class for collecting information on our projects and a few variables that we'll populate in `Setup`:
+After that, we have a simple class for collecting information on our projects and a few variables that we’ll populate in `Setup`:
 
 ```cs
 var target = Argument("target", "Default");
@@ -127,7 +127,7 @@ Task("Clean")
 
 ### Dependencies
 
-Let’s skip down to the `Build` task. It looks similar to `Clean`, but it has a new piece, `IsDependentOn`. This method lets us create a dependency chain between our tasks. When we call the `Build` task, Cake will make sure that both `Clean` and `Restore` have been called first:
+Let’s skip down to the `Build` task. It looks similar to `Clean`, but it has a new piece: `IsDependentOn`. This method lets us create a dependency chain between our tasks. When we call the `Build` task, Cake will make sure that both `Clean` and `Restore` have been called first:
 
 ```cs
 Task("Build")
@@ -155,7 +155,7 @@ Task("Build")
 
 We have another task named `RunUnitTests` that depends on `Build`. Running the `RunUnitTests` task will trigger `Clean`, `Restore`, and `Build`:
 
-```cs
+```CSU’s
 Task("RunUnitTests")
     .IsDependentOn("Build")
     .Does(() =>
@@ -169,9 +169,9 @@ Task("RunUnitTests")
 
 If you continue reading through the script, you’ll see tasks for publishing the apps, packaging them using the Octopus tools, pushing the packages to Octopus, and creating and deploying a release with Octopus.
 
-Finally, we have these lines at the end of our script. This creates a default task that will run the RunUnitTests task and its dependencies.
+Finally, we have these lines at the end of our script. This creates a default task that will run the `RunUnitTests` task and its dependencies.
 
-The last line calling the RunTarget method is what kicks off the build process. Here we pass in the global variable `target` which is provided by the user, CI server, or defaults to the task named `Default`:
+The last line calling the `RunTarget` method kicks off the build process. Here we pass in the global variable `target` which is provided by the user, CI server, or defaults to the task named `Default`:
 
 ```cs
 Task("Default")
@@ -220,7 +220,7 @@ After installing the Cake extension, we can add a Cake step to our build, and in
 
 ![Screenshot showing an Azure DevOps Build Pipeline with a Cake step configured](azure-devops-cake.png)
 
-After running a build, not only do we get the full output of the cake script in the logs, we also get our task summary just as we did when running locally:
+After running a build, not only do we get the full output of the Cake script in the logs, we also get our task summary just as we did when running locally:
 
 ```
 Task                          Duration
