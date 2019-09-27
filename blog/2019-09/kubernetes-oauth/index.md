@@ -4,11 +4,13 @@ description: Integrating Google OAuth into a Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2019-10-02
-metaImage:
-bannerImage:
+metaImage: kubernetes-oauth.png
+bannerImage: kubernetes-oauth.png
 tags:
  - Engineering
 ---
+
+![Kubernetes OAuth illustration showing a locked treasure chest representing Kubernetes](kubernetes-oauth.png)
 
 Managing disconnected user databases is a major pain-point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
 
