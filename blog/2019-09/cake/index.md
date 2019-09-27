@@ -3,7 +3,7 @@ title: Using Cake build scripts for your .NET Core web apps
 description: Using Cake's C# makefiles to script your application build process
 author: ryan.rousseau@octopus.com
 visibility: public
-bannerImage: blogimage-.png
+bannerImage: 
 metaImage: blogimage-.png
 published: 2020-11-25
 tags:
