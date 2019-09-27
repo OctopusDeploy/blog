@@ -4,7 +4,7 @@ description: Using Cake's C# makefiles to script your application build process
 author: ryan.rousseau@octopus.com
 visibility: public
 bannerImage: 
-metaImage: blogimage-.png
+metaImage:
 published: 2020-11-25
 tags:
  - DevOps
