@@ -1,6 +1,6 @@
 ---
-title: Lessons learned using Docker for development and testing
-description: Learn some of the lessons I learned using Docker for development and testing
+title: Lessons learned using Docker for development and testing on Windows
+description: Learn some of the lessons I learned using Docker for development and testing on Windows
 author: bob.walker@octopus.com
 visibility: public
 published: 2020-09-30
@@ -10,27 +10,73 @@ tags:
  - Engineering 
 ---
 
-I do a lot of CI/CD pipeline demos, typically using TeamCity and Octopus Deploy.  Demos don't take up 100% of my time, it doesn't make much sense to run those services all day every day on my laptop.  I also didn't want to worry about updating them.  I chose Docker because I could update the tooling and spin up and down a CI/CD pipeline using a simple command.  In setting that up I learned some interesting lessons about using Docker for development and testing.
+How hard is it to use Docker on a Windows developer machine for development and testing?  Is Docker as big and scary as I think it is?  A couple of weeks ago I challenged myself to answer those questions.  It turns out, Docker on Windows is not as big and scary as I thought.  That being said, there was a bit of a learning curve and some lessons I learned I want to share with you.
 
 !toc
 
-## Iterate on the Docker Compose file
+## The Scenario
 
-Ideally, all Docker containers would be stateless.  However, several companies, including Octopus Deploy, have created stateful containers.  And those stateful applications require typically configuration.  This makes using a tool such as [Docker Compose](https://docs.docker.com/compose/) a bit trickier.  If you are not familiar with Docker Compose, it makes it easy to define and start multiple containers using a single command.  
+I'm a .NET developer at heart.  I love to use Visual Studio.  The Docker functionality built-in to Visual Studio works great.  It is almost too easy.  Right click on a project and configure it to run in Docker.  Fire up the debugger and I'm off to the races.
 
-My CI/CD pipeline required multiple components, which makes Docker Compose an ideal tool.  However, it doesn't handle that initial configuration to well.  For the CI/CD pipeline, I needed to create the databases for TeamCity and Octopus Deploy.  Once Octopus Deploy server was up and running, I needed to add the Octopus Deploy tentacles.  To add the tentacles a username/password or an API key needs to be used for authentication, which requires the server to be configured and running.  
+I wanted to take a step back and learn how Docker actually works.  Especially on Windows.  And I happen to have a perfect scenario to do that.  I do a lot of demos of CI/CD pipelines, either at conferences or 1:1 with a customer.  I'm not speaking at conferences or doing demos all day every day.  Running a CI/CD pipeline all the time consumes resources.  Could I run a CI/CD pipeline in Docker?  
 
-The order of operations was:
+My CI/CD pipeline uses GitHub as source control, TeamCity as the build server, Octopus Deploy as the deployment server (BIG surprise, I know), with SQL Server as the database backend.  As I am typing this, at its core, a CI/CD pipeline is not very different from applications I have worked on in the past.  You could swap out all the CI/CD components with an Angular app hosted in NGINX, an ASP.NET Web API hosted in IIS, with a Windows Service for scheduling with SQL Server as the database.  
+
+By learning how to host a CI/CD pipeline in Docker I also learned how to host pretty much any other application in Docker.
+
+## Lesson #1 - It is very hard to bootstrap an stateful application using Docker Compose
+
+[Docker Compose](https://docs.docker.com/compose/) makes it easy to configure multiple containers by defining the application as a YAML file.  Docker Compose works great when all the containers are stateless.  Adding a stateful container makes things tricky.  In my CI/CD pipeline, I ran into that right away when configuring the SQL Server container.  The SQL Server container houses the database for Octopus Deploy.  In a nutshell I wanted a bootstrap script which would:
+
+- Create the Octopus Deploy database if it doesn't exist
+- Mount the Octopus Deploy database to the container if it does exist
+
+When the database doesn't exist the Docker Compose file would be:
+
+```YAML
+  SQLServer:
+   image: microsoft/mssql-server-windows-developer
+   environment:
+     - ACCEPT_EULA=Y
+     - SA_PASSWORD=Password_01
+   ports:
+     - '1433:1433'   
+   volumes:
+     - c:\Docker\Volumes\SQLServer\Databases:c:\SQLData     
+```
+
+However, the Docker Compose file changes once the databases are created.
+
+```YAML
+  SQLServer:
+   image: microsoft/mssql-server-windows-developer
+   environment:
+     - ACCEPT_EULA=Y
+     - SA_PASSWORD=Password_01
+     - attach_dbs=[{'dbName':'OctopusDeploy','dbFiles':['C:\\SQLData\\OctopusDeploy.mdf','C:\\SQLData\\OctopusDeploy_log.ldf']}]
+   ports:
+     - '1433:1433'   
+   volumes:
+     - c:\Docker\Volumes\SQLServer\Databases:c:\SQLData     
+```
+
+It is possible to start with a Docker Compose file which includes the attach_dbs environment variable.  The container continues to run if database files are specified which it cannot find.
+
+![](docker-start-sql-server-missing-database.png)
+
+If that was the only container I needed to run that isn't a big deal.  Open up SSMS and add the database and I'm good to go.  However, I have another container in my Docker Compose file - Octopus Deploy - which requires that database to be there.  And that Octopus Deploy container is required to be there for the Octopus Tentacles to work.  For Octopus Deploy to be hosted entirely in Docker containers the Docker Compose file has to:
 
 1. Start up SQL Server in Docker Container.
-2. Create databases.
-3. Start up TeamCity and Octopus Deploy Docker containers.
-4. Configure both containers.
-5. Start TeamCity build agent and Octopus Deploy Tentacle Docker containers.
+2. Create Octopus Deploy database if not exists.
+3. Start up Octopus Deploy Docker containers.
+4. Configure Octopus Deploy and create an API key for tentacles to register with.
+5. Start Octopus Deploy Tentacle Docker container.
 
-Docker Compose doesn't support that kind of dependency.  Docker Compose provides the ability for the TeamCity Container to wait until SQL Server Container starts up.  But it is not possible to configure a Docker Compose file to wait until the initial configuration is finished.  How could it know it needs to wait?  What would it wait on?  
+Both the Octopus Deploy Server and Octopus Deploy Tentacle container need to delay their start-up until their dependent containers are "ready."  In each case, "ready" meant something different.  How would Docker Compose know that?  The simple fact of the matter is it can't.  If you look at the examples provided on [Docker's website](https://docs.docker.com/compose/aspnet-mssql-compose/) you will see it is the code's responsibility to handle retries and waiting.
 
-This required iterating on the Docker Compose file.  That looked like:
+I'm using pre-built Docker Images, I don't have that luxury.  I could leverage the [command](https://docs.docker.com/compose/compose-file/#command) option in the Docker Compose file for the Octopus Deploy and Octopus Deploy Tentacle containers.  But that overwrote the default command and prevent services from installing and starting up in the container.
+
+In the end, I opted to iterate through the Docker Compose file.  To keep the number of restarts to a minimum, I opted to do both TeamCity and Octopus Deploy at the same time.
 
 1. Add SQL Server to Docker Compose and start it up using `docker-compose up`.
 2. Create databases and update the Docker Compose file to ensure they are attached to SQL Server on restart.
@@ -40,11 +86,9 @@ This required iterating on the Docker Compose file.  That looked like:
 6. Tear everything down using the same command as before.
 7. Add TeamCity build agent and Octopus Deploy Tentacle(s) to Docker Compose file and start it up.
 
-I learned the Docker Compose file is really the desired configuration of all the Docker Containers.  Trying to make it handle all that initial configuration made everything much more complicated than it needed to be.  Ideally, all I would need to do is share a single Docker Compose file with someone any they could have a CI/CD pipeline up and running in a few minutes.  However, that initial configuration, or bootstrap, should be handled by a separate script.  That 
+Docker Compose is the desired state of the application's configuration.  If I wanted to make my CI/CD pipeline portable I would include a bootstrap script which would download the images and configure everything.  The Docker Compose file would be the final state.  If I wanted to make an application I was working on run in Docker I would add the necessary code so it would know to wait.  
 
-If I gave someone that final Docker Compose file, I'd either have to write a script to bootstrap everything.  Or, zip up the directories storing the database files and configuration files.  
-
-## Windows Based Containers tend to consume more resources
+## Lesson #2: Windows Based Containers tend to consume more resources and run differently than Linux Based Containers
 
 Linux based containers run on the Hyper-V VM `Docker Desktop VM`.  That VM is assigned vCPUs and is allocated memory.  
 
@@ -64,21 +108,21 @@ Compare that do Windows based images.  The SQL Server image, `microsoft/mssql-se
 
 ![](windows-docker-images.png) 
 
-## Containers are not read-only
+## Lesson #3: Containers are closer to headless VMs than read-only images
 
 When I read the phrase `Docker Image` I was picturing an ISO file, which cannot be changed.  That is not the case with Docker Containers.  The image is the base of the container.  In fact, a number of Docker Images include a configure script to kick off any necessary configuration.  The Octopus Deploy image does this.  When you start up a container with the Octopus Deploy image for the first time it will run several of the `Octopus.Server.exe` commands, such as `configure`, `admin`, `license`, and `metrics`.  You can see the script which Octopus runs [here](https://github.com/OctopusDeploy/Octopus-Docker/blob/master/Server/Scripts/configure.ps1).  
 
-Once it is a Docker Container is running it can be changed.  New software can be installed on it.  Those changes are lost when the container is destroyed, typically for an update or a change in configuration.  Knowing that opens up a whole world of possibilities.  Docker containers are not read-only ISO images, they are really short-lived headless VMs.
+Once the Docker Container is running it can be changed.  New software can be installed on it.  It is important to note, those changes are lost when the container is destroyed.  Containers are destroyed and recreated typically for an update or a change in configuration.  
 
-## .NET Framework Connection Strings require SQL Server to be referenced by IP Address when using Docker Compose
+## Lesson #4: .NET Framework Connection Strings require SQL Server to be referenced by IP Address when using Docker Compose
 
-I wanted both SQL Server and Octopus Deploy running in Docker containers.  The next question was how can I get Octopus Deploy to see SQL Server.  Docker Compose provides the ability to name a Docker Container and it does a lot of behind the scenes work so other containers in the can reference each other by name.  I thought that would work for .NET connection strings.  For example:
+Getting SQL Server running in a container was easy.  The next question was how can I get Octopus Deploy to see SQL Server.  Docker Compose provides the ability to name a Docker Container and it does a lot of behind the scenes work so other containers in the can reference each other by name.  I thought that would work for .NET connection strings.  For example:
 
 ```
 Server=SQLServer,1433;Initial Catalog=OctopusDeploy;Persist Security Info=False;User ID=sa;Password=Password_01;MultipleActiveResultSets=False;Connection Timeout=30;
 ```
 
-That did not work for .NET connection strings.  Octopus Deploy is a .NET Framework application.  It could not find SQL Server by the container name on the same Docker network.  It only worked when the connection string used an IP address for the server.  However, the IP address changes each time `docker-compose up` is run.  What I did to solve that problem was creating a new network in Docker Compose file.
+That did not work for .NET connection strings.  Octopus Deploy is a .NET Framework application.  It could not find SQL Server by the container name on the same Docker network.  It only worked when the connection string used an IP address for the server.  However, the IP address changes each time `docker-compose up` is run.  What I did to solve that problem was create a new network in the Docker Compose file.
 
 ```YAML
 networks: 
@@ -114,7 +158,7 @@ The resulting connection string is:
 Server=172.28.1.1,1433;Initial Catalog=OctopusDeploy;Persist Security Info=False;User ID=sa;Password=Password_01;MultipleActiveResultSets=False;Connection Timeout=30;
 ```
 
-The entire Docker Compose file looks like this:
+The Docker Compose file for octopus Deploy looks like this:
 
 ```YAML
 version: '3.7'
@@ -181,29 +225,29 @@ networks:
         - subnet: 172.28.0.0/16           
 ```
 
-## Local Development
+## Lesson #5: The ability to point Docker Container volumes at different folders makes local development and testing easier
 
-Knowing how Docker works opens up a world of possibilities.  For this example, I will use running SQL Server locally.  I typically ran SQL Server as a Windows Service on my laptop for development.  I'm in the middle of working on a feature with lots of database changes.  QA manages to cause an error in the test environment by entering something odd through the UI they need me to look at.  When that happened I would:
+Knowing how Docker works opens up a world of possibilities.  For this example, I am working on a .NET application with SQL Server on my laptop.  In the past, I ran SQL Server as a Windows Service on my laptop.  
+
+Imagine I'm in the middle of working on a feature with lots of database changes.  QA manages to cause an error in the Test environment.  It is blocking them and they need it fixed right away to get a release out the door.  Before Docker, when that happened, I would do the following:
 
 - Commit all the pending changes to a branch.
 - Checkout the commit which is in test.
 - Point the code at the test database and start debugging.
 
-QA are naturally curious people, while I am still debugging they poke around the UI a bit and in doing so cause the right piece of code to run and the error gets fixed.  
+QA are naturally curious people, while I am still debugging they poke around the UI a bit and in doing so cause the right piece of code to run which fixes the error.  In hindsight I shouldn't have pointed the code running on my laptop at the test database.  I did that because typically bad data happened on one piece of the data model.  To get that one piece of bad data onto my laptop I would have to clone the entire data model.  
 
-If I could, I would tell QA to not poke around.  But it isn't just them.  Anyone on the team could open up the record and cause the data to fix itself. In the past I solved this by copying the data down to my local database using SQL Data Compare, or using a hand-written data cloner.  I would have to revert any database changes for the cloner to work properly.  Which was annoying because depending on the what is being reverted I could end up losing data.  I could backup and restore the test database to my local machine, but I wouldn't want to overwrite my existing database, which means going in and changing the connection strings.
+I could solve that using a tool like Redgate's SQL Data Compare.  Or I could write a custom cloning tool for my application.  But for those to work properly I would have revert any pending database changes on my local database.  That was very annoying because I could end up deleting a bunch of test data for the feature I was working on.  I could backup and restore the test database to my local machine, but I wouldn't want to overwrite my existing database, which means going in and changing the connection strings.
 
 If I ran SQL Server as a Docker Container I could write a script to:
 
 1. Stop the current SQL Server Docker Container
-2. Backup the database to a shared location
+2. Backup the database from the test server to a shared location
 3. Start up a new SQL Server Docker Container
 4. Restore that backup into that container
 5. The database name (MyAppDatabase) and the server name (localhost) will be the same as before, no need to change connection strings.
 
-When I am done with debugging the issue I would need to remove that new container, start up my development SQL Server Docker Container, and switch the code back to the branch I was working on.  
-
-That is just one example.  Imagine how you could leverage Docker for QA testing or beta testing.
+That is just one example.  Imagine how this could help QA as well.  Rather than have a single central database every QA person has to connect to, they could be given a couple of scripts to get the application running locally.  They could have a pristine database they could clone and use for test runs.
 
 ## Wrapping Up
 
