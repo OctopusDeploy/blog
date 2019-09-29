@@ -10,11 +10,11 @@ tags:
  - DevOps
 ---
 
+![Tentacles rising from the ocean to install software on a server](bootstrapping_tentacle_installation_dsc.png)
+
 Manually installing Tentacles on deployment targets is fairly painless when you have a small number of machines, with just a couple of clicks you’re done. However, it’s not uncommon for the number of machines to increase exponentially as adoption of Octopus Deploy becomes more prevalent, especially in large organizations.  In more advanced implementations, targets are sometimes created dynamically, and manually installing Tentacles isn’t feasible.  This is where Infrastructure as Code (IaC) comes in handy.
 
 Infrastructure as Code is an awesome and powerful concept.  It gives you the ability to programmatically define how your infrastructure should be set up, which leads to consistency and predictability for application deployments. One method of IaC is PowerShell Desired State Configuration (DSC).  Not only can DSC configure a machine, it also gives us the added benefit of monitoring the machine for drift and using Octopus to automatically return the machine to the desired state.  In this post, I’ll walk you through using the OctopusDSC module to install and configure a Tentacle machine.
-
-![Tentacles rising from the ocean to install software on a server](bootstrapping_tentacle_installation_dsc.png)
 
 ## Install the NuGet package provider
 
