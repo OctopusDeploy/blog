@@ -20,7 +20,7 @@ My [previous article](/blog/2019-09/running-sql-server-developer-install-with-do
 - More images are available.
 - More examples of containers in use. 
 
-SQL Server can run on Linux based containers. In this article, I will go through what is necessary to get SQL Server up and running in a Linux-based container.
+SQL Server can run on Linux based containers.  In this article, I will go through what is necessary to get SQL Server up and running in a Linux-based container.
 
 !toc
 

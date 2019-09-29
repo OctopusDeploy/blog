@@ -12,7 +12,7 @@ tags:
 
 ![Kubernetes OAuth illustration showing a locked treasure chest representing Kubernetes](kubernetes-oauth.png)
 
-Managing disconnected user databases is a major pain-point, not to mention a security hole, for any piece of infrastructure in an organization. Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
+Managing disconnected user databases is a major pain-point, not to mention a security hole, for any piece of infrastructure in an organization.  Kubernetes is no exception because, by default, the users of the system are specific to Kubernetes itself.
 
 A common solution to this problem is to allow users to authenticate with Kubernetes via OAuth, which means existing login providers like Google or Microsoft can be used to verify user credentials.
 
