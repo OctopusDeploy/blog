@@ -4,8 +4,8 @@ description: SQL Server can run in a docker container, how can developers levera
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-09-30
-metaImage: sql_docker_container_2019
-bannerImage: sql_docker_container_2019
+metaImage: sql_docker_container_2019.png
+bannerImage: sql_docker_container_2019.png
 tags:
  - Engineering
  - Database Deployments
