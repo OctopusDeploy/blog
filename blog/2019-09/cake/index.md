@@ -20,9 +20,12 @@ In the .NET world, you have a few options based on your language of choice. Ther
 
 ## Benefits of Cake
 
-One of the main benefits of using Cake is that your build script will be written in a C# DSL. Your team can use the language they’re most familiar with to automate their builds instead of using XML, JSON, or YAML.
+One of the main benefits of using Cake is that your build scripts will be written in a C# DSL. Your team can use the language they’re most familiar with to automate their builds instead of using XML, JSON, or YAML.
 
-Another benefit not to be overlooked is the ability to execute Cake scripts locally and from your CI server. Think about that for a second. Barring any environmental issues on your build agent, the same Cake script will run on your machine, your team member’s machine, and on your CI server. Your CI project configuration could be simplified to Step 1, check out from source control, and Step 2, run this Cake script.
+Another benefit not to be overlooked is the ability to execute Cake scripts locally and from your CI server. Think about that for a second. Barring any environmental issues on your build agent, the same Cake script will run on your machine, your team member’s machine, and on your CI server. Your CI project configuration could be simplified to:
+
+1. Check out from source control.
+2. Run this Cake script.
 
 Speaking of source control, your Cake script lives in your project repository. Your build process is versioned and can be changed and reviewed with the same code review process as your application code. Committing your script also couples your application code with the build process so you don’t have to change the build steps separately in your CI server. This linking of the application and build script is one of the reasons YAML is becoming a popular choice for modeling build pipelines. Cake has the added benefit of running those build steps right on your machine.
 
