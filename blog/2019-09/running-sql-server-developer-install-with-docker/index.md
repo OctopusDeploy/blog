@@ -4,12 +4,14 @@ description: SQL Server can run in a docker container, how can developers levera
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-09-30
-metaImage: 
-bannerImage: 
+metaImage: sql_docker_container_2019
+bannerImage: sql_docker_container_2019
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![SQL Server database in a Docker container on a desert island with a Docker container ship in the background](sql_docker_container_2019.png)
 
 Running SQL Server on a development machine is a [key part in automating database deployments](https://octopus.com/blog/automated-database-deployments-iteration-zero#moving-to-dedicated-databases).  Typically, running SQL Server locally is accomplished by [installing SQL Server Developer edition](https://octopus.com/blog/automate-sql-server-install).  The downside to doing that is the SQL Server Windows Service needs to run all the time, which consumes resources, the installer adds a bunch of extra applications, and the developer is responsible for upgrading it.  
 
