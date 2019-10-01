@@ -3,7 +3,7 @@ title: Using Cake build scripts for your .NET Core web apps
 description: Using Cake’s C# makefiles to script your application build process
 author: ryan.rousseau@octopus.com
 visibility: public
-bannerImage: 
+bannerImage:
 metaImage:
 published: 2019-10-09
 tags:
@@ -51,7 +51,7 @@ We’re only using the Octopus Deploy tooling in this script so far, but Cake ha
 
 In the next section, we set up some arguments and variables to use during the script execution.
 
-With the argument alias, Cake will give you the value of an argument that was provided from the command line or a default value that you specify. We have arguments for the target task to run, what build configuration to use, which version and prerelease tag to use for versioning, and information for integrating with our Octopus server.
+With the `Argument` alias, Cake will give you the value of an argument that was provided from the command line or a default value that you specify. We have arguments for the target task to run, what build configuration to use, which version and prerelease tag to use for versioning, and information for integrating with our Octopus server.
 
 After that, we have a simple class for collecting information on our projects and a few variables that we’ll populate in `Setup`:
 
@@ -172,7 +172,7 @@ Task("RunUnitTests")
 
 If you continue reading through the script, you’ll see tasks for publishing the apps, packaging them using the Octopus tools, pushing the packages to Octopus, and creating and deploying a release with Octopus.
 
-Finally, we have these lines at the end of our script. This creates a default task that will run the `RunUnitTests` task and its dependencies.
+Finally, we have these lines at the end of our script. This creates a `Default` task that will run the `RunUnitTests` task and its dependencies.
 
 The last line calling the `RunTarget` method kicks off the build process. Here we pass in the global variable `target` which is provided by the user, CI server, or defaults to the task named `Default`:
 
