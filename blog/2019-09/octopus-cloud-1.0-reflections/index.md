@@ -56,7 +56,7 @@ This caused a few issues as we scaled, and at one point, we had to pause new sig
 
 ## Cloud stuff can be really expensive
 
-An EC2 instance for every customer adds up, and as our databases were backed by Amazon RDS, we were limited to TODO: X databases per RDS TODO: THING. Add storage, network, etc. and we were spending over $100 per month to keep a single Octopus Cloud instance online. 
+An EC2 instance for every customer adds up, and as our databases were backed by Amazon RDS, we were limited to 20 databases per RDS instance. Add storage, network, etc. and we were spending over $100 per month to keep a single Octopus Cloud instance online. 
 
 Octopus Cloud customers could start a free 30-day trial, which meant that those hundreds of trial signups per month, each of which cost us $100 to host, quickly added up. 
 
@@ -70,7 +70,7 @@ We should explain that [Octopus Deploy as a company](https://octopus.com/company
 
 We decided to take the lessons we were learning and start a huge body of work we called **Cloud v2**, a reimagining of Octopus Cloud, built to scale sustainably. 
 
-Even when we were building v1, the team knew it wasn't the ideal architecture. Before v1 even launched, there were plenty of conversations in our Slack about whether we should port Octopus to Linux and run it on Kubernetes, or see if we could run it on Windows within Kubernetes or TODO: WHAT WAS THE ALTERNATIVE TO K8S?, and all of this was back in early 2018 when everything was churning and not as mature as it is today. So the unit cost wasn't really a surprise. 
+Even when we were building v1, the team knew it wasn't the ideal architecture. Before v1 even launched, there were plenty of conversations in our Slack about whether we should port Octopus to Linux and run it on Kubernetes, or see if we could run it on Windows within Kubernetes or use Nomad by Hashicorp?, and all of this was back in early 2018 when everything was churning and not as mature as it is today. So the unit cost wasn't really a surprise. 
 
 What was surprising was the demand. If only a few customers had signed up each month, we could have easily worn the costs (and truth be told, we still can - Octopus self-hosted has great margins!). But with so many customers signing up, it becomes much more urgent. $100K+ per month is $1.2M+ over the year - plenty to justify spending engineering effort in bringing it down. 
 
