@@ -44,7 +44,7 @@ We actually had an internal alpha of Octopus Cloud v1 ready within a month or tw
 
 To ensure there was no way for one user’s data to mingle with another, each cloud instance had their own dedicated VM, database, and a large number of security configurations to prevent any funny business. Here's a diagram of what it all looked like. Note that we actually use Octopus Deploy to provision and deploy each Octopus Cloud v1 customer:
 
-DIAGRAM
+![Octopus Cloud 1.0 architecture diagram](octopus-cloud-v1-architecture-diagram.png "width=600")
 
 ## Service Limits 
 
