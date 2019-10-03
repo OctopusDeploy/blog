@@ -30,25 +30,25 @@ Going into this experiment, we knew there was interest in a cloud solution, but 
 * What is it all going to cost?
 * What should we charge for it? Is it going to cover the infrastructure costs?
 
-We could guess most of these, but knowing it was impossible. Engineering time is very expensive too, and it’s time we could spend adding features to our self-hosted product. We didn’t want to spend years designing a perfectly-optimized cloud-native product if there was no demand for it. 
+We could guess most of these, but knowing the answers was impossible. Engineering time is very expensive too, and it’s time we could spend adding features to our self-hosted product. We didn’t want to spend years designing a perfectly-optimized cloud-native product if there was no demand for it. 
 
 We decided to build an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) based on our best estimates and test the market that way. The goal was to launch something in 6 months and test if the demand was there; and if it wasn’t, we’d only wasted 6 months. We chose to optimize for getting to market quickly rather than worrying about how much it would cost. 
 
-Well, the demand was there. In the first few days we had over 500 new cloud trials spin up. As customers came to our website and decided between whether to trial Octopus self-hosted or Octopus cloud, roughly half chose to trial it in the cloud. 
+Well, the demand was there. In the first few days, we had over 500 new cloud trials spin up. As customers came to our website and decided between whether to trial Octopus self-hosted or Octopus Cloud, roughly half chose to trial Octopus in the cloud. 
 
 ## V1 architecture
 
-To bring Octopus Cloud to market quickly, we did the simplest thing possible; we took our self-hosted Octopus Server product and bundled it into an EC2 instance for each customer that signed up. We had to make changes to the product, mostly around permissions. 
+To bring Octopus Cloud to market quickly, we did the simplest thing possible; we took our self-hosted Octopus Server product and bundled it into an EC2 instance for each customer that signed up. We had to make changes to the product, but mostly around permissions. 
 
 We actually had an internal alpha of Octopus Cloud v1 ready within a month or two; I remember the team doing bug bashes to test our security. What took longer, was all the steps required to make something we were happy for customers to use: hardening security, pentesting, planning for recovery, etc.
 
-To ensure there was no way for one user’s data to mingle with another, each cloud instance had their own dedicated VM, database, and a large number of security configurations to prevent any funny business. Here’s a diagram of what it all looked like. Note that we actually use Octopus Deploy to provision and deploy each Octopus Cloud v1 customer:
+To ensure there was no way for one user’s data to mingle with another, each cloud instance had its own dedicated VM, database, and a large number of security configurations to prevent any funny business. Here’s a diagram of what it all looked like. Note that we actually use Octopus Deploy to provision and deploy each Octopus Cloud v1 customer:
 
 ![Octopus Cloud 1.0 architecture diagram](octopus-cloud-v1-architecture-diagram.png "width=600")
 
 ## Service limits 
 
-You know that feeling when you're driving and you seem to hit every red traffic light? That’s kinda what launching Octopus Cloud felt like, only the red lights were AWS service limits! We quickly learned that *everything* in AWS has some kind of service limit, and we hit all of them. Customers would sign up, we’d hit a limit, we’d ask Amazon to increase it, we’d onboard more customers, and we’d hit another limit. Every time we thought we were in the clear, we’d hit another service limit we didn’t know about. 
+You know that feeling when you're driving, and you seem to hit every red traffic light? That’s kinda what launching Octopus Cloud felt like; only the red lights were AWS service limits! We quickly learned that *everything* in AWS has some kind of service limit, and we hit all of them. Customers would sign up, we’d hit a limit, we’d ask Amazon to increase it, we’d onboard more customers, and we’d hit another limit. Every time we thought we were in the clear, we’d hit another service limit we didn’t know about. 
 
 This caused a few issues as we scaled, and at one point, we had to pause new signups while we tried to provision more headroom.
 
@@ -60,25 +60,25 @@ An EC2 instance for every customer adds up, and as our databases were backed by 
 
 Octopus Cloud customers could start a free 30-day trial, which meant that those hundreds of trial signups per month, each of which cost us $100 to host, quickly added up. 
 
-We also didn’t have our pricing quite right. We initially launched Octopus Cloud at $10/month, with a different pricing model from the one we currently use. Unfortunately, this was one of the most painful lessons we learned because the deficit between what we were charging and spending was magnified by the sheer number of people using Octopus Cloud, continued growth would mean we further amplified the problem.
+We also didn’t have our pricing quite right. We initially launched Octopus Cloud at $10/month, with a different pricing model from the one we currently use. Unfortunately, this was one of the most painful lessons we learned because the deficit between what we were charging and spending was magnified by the sheer number of people using Octopus Cloud; continued growth would further amplify the problem.
 
-Two months in we started having some very serious conversations about our $100k USD monthly AWS spend, with very little revenue to offset that expense:
+Two months in, we started having serious conversations about our $100k USD monthly AWS spend, and the fact that we had very little revenue to offset that expense:
 
 ![Octopus Cloud AWS is $100,000 plus per month](octopus-cloud-aws-bill.png)
 
 We should explain that [Octopus Deploy as a company](https://octopus.com/company) is not publicly listed or VC funded. We’ve been proudly bootstrapped and profitable since Octopus 1.0, and we’ve always run the business conservatively and sustainably. We suddenly found ourselves with a new business that was costing us money at an alarming rate. 
 
-We decided to take the lessons we were learning and start a huge body of work we called **Cloud v2**, a reimagining of Octopus Cloud, built to scale sustainably. 
+We decided to take the lessons we were learning and start a huge body of work we called **Cloud v2**; a reimagining of Octopus Cloud, built to scale sustainably. 
 
-Even when we were building v1, the team knew it wasn’t the ideal architecture. Before v1 even launched, there were plenty of conversations in our Slack about whether we should port Octopus to Linux and run it on Kubernetes, or see if we could run it on Windows within Kubernetes or use Nomad by Hashicorp?, and all of this was back in early 2018 when everything was churning and not as mature as it is today. So the unit cost wasn’t really a surprise. 
+Even when we were building v1, the team knew it wasn’t the ideal architecture. Before v1 even launched, there were plenty of conversations in our Slack about whether we should port Octopus to Linux and run it on Kubernetes, or see if we could run it on Windows within Kubernetes or use Nomad by Hashicorp? And all of this was back in early 2018 when everything was churning and not as mature as it is today. So the unit cost wasn’t really a surprise. 
 
 What was surprising was the demand. If only a few customers had signed up each month, we could have easily worn the costs (and truth be told, we still can, Octopus self-hosted has great margins!). But with so many customers signing up, it became much more urgent. $100K+ per month is $1.2M+ over the year, which is plenty to justify spending engineering effort to bringing it down. 
 
 ## Starting over
 
-We explored all kinds of options to bring down our costs, and the initial plan was to iterate on the v1 architecture and look for cost savings, and we did make some progress there, but eventually, we concluded that the best way to dramatically reduce our costs (without sacrificing customer performance) involved some substantial architecture changes, and essentially, starting from scratch. 
+We explored all kinds of options to bring down our costs, and the initial plan was to iterate on the v1 architecture and look for cost savings, and we did make some progress there, but eventually, we concluded the best way to dramatically reduce our costs (without sacrificing customer performance) involved some substantial architecture changes, and essentially, starting from scratch. 
 
-In the rest of this series, we’ll go into each of the decisions we made when re-engineering Octopus Cloud for v2. It includes:
+In the rest of this series, we’ll go into each of the decisions we made when re-engineering Octopus Cloud for v2. These include:
 
  - Switching from AWS to Azure.
  - Porting Octopus Server to Linux.
