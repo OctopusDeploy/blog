@@ -10,7 +10,6 @@ tags:
  - Engineering 
 ---
 
-How hard is it to use Docker on a Windows developer machine for development and testing?  Is Docker as big and scary as I think it is?  A couple of weeks ago I challenged myself to answer those questions.  It turns out, Docker on Windows is not as big and scary as I thought.  That being said, there was a bit of a learning curve and some lessons I learned I want to share with you.
 How hard is it to use Docker on a Windows developer machine for development and testing?  Is Docker as big and scary as I think it is?  A couple of weeks ago, I challenged myself to answer those questions.  It turns out, Docker on Windows is not as big or scary as I thought.  That being said, there was a bit of a learning curve, and I want to share some of the lessons I learned with you.
 
 !toc
