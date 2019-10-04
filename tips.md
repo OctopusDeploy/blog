@@ -36,13 +36,13 @@ Writing is hard, and we all have different voices, but we want the experience of
 
 > We try to remove as many of the obstacles between the reader and their understanding as we can.
     
-    I revised it to:
+I revised it to:
     
 > We remove the obstacles between the reader and our meaning.
     
-    There are less words to process and trip over in the second version.
+There are less words to process and trip over in the second version.
 
-    Being clear and concise in a first draft is difficult, so sometimes it's best to get the first draft down, and then go back through the text and delete anything that can be deleted. A simple rule here is:
+Being clear and concise in a first draft is difficult, so sometimes it's best to get the first draft down, and then go back through the text and delete anything that can be deleted. A simple rule here is:
      
 > If something can be deleted without altering the meaning or tone of the text, it probably should be deleted.
     
