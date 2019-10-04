@@ -10,7 +10,7 @@ tags:
  - Engineering 
 ---
 
-How hard is it to use Docker on a Windows developer machine for development and testing?  Is Docker as big and scary as I think it is?  A couple of weeks ago, I challenged myself to answer those questions.  It turns out, Docker on Windows is not as big or scary as I thought.  That being said, there was a bit of a learning curve, and I want to share some of the lessons I learned with you.
+How hard is it to use Docker on a Windows developer machine for development and testing?  Is Docker as big and scary as I think it is?  A couple of weeks ago, I challenged myself to answer those questions.  It turns out, Docker on Windows is neither as big or scary as I thought.  That being said, there was a bit of a learning curve, and I want to share some of the lessons I learned with you.
 
 !toc
 
@@ -18,7 +18,7 @@ How hard is it to use Docker on a Windows developer machine for development and 
 
 I’m a .NET developer at heart.  I love using Visual Studio.  The Docker functionality built into Visual Studio works great.  It’s almost too easy.  Right-click on a project and configure it to run in Docker.  Fire up the debugger, and I’m off to the races.
 
-I wanted to take a step back and learn how Docker actually works, especially on Windows, and I happen to have a perfect scenario to do that.  I demo a lot of CI/CD pipelines, either at conferences or one-to-one with a customer.  I’m not speaking at conferences or doing demos all day every day though,  but running a CI/CD pipeline all the time consumes resources.  Could I run a CI/CD pipeline in Docker?
+I wanted to take a step back and learn how Docker actually works, especially on Windows, and I happen to have a perfect scenario to do that.  I demo a lot of CI/CD pipelines, either at conferences or one-to-one with a customer.  I’m not speaking at conferences or doing demos all day every day though, but running a CI/CD pipeline all the time consumes resources.  Could I run a CI/CD pipeline in Docker?
 
 My CI/CD pipeline uses GitHub for source control, TeamCity as the build server, Octopus Deploy as the deployment server (BIG surprise, I know), with SQL Server as the database backend.  As I am typing this, at its core, a CI/CD pipeline is not very different from applications I’ve worked on in the past.  You could swap out all the CI/CD components with an Angular app hosted in NGINX, an ASP.NET Web API hosted in IIS, or a Windows Service for scheduling with SQL Server as the database.  
 
@@ -66,9 +66,9 @@ It is possible to start with a Docker Compose file which includes the attach_dbs
 
 If that was the only container I needed to run, it isn’t a big deal.  Open up SSMS, add the database, and I’m good to go.  However, I have another container in my Docker Compose file, Octopus Deploy, which requires that database to be there.  And that Octopus Deploy container is required to be there for the Octopus Tentacles to work.  For Octopus Deploy to be hosted entirely in Docker containers, the Docker Compose file has to:
 
-1. Start SQL Server in a Docker container.
+1. Start the SQL Server in a Docker container.
 2. Create the Octopus Deploy database if it doesn’t exist.
-3. Start the Octopus Deploy Docker containers.
+3. Start the Octopus Deploy Docker container.
 4. Configure Octopus Deploy, and create an API key Tentacles can register with.
 5. Start the Octopus Deploy Tentacle Docker container.
 
@@ -76,7 +76,7 @@ Both the Octopus Deploy Server and Octopus Deploy Tentacle container need to del
 
 I’m using pre-built Docker images, so I don’t have that luxury.  I could leverage the [command](https://docs.docker.com/compose/compose-file/#command) option in the Docker Compose file for the Octopus Deploy and Octopus Deploy Tentacle containers, but that overwrites the default command and prevents services from installing and starting up in the container.
 
-In the end, I opted to iterate through the Docker Compose file.  To keep the number of restarts to a minimum, I opted to do both TeamCity and Octopus Deploy at the same time.
+In the end, I opted to iterate through the Docker Compose file.  To keep the number of restarts to a minimum, I decided to do both TeamCity and Octopus Deploy at the same time.
 
 1. Add SQL Server to Docker Compose and start it using `docker-compose up`.
 2. Create databases, and update the Docker Compose file to ensure they are attached to SQL Server on restart.
@@ -98,7 +98,7 @@ Each Windows-based container runs in its own process which appears as `Vnmem` in
 
 ![](docker-windows-based-containers-running.png)
 
-My first attempt at a CI/CD pipeline spun up 11 Docker containers.  Needless to say, it consumed a lot of resources.  For roughly 10 minutes after starting, the laptop CPU jumped to 100% as those containers ran their bootstrap scripts.  Once I learned each container is a separate process, I scaled back the number of containers to 5.
+My first attempt at a CI/CD pipeline spun up 11 Docker containers.  Needless to say, it consumed a lot of resources.  For roughly 10 minutes after starting, the laptop CPU jumped to 100% as those containers ran their bootstrap scripts.  When I learned each container is a separate process, I scaled back the number of containers to 5.
 
 In addition, Windows-based images consume a lot more disk space.  Here are the Linux-based Docker Images I have on my laptop.  Make a note of the SQL Server image, `mcr.microsoft.com/mssql/server`.  That includes all the dependencies for the image.
 
