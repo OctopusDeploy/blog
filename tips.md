@@ -22,7 +22,7 @@ Writing is hard, and we all have different voices, but we want the experience of
 
 2. We're direct and honest, and we don't use hyperbole or marketing-speak.
 
-    Our users are educated professionals, they prefer directness and honesty so they can decide for themselves if something is useful or interesting. They're (rightly) suspicious of anything that sounds like marketing-speak, and they want to know the details. We don't use hyperbole or try to hoodwink people into reading on. This applies throughout every post, but clearly explaining the topic in the opening sentences lets readers decide if they care enough to read on. Even if one topic doesn't appeal to them, by not wasting their time, they're more likely to read on the next time they see a post from us that does appeal, however, if we did waste their time, it's unlikely they'd return at all.
+    Our users are educated professionals, who prefer directness and honesty so they can decide for themselves if something is useful or interesting. They're (rightly) suspicious of anything that sounds like marketing-speak, and they want to know the details. We don't use hyperbole or try to hoodwink people into reading on. This applies throughout every post, but clearly explaining the topic in the opening sentences lets readers decide if they care enough to read on. Even if one topic doesn't appeal to them, by not wasting their time, they're more likely to read on the next time they see a post from us that does appeal, however, if we did waste their time, it's unlikely they'd return at all.
     
 3. The posts we write have well-defined topics.
 
