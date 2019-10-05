@@ -30,7 +30,7 @@ PowerShell DSC takes the components configured with PowerShell and converts them
 The Push method is perhaps the easiest method to start with.  This method requires the user to "push" the configuration to the server by calling the Start-DscConfiguration cmdlet.  This has the advantage of starting immediately to apply the configuration.  In terms of automation, the disadvantage to this approach is if the server is offline, it will not be able to apply the new desired state.  This is where the pull method may be a better approach.
 
 #### Pull method
-As the name implies, the Pull method reaches out to a server to pull the configuration down and apply.  This requires that you have a Pull server that houses the configurations for your servers.  The disadvantage of this approach is the requirement of an additional server to host the configuration for the other servers.  The configured servers would then need to be configured to poll the pull server to determine if there is a new MOF file available for it.  
+As the name implies, the Pull method reaches out to a server to pull the configuration down and apply it.  This requires that you have a Pull server that houses the configurations for your servers.  The disadvantage of this approach is the requirement of an additional server to host the configuration for the other servers.  The configured servers would then need to be configured to poll the pull server to determine if there is a new MOF file available for it.  
 
 ## Getting started
 This post is designed for someone who is new to DSC so we're going to be using the easier to use push method to get started.  For our scenario, we're wanting to make sure the configuration of our servers includes some Windows Features.  We'll use just a few
@@ -195,4 +195,4 @@ Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 Now our server will automatically correct itself whenever drift is detected!  If you enable automatic drift correction, make sure you document it, otherwise you or someone on your team will end up chasing their tail trying to figure out why something you just removed keeps coming back!
 
 ## Summary
-This post gives you some basic information in how to get started using PowerShell DSC as well as how to configure and optionally automatically correct drift.  For an example of the mentioned hybrid approach, refer to my other [blog post](https://octopus.com/blog/powershelldsc-as-template) where we configure PowerShell DSC to deploy like an application.
+This post gives you some basic information in how to get started using PowerShell DSC as well as how to detect and optionally automatically correct drift.  For an example of the mentioned hybrid approach, refer to my other [blog post](https://octopus.com/blog/powershelldsc-as-template) where we configure PowerShell DSC to deploy like an application.
