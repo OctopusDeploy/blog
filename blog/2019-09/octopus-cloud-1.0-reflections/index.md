@@ -1,5 +1,5 @@
 ---
-title: Reflections on the launch of Octopus Cloud 1.0
+title: "MVPs and $100k AWS Bills: Reflections on the launch of Octopus Cloud 1.0"
 description: Reflections on the launch of Octopus Cloud, the SaaS version of Octopus, and how it shaped our plans for Octopus Cloud 2.0.
 author: andrew.katsivas@octopus.com
 visibility: public
