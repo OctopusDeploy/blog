@@ -2,7 +2,7 @@
 title: Three ways to use custom Terraform plugins
 description: Terraform does not yet support repositories for custom plugins, but here are three ways to utilize your custom plugins.
 author: matthew.casperson@octopus.com
-visibility: public
+visibility: private
 published: 2020-01-01
 metaImage:
 bannerImage:
