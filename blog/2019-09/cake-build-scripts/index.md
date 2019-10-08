@@ -3,12 +3,14 @@ title: Using Cake build scripts for your .NET Core web apps
 description: Using Cake’s C# makefiles to script your application build process
 author: ryan.rousseau@octopus.com
 visibility: public
-bannerImage:
-metaImage:
+bannerImage: blogimage-cakebuild.png
+metaImage: blogimage-cakebuild.png
 published: 2019-10-09
 tags:
  - DevOps
 ---
+
+![Illustration showing building a cake w/ code, markdown and images in a mixing bowl](blogimage-cakebuild.png)
 
 Cake is a build automation system for .NET Developers to script their build processes using a C# Domain Specific Language (DSL). In this post, we’ll explore the benefits of Cake and its major features with a concrete working example to achieve a flexible, maintainable, automated build process.
 
