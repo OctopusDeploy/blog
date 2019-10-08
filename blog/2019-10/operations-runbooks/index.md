@@ -1,14 +1,16 @@
 ---
-title: Get early access to Operations Runbooks
-description: to do
+title: Introducing Runbooks for your Operations Teams
+description: Introducing Runbooks for your Operations teams. It's now possible to run operations and maintenance focused tasks like file clean-ups, backup and restore jobs as well as disaster recovery failovers.
 author: jessica.ross@octopus.com
 visibility: private
-bannerImage: blogimage-runbooks.png
-metaImage: blogimage-runbooks.png
+bannerImage: operations-runbooks.png
+metaImage: operations-runbooks.png
 published:
 tags:
- - DevOps
+ - Product
 ---
+
+![Illustration showing books running (i.e. runbooks) throught a server room](operations-runbooks.png)
 
 A deployment is only one phase in the life of an application. There are typically many other tasks which are performed to keep an application operating. A large part of DevOps is running operations separate from deploying applications, and Octopus seems like the perfect tool to use given it already knows about the infrastructure and variables.
 
