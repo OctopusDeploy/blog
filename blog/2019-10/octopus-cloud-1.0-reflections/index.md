@@ -56,7 +56,7 @@ This caused a few issues as we scaled, and at one point, we had to pause new sig
 
 ## Cloud stuff can be really expensive
 
-An EC2 instance for every customer adds up, and as our databases were backed by Amazon RDS, we were limited to 20 databases per RDS instance. Add storage, network, etc. and we were spending over $100 per month to keep a single Octopus Cloud instance online. 
+An EC2 instance for every customer adds up, and as our databases were backed by Amazon RDS, we were limited to 30 databases per RDS instance. Add storage, network, etc. and we were spending over $100 per month to keep a single Octopus Cloud instance online. 
 
 Octopus Cloud customers could start a free 30-day trial, which meant that those hundreds of trial signups per month, each of which cost us $100 to host, quickly added up. 
 
