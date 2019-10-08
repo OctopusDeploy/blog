@@ -3,14 +3,12 @@ title: Get early access to Operations Runbooks
 description: to do
 author: jessica.ross@octopus.com
 visibility: private
-bannerImage: to do
-metaImage: to do
+bannerImage: blogimage-runbooks.png
+metaImage: blogimage-runbooks.png
 published:
 tags:
  - DevOps
 ---
-
-![Illustration showing building a cake w/ code, markdown and images in a mixing bowl](blogimage-cakebuild.png)
 
 A deployment is only one phase in the life of an application. There are typically many other tasks which are performed to keep an application operating. A large part of DevOps is running operations separate from deploying applications, and Octopus seems like the perfect tool to use given it already knows about the infrastructure and variables.
 
