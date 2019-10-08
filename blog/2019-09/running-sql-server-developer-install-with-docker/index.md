@@ -1,6 +1,6 @@
 ---
-title: Running SQL Server Developer in a Docker Container
-description: SQL Server can run in a docker container, how can developers leverage that on their development machines?
+title: Running SQL Server Developer in a Windows-based Docker Container
+description: SQL Server can run in a Windows-based docker container, how can developers leverage that on their development machines?
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-09-30
