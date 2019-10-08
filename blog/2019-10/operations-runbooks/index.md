@@ -12,7 +12,7 @@ tags:
 
 ![Illustration showing books running (i.e. runbooks) throught a server room](operations-runbooks.png)
 
-A deployment is only one phase in the life of an application. There are typically many other tasks which are performed to keep an application operating. A large part of DevOps is running operations separate from deploying applications, and Octopus seems like the perfect tool to use given it already knows about the infrastructure and variables.
+Deployments are only one phase in the life of an application. There are many other common tasks which are performed to keep an application operating. A large part of DevOps is running operations separate from deploying applications, and Octopus seems like the perfect tool to use given it already knows about the infrastructure and variables.
 
 Let’s use our Octopus website, Octofront, as an example. We use Octopus to deploy Octofront and manage our infrastructure, variables, certificate and accounts. But we also have some routine and emergency tasks we do to "operate" the website. For instance, backing up the database, restoring it, and testing the restore, removing PII, and restoring it to a test environment and failing over to a disaster recovery site.
 
