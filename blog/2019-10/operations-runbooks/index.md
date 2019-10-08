@@ -29,7 +29,7 @@ We would also clearly see from the overview and task lists the exact operations 
 ## Operations Runbooks in Octopus Deploy
 To try the early access release of Runbooks, it can be enabled via the Configuration>Features section and accessed from within a Project. This allows you to keep everything related to running an application together. If you have operations that apply to your infrastructure only and not necessarily related to an application, like cleaning up files on machines, we suggest you create a separate project for these types of operations.
 
-In the project menu, everything related to a deployment sits under a new *Deployments* menu-item. The new *Operations* menu-item provides an area for growth of Operations in the future. Resources that can be shared between Deployments and Operations sit outside of these areas. However there are limitations with Variables, Triggers and other areas within the EAP. The limitations are outlined in the [Runbooks documentation](#).
+In the project menu, everything related to a deployment sits under a new **Deployments** menu-item. The new **Operations** menu-item provides an area for growth of Operations in the future. Resources that can be shared between Deployments and Operations sit outside of these areas. However there are limitations with Variables, Triggers and other areas within the EAP. The limitations are outlined in the [Runbooks documentation](https://octopus.com/docs/deployment-process/operations-runbooks#current-limitations).
 
 ![Screenshot showing the new menu structure within a project](deployments-01.png)
 
