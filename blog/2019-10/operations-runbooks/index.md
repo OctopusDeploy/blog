@@ -31,16 +31,16 @@ To try the early access release of Runbooks, it can be enabled via the Configura
 
 In the project menu, everything related to a deployment sits under a new *Deployments* menu-item. The new *Operations* menu-item provides an area for growth of Operations in the future. Resources that can be shared between Deployments and Operations sit outside of these areas. However there are limitations with Variables, Triggers and other areas within the EAP. The limitations are outlined in the [Runbooks documentation](#).
 
-![Screenshot showing the new menu structure within a project](Deployments.png)
+![Screenshot showing the new menu structure within a project](deployments-01.png)
 
 ## Creating and running a Runbook
 Adding a Runbook can be done from the Operations>Runbooks section and adding steps to a Runbook works the same way as adding steps to a Deployment Process. If you have operational steps within a Deployment Process these can be cloned into a Runbook.
 
-![Screenshot of the Runbooks screen](Runbooks.png)
+![Screenshot of the Runbooks screen](runbooks-01.png)
 
 When running a Runbook, a snapshot is created at the time of the run, making it quicker to perform operations. We didn’t design Runbooks to rely on lifecycles, so you can run a Runbook on any environment you have permissions to.
 
-![Animated gif of a Runbook being run](RunningRunbook.gif)
+![Animated gif of a Runbook being run](running-runbook.gif)
 
 ## Cloning steps
 If you have steps in your deployment process that would be more suited to a runbook, you can clone the step to your runbook.
