@@ -12,8 +12,6 @@ tags:
 
 ![Cars on slow lane and fast lane](blogimage-ltsrelease.png)
 
-<h2>Octopus Deploy 2019.9 LTS</h2>
-
 Octopus Deploy `2019.9 LTS` is now available for teams running Octopus Deploy self-hosted, and we recommend this release for these customers. Our [long-term support (LTS) program](https://octopus.com/docs/administration/upgrading/long-term-support) includes releases with six months of support, including critical bug fixes and security patches. The LTS releases do not include new features, minor enhancements, or minor bug fixes; these are rolled up into the next LTS release.
 
 <a href="https://octopus.com/downloads" class="btn btn-primary btn-lg">Download now</a>
