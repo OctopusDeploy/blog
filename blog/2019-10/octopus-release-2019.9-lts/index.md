@@ -48,7 +48,7 @@ Tentacle for Linux provides greater flexibility for teams deploying to Linux in 
 
 [Learn more](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle)
 
-## Tenant Cloning
+## Tenant cloning
 
 ![Cloning a Tenant](tenant-clone.png "width=600")
 
