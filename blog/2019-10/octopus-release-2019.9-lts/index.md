@@ -16,7 +16,7 @@ Octopus Deploy `2019.9 LTS` is now available for teams running Octopus Deploy se
 
 <a href="https://octopus.com/downloads" class="btn btn-primary btn-lg">Download now</a>
 
-This is our third release with six months of long term support, and the following table shows our current LTS releases.
+The following table shows our current LTS releases. Octopus 2019.3 is no longer supported and we recommend customers on that release upgrade to one of the newer releases.
 
 | Release               | Long term support           |
 | --------------------- | --------------------------- |
