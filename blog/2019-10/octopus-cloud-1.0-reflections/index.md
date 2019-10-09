@@ -60,7 +60,7 @@ An EC2 instance for every customer adds up, and as our databases were backed by 
 
 Octopus Cloud customers could start a free 30-day trial, which meant that those hundreds of trial signups per month, each of which cost us $100 to host, quickly added up. 
 
-We also didn’t have our pricing quite right. We initially launched Octopus Cloud at $10/month, with a different pricing model from the one we currently use. Unfortunately, this was one of the most painful lessons we learned because the deficit between what we were charging and spending was magnified by the sheer number of people using Octopus Cloud; continued growth would further amplify the problem.
+We also didn’t have our pricing quite right. We initially launched Octopus Cloud with a $10/month starting tier, with a different pricing model from the one we currently use. Unfortunately, this was one of the most painful lessons we learned because the deficit between what we were charging and spending was magnified by the sheer number of people using Octopus Cloud; continued growth would further amplify the problem.
 
 Two months in, we started having serious conversations about our $100k USD monthly AWS spend, and the fact that we had very little revenue to offset that expense:
 
