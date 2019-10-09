@@ -2,7 +2,7 @@
 title: Octopus Server 2019.9 with Long Term Support (LTS)
 description: Octopus Server 2019.9 LTS is here, and we recommend this release for self-hosted customers. This release includes our streamlined deployment process editor, Tentacle for Linux, Tenant cloning, and more.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
 published: 2019-10-10
