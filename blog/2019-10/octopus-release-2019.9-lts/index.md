@@ -1,11 +1,11 @@
 ---
 title: Octopus Server 2019.9 with Long Term Support (LTS)
-description: Octopus Server 2019.9 LTS is the fourth release with six months of long-term support. We recommend this release for self-hosted customers.
+description: Octopus Server 2019.9 LTS is here and we recommend this release for self-hosted customers. This release includes our streamlined deployment process editor, Tentacle for Linux, Tenant cloning and more.
 author: rob.pearson@octopus.com
 visibility: private
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2019-10-09
+published: 2019-10-10
 tags:
 - Product
 ---
@@ -36,7 +36,7 @@ Keep reading to learn about what's in this release and any breaking changes.
 
 ![Streamlined deployment process editor](streamlined-deploy-process-editor.png "width=600")
 
-We've improved our deployment process editor to streamline the editing process with better visibility and fewer clicks. You can now see the entire deployment process, which is useful when referencing other step names in scripts and variables. This should also make navigating between steps faster with fewer clicks, and less scrolling.
+We've improved our deployment process editor to streamline the editing process with better visibility. You can now see the entire deployment process, which is useful when referencing other step names in scripts and variables. This should also make navigating between steps faster with fewer clicks, and less scrolling.
 
 [Learn more](https://github.com/OctopusDeploy/Issues/issues/5804)
 
@@ -44,7 +44,7 @@ We've improved our deployment process editor to streamline the editing process w
 
 ![Tentacle for Linux configuration](linux-tentacle.png "width=600")
 
-This release includes our native Tentacle agent for Linux. This update enables teams to deploy to their servers in secure environments where it's not possible to open port 22 in production environments. Tentacle is a lightweight service that enables secure communication between the Octopus Server and deployment targets in a listening and polling modes. In polling mode, it contacts the Octopus Server and executes deployment work as required including retrieving application packages and deployment scripts.
+This release includes support for our native Tentacle agent for Linux. This enables teams to deploy to Linux servers in secure environments where it's not possible to open port 22. Tentacle supports secure communication between the Octopus Server and deployment targets in a listening and polling modes. In polling mode, it contacts the Octopus Server and executes deployment work as required including retrieving application packages and deployment scripts.
 
 Tentacle for Linux provides greater flexibility for teams deploying to Linux in highly secured environments.
 
@@ -54,16 +54,18 @@ Tentacle for Linux provides greater flexibility for teams deploying to Linux in 
 
 ![Cloning a Tenant](tenant-clone.png "width=600")
 
-It's now possible to clone Tenants. It can be time consuming to create new tenants and configure all of their settings. This is now far simpler as you can simply clone a Tenant instead of manually creating a tenant, linking it to the appropriate projects and environments, adding tags and entering in numerous variable values. 
+Creating and configuring tenants can be a time-consuming as it involves multiple steps to link projects and environments, add tags and enter all the required variable values. Thankfully, this process is now far more straightforward as you can clone a Tenant instead of manually performing all of those steps. Then you can update the new tenant as required.
 
-[Learn more](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle)
+[Learn more](https://github.com/OctopusDeploy/Issues/issues/5727)
 
 ## Other improvements
 
-* Added **More health check scheduling options**: Health checks can be configured to run on a cron expression, or to never run
-* Added support to **override namespace in Kubernetes steps**
-* **New Variable Filter expressions**: Trim, Substring, Truncate, UriEscape, UriDataEscape
-* **Copy and paste to add certificates**: Certificates can now be pasted as text directly into the portal
+* Added **health check scheduling options** so they can be configured to run on a cron expression, or to never run.
+* Added support to **override namespace in Kubernetes steps**.
+* **New Variable Filter expressions** including `Trim`, `Substring`, `Truncate`, `UriEscape` and `UriDataEscape`.
+* Added support to **paste to certificates as text** to add certificates directly in the portal.
+
+[Learn more](https://octopus.com/blog/octopus-release-2019.8)
 
 ## Breaking changes
 
