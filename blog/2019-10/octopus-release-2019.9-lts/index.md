@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2019-10-10
+published: 2019-10-11
 tags:
 - Product
 ---
