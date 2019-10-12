@@ -12,6 +12,8 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
+// LEE: Do you think this works as an intro or should we break it up more? I want the key benefits line for Linux Tentacle but otherwise, I'm happy to jump to specific sections.
+
 We're happy to ship Octopus Deploy 2019.9 as this a feature packed release with some great benefits for teams. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to servers without the need to open port 22 for SSH on your servers. This release also adds built-in support for PowerShell Core, improved build information and work item tracking, simpler package-based step templates, and early access to our Runbooks for operations teams feature. 
 
 <h2>In this post</h2>
@@ -19,6 +21,8 @@ We're happy to ship Octopus Deploy 2019.9 as this a feature packed release with 
 !toc
 
 ## Tentacle for Linux
+
+TODO: Add image.
 
 Octopus first introduced support for Linux deployments over secure shell (SSH) in version 3.0 and it's a popular option for teams. However, some companies operate in highly secure environments where it's not possible to open port 22 on production servers. An example of this is where web applications operate  in their own DMZs with no incoming connections permitted other than HTTPS for web traffic. 
 
@@ -28,7 +32,22 @@ Tentacle for Linux provides greater flexibility for teams deploying to Linux in 
 
 ## PowerShell Core support
 
+TODO: Add image.
 
+This release adds built-in PowerShell Core support enabling teams to write cross-platform scripts using Microsoft's actively maintained automation framework. Our PowerShell Core support 'just works' and it pairs very well with our expanded support for Linux deloyments. Many development and operations teams are comfortable writing PowerShell scripts and PowerShell Core enables people with PowerShell skills to leverage those skills to write rich scripts for Linux platforms. 
+
+**Windows platforms**
+
+Octopus will use PowerShell Core if it's available otherwise, it will use PowerShell (full framework) as this is bundled with all supported Windows Servers. 
+
+NOTE: Octopus allows you to specify which framework you wish to use as well. 
+
+**Linux platforms**
+
+Octopus will automatically execute scripts with PowerShell Core if it's installed. 
+
+
+[Learn More](TODO: find link)
 
 ## Improved build information and work item tracking
 
