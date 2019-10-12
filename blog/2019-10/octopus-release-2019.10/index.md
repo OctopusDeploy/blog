@@ -51,16 +51,47 @@ Octopus will automatically execute scripts with PowerShell Core if it's installe
 
 ## Improved build information and work item tracking
 
+TODO: Screenshot
+
+Octopus 2019.4 introduced build information and work item tracking. This has proved to be a popular feature but we've received feedback from teams that the package metadata functionality that underpins the buidl information linkages was buried under package details in the Octopus Library and tricky to understand. We've listened to this feedback and we promoted this functinoality to a top-level feature called 'Build Information' within the Octopus Library making it more accessible and much easier to understand. We've also updated our suite of build server plugins to reflect the name change.
+
+This feature-set enable teams to get better end-to-end visibility into their CI/CD pipelines and unlocks quick access to build and commit details. This is visible in a number of ways:
+
+- Release notes
+- Deployment changes
+
+TODO: Screenshot
+
+We shipped support to customise your release notes templates in your project settings. In this release, we're introducing deployment change templates so you can get the same control over the structure of your deployment changes. This provides teams with specific needs the ability to customise the display to suit their needs. 
+
+[Learn more](TODO: find link)
+
 ## Simpler package-based step templates
 
+TODO: Screenshot
+
+Step templates are a popular way for teams to create reusable steps for use across multiple projects. We've made a small but signficant update to make it easier to create package-based step temapltes. Previously, you needed to create parameters to expose package-based properties. This is no longer needed as we automatically expose package parameters. This makes it easier to create package-based step templates but it also enables teams to bind agaist these parameters.  
+
+[Learn more](TODO: find link)
+
+## Runbooks for operations teams - Early access
+
+TODO: Screenshot
+
+This release also includes early access to our new Operations Runbooks feature. Octopus until now has been a deployment automation tool, giving teams a big green button to deploy new releases of their software. But once the software is deployed, there are many different processes that teams need to automate. These can include disaster recovery, nightly backup, data masking and restore to test environments, and any other scripts and manual processes. 
+
+**With Runbooks, teams can use Octopus to automate everything involved in keeping modern software running in production.**
+
+> “DevOps” isn’t a tool that can be bought, but if it was, this is probably the closest thing to it.
+
+Talk about the first release. 
 
 
 
-## Runbooks for operations teams
 
 
 
-
+[Learn more](Add link to docs/)
 
 ## Breaking Changes
 
