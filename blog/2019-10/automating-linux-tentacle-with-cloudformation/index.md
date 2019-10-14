@@ -1,14 +1,16 @@
 ---
 title: Automating Tentacle for Linux installation with CloudFormation templates
-description: Automating Tentacle for Linux installation with an AWS CloudFormation template.
+description: Automating Tentacle for Linux installation with an AWS CloudFormation templates.
 author: shawn.sesna@octopus.com
-visibility: private
-bannerImage: 
-metaImage: 
-published: 2020-10-09
+visibility: public
+bannerImage: blogimage-tentacleaws.png
+metaImage: blogimage-tentacleaws.png
+published: 2019-10-15
 tags:
  - DevOps
 ---
+
+![Tentacles rising from the ocean to install software on a Linux server with AWS Cloudformation](blogimage-tentacleaws.png)
 
 In a world of cloud-based applications with scaling capabilities, it’s essential to have infrastructure automation in place.  Amazon Web Services (AWS) has removed the heavy lifting by providing CloudFormation templates for automatic provisioning of cloud-based resources, but you still need a method to automatically connect your newly created EC2 instances to Octopus Deploy so your applications and services can be deployed.  In this post, I‘ll demonstrate how to install and configure a Tentacle for Linux when using a Linux-based EC2 instance.
 
