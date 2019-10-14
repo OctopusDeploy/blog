@@ -3,7 +3,7 @@ title: Octopus Deploy 2019.10 - Flexible Linux deployments, PowerShell Core supp
 description: Octopus 2019.10 introduces Tentacle for Linux for flexible Linux deployments, built-in PowerShell Core support, simpler build information and releas notes, and early access to RunBooks for operations teams.
 author: rob.pearson@octopus.com
 visibility: private
-published: 2019-10-14
+published: 2019-10-15
 metaImage: 
 bannerImage: 
 tags:
