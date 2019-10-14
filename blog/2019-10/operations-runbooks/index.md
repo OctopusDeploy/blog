@@ -12,7 +12,7 @@ tags:
 
 ![Illustration showing books running (i.e., Runbooks) through a server room](operations-runbooks.png)
 
-Deployments are only part of what goes into making applications available to users. There are many other common tasks that are needed to keep applications operating smoothly. A large part of DevOps is development and operations teams working together, and Octopus is the perfect tool to use, given it already knows about your infrastructure, accounts, and project configuration.
+Deployments are only part of what goes into making applications available to users. There are many other common tasks that need to be performed to keep applications operating smoothly. A large part of DevOps is development and operations teams working together, and Octopus is the perfect tool to use, given it already knows about your infrastructure, accounts, and project configuration.
 
 If we take the Octopus website, Octopus.com, as an example, we use Octopus Deploy to deploy our website and manage our infrastructure, variables, certificate, and accounts. But we also have some routine and emergency tasks we do as part of *operating* the website. For instance, backing up the database, restoring it, testing the restore, removing PII from the database, and restoring the sanitized database to a test environment as well as failing over to a disaster recovery site.
 
