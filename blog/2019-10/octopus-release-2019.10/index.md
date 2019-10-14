@@ -12,7 +12,7 @@ tags:
 
 ![](octopus-2019.10-release-image.png)
 
-We're excited to launch Octopus Deploy 2019.10 as this a feature packed release with some great benefits. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without the need to open port 22. Tentacle for Linux and SSH deployments combined with Bash, PowerShell Core and Python scripting, and a first-class step to deploy your web apps and services to NGINX make Octopus a great option for Linux deployments. 
+We're excited to launch Octopus Deploy 2019.10 as this a feature packed release with some great benefits. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without the need to open port 22. Tentacle for Linux and Linux deployments over SSH combined with Bash, PowerShell Core and Python scripting, and a first-class step to deploy your web apps and services to NGINX make Octopus a great option for Linux deployments. 
 
 This release also includes:
 * Built-in support for PowerShell Core.
