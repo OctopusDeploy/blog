@@ -12,11 +12,13 @@ tags:
 
 ![](octopus-2019.10-release-image.png)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+We're excited to launch Octopus Deploy 2019.10 as this a feature packed release with some great benefits. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without the need to open port 22. Tentacle for Linux and SSH deployments combined with Bash, PowerShell Core and Python scripting, and a first-class step to deploy your web apps and services to NGINX make Octopus a great option for Linux deployments. 
 
-// LEE: Do you think this works as an intro or should we break it up more? I want the key benefits line for Linux Tentacle but otherwise, I'm happy to jump to specific sections.
-
-We're excited to launch Octopus Deploy 2019.10 as this a feature packed release with some great benefits. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without the need to open port 22. This release also adds built-in support for PowerShell Core, improved build information and work item tracking, simpler package-based step templates, and early access to our Runbooks for operations teams feature. 
+This release also includes:
+* Built-in support for PowerShell Core.
+* Improved build information and work item tracking.
+* Simpler package-based step templates.
+* Early access to our Operations Runbooks featureset.
 
 <h2>In this post</h2>
 
@@ -24,7 +26,7 @@ We're excited to launch Octopus Deploy 2019.10 as this a feature packed release 
 
 ## Tentacle for Linux
 
-TODO: Add image.
+![Tentacle for Linux configuration](linux-tentacle.png "width=600")
 
 Octopus first introduced support for Linux deployments over secure shell (SSH) in version 3.0 and it's a popular option for teams. However, some companies operate in highly secure environments where it's not possible to open port 22 on production servers. An example of this is where web applications operate  in their own DMZs with no incoming connections permitted other than HTTPS for web traffic. 
 
