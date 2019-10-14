@@ -1,6 +1,6 @@
 ---
 title: Automating Tentacle for Linux installation with CloudFormation templates
-description: Automating Tentacle for Linux installation with an AWS CloudFormation templates.
+description: Automating Tentacle for Linux installation with an AWS CloudFormation template.
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: blogimage-tentacleaws.png
@@ -16,14 +16,14 @@ In a world of cloud-based applications with scaling capabilities, it’s essenti
 
 ## UserData in the CloudFormation template
 
-AWS provides a section within the CloudFormation template where we can include a script called UserData.  In this example, I am creating an EC2 Linux instance to host [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a .NET core application.  To accomplish this, I need to:
+AWS provides a section within the CloudFormation template where we can include a script called UserData.  In this example, I create an EC2 Linux instance to host [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a .NET Core application.  To accomplish this, I need to:
 
 - Install Tentacle for Linux.
 - Configure the Tentacle.
 - Register the Tentacle with my Octopus server.
 - Create the Unit file.
 - Configure the Tentacle to run as a Linux service.
-- Install .NET core.
+- Install .NET Core.
 
 ### Install Tentacle for Linux
 
@@ -112,9 +112,9 @@ sudo systemctl start tentacle
 sudo systemctl enable tentacle
 ```
 
-### Install .NET core
+### Install .NET Core
 
-The last thing our script needs to do is install .NET core so our `OctoPetShop` application will run:
+The last thing our script needs to do is install .NET Core so our `OctoPetShop` application will run:
 
 ```bash
 # Download and install the Microsoft packages
@@ -211,4 +211,4 @@ We can take this automation even further and use a [Project Trigger](https://oct
 
 ## Conclusion 
 
-Now, anytime this CloudFormation template is used to create a new EC2 instance, it will automatically download, install and configure the Tentacle for Linux, attach the Tentacle to your Octopus server, set up the Tentacle as a Linux service, and install .NET core making our new instance ready to host the `OctoPetShop` application.
+Now, anytime this CloudFormation template is used to create a new EC2 instance, it will automatically download, install and configure the Tentacle for Linux, attach the Tentacle to your Octopus server, set up the Tentacle as a Linux service, and install .NET Core making our new instance ready to host the `OctoPetShop` application.
