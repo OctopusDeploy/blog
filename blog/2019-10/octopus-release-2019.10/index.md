@@ -4,11 +4,13 @@ description: Octopus 2019.10 introduces Tentacle for Linux for flexible Linux de
 author: rob.pearson@octopus.com
 visibility: private
 published: 2019-10-15
-metaImage: 
-bannerImage: 
+metaImage: octopus-2019.10-release-image.png
+bannerImage: octopus-2019.10-release-image.png
 tags:
  - Product
 ---
+
+![](octopus-2019.10-release-image.png)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
