@@ -4,11 +4,13 @@ description: There are many approaches to running Lambdas across logical environ
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2019-10-16
-metaImage:
-bannerImage:
+metaImage: lambda-aliases_environment.png
+bannerImage: lambda-aliases_environment.png
 tags:
  - Engineering
 ---
+
+![Illustration showing dev, test and prod environments with different lambdas](lambda-aliases_environment.png)
 
 Getting started with serverless applications is relatively easy these days. Tools like [Serverless](https://serverless.com/) and [AWS SAM](https://aws.amazon.com/serverless/sam/) abstract away much of the boilerplate code and hide the finer interactions between services to get you up and running quickly.
 
