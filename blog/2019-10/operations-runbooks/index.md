@@ -1,6 +1,6 @@
 ---
-title: Introducing Runbooks for your Operations Teams
-description: Introducing Runbooks for your Operations teams. It's now possible to run operations and maintenance tasks like file clean-ups, backup and restore jobs as well as disaster recovery failovers.
+title: Introducing Runbooks for your Operations Team
+description: Introducing Runbooks for your Operations team. It’s now possible to run operations and maintenance tasks like file clean-ups, backup and restore jobs, as well as disaster recovery failovers.
 author: jessica.ross@octopus.com
 visibility: private
 bannerImage: operations-runbooks.png
@@ -10,56 +10,59 @@ tags:
  - Product
 ---
 
-![Illustration showing books running (i.e. runbooks) throught a server room](operations-runbooks.png)
+![Illustration showing books running (i.e., Runbooks) through a server room](operations-runbooks.png)
 
-Deployments are only one phase in the life of an application. There are many other common tasks which are performed to keep an application operating smoothly. A large part of DevOps is development and opeations teams working together, and Octopus seems like the perfect tool to use given it already knows about your infrastructure, accounts and project configuration.
+Deployments are only part of what goes into making applications available to users. There are many other common tasks that are needed to keep applications operating smoothly. A large part of DevOps is development and operations teams working together, and Octopus is the perfect tool to use, given it already knows about your infrastructure, accounts, and project configuration.
 
-Let’s use the Octopus website, Octopus.com, as an example. We use Octopus to deploy our website and manage our infrastructure, variables, certificate and accounts. But we also have some routine and emergency tasks we do to "operate" the website. For instance, backing up the database, restoring it, and testing the restore, removing PII, and restoring it to a test environment as well as failing over to a disaster recovery site.
+If we take the Octopus website, Octopus.com, as an example, we use Octopus Deploy to deploy our website and manage our infrastructure, variables, certificate, and accounts. But we also have some routine and emergency tasks we do as part of *operating* the website. For instance, backing up the database, restoring it, testing the restore, removing PII from the database, and restoring the sanitized database to a test environment as well as failing over to a disaster recovery site.
 
-Currently it’s all in the one project’s deployment process or executed as separate scripts. Performing all these steps for a deployment doesn’t make sense and doing a deployment just to backup a database doesn’t make sense either.
+Currently, these tasks are in a project’s deployment process, or they’re executed as separate scripts. Performing all these steps for a deployment doesn’t make sense, and doing a deployment just to backup a database doesn’t make sense either.
 
-Operations Runbooks would allow us to simplify the deployment process and enable the operational tasks to be run at different intervals to the deployment. Our list of Runbooks would be:
-1. Fail over to DR site
-2. Switch back to primary production site
-3. Back-up database (and test that restore works)
-4. Refresh the test database with production data (sanitized)
+Operation Runbooks allows us to simplify the deployment process and enable the operational tasks to be run at different intervals to the deployment. Our list of Runbooks is:
 
-We would also clearly see from the overview and task lists the exact operations and their runs performed separately, giving us a true picture of the state of our website.
+1. Failover to the disaster recovery site.
+2. Switch back to the primary production site.
+3. Back up the database (and test the restore worked).
+4. Refresh the test database with (sanitized) production data.
 
-## Operations Runbooks in Octopus Deploy
+With Runbooks, the overview and task lists show us the exact operations and their runs performed separately, giving us a true picture of the state of our website.
 
-Operations Runbooks can be accessed from within a project. This allows you to keep everything related to running an application together. If you have operations that apply to your infrastructure only and not necessarily related to an application, like cleaning up files on machines, we suggest you create a separate project for these types of operations.
+## Operation Runbooks in Octopus Deploy
 
-In the project menu, everything related to a deployment sits under a new **Deployments** menu-item. The new **Operations** menu-item provides an area for growth of Operations in the future. Resources that can be shared between Deployments and Operations sit outside of these areas. However there are limitations with Variables, Triggers and other areas within the EAP. The limitations are outlined in the [Runbooks documentation](https://octopus.com/docs/deployment-process/operations-runbooks#current-limitations).
+Operation Runbooks can be accessed from within a project. This means you can keep everything related to running an application together. If you have operations that apply to your infrastructure only and are not necessarily related to an application, like cleaning up files on machines, we suggest you create a separate project for these types of operations.
+
+In the project menu, everything related to deployments is under a new **Deployments** menu-item. Runbooks are under the **Operations** menu, and you can expect to see this section grow as we add new Operations in the future. Resources that can be shared between Deployments and Operations are outside of these areas.
 
 ![Screenshot showing the new menu structure within a project](deployments-01.png)
 
 ## Creating and running a Runbook
 
-Adding a Runbook can be done from the Operations>Runbooks section and adding steps to a Runbook works the same way as adding steps to a Deployment Process. If you have operational steps within a Deployment Process these can be cloned into a Runbook.
+Adding a Runbook can be done from the {{Operations>Runbooks}} section, and adding steps to a Runbook works the same as adding steps to a Deployment Process.
+
+If you have operational steps within a Deployment Process, these can be cloned into a Runbook.
 
 ![Screenshot of the Runbooks screen](runbooks-01.png)
 
-When running a Runbook, a snapshot is created at the time of the run, making it quicker to perform operations. We didn’t design Runbooks to rely on lifecycles, so you can run a Runbook on any environment you have permissions to.
+When Runbooks run, a snapshot is created at the time of the run, making it quicker to perform operations. We didn’t design Runbooks to rely on lifecycles, so you can run a Runbook on any environment as long as you have the permission.
 
 ![Animated gif of a Runbook being run](running-runbook.gif)
 
 ## Cloning steps
 
-If you have steps in your deployment process that would be more suited to a runbook, you can clone the step to your runbook.
+If you have steps in your deployment process that are more suited to a Runbook, you can clone the step to your Runbook.
 
-## New Permissions
+## New permissions
 
-If you want to restrict users from running Runbooks, we have new permissions `RunbookView` and `RunbookEdit` (for creating, editing and deleting). This feature re-uses the existing `ProcessEdit`, `Deployment` and `Release` permissions for runs and snapshots.
+You can enable or restrict users from running Runbooks with the new permissions `RunbookView` and `RunbookEdit` (for creating, editing, and deleting). Runbooks re-uses the existing `ProcessEdit`, `Deployment`, and `Release` permissions for runs and snapshots.
 
-Runbooks is available as an early access feature in the [2019.10](#) release. We encourage you to try Runbooks for any processes that aren’t application specific.
+## Operation Runbooks early access
 
-## Operations Runbooks early access
+We’ve shipped RunBooks as an early access feature in [Octopus 2019.10](/blog/octopus-release-2019.10/index.md), and we encourage you to try Runbooks for any processes that aren’t application specific.
 
-We've shipped early access of RunBooks in [Octopus 2019.10](/blog/octopus-release-2019.10/index.md) so you can try it out today. Our goal with the early access program is to get feedback and validate its design. [Our docs](https://octopus.com/docs/deployment-process/operations-runbooks) cover all the details on how to get started as well as current limitations. 
+Our goal with the early access program is to get feedback and validate its design. There are some limitations with Variables, Triggers, and other areas within the EAP, but the [Runbooks documentation](https://octopus.com/docs/deployment-process/operations-runbooks#current-limitations) provides all the details you need to get started as well as the current limitations.
 
-We'd love feedback so join the discussion on our [community slack](https://octopus.com/slack) in the `#linux-tentacle` channel. You can also register for updates on our [public roadmap](https://octopus.com/company/roadmap) page.
+We’d love feedback, so join the discussion on our [community slack](https://octopus.com/slack) in the `#linux-tentacle` channel. You can also register for updates on our [public roadmap](https://octopus.com/company/roadmap) page.
 
-## Wrapping up
+## Conclusion
 
-We're excited to share this first release of Operations Runbooks and see how teams use it on their projects. 
+We’re excited to share this first release of Operation Runbooks and to see how teams use it in their projects.
