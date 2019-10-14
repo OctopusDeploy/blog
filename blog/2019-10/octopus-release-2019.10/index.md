@@ -14,7 +14,7 @@ tags:
 
 // LEE: Do you think this works as an intro or should we break it up more? I want the key benefits line for Linux Tentacle but otherwise, I'm happy to jump to specific sections.
 
-We're happy to ship Octopus Deploy 2019.9 as this a feature packed release with some great benefits for teams. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to servers without the need to open port 22 for SSH on your servers. This release also adds built-in support for PowerShell Core, improved build information and work item tracking, simpler package-based step templates, and early access to our Runbooks for operations teams feature. 
+We're excited to launch Octopus Deploy 2019.10 as this a feature packed release with some great benefits. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without the need to open port 22. This release also adds built-in support for PowerShell Core, improved build information and work item tracking, simpler package-based step templates, and early access to our Runbooks for operations teams feature. 
 
 <h2>In this post</h2>
 
@@ -74,22 +74,19 @@ Step templates are a popular way for teams to create reusable steps for use acro
 
 [Learn more](TODO: find link)
 
-## Runbooks for operations teams - Early access
+## Introducing Runbooks for Operations teams
 
-TODO: Screenshot
+TODO: Screenshot w/ EAP Stamp
 
-This release also includes early access to our new Operations Runbooks feature. Octopus until now has been a deployment automation tool, giving teams a big green button to deploy new releases of their software. But once the software is deployed, there are many different processes that teams need to automate. These can include disaster recovery, nightly backup, data masking and restore to test environments, and any other scripts and manual processes. 
+This release also includes early access to our new Operations Runbooks feature. Octopus until now has been a deployment automation tool, giving teams a big green button to deploy new releases of their software. But once the software is deployed, there are many different processes that teams need to automate. These can include file cleanup, nightly backups, data masking and restore to test environments, disaster recovery, and any other scripts and manual processes. 
 
 **With Runbooks, teams can use Octopus to automate everything involved in keeping modern software running in production.**
 
-> “DevOps” isn’t a tool that can be bought, but if it was, this is probably the closest thing to it.
+Our goal with our early access to Operations Runbooks is to get feedback and validate its design. 
 
-Talk about the first release. 
+**We'd love feedback so join the discussion on our [community slack](https://octopus.com/slack) in the `#runbooks` channel.**
 
-
-
-
-
+Our docs cover all the details on how to get started. We
 
 [Learn more](Add link to docs/)
 
