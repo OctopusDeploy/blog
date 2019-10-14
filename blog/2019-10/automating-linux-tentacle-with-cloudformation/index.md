@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: blogimage-tentacleaws.png
 metaImage: blogimage-tentacleaws.png
-published: 2019-10-15
+published: 2019-10-14
 tags:
  - DevOps
 ---
