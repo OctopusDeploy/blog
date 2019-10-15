@@ -38,13 +38,11 @@ Tentacle for Linux provides greater flexibility for teams deploying to Linux in 
 
 ![Powershell core support](powershell-core.png "width=600")
 
-This release adds built-in PowerShell Core support enabling teams to write cross-platform scripts using Microsoft's actively maintained automation framework. Our PowerShell Core support 'just works' and it pairs very well with our expanded support for Linux deloyments. Many development and operations teams are comfortable writing PowerShell scripts and PowerShell Core enables people with PowerShell skills to leverage those skills to write rich scripts for Linux platforms.
+This release adds built-in PowerShell Core support enabling teams to write cross-platform scripts using Microsoft's actively maintained automation framework. Our PowerShell Core support 'just works' and it pairs very well with our expanded support for Linux deloyments. Many development and operations teams are comfortable writing PowerShell scripts and PowerShell Core enables people with PowerShell skills to leverage them to write rich scripts for Linux platforms.
 
 **Windows platforms**
 
-Octopus will use PowerShell Core if it's available otherwise, it will use PowerShell (full framework) as this is bundled with all supported Windows Servers. 
-
-NOTE: Octopus allows you to specify which framework you wish to use as well. 
+Octopus will use Windows PowerShell by default and provides the option to use PowerShell Core if desired. You can customise this by configuring the PowerShell edition for steps that support custom scripts.
 
 **Linux platforms**
 
@@ -54,7 +52,7 @@ Octopus will automatically execute scripts with PowerShell Core if it's installe
 
 ## Improved build information and work item tracking
 
-TODO: Screenshot
+![Octopus build information repository](build-information-repository.png  "width=600")
 
 Octopus 2019.4 introduced build information and work item tracking. This is a popular feature but we've received feedback from teams that the package metadata functionality that underpins the build information linkages were hard to find. buried under package details in the Octopus Library and tricky to understand. We've listened to this feedback and we promoted this functinoality to a top-level feature called 'Build Information' within the Octopus Library making it more accessible and much easier to understand. We've also updated our suite of build server plugins to reflect the name change.
 
@@ -63,15 +61,13 @@ This feature-set enable teams to get better end-to-end visibility into their CI/
 - Release notes
 - Deployment changes
 
-TODO: Screenshot
-
 We shipped support to customise your release notes templates in your project settings. In this release, we're introducing deployment change templates so you can get the same control over the structure of your deployment changes. This provides teams with specific needs the ability to customise the display to suit their needs. 
 
 [Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
 
 ## Simpler package-based step templates
 
-![Custom step template example with a package parameter](step-template-package-params.png)
+![Custom step template example with a package parameter](step-template-package-params.png  "width=600")
 
 Step templates are a popular way for teams to create reusable steps for use across multiple projects. We've made a small but significant update to make it easier to share package-based step templates across projects with the introduction of Package Parameters. Previously, you needed to create parameters to expose package-based properties. With Package Parameters, this is no longer needed as we now automatically show our package selector when the step template is added to a project. This makes it easier to create package-based step templates and allows teams to bind against these parameters in a much simple*r* way.
 
@@ -79,23 +75,29 @@ Step templates are a popular way for teams to create reusable steps for use acro
 
 ## Introducing Runbooks for Operations teams
 
-TODO: Screenshot w/ EAP Stamp
+![Octopus operations runbooks](runbook-details.png  "width=600")
 
-This release also includes early access to our new Operations Runbooks feature. Octopus until now has been a deployment automation tool, giving teams a big green button to deploy new releases of their software. But once the software is deployed, there are many different processes that teams need to automate. These can include file cleanup, nightly backups, data masking and restore to test environments, disaster recovery, and any other scripts and manual processes. 
+This release also includes early access to our new Operations Runbooks feature. Octopus until now has been a deployment automation tool, enabling teams to deploy new releases of their software. But once the software is deployed, there are many other processes that teams need to automate. These can include file cleanup, nightly backups, data masking and restore to test environments, disaster recovery, and any other scripts and manual processes. 
 
 **With Runbooks, teams can use Octopus to automate everything involved in keeping modern software running in production.**
 
-Our goal with our early access to Operations Runbooks is to get feedback and validate its design. 
+We'd love feedback so join the discussion on our [community slack](https://octopus.com/slack) in the `#runbooks` channel. Our docs cover all the details on how to get started. We
 
-**We'd love feedback so join the discussion on our [community slack](https://octopus.com/slack) in the `#runbooks` channel.**
-
-Our docs cover all the details on how to get started. We
-
-[Learn more](Add link to docs/)
+[Learn more](/blog/2019-10/operations-runbooks/index.md)
 
 ## Breaking Changes
 
-TODO: breaking changes.
+This release includes two minor breaking changes. 
+
+**PowerShell Core**
+
+PowerShell Core support introduces a change whereby running PowerShell scripts against a non-windows target would silently ignore the .ps1 files. This includes `Deploy.ps1` files used when deploying packages. 
+
+After this change, Octopus will attempt to execute those .ps1 files on those targets. If PowerShell Core is installed on those targets, then this will may change the behaviour of your deployments. If PowerShell Core is not installed on those targets, then the deployment will fail.
+
+**Build Information** 
+
+This change involved renaming resources from the API through to the database. This is generally backwards compatible however anyone using our GitHub issue tracker will need to make sure they upgrade their Octopus Server if they upgrade their [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), [TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration) or [Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on).
 
 ## Upgrading
 
