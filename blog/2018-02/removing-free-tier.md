@@ -10,7 +10,7 @@ tags:
 
 **Update: we [changed our minds](https://octopus.com/blog/starter). Starter edition replaces Community as the free version of Octopus Deploy.**
 
-Since we started Octopus in 2012, we offered a free "Community" version of Octopus, and it has always been heavily used. In fact, about 80% of companies using Octopus today are using the free tier. Over the years we’ve tweaked it, and considered removing it many times. Today, I decided that we would go ahead and remove it. In this post, I’d like to explain the reasoning why. 
+Since we started Octopus in 2012, we offered a free “Community” version of Octopus, and it has always been heavily used. In fact, about 80% of companies using Octopus today are using the free tier. Over the years we’ve tweaked it, and considered removing it many times. Today, I decided that we would go ahead and remove it. In this post, I’d like to explain the reasoning why. 
 
 Before explaining why we’ve removed the free tier, it’s worth asking: why do we charge for licenses at all? 
 
