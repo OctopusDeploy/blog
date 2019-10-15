@@ -12,7 +12,7 @@ tags:
 
 ![](octopus-2019.10-release-image.png)
 
-We’re excited to launch **Octopus Deploy 2019.10** as this is a feature packed release with some great benefits. Our headline feature is Tentacle for Linux which provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without opening port 22. Tentacle for Linux and Linux deployments over SSH combined with Bash, PowerShell Core, Python scripting, and a first-class step to deploy your web apps and services to NGINX, make Octopus a great option for Linux deployments. 
+We’re excited to launch **Octopus Deploy 2019.10**. This is a feature packed release with some great benefits. Headlining the release is Tentacle for Linux. This much requested feature provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without opening port 22. Tentacle for Linux and Linux deployments over SSH combined with scripting in Bash, PowerShell Core, or Python, and a first-class step to deploy your web apps and services to NGINX, make Octopus a great option for Linux deployments. 
 
 This release also includes:
 
@@ -55,14 +55,14 @@ Octopus will automatically execute scripts with PowerShell Core if it’s instal
 
 ![Octopus build information repository](build-information-repository.png  "width=600")
 
-**Octopus 2019.4** introduced build information and work item tracking. This is a popular feature, but we received feedback from teams that the package metadata functionality, which underpins the build information links, were hard to find because they were buried under package details in the Octopus Library and tricky to understand. We’ve listened to this feedback and we promoted this functionality to a top-level feature called **Build Information** to the Octopus Library making it more accessible and much easier to understand. We’ve also updated our suite of build server plugins to reflect the name change.
+**Octopus 2019.4** introduced build information and work item tracking. This is a popular feature, but we received feedback the package metadata functionality, which underpins the build information links, was hard to find because it was buried under the package details in the Octopus Library and tricky to understand. As a result, we’ve promoted this functionality to a top-level feature called **Build Information** within the Octopus Library making it more accessible and much easier to understand. We’ve also updated our suite of build server plugins to reflect the name change.
 
-This feature-set enable teams to get better end-to-end visibility into their CI/CD pipelines and unlocks quick access to build and commit details. This is visible in a number of ways:
+This feature-set gives teams better end-to-end visibility into their CI/CD pipelines and unlocks quick access to build and commit details. This is visible in a number of ways:
 
 - Release notes
 - Deployment changes
 
-We shipped support to customize your release notes templates in your project settings. In this release, we’re introducing deployment change templates so you can get the same control over the structure of your deployment changes. This gives teams with specific needs the ability to customize the display to suit their needs. 
+We previously shipped support to customize your release notes templates in your project settings. In this release, we’re introducing deployment change templates so you can get the same control over the structure of your deployment changes. This gives teams with specific needs the ability to customize the display to suit their needs. 
 
 [Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
 
@@ -70,7 +70,7 @@ We shipped support to customize your release notes templates in your project set
 
 ![Custom step template example with a package parameter](step-template-package-params.png  "width=600")
 
-Step templates are a popular way for teams to create reusable steps for use across multiple projects. We’ve made a small but significant update to make it easier to share package-based step templates across projects with the introduction of Package Parameters. Previously, you needed to create parameters to expose package-based properties. With Package Parameters, this is no longer needed as we now automatically show our package selector when the step template is added to a project. This makes it easier to create package-based step templates and lets teams bind against these parameters in a much simpler way.
+Step templates are a popular way for teams to create reusable steps for use across multiple projects. We’ve made a small but significant update to make it easier to share package-based step templates across projects with the introduction of Package Parameters. Previously, you needed to create parameters to expose package-based properties. With Package Parameters, this is no longer necessary as we now automatically show our package selector when the step template is added to a project. This makes it easier to create package-based step templates, and lets teams bind against these parameters in a much simpler way.
 
 [Learn more](https://octopus.com/docs/deployment-process/steps/custom-step-templates)
 
@@ -78,7 +78,7 @@ Step templates are a popular way for teams to create reusable steps for use acro
 
 ![Octopus operations runbooks](runbook-details.png  "width=600")
 
-This release also includes early access to our new Operations Runbooks feature. Until now Octopus has been a deployment automation tool, enabling teams to deploy new releases of their software, but once the software is deployed, there are many other processes that teams need to automate. These can include file cleanup, nightly backups, data masking, and restore to test environments, disaster recovery, and any other scripts and manual processes. 
+This release also includes early access to our new Operations Runbooks feature. Until now, Octopus has been a deployment automation tool, enabling teams to deploy new releases of their software, but once the software is deployed, there are many other processes that teams need to automate. These can include file cleanup, nightly backups, data masking and restore to test environments, disaster recovery, and other scripts and manual processes. 
 
 **With Runbooks, teams can use Octopus to automate everything involved in keeping modern software running in production.**
 
@@ -98,11 +98,11 @@ After this change, Octopus will attempt to execute those .ps1 files on those tar
 
 **Build Information** 
 
-This change involved renaming resources from the API through to the database. This is generally backwards compatible, however anyone using our GitHub issue tracker will need to make sure they upgrade their Octopus Server if they upgrade their [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), [TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration) or [Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on).
+This change involved renaming resources from the API through to the database. This is generally backwards compatible, however anyone using our GitHub issue tracker will need to make sure they upgrade their Octopus Server if they upgrade their [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), [TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration), or [Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on).
 
 ## Upgrading
 
-As usual [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.9.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2018.10.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during your maintenance window. 
+As usual the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2018.9.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2018.10.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during your maintenance window. 
 
 ## Wrap up
 
