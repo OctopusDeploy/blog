@@ -11,15 +11,15 @@ tags:
  - powershell
 ---
 
-As you gain experience with PowerShell Desired State Configuration (DSC) you might encounter situations where the available modules don’t quite fit what you want to do.  You could write your own [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource), but they don't scale well, passing parameters is difficult, and they do not provide a method for encryption, leaving passwords in clear text, however, you can write your own DSC modules.
+As you gain experience with PowerShell Desired State Configuration (DSC) you might encounter situations where the available modules don’t quite fit what you want to do.  You could write your own [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource), but they don’t scale well, passing parameters is difficult, and they don’t provide a method for encryption, leaving passwords in clear text, however, you can write your own DSC modules.
 
 ## A tool to help you write your module
 
-Writing your own module isn’t really that hard.  The most difficult part is getting the files and folders in the correct locations, DSC is quite specific in what goes where.  Microsoft recognizes that this can be quite frustrating and has developed [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner) a PowerShell module to help you get started.  Using this module, you can easily define what properties your resource needs and it will generate the entire module structure for you, including the MOF schema file.  If you’re a first-timer, I highly recommend using this module, it could save you quite a bit of frustration (take it from this author).
+Writing your own module isn’t really that hard.  The most difficult part is getting the files and folders in the correct locations because DSC is quite specific about what goes where. However, Microsoft recognizes this can be quite frustrating and has developed [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner), a PowerShell module to help you get started.  Using this module, you can easily define what properties your resource needs and it will generate the entire module structure for you, including the MOF schema file.  If you’re a first-timer, I highly recommend using this module, it could save you quite a bit of frustration (take it from me).
 
 ## Installing xDscResourceDesigner
 
-Installing the module is no different than installing any other module onto your system:
+Installing the module is no different from installing any other module onto your system:
 
 ```PS
 Install-Module -Name xDscResourceDesigner
@@ -29,7 +29,7 @@ As this [Microsoft article](https://docs.microsoft.com/en-us/powershell/dsc/reso
 
 ## Using xDscResourceDesigner
 
-Using the xDscResourceDesigner is actually pretty easy, there are only two functions: New-DscResourceProperty and New-xDscResource.  New-DscResourceProperty is what you use to define the properties of your DSC resource.  After you’ve done that, you send that information to the New-xDscResource function, and it generates everything you need to implement your resource:
+Using the xDscResourceDesigner is actually pretty easy, there are only two functions: `New-DscResourceProperty` and `New-xDscResource`.  `New-DscResourceProperty` is what you use to define the properties of your DSC resource.  After you’ve done that, you send that information to the `New-xDscResource` function, and it generates everything you need to implement your resource:
 
 ```PS
 # Import the module for use
@@ -84,7 +84,7 @@ Write attributes are optional attributes that you specify a value to when defini
 
 ### ValidateSet switch
 
-The ValidateSet switch is someting that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we’ve specified that `Property3` can only be either `Absent` or `Present`.  Any other value will result in an error.
+The `ValidateSet` switch is something that can be used with Key or Write attributes that specify the allowable values for a given property.  In our example, we’ve specified that `Property3` can only be either `Absent` or `Present`.  Any other value will result in an error.
 
 ## DSC module file and folder structure
 
@@ -120,13 +120,13 @@ The MOF file will only contain the properties we will in our module, along with 
 
 The psm1 file is where the bulk of our code is going to be.  This file will contain three required functions:
 
-- Get-TargetResource
-- Test-TargetResource
-- Set-TargetResource
+- `Get-TargetResource`
+- `Test-TargetResource`
+- `Set-TargetResource`
 
 ### Get-TargetResource
 
-The `Get-TargetResource` function returns the current value(s) of what the resource is responsible for.  Our stubbed function from using xDscResourceDesigner looks like the following:
+The `Get-TargetResource` function returns the current value(s) of what the resource is responsible for.  Our stubbed function from using `xDscResourceDesigner` looks like the following:
 
 ```PS
 function Get-TargetResource
@@ -165,7 +165,7 @@ Note that the optional parameter (Write attribute) `Property2` is not required f
 
 ### Test-TargetResource
 
-The `Test-TargetResource` function returns a boolean value of whether or not the resource is in the desired state.  From our generated example, the function looks like this:
+The `Test-TargetResource` function returns a boolean value indicating whether or not the resource is in the desired state.  From our generated example, the function looks like this:
 
 ```PS
 function Test-TargetResource
@@ -234,4 +234,4 @@ function Set-TargetResource
 
 ## Summary
 
-Whether simplistic or complex, the steps for creating your own DSC module will be the same.  This post is aimed at getting you started in the right direction.  From here, you can create your module to fit whatever resource you need to configure and keep in desired state.  For the full example of a working module check out [xCertificatePermission](https://github.com/twerthi/xCertificatePermission) on my GitHub repo.
+Whether simplistic or complex, the steps for creating your own DSC module will be the same.  This post is aimed at getting you started in the right direction.  From here, you can create your module to fit whatever resource you need to configure and keep in a desired state.  For the full example of a working module check out [xCertificatePermission](https://github.com/twerthi/xCertificatePermission) on my GitHub repo.
