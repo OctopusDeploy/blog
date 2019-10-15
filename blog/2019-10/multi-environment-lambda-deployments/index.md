@@ -10,7 +10,7 @@ tags:
  - Engineering
 ---
 
-![Illustration showing dev, test and prod environments with different lambdas](lambda-aliases_environment.png)
+![Illustration showing dev, test, and prod environments with different lambdas](lambda-aliases_environment.png)
 
 Getting started with serverless applications is relatively easy these days. Tools like [Serverless](https://serverless.com/) and [AWS SAM](https://aws.amazon.com/serverless/sam/) abstract away much of the boilerplate code and hide the finer interactions between services to get you up and running quickly.
 
@@ -50,19 +50,19 @@ When a production environment can be described simply as *the code running on th
 
 When using aliases, the concept of a production environment becomes murkier. You may be forced to describe the production environment as *when a Lambda is called from the production host myapp.com*, and then describe the test environment as *when a Lambda is called from the test host test.myapp.com*.
 
-We are now in the position of pushing the concept of environmental awareness down from the infrastructure into the code. Our Lambda code has to be aware of the context in which it was called (by tracking the request hostname for example) and tag any log entries accordingly. This then means our security rules need to consider whether the log entry was tagged with *test* or *production*.
+We are now in the position of pushing the concept of environmental awareness down from the infrastructure into the code. Our Lambda code has to be aware of the context in which it was called (by tracking the request hostname for example) and tagging log entries accordingly. This then means our security rules need to consider whether the log entry was tagged with *test* or *production*.
 
 Now your challenge is to tag each log entry, catch all exceptions, create a security rule that scans each CloudWatch log for a specific tag, and limits access to log entries accordingly.
 
-Alternatively, consider the case where a Lambda eventually interacts with a database. You would be hard-pressed to find anyone who advocates for placing test and production data in the same database, which means you will have different databases for each environment. Just as our code had to be made aware of the context in which it was called to tag log entries appropriately, it also need to know which database it should interact with. Even if your Lambda doesn’t interact directly with a database, it will eventually call one that does, and so it needs to pass this environmental awareness along with each call.
+Alternatively, consider the case where a Lambda eventually interacts with a database. You would be hard-pressed to find anyone who advocates for placing test and production data in the same database, which means you will have different databases for each environment. Just as our code had to be made aware of the context in which it was called to tag log entries appropriately, it also needs to know which database it should interact with. Even if your Lambda doesn’t interact directly with a database, it will eventually call one that does, and so it needs to pass this environmental awareness along with each call.
 
 Now your challenge is to create a security rule that allows only a Lambda called in the production context to interact with production data. Keep in mind the production Lambda might be exactly the same as the Test Lambda, and the only thing differentiating it is the context in which it is called.
 
-As you can see, these two seeming trivial security exercises become unmanageable very quickly, and we haven’t even discussed rate limiting, network segmentation, distributed tracing...
+As you can see, these two seemingly trivial security exercises become unmanageable very quickly, and we haven’t even discussed rate limiting, network segmentation, distributed tracing…
 
 ## Hell is not being able to describe your environments
 
-Most non-functional requirements eventually need to be expressed in the form of security, networking, or monitoring rules, and these rules need to be defined per environment. It seems obvious, but this implies that you need to be able to define environments.
+Most non-functional requirements eventually need to be expressed in the form of security, networking, or monitoring rules, and these rules need to be defined per environment. It seems obvious, but this implies you need to be able to define environments.
 
 When environmental awareness is pushed down from the infrastructure layer into the code itself (as it must be when your production code can literally be the same code as your test code), defining an environment becomes tricky, and guaranteeing that environment based rules are enforced is almost impossible.
 
@@ -70,7 +70,7 @@ When environmental awareness is pushed down from the infrastructure layer into t
 
 > I do not recommend you (or anyone) use aliases for various environments. The biggest concern I have with this is that you are running the risk of impacting prod with a change to test or dev. You are creating a bigger blast radius in the event something goes wrong with a deploy. My other concern is around the security of your functions. You may have to add credentials or policies specific to dev or test which will or could be replicated in prod. I suggest splitting out dev, test, and prod into separate CloudFormation stacks so that each environment is isolated from each other. You then only have to manage the one CloudFormation template and can deploy it through your CI/CD system at an environment level. You will still only be managing one Lambda function (through SAM), but this setup will reduce the blast radius for deployments and isolate your different environment’s functions and resources.
 
-## Using stacks, regions or accounts for environments
+## Using stacks, regions, or accounts for environments
 
 Rather than trying to use aliases for environments, it is a much better idea to split environments based on other boundaries like CloudFormation stacks, AWS regions, or completely separate AWS accounts.
 
