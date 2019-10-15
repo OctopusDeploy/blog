@@ -8,13 +8,13 @@ tags:
  - Company
 ---
 
-**Update: we [changed our minds](https://octopus.com/blog/starter). Starter edition replaces Community as the free version of Octopus Dpeloy.**
+**Update: we [changed our minds](https://octopus.com/blog/starter). Starter edition replaces Community as the free version of Octopus Deploy.**
 
 Since we started Octopus in 2012, we offered a free "Community" version of Octopus, and it has always been heavily used. In fact, about 80% of companies using Octopus today are using the free tier. Over the years we've tweaked it, and considered removing it many times. Today, I decided that we would go ahead and remove it. In this post, I'd like to explain the reasoning why. 
 
 Before explaining why we've removed the free tier, it's worth asking: why do we charge for licenses at all? 
 
-We think that in order to successfully help people automate their deployments, we need more than just software. We need well-written documentation. We need a good user experience. We need a website that explains the product. When new cloud technologies emerge or new frameworks are added, we need to add them. We need to support everyone who uses it, even if they get stuck using Octopus with other tools (build servers, cloud platforms, scripting languages) and the fault isn't with Octopus. Octopus could have been free and open source, and I'm sure it would attract a great deal of contibutors for code, but it would never have the level of polish, documentation and support it has today. 
+We think that in order to successfully help people automate their deployments, we need more than just software. We need well-written documentation. We need a good user experience. We need a website that explains the product. When new cloud technologies emerge or new frameworks are added, we need to add them. We need to support everyone who uses it, even if they get stuck using Octopus with other tools (build servers, cloud platforms, scripting languages) and the fault isn't with Octopus. Octopus could have been free and open source, and I'm sure it would attract a great deal of contibutors for code, but it would never have the level of polish, documentation, and support it has today. 
 
 Doing all of these things requires a team dedicated to working on Octopus and helping customers every day. My decision to remove the free tier comes from three main reasons:
 
