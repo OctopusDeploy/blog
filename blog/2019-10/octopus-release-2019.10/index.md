@@ -36,9 +36,9 @@ Tentacle for Linux provides greater flexibility for teams deploying to Linux in 
 
 ## PowerShell Core support
 
-TODO: Add image.
+![Powershell core support](powershell-core.png "width=600")
 
-This release adds built-in PowerShell Core support enabling teams to write cross-platform scripts using Microsoft's actively maintained automation framework. Our PowerShell Core support 'just works' and it pairs very well with our expanded support for Linux deloyments. Many development and operations teams are comfortable writing PowerShell scripts and PowerShell Core enables people with PowerShell skills to leverage those skills to write rich scripts for Linux platforms. 
+This release adds built-in PowerShell Core support enabling teams to write cross-platform scripts using Microsoft's actively maintained automation framework. Our PowerShell Core support 'just works' and it pairs very well with our expanded support for Linux deloyments. Many development and operations teams are comfortable writing PowerShell scripts and PowerShell Core enables people with PowerShell skills to leverage those skills to write rich scripts for Linux platforms.
 
 **Windows platforms**
 
@@ -50,14 +50,13 @@ NOTE: Octopus allows you to specify which framework you wish to use as well.
 
 Octopus will automatically execute scripts with PowerShell Core if it's installed. 
 
-
-[Learn More](TODO: find link)
+[Learn More](http://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
 
 ## Improved build information and work item tracking
 
 TODO: Screenshot
 
-Octopus 2019.4 introduced build information and work item tracking. This has proved to be a popular feature but we've received feedback from teams that the package metadata functionality that underpins the buidl information linkages was buried under package details in the Octopus Library and tricky to understand. We've listened to this feedback and we promoted this functinoality to a top-level feature called 'Build Information' within the Octopus Library making it more accessible and much easier to understand. We've also updated our suite of build server plugins to reflect the name change.
+Octopus 2019.4 introduced build information and work item tracking. This is a popular feature but we've received feedback from teams that the package metadata functionality that underpins the build information linkages were hard to find. buried under package details in the Octopus Library and tricky to understand. We've listened to this feedback and we promoted this functinoality to a top-level feature called 'Build Information' within the Octopus Library making it more accessible and much easier to understand. We've also updated our suite of build server plugins to reflect the name change.
 
 This feature-set enable teams to get better end-to-end visibility into their CI/CD pipelines and unlocks quick access to build and commit details. This is visible in a number of ways:
 
@@ -68,15 +67,15 @@ TODO: Screenshot
 
 We shipped support to customise your release notes templates in your project settings. In this release, we're introducing deployment change templates so you can get the same control over the structure of your deployment changes. This provides teams with specific needs the ability to customise the display to suit their needs. 
 
-[Learn more](TODO: find link)
+[Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
 
 ## Simpler package-based step templates
 
-TODO: Screenshot
+![Custom step template example with a package parameter](step-template-package-params.png)
 
-Step templates are a popular way for teams to create reusable steps for use across multiple projects. We've made a small but signficant update to make it easier to create package-based step temapltes. Previously, you needed to create parameters to expose package-based properties. This is no longer needed as we automatically expose package parameters. This makes it easier to create package-based step templates but it also enables teams to bind agaist these parameters.  
+Step templates are a popular way for teams to create reusable steps for use across multiple projects. We've made a small but significant update to make it easier to share package-based step templates across projects with the introduction of Package Parameters. Previously, you needed to create parameters to expose package-based properties. With Package Parameters, this is no longer needed as we now automatically show our package selector when the step template is added to a project. This makes it easier to create package-based step templates and allows teams to bind against these parameters in a much simple*r* way.
 
-[Learn more](TODO: find link)
+[Learn more](https://octopus.com/docs/deployment-process/steps/custom-step-templates)
 
 ## Introducing Runbooks for Operations teams
 
