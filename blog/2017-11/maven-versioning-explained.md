@@ -1,5 +1,5 @@
 ---
-title: Maven Versions Explained
+title: Maven versions explained
 description: There is more than meets the eye when it comes to Maven versions.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,17 +10,17 @@ tags:
  - Engineering
 ---
 
-Version strings are usually easy to understand, but Maven has a number of rules and edge cases that are not immediately obvious. In this blog post we'll take a look at how Maven version strings work.
+Version strings are usually easy to understand, but Maven has a number of rules and edge cases that are not immediately obvious. In this blog post, we’ll take a look at how Maven version strings work.
 
-## The Source of Truth
+## The source of truth
 
 The Maven distribution includes a class called [ComparableVersion](https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/ComparableVersion.java) which is the source of truth when it comes to how different version strings compare to each other.
 
 By writing some tests against this class, we can explore how Maven versions work.
 
-## A Sorted List of Versions
+## A sorted list of versions
 
-We'll start with a test that takes an array of `ComparableVersion` objects, clones the array, sorts it, and compares it back to the original list. The fact that the test passes proves that the original list is in order from the earliest to the latest version.
+We’ll start with a test that takes an array of `ComparableVersion` objects, clones the array, sorts it, and compares it back to the original list. The fact that the test passes proves that the original list is in order from the earliest to the latest version:
 
 ```java
 private static final ComparableVersion[] VERSIONS = new ComparableVersion[]{
@@ -56,11 +56,11 @@ public void ensureArrayInOrder() {
 
 This list reveals some curious facts about how Maven versions compare to each other.
 
-Qualifiers like `alpha`, `beta`, `milestone` (or their shorthand equivalents of `a`, `b` and `mc`), `rc`, `sp`, `ga` and `final` have special meaning. Separators like periods and dashes can be used interchangeably, or not used at all in some cases. And versions strings that don't follow any particular format at all are still valid and comparable.
+Qualifiers like `alpha`, `beta`, `milestone` (or their shorthand equivalents of `a`, `b` and `mc`), `rc`, `sp`, `ga`, and `final` have special meaning. Separators like periods and dashes can be used interchangeably, or not used at all in some cases. And versions strings that don’t follow any particular format at all are still valid and comparable.
 
-## Maven Version Components
+## Maven version components
 
-While the `ComparableVersion` class is the source of truth for how versions compare to each other, it does not parse versions in a particularly useful data structures. For that we have a second class from the [build helper](http://www.mojohaus.org/build-helper-maven-plugin/parse-version-mojo.html) plugin called [VersionInformation](https://github.com/mojohaus/build-helper-maven-plugin/blob/master/src/main/java/org/codehaus/mojo/buildhelper/versioning/VersionInformation.java).
+While the `ComparableVersion` class is the source of truth for how versions compare to each other, it does not parse versions in a particularly useful data structures. For that, we have a second class from the [build helper](http://www.mojohaus.org/build-helper-maven-plugin/parse-version-mojo.html) plugin called [VersionInformation](https://github.com/mojohaus/build-helper-maven-plugin/blob/master/src/main/java/org/codehaus/mojo/buildhelper/versioning/VersionInformation.java).
 
 `VersionInformation` breaks down Maven version strings into 5 parts:
 
@@ -70,7 +70,7 @@ While the `ComparableVersion` class is the source of truth for how versions comp
 * Build number
 * Qualifier
 
-The Major, Minor, Patch and Build number are all integer values.
+The Major, Minor, Patch, and Build number are all integer values.
 
 The Qualifier can hold any value, although some qualifiers do have special meaning.
 
@@ -90,7 +90,7 @@ We saw in the list of sorted versions that these qualifiers do indeed result in 
 
 Versions with unrecognised qualifiers are treated as later releases than an unqualified version, and unrecognised qualifiers are compared as case insensitive strings.
 
-Some of the qualifiers have shorthand aliases. This test shows how various qualifiers result in equal Maven version.
+Some of the qualifiers have shorthand aliases. This test shows how various qualifiers result in equal Maven version:
 
 ```java
 @Test
@@ -110,7 +110,7 @@ public void testDifferentFinalReleases() {
 
 Note that the shorthand aliases must have a number after them, while their complete equivalents do not. If you look closely at the list of sorted versions introduced at the start of this post, you will see that versions `1.0-alpha` and `1.0a1-SNAPSHOT` are two of the earliest versions, while `1.0-a` is towards the end of the list.
 
-All qualifiers are case insensitive, as this test demonstrates.
+All qualifiers are case insensitive, as this test demonstrates:
 
 ```java
 @Test
@@ -127,7 +127,7 @@ public void testCase() {
 }
 ```
 
-Where version stings can not be parsed as major.minor.patch.build and the qualifier is not recognised, the entire string is considered to be a qualifier. These qualifiers are then compared as case insensitive strings.
+Where version stings can not be parsed as major.minor.patch.build and the qualifier is not recognised, the entire string is considered to be a qualifier. These qualifiers are then compared as case insensitive strings:
 
 ```java
 @Test
@@ -141,7 +141,7 @@ public void testQualifierOnly() {
 
 ## Separators
 
-When transitioning from a digit to a qualifier, the use of a separator like a dash or period is optional.
+When transitioning from a digit to a qualifier, the use of a separator like a dash or period is optional:
 
 ```java
 @Test
@@ -158,7 +158,7 @@ public void testSeparators() {
 }
 ```
 
-The same is not true when transitioning from a qualifier to a digit though.
+The same is not true when transitioning from a qualifier to a digit though:
 
 ```java
 @Test
@@ -167,7 +167,7 @@ public void testUnequalSeparators() {
 }
 ```
 
-A dash or a period can be used to separate digits.
+A dash or a period can be used to separate digits:
 
 ```java
 @Test
@@ -180,9 +180,9 @@ public void testDashAndPeriod() {
 }
 ```
 
-## Long Versions
+## Long versions
 
-While the `VersionInformation` class only recognises the major.minor.patch.build format, the `ComparableVersion` class recognises any number of digits.
+While the `VersionInformation` class only recognizes the major.minor.patch.build format, the `ComparableVersion` class recognises any number of digits:
 
 ```java
 @Test
@@ -192,9 +192,9 @@ public void testLongVersions() {
 }
 ```
 
-## The Complete Test
+## The complete test
 
-This is the complete test class that was used to generate the examples above.
+This is the complete test class that was used to generate the examples above:
 
 ```java
 package org.apache.maven.artifact.versioning;
