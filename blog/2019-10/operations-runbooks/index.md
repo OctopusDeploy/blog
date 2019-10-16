@@ -2,10 +2,10 @@
 title: Introducing Runbooks for your Operations Team
 description: Introducing Runbooks for your Operations team. It’s now possible to run operations and maintenance tasks like file clean-ups, backup and restore jobs, as well as disaster recovery failovers.
 author: jessica.ross@octopus.com
-visibility: private
+visibility: public
 bannerImage: operations-runbooks.png
 metaImage: operations-runbooks.png
-published: 2019-10-15
+published: 2020-10-16
 tags:
  - Product
 ---
