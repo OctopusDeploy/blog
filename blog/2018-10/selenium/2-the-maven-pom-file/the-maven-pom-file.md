@@ -1,6 +1,6 @@
 ---
 title: Selenium series - The Maven POM file
-description: In this post, we create a simple pom.xml file configuring the Selenium dependencies
+description: In this post, we create a simple Pom.xml file, configuring the Selenium dependencies.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
