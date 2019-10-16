@@ -33,11 +33,21 @@ To help spread the word about common patterns to use/avoid, we started doing mor
 
 ## The Not So Good
 
+### People Not Speaking Up
+
+When engineers don't understand something, they'll tend to do one of two things. 1) Make lots of noise and tell you it's too complex, or 2) Stay quiet and just avoid having to work in that code.
+
+Looking back over the years, there's been a clear mix of the two going on.
+
+The problem with 1) is they can tell you it's too complex, but often they can't pinpoint exactly why. But this is great. This is something you can start to tease apart and say _"Why do you find this confusing?"_ and start going down that road together.
+
+The problem with 2) is, well, you don't get any feedback at all. To combat this, we're aiming to introduce internal surveys to our engineers. These can be anonymous, but we want to start capturing a Net Promoter Score of different aspects of our codebase to better understand where people are coming up against complexity. For quiet introverted engineers, we're hoping this gives them an outlet and will give us the key data we need to start increasing knowledge-sharing in given areas and analysing areas of our code people view as complex to see if there are some architectural improvements we can explore to make things easier.
+
 ### Inconsistencies Spreading Quickly Over Time
 
 We had some feedback internally that people found Redux confusing. So we set off to try and make our Redux implementation easier for new developers to follow, and most importantly, try to better understand why people were finding it complex.
 
-After a code-review, it became apparently that we had some significant naming inconsistencies (which had grown to fairly epic proportions over the years).
+After a code-review, it quickly became apparently that we had some naming inconsistencies (which had grown to fairly epic proportions over the years).
 
 Let's say you have a feature flag called `isHelpSidebarEnabled` that represents when the sidebar feature is enabled. E.g.
 
@@ -47,7 +57,7 @@ interface DispatchProps {
 }
 ```
 
-We had inconsistent namings for these globally-injected props all over the place:
+We had inconsistent namings for these globally-injected interfaces all over the place:
 
 `interface DispatchProps`
 `interface ConnectedProps`
@@ -75,7 +85,7 @@ Couple of issues here...
 
 There's no return types on those methods. Someone looking at this code for the first time can't connect-the-dots and realise that `mapStateToProps` provides your `GlobalConnectedProps`. So we had some typing ommissions going on.
 
-Oh, and look, `any` used in a bunch of places ><
+Oh, and look, `any` used in a bunch of places instead of the actual types ><
 
 Also, these function names don't tell you that this has anything to do with our global Redux store! Someone looking at this for the first time (or anyone inexperienced with Redux) would have no context about what these methods do or that they're in anyway related to our global state.
 
@@ -88,12 +98,12 @@ const mapGlobalActionDispatchersToProps = (dispatch: Dispatch<Action>): GlobalDi
 
 Now, you see `GlobalConnectedProps`, you see a method called `mapGlobalStateToProps` that returns the expected type and you can start to find your way around using the type system.
 
-Not having the typing in place was one major cause of the confusion. There were other causes of complexity around Redux and selectors/reducers that we also smoothed out, but the point is that some consistent naming helped to make our codebase easier to reason about for everyone.
+Not having the typing in place was one major cause of the confusion. There were other causes of complexity around Redux and selectors/reducers that we also smoothed out, but the point is, some consistent naming helped to make our codebase easier to reason about for everyone and can greatly improve the Developer Experience (DX).
 
-So our lesson learned was that our foundation was inconsistent and those inconsistencies spread very quickly, causing longer-term damage to the confidence in our codebase internally.
+The fact was, our foundation was inconsistent and those inconsistencies spread very quickly, causing longer-term damage to the confidence in our codebase internally.
 
 ### Complexities of TypeScript and Higher Order Components
 
-We mentioned the use of `any` above, but this problem went much deeper, again from inconsistent foundation code that then spread due to copy/pasta over the years.
+We mentioned the use of `any` above, but this problem went much deeper, again from inconsistent foundational code in the initial port that then spread due to copy/pasta over the years.
 
 TODO: markse - I think it's worth trying to summarise how we ended up just using `any` for things because the typing gets complicated around things like HOCs. Show that same example from Shaun's knowledge-sharing session today showing people what we're talking about and how much easier it is for devs to just go "screw it, any".
