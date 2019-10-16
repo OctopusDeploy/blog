@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - The Maven POM File
-description: In this post we create a simple pom.xml file configuring the Selenium dependencies
+title: Selenium series - The Maven POM file
+description: In this post, we create a simple pom.xml file configuring the Selenium dependencies
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -61,7 +61,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-Lets break this POM file down to understand the individual components.
+Let’s break this POM file down to understand the individual components.
 
 ## Project element
 
@@ -111,7 +111,7 @@ The `<packaging>` element defines the type of artifact that Maven will produce. 
 
 The `<properties>` element defines values for properties that are either recognized directly by Maven or that can be referenced later on in the POM file as a way of sharing common values.
 
-Here we've set the `project.build.sourceEncoding` property, which is a setting recognized by Maven that defines the versions for the dependencies that our code relies on, and defines the version of Java that our code will be compiled against in the `java.version` property:
+Here we’ve set the `project.build.sourceEncoding` property, which is a setting recognized by Maven that defines the versions for the dependencies that our code relies on and defines the version of Java that our code will be compiled against in the `java.version` property:
 
 ```xml
 <properties>
@@ -122,7 +122,7 @@ Here we've set the `project.build.sourceEncoding` property, which is a setting r
 </properties>
 ```
 
-The property `project.build.sourceEncoding` is set to `UTF-8` to specify a consistent encoding of the Java source files across operating systems. If this value is not set, different operating systems assume that the Java files have different encodings, which can cause issues when the code is compiled by different people or services. In later posts we'll configure an external service based on Linux to build our code for us, and setting this property means our builds will work as expected regardless of what OS we develop the code with locally.
+The property `project.build.sourceEncoding` is set to `UTF-8` to specify a consistent encoding of the Java source files across operating systems. If this value is not set, different operating systems assume that the Java files have different encodings, which can cause issues when the code is compiled by different people or services. In later posts we’ll configure an external service based on Linux to build our code for us, and setting this property means our builds will work as expected regardless of what OS we develop the code with locally.
 
 ## Plugins
 
@@ -137,7 +137,7 @@ The next settings configure certain aspects of the Maven build process. Maven pr
 -   package - take the compiled code and package it in its distributable format, such as a JAR.
 -   verify - run any checks on results of integration tests to ensure quality criteria are met.
 -   install - install the package into the local repository for use as a dependency in other projects locally deployed.
--   site - generate the project's site documentation.
+-   site - generate the project’s site documentation.
 -   deploy - done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.
 
 
@@ -187,7 +187,7 @@ JUnit is a popular unit testing library, and we will use it extensively when wri
 Note the `<scope>` element is set to `test` for the `junit` dependency. This indicates that this dependency is only required for the testing phase of the Maven lifecycle and will not be packaged up when building release artifacts.
 
 :::hint
-We are using JUnit 4 here instead of the more recent JUnit 5 because some of the libraries that we'll be using later on in the course have not been updated to work with JUnit 5 yet.
+We are using JUnit 4 here instead of the more recent JUnit 5 because some of the libraries that we’ll use later on in the course have not been updated to work with JUnit 5 yet.
 :::
 
 ```xml
@@ -223,7 +223,7 @@ The defaults in this dialog are fine, so click the `Next` button.
 ![](image7.png "width=500")
 
 The `com.octopus:webdrivertraining:1.0-SNAPSHOT` (this is the
-Group, Artifact and Version, or GAV, representation of the artifact) project is detected automatically.
+Group, Artifact, and Version, or GAV, representation of the artifact) project is detected automatically.
 
 Click the `Next` button.
 
@@ -243,7 +243,7 @@ On a MacOS system, the Oracle JDK is usually found under a directory like `/Libr
 
 ![](image11.png "width=500")
 
-On a Windows system you'll typically find the JDK under a directory
+On a Windows system you’ll typically find the JDK under a directory
 like `C:\Program Files\Java\jdk1.8.0_144`.
 
 ![](image12.png "width=500")
@@ -270,7 +270,7 @@ Opening this menu, either using the `View` menu or the button, will display the 
 
 ![](image17.png "width=500")
 
-Double clicking on the phases executes them with Maven. Here we have executed the `package` phase. This won't achieve much at the moment because we have no code to compile or package, but the fact that the operation was a success (which we can see from the `BUILD SUCCESS` message in the output) means that we have a valid `pom.xml` file.
+Double clicking on the phases executes them with Maven. Here we have executed the `package` phase. This won’t achieve much at the moment because we have no code to compile or package, but the fact that the operation was a success (which we can see from the `BUILD SUCCESS` message in the output) means that we have a valid `pom.xml` file.
 
 ![](image18.png "width=500")
 
@@ -292,6 +292,6 @@ Revert the change and package the project again, and you will notice that the wa
 
 ![](image20.png "width=500")
 
-And with that we have a minimal Maven project imported into IntelliJ. In the next post we will start writing some Java to implement our very first WebDriver test.
+And with that we have a minimal Maven project imported into IntelliJ. In the next post, we’ll start writing some Java to implement our very first WebDriver test.
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
