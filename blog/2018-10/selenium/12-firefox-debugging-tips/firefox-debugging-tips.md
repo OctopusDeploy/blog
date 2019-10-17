@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Firefox debugging tricks
-description: In this post we learn how some tricks to debugging Firefox JavaScript stack traces.
+title: Selenium series - Firefox debugging tricks
+description: In this post, we learn some tricks to debugging Firefox JavaScript stack traces.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -12,11 +12,11 @@ tags:
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
 
-A common issue that I have run into on multiple occasions when using proxies is a subtle misconfiguration in Firefox that results in errors being thrown.
+A common issue that I’ve run into on multiple occasions when using proxies is a subtle misconfiguration in Firefox that results in errors being thrown.
 
 To simulate this error lets attempt to configure the SOCKS proxy in the `BrowserMobDecorator` class.
 
-SOCKS proxies are used to proxy TCP packets,  meaning they can be used with HTTP, HTTPS, FTP and a whole range of other higher level protocols. We won't be using BrowserMob as a SOCKS proxy, but configuring it here is a useful way to demonstrate the misconfiguration error. 
+SOCKS proxies are used to proxy TCP packets,  meaning they can be used with HTTP, HTTPS, FTP, and a whole range of other higher level protocols. We won’t use BrowserMob as a SOCKS proxy, but configuring it here is a useful way to demonstrate the misconfiguration error. 
 
 We configure the SOCKS proxy by calling `seleniumProxy.setSocksProxy(proxyStr)`:
 
@@ -71,7 +71,7 @@ _onJSONObjectReady/<@chrome://marionette/content/transport.js:500:9
 
 From the message in the exception it appears that some remote JavaScript code resulted in an error. But where is this JavaScript code, and how can we debug the error?
 
-Looking at the JavaScript stack trace, it appears that the source of the error lays in these two lines of code. A method called `fromJSON()` is making an asserting that an integer is positive, and this assertion is failing:
+Looking at the JavaScript stack trace, it appears that the source of the error is in these two lines of code. A method called `fromJSON()` is making an assertion that an integer is positive, and this assertion is failing:
 
 ```
 assert.positiveInteger@chrome://marionette/content/assert.js:274:3
@@ -82,7 +82,7 @@ The key to debugging this error is to understand that the file `chrome://marione
 
 ![](image2.png "width=500")
 
-In this case the offending line of code is:
+In this case, the offending line of code is:
 
 ```
 p.socksVersion = assert.positiveInteger(json.socksVersion);
@@ -92,7 +92,7 @@ p.socksVersion = assert.positiveInteger(json.socksVersion);
 
 From this code we can deduce that we need to define the version of the SOCKS proxy.
 
-In theory you can define the SOCKS proxy version with the following code in the `BrowserMobDecorator` class:
+In theory, you can define the SOCKS proxy version with the following code in the `BrowserMobDecorator` class:
 
 ```java
 @Override
@@ -103,6 +103,6 @@ public DesiredCapabilities getDesiredCapabilities() {
 }
 ```
 
-In practice there are bugs in WebDriver library that will still cause this code to fail. However, the important thing to take away from this post is that when you see Firefox stack traces with URLs that start with `chrome://marionette/`, you can access the source of those files by entering the URL into Firefox directly in order to debug the root cause.
+In practice, there are bugs in the WebDriver library that will still cause this code to fail. However, the important thing to take away from this post is that when you see Firefox stack traces with URLs that start with `chrome://marionette/`, you can access the source of those files by entering the URL into Firefox directly in order to debug the root cause.
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
