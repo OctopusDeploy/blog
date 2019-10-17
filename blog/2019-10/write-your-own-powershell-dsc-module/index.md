@@ -5,10 +5,9 @@ author: shawn.sesna@octopus.com
 visibility: private
 bannerImage: 
 metaImage: 
-published: 2020-09-01
+published: 2019-10-23
 tags:
- - configuration
- - powershell
+ - DevOps
 ---
 
 As you gain experience with PowerShell Desired State Configuration (DSC) you might encounter situations where the available modules don’t quite fit what you want to do.  You could write your own [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource), but they don’t scale well, passing parameters is difficult, and they don’t provide a method for encryption, leaving passwords in clear text, however, you can write your own DSC modules.

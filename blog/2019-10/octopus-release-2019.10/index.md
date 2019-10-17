@@ -87,7 +87,7 @@ PowerShell Core support has introduced a change where running PowerShell scripts
 
 **Build Information** 
 
-Our build infromation change involved renaming resources from the API through to the database. This is generally backwards compatible, however anyone using our GitHub issue tracker will need to ensure they upgrade their Octopus Server if they upgrade their [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), [TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration), or [Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on).
+Our build information change involved renaming resources from the API through to the database. This is generally backwards compatible, however anyone using our GitHub issue tracker will need to ensure they upgrade their Octopus Server if they upgrade their [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), [TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration), or [Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on).
 
 ## Upgrading
 
