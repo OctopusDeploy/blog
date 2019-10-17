@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Adding the BrowserMob proxy
-description: In this post we learn how to add a proxy to the WebDriver tests.
+title: Selenium series - adding the BrowserMob proxy
+description: In this post, we learn how to add a proxy to the WebDriver tests.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -12,7 +12,7 @@ tags:
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
 
-In this post we will add support for the BrowserMob proxy, which is a free and open source Java proxy server. We will then use BrowserMob to save a report containing all the network requests made during a test, and intercept some of the network requests.
+In this post, we will add support for the BrowserMob proxy, which is a free and open source Java proxy server. We will then use BrowserMob to save a report containing all the network requests made during a test and intercept some of the network requests.
 
 To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file: 
 
@@ -89,9 +89,9 @@ public class BrowserMobDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Let's break the code in this class down.
+Let’s break the code in this class down.
 
-Inside the `getDesiredCapabilities()` method, we create an instance of the `BrowserMobProxyServer` class, and call its `start()` method. By passing `0` to the `start()` method we are exposing the proxy on any available port:
+Inside the `getDesiredCapabilities()` method, we create an instance of the `BrowserMobProxyServer` class and call its `start()` method. By passing `0` to the `start()` method we are exposing the proxy on any available port:
 
 ```java
 proxy = new BrowserMobProxyServer();
@@ -184,9 +184,9 @@ private AutomatedBrowser getFirefoxBrowserNoImplicitWait() {
 }
 ```
 
-Now our `AutomatedBrowserFactory` is configuring browsers to pass traffic to our instance of the BrowserMob proxy. This won't change how the tests are run just yet; proxies are designed to be largely invisible to the end user, and so our tests will run like they did before. However, we now have the means to monitor and intercept network requests if we wish to do so.
+Now our `AutomatedBrowserFactory` is configuring browsers to pass traffic to our instance of the BrowserMob proxy. This won’t change how the tests are run just yet; proxies are designed to be largely invisible to the end user, and so our tests will run like they did before. However, we now have the means to monitor and intercept network requests if we wish to do so.
 
-We can confirm that the BrowserMob  proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the `finally` block:
+We can confirm that the BrowserMob proxy is being created by leaving the browser window open after a test has run. Firefox in particular makes it easy to see the proxy settings, so in the following test method we leave the browser window open after the test has completed by commenting out the call to `automatedBrowser.destroy()` in the `finally` block:
 
 ```java
 @Test
@@ -229,7 +229,7 @@ public void formTestByIDFirefox() throws URISyntaxException {
 }
 ```
 
-Once the test has completed, the Firefox browser that it launched will still be displayed. Then from the menu we can select the `Preferences` option.
+After the test has completed, the Firefox browser that it launched will still be displayed. Then from the menu, we can select the `Preferences` option.
 
 ![](image1.png "width=500")
 
@@ -241,6 +241,6 @@ Here we can see the proxy settings that we defined in code. This is confirmation
 
 ![](image3.png "width=500")
 
-Configuring a proxy server gives us the ability to observe and interact with the network requests being made during a test in ways that are not possible using WebDriver alone. The next step is to expose the features of the BrowserMob proxy that are useful to us. But before we do that, we'll take a look at a common misconfiguration that can arise when configuring proxies, and learn how to debug the errors that are displayed.
+Configuring a proxy server gives us the ability to observe and interact with the network requests being made during a test in ways that are not possible using WebDriver alone. The next step is to expose the features of the BrowserMob proxy that are useful to us. But before we do that, we’ll take a look at a common misconfiguration that can arise when configuring proxies, and learn how to debug the errors that are displayed.
 
 Return to the [table of contents](../0-toc/webdriver-toc.md).
