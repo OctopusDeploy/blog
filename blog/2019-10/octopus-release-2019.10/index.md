@@ -1,6 +1,6 @@
 ---
-title: Octopus Deploy 2019.10 - Flexible Linux deployments, PowerShell Core support, Operations RunBooks EAP
-description: Octopus 2019.10 introduces Tentacle for Linux for flexible Linux deployments, built-in PowerShell Core support, simpler build information and releas notes, and early access to RunBooks for your operations teams.
+title: Octopus Deploy 2019.10 - Flexible Linux deployments, PowerShell Core support, Operations Runbooks EAP
+description: Octopus 2019.10 introduces Tentacle for Linux for flexible Linux deployments, built-in PowerShell Core support, simpler build information and releas notes, and early access to Runbooks for your operations teams.
 author: rob.pearson@octopus.com
 visibility: public
 published: 2019-10-16
