@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Travis CI
-description: In this post we learn how to build and test our project with Travis CI
+title: "Selenium series: Travis CI"
+description: In this post, we learn how to build and test our project with Travis CI
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Now that we have our code in a public GitHub repository,  we can link it with Travis CI to allow check-ins to trigger the building and testing of our code.
 
@@ -288,4 +288,4 @@ We have now successfully checked-in code to a central Git repository hosted in G
 
 You can view the Travis CI build for the same project [here](https://travis-ci.org/OctopusDeploy/WebDriverTraining).
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

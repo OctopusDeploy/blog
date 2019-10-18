@@ -1,5 +1,5 @@
 ---
-title: Selenium series - Firefox debugging tricks
+title: "Selenium series: Firefox debugging tricks"
 description: In this post, we learn some tricks to debugging Firefox JavaScript stack traces.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,13 +10,13 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 A common issue that I’ve run into on multiple occasions when using proxies is a subtle misconfiguration in Firefox that results in errors being thrown.
 
 To simulate this error lets attempt to configure the SOCKS proxy in the `BrowserMobDecorator` class.
 
-SOCKS proxies are used to proxy TCP packets,  meaning they can be used with HTTP, HTTPS, FTP, and a whole range of other higher level protocols. We won’t use BrowserMob as a SOCKS proxy, but configuring it here is a useful way to demonstrate the misconfiguration error. 
+SOCKS proxies are used to proxy TCP packets,  meaning they can be used with HTTP, HTTPS, FTP, and a whole range of other higher level protocols. We won’t use BrowserMob as a SOCKS proxy, but configuring it here is a useful way to demonstrate the misconfiguration error.
 
 We configure the SOCKS proxy by calling `seleniumProxy.setSocksProxy(proxyStr)`:
 
@@ -105,4 +105,4 @@ public DesiredCapabilities getDesiredCapabilities() {
 
 In practice, there are bugs in the WebDriver library that will still cause this code to fail. However, the important thing to take away from this post is that when you see Firefox stack traces with URLs that start with `chrome://marionette/`, you can access the source of those files by entering the URL into Firefox directly in order to debug the root cause.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Installing the tools
-description: In this post we install the serverless application
+title: "Selenium series: Installing the tools"
+description: In this post, we install the serverless application
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Until this point we have been running tests sequentially,  either locally or on the Travis CI platform. However, running UI tests one after another does not scale particularly well. As more tests are added, and more combinations and edge cases are tested, it is not uncommon to find that UI test suite will take hours to complete.
 
@@ -138,4 +138,4 @@ aws_secret_access_key = 0qY/ESbl8xzKaDXOQixFz66Lv2KJFo1quYt6ftjF
 
 We now have the Serverless application installed and the AWS credentials configured, meaning that we can use the Serverless application to deploy our code to AWS. However, unlike running a standalone Java application as a Lambda function, which would work without much additional configuration, we have some additional steps that need to be completed to provide an environment where WebDriver tests can be run, which we will address in the next post.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

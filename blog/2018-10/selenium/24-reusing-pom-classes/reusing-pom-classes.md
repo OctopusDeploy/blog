@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Reusing POM classes
-description: In this post we see how the POM design pattern promotes reusability.
+title: "Selenium series: Reusing POM classes"
+description: In this post, we see how the POM design pattern promotes reusability.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Now that we have rewritten our tests to use the POM design pattern,  let's go ahead and add the second test that we alluded to earlier of verifying the prices for different sections.
 
@@ -59,7 +59,7 @@ First we define a regular expression `Pattern` that matches the price strings di
 private static final Pattern TICKET_PRICE_REGEX = Pattern.compile("@ \\$(\\d+\\.\\d+)");
 ```
 
-The new method `selectSection()` allows us to select an event section from the drop down list. This will update the element that displays the ticket price.
+The new method `selectSection()` allows us to select an event section from the drop-down list. This will update the element that displays the ticket price.
 
 ```java
 public CheckoutPage selectSection(final String section) {
@@ -224,4 +224,4 @@ The public API we have created with the POM classes `MainPage`, `EventsPage` and
 
 This is the power of the POM design pattern. It encapsulates implementation details into Java objects, leaving tests free to describe what they are testing rather than how it is tested. And should TicketMonster be updated in future with new element IDs, name attributes or rearranged screens, we have one central and reused API where the updates can be made rather than multiple tests with copy and paste code.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

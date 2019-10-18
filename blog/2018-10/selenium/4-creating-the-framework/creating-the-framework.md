@@ -1,5 +1,5 @@
 ---
-title: Selenium series - Creating the framework
+title: "Selenium series: Creating the framework"
 description: In this post, we start creating the framework for our WebDriver test classes.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 One of the strengths of the WebDriver API is that it’s browser agnostic. You saw from the previous post that it only took a new binary driver and a new driver class to launch Firefox instead of Chrome in our test.
 
@@ -479,4 +479,4 @@ You will see both Chrome and Firefox open, display [https://octopus.com](https:/
 
 Now that we have a simple framework to run tests against multiple browsers, we need to have a web page to interact with, which we will create in the next post.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

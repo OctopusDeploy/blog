@@ -1,5 +1,5 @@
 ---
-title: Selenium series - A sample web page
+title: "Selenium series: A sample web page"
 description: In this post, we create a sample web page to run some tests against.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,13 +10,13 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Now that we have the basis of the framework that we’ll use to write WebDriver tests, it is time to start interacting with a web page.
 
 To demonstrate the power of WebDriver, we’ll start by creating a simple web page that contains common form elements, as well as other common HTML elements like images and divs.
 
-The complete webpage is shown below: 
+The complete webpage is shown below:
 
 ```html
 <!DOCTYPE html>
@@ -427,4 +427,4 @@ assertEquals("Div Clicked", automatedBrowser.getTextFromElementWithId("message")
 
 With the `formTestByID()` test we have successfully clicked, checked, typed, and selected options with a live, interactive web page, and verified the results. This, in a nutshell, is what writing WebDrivers tests is all about. However, we will not always have the luxury of locating elements based on an ID attribute. In these situations, WebDriver offers a number of other ways to locate elements in a web page, and we’ll look at those next.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

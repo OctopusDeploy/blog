@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Implementing Cucumber
-description: In this post we see how to integrate Cucumber with WebDriver.
+title: "Selenium series: Implementing Cucumber"
+description: In this post, we see how to integrate Cucumber with WebDriver.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 All of our code so far has been written in Java, and we have implemented design patterns like Page Object Model to increase the readability and maintainability of our code.
 
@@ -36,9 +36,9 @@ Given I open the URL "https://ticket-monster.herokuapp.com"
 When I click the "Buy tickets now" button
 And I click the "Concert" link
 And I click the "Rock concert of the decade" link
-And I select the option "Toronto : Roy Thomson Hall" from the "Venues" drop down list
+And I select the option "Toronto : Roy Thomson Hall" from the "Venues" drop-down list
 And I click the "Book" button
-And I select the option "A - Premier platinum reserve" from the "Sections" drop down list
+And I select the option "A - Premier platinum reserve" from the "Sections" drop-down list
 Then I verify the text from the "Adult Price" label equals "@ $167.75"
 ```
 
@@ -299,4 +299,4 @@ Running the test will find the `simpletest.feature` file and execute it. The fea
 
 We now have laid the foundation for creating a Gherkin dialect that will allow us to write natural language tests that can be verified using WebDriver. However we still have a lot of work to do to create end to end tests. In the next post we will expose more of the `AutomatedBrowser` class to Cucumber, and work towards creating a readable end to end test.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

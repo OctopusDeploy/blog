@@ -1,5 +1,5 @@
 ---
-title: Selenium series - capturing HAR files
+title: "Selenium series: capturing HAR files"
 description: In this post, we learn how to capture HAR files through BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 HTTP Archive (HAR) files are a standard JSON formatted log of a browser’s interaction with an external web application.
 
-You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`. 
+You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`.
 
 ![](image1.png "width=500")
 
@@ -277,4 +277,4 @@ When we analyze the new HAR file we can see there are no longer any warnings abo
 
 HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next post, we’ll see how BrowserMob can block or modify requests.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

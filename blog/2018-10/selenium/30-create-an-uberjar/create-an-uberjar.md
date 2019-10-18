@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Creating an UberJAR
-description: In this post we create a self contained Jar file that can be deployed to AWS Lambda
+title: "Selenium series: Creating an UberJAR"
+description: In this post, we create a self contained Jar file that can be deployed to AWS Lambda
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,9 +10,9 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-The Maven project we have used to build our code will package up our classes into a JAR file. We can create this JAR file by running the Maven package lifecycle. To do this,  open the` Maven Projects` tool window, and double click the {{Lifecycle,package}} option. 
+The Maven project we have used to build our code will package up our classes into a JAR file. We can create this JAR file by running the Maven package lifecycle. To do this,  open the` Maven Projects` tool window, and double click the {{Lifecycle,package}} option.
 
 ![C:\\b4da756b8e562f2449a92910d5712a96](image1.png "width=500")
 
@@ -94,4 +94,4 @@ This will create a new configuration called `webdrivertraining [package]`. Click
 
 The resulting UberJAR file provides a convenient, self contained package that we can easily distribute and run, and is what we will be deploying as an AWS Lambda. In the next post we'll add the code required to run a WebDriver test in Lambda, and use the Serverless application to publish the UberJAR file.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Deploying a simple Lambda function
-description: In this post we deploy the UberJAR to Lambda
+title: "Selenium series: Deploying a simple Lambda function"
+description: In this post, we deploy the UberJAR to Lambda
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 In the previous posts we configured all the prerequisites required by our Lambda function:
 
@@ -235,4 +235,4 @@ And our test Lambda function has executed successfully by returning `true`.
 
 Although this Lambda function doesn't do anything useful, it does prove that we have written a valid Lambda function and that it can be deployed using the Serverless application. With this work done we can move onto writing a Lambda function that actually runs a WebDriver test, which we'll do in the next post.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

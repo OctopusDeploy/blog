@@ -1,5 +1,5 @@
 ---
-title: Selenium series - simplified element location
+title: "Selenium series: simplified element location"
 description: In this post, we learn how to remove explicit element searches by ID, XPath, and CSS selectors in favor of generic locators.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 In the last post, we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath, and CSS selector.
 
@@ -511,4 +511,4 @@ public void formTestWithSimpleBy() throws URISyntaxException {
 
 In my own experience, these new methods we’ve added to the `AutomatedBrowser` interface are far more convenient than methods that are tied to a specific locator. They remove the need to manually keep locators and the methods they are passed to in sync, and the code is more readable too. For this reason, future posts will uses these new methods almost exclusively.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

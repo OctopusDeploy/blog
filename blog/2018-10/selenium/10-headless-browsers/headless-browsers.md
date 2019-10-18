@@ -1,5 +1,5 @@
 ---
-title: Selenium series - headless browsers
+title: "Selenium series: headless browsers"
 description: In this post, we learn how to run tests against headless browsers.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 You will have noticed by now that running tests with WebDriver results in a browser window being opened and the web pages being loaded and interacted with as if by some invisible mouse pointer. While it can be useful to watch the progression of a test in the browser, there are times when it is desirable to have the tests complete off-screen. For example, running tests as part of a continuous deployment process does not require anyone to watch the browser as the tests are executed. Indeed, sometimes there is not even a monitor attached to the systems that are running the tests; this is known as a headless environment. So how can we run tests in such headless environments?
 
-This is a problem that projects like [PhantomJS](http://phantomjs.org/) were created to solve. PhantomJS is a web browser based on WebKit, which is the library that powers browsers like Apple Safari. Unlike a traditional browser though, PhantomJS has no GUI, and it’s designed to be controlled by technologies like WebDriver. Because it has no GUI, PhantomJS can be run on continuous integration servers that are traditionally hosted on headless servers. This means you can run WebDriver tests on a central server in response to application changes without having to launch a browser window in a desktop environment. 
+This is a problem that projects like [PhantomJS](http://phantomjs.org/) were created to solve. PhantomJS is a web browser based on WebKit, which is the library that powers browsers like Apple Safari. Unlike a traditional browser though, PhantomJS has no GUI, and it’s designed to be controlled by technologies like WebDriver. Because it has no GUI, PhantomJS can be run on continuous integration servers that are traditionally hosted on headless servers. This means you can run WebDriver tests on a central server in response to application changes without having to launch a browser window in a desktop environment.
 
 Recently browsers like Firefox and Chrome have added native support for headless browsing. This is a great benefit to anyone writing WebDriver tests, as it means that the tests can be run on the very same browsers that end users have installed, while still allowing tests to be run on a headless server.
 
@@ -325,4 +325,4 @@ Running tests on specialized browsers like PhantomJS that don’t quite behave l
 
 In addition, by exposing the ability to configure browsers via the `DesiredCapabilities` class we have provided a hook that we can take advantage of with new decorators to add functionality such as custom proxies, which is exactly what we’ll be doing in the next post.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Launching Cucumber tests
-description: In this post we launch a Cucumber test inside a Lambda
+title: "Selenium series: Launching Cucumber tests"
+description: In this post, we launch a Cucumber test inside a Lambda
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Now that we have a simple Lambda function that we can run,  as well as a Serverless configuration that deploys our application, we can create a Lambda function that launches a WebDriver test.
 
@@ -605,9 +605,9 @@ Feature: TicketMonster
     And I click the "Buy tickets now" button
     And I click the "Concert" link
     And I click the "Rock concert of the decade" link
-    And I select the option "Toronto : Roy Thomson Hall" from the "Venue" drop down list
+    And I select the option "Toronto : Roy Thomson Hall" from the "Venue" drop-down list
     And I click the "Book" button
-    And I select the option "A - Premier platinum reserve" from the "Section" drop down list
+    And I select the option "A - Premier platinum reserve" from the "Section" drop-down list
     And I populate the "Adult Ticket Count" text box with the text "2"
     And I click the "Add Tickets" button
     And I populate the "email" text box with the text "email@example.org"
@@ -629,9 +629,9 @@ URL \"https://ticket-monster.herokuapp.com\"\n And I click the
 \"Buy tickets now\" button\n And I click the \"Concert\"
 link\n And I click the \"Rock concert of the decade\" link\n And I
 select the option \"Toronto : Roy Thomson Hall\" from the
-\"Venue\" drop down list\n And I click the \"Book\" button\n
+\"Venue\" drop-down list\n And I click the \"Book\" button\n
 And I select the option \"A - Premier platinum reserve\" from the
-\"Section\" drop down list\n And I populate the \"Adult Ticket
+\"Section\" drop-down list\n And I populate the \"Adult Ticket
 Count\" text box with the text \"2\"\n And I click the \"Add
 Tickets\" button\n And I populate the \"email\" text box with the
 text \"email@example.org\"\n And I click the \"Checkout\"
@@ -645,7 +645,7 @@ Here is a screenshot of the web page after it has performed the conversion.
 This JSON string can then be passed as input when testing the Lambda.
 
 Open up the Lambda console and open the
-`cucumber-chrome-aws-dev-runCucumber` function. Then click the drop down list next to the `Test` button can click `Configure` test events.
+`cucumber-chrome-aws-dev-runCucumber` function. Then click the drop-down list next to the `Test` button can click `Configure` test events.
 
 ![C:\4167b39ce53037784b2394d5b10cf3d1](image2.png "width=500")
 
@@ -665,4 +665,4 @@ We now have the ability to run Cucumber tests as a Lambda function inside a head
 
 However, having to run tests via the Lambda web console is not ideal. It would be much more convenient if we could launch these tests directly with a HTTP request, which is what we'll implement in the next post.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

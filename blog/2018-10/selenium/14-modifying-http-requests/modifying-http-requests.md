@@ -1,5 +1,5 @@
 ---
-title: Selenium series - modifying HTTP requests
+title: "Selenium series: modifying HTTP requests"
 description: In this post, we learn how to modify network requests made through BrowserStack.
 author: matthew.Casperson@octopus.com
 visibility: public
@@ -10,9 +10,9 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including: 
+In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including:
 
 - Simulating the failure of external services.
 - Preventing assets like images from being loaded, which can improve the performance of tests.
@@ -168,4 +168,4 @@ Remember that by not calling the `destory()` method, we are now responsible for 
 
 Blocking network requests to things like images can speed up WebDriver tests, and is especially useful when running tests against headless browsers, because there is no one watching the tests being run there is little benefit to downloading images that will never be seen.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

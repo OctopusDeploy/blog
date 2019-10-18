@@ -1,5 +1,5 @@
 ---
-title: Selenium series - adding the BrowserMob proxy
+title: "Selenium series: adding the BrowserMob proxy"
 description: In this post, we learn how to add a proxy to the WebDriver tests.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 In this post, we will add support for the BrowserMob proxy, which is a free and open source Java proxy server. We will then use BrowserMob to save a report containing all the network requests made during a test and intercept some of the network requests.
 
-To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file: 
+To take advantage of the BrowserMob library, we need to add it as a dependency to the Maven `pom.xml` file:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -243,4 +243,4 @@ Here we can see the proxy settings that we defined in code. This is confirmation
 
 Configuring a proxy server gives us the ability to observe and interact with the network requests being made during a test in ways that are not possible using WebDriver alone. The next step is to expose the features of the BrowserMob proxy that are useful to us. But before we do that, we’ll take a look at a common misconfiguration that can arise when configuring proxies, and learn how to debug the errors that are displayed.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

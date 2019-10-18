@@ -1,5 +1,5 @@
 ---
-title: Selenium series - mixing implicit and explicit waits
+title: "Selenium series: mixing implicit and explicit waits"
 description: In this post, we learn how implicit and explicit waits can interfere with each other.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 We have seen there are two types of waits: implicit and explicit. Both are implemented independently of one another, so what happens when you have both an implicit and an explicit wait in a single test?
 
-To find out, let’s create a test that implements both kinds of waits. 
+To find out, let’s create a test that implements both kinds of waits.
 
 In our `AutomatedBrowserFactory` class, we have the `ImplicitWaitDecorator` class created as part of the construction of the `AutomatedBrowser` that opens a Chrome browser. So we know the test will make use of implicit waits:
 
@@ -199,4 +199,4 @@ What these tests show us is that implicit and explicit waits are not mutually ex
 
 Because explicit waits allow us to write more robust tests that enforce the state of an element within a time period, as well as providing an individual duration for each interaction to be completed in, it makes sense to use explicit waits for our tests. What we’ve seen here is that to take advantage of explicit waits, we also need to disable implicit waits.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

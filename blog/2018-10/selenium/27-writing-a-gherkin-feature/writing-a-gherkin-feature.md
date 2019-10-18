@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Writing a Gherkin feature
-description: In this post we write a complete test in Gherkin
+title: "Selenium series: Writing a Gherkin feature"
+description: In this post, we write a complete test in Gherkin
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Now that we know how to construct regular expressions to map methods to Gherkin steps,  we can go ahead and add annotations to all appropriate methods in the `AutomatedBrowserBase` class.
 
@@ -375,9 +375,9 @@ Feature: Test TicketMonster
     And I click the "Buy tickets now" button waiting up to "30" seconds
     And I click the "Concert" link waiting up to "30" seconds
     And I click the "Rock concert of the decade" link waiting up to "30" seconds
-    And I select the option "Toronto : Roy Thomson Hall" from the "venueSelector" drop down list waiting up to "30" seconds
+    And I select the option "Toronto : Roy Thomson Hall" from the "venueSelector" drop-down list waiting up to "30" seconds
     And I click the "bookButton" button waiting up to "30" seconds
-    And I select the option "A - Premier platinum reserve" from the "sectionSelect" drop down list waiting up to "30" seconds
+    And I select the option "A - Premier platinum reserve" from the "sectionSelect" drop-down list waiting up to "30" seconds
     And I populate the "tickets-1" text box with the text "2" waiting up to "30" seconds
     And I click the "add" button waiting up to "30" seconds
     And I populate the "email" text box with the text "email@example.org" waiting up to "30" seconds
@@ -535,9 +535,9 @@ Feature: Test TicketMonster With Default Wait
     And I click the "Buy tickets now" button
     And I click the "Concert" link
     And I click the "Rock concert of the decade" link
-    And I select the option "Toronto : Roy Thomson Hall" from the "venueSelector" drop down list
+    And I select the option "Toronto : Roy Thomson Hall" from the "venueSelector" drop-down list
     And I click the "bookButton" button
-    And I select the option "A - Premier platinum reserve" from the "sectionSelect" drop down list
+    And I select the option "A - Premier platinum reserve" from the "sectionSelect" drop-down list
     And I populate the "tickets-1" text box with the text "2"
     And I click the "add" button
     And I populate the "email" text box with the text "email@example.org"
@@ -646,9 +646,9 @@ Feature: Test TicketMonster With Aliases
     And I click the "Buy tickets now" button
     And I click the "Concert" link
     And I click the "Rock concert of the decade" link
-    And I select the option "Toronto : Roy Thomson Hall" from the "Venue" drop down list
+    And I select the option "Toronto : Roy Thomson Hall" from the "Venue" drop-down list
     And I click the "Book" button
-    And I select the option "A - Premier platinum reserve" from the "Section" drop down list
+    And I select the option "A - Premier platinum reserve" from the "Section" drop-down list
     And I populate the "Adult Ticket Count" text box with the text "2"
     And I click the "Add Tickets" button
     And I populate the "email" text box with the text "email@example.org"
@@ -658,4 +658,4 @@ Feature: Test TicketMonster With Aliases
 
 Now that we have aliases exposing the element ids and names with friendly names like `Add Tickets` and `Checkout`, the test fulfills the requirement of providing the implementation details required to execute the test while also being easy to read. Anyone familiar with the TicketMonster web application would be able to follow these instructions to purchase tickets for the concert. This is the beauty of the Gherkin language, and the power of the Cucumber library.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

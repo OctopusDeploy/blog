@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - The TicketMonster test
-description: In this post we learn how to test a real world Java web application.
+title: "Selenium series: The TicketMonster test"
+description: In this post, we learn how to test a real world Java web application.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 TicketMonster is a sample application created by RedHat to demonstrate a number of Java web technologies. The nice thing about TicketMonster (from the point of view of a WebDriver tutorial anyway) is that it has not been optimized for automated tests, meaning that to successfully test a typical journey through the application we can't rely on consistent network requests or all elements having convenient `id` attributes to locate them with.
 
@@ -42,7 +42,7 @@ The transaction is completed, and we have bought our pretend tickets to a fictio
 
 ![](image6.png "width=500")
 
-Although this scenario of buying tickets is not complex, testing it with WebDriver require a number of techniques that we have implemented in our library so far. We click elements like links and buttons, populate text boxes, select items from drop down lists, and interact with elements that are dynamically added to the page.
+Although this scenario of buying tickets is not complex, testing it with WebDriver require a number of techniques that we have implemented in our library so far. We click elements like links and buttons, populate text boxes, select items from drop-down lists, and interact with elements that are dynamically added to the page.
 
 Here is the test that completes this ticket purchasing scenario with WebDriver:
 
@@ -172,7 +172,7 @@ automatedBrowser.clickElement("Concert", WAIT_TIME);
 automatedBrowser.clickElement("Rock concert of the decade", WAIT_TIME);
 ```
 
-The venue selection drop down list has an ID of `venueSelector`, so we use this to identify it. From this list we select the `Toronto : Roy Thomson Hall` option.
+The venue selection drop-down list has an ID of `venueSelector`, so we use this to identify it. From this list we select the `Toronto : Roy Thomson Hall` option.
 
 ![](image9.png "width=500")
 
@@ -180,7 +180,7 @@ The venue selection drop down list has an ID of `venueSelector`, so we use this 
 automatedBrowser.selectOptionByTextFromSelect("Toronto : Roy Thomson Hall", "venueSelector", WAIT_TIME);
 ```
 
-Once we make a venue selection, a new panel is displayed that provides some default dates and times. We accept these defaults, and so we do not need to interact with the new drop down lists.
+Once we make a venue selection, a new panel is displayed that provides some default dates and times. We accept these defaults, and so we do not need to interact with the new drop-down lists.
 
 We do need to click the `Order tickets` button. Unlike the other button like element we have been clicking, this element is an actual form button. This means we can't use the text in the element as a way of identifying it. This element has a name of `bookButton`, and since the `By.name()` method is one of the ways `SimpleBy` identifies element, we can use this attribute to identify the button.
 
@@ -192,7 +192,7 @@ This step is a good example of where explicit waits are valuable, as the element
 automatedBrowser.clickElement("bookButton", WAIT_TIME);
 ```
 
-The section is selected from a drop down list with an ID of `sectionSelect`.
+The section is selected from a drop-down list with an ID of `sectionSelect`.
 
 ![](image11.png "width=500")
 
@@ -371,4 +371,4 @@ Sure enough, we can see some requests for images have a response code of `0`, me
 
 This test of TicketMonster represents a real world example of how you can write end to end tests using WebDriver. The library we have created makes it quite easy to interact with the web application; however, having a test that directly lists every click, select and populate operation is quite low level. In the next post, we'll look at a design pattern that abstracts away the interactions with a web application to produce more reusable and maintainable code.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
