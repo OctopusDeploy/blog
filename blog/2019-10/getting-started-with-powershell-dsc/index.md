@@ -2,7 +2,7 @@
 title: Getting started with PowerShell DSC
 description: How to get started using PowerShell DSC
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 bannerImage: getting-started-powershell-dsc.png
 metaImage: getting-started-powershell-dsc.png
 published: 2019-10-21
