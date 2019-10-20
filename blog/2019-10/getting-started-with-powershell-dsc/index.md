@@ -3,12 +3,14 @@ title: Getting started with PowerShell DSC
 description: How to get started using PowerShell DSC
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage:
-metaImage:
+bannerImage: getting-started-powershell-dsc.png
+metaImage: getting-started-powershell-dsc.png
 published: 2019-10-21
 tags:
  - DevOps
 ---
+
+![Octopus learning how to configure a server with PowerShell DSC](getting-started-powershell-dsc.png)
 
 Whether you are a large organization or a small one, using cloud infrastructure or rack-mounted servers, maintaining the known state of a server is challenging. Several third-party solutions such as Ansible, Chef, and Puppet exist, but they are paid Linux-based products. For Windows folks, there is a free and Windows-centric option available; PowerShell Desired State Configuration (DSC). In this post, I’ll show you how to get started with PowerShell DSC and provide some basic examples of how to use it.
 
