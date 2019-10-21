@@ -15,8 +15,10 @@ It took several iterations to implement the ideal automated database deployment 
 
 This article is a continuation of the article published yesterday.  Here are the links in the event you missed the other articles.  
 
-- Designing Automated Database Deployments Process
-- Designing Automated Database Deployments Process Use Case
+- Designing Automated Database Deployments Process (link to be added later)
+- Designing Automated Database Deployments Process Use Case (link to be added later)
+
+All of our database deployment posts can be found [here.](https://octopus.com/database-deployments)
 
 !toc
 
@@ -245,3 +247,5 @@ After going through this process, deployments to `Production` became a non-event
 What surprised me the most was how much everything changed from start to finish.  I'll be honest; if I came across a customer with the final database deployment process, I'd have a lot of questions.  But it makes sense in the context of the company that implemented it.  It meets their requirements.  Don't be surprised by the number of iterations you make and where you will eventually end up.  Every company is different.
 
 Happy Deployments!
+
+If you enjoyed this article and would like to see more posts on automated database deployments please [click here.](https://octopus.com/database-deployments)

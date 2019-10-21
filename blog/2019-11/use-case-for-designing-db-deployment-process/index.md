@@ -15,8 +15,10 @@ Prior to joining Octopus Deploy, I was the lead developer on the pilot team, whi
 
 This article is a continuation of the article published yesterday.  Here are the links in the event you missed that article or would like to skip ahead to the next article, where I provide a step-by-step guide on implementing the process with Octopus Deploy.
 
-- Designing Automated Database Deployments Process Use Case
-- Implementing a Database Deployment Process with Octopus Deploy
+- Designing Automated Database Deployments Process Use Case (link to be added later)
+- Implementing a Database Deployment Process with Octopus Deploy (link to be added later)
+
+All of our database deployment posts can be found [here.](https://octopus.com/database-deployments)
 
 !toc
 
@@ -207,3 +209,5 @@ It took a lot of effort and time to automate database deployments.  In the end, 
 In this article, I focused on what we did to automate database deployments.  I didn't focus on what we did.  The next article, released tomorrow, will focus on that.  
 
 Until next time, Happy Deployments!
+
+If you enjoyed this article and would like to see more posts on automated database deployments please [click here.](https://octopus.com/database-deployments)

@@ -15,8 +15,10 @@ Automating database deployments was the final piece of the CI/CD puzzle.  Once t
 
 In the next couple of articles, I will walk you through how to design an automated database deployment process.  In this article, I am going to focus on core concepts.  If you want to skip ahead here are the links to the other articles:
 
-- Designing Automated Database Deployments Process Use Case
-- Implementing a Database Deployment Process with Octopus Deploy
+- Designing Automated Database Deployments Process Use Case (link to be added later)
+- Implementing a Database Deployment Process with Octopus Deploy (link to be added later)
+
+All of our database deployment posts can be found [here.](https://octopus.com/database-deployments)
 
 !toc
 
@@ -111,3 +113,5 @@ To quickly summarize:
 This article covered a lot of high-level concepts.  In tomorrow's article, I will walk through a time when I followed a similar process.  It will hopefully ground this article with something tangible.  
 
 Until next time, Happy Deployments!
+
+If you enjoyed this article and would like to see more posts on automated database deployments please [click here.](https://octopus.com/database-deployments)
