@@ -1,6 +1,6 @@
 ---
-title: Implementing Automated Database Deployments Process
-description: In this article, I will walk through the steps I took to implement an automated database deployment process using TeamCity, Redgate, and Octopus Deploy
+title: Implementing automated database deployments process
+description: In this article, I walk through the steps I took to implement an automated database deployment process using TeamCity, Redgate, and Octopus Deploy
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-11-13
@@ -22,7 +22,8 @@ All of our database deployment posts can be found [here.](https://octopus.com/da
 
 !toc
 
-## General Overview
+## General overview
+
 All this work was done at a company I previously worked for.  That company had four environments.
 
 - Development
@@ -51,7 +52,8 @@ The tooling we were using when this started was:
 - No deployment server
 - No database deployment tools (this is where Redgate's tooling came in)
 
-## Automated Database Deployments v1
+## Automated database deployments v1
+
 The first attempt at automating database deployments was designed to fit within the existing process.  I detailed the reasons why in my previous article (link here).  Thankfully, I was on one of the teams piloting Git and TeamCity.  However, the DBAs made it very clear, TeamCity would not have permission to deploy to `Staging` and `Production`.
 
 Looking at the documentation for [Redgate's Team City Plug-in](https://documentation.red-gate.com/display/SCA3/Use+the+TeamCity+plugin+with+a+SQL+Change+Automation+Project) shows it supports three functions:
@@ -117,7 +119,7 @@ Instead of running the sync step, it runs a PowerShell script to generate the de
 
 ![](automated-database-deployments-v1-staging.png)
 
-## Flaws with Automated Database Deployments v1
+## Flaws with automated database deployments v1
 
 Let's revisit the flaws with the existing process and see how we are doing after going through this effort.
 
@@ -138,9 +140,9 @@ Also, I introduced a couple of new problems.
 - Hard to know what version is going to be used to generate the delta scripts when `30_Staging` ran.
 - The latest changes only, can't pick an older version.
 
-## New Process
+## New process
 
-In my previous article, I discussed how Redgate helped a workgroup at the company I was working for.  Let's review the process we came up with.
+In my previous article, I discussed how Redgate helped a working group at the company I was working for.  Let's review the process we came up with.
 
 1. Developer/Database Developer/Lead Developer creates a branch.
 2. All database changes and code changes are made on that branch.
@@ -163,7 +165,7 @@ In my previous article, I discussed how Redgate helped a workgroup at the compan
 19. DBAs review the script as a final sanity check.
 20. Deployment Server finishes deployment to `Production`.
 
-## Automated Database Deployments v2
+## Automated database deployments v2
 
 Octopus Deploy was added to v2 of Automated Database Deployments.  TeamCity was simplified to two projects.  
 
@@ -199,7 +201,7 @@ While developers could deploy to `Staging`, the DBAs were the ones who approved 
 
 These security policies and manual interventions built a lot of trust in the process.
 
-## Flaws with Automated Database Deployments v2
+## Flaws with automated database deployments v2
 
 Let's check back in with our issue list.
 
@@ -222,9 +224,9 @@ Fantastic, all the original problems, plus the problems with v1, were solved or 
 - Developers had to wait until the DBAs finished reviewing their scripts in `Staging` prior to deployment.  The DBAs couldn't keep up.
 - There was no test data in the developer's local databases; this resulted in them pushing unfinished changes to `Test`.  They'd then point their code to `Test` so they had data to test with.
 
-## Automated Database Deployments v2.1 
+## Automated database deployments v2.1 
 
-The workgroup met, and we agreed to make the following changes to the process
+The working group met, and we agreed to make the following changes to the process
 
 - DBAs will only approve changes in `Staging`.
 - Approval in `Staging` will occur after the deployment occurs.

@@ -1,6 +1,6 @@
 ---
-title: Designing Automated Database Deployments Process Use Case
-description: This article walks through the steps I went through to help design an automated database deployment process. 
+title: Designing automated database deployments process case study
+description: This article walks through the steps I used to help design an automated database deployment process. 
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-11-12
@@ -11,23 +11,22 @@ tags:
  - Database Deployments
 ---
 
-Prior to joining Octopus Deploy, I was the lead developer on the pilot team, which Automated Database Deployments to go from 2-4 hour deployments to 10-minute deployments.  When I started, I thought we were going to automate steps in our existing process.  I started implementing the tooling to do just that.  Little did I know the entire process was going to change.
+Prior to joining Octopus Deploy, I was the lead developer on the pilot team that automated database deployments and took deployments from 2-4 hours per deployment to 10-minute deployments.  When I started, I thought we were going to automate steps in our existing process, and I started implementing the tooling to do just that.  Little did I know the entire process was going to change.
 
-This article is a continuation of the article published yesterday.  Here are the links in the event you missed that article or would like to skip ahead to the next article, where I provide a step-by-step guide on implementing the process with Octopus Deploy.
+This article is a continuation of the article published yesterday: [How to design an automated database deployment process](/blog/2019-11/designing-db-deployment-process/index.md), and if you'd like to jump ahead to the next article, where I provide a step-by-step guide for [implementing a database deployment process with Octopus Deploy](/blog/2019-11/implementing-db-deployment-process/index.md).
 
-- Designing Automated Database Deployments Process Use Case (link to be added later)
-- Implementing a Database Deployment Process with Octopus Deploy (link to be added later)
-
-All of our database deployment posts can be found [here.](https://octopus.com/database-deployments)
+All of our database deployment posts can be found [here](https://octopus.com/database-deployments).
 
 !toc
 
-## Forming of the workgroup
-One of the DBAs in the company summed it up best: "Our database deployment process is the wild west."  We had more developers joining the company every month.  New teams were forming.  More code was being deployed each day.  The issues with database deployments had to stop.  It was time to form a workgroup.  The DBAs and Database Architect all liked using Redgate's tooling, so they reached out to Redgate to help.  They identified the DBA, which would represent them at the workgroup.  After Redgate agreed to help, my team was identified as the pilot team.  Redgate agreed to fly out two people in a couple of months to meet with the workgroup for two days.
+## Forming the working group
 
-Being naive, I thought Redgate was going to help us implement their tooling within our existing process.  I set about doing that.  My thought was Redgate could come in and tweak what I had already put together.  Little did I know the workgroup was going to throw away about 75% of what I created.  That wasn't a big deal; it was a good learning experience.  I had a better fundamental understanding of how database deployment tools work.  That helped me contribute to the kick-off meeting.
+One of the DBAs in the company summed it up best, "Our database deployment process is the wild west."  We had more developers joining the company every month.  New teams were forming.  More code was being deployed each day.  The issues with database deployments had to stop.  It was time to form a working group.  The DBAs and Database Architect all liked using Redgate's tooling, so they reached out to Redgate to help.  They identified the DBA, which would represent them at the working group.  After Redgate agreed to help, my team was identified as the pilot team.  Redgate agreed to fly out two people in a couple of months to meet with the working group for two days.
 
-### Kick-Off Meeting
+Being naive, I thought Redgate was going to help us implement their tooling within our existing process.  I set about doing that.  My thought was Redgate could come in and tweak what I had already put together.  Little did I know the working group was going to throw away about 75% of what I created.  That wasn't a big deal; it was a good learning experience.  I had a better fundamental understanding of how database deployment tools work.  That helped me contribute to the kick-off meeting.
+
+### Kick-off meeting
+
 The database developer from my team, a DBA, a Database Architect, two Redgaters, and I met for two days.  The first day was focused on designing our ideal process.  First, we needed to walk through the existing process.
 
 1. Developer makes a change in `Development`.  All Developers have sysadmin rights in `Development`.
@@ -36,9 +35,9 @@ The database developer from my team, a DBA, a Database Architect, two Redgaters,
 4. DBAs are notified via email to run scripts in the shared folder on `Staging`.  They run the scripts and send output to the requester.  
 5. Multiple changes can be pushed to `Staging` prior to going to `Production`.  Because of that, a new Redgate Schema Compare delta script between `Staging` and `Production` is generated by the Database Developer or Lead Developer.  Just like before, any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs has read-only rights to `Production`.
 
-We tackled the questions next.
+We tackled these questions next.
 
-1. Who are the people involved in the process? -> Developers, Database Developer, Lead Developer, and DBAs
+1. Who are the people involved in the process? -> Developers, Database Developer, Lead Developer, and DBAs.
 2. What permissions do they have? -> Developers, Database Developers, and Lead Developers all have sysadmin rights in `Development` and `Test`.  DBAs have sysadmin rights in `Development`, `Test`, `Staging` and `Production`.
 3. Why are they involved? -> Developers, Lead Developers, and Database Developers make the changes to `Development` and `Test`.  Database Developers and Lead Developers create the delta scripts using Redgate Schema Compare.  DBAs deploy the delta scripts to `Staging` and `Production`.
 4. Which environments have a different process? -> There are two processes, deployments to `Development` and `Test`  process and deployments `Staging` and `Production`.    
@@ -49,7 +48,7 @@ We tackled the questions next.
 9. Who needs to be involved with each deployment? -> Deployments to `Development` and `Test` only involve the person making the change.  Deployments to `Staging` involve the requester, a database developer or lead developer, and the DBA.  Deployments to `Production` need everyone.  That is because each environment has a unique delta script, any issues require immediate fixing.
 10. What isn't working, and what needs to change? -> See below.
 
-## What Needed To Change
+## What needed To change
 
 The astute reader will notice a recurring theme in those answers.  
 
@@ -61,17 +60,17 @@ The astute reader will notice a recurring theme in those answers.
 - Reviews didn't happen until it was time to go to `Staging`.
 - "All hands on deck" during `Production` deployments.
 
-The application my team was responsible for had 700 tables.  All database access was done via stored procedures, including CRUD operations.  The database had roughly 5000 objects (tables, stored procedures, functions, etc.).  All development was done on the same database.  When we did a release, some changes were pushed, while other changes were excluded.  We kept of which changes to include on a piece of paper.  This wasn't 20 years ago.  This was happening in 2014.
+The application my team was responsible for had 700 tables.  All database access was done via stored procedures, including CRUD operations.  The database had roughly 5000 objects (tables, stored procedures, functions, etc.).  All development was done on the same database.  When we did a release, some changes were pushed, while other changes were excluded.  We kept track of which changes to include on a piece of paper.  This wasn't 20 years ago.  This was happening in 2014.
 
-Those issues resulted in 2-4 hour `Production` deployments.  The fact of the matter was we didn't trust the process.  That lack of trust led to intensive verification.  The actual deployment might be done in 20 minutes.  The remaining 100 minutes was spent verifying the deployment.  This included QA, the Business Owner, Business Analyst, Developers, Lead Developer, and Manager running various scenarios.  Even with all that effort, we still would miss some random thing that only 0.5% of our users would encounter.  
+Those issues resulted in 2-4 hour `Production` deployments.  The fact of the matter was we didn't trust the process.  That lack of trust led to intensive verification.  The actual deployment might be done in 20 minutes.  The remaining 100 minutes was spent verifying the deployment.  This included QA, the Business Owner, Business Analyst, Developers, Lead Developer, and Manager running various scenarios.  Even with all that effort, we still missed some random thing that only 0.5% of our users would encounter.  
 
 ```
 Roughly 50% of the time, we had to do an emergency fix the next day due to a missed schema change.
 ```
 
-## Draft Of Ideal Process
+## Draft of the ideal process
 
-Drafting the ideal process took quite a bit of time.  This was caused by a lack of knowledge of what tooling can provide.  At the time, we knew about source control, build servers, and Redgate tooling.  We were all unfamiliar with what deployment tooling could provide.  Thankfully, Redgate was there to help educate us.
+Drafting the ideal process took quite a bit of time.  This was caused by a lack of knowledge of what the tooling can provide.  At the time, we knew about source control, build servers, and Redgate tooling.  We were all unfamiliar with what deployment tooling could provide.  Thankfully, Redgate was there to help educate us.
 
 We first listed out the various tools and the functionality it provides.
 
@@ -82,7 +81,7 @@ We first listed out the various tools and the functionality it provides.
     - It provides the ability to review changes prior to merging.    
 - Database Tooling
     - It provides a way to run scripts stored in source control on the destination database.
-    - Includes some sort of "preview" functionality to generate a review script.
+    - Includes some sort of *preview* functionality to generate a review script.
 - Build Server
     - Takes SQL Scripts from source control and packages them up.
     - It pushes packages to the deployment server.
@@ -94,7 +93,7 @@ We first listed out the various tools and the functionality it provides.
     - Used to deploy to all environments.
     - Has security features to allow for scenarios such as: only allowing DBAs to deploy to `Production`.
 
-The tooling responsibilities are out of the way.  We spent a great deal of time discussing a shared database model vs. a dedicated database model.  A dedicated database model means each developer runs the database server on their own machine.  We ran into multiple problems using a shared database model.
+With the tooling responsibilities out of the way, we spent a great deal of time discussing a shared database model vs. a dedicated database model.  A dedicated database model means each developer runs the database server on their own machine.  We ran into multiple problems using a shared database model.
 
 - Database changes were made, which stopped developers and QA from proceeding until code was updated.
 - Two truth centers, the shared database which all changes were made to and then saved to source control, and source control.  If there was a conflict between source control and the shared database, which won?
@@ -150,7 +149,7 @@ RoundhousE met 1 out of the 3 (can save database changes from SSMS), and SSDT me
 
 We didn't have a deployment server.  After the Redgate folks explained the benefits and features of Octopus Deploy, we did a quick POC using TeamCity, Redgate, and Octopus Deploy.  The POC took about an hour to put together and showed a great deal of promise.  We decided to continue to use Octopus Deploy for the pilot.
 
-## Implementing The Process
+## Implementing the process
 
 Anyone who has worked for a large development shop knows there are multiple projects being juggled.  During our kick-off meeting, we didn't know the web admins were looking at deployment servers at the same time.  They were currently focused on Release Management.  This was old school Release Management before VSTS/VSO/Azure DevOps moved it into release pipelines.  It was right after Microsoft purchased InRelease and reskinned it to match Visual Studio.  
 
@@ -161,23 +160,23 @@ Once we landed on the deployment server to pilot, it was off to the races.  The 
 - Permissions -> what can the automated process do vs. what can't it do.  We landed on preventing the process from creating new users and adding them to roles.  This way, someone couldn't give themselves db_owner permissions in `Production`.
 - Resolving the delta between all environments -> There were schema changes in `Production` not on `Development`.  The first time we tried to run the process in `Production`, we almost wiped them out.  We quickly added that change into source control rebuilt the package, and pushed it up through the environments to `Production`.  
 
-## Speeding Up Deployments
+## Speeding up deployments
 
 Immediately, the number of emergency fixes due to a missing schema change dropped to zero.  That alone was a massive win.  
 
 Because of that, the amount of time we spent verifying started dropping.  
 
-1. 30 Minute Deployment, 90 Minute Verification
-2. 25 Minute Deployment, 80 Minute Verification
-3. 20 Minute Deployment, 70 Minute Verification
-4. 15 Minute Deployment, 60 Minute Verification
-5. 10 Minute Deployment, 50 Minute Verification
-6. 5 Minute Deployment, 40 Minute Verification
-7. 5 Minute Deployment, 30 Minute Verification
+1. 30 Minute Deployment, 90 Minute Verification.
+2. 25 Minute Deployment, 80 Minute Verification.
+3. 20 Minute Deployment, 70 Minute Verification.
+4. 15 Minute Deployment, 60 Minute Verification.
+5. 10 Minute Deployment, 50 Minute Verification.
+6. 5 Minute Deployment, 40 Minute Verification.
+7. 5 Minute Deployment, 30 Minute Verification.
 
 That, in turn, made us want to deploy more often.  Frequent deployments mean smaller changes.  Smaller changes meant less verification.  Less verification meant faster deployments.  Faster deployments meant we wanted to deploy more often.  The cycle continued until we got to 10-minute deployments.
 
-## Early Adopters and Iterations
+## Early adopters and iterations
 
 A couple of other teams (out of 9 teams remaining) saw what we were doing, and they wanted in on the process.  They came on board as early adopters.  Having three teams use the process identified pain points and what needed to improve.  
 
@@ -190,11 +189,11 @@ A couple of other teams (out of 9 teams remaining) saw what we were doing, and t
 No process be 100% perfect from the start.  Expect to iterate multiple times.  
 ```
 
-## General Adoption
+## General adoption
 
 Eventually, the time came for general adoption.  I was very surprised by the push back, specifically from the database developers.  So much of their time was spent generating deployment scripts.  So much so they thought that was how they brought value to the team.  The fear was this process was going to automate them out of a job.  That wasn't the case. The process was designed to eliminate all that wasted time generating and tweaking deployment scripts.  This freed them up to focus on important things like database structure, performance, reviewing changes and working on complex changes.  
 
-Hindsight being what it is, what I should've done was:
+Hindsight being what it is, what I should have done was:
 
 - Schedule a meeting with the database developer and lead developer on the team to walk through the process.
 - Schedule another meeting for the two of them to get an application's database into the process.
