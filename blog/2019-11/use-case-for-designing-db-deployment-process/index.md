@@ -13,7 +13,7 @@ tags:
 
 Prior to joining Octopus Deploy, I was the lead developer on the pilot team that automated database deployments and took deployments from 2-4 hours per deployment to 10-minute deployments.  When I started, I thought we were going to automate steps in our existing process, and I started implementing the tooling to do just that.  Little did I know the entire process was going to change.
 
-This article is a continuation of the article published yesterday: [How to design an automated database deployment process](/blog/2019-11/designing-db-deployment-process/index.md), and if you'd like to jump ahead to the next article, where I provide a step-by-step guide for [implementing a database deployment process with Octopus Deploy](/blog/2019-11/implementing-db-deployment-process/index.md).
+This article is a continuation of the article published yesterday: [How to design an automated database deployment process](/blog/2019-11/designing-db-deployment-process/index.md), and if you like, you can jump ahead to the next article, where I provide a step-by-step guide for [implementing a database deployment process with Octopus Deploy](/blog/2019-11/implementing-db-deployment-process/index.md).
 
 All of our database deployment posts can be found [here](https://octopus.com/database-deployments).
 
@@ -21,32 +21,36 @@ All of our database deployment posts can be found [here](https://octopus.com/dat
 
 ## Forming the working group
 
-One of the DBAs in the company summed it up best, "Our database deployment process is the wild west."  We had more developers joining the company every month.  New teams were forming.  More code was being deployed each day.  The issues with database deployments had to stop.  It was time to form a working group.  The DBAs and Database Architect all liked using Redgate's tooling, so they reached out to Redgate to help.  They identified the DBA, which would represent them at the working group.  After Redgate agreed to help, my team was identified as the pilot team.  Redgate agreed to fly out two people in a couple of months to meet with the working group for two days.
+One of the DBAs in the company summed it up best when they said, "Our database deployment process is the wild west."  We had more developers joining the company every month, new teams were constantly forming, more code was being deployed each day, and the issues with database deployments had to stop.  
 
-Being naive, I thought Redgate was going to help us implement their tooling within our existing process.  I set about doing that.  My thought was Redgate could come in and tweak what I had already put together.  Little did I know the working group was going to throw away about 75% of what I created.  That wasn't a big deal; it was a good learning experience.  I had a better fundamental understanding of how database deployment tools work.  That helped me contribute to the kick-off meeting.
+It was time to form a working group.  
+
+The DBAs and Database Architect all liked using Redgate's tooling, so they reached out to Redgate to help.  They identified the DBA who would represent them at the working group.  After Redgate agreed to help, my team was identified as the pilot team, and Redgate agreed to fly out two people to meet with the working group for two days.
+
+Being naive, I thought Redgate would help us implement their tooling within our existing process. I set about doing that, thinking Redgate could come in and tweak what I had already put together.  Little did I know, the working group was going to throw away about 75% of my work. That wasn't a big deal; it was a good learning experience as it gave me a better fundamental understanding of how database deployment tools work.  That helped me contribute to the kick-off meeting.
 
 ### Kick-off meeting
 
-The database developer from my team, a DBA, a Database Architect, two Redgaters, and I met for two days.  The first day was focused on designing our ideal process.  First, we needed to walk through the existing process.
+The database developer from my team, a DBA, a Database Architect, two Redgaters, and I met for two days.  The first day was focused on designing our ideal process.  First, we walked through the existing process, which looked like this:
 
 1. Developer makes a change in `Development`.  All Developers have sysadmin rights in `Development`.
 2. Developer changes the connection in SSMS and makes a change to `Test`.  All Developers have sysadmin rights in `Test`.
-3. Database Developer or Lead Developer runs Redgate Schema Compare to generate delta script for `Test` and `Staging`.  Any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs has read-only rights to `Staging`, so DBAs have to run the scripts.  
-4. DBAs are notified via email to run scripts in the shared folder on `Staging`.  They run the scripts and send output to the requester.  
-5. Multiple changes can be pushed to `Staging` prior to going to `Production`.  Because of that, a new Redgate Schema Compare delta script between `Staging` and `Production` is generated by the Database Developer or Lead Developer.  Just like before, any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs has read-only rights to `Production`.
+3. Database Developer or Lead Developer runs Redgate Schema Compare to generate delta script for `Test` and `Staging`.  Any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs has read-only rights to `Staging`, so DBAs have to run the scripts.
+4. DBAs are notified via email to run scripts in the shared folder on `Staging`.  They run the scripts and send output to the requester.
+5. Multiple changes can be pushed to `Staging` prior to going to `Production`.  Because of that, a new Redgate Schema Compare delta script between `Staging` and `Production` is generated by the Database Developer or Lead Developer.  Just like before, any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs have read-only rights to `Production`.
 
 We tackled these questions next.
 
-1. Who are the people involved in the process? -> Developers, Database Developer, Lead Developer, and DBAs.
-2. What permissions do they have? -> Developers, Database Developers, and Lead Developers all have sysadmin rights in `Development` and `Test`.  DBAs have sysadmin rights in `Development`, `Test`, `Staging` and `Production`.
-3. Why are they involved? -> Developers, Lead Developers, and Database Developers make the changes to `Development` and `Test`.  Database Developers and Lead Developers create the delta scripts using Redgate Schema Compare.  DBAs deploy the delta scripts to `Staging` and `Production`.
-4. Which environments have a different process? -> There are two processes, deployments to `Development` and `Test`  process and deployments `Staging` and `Production`.    
-5. Why are they different? -> Permissions.  `Staging` is refreshed from `Production` periodically and is used for staging and final verification.  `Staging` needs to be as close to `Production` as possible to help eliminate surprises.
-6. What happens when the script fails to run? -> In `Development` and `Test`, the person who wrote the script ran the script, they would make the necessary adjustments and re-run it.  In `Staging` and `Production` the DBA notifies the requester of failure.  The requester debugs the script and makes the necessary tweaks.  They ask the DBA to run the script again.  
-7. Why to scripts typically fail? -> Typically, failures happen because each environment has different delta scripts.  A schema change or migration script is missed. 
-8. Who reviews the scripts and when? -> The Database Developer and Lead Developer review the changes prior to going to `Staging`.   Because of the different delta scripts, the DBAs review the scripts prior to going to `Staging` as well as `Production`. 
-9. Who needs to be involved with each deployment? -> Deployments to `Development` and `Test` only involve the person making the change.  Deployments to `Staging` involve the requester, a database developer or lead developer, and the DBA.  Deployments to `Production` need everyone.  That is because each environment has a unique delta script, any issues require immediate fixing.
-10. What isn't working, and what needs to change? -> See below.
+1. Who are the people involved in the process? **Answer**: Developers, Database Developer, Lead Developer, and DBAs.
+2. What permissions do they have? **Answer**: Developers, Database Developers, and Lead Developers all have sysadmin rights in `Development` and `Test`.  DBAs have sysadmin rights in `Development`, `Test`, `Staging` and `Production`.
+3. Why are they involved? **Answer**: Developers, Lead Developers, and Database Developers make the changes to `Development` and `Test`.  Database Developers and Lead Developers create the delta scripts using Redgate Schema Compare.  DBAs deploy the delta scripts to `Staging` and `Production`.
+4. Which environments have a different process? **Answer**: There are two processes, one for deployments to `Development` and `Test`  and another for deployments to `Staging` and `Production`.    
+5. Why are they different? **Answer**: Permissions.  `Staging` is refreshed from `Production` periodically and is used for staging and final verification.  `Staging` needs to be as close to `Production` as possible to help eliminate surprises.
+6. What happens when the script fails to run? **Answer**: In `Development` and `Test`, the person who wrote the script ran the script, and they make the necessary adjustments and re-run it.  In `Staging` and `Production` the DBA notifies the requester of failure.  The requester debugs the script and makes the necessary tweaks.  They then ask the DBA to run the script again.
+7. Why do scripts typically fail? **Answer**: Failures happen because each environment has different delta scripts.  A schema change or migration script is missed. 
+8. Who reviews the scripts and when? **Answer**: The Database Developer and Lead Developer review the changes prior to going to `Staging`.   Because of the different delta scripts, the DBAs review the scripts prior to going to `Staging` as well as `Production`. 
+9. Who needs to be involved with each deployment? **Answer**: Deployments to `Development` and `Test` only involve the person making the change.  Deployments to `Staging` involve the requester, a database developer or lead developer, and the DBA.  Deployments to `Production` need everyone.  That is because each environment has a unique delta script, any issues require immediate fixing.
+10. What isn't working, and what needs to change? **Answer**: See below.
 
 ## What needed To change
 
@@ -151,7 +155,7 @@ We didn't have a deployment server.  After the Redgate folks explained the benef
 
 ## Implementing the process
 
-Anyone who has worked for a large development shop knows there are multiple projects being juggled.  During our kick-off meeting, we didn't know the web admins were looking at deployment servers at the same time.  They were currently focused on Release Management.  This was old school Release Management before VSTS/VSO/Azure DevOps moved it into release pipelines.  It was right after Microsoft purchased InRelease and reskinned it to match Visual Studio.  
+Anyone who has worked for a large development shop knows there are multiple projects being juggled.  During our kick-off meeting, we didn't know the web admins were looking at deployment servers at the same time.  They were currently focused on Release Management.  This was old school Release Management before VSTS/VSO/Azure DevOps moved it into release pipelines.  It was right after Microsoft purchased InRelease and re-skinned it to match Visual Studio.  
 
 It didn't make sense to pilot multiple deployment servers.  We were asked to pause our implementation so we could land on the deployment server to Pilot.  After a few weeks, the decision was made to pilot Octopus Deploy.  The core reason was it use the same process across all environments.  The web admins were part of too many deployments, which failed because something in the process wasn't tested in `Development` or `Test` or `Staging`.  
 
