@@ -1,5 +1,5 @@
 ---
-title: Write your own Desired State Configuration (DSC) module
+title: Write your own PowerShell Desired State Configuration (DSC) module
 description: How to write your own PowerShell Desired State Configuration (DSC) module
 author: shawn.sesna@octopus.com
 visibility: public
