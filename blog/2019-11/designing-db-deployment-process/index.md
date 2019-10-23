@@ -10,12 +10,12 @@ tags:
  - Engineering
  - Database Deployments
 ---
-
+ 
 Automating database deployments was the final piece of the CI/CD puzzle I needed to go from 2-4 hour deployments down to 10-minute deployments.  When I started automating database deployments, I tried to fit the tooling into the existing process, but that existing process was built over time to facilitate manual database deployments, which essentially meant getting the SQL files to the DBAs to run on Production.  I didn't realize the entire process had to change, and a new process had to be designed around facilitating automated database deployments.
 
 In the next couple of articles, I will walk you through designing an automated database deployment process.  In this article, I focus on core concepts.  If you want to skip ahead, here are the links to the other articles:
 
-- [Designing automated database deployments process use case](/blog/2019-11/use-case-for-designing-db-deployment-process/index.md).
+- [Designing automated database deployments process case study](/blog/2019-11/use-case-for-designing-db-deployment-process/index.md).
 - [Implementing a database deployment process with Octopus Deploy](/blog/2019-11/implementing-db-deployment-process/index.md).
 
 All of our database deployment posts can be found [here.](https://octopus.com/database-deployments)
