@@ -1,44 +1,44 @@
 ---
 title: How to design an automated database deployment process
-description: This article walks you through designing your ideal automated database deployment process 
+description: This article walks you through designing your ideal automated database deployment process
 author: bob.walker@octopus.com
 visibility: private
 published: 2019-11-11
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - Engineering
  - Database Deployments
 ---
- 
-Automating database deployments was the final piece of the CI/CD puzzle I needed to go from 2-4 hour deployments down to 10-minute deployments.  When I started automating database deployments, I tried to fit the tooling into the existing process, but that existing process was built over time to facilitate manual database deployments, which essentially meant getting the SQL files to the DBAs to run on Production.  I didn't realize the entire process had to change, and a new process had to be designed around facilitating automated database deployments.
 
-In the next couple of articles, I will walk you through designing an automated database deployment process.  In this article, I focus on core concepts.  If you want to skip ahead, here are the links to the other articles:
+Automating database deployments was the final piece of the CI/CD puzzle I needed to go from deployments that took between 2 and 4 hours down to 10 minutes.  When I started automating database deployments, I tried to fit the tooling into the existing process, but that existing process was built over time to facilitate manual database deployments, which essentially meant getting the SQL files to the DBAs to run on Production.  I didn’t realize the entire process had to change, and a new process had to be designed around facilitating automated database deployments.
 
-- [Designing automated database deployments process case study](/blog/2019-11/use-case-for-designing-db-deployment-process/index.md).
+In the next couple of articles, I walk you through designing an automated database deployment process.  In this article, I focus on core concepts.  If you want to skip ahead, here are the links to the other articles:
+
+- [Automated database deployment process: case study](/blog/2019-11/use-case-for-designing-db-deployment-process/index.md).
 - [Implementing a database deployment process with Octopus Deploy](/blog/2019-11/implementing-db-deployment-process/index.md).
 
-All of our database deployment posts can be found [here.](https://octopus.com/database-deployments)
+All of our database deployment posts can be found [here](https://octopus.com/database-deployments).
 
 !toc
 
 ## What to avoid
 
-I've made many mistakes along the way.  Below is a list of hard lessons I learned automating database deployments:
+I’ve made many mistakes along the way.  Below is a list of hard lessons I learned automating database deployments:
 
-- Don't include everyone at the start.  Create a small working group of 2-4 key people, such as DBAs or Database Architects.  Pick a pilot team to work through the kinks.  The pilot team should send 1-2 people to the working group (bringing the total to 4-6 people).  The working group should be empowered to make decisions.
-- Don't spend weeks or months trying to design the perfect process.  The working group should meet for a one to two day kick-off meeting to create a draft of the ideal process.  After that, schedule regular check-ins to see how the pilot team is doing.
-- Don't break your focus during the kick-off meeting.  Block out one to two days and don't allow open laptops, except to look up answers to specific questions.
-- Don't focus on specific tooling.  Focus on the core concepts of the tooling available.  For example, modern version control software supports branching and a review process for merging.  Every database deployment tool has a way to run it from the command line.
-- Don't try to automate rollbacks at the start.  You can spend the entire two days at the kick-off meeting trying to figure out all the possible scenarios.  You're no worse off if you wait.
-- Don't be afraid to ask for help if you get stuck.  When I worked for a previous company, we asked Redgate for help, and they walked us through this process.  There are consulting firms, such as [DLM Consultants](http://dlmconsultants.com/), which can help. 
-- Don't make decisions in a vacuum.  The working group should be transparent and solicit feedback at key points, and provide regular updates to everyone.   
+- Don’t include everyone at the start.  Create a small working group of 2 to 4 key people, including DBAs or database architects.  Pick a pilot team to work through the kinks.  The pilot team should send 1 or 2 people to the working group (bringing the total to between 4 and 6 people).  The working group should be empowered to make decisions.
+- Don’t spend weeks or months trying to design the perfect process.  The working group should meet for a 1 or 2 day kick-off meeting to create a draft of the ideal process.  After that, schedule regular check-ins to see how the pilot team is doing.
+- Don’t break your focus during the kick-off meeting.  Block out 1 to 2 days and don’t allow open laptops, except to look up answers to specific questions.
+- Don’t focus on specific tooling.  Focus on the core concepts of the tooling available.  For example, modern version control software supports branching and a review process for merging, and every database deployment tool has a way to run it from the command-line.
+- Don’t try to automate rollbacks at the start.  You could spend the entire two days at the kick-off meeting trying to figure out all the possible scenarios, but you’re no worse off if you wait.
+- Don’t be afraid to ask for help if you get stuck.  When I worked for a previous company, we asked Redgate for help, and they walked us through this process.  There are consulting firms, such as [DLM Consultants](http://dlmconsultants.com/), which can also help.
+- Don’t make decisions in a vacuum.  The working group should be transparent and solicit feedback at key points, and provide regular updates to everyone.   
 
 ## Kick-off meeting day 1
 
-As stated earlier, the kick-off meeting should last one to two days.  The first day is going to be focused solely on the deployment process.   The existing process needs to change, and in some cases, a completely new process needs to be created.  
+As stated earlier, the kick-off meeting should last one to two days.  The first day is going to be focused solely on the deployment process.   The existing process will need to change, and in some cases, a completely new process needs to be created.  
 
-But you have to start somewhere.  Write down the existing process, so everyone is on the same page.  Include all the steps it takes for a change to make its way from developer to Production.  While writing the process down, focus on answering these questions.
+But you have to start somewhere.  Write down the existing process, so everyone is on the same page.  Include all the steps it takes for a change to make its way from developer to production.  While writing the process down, focus on answering these questions.
 
 1. Who are the people involved in the process?
 2. What permissions do they have?
@@ -49,74 +49,76 @@ But you have to start somewhere.  Write down the existing process, so everyone i
 7. Why do scripts typically fail?
 8. Who reviews the scripts and when?
 9. Who needs to be involved with each deployment?
-10. What isn't working, and what needs to change?
+10. What isn’t working, and what needs to change?
 
-With those answers in hand, it is time to start working on a rough draft of the ideal process.  When designing the process, stay away from specific tooling terminology.  Say `all database changes will be reviewed by a database developer during the merge process` instead of `all database changes will be reviewed by a database developer via a pull request prior to merging into master`.  At first blush, they look identical, but `pull request` and `master` are terms common to Git. 
+With those answers in hand, it’s time to start working on a rough draft of the ideal process.  When designing the process, stay away from specific tooling terminology.  Say `all database changes will be reviewed by a database developer during the merge process` instead of `all database changes will be reviewed by a database developer via a pull request prior to merging into master`.  At first blush, they look almost identical, but `pull request` and `master` are terms common to Git.
 
-Hopefully, by the end of the first day, you have a working draft of the process.  This is a pre-alpha draft, and it's okay if there are holes in it.  
+Hopefully, by the end of the first day, you have a working draft of the process.  This is a pre-alpha draft, and it’s okay if there are holes in it.  
 
 ## Kick-off meeting day 2
 
-The second day is about refining that process for the pilot team to implement.  Now that you have a rough idea of what you want to do, it is time to research the tooling that's out there.  Refine your process as you do your research.  It's okay to add steps, remove steps, or move them around as you learn more.  
+The second day is about refining that process for the pilot team to implement.  Now that you have a rough idea of what you want to do, it’s time to research the tooling that’s out there.  Refine your process as you do your research.  It’s okay to add steps, remove steps, or move them around as you learn more.  
 
-When it comes to database deployment tooling, there are a lot of options.  For SQL Server, there is Redgate, DbUp, Apex, SQL Server Data Tools for Visual Studio (SSDT), RoundhousE, and Flyway, to name a few.  It is very easy to get analysis paralysis, especially when doing a side by side comparisons.
+When it comes to database deployment tooling, there are a lot of options.  For SQL Server, there is Redgate, DbUp, Apex, SQL Server Data Tools for Visual Studio (SSDT), RoundhousE, and Flyway to name a few.  It is very easy to get analysis paralysis, especially when doing a side by side comparisons.
 
-Using the ideal process, identify two or three critical features, the tooling must-have.  Don't forget to think about who will use the tooling in their day to day life because the skill and comfort level could vary significantly.  For example, a DBA is more likely to be comfortable writing schema change SQL statements than a junior C# developer.  Here are some questions to help tease those requirements out.  Leave features every tool supports off of the list.  It's a given any tool that will be able to save to source control in some fashion, so there's no need to include that.
+Using the ideal process, identify two or three critical features the tooling must-have.  Don’t forget to think about who will use the tooling in their day to day life because skill and comfort level could vary significantly.  For example, a DBA is more likely to be comfortable writing schema change SQL statements than a junior C# developer.  Leave features every tool supports off the list, for instance, it’s a given any tool can save to source control in some fashion, so there’s no need to include that.
+
+Here are some questions to help tease out the requirements:
 
 1. [Model Based (Desired State)](https://octopus.com/blog/automated-database-deployments-iteration-zero#model-driven-approach) or [Change Driven (Migration Scripts)](https://octopus.com/blog/automated-database-deployments-iteration-zero#change-driven-approach)?
 2. Should it integrate with existing tools such as SQL Server Management Studio (SSMS) or Visual Studio?
 3. How are database changes detected and saved to source control?
 
-In some cases, a tool will meet two out of the three critical requirements.  If that tool is in consideration because it is free, it's hard to argue with free.  There are some questions to consider when a free tool is considered that only meets 2/3 of the requirements vs. a paid tool that meets all 3/3 requirements.  
+In some cases, a tool will meet 2 out of the 3 critical requirements.  If that tool is in consideration because it is free, it’s hard to argue against free.  There are some questions to consider when a free tool is considered but it only meets 2 out of 3 of the requirements vs. a paid tool that meets all 3.  
 
 1. Will that missing feature slow down adoption?
-2. What can we do to augment the free tool to get to 2.5/3 requirements met?  
-3. Has the company attempted to use that free tool in the past?  Why wasn't it adopted?
+2. What can we do to augment the free tool to get to 2.5 out of 3 requirements?
+3. Has the company attempted to use the free tool in the past?  Why wasn’t it adopted?
 
-I had a similar **free vs. paid** debate with Redgate vs. SQL Server Data Tools for Visual Studio (SSDT).  To purchase Redgate for 100+ developers, it would cost well into six figures.  Meanwhile, SSDT was free, but SSDT integrates with Visual Studio, not SSMS.  Several teams had attempted to adopt SSDT in the past, and all of them eventually abandoned the effort.  Too many people preferred to make their changes in SSMS, not Visual Studio, and they ended up with a weird multi-step process to get the changes into SSDT.  I'm not saying SSDT is a bad tool, just that it didn't work for our specific needs.
+I had a similar **free vs. paid** debate with Redgate vs. SQL Server Data Tools for Visual Studio (SSDT).  To purchase Redgate for 100+ developers cost well into six figures.  Meanwhile, SSDT was free, but SSDT integrates with Visual Studio, not SSMS.  Several teams had attempted to adopt SSDT in the past, and all of them eventually abandoned the effort.  Too many people preferred to make their changes in SSMS, not Visual Studio, and they ended up with a weird multi-step process to get the changes into SSDT.  I’m not saying SSDT is a bad tool, just that it didn’t work for our specific needs.
 
 ## Pilot team, iterations, and early adopters
 
-After the kick-off meeting and tooling research, it's time for the pilot team to take over.  Their goal is to implement the tooling and process, so it deploys through all environments to Production.  Along the way, they will provide valuable feedback to the working group and discuss what iterations need to be made.  The pilot team should not be shy about providing that feedback.  Any minor annoyance will be multiplied exponentially during general adoption.
+After the kick-off meeting and tooling research, it’s time for the pilot team to take over.  Their goal is to implement the tooling and process, so it deploys through all environments to production.  Along the way, they will provide valuable feedback to the working group and discuss what iterations need to be made.  The pilot team should not be shy about providing that feedback.  Any minor annoyances they face, will be multiplied exponentially during general adoption.
 
-After a period of time, and depending on the company size, roll out the process to early adopter teams.  This helps refined the process even more.  Assumptions or unintentional short-cuts made by the pilot team will be found, and additional scenarios will be discovered and included in the process.
+After a period of time, and depending on the company size, roll out the process to early adopter teams.  This helps refine the process even more.  Assumptions or unintentional short-cuts made by the pilot team will be found, and additional scenarios will be discovered and included in the process.
 
 ## General adoption and building trust
 
-The general adoption phase will be *moving a lot of cheese* for a lot of people.  Expect to get push back.  Databases are the key component of most applications, and a bad script can result in ruined days or weeks.
+The general adoption phase will be *moving a lot of cheese* for a lot of people, so you should expect to get push back.  Databases are the key component of most applications, and a bad script can result in ruined days or weeks.
 
-It's important to build trust in your process.  
+It’s important to build trust in your process.  
 
-I've found the two best ways to build trust in the process is manual verification and pilot teams/applications.  For example, generate the delta script and have a DBA review prior to deploying to QA.  A pilot application or pilot team is great at helping prove the process.  They can work with the group who drafted the process to find the tooling to implement it and deploy it to Production.  Doing so finds the pain points in the proposed process and allows everyone to iterate on the process quickly.  
+I’ve found the two best ways to build trust in the process is manual verification and pilot teams/applications.  For example, generate the delta script and have a DBA review prior to deploying to QA.  A pilot application or pilot team is great at helping prove the process.  They can work with the group who drafted the process to find the tooling to implement it and deploy it to production.  Doing so finds the pain points in the proposed process and allows everyone to iterate on the process quickly.  
 
 When it comes time for other teams to implement the process, they can include similar manual verification steps.  
 
-Don't be surprised when you have to iterate on the process even more.  Every team and application is unique, and they might implement a database feature you haven't come across.  
+Don’t be surprised when you have to iterate on the process even more.  Every team and application is unique, and they might implement a database feature you haven’t come across.  
 
 ## TL;DR;
 
 To summarize:
 
-- Create a small team or working group to define the process.  Include representatives of each stage of deployment (developers, DBAs, etc.).  The working group should be no more than 4-6 people.
+- Create a small team or working group to define the process.  Include representatives from each stage of deployment (developers, DBAs, etc.).  The working group should be no more than 4 to 6 people.
 - Identify the pilot team or application to include in the working group.
-- Kick off the working group with a 1-2 day meeting.
+- Kick off the working group with a 1 to 2 day meeting.
     - Write down the existing process, identify key people, pain points, and what needs to change.
     - Draft the ideal deployment process.
     - Research the tooling.
     - By the end of kick-off, the pilot team should know what needs to be implemented and what tools to use.
 - The pilot team implements the new process.
-    - Deploy all the way to Production.
+    - Deploy all the way to production.
     - Iterate on the process.
     - After the process has been successful for a period of time, see if anyone would like to be an early adopter.
     - Iterate on the process with early adopter teams.
-- General Adoption.
+- General adoption.
     - Focus on building trust with the process.
     - Roll out to multiple teams.
     - Iterate when pain points are found.
 
 ## Conclusion
 
-This article covered a lot of high-level concepts.  In tomorrow's article, I will walk through a time when I followed a similar process.  It will hopefully ground this article with something tangible.  
+This article covered a lot of high-level concepts.  In the next article, I walk through a time when I followed a similar process.  It will hopefully ground this article with something tangible.  
 
 Until next time, Happy Deployments!
 
