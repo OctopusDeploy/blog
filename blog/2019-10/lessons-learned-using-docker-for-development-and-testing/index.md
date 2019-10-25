@@ -2,13 +2,15 @@
 title: Lessons learned using Docker for development and testing on Windows
 description: Some of the lessons I learned using Docker for development and testing on Windows
 author: bob.walker@octopus.com
-visibility: public
-published: 2020-09-30
-metaImage: 
-bannerImage: 
+visibility: private
+published: 2019-10-28
+metaImage: docker_development_testing.png
+bannerImage: docker_development_testing.png
 tags:
  - Engineering 
 ---
+
+![Illustration showing a book of docker lessons learned for development and testing](docker_development_testing.png)
 
 How hard is it to use Docker on a Windows developer machine for development and testing?  Is Docker as big and scary as I think it is?  A couple of weeks ago, I challenged myself to answer those questions.  It turns out, Docker on Windows is neither as big or scary as I thought.  That being said, there was a bit of a learning curve, and I want to share some of the lessons I learned with you.
 
