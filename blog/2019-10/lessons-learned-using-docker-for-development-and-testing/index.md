@@ -2,7 +2,7 @@
 title: Lessons learned using Docker for development and testing on Windows
 description: Some of the lessons I learned using Docker for development and testing on Windows
 author: bob.walker@octopus.com
-visibility: private
+visibility: public
 published: 2019-10-28
 metaImage: docker_development_testing.png
 bannerImage: docker_development_testing.png
