@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Prior to joining Octopus Deploy, I was the lead developer on the pilot team that automated database deployments and took deployments from 2 to 4 hours per deployment down to 10 minutes per deployments. When I started, I thought we’d automate the steps in our existing process, and I started implementing the tooling to do just that.  Little did I know, the entire process was going to change.
+Prior to joining Octopus Deploy, I was the lead developer on the pilot team that automated database deployments and took deployments from 2 to 4 hours per deployment down to 10 minutes per deployment. When I started, I thought we’d automate the steps in our existing process, and I started implementing the tooling to do just that.  Little did I know, the entire process was going to change.
 
 This article is a continuation of the previous article: [How to design an automated database deployment process](/blog/2019-11/designing-db-deployment-process/index.md), and if you like, you can jump ahead to the next article, where I provide a step-by-step guide for [implementing a database deployment process with Octopus Deploy](/blog/2019-11/implementing-db-deployment-process/index.md).
 
@@ -23,7 +23,7 @@ All of our database deployment posts can be found [here](https://octopus.com/dat
 
 One of the DBAs in the company summed it up best when they said, “Our database deployment process is the wild west.”  We had more developers joining the company every month, new teams were constantly forming, more code was being deployed every day, and the issues with database deployments had to stop.  
 
-It was time to form a working group.  
+It was time to form a working group.
 
 The DBAs and database architect all liked using Redgate’s tooling, so they reached out to Redgate for help.  They identified the DBA who would represent them at the working group, and after Redgate agreed to help and fly two people out to meet with the working group for two days, my team was identified as the pilot team.
 
@@ -47,9 +47,9 @@ We tackled these questions next.
 4. Which environments have different processes? **Answer**: There are two processes, one for deployments to `development` and `test`, and another for deployments to `staging` and `production`.    
 5. Why are they different? **Answer**: Permissions; `staging` is refreshed from `production` periodically and is used for staging and final verification, so `staging` needs to be as close to `production` as possible to help eliminate surprises.
 6. What happens when the script fails to run? **Answer**: In `development` and `test`, the person who wrote the script ran the script, and they make the necessary adjustments and re-run it.  In `staging` and `production` the DBA notifies the requester of failure.  The requester debugs the script and makes the necessary tweaks.  They then ask the DBA to run the script again.
-7. Why do scripts typically fail? **Answer**: Failures happen because each environment has different delta scripts.  A schema change or migration script is missed.
+7. Why do scripts typically fail? **Answer**: Failures happen because each environment has different delta scripts. A schema change or migration script is missed.
 8. Who reviews the scripts and when? **Answer**: The database developer and lead developer review the changes prior to going to `staging`.   Because of the different delta scripts, the DBAs review the scripts prior to going to `staging` as well as `production`.
-9. Who needs to be involved with each deployment? **Answer**: Deployments to `development` and `test` only involve the person making the change.  Deployments to `staging` involve the requester, a database developer or lead developer, and the DBA.  Deployments to `production` need everyone.  That is because each environment has a unique delta script, and any issues require immediate fixing.
+9. Who needs to be involved with each deployment? **Answer**: Deployments to `development` and `test` only involve the person making the change.  Deployments to `staging` involve the requester, a database developer or lead developer, and the DBA.  Deployments to `production` need everyone because each environment has a unique delta script, and any issues require immediate fixing.
 10. What isn’t working, and what needs to change? **Answer**: See below.
 
 ## What needed to change
@@ -58,7 +58,7 @@ The astute reader will notice a recurring theme in those answers.
 
 - Two different processes.
 - Unique delta scripts per environment.
-- Unique delta scripts meant it was difficult or near impossible to test.
+- Unique delta scripts meant it was difficult or nearly impossible to test.
 - No mention of keeping track of changes and what needed to be deployed.
 - Shared development environment.
 - Reviews didn’t happen until it was time to go to `staging`.
@@ -76,7 +76,7 @@ Roughly 50% of the time, we had to do an emergency fix the next day due to a mis
 
 Drafting the ideal process took quite a bit of time.  This was caused by a lack of knowledge of what the tooling could provide.  At the time, we knew about source control, build servers, and Redgate tooling, but we were all unfamiliar with what deployment tooling could provide.  Thankfully, Redgate was there to help educate us.
 
-We first listed out the various tools and the functionality they provides.
+We first listed out the various tools and the functionality they provide.
 
 - Source control
     - It stores all the SQL scripts.
@@ -113,9 +113,9 @@ It was time to outline the ideal process.
 2. All database changes and code changes are made on that branch.
 3. Changes are completed and checked into the branch.
 4. A merge request is created, which kicks off a build. The build verifies the changes are valid SQL.
-5. The database developer or lead developer reviews database changes in the merge request and provide feedback for fixes.
+5. The database developer or lead developer reviews database changes in the merge request and provides feedback for fixes.
 6. The branch is approved and merged.
-7. The build server kicks off a build, verifies the changes are valid SQL, and if they are, packages them up and pushes to the deployment server. The build server tells deployment server to deploy to `development`.
+7. The build server kicks off a build, verifies the changes are valid SQL, and if they are, packages them and pushes to the deployment server. The build server tells the deployment server to deploy to `development`.
 8. The deployment server deploys to `development`.
 9. A developer/database developer/lead developer tells the deployment server to deploy to `test`.
 10. The deployment server deploys to `test`.
@@ -155,9 +155,9 @@ We didn’t have a deployment server, but after the Redgate folk explained the b
 
 ## Implementing the process
 
-Anyone who has worked for a large development shop knows there are multiple projects being juggled.  During our kick-off meeting, we didn’t know the web admins were looking at deployment servers at the same time.  They were focused on Release Management.  This was old school Release Management before VSTS/VSO/Azure DevOps moved it into release pipelines.  It was right after Microsoft purchased InRelease and re-skinned it to match Visual Studio.  
+Anyone who has worked for a large development shop knows there are always multiple projects being juggled.  During our kick-off meeting, we didn’t know the web admins were looking at deployment servers at the same time.  They were focused on Release Management.  This was old school Release Management before VSTS/VSO/Azure DevOps moved it into release pipelines.  It was right after Microsoft purchased InRelease and re-skinned it to match Visual Studio.  
 
-It didn’t make sense to pilot multiple deployment servers.  We were asked to pause our implementation so we could land on the deployment server to pilot.  After a few weeks, Octopus Deploy was chosen because it uses the same process across all environments.  The web admins were part of too many deployments that failed because something in the process wasn’t tested in `development` or `test` or `staging`.  
+It didn’t make sense to pilot multiple deployment servers.  We were asked to pause our implementation so we could land on the same deployment server to pilot.  After a few weeks, Octopus Deploy was chosen because it uses the same process across all environments.  The web admins were part of too many deployments that failed because something in the process wasn’t tested in `development`, `test`, or `staging`.  
 
 After we landed on the deployment server to pilot, it was off to the races.  The agreed-upon process was put into place, but we did run into a couple of hiccups we didn’t anticipate in the kick-off meeting.
 
@@ -178,11 +178,11 @@ Because of that, the amount of time we spent verifying started dropping.
 6. 5 minute deployment, 40 minute verification.
 7. 5 minute deployment, 30 minute verification.
 
-That, in turn, made us want to deploy more often.  Frequent deployments mean smaller changes.  Smaller changes meant less verification.  Less verification meant faster deployments.  Faster deployments meant we wanted to deploy more often.  The cycle continued until we got to 10 minute deployments.
+That, in turn, made us want to deploy more often.  Frequent deployments meant smaller changes.  Smaller changes meant less verification.  Less verification meant faster deployments.  Faster deployments meant we wanted to deploy more often.  The cycle continued until we got to 10 minute deployments.
 
 ## Early adopters and iterations
 
-A couple of other teams (out of 9 teams remaining) saw what we were doing, and they wanted in on the process and came on board as early adopters. Having three teams use the process identified pain points and what needed to improve:
+A couple of other teams (out of 9 teams remaining) saw what we were doing, and they came on board as early adopters. Having three teams use the process identified pain points and what needed to improve:
 
 - **Not deploying what was approved.** I wasn’t using the Redgate tooling correctly.  I used a command to generate a preview for approval.  Then I ignored that preview and used a different command to deploy the package directly.  1 out of every 30 deployments ended up having an unexpected change made.  With a bit of research, the correct commands were found and implemented.
 - **Saving the preview file to a file share.** I didn’t know Octopus had the ability to save files as artifacts.  Artifacts can be downloaded by the approver from Octopus.  That was preferred over finding the right file in the file share.  A small tweak to the script fixed that.
@@ -195,7 +195,7 @@ No process is 100% perfect from the start.  Expect to iterate multiple times.
 
 ## General adoption
 
-Eventually, the time came for general adoption.  I was very surprised by the push back, specifically from the database developers.  So much of their time was spent generating deployment scripts that they believed that was how they brought value to the team.  The fear was this process would automate them out of a job.  That wasn’t the case. The process was designed to eliminate all that wasted time generating and tweaking deployment scripts, which freed them up to focus on important things like database structure, performance, reviewing changes, and working on complex changes.  
+Eventually, the time came for general adoption.  I was very surprised by the push back, specifically from the database developers.  So much of their time was spent generating deployment scripts they believed that was how they brought value to the team.  The fear was this process would automate them out of a job.  That wasn’t the case. The process was designed to eliminate all that wasted time generating and tweaking deployment scripts, which freed them up to focus on important things like database structure, performance, reviewing changes, and working on complex changes.  
 
 Hindsight being what it is, I should have:
 

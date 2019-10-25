@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Automating database deployments was the final piece of the CI/CD puzzle I needed to go from deployments that took between 2 and 4 hours down to 10 minutes.  When I started automating database deployments, I tried to fit the tooling into the existing process, but that existing process was built over time to facilitate manual database deployments, which essentially meant getting the SQL files to the DBAs to run on Production.  I didn’t realize the entire process had to change, and a new process had to be designed around facilitating automated database deployments.
+Automating database deployments was the final piece of the CI/CD puzzle I needed to go from deployments that took between 2 and 4 hours down to 10 minutes.  When I started automating database deployments, I tried to fit the tooling into the existing process, but that existing process was built over time to facilitate manual database deployments, which essentially meant getting the SQL files to the DBAs to run on production.  I didn’t realize the entire process had to change, and a new process had to be designed around facilitating automated database deployments.
 
 In the next couple of articles, I walk you through designing an automated database deployment process.  In this article, I focus on core concepts.  If you want to skip ahead, here are the links to the other articles:
 
@@ -53,13 +53,13 @@ But you have to start somewhere.  Write down the existing process, so everyone i
 
 With those answers in hand, it’s time to start working on a rough draft of the ideal process.  When designing the process, stay away from specific tooling terminology.  Say `all database changes will be reviewed by a database developer during the merge process` instead of `all database changes will be reviewed by a database developer via a pull request prior to merging into master`.  At first blush, they look almost identical, but `pull request` and `master` are terms common to Git.
 
-Hopefully, by the end of the first day, you have a working draft of the process.  This is a pre-alpha draft, and it’s okay if there are holes in it.  
+Hopefully, by the end of the first day, you’ll have a working draft of the process.  This is a pre-alpha draft, and it’s okay if there are holes in it.  
 
 ## Kick-off meeting day 2
 
-The second day is about refining that process for the pilot team to implement.  Now that you have a rough idea of what you want to do, it’s time to research the tooling that’s out there.  Refine your process as you do your research.  It’s okay to add steps, remove steps, or move them around as you learn more.  
+The second day is about refining the process for the pilot team to implement.  Now that you have a rough idea of what you want to do, it’s time to research the tooling that’s out there.  Refine your process as you do your research.  It’s okay to add steps, remove steps, or move them around as you learn more.  
 
-When it comes to database deployment tooling, there are a lot of options.  For SQL Server, there is Redgate, DbUp, Apex, SQL Server Data Tools for Visual Studio (SSDT), RoundhousE, and Flyway to name a few.  It is very easy to get analysis paralysis, especially when doing a side by side comparisons.
+When it comes to database deployment tooling, there are a lot of options.  For SQL Server, there is Redgate, DbUp, Apex, SQL Server Data Tools for Visual Studio (SSDT), RoundhousE, and Flyway to name a few.  It is very easy to get analysis paralysis, especially when doing a side by side comparison.
 
 Using the ideal process, identify two or three critical features the tooling must-have.  Don’t forget to think about who will use the tooling in their day to day life because skill and comfort level could vary significantly.  For example, a DBA is more likely to be comfortable writing schema change SQL statements than a junior C# developer.  Leave features every tool supports off the list, for instance, it’s a given any tool can save to source control in some fashion, so there’s no need to include that.
 
@@ -69,7 +69,7 @@ Here are some questions to help tease out the requirements:
 2. Should it integrate with existing tools such as SQL Server Management Studio (SSMS) or Visual Studio?
 3. How are database changes detected and saved to source control?
 
-In some cases, a tool will meet 2 out of the 3 critical requirements.  If that tool is in consideration because it is free, it’s hard to argue against free.  There are some questions to consider when a free tool is considered but it only meets 2 out of 3 of the requirements vs. a paid tool that meets all 3.  
+In some cases, a tool will meet 2 out of the 3 critical requirements.  If that tool is in consideration because it is free, it’s hard to argue with free.  There are some questions to consider when a free tool is considered but it only meets 2 out of 3 of the requirements vs. a paid tool that meets all 3.  
 
 1. Will that missing feature slow down adoption?
 2. What can we do to augment the free tool to get to 2.5 out of 3 requirements?
@@ -95,7 +95,7 @@ When it comes time for other teams to implement the process, they can include si
 
 Don’t be surprised when you have to iterate on the process even more.  Every team and application is unique, and they might implement a database feature you haven’t come across.  
 
-## TL;DR;
+## TL;DR
 
 To summarize:
 

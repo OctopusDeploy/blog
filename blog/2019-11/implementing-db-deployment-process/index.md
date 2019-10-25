@@ -67,9 +67,9 @@ For the build a package process to work, the database has to be placed into sour
 One thing I should have done was resolve all the deltas between each environment.  Different users and role membership are expected.  Missing tables, different stored procedures, and other schema changes, not so much. After you’ve resolved those, pick an environment to put into source control as your baseline.
 
 The deltas need to be resolved one of three ways:
-- The change was missed, go ahead and apply it.
-- The change is intentional and should never be included in source control (backup table or testing table).  You can [leverage filters](https://www.codeaperture.io/2016/10/14/using-sql-source-control-to-filter-out-unwanted-items/) to exclude those items.
-- The difference is environmental, such as users and role membership.  In that case, you want to look at [the documentation](https://documentation.red-gate.com/sc13/using-the-command-line/options-used-in-the-command-line#Optionsusedinthecommandline-IgnorePermissions) to see which switches you need to include.  
+- If the change was simply missed, go ahead and apply it.
+- If the change is intentional and should never be included in source control (backup table or testing table), you can [leverage filters](https://www.codeaperture.io/2016/10/14/using-sql-source-control-to-filter-out-unwanted-items/) to exclude those items.
+- If the difference is environmental, such as users and role membership, you will need to look at [the documentation](https://documentation.red-gate.com/sc13/using-the-command-line/options-used-in-the-command-line#Optionsusedinthecommandline-IgnorePermissions) to see which switches you need to include.  
 
 Knowing that, my plan of attack was:
 
@@ -148,9 +148,9 @@ In my previous article, I discussed how Redgate helped a working group at the co
 2. All database changes and code changes are made on that branch.
 3. Changes are completed and checked into the branch.
 4. A merge request is created, which kicks off a build. The build verifies the changes are valid SQL.
-5. The database developer or lead developer reviews database changes in the merge request and provide feedback for fixes.
+5. The database developer or lead developer reviews database changes in the merge request and provides feedback for fixes.
 6. The branch is approved and merged.
-7. The build server kicks off a build, verifies the changes are valid SQL, and if they are, packages them up and pushes to the deployment server. The build server tells deployment server to deploy to `development`.
+7. The build server kicks off a build, verifies the changes are valid SQL, and if they are, packages them and pushes to the deployment server. The build server tells the deployment server to deploy to `development`.
 8. The deployment server deploys to `development`.
 9. A developer/database developer/lead developer tells the deployment server to deploy to `test`.
 10. The deployment server deploys to `test`.
@@ -192,7 +192,7 @@ What sealed the deal was the ability to control who could push the deployment bu
 
 ![](automated-database-deployment-v2-developer-permissions.png)
 
-While the DBAs could deploy to `production`, they didn’t have the right to change the deployment process., only developers could do that.
+While the DBAs could deploy to `production`, they didn’t have the right to change the deployment process, only developers could do that.
 
 ![](automated-database-deployment-v2-dba-permissions.png)
 
@@ -246,7 +246,7 @@ After those changes were in place, DBAs could leverage the `Deploy Later` functi
 
 After going through this process, deployments to `production` became a non-event.  The DBAs only had to jump online during `production` deployments when something failed, which became rarer and rarer, but it took several iterations to get there.
 
-What surprised me the most was how much everything changed from start to finish.  I’ll be honest; if I came across a customer with the final database deployment process, I’d have a lot of questions.  But it makes sense in the context of the company that implemented it.  It meets their requirements.  Don’t be surprised by the number of iterations you make and where you will eventually end up.  Every company is different.
+What surprised me the most was how much everything changed from start to finish.  I’ll be honest; if I came across a customer with that final database deployment process, I’d have a lot of questions.  But it makes sense in the context of the company that implemented it.  It meets their requirements.  Don’t be surprised by the number of iterations you make and where you will eventually end up.  Every company is different.
 
 Happy Deployments!
 
