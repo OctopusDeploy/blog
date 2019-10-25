@@ -3,12 +3,14 @@ title: Creating an EKS cluster with eksctl
 description: Creating EKS clusters is now a trivial task with eksctl. In this post, we’ll learn how to create a cluster and integrate it with Octopus.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-01-01
-metaImage:
-bannerImage:
+published: 2019-10-30
+metaImage: eksctl-kubernetes-clusters.png
+bannerImage: eksctl-kubernetes-clusters.png
 tags:
- - Engineering
+ - DevOps
 ---
+
+![Illustration showing an EKS Kubernetes cluster](eksctl-kubernetes-clusters.png)
 
 EKS is a managed Kubernetes service provided by AWS. At a high-level, EKS is comprised of two components: the managed EKS control plane and the worker nodes. The EKS control plane is a dedicated resource in AWS, having the CloudFormation type [AWS::EKS::Cluster](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-cluster.html). The worker nodes, on the other hand, are simply EC2 instances that are configured during deployment to join the Kubernetes cluster.
 
