@@ -10,8 +10,6 @@ tags:
  - Containers
 ---
 
-# Bootstrap a .NET Core development environment for Linux
-
 One of the things I truly appreciate about working at Octopus Deploy, is that I'm encouraged to work in the way that I choose, that maximizes my happiness and my productivity.
 
 Earlier this year I decided to make the switch to Linux for my day to day working environment - and I haven't regretted it. *nix operating systems have always been something that I preferred, but have never been able to settle on it at work for development.
@@ -142,7 +140,7 @@ A free alternative from Microsoft for working with MS SQL is the `Azure Data Stu
 
 ![Azure data studio](azure-data-std.png)
 
-# Vagrant boxes for isolated environments
+## Vagrant boxes for isolated environments
 
 Containers are great, but they [aren't quite as isolated](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm) as a virtual machine. For example, when I'm dealing with some un-trusted binaries during triage I'll use a machine separate from my main development environment. I like to use [vagrant](https://www.vagrantup.com/) to manage temporary VM lifetimes, it is almost as easy as using docker!
 
@@ -232,7 +230,7 @@ vagrant snapshot restore [vm_name] [snapshot-name]
 
 It is preferable to use official boxes if you can. While it is super convenient to use somebody elses box from the library, it also comes with an element of risk. What if they installed some crypto miner on it? 
 
-If you're stuck because of this risk, for a bit of extra work you can author your own images. I highly recommend taking a look [this great post by Matt Hodgkins](https://hodgkins.io/best-practices-with-packer-and-windows#best-practices) on using Hashicorp `packer` well to build your own images that you can then use in vagrant, without going crazy.
+If you're stuck because of this risk, for a bit of extra work you can author your own images. I highly recommend taking a look at [this great post by Matt Hodgkins](https://hodgkins.io/best-practices-with-packer-and-windows#best-practices) on using Hashicorp `packer` best practices to build your own images that you can then use in vagrant.
 
 ## Wrapping up
 
