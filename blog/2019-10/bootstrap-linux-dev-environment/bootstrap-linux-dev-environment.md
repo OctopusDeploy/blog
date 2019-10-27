@@ -173,25 +173,38 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
   
-  # Hook the provision event and run an inline shell script install your favourite tools here
+  
   config.vm.provision "shell", inline: <<-SHELL
-    echo "installing tools"
-    pacman -Syu \
+    echo "installing tools" # install your favorite tools here
+    pacman -Sy \
+      xorg-server \
       xorg-xinit \
+      ttf-liberation \
       i3 \
+      dmenu \
       firefox \
       sakura \
       git \
       vim \
-      open-vm-tools \
-      dotnet-runtime \
       dotnet-sdk \
       --noconfirm
 
-     # this block automatically starts i3
-     echo "if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-            exec startx
-          fi" >> /home/vagrant/.bash_profile
+    # this configures the window manager to start on login
+    XINITRC=/home/vagrant/.xinitrc
+    BASH_PROFILE=/home/vagrant/.bash_profile
+
+    if ! grep -q i3 $XINITRC; then
+      echo 'exec i3' >> $XINITRC
+    fi
+    if ! grep -q TERMINAL $BASH_PROFILE; then
+      echo 'export TERMINAL=sakura' >> $BASH_PROFILE
+    fi
+    if ! grep -q graphical.target $BASH_PROFILE; then
+      echo '
+      if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+        exec startx
+      fi' >> $BASH_PROFILE
+    fi
   SHELL
 end
 ```
