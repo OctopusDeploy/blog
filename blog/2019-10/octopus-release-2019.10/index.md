@@ -12,8 +12,6 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pBW_gypiS6w" frameborder="0" allowfullscreen></iframe>
 
-<h2>Tentacle for Linux, PowerShell Core, Operations Runbooks EAP and more</h2>
-
 We’re excited to launch **Octopus Deploy 2019.10**. This is a feature packed release with some great benefits. Headlining the release is Tentacle for Linux. This much requested feature provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without opening port 22. Tentacle for Linux and Linux deployments over SSH combined with scripting in Bash, PowerShell Core, or Python, and a first-class step to deploy your web apps and services to NGINX, make Octopus a great option for Linux deployments. 
 
 <h2>In this post</h2>
