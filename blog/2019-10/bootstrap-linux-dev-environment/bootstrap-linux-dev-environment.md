@@ -22,9 +22,9 @@ I'll discuss some of the options for .NET developers on Linux and show you how I
 
 ## Starting Database & Logging servers with containers
 
-Much like my colleague [Bob Walker](https://octopus.com/blog/automate-sql-server-install-using-linux-docker#docker-compose), I personally like to use `docker-compose` to speed up the process of dealing with dependencies like my SQL & Logging servers. What do I like the most about it? The setup for a database and log server is only around 20 lines of YAML!
+Much like my colleague [Bob Walker](https://octopus.com/blog/automate-sql-server-install-using-linux-docker#docker-compose), I personally like to use `docker-compose` to speed up the process of dealing with dependencies like my SQL & Logging servers. What do I like the most about it? The setup for a database and log server is less than 20 lines of YAML!
 
-For example, this lets me quickly spin up a SQL server, a great logging tool called [Seq](https://datalust.co/seq).
+For example, this lets me quickly spin up a SQL server and a logging tool we use in production, called [Seq](https://datalust.co/seq).
 
 ```yaml
 ---
@@ -60,14 +60,14 @@ ACCEPT_EULA=true
 MSSQL_PID=Developer
 ```
 
-To bring up the environment use `docker-compose up`, but you can leave your shell available afterwards with `-d`.
+To bring up the environment use `docker-compose up`. You can leave your shell available afterwards by supplying `-d`.
 
 ```bash
 docker-compose up -d
 docker stats        # show how the containers are operating (CTRL+C to exit)
 docker-compose down # stop the stack you've created
 ```
-Microsoft has a rather nice [VS Code extension](https://github.com/microsoft/vscode-docker) to give you that right click menu feeling!
+If you prefer, Microsoft has a rather nice [VS Code extension](https://github.com/microsoft/vscode-docker) to give you that right click menu feeling!
 
 ![docker-compose in vs code terminal](docker-compose.png)
 
@@ -85,15 +85,13 @@ There are a few great IDE options out there for .NET developers now!
 
 I personally love the `Jetbrains` [toolbox](https://www.jetbrains.com/toolbox-app/) for IDE and database tools. `Rider`, `Datagrip` and `Webstorm` are 'go to' tools for me on a daily basis. I also use `Clion` for learning about rust development in my spare time. One of the benefits I find is that they are each tailored to the style of development they represent, while maintaining a consistent keyboard shortcut scheme. 
 
-If I do need to use windows I can install them there too, and not have to re-learn any keystrokes.
+If I do need to use windows I can install them there too, and not have to re-learn any keystrokes. Rider has a great visual debugger and many comparable features to visual studio.
 
 ![rider debugging some tests on linux](rider-running-on-linux.png)
 
-_Rider has a great visual debugger and many comparable features to visual studio_
-
 I also love `VS Code` for tasks that don't need a debugger, like parsing logs, and writing blogs or documentation. 
 
-#### No. Vim or bust.
+#### No way. Vim or bust.
 
 Ok so, if you're in this camp, then you probably already know what you're doing! That said, I can confirm .NET productivity is possible (depending on the task) with a lofi toolbox. If you're interested in exploring this as an option, here are some tools to get you started.
 
@@ -106,9 +104,9 @@ Ok so, if you're in this camp, then you probably already know what you're doing!
 ![hardmode](tmux-vim-dotnet.gif)
 
 ### Source control
-For simple things I still stick to the command line, `zsh`  has a sweet plugin for just about everything, git included. 
+For simple things I still stick to the command line, `zsh` has a sweet plugin for [just about everything](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins), git included. 
 
-For dealing with complex trees [Gitkraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well and integrates with Github.
+For dealing with complex trees I think that [Gitkraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well and integrates with Github.
 
 ### Installing stuff from the command line
 I know many windows developers who swear by things like boxcutter and chocolatey to install their favorite tools. You can do the same on Linux.
@@ -140,22 +138,21 @@ Of course, MS SQL is not the only game in town on linux, far from it. However if
 
 I mentioned [Datagrip](https://www.jetbrains.com/datagrip/) and it is an awesome tool for working with a wide variety of databases, but I'm lucky in that Octopus pays the license for me.
 
-An alternative from Microsoft for working with MS SQL is the `Azure Data Studio`, and you can [find that here](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-ver15#get-azure-data-studio-for-linux). It provides a nice and simple experience for those not wanting to outlay money on heavier tools.
+A free alternative from Microsoft for working with MS SQL is the `Azure Data Studio`, and you can [find that here](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-ver15#get-azure-data-studio-for-linux). It provides a nice and simple experience for those not wanting to outlay money on heavier tools.
 
 ![Azure data studio](azure-data-std.png)
 
 # Vagrant boxes for isolated environments
 
-Containers are great, but they [aren't quite as isolated](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm) as a virtual machine. For example, when I'm dealing with some un-trusted binaries during a security exercise I'll use a machine separate from my main development environment. I like to use [vagrant](https://www.vagrantup.com/) so that I manage temporary VM lifetimes, almost as easily as you can with docker.
+Containers are great, but they [aren't quite as isolated](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm) as a virtual machine. For example, when I'm dealing with some un-trusted binaries during triage I'll use a machine separate from my main development environment. I like to use [vagrant](https://www.vagrantup.com/) to manage temporary VM lifetimes, it is almost as easy as using docker!
 
-Here is a boilerplate lightweight arch linux environment. Its got the bare basics, ready for tweaking and then destroying later.
+Here is a boilerplate lightweight arch linux environment. Its got the bare basics, ready for tweaking, using, and then destroying later.
 
-* i3 window manager (_really_ basic)
+* i3 - a _really_ basic window manager
+* sakura - a lightweight terminal emulator
 * firefox
-* sakura - lightweight terminal emulator
 * git
 * dotnet sdk
-* dotnet runtime
 * vim (swap this out for `code` if thats getting _too_ basic!)
 
 Just adjust the provisioning block to your liking and run `vagrant up` to build it.
