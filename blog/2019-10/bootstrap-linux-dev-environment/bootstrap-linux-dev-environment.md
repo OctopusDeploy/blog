@@ -12,15 +12,17 @@ tags:
 
 # Bootstrap a .NET Core development environment for Linux
 
-One of the things I truly appreciate about working at Octopus Deploy, is that I'm encouraged to work in the way that I want to maximize my happiness (and therefore my productivity) at work.
+One of the things I truly appreciate about working at Octopus Deploy, is that I'm encouraged to work in the way that I choose, that maximizes my happiness and my productivity.
 
-Microsoft.NET now has great cross platform support and .NET developers have the ability to do much of their development on Linux distributions or macOS. If you are unfamiliar with linux, it can be a daunting move. Where to begin? 
+Earlier this year I decided to make the switch to Linux for my day to day working environment - and I haven't regretted it. *nix operating systems have always been something that I preferred, but have never been able to settle on it at work for development.
+
+Microsoft .NET now has great cross platform support and .NET developers have the ability to do much of their development on Linux distributions or macOS. How can we get started? 
 
 I'll discuss some of the options for .NET developers on Linux and show you how I get my stack together with some scripts that I use regularly.
 
-## Starting Database & log servers with containers
+## Starting Database & Logging servers with containers
 
-Much like my colleague [Bob Walker](https://octopus.com/blog/automate-sql-server-install-using-linux-docker#docker-compose), I personally like to use `docker-compose` to speed up the process of dealing with these things. The thing I like the most about it? The setup for a database and log server is only around 20 lines of YAML!
+Much like my colleague [Bob Walker](https://octopus.com/blog/automate-sql-server-install-using-linux-docker#docker-compose), I personally like to use `docker-compose` to speed up the process of dealing with dependencies like my SQL & Logging servers. What do I like the most about it? The setup for a database and log server is only around 20 lines of YAML!
 
 For example, this lets me quickly spin up a SQL server, a great logging tool called [Seq](https://datalust.co/seq).
 
@@ -109,11 +111,11 @@ For simple things I still stick to the command line, `zsh`  has a sweet plugin f
 For dealing with complex trees [Gitkraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well and integrates with Github.
 
 ### Installing stuff from the command line
-I know many windows developers who swear by things like boxcutter and chocolatey to install their favourite tools. You can do the same on Linux.
+I know many windows developers who swear by things like boxcutter and chocolatey to install their favorite tools. You can do the same on Linux.
 
-Most distros come with their own package manager for installing tools, each with unique command interface. There is a 'cross-distro' option though, and that is [snapd](https://snapcraft.io)
+Most distributions come with their own package manager for installing tools, each with unique command interface. There is an (almost) 'cross-distribution' option though, and that is [snapd](https://snapcraft.io)
 
-On Ubuntu and other distros that support it, you can use snapd to try these tools out, and if you don't like them, they'll uninstall cleanly.
+On Ubuntu and other distributions that support it, you can use `snapd` to try these tools out, and if you don't like them, they'll uninstall cleanly.
 
 ```bash
 sudo snap install --classic code
@@ -136,29 +138,25 @@ Snap is pretty neat, it comes with some [interesting security features](https://
 
 Of course, MS SQL is not the only game in town on linux, far from it. However if you're like me and your 'hometown' is MSSQL, then you'll be happy to know there are some industrial strength options for working with it. 
 
-I mentioned [Datagrip](https://www.jetbrains.com/datagrip/) and it is truly an awesome tool for working with a wide variety of databases, but I'm lucky in that Octopus pays the license for me. 
+I mentioned [Datagrip](https://www.jetbrains.com/datagrip/) and it is an awesome tool for working with a wide variety of databases, but I'm lucky in that Octopus pays the license for me.
 
-An alternative from Microsoft for working with MS SQL is the `Azure Data Studio`, and you can [find that here](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-ver15#get-azure-data-studio-for-linux).
+An alternative from Microsoft for working with MS SQL is the `Azure Data Studio`, and you can [find that here](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-ver15#get-azure-data-studio-for-linux). It provides a nice and simple experience for those not wanting to outlay money on heavier tools.
 
 ![Azure data studio](azure-data-std.png)
 
-_Azure Data Studio provides a nice and simple experience for those not wanting to outlay money on heavier tools_
-
-
 # Vagrant boxes for isolated environments
 
-Containers are great, but they [aren't quite as isolated](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm) as a virtual machine. For example, when I'm dealing with some untrusted binaries during a security exercise I'll use a machine separate from my main development enviroment. I like to use [vagrant](https://www.vagrantup.com/) so that I manage temporary VM lifetimes, almost as easily as you can with docker.
+Containers are great, but they [aren't quite as isolated](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm) as a virtual machine. For example, when I'm dealing with some un-trusted binaries during a security exercise I'll use a machine separate from my main development environment. I like to use [vagrant](https://www.vagrantup.com/) so that I manage temporary VM lifetimes, almost as easily as you can with docker.
 
 Here is a boilerplate lightweight arch linux environment. Its got the bare basics, ready for tweaking and then destroying later.
 
 * i3 window manager (_really_ basic)
 * firefox
-* a terminal emulator - sakura
+* sakura - lightweight terminal emulator
 * git
-* gcc
 * dotnet sdk
 * dotnet runtime
-* vim
+* vim (swap this out for `code` if thats getting _too_ basic!)
 
 Just adjust the provisioning block to your liking and run `vagrant up` to build it.
 
@@ -183,8 +181,6 @@ Vagrant.configure("2") do |config|
       i3 \
       firefox \
       sakura \
-      nodejs \
-      gcc \
       git \
       vim \
       open-vm-tools \
