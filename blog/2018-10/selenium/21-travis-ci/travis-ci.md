@@ -12,7 +12,7 @@ tags:
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-Now that we have our code in a public GitHub repository,  we can link it with Travis CI to allow check-ins to trigger the building and testing of our code.
+Now that we have our code in a public GitHub repository,  we can link it with Travis CI to allow check-ins to trigger building and testing of our code.
 
 Start by opening [https://travis-ci.com/](https://travis-ci.com/) and clicking the `Sign in with GitHub` button.
 
@@ -22,11 +22,11 @@ GitHub will ask you to authorize Travis CI. Click the `Authorize travis-pro` but
 
 ![](image2.png "width=500")
 
-You will have to reenter your GitHub password and click the `Confirm password` button.
+You will have to re-enter your GitHub password and click the `Confirm password` button.
 
 ![](image3.png "width=500")
 
-After a few seconds you will be taken to a screen where you can active the GitHub integration. Click the `Active` button.
+After a few seconds, you will be taken to a screen where you can active the GitHub integration. Click the `Active` button.
 
 ![](image4.png "width=500")
 
@@ -34,11 +34,11 @@ Select the `All repositories` option, and click the `Approve & Install` button.
 
 ![](image5.png "width=500")
 
-After a few seconds you will see the public GitHub repository created earlier.
+After a few seconds, you will see the public GitHub repository created earlier.
 
 ![](image6.png "width=500")
 
-Click on the repository to be take to the list of builds. This list will be empty, because we have not added the required configuration file to the repository to allow Travis CI to build it. However we have now successfully linked Travis CI and GitHub together, which means that Travis CI will monitor the GitHub repository for changes. This is the first step in creating the Continuous Integration pipeline.
+Click on the repository to be take to the list of builds. This list will be empty because we have not added the required configuration file to the repository to allow Travis CI to build it. However, we have now successfully linked Travis CI and GitHub together, which means that Travis CI will monitor the GitHub repository for changes. This is the first step in creating the Continuous Integration pipeline.
 
 ![](image7.png "width=500")
 
@@ -49,7 +49,7 @@ The `.travis.yml` file is a configuration file that Travis CI looks for in any r
 Travis CI performs the builds on either a Linux or MacOS instance. We'll use Linux to do the builds, as Linux has a number useful tools we can take advantage of for our tests.
 
 :::hint
-Windows support is coming, but not available yet. See
+Windows support is coming but is not available yet. See
 [https://github.com/travis-ci/travis-ci/issues/2104](https://github.com/travis-ci/travis-ci/issues/2104) for more information on Windows support in Travis CI.
 :::
 
@@ -82,7 +82,7 @@ before_install:
 
 Now let's break this file down.
 
-The `sudo` option is used to indicate that the build should be done in an environment where the `sudo` command can be run or not. By setting this option to `required`, we have indicated that we need to have the ability to run the `sudo` command, which means that Travis CI will run this build inside a virtual machine. If we had set this option to `false`, Travis CI would have created a container to run the build.
+The `sudo` option is used to indicate whether the build should be done in an environment where the `sudo` command can be run. By setting this option to `required`, we have indicated that we need to have the ability to run the `sudo` command, which means that Travis CI will run this build inside a virtual machine. If we had set this option to `false`, Travis CI would have created a container to run the build.
 
 Containers are faster than virtual machines, but because we need to install some additional software into the build environment to support running WebDriver tests, we have to use the virtual machine option:
 
@@ -96,7 +96,7 @@ The `dist` option configures the version of Ubuntu that our build will be run fr
 dist: trusty
 ```
 
-The `language` option defines the programming language of the code in the repository. We are writing out code in Java, so we set this option to `java`:
+The `language` option defines the programming language of the code in the repository. We are writing our code in Java, so we set this option to `java`:
 
 ```yaml
 language: java
@@ -127,15 +127,15 @@ The `before_install` option provides us with the ability to run raw scripting co
 before_install:
 ```
 
-The `apt-get` command is how packages are installed in Ubuntu. Most Linux distributions maintain huge libraries of software that can be installed with package managers, and Ubuntu is no exception. The ability to download, install and update software with a single command like this is one of the reasons why Linux is so popular with developers.
+The `apt-get` command is how packages are installed in Ubuntu. Most Linux distributions maintain huge libraries of software that can be installed with package managers, and Ubuntu is no exception. The ability to download, install, and update software with a single command like this is one of the reasons Linux is so popular with developers.
 
-Before we install any additional packages, we use the `update` command to refresh the list of available packages. This ensures that we install the latest versions of any applications when we call `apt-get` later on:
+Before we install any additional packages, we use the `update` command to refresh the list of available packages. This ensures we install the latest versions of any applications when we call `apt-get` later on:
 
 ```yaml
 - sudo apt-get update
 ```
 
-When running Firefox from a Travis CI environment, a number of warnings like `(firefox:9067): GConf-WARNING **: Client failed to connect to the D-BUS daemon: are added to the log file.` These can be ignored, but are annoying. The solution, as indicated in the issue [https://github.com/travis-ci/travis-ci/issues/8520,](https://github.com/travis-ci/travis-ci/issues/8520) is to install the `dbus-x11` package:
+When running Firefox from a Travis CI environment, a number of warnings like `(firefox:9067): GConf-WARNING **: Client failed to connect to the D-BUS daemon` are added to the log file. These can be ignored, but they are annoying. The solution, as indicated in the issue [https://github.com/travis-ci/travis-ci/issues/8520,](https://github.com/travis-ci/travis-ci/issues/8520) is to install the `dbus-x11` package:
 
 ```yaml
 - sudo apt-get install dbus-x11
@@ -143,7 +143,7 @@ When running Firefox from a Travis CI environment, a number of warnings like `(f
 
 The next two commands configure and start Xvfb.
 
-In previous posts we talked about how some systems are headless, which simply means that they do not have a monitor attached to them. The build environments used by Travis CI are an example of headless environments.
+In previous posts, we talked about how some systems are headless, which simply means that they do not have a monitor attached to them. The build environments used by Travis CI are an example of headless environments.
 
 However, there are situations, like running automated tests against web browsers, when it is useful to have an environment that can run desktop applications, even without a monitor. Xvfb, which is short for X Virtual Frame Buffer, allows such desktop applications to run in headless environments. Xvfb creates a virtual monitor in memory, and desktop applications "draw" themselves to this virtual monitor.
 
@@ -171,7 +171,7 @@ Exporting the `CHROME_BIN` environment variable ensures that the Chrome binary d
 - export CHROME_BIN=/usr/bin/google-chrome
 ```
 
-These two commands commands install some dependencies required by Chrome:
+These two commands install some dependencies required by Chrome:
 
 ```yaml
 - sudo apt-get install -y libappindicator1 fonts-liberation
@@ -212,15 +212,15 @@ Populate the `.travis.yml` file and save the changes.
 
 We need to push, or check-in, the changes to the remote repository. To do this right click on the project root directory and select {{Git,Commit Directory}}.
 
-Enter a Commit Message, click the drop down arrow next to the `Commit` button, and click `Commit and Push`.
+Enter a Commit Message, click the drop-down arrow next to the `Commit` button, and click `Commit and Push`.
 
 ![](image10.png "width=500")
 
-Click the Push button to check the changes into the remote repository.
+Click the `Push` button to check the changes into the remote repository.
 
 ![](image11.png "width=500")
 
-Once the push has completed the new file will be shown in the GitHub repository.
+After the push has completed the new file will be shown in the GitHub repository.
 
 ![](image12.png "width=500")
 
@@ -256,7 +256,7 @@ browserStackEdgeTest(academy.learnprogramming.FormTest): Invalid username or pas
 Tests run: 19, Failures: 0, Errors: 2, Skipped: 1
 ```
 
-These tests failed because the BrowserStack tests require that the username and password be stored in environment variables. Fortunately Travis CI provides an easy way to define environment variables for a build.
+These tests failed because the BrowserStack tests require that the username and password be stored in environment variables. Fortunately, Travis CI provides an easy way to define environment variables for a build.
 
 Click the `More Options` menu, and select the `Settings` option.
 
