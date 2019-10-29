@@ -46,14 +46,14 @@ Travis CI and GitHub are now linked together, and the repository holding our Jav
 
 The `.travis.yml` file is a configuration file that Travis CI looks for in any repository it is motoring. This file contains the configuration required for Travis CI to build the code and run the tests.
 
-Travis CI performs the builds on either a Linux or MacOS instance. We'll use Linux to do the builds, as Linux has a number useful tools we can take advantage of for our tests.
+Travis CI performs the builds on either a Linux or MacOS instance. We’ll use Linux to do the builds, as Linux has a number useful tools we can take advantage of for our tests.
 
 :::hint
 Windows support is coming but is not available yet. See
 [https://github.com/travis-ci/travis-ci/issues/2104](https://github.com/travis-ci/travis-ci/issues/2104) for more information on Windows support in Travis CI.
 :::
 
-Let's take a look at the complete `.travis.yml` file:
+Let’s take a look at the complete `.travis.yml` file:
 
 ```yaml
 sudo: required
@@ -80,7 +80,7 @@ before_install:
 - sudo cp geckodriver /usr/bin
 ```
 
-Now let's break this file down.
+Now let’s break this file down.
 
 The `sudo` option is used to indicate whether the build should be done in an environment where the `sudo` command can be run. By setting this option to `required`, we have indicated that we need to have the ability to run the `sudo` command, which means that Travis CI will run this build inside a virtual machine. If we had set this option to `false`, Travis CI would have created a container to run the build.
 
@@ -151,7 +151,7 @@ However, there are situations, like running automated tests against web browsers
 The X in Xvfb comes from the name X Window System, which is the windowing system used by the versions of Linux that can be run in Travis CI.
 :::
 
-By using Xvfb we can test browsers that don't have native support for running in headless environments, or run older versions of browsers like Chrome and Firefox that only recently gained native headless support.
+By using Xvfb we can test browsers that don’t have native support for running in headless environments, or run older versions of browsers like Chrome and Firefox that only recently gained native headless support.
 
 Exporting the `DISPLAY` environment variable configures applications to draw themselves to screen `99`, which is the screen that Xvfb provides by default:
 
@@ -282,7 +282,7 @@ GLib-GObject-CRITICAL **: g_object_ref: assertion 'object-&gt;ref_count &gt; 0' 
 
 ![](image18.png "width=500")
 
-These can be ignored, as they don't affect the outcome of the tests.
+These can be ignored, as they don’t affect the outcome of the tests.
 
 We have now successfully checked-in code to a central Git repository hosted in GitHub, and Travis CI has detected the new code and automatically built it and run all the tests. This is the central idea to continuous integration, and it means that every time new code is checked-in it is automatically validated by our tests.
 

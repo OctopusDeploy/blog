@@ -36,7 +36,7 @@ After you click the link, you can create a new Git repository by clicking the `S
 
 ![](image5.png "width=500")
 
-Give your repository a name (I've used the name `WebDriver` here), select the `Public` option, and click the `Create repository` button.
+Give your repository a name (I’ve used the name `WebDriver` here), select the `Public` option, and click the `Create repository` button.
 
 It is important that we create a public repository because both GitHub and Travis CI offer free plans for public repositories. This means we can create a CI pipeline at no cost.
 
