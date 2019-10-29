@@ -1,5 +1,5 @@
 ---
-title: Including dynamic infrastructure during deployments
+title: Deploying to dynamically provisioned infrastructure
 description: How to dynamically include new infrastructure during a deployment
 author: shawn.sesna@octopus.com
 visibility: private
