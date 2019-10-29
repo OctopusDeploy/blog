@@ -19,36 +19,62 @@ All of our database deployment posts can be found [here](https://octopus.com/dat
 
 !toc
 
-## Forming the working group
+## Quick overview on designing a database deployment process
+
+This article is the story version of this process.
+
+- Create a small team or work group to define the process.  Include representatives from each stage of deployment (developers, DBAs, etc.).  The work group should be no more than 4 to 6 people.
+- Identify the pilot team or application to include in the work group.
+- Kick off the work group with a 1 to 2 day meeting.
+    - Write down the existing process, identify key people, pain points, and what needs to change.
+    - Draft the ideal deployment process.
+    - Research the tooling.
+    - By the end of kick-off, the pilot team should know what needs to be implemented and what tools to use.
+- The pilot team implements the new process.
+    - Deploy all the way to production.
+    - Iterate on the process.
+    - After the process has been successful for a period of time, see if anyone would like to be an early adopter.
+    - Iterate on the process with early adopter teams.
+- General adoption.
+    - Focus on building trust with the process.
+    - Roll out to multiple teams.
+    - Iterate when pain points are found.
+
+## Forming the work group
 
 One of the DBAs in the company summed it up best when they said, “Our database deployment process is the wild west.”  We had more developers joining the company every month, new teams were constantly forming, more code was being deployed every day, and the issues with database deployments had to stop.  
 
-It was time to form a working group.
+It was time to form a work group.
 
-The DBAs and database architect all liked using Redgate’s tooling, so they reached out to Redgate for help.  They identified the DBA who would represent them at the working group, and after Redgate agreed to help and fly two people out to meet with the working group for two days, my team was identified as the pilot team.
+The DBAs and database architect all liked using Redgate’s tooling, so they reached out to Redgate for help.  Redgate agreed to help out in exchange for a case study.  They would fly out two people to meet with our work group for a couple of days.  As I write this, I am 99% sure they don't do that all the time.  We might have caught them at the right moment in time.  
 
-Being naive, I expected Redgate to help us implement their tooling within our existing process, so I set about doing that. However, the working group threw away about 75% of my work. That wasn’t a big deal; it was a good learning experience as it gave me a better fundamental understanding of how database deployment tools work, which helped me contribute to the kick-off meeting.
+The DBAs identified the DBA who would represent them at the work group.  The final decision was the pilot team.  This is when I get involved, as it was my team selected as the pilot team. a
+
+Being naive, I expected Redgate to help us implement their tooling within our existing process, so I set about doing that. However, the work group threw away about 75% of my work. That wasn’t a big deal; it was a good learning experience as it gave me a better fundamental understanding of how database deployment tools work, which helped me contribute to the kick-off meeting.
 
 ### Kick-off meeting
 
-The database developer from my team, a DBA, a database architect, two Redgaters, and I met for two days.  The first day was focused on designing our ideal process.  First, we walked through the existing process, which looked like this:
+The database developer from my team, a DBA, a database architect, two Redgaters, and I met for two days.  The first day was focused on designing our ideal process.  The end goal was to have a process to deploy to `development`->`test`->`staging`->`production`.
 
-1. A developer makes a change in `development`.  All developers have sysadmin rights in `development`.
-2. The developer changes the connection in SSMS and makes a change to `test`.  All developers have sysadmin rights in `test`.
-3. The database developer or lead developer runs Redgate Schema Compare to generate a delta script for `test` and `staging`.  Any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs have read-only rights for `staging`, so DBAs have to run the scripts.
+First, we walked through the existing process, which looked like this:
+
+1. A developer makes a change in `test`.  All developers have sysadmin rights in `test`.  They should make the change in `development` but `test` has all the data to verify the change with.  That is the server their code is pointed to.
+2. The developer changes the connection in SSMS and makes a change to `development`.  All developers have sysadmin rights in `development`.
+3. The database developer or lead developer runs [Redgate SQL Compare](https://www.red-gate.com/products/sql-development/sql-compare/) to generate a delta script between `test` and `staging`.  Any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs have read-only rights for `staging`.  The DBAs have to run the scripts.
 4. DBAs are notified via email to run scripts in the shared folder on `staging`.  They run the scripts and send the output to the requester.
-5. Multiple changes can be pushed to `staging` prior to going to `production`.  Because of that, a new Redgate Schema Compare delta script between `staging` and `production` is generated by the database developer or lead developer.  Just like before, any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs have read-only rights for `production`.
+5. Multiple changes can be pushed to `staging` prior to going to `production`.  Because of that, a new Redgate SQL Compare delta script between `staging` and `production` is generated by the database developer or lead developer.  Just like before, any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs have read-only rights for `production`.
+6. DBAs are notified via a change request to run a set of scripts in `production`.  They run the scripts, save the results to the change request system, which emails the requester.
 
 We tackled these questions next.
 
 1. Who are the people involved in the process? **Answer**: Developers, database developer, lead developer, and DBAs.
 2. What permissions do they have? **Answer**: Developers, database developers, and lead developers all have sysadmin rights for `development` and `test`.  DBAs have sysadmin rights for `development`, `test`, `staging`, and `production`.
-3. Why are they involved? **Answer**: Developers, lead developers, and database developers make the changes to `development` and `test`.  Database developers and lead developers create the delta scripts using Redgate Schema Compare.  DBAs deploy the delta scripts to `staging` and `production`.
-4. Which environments have different processes? **Answer**: There are two processes, one for deployments to `development` and `test`, and another for deployments to `staging` and `production`.    
-5. Why are they different? **Answer**: Permissions; `staging` is refreshed from `production` periodically and is used for staging and final verification, so `staging` needs to be as close to `production` as possible to help eliminate surprises.
+3. Why are they involved? **Answer**: Developers, lead developers, and database developers make the changes to `development` and `test`.  Database developers and lead developers create the delta scripts using Redgate SQL Compare.  DBAs deploy the delta scripts to `staging` and `production`.
+4. Which environments have different processes? **Answer**: There are three processes, one for deployments to `development` and `test`, while `staging` and `production` have similar but slightly different process.  `Production` involves a change request system.    
+5. Why are they different? **Answer**: Permissions and auditing; `staging` is refreshed from `production` periodically and is used for staging and final verification, so `staging` needs to be as close to `production` as possible to help eliminate surprises.  Any change to `production` requires a change request because that is what the auditors check.
 6. What happens when the script fails to run? **Answer**: In `development` and `test`, the person who wrote the script ran the script, and they make the necessary adjustments and re-run it.  In `staging` and `production` the DBA notifies the requester of failure.  The requester debugs the script and makes the necessary tweaks.  They then ask the DBA to run the script again.
 7. Why do scripts typically fail? **Answer**: Failures happen because each environment has different delta scripts. A schema change or migration script is missed.
-8. Who reviews the scripts and when? **Answer**: The database developer and lead developer review the changes prior to going to `staging`.   Because of the different delta scripts, the DBAs review the scripts prior to going to `staging` as well as `production`.
+8. Who reviews the scripts and when? **Answer**: The database developer or lead developer review the changes prior to going to `staging`.  Because of the different delta scripts, the DBAs review the scripts prior to going to `staging` as well as `production`.
 9. Who needs to be involved with each deployment? **Answer**: Deployments to `development` and `test` only involve the person making the change.  Deployments to `staging` involve the requester, a database developer or lead developer, and the DBA.  Deployments to `production` need everyone because each environment has a unique delta script, and any issues require immediate fixing.
 10. What isn’t working, and what needs to change? **Answer**: See below.
 
@@ -56,20 +82,22 @@ We tackled these questions next.
 
 The astute reader will notice a recurring theme in those answers.  
 
-- Two different processes.
+- Three different processes.
 - Unique delta scripts per environment.
 - Unique delta scripts meant it was difficult or nearly impossible to test.
-- No mention of keeping track of changes and what needed to be deployed.
 - Shared development environment.
 - Reviews didn’t happen until it was time to go to `staging`.
 - “All hands on deck” during `production` deployments.
+- No history of who made what changes, when they were made, and why they were made.
+- Changes were manually tracked via a document.  
+- No auditing in `development`, `test` or `staging`.  A little bit of auditing for `production`.  
 
 The application my team was responsible for had 700 tables.  All database access was done via stored procedures, including CRUD operations.  The database had roughly 5000 objects (tables, stored procedures, functions, etc.).  All development was done on the same database.  When we did a release, some changes were pushed, while other changes were excluded.  We kept track of which changes to include on a piece of paper.  This wasn’t 20 years ago; this was happening in 2014.
 
-Those issues resulted in 2 to 4 hour `production` deployments, and we didn’t trust the process, which led to an intensive verification process.  The actual deployment could be done in 20 minutes, and the remaining 100 minutes were spent verifying the deployment.  This included QA, the business owner, business analyst, developers, lead developer, and a manager running various scenarios.  Even with all that effort, we still missed some random thing that only 0.5% of our users would encounter.  
+Those issues resulted in 2 to 4 hour `production` deployments, and we didn’t trust the process, which led to an intensive verification process.  The actual deployment could be done in 30 minutes, and the remaining 90 minutes were spent verifying the deployment.  This included QA, the business owner, business analyst, developers, lead developer, and a manager running various scenarios.  Even with all that effort, we still missed some random thing that only 0.5% of our users would encounter.  
 
 ```
-Roughly 50% of the time, we had to do an emergency fix the next day due to a missed schema change.
+Roughly 60% of the time, we had to do an emergency fix the next day due to a missed schema change.
 ```
 
 ## Draft of the ideal process
@@ -85,21 +113,21 @@ We first listed out the various tools and the functionality they provide.
     - It provides the ability to review changes prior to merging.
 - Database tooling
     - It provides a way to run scripts stored in source control on the destination database.
-    - Includes some sort of *preview* functionality to generate a review script.
+    - Includes some sort of *preview* functionality which can generate a file for people to review during deployments.  The file could be the actual delta script or an HTML file summarizing the changes.  
 - Build server
     - Takes SQL scripts from source control and packages them.
     - It pushes packages to the deployment server.
-    - It can monitor multiple branches.
+    - It can monitor multiple branches and build for each branch.
 - Deployment tool
     - Invokes database tooling to deploy database changes.
-    - Uses database tooling to create a review script.
+    - Uses database tooling *preview* functionality to create a file to be reviewed during deployments.
     - It provides auditing and approvals.
     - Used to deploy to all environments.
     - Has security features to allow for scenarios such as only allowing DBAs to deploy to `production`.
 
 With the tooling responsibilities out of the way, we spent a great deal of time discussing a shared database model vs. a dedicated database model.  A dedicated database model means each developer runs the database server on their own machine. Using a shared database model, we found:
 
-- Database changes were made, which stopped developers and QA from proceeding until code was updated.
+- Database changes were made, with code changes taking an hour to several days to use the new database change.  Some of the time that stopped other developers and QA from using a specific feature or area in the application.
 - There were two truth centers, source control and the shared database which all changes were made to and then saved to source control.  If there was a conflict between source control and the shared database, which won?
 - We were unable to leverage branches effectively.  There can be 1 to N branches, but only one database.  
 - Changes were made to a central database prior to review, but when should the review occur?
@@ -120,30 +148,29 @@ It was time to outline the ideal process.
 9. A developer/database developer/lead developer tells the deployment server to deploy to `test`.
 10. The deployment server deploys to `test`.
 11. Changes are verified in `test`.
-12. A developer/database developer/lead developer tells the deployment server to deploy to `staging`. The deployment server uses database tooling to generate the review script.
+12. A developer/database developer/lead developer tells the deployment server to deploy to `staging`. The deployment server uses database tooling to generate the review file for the DBA to use for approval.
 13. The deployment server notifies the DBA of the deployment request to `staging`.  They review the changes and provide feedback for fixes.
 14. DBAs approve changes to `staging`.
 15. The deployment server finishes deployment to `staging`.
-16. Changes are verified in `staging`.  
+16. Changes are verified in `staging` by the developer/database developer/lead developer.  
 17. A change request is submitted to the DBAs to promote a specific package in the deployment server to `production`.
-18. After hours, DBAs tell the deployment server to deploy to `production`.  The deployment server uses database tooling to generate the review script.
-19. DBAs review the script as a final sanity check.
+18. After hours, DBAs tell the deployment server to deploy to `production`.  The deployment server uses database tooling to generate the review file for the DBA to review.
+19. DBAs review the file as a final sanity check.
 20. The deployment server finishes deployment to `production`.
+21. The team responsible for the application verifies the changes in `production`.  
 
 ## Tooling
 
-When coming up with that process, we purposely avoided tooling.  Only after we had a draft of the process did we start looking at the tooling.  First up was the tooling already being used:
+When coming up with that process, we purposely avoided tooling.  Tooling wasn't discussed until after we had a draft of the process.  First up was the tooling already being used:
 
-- Build server: TFS 2012 with some teams trying TeamCity.
-- Source control: The teams using TeamCity were using Git.  Everyone else was using TFS.
-- Database deployments: Teams had tried SSDT and RoundhousE in the past and failed. The team I was on had a working prototype with Redgate.
+- Build server: Team City was being piloted as a replacement for TFS 2012.
+- Source control: Teams piloting Team City had moved to Git.
+- Database deployments: Redgate's SQL Change Automation (as it was name at the time).  
 - Deployment server: None, although at the time, I thought the build server = deployment server.
 
-TFS 2012 was on its way out, so it didn’t make sense to continue using it. Redgate told us their tooling works with any build server, so we opted to leverage TeamCity for the pilot.  
+TFS 2012 was on its way out, so it didn’t make sense to continue using it. My team was part of the group who switched over to Git and Team City.   
 
-Because we decided to use TeamCity, we also decided to use Git.  In our case, our Git repo was stored in VSTS.  This was before VSTS had build or release pipelines.  
-
-Redgate had flown out to help us.  We had a prototype working.  We discussed SSDT and RoundhousE, but they failed for roughly the same reason.  95% of the people making the database changes did so in SQL Server Management Studio, and too many people forgot to migrate those changes over to SSDT or RoundhousE.  Our discussion, along with the process we designed, led to the following key requirements of the tooling:  
+Redgate had flown out to help us.  We had a prototype working with their tooling.  We discussed SSDT and RoundhousE, but they failed for roughly the same reason.  95% of the people making the database changes did so in SQL Server Management Studio, and too many people forgot to migrate those changes over to SSDT or RoundhousE.  Our discussion, along with the process we designed, led to the following key requirements of the tooling:  
 
 1. Can save database changes from SSMS.
 2. Automatic detection of database changes.  
@@ -155,14 +182,12 @@ We didn’t have a deployment server, but after the Redgate folk explained the b
 
 ## Implementing the process
 
-Anyone who has worked for a large development shop knows there are always multiple projects being juggled.  During our kick-off meeting, we didn’t know the web admins were looking at deployment servers at the same time.  They were focused on Release Management.  This was old school Release Management before VSTS/VSO/Azure DevOps moved it into release pipelines.  It was right after Microsoft purchased InRelease and re-skinned it to match Visual Studio.  
-
-It didn’t make sense to pilot multiple deployment servers.  We were asked to pause our implementation so we could land on the same deployment server to pilot.  After a few weeks, Octopus Deploy was chosen because it uses the same process across all environments.  The web admins were part of too many deployments that failed because something in the process wasn’t tested in `development`, `test`, or `staging`.  
-
-After we landed on the deployment server to pilot, it was off to the races.  The agreed-upon process was put into place, but we did run into a couple of hiccups we didn’t anticipate in the kick-off meeting.
+The agreed-upon process was put into place using the tooling.  Getting it going in `development` and `staging` took very little time.  We did run into a couple of hiccups we didn’t anticipate in the kick-off meeting.
 
 - Permissions: What can the automated process do vs. what can’t it do.  We landed on preventing the process from creating new users and adding them to roles.  This way, someone couldn’t give themselves db_owner permissions in `production`.
 - Resolving the delta between all environments: There were schema changes in `production` not on `development`.  The first time we tried to run the process in `production`, we almost wiped them out.  We quickly added that change into source control, rebuilt the package, and pushed it through the environments to `production`.  
+
+After resolving those minor hiccups we were able to get the process deploying to `staging` and `production`.  
 
 ## Speeding up deployments
 
@@ -175,10 +200,10 @@ Because of that, the amount of time we spent verifying started dropping.
 3. 20 minute deployment, 70 minute verification.
 4. 15 minute deployment, 60 minute verification.
 5. 10 minute deployment, 50 minute verification.
-6. 5 minute deployment, 40 minute verification.
-7. 5 minute deployment, 30 minute verification.
+6. 5-8 minute deployment, 40 minute verification.
+7. 5-8 minute deployment, 30 minute verification.
 
-That, in turn, made us want to deploy more often.  Frequent deployments meant smaller changes.  Smaller changes meant less verification.  Less verification meant faster deployments.  Faster deployments meant we wanted to deploy more often.  The cycle continued until we got to 10 minute deployments.
+That, in turn, made us want to deploy more often.  Frequent deployments meant smaller changes.  Smaller changes meant less verification.  Less verification meant faster deployments.  Faster deployments meant we wanted to deploy more often.  The cycle continued until verifications took 5-8 minutes as well.
 
 ## Early adopters and iterations
 
@@ -207,10 +232,10 @@ But I didn’t do that.  I combined all of that into one big meeting.  Live and 
 
 ## Conclusion
 
-It took a lot of effort and time to automate database deployments.  In the end, it was worth it.  Deployments to `production` became a non-event.  The last `production` deployment I did with that company involved myself, the business owner, and my manager.  We were online for 30 minutes. 25 of those minutes were spent telling funny stories and bad jokes.  The deployment went through with minimal fuss.  
+We had to change quite a bit to automate database deployments.  In the end, it was worth it.  Deployments to `production` became a non-event.  The last `production` deployment I did with that company involved myself, the business owner, and my manager.  We were online for 30 minutes. 25 of those minutes were spent telling funny stories and bad jokes.  The deployment went through with minimal fuss.  
 
 In this article, I focused on what we did to automate database deployments.  I didn’t focus on what we actually did.  The next article focuses on that.  
 
 Until next time, Happy Deployments!
 
-If you enjoyed this article and would like to see more posts on automated database deployments please [click here.](https://octopus.com/database-deployments)
+If you enjoyed this article, great news, we have a whole series on [automated database deployments](https://octopus.com/database-deployments).
