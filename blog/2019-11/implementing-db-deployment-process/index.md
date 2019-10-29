@@ -1,6 +1,6 @@
 ---
 title: Implementing an automated database deployments process
-description: In this article, I walk through the steps I took to implement an automated database deployment process using Team City, Redgate, and Octopus Deploy
+description: In this article, I walk through the steps I took to implement an automated database deployment process using TeamCity, Redgate, and Octopus Deploy
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-11-13
@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-It took several iterations to implement the ideal automated database deployment process using Team City, Redgate, and Octopus Deploy.  The iterations were a result of learning the tooling and listening to feedback.  In this article, I walk you through a couple of those iterations of the automated database deployment process.
+It took several iterations to implement the ideal automated database deployment process using TeamCity, Redgate, and Octopus Deploy.  The iterations were a result of learning the tooling and listening to feedback.  In this article, I walk you through a couple of those iterations of the automated database deployment process.
 
 This article is the final in a series.  Here are the links to the other articles, in case you missed them.  
 
@@ -55,7 +55,7 @@ There were several flaws in this process.
 
 At this point the tooling we used was:
 - Git was being piloted as a replacement for TFS Version Control.
-- Team City was being piloted as a replacement to TFS 2012.
+- TeamCity was being piloted as a replacement to TFS 2012.
 - No deployment server.
 - No database deployment tools (this is where Redgate’s tooling came in).
 
@@ -67,9 +67,9 @@ My focus was:
 - Force everyone to make changes in `development` and automatically deploy to `test`.
 - Automatically generating the delta script for `staging` and `production`.
 
-Ideally we would automatically deploy to `staging` and `production`.  That would require the build server, in this case Team City, run an agent with permissions in those environments.  The DBAs made made it very clear, Team City would not have permission to deploy to `staging` or `production`.
+Ideally we would automatically deploy to `staging` and `production`.  That would require the build server, in this case TeamCity, run an agent with permissions in those environments.  The DBAs made made it very clear, TeamCity would not have permission to deploy to `staging` or `production`.
 
-I already had Team City building the code.  I needed to inject the database into that existing build process.  Redgate provides a plug-in for Team City.  Looking at the documentation for [Redgate’s Team City Plug-in](https://documentation.red-gate.com/display/SCA3/Use+the+Team City+plugin+with+a+SQL+Change+Automation+Project) shows it supports three functions:
+I already had TeamCity building the code.  I needed to inject the database into that existing build process.  Redgate provides a plug-in for TeamCity.  Looking at the documentation for [Redgate’s TeamCity Plug-in](https://documentation.red-gate.com/display/SCA3/Use+the+TeamCity+plugin+with+a+SQL+Change+Automation+Project) shows it supports three functions:
 
 - Build a package.
 - Sync that package with a database.
@@ -88,31 +88,31 @@ Knowing that, my plan of attack was:
 
 0. Resolve all the deltas.
 1. Put what is in `development` into source control.  Going forward, all changes must be made in `development` and checked into source control.
-2. Have Team City build the package from source control.
-3. Have Team City sync that package with `development`.
-4. Have Team City sync that package with `test`.
-5. Have Team City run the schema compare CLI to generate delta scripts for `staging` and `production`.
+2. Have TeamCity build the package from source control.
+3. Have TeamCity sync that package with `development`.
+4. Have TeamCity sync that package with `test`.
+5. Have TeamCity run the schema compare CLI to generate delta scripts for `staging` and `production`.
 
 Steps 1 and 3 conflict with each other.  So let’s skip that step.
 
 0. Resolve all the deltas.
 1. Put what is in `development` into source control.  Going forward, all changes must be made in `development` and checked into source control.
-2. Have Team City build the package from source control.
-3. ~~Have Team City sync that package with `development`.~~
-4. Have Team City sync that package with `test`.
-5. Have Team City run the schema compare CLI to generate delta scripts for `staging` and `production`.
+2. Have TeamCity build the package from source control.
+3. ~~Have TeamCity sync that package with `development`.~~
+4. Have TeamCity sync that package with `test`.
+5. Have TeamCity run the schema compare CLI to generate delta scripts for `staging` and `production`.
 
 I’m not going to walk through how to put a database into source control.  I wrote [that article already](https://www.red-gate.com/hub/product-learning/sql-source-control/database-version-control-2).
 
-I ended up with four Team City projects.
+I ended up with four TeamCity projects.
 
-![](automated-database-deployments-v1-Team City-overview.png)
+![](automated-database-deployments-v1-TeamCity-overview.png)
 
 The `00_Build` project takes what is in source control and packages it.  
 
 ![](automated-database-deployments-v1-build-overview.png)
 
-I am making use of Team City’s [snapshot dependencies](https://www.jetbrains.com/help/Team City/snapshot-dependencies.html) and artifact dependencies.  To leverage that, I need to mark the package created as an artifact.
+I am making use of TeamCity’s [snapshot dependencies](https://www.jetbrains.com/help/TeamCity/snapshot-dependencies.html) and artifact dependencies.  To leverage that, I need to mark the package created as an artifact.
 
 ![](automated-database-deployments-v1-artifacts.png)
 
@@ -184,11 +184,11 @@ The next iteration of the automated database deployment process would implement 
 
 Octopus Deploy was added to v2 of automated database deployments.  This was the deployment server we didn't know we needed.  Having a deployment server enabled us to:
 
-- Simplify Team City, it only had to build and push a package to Octopus Deploy.
+- Simplify TeamCity, it only had to build and push a package to Octopus Deploy.
 - Use the same process and tooling in all environments.
 - Have an audit history of when a database change went out.  Not only that, it provides the ability to know who deployed the change.
 
-Team City was simplified to two projects.
+TeamCity was simplified to two projects.
 
 ![](automated-database-deployments-v2-teamcity-overview.png)
 
@@ -200,7 +200,7 @@ After a bit of trial and error, the deployment process in Octopus Deploy became 
 
 ![](automated-database-deployments-v2-octopus-overview.png)
 
-The trial and error was around steps 1 and 4 in that process.  At first, I ran the same CLI script from Team City to generate the delta script to review.  That wasn’t the same as what was being deployed.  Eventually, I learned about the `Create Database Release` and `Deploy from Database Release` step templates provided by Redgate.  
+The trial and error was around steps 1 and 4 in that process.  At first, I ran the same CLI script from TeamCity to generate the delta script to review.  That wasn’t the same as what was being deployed.  Eventually, I learned about the `Create Database Release` and `Deploy from Database Release` step templates provided by Redgate.  
 
 Using the Redgate provided step templates automatically generated and uploaded the delta scripts as [Octopus Artifacts](https://octopus.com/docs/deployment-process/artifacts).  DBAs could then download those files and review them when they were approving the deployment to `staging` or `production`.
 

@@ -163,12 +163,12 @@ It was time to outline the ideal process.
 
 When coming up with that process, we purposely avoided tooling.  Tooling wasn't discussed until after we had a draft of the process.  First up was the tooling already being used:
 
-- Build server: Team City was being piloted as a replacement for TFS 2012.
-- Source control: Teams piloting Team City had moved to Git.
+- Build server: TeamCity was being piloted as a replacement for TFS 2012.
+- Source control: Teams piloting TeamCity had moved to Git.
 - Database deployments: Redgate's SQL Change Automation (as it was name at the time).  
 - Deployment server: None, although at the time, I thought the build server = deployment server.
 
-TFS 2012 was on its way out, so it didn’t make sense to continue using it. My team was part of the group who switched over to Git and Team City.   
+TFS 2012 was on its way out, so it didn’t make sense to continue using it. My team was part of the group who switched over to Git and TeamCity.   
 
 Redgate had flown out to help us.  We had a prototype working with their tooling.  We discussed SSDT and RoundhousE, but they failed for roughly the same reason.  95% of the people making the database changes did so in SQL Server Management Studio, and too many people forgot to migrate those changes over to SSDT or RoundhousE.  Our discussion, along with the process we designed, led to the following key requirements of the tooling:  
 
