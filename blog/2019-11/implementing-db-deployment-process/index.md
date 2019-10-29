@@ -54,10 +54,10 @@ There were several flaws in this process.
 - As a result, “All hands on deck” during `production` deployments.
 
 At this point the tooling we used was:
-- Git was being piloted as a replacement for TFS Version Control.
-- TeamCity was being piloted as a replacement to TFS 2012.
+- [Git](https://git-scm.com/) was being piloted as a replacement for TFS Version Control.
+- [TeamCity](https://www.jetbrains.com/teamcity/) was being piloted as a replacement to TFS 2012.
 - No deployment server.
-- No database deployment tools (this is where Redgate’s tooling came in).
+- No database deployment tools (this is where [Redgate’s tooling](https://www.red-gate.com/products/sql-development/sql-toolbelt/) came in).
 
 ## Automated database deployments v1
 
@@ -200,7 +200,7 @@ After a bit of trial and error, the deployment process in Octopus Deploy became 
 
 ![](automated-database-deployments-v2-octopus-overview.png)
 
-The trial and error was around steps 1 and 4 in that process.  At first, I ran the same CLI script from TeamCity to generate the delta script to review.  That wasn’t the same as what was being deployed.  Eventually, I learned about the `Create Database Release` and `Deploy from Database Release` step templates provided by Redgate.  
+The trial and error was around steps 1 and 4 in that process.  At first, I ran the same CLI script from TeamCity to generate the delta script to review.  That wasn’t the same as what was being deployed.  Eventually, I learned about the [Create Database Release](https://library.octopus.com/step-templates/c20b70dc-69aa-42a1-85db-6d37341b63e3/actiontemplate-redgate-create-database-release) and [Deploy from Database Release](https://library.octopus.com/step-templates/7d18aeb8-5e69-4c91-aca4-0d71022944e8/actiontemplate-redgate-deploy-from-database-release) step templates provided by Redgate.  
 
 Using the Redgate provided step templates automatically generated and uploaded the delta scripts as [Octopus Artifacts](https://octopus.com/docs/deployment-process/artifacts).  DBAs could then download those files and review them when they were approving the deployment to `staging` or `production`.
 
