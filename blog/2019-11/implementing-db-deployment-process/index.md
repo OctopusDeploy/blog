@@ -1,5 +1,5 @@
 ---
-title: Implementing an automated database deployments process
+title: Implementing an automated database deployment process
 description: In this article, I walk through the steps I took to implement an automated database deployment process using TeamCity, Redgate, and Octopus Deploy
 author: bob.walker@octopus.com
 visibility: public
@@ -18,7 +18,7 @@ This article is the final in a series.  Here are the links to the other articles
 - [How to design an automated database deployment process](/blog/2019-11/designing-db-deployment-process/index.md).
 - [Automated database deployment process: case study](/blog/2019-11/use-case-for-designing-db-deployment-process/index.md).
 
-All of our database deployment posts can be found [here.](https://octopus.com/database-deployments)
+All of our database deployment articles can be found [here.](https://octopus.com/database-deployments)
 
 !toc
 
@@ -43,7 +43,7 @@ Prior to automated database deployments, a our process was:
 6. DBAs are notified via a change request to run a set of scripts in `production`.  They run the scripts, save the results to the change request system, which emails the requester.
 
 There were several flaws in this process.
-- Multiple deployment processes, how changes were deployed to `development` and `test` was different than `staging` and `production`.
+- Multiple deployment processes, how changes were deployed to `development` and `test` was different to `staging` and `production`.
 - Manual generation of scripts.
 - Manually running each script in each environment.
 - Unique delta scripts per environment.
@@ -53,7 +53,7 @@ There were several flaws in this process.
 - Reviews didn’t happen until it was time to go to `staging`.
 - As a result, “All hands on deck” during `production` deployments.
 
-At this point the tooling we used was:
+At this point, the tooling we used was:
 - [Git](https://git-scm.com/) was being piloted as a replacement for TFS Version Control.
 - [TeamCity](https://www.jetbrains.com/teamcity/) was being piloted as a replacement to TFS 2012.
 - No deployment server.
@@ -75,7 +75,7 @@ I already had TeamCity building the code.  I needed to inject the database into 
 - Sync that package with a database.
 - Test that package.
 
-For the build a package process to work, the database has to be placed into source control using [Redgate’s SQL Source Control](https://documentation.red-gate.com/soc).  Prior to putting the database into source control I should've resolved the deltas between each environment.  Different users and role membership are expected.  Missing tables, different stored procedures, and other schema changes, not so much. 
+For the build a package process to work, the database has to be placed into source control using [Redgate’s SQL Source Control](https://documentation.red-gate.com/soc).  Prior to putting the database into source control I should have resolved the deltas between each environment.  Different users and role membership are expected.  Missing tables, different stored procedures, and other schema changes, not so much.
 
 The deltas need to be resolved one of three ways:
 - If the change was simply missed, go ahead and apply it.
@@ -137,7 +137,7 @@ Instead of running the sync step, it runs a PowerShell script to generate the de
 Let’s revisit the flaws with the existing process and see how we are doing after this effort.
 
 There were several flaws in this process.
-- Two different processes, one for `development` and `test`, and another for `staging` and `production`. This is still happening.
+- Two different processes, one for `development` and `test`, and another with slight differences for `staging` and `production`. This is still happening.
 - Manual generation of scripts. **Solved.**
 - Manual running of each script in each environment. This is solved for `test` only.
 - Unique delta scripts per environment. This is still happening
@@ -145,7 +145,7 @@ There were several flaws in this process.
 - No mention of keeping track of changes and what needed to be deployed. **Solved.**
 - Shared development environment. This is still happening
 - Reviews didn’t happen until it was time to go to `staging`. This is still happening
-- As a result, “All hands on deck” during `production` deployments. This is less of a problem, but still happening
+- As a result, “All hands on deck” during `production` deployments. This is less of a problem, but is still happening
 
 Also, I introduced a couple of new problems.
 
@@ -182,7 +182,7 @@ The next iteration of the automated database deployment process would implement 
 
 ## Automated database deployments v2
 
-Octopus Deploy was added to v2 of automated database deployments.  This was the deployment server we didn't know we needed.  Having a deployment server enabled us to:
+Octopus Deploy was added to v2 of automated database deployments.  This was the deployment server we didn’t know we needed.  Having a deployment server enabled us to:
 
 - Simplify TeamCity, it only had to build and push a package to Octopus Deploy.
 - Use the same process and tooling in all environments.
@@ -206,7 +206,7 @@ Using the Redgate provided step templates automatically generated and uploaded t
 
 ![](automated-database-deployments-v2-approve-release.png)
 
-Following this process, the DBAs were more than happy to let Octopus Deploy deploy to `staging` and `production`.  They could review the scripts during the deployment.  And who reviewed the scripts was audited.  Besides, they were happy to see all it took was pushing a button.  As one DBA put it, “this is all stupid simple.”
+Following this process, the DBAs were more than happy to let Octopus deploy to `staging` and `production`.  They could review the scripts during the deployment, and who reviewed the scripts was audited.  Besides, they were happy to see all it took was pushing a button.  As one DBA put it, “this is all stupid simple.”
 
 What sealed the deal was the ability to control who could push the deployment button.  All developers (including database developers and lead developers) could deploy to `development`, `test`, and `staging`.
 
@@ -226,7 +226,7 @@ These security policies and manual interventions built a lot of trust in the pro
 
 Let’s check back in with our issue list.
 
-- Two different processes, one for `development` and `test`, and another for `staging` and `production`. **Solved.**
+- Two different processes, one for `development` and `test`, and another with slight differences for `staging` and `production`. **Solved.**
 - Manual generation of scripts. **Solved.**
 - Manual running of each script in each environment. **Solved.**
 - Unique delta scripts per environment. **Mitigated**, this is how the tool works.

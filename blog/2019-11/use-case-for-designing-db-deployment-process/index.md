@@ -15,11 +15,11 @@ Prior to joining Octopus Deploy, I was the lead developer on the pilot team that
 
 This article is a continuation of the previous article: [How to design an automated database deployment process](/blog/2019-11/designing-db-deployment-process/index.md), and if you like, you can jump ahead to the next article, where I provide a step-by-step guide for [implementing a database deployment process with Octopus Deploy](/blog/2019-11/implementing-db-deployment-process/index.md).
 
-All of our database deployment posts can be found [here](https://octopus.com/database-deployments).
+All of our database deployment articles can be found [here](https://octopus.com/database-deployments).
 
 !toc
 
-## Quick overview on designing a database deployment process
+## Quick overview of designing a database deployment process
 
 This article is the story version of this process.
 
@@ -46,19 +46,19 @@ One of the DBAs in the company summed it up best when they said, “Our database
 
 It was time to form a work group.
 
-The DBAs and database architect all liked using Redgate’s tooling, so they reached out to Redgate for help.  Redgate agreed to help out in exchange for a case study.  They would fly out two people to meet with our work group for a couple of days.  As I write this, I am 99% sure they don't do that all the time.  We might have caught them at the right moment in time.  
+The DBAs and database architect all liked using Redgate’s tooling, so they reached out to Redgate for help.  Redgate agreed to help out in exchange for a case study.  They would fly out two people to meet with our work group for a couple of days.  As I write this, I am 99% sure they don’t do that all the time.  We might have caught them at the right moment in time.  
 
-The DBAs identified the DBA who would represent them at the work group.  The final decision was the pilot team.  This is when I get involved, as it was my team selected as the pilot team. a
+The DBAs identified the DBA who would represent them at the work group.  The final decision was the pilot team.  This is when I get involved, as it was my team selected as the pilot team.
 
 Being naive, I expected Redgate to help us implement their tooling within our existing process, so I set about doing that. However, the work group threw away about 75% of my work. That wasn’t a big deal; it was a good learning experience as it gave me a better fundamental understanding of how database deployment tools work, which helped me contribute to the kick-off meeting.
 
 ### Kick-off meeting
 
-The database developer from my team, a DBA, a database architect, two Redgaters, and I met for two days.  The first day was focused on designing our ideal process.  The end goal was to have a process to deploy to `development`->`test`->`staging`->`production`.
+The database developer from my team, a DBA, a database architect, two Redgaters, and I met for two days.  The first day was focused on designing our ideal process.  The end goal was to have a process to deploy to `development`, `test`, `staging`, and all the way into `production`.
 
 First, we walked through the existing process, which looked like this:
 
-1. A developer makes a change in `test`.  All developers have sysadmin rights in `test`.  They should make the change in `development` but `test` has all the data to verify the change with.  That is the server their code is pointed to.
+1. A developer makes a change in `test`.  All developers have sysadmin rights in `test`.  They should make their changes in `development` but `test` has all the data to verify their changes with.  That is the server their code points to.
 2. The developer changes the connection in SSMS and makes a change to `development`.  All developers have sysadmin rights in `development`.
 3. The database developer or lead developer runs [Redgate SQL Compare](https://www.red-gate.com/products/sql-development/sql-compare/) to generate a delta script between `test` and `staging`.  Any complex database changes (move columns, combine columns, etc.) are removed and manually scripted.  Scripts are saved to a shared folder.  Everyone except DBAs have read-only rights for `staging`.  The DBAs have to run the scripts.
 4. DBAs are notified via email to run scripts in the shared folder on `staging`.  They run the scripts and send the output to the requester.
@@ -88,9 +88,9 @@ The astute reader will notice a recurring theme in those answers.
 - Shared development environment.
 - Reviews didn’t happen until it was time to go to `staging`.
 - “All hands on deck” during `production` deployments.
-- No history of who made what changes, when they were made, and why they were made.
+- No history of who made what changes, when they were made, or why they were made.
 - Changes were manually tracked via a document.  
-- No auditing in `development`, `test` or `staging`.  A little bit of auditing for `production`.  
+- No auditing in `development`, `test`, or `staging`.  A little bit of auditing for `production`.  
 
 The application my team was responsible for had 700 tables.  All database access was done via stored procedures, including CRUD operations.  The database had roughly 5000 objects (tables, stored procedures, functions, etc.).  All development was done on the same database.  When we did a release, some changes were pushed, while other changes were excluded.  We kept track of which changes to include on a piece of paper.  This wasn’t 20 years ago; this was happening in 2014.
 
@@ -104,7 +104,7 @@ Roughly 60% of the time, we had to do an emergency fix the next day due to a mis
 
 Drafting the ideal process took quite a bit of time.  This was caused by a lack of knowledge of what the tooling could provide.  At the time, we knew about source control, build servers, and Redgate tooling, but we were all unfamiliar with what deployment tooling could provide.  Thankfully, Redgate was there to help educate us.
 
-We first listed out the various tools and the functionality they provide.
+We first listed the various tools and the functionality they provide.
 
 - Source control
     - It stores all the SQL scripts.
@@ -161,11 +161,11 @@ It was time to outline the ideal process.
 
 ## Tooling
 
-When coming up with that process, we purposely avoided tooling.  Tooling wasn't discussed until after we had a draft of the process.  First up was the tooling already being used:
+When coming up with that process, we purposely avoided tooling.  Tooling wasn’t discussed until after we had a draft of the process.  First up was the tooling already being used:
 
 - Build server: TeamCity was being piloted as a replacement for TFS 2012.
 - Source control: Teams piloting TeamCity had moved to Git.
-- Database deployments: Redgate's SQL Change Automation (as it was name at the time).  
+- Database deployments: Redgate’s SQL Change Automation (as it was called then).  
 - Deployment server: None, although at the time, I thought the build server = deployment server.
 
 TFS 2012 was on its way out, so it didn’t make sense to continue using it. My team was part of the group who switched over to Git and TeamCity.   
@@ -203,20 +203,20 @@ Because of that, the amount of time we spent verifying started dropping.
 6. 5-8 minute deployment, 40 minute verification.
 7. 5-8 minute deployment, 30 minute verification.
 
-That, in turn, made us want to deploy more often.  Frequent deployments meant smaller changes.  Smaller changes meant less verification.  Less verification meant faster deployments.  Faster deployments meant we wanted to deploy more often.  The cycle continued until verifications took 5-8 minutes as well.
+That, in turn, made us want to deploy more often.  Frequent deployments meant smaller changes.  Smaller changes meant less verification.  Less verification meant faster deployments.  Faster deployments meant we wanted to deploy more often.  The cycle continued until verifications took 5 to 8 minutes as well.
 
 ## Early adopters and iterations
 
-A couple of other teams (out of 9 teams remaining) saw what we were doing, and they came on board as early adopters. Having three teams use the process identified pain points and what needed to improve:
+A couple of other teams (out of 9 remaining teams) saw what we were doing, and they came on board as early adopters. Having three teams use the process identified pain points and what needed to improve:
 
 - **Not deploying what was approved.** I wasn’t using the Redgate tooling correctly.  I used a command to generate a preview for approval.  Then I ignored that preview and used a different command to deploy the package directly.  1 out of every 30 deployments ended up having an unexpected change made.  With a bit of research, the correct commands were found and implemented.
 - **Saving the preview file to a file share.** I didn’t know Octopus had the ability to save files as artifacts.  Artifacts can be downloaded by the approver from Octopus.  That was preferred over finding the right file in the file share.  A small tweak to the script fixed that.
 - **DBAs being the bottleneck.** The three teams were deploying to `staging` so often the DBAs couldn’t keep up.  They also got tired of having to be online during deployments to approve the deployment to `production`.  We changed the process to generate two files when deploying to `staging`, one for `staging`, and one for `production`.  The deployment would occur on `staging`, and the DBAs approved everything after the fact.  We added a step to page them when a deployment failed in `production`.  
 - **Developers not using their dedicated database.** There was no testing data in the developer’s database, so they pointed to `test` to test their changes.  We solved this by creating a backup of the database in `test` after each deployment.  Developers could restore that database to their local instance and have all the data they needed.  
 
-```
-No process is 100% perfect from the start.  Expect to iterate multiple times.  
-```
+:::success
+No process is 100% perfect from the start.  Expect to iterate multiple times.
+:::
 
 ## General adoption
 
@@ -226,7 +226,7 @@ Hindsight being what it is, I should have:
 
 - Scheduled a meeting with the database developer and lead developer on the team to walk through the process.
 - Scheduled another meeting for the two of them to get an application’s database into the process.
-- Scheduled a final meeting for them to teach their team how to use the process.  I would be in the background to answer questions.
+- Scheduled a final meeting for them to teach their team how to use the process, with me in the background to answer questions.
 
 But I didn’t do that.  I combined all of that into one big meeting.  Live and learn.
 
