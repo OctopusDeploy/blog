@@ -21,7 +21,7 @@ All of our database deployment articles can be found [here](https://octopus.com/
 
 ## Quick overview of designing a database deployment process
 
-This article is the story version of this process.
+In the event you skipped the [previous article](/blog/2019-11/designing-db-deployment-process/index.md), here is a TL;DR;
 
 - Create a small team or work group to define the process.  Include representatives from each stage of deployment (developers, DBAs, etc.).  The work group should be no more than 4 to 6 people.
 - Identify the pilot team or application to include in the work group.
