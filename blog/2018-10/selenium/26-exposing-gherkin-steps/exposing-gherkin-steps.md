@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Exposing Gherkin steps
-description: In this post we investigate the regular expressions that make up complex Gherkin steps
+title: "Selenium series: Exposing Gherkin steps"
+description: In this post, we investigate the regular expressions that make up complex Gherkin steps
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,7 +10,7 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Now that we have the basics in place to integrate the `AutomatedBrowserBase` class with Cucumber,  it is time to start fleshing out the Gherkin dialect that we can use to write WebDriver tests.
 
@@ -51,7 +51,7 @@ We also use a non-capture group in this regular expression. A non-capture group 
 The pattern `\\w+(?:\\s+\\w+)*` matches zero or more words separated by spaces. So the following strings will all match this pattern:
 
 - text box
-- drop down list
+- drop-down list
 - textarea
 - radio button
 - checkbox
@@ -135,7 +135,7 @@ To understand the kind of steps that will match this regular expression, enter i
 
 This regular expression has three capture groups. Again group 0 is the entire string. As was the case with the previous regular expression, group 1 is the ID of the element to click, and Cucumber passes this as the first parameter to the method. The new group 2 captures the explicit wait time, and Cucumber passes this as the second parameter to the method.
 
-Let's look at what will be one of the most complicated regular expressions we'll use to define a step. The `selectOptionByTextFromSelectWithId()` method takes the name of the option in a drop down list to select, the ID of the drop down list, and the time to wait for the drop down list to be clickable. This regular expression therefor needs to have 3 capture groups:
+Let's look at what will be one of the most complicated regular expressions we'll use to define a step. The `selectOptionByTextFromSelectWithId()` method takes the name of the option in a drop-down list to select, the ID of the drop-down list, and the time to wait for the drop-down list to be clickable. This regular expression therefor needs to have 3 capture groups:
 
 ```java
 @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
@@ -175,14 +175,14 @@ The table below is a breaks down the regular expression into its individual comp
 
 To understand the kind of steps that will match this regular expression, enter it into [http://regex-testdrive.com/en/dotest](http://regex-testdrive.com/en/dotest) and test the following examples:
 
-- I select the option "Option One" from the drop down list with the id "dropdownlist" waiting up to "1" second
-- I select the option "A very long option name" from the drop down list with the id "the-select-element" waiting up to "10" seconds
+- I select the option "Option One" from the drop-down list with the id "dropdownlist" waiting up to "1" second
+- I select the option "A very long option name" from the drop-down list with the id "the-select-element" waiting up to "10" seconds
 - I select the option "This is also a long name" from the list of options with the id "alongid" waiting up to "5" seconds
 
 ![C:\98467ce11d951c72ec283e76b8d449e3](image3.png "width=500")
 
-Now we have 4 capture groups. As always group 0 is the entire string, then the first capture group is the name of the option to select, the second is the ID of the drop down list, and the third is the amount of time to wait for the element to be clickable.
+Now we have 4 capture groups. As always group 0 is the entire string, then the first capture group is the name of the option to select, the second is the ID of the drop-down list, and the third is the amount of time to wait for the element to be clickable.
 
 As you can see, regular expressions are incredibly powerful, and we have only touched on a small number of the ways regular expressions can be used to match strings. However, these regular expressions demonstrate all the techniques that we will use when mapping methods to Gherkin steps. All the remaining methods will use regular expressions with the some combination of the capture groups, non-capture groups, character classes and special characters that we have demonstrated with the previous methods.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

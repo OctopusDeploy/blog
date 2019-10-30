@@ -1,15 +1,16 @@
 ---
-title: Write your own Desired State Configuration (DSC) module
+title: Write your own PowerShell Desired State Configuration (DSC) module
 description: How to write your own PowerShell Desired State Configuration (DSC) module
 author: shawn.sesna@octopus.com
-visibility: private
-bannerImage: 
-metaImage: 
-published: 2020-09-01
+visibility: public
+bannerImage: write-powershell-dsc-module.png
+metaImage: write-powershell-dsc-module.png
+published: 2019-10-23
 tags:
- - configuration
- - powershell
+ - DevOps
 ---
+
+![Octopus learning how to write a custom PowerShell DSC Module](write-powershell-dsc-module.png)
 
 As you gain experience with PowerShell Desired State Configuration (DSC) you might encounter situations where the available modules don’t quite fit what you want to do.  You could write your own [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource), but they don’t scale well, passing parameters is difficult, and they don’t provide a method for encryption, leaving passwords in clear text, however, you can write your own DSC modules.
 

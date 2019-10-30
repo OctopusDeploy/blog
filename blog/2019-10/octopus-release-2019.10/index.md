@@ -1,6 +1,6 @@
 ---
-title: Octopus Deploy 2019.10 - Flexible Linux deployments, PowerShell Core support, Operations RunBooks EAP
-description: Octopus 2019.10 introduces Tentacle for Linux for flexible Linux deployments, built-in PowerShell Core support, simpler build information and releas notes, and early access to RunBooks for your operations teams.
+title: Octopus Deploy 2019.10 - Flexible Linux deployments, PowerShell Core support, Operations Runbooks EAP
+description: Octopus 2019.10 introduces Tentacle for Linux for flexible Linux deployments, built-in PowerShell Core support, simpler build information and releas notes, and early access to Runbooks for your operations teams.
 author: rob.pearson@octopus.com
 visibility: public
 published: 2019-10-16
@@ -10,7 +10,7 @@ tags:
  - Product
 ---
 
-![](octopus-2019.10-release-image.png)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pBW_gypiS6w" frameborder="0" allowfullscreen></iframe>
 
 We’re excited to launch **Octopus Deploy 2019.10**. This is a feature packed release with some great benefits. Headlining the release is Tentacle for Linux. This much requested feature provides greater flexibility for teams deploying to Linux and unlocks the ability to deploy to highly secured servers without opening port 22. Tentacle for Linux and Linux deployments over SSH combined with scripting in Bash, PowerShell Core, or Python, and a first-class step to deploy your web apps and services to NGINX, make Octopus a great option for Linux deployments. 
 
@@ -48,7 +48,7 @@ Octopus will automatically execute scripts with PowerShell Core if it’s instal
 
 ![Octopus build information repository](build-information-repository.png  "width=600")
 
-Octopus 2019.4 introduced build information and work item tracking. This is a popular feature, but we received feedback the package metadata functionality was hard to find because it was buried under the package details in the built-in packaage repository and tricky to understand. As a result, we’ve promoted this functionality to a top-level feature called **Build Information** within the Octopus Library making it more accessible and much easier to understand. We’ve also updated our suite of build server plugins to reflect the name change.
+Octopus 2019.4 introduced build information and work item tracking. This is a popular feature, but we received feedback the package metadata functionality was hard to find because it was buried under the package details in the built-in package repository and tricky to understand. As a result, we’ve promoted this functionality to a top-level feature called **Build Information** within the Octopus Library making it more accessible and much easier to understand. We’ve also updated our suite of build server plugins to reflect the name change.
 
 This feature-set gives teams better end-to-end visibility into their CI/CD pipelines and unlocks quick access to build and commit details. This is visible in a number of ways:
 
@@ -87,7 +87,7 @@ PowerShell Core support has introduced a change where running PowerShell scripts
 
 **Build Information** 
 
-Our build infromation change involved renaming resources from the API through to the database. This is generally backwards compatible, however anyone using our GitHub issue tracker will need to ensure they upgrade their Octopus Server if they upgrade their [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), [TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration), or [Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on).
+Our build information change involved renaming resources from the API through to the database. This is generally backwards compatible, however anyone using our GitHub issue tracker will need to ensure they upgrade their Octopus Server if they upgrade their [Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), [TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration), or [Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on).
 
 ## Upgrading
 

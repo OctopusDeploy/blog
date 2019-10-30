@@ -1,5 +1,5 @@
 ---
-title: Selenium series - What is WebDriver and Selenium?
+title: "Selenium series: What is WebDriver and Selenium?"
 description: Learn what the terms WebDriver and Selenium refer to.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 When it comes to testing web applications, you’ve probably heard of WebDriver and Selenium. Often the two terms are used interchangeably or even combined to refer to the platform on which a developer can write code to interact with a web browser. However, these two terms refer to slightly different things.
 
-Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at [https://www.w3.org/TR/webdriver1/](https://www.w3.org/TR/webdriver1/), and is freely available for anyone to implement. 
+Technically, WebDriver is a standard, HTTP based API for interacting with a web browser. The standard is provided by W3C at [https://www.w3.org/TR/webdriver1/](https://www.w3.org/TR/webdriver1/), and is freely available for anyone to implement.
 
 Most browser vendors implement the WebDriver API through an additional executable that is shipped separate to the browser itself. The list below shows where the major browsers provide this binary driver:
 
@@ -100,4 +100,4 @@ The key take away from this blog is this:
 
 Now that we know the differences between the WebDriver and Selenium APIs, we can for all practical purposes treat them as one and the same thing. All the code we will write from this point forward will use the Selenium API while discussing how to write WebDriver tests. So while you now know that the WebDriver and Selenium APIs are not *technically* the same thing, we typically refer to "Selenium WebDriver" as the platform through which we interact with a browser.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

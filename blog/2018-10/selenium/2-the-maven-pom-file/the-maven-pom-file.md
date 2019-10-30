@@ -1,5 +1,5 @@
 ---
-title: Selenium series - The Maven POM file
+title: "Selenium series: The Maven POM file"
 description: In this post, we create a simple Pom.xml file, configuring the Selenium dependencies.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 The first step in establishing our Java project is the creation of a Maven Project Object Model (POM) file. This is an XML document that defines how our code will be built, what additional dependencies it has access to, and how tests are run.
 
-We start with the POM file shown below: 
+We start with the POM file shown below:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -294,4 +294,4 @@ Revert the change and package the project again, and you will notice that the wa
 
 And with that we have a minimal Maven project imported into IntelliJ. In the next post, we’ll start writing some Java to implement our very first WebDriver test.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

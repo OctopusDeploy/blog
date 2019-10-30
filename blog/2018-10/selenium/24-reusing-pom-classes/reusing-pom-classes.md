@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Reusing POM classes
-description: In this post we see how the POM design pattern promotes reusability.
+title: "Selenium series: Reusing POM classes"
+description: In this post, we see how the POM design pattern promotes re-usability.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,9 +10,9 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-Now that we have rewritten our tests to use the POM design pattern,  let's go ahead and add the second test that we alluded to earlier of verifying the prices for different sections.
+Now that we’ve rewritten our tests to use the POM design pattern, let’s go ahead and add the second test we alluded to earlier of verifying the prices for different sections.
 
 For this test we need to get to the checkout screen, but not actually
 proceed with the checkout. Instead we want to loop over each of the
@@ -53,13 +53,13 @@ public class CheckoutPage extends BasePage {
 }
 ```
 
-First we define a regular expression `Pattern` that matches the price strings displayed by the application. The prices are displayed as strings like `@ $219.5`, `@ $149.5` (the missing zero on the end is probably a bug in Ticketmonster, but we'll ignore that for now). We want to be able to isolate the dollar amount from the at and dollar symbols, so we capture that part of the string in a group:
+First, we define a regular expression `Pattern` that matches the price strings displayed by the application. The prices are displayed as strings like `@ $219.5`, `@ $149.5` (the missing zero on the end is probably a bug in Ticketmonster, but we’ll ignore that for now). We want to isolate the dollar amount from the at and dollar symbols, so we capture that part of the string in a group:
 
 ```java
 private static final Pattern TICKET_PRICE_REGEX = Pattern.compile("@ \\$(\\d+\\.\\d+)");
 ```
 
-The new method `selectSection()` allows us to select an event section from the drop down list. This will update the element that displays the ticket price.
+The new method `selectSection()` allows us to select an event section from the drop-down list. This will update the element that displays the ticket price:
 
 ```java
 public CheckoutPage selectSection(final String section) {
@@ -81,7 +81,7 @@ public float getSectionAdultPrices() {
 
 The final addition is the `getPriceFromTicketPriceString()` method. This method exists to support the `getSectionAdultPrices()` method, so it is `private`.
 
-In this method we attempt to match the input to the regular expression `Pattern` that was defined earlier. If the match was successful, we extract group 1, which will contain strings like `219.5` or `149.5`. These strings are then converted to `float` values and returned.
+In this method, we attempt to match the input to the regular expression `Pattern` that was defined earlier. If the match was successful, we extract group 1, which will contain strings like `219.5` or `149.5`. These strings are then converted to `float` values and returned.
 
 If the input did not match the regular expression, an exception is thrown:
 
@@ -149,7 +149,7 @@ public void verifyPricesPageObjectModel() {
 }
 ```
 
-To get the web application to the point where the ticket prices can be found, we reuse the `MainPage`, `EventsPage` and `VenuePage` POM classes. The code here is almost identical to the previous test, but in this example though we have chosen a different event called `Shane's Sock Puppets`:
+To get the web application to the point where the ticket prices can be found, we reuse the `MainPage`, `EventsPage`, and `VenuePage` POM classes. The code here is almost identical to the previous test, but in this example though, we have chosen a different event called `Shane's Sock Puppets`:
 
 ```java
 @Test
@@ -175,7 +175,7 @@ try {
 
 Now we start cycling through the sections to get their ticket prices.
 
-We make a call to `selectSection()` to change the currently selected section. A call to `getSectionAdultPrices()` then gets the displayed ticket price as a `float`. The two `Assert` statements then verify that the price is between a lower and upper bound.
+We make a call to `selectSection()` to change the currently selected section. A call to `getSectionAdultPrices()` then gets the displayed ticket price as a `float`. The two `Assert` statements then verify that the price is between a lower and upper bound:
 
 ```java
 checkoutPage.selectSection("A - Premier platinum reserve");
@@ -186,7 +186,7 @@ Assert.assertTrue(platinumAdultPrices > 10);
 Assert.assertTrue(platinumAdultPrices < 1000);
 ```
 
-These checks are repeated for the other 3 sections.
+These checks are repeated for the other 3 sections:
 
 ```java
 checkoutPage.selectSection("B - Premier gold reserve");
@@ -211,7 +211,7 @@ Assert.assertTrue(generalAdultPrices > 10);
 Assert.assertTrue(generalAdultPrices < 1000);
 ```
 
-We then finish the test cleaning up resources in the `finally` block.
+We then finish the test cleaning up resources in the `finally` block:
 
 ```java
   } finally {
@@ -220,8 +220,8 @@ We then finish the test cleaning up resources in the `finally` block.
 }
 ```
 
-The public API we have created with the POM classes `MainPage`, `EventsPage` and `VenuePage` made writing this test quick and easy. Most of the logic required to get the web application to the point of displaying the ticket prices was already implemented, leaving us with just a few new methods to add to the `CheckoutPage` class.
+The public API we have created with the POM classes `MainPage`, `EventsPage`, and `VenuePage` made writing this test quick and easy. Most of the logic required to get the web application to the point of displaying the ticket prices was already implemented, leaving us with just a few new methods to add to the `CheckoutPage` class.
 
-This is the power of the POM design pattern. It encapsulates implementation details into Java objects, leaving tests free to describe what they are testing rather than how it is tested. And should TicketMonster be updated in future with new element IDs, name attributes or rearranged screens, we have one central and reused API where the updates can be made rather than multiple tests with copy and paste code.
+This is the power of the POM design pattern. It encapsulates implementation details into Java objects, leaving tests free to describe what they are testing rather than how it is tested. Should TicketMonster be updated in future with new element IDs, name attributes, or rearranged screens we have one central and reused API where the updates can be made rather than multiple tests with copy and paste code.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

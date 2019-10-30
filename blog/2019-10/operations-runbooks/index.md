@@ -59,7 +59,7 @@ You can enable or restrict users from running Runbooks with the new permissions 
 
 ## Operations Runbooks early access
 
-We’ve shipped RunBooks as an early access feature in [Octopus 2019.10](/blog/2019-10/octopus-release-2019.10/index.md), and we encourage you to try Runbooks for any processes that aren’t application specific.
+We’ve shipped Runbooks as an early access feature in [Octopus 2019.10](/blog/2019-10/octopus-release-2019.10/index.md), and we encourage you to try Runbooks for any processes that aren’t application specific.
 
 Our goal with the early access program is to get feedback and validate its design. There are some limitations with Variables, Triggers, and other areas within the EAP, but the [Runbooks documentation](https://octopus.com/docs/deployment-process/operations-runbooks#current-limitations) provides all the details you need to get started as well as the current limitations.
 

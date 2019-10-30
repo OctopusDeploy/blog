@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Headless Browsers
-description: In this post we learn how to run tests against headless browsers.
+title: "Selenium series: headless browsers"
+description: In this post, we learn how to run tests against headless browsers.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,21 +10,21 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-You will have noticed by now that running tests with WebDriver results in a browser window being opened and the web pages being loaded and interacted with as if by some invisible mouse pointer. While it can be useful to watch the progression of a test in the browser, there are times when it is desirable to have the tests complete off-screen. For example, running tests as part of a continuous deployment process does not require anyone to watch the browser as the tests are executed. Indeed, sometimes there is not even a monitor attached to the systems that are running the tests - this is known as a headless environment. So how can we run tests in such headless environments?
+You will have noticed by now that running tests with WebDriver results in a browser window being opened and the web pages being loaded and interacted with as if by some invisible mouse pointer. While it can be useful to watch the progression of a test in the browser, there are times when it is desirable to have the tests complete off-screen. For example, running tests as part of a continuous deployment process does not require anyone to watch the browser as the tests are executed. Indeed, sometimes there is not even a monitor attached to the systems that are running the tests; this is known as a headless environment. So how can we run tests in such headless environments?
 
-This is a problem that projects like [PhantomJS](http://phantomjs.org/) were created to solve. PhantomJS is a web browser based on WebKit, which is the library that powers browsers like Apple Safari. Unlike a traditional browser though, PhantomJS has no GUI, and is designed to be controlled by technologies like WebDriver. Because it has no GUI, PhantomJS can be run on continuous integration servers that are traditionally hosted on headless servers. This means you can run WebDriver tests on a central server in response to application changes without having to launch a browser window in a desktop environment. 
+This is a problem that projects like [PhantomJS](http://phantomjs.org/) were created to solve. PhantomJS is a web browser based on WebKit, which is the library that powers browsers like Apple Safari. Unlike a traditional browser though, PhantomJS has no GUI, and it’s designed to be controlled by technologies like WebDriver. Because it has no GUI, PhantomJS can be run on continuous integration servers that are traditionally hosted on headless servers. This means you can run WebDriver tests on a central server in response to application changes without having to launch a browser window in a desktop environment.
 
 Recently browsers like Firefox and Chrome have added native support for headless browsing. This is a great benefit to anyone writing WebDriver tests, as it means that the tests can be run on the very same browsers that end users have installed, while still allowing tests to be run on a headless server.
 
-These days development of PhantomJS has stalled. One of the maintainers of the project has [stepped down](https://groups.google.com/forum/#!topic/phantomjs/9aI5d-LDuNE), and the latest release of PhantomJS is over 2 years old. But the good news is that it is quite easy to configure Chrome and Firefox to run tests in a headless environment.
+These days development of PhantomJS has stalled. One of the maintainers of the project has [stepped down](https://groups.google.com/forum/#!topic/phantomjs/9aI5d-LDuNE), and the latest release of PhantomJS is over 2 years old. But the good news is that it’s quite easy to configure Chrome and Firefox to run tests in a headless environment.
 
 Before we start configuring headless browsers, we need to add some additional support for configuring the driver classes.
 
-WebDriver uses a class called `DesiredCapabilities` that serves as a generic container for browser driver settings. The `DesiredCapabilities` class is essentially a container for key/value pairs, with some convenience methods for configuring commonly used settings.
+WebDriver uses a class called `DesiredCapabilities` that serves as a generic container for browser driver settings. The `DesiredCapabilities` class is essentially a container for key/value pairs, with some convenient methods for configuring commonly used settings.
 
-First we add the method `getDesiredCapabilities()` to the `AutomatedBrowser` interface:
+First, we add the method `getDesiredCapabilities()` to the `AutomatedBrowser` interface:
 
 ```java
 public interface AutomatedBrowser {
@@ -49,11 +49,11 @@ public DesiredCapabilities getDesiredCapabilities() {
 }
 ```
 
-The `DesiredCapabilities` class is used for configuration settings that are common to all browsers. Each driver then has a corresponding "options" class that is used to configure browser specific settings. These two objects are merged together to build up the complete set of configuration settings.
+The `DesiredCapabilities` class is used for configuration settings that are common to all browsers. Each driver then has a corresponding "options" class that is used to configure browser specific settings. These two objects are merged together to build the complete set of configuration settings.
 
 Here is the code for the `ChromeDecorator` class updated to support these two configuration classes. We create an instance of the `ChromeOptions` class, `merge()` it with the common settings returned by `getDesiredCapabilities()`, and pass the merged result to the `ChromeDriver()` constructor.
 
-This code does not configure any additional settings yet, but does demonstrate how the `DesiredCapabilities` class is used in conjunction with the browser specific options class:
+This code does not configure any additional settings yet, but it does demonstrate how the `DesiredCapabilities` class is used in conjunction with the browser specific options class:
 
 ```java
 package com.octopus.decorators;
@@ -112,7 +112,7 @@ Starting a browser in headless mode is done by configuring either the `ChromeOpt
 
 To launch Chrome in headless mode, we pass some arguments to the `chrome` executable. The `ChromeOptions` class provides a simple way to configure these arguments through the method `setHeadless()`.
 
-Let's take a look at the code for the `ChromeDecorator` class to allow us to run Chrome in headless mode:
+Let’s take a look at the code for the `ChromeDecorator` class to allow us to run Chrome in headless mode:
 
 ```java
 package com.octopus.decorators;
@@ -166,7 +166,7 @@ public ChromeDecorator(final boolean headless, final AutomatedBrowser automatedB
 }
 ```
 
-In the `init()` method we make a call to `setHeadless()` to enable or disable headless mode (although given headless mode is disabled by default, calling `setHeadless(false)` doesn't change anything):
+In the `init()` method we make a call to `setHeadless()` to enable or disable headless mode (although given headless mode is disabled by default, calling `setHeadless(false)` doesn’t change anything):
 
 ```java
 options.setHeadless(headless);
@@ -321,8 +321,8 @@ public void formTestByIDHeadlessFirefox() throws URISyntaxException {
 }
 ```
 
-Running tests on specialized browsers like PhantomJS that don't quite behave like "real" browsers used to be a pain point for testers but was a necessary evil. By supporting headless browsing, browsers like Chrome and Firefox have paved the way for testers to utilize the same browsers used by end users in automated tests on headless servers. We'll take advantage of these headless browsers in later posts as we integrate with platforms like Travis CI and AWS Lambda.
+Running tests on specialized browsers like PhantomJS that don’t quite behave like *real* browsers used to be a pain point for testers but was a necessary evil. By supporting headless browsing, browsers like Chrome and Firefox have paved the way for testers to utilize the same browsers used by end users in automated tests on headless servers. We’ll take advantage of these headless browsers in later posts as we integrate with platforms like Travis CI and AWS Lambda.
 
-In addition, by exposing the ability to configure browsers via the `DesiredCapabilities` class we have provided a hook that we can take advantage of with new decorators to add functionality such as custom proxies, which is exactly what we'll be doing in the next post.
+In addition, by exposing the ability to configure browsers via the `DesiredCapabilities` class we have provided a hook that we can take advantage of with new decorators to add functionality such as custom proxies, which is exactly what we’ll be doing in the next post.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

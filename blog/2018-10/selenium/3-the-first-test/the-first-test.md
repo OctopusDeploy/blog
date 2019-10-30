@@ -1,5 +1,5 @@
 ---
-title: Selenium series - The first WebDriver test
+title: "Selenium series: The first WebDriver test"
 description: In this post, we create the first WebDriver tests against Chrome and Firefox.
 author: matthew.Casperson@octopus.com
 visibility: public
@@ -10,11 +10,11 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 Now that we have the Maven project configured and imported in IntelliJ, we can start adding some tests.
 
-The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure. 
+The test classes will be created in the directory `src/test/java/com/octopus`. Maven has a standard directory structure that places test classes under the `src/test/java` directory, while the test classes themselves will be in the `com.octopus` package, which maps to the `com/octopus` directory structure.
 
 To create the new directory, right click on the top level project folder, select {{New,Directory}}.
 
@@ -297,4 +297,4 @@ public class InitialTest {
 
 Running the `openURLFirefox()` unit test will open the Firefox browser, open the page at [https://octopus.com/](https://octopus.com/), and then close the browser again.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

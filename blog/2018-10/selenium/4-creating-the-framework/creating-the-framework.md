@@ -1,6 +1,6 @@
 ---
-title: Selenium Series - Creating the framework
-description: In this post we start creating the framework for our WebDriver test classes.
+title: "Selenium series: Creating the framework"
+description: In this post, we start creating the framework for our WebDriver test classes.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
@@ -10,15 +10,15 @@ tags:
 - DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-One of the strengths of the WebDriver API is that it is browser agnostic. You saw from the previous post that it only took a new binary driver and a new driver class to launch Firefox instead of Chrome in our test.
+One of the strengths of the WebDriver API is that it’s browser agnostic. You saw from the previous post that it only took a new binary driver and a new driver class to launch Firefox instead of Chrome in our test.
 
-Although WebDriver allows us to write tests without worrying about which browser will run them, we are still required to create and configure the various driver classes such as `ChromeDriver` and `FirefoxDriver`. To make this process as flexible as possible, we'll create a factory class called `AutomatedBrowserFactory` to configure these objects for us.
+Although WebDriver allows us to write tests without worrying about which browser will run them, we’re still required to create and configure the various driver classes such as `ChromeDriver` and `FirefoxDriver`. To make this process as flexible as possible, we’ll create a factory class called `AutomatedBrowserFactory` to configure these objects for us.
 
-Before we can create this class, we first need to add a new directory to our project to hold our Java files. The directory `src/test/java/com/octopus` that we created in previous posts is the default location for files that are used only in tests. There is a second directory under `src/main/java/com/octopus` that will hold regular Java classes, and we need to create this directory structure. 
+Before we can create this class, we need to add a new directory to our project to hold our Java files. The directory `src/test/java/com/octopus` that we created in previous posts is the default location for files that are used only in tests. There is a second directory under `src/main/java/com/octopus` that holds regular Java classes, and we need to create this directory structure.
 
-Right click on the `src` directory, and select `New` → `Directory`.
+Right click on the `src` directory, and select {{New,Directory}}.
 
 ![](image1.png "width=500")
 
@@ -77,7 +77,7 @@ public class AutomatedBrowserFactory {
 }
 ```
 
-The `AutomatedBrowser` interface will expose all the interactions we will perform against a browser. As a starting point we'll define some methods for initializing the WebDriver instance, opening a URL, and interacting with elements located by their ID.
+The `AutomatedBrowser` interface exposes all the interactions we will perform against a browser. As a starting point we’ll define some methods for initializing the WebDriver instance, opening a URL, and interacting with elements located by their ID.
 
 To create the `AutomatedBrowser` interface right click on the `octopus` directory and select {{New,Java Class}}.
 
@@ -117,21 +117,21 @@ public interface AutomatedBrowser {
 }
 ```
 
-We'll make use of the decorator pattern to build up instances of the `AutomatedBrowser` interface that we will ultimately be calling to interact with a browser.
+We’ll make use of the decorator pattern to build up instances of the `AutomatedBrowser` interface that we will ultimately call to interact with a browser.
 
 So why use the decorator pattern instead of a class hierarchy implementing `AutomatedBrowser` directly?
 
 In implementing the decorator pattern we give ourselves the ability to create a whole range of independent implementations with features that enhance and customize how we interact with the browser, without trying to represent these implementations with a deep class hierarchy.
 
-Two obvious implementations are those that configure instances of the `ChromeDriver` or the `FirefoxDriver` classes, allowing us to open either the Chrome or Firefox browsers. But as we move through this blog series we'll introduce a whole range of decorators that implement features such as proxies, stub methods for functionality not supported by mobile browsers, remote browsers and much more.
+Two obvious implementations are those that configure instances of the `ChromeDriver` or the `FirefoxDriver` classes, allowing us to open either the Chrome or Firefox browsers. But as we move through this blog series we’ll introduce a whole range of decorators that implement features such as proxies, stub methods for functionality not supported by mobile browsers, remote browsers, and much more.
 
 The framework for all this flexibility starts here.
 
-To make it easier for us to create decorator classes, we'll create a class called `AutomatedBrowserBase`, which will implement `AutomatedBrowser`, and pass through all method calls to a parent instance of `AutomatedBrowser`.
+To make it easier for us to create decorator classes, we’ll create a class called `AutomatedBrowserBase`, which will implement `AutomatedBrowser` and pass through all method calls to a parent instance of `AutomatedBrowser`.
 
-Because the `AutomatedBrowserBase` class provides an implementation of every method in the `AutomatedBrowser` interface, decorator classes extending `AutomatedBrowserBase` can override only the methods that are specific to them. This significantly cuts down on the amount of boiler plate code that is required to create a decorator.
+Because the `AutomatedBrowserBase` class provides an implementation of every method in the `AutomatedBrowser` interface, decorator classes extending `AutomatedBrowserBase` can override only the methods that are specific to them. This significantly cuts down on the amount of boiler plate code that’s required to create a decorator.
 
-Note that `AutomatedBrowserBase` class is created in the `com.octopus.decoratorbase` package. Having this class in its own package will be an important design decision for features that we'll look at later on in the course.
+Note that `AutomatedBrowserBase` class is created in the `com.octopus.decoratorbase` package. Having this class in its own package will be an important design decision for features we’ll look at later on in the course.
 
 To create the new package, right click on the `octopus` directory and select {{New,Package}}.
 
@@ -238,7 +238,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 }
 ```
 
-Now let's extend the `AutomatedBrowserBase` class to create the `ChromeDecorator` class. `ChromeDecorator` will override the `init()` method to create an instance of the `ChromeDriver` class.
+Now let’s extend the `AutomatedBrowserBase` class to create the `ChromeDecorator` class. `ChromeDecorator` will override the `init()` method to create an instance of the `ChromeDriver` class.
 
 The `ChromeDecorator` class will be placed in the `com.octopus.decorators` package, so create the new `decorators` package just like you did with the `decoratorbase` package.
 
@@ -293,17 +293,17 @@ public class FirefoxDecorator extends AutomatedBrowserBase {
 }
 ```
 
-The `ChromeDecorator` and `FirefoxDecorator` classes contain the logic we need to open either the Chrome or Firefox browsers, and they achieve this by creating instances of either the `ChromeDriver` or `FirefoxDriver` classes. These driver classes are then passed to the  `AutomatedBrowser` instance that the `ChromeDecorator` and `FirefoxDecorator` classes "wrap up" by calling `getAutomatedBrowser().setWebDriver(webDriver)`.
+The `ChromeDecorator` and `FirefoxDecorator` classes contain the logic we need to open either the Chrome or Firefox browsers, and they achieve this by creating instances of either the `ChromeDriver` or `FirefoxDriver` classes. These driver classes are then passed to the  `AutomatedBrowser` instance that the `ChromeDecorator` and `FirefoxDecorator` classes *wrap up* by calling `getAutomatedBrowser().setWebDriver(webDriver)`.
 
-The last step is to initialize the drivers by calling `getAutomatedBrowser().init()`. Calling the `init()` method does nothing right now, but we'll use this method later on to configure some advanced features of the drivers.
+The last step is to initialize the drivers by calling `getAutomatedBrowser().init()`. Calling the `init()` method does nothing right now, but we’ll use this method later on to configure some advanced features of the drivers.
 
-The final decorator we need is one that uses the WebDriver API to perform actions against the browsers initialized by either the `ChromeDecorator` or `FirefoxDecorator` classes. For this we'll create the `WebDriverDecorator` class.
+The final decorator we need is one that uses the WebDriver API to perform actions against the browsers initialized by either the `ChromeDecorator` or `FirefoxDecorator` classes. For this we’ll create the `WebDriverDecorator` class.
 
-The `WebDriverDecorator` class will host a `WebDriver` instance, and expose it through the `getWebDriver()` and `setWebDriver()` methods. The `destroy()` method will close the web browser, and the `goTo()` method opens up the supplied URL.
+The `WebDriverDecorator` class will host a `WebDriver` instance, and expose it through the `getWebDriver()` and `setWebDriver()` methods. The `destroy()` method will close the web browser, and the `goTo()` method opens the supplied URL.
 
-Notice that `WebDriverDecorator` has a default constructor. This is unlike `ChromeDecorator` and `FirefoxDecorator`, which both provide a single constructor that takes a `AutomatedBrowser`. This difference exists because `WebDriverDecorator` is intended to be the base `AutomatedBrowser` that other decorators wrap up. We'll see this in action when we update the `AutomatedBrowserFactory` class.
+Notice that `WebDriverDecorator` has a default constructor. This is unlike `ChromeDecorator` and `FirefoxDecorator`, which both provide a single constructor that takes an `AutomatedBrowser`. This difference exists because `WebDriverDecorator` is intended to be the base `AutomatedBrowser` that other decorators wrap up. We’ll see this in action when we update the `AutomatedBrowserFactory` class.
 
-We've already seen a lot of the code that goes into the `WebDriverDecorator` class in the last post, with the `webDriver.get()` method opening a URL, and the `webDriver.quit()` method closing the browser:
+We’ve already seen a lot of the code that goes into the `WebDriverDecorator` class in the last post, with the `webDriver.get()` method opening a URL, and the `webDriver.quit()` method closing the browser:
 
 ```java
 package com.octopus.decorators;
@@ -348,11 +348,11 @@ public class WebDriverDecorator extends AutomatedBrowserBase {
 }
 ```
 
-With the decorators done we need to update the `AutomatedBrowserFactory` to make use of them.
+With the decorators done, we need to update the `AutomatedBrowserFactory` to make use of them.
 
 Previously the `getChromeBrowser()` and `getFirefoxBrowser()` methods returned `null`. Now we can create instances of our decorator classes to build up customized instances of the `AutomatedBrowser` interface to open either Chrome or Firefox.
 
-Note how the decorator constructors wrap each other up. This is key to the decorator pattern, and means we can mix and match decorator classes to construct a wide range of objects, all without having to create deep class hierarchies with inheritance:
+Note how the decorator constructors wrap each other up. This is key to the decorator pattern and means we can mix and match decorator classes to construct a wide range of objects, all without having to create deep class hierarchies with inheritance:
 
 ```java
 private AutomatedBrowser getChromeBrowser() {
@@ -368,11 +368,11 @@ private AutomatedBrowser getFirefoxBrowser() {
 }
 ```
 
-The image below shows how decorators wrap each other up, and pass method calls to the instances that they decorate.
+The image below shows how decorators wrap each other up and pass method calls to the instances they decorate.
 
 ![](image9.png "width=500")
 
-Let's create a test that makes use of our factory and the instances of `AutomatedBrowser` that it creates.
+Let’s create a test that makes use of our factory and the instances of `AutomatedBrowser` that it creates.
 
 Because this is a test class, it will be created in the
 `src/test/java/com/octopus` directory:
@@ -416,7 +416,7 @@ public class FactoryTest {
 }
 ```
 
-The `FactoryTest` class makes use of JUnit parameterization to run the test method multiple times with different inputs. We'll use this functionality to run the test against both the Chrome and Firefox browsers with a single test method.
+The `FactoryTest` class makes use of JUnit parameterization to run the test method multiple times with different inputs. We’ll use this functionality to run the test against both the Chrome and Firefox browsers with a single test method.
 
 To enable parameterization, the test class require the annotation `@RunWith(Parameterized.class)`:
 
@@ -477,6 +477,6 @@ To run the tests, click the green arrow next to the `FactoryTest` class and sele
 
 You will see both Chrome and Firefox open, display [https://octopus.com](https://octopus.com), and close again.
 
-Now that we have a simple framework to run tests against multiple browsers, we need to have a web page that we can interact with, which we will create in the next post.
+Now that we have a simple framework to run tests against multiple browsers, we need to have a web page to interact with, which we will create in the next post.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
