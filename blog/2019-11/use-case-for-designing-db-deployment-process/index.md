@@ -234,7 +234,7 @@ But I didn’t do that.  I combined all of that into one big meeting.  Live and 
 
 We had to change quite a bit to automate database deployments.  In the end, it was worth it.  Deployments to `production` became a non-event.  The last `production` deployment I did with that company involved myself, the business owner, and my manager.  We were online for 30 minutes. 25 of those minutes were spent telling funny stories and bad jokes.  The deployment went through with minimal fuss.  
 
-In this article, I focused on what we did to automate database deployments.  I didn’t focus on what we actually did.  The next article focuses on that.  
+In this article, I focused on how we designed our automate database deployment process.  I didn’t focus on what we actually did, but I'll cover that in the next article.  
 
 Until next time, Happy Deployments!
 
