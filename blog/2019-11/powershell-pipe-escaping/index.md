@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Recently I was tasked with spinning up some Azure web applications, and to save some time I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`, which resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`.
+Recently I was tasked with spinning up some Azure web applications, and to save some time I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`. This resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`, and it took me some Googling to understand the problem.
 
 In this blog post we'll look at some of the ways to resolve this error.
 
@@ -38,7 +38,7 @@ This also applies to the `Start-Process` CmdLet:
 start-process az -argumentlist @("webapp", "create", "-g", "testgroup", "-p", "testplan", "-n", "testapp", "--runtime", '"node|10.6"') -nonewwindow -wait
 ```
 
-And You can define the parameter in an external variable with the pipe character wrapped in quotes.
+And you can define the parameter in an external variable with the pipe character wrapped in quotes.
 
 ```
 $runtime='node"|"10.6'
