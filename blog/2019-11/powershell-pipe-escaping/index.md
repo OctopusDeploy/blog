@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-Recently I was tasked with spinning up some Azure web applications, and to save some time I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`. This resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`, and it took me some Googling to understand the problem.
+Recently I was tasked with spinning up some Azure web applications, and to save some time, I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`. This resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`, and it took me some Googling to understand the problem.
 
-In this blog post we'll look at some of the ways to resolve this error.
+In this blog post, we'll look at some of the ways to resolve this error.
 
 ## Wrap the string with quotes
 
@@ -22,7 +22,7 @@ The first way we can solve this error is to wrap up the string containing the pi
 az webapp create -g testgroup -p testplan -n testapp --runtime '"node|10.6"'
 ```
 
-or
+or:
 
 ```PowerShell
 az webapp create -g testgroup -p testplan -n testapp --runtime 'node"|"10.6'
@@ -38,7 +38,7 @@ This also applies to the `Start-Process` CmdLet:
 start-process az -argumentlist @("webapp", "create", "-g", "testgroup", "-p", "testplan", "-n", "testapp", "--runtime", '"node|10.6"') -nonewwindow -wait
 ```
 
-And you can define the parameter in an external variable with the pipe character wrapped in quotes.
+And you can define the parameter in an external variable with the pipe character wrapped in quotes:
 
 ```PowerShell
 $runtime='node"|"10.6'
@@ -56,14 +56,14 @@ You can find more information on this symbol in the [PowerShell documentation](h
 
 ## What doesn't work
 
-Wrapping the pipe character with single quotes doesn't work.
+Wrapping the pipe character with single quotes doesn't work:
 ```PowerShell
 PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runtime "node'|'10.6"
 ''10.6' is not recognized as an internal or external command,
 operable program or batch file.
 ```
 
-Using single quotes doesn't work.
+Using single quotes doesn't work:
 
 ```PowerShell
 PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runtime 'node|10.6'
@@ -71,7 +71,7 @@ PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runt
 operable program or batch file.
 ```
 
-Placing the runtime string into a variable doesn't work.
+Placing the runtime string into a variable doesn't work:
 
 ```PowerShell
 PS C:\Users\Matthew> $runtime = "node|10.6"
@@ -80,7 +80,7 @@ PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runt
 operable program or batch file.
 ```
 
-Using `Start-Process` also doesn't work.
+Using `Start-Process` also doesn't work:
 
 ```PowerShell
 PS C:\Users\Matthew> start-process az -argumentlist @("webapp", "create", "-g", "testgroup", "-p", "testplan", "-n", "testapp", "--runtime", "node|10.6") -nonewwindow -wait
@@ -88,7 +88,7 @@ PS C:\Users\Matthew> start-process az -argumentlist @("webapp", "create", "-g", 
 operable program or batch file.
 ```
 
-Escaping the pipe character doesn't work.
+Escaping the pipe character doesn't work:
 
 ```PowerShell
 PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runtime "node`|10.6"
@@ -97,7 +97,7 @@ operable program or batch file.
 ```
 
 Escaping the pipe character with `^` doesn't work. This is how you escape the pipe character in the Windows Command Prompt,
-and I have seen it incorrectly suggested as a solution for PowerShell as well.
+and I have seen it incorrectly suggested as a solution for PowerShell as well:
 
 ```PowerShell
 PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runtime "node^|10.6"
