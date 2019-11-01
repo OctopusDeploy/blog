@@ -38,7 +38,7 @@ This also applies to the `Start-Process` CmdLet:
 start-process az -argumentlist @("webapp", "create", "-g", "testgroup", "-p", "testplan", "-n", "testapp", "--runtime", '"node|10.6"') -nonewwindow -wait
 ```
 
-You can also define the parameter in an external variable with the pipe character wrapped in quotes.
+And You can define the parameter in an external variable with the pipe character wrapped in quotes.
 
 ```
 $runtime='node"|"10.6'
@@ -104,3 +104,7 @@ PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runt
 '10.6' is not recognized as an internal or external command,
 operable program or batch file.
 ```
+
+## Conclusion
+
+Passing arguments with the pipe character in PowerShell requires some special processing that is not immediately obvious, but the stop processing symbol or some special escaping with quotes will get you out of trouble.
