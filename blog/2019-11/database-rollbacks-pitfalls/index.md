@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-While it is possible to rollback a database change, the question is, should you?  Rolling back a database change isn’t as straightforward as rolling back a code change.  Databases are the lifeblood of applications.  A unsuccessful rollback can result in bad or deleted data.  This article will go through the pitfalls which result in bad or deleted data and why roll forwards is a better approach.  
+While it is possible to rollback a database change, the question is, should you?  Rolling back a database change isn’t as straightforward as rolling back a code change.  Databases are the lifeblood of applications.  An unsuccessful rollback can result in bad or deleted data.  This article goes through the pitfalls which result in bad or deleted data and why roll forwards is a better approach.  
 
 :::success
 **TL;DR**
@@ -19,7 +19,7 @@ While it is possible to rollback a database change, the question is, should you?
 Rolling forward is a better option.  In specific instances, it is possible to roll back a database change, but those cases are rare.  The effort spent on designing a database rollback process should instead focus on making deployments as fast and safe as possible.  A fast and safe database deployment allows you to roll forward.
 :::
 
-This article is in a series we have written on [automated database deployments](https://octopus.com/database-deployments).
+This article is part of a series we have written on [automated database deployments](https://octopus.com/database-deployments).
 
 !toc
 
@@ -31,7 +31,7 @@ The need to rollback will typically fall into one of three categories:
 - During verification after a deployment.
 - After deployment and verification.
 
-Deployment and verification are intentionally split up because users could be using the application during verification.  It depends on the deployment strategy (outage, canary, or blue/green deployments) and what your application supports.  For example, Octopus Deploy has the [maintenance mode](https://octopus.com/docs/administration/managing-infrastructure/maintenance-mode) feature, which prevents other non-admins from deploying code, even though they can still access it.  A feature such as that supports verification after a deployment.
+Deployment and verification are intentionally split up because users could be using the application during verification.  It depends on the deployment strategy (outage, canary, or blue/green deployments) and what your application supports.  For example, Octopus Deploy has the [maintenance mode](https://octopus.com/docs/administration/managing-infrastructure/maintenance-mode) feature, which prevents other non-admins from deploying code, even though they can still access it.  Features like maintenance mode support verification after a deployment.
 
 Let’s go through a typical application’s deployment process.  The application has a database, a front end written in React, a RESTful API back-end, and a background service.  The deployment process might look like:
 
@@ -66,7 +66,7 @@ Okay, cool, but *something goes wrong* is a bit vague.  Deployment failures can 
 - The updated application requires .NET Core 3.0, but only .NET Core 2.2 is installed.
 - A misconfiguration in the deployment process.
 
-I don’t think any of those would justify rolling back a database change.  Often a retry can resolve those issues.  As an FYI, that is why we added the [guided failure feature](https://octopus.com/docs/deployment-process/releases/guided-failures) to deployments in Octopus Deploy.  It allows you to choose how to handle a deployment failure.  
+I don’t think any of those would justify rolling back a database change.  Often a retry can resolve those issues.  Situations like that are why we added the [guided failure feature](https://octopus.com/docs/deployment-process/releases/guided-failures) to deployments in Octopus Deploy, which allows you to choose how to handle a deployment failure.  
 
 The second reason, rolling back because one or more of the tests fail.  Do **all** tests need to pass?  Just like deployment failures, tests can fail for a variety of reasons, for instance:
 
@@ -158,7 +158,7 @@ During a post-deployment crisis that analysis is not happening in a vacuum.  Use
 
 Database deployments are often the riskiest part of a deployment.  Is it possible to reduce that risk?  
 
-I think back to all the production deployments I’ve done that included databases.  The stress level was non-existent when the changes were staged hours or days before .  That gave us time to verify the changes during working hours.  The code was still deployed during the deployment window.  Deploying code typically went very quickly.  The verification during the deployment window was much quicker as the majority of it had already been done.
+I think back to all the production deployments I’ve done that included databases.  The stress level was non-existent when the changes were staged hours or days before.  That gave us time to verify the changes during working hours.  The code was still deployed during the deployment window.  Deploying code typically went very quickly.  The verification during the deployment window was much quicker as the majority of it had already been done.
 
 That’s only possible when the database changes are backward compatible, and that takes a great deal of discipline. For details on how backward-compatible database changes should be made, see my article on [Blue/Green Database Deployments](https://octopus.com/blog/databases-with-blue-green-deployments).  That example is a bit extreme, but I would argue that the time spent on it was worth it.  
 
