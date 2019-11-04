@@ -10,7 +10,7 @@ tags:
  - Containers
 ---
 
-Microsoft .NET now has great cross-platform support giving .NET developers the ability to do much of their development on Linux distributions or macOS. In this post, I’ll go through how can you get started and what tools are available to support developers.
+Microsoft .NET now has great cross-platform support giving .NET developers the ability to do much of their development on Linux distributions or macOS. In this post, I’ll go through how you can get started and what tools are available to support developers.
 
 !toc
 
