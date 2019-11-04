@@ -17,7 +17,7 @@ To recap, we have:
 - A pricing model where the revenue per customer doesn't come close to covering the AWS hosting costs  
 - A non-optimized architecture which allocates a dedicated VM for each customer
 
-Octopus had always been designed to be hosted on user's own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_, which in this case was hosting each customer on a dedicated virtual machine.  This approach was a resounding success.  It removed many unknowns, leaving us with a clear problem to solve...
+Octopus had always been designed to be hosted on user's own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_, which in this case was hosting each customer on a dedicated virtual machine.  This approach was a resounding success.  It removed many unknowns, leaving us with a clear problem to solve...
 
 ***Reduce hosting costs.***
 
@@ -47,7 +47,7 @@ It's worth mentioning that at this point in time Octopus is implemented as a ful
 
 Also worth highlighting is a goal we had from the beginning: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products. 
 
-Wait!  One last disclaimer. The following were our opinions at the time. We are certainly not presenting them as facts. They were based on our unique set of circumstances and constraints. You may disagree with them.  They are probably incorrect (or at best only partially correct). And they would certainly have been different if made at a different moment in time. Consider yourself disclaimered. 
+Wait!  One last disclaimer. The following were our opinions at the time. We are certainly not presenting them as facts. They were based on our unique set of circumstances and constraints. You may disagree with them.  They are probably incorrect (or at best only correct for our specific set of inputs). And they would very possibly have been different if made at a different moment in time. Consider yourself disclaimered. 
 
 ### Option 1: Single Multi-tenant Server 
 
@@ -73,7 +73,7 @@ The worrying thing is these renovations would be occuring while we were also try
 
 - Merging regularly, and risk destabilizing our self-hosted customers (you know, the ones that are actually profitable) 
 
-If there was no alternative, we may well have gone this route.  And one day we still might. But we felt we could have our cake and eat it.  We believed we could drastically reduce our hosting costs, with minimal risk to the Octopus Deploy product. 
+If there was no alternative, we may well have gone this route.  And one day we still might. But we felt we could have our cake and eat it.  We believed we could drastically reduce our hosting costs, with minimal risk to the core Octopus Deploy product. 
 
 
 ### Option 2: Windows Process Per Customer 
@@ -154,6 +154,19 @@ Kubernetes was built for the problem we were trying to solve. We've always preac
 
 It was also an exciting chance to again drink our own champagne: we could take advantage of the kubernetes support we had built into Octopus at a large scale. 
 
-## Postscript 
+## Now 
 
-This post was set in the past. These decisions took place over a year ago now.  
+This post was set in the past. These decisions took place over a year ago at the time of writing.  
+
+This is the part of the movie where we show a montage of current photos of the characters, while "where are they now" updates scroll by and a song by Snow Patrol plays.   
+
+For the past week or so, all new hosted Octopus instances have been provisioned as a Linux container, running on AKS (Azure's managed Kubernetes)! 
+
+At the time of writing:
+
+- There had been 0 provisioning failures
+- The vast majority of instances were provisioned in < 30 seconds 
+
+It's too early to evaluate the cost reduction, as we were cautious and grossly over-provisioned the nodes initially.  Even considering that, per-customer costs are reduced by roughly 50%.  
+
+We hope you enjoyed this peek behind the curtain.  We have more posts coming in this series, stay tuned. 
