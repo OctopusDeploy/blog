@@ -1,11 +1,11 @@
 ---
-title: Why we bet on Kubernetes 
-description: Why we chose Kubernetes to host Octopus Cloud 
+title: "Octopus Cloud v2 Architecture Options: Why we bet on Kubernetes, Linux, and .NET Core"  
+description: A reflection on the architecture options we considered for hosting Octopus Cloud v2   
 author: michael.richardson@octopus.com
 visibility: private
 published: 2020-01-01
-metaImage:
-bannerImage:
+metaImage: ../../2019-10/octopus-cloud-1.0-reflections/octopus-cloud-recap.png
+bannerImage: ../../2019-10/octopus-cloud-1.0-reflections/octopus-cloud-recap.png
 tags:
  - Octopus
 ---
