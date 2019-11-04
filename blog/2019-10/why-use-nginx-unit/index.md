@@ -3,12 +3,14 @@ title: What are the benefits of using NGINX Unit?
 description: What features does NGINX Unit have that make it an attractive solution for modern deployments?
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-01-01
-metaImage:
-bannerImage:
+published: 2019-11-04
+metaImage: nginx-unit.png
+bannerImage: nginx-unit.png
 tags:
  - Engineering
 ---
+
+![NGINX Unit web server](nginx-unit.png)
 
 NGINX is one of the most popular web servers and reverse proxies available today. It offers high performance, almost infinite configurability, and is a commonly used component in modern stacks like Kubernetes. Now the NGINX team has a new offering called NGINX Unit, which is aimed at solving some common challenges of modern development processes.
 
