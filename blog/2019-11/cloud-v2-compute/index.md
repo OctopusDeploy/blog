@@ -1,5 +1,5 @@
 ---
-title: "Octopus Cloud v2 Architecture Options: Why we bet on Kubernetes, Linux, and .NET Core"  
+title: "Octopus Cloud v2 Compute Options: Why we bet on Kubernetes, Linux, and .NET Core"  
 description: A reflection on the architecture options we considered for hosting Octopus Cloud v2   
 author: michael.richardson@octopus.com
 visibility: private
