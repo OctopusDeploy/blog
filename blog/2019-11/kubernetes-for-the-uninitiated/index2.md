@@ -208,3 +208,5 @@ OctoPetShop is written to redirect to https, you will most likley receive a warn
 
 ## Conclusion
 Before embarking on the journey to containerize OctoPetShop with the eventual goal of getting it running on Kubernetes, I viewed Kubernetes as pure voodoo.  Now that I've gone through the motion of containerizing an appliciation and getting it to run, I'm no longer afraid of Kubernetes.
+
+The [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) GitHub repo contains all of the docker, docker-compose, and Kubernetes YAML files for the OctoPetshop application.
