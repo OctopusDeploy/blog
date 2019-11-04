@@ -3,12 +3,14 @@ title: Three ways to use custom Terraform plugins
 description: Terraform does not yet support repositories for custom plugins, but here are three ways to utilize your custom plugins.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-01-01
-metaImage:
-bannerImage:
+published: 2019-11-06
+metaImage: terraform-plugins.png
+bannerImage: terraform-plugins.png
 tags:
  - Engineering
 ---
+
+![Custom Terraform Plugins](terraform-plugins.png)
 
 There is an [ongoing discussion](https://github.com/hashicorp/terraform/issues/15252) in the Hashicorp GitHub repository about the possibility of supporting custom plugin repositories for Terraform. As it stands today though only the official Terraform plugins will be downloaded on demand, and custom plugins need to be manually distributed.
 
