@@ -1,16 +1,16 @@
 ---
-title: Selenium Series - Asynchronous Lambdas
-description: In this post we will learn how to launch Lambdas asynchronously from API Gateway
+title: "Selenium series: Asynchronous Lambdas"
+description: In this post, we learn how to launch Lambdas asynchronously from API Gateway
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 We now have the ability to run Gherkin features with an AWS Lambda function. But so far we have had to trigger the tests from the AWS console. This is fine while we test that the Lambda works, but it not a very convenient  way to run tests.
 
@@ -130,11 +130,11 @@ To make a HTTP request, we'll use a tool called Postman, which you can download 
 
 The screenshot below shows the important fields that need to be populated to make this POST request.
 
-- Select `POST` from the drop down list at the top of the tab
+- Select `POST` from the drop-down list at the top of the tab
 - Enter the URL into the textbox at the top of the tab
 - Select the `Body` tab
 - Select the `raw` option
-- Select `Text` from the content type drop down list
+- Select `Text` from the content type drop-down list
 - Paste in the Gherkin feature into the text area at the bottom of the tab
 - Click the `Send` button
 
@@ -229,4 +229,4 @@ Great, we now have a way to run Gherkin scripts by making a HTTP call, and witho
 
 The final piece to this puzzle is to provide a way for the `runCumumber` function to return the results of the test now that it is being called in an asynchronous manner.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

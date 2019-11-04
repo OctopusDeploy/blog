@@ -7,7 +7,7 @@ bannerImage: blogimage-kubernetes.png
 metaImage: blogimage-kubernetes.png
 published: 2018-11-13
 tags:
-- Kubernetes
+- Product
 ---
 
 With the release of 2018.9, Kubernetes is now a first class citizen in Octopus. But you may be asking why you would use Octopus to manage your Kubernetes deployments. Kubernetes already has a rich declarative model for all of its resources, a fully functional command line tool, and more dashboards than you can poke a stick at.

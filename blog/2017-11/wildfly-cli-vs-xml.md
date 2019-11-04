@@ -7,7 +7,7 @@ published: 2017-11-07
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 When building a WildFly server with automation tools like Puppet, Chef, Ansible etc you will be faced with the question of how to go from stock download to customized server. A big part of this customization is how you will edit the configuration files (`standalone.xml`, `domain.xml`, `host.xml` and `host-slave.xml`) during the build process.

@@ -5,8 +5,7 @@ author: matt.richardson@octopus.com
 visibility: public
 published: 2017-06-21
 tags:
- - New Releases
- - Azure
+ - Product
 ---
 
 Back in October 2014, we were pretty excited to [announce](https://octopus.com/blog/azure-vm-extension) a Virtual Machine extension for Azure that would allow you to install the Tentacle agent, and wire it up to your Octopus Server.

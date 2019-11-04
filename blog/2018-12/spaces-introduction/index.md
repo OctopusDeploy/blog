@@ -7,7 +7,7 @@ bannerImage: blogimage-spaces.png
 metaImage: blogimage-spaces.png
 published: 2018-12-14
 tags:
-- Spaces
+- Product
 ---
 
 ![Teams using Octopus Spaces illustration](blogimage-spaces.png)

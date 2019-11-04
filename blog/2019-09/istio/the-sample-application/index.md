@@ -1,27 +1,32 @@
 ---
-title: Exploring Istio - The sample application
+title: Exploring Istio by example
 description: In this post, we look at a very simple sample application that we’ll use to explore the functionality of Istio.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2020-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-09-23
+metaImage: exploring-istio.png
+bannerImage: exploring-istio.png
 tags:
- - Octopus
+ - Engineering
+---
+
+![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
+
+This is part one in a series of posts exploring Istio, a popular service mesh available for Kubernetes. In this post, I'll introduce a sample application that will then be used as we explore the major features of Istio.
+
+* **The Sample application.**
+* [The VirtualService resource.](/blog/2019-09/istio/istio-virtualservice/index.md)
+* [The DestinationRule resource.](/blog/2019-09/istio/istio-destinationrule/index.md)
+* [The ServiceEntry resource.](/blog/2019-09/istio/istio-serviceentry/index.md)
+* [The Gateway resource.](/blog/2019-09/istio/istio-gateway/index.md)
+
 ---
 
 [Istio](https://istio.io/) is one of the most popular and powerful service meshes available for Kubernetes today. To understand the features it provides, it’s useful to have a very simple sample application to make network requests that we can manipulate and configure via Istio.
 
 The canonical example provided by the Istio project is [Bookinfo](https://istio.io/docs/examples/bookinfo/). Bookinfo is a small polyglot microservice application whose output can be tweaked by modifying network policies.
 
-However, I found Bookinfo too high level to really understand the features of Istio, and so instead, we’ll present a very simple Kubernetes deployment with Node.js applications proxying the requests from various web servers, both internal and external to the cluster. By keeping things very simple, it is easy to see exactly what Istio is doing as network requests are being made.
-
-This sample application will then be used as we explore the major features of Istio including:
-
-* [The VirtualService resource.](/blog/2019-09/istio/istio-virtualservice/index.md)
-* [The DestinationRule resource](/blog/2019-09/istio/istio-destinationrule/index.md)
-* [The ServiceEntry resource.](/blog/2019-09/istio/istio-serviceentry/index.md)
-* [The Gateway resource.](/blog/2019-09/istio/istio-gateway/index.md)
+However, I found Bookinfo too high level to really understand the features of Istio, and so instead, I’ll present a very simple Kubernetes deployment with Node.js applications proxying the requests from various web servers, both internal and external to the cluster. By keeping things very simple, it is easy to see exactly what Istio is doing as network requests are being made.
 
 ## The proxy application
 
@@ -107,7 +112,7 @@ server.listen(port, (err) => {
 
 ## An architecture diagram
 
-Here is a top-level overview of the sample application, using the [Kubernetes Deployment Language](https://blog.openshift.com/kdl-notation-kubernetes-app-deploy/) (KDL).
+Here is a top-level overview of the sample application using the [Kubernetes Deployment Language](https://blog.openshift.com/kdl-notation-kubernetes-app-deploy/) (KDL).
 
 The YAML at https://github.com/mcasperson/NodejsProxy/blob/master/kubernetes/example.yaml is a deployable example of this sample project.
 

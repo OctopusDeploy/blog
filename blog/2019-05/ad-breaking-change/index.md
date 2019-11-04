@@ -7,9 +7,7 @@ published: 2019-05-10
 metaImage:
 bannerImage:
 tags:
-  - Security
-  - Release Notes
-  - New Releases
+  - Product
 ---
 
 We announced in version 2019.5 that there was a breaking change for Active Directory and I wanted to write a blog to help people understand what it means for your organisation, infosec team and most importantly Administrators of Octopus and you can see this issue on [Github](https://github.com/OctopusDeploy/Issues/issues/5549).

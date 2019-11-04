@@ -1,26 +1,26 @@
 ---
-title: Selenium Series - Capturing HAR files
-description: In this post we learn how to capture HAR files through BrowserStack.
+title: "Selenium series: capturing HAR files"
+description: In this post, we learn how to capture HAR files through BrowserStack.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-HTTP Archive (HAR) files are a standard JSON formatted log of a browser's interaction with an external web application.
+HTTP Archive (HAR) files are a standard JSON formatted log of a browser’s interaction with an external web application.
 
-You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`. 
+You can generate a HAR file by opening the Chrome developer tools, clicking the `Network` tab, opening a web site, and then right clicking in the list of network calls and selecting `Save as HAR with content`.
 
 ![](image1.png "width=500")
 
 This will generate a HAR file that contains the details of all the network calls captured by the developer tools.
 
-Because HAR files have an open format,  there are a number of tools online that you can use to inspect their contents. One such tool is the [HAR Analyser](https://toolbox.googleapps.com/apps/har_analyzer/). This tool lets you upload a HAR file and then filter by HTTP response code, inspect the content associated with a request, and view the timing of each network call. This kind of information is invaluable when debugging an error with a web application, or to understand how well the site is responding.
+Because HAR files have an open format, there are a number of tools online you can use to inspect their contents. One such tool is the [HAR Analyser](https://toolbox.googleapps.com/apps/har_analyzer/). This tool lets you upload a HAR file and then filter by HTTP response code, inspect the content associated with a request, and view the timing of each network call. This kind of information is invaluable when debugging an error with a web application or to understand how well the site is responding.
 
 ![](image2.png "width=500")
 
@@ -105,7 +105,7 @@ public class SaveException extends RuntimeException {
 }
 ```
 
-Now all that is left is to use these methods as part of a test:
+Now, all that is left is to use these methods as part of a test:
 
 ```java
 @Test
@@ -127,15 +127,15 @@ final AutomatedBrowser automatedBrowser =
 }
 ```
 
-Here we made a call to `automatedBrowser.captureHarFile()` before we opened the web page. This ensures that we capture all network traffic as part of this test.
+Here we made a call to `automatedBrowser.captureHarFile()` before we opened the web page. This ensures we capture all network traffic as part of this test.
 
 In the `finally` block we nest an additional `try`/`finally` block. Inside the nested `try` block we call `automatedBrowser.saveHarFile("test.har")`, which will write any captured traffic to the file `test.har`. This call is made in the `finally` block because we want to save this network traffic even if the test fails. The HAR file will often contain information that can be used to debug a failed test, so we want to make sure we save this file regardless of an errors during the tests.
 
-Inside the nested `finally` block we then call `automatedBrowser.destroy()`. Because the call to `destroy()` frees resources, we need to ensure that it runs if the test fails and if the attempt to save the HAR file fails. Nesting `try`/`finally` blocks in this way guarantees that the `destroy()` method is called regardless of any other failure.
+Inside the nested `finally` block, we then call `automatedBrowser.destroy()`. Because the call to `destroy()` frees resources, we need to ensure it runs if the test fails and if the attempt to save the HAR file fails. Nesting `try`/`finally` blocks in this way guarantees that the `destroy()` method is called regardless of any other failure.
 
 The resulting `test.har` file captures the network traffic made as a result to opening <https://octopus.com/>. This file can then be reviewed with tools like the HAR Analyzer to quickly identify any failed requests (i.e. any HTTP response codes in the 4xx or 5xx range), as well as providing a visual timeline of the calls. This information can be invaluable for debugging errors with web applications and understanding performance bottlenecks.
 
-To open file the with HAR Analyzer, open up
+To open file the with HAR Analyzer, go to
 <https://toolbox.googleapps.com/apps/har_analyzer/> and click the `CHOOSE FILE` button.
 
 ![](image3.png "width=500")
@@ -165,7 +165,7 @@ The table below shows the general meaning of the response codes.
 |5xx|	Server errors |
 
 
-The table then shows 7 columns.
+The table shows 7 columns.
 
 |Column|	Value|
 |-|-|
@@ -176,8 +176,7 @@ The table then shows 7 columns.
 |Analysis|	Shows icons representing the data that was associated with the request, the status of the request, and whether the request was served from the browsers cache or not.|
 |Timing|	Displays a graph showing the events that made up the request and how long they took.|
 
-
-The timings of the responses are shown in a graph in the final column. Hovering the cursor over each of the colored columns shows what kind of event was taking place, and how long it took.
+The timings of the responses are shown in a graph in the final column. Hovering the cursor over each of the colored columns shows what kind of event occurred, and how long it took.
 
 If the `Relative` timing type is selected, the graph represents the total time taken by all requests, with the colored columns showing how much time the individual request took relative to the total.
 
@@ -189,7 +188,7 @@ Clicking any of the rows shows more details about the request on the right hand 
 
 ![](image8.png "width=500")
 
-You'll notice that when a request is selected, a lot of the data is missing. This is because by default BrowserMob only captures a small subset of the data that can be saved in a HAR file. To capture all the available information, we create a new method called `captureCompleteHarFile()` in the `AutomatedBrowser` interface:
+You’ll notice when a request is selected, a lot of the data is missing. This is because by default BrowserMob only captures a small subset of the data that can be saved in a HAR file. To capture all the available information, we create a new method called `captureCompleteHarFile()` in the `AutomatedBrowser` interface:
 
 ```java
 void captureCompleteHarFile();
@@ -206,7 +205,7 @@ public void captureCompleteHarFile() {
 }
 ```
 
-Then we implement the method in the `BrowserMobDecorator` class:
+We then implement the method in the `BrowserMobDecorator` class:
 
 ```java
 @Override
@@ -229,13 +228,13 @@ final EnumSet<CaptureType> captureTypes =
   CaptureType.getAllContentCaptureTypes();
 ```
 
-Then we add to that the predefined group of `CaptureType` enums that represent the headers:
+Then we add the predefined group of `CaptureType` enums that represent the headers:
 
 ```java
 captureTypes.addAll(CaptureType.getHeaderCaptureTypes());
 ```
 
-Finally we add the predefined group of `CaptureType` enums that represent the cookies:
+Finally, we add the predefined group of `CaptureType` enums that represent the cookies:
 
 ```java
 captureTypes.addAll(CaptureType.getCookieCaptureTypes());
@@ -272,10 +271,10 @@ public void captureCompleteHarFile() throws URISyntaxException {
 
 You will notice that the HAR file is now several megabytes in size, and that was for one relatively simple page request. More complete tests could generate quite large HAR files, so use the `captureCompleteHarFile()` method sparingly.
 
-When we analyze the new HAR file we can see that there are no longer any warnings about missing information.
+When we analyze the new HAR file we can see there are no longer any warnings about missing information.
 
 ![](image9.png "width=500")
 
-HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next post we'll see how BrowserMob can block or modify requests.
+HAR files are an incredibly useful way to record and analyze the network iterations made during a test, and thanks to the BrowserMob proxy generating HAR files is quite easy to do. But BrowserMob can do more than just record the traffic that flows through it, and in the next post, we’ll see how BrowserMob can block or modify requests.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

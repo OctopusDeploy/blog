@@ -1,18 +1,18 @@
 ---
-title: Selenium Series - Environment specific handing
-description: In this post we learn how to customize WebDriver operations based on the target environment.
+title: "Selenium series: Environment specific handling"
+description: In this post, we learn how to customize WebDriver operations based on the target environment.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-You may have noticed when running tests against the Edge browser in BrowserStack that the window was not maximized.  It usually makes sense to run tests in a maximized window to ensure that the tests are run with web pages displayed with a consistent resolution, so let's add a new method to maximize the window.
+You may have noticed when running tests against the Edge browser in BrowserStack that the window was not maximized.  It usually makes sense to run tests in a maximized window to ensure the tests are run with web pages displayed with a consistent resolution, so let’s add a new method to maximize the window.
 
 First, we add the method `maximizeWindow()` to the `AutomatedBrowser` class:
 
@@ -52,7 +52,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 }
 ```
 
-And then in the `WebDriverDecorator` class we add the code to maximize the browser window:
+And then in the `WebDriverDecorator` class, we add the code to maximize the browser window:
 
 ```java
 package com.octopus.decorators;
@@ -123,9 +123,9 @@ public void browserStackEdgeTest() {
 }
 ```
 
-This test will now run and, as expected, the Edge browser window will be maximized before the URL is opened.
+This test will now run, and as expected, the Edge browser window will be maximized before the URL is opened.
 
-But what happens if we run this same test against a mobile browser? Let's add the call to `automatedBrowser.maximizeWindow()` in a test that makes use of the `AutomatedBrowser` instance generated when we pass the string `BrowserStackAndroid` to the factory class:
+But what happens if we run this same test against a mobile browser? Let’s add the call to `automatedBrowser.maximizeWindow()` in a test that makes use of the `AutomatedBrowser` instance generated when we pass the string `BrowserStackAndroid` to the factory class:
 
 ```java
 @Test
@@ -217,9 +217,9 @@ Session ID: 1a34a4609f63d6bc8749bd3a09f5001ea5a93dd7
 
 ![C:\f22aeb0db211bb4354f00a062e71f0ea](image1.png "width=500")
 
-This exception makes sense, because mobile browsers do not have the concept of resizable windows. They are always full screen, and therefor it is invalid to try and modify the size of the window.
+This exception makes sense because mobile browsers do not have the concept of resizable windows. They are always full screen, and therefore it is invalid to try and modify the size of the window.
 
-This does leave us with a problem though. Ideally we would like to be able to run our test code against any browser. Although we have been creating new test methods to demonstrate new browsers throughout these posts, in practice it is desirable to have a single test method that is called multiple times for different browsers. Running a single test method reduces the amount of duplicated code, making the tests easier to maintain.
+This does leave us with a problem, though. Ideally, we would like to run our test code against any browser. Although we have been creating new test methods to demonstrate new browsers throughout these posts, in practice, it’s better to have a single test method that is called multiple times for different browsers. Running a single test method reduces the amount of duplicated code, making the tests easier to maintain.
 
 We could try to detect the device that the test is being run on inside the test, and wrap up the call to maximize the window in an `if` statement. The code below extracts the name of the device manufacturer, and if it is not `samsung`, we assume that the test is being run on a desktop device, and the call to `automatedBrowser.maximizeWindow()` is made:
 
@@ -255,6 +255,6 @@ public class BrowserStackAndroidDecorator extends AutomatedBrowserBase {
 
 Here we have added an implementation of the `maximizeWindow()` method that does nothing. We know that any time we use the `BrowserStackAndroidDecorator` class, we must be working with a mobile browser, and so we simply ignore any request to maximize the window.
 
-This solution means our test code does not need to change when run on a desktop browser or a mobile one. Those writing and maintaining the tests are no longer required to account for the kinds of device that will be running the final test, which makes the test much more robust and easier to maintain.
+This solution means our test code does not need to change when run on a desktop browser or a mobile one. Those writing and maintaining the tests are no longer required to account for the kinds of devices that will run the final test, which makes the test much more robust and easier to maintain.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

@@ -7,6 +7,7 @@ published: 2019-03-21
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
+ - Engineering
  - Database Deployments
 ---
 

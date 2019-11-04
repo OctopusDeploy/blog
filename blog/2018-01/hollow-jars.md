@@ -7,7 +7,7 @@ published: 2017-11-07
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - DevOps
 ---
 
 I have written in the past about [the difference between an application server and an UberJAR](https://octopus.com/blog/application-server-vs-uberjar).  The short version of that story is that an application server is an environment that hosts multiple JavaEE applications side by side, while an UberJAR is a self contained executable JAR file that launches and hosts a single application.

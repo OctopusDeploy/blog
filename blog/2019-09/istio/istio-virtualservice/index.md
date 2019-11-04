@@ -2,12 +2,24 @@
 title: Exploring Istio - The VirtualService resource
 description: In this blog post, we add a VirtualService resource to the cluster to perform network routing.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2020-01-01
-metaImage:
-bannerImage:
+visibility: PublicNotListedOnMainBlog
+published: 2019-09-23
+metaImage: exploring-istio.png
+bannerImage: exploring-istio.png
 tags:
- - Octopus
+ - Engineering
+---
+
+![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)
+
+This is part two in a series of posts exploring Istio, a popular service mesh available for Kubernetes. In this post, I'll look at what a VirtualService resource is and where it fits in this stack.
+
+* [The Sample application.](/blog/2019-09/istio/the-sample-application/index.md)
+* **The VirtualService resource.**
+* [The DestinationRule resource.](/blog/2019-09/istio/istio-destinationrule/index.md)
+* [The ServiceEntry resource.](/blog/2019-09/istio/istio-serviceentry/index.md)
+* [The Gateway resource.](/blog/2019-09/istio/istio-gateway/index.md)
+
 ---
 
 In the [previous blog](/blog/2019-09/istio/the-sample-application/index.md) post, we deployed two simple Node.js web applications into a Kubernetes cluster as Deployment resources and linked everything up with standard Service resources.

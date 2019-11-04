@@ -7,7 +7,7 @@ published: 2019-06-17
 bannerImage: azure-webinar.png
 metaImage: azure-webinar.png
 tags:
- - Webinar
+ - Events and Webinars
 ---
 
 We've started hosting regular Webinars, and up next in our Continuous Integration series, [Derek](https://twitter.com/OctoDerek), and [Ryan](https://twitter.com/ryanrousseau) are going to discuss [Turbo Charging Azure DevOps with Octopus Deploy](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA).

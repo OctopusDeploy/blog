@@ -7,7 +7,7 @@ published: 2018-01-17
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - Product
 ---
 
 A typical deployment of a package with Octopus gives you the ability to replace markup in template file. This is great when you control the source package and can embed the required markup statements into configuration files, but what happens when you are deploying a package you don't control?

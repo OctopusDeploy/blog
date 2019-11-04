@@ -7,9 +7,7 @@ published: 2018-03-15
 metaImage: metaimage-integration101.png
 bannerImage: blogimage-integration101.png
 tags:
- - Integration
- - TeamCity
- - Team Foundation Server
+ - Product
 
 ---
 

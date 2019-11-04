@@ -1,20 +1,20 @@
 ---
-title: Selenium Series - The Page Object Model design pattern
-description: In this post we learn about the Page Object Model design pattern.
+title: "Selenium series: The Page Object Model design pattern"
+description: In this post, we learn about the Page Object Model design pattern.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster,  this style of testing where we define each interaction with the page in a sequential order has some limitations.
+While our previous test successfully verified the process of purchasing a ticket for an event in TicketMonster, this style of testing where we define each interaction with the page in a sequential order has some limitations.
 
-The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like: 
+The first limitation is that each of the interactions are not particularly descriptive. Someone with limited knowledge of the application being tested would quite understandably be confused by a line of code like:
 
 ```java
 automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
@@ -22,17 +22,17 @@ automatedBrowser.populateElement("tickets-1", "2", WAIT_TIME);
 
 What is `tickets-1` in this case? This identifier does not describe the element that it locates particularly well. You would need to be intimately familiar with the application being tested to know what this line of code does.
 
-The second, and perhaps most significant, limitation is that the code used to construct this test is not reusable. Imagine that in addition to this test that purchases a ticket, we wanted to write a second test that verified the prices of the tickets for each available section. You might write a test like this to ensure that pricing changes don't result in unreasonably high or low ticket prices.
+The second, and perhaps most significant, limitation is that the code used to construct this test is not reusable. Imagine that in addition to this test that purchases a ticket, we wanted to write a second test that verified the prices of the tickets for each available section. You might write a test like this to ensure that pricing changes don’t result in unreasonably high or low ticket prices.
 
 To write a second test, each of the interactions with the application would need to be copied and pasted into a second test method. However, copying and pasting is best avoided because it makes code much harder to maintain, since common functionality now lives in multiple methods and all have to be individually updated.
 
 One solution to both of these limitations is to use the Page Object Model, or POM, design pattern. The POM design pattern encapsulates the interactions with an individual page inside a class. This means the interactions with a page are now exposed behind methods with friendly names, and the classes can be reused between tests.
 
-Let's take a look at how we can rewrite the test using the POM design pattern.
+Let’s take a look at how we can rewrite the test using the POM design pattern.
 
-Each POM class that we create needs to have access to an `AutomatedBrowser` instance. In addition we will also define a common wait time for the explicit waits used when interacting with elements. Exposing these shared properties is done with a class called `BasePage`.
+Each POM class that we create needs to have access to an `AutomatedBrowser` instance. In addition, we will define a common wait time for the explicit waits used when interacting with elements. Exposing these shared properties is done with a class called `BasePage`.
 
-Note that the instance variables, static variables and constructor all have the protected scope. This means that they are only available to classes that extend `BasePage`, meaning `BasePage` is not something we can instantiate directly.
+Note that the instance variables, static variables and constructor all have the protected scope. This means that they are only available to classes that extend `BasePage`, meaning `BasePage` is not something we can instantiate directly:
 
 ```java
 package com.octopus.pages;
@@ -85,15 +85,15 @@ public class MainPage extends BasePage {
 }
 ```
 
-Let's break this code down.
+Let’s break this code down.
 
-All of our POM classes will extend `BasePage`. Extending `BasePage` gives these classes access to an instance of `AutomatedBrowser`, as well as using a shared default wait time:
+All of our POM classes will extend `BasePage`. Extending `BasePage` gives these classes access to an instance of `AutomatedBrowser` as well as using a shared default wait time:
 
 ```java
 public class MainPage extends BasePage {
 ```
 
-To make URLs and element identifiers more maintainable, we assign the strings to constants. Using constant variables means we can give these strings some meaningful context, which will be important later on when dealing with some of the more unintuitive element locators:
+To make URLs and element identifiers more maintainable we assign the strings to constants. Using constant variables means we can give these strings some meaningful context, which will be important later on when dealing with some of the more unintuitive element locators:
 
 ```java
 private static final String URL =
@@ -102,7 +102,7 @@ private static final String URL =
 private static final String BUY_TICKETS_NOW = "Buy tickets now";
 ```
 
-The constructor takes an instance of `AutomatedBrowser`, and passes it to the `BasePage` constructor:
+The constructor takes an instance of `AutomatedBrowser` and passes it to the `BasePage` constructor:
 
 ```java
 public MainPage(final AutomatedBrowser automatedBrowser) {
@@ -125,11 +125,11 @@ public MainPage openPage() {
 
 The only action we are interested in on the main page is clicking the `Buy tickets now` link, which we do in a method called `buyTickets()`.
 
-If you recall from the previous post, how we interacted with elements like this link was not as easy as it might have appeared, because these elements could either be styled links (`<a>` elements), or form buttons (`<input>` elements). Depending on which kind of element was used, our first test had to use a different locator. Links could be identified by their text, while form buttons had to be identified by an `id` or `name` attribute.
+If you recall from the previous post, how we interacted with elements like this link was not as easy as it might have appeared, because these elements could either be styled links (`<a>` elements), or form buttons (`<input>` elements). Depending on which kind of element was used, our first test had to use a different locater. Links could be identified by their text, while form buttons had to be identified by an `id` or `name` attribute.
 
 This distinction between elements is no longer the concern of those writing these tests, but instead has been encapsulated inside this POM class. Calling the `buyTickets()` method will result in the desired element being clicked, regardless of how that element has been located.
 
-Because clicking this link directs the browser to the events page, we return an instance of the `EventsPage` class. Callers of the `buyTickets()` can understand that this return value indicates that a page navigation has taken place, and that further interaction with the page now has to be performed using the `EventsPage` class:
+Because clicking this link directs the browser to the events page, we return an instance of the `EventsPage` class. Callers of the `buyTickets()` can understand that this return value indicates that a page navigation has taken place, and that further interactions with the page now have to be performed using the `EventsPage` class:
 
 ```java
 public EventsPage buyTickets() {
@@ -138,7 +138,7 @@ public EventsPage buyTickets() {
 }
 ```
 
-Let's take a look at the `EventsPage` class:
+Let’s take a look at the `EventsPage` class:
 
 ```java
 package com.octopus.pages.ticketmonster;
@@ -162,7 +162,7 @@ public class EventsPage extends BasePage {
 }
 ```
 
-As with the `MainPage` class, `EventsPage` extends the `BasePage` class, and passes an instance of `AutomatedBrowser` from its constructor to the `BaseClass` constructor:
+As with the `MainPage` class, `EventsPage` extends the `BasePage` class and passes an instance of `AutomatedBrowser` from its constructor to the `BaseClass` constructor:
 
 ```java
 public class EventsPage extends BasePage {
@@ -171,7 +171,7 @@ public class EventsPage extends BasePage {
   }
 ```
 
-The only thing we want to do on the events page is select the event that we wish to purchase tickets for. This involves clicking links in the left hand collapsible menu.
+The only thing we want to do on the events page is select the event we’re purchasing tickets for. This involves clicking links in the left hand collapsible menu.
 
 To allow this method to select any of the options in the menu, we pass in the menu category and event name as parameters.
 
@@ -186,7 +186,7 @@ public VenuePage selectEvent(final String category, final String event)
 }
 ```
 
-Let's take a look at the `VenuePage` class:
+Let’s take a look at the `VenuePage` class:
 
 ```java
 package com.octopus.pages.ticketmonster;
@@ -215,7 +215,7 @@ public class VenuePage extends BasePage {
 }
 ```
 
-This class extends `BasePage`, passes `AutomatedBrowser` to the `BasePage` constructor, and defines some constants for the locators of the venue drop down list and the book button:
+This class extends `BasePage`, passes `AutomatedBrowser` to the `BasePage` constructor and defines some constants for the locators of the venue drop-down list and the book button:
 
 ```java
 public class VenuePage extends BasePage {
@@ -251,7 +251,7 @@ public CheckoutPage book() {
 }
 ```
 
-Let's take a look at the `CheckoutPage` class:
+Let’s take a look at the `CheckoutPage` class:
 
 ```java
 package com.octopus.pages.ticketmonster;
@@ -290,7 +290,7 @@ public class CheckoutPage extends BasePage {
 
 This class extends `BasePage` and passes `AutomatedBrowser` to the `BasePage` constructor.
 
-The constant variables here are a good example of why you want to use variables to provide context to locator strings. In particular the locators `tickets-1` and `submit` don't have any obvious link to the elements they identify. However, we can provide some meaningful context to these locators through their variable names of `ADULT_TICKET_COUNT` and `CHECKOUT_BUTTON`:
+The constant variables here are a good example of why you should use variables to provide context to locator strings. In particular, the locators `tickets-1` and `submit` don’t have any obvious link to the elements they identify. However, we can provide some meaningful context to these locators through their variable names of `ADULT_TICKET_COUNT` and `CHECKOUT_BUTTON`:
 
 ```java
 public class CheckoutPage extends BasePage {
@@ -307,7 +307,7 @@ public class CheckoutPage extends BasePage {
   }
 ```
 
-To buy tickets in a given section we use the `buySectionTickets()` method. This method selects the desired section from the drop down list, adds the number of tickets to be bought, and clicks the `Add` button.
+To buy tickets in a given section we use the `buySectionTickets()` method. This method selects the desired section from the drop-down list, adds the number of tickets to be bought, and clicks the `Add` button.
 
 This action does not result in any page navigation, so we return `this`:
 
@@ -338,7 +338,7 @@ public ConfirmationPage checkout(final String email) {
 }
 ```
 
-Let's take a look at `the ConfirmationPage` class:
+Let’s take a look at `the ConfirmationPage` class:
 
 ```java
 package com.octopus.pages.ticketmonster;
@@ -372,7 +372,7 @@ public class ConfirmationPage extends BasePage {
 
 As has been the case for every other POM class, this class extends `BasePage` and passes `AutomatedBrowser` to the `BasePage` constructor.
 
-The elements that we want to interact with on this page had no attributes that we could use to identify them, forcing us to use CSS Selectors. The use of constant variables here is particularly important in giving these locators some context, as strings like `"div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)"` are difficult to decipher:
+The elements that we want to interact with on this page have no attributes that we could use to identify them, forcing us to use CSS selectors. The use of constant variables here is particularly important in giving these locators some context as strings like `"div.col-md-6:nth-child(1) > div:nth-child(1) > p:nth-child(2)"` are difficult to decipher:
 
 ```java
 public class ConfirmationPage extends BasePage {
@@ -386,7 +386,7 @@ public class ConfirmationPage extends BasePage {
     }
 ```
 
-Unlike the other POM classes, we are not clicking, selecting or populating any elements on this page. We are however interested in getting some text from the page, which we can then use to verify that the tickets we purchased have the correct values.
+Unlike the other POM classes, we are not clicking, selecting, or populating any elements on this page. We are however interested in getting some text from the page, which we can then use to verify the tickets we purchased have the correct values.
 
 The getter functions here return the text content of 3 paragraph (or `<p>`) elements:
 
@@ -404,7 +404,7 @@ public String getVenue() {
 }
 ```
 
-Let's now take a look at the test method that uses the POM classes:
+Let’s now take a look at the test method that uses the POM classes:
 
 ```java
 @Test
@@ -458,7 +458,7 @@ Our test then starts with the main page, which is now represented by the `MainPa
 
 An instance of the `EventsPage` class is returned by the `buyTickets()` method. We save this value in a variable called `eventsPage`.
 
-Notice that at no point in this code did we make any reference to the URL that was used to open the page, nor the locators that were used to click the `Buy Tickets Now` link. These details are now handled by the POM classes, freeing up the test code from any specific knowledge of how the web application works.
+Notice that at no point in this code did we make any reference to the URL that was used to open the page, or the locators that were used to click the `Buy Tickets Now` link. These details are now handled by the POM classes, freeing up the test code from any specific knowledge of how the web application works:
 
 ```java
 final EventsPage eventsPage = new MainPage(automatedBrowser)
@@ -466,7 +466,7 @@ final EventsPage eventsPage = new MainPage(automatedBrowser)
   .buyTickets();
 ```
 
-Navigating the venue, checkout and confirmation pages follows the same pattern. The only values that are required to be defined in the test are the names of the concerts, venues, and sections, the email address and the number of tickets to buy. At no point are we defining locators or making distinctions between links and form buttons:
+Navigating the venue, checkout and confirmation pages follows the same pattern. The only values that need to be defined in the test are the names of the concerts, venues, sections, the email address, and the number of tickets to buy. At no point are we defining locators or making distinctions between links and form buttons:
 
 ```java
 final VenuePage venuePage = eventsPage
@@ -481,7 +481,7 @@ final ConfirmationPage confirmationPage = checkoutPage
   .checkout("email@example.org");
 ```
 
-Validating the details of the purchased tickets is also now much more streamlined. The `ConfirmationPage` class exposes the values were are interested in through getter methods, and the test code no longer has to deal with the obtuse CSS Selectors required to find the paragraph elements that hold this information:
+Validating the details of the purchased tickets is also now much more streamlined. The `ConfirmationPage` class exposes the values we’re interested in through getter methods, and the test code no longer has to deal with the obtuse CSS selectors required to find the paragraph elements that hold this information:
 
 ```java
 Assert.assertTrue(confirmationPage.getEmail().contains("email@example.org"));
@@ -489,7 +489,7 @@ Assert.assertTrue(confirmationPage.getEvent().contains("Rock concert of the deca
 Assert.assertTrue(confirmationPage.getVenue().contains("Roy Thomson Hall"));
 ```
 
-Once the test is completed we clean up the resources in the `finally` block:
+Once the test is completed, we clean up the resources in the `finally` block:
 
 ```java
 } finally {
@@ -497,6 +497,6 @@ Once the test is completed we clean up the resources in the `finally` block:
 }
 ```
 
-By using the POM design pattern we have made our test much more readable, and abstracted away many of the details required to interact with pages like URL or locators, allowing tests to be written against a descriptive and fluent API.
+By using the POM design pattern we have made our test much more readable and abstracted away many of the details required to interact with pages like URL or locators, allowing tests to be written against a descriptive and fluent API.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

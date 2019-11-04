@@ -27,10 +27,11 @@ At the top level of any Beanstalk infrastructure is the application. Conceptuall
 An application version is a copy of the code that is deployed to an environment. Each application version has a unique version label. The version label doesn’t mandate any particular versioning scheme though, just that each is unique.
 
 Finally, we have the environments. An environment is the physical infrastructure that runs your code. Beanstalk provides a wide variety of environment platforms preconfigured for the supported programming languages, as well as supporting Docker containers. You also have the option to create your own custom platform for more advanced scenarios. Each environment is independent of the others and can have any application version deployed to them.
+<figure class="figure"> 
 
-![](workflow.png "width=500")
+![](workflow.png "width=500") <figcaption class="figure-caption text-center">The Beanstalk deployment lifecycle.</figcaption>
+</figure>
 
-*The Beanstalk deployment lifecycle.*
 
 ## The Beanstalk application packaging requirements
 
@@ -44,9 +45,10 @@ However, in some cases, Beanstalk expects to receive nested archives, and .NET C
 
 In the case of .NET Core, the deployable artifact is a ZIP file containing a JSON manifest file and a second nested ZIP file containing the application code. You can see these files in the screenshot below. The file `aws-windows-deployment-manifest.json` is the Beanstalk manifest file, and the file `site.zip` contains the .NET Core code.
 
-![](package.png "width=500")
+<figure class="figure"> 
 
-*The contents of a ZIP file containing a .NET Core application to be deployed to Beanstalk.*
+![](package.png "width=500") <figcaption class="figure-caption text-center">The contents of a ZIP file containing a .NET Core application to be deployed to Beanstalk.</figcaption>
+</figure>
 
 We need to keep these nested archives in mind in order to take full advantage of the features provided by Octopus as part of the deployment process.
 

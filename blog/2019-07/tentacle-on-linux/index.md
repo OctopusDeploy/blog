@@ -7,8 +7,7 @@ published: 2019-07-02
 metaImage: blogimage-octopusserverlinux-2.png
 bannerImage: blogimage-octopusserverlinux-2.png
 tags:
-- Linux
-- Tentacle
+- Product
 ---
 
 Octopus is expanding our list of supported deployment targets (the servers and cloud services that you can deploy to) by introducing a native Linux Tentacle. Tentacles have always been our most popular deployment targets. The way they can be configured to communicate with the Octopus Server provides the most flexibility, but the downside is they were exclusive to Windows.

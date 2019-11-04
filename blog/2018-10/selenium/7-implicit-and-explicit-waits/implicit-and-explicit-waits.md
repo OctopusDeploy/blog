@@ -1,20 +1,20 @@
 ---
-title: Selenium Series - Implicit and Explicit Waits
-description: In this post we learn the strategies WebDriver implements for interacting with dynamic elements in web pages.
+title: "Selenium series: implicit and explicit waits"
+description: In this post, we learn the strategies WebDriver uses to interact with dynamic elements in web pages.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 In our test web page we have a `setTimeout()` method call that created a new `<div>` with the ID of `newdiv_element` after 5 seconds. Such dynamic updates are common in modern web development, and are used extensively with Single Page Applications (SPAs) written with libraries like React and Angular.
 
-These dynamic elements present a challenge when writing tests though. Let's create a new test that attempts to click this dynamic element: 
+These dynamic elements present a challenge when writing tests though. Let’s create a new test that attempts to click this dynamic element:
 
 ```java
 package com.octopus;
@@ -49,7 +49,7 @@ locate element: {"method":"id","selector":"newdiv_element"}
 
 ![](image1.png "width=500")
 
-This exception is not surprising. Our test is attempting to click an element that won't be created for another 5 seconds.
+This exception is not surprising. Our test is attempting to click an element that won’t be created for another 5 seconds.
 
 We could wait a few seconds ourselves in the test. By adding the code `Thread.sleep(6000);` before the attempt to click the element, we can ensure that the element is available:
 
@@ -81,9 +81,9 @@ public class WaitTest {
 
 While this test will pass, it is not a reliable solution.
 
-In our test web page we can know that the element will appear after 5 seconds because the call to `setTimeout()` very clearly creates the element after 5 seconds. However, it is very unlikely that real world web applications will create the elements that a test needs to interact with in such a predictable way. Most likely elements will be created in response to API calls, page navigation or other processing, and there is no way for our test code to know how long these events will take.
+In our test web page we can know that the element will appear after 5 seconds because the call to `setTimeout()` very clearly creates the element after 5 seconds. However, it is very unlikely that real world web applications will create the elements that a test needs to interact with in such a predictable way. Most likely, elements will be created in response to API calls, page navigation, or other processing, and there is no way for our test code to know how long these events will take.
 
-Fortunately WebDriver provides two methods for waiting for dynamic elements to be available: implicit waits and explicit waits.
+Fortunately, WebDriver provides two methods for waiting for dynamic elements to be available: implicit waits and explicit waits.
 
 Implicit waits are the simpler of the two. With implicit waits, we define a global amount of time to wait for elements that our test is interacting with to be present in the web page.
 
@@ -168,9 +168,9 @@ public void clickElementWithId(final String id, final int waitTime) {
 }
 ```
 
-There are three parts an explicit wait.
+There are three parts to an explicit wait.
 
-We start by defining the amount of time that we wish to wait for an element.  This is done by creating an instance of the `WebDriverWait` class:
+We start by defining the amount of time we want to wait for an element.  This is done by creating an instance of the `WebDriverWait` class:
 
 ```java
 final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
@@ -178,17 +178,17 @@ final WebDriverWait wait = new WebDriverWait(webDriver, waitTime);
 
 We then call the `until()` method on the resulting `WebDriverWait` instance.
 
-Finally, we use one of the static methods on the `ExpectedCondition` class to indicate what state the element we are searching for must be in before the element is returned to us.
+Finally, we use one of the static methods on the `ExpectedCondition` class to indicate what state the element we’re searching for must be in before the element is returned to us.
 
-Because we are attempting to click on the element, we want to ensure that the element is clickable. This is done by calling the `ExpectedConditions.elementToBeClickable()` method:
+Because we are attempting to click on the element, we want to ensure the element is clickable. This is done by calling the `ExpectedConditions.elementToBeClickable()` method:
 
 ```java
 wait.until(ExpectedConditions.elementToBeClickable((By.id(id)))).click();
 ```
 
-The end result of this code is that the element we are finding by an ID will only be clicked if it is in a clickable state within the duration specified.
+The end result of this code is that the element we are finding by ID will only be clicked if it is in a clickable state within the duration specified.
 
-To test the explicit wait we create a new test that makes use of the new `clickElementWithId()` method:
+To test the explicit wait, we create a new test that makes use of the new `clickElementWithId()` method:
 
 ```java
 @Test
@@ -209,13 +209,13 @@ public void clickDynamicElementWithExplicitWait() throws URISyntaxException {
 
 As before, the test will wait for the dynamic element to be created before clicking on it, and the test will pass.
 
-But you may be asking why anyone would bother using explicit waits? They require more code to implement, so what is the benefit of explicit waits over implicit waits?
+But you might ask, why anyone would bother using explicit waits? They require more code to implement, so what’s the benefit of explicit waits over implicit waits?
 
-To demonstrate why explicit waits are useful, let's attempt to click on the div with the ID of `div3_element`. If you look back at the source code for the sample web page, you will see that this element is hidden with `style="display: none"`, and is un-hidden from the call to `setTimeout()`.
+To demonstrate why explicit waits are useful, let’s attempt to click on the div with the ID of `div3_element`. If you look back at the source code for the sample web page, you will see this element is hidden with `style="display: none"`, and is un-hidden from the call to `setTimeout()`.
 
 Although there is little difference to someone viewing the page between a hidden element and an element that simply does not exist, this distinction is very important to our tests.
 
-Let's create a test that relies on an implicit wait to click the hidden element:
+Let’s create a test that relies on an implicit wait to click the hidden element:
 
 ```java
 @Test
@@ -242,7 +242,7 @@ org.openqa.selenium.ElementNotVisibleException: element not visible
 
 ![](image3.png "width=500")
 
-We get this exception because the implicit wait immediately returned the `<div>` since it was present on the web page. Implicit waits don't take into account if the element is disabled or hidden. If the element is available on the page, the implicit wait is satisfied, and the test continues. Or, in our case, fails, because you can not click on an invisible element.
+We get this exception because the implicit wait immediately returned the `<div>` since it was present on the web page. Implicit waits don’t take into account if the element is disabled or hidden. If the element is available on the page, the implicit wait is satisfied, and the test continues. Or, in our case, fails, because you can not click on an invisible element.
 
 Compare this behavior to a test that make use of explicit waits:
 
@@ -266,11 +266,11 @@ This test succeeds, because we are explicitly waiting for the target element to 
 
 Explicit waits provide a much greater level of control by allowing us to define the desired state of an element before we attempt to interact with it. Implicit waits are much more general, and only wait for elements to be present on the page.
 
-In practice explicit waits allow us to write much more robust tests. There is some more work initially to support explicit waits, but once the `WebDriverDecorator` class has been populated with methods that make use of explicit waits, they are quite easy to use.
+In practice, explicit waits allow us to write much more robust tests. There is some more work initially to support explicit waits, but after the `WebDriverDecorator` class has been populated with methods that make use of explicit waits, they are quite easy to use.
 
-Let's take a look at how the methods in `WebDriverDecorator` can be overloaded to take advantage of explicit waits.
+Let’s take a look at how the methods in `WebDriverDecorator` can be overloaded to take advantage of explicit waits.
 
-Selecting an option from a drop down list waits for the `<select>` element to be clickable:
+Selecting an option from a drop-down list waits for the `<select>` element to be clickable:
 
 ```java
 @Override
@@ -284,7 +284,7 @@ public void selectOptionByTextFromSelectWithId(final String optionText, final St
 }
 ```
 
-Likewise we wait for elements like `<textarea>` to be clickable before trying to populate them:
+Likewise, we wait for elements like `<textarea>` to be clickable before trying to populate them:
 
 ```java
 @Override
@@ -314,7 +314,7 @@ public String getTextFromElementWithId(final String id, final int waitTime) {
 }
 ```
 
-This same pattern is repeated with the methods that find elements using XPaths and CSS Selectors. We won't go over all these methods individually, but you can see them in the copy of the populated classes and interfaces below.
+This same pattern is repeated with the methods that find elements using XPaths and CSS selectors. We won’t go over all these methods individually, but you can see them in the copy of the populated classes and interfaces below.
 
 Here is the `AutomatedBrowser` interface with all the methods defined for explicit waits:
 
@@ -624,7 +624,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 }
 ```
 
-And here is the `WebDriverDecorator` class with explicit wait implementations for XPath and CSS Selector methods:
+And here is the `WebDriverDecorator` class with explicit wait implementations for XPath and CSS selector methods:
 
 ```java
 package com.octopus.decorators;
@@ -854,6 +854,6 @@ public class WebDriverDecorator extends AutomatedBrowserBase {
 }
 ```
 
-Now that we have seen how implicit and explicit waits work, it is important to understand some of unexpected consequences of using them at the same time. In the next post we'll learn about some unexpected behavior when implicit and explicit waits are mixed.
+Now that we have seen how implicit and explicit waits work, it’s important to understand some of the unexpected consequences of using them at the same time. In the next post we’ll learn about some unexpected behavior when implicit and explicit waits are mixed.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

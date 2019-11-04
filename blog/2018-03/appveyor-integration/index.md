@@ -7,7 +7,7 @@ published: 2018-04-06
 metaImage: metaimage-appveyor.png
 bannerImage: blogimage-appveyor.png
 tags:
- - Walkthrough
+ - Product
 ---
 
 ![Continous Delivery in the cloud with Octopus and AppVeyor](blogimage-appveyor.png)

@@ -7,7 +7,7 @@ published: 2017-11-21
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
- - Java
+ - Engineering
 ---
 
 Server Name Indication (SNI) has been implemented in Tomcat 8.5 and 9, and it means certificates can be mapped to the hostname of the incoming request. This allows Tomcat to respond with different certificates on a single HTTPS port.

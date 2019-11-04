@@ -7,8 +7,7 @@ published: 2018-11-07
 bannerImage: blogimage-deploymenttargetupdate.png
 metaImage: blogimage-deploymenttargetupdate.png
 tags:
-- New Releases
-- Usability
+- Engineering
 ---
 
 ![Illustration of an idea turning into the new deployment target UX](blogimage-deploymenttargetupdate.png)

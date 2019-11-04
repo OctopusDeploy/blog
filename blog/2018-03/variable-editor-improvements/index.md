@@ -7,7 +7,7 @@ published: 2018-03-09
 metaImage: metaimage-variables.png
 bannerImage: blogimage-variables.png
 tags:
- - Variables
+ - Engineering
 ---
 
 ![Octo-Scientist improving variables](blogimage-variables.png)

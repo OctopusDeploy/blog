@@ -7,8 +7,7 @@ published: 2019-01-29
 metaImage: blogimage-spaces.png
 bannerImage: blogimage-spaces.png
 tags:
- - New Releases
- - Spaces
+ - Product
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9YztgS1wUmk" frameborder="0" allowfullscreen></iframe>

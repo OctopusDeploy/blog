@@ -7,7 +7,7 @@ bannerImage: blogimage-verifyvariables.png
 metaImage: blogimage-verifyvariables.png
 published: 2019-07-22
 tags:
- - configuration
+ - Engineering
 ---
 
 ## Introduction
@@ -39,7 +39,7 @@ $configFile = Get-ChildItem -Path $OctopusParameters['Octopus.Action.Package.Ins
 $fileMap = New-Object System.Configuration.ExeConfigurationFileMap
 
 # Set location of exe config file
-$fileMap.ExeConfigFilename = $configFile
+$fileMap.ExeConfigFilename = $configFile.FullName
 
 # Create Configuration Manager object
 $configManager = [System.Configuration.ConfigurationManager]::OpenMappedExeConfiguration($fileMap, [System.Configuration.ConfigurationUserLevel]::None)
@@ -72,7 +72,7 @@ $configFile = Get-ChildItem -Path $OctopusParameters['Octopus.Action.Package.Ins
 $fileMap = New-Object System.Configuration.ExeConfigurationFileMap
 
 # Set location of exe config file
-$fileMap.ExeConfigFilename = $configFile
+$fileMap.ExeConfigFilename = $configFile.FullName
 
 # Create Configuration Manager object
 $configManager = [System.Configuration.ConfigurationManager]::OpenMappedExeConfiguration($fileMap, [System.Configuration.ConfigurationUserLevel]::None)

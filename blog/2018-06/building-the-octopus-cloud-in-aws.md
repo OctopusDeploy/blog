@@ -7,9 +7,7 @@ published: 2018-06-25
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
 tags:
- - Octopus Cloud
- - AWS
- - Infrastructure
+ - Engineering
 ---
 
 ![Octopus Deploy in the clouds illustration](blogimage-octopus-cloud.png)

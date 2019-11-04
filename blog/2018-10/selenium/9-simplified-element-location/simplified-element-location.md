@@ -1,22 +1,22 @@
 ---
-title: Selenium Series - Simplified element location
-description: In this post we learn how to remove explicit element searches by ID, XPath and CSS Selectors in favor of generic locators.
+title: "Selenium series: simplified element location"
+description: In this post, we learn how to remove explicit element searches by ID, XPath, and CSS selectors in favor of generic locators.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-In the last post we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath and CSS Selector.
+In the last post, we looked at the various ways elements could be located in a web page in order for a test to interact with them. We built methods that allowed us to interact with elements found by their ID, XPath, and CSS selector.
 
-But wouldn't it be nice if we could call a single set of methods with the element identifier and let WebDriver work out which elements matched?
+But it would be better if we could call a single set of methods with the element identifier and let WebDriver work out which elements matched.
 
-Imagine you were developing a web application using a test driven development approach. You might write a test like the following. 
+Imagine you are developing a web application using a test driven development approach. You might write a test like the following:
 
 ```java
 public void formTestWithSimpleBy() throws URISyntaxException {
@@ -58,11 +58,11 @@ public void formTestWithSimpleBy() throws URISyntaxException {
 }
 ```
 
-Notice that the test calls method like `automatedBrowser.clickElement()` or `automatedBrowser.populateElement()`. These methods do not specify that the elements are to be found by their ID, an XPath or CSS Selector. Indeed, using a test driven development approach, you will most likely not know the best way to select these elements, because the web page will not have been written yet. As a tester all we are concerned about is that there is *some* way to locate the elements, with the actual locators being something we fill in later when these values as known.
+Notice that the test calls method like `automatedBrowser.clickElement()` or `automatedBrowser.populateElement()`. These methods do not specify that the elements are to be found by their ID, an XPath, or CSS selector. Indeed, using a test driven development approach, you will most likely not know the best way to select these elements because the web page will not have been written yet. As a tester, all we are concerned about is that there is *some* way to locate the elements, with the actual locators being something we fill in later when these values as known.
 
 With a few tricks it is possible to write tests like this.
 
-We'll start by creating an interface called `SimpleBy`. It will have one method called `getElement()`. This method will return the first element to match the locator string, whether that locator is an ID, an XPath, a CSS Selector, a name or any other means of searching for elements.
+We’ll start by creating an interface called `SimpleBy`. It will have one method called `getElement()`. This method will return the first element to match the locator string, whether that locator is an ID, XPath, CSS selector, name, or any other means of searching for elements:
 
 ```java
 package com.octopus.utils;
@@ -78,7 +78,7 @@ public interface SimpleBy {
 }
 ```
 
-The `ExpectedConditionCallback` interface defines a single method that will take a `By` object, and return a `ExpectedCondition` object. We'll make use of this to build an explicit wait condition.
+The `ExpectedConditionCallback` interface defines a single method that takes a `By` object, and returns an `ExpectedCondition` object. We’ll make use of this to build an explicit wait condition:
 
 ```java
 package com.octopus.utils;
@@ -93,7 +93,7 @@ public interface ExpectedConditionCallback {
 }
 ```
 
-To represents errors encountered when locating elements with a generic locator,  we create the `WebElementException` class.
+To represents errors encountered when locating elements with a generic locator, we create the `WebElementException` class:
 
 ```java
 package com.octopus.exceptions;
@@ -118,7 +118,7 @@ public class WebElementException extends RuntimeException {
 }
 ```
 
-Implementing the `SimpleBy` interface is the `SimpleByImpl` class. This is where the magic happens.
+Implementing the `SimpleBy` interface is the `SimpleByImpl` class. This is where the magic happens:
 
 ```java
 package com.octopus.utils.impl;
@@ -180,9 +180,9 @@ public class SimpleByImpl implements SimpleBy {
 }
 ```
 
-Let's break this class down.
+Let’s break this class down.
 
-Inside the `getElement()` method, we create a number of `By` instances, passing in the generic locator string. The locator string could be anything: an XPath, an ID, a CSS Selector. We don't know what kind of locator we have, but by constructing multiple different implementations of the `By` class with it, we have a multiple different ways to attempt to find a matching element.
+Inside the `getElement()` method, we create a number of `By` instances, passing in the generic locator string. The locator string could be anything: an XPath, an ID, or a CSS selector. We don’t know what kind of locator we have, but by constructing multiple different implementations of the `By` class with it, we have multiple different ways to attempt to find a matching element:
 
 ```java
 @Override
@@ -202,7 +202,7 @@ public WebElement getElement(
   };
 ```
 
-We then enter a `while` loop. This loop will always run at least once, because we start the `time` variable at `-1`. The loop will continue while the time spent in the loop is less than the time we have allocated to find a matching element.
+We then enter a `while` loop. This loop will always run at least once, because we start the `time` variable at `-1`. The loop will continue while the time spent in the loop is less than the time we have allocated to find a matching element:
 
 ```java
 long time = -1;
@@ -210,7 +210,7 @@ long time = -1;
 while (time < waitTime * MILLISECONDS_PER_SECOND) {
 ```
 
-Next we loop over each instance of the `By` class that we created earlier. Our intention here is to find the one `By` instance that can use the supplied locator to actually match an element.
+Next, we loop over each instance of the `By` class that we created earlier. Our intention here is to find the one `By` instance that can use the supplied locator to actually match an element:
 
 ```java
 for (final By by : byInstances) {
@@ -218,16 +218,15 @@ for (final By by : byInstances) {
 
 Inside the `try` block we execute an explicit wait, only this time we wait for a short amount of time. `TIME_SLICE` is set to `0.1` of a second, which means each implementation of `By` that this iteration of the loop is working with has a fraction of a second in which to find a matching element.
 
-Notice that we call the functional interface passed into the `expectedConditionCallback` parameter to convert the instance of the `By` class into the desired expected condition. This allows the caller of the method to decide what state the element should be in in order to be
-considered a match.
+Notice that we call the functional interface passed into the `expectedConditionCallback` parameter to convert the instance of the `By` class into the desired expected condition. This allows the caller of the method to decide what state the element should be in to be considered a match.
 
 :::hint
 The WebDriver API is not thread safe, so we have to execute our code in a sequential fashion like this instead of running each test in a separate thread.
 :::
 
-The `catch` block does nothing, because we expect that most attempts to find an element with a given implementation of the `By` class will fail. For example, if the locator string was set to an XPath like `//*[@name="button_element"]`, the locator `By.cssSelector(locator)` will never find a match because it only works with CSS Selectors.
+The `catch` block does nothing, because we expect that most attempts to find an element with a given implementation of the `By` class will fail. For example, if the locator string was set to an XPath like `//*[@name="button_element"]`, the locator `By.cssSelector(locator)` will never find a match because it only works with CSS selectors.
 
-However, the locator `By.xpath(locator)` could well find a match, in which case `return `ait.until(condition)` will exit the loop and return the matching element.
+However, the locator `By.xpath(locator)` could well find a match, in which case `return `ait.until(condition)` will exit the loop and return the matching element:
 
 ```java
 try {
@@ -245,13 +244,13 @@ try {
 }
 ```
 
-If the current implementations of `By` does not successfully find a matching element, we increment time (the total time spent finding the element) by `TIME_SLICE` (the time we allocated to this implementation of `By`), and move onto the next search.
+If the current implementations of `By` does not successfully find a matching element, we increment time (the total time spent finding the element) by `TIME_SLICE` (the time we allocated to this implementation of `By`), and move onto the next search:
 
 ```java
 time += TIME_SLICE;
 ```
 
-If all attempts to find the element failed within the allotted time, we throw an exception.
+If all attempts to find the element failed within the allotted time, we throw an exception:
 
 ```java
 throw new WebElementException("All attempts to find element failed");
@@ -263,9 +262,9 @@ The end result of this code is to give each implementation of `By` a short amoun
 
 You may wonder what happens if two implementations of `By` could return a match. This can happen if the `id` attribute of an element is the same as the `name` element of another element. In this case, the first match wins and is returned.
 
-In practise though such conflicts are rare, and can be easily resolved by passing in an XPath or CSS Selector as the locator. The odds of your web page having a XPath or CSS Selector embedded in an `id`, `name` or `class` attribute is exceptionally small, and so they will not match more than one element.
+In practise though, such conflicts are rare, and can be easily resolved by passing in an XPath or CSS selector as the locator. The odds of your web page having an XPath or CSS selector embedded in an `id`, `name`, or `class` attribute is exceptionally small, and so they will not match more than one element.
 
-If you had a keen eye you may have noticed that we created an instance of `WebDriverWaitEx` instead of the usual `WebDriverWait`. `WebDriverWaitEx` extends `WebDriverWait`, and adds an additional constructor that allows it to be configured to wait for sub-second amounts of time (`WebDriverWait` can wait for no less than 1 second). This is important to us, because if each instance of the `By` class that we were testing took 1 second to complete, the entire loop would take at least 6 seconds to process, which is too long.
+If you have a keen eye you may have noticed we created an instance of `WebDriverWaitEx` instead of the usual `WebDriverWait`. `WebDriverWaitEx` extends `WebDriverWait` and adds an additional constructor that allows it to be configured to wait for sub-second amounts of time (`WebDriverWait` can wait for no less than 1 second). This is important to us, because if each instance of the `By` class that we were testing took 1 second to complete, the entire loop would take at least 6 seconds to process, which is too long:
 
 ```java
 package com.octopus.utils.impl;
@@ -319,7 +318,7 @@ public class WebDriverWaitEx extends WebDriverWait {
 }
 ```
 
-We now have the ability to find elements based on any kind of locator. To take advantage of this, we add the following methods to the `AutomatedBrowser` interface.
+We now have the ability to find elements based on any kind of locator. To take advantage of this, we add the following methods to the `AutomatedBrowser` interface:
 
 ```java
 void clickElement(String locator);
@@ -339,7 +338,7 @@ String getTextFromElement(String locator);
 String getTextFromElement(String locator, int waitTime);
 ```
 
-The usual default methods are added to `AutomatedBrowserBase`.
+The usual default methods are added to `AutomatedBrowserBase`:
 
 ```java
 @Override
@@ -401,7 +400,7 @@ public String getTextFromElement(final String locator, final int waitTime) {
 }
 ```
 
-And the following implementations are added to `WebDriverDecorator`.
+And the following implementations are added to `WebDriverDecorator`:
 
 ```java
 private static final SimpleBy SIMPLE_BY = new SimpleByImpl();
@@ -467,9 +466,9 @@ public String getTextFromElement(final String locator, final int waitTime) {
 }
 ```
 
-Now we can complete the test, using a mix of IDs, CSS Selectors and XPaths. The new methods will automatically find any matching elements, and we don't need to worry about matching the correct locator to the correct method.
+Now we can complete the test, using a mix of IDs, CSS selectors, and XPaths. The new methods will automatically find any matching elements, and we don’t need to worry about matching the correct locator to the correct method.
 
-The use of the `ChromeNoImplicitWait` configuration is very important here. If you recall from the last post, mixing implicit and explicit waits can lead some undesirable results, and this is once such case. Had we used a configuration that had implicit waits enabled, calls to the methods we implemented above could conceivably take nearly a minute to complete, as each of the 6 explicit waits end up waiting the 10 seconds we configured for the implicit wait. By using the `ChromeNoImplicitWait` configuration, we ensure that the explicit waits in the `SimpleByImpl` class take only a fraction of a second.
+The use of the `ChromeNoImplicitWait` configuration is very important here. If you recall from the last post, mixing implicit and explicit waits can lead to some undesirable results, and this is once such case. Had we used a configuration that had implicit waits enabled, calls to the methods we implemented above could conceivably take nearly a minute to complete, as each of the 6 explicit waits end up waiting the 10 seconds we configured for the implicit wait. By using the `ChromeNoImplicitWait` configuration, we ensure that the explicit waits in the `SimpleByImpl` class take only a fraction of a second:
 
 ```java
 @Test
@@ -510,6 +509,6 @@ public void formTestWithSimpleBy() throws URISyntaxException {
 }
 ```
 
-In my own experience, these new methods we have added to the `AutomatedBrowser` interface are far more convenient than methods that are tied to a specific locator. They remove the need to manually keep locators and the methods they are passed to in sync, and the code is more readable too. For this reason future posts will uses these new methods almost exclusively.
+In my own experience, these new methods we’ve added to the `AutomatedBrowser` interface are far more convenient than methods that are tied to a specific locator. They remove the need to manually keep locators and the methods they are passed to in sync, and the code is more readable too. For this reason, future posts will uses these new methods almost exclusively.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

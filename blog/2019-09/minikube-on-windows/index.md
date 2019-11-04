@@ -2,13 +2,15 @@
 title: Installing Minikube on Windows
 description: Learn how to get a test Kubernetes environment on Windows with Minikube
 author: matthew.casperson@octopus.com
-visibility: private
-published: 3000-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2019-09-25
+metaImage: installing_minikube_on_windows.png
+bannerImage: installing_minikube_on_windows.png
 tags:
- - Octopus
+ - Engineering
 ---
+
+![Octopus driving a Kubernetes speedboat](installing_minikube_on_windows.png)
 
 Getting started with a test Kubernetes cluster has been made easier thanks to the [Minikube project](https://kubernetes.io/docs/tasks/tools/install-minikube/). By using the HyperV functionality in Windows 10, a test Kubernetes cluster can be created in just a few minutes.
 
@@ -20,7 +22,7 @@ Minikube requires an external HyperV switch to operate, and you may find that yo
 
 To view the list of switches, open the `HyperV Manager` and select `Virtual Switch Manager...` from the list of actions:
 
-![](hyperv-actions.png "width=500")
+![](hyperv-actions-01.png "width=300")
 
 *The HyperV actions menu.*
 
@@ -38,7 +40,7 @@ Connect the virtual switch to the PCs local network adapter (in this example, th
 
 You will receive a warning that the network connection will be disrupted. Click `Yes` to continue.
 
-![](warning.png "width=500")
+![](warning-01.png "width=300")
 
 *A warning about network interruption as a result of creating a new switch.*
 

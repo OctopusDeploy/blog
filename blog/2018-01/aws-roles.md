@@ -7,7 +7,7 @@ published: 2018-01-31
 metaImage: metaimage-awsiam.png
 bannerImage: blogimage-awsiam.png
 tags:
- - Cloud
+ - DevOps
 ---
 
 AWS allows resources like EC2 instances to have a IAM role assigned to them. In effect, this gives applications run on the EC2 instance the permissions of that role.  This means that neither the code itself, nor the process running the code, need to supply any credentials or keys, which is very convenient when designing deployment practices.

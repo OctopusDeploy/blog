@@ -7,6 +7,7 @@ published: 2018-02-16
 metaImage: metaimage-will-it-deploy.png
 bannerImage: blogimage-will-it-deploy.png
 tags:
+ - Product
  - Will it Deploy
 ---
 

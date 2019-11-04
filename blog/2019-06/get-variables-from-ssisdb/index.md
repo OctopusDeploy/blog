@@ -7,7 +7,7 @@ metaImage: importing_variables_from_ssisdb.png
 visibility: public
 published: 2019-06-28
 tags:
- - SSIS
+ - Engineering
 ---
 
 ## Introduction

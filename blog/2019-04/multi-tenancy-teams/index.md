@@ -7,7 +7,7 @@ published: 2019-04-30
 metaImage: tenant-sandboxes.png
 bannerImage: tenant-sandboxes.png
 tags:
- - Multi-Tenancy
+ - Engineering
 ---
 
 Recently I had a chance to meet with a customer to talk about their development process. They wanted to know if it's possible to alter their CI/CD pipeline to make it easier and faster to test changes. When they started describing their scenario I couldn't help but smile because I've run into it many times over the past 10+ years.

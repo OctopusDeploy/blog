@@ -1,28 +1,28 @@
 ---
-title: Selenium Series - Modifying HTTP Requests
-description: In this post we learn how to modify network requests made through BrowserStack.
-author: matthew.casperson@octopus.com
+title: "Selenium series: modifying HTTP requests"
+description: In this post, we learn how to modify network requests made through BrowserStack.
+author: matthew.Casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including: 
+In addition to capturing network traffic, BrowserMob also gives us the ability to modify the network requests made by the browser. There are a number of cases where modifying requests can prove useful when running tests, including:
 
 - Simulating the failure of external services.
 - Preventing assets like images from being loaded, which can improve the performance of tests.
 - Blocking third party services during testing, like social media services.
 
-A typical network request through a proxy looks like this. The proxy sits between the browser and external resources, and passes requests back and forth.
+A typical network request through a proxy looks like this. The proxy sits between the browser and external resources and passes requests back and forth.
 
 ![C:\\64a2439378bd827631823103f990261e](image1.png "width=500")
 
-The diagram below shows the request and response that we are trying to achieve.
+The diagram below shows the request and response we are trying to achieve.
 
 1.  A request is made by the browser to the URL of a resource like a PNG image.
 2.  The request is directed to the proxy.
@@ -38,7 +38,7 @@ To support modifying requests we add a new method to the `AutomatedBrowser` inte
 void blockRequestTo(String url, int responseCode);
 ```
 
-This method takes a URL of a request to modify,  and the HTTP response code that should be returned when this URL is requested.
+This method takes a URL of a request to modify, and the HTTP response code that should be returned when this URL is requested.
 
 We add the default method to the `AutomatedBrowserBase` class:
 
@@ -75,13 +75,13 @@ public void blockRequestTo(String url, int responseCode) {
 }
 ```
 
-Let's break this method down.
+Let’s break this method down.
 
 We start by adding a request filter to the BrowserMob proxy object. The request filter is supplied as a lambda that takes three arguments:
 
-- `request`, which contains the details of the HTTP request such as the URL, HTTP method type (GET, POST etc), headers and more.
-- `contents`, which contains the body of the request.
-- `messageInfo`, which contains some additional information about the request, such as the original request details without any modifications from filters.
+- `request`: which contains the details of the HTTP request such as the URL, HTTP method type (GET, POST etc), headers, and more.
+- `contents`: which contains the body of the request.
+- `messageInfo`: which contains some additional information about the request, such as the original request details without any modifications from filters.
 
 ```java
 proxy.addRequestFilter((request, contents, messageInfo) -> {
@@ -105,7 +105,7 @@ final HttpResponse response = new DefaultHttpResponse(
   HttpResponseStatus.valueOf(responseCode));
 ```
 
-We then need to indicate that this request should not utilize the HTTP keep alive functionality. This is done by setting the HTTP header `Connection` to `Close`.
+We then need to indicate this request should not use the HTTP keep alive functionality. This is done by setting the HTTP header `Connection` to `Close`.
 
 If we did not set this header, the browser would attempt to keep the connection open (or keep it alive), and you would see the page appear to be loading for a very long time:
 
@@ -113,7 +113,7 @@ If we did not set this header, the browser would attempt to keep the connection 
 response.headers().add(HttpHeaders.CONNECTION, "Close");
 ```
 
-Returning this object means that the request will be short circuited. The request is no longer passed through to the URL, and is instead handled directly by BrowserMob, in this case with an empty response and the supplied HTTP response code:
+Returning this object means that the request will be short circuited. The request is no longer passed through to the URL, and is instead handled directly by BrowserMob, in this case, with an empty response and the supplied HTTP response code:
 
 ```java
 return response;
@@ -156,7 +156,7 @@ You will note that we have not called `automatedBrowser.destory()` here. This is
 
 ![](image3.png "width=500")
 
-An important thing to note here is that it is no longer possible to interact with the web page in any meaningful way once the test has completed. This is because BrowserMob has been closed, meaning the proxy that the browser was configured with is no longer available, so all future network requests will fail.
+An important thing to note here is that it is no longer possible to interact with the web page in any meaningful way once the test has completed. This is because BrowserMob has been closed, meaning the proxy the browser was configured with is no longer available, so all future network requests will fail.
 
 To interact with the web page, you will need to manually remove the proxy settings from the browsers settings. The screenshot below shows the Firefox proxy settings we saw in the last post. Selecting the `No proxy` option will allow the browser to be used after BrowserMob has been shut down.
 
@@ -166,6 +166,6 @@ Remember that by not calling the `destory()` method, we are now responsible for 
 
 ![C:\\491bba4f05d276005b967a923068965a](image5.png "width=500")
 
-Blocking network requests to things like images can speed up WebDriver tests, and is especially useful when running tests against headless browsers, because there is no one watching the tests being run so there is little benefit to downloading images that will never be seen.
+Blocking network requests to things like images can speed up WebDriver tests, and is especially useful when running tests against headless browsers, because there is no one watching the tests being run there is little benefit to downloading images that will never be seen.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

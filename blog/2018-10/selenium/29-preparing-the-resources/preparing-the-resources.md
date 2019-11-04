@@ -1,16 +1,16 @@
 ---
-title: Selenium Series - Preparing the resources
-description: In this post we prepare the files that our Lambda will download
+title: "Selenium series: Preparing the resources"
+description: In this post, we prepare the files that our Lambda will download
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md). 
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
 When running code as an AWS Lambda we are responsible for configuring the environment every time the application is run. Although Lambda is often referred to as "serverless" computing (which inspired the name for the Serverless application we installed in the last post), there is still a server involved. The term serverless refers to the fact that the server does not need to be provided or managed by us as the end user,  and for the most part we can run our code without worrying too much about the details of the server that will be hosting it.
 
@@ -100,4 +100,4 @@ To find the URL that can be used to download these files, click the file and loo
 
 With both the custom Chrome distribution and the appropriate Chrome driver uploaded to S3, we can move on to creating a package that contains the Java code that will be executed as a Lambda function.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

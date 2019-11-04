@@ -7,7 +7,7 @@ published: 2019-08-29
 metaImage: blogimage-shipping-2019-8.png
 bannerImage: blogimage-shipping-2019-8.png
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octopus Deploy 2019.8 announcement fireworks](blogimage-shipping-2019-8.png)

@@ -7,6 +7,7 @@ published: 2018-06-08
 metaImage: metaimage-database-kickoff.png
 bannerImage: blogimage-database-kickoff.png
 tags:
+ - Engineering
  - Database Deployments
 ---
 

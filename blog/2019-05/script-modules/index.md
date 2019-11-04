@@ -7,8 +7,7 @@ published: 2019-05-09
 metaImage: expanded-script-modules.png
 bannerImage: expanded-script-modules.png
 tags:
- - New Releases
- - Script Modules
+ - Product
 ---
 
 For a long while now, we've been [hearing requests](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9653631-c-script-in-script-modules) for [Script Module](https://octopus.com/docs/deployment-examples/custom-scripts/script-modules) support for languages other than PowerShell. We're happy to share this has just shipped in our latest release - 2019.5.0!

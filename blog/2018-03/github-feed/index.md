@@ -7,8 +7,7 @@ published: 2018-03-06
 metaImage: metaimage-githubfeeds.png
 bannerImage: blogimage-githubfeeds.png
 tags:
- - New Releases
- - Walkthrough
+ - Product
 ---
 ![Blog Image](blogimage-githubfeeds.png)
 

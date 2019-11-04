@@ -7,7 +7,7 @@ published: 2017-06-12
 metaImage: metaimage-release3-14.png
 bannerImage: blogimage-release-3-14.png
 tags:
- - New Releases
+ - Product
 ---
 
 ![Octopus 3.14 release announcement](blogimage-release-3-14.png)

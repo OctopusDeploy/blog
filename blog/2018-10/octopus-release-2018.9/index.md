@@ -7,7 +7,7 @@ published: 2018-10-25
 metaImage: kubernetes-deployments-with-octopus-launch.png
 bannerImage: kubernetes-deployments-with-octopus-launch.png
 tags:
- - New Releases
+ - Product
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FZ8U5OuDyOw" frameborder="0" allowfullscreen></iframe>

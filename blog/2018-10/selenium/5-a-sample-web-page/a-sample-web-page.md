@@ -1,22 +1,22 @@
 ---
-title: Selenium Series - A Sample Web Page
-description: In this post we create a sample web page to run some tests against.
+title: "Selenium series: A sample web page"
+description: In this post, we create a sample web page to run some tests against.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-10-01
 bannerImage: webdriver.png
 metaImage: webdriver.png
 tags:
-- Java
+- DevOps
 ---
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-Now that we have the basis of the framework that we'll be using to write WebDriver tests, it is time to start interacting with a web page.
+Now that we have the basis of the framework that we’ll use to write WebDriver tests, it is time to start interacting with a web page.
 
-To demonstrate the power of WebDriver, we'll start by creating a simple web page that contains common form elements, as well as other common HTML elements like images and divs.
+To demonstrate the power of WebDriver, we’ll start by creating a simple web page that contains common form elements, as well as other common HTML elements like images and divs.
 
-The complete webpage is shown below: 
+The complete webpage is shown below:
 
 ```html
 <!DOCTYPE html>
@@ -97,9 +97,9 @@ The complete webpage is shown below:
 </html>
 ```
 
-Let's have a look at some of the interesting aspects of this web page.
+Let’s have a look at some of the interesting aspects of this web page.
 
-We have a JavaScript function called `interactionMessage()` that displays some text onto the page. The HTML elements that we'll interact with via WebDriver will use events like `onclick`, `onchange`, or `oninput` to print a message to the page. We can then verify the presence of this message to ensure that WebDriver did in fact interact with the elements as we expected.
+We have a JavaScript function called `interactionMessage()` that displays some text onto the page. The HTML elements that we’ll interact with via WebDriver will use events like `onclick`, `onchange`, or `oninput` to print a message to the page. We can then verify the presence of this message to ensure that WebDriver did in fact interact with the elements as we expected.
 
 ```JavaScript
 function interactionMessage(message) {
@@ -109,7 +109,7 @@ function interactionMessage(message) {
 
 The second JavaScript function uses the `setTimeout()` function to wait for 5 seconds and then append a new `<div>` element to the page. It also resets the style of a div with the ID `div3_element`, which will have the effect of displaying a hidden element.
 
-We'll use both of these dynamic updates to the web page to demonstrate how to use implicit and explicit waits in a future post:
+We’ll use both of these dynamic updates to the web page to demonstrate how to use implicit and explicit waits in a future post:
 
 ```JavaScript
 setTimeout(function() {
@@ -121,13 +121,13 @@ setTimeout(function() {
 }, 5000);
 ```
 
-We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons, etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented  from trying to do a page reload on submission by returning `false`:
+We have a `<form>` element that will hold a collection of common HTML form elements like buttons, text boxes, radio buttons, etc. The `onsubmit` event calls the `interactionMessage()` method to display a message when the form is submitted. The form is prevented from trying to do a page reload on submission by returning `false`:
 
 ```HTML
 <form id="form_element" onsubmit="interactionMessage('Form Submitted'); return false">
 ```
 
-Inside the form is a collection of text box, text area, button, radio button, checkbox and select elements. Like for parent `<form>` element, most of these child elements call the `interactionMessage()` method in response to an event:
+Inside the form is a collection of text box, text area, button, radio button, checkbox, and select elements. Like for parent `<form>` element, most of these child elements call the `interactionMessage()` method in response to an event:
 
 ```html
 <button name="button_element" id="button_element" type="button" onclick="interactionMessage('Button Clicked')">Form Button</button>
@@ -186,7 +186,7 @@ The end result looks like this.
 
 In order to make use of this page as part of a Java test, we need to save it in the `src/test/resources` directory. This is the standard Maven directory where resource files are found.
 
-This directory doesn't exist yet, so we create it by right clicking on the test directory and selecting {{New,Directory}}.
+This directory doesn’t exist yet, so we create it by right clicking on the test directory and selecting {{New,Directory}}.
 
 ![](image2.png "width=500")
 
@@ -202,7 +202,7 @@ To update the IntelliJ project, open the `Maven Projects` tool window and click 
 
 ![](image5.png "width=500")
 
-The icon for the `resources` directory is updated to reflect the fact that this will hold file like our sample web page.
+The icon for the `resources` directory is updated to reflect the fact that this will hold files like our sample web page.
 
 ![](image6.png "width=500")
 
@@ -210,9 +210,9 @@ Once the `resources` folder is configured, save the HTML code to a file called `
 
 ![](image7.png "width=500")
 
-We now have two important pieces of the puzzle completed. First, we have the beginnings of the framework that will allow us to create flexible `AutomatedBrowser` objects through which we interact with web pages. Second, we have a sample web page that includes most of the elements we are likely to encounter while writing WebDriver tests. So now it is time to write some real WebDriver tests.
+We now have two important pieces of the puzzle completed. First, we have the beginnings of the framework that will allow us to create flexible `AutomatedBrowser` objects through which we interact with web pages. Second, we have a sample web page that includes most of the elements we are likely to encounter while writing WebDriver tests. Now it‘s time to write some real WebDriver tests.
 
-Let's create a test method `formTestByID()` inside a class `FormTest` that will open the browser, open our test web page, and close the browser again:
+Let’s create a test method `formTestByID()` inside a class `FormTest` that will open the browser, open our test web page, and close the browser again:
 
 ```java
 package com.octopus;
@@ -245,7 +245,7 @@ Notice that we can get access to the sample HTML file by the call to `FormTest.c
 FormTest.class.getResource("/form.html").toURI().toString()
 ```
 
-Now let's manually open the same web page. IntelliJ provides a handy service for hosting webpages locally. This can be accessed by clicking the shortcut in the top right hand corner of the screen when the HTML file is opened in the editor.
+Now let’s manually open the same web page. IntelliJ provides a handy service for hosting webpages locally. This can be accessed by clicking the shortcut in the top right hand corner of the screen when the HTML file is opened in the editor.
 
 ![](image8.png "width=500")
 
@@ -255,15 +255,15 @@ Clicking the Chrome browser icon will open up Chrome to a page with a URL like [
 The URL generated by IntelliJ is not the same URL we got by calling `FormTest.class.getResource()`. Using IntelliJ to host the web page is simply a convenience for us as end users, but we do not use this URL for our tests. Indeed, we could not use this URL as the query string on the end is randomly generated and prevents any other user or process from accessing pages hosted by IntelliJ.
 :::
 
-The first thing we'll test is using WebDriver to click the button at the top of the page.
+The first thing we’ll test is using WebDriver to click the button at the top of the page.
 
-To interact with the button, we need to know its ID. We know that this button has the ID of `button_element`, because we wrote the HTML. But it is not always possible to get access to the source code for the web application you will be testing. So we will assume that we don't have access the HTML source code and instead use the tools provided by Chrome to find this information.
+To interact with the button, we need to know its ID. We know that this button has the ID of `button_element`, because we wrote the HTML. But it is not always possible to get access to the source code for the web application you will be testing. So we will assume that we don’t have access the HTML source code and instead use the tools provided by Chrome to find this information.
 
 With the page loaded in Chrome, right click on the button element and click the `Inspect` option.
 
 ![](image9.png "width=500")
 
-This will open Chrome's Developer Tools, and highlight the button HTML element inside the `Elements` tab.
+This will open Chrome’s Developer Tools, and highlight the button HTML element inside the `Elements` tab.
 
 The HTML elements displayed in the Developer Tools `Elements` tab are updated in real time as elements are added, removed and changed by JavaScript calls. This means you will often get more information from the Developer Tools than you would simply looking at the HTML source code.
 
@@ -317,11 +317,11 @@ First, it finds the element we wish to interact with using a call to `By.id(id)`
 
 Second, we call the `findElement()` method on the web driver class to find the element.
 
-Third, we take the element returned by `findElement()`, and call the `click()` method to simulate an end user clicking the element.
+Third, we take the element returned by `findElement()` and call the `click()` method to simulate an end user clicking the element.
 
-This process of defining how to search for elements with the `By` class, finding the elements with the `findElement()` method, and calling a method like `click()` to simulate an action is something that we'll repeat over and over as we build up the testing framework.
+This process of defining how to search for elements with the `By` class, finding the elements with the `findElement()` method, and calling a method like `click()` to simulate an action is something that we’ll repeat over and over as we build up the testing framework.
 
-But how can we be sure that WebDriver actually clicked the button? If you look back at the source of the `form.html` page you will see that the `<button>` element has the attribute `onclick="interactionMessage('Button Clicked')"`. This means that when the button is clicked, the `interactionMessage()` method is called with `'Button Clicked'`, which in turn will display the text `Button Clicked` on the page.
+But how can we be sure that WebDriver actually clicked the button? If you look back at the source of the `form.html` page you will see the `<button>` element has the attribute `onclick="interactionMessage('Button Clicked')"`. This means that when the button is clicked, the `interactionMessage()` method is called with `'Button Clicked'`, which in turn, will display the text `Button Clicked` on the page.
 
 We can then extract the text from the element that holds the message `Button Clicked` and verify that it says what we expect it to say.
 
@@ -356,9 +356,9 @@ public String getTextFromElementWithId(final String id) {
 }
 ```
 
-And with that, we have successfully clicked an element with WebDriver and verified that the page responded how we expected.
+And with that, we have successfully clicked an element with WebDriver and verified the page responded how we expected.
 
-Let's move onto populating text boxes and text areas with some text, and verifying that the event handlers on those fields print the expected message to the page:
+Let’s move onto populating text boxes and text areas with text and verifying the event handlers on those fields print the expected message to the page:
 
 ```Java
 automatedBrowser.populateElementWithId("text_element", "test text");
@@ -377,7 +377,7 @@ public void populateElementWithId(String id, String text) {
 }
 ```
 
-Next we will select an option from the drop down list:
+Next, we will select an option from the drop-down list:
 
 ```Java
 automatedBrowser.selectOptionByTextFromSelectWithId("Option 2.1", "select_element");
@@ -396,7 +396,7 @@ The `findElement()` method returns an instance of the `WebElement` interface. Th
 
 You can get a complete listing of the methods by viewing the [Javadoc](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html) API documentation.
 
-Noticeably absent from that list of actions is the ability to select an option from a drop down list. In order to interact with a `<select>` element, we need to create an instance of the `Select` class, whose constructor takes the `WebElement` returned by `findElement()`. We then have access to the `selectByVisibleText()` method, which selects the option with the corresponding text:
+Noticeably absent from that list of actions is the ability to select an option from a drop-down list. In order to interact with a `<select>` element, we need to create an instance of the `Select` class, whose constructor takes the `WebElement` returned by `findElement()`. We then have access to the `selectByVisibleText()` method, which selects the option with the corresponding text:
 
 ```java
 @Override
@@ -425,6 +425,6 @@ automatedBrowser.clickElementWithId("div_element");
 assertEquals("Div Clicked", automatedBrowser.getTextFromElementWithId("message"));
 ```
 
-With the `formTestByID()` test we have successfully clicked, checked, typed and selected options with a live, interactive web page, and verified the results. This, in a nutshell, is what writing WebDrivers tests is all about. However, we will not always have the luxury of locating elements based on an ID attribute. In these situations, WebDriver offers a number of other ways to locate elements in a web page, and we'll look at those next.
+With the `formTestByID()` test we have successfully clicked, checked, typed, and selected options with a live, interactive web page, and verified the results. This, in a nutshell, is what writing WebDrivers tests is all about. However, we will not always have the luxury of locating elements based on an ID attribute. In these situations, WebDriver offers a number of other ways to locate elements in a web page, and we’ll look at those next.
 
-Return to the [table of contents](../0-toc/webdriver-toc.md).
+This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

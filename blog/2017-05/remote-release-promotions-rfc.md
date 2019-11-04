@@ -6,7 +6,7 @@ metaImage: releasepromotions-metaimage.png
 bannerImage: releasepromotions-blogimage.png
 visibility: public
 tags:
- - RFC 
+ - Product
 ---
 
 <div style="background-color:#e9edf2;">

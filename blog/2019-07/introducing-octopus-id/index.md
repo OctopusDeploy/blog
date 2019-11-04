@@ -7,8 +7,8 @@ bannerImage: blogimage-octopusid.png
 metaImage: metaimage-octopusid.png
 published: 2019-07-02
 tags:
- - Octopus Cloud
  - Company
+ - Product
 ---
 
 ![A name badge representing an Octopus user](blogimage-octopusid.png)

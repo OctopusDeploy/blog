@@ -6,7 +6,7 @@ published: 2018-02-27
 metaImage: metaimage-security.png
 bannerImage: blogimage-security.png
 tags:
- - Security
+ - Product
 ---
 
 Do you take care of your own Octopus? We do too! We still have our own Octopus Server, as a pet for deploying most of the things we build. Just like us, most of you probably have your own pet Octopus - but how safe and secure is your Octopus?

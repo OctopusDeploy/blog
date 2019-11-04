@@ -7,6 +7,7 @@ published: 2018-06-19
 metaImage: metaimage-automate-database.png
 bannerImage: blogimage-automate-database.png
 tags:
+ - Engineering
  - Database Deployments
 ---
 
