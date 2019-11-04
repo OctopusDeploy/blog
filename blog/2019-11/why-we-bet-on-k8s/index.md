@@ -10,9 +10,8 @@ tags:
  - Octopus
 ---
 
-Before reading this post, if you haven't already, please read the [opening post in the Octopus Cloud v2 series](https://octopus.com/blog/octopus-cloud-1.0-reflections).  It sets the scene, and is a great read.  
+Before continuing, if you haven't already, please read the [opening post in the Octopus Cloud v2 series](https://octopus.com/blog/octopus-cloud-1.0-reflections).  It is the prequel to this post, and is important to set the scene. But in case you haven't, to recap, we have: 
 
-To recap, we have: 
 - A cloud SaaS product for which there is strong demand 
 - A pricing model where the revenue per customer doesn't come close to covering the AWS hosting costs  
 - A non-optimized architecture which allocates a dedicated VM for each customer
@@ -47,7 +46,7 @@ It's worth mentioning that at this point in time Octopus is implemented as a ful
 
 Also worth highlighting is a goal we had from the beginning: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products. 
 
-Wait!  One last disclaimer. The following were our opinions at the time. We are certainly not presenting them as facts. They were based on our unique set of circumstances and constraints. You may disagree with them.  They are probably incorrect (or at best only correct for our specific set of inputs). And they would very possibly have been different if made at a different moment in time. Consider yourself disclaimered. 
+Wait!  One last disclaimer (this works best read in a quick, monotone voice): The following were our opinions at the time. We are certainly not presenting them as facts. They were based on our unique set of circumstances and constraints. You may disagree with them.  They are probably incorrect (or at best only correct for our specific set of inputs). And they would very possibly have been different if made at a different moment in time. Consider yourself disclaimered. 
 
 ### Option 1: Single Multi-tenant Server 
 
@@ -110,9 +109,13 @@ We could host each customer as an Azure Web App.
 
 The _huge_ advantage of this approach was no VM's to manage.
 
-The disadvantage of this approach was similar to above: we would still have to orchestrate allocating users between Service Plans.    
-Significant work would be required to re-architect Octopus to run as an App Service. Oh, and of course we were currently on AWS, not Azure (Spoiler alert for future posts: this was about to change). 
-But these weren't even the biggest concerns.  Our biggest concern was leaving ourselves at the mercy of the Azure gods; the dreaded vendor lock-in.  What if Azure deprecated App Services? (admittedly unlikely) Or changed the pricing model significantly? (Perhaps not so unlikely) If you run a handful of Azure Web Apps and the price rockets, that's a bad day.  If you run many thousands of them...  
+The disadvantages of this approach... well, there are a few. 
+Similar to the _process-per-customer_ option, we would still have to orchestrate allocating users between Service Plans.    
+Similar to the _multi-tenant_ option, we would still have to re-architect the task orchestration and polling tenancle pieces.  
+Oh, and of course we were currently on AWS, not Azure (spoiler alert for future posts: this was about to change). 
+There was also some concern that we would be leaving ourselves at the mercy of the Azure gods; the dreaded vendor lock-in.  What if Azure deprecated App Services? (admittedly unlikely) Or changed the pricing model significantly? (Perhaps not so unlikely) If you run a handful of Azure Web Apps and the price rockets, that's a bad day.  If you run many thousands of them...  
+
+We discarded this option.
 
 ### Option 4: Kubernetes
 
