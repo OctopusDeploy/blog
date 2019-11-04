@@ -2,12 +2,12 @@
 title: What are the benefits of using NGINX Unit?
 description: What features does NGINX Unit have that make it an attractive solution for modern deployments?
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2019-11-04
 metaImage: nginx-unit.png
 bannerImage: nginx-unit.png
 tags:
- - Engineering
+ - DevOps
 ---
 
 ![NGINX Unit web server](nginx-unit.png)
