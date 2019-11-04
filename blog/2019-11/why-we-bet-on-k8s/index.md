@@ -41,7 +41,7 @@ It was time to let the engineers off their leash.
 
 We will talk more about the database and file-storage components in future posts.  Today we're going to focus on the compute costs. 
 
-Every option was on the table, but in hindsight they can be separated into a few broad categories.  
+Every option was on the table, but in hindsight they can be separated into a few general approaches.  
 
 It's worth mentioning that at this point in time Octopus is implemented as a full-framework .NET application which requires Windows. The HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app.
 
@@ -57,17 +57,18 @@ _If we were building Octopus from scratch today, as a cloud-hosted SaaS product,
 
 And the answer was that we would almost certainly build it as a natively multi-tenant solution; in other words, a single web application which could serve all customers.  
 
+![Multi-tenant architecture](option-multi-tenant.png "width=600")
+
 This approach would have the major advantage of making hosting for the server easy-peasy! It would just be a regular web application. 
 
 Unfortunately Octopus is more than just a web server: It is also a task runner. 
 
 We could fairly easily imagine modifying the Octopus HTTP server to be multi-tenant. We could still have a database-per-customer, and determine the connection string to use for each request.    
-
-The task-runner component would be trickier. Certainly not impossible, but there would be some significant renovations required.  
+The task orchestration component would be trickier. Certainly not impossible, but there would be some significant renovations required.  
 
 Polling Tentacles would also be a complication. We won't delve into the details of this here, but for the purposes of this post its enough to know that we would also have to demolish a few walls (and add a bathroom) to support polling tentacles in this architecture. 
 
-The worrying thing is these renovations would be occuring while we were also trying to continue shipping regular updates to the product. This would leave us with the diabolical choice between 
+The worrying thing was that these renovations would be occuring while we were also trying to continue shipping regular updates to the product. This would leave us with the diabolical choice between 
 
 - Keeping the hosted architecture refactor on a separate, long-lived branch.  Because who doesn't love merging long-lived branches with major architecture changes?! 
 
@@ -80,9 +81,11 @@ If there was no alternative, we may well have gone this route.  And one day we s
 
 The gist of this approach is that we would run each customer as a dedicated process on a Windows VM.  The process would host the Octopus Server API and task-runner components.  Each customer would still have their own database.   
 
-The big advantage of this approach was that very few changes were required to the Octopus product. It also gave us a lot flexibility with where we hosted (AWS, Azure, self-hosted, etc); VM's are a generic commodity.  
+![Process per customer architecture](option-process-per-customer.png "width=600")
 
-The big disadvantage of this approach is that we would have to orchestrate these processes ourselves.  Examples of the questions we would need to answer:
+The big advantage of this approach was that very few changes were required to the Octopus product. It would also offer us a lot flexibility with where we hosted (AWS, Azure, self-hosted, etc); VM's are a generic commodity.  
+
+The big disadvantage of this approach was that we would have to orchestrate these processes ourselves.  Examples of the questions we would need to answer:
 
 _When a new customer arrives how do we decided which VM to execute their process on?_   
 
@@ -92,24 +95,24 @@ _How do we deal with the noisy neighbour problem?_
 
 If a customer is using more resources than expected and is impacting other users on the same machine, would we relocate them? If so, to where? 
 
-_When customers leave do we infill those slots?_
+_When customers leave do we infill those empty slots?_
 
 Many people use cloud Octopus for trials, which are later abandoned. This would result in sparsely populated VM's if we didn't reallocate, which over time would reduce the benefit of the project. 
 
 Of course all these questions could be answered, but they would require writing and maintaining orchestration code that was not our core business. And this orchestration code would likely _not_ be cloud-agnostic, and would tie us to a particular vendor. 
 
 
-### Option 3: Azure App Service 
+### Option 3: Azure App Services 
 
 What's the optimal number of servers to wrangle?  Zero!  
 
 We could host each customer as an Azure Web App.   
 
-The _huge_ advantage of this approach was no infrastructure to manage.
+The _huge_ advantage of this approach was no VM's to manage.
 
 The disadvantage of this approach was similar to above: we would still have to orchestrate allocating users between Service Plans.    
 Significant work would be required to re-architect Octopus to run as an App Service. Oh, and of course we were currently on AWS, not Azure (Spoiler alert for future posts: this was about to change). 
-But these weren't even the biggest concerns.  Our biggest concern was leaving ourselves at the mercy of the Azure gods; the dreaded vendor lock-in.  What if Azure deprecated App Services? (admittedly unlikely) Or changed the pricing model significantly? (Perhaps not so unlikely)  
+But these weren't even the biggest concerns.  Our biggest concern was leaving ourselves at the mercy of the Azure gods; the dreaded vendor lock-in.  What if Azure deprecated App Services? (admittedly unlikely) Or changed the pricing model significantly? (Perhaps not so unlikely) If you run a handful of Azure Web Apps and the price rockets, that's a bad day.  If you run many thousands of them...  
 
 ### Option 4: Kubernetes
 
@@ -117,18 +120,26 @@ Being in the deployment tool business, we watch new technologies in this space w
 
 But there was a significant roadblock: Octopus ran on Windows.  
 
-Support for Windows nodes in K8s was available in beta form; which in reality meant it was undocumented and had possibly worked once in laboratory conditions somewhere.  An incredible feat of persistence resulted in the proof-of-concept (PoC) team getting Octopus running on Windows in a Kubernetes cluster.  It suffices to say we did not feel we were walking a well-worn path; more like hacking our way through a jungle, never quite sure which direction we were travelling.  And the Windows nodes proved to be unstable, regularly dying unexpectedly.   
+Support for Windows nodes in K8s was available in beta form; which in reality meant it was undocumented and had possibly worked once on the machine of someone who had the Kubernetes source-code open on another monitor.  An incredible feat of persistence resulted in the proof-of-concept (PoC) team getting Octopus running on Windows in a Kubernetes cluster.  It suffices to say we did not feel we were walking a well-worn path; more like hacking our way through a jungle, never quite sure which direction we were travelling.  And the Windows nodes proved to be unstable, regularly dying unexpectedly.   
 
 We ruled out Kubernetes + Windows as a technology not mature enough to bet on.
 
 More than that, we ruled out containers on Windows in general.  As part of evaluating K8s, we were also evaluating running Octopus containerized on Windows. 
-Containers on Linux are very elegant.  Running a container on Linux results in a single process executing on the host.  Running a container in Windows, in contrast, results in many systems services also being run.   
+Containers on Linux are elegant.  Running a container on Linux results in a single process executing on the host.  Running a container in Windows, in contrast, results in many systems services also being run.   
 
-These services each carry their own memory overhead, makes monitoring a little harder, and is just generally yukky.   
+The running processes for a single container on Linux:
 
-But the real deal-breaker was while performing these expermiments we invevitably ended up spelunking the internet, looking for resolutions to problems, other peoples experiences, etc:  There were tumbleweeds.  We just didn't get the sense that enough people were running production work-loads on Windows containers to have developed that critical mass of experience.  
+![docker top on linux](docker-top-linux.png "width=500")
 
-Linux was a different story.  Containers on Linux were a well-travelled road by this point, with good documentation and tooling.  And we had evidence that many of our own customers were running production workloads on Kubernetes.  But this would require porting the Octopus Server to .NET Core, and running it on Linux.  
+The running processes for a single container on Windows:
+
+![docker top on windows](docker-top-windows.png "width=500")
+
+These services each carry their own memory overhead, makes monitoring a little harder, and is just generally yuk.   
+
+But the real deal-breaker was while performing these expermiments we invevitably ended up spelunking the internet, looking for resolutions to problems, other peoples experiences, etc:  Too often there were tumbleweeds.  We just didn't get the sense that enough people were running production work-loads on Windows containers to have developed that critical mass of experience.  
+
+Linux was a different story.  Containers on Linux were a well-travelled road by this point, with good documentation and tooling.  And we had evidence that many of our own customers were running production workloads on Kubernetes.  But... and this was quite a but... this would require porting the Octopus Server to .NET Core, and running it on Linux.  
 
 ## The Decision
 
@@ -137,10 +148,9 @@ The final two contenders standing were:
 - Windows Process Per Customer 
 - Kubernetes (Linux and .NET Core)
 
-Both required significant effort. A key difference was where that effort was directed: 
-
-- **Windows Process Per Customer:** Building the orchestration infrastructure to allocate and monitor Octopus server processes 
-- **Kubernetes (Linux and .NET Core):** Porting Octopus to .NET Core and ensuring it can run in a Linux-based container
+Both required significant effort. A key difference was where that effort was directed. 
+For the _Windows Process Per Customer_ option, the effort would primarily be spent in building the orchestration infrastructure to allocate and monitor Octopus server processes. 
+For the _Kubernetes (Linux and .NET Core)_ option, the effort would primarily be spent porting Octopus to .NET Core and ensuring it can run in a Linux-based container
 
 We didn't spend a lot of time trying to compare the effort involved in the two approaches.  Firstly because, well, we suck at estimating effort just as much as everyone else.  But more importantly, over time the difference in implementation cost would be amortized away. What were we left with? 
 
@@ -158,9 +168,11 @@ It was also an exciting chance to again drink our own champagne: we could take a
 
 This post was set in the past. These decisions took place over a year ago at the time of writing.  
 
-This is the part of the movie where we show a montage of current photos of the characters, while "where are they now" updates scroll by and a song by Snow Patrol plays.   
+This is the part of the movie where we show a montage of current photos of the characters while "where are they now" updates scroll by and a song by Snow Patrol plays.   
 
 For the past week or so, all new hosted Octopus instances have been provisioned as a Linux container, running on AKS (Azure's managed Kubernetes)! 
+
+![Kubernetes dashboard](k8s-dashboard-node-resources.png "width=600")
 
 At the time of writing:
 
