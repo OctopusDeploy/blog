@@ -34,8 +34,6 @@ This gives a total hosting cost of roughly **$82** US dollars per customer.
 
 The goal was to bring this below **$10**/customer.  
 
-It was time to let the engineers off their leash. 
-
 ## The Options
 
 We will talk more about the database and file-storage components in future posts.  Today we're going to focus on the compute costs. 
