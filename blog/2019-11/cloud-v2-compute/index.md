@@ -30,9 +30,9 @@ The major components of the hosting costs for each v1 customer are (in approxima
 - File Storage: **$23** 
 - Compute (VM): **$50** 
 
-This gives a total hosting cost of roughly **$82** US dollars per customer. 
+This gives a total hosting cost of roughly **$82** US dollars per customer. What really hurt was the compute costs of this couldn't scaled down, so a dormant trial cost the same as an actively used instance. 
 
-The goal was to bring this below **$10**/customer.  
+The goal was to bring this below **$10**/customer for low-usage instances.   
 
 ## The Options
 
