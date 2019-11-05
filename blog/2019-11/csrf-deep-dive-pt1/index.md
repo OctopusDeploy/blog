@@ -8,34 +8,54 @@ tags:
  - Application Security
 ---
 
-I recently caught myself thinking that cross site request forgery (CSRF) prevention was a solved problem, and that it is a trivial thing to add to web applications. It is one of those ‘must haves’ that we all take for granted. As a result, when you’re building a website it can be all feel a little bit like magic though, and I really don’t like that feeling. Let's bust that sense of magic and mystery!
+Cross site request forgery (CSRF) prevention is one of those ‘must haves’ that we all take for granted. Popular web frameworks have ready made support for using prevention methods easily. As a result, when you’re building a website it can be all feel a little bit like magic though, and I really don’t like that feeling. Let's bust that sense of magic and mystery!
 
-For these reasons I decided to dive head first into different implementations out there, and line them up to the [OWASP recommendations](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html). In doing so I discovered a few things I didn’t know.
+For these reasons I decided to dive head first into the different implementations out there, and line them up to the [OWASP recommendations](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html). The [Open Web Application Security Project](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project)  provides our industry with well considered, well researched patterns for defending our applications.
 
 To share my own journey of (re)discovery, I’ve put together a three part series on CSRF Prevention. In this part, I’ll focus on our current suite of options for mitigation.
 
 ## How CSRF attacks work
 
-To recap, a cross site request forgery attack can have catastrophic results for its victims. For example, an attacker that can fool a user into unwittingly submit a forged request for a vulnerable banking application, could result in that user unknowingly transferring all of their funds to the attackers own account. Depending on how well the application was logging request data, this request would appear to be completely legitimate.  
+To recap on the attack itself, a cross site request forgery can have catastrophic results for its victims. For example, an attacker that can fool a user into unwittingly submit a forged request for a vulnerable banking application, could result in that user unknowingly transferring all of their funds to the attackers own account. Depending on how well the application was logging request data, this request would appear to be completely legitimate.  
+
+![A picture showing a CSRF attack scenario](csrf-attack.png)
 
 A successful CSRF attack generally relies on three things:
-1. A vulnerable website that doesn't properly establish the origin of a HTTP request that makes changes to the victims data.
-2. Knowledge that an unsuspecting user is logged into the vulnerable website. This can be achieved via social engineering, by posing as support staff and sending a victim a real link to the vulnerable website.
-3. Convincing our user to access the malicious website that is crafted to perform forged requests
+1. A website that doesn't properly establish the origin of a HTTP requests.
+2. Knowledge that an unsuspecting user is logged into the vulnerable website. 
+3. Tricking a user access a website that is crafted to perform malicious requests on behalf of the user
 
-[draw a picture of an attack scenario]
+What if we could ensure that every request only came from a web page that we control?
 
-One of the bulwark mitigations for such attacks is to place a secret in the HTML we render on the client itself to ensure that only the intended recipient can submit data, thus taking away the attackers ability to forge requests. This class of approaches are known as ‘token based mitigation’ and is the primary way ASP.NET core encourages us to operate.
+One of the best fortifications we have here, is to send the client a secret that only they are able to return to the server. 
+Because an attacker has no control over the real website, or the clients browser, this takes away the attackers ability to forge requests.
+
+As you can imagine, there are many ways to do this. This category of approaches is known as ‘token based mitigation’ and is listed as the _primary defense technique_ according to OWASP.
+
+![a picture showing how token based mitigation works](token-based-mitigation.png)
+
+It would be equally bad if an attacker could forge a CSRF token! If they could, then they would be able to trick the server into validating the request and all our hard work would be for nothing. 
+
+For this reason we need to make sure that tokens are practically impossible to forge:
+
+- Unique to each users session - this prevents fixing a token to another user
+- Cryptographically random values - not base64 encoded strings ;)
+- Large enough to not be guessed or brute forced
 
 ## Stateful and Stateless token based mitigation
 
 We can apply the same concept of checking tokens in stateful or stateless ways. Why you would choose one or the other is largely an architectural decision based on the nature of your web application, but I won’t drill too far into that here.
 
-One stateful approach is known as the `synchronizer` token pattern, which places the token in a form, or in a header (or both), which is validated on form submit. This requires the server to remember (hold state) the token per user session. The ‘per user session’ is really important and we’ll touch on that a bit more as we go along.
+One stateful approach is known as the `synchronizer` token pattern, which places the token in a form, to be returned as a form parameter or in a header (or both). This requires the server to remember the token for each user session. 
 
 This is quite a common approach, because it is reasonably simple to implement and understand, and often implemented in popular web application frameworks.
 
+![a picture showing how the details of the synchronizer token pattern works](synchronizer-token-pattern.png)
+
+While this approach is considered rock solid, and work fantastically well, it does have a few downsides. It might be difficult to retrofit such an approach to a large insecure website with lots of forms on it. Second, storing token in a database might not be possible. Sometimes we need other options!
+
 ### Encryption based tokens
+
 A stateless approach is to generate tokens based on a private key that only the application knows. This might be sent along as a hidden form field, and expected to be returned as a request header.
 
 Using the users session ID as the thing to encrypt (which should also be a secret), if the server cannot decrypt the value it receives, or if the sessionID is incorrect for the current user, then it is a possible that the request is bogus and the request should be rejected.
