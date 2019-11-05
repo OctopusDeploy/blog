@@ -8,15 +8,14 @@ tags:
  - Application Security
 ---
 
-Cross site request forgery (CSRF) prevention is one of those ‘must haves’ that we all take for granted. Popular web frameworks have ready made support for using prevention methods easily. As a result, when you’re building a website it can be all feel a little bit like magic though, and I really don’t like that feeling. Let's bust that sense of magic and mystery!
+Cross site request forgery (CSRF) prevention is one of those ‘must haves’ that we all take for granted. Popular web frameworks have ready made support for using prevention methods easily. As a result, when I'm building a website it can be all feel a little bit like magic though, and I really don’t like that feeling. This series attempts to bust that sense of magic!
 
 For these reasons I decided to dive head first into the different implementations out there, and line them up to the [OWASP recommendations](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html). The [Open Web Application Security Project](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project)  provides our industry with well considered, well researched patterns for defending our applications.
 
-To share my own journey of (re)discovery, I’ve put together a three part series on CSRF Prevention. In this part, I’ll focus on our current suite of options for mitigation.
 
 ## How CSRF attacks work
 
-To recap on the attack itself, a cross site request forgery can have catastrophic results for its victims. For example, an attacker that can fool a user into unwittingly submit a forged request for a vulnerable banking application, could result in that user unknowingly transferring all of their funds to the attackers own account. Depending on how well the application was logging request data, this request would appear to be completely legitimate.  
+To recap on the attack itself, a cross site request forgery can have catastrophic results for its victims. For example,  a vulnerable banking application, could result in users unknowingly transferring all of their funds to the attackers own account. Depending on how well the application was logging request data, this request could appear to be completely legitimate too.
 
 ![A picture showing a CSRF attack scenario](csrf-attack.png)
 
@@ -27,7 +26,7 @@ A successful CSRF attack generally relies on three things:
 
 What if we could ensure that every request only came from a web page that we control?
 
-One of the best fortifications we have here, is to send the client a secret that only they are able to return to the server. 
+One of the best fortifications we have here, is to send the client a secret that _only they are able to return to the server_. 
 Because an attacker has no control over the real website, or the clients browser, this takes away the attackers ability to forge requests.
 
 As you can imagine, there are many ways to do this. This category of approaches is known as ‘token based mitigation’ and is listed as the _primary defense technique_ according to OWASP.
