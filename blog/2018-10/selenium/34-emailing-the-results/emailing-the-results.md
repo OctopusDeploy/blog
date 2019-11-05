@@ -1,5 +1,5 @@
 ---
-title: "Selenium series: Emailing the Results"
+title: "Selenium series: Emailing the results"
 description: In this post, we send the results of a Cucumber test via email
 author: matthew.casperson@octopus.com
 visibility: public
@@ -12,7 +12,7 @@ tags:
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-We now have the ability to run Gherkin feature files from a HTTP POST request that is forwarded to an AWS Lambda, but because of the differing time limits of API Gateway and Lambda requests, we were forced to run the tests in an asynchronous manner. This means our original HTTP requests no longer  receives the output of the test, so we need another solution for returning the test results.
+We now have the ability to run Gherkin feature files from a HTTP POST request that is forwarded to an AWS Lambda, but because of the differing time limits of API Gateway and Lambda requests, we were forced to run the tests in an asynchronous manner. This means our original HTTP requests no longer receives the output of the test, so we need another solution for returning the test results.
 
 An easy solution is to have the test results emailed to us when they are available. By sending an email, the `runCucumber` function can notify us of the results using a communication platform that you already have in place, freeing us from having to implement a custom solution.
 
@@ -72,7 +72,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 </project>
 ```
 
-In the `LambdaEntry` class we'll create a new method called `sendEmail()`:
+In the `LambdaEntry` class we’ll create a new method called `sendEmail()`:
 
 ```java
 package com.octopus;
@@ -212,7 +212,7 @@ We then pass an additional parameter to the `cucumber.api.cli.Main.run()` method
 "--format", "pretty:" + txtOutputFile.toString(),
 ```
 
-Just before we return the JSON response, we call the `sendEmail()` method to email the plain text results. In this way we can get the results even if there is no longer any process listening to the return value of this method:
+Just before we return the JSON response, we call the `sendEmail()` method to email the plain text results. In this way, we can get the results even if there is no longer any process listening to the return value of this method:
 
 ```java
 sendEmail("admin@matthewcasperson.com", FileUtils.readFileToString(txtOutputFile, Charset.defaultCharset()));
@@ -242,12 +242,12 @@ provider:
         - ses:SendEmail
 ```
 
-Recompile the code with Maven and redeploy it with serverless. Then make another request to the `runCucumber` URL.
+Recompile the code with Maven and redeploy it with Serverless. Then make another request to the `runCucumber` URL.
 
-As before, we get an empty response. But after some time the email address passed to the `sendEmail()` method will receive a message with the results of the test.
+As before, we get an empty response, but after some time the email address passed to the `sendEmail()` method will receive a message with the results of the test.
 
 :::hint
-If you don't see the email, check your spam folder. Outlook 365 constantly identified these emails as spam, and other providers may do the same.
+If you don’t see the email, check your spam folder. Outlook 365 constantly identified these emails as spam, and other providers may do the same.
 :::
 
 ![C:\\64fd79671c78abdc3a4f8f36373ecef3](image8.png "width=500")
