@@ -184,4 +184,6 @@ At the time of writing:
 
 It's too early to evaluate the cost reduction, as we were cautious and grossly over-provisioned the nodes initially.  Even considering that, per-customer costs are reduced by roughly 50%.  
 
-We hope you enjoyed this peek behind the curtain.  We have more posts coming in this series, stay tuned. 
+We have more posts coming in this series, where we will take a more detailed look at the .NET Core port, consider the options for which cloud provider (AWS, Azure, Google, etc), and evaluate the overall success of the project.
+
+We hope you enjoyed this peek behind the curtain.  Stay tuned. 
