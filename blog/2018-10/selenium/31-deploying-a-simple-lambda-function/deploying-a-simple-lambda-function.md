@@ -25,7 +25,7 @@ We are at the point now where we can start writing the Lambda code. To do this w
 - `com.amazonaws:aws-java-sdk-lambda`
 - `commons-io:commons-io`
 
-The first two dependencies provide us with the libraries we need to run as an Lambda function. The third dependency provides some handy utility functions when working with files:
+The first two dependencies provide us with the libraries we need to run as a Lambda function. The third dependency provides some handy utility functions when working with files:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -68,15 +68,15 @@ In a traditional Java application, we start execution in a `static main()` metho
 returntype methodname(inputType input, Context context)
 ```
 
-Or if the `Context` is not required (and it is not required for our purposes)  then this signature is also valid:
+Or if the `Context` is not required (and it is not required for our purposes) then this signature is also valid:
 
 ```
 returntype methodname(inputType input)
 ```
 
-The return and input type from this method can be any type, and the method itself can have any name. Let's write one of the most simple Lambda functions we can.
+The return and input type from this method can be any type, and the method itself can have any name. Let’s write one of the most simple Lambda functions we can.
 
-The code below defines an Lambda function that returns a `boolean` type that is always `true`. This code isn't very useful, but it is enough to test that the Lambda works:
+The code below defines an Lambda function that returns a `boolean` type that is always `true`. This code isn’t very useful, but it is enough to test that the Lambda works:
 
 ```java
 package com.octopus;
@@ -90,7 +90,7 @@ public class LambdaEntry {
 }
 ```
 
-In order to deploy this Lambda, we need to create a file called `serverless.yml` in the project's root directory. This configuration file is used by the Serverless application to configure and deploy the Lambda.
+In order to deploy this Lambda, we need to create a file called `serverless.yml` in the project’s root directory. This configuration file is used by the Serverless application to configure and deploy the Lambda.
 
 ![C:\\0b4b22e1bd61e3d5249b0db50c8cde7f](image1.png "width=500")
 
@@ -113,22 +113,22 @@ functions:
     memorySize: 512
 ```
 
-Let's break this file down.
+Let’s break this file down.
 
-We start by defining the name of the service, which will become the name of the Lambda.
+We start by defining the name of the service, which will become the name of the Lambda:
 
 ```yaml
 service:
   name: cucumber-chrome-aws
 ```
 
-We then define the details of the cloud platform that we are deploying to. The Serverless application is cloud agnostic, and can be used to deploy to multiple cloud providers like AWS, Azure, and Google Cloud. We are using AWS, and so the providers section will configure the global properties of the AWS Lambda service.
+We then define the details of the cloud platform that we are deploying to. The Serverless application is cloud agnostic and can be used to deploy to multiple cloud providers like AWS, Azure, and Google Cloud. We are using AWS, and so the providers section will configure the global properties of the AWS Lambda service.
 
-The `name` property is the name of the cloud provider, set to `aws` in this case.
+The `name` property is the name of the cloud provider, in this case, set to `aws`.
 
 The `runtime` property defines the language that our Lambda function is written in, which is `java8`.
 
-The `region` property defines the AWS region that we will be deploying the Lambda to. AWS has many regions around the world, and you can find a complete list of regions that support Lambda at [https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region](https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region). We will use the `us-east-1` region here.
+The `region` property defines the AWS region that we will deploy the Lambda to. AWS has many regions around the world, and you can find a complete list of regions that support Lambda at [https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region](https://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region). We will use the `us-east-1` region here:
 
 ```yaml
 provider:
@@ -137,7 +137,7 @@ provider:
   region: us-east-1
 ```
 
-The package section defines where the Lambda code can be found. In our case the Lambda code is in the file `target/webdrivertraining-1.0-SNAPSHOT.jar`, which we reference via the `artifact` property. Note that this file is the UberJAR, which has packaged up our entire application and its dependencies in a single file:
+The package section defines where the Lambda code can be found. In our case, the Lambda code is in the file `target/webdrivertraining-1.0-SNAPSHOT.jar`, which we reference via the `artifact` property. Note that this file is the UberJAR, which has packaged our entire application and its dependencies in a single file:
 
 ```yaml
 package:
@@ -154,7 +154,7 @@ The `timeout` property sets the maximum amount of time this function can run. La
 
 The `memorySize` property defines how much memory our Lambda environment can use. We have limited ourselves to 512MB here. Note that this value include any memory used by external applications (like Chrome), as well as our own code.
 
-Increasing the `timeout` and `memorySize` increases the cost of each Lambda execution.
+Increasing the `timeout` and `memorySize` increases the cost of each Lambda execution:
 
 ```yaml
 functions:
@@ -168,7 +168,7 @@ Before we can deploy the Lambda function, we need to ensure that the file `targe
 
 ![C:\\929577e8ad0a8809d3e7d19cfcf21570](image2.png "width=500")
 
-We can now deploy the Lambda function. Open up a terminal, command prompt or PowerShell window and change to the project root directory. Then run the command:
+We can now deploy the Lambda function. Open a terminal, command prompt or PowerShell window and change to the project root directory. Then run the command:
 
 ```
 $ serverless deploy
@@ -213,12 +213,12 @@ To test that the function works, click the `Test` button.
 
 Replace the test data with a string (any string will do). Because the first parameter of our Lambda function accepts a string, we need to supply a string when testing.
 
-Lambda functions always take JSON as input, which is converted into a Java object. In this case a string is a valid JSON construct, which then gets converted into a Java string.
+Lambda functions always take JSON as input, which is converted into a Java object. In this case, a string is a valid JSON construct, which then gets converted into a Java string.
 
 Lambda functions also always convert the returned object to JSON.
 
 :::hint
-The fact that Lambda functions only accept JSON as input and provide JSON as output will be important later on when we link this function up to a HTTP endpoint.
+The fact that Lambda functions only accept JSON as input and provide JSON as output will be important later on when we link this function to a HTTP endpoint.
 :::
 
 Then populate the `Event` name field, and click the `Create` button.
@@ -233,6 +233,6 @@ And our test Lambda function has executed successfully by returning `true`.
 
 ![C:\\25e8e70a701bd868bc63f982e0521af0](image7.png "width=500")
 
-Although this Lambda function doesn't do anything useful, it does prove that we have written a valid Lambda function and that it can be deployed using the Serverless application. With this work done we can move onto writing a Lambda function that actually runs a WebDriver test, which we'll do in the next post.
+Although this Lambda function doesn’t do anything useful, it does prove that we have written a valid Lambda function and that it can be deployed using the Serverless application. With this work done we can move onto writing a Lambda function that actually runs a WebDriver test, which we’ll do in the next post.
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

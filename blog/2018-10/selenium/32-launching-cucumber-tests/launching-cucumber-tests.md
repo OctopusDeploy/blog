@@ -12,7 +12,7 @@ tags:
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-Now that we have a simple Lambda function that we can run,  as well as a Serverless configuration that deploys our application, we can create a Lambda function that launches a WebDriver test.
+Now that we have a simple Lambda function that we can run, as well as a Serverless configuration that deploys our application, we can create a Lambda function that launches a WebDriver test.
 
 Below is the new code for the `LambdaEntry` class that will launch a WebDriver test from a Gherkin feature file:
 
@@ -131,7 +131,7 @@ public class LambdaEntry {
 }
 ```
 
-Let's break this class down.
+Let’s break this class down.
 
 The following constants are the URLs to the Chrome Lambda distribution and the Linux binary driver that we uploaded to S3. These URLs will be different for you, as you will have uploaded them to a different S3 bucket.
 
@@ -152,7 +152,7 @@ We still use the `runCucumber()` method as our Lambda entry point:
 public String runCucumber(String feature) throws Throwable {
 ```
 
-These four files will be created each time this Lambda is run. We need to track all resources we create so they can be cleaned up afterwards, as Lambda may reuse the underlying Linux instance for sequential function calls. If we were to create files and not clean them up, it is possible that we could consume all the free space allocated to our Lambda function, and the code would not work correctly.
+These four files will be created each time this Lambda runs. We need to track all resources we create so they can be cleaned up afterwards, as Lambda may reuse the underlying Linux instance for sequential function calls. If we were to create files and not clean them up, it is possible that we could consume all the free space allocated to our Lambda function, and the code would not work correctly:
 
 ```java
 File driverDirectory = null;
@@ -161,7 +161,7 @@ File outputFile = null;
 File featureFile = null;
 ```
 
-Each time the `runCucumber()` method is called, we download the Linux binary driver and the Chrome Lambda distribution. These files are too large to be bundled up and distributed with the Lambda code, so we have to download them at run-time. By uploading these files to S3 we take advantage of the fact that S3 and Lambda are both services provided by AWS, and Lambda can access files in S3 quickly and reliably:
+Each time the `runCucumber()` method is called, we download the Linux binary driver and the Chrome Lambda distribution. These files are too large to be bundled up and distributed with the Lambda code, so we have to download them at run-time. By uploading these files to S3, we take advantage of the fact that S3 and Lambda are both services provided by AWS, and Lambda can access files in S3 quickly and reliably:
 
 ```java
 try {
@@ -169,7 +169,7 @@ try {
   chromeDirectory = downloadChromeHeadless();
 ```
 
-Cucumber can generate a JSON report file with the results of the feature file execution. We will use this file as the return value of our Lambda. Here we create a temporary file that can be used to hold the JSON results.
+Cucumber can generate a JSON report file with the results of the feature file execution. We will use this file as the return value of our Lambda. Here we create a temporary file that can be used to hold the JSON results:
 
 ```java
 outputFile = Files.createTempFile("output", ".json").toFile();
@@ -187,14 +187,14 @@ Previously we took advantage of the JUnit integration provided by Cucumber to la
 
 Fortunately Cucumber also provides a way to run it from the command line with a traditional `static void main()` method in the `cucumber.api.cli.Main` class. This `main()` method then calls the `run()` method. We use this `run()` method as a way of launching Cucumber as if it had been run from the command line directly.
 
-The first parameter to be passed to the `run()` method is a String array that holds the arguments that would normally has been provided on the command line. We have used a number of options to customize the output, link with out glue class, and save a report file.
+The first parameter to be passed to the `run()` method is a String array that holds the arguments that would normally have been provided on the command line. We have used a number of options to customize the output, link with out glue class, and save a report file.
 
-- The `--monochrome` option removes and colored text from the messages printed to the console. These colored messages don't translate well when viewed in log files.
-- The `--glue` option links Cucumber to the package holding our annotated class. This is the same option that we passed to the JUnit annotations that were used earlier.
+- The `--monochrome` option removes and colored text from the messages printed to the console. These colored messages don’t translate well when viewed in log files.
+- The `--glue` option links Cucumber to the package holding our annotated class. This is the same option we passed to the JUnit annotations that we used earlier.
 - The `--format` option defines the report file that is generated by Cucumber. It is set to a value of `json:<output file>`, with the output file being the temporary file we created earlier.
 - The final argument is to the feature file itself.
 
-The second parameter is the class loader for Cucumber to use. We pass the value of `Thread.currentThread().getContextClassLoader()`, just as the `cucumber.api.cli.Main.main()` method did.
+The second parameter is the class loader for Cucumber to use. We pass the value of `Thread.currentThread().getContextClassLoader()`, just as the `cucumber.api.cli.Main.main()` method did:
 
 ```java
 cucumber.api.cli.Main.run(
@@ -212,9 +212,9 @@ Once the Gherkin feature file has been run, we read the contents of the report f
 return `FileUtils.readFileToString(outputFile, Charset.defaultCharset());`
 ```
 
-All of the files we created are then deleted using the `FileUtils.deleteQuietly()` method from the Apache Commons IO library. This method does not throw any exceptions, and means we make an attempt to delete each file, ignoring any errors.
+All of the files we created are then deleted using the `FileUtils.deleteQuietly()` method from the Apache Commons IO library. This method does not throw any exceptions, and this means we make an attempt to delete each file, ignoring any errors.
 
-There will likely not be any lasting harm from temporary files that can not be deleted, as the Linux instance running our code will eventually be destroyed and a new one allocated for the next Lambda invocation.
+There will likely not be any lasting harm from temporary files that can not be deleted, as the Linux instance running our code will eventually be destroyed and a new one allocated for the next Lambda invocation:
 
 ```java
   } finally {
@@ -254,7 +254,7 @@ The directory holding the Chrome driver is then returned so it can be cleaned up
 
 The `downloadChromeHeadless()` method follows the same pattern as the `downloadChromeDriver()` method, only this time we are downloading the Chrome Lambda distribution.
 
-It starts by downloading the Chrome distribution to a temporary directory with the prefix `chrome_headless`.
+It starts by downloading the Chrome distribution to a temporary directory with the prefix `chrome_headless`:
 
 ```java
 private File downloadChromeHeadless() throws IOException {
@@ -263,7 +263,7 @@ private File downloadChromeHeadless() throws IOException {
 
 We get the path to the Chrome executable, set the `chrome.binary` system property to this path, and ensure that the file has the executable flag enabled.
 
-The `chrome.binary` system property is not a property recognized by WebDriver, but is a property we will access ourselves later on to launch Chrome:
+The `chrome.binary` system property is not a property recognized by WebDriver, but it is a property we will access ourselves later on to launch Chrome:
 
 ```java
 final String chrome = extractedDir.getAbsolutePath() + "/headless-chromium";
@@ -278,7 +278,7 @@ The temporary directory is then returned so it can be cleaned up once the test i
 }
 ```
 
-The previous method both call the `downloadAndExtractFile()` method to download and extract a ZIP file.
+The previous methods both call the `downloadAndExtractFile()` method to download and extract a ZIP file.
 
 We start by creating a variable to point to a temporary file that we will download the remote file into:
 
@@ -324,7 +324,7 @@ We start by creating a buffer into which the contents of the ZIP file can be rea
 final byte[] buffer = new byte[1024];
 ```
 
-We then create a `ZipInputStream` instance from the ZIP file. The `ZipInputStream` class is included as part of the standard Java library, and we'll use this class to read the contents of a ZIP file:
+We then create a `ZipInputStream` instance from the ZIP file. The `ZipInputStream` class is included as part of the standard Java library, and we’ll use this class to read the contents of a ZIP file:
 
 ```java
 try (final ZipInputStream zis = new ZipInputStream(new
@@ -490,7 +490,7 @@ options.addArguments("--single-process");
 options.addArguments("--no-sandbox");
 ```
 
-The `--user-data-dir`, `--data-path`, `--homedir` and `--disk-cache-dir` arguments ensure Chrome only attempts to write to the `/tmp` directory. The `/tmp` directory is one of the few places a process can write files in the Lambda environment.
+The `--user-data-dir`, `--data-path`, `--homedir`, and `--disk-cache-dir` arguments ensure Chrome only attempts to write to the `/tmp` directory. The `/tmp` directory is one of the few places a process can write files in the Lambda environment.
 
 ```java
 options.addArguments("--user-data-dir=/tmp/user-data");
@@ -540,7 +540,7 @@ public class AutomatedBrowserFactory {
 
 To deploy the new Lambda function, run the `package` Maven lifecycle, and run `serverless deploy` to upload the code to AWS.
 
-We are now ready to test the Lambda function by passing in a Gherkin feature file. However, if you recall from the last post we said that every input to a Lambda function must be valid JSON. Our Gherkin feature files most definitely are not written in JSON, so we need some way to convert text into a JSON string.
+We are now ready to test the Lambda function by passing in a Gherkin feature file. However, if you recall from the last post we said that every input to a Lambda function must be valid JSON. Our Gherkin feature files are most definitely not written in JSON, so we need some way to convert text into a JSON string.
 
 The following web page provides a very simple form that takes raw text and converts it into a JSON string:
 
@@ -644,7 +644,7 @@ Here is a screenshot of the web page after it has performed the conversion.
 
 This JSON string can then be passed as input when testing the Lambda.
 
-Open up the Lambda console and open the
+Open the Lambda console and open the
 `cucumber-chrome-aws-dev-runCucumber` function. Then click the drop-down list next to the `Test` button can click `Configure` test events.
 
 ![C:\4167b39ce53037784b2394d5b10cf3d1](image2.png "width=500")
@@ -663,6 +663,6 @@ The Gherkin feature is run with out Lambda function, and the results are passed 
 
 We now have the ability to run Cucumber tests as a Lambda function inside a headless instance of Chrome, and because Lambda functions will scale up to accommodate an essentially infinite number of requests (your budget not withstanding) we now have a solution that will allows us to run an enormous number of tests in parallel.
 
-However, having to run tests via the Lambda web console is not ideal. It would be much more convenient if we could launch these tests directly with a HTTP request, which is what we'll implement in the next post.
+However, having to run tests via the Lambda web console is not ideal. It would be much more convenient if we could launch these tests directly with a HTTP request, which is what we’ll implement in the next post.
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
