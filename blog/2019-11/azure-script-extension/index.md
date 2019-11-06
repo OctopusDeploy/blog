@@ -21,10 +21,129 @@ However, there are some edge cases with Windows that you need to take into accou
 Let's start with a very simple example. The Terraform script below configures a Windows VM with a custom script extension.
 
 ```
+variable "resgroupname" {
+  type = "string"
+}
 
+resource "azurerm_resource_group" "test" {
+  name     = "${var.resgroupname}"
+  location = "Australia East"
+    tags = {
+      Owner = "@matthew.casperson"
+  }
+}
+
+resource "azurerm_public_ip" "test" {
+  name                    = "test-pip"
+  location                = "${azurerm_resource_group.test.location}"
+  resource_group_name     = "${azurerm_resource_group.test.name}"
+  allocation_method       = "Dynamic"
+  idle_timeout_in_minutes = 30
+}
+
+resource "azurerm_virtual_network" "test" {
+  name                = "acctvn"
+  address_space       = ["10.0.0.0/16"]
+  location            = "${azurerm_resource_group.test.location}"
+  resource_group_name = "${azurerm_resource_group.test.name}"
+}
+
+resource "azurerm_subnet" "test" {
+  name                 = "acctsub"
+  resource_group_name  = "${azurerm_resource_group.test.name}"
+  virtual_network_name = "${azurerm_virtual_network.test.name}"
+  address_prefix       = "10.0.2.0/24"
+}
+
+resource "azurerm_network_interface" "test" {
+  name                = "acctni"
+  location            = "${azurerm_resource_group.test.location}"
+  resource_group_name = "${azurerm_resource_group.test.name}"
+
+  ip_configuration {
+    name                          = "testconfiguration1"
+    subnet_id                     = "${azurerm_subnet.test.id}"
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = "${azurerm_public_ip.test.id}"
+  }
+}
+
+resource "azurerm_storage_account" "test" {
+  name                     = "${var.resgroupname}"
+  resource_group_name      = "${azurerm_resource_group.test.name}"
+  location                 = "${azurerm_resource_group.test.location}"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_container" "test" {
+  name                  = "vhds"
+  resource_group_name   = "${azurerm_resource_group.test.name}"
+  storage_account_name  = "${azurerm_storage_account.test.name}"
+  container_access_type = "private"
+}
+
+resource "azurerm_virtual_machine" "test" {
+  name                  = "acctvm"
+  location              = "${azurerm_resource_group.test.location}"
+  resource_group_name   = "${azurerm_resource_group.test.name}"
+  network_interface_ids = ["${azurerm_network_interface.test.id}"]
+  vm_size               = "Standard_D2_v3"
+
+  storage_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2019-Datacenter"
+    version   = "latest"
+  }
+
+  storage_os_disk {
+    name          = "osdisk"
+    vhd_uri       = "${azurerm_storage_account.test.primary_blob_endpoint}${azurerm_storage_container.test.name}/osdisk.vhd"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+  }
+
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = "testadmin"
+    admin_password = "#{OSPassword}"
+  }
+
+  os_profile_windows_config {
+    enable_automatic_upgrades = false
+    provision_vm_agent = true
+  }
+}
+
+resource "azurerm_virtual_machine_extension" "test" {
+  name                 = "hostname"
+  location             = "${azurerm_resource_group.test.location}"
+  resource_group_name  = "${azurerm_resource_group.test.name}"
+  virtual_machine_name = "${azurerm_virtual_machine.test.name}"
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.9"
+
+  # Disable Windows Defender, install Chocolatey and Git, clone the Guides repo, install Azure Devops and
+  # some additional tools, and then run the WebDriver script that initalises Azure Devops.
+  protected_settings = <<PROTECTED_SETTINGS
+    {
+      "commandToExecute": "powershell.exe -Command \"./chocolatey.ps1; exit 0;\""
+    }
+  PROTECTED_SETTINGS
+
+  settings = <<SETTINGS
+    {
+        "fileUris": [
+          "https://gist.githubusercontent.com/mcasperson/c815ac880df481418ff2e199ea1d0a46/raw/5d4fc583b28ecb27807d8ba90ec5f636387b00a3/chocolatey.ps1"
+        ]
+    }
+  SETTINGS
+}
 ```
 
-The important part of this script is `azurerm_virtual_machine_extension` resource. In the `settings` field we have a JSON blob listing scripts to download in the `fileUris` field, and in the `protected_settings` field we have another JSON blob with a `commandToExecute` field defining the entrypoint to the script we are going to run.
+The important part of this script is `azurerm_virtual_machine_extension` resource. In the `settings` field we have a JSON blob listing scripts to download in the `fileUris` field, and in the `protected_settings` field we have another JSON blob with a `commandToExecute` field defining the entry point to the script we are going to run.
 
 In this example we are downloading a PS1 PowerShell script file from a GitHub Gist that installs Chocolatey and then installs Notepad++ with the Chocolatey client.
 
@@ -39,6 +158,10 @@ The downloaded script file is then run by the string assigned to the `commandToE
 ```
  "commandToExecute": "powershell.exe -Command \"./chocolatey.ps1; exit 0;\""
 ```
+
+:::hint
+Trying to encode a PowerShell script into the `commandToExecute` JSON string quickly becomes unmanageable. Downloading scripts using the `fileUris` is a much better solution, and the scripts can be hosted in Azure blob storage for better security if needed.
+:::
 
 This example is quite straight forward, and for simple software installations this is all we need. But unfortunately not all software is this easy to install.
 
@@ -59,7 +182,7 @@ SQL Server is obviously a more complex piece of software that Notepad++, and whi
 2019-11-06 05:47:59,751 2240 [ERROR] - ERROR: Exception calling "Start" with "0" argument(s): "The system cannot find the file specified"
 ```
 
-It turns out that the [System account](https://www.powershellmagazine.com/2014/04/30/understanding-azure-custom-script-extension/) that runs the custom script won't work with the SQL Server install. What we need is some way to run the installation as a regular administrator account.
+This error occurs because the [System account](https://www.powershellmagazine.com/2014/04/30/understanding-azure-custom-script-extension/) that runs the custom script won't work with the SQL Server install. What we need is some way to run the installation as a regular administrator account.
 
 ## Running under a new account
 
@@ -73,7 +196,7 @@ The username must be in the format `machinename\username` for this command to wo
 
 ```
 $securePassword = ConvertTo-SecureString 'passwordgoeshere' -AsPlainText -Force
-$credential = New-Object System.Management.Automation.PSCredential 'hostname\adminuser', $securePassword
+$credential = New-Object System.Management.Automation.PSCredential 'hostname\testadmin', $securePassword
 Invoke-Command -ScriptBlock {choco install sql-server-express -y} -ComputerName hostname -Credential $credential
 ```
 
@@ -86,9 +209,9 @@ Inner exception type: System.InvalidOperationException
        HResult : 0x80131509
 ```
 
-It turns out that the default call to `Invoke-Command` doesn't grant enough permissions for the install to complete. We have run into the double hop issue, which prevents the installation.
+Unfortunately the default call to `Invoke-Command` doesn't grant enough permissions for the installation to complete. We have run into the double hop issue, which results in the exception shown above.
 
-## Double hops and WinRM
+## Supporting double hops
 
 Executing code on a remote machine, or executing "remote" code on the same machine, is considered to be the first hop. Having that code go on to access another machine is considered a second hop, and this second hop is prevented by default when using `Invoke-Command`. There are other calls that are also considered to be a second hop, which our SQL Server installation run into.
 
@@ -117,10 +240,10 @@ With these changes in place we can run the Chocolaty install using CredSSP authe
 
 ```
 $securePassword = ConvertTo-SecureString 'passwordgoeshere' -AsPlainText -Force
-$credential = New-Object System.Management.Automation.PSCredential 'hostname\adminuser', $securePassword
+$credential = New-Object System.Management.Automation.PSCredential 'hostname\testadmin', $securePassword
 Invoke-Command -Authentication CredSSP -ScriptBlock {choco install sql-server-express -y} -ComputerName hostname -Credential $credential
 ```
 
 ## Conclusion
 
-While most scripts will run as expected with the custom script extension, there are times when you need to run scripts as a admin user. In this post we saw how to take advantage of CredSSP authentication to ensure that scripts run with the highest privileges required to install some complex applications like SQL Server. 
+While most scripts will run as expected with the custom script extension, there are times when you need to run scripts as a admin user. In this post we saw how to take advantage of CredSSP authentication to ensure that scripts run with the highest privileges required to install some complex applications like SQL Server.
