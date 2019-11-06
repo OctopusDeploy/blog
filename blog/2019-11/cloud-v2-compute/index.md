@@ -30,7 +30,7 @@ The major components of the hosting costs for each v1 customer are (in approxima
 - File Storage: **$23** 
 - Compute (VM): **$50** 
 
-This gives a total hosting cost of roughly **$82** US dollars per customer. What really hurt was the compute costs of this couldn't scaled down, so a dormant trial cost the same as an actively used instance. 
+This gives a total hosting cost of roughly **$82** US dollars per customer. What really hurt was the compute costs of this couldn't be scaled down, so a dormant trial cost the same as an actively used instance. 
 
 The goal was to bring this below **$10**/customer for low-usage instances.   
 
@@ -40,7 +40,7 @@ We will talk more about the database and file-storage components in future posts
 
 Every option was on the table, but in hindsight they can be separated into a few general approaches.  
 
-It's worth mentioning that at this point in time Octopus is implemented as a full-framework .NET application which requires Windows. The HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app.
+It's worth mentioning that at this point in time Octopus was implemented as a full-framework .NET application which requires Windows. The HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app.
 
 Also worth highlighting is a goal we had from the beginning: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products. 
 
@@ -82,7 +82,7 @@ The gist of this approach is that we would run each customer as a dedicated proc
 
 The big advantage of this approach was that very few changes were required to the Octopus product. It would also offer us a lot flexibility with where we hosted (AWS, Azure, self-hosted, etc); VM's are a generic commodity.  
 
-The big disadvantage of this approach was that we would have to orchestrate these processes ourselves.  Examples of the questions we would need to answer:
+The big disadvantage of this approach was that we would have to orchestrate these processes ourselves.  Examples of the questions we would need to answer were:
 
 _When a new customer arrives how do we decided which VM to execute their process on?_   
 
@@ -121,11 +121,11 @@ Being in the deployment tool business, we watch new technologies in this space w
 
 But there was a significant roadblock: Octopus ran on Windows.  
 
-Support for Windows nodes in K8s was available in beta form; which in reality meant it was undocumented and had possibly worked once on the machine of someone who had the Kubernetes source-code open on another monitor.  An incredible feat of persistence resulted in the proof-of-concept (PoC) team getting Octopus running on Windows in a Kubernetes cluster.  It suffices to say we did not feel we were walking a well-worn path; more like hacking our way through a jungle, never quite sure which direction we were travelling.  And the Windows nodes proved to be unstable, regularly dying unexpectedly.   
+Support for Windows nodes in k8s was available in beta form; which in reality meant it was undocumented and had possibly worked once on the machine of someone who had the Kubernetes source code open on another monitor.  An incredible feat of persistence resulted in the proof-of-concept team getting Octopus running on Windows in a Kubernetes cluster.  It suffices to say we did not feel we were walking a well-worn path; more like hacking our way through a jungle, never quite sure which direction we were travelling.  And the Windows nodes proved to be unstable, regularly dying unexpectedly.   
 
 We ruled out Kubernetes + Windows as a technology not mature enough to bet on.
 
-More than that, we ruled out containers on Windows in general.  As part of evaluating K8s, we were also evaluating running Octopus containerized on Windows. 
+More than that, we ruled out containers on Windows in general.  As part of evaluating k8s, we were also evaluating running Octopus containerized on Windows. 
 Containers on Linux are elegant.  Running a container on Linux results in a single process executing on the host.  Running a container in Windows, in contrast, results in many systems services also being run.   
 
 The running processes for a single container on Linux:
@@ -159,9 +159,9 @@ _And the winner is [drum roll]..._
 
 ***Octopus would be built against .NET Core, run on Linux, be containerized, and orchestrated by Kubernetes.***
 
-We decided the effort to port Octopus to .NET Core was effort that we were going to spend at some point regardless (in fact the port had already begun). 
+We decided the effort to port Octopus to .NET Core was effort that we _wanted to spend_. In fact we had already begun the port, independent of this decision. 
 
-Kubernetes was built for the problem we were trying to solve. We've always preached using Octopus rather than trying to roll your own deployment automation, and spend the time saved on making your core software better.  This was a chance to heed our own advice. 
+We could roll our own orchestration solution, but Kubernetes was built for the problem we were trying to solve. We've always preached using Octopus rather than trying to roll your own deployment automation, and spend the time saved on making your core software better.  This was a chance to heed our own advice. 
 
 It was also an exciting chance to again drink our own champagne: we could take advantage of the kubernetes support we had built into Octopus at a large scale. 
 
