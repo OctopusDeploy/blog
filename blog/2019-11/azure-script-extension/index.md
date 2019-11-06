@@ -239,6 +239,8 @@ $credential = New-Object System.Management.Automation.PSCredential 'hostname\tes
 Invoke-Command -Authentication CredSSP -ScriptBlock {choco install sql-server-express -y} -ComputerName hostname -Credential $credential
 ```
 
+The complete script has been saved in this [Gist](https://gist.githubusercontent.com/mcasperson/6b87b519bd0ab1d093e697b33938ed3b/raw/b635114f552ea230e08828c63274316323799386/chocolatey.ps1).
+
 ## Conclusion
 
 While most scripts will run as expected with the custom script extension, there are times when you need to run scripts as a admin user. In this post we saw how to take advantage of CredSSP authentication to ensure that scripts run with the highest privileges required to install some complex applications like SQL Server.
