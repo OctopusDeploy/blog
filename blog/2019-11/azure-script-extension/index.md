@@ -1,18 +1,18 @@
 ---
-title: A deep dive into the Azure Custom Script Extension for Windows VMs
-description:
+title: Using the Azure Custom Script Extension for Complex Installations
+description: A deep dive into the Azure Custom Script Extension for Windows VMs
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2020-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - DevOps
 ---
 
 When booting a VM for the first time it is often useful to have the ability to run a custom script. This script may install additional software, configure the VM or perform some other management task.
 
-In Azure, the [Custom Script Extension](https://docs.microsoft.com/en-au/azure/virtual-machines/extensions/custom-script-windows) provides this ability to run scripts. When Windows VMs are combined with tools like Chocolatey, it becomes possible to initialize a new VM with almost any software you are likely to need.
+In Azure, the [Custom Script Extension](https://docs.microsoft.com/en-au/azure/virtual-machines/extensions/custom-script-windows) provides this ability to run scripts. When Windows VMs are combined with tools like Chocolatey, it becomes possible to initialize a new VM with almost any software you require.
 
 However, there are some edge cases with Windows that you need to take into account, and in this blog post we'll dive into the details on performing complex installations via the custom script extension.
 
@@ -28,9 +28,6 @@ variable "resgroupname" {
 resource "azurerm_resource_group" "test" {
   name     = "${var.resgroupname}"
   location = "Australia East"
-    tags = {
-      Owner = "@matthew.casperson"
-  }
 }
 
 resource "azurerm_public_ip" "test" {
@@ -107,7 +104,7 @@ resource "azurerm_virtual_machine" "test" {
   os_profile {
     computer_name  = "hostname"
     admin_username = "testadmin"
-    admin_password = "#{OSPassword}"
+    admin_password = "passwordoeshere"
   }
 
   os_profile_windows_config {
@@ -125,8 +122,6 @@ resource "azurerm_virtual_machine_extension" "test" {
   type                 = "CustomScriptExtension"
   type_handler_version = "1.9"
 
-  # Disable Windows Defender, install Chocolatey and Git, clone the Guides repo, install Azure Devops and
-  # some additional tools, and then run the WebDriver script that initalises Azure Devops.
   protected_settings = <<PROTECTED_SETTINGS
     {
       "commandToExecute": "powershell.exe -Command \"./chocolatey.ps1; exit 0;\""
@@ -143,7 +138,7 @@ resource "azurerm_virtual_machine_extension" "test" {
 }
 ```
 
-The important part of this script is `azurerm_virtual_machine_extension` resource. In the `settings` field we have a JSON blob listing scripts to download in the `fileUris` field, and in the `protected_settings` field we have another JSON blob with a `commandToExecute` field defining the entry point to the script we are going to run.
+The important part of this script is `azurerm_virtual_machine_extension` resource. In the `settings` field we have a JSON blob listing scripts to download in the `fileUris` array, and in the `protected_settings` field we have another JSON blob with a `commandToExecute` string defining the entry point to the script we are going to run.
 
 In this example we are downloading a PS1 PowerShell script file from a GitHub Gist that installs Chocolatey and then installs Notepad++ with the Chocolatey client.
 
@@ -165,7 +160,7 @@ Trying to encode a PowerShell script into the `commandToExecute` JSON string qui
 
 This example is quite straight forward, and for simple software installations this is all we need. But unfortunately not all software is this easy to install.
 
-## Running as an admin user
+## Install SQL Server
 
 To see where this example breaks down, we will try installing Microsoft SQL Server Express.
 
@@ -188,7 +183,7 @@ This error occurs because the [System account](https://www.powershellmagazine.co
 
 PowerShell offers a very convenient solution to running code as a different use. By calling `Invoke-Command`, we can execute a script block as a user of our choosing on the local (or remote if we needed to, but this is not required for this use case) VM.
 
-The code below shows how we can build up a credentials object and pass that to the `Invoke-Command` command to execute the Chocolaty install as the administrator.
+The code below shows how we can build up a credentials object and pass that to the `Invoke-Command` command to execute the Chocolaty install as the administrator user.
 
 :::hint
 The username must be in the format `machinename\username` for this command to work correctly.
@@ -213,9 +208,9 @@ Unfortunately the default call to `Invoke-Command` doesn't grant enough permissi
 
 ## Supporting double hops
 
-Executing code on a remote machine, or executing "remote" code on the same machine, is considered to be the first hop. Having that code go on to access another machine is considered a second hop, and this second hop is prevented by default when using `Invoke-Command`. There are other calls that are also considered to be a second hop, which our SQL Server installation run into.
+Executing code on a remote machine, or executing "remote" code on the same machine, is considered to be the first hop. Having that code go on to access another machine is considered a [double hop](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ps-remoting-second-hop?view=powershell-6), and this second hop is prevented by default when using `Invoke-Command`. There are other calls that are also considered to be a second hop, which our SQL Server installation ran into.
 
-To allow the SQL Server installation to complete we need to allow this second hop to take place. We do this by taking advantage of CredSSP authentication.
+To allow the SQL Server installation to complete we need to allow this double hop to take place. We do this by taking advantage of CredSSP authentication.
 
 The first step is to enable our machine to take on the `Server` role, which means it can accept credentials from a client.
 
@@ -223,20 +218,20 @@ The first step is to enable our machine to take on the `Server` role, which mean
 Enable-WSManCredSSP -Role Server -Force
 ```
 
-We then need to also enable our machine to take on the `Client` role, meaning it can send credentials to the server. We enable both the client and server roles because we are using `Invoke-Command` to run command on the same machine.
+We then need to enable our machine to take on the `Client` role, meaning it can send credentials to the server. We enable both the client and server roles because we are using `Invoke-Command` to run command on the same machine.
 
 ```
 Enable-WSManCredSSP -Role Client -DelegateComputer * -Force
 ```
 
-Because the account we are running the code as is a local account, we need to allow the use of NTLM accounts. This is done by setting a registry key.
+Because the account we are running the code as is a local account (as opposed to a domain account), we need to allow the use of NTLM accounts. This is done by setting a registry key.
 
 ```
 New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation -Name AllowFreshCredentialsWhenNTLMOnly -Force
 New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation\AllowFreshCredentialsWhenNTLMOnly -Name 1 -Value * -PropertyType String
 ```
 
-With these changes in place we can run the Chocolaty install using CredSSP authentication. This enables the second hop, and our SQL Server installation will complete successfully.
+With these changes in place we can run the Chocolaty install using CredSSP authentication. This enables the double hop, and our SQL Server installation will complete successfully.
 
 ```
 $securePassword = ConvertTo-SecureString 'passwordgoeshere' -AsPlainText -Force
