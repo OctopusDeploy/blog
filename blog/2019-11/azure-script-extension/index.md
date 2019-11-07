@@ -177,13 +177,13 @@ SQL Server is obviously a more complex piece of software than Notepad++, and whi
 2019-11-06 05:47:59,751 2240 [ERROR] - ERROR: Exception calling "Start" with "0" argument(s): "The system cannot find the file specified"
 ```
 
-This error occurs because the [System account](https://www.powershellmagazine.com/2014/04/30/understanding-azure-custom-script-extension/) that runs the custom script won’t work with the SQL Server install. What we need is some way to run the installation as a regular administrator account.
+This error occurs because the [System account](https://www.powershellmagazine.com/2014/04/30/understanding-azure-custom-script-extension/) that runs the custom script won’t work with the SQL Server install. We need a way to run the installation as a regular administrator account.
 
 ## Running under a new account
 
-PowerShell offers a very convenient solution to running code as a different user. By calling `Invoke-Command`, we can execute a script block as a user of our choosing on the local (or remote if necessary) VM.
+PowerShell offers a convenient solution to running code as a different user. By calling `Invoke-Command`, we can execute a script block as a user of our choosing on the local (or remote if necessary) VM.
 
-The code below shows how we can build up a credentials object and pass that to the `Invoke-Command` command to execute the Chocolaty install as the administrator user.
+The code below shows how we can build up a credentials object and pass it to the `Invoke-Command` command to execute the Chocolaty install as the administrator user:
 
 :::hint
 The username must be in the format `machinename\username` for this command to work correctly.
