@@ -10,7 +10,7 @@ tags:
  - DevOps
 ---
 
-When booting a VM for the first time it is often useful to run a custom script. This script may install additional software, configure the VM, or perform some other management task.
+When booting a VM for the first time, it is often useful to run a custom script. This script may install additional software, configure the VM, or perform some other management task.
 
 In Azure, the [custom script extension](https://docs.microsoft.com/en-au/azure/virtual-machines/extensions/custom-script-windows) provides this ability to run scripts. When Windows VMs are combined with tools like Chocolatey, it becomes possible to initialize a new VM with almost any software you require.
 
@@ -138,7 +138,7 @@ resource "azurerm_virtual_machine_extension" "test" {
 }
 ```
 
-The important part of this script is the  `azurerm_virtual_machine_extension` resource. In the `settings` field we have a JSON blob listing scripts to download in the `fileUris` array, and in the `protected_settings` field we have another JSON blob with a `commandToExecute` string defining the entry point to the script we are going to run.
+The important part of this script is the  `azurerm_virtual_machine_extension` resource. In the `settings` field, we have a JSON blob listing scripts to download in the `fileUris` array, and in the `protected_settings` field, we have another JSON blob with a `commandToExecute` string defining the entry point to the script we are going to run.
 
 In this example we are downloading a PS1 PowerShell script file from a GitHub Gist that installs Chocolatey and then installs Notepad++ with the Chocolatey client:
 
@@ -158,7 +158,7 @@ The downloaded script file is then run by the string assigned to the `commandToE
 Trying to encode a PowerShell script into the `commandToExecute` JSON string quickly becomes unmanageable. Downloading scripts using the `fileUris` is a much better solution, and the scripts can be hosted in Azure blob storage for better security if needed.
 :::
 
-This example is quite straight forward, and for simple software installations this is all we need. Unfortunately, not all software is this easy to install.
+This example is quite straight forward, and for simple software installations, this is all we need. Unfortunately, not all software is this easy to install.
 
 ## Install SQL Server
 
@@ -170,7 +170,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/in
 choco install sql-server-express -y
 ```
 
-SQL Server is obviously a more complex piece of software than Notepad++, and while attempting to install it we run into some errors. Here in the Chocolatey logs, we can see that SQL Server failed to install:
+SQL Server is obviously a more complex piece of software than Notepad++, and while attempting to install it, we run into some errors. Here in the Chocolatey logs, we can see that SQL Server failed to install:
 
 ```
 2019-11-06 05:47:59,622 2240 [WARN ] - WARNING: May not be able to find 'C:\windows\TEMP\chocolatey\sql-server-express\2017.20190916\SQLEXPR\setup.exe'. Please use full path for executables.
@@ -204,13 +204,13 @@ Inner exception type: System.InvalidOperationException
        HResult : 0x80131509
 ```
 
-Unfortunately, the default call to `Invoke-Command` doesn't grant enough permissions for the installation to complete. We have run into the double hop issue, which results in the exception shown above.
+Unfortunately, the default call to `Invoke-Command` doesn’t grant enough permissions for the installation to complete. We have run into the double hop issue, which results in the exception shown above.
 
 ## Supporting double hops
 
 Executing code on a remote machine, or executing “remote” code on the same machine, is considered to be the first hop. Having that code go on to access another machine is considered a [double hop](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ps-remoting-second-hop?view=powershell-6), and this second hop is prevented by default when using `Invoke-Command`. There are other calls that are also considered to be a second hop, which our SQL Server installation ran into.
 
-To allow the SQL Server installation to complete we need to allow this double hop to take place. We do this by taking advantage of CredSSP authentication.
+To allow the SQL Server installation to complete, we need to allow this double hop to take place. We do this by taking advantage of CredSSP authentication.
 
 The first step is to enable our machine to take on the `Server` role, which means it can accept credentials from a client:
 
