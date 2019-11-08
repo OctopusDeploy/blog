@@ -78,10 +78,10 @@ This instruction runs the `dotnet restore` command which will download any missi
 Any instruction that needs more than one argument requires that the arguments be placed within an array.  Here we are running dotnet build command which compiles our application within the image itself.
 
 ### EXPOSE 5000 and EXPOSE 5001
-The `EXPOSE` instruction is used to open ports to the container.  Here we are opening ports 5000, and 5001.
+The `EXPOSE` instruction is used to open ports to the container.  For the OctoPetShop web front-end, we are opening ports 5000, and 5001.
 
 ### ENV ASPNETCORE_URLS="http://+:5000;https://+:5001" and ENV ASPNETCORE_ENVIRONMENT="Production"
-`ENV` is short for Environment Variable.  Here we are creating two environment variables, ASPNETCORE_URLS and ASPNETCORE_ENVIRONMENT.
+`ENV` is short for Environment Variable.  We need to tell our Kestrel server which address/ports to listen on which can be overwritten by using the environment variable ASPNETCORE_URLS.  We can also overwrite what the Environment name is with ASPNETCORE_ENVIRONMENT.
 
 ### ENTRYPOINT [ "dotnet", "run", "--no-launch-profile" ]
 `ENTRYPOINT` is the command that is run when the container starts.  Just like our RUN command, if the command requires multiple arguments, those will need to be encasulated within an array.
@@ -133,7 +133,7 @@ Step 11/11 : ENTRYPOINT [ "dotnet", "run", "--no-launch-profile" ]
  ---> Using cache
  ---> fc176971f626
 Successfully built fc176971f626
-Successfully tagged twerthi/octopetshop-web:latest
+Successfully tagged octopussamples/octopetshop-web:latest
 ```
 
 We've just successfully containerized the OctoPetShop front-end!  Now we need to repeat this process for the Product Service, Shopping Cart Service, and the Database Dbup projects!  (See the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) repo for the rest of the files.)  The Database Dbup project contains scripts to both create our database and seed it with data, the only thing we're missing is a database server.  Luckily for us, Microsoft makes a container image for SQL Server 2017 (`microsoft/mssql-server-linux:2017-latest`) ;)
