@@ -2,7 +2,7 @@
 title: "Automated database deployment process: case study"
 description: This article walks through the steps I used to help design an automated database deployment process.
 author: bob.walker@octopus.com
-visibility: public
+visibility: private
 published: 2019-11-12
 metaImage:
 bannerImage:

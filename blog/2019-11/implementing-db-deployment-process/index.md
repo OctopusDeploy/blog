@@ -2,7 +2,7 @@
 title: Implementing an automated database deployment process
 description: In this article, I walk through the steps I took to implement an automated database deployment process using TeamCity, Redgate, and Octopus Deploy
 author: bob.walker@octopus.com
-visibility: public
+visibility: private
 published: 2019-11-13
 metaImage:
 bannerImage:
