@@ -2,7 +2,7 @@
 title: Pitfalls with rollbacks and automated database deployments
 description: While it is possible to roll back a database, the real question is, should you?  This article will walk through some questions to consider.
 author: bob.walker@octopus.com
-visibility: private
+visibility: public
 published: 2019-11-14
 metaImage:
 bannerImage:
