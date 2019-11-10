@@ -1,8 +1,8 @@
 ---
 title: How to design an automated database deployment process
-description: This article walks you through designing your ideal automated database deployment process
+description: This article walks you through designing your ideal automated database deployment process.
 author: bob.walker@octopus.com
-visibility: public
+visibility: private
 published: 2019-11-11
 metaImage:
 bannerImage:
