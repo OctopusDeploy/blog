@@ -1,5 +1,5 @@
 ---
-title: How to design an automated database deployment process?
+title: How to design an automated database deployment process
 description: This article walks you through designing your ideal automated database deployment process.
 author: bob.walker@octopus.com
 visibility: private
@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Working to automate database deployments was the final piece of the CI/CD puzzle to go from deployments that took between 2 and 4 hours down to around 10 minutes.  It took many attempts to successfully automate database deployments, and the failures weren’t because of the tooling, the process was just fundamentally broken, and it had to be completely redesigned.
+Automated database deployments was the final piece of the CI/CD puzzle I needed to go from deployments that took between 2 and 4 hours down to around 10 minutes.  It took many attempts to successfully automate database deployments, and the failures weren’t because of the tooling, the process was just fundamentally broken, and it had to be completely redesigned.
 
 In the next couple of articles, I walk you through designing an automated database deployment process.  In this article, I focus on core concepts.  If you want to skip ahead, here are the links to the other articles:
 
