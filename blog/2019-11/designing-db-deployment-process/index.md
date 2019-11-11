@@ -1,5 +1,5 @@
 ---
-title: How to design an automated database deployment process
+title: How to design an automated database deployment process?
 description: This article walks you through designing your ideal automated database deployment process.
 author: bob.walker@octopus.com
 visibility: private
@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Automating database deployments was the final piece of the CI/CD puzzle to go from deployments that took between 2 and 4 hours down to around 10 minutes.  It took many attempts to successfully automate database deployments, and the failures weren’t because of the tooling, the process was just fundamentally broken, and it had to be completely redesigned.
+Working to automate database deployments was the final piece of the CI/CD puzzle to go from deployments that took between 2 and 4 hours down to around 10 minutes.  It took many attempts to successfully automate database deployments, and the failures weren’t because of the tooling, the process was just fundamentally broken, and it had to be completely redesigned.
 
 In the next couple of articles, I walk you through designing an automated database deployment process.  In this article, I focus on core concepts.  If you want to skip ahead, here are the links to the other articles:
 
@@ -42,7 +42,7 @@ Let’s take a step back and evaluate why that process exists.
 
 It comes down to trust and enforcement.  Unless the process is automatically enforced it cannot be trusted, and automation cannot occur without trust.
 
-## What to avoid
+## Lessons learned trying to automate database deployments
 
 Below is a list of hard lessons I learned automating database deployments:
 
@@ -84,13 +84,13 @@ The second day is focused on tooling and refinement.
 
 Now that you have a rough idea of what you want to do, it’s time to research the tooling that’s out there.  Refine your process as you do your research.  It’s okay to add steps, remove steps, or move them around as you learn more.  
 
-When it comes to database deployment tooling, there are a lot of options.  For SQL Server, there is [Redgate](https://www.red-gate.com/), [DbUp](https://dbup.readthedocs.io/en/latest/), [ApexSQL](https://www.apexsql.com/), [SQL Server Data Tools for Visual Studio (SSDT)](https://docs.microsoft.com/en-us/sql/ssdt/sql-server-data-tools?view=sql-server-ver15), [RoundhousE](https://github.com/chucknorris/roundhouse), and [Flyway](https://flywaydb.org/) to name a few.  It is very easy to get analysis paralysis, especially when doing a side by side comparison.
+When it comes to database deployment tooling, there are a lot of options.  For example, how to automate deployments for sql server, there is [Redgate](https://www.red-gate.com/), [DbUp](https://dbup.readthedocs.io/en/latest/), [ApexSQL](https://www.apexsql.com/), [SQL Server Data Tools for Visual Studio (SSDT)](https://docs.microsoft.com/en-us/sql/ssdt/sql-server-data-tools?view=sql-server-ver15), [RoundhousE](https://github.com/chucknorris/roundhouse), and [Flyway](https://flywaydb.org/) to name a few.  It is very easy to get analysis paralysis, especially when doing a side by side comparison.
 
 Using the ideal process, identify two or three critical features the tooling must-have.  Leave features every tool supports off the list, for instance, it’s a given any tool can save to source control in some fashion, so there’s no need to include that.  
 
 Here are some questions to help tease out the requirements:
 
-1. [Model Based (Desired State)](https://octopus.com/blog/automated-database-deployments-iteration-zero#model-driven-approach) or [Change Driven (Migration Scripts)](https://octopus.com/blog/automated-database-deployments-iteration-zero#change-driven-approach)?
+1. [State-Based database development (i.e. model-driven)](https://octopus.com/blog/automated-database-deployments-iteration-zero#model-driven-approach) vs [Migration-Based database development (i.e. change-driven or migration scripts)](https://octopus.com/blog/automated-database-deployments-iteration-zero#change-driven-approach)?
 2. What is the common tool used to make database changes?  For SQL Server that is typically SQL Server Management Studio (SSMS) or Visual Studio?
 3. How are database changes detected and saved to source control?
 4. Who will make the majority of the changes?  DBAs? Developers? Database Developers?
