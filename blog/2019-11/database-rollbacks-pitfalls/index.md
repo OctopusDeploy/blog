@@ -1,6 +1,6 @@
 ---
-title: Pitfalls with rollbacks and automated database deployments
-description: While it is possible to roll back a database, the real question is, should you?  This article will walk through some questions to consider.
+title: Pitfalls with SQL rollbacks and automated database deployments
+description: While it is possible to do SQL rollbacks to revert database changes, the real question is, should you?  This article will walk through some questions to consider.
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-11-14
@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-While it is possible to rollback a database change, the question is, should you?  Rolling back a database change isn’t as straightforward as rolling back a code change.  Databases are the lifeblood of applications.  An unsuccessful rollback can result in bad or deleted data.  This article goes through the pitfalls which result in bad or deleted data and why roll forwards is a better approach.  
+While it is possible to perform SQL rollbacks to revert database changes, the question is, should you?  Rolling back a database change isn’t as straightforward as rolling back a code change.  Databases are the lifeblood of applications.  An unsuccessful rollback can result in bad or deleted data.  This article goes through the pitfalls which result in bad or deleted data and why roll forwards is a better approach.  
 
 :::success
 **TL;DR**
@@ -114,9 +114,9 @@ As you can see, backups shouldn’t be used for rollbacks.  They should be used 
 
 ## The pitfalls rollback scripts
 
-I’ve seen some companies institute the rule: *For every database change made, a corresponding rollback script must be written*. However, rollback scripts have their own set of pitfalls.  
+I’ve seen some companies institute the rule: *For every database change made, a corresponding SQL rollback script must be written*. However, rollback scripts have their own set of pitfalls.  
 
-Writing rollback scripts takes time.  If the script is never run, then it turns out to be wasted time.  If you have several dozen successful deployments, the motivation to write the rollback script will decrease.  As time goes on, people start openly questioning why it needs to be created in the first place.  Eventually the scripts become the bare minimum to rollback.  They are written to check a checkbox.
+Writing SQL rollback scripts takes time.  If the script is never run, then it turns out to be wasted time.  If you have several dozen successful deployments, the motivation to write the rollback script will decrease.  As time goes on, people start openly questioning why it needs to be created in the first place.  Eventually the scripts become the bare minimum to rollback.  They are written to check a checkbox.
 
 Much more importantly, the scripts have to be tested.  That leads to further questions, such as:
 
