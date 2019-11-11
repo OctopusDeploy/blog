@@ -4,12 +4,14 @@ description: This article walks through the steps I used to help design an autom
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-11-12
-metaImage:
-bannerImage:
+metaImage: blogimage-databasedeploymentcasestudy.png
+bannerImage: blogimage-databasedeploymentcasestudy.png
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![Octopus reading an automated database deployment process case study](blogimage-databasedeploymentcasestudy.png)
 
 Prior to joining Octopus Deploy, I was the lead developer on the pilot team that automated database deployments and took deployments from 2 to 4 hours per deployment down to 10 minutes per deployment. When I started, I thought we’d automate the steps in our existing process, and I started implementing the tooling to do just that.  Little did I know, the entire process was going to change.
 

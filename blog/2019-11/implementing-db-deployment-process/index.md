@@ -4,12 +4,14 @@ description: In this article, I walk through the steps I took to implement an au
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-11-13
-metaImage:
-bannerImage:
+metaImage: blogimage-implementdatabasedeployment.png
+bannerImage: blogimage-implementdatabasedeployment.png
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![Implementing an automated database deployment process](blogimage-implementdatabasedeployment.png)
 
 It took several iterations to implement the ideal automated database deployment process using TeamCity, Redgate, and Octopus Deploy.  I focused on how to automate deployment for SQL Server but the lessons are applicable to other database and tools as well.  The iterations were a result of learning the tooling and listening to feedback.  In this article, I walk you through a couple of those iterations of the automated database deployment process.
 
