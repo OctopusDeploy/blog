@@ -4,12 +4,14 @@ description: While it is possible to do SQL rollbacks to revert database changes
 author: bob.walker@octopus.com
 visibility: public
 published: 2019-11-14
-metaImage:
-bannerImage:
+metaImage: blogimage-databasedeploymentpitfalls.png
+bannerImage: blogimage-databasedeploymentpitfalls.png
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![Pitfalls with SQL rollbacks and automated database deployments](blogimage-databasedeploymentpitfalls.png)
 
 While it is possible to perform SQL rollbacks to revert database changes, the question is, should you?  Rolling back a database change isn’t as straightforward as rolling back a code change.  Databases are the lifeblood of applications.  An unsuccessful rollback can result in bad or deleted data.  This article goes through the pitfalls which result in bad or deleted data and why roll forwards is a better approach.  
 
