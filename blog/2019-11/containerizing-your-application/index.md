@@ -162,7 +162,7 @@ With our containers running, we should be able to navigate to http://localhost:5
 ![](octopetshop-front-end.png)
 
 ## Docker Compose
-Running docker commands one-by-one can get quite tedious.  To solve this, Docker created Docker Compose.  From within a single YAML file, you can build all of your containers, set up their ports, create a local network for them to use, and define the environment variables for each.
+Running docker commands one-by-one can get quite tedious.  To solve this, Docker created Docker Compose.  From within a single YAML file, you can build all of your containers, set up their ports, create a local network for them to use, and define the environment variables for each.  In the following YAML code, we are setting up all of our containers similiar to the docker run commands above.  Instead of mapping host ports to container ports, we are creating a docker network called `container_net`.  With the container_net network, the only ports that need to be mapped to the host are web front-end ports (5000 and 5001), leaving the rest only accessible to the other containers.
 
 ```
 version: '3'
@@ -182,9 +182,6 @@ services:
     build:
       dockerfile: dockerfile
       context: ./OctopusSamples.OctoPetshop.Productservice
-    ports:
-      - '5011:5011'
-      - '5014:5014'
     networks:
       container_net:
         ipv4_address: 192.168.1.1
@@ -207,9 +204,6 @@ services:
     build:
       dockerfile: dockerfile
       context: ./OctopusSamples.OctoPetShop.ShoppingCartService
-    ports:
-      - '5012:5012'
-      - '5013:5013'
     networks:
       container_net:
         ipv4_address: 192.168.1.3
