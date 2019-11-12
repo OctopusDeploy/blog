@@ -11,7 +11,7 @@ tags:
  - powershell
 ---
 
-# PowerShell and SQL Server: Common Scenarios
+## PowerShell and SQL Server: Common Scenarios
 Our goal at Octopus Deploy has always been to make automated application deployments easy, and application deployments often require database management during the process. My goal here is to provide some common examples of SQL Server management through PowerShell to make integration into deployments that much more straightforward.
 
 ## The SqlServer PowerShell Module
