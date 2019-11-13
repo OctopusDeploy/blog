@@ -1,5 +1,5 @@
 ---
-title: Containerizing your application
+title: Beyond Hello World: Containerizing your *first* application
 description: Demonstrating how to make a .NET core application a Docker container
 author: shawn.sesna@octopus.com
 visibility: private
@@ -10,13 +10,14 @@ tags:
  - Docker
 ---
 
-Designing your application to run in a container has become quite a trend, but where do you start?  How do you take an existing application and make it container compatible?  In this post, I aim to demystify what it means to containerize your application.
+Designing your application to run in a container has become quite popular, but where do you start?  How do you take an existing application and make it container compatible?  In this post, I aim to demystify what it means to containerize your application.
 
 ## Containers
-Similar to VMs, containers have their own RAM, CPU, and filesystem.  However, containers rely on the host operating system (OS) for a lot of their base functionality, which makes them lightweight and portable.  Where a VM requires its own OS and all of the specialized components for an application to be installed, a container bundles the required components for the application to function into what is known as an `image`.  These images are completely self-contained and immutable, meaning they cannot be modified during their life.  If an update needs to be made to a container, any running instances must be destroyed before being replaced by the new version.  This can be a problem if the container needs to retain any data (such as a database), though, there are ways to persist data when a container is destroyed and replaced by using persistent volumes and persistent volume claims.
+Similar to VMs, containers have their own RAM, CPU, and filesystem.  However, containers rely on the host operating system (OS) for a lot of their base functionality, which makes them lightweight and portable.  Where a VM requires its own OS and all of the specialized components for an application to be installed, a container bundles the required components for the application to function into what is known as an `image`.  These images are completely self-contained and immutable, meaning they cannot be modified during their life.  If an update needs to be made to a container, any running instances must be destroyed before being replaced by the new version.  This can be a problem if the container needs to retain any data (such as a database), though, there are ways to persist data when a container is destroyed.
 
 ## Docker
 The most popular container technology is Docker.  Docker is an engine installed on either Windows or Linux that uses OS-level virtualization to run containers. At the time of this writing, containers are built for either Windows or Linux and are not cross-platform.  A hypervisor/virtual machine (VM) architecture looks like this:
+NOTE: a hypervisor is the technology that runs VMs such as Windows Hyper-V or VMWare ESXi.
 
 ![](https://www.docker.com/sites/default/files/d8/2018-11/container-vm-whatcontainer_2.png)
 
@@ -360,6 +361,9 @@ database_1             | Upgrade successful
 database_1             | Success!
 octopetshop_database_1 exited with code 0
 ```
+
+## Incorporating containers into a CI/CD pipeline
+Thus far, we've done everything on the command line and not in any sort of automated fashion (other than docker compose).  The next logical step is to hand off the building and uploading of our container images to a build server.  Popular build servers such as Azure DevOps, TeamCity, Jenkins, and Bamboo all have steps either built-in or a downloadable plugin that will build your docker images and push them to a respository.  Once in the repository, you can use Continuous Delivery software such as Azure DevOps Pipelines or Octopus Deploy to automate the deployment of the images to either machines running the docker engine or kubernetes clusters.
 
 ## Conclusion
 Running applications as containers was pure magic to me before I went through the exercise of creating containers for OctoPetShop.  This experience has given me the confidence to proceed with running OctoPetShop in a Kubernetes cluster!  Stay tuned for that post soon.
