@@ -14,9 +14,11 @@ tags:
 # PowerShell and SQL Server: Common Scenarios
 Our goal at Octopus Deploy has always been to make automated application deployments easy, and application deployments often require database management during the process. My goal here is to provide some common examples of SQL Server management through PowerShell to make integration into deployments that much more straightforward.
 
+The source for all of these examples lives in [this GitHub repository](https://github.com/OctopusSamples/sql-server-powershell-examples). If you run into any problems or have suggestions for changes, feel free to post to the GitHub repository’s issue list or send a pull request!
+
 !toc
 
-## Installing The SqlServer PowerShell Module
+## Installing the SqlServer PowerShell Module
 Microsoft recommends using the **SqlServer** module for interacting with SQL Server from PowerShell. While this isn't used in all of the following examples, it contains many useful cmdlets for SQL Server administration.
 
 The **SqlServer** module can be installed from the PowerShell Gallery using the following command:
@@ -25,16 +27,17 @@ The **SqlServer** module can be installed from the PowerShell Gallery using the 
 Install-Module -Name SqlServer
 ```
 
-Additionally, if this module is already installed, you may update it using either of the following commands:
-
-```ps
-Install-Module -Name SqlServer -AllowClobber
-```
-
-or
+Additionally, if this module is already installed, you may update it using the following command if you are using PowerShell 5.0 or later:
 
 ```ps
 Update-Module -Name SqlServer
+```
+
+Or use these commands if you are using a PowerShell version earlier than 5.0:
+
+```ps
+Uninstall-Module -Name SqlServer
+Install-Module -Name SqlServer
 ```
 
 For more information on installing the **SqlServer** module, please see [this article](https://docs.microsoft.com/en-us/sql/powershell/download-sql-server-ps-module).
@@ -58,6 +61,7 @@ try
     {
         # We have a successful connection here
         # Notify of successful connection
+        Write-Host "Test connection successful"
         $conn.Close()
     }
     # We could not connect here
@@ -77,10 +81,10 @@ For proper segregation of permissions within your server or instance, you may fi
 
 ```ps
 # To run in a non-interactive mode, such as through an Octopus deployment, you will most likely need to pass the new login credentials as a PSCredential object.
-$pass = ConvertTo-SecureString "Th!sI$Y0urP4ss" -AsPlainText -Force
+$pass = ConvertTo-SecureString "Th!sI5Y0urP4ss" -AsPlainText -Force
 
 # Create the PSCredential object
-$loginCred = New-Object System.Management.Automation.PSCredential("YourLogin",$loginCred)
+$loginCred = New-Object System.Management.Automation.PSCredential("NewUser",$pass)
 
 # Create login using the Add-SqlLogin cmdlet
 Add-SqlLogin -ServerInstance YourInstance -LoginPSCredential $loginCred -LoginType SqlLogin
@@ -89,19 +93,21 @@ Add-SqlLogin -ServerInstance YourInstance -LoginPSCredential $loginCred -LoginTy
 This cmdlet greatly simplifies the creation of a SQL Server login along with the flexibility of using built-in flags such as `-MustChangePasswordAtNextLogin` or `-ConnectionTimeout.` If you are using this command within an Octopus deployment process, you may find it handy to include flags such as `-Enable` to ensure the login is available later in your deployment or `-GrantConnectSql` to allow the login to connect to the database engine. For more information, see the [Add-SqlLogin reference](https://docs.microsoft.com/en-us/powershell/module/sqlserver/Add-SqlLogin).
 
 ## Create Database and Assign Owner
-Surprisingly, Microsoft does not provide a cmdlet out of the box to create a database, so there are two main routes one can follow to get a database up and running without a prior backup. Both are fairly simple. Creating a new, blank database is accomplished with the following commands:
+Surprisingly, Microsoft does not provide a cmdlet out of the box to create a database, so there are two main routes one can follow to get a database up and running without a prior backup. Both are fairly simple. Creating a new, blank database is accomplished with either of the following commands:
 
+Run straight SQL against your instance to create the database:
 ```ps
-# Run straight SQL against your instance.
-# This could also come from a file.
+# This query could also come from a file
 Invoke-Sqlcmd -Query "CREATE DATABASE YourDB" -ServerInstance YourInstance
+```
 
-# Use SMO objects to do the heavy lifting.
+Alternatively, using SMO objects to do the heavy lifting:
+```ps
+#Name your database
 $dbname = "YourDB"
-
 # Create a SQL Server database object
 $srv = New-Object Microsoft.SqlServer.Management.Smo.Server("YourInstance")
-if($srv.Databases[$dbname] -ne $null)
+if($null -ne $srv.Databases[$dbname])
 {
     $db = New-Object Microsoft.SqlServer.Management.Smo.Database($srv, $dbname)
 
@@ -132,7 +138,7 @@ $conn = New-Object Microsoft.SqlServer.Management.Common.ServerConnection("YourI
 $srv = New-Object Microsoft.SqlServer.Management.Smo.Server($conn)
 
 # Check to see if a database with that name already exists
-if($srv.Databases[$dbname] -ne $null)
+if($null -ne $srv.Databases[$dbname])
 {
     # If it does not exist, create it
     $db = New-Object Microsoft.SqlServer.Management.Smo.Database($srv, $dbname)
@@ -140,7 +146,7 @@ if($srv.Databases[$dbname] -ne $null)
 }
 else
 {
-    # There was an error creating the database
+    # There was an error creating the database object
 }
 ```
 
