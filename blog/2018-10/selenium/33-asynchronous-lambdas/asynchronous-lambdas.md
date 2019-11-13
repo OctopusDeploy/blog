@@ -12,7 +12,7 @@ tags:
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-We now have the ability to run Gherkin features with an AWS Lambda function. But so far we have had to trigger the tests from the AWS console. This is fine while we test that the Lambda works, but it not a very convenient  way to run tests.
+We now have the ability to run Gherkin features with an AWS Lambda function. But so far we have had to trigger the tests from the AWS console. This is fine while we test that the Lambda works, but it is not a very convenient way to run tests.
 
 To allow tests to be executed without using the AWS Lambda console, we will configure a HTTP event in our Serverless configuration file. This event allows us to execute the Lambda function from a HTTP POST request, which in turn allows us to trigger tests using any standard HTTP tools or libraries.
 
@@ -62,9 +62,9 @@ events:
       integration: lambda
 ```
 
-When we perform a HTTP POST, we pass in the Gherkin feature file to be run in the body of the request. But, as we saw before, Lambda functions expect all inputs to be JSON data. We worked around this requirement while testing the Lambda from the console by using a simple web page to convert plain text into a JSON string. We can achieve the same conversion here using request templates.
+When we perform a HTTP POST, we pass in the Gherkin feature file to be run in the body of the request. But as we saw before, Lambda functions expect all inputs to be JSON data. We worked around this requirement while testing the Lambda from the console by using a simple web page to convert plain text into a JSON string. We can achieve the same conversion here using request templates.
 
-Here we have configured a request template that is used when a request containing `text/plain` content is made. The key `text/plain` is a Multipurpose Internet Mail Extensions (MIME) type, which is a standardized way to indicate the nature and format of a document.
+Here we have configured a request template that is used when a request containing `text/plain` content is made. The key `text/plain` is a Multipurpose Internet Mail Extensions (MIME) type, which is a standardized way to indicate the nature and format of a document:
 
 ```yaml
 request:
@@ -126,17 +126,17 @@ runCucumber: cucumber-chrome-aws-dev-runCucumber
 
 Notice that the log file shows the URL of the endpoint that we can use to trigger the HTTP events. In the example above the URL [https://hkm5i7fmlc.execute-api.us-east-1.amazonaws.com/dev/runCucumber](https://hkm5i7fmlc.execute-api.us-east-1.amazonaws.com/dev/runCucumber) is what we will call with HTTP POST requests to execute a Gherkin feature.
 
-To make a HTTP request, we'll use a tool called Postman, which you can download from [https://www.getpostman.com/](https://www.getpostman.com/). Postman provides a simple interface that we can use to craft custom HTTP requests, and in this case we will make a POST request to the URL we found above.
+To make a HTTP request, we’ll use a tool called Postman, which you can download from [https://www.getpostman.com/](https://www.getpostman.com/). Postman provides a simple interface that we can use to craft custom HTTP requests, and in this case, we will make a POST request to the URL we found above.
 
 The screenshot below shows the important fields that need to be populated to make this POST request.
 
-- Select `POST` from the drop-down list at the top of the tab
-- Enter the URL into the textbox at the top of the tab
-- Select the `Body` tab
-- Select the `raw` option
-- Select `Text` from the content type drop-down list
-- Paste in the Gherkin feature into the text area at the bottom of the tab
-- Click the `Send` button
+- Select `POST` from the drop-down list at the top of the tab.
+- Enter the URL into the text box at the top of the tab.
+- Select the `Body` tab.
+- Select the `raw` option.
+- Select `Text` from the content type drop-down list.
+- Paste in the Gherkin feature into the text area at the bottom of the tab.
+- Click the `Send` button.
 
 ![/C:/941191ba7e622160892a5123816cf59a](image1.png "width=500")
 
@@ -152,11 +152,11 @@ So what does the `Endpoint request timed out` error message mean?
 
 This error is a result of different limitations of the services that were implemented to provide a HTTP endpoint in front of the Lambda function.
 
-If you open up the Lambda console and view the function, you can now see that a service called API Gateway is sitting in front of the Lambda function.
+If you open up the Lambda console and view the function, you can see that a service called API Gateway is sitting in front of the Lambda function.
 
 ![/C:/edb84ea8b782041656cd633e9368260c](image4.png "width=500")
 
-API Gateway is another AWS service that is used to build HTTP APIs, and it is the service that the serverless application built when we added HTTP events. It is API Gateway that is taking our HTTP requests, transforming them with the templates we defined, passing them to the Lambda function, transforming the response from the Lambda function, and passing the results back to the caller.
+API Gateway is another AWS service that is used to build HTTP APIs, and it is the service that the Serverless application built when we added HTTP events. It is API Gateway that is taking our HTTP requests, transforming them with the templates we defined, passing them to the Lambda function, transforming the response from the Lambda function, and passing the results back to the caller.
 
 However, while a Lambda function can run for up to 5 minutes, a request made through the API Gateway can only stay open for 29 seconds. These are the limits imposed by AWS on these services, and we do not have the option of extending them.
 
@@ -213,7 +213,7 @@ request:
       'X-Amz-Invocation-Type': true
 ```      
 
-Redeploy the function with serverless. Once it has been updated, add the `X-Amz-Invocation-Type` header to the HTTP request in Postman by clicking on the `Headers` tab and adding a header with the key `X-Amz-Invocation-Type` and the value `Event`. This header and value pair is how we instruct API Gateway to execute the associated Lambda function in an asynchronous manner.
+Redeploy the function with Serverless. After it has been updated, add the `X-Amz-Invocation-Type` header to the HTTP request in Postman by clicking on the `Headers` tab and adding a header with the key `X-Amz-Invocation-Type` and the value `Event`. This header and value pair is how we instruct API Gateway to execute the associated Lambda function in an asynchronous manner.
 
 :::hint
 Setting the `X-Amz-Invocation-Type` header value to `RequestResponse` restores the previous default synchronous behavior, which might be useful if you are sure that your test will complete in 29 seconds.

@@ -44,7 +44,7 @@ The `\w` character class matches any word character, which means it matches any 
 
 The `\s` character class matches any white space character, like a space or a tab.
 
-You can find more information about regular expression character classes in the  [Oracle documentation](https://docs.oracle.com/javase/tutorial/essential/regex/pre_char_classes.html).
+You can find more information about regular expression character classes in the [Oracle documentation](https://docs.oracle.com/javase/tutorial/essential/regex/pre_char_classes.html).
 
 We also use a non-capture group in this regular expression. A non-capture group starts with `(?:` and ends with `)`. Non-capture groups are useful because they define matches that we can make optional or repeat, while not being captured as a distinct group when the pattern is matched to a string. This is important for the integration with Cucumber, because non-capture groups are not passed as parameters to the associated method.
 
@@ -56,9 +56,9 @@ The pattern `\\w+(?:\\s+\\w+)*` matches zero or more words separated by spaces. 
 - radio button
 - checkbox
 
-We have used this pattern to allow the element being interacted with to be described in what ever way is most natural. Because this pattern uses a non-capture group, Cucumber will not pass the matching text as a parameter to the method.
+We have used this pattern to allow the element being interacted with to be described in whatever way is most natural. Because this pattern uses a non-capture group, Cucumber will not pass the matching text as a parameter to the method.
 
-The table below is a breaks down the regular expression into its individual components.
+The table below breaks down the regular expression into its individual components:
 
 | Pattern	| Meaning |
 |-|-|
@@ -85,7 +85,7 @@ To understand the kind of steps that will match this regular expression, enter i
 
 ![C:\d117bb78328e97f7dab22e91ecfeae72](image1.png "width=500")
 
-Notice that there are only ever two groups captured: group 0 being the entire string, and group 1 being the ID of the element we want to click. Group 1 is what is then passed as the first parameter to the method.
+Notice that there are only ever two groups captured: group 0 being the entire string, and group 1 being the ID of the element we want to click. Group 1 is then passed as the first parameter to the method.
 
 Next we expose the overloaded version of `clickElementWithId()` that implements explicit waits. This method has a second parameter called `waitTime` that takes an `int`:
 
@@ -101,7 +101,7 @@ The regular expression for this method is similar to the previous one, but with 
 
 This regular expression uses a new character class of `\d`, which matches any number.
 
-The table below is a breaks down the regular expression into its individual components.
+The table below breaks down the regular expression into its individual components:
 
 | Pattern |	Meaning |
 |-|-|
@@ -111,11 +111,11 @@ The table below is a breaks down the regular expression into its individual comp
 | `(?:`	| Start a non-capture group |
 | `\\s+`	| Match one or more white space characters |
 | `\\w+`	| Match one or more word characters |
-| `)*`	|End the non-capture group, and match it zero or more times |
+| `)*`	| End the non-capture group, and match it zero or more times |
 | `with the id \"`	| Match the literal string `with the id "` |
-| `(`	|Start a capture group |
-| `[^"]*`	|Match any character except the double quote zero or more times |
-| `)`	|End the capture group |
+| `(`	| Start a capture group |
+| `[^"]*`	| Match any character except the double quote zero or more times |
+| `)`	| End the capture group |
 | `\" waiting up to \"` |	Match the literal string `" waiting up to "` |
 | `(`	| Start a capture group |
 | `\\d+`	| Match one or more number characters |
@@ -135,7 +135,7 @@ To understand the kind of steps that will match this regular expression, enter i
 
 This regular expression has three capture groups. Again group 0 is the entire string. As was the case with the previous regular expression, group 1 is the ID of the element to click, and Cucumber passes this as the first parameter to the method. The new group 2 captures the explicit wait time, and Cucumber passes this as the second parameter to the method.
 
-Let's look at what will be one of the most complicated regular expressions we'll use to define a step. The `selectOptionByTextFromSelectWithId()` method takes the name of the option in a drop-down list to select, the ID of the drop-down list, and the time to wait for the drop-down list to be clickable. This regular expression therefor needs to have 3 capture groups:
+Let’s look at what will be one of the most complicated regular expressions we’ll use to define a step. The `selectOptionByTextFromSelectWithId()` method takes the name of the option in a drop-down list to select, the ID of the drop-down list, and the time to wait for the drop-down list to be clickable. This regular expression has 3 capture groups:
 
 ```java
 @And("^I select the option \"([^\"]*)\" from the \\w+(?:\\s+\\w+)* with the id \"([^\"]*)\" waiting up to \"(\\d+)\" seconds?$")
@@ -145,11 +145,11 @@ public void selectOptionByTextFromSelectWithId(String optionText, String id, int
 }
 ```
 
-The table below is a breaks down the regular expression into its individual components.
+The table below breaks down the regular expression into its individual components:
 
 | Pattern	| Meaning |
 |-|-|
-| `^` |	Match the start of the string |
+| `^` |	 Match the start of the string |
 | `I select the option \"`	| Match the literal string `I select the option "` |
 | `(`	| Start a capture group |
 | `[^"]*` |	Match any character except the double quote zero or more times |
@@ -157,9 +157,9 @@ The table below is a breaks down the regular expression into its individual comp
 | `\"` | from the	Match the literal string `" from the` |
 | `\\w+` |	Match one or more word characters |
 | `(?:` |	Start a non-capture group |
-| `\\s+` |	Match one or more white space characters |
+| `\\s+` |	 Match one or more white space characters |
 | `\\w+` |	Match one or more word characters |
-| `)*` |	End the non-capture group, and match it zero or more times |
+| `)*` |	 End the non-capture group and match it zero or more times |
 | `with the id \"` |	Match the literal string `with the id "` |
 | `(` |	Start a capture group |
 | `[^"]*` |	Match any character except the double quote zero or more times |
@@ -183,6 +183,6 @@ To understand the kind of steps that will match this regular expression, enter i
 
 Now we have 4 capture groups. As always group 0 is the entire string, then the first capture group is the name of the option to select, the second is the ID of the drop-down list, and the third is the amount of time to wait for the element to be clickable.
 
-As you can see, regular expressions are incredibly powerful, and we have only touched on a small number of the ways regular expressions can be used to match strings. However, these regular expressions demonstrate all the techniques that we will use when mapping methods to Gherkin steps. All the remaining methods will use regular expressions with the some combination of the capture groups, non-capture groups, character classes and special characters that we have demonstrated with the previous methods.
+As you can see, regular expressions are incredibly powerful, and we have only touched on a small number of the ways regular expressions can be used to match strings. However, these regular expressions demonstrate all the techniques that we will use when mapping methods to Gherkin steps. All the remaining methods will use regular expressions with the some combination of the capture groups, non-capture groups, character classes, and special characters that we have demonstrated with the previous methods.
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).

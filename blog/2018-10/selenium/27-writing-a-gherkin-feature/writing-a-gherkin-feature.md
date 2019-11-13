@@ -12,11 +12,11 @@ tags:
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
 
-Now that we know how to construct regular expressions to map methods to Gherkin steps,  we can go ahead and add annotations to all appropriate methods in the `AutomatedBrowserBase` class.
+Now that we know how to construct regular expressions to map methods to Gherkin steps, we can add annotations to all the appropriate methods in the `AutomatedBrowserBase` class.
 
-Notice that we don't add annotations for all the methods. Methods like `getTextFromElementWithId()`, which return a value, are not able to be used in Gherkin steps because Gherkin has no notion of variables, so the return values don't have any meaning. We also don't expose methods like `init()` and `destroy()`, as these lifecycle methods are called by the `openBrowser()` and `closeBrowser()` methods. There are some internal only methods like `getWebDriver()`, `getAutomatedBrowser()`, `setAutomatedBrowser()` and `getDesiredCapabilities()` that are only used by the decorators, and do not make any sense to expose as Gherkin steps.
+Notice that we don’t add annotations for all the methods. Methods like `getTextFromElementWithId()`, which return a value, cannot be used in Gherkin steps because Gherkin has no notion of variables, so the return values don’t have any meaning. We also don’t expose methods like `init()` and `destroy()`, as these lifecycle methods are called by the `openBrowser()` and `closeBrowser()` methods. There are some internal only methods like `getWebDriver()`, `getAutomatedBrowser()`, `setAutomatedBrowser()`, and `getDesiredCapabilities()` that are only used by the decorators, and do not make any sense to expose as Gherkin steps.
 
-The remaining steps have Cucumber annotations applied to them, assigning regular expressions that follow the same logic that we saw in the last post.
+The remaining steps have Cucumber annotations applied to them, assigning regular expressions that follow the same logic that we saw in the last post:
 
 ```java
 package com.octopus.decoratorbase;
@@ -387,11 +387,11 @@ Feature: Test TicketMonster
 
 Now either run the `CucumberTest` test class from IntelliJ, or commit the code to GitHub and let Travis CI run the test for you. We have just successfully replicated the journey through the TicketMonster application that we wrote in Java in a previous post.
 
-If you read this test out aloud it almost sounds like instructions you would give a colleague if you were instructing them to complete a ticket purchase. But the format is still a bit clunky. Most of the steps end with the phrase `waiting up to "30" seconds`, and some of the locators like `tickets-1` don't give a lot of context.
+If you read this test out aloud it almost sounds like instructions you would give a colleague if you were instructing them to complete a ticket purchase. But the format is still a bit clunky. Most of the steps end with the phrase `waiting up to "30" seconds`, and some of the locators like `tickets-1` don’t give a lot of context.
 
-Let's address the needless repetition of the phrase `waiting up to "30" seconds`.
+Let’s address the needless repetition of the phrase `waiting up to "30" seconds`.
 
-We start by adding a new method called `setDefaultExplicitWaitTime()` to the `AutomatedBrowser` interface. We'll use this method to set a default time to be used with an explicit wait on all the steps:
+We start by adding a new method called `setDefaultExplicitWaitTime()` to the `AutomatedBrowser` interface. We’ll use this method to set a default time to be used with an explicit wait on all the steps:
 
 ```java
 package com.octopus;
@@ -436,7 +436,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 }
 ```
 
-Then in the `WebDriverDecorator` class we capture the default wait time in the `setDefaultExplicitWaitTime()` method, and use the default wait time if it is greater than 0 for any of the methods that previously did not accept a `waitTime` parameter:
+Then in the `WebDriverDecorator` class we capture the default wait time in the `setDefaultExplicitWaitTime()` method and use the default wait time if it is greater than 0 for any of the methods that previously did not accept a `waitTime` parameter:
 
 ```java
 package com.octopus.decorators;
@@ -498,9 +498,9 @@ public void setDefaultExplicitWaitTime(final int waitTime) {
 }
 ```
 
-We then use this default value in any method that interacts with an element, but does not accept a wait time parameter. For example, the `clickElementWithId()` method below does not accept a wait time parameter and will by default attempt to click the element immediately with no wait.
+We then use this default value in any method that interacts with an element but does not accept a wait time parameter. For example, the `clickElementWithId()` method below does not accept a wait time parameter and will, by default, attempt to click the element immediately with no wait.
 
-With the change we are making, if `defaultExplicitWaitTime` is greater than zero we instead call the overloaded `clickElementWithId()` method that does accept a wait time parameter, passing in the value of `defaultExplicitWaitTime`. This means that if `defaultExplicitWaitTime` has been defined, methods that did not accept a wait time parameter now defer to those overloaded version of the method that do, and will in turn wait for a period of time for the element that is being interacted with to be available and in the correct state.
+With the change we are making, if `defaultExplicitWaitTime` is greater than zero we instead call the overloaded `clickElementWithId()` method that does accept a wait time parameter, passing in the value of `defaultExplicitWaitTime`. This means that if `defaultExplicitWaitTime` has been defined, methods that did not accept a wait time parameter now defer to those overloaded version of the method that do and will in turn wait for a period of time for the element that is being interacted with to be available and in the correct state.
 
 All the methods that do no accept a wait time parameter have been rewritten with this new `if` statement:
 
@@ -515,7 +515,7 @@ public void clickElementWithId(final String id) {
 }
 ```
 
-The only methods that don't use the same logic of checking to see if `defaultExplicitWaitTime` is greater than 0 are those that use the simplified locator strings. These methods already deferred to their overloaded siblings with a wait time of zero, which is now replaced with the `defaultExplicitWaitTime` variable:
+The only methods that don’t use the same logic of checking to see if `defaultExplicitWaitTime` is greater than 0 are those that use the simplified locator strings. These methods already deferred to their overloaded siblings with a wait time of zero, which is now replaced with the `defaultExplicitWaitTime` variable:
 
 ```java
 @Override
@@ -524,7 +524,7 @@ public void clickElement(final String locator) {
 }
 ```
 
-Now we can write the Gherkin feature like this. We call the step `And I set the default explicit wait time to "30" seconds`, and remove the phrase `waiting up to "30" seconds` from all the other steps.
+Now we can write the Gherkin feature like this. We call the step `And I set the default explicit wait time to "30" seconds`, and remove the phrase `waiting up to "30" seconds` from all the other steps:
 
 ```gherkin
 Feature: Test TicketMonster With Default Wait
@@ -545,11 +545,11 @@ Feature: Test TicketMonster With Default Wait
     Then I close the browser
 ```
 
-We are now very close to having a test that can be written and read in something close to plain English. The last remaining hurdle are the locators like `tickets-1`, which are hard to read.
+We are now very close to having a test that can be written and read in something close to plain English. The last remaining hurdles are the locators like `tickets-1`, which are hard to read.
 
-Gherkin does not have any native notions of constants, meaning we need to introduce something we'll call aliases. Aliases are nothing more than key value pairs, but they allow us to assign a meaningful key like `Adult Ticket Count` to the value `tickets-1`. We can then use the key `Adult Ticket Count` in the Gherkin step, making the step much more readable.
+Gherkin does not have any native notions of constants, meaning we need to introduce something we’ll call aliases. Aliases are nothing more than key value pairs, but they allow us to assign a meaningful key like `Adult Ticket Count` to the value `tickets-1`. We can then use the key `Adult Ticket Count` in the Gherkin step, making the step much more readable.
 
-To store these key/value pairs, we create a new instance variable called `aliases`, and a new method called `setAliases()` to save them:
+To store these key value pairs, we create a new instance variable called `aliases`, and a new method called `setAliases()` to save them:
 
 ```java
 public class AutomatedBrowserBase implements AutomatedBrowser {
@@ -571,7 +571,7 @@ public class AutomatedBrowserBase implements AutomatedBrowser {
 
 We then make use of a feature in Cucumber called data tables to populate the aliases map.
 
-Notice that the regular expression `^I set the following aliases:$` has no capture groups. Traditionally we use capture groups as a way of passing values to the method parameters. But in this case the data table is supplied after the step, and passed into the method as a `Map` object:
+Notice that the regular expression `^I set the following aliases:$` has no capture groups. Traditionally, we use capture groups as a way of passing values to the method parameters. But in this case the data table is supplied after the step, and passed into the method as a `Map` object:
 
 ```java
 @Given("^I set the following aliases:$")
@@ -580,7 +580,7 @@ public void setAliases(Map<String, String> aliases) {
 }
 ```
 
-We call this step like so. The table underneath the step is passed to the method as a `Map`, with the first column being the key and the second column is the value.
+We call this step like so. The table underneath the step is passed to the method as a `Map`, with the first column being the key and the second column is the value:
 
 ```gherkin
 And I set the following aliases:
@@ -610,7 +610,7 @@ getAutomatedBrowser().selectOptionByTextFromSelectWithId(
   aliases.getOrDefault(id, id))
 ```
 
-The code `aliases.getOrDefault(optionText, optionText)` means "Get the value assigned to the key `optionText` from the `aliases` map, or if that key does not exist, return `optionText` as the default value".
+The code `aliases.getOrDefault(optionText, optionText)` means "Get the value assigned to the key `optionText` from the `aliases` map, or if that key does not exist, return `optionText` as the default value."
 
 The code below shows how the methods in the `AutomatedBrowserBase` class now look as they first try to look up the aliases map for an aliased value. Every method has been updated to look up the aliases map, and the code below shows how the `selectOptionByTextFromSelectWithId()`
 method was updated:
@@ -656,6 +656,6 @@ Feature: Test TicketMonster With Aliases
     Then I close the browser
 ```
 
-Now that we have aliases exposing the element ids and names with friendly names like `Add Tickets` and `Checkout`, the test fulfills the requirement of providing the implementation details required to execute the test while also being easy to read. Anyone familiar with the TicketMonster web application would be able to follow these instructions to purchase tickets for the concert. This is the beauty of the Gherkin language, and the power of the Cucumber library.
+Now that we have aliases exposing the element IDs and names with friendly names like `Add Tickets` and `Checkout`, the test fulfills the requirement of providing the implementation details required to execute the test while also being easy to read. Anyone familiar with the TicketMonster web application would be able to follow these instructions to purchase tickets for the concert. This is the beauty of the Gherkin language, and the power of the Cucumber library.
 
 This post is part of a series about [creating a Selenium WebDriver test framework](../0-toc/webdriver-toc.md).
