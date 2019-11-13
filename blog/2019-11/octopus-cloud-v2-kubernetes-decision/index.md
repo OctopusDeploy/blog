@@ -175,7 +175,7 @@ We could roll our own orchestration solution, but Kubernetes was built for the p
 
 It was also an exciting chance to again drink our own champagne: we could take advantage of the kubernetes support we had built into Octopus at a large scale. 
 
-## Now 
+## Conclusion 
 
 This post was set in the past. These decisions took place over a year ago at the time of writing.  
 
