@@ -20,15 +20,15 @@ Other posts in this series:
 
 ---
 
-Octopus Cloud launched in July 2018 as an MVP to test customer demand and we quickly gained some great insight post-launch. We had the following: 
+Octopus Cloud launched in July 2018 as an MVP to test customer demand and we quickly gained some great insight post-launch. We found ourselves with the following:
 
-- A cloud SaaS product for which there is strong demand 
+- A cloud-based SaaS product for which there is strong demand 
 - A pricing model where the revenue per customer doesn't come close to covering the AWS hosting costs  
 - A non-optimized architecture which allocates a dedicated VM for each customer
 
 Octopus had always been designed to be hosted on user's own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_, which in this case was hosting each customer on a dedicated virtual machine.  This approach was a resounding success.  It removed many unknowns, leaving us with a clear problem to solve...
 
-***Reduce hosting costs.***
+<h3>Reduce hosting costs</h3>
 
 What does a v1 customer cost? 
 
