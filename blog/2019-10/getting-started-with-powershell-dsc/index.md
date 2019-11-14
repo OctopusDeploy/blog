@@ -12,16 +12,16 @@ tags:
 
 ![Octopus learning how to configure a server with PowerShell DSC](getting-started-powershell-dsc.png)
 
-PowerShell DSC is a fantastic technology to have in your toolbet for managing Windows-based servers. This post is a part of a series:
+PowerShell DSC is a fantastic technology to have in your tool-belt for managing Windows-based servers. This post is part of a series:
 
 - **Getting started with PowerShell Desired State Configuration (DSC)**
 - [Write your own PowerShell Desired State Configuration (DSC) module](https://octopus.com/blog/write-your-own-powershell-dsc-module)
 
-We also have articles on using PowerShell DSC with Octopus Deploy: 
+We also have articles on using PowerShell DSC with Octopus Deploy:
 - [Configuration Management with Octopus and PowerShell DSC](https://octopus.com/blog/octopus-and-powershell-dsc)
 - [Deploying PowerShell Desired State Configuration (DSC) like an App with Octopus Deploy](https://octopus.com/blog/powershelldsc-as-template)
 
---- 
+---
 
 Whether you are a large organization or a small one, using cloud infrastructure or rack-mounted servers, maintaining the known state of a server is challenging. Several third-party solutions such as Ansible, Chef, and Puppet exist, but they are paid Linux-based products. For Windows folks, there is a free and Windows-centric option available; PowerShell Desired State Configuration (DSC). In this PowerShell DSC tutorial, I’ll show you how to get started with PowerShell DSC and provide some basic examples of how to use it.
 

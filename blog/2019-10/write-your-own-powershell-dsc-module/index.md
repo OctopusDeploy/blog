@@ -12,12 +12,12 @@ tags:
 
 ![Octopus learning how to write a custom PowerShell DSC Module](write-powershell-dsc-module.png)
 
-PowerShell DSC is a fantastic technology to have in your toolbet for managing Windows-based servers. This post is a part of a series:
+PowerShell DSC is a fantastic technology to have in your tool-belt for managing Windows-based servers. This post is part of a series:
 
 - [Getting started with PowerShell Desired State Configuration (DSC)](https://octopus.com/blog/getting-started-with-powershell-dsc)
 - **Write your own PowerShell Desired State Configuration (DSC) module**
 
-We also have articles on using PowerShell DSC with Octopus Deploy: 
+We also have articles on using PowerShell DSC with Octopus Deploy:
 - [Configuration Management with Octopus and PowerShell DSC](https://octopus.com/blog/octopus-and-powershell-dsc)
 - [Deploying PowerShell DSC like an App with Octopus Deploy](https://octopus.com/blog/powershelldsc-as-template)
 
@@ -208,7 +208,7 @@ function Test-TargetResource
 
     <#
     $result = [System.Boolean]
-    
+
     $result
     #>
 }
