@@ -10,18 +10,18 @@ tags:
  - Engineering
 ---
 
-PowerShell DSC is a fantastic technology to have in your toolbet for managing Windows-based servers. This post is a part of a series:
+PowerShell DSC is a fantastic technology to have in your tool-belt for managing Windows-based servers. This post is part of a series:
 
 - [Getting started with PowerShell Desired State Configuration (DSC)](https://octopus.com/blog/getting-started-with-powershell-dsc)
 - [Write your own PowerShell Desired State Configuration (DSC) module](https://octopus.com/blog/write-your-own-powershell-dsc-module)
 
-We also have articles on using PowerShell DSC with Octopus Deploy: 
+We also have articles on using PowerShell DSC with Octopus Deploy:
 - [Configuration Management with Octopus and PowerShell DSC](https://octopus.com/blog/octopus-and-powershell-dsc)
 - **Deploying PowerShell DSC like an App with Octopus Deploy**
 
---- 
+---
 
-In a previous [post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to: 
+In a previous [post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to:
 
  - Manage infrastructure.
  - Use Machine Policies to monitor for drift.
