@@ -132,7 +132,7 @@ Let’s take our original list of three Windows Features and put them into a DSC
 }
 ```
 
-With the DSC configuration data separated, we can shorten and make our DSC PowerShell script more generic:
+With the configuration data separated, we can shorten and make our DSC PowerShell script more generic:
 
 ```PS
 Configuration WebServerConfiguration
