@@ -1,6 +1,6 @@
 ---
 title: Deploying PowerShell Desired State Configuration (DSC) like an App with Octopus Deploy
-description: Use custom step templates and configuration data files to deploy your Infrastructure as Code using PowerShell DSC
+description: Use Octopus Deploy custom step templates and configuration data files (DSC configuration) to deploy your Infrastructure as Code using PowerShell Desired State Configuration (DSC).
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2019-06-19
@@ -10,7 +10,18 @@ tags:
  - Engineering
 ---
 
-In a previous [blog post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to: 
+PowerShell DSC is a fantastic technology to have in your toolbet for managing Windows-based servers. This post is a part of a series:
+
+- [Getting started with PowerShell Desired State Configuration (DSC)](https://octopus.com/blog/getting-started-with-powershell-dsc)
+- [Write your own PowerShell Desired State Configuration (DSC) module](https://octopus.com/blog/write-your-own-powershell-dsc-module)
+
+We also have articles on using PowerShell DSC with Octopus Deploy: 
+- [Configuration Management with Octopus and PowerShell DSC](https://octopus.com/blog/octopus-and-powershell-dsc)
+- **Deploying PowerShell DSC like an App with Octopus Deploy**
+
+--- 
+
+In a previous [post](https://octopus.com/blog/octopus-and-powershell-dsc), Paul Stovell showed us how to use Octopus Deploy to deploy PowerShell Desired State Configuration (DSC) to servers to: 
 
  - Manage infrastructure.
  - Use Machine Policies to monitor for drift.
@@ -30,7 +41,7 @@ By the end of this post, we'll have created a re-usable PowerShell DSC script as
 ## PowerShell DSC
 
 ### Paul's Original Script
-The code sample that Paul provided for DSC was a good example of a basic script:
+The code sample that Paul provided for DSC PowerShell was a good example of a basic script:
 
 ```PS
 Configuration WebServerConfiguration
@@ -58,7 +69,7 @@ Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 
 ### Separating Node Data
 
-In his example, the Node data is contained within the script itself and the features to be configured are static.  If we separate the Node data from the script into a Configuration Data File, we can make our DSC script more dynamic:
+In his example, the Node data is contained within the script itself and the features to be configured are static.  If we separate the Node data from the script into a Configuration Data File (DSC configuration), we can make our DSC PowerShell script more dynamic:
 
 ```PS
 @{
@@ -86,9 +97,9 @@ In his example, the Node data is contained within the script itself and the feat
 }
 ```
 
-### Making the DSC Script More Dynamic
+### Making the DSC PowerShell Script More Dynamic
 
-With the Node data now separated, the DSC script can be changed to be dynamic, installing features that have been specified in the configuration data file:
+With the Node data now separated, the DSC PowerShell script can be changed to be dynamic, installing features that have been specified in the configuration data file (DSC configuration):
 
 ```PS
 Configuration WebServerConfiguration
@@ -115,7 +126,7 @@ WebServerConfiguration -ConfigurationData "C:\DscConfiguration\WebServer.psd1" -
 Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 ```
 
-### Filling in More Details of the Configuration Data File
+### Filling in More Details of the DSC configuration
 
 Great!  We've got a good start for our web server implementation, but there's more to configuring a web server than installing Windows Features.  Let's add some more data to our configuration data file by adding some additional Windows Features, Sites, Applications, setting a default log path for IIS Sites, and harden our security with Ciphers, Hashes, Protocols, Key Exchanges, and specifying our Cipher Suite order.  
 
@@ -452,8 +463,8 @@ Cool!  We've just created a dynamic, re-usable Step Template that will configure
 ## Caveat for PowerShell DSC Resource Modules
 Earlier in this post, I talked about the `Import-DscResource -Module xWebAdministration` line in our DSC script.  This is a reference to the xWebAdministration PowerShell DSC resource module, which will need to be downloaded from either the [PowerShell Gallery](https://www.powershellgallery.com/packages?q=xwebadministration) or from [GitHub](https://github.com/PowerShell/xWebAdministration).  The caveat to this is that any DSC Modules referenced in your script must be installed **before** the DSC script executes.  
 
-## Make Your Configuration Data File and Your Referenced PowerShell DSC Modules Deployable Packages
-Presumably, you have placed your configuration data file and referenced PowerShell DSC modules into source control.  Once in source control, your build server can easily package them and ship them to Octopus Deploy for deployment.
+## Make Your Configuration Data File (DSC Configuration) and Your Referenced PowerShell DSC Modules Deployable Packages
+Presumably, you have placed your configuration data file (DSC configuration) and referenced PowerShell DSC modules into source control.  Once in source control, your build server can easily package them and ship them to Octopus Deploy for deployment.
 
 ## Configure your Project
 Now that we have our configuration data file package and our PowerShell DSC Modules package, we can configure our project!
@@ -575,6 +586,7 @@ Let's test it by stopping the OctopusDeploy.com web site on our IIS server.  Aft
 ![](failed-health-check.png)
 
 ## Summary
-In this post, we created a PowerShell DSC script, converted it into an Octopus Deploy Step Template, separated Node data into a configuration data file, and created a Machine Policy for monitoring for drift.
+
+In this post, we created a PowerShell Desired State Configuration (DSC) script, converted it into an Octopus Deploy Step Template, separated Node data into a configuration data file (DSC configuration), and created a Machine Policy for monitoring for drift.
 
 Source code for this post is available at https://github.com/OctopusSamples/DSC-as-a-template

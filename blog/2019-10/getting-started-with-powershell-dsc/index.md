@@ -1,6 +1,6 @@
 ---
-title: Getting started with PowerShell DSC
-description: How to get started using PowerShell DSC
+title: Getting started with PowerShell Desired State Configuration (DSC)
+description: How to get started using PowerShell Desired State Configuration (DSC)
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: getting-started-powershell-dsc.png
@@ -12,11 +12,22 @@ tags:
 
 ![Octopus learning how to configure a server with PowerShell DSC](getting-started-powershell-dsc.png)
 
-Whether you are a large organization or a small one, using cloud infrastructure or rack-mounted servers, maintaining the known state of a server is challenging. Several third-party solutions such as Ansible, Chef, and Puppet exist, but they are paid Linux-based products. For Windows folks, there is a free and Windows-centric option available; PowerShell Desired State Configuration (DSC). In this post, I’ll show you how to get started with PowerShell DSC and provide some basic examples of how to use it.
+PowerShell DSC is a fantastic technology to have in your toolbet for managing Windows-based servers. This post is a part of a series:
 
-## What is PowerShell DSC
+- **Getting started with PowerShell Desired State Configuration (DSC)**
+- [Write your own PowerShell Desired State Configuration (DSC) module](https://octopus.com/blog/write-your-own-powershell-dsc-module)
 
-PowerShell DSC is an Infrastructure as Code (IaC) technology that uses PowerShell to create Managed Object Format (MOF) files, which Windows Management Instrumentation (WMI) can use to configure a machine.  In other words, PowerShell DSC uses PowerShell to programmatically configure your computer.  Additionally, DSC can monitor the state of the configured resources to make sure your machines stay consistent.  Along with monitoring, DSC can also automatically correct the configuration of your system, so it’s always in the desired state.
+We also have articles on using PowerShell DSC with Octopus Deploy: 
+- [Configuration Management with Octopus and PowerShell DSC](https://octopus.com/blog/octopus-and-powershell-dsc)
+- [Deploying PowerShell Desired State Configuration (DSC) like an App with Octopus Deploy](https://octopus.com/blog/powershelldsc-as-template)
+
+--- 
+
+Whether you are a large organization or a small one, using cloud infrastructure or rack-mounted servers, maintaining the known state of a server is challenging. Several third-party solutions such as Ansible, Chef, and Puppet exist, but they are paid Linux-based products. For Windows folks, there is a free and Windows-centric option available; PowerShell Desired State Configuration (DSC). In this PowerShell DSC tutorial, I’ll show you how to get started with PowerShell DSC and provide some basic examples of how to use it.
+
+## What is PowerShell Desired State Configuration (DSC)
+
+PowerShell DSC is an Infrastructure as Code (IaC) technology that uses PowerShell to create Managed Object Format (MOF) files, which Windows Management Instrumentation (WMI) can use to configure a machine.  In other words, PowerShell DSC uses PowerShell to programmatically configure your Windows-based computers.  Additionally, DSC can monitor the state of the configured resources to make sure your machines stay consistent.  Along with monitoring, DSC can also automatically correct the configuration of your system, so it’s always in the desired state.
 
 ### PowerShell != PowerShell DSC
 
@@ -24,7 +35,7 @@ If you’ve ever taken a course in PowerShell, your instructor may have mentione
 
 ### Why use PowerShell DSC
 
-A common method of maintaining consistency in your Infrastructure is to create base images for the different types of servers you need to spin up.  Need a web server?  Use the web server image.  Need a database server?  Use the database server image.  While this certainly shortens the amount of time it takes to provision resources with a known/good configuration, there are some inherent problems.  
+A common method of maintaining consistency in your infrastructure is to create base images for the different types of servers you need to spin up.  Need a web server?  Use the web server image.  Need a database server?  Use the database server image.  While this certainly shortens the amount of time it takes to provision resources with a known/good configuration, there are some inherent problems.  
 
 For instance, what happens when your Chief Information Security Officer (CISO) changes the allowed protocols of your web servers?  Sure, you could fix the base image and either re-create all of your web servers or write an automation script to apply the new security configuration to the existing ones, but re-creating servers or writing and then testing an update script could take a significant amount of time, especially if you have hundreds of servers.  What if the newly implemented security standards break a quarterly interface with a business partner? Now you have to undo all of that work.
 
@@ -36,11 +47,11 @@ PowerShell DSC takes the components configured with PowerShell and converts them
 
 #### Push method
 
-The Push method is perhaps the easiest method to start with.  This method requires the user to *push* the configuration to the server by calling the `Start-DscConfiguration` cmdlet.  This has the advantage of starting immediately to apply the configuration.  In terms of automation, the disadvantage of this approach is if the server is offline, it will not be able to apply the new desired state.  This is where the pull method may be a better approach.
+The Push method is perhaps the easiest method to start with.  This method requires the user to *push* the desired state configuration to the server by calling the `Start-DscConfiguration` cmdlet.  This has the advantage of starting immediately to apply the configuration.  In terms of automation, the disadvantage of this approach is if the server is offline, it will not be able to apply the new desired state.  This is where the pull method may be a better approach.
 
 #### Pull method
 
-As the name implies, the Pull method reaches out to a server to pull the configuration down and apply it.  This requires that you have a Pull server that houses the configurations for your servers.  The disadvantage of this approach is the requirement of an additional server to host the configuration.  The configured servers then need to be configured to poll the pull server to determine if there is a new MOF file available.
+As the name implies, the Pull method reaches out to a server to pull the desired state configuration down and apply it.  This requires that you have a Pull server that houses the configurations for your servers.  The disadvantage of this approach is the requirement of an additional server to host the configuration.  The configured servers then need to be configured to poll the pull server to determine if there is a new MOF file available.
 
 ## Getting started
 
@@ -95,9 +106,9 @@ After your configuration runs, you should see some output similar to this:
 
 Our simplistic example is very hard-coded and not dynamic at all.  With PowerShell DSC, we have the ability to separate the configuration data from the configuration itself and make our script more dynamic. It is PowerShell after all :)
 
-A configuration data file is just a bunch of Hash tables that can contain other Hash tables or Arrays and typically have a psd1 file extension. Configuration data must have at least one key named `AllNodes`.  Refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/powershell/scripting/dsc/configurations/configData?view=powershell-6) for more information.
+A DSC configuration data file is just a bunch of Hash tables that can contain other Hash tables or Arrays and typically have a psd1 file extension. DSC configuration data must have at least one key named `AllNodes`.  Refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/powershell/scripting/dsc/configurations/configData?view=powershell-6) for more information.
 
-Let’s take our original list of three Windows Features and put them into a configuration data file:
+Let’s take our original list of three Windows Features and put them into a DSC configuration data file:
 
 ```PS
 @{
@@ -121,7 +132,7 @@ Let’s take our original list of three Windows Features and put them into a con
 }
 ```
 
-With the configuration data separated, we can shorten and make our DSC script more generic:
+With the DSC configuration data separated, we can shorten and make our DSC PowerShell script more generic:
 
 ```PS
 Configuration WebServerConfiguration
@@ -148,11 +159,11 @@ Start-DscConfiguration -Wait -Verbose -Path "C:\DscConfiguration"
 
 There are two things to note in our new script:
 - The call to `WebServerConfiguration` now has an additional argument `ConfigurationData`.  This tells DSC the file that contains the configuration data to load.
-- We can reference the properties of the configuration data file using dot notation.
+- We can reference the properties of the DSC configuration data file using dot notation.
 
 ## Detecting drift
 
-As previously mentioned, DSC can detect whether something is no longer in the desired state.  It is important to note that DSC can only detect changes that it has been told to care about.  Using our example, if someone had installed the Web-Ftp-Server Windows Feature, our DSC script would not report anything.  However, if someone had removed Web-Default-Doc, DSC would report that the feature was no longer in the desired state.  When a DSC configuration is no longer in the desired state, it is said to have drifted.
+As previously mentioned, DSC can detect whether something is no longer in the desired state.  It is important to note that DSC can only detect changes that it has been told to care about.  Using our example, if someone had installed the Web-Ftp-Server Windows Feature, our DSC PowerShell script would not report anything.  However, if someone had removed Web-Default-Doc, DSC would report that the feature was no longer in the desired state.  When a DSC configuration is no longer in the desired state, it is said to have drifted.
 
 To run a test of the current configuration, you run the `Test-DscConfiguration` cmdlet.  If the configuration is in the desired state, `Test-DscConfiguration` returns `True`, if something has drifted, it returns `False`.  Passing the `-Detailed` argument will return a list of resources both in and out of drift:
 
@@ -172,7 +183,7 @@ As you can see, the machine has drifted and identified the [WindowsFeature]Defau
 
 ### Automatically correcting drift
 
-You can configure your Local Configuration Manager (LCM) to automatically correct configuration when drift is detected.  To do this, we place a `LocalConfigurationManager` node within our DSC script and set the `ConfigurationMode` property.  The `ConfigurationMode` can have one of three values:
+You can configure your Local Configuration Manager (LCM) to automatically correct configuration when drift is detected.  To do this, we place a `LocalConfigurationManager` node within our DSC PowerShell script and set the `ConfigurationMode` property.  The `ConfigurationMode` can have one of three values:
 - `ApplyOnly`: this setting instructs the LCM to apply the configuration and do nothing else.
 - `ApplyAndMonitor`: this setting instructs the LCM to apply the configuration and periodically run a consistency check (essentially `Test-DscConfiguration`).  The default frequency for the consistency check is 15 minutes and can be overridden by setting the `ConfigurationModeFrequencyMins` property.
 - `ApplyAndAutoCorrect`: this setting instructs LCM to apply the configuration and periodically run a consistency check.  If the consistency check returns `false`, the LCM re-applies the configuration to bring the machine back into the desired state.
@@ -211,4 +222,4 @@ Now our server will automatically correct itself whenever drift is detected!  If
 
 ## Summary
 
-This post gives you some basic information on how to get started using PowerShell DSC as well as how to detect and optionally automatically correct drift.  For an example of the mentioned hybrid approach, refer to my other [blog post](https://octopus.com/blog/powershelldsc-as-template) where we configure PowerShell DSC to deploy like an application.
+This blog post tutorial gives you some basic information on how to get started using PowerShell DSC as well as how to detect and optionally automatically correct drift.  For an example of the mentioned hybrid approach, refer to this [post](https://octopus.com/blog/powershelldsc-as-template) in the series, where we configure PowerShell DSC to deploy like an application.

@@ -12,11 +12,24 @@ tags:
 
 ![Octopus learning how to write a custom PowerShell DSC Module](write-powershell-dsc-module.png)
 
+PowerShell DSC is a fantastic technology to have in your toolbet for managing Windows-based servers. This post is a part of a series:
+
+- [Getting started with PowerShell Desired State Configuration (DSC)](https://octopus.com/blog/getting-started-with-powershell-dsc)
+- **Write your own PowerShell Desired State Configuration (DSC) module**
+
+We also have articles on using PowerShell DSC with Octopus Deploy: 
+- [Configuration Management with Octopus and PowerShell DSC](https://octopus.com/blog/octopus-and-powershell-dsc)
+- [Deploying PowerShell DSC like an App with Octopus Deploy](https://octopus.com/blog/powershelldsc-as-template)
+
+---
+
 As you gain experience with PowerShell Desired State Configuration (DSC) you might encounter situations where the available modules don’t quite fit what you want to do.  You could write your own [Script Resources](https://docs.microsoft.com/en-us/powershell/dsc/reference/resources/windows/scriptresource), but they don’t scale well, passing parameters is difficult, and they don’t provide a method for encryption, leaving passwords in clear text, however, you can write your own DSC modules.
 
-## A tool to help you write your module
+In this PowerShell DSC tutorial, I'll cover how to write your first PowerShell DSC module.
 
-Writing your own module isn’t really that hard.  The most difficult part is getting the files and folders in the correct locations because DSC is quite specific about what goes where. However, Microsoft recognizes this can be quite frustrating and has developed [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner), a PowerShell module to help you get started.  Using this module, you can easily define what properties your resource needs and it will generate the entire module structure for you, including the MOF schema file.  If you’re a first-timer, I highly recommend using this module, it could save you quite a bit of frustration (take it from me).
+## A tool to help you write your PowerShell DSC module
+
+Writing your own PowerShell DSC module isn’t really that hard.  The most difficult part is getting the files and folders in the correct locations because DSC is quite specific about what goes where. However, Microsoft recognizes this can be quite frustrating and has developed [xDscResourceDesigner](https://docs.microsoft.com/en-us/powershell/dsc/resources/authoringresourcemofdesigner), a PowerShell module to help you get started.  Using this module, you can easily define what properties your resource needs and it will generate the entire module structure for you, including the MOF schema file.  If you’re a first-timer, I highly recommend using this module, it could save you quite a bit of frustration (take it from me).
 
 ## Installing xDscResourceDesigner
 
@@ -235,4 +248,4 @@ function Set-TargetResource
 
 ## Summary
 
-Whether simplistic or complex, the steps for creating your own DSC module will be the same.  This post is aimed at getting you started in the right direction.  From here, you can create your module to fit whatever resource you need to configure and keep in a desired state.  For the full example of a working module check out [xCertificatePermission](https://github.com/twerthi/xCertificatePermission) on my GitHub repo.
+Whether simplistic or complex, the steps for creating your own PowerShell DSC module will be the same.  This post is aimed at getting you started in the right direction.  From here, you can create your module to fit whatever resource you need to configure and keep in a desired state.  For the full example of a working module check out [xCertificatePermission](https://github.com/twerthi/xCertificatePermission) on my GitHub repo.
