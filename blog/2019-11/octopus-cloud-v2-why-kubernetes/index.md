@@ -194,9 +194,9 @@ At the time of writing:
 - There had been 0 provisioning failures.
 - The vast majority of instances were provisioned in less than thirty seconds.
 
-It’s too early to evaluate the cost reduction, as we were cautious, and initially, we grossly over-provisioned the nodes.  Even considering that per-customer costs are reduced by roughly 50%. 
+It’s too early to evaluate the cost reduction, as we were cautious, and initially, we grossly over-provisioned the nodes.  Even considering that per-customer costs are down by roughly 50%. 
 
-The change has also ushered in some great performance improvements. It used to take 10+ minutes to provision a new Octopus instance but this has now been reduced to less than 30 seconds. Octopus instances should be responsive and performant given this shift as well as other changes that we'll talk about later. 
+The change has also ushered in some great performance improvements. It used to take 10+ minutes to provision a new Octopus instance but this has now been reduced to less than 30 seconds. We also made some other performance gains with Octopus Cloud instances that we’ll talk about in future posts.
 
 We have more posts coming in this series, where we will take a detailed look at the .NET Core port, consider the options for which cloud provider (AWS, Azure, Google, etc.), and evaluate the overall success of the project.
 
