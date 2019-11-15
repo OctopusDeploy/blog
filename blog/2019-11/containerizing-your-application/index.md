@@ -1,5 +1,5 @@
 ---
-title: Beyond Hello World: Containerizing your *first* application
+title: "Beyond Hello World: Containerizing your first application"
 description: Demonstrating how to make a .NET core application a Docker container
 author: shawn.sesna@octopus.com
 visibility: private
