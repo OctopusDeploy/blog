@@ -1,6 +1,6 @@
 ---
 title: "Why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud"  
-description: A reflection on the architecture options we considered for hosting Octopus Cloud v2.
+description: A reflection on the architectural options we considered for hosting Octopus Cloud v2.
 author: michael.richardson@octopus.com
 visibility: private
 published: 2020-01-01
@@ -20,17 +20,17 @@ Posts in this series:
 
 ---
 
-Octopus Cloud launched in July 2018 as an MVP to test customer demand, and we quickly gained some great insights post-launch. We found ourselves with the following:
+Octopus Cloud launched in July 2018 as an MVP to test customer demand, and we gained some great insights post-launch. We found ourselves with the following:
 
 - A cloud-based SaaS product for which there was strong demand.
 - A pricing model where the revenue per customer didn’t come close to covering the AWS hosting costs.
-- A non-optimized architecture which allocates a dedicated VM for each customer.
+- A non-optimized architecture that allocated a dedicated VM for each customer.
 
-Octopus had always been designed to be hosted on the user’s own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_ approach, which in this case, was hosting each customer on a dedicated virtual machine.  This was a resounding success.  It removed many unknowns, leaving us with a clear problem to solve…
+Octopus had always been designed to be hosted on the user’s own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_ approach, which in this case, was hosting each customer on a dedicated virtual machine.  This was a resounding success, and it removed many unknowns, leaving us with a clear problem to solve…
 
 ## Reduce costs and improve performance
 
-What are the costs of an Octopus Cloud v1 customer?
+What were the running costs per Octopus Cloud v1 customer?
 
 ![Octopus Cloud 1.0 architecture diagram](../../2019-10/octopus-cloud-1.0-reflections/octopus-cloud-v1-architecture-diagram.png "width=600")
 
@@ -44,13 +44,13 @@ This gives a total hosting cost of roughly **$82** US dollars per customer. What
 
 Our goal was to bring this below **$10** per customer for low-usage instances.
 
-It’s worth mentioning at this point, Octopus was implemented as a full-framework .NET application, which requires Windows, the HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app, and part of our goal from the beginning was: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products. Further, while we wanted to reduce costs, we also wanted to improve performance and availability for customers. Our customers expect a fast and responsive experience and we didn't want to impact that.
+It’s worth mentioning at this point, Octopus was implemented as a full-framework .NET application, which requires Windows, the HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app, and part of our goal from the beginning was: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products. Further, while we wanted to reduce costs, we also wanted to improve performance and availability. Our customers expect a fast and responsive experience, and we didn’t want to negatively impact that.
 
 To recap, we started this effort with three goals in mind.
 
 1. Reduce costs.
 2. Maintain a single code-base for our self-hosted and cloud products.
-3. Improve performance and availability
+3. Improve performance and availability.
 
 ## The options
 
@@ -81,7 +81,7 @@ Unfortunately, Octopus is much more than a web server: It’s also a task runner
 
 We could easily imagine modifying the Octopus HTTP server to be multi-tenanted. We could still have a database-per-customer and determine the connection string to use for each request. The task orchestration component would be trickier, but not impossible; however, this would require significant renovations.  
 
-Polling Tentacles would be a complication. We won’t delve into the details of this here, but for the purposes of this post, it’s enough to know that in addition to renovations, we’d have to demolish a few walls (and add a bathroom) to support polling Tentacles in this architecture.
+Polling Tentacles would be a complication. We won’t delve into the details in this post, but it’s enough to know that in addition to renovations, we’d have to demolish a few walls (and add a bathroom) to support polling Tentacles with this architecture.
 
 And these renovations would have to occur while we continued to ship regular updates to the product. This would leave us with the diabolical choice between:
 
@@ -98,7 +98,7 @@ With this approach, we would run each customer as a dedicated process on a Windo
 
 The big advantage here is that very few changes would need to be made to the Octopus product. It would also offer us a lot of flexibility with hosting options (AWS, Azure, self-hosted, etc.).  
 
-The big disadvantage of this approach was that we’d need to orchestrate these processes ourselves.  Some of the questions we’d need to answer with this solution were:
+The big disadvantage of this approach is that we’d need to orchestrate these processes ourselves.  Some of the questions we’d need to answer with this solution are:
 
 _When a new customer arrives, how do we decided which VM to execute their process on?_   
 
@@ -123,22 +123,21 @@ We could host each customer as an Azure web app.
 The _huge_ advantage of this approach was no VMs to manage.
 
 The disadvantages of this approach… well, there are a few.
-Similar to the _process-per-customer_ option, we would still have to orchestrate allocating users between Service Plans.    
-Similar to the _multi-tenant_ option, we would still have to re-architect the task orchestration and polling Tentacle pieces.
+Similar to the _process-per-customer_ option, we would still have to orchestrate allocating users between Service Plans. Similar to the _multi-tenant_ option, we’d still have to re-architect the task orchestration and polling Tentacle pieces.
 
-Oh, and of course, we were currently on AWS, not Azure (spoiler alert for future posts: this was about to change).
+Oh, and of course, we were still on AWS, not Azure (spoiler alert for future posts: this was about to change).
 
-There was some concern we’d leave ourselves at the mercy of the Azure gods, and the dreaded vendor lock-in.  As unlikely as it might seem, what if Azure deprecated App Services? What if the pricing model changed significantly? If you run a handful of Azure Web Apps and the price rockets, that’s a bad day.  If you run many thousands of them…  
+There was also some concern we’d leave ourselves at the mercy of the Azure gods, and the dreaded vendor lock-in.  As unlikely as it might seem, what if Azure deprecated App Services? What if the pricing model changed significantly? If you run a handful of Azure Web Apps and the price rockets, that’s a bad day.  If you run many thousands of them…  
 
 We discarded this option.
 
 ### Option 4: Kubernetes {#Kubernetes}
 
-Being in the deployment tool business, we watch new technologies in this space with interest.  Over the past few years, we’d seen Kubernetes go from being an interesting project that few people outside of the devops world had ever heard of, to one of our most popular feature requests.  So in the background of making this decision on our own hosting platform, a small team within Octopus was busy implementing [support for Kubernetes in the product](https://octopus.com/blog/kubernetes-containers-update). Building integration into the product, of course, involved much exploring, evaluating, and generally playing with Kubernetes, and so a pleasant side-effect was that we had some experience internally with Kubernetes and advocates for considering it for our own needs.
+Being in the deployment tool business, we watch new technologies in this space with interest.  Over the past few years, we’d seen Kubernetes go from an interesting project few people outside of the devops world had ever heard of, to one of our most popular feature requests.  So in the background of making this decision on our own hosting platform, a small team within Octopus was busy implementing [support for Kubernetes in the product](https://octopus.com/blog/kubernetes-containers-update). Building integration into the product, of course, involved much exploring, evaluating, and generally playing with Kubernetes, and so a pleasant side-effect was that we had some experience internally with Kubernetes and advocates for considering it for our own needs.
 
 But there was a significant roadblock: Octopus ran on Windows.  
 
-Support for Windows nodes in k8s was available in beta form, which in reality meant it was undocumented and had possibly worked once on the machine of someone who had the Kubernetes source code open on another monitor.  An incredible feat of persistence resulted in the proof-of-concept team getting Octopus running on Windows in a Kubernetes cluster.  It suffices to say we did not feel we were walking a well-worn path, more like hacking our way through a jungle, never quite sure which direction we were traveling.  Also, the Windows nodes proved to be unstable, regularly dying unexpectedly.   
+Support for Windows nodes in k8s was available in beta form, which in reality meant it was undocumented and had possibly worked once on the machine of someone who had the Kubernetes source code open on another monitor.  An incredible feat of persistence resulted in the proof-of-concept team getting Octopus running on Windows in a Kubernetes cluster.  It suffices to say we did not feel we were walking a well-worn path, more like hacking our way through a jungle, never quite sure which direction we were traveling.  Also, the Windows nodes proved to be unstable, regularly dying unexpectedly.
 
 We ruled out Kubernetes + Windows as a technology not mature enough to bet on.
 
@@ -173,8 +172,6 @@ For the _Kubernetes (Linux and .NET Core)_ option, the effort would primarily be
 
 We didn’t spend a lot of time trying to compare the effort involved in the two approaches.  Firstly because, well, we suck at estimating effort just as much as everyone else.  More importantly, over time, the difference in implementation cost would be amortized away. What were we left with?
 
-_And the winner is [drum roll]..._
-
 **Octopus would be built against .NET Core, run on Linux, be containerized, and orchestrated by Kubernetes.**
 
 We decided the effort to port Octopus to .NET Core was effort we _wanted to spend_. In fact, we’d already begun the port, independent of this decision.
@@ -185,19 +182,17 @@ It was also an exciting chance to drink our own champagne again. We could take a
 
 ## Conclusion
 
-These decisions took place over a year ago at the time of writing, but for the past week or so, all new hosted Octopus instances have been provisioned as a Linux container, running on AKS (Azure’s managed Kubernetes)!
+These decisions took place over a year ago at the time of writing, but for the past week or so, all new Octopus Cloud instances have been provisioned as a Linux container, running on AKS (Azure’s managed Kubernetes)!
 
 ![Kubernetes dashboard](k8s-dashboard-node-resources.png "width=600")
 
 At the time of writing:
 
-- There had been 0 provisioning failures.
+- There have been 0 provisioning failures.
 - The vast majority of instances were provisioned in less than thirty seconds.
 
-It’s too early to evaluate the cost reduction, as we were cautious, and initially, we grossly over-provisioned the nodes.  Even considering that per-customer costs are down by roughly 50%. 
+It’s too early to evaluate the cost reduction, as we were cautious, and initially, we grossly over-provisioned the nodes.  Even considering that per-customer costs are down by roughly 50%.
 
-The change has also ushered in some great performance improvements. It used to take 10+ minutes to provision a new Octopus instance but this has now been reduced to less than 30 seconds. We also made some other performance gains with Octopus Cloud instances that we’ll talk about in future posts.
-
-We have more posts coming in this series, where we will take a detailed look at the .NET Core port, consider the options for which cloud provider (AWS, Azure, Google, etc.), and evaluate the overall success of the project.
+The change has also ushered in some great performance improvements. It used to take 10+ minutes to provision a new Octopus instance but this has now been reduced to less than 30 seconds. We also made some other performance gains with Octopus Cloud instances that we’ll talk about in future posts, also in future posts in the series, we’ll take a detailed look at the .NET Core port, consider the options for which cloud provider (AWS, Azure, Google, etc.), and evaluate the overall success of the project.
 
 We hope you enjoyed this peek behind the curtain.  Stay tuned.
