@@ -1,6 +1,6 @@
 ---
-title: "Octopus Cloud v2 compute options: Why we bet on Kubernetes, Linux, and .NET Core"  
-description: A reflection on the architecture options we considered for hosting Octopus Cloud v2   
+title: "Why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud"  
+description: A reflection on the architecture options we considered for hosting Octopus Cloud v2.
 author: michael.richardson@octopus.com
 visibility: private
 published: 2020-01-01
@@ -15,7 +15,7 @@ We’re publishing a series about our engineering journey with Octopus Cloud. It
 In this post, we look at the compute options available to reduce our costs and how we eventually decided to move to Kubernetes, Linux, and .NET Core.
 
 Posts in this series:
-* [MVPs and $100k AWS Bills: Reflections on the launch of Octopus Cloud 1.0](blog/2019-10/octopus-cloud-1.0-reflections/index.md)
+* [Reflections on the launch of Octopus Cloud 1.0](blog/2019-10/octopus-cloud-1.0-reflections/index.md)
 * **Octopus Cloud v2 Compute Options: Why we bet on Kubernetes, Linux, and .NET Core**
 
 ---
@@ -28,7 +28,7 @@ Octopus Cloud launched in July 2018 as an MVP to test customer demand, and we qu
 
 Octopus had always been designed to be hosted on the user’s own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_ approach, which in this case, was hosting each customer on a dedicated virtual machine.  This was a resounding success.  It removed many unknowns, leaving us with a clear problem to solve…
 
-## Reduce hosting costs
+## Reduce costs and improve performance
 
 What are the costs of an Octopus Cloud v1 customer?
 
@@ -44,7 +44,13 @@ This gives a total hosting cost of roughly **$82** US dollars per customer. What
 
 Our goal was to bring this below **$10** per customer for low-usage instances.
 
-It’s worth mentioning at this point, Octopus was implemented as a full-framework .NET application, which requires Windows, the HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app, and part of our goal from the beginning was: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products.
+It’s worth mentioning at this point, Octopus was implemented as a full-framework .NET application, which requires Windows, the HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app, and part of our goal from the beginning was: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products. Further, while we wanted to reduce costs, we also wanted to improve performance and availability for customers. Our customers expect a fast and responsive experience and we didn't want to impact that.
+
+To recap, we started this effort with three goals in mind.
+
+1. Reduce costs.
+2. Maintain a single code-base for our self-hosted and cloud products.
+3. Improve performance and availability
 
 ## The options
 
@@ -188,7 +194,9 @@ At the time of writing:
 - There had been 0 provisioning failures.
 - The vast majority of instances were provisioned in less than thirty seconds.
 
-It’s too early to evaluate the cost reduction, as we were cautious, and initially, we grossly over-provisioned the nodes.  Even considering that per-customer costs are reduced by roughly 50%.  
+It’s too early to evaluate the cost reduction, as we were cautious, and initially, we grossly over-provisioned the nodes.  Even considering that per-customer costs are reduced by roughly 50%. 
+
+The change has also ushered in some great performance improvements. It used to take 10+ minutes to provision a new Octopus instance but this has now been reduced to less than 30 seconds. Octopus instances should be responsive and performant given this shift as well as other changes that we'll talk about later. 
 
 We have more posts coming in this series, where we will take a detailed look at the .NET Core port, consider the options for which cloud provider (AWS, Azure, Google, etc.), and evaluate the overall success of the project.
 
