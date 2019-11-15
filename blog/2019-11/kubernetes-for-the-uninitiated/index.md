@@ -1,5 +1,5 @@
 ---
-title: Beyond Hello World: Kubernetes for the uninitiated
+title: "Beyond Hello World: Kubernetes for the uninitiated"
 description: Describing a high level overview of what Kubernetes is
 author: shawn.sesna@octopus.com
 visibility: private
