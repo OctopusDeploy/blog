@@ -2,12 +2,12 @@
 title: "Why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud"  
 description: A reflection on the architectural options we considered for hosting Octopus Cloud v2.
 author: michael.richardson@octopus.com
-visibility: private
-published: 2020-01-01
-metaImage: ../../2019-10/octopus-cloud-1.0-reflections/octopus-cloud-recap.png
-bannerImage: ../../2019-10/octopus-cloud-1.0-reflections/octopus-cloud-recap.png
+visibility: public
+published: 2019-11-19
+metaImage: octopus-cloud-why-kubernetes.png
+bannerImage: octopus-cloud-why-kubernetes.png
 tags:
- - Octopus
+ - Engineering
 ---
 
 We’re publishing a series about our engineering journey with Octopus Cloud. It’s the story of our v1 launch of Octopus Cloud on AWS, our $100K/month AWS bills, MVP’s and testing customer demand, spending 6 months of engineering effort and then running the service at a loss, spending another 9 months rebuilding it from the ground-up, and of all the considerations we made when rebuilding Octopus Cloud v2, including switching from AWS to Azure, going all-in on Kubernetes, and more.
