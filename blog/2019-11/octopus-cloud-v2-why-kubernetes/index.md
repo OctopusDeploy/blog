@@ -141,7 +141,7 @@ Support for Windows nodes in k8s was available in beta form, which in reality me
 
 We ruled out Kubernetes + Windows as a technology not mature enough to bet on.
 
-We also ruled out containers on Windows in general.  As part of evaluating k8s, we also evaluated running Octopus containerized on Windows. Containers on Linux are elegant, and running a container on Linux results in a single process executing on the host. In contrast, running a container in Windows, results in many systems services also being run.   
+We also ruled out containers on Windows in general.  As part of evaluating k8s, we also evaluated running Octopus containerized on Windows. Containers on Linux are elegant, and running a container on Linux results in only the containerized processes executing on the host. In contrast, running a container in Windows results in many systems services also being run.   
 
 The running processes for a single container on Linux:
 
@@ -151,7 +151,7 @@ The running processes for a single container on Windows:
 
 ![docker top on windows](docker-top-windows.png "width=500")
 
-These services each carry their own memory overhead, make monitoring a little harder and is just generally yuk.   
+These services bring their own resource overheads and are just generally a bit yuk.   
 
 The real deal-breaker was that while we performed these experiments, we inevitably ended up spelunking the internet, looking for resolutions to problems, other people’s experiences, etc. Too often, all we found was tumbleweeds.  We just didn’t get the sense that enough people were running production workloads on Windows containers to have developed that critical mass of experience.  
 
@@ -191,7 +191,7 @@ At the time of writing:
 - There have been 0 provisioning failures.
 - The vast majority of instances were provisioned in less than thirty seconds.
 
-It’s too early to evaluate the cost reduction, as we were cautious, and initially, we grossly over-provisioned the nodes.  Even considering that per-customer costs are down by roughly 50%.
+It’s too early to evaluate the cost reduction, as we were cautious, and initially grossly over-provisioned the nodes.  Even considering that, per-customer costs have already been reduced by more than 50%.
 
 The change has also ushered in some great performance improvements. It used to take 10+ minutes to provision a new Octopus instance but this has now been reduced to less than 30 seconds. We also made some other performance gains with Octopus Cloud instances that we’ll talk about in future posts, also in future posts in the series, we’ll take a detailed look at the .NET Core port, consider the options for which cloud provider (AWS, Azure, Google, etc.), and evaluate the overall success of the project.
 
