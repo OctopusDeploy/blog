@@ -1,45 +1,49 @@
 ---
 title: "Beyond Hello World: Kubernetes for the uninitiated"
-description: Describing a high level overview of what Kubernetes is
+description: A high-level overview of Kubernetes
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage: 
-metaImage: 
+bannerImage:
+metaImage:
 published: 2020-10-23
 tags:
  - Kubernetes
 ---
-![](dilbert-kubernetes.jpg)
 
-By now, you've most undoubtedly have heard the term Kubernetes, but just what is it other than the latest buzzword?  In this post, I will cover what Kubernetes (or K8s for short) is and demonstrate how to run a real-world web application, [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), on it!
+By now, you’ve undoubtedly heard the term Kubernetes, but is it just the latest buzzword or is there more to it?  In this post, I cover what Kubernetes (or k8s for short) is and demonstrate how to run a real-world web application, [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), on k8s.
 
-Note: There are 8 letters between the K and the s in Kubernetes, hence K8s.
+:::success
+There are eight letters between the K and the S in Kubernetes, hence k8s.
+:::
 
-This post is a continuation of my [last article](link to it) where I covered how to create Docker images using OctoPetShop as an example.
+This post is a continuation of my [last article](link to it), where I covered creating Docker images and used OctoPetShop as an example.
 
 ## What is Kubernetes?
-Kubernetes is a container orchistration technology.  Machines that are running Kubernetes are referred to as `nodes`.  Nodes are what make up a Kubernetes `cluster`, though it is possible to have a cluster with a single node.  Nodes run containers in what is called a `pod`.
+Kubernetes is a container orchestration technology.  Machines that are running Kubernetes are referred to as `nodes`.  Nodes make up a Kubernetes `cluster`, though it is possible to have a cluster with a single node.  Nodes run containers in what is called a `pod`.
 
 ![](https://d33wubrfki0l68.cloudfront.net/5cb72d407cbe2755e581b6de757e0d81760d5b86/a9df9/docs/tutorials/kubernetes-basics/public/images/module_03_nodes.svg)
 
 ## Docker Desktop and Kubernetes
-My previous post made mention of using Docker Desktop for local development of Docker containers.  Docker Desktop also contains an implementation of Kubernetes which makes local development and testing a breeze!
+
+My previous post used Docker Desktop for local development of Docker containers, but Docker Desktop also contains an implementation of Kubernetes, which makes local development and testing a breeze.
 
 ## Creating the OctoPetShop Kubernetes components
-In order to run our OctoPetShop container images on Kubernetes, we need to create the YAML files to define the different resources required for our application.  Resource types are called `kind`, the kind for containers are called a `deployment`.  As you recall from my last article, the OctoPetShop application has three main components:
-- Web front-end
-- Product Service
-- Shopping Cart Service
+In order to run our OctoPetShop container images on Kubernetes, we need to create the YAML files to define the different resources required for our application.  Resource types are called `kind`, and the kind for containers is called a `deployment`.  
 
-In addition to those components, OctoPetShop also needs a database server and database to function.  For OctoPetShop, we will need to create the following deployments:
-- Web front-end
-- Product Service
-- Shopping Cart Service
-- Microsoft SQL Server
+The OctoPetShop application has three main components:
+- A web front-end.
+- A product service.
+- A shopping cart service.
+
+In addition to those components, OctoPetShop also needs a database server and database to function.  For OctoPetShop, we need to create the following deployments:
+- Web front-end.
+- Product service.
+- Shopping cart service.
+- Microsoft SQL Server.
 
 ### Deployments
 
-Below is the deployment YAML file for the front-end.
+Below is the deployment YAML file for the front-end:
 
 ```
 apiVersion: apps/v1
@@ -71,39 +75,37 @@ spec:
               value: http://octopetshop-shoppingcart-cluster-ip-service:5012
 ```
 
-### Anatomy of the YAML
-#### apiVersion
-Kubernetes provides an [API reference](https://kubernetes.io/docs/reference/#api-reference) to help determine which version to choose.  For kind deployment, apps/v1 is what you use.
-#### kind
-This tells Kubernetes what type of resource we are deploying
-#### metadata - name
-This is the unique name of our deployment
-#### spec - replicas
-The number of container instances to run
-#### spec - selector - matchlabels
-Selector - The selector field defines how Kubernetes objects find which pods to manage
-Labels - Labels are key/value pairs that are attached to objects used to specify identifying attributes
-#### template
-The pods template specification
-#### template - spec - containers
-This section is an array of containers that this deployment will run.
+### Anatomy of the YAML file
+
+ - **apiVersion**: Kubernetes provides an [API reference](https://kubernetes.io/docs/reference/#api-reference) to help determine which version to choose.  For kind *deployment*, `apps/v1` is the correct choice.
+ - **kind**: This tells Kubernetes what type of resource we are deploying.
+ - **metadata - name**: This is the unique name of our deployment.
+ - **spec - replicas**: The number of container instances to run.
+ - **spec - selector - matchlabels**:
+   - **Selector**: The selector field defines how Kubernetes objects find which pods to manage.
+   - **Labels**: Labels are key/value pairs that are attached to objects used to specify identifying attributes.
+ - **template**: The pod’s template specification.
+ - **template - spec - containers**:  This section is an array of containers that this deployment will run.
+
 Each container gets:
 
-- Name: the name we give the container
-- Image: the Docker Hub image to use for the container
-- Ports: an array of the ports that the container will expose to the pod network
-- Env: an array of environment variables for the container
+- Name: The name we give the container.
+- Image: The Docker Hub image to use for the container.
+- Ports: An array of the ports that the container will expose to the pod network.
+- Env: An array of environment variables for the container.
 
-(See [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop/tree/master/k8s) for the rest of the Deployment YAML files.)
+:::success
+See [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop/tree/master/k8s) for the rest of the Deployment YAML files.
+:::
 
 Deployments will create the pods for our application, but we still need a way for them to communicate.
 
 ![](https://d33wubrfki0l68.cloudfront.net/fe03f68d8ede9815184852ca2a4fd30325e5d15a/98064/docs/tutorials/kubernetes-basics/public/images/module_03_pods.svg)
 
-Each pod on a node has an internal IP address assigned by the node.  Within our containers we've specified port to expose to the pod, but those are still only within the pod and not exposed to the node.  To allow connectivity between pods on a node, we need to create a `service` for each pod.
+Each pod on a node has an internal IP address assigned by the node.  Within our containers, we’ve specified the port to expose to the pod, but those are still only within the pod and not exposed to the node.  To allow connectivity between pods on a node, we need to create a `service` for each pod.
 
 ### Services
-There are a number of different services availabe via the API, we're going to focus on the specific services to allow our OctoPetShop applicaiton to function.  Our web front-end pod needs to the ability to talk to the Product Service and Shopping Cart Service pods.  The Product Service and Shopping Cart Service pods need to be able to communicate to the SQL Server Pod.  To make this possible, we need to create a `ClusterIP` service for the Product Service, Shopping Cart Service and the SQL Server pods.  Below is the YAML to create the ClustIP service for the Product Service
+There are a number of different services available via the API, but we’re going to focus on the specific services that allow our OctoPetShop application to function.  Our web front-end pod needs the ability to talk to the product service and shopping cart service pods.  The product service and shopping cart service pods need to be able to communicate to the SQL Server pod.  To make this possible, we need to create a `ClusterIP` service for the product service, shopping cart service, and the SQL Server pods.  Below is the YAML to create the ClustIP service for the product service:
 
 ```
 apiVersion: v1
@@ -123,10 +125,10 @@ spec:
       name: https-port
 ```
 
-In the above YAML, we've created a service that maps a pod port to a container port to allow pod-to-container communication within the node.  It is important to note that this service does not expose the port at the node level, so external access is not possible.  One important thing to note is the metadata name.  The name will create a DNS entry so the service can be referenced by DNS name.  In our previous web front-end YAML, we declared an Environment Variable for the Product Service URL which contained octopetshop-productservice-cluster-ip-service as the DNS entry.  The ClusterIP service for the Product Service is where that came from.
+In the above YAML, we’ve created a service that maps a pod port to a container port to allow pod-to-container communication within the node. This service does not expose the port at the node level, so external access is not possible.  It’s important to note the metadata name as the name will create a DNS entry so that the service can be referenced by DNS name.  In our previous web front-end YAML, we declared an environment variable for the product service URL, which contained octopetshop-productservice-cluster-ip-service as the DNS entry.  The ClusterIP service for the product service is where that came from.
 
 ### Allowing external access
-To allow external access to the node, we'll need to define either an `Ingress` or a `LoadBalancer` service.  In our case, we've chosen a LoadBalancer service to allow access to the web front-end.
+To allow external access to the node, we need to define either an `Ingress` or a `LoadBalancer` service.  In our case, we’ve chosen a LoadBalancer service to allow access to the web front-end:
 
 ```
 apiVersion: v1
@@ -146,10 +148,13 @@ spec:
   type: LoadBalancer
   externalIP: <IPAddress>
 ```
-NOTE: when using a hosting provider such as Azure, the externalIP line can be ommitted as the hosting provider will automatically provision a public IP resource and connect it.
+:::warning
+**Warning**
+When using a hosting provider such as Azure, the externalIP line can be omitted as the hosting provider automatically provisions a public IP resource and connects it.
+:::
 
 ### Job
-Included in our solution for OctoPetShop is a Dbup project which contains the scripts that will both create and seed our database.  DbUp is a console application that executes and then stops, so we don't want to use a Deployment kind as Kubernetes will attempt to keep it running.  For this, we want to use a kind of `Job` which is specifically meant to terminate once they've completed.
+Included in our solution for OctoPetShop is a DbUp project which contains the scripts that will both create and seed our database.  DbUp is a console application that executes and then stops, so we don’t want to use a Deployment kind as Kubernetes will attempt to keep it running.  For this, we want to use a kind of `Job` which is specifically meant to terminate after it has completed:
 
 ```
 apiVersion: batch/v1
@@ -168,13 +173,11 @@ spec:
       restartPolicy: Never
 ```
 
-
-
 ## Kubectl
 Kubectl is the command-line program used for Kubernetes.
 
 ### Starting OctoPetShop in Kubernetes
-To run a Kubernetes YAML file, you run the command `kubectl apply -f <YAMLFile>`.  However, it is possible to specify a folder instead of an individual file.  This is the main reason that the OctoPetShop repo has all of the Kubernetes YAML files stored in the k8s folder.  If you've cloned the repo, you can run `kubectl apply -f k8s` to get the entire cluster running with one command!
+To run a Kubernetes YAML file, you run the command `kubectl apply -f <YAMLFile>`.  However, it is possible to specify a folder instead of an individual file.  This is the main reason the OctoPetShop repo has all of the Kubernetes YAML files stored in the k8s folder.  If you’ve cloned the repo, you can run `kubectl apply -f k8s` to get the entire cluster running with one command:
 
 ```
 PS C:\GitHub\OctoPetShop> kubectl apply -f k8s
@@ -190,7 +193,7 @@ service/octopetshop-web-cluster-ip-service created
 deployment.apps/octopetshop-web-deployment created
 ```
 ### Checking status of pods
-The apply command will show us that it ran the YAML files, but not much else.  To check the status of our pods, we run the command `kubectl get pods`
+The apply command shows us that it ran the YAML files but not much else.  To check the status of our pods, we run the command `kubectl get pods`:
 
 ```
 PS C:\GitHub\blog> kubectl get pods
@@ -202,10 +205,10 @@ octopetshop-web-deployment-7b6d499d69-f9jsp                  1/1     Running    
 sqlserver-deployment-784d755db-8vbwk                         1/1     Running     0          2m55s
 ```
 
-This command shows us how many pods are running and how many pods should be running.  In our case, we specified our replicas as 1, so there should only be 1 instance in our pods.  You'll note that the octopetshop-dbup pod has 0 of 1 pods ready.  Since we defined the octopershop-dbup with a kind of job, this is normal since it is supposed to terminate once it has run.
+This command shows us how many pods are running and how many pods should be running.  In our case, we specified our replicas as 1, so there should only be 1 instance in our pods.  You’ll note that the octopetshop-dbup pod has 0 of 1 pods ready.  Since we defined the octopershop-dbup with a kind of job, this is normal as it is supposed to terminate after it has run.
 
 ### Displaying logs
-Unlike docker compose, running the kubectl apply command didn't show any outpout from the pods or containers.  When a pod fails, it's useful to know why.  Let's change the password for our octopetshop-dbup job so that it fails
+Unlike docker compose, running the kubectl apply command didn’t show any output from the pods or containers.  When a pod fails, it’s useful to know why.  Let’s change the password for our octopetshop-dbup job so that it fails:
 
 ```
 apiVersion: batch/v1
@@ -224,7 +227,7 @@ spec:
               value: Data Source=octopetshop-sqlserver-cluster-ip-service;Initial Catalog=OctoPetShop; User ID=sa; Password=ThisPasswordIsWrong
       restartPolicy: Never
 ```
-If we run our `kubectl apply -f k8s` command, we'll see something like the following
+If we run the `kubectl apply -f k8s` command, we’ll see something like the following:
 
 ```
 PS C:\GitHub\OctoPetShop> kubectl get pods
@@ -239,7 +242,7 @@ octopetshop-web-deployment-7b6d499d69-975kg                  1/1     Running   0
 sqlserver-deployment-784d755db-7dh95                         1/1     Running   0          49s
 ```
 
-Kubernetes attempted to run the job octopetshop-dbup three times, but they all failed.  After three retry attemps, Kubernetes will stop attempting to run teh pod.  To troubleshoot the issue, we can run `kubectl logs jobs/octopetshop-dbup` to display the output from the container
+Kubernetes attempted to run the job octopetshop-dbup three times, but they all failed.  After three retry attempts, Kubernetes will stop attempting to run the pod.  To troubleshoot the issue, we can run `kubectl logs jobs/octopetshop-dbup` to display the output from the container:
 
 ```
 PS C:\GitHub\OctoPetShop> kubectl logs job/octopetshop-dbup
@@ -262,18 +265,18 @@ Unhandled Exception: System.Data.SqlClient.SqlException: A connection was succes
 ```
 
 ## OctoPetShop running in Kubernetes
-Once all of the YAML has been run successfully, the OctoPetShop application should be running!  Navigate to http://localhost:5000
+After the YAML has successfully run, the OctoPetShop application should be running. Navigate to http://localhost:5000.
 
 :::warning
-OctoPetShop is written to redirect to https, you will most likley receive a warning about the site not being secure.  This is normal and it is safe to proceed since we did not configure a certificate as part of our process
+OctoPetShop is written to redirect to https, and you will most likely receive a warning about the site not being secure.  This is normal, and it’s safe to proceed since we did not configure a certificate as part of our process.
 :::
 
 ![](octopetshop.png)
 
 ## Including Kubernetes in a CI/CD pipeline
-Kubernetes doesn't have anything that needs to be built, other than the Docker images it uses.  For this, we'd focus on the Continuous Delivery (CD) portion of a CI/CD pipeline.  Release management software such as Azure DevOps Pipelines and Octopus Deploy contain steps that can be used to automate the deployment of Kubernetes clusters.
+Kubernetes doesn’t have anything that needs to be built, other than the Docker images it uses.  For this, we’d focus on the Continuous Delivery (CD) portion of a CI/CD pipeline.  Release management software such as Azure DevOps Pipelines and Octopus Deploy contain steps that can be used to automate the deployment of Kubernetes clusters.
 
 ## Conclusion
-Before embarking on the journey to containerize OctoPetShop with the eventual goal of getting it running on Kubernetes, I viewed Kubernetes as a complex monster.  Now that I've gone through the motion of containerizing an appliciation and getting it to run, I've realized that Kubernetes is indeed a complex monster, but getting an application to run on it isn't really that hard.
+Before embarking on the journey to containerize OctoPetShop with the eventual goal of getting it running on Kubernetes, I viewed Kubernetes as a complex monster.  Now that I’ve gone through the motion of containerizing an application and getting it to run, I still think that, but getting an application to run on it isn’t really that hard.
 
 The [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) GitHub repo contains all of the docker, docker-compose, and Kubernetes YAML files for the OctoPetshop application.
