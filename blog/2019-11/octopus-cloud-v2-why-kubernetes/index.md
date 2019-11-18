@@ -3,7 +3,7 @@ title: "Why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud"
 description: A reflection on the architectural options we considered for hosting Octopus Cloud v2.
 author: michael.richardson@octopus.com
 visibility: public
-published: 2019-11-19
+published: 2019-11-18
 metaImage: octopus-cloud-why-kubernetes.png
 bannerImage: octopus-cloud-why-kubernetes.png
 tags:
