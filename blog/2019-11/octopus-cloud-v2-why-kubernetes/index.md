@@ -26,9 +26,10 @@ Octopus Cloud launched in July 2018 as an MVP to test customer demand, and we ga
 - A pricing model where the revenue per customer didn’t come close to covering the AWS hosting costs.
 - A non-optimized architecture that allocated a dedicated VM for each customer.
 
-Octopus had always been designed to be hosted on the user’s own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_ approach, which in this case, was hosting each customer on a dedicated virtual machine.  This was a resounding success, and it removed many unknowns, leaving us with a clear problem to solve…
+Octopus had always been designed to be hosted on the user’s own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_ approach, which in this case, was hosting each customer on a dedicated virtual machine.  This was a resounding success, and it removed many unknowns, leaving us with two clear problems to focus on... 
 
-## Reduce costs and improve performance
+- **Reduce costs:** Especially for low-use or dormant instances
+- **Increase performance:** Improve provisioning times, and provide more options for highly utilized instances
 
 What were the running costs per Octopus Cloud v1 customer?
 
@@ -46,12 +47,6 @@ Our goal was to bring this below **$10** per customer for low-usage instances.
 
 It’s worth mentioning at this point, Octopus was implemented as a full-framework .NET application, which requires Windows, the HTTP server runs as a self-hosted [NancyFX](http://nancyfx.org/) app, and part of our goal from the beginning was: _Do Not Fork Octopus_. We very much wanted to maintain a single code-base for our self-hosted and cloud products. Further, while we wanted to reduce costs, we also wanted to improve performance and availability. Our customers expect a fast and responsive experience, and we didn’t want to negatively impact that.
 
-To recap, we started this effort with three goals in mind.
-
-1. Reduce costs.
-2. Maintain a single code-base for our self-hosted and cloud products.
-3. Improve performance and availability.
-
 ## The options
 
 We will talk more about the database and file-storage components in future posts.  Today we’re going to focus on the compute costs.
@@ -63,7 +58,7 @@ Every option was on the table, but in hindsight, they can be grouped into a few 
 3. [Azure App Services](#azure-app-services).
 4. [Kubernetes](#Kubernetes).
 
-As we review the options, remember, this is what we found for our circumstances and the constraints we faced at the time. These findings are probably incorrect (or at best only correct for our specific set of inputs), and our decisions may have been very different if we’d approached this at a different moment in time. Consider yourself disclaimered.
+As we review the options, please keep in mind, these were our opinions formed based on our circumstances and constraints at the time. These findings are probably incorrect (or at best only correct for our specific set of inputs), and our decisions may have been different if we’d approached this at a different moment in time. Consider yourself disclaimered.
 
 ### Option 1: Single multi-tenant server {#single-multi-tenant-server}
 
