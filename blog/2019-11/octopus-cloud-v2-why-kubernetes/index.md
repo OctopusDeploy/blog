@@ -12,7 +12,7 @@ tags:
 
 We’re publishing a series about our engineering journey with Octopus Cloud. It’s the story of our v1 launch of Octopus Cloud on AWS, our $100K/month AWS bills, MVP’s and testing customer demand, spending 6 months of engineering effort and then running the service at a loss, spending another 9 months rebuilding it from the ground-up, and of all the considerations we made when rebuilding Octopus Cloud v2, including switching from AWS to Azure, going all-in on Kubernetes, and more.
 
-In this post, we look at the compute options available to reduce our costs and how we eventually decided to move to Kubernetes, Linux, and .NET Core.
+In this post, we look at the compute options available to reduce our costs, increase performance and how we eventually decided to move to Kubernetes, Linux, and .NET Core.
 
 Posts in this series:
 * [Reflections on the launch of Octopus Cloud 1.0](blog/2019-10/octopus-cloud-1.0-reflections/index.md)
