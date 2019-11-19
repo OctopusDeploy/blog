@@ -23,23 +23,66 @@ We're regularly asked about [Jenkins vs Octopus Deploy](/blog/2019-12/jenkins-vs
 This release brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. It brings integration capability includeing our work item and build information featureset.
 
 * **[Painless integration of your Jenkins builds and Octopus deployments](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#painless-integration-of-your-jenkins-builds-and-octopus-deployments)**
-* **[Better visibility: See what’s new in production](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#see-whats-new-in-production)**. Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see ‘What’s New’ in production or any other environment.
-* **[Better communication: Generate and share releases notes automatically](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#generate-and-share-share-release-notes-automatically)**. Octopus can now generate release notes when deploying to your environments like dev, test, or production. Share them with your team, managers, or executives via email, Slack, and more.
+* **[Better visibility: See what’s new in production](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#better-visibility-see-what’s-new-in-production)**. Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see ‘What’s New’ in production or any other environment.
+* **[Better communication: Generate and share releases notes automatically](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#better-communication-generate-and-share-releases-notes-automatically)**. Octopus can now generate release notes when deploying to your environments like dev, test, or production. Share them with your team, managers, or executives via email, Slack, and more.
 
 [Learn how to install or update the extension](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#how-to-install-jenkins-plugin)
 
-## Painless integration of your Jenkins builds and Octopus deployments {}
+## Painless integration of your Jenkins builds and Octopus deployments
 
 ![Octopus Jenkins Plugin](octopus-deploy-jenkins-plugin.png "width=600")
 
+Integrating your Jenkins builds with Octopus deploys is now possible without scripting it yourself or relying on the community supported plugin. Our official plugin provides the build and post-build actions similar to our other build server plugins.
 
+This enables you to configure an ideal CI/CD pipeline:
 
-### Better visibility: See what’s new in production
+**Jenkins**:
 
-### Better communication: Generate and share releases notes automatically
+* Build your front end codebase (bundling, linting etc)
+* Build any micro services/web services
+* Run unit tests
+* Run static analysis 
+
+and more.
+
+**Octopus Deploy**:
+
+* Package your build output (i.e. ZIP it up)
+* Push your ZIP'd packages to Octopus (or another artifact repository)
+* Push build information to Octopus to provide linkages to the code, build and any work items related to the build
+* Create releases
+* Deploy releases to your environments like Dev, Test and Production.
+
+[Learn more]()
+
+## Better visibility: See what’s new in production
+
+![What's New in Production](octopus-deploy-what-new-in-production.png "width=600")
+
+Octopus deployments complement Jenkins builds by giving you better visibilty and insight into your CI/CD pipeline. Pushing build information to Octopus as a part of your build proccess enables Octopus to surface your commits, build details and any work items, like GitHub or Jira issues etc, are associated with a specific build. This unlocks the ability to see what features, bug fixes and enhancements contributed to a release and Ocotpus can also intelligently determine which work items have changed since your last deployment. This means you can clearly see **What's New** in production, or any other environment. 
+
+This gives teams confidence and visibility into the changes included when deploying releases to production. 
+
+[Learn more](https://octopus.com/docs/deployment-process/releases/deployment-notes)
+
+## Better communication: Generate and share releases notes automatically
+
+![Octopus Jenkins Plugin](octopus-deploy-share-release-notes.png "width=600")
+
+Another benefit of our build information and work item integration is unlocking the ability for teams to improve their communication with other teams and managers. Leveraging release details, which includes the associated issues and work items, Octopus enables teams to generate customized release notes and share them as per their needs. This could be a slack message to operations teams to keep them in the loop or it could be an email to customers sharing the latest features included a new release.
+
+This eliminates manual collection and sharing of release notes.
+
+[Learn more](https://octopus.com/docs/deployment-process/releases/release-notes)
+
+## How to install or update the Octopus Deploy Jenkins plugin
+
+The [Octopus Deploy Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) is an updated release of the current Jenkins plugin that already exists in the [Jenkins plugin repository](https://plugins.jenkins.io/). This means that you can [install or upgrade it](https://jenkins.io/doc/book/managing/plugins/) in the same way as any other Jenkins plugin. 
+
+Read our [Jenkins Build Server integration](https://octopus.com/docs/packaging-applications/build-servers/jenkins) for more information.
 
 ## Wrap up
 
-In summary, [Jenkins](https://dev.azure.com) and [Octopus Deploy](https://octopus.com) work better together to give you better end-to-end visibility into your software pipelines from idea to production.
+In summary, [Jenkins](https://jenkins.io) and [Octopus Deploy](https://octopus.com) work better together to give you better end-to-end visibility into your CI/CD pipelines.
 
- Feel free to leave us a comment, and let us know what you think! Happy deployments!
+Feel free to leave us a comment, and let us know what you think! Happy deployments!
