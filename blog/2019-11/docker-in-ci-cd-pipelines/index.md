@@ -10,7 +10,7 @@ tags:
  - Docker
 ---
 
-In a previous post, I showed you how to create Docker container images for the OctoPetShop application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (or CI/CD) pipeline. In this post, we cover:
+In a previous post, I showed you how to create Docker container images for the OctoPetShop application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (CI/CD) pipeline. In this post, we cover:
 - Configuring a TeamCity build agent to build Docker images.
 - Creating a build definition to build our Docker images.
 - Uploading our Docker images to Docker Hub.
@@ -18,9 +18,9 @@ In a previous post, I showed you how to create Docker container images for the O
 - Deploying our containers to a machine running Docker.
 
 ## Build server
-All of the major build servers (Azure DevOps, TeamCity, Jenkins, and Bamboo) can build Docker images either with a built-in step or a downloadable plug-in.  For this demonstration, I use TeamCity as most of my experience is with Azure DevOps and I wanted to expand my horizons.  One thing I found with both Azure DevOps and TeamCity (and I imagine the others as well) is that though they had built-in steps to perform Docker builds, the build agents still needed Docker installed to work.  It makes sense, but it seemed counter-intuitive since it was an available step you could choose.
+All of the major build servers (Azure DevOps, TeamCity, Jenkins, and Bamboo) can build Docker images either with a built-in step or a downloadable plug-in.  For this demonstration, I use TeamCity as most of my experience is with Azure DevOps and I wanted to expand my horizons.  One thing I found with both Azure DevOps and TeamCity (and I imagine this is true for other build servers as well) is that even though they had built-in steps to perform Docker builds, the build agents still needed Docker installed to work.  It makes sense, but it seemed counter-intuitive since it was an available step you could choose.
 
-Rather than create a new VM, install and configure an OS, install the build agent, and finally install Docker, I chose a much nerdier path.  JetBrains, maker of TeamCity (amongst other products), provides a [Docker image for their build agent](https://hub.docker.com/r/jetbrains/teamcity-agent/)!  Not only do they have a build agent image, this image can also run Docker to do Docker builds (I chose option two under Running Builds Which Require Docker). My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but this article: [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/) showed me a neat trick to fix that problem.
+Rather than create a new VM, install and configure an OS, install the build agent, and finally install Docker, I chose a much nerdier path.  JetBrains, maker of TeamCity (amongst other products), provides a [Docker image for their build agent](https://hub.docker.com/r/jetbrains/teamcity-agent/). Not only do they have a build agent image, this image can also run Docker to do Docker builds (I chose option two under Running Builds Which Require Docker in the linked document above). My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but this article: [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
 
 With the DNS issue resolved, the container started up and registered itself to my TeamCity server under the Unauthorized category of agents:
 
@@ -29,21 +29,22 @@ With the DNS issue resolved, the container started up and registered itself to m
 Clicking the Authorize button finalized the connection and the agent was available to perform builds.
 
 ## The Docker project
+
 Using my local instance of Azure DevOps as my source control repository for the OctoPetShop project, I created a new project within TeamCity and connected my Azure DevOps repo to it.  This post assumes you already know how to create a project within TeamCity and focuses on the build and deploy process.
 
 ### Adding a connection to Docker Hub
 
 To push our images to Docker Hub, we need to configure a connection to Docker Hub with an authorized user.
 
-For this, we navigate to the Connections tab of our OctoPetShop project:
+For this, we navigate to the **Connections** tab of our OctoPetShop project:
 
 ![](teamcity-project-connections.png)
 
-Click on Add Connection:
+Click on **Add Connection**:
 
 ![](teamcity-project-connections-button.png)
 
-Choose Docker Registry from the drop-down and fill in the username and password.  Don’t forget to use Test Connection to make sure your credentials are valid:
+Choose **Docker Registry** from the drop-down and fill in the username and password.  Don’t forget to use **Test Connection** to make sure your credentials are valid:
 
 ![](teamcity-dockerhub-connection.png)
 ![](teamcity-dockerhub-connection-test.png)
@@ -51,28 +52,28 @@ Choose Docker Registry from the drop-down and fill in the username and password.
 With that bit of housekeeping out of the way, we can proceed with our build definition.
 
 ### Build definition
-After the project has been created, we can proceed with creating a new build definition that will perform our Docker build operation.  This build definition needs to perform the following steps:
+After the project has been created, we can create a new build definition that will perform our Docker build operation.  This build definition needs to perform the following steps:
 - Build OctoPetShop web front-end.
 - Build OctoPetShop product service.
-- Build OctoPetShop Sshopping cart service.
+- Build OctoPetShop shopping cart service.
 - Build OctoPetShop database DbUp.
 - Push the images to Docker Hub for use in deployment.
 
 #### Adding Docker support Build Feature
-We need to connect our Docker Hub connection to our build definition.  To do this we click on the Build Features tab and Add build feature:
+We need to connect our Docker Hub connection to our build definition.  To do this, we click on the **Build Features** tab and **Add build feature**:
 
 ![](teamcity-add-build-feature.png)
 
-Choose Docker Support from the drop-down menu:
+Choose **Docker Support** from the drop-down menu:
 
 ![](teamcity-build-feature-docker.png)
 
-Check the *Log in to the Docker registry before the build* and choose the connection we created for our project then click Save:
+Check **Log in to the Docker registry before the build** and choose the connection we created for our project, and then click Save:
 
 ![](teamcity-build-feature-add-connection.png)
 
 #### Add build steps
-Steps 1-4 are going to be identical with the only difference being the docker file that we’re going to build.  Click on the Build Steps tab, then click the add Build Step button:
+Steps 1-4 are going to be identical with the only difference being the docker file that we’re going to build.  Click on the **Build Steps** tab, then click the **Add build step** button:
 
 ![](teamcity-build-add-step.png)
 
@@ -84,7 +85,7 @@ For the step, fill in the following:
 
 ![](teamcity-build-step-docker.png)
 
-For docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer when selecting package versions, which `latest` doesn’t follow.  In this example I’ve hardcoded `1.0.0.0` as the version number, but we could have just as easily used a TeamCity Parameter to dynamically assign the version number.
+For docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer when selecting package versions, which `latest` doesn’t follow.  In this example I’ve hardcoded `1.0.0.0` as the version number, but we could have just as easily used a TeamCity Parameter to dynamically assign the version number.
 
 We’ll add three more steps just like this one for product service, shopping cart service, and database.
 
@@ -104,21 +105,21 @@ Congratulations!  We just finished the CI portion of this article.  The only thi
 ## Octopus Deploy
 For the CD portion of this article, we’ll use Octopus Deploy.  Within Octopus, we’ll do the following:
 - Add Docker Hub as an external feed.
-- Create new project.
+- Create a new project.
 - Define our deployment steps.
 
 ### Adding Docker Hub as an external feed
 We need to add Docker Hub as an external feed so that Octopus Deploy can pull our images from Docker Hub and deploy them to our server running Docker.
 
-After you’ve logged into Octopus, click on the Library tab:
+After you’ve logged into Octopus, click on the **Library** tab:
 
 ![](octopus-dashboard.png)
 
-In the Library section, click on External Feeds, then click the ADD FEED button:
+In the **Library** section, click on **External Feeds**, then click the **ADD FEED** button:
 
 ![](octopus-external-feed-add.png)
 
-On the Create Feed form, fill in the following:
+On the **Create Feed** form, fill in the following:
 - Feed Type: Docker Container Registry.
 - Name: Docker Hub (or whatever you want to call it).
 - Username.
@@ -126,78 +127,79 @@ On the Create Feed form, fill in the following:
 
 ![](octopus-external-feed-docker.png)
 
-Test the feed to make sure your Octopus can log into Docker Hub:
+Test the feed to make sure Octopus can log into Docker Hub:
 
 ![](octopus-external-feed-test.png)
 
 With our external feed configured, we can now define our steps.
 
 ### Octopus Deploy project
-To create a new project, click on the Projects tab, then the ADD PROJECT button:
+
+To create a new project, click on the **Projects** tab, and then click the **ADD PROJECT** button:
 
 ![](octopus-project-new.png)
 
-Give the project a name and click SAVE:
+Give the project a name and click **SAVE**:
 
 ![](octopus-project-name.png)
 
 Similar to our build, the steps in Octopus are going to be largely the same with minor differences.  I’ll walk you through the first step we’ll add to our process, then point out the differences in the remaining steps.
 
-On the Process tab of our project, click ADD STEP:
+On the **Process** tab of our project, click **ADD STEP**:
 
 ![](octopus-project-step-add.png)
 
-Choose the Docker category and the Run a Docker Container step:
+Choose the **Docker** category and the **Run a Docker Container** step:
 
 ![](octopus-project-step-add-docker.png)
 
 For this demo, we’re going to use the Microsoft SQL Server 2017 Docker image as our database server, so this will be the first container that we’ll configure in our deployment
 
-The form for a Docker container step is rather long, so the screen shots are going to be broken into parts.  For the first part, give the step a name and the Role it will be deploying to.  For this demonstration, I’m using a simple role of Docker.  In a Production scenario, these roles would be more meaningful such as OctoPetShop-Web-Container.
+The form for a Docker container step is rather long, so the screen shots are broken into parts.  For the first part, give the step a name and the Role it will be deploying to.  For this demonstration, I’m using a simple role of `Docker`, but in a Production scenario, the role would be more meaningful such as `OctoPetShop-Web-Container`.
 
 ![](octopus-project-step-docker1.png)
 
-Choose our Docker Hub external feed and choose the microsoft/mssql-server-linux image (tip: type mssql in the search box to find the image).
+Choose our Docker Hub external feed and choose the `microsoft/mssql-server-linux` image (tip: type `mssql` in the search box to find the image).
 
 ![](octopus-project-step-docker2.png)
 
-Choose the Network Type of Bridge:
+Choose the Network Type of `Bridge`:
 
 ![](octopus-project-step-docker3.png)
 
-To make our database server accessible, we need to add a port mapping.  Specify the default SQL Serve port of 1433:
+To make our database server accessible, we need to add a port mapping.  Specify the default SQL Serve port of `1433`:
 
 ![](octopus-project-step-docker4.png)
 
-Scroll down to Additional Arguments.  This image needs a couple of Environment Variables passed to it, SA_PASSWORD and ACCEPT_EULA:
+Scroll down to **Additional Arguments**.  This image needs a couple of Environment Variables passed to it: `SA_PASSWORD` and `ACCEPT_EULA`:
 
 ![](octopus-project-step-docker5.png)
 
-And that’s it for this container. Click SAVE to commit the step to the process.
+And that’s it for this container. Click **SAVE** to commit the step to the process.
 
 Here are the details for the remaining containers:
 
 #### OctoPetShop Web
-- Docker Image: octopussamples/octopetshop-web.
-- Network type: Host.
-- Additional Arguments: --env ProductServiceBaseUrl=http://localhost:5011/ --env ShoppingCartServiceBaseUrl=http://localhost:5012.
+- Docker Image: `octopussamples/octopetshop-web`
+- Network type: `Host`
+- Additional Arguments: `--env ProductServiceBaseUrl=http://localhost:5011/ --env ShoppingCartServiceBaseUrl=http://localhost:5012`
 
 #### OctoPetShop product service
-- Docker Image: octopussamples/octopetshop-productservice
-- Network Type: Bridge
-- Port Mapping: 5011:5011
-- Additional Arguments: --env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"
+- Docker Image: `octopussamples/octopetshop-productservice`
+- Network Type: `Bridge`
+- Port Mapping: `5011:5011`
+- Additional `Arguments: --env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
 
 #### OctoPetShop shopping cart service
-- Docker Image: octopussamples/octopetshop-shoppingcartservice
-- Network Type: Bridge
-- Port Mapping: 5012:5012
-- Additional Arguments: --env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"
+- Docker Image: `octopussamples/octopetshop-shoppingcartservice`
+- Network Type: `Bridge`
+- Port Mapping: `5012:5012`
+- Additional Arguments: `--env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
 
 #### OctoPetShop database
-- Docker Image: octopussamples/octopetshop-database
-- Network Type: Host
-- Additional Arguments: --env DbUpConnectionString="Data Source=localhost;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"
+- Docker Image: `octopussamples/octopetshop-database`
+- Network Type: `Host`
+- Additional Arguments: `--env DbUpConnectionString="Data Source=localhost;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
 
 With all of our steps defined, we can create a release and deploy it.
 
@@ -213,9 +215,9 @@ Now if we navigate to the server we just deployed to, we should see our OctoPetS
 So far we’ve done the CI and the CD portions, but we’ve not yet connected them together.  To fit these pieces together, we go back to our TeamCity server.
 
 ### Install the Octopus Deploy Plugin
-First, we need to go to https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration and download the Octopus Deploy plugin.
+First, we need to go to [https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration) and download the Octopus Deploy plugin.
 
-After that has been downloaded, go to {{Administration,Plugins List}} in our TeamCity server.  From here, we’ll click on the `Upload plugin zip` button to add the plugin:
+After that has been downloaded, go to {{Administration,Plugins List}} in our TeamCity server.  From here, we’ll click on the **Upload plugin zip** button to add the plugin:
 
 ![](teamcity-plugins-upload.png)
 
