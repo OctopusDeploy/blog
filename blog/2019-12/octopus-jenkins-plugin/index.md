@@ -12,21 +12,19 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
-We're excited to launch our official Jenkins plugin to make it painless to integration Jenkins builds with Octopus deployments. Octopus has had a Jenkins community plugin for years built and maintained by [Brian Adriance](https://github.com/badriance) and other contributors. Octopus has worked with Brian to take over the plugin and make it officially support by our team. We're indebted to the effort from Brian and other contributors since the project started in 2015. This brings great advantages as we're able to keep the plugin up-to-date and add great new features to it. 
+We're excited to launch our official Jenkins plugin to make it painless to integration Jenkins builds with Octopus deployments. Octopus has had a Jenkins community plugin for years maintained by [Brian Adriance](https://github.com/badriance) and other contributors. Octopus has worked with Brian to take over the plugin and make it officially support by our team. We're indebted to the effort from Brian and other contributors since the project started in 2015. This brings great advantages as we're able to keep the plugin up-to-date and add great new features to it. 
 
 :::success
 **Jenkins vs Octopus Deploy**
 
-We're regularly asked about [Jenkins vs Octopus Deploy](blog/2019-12/jenkins-vs-octopus-deploy/index.md) but we feel like they work better together so we've shared our thoughts on the topic.
+We're regularly asked about [Jenkins vs Octopus Deploy](/blog/2019-12/jenkins-vs-octopus-deploy/index.md) but we feel like they work better together so we've shared our thoughts on the topic.
 :::
 
-This brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. 
+This release brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. It brings integration capability includeing our work item and build information featureset.
 
-* Painless integration of your Jenkins Builds and Octopus deployments
-* **[See what’s new in production](/blog/2019-09/azure-devops-extension-v4/index.md#see-whats-new-in-production)**. Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see ‘What’s New’ in production or any other environment.
-* **[Create and share release notes with your team automatically](/blog/2019-09/azure-devops-extension-v4/index.md#share-release-notes-with-your-team-and-managers)**. Octopus can now generate release notes when deploying to your environments like dev, test, or production. Share them with your team, managers, or executives via email, Slack, and more.
-
-
+* **[Painless integration of your Jenkins builds and Octopus deployments](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#painless-integration)**
+* **[Better visibility - see what’s new in production](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#see-whats-new-in-production)**. Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see ‘What’s New’ in production or any other environment.
+* **[Generate and share releases notes automatically](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#generate-and-share-share-release-notes-automatically)**. Octopus can now generate release notes when deploying to your environments like dev, test, or production. Share them with your team, managers, or executives via email, Slack, and more.
 
 ---
 
