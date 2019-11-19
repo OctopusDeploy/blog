@@ -11,6 +11,7 @@ tags:
 ---
 
 In a previous post, I showed you how to create Docker container images for the OctoPetShop application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (CI/CD) pipeline. In this post, we cover:
+
 - Configuring a TeamCity build agent to build Docker images.
 - Creating a build definition to build our Docker images.
 - Uploading our Docker images to Docker Hub.
@@ -18,7 +19,8 @@ In a previous post, I showed you how to create Docker container images for the O
 - Deploying our containers to a machine running Docker.
 
 ## Build server
-All of the major build servers (Azure DevOps, TeamCity, Jenkins, and Bamboo) can build Docker images either with a built-in step or a downloadable plug-in.  For this demonstration, I use TeamCity as most of my experience is with Azure DevOps and I wanted to expand my horizons.  One thing I found with both Azure DevOps and TeamCity (and I imagine this is true for other build servers as well) is that even though they had built-in steps to perform Docker builds, the build agents still needed Docker installed to work.  It makes sense, but it seemed counter-intuitive since it was an available step you could choose.
+
+All of the major build servers (Azure DevOps, TeamCity, Jenkins, and Bamboo) can build Docker images either with a built-in step or a downloadable plug-in.  For this demonstration, I use TeamCity as most of my experience is with Azure DevOps and I wanted to expand my horizons.  One thing I found with both Azure DevOps and TeamCity (and I imagine this is true for other build servers as well) is that even though they had built-in steps to perform Docker builds, the build agents still need Docker installed to work.  It makes sense, but it seemed counter-intuitive since it was an available step you could choose.
 
 Rather than create a new VM, install and configure an OS, install the build agent, and finally install Docker, I chose a much nerdier path.  JetBrains, maker of TeamCity (amongst other products), provides a [Docker image for their build agent](https://hub.docker.com/r/jetbrains/teamcity-agent/). Not only do they have a build agent image, this image can also run Docker to do Docker builds (I chose option two under Running Builds Which Require Docker in the linked document above). My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but this article: [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
 
@@ -26,7 +28,7 @@ With the DNS issue resolved, the container started up and registered itself to m
 
 ![](teamcity-unauthorized-agent.png)
 
-Clicking the Authorize button finalized the connection and the agent was available to perform builds.
+Clicking the **Authorize** button finalized the connection and the agent was available to perform builds.
 
 ## The Docker project
 
@@ -73,26 +75,26 @@ Check **Log in to the Docker registry before the build** and choose the connecti
 ![](teamcity-build-feature-add-connection.png)
 
 #### Add build steps
-Steps 1-4 are going to be identical with the only difference being the docker file that we’re going to build.  Click on the **Build Steps** tab, then click the **Add build step** button:
+Steps 1-4 are going to be identical, the only difference is the docker file that we’re going to build.  Click on the **Build Steps** tab, then click the **Add build step** button:
 
 ![](teamcity-build-add-step.png)
 
 For the step, fill in the following:
-- Runner type: Docker.
-- Docker command: build.
-- Path to dockerfile in the repo.
-- Image name:tag.
+- Runner type: `Docker`
+- Docker command: `build`
+- Path to dockerfile in the repo: i.e., `Development-Active/OctopusSamples.OctoPetShop.web/dockerfile`
+- Image name:tag: i.e., `octopusexamples/octopetshop-web:1.0.0.0`
 
 ![](teamcity-build-step-docker.png)
 
-For docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer when selecting package versions, which `latest` doesn’t follow.  In this example I’ve hardcoded `1.0.0.0` as the version number, but we could have just as easily used a TeamCity Parameter to dynamically assign the version number.
+For docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer when selecting package versions, which `latest` doesn’t follow.  In this example I’ve hardcoded `1.0.0.0` as the version number, but we could just as easily used a TeamCity Parameter to dynamically assign the version number.
 
 We’ll add three more steps just like this one for product service, shopping cart service, and database.
 
 The last step we’ll add is the step that pushes our built images to the Docker Hub.  For this step, we’ll fill in the following:
-- Runner type: Docker.
-- Docker command: push.
-- Image name:tag.
+- Runner type: `Docker`
+- Docker command: `push`
+- Image name:tag
 
 ![](teamcity-build-docker-push.png)
 
@@ -115,15 +117,15 @@ After you’ve logged into Octopus, click on the **Library** tab:
 
 ![](octopus-dashboard.png)
 
-In the **Library** section, click on **External Feeds**, then click the **ADD FEED** button:
+In the **Library** section, click on **External Feeds**, and then click the **ADD FEED** button:
 
 ![](octopus-external-feed-add.png)
 
 On the **Create Feed** form, fill in the following:
-- Feed Type: Docker Container Registry.
-- Name: Docker Hub (or whatever you want to call it).
-- Username.
-- Password.
+- Feed Type: `Docker Container Registry`
+- Name: `Docker Hub` (or whatever you want to call it)
+- Username: `your-username`
+- Password: `your-password`
 
 ![](octopus-external-feed-docker.png)
 
@@ -143,7 +145,7 @@ Give the project a name and click **SAVE**:
 
 ![](octopus-project-name.png)
 
-Similar to our build, the steps in Octopus are going to be largely the same with minor differences.  I’ll walk you through the first step we’ll add to our process, then point out the differences in the remaining steps.
+Similar to our build, the steps in Octopus are going to be largely the same with only minor differences.  I’ll walk you through the first step we’ll add to our process, and then point out the differences in the remaining steps.
 
 On the **Process** tab of our project, click **ADD STEP**:
 
@@ -153,13 +155,13 @@ Choose the **Docker** category and the **Run a Docker Container** step:
 
 ![](octopus-project-step-add-docker.png)
 
-For this demo, we’re going to use the Microsoft SQL Server 2017 Docker image as our database server, so this will be the first container that we’ll configure in our deployment
+For this demo, we’re going to use the Microsoft SQL Server 2017 Docker image as our database server, so this will be the first container we’ll configure in our deployment
 
-The form for a Docker container step is rather long, so the screen shots are broken into parts.  For the first part, give the step a name and the Role it will be deploying to.  For this demonstration, I’m using a simple role of `Docker`, but in a Production scenario, the role would be more meaningful such as `OctoPetShop-Web-Container`.
+The form for a Docker container step is rather long, so the screen shots are broken into parts.  For the first part, give the step a name and the Role it will be deploying to.  For this demonstration, I’m using a simple role of `Docker`, but in a Production scenario, the role would be something more meaningful like, `OctoPetShop-Web-Container`.
 
 ![](octopus-project-step-docker1.png)
 
-Choose our Docker Hub external feed and choose the `microsoft/mssql-server-linux` image (tip: type `mssql` in the search box to find the image).
+Choose our Docker Hub external feed and choose the `microsoft/mssql-server-linux` image (tip: type `mssql` in the search box to find the image):
 
 ![](octopus-project-step-docker2.png)
 
@@ -171,7 +173,7 @@ To make our database server accessible, we need to add a port mapping.  Specify 
 
 ![](octopus-project-step-docker4.png)
 
-Scroll down to **Additional Arguments**.  This image needs a couple of Environment Variables passed to it: `SA_PASSWORD` and `ACCEPT_EULA`:
+Scroll down to **Additional Arguments**.  This image needs a couple of environment variables passed to it: `SA_PASSWORD` and `ACCEPT_EULA`:
 
 ![](octopus-project-step-docker5.png)
 
@@ -188,7 +190,7 @@ Here are the details for the remaining containers:
 - Docker Image: `octopussamples/octopetshop-productservice`
 - Network Type: `Bridge`
 - Port Mapping: `5011:5011`
-- Additional `Arguments: --env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
+- Additional Arguments: `--env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
 
 #### OctoPetShop shopping cart service
 - Docker Image: `octopussamples/octopetshop-shoppingcartservice`
@@ -201,11 +203,11 @@ Here are the details for the remaining containers:
 - Network Type: `Host`
 - Additional Arguments: `--env DbUpConnectionString="Data Source=localhost;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
 
-With all of our steps defined, we can create a release and deploy it.
+With all of our steps defined, we can create a release and deploy it:
 
 ![](octopus-project-release-success.png)
 
-Now if we navigate to the server we just deployed to, we should see our OctoPetShop application running.  As with the previous demos, OctoPetShop redirects to https with a self-signed certificate so you’ll most likely get a warning about it being unsafe.  In this case, it’s OK to ignore the warning and continue.
+If we now navigate to the server we just deployed to, we should see our OctoPetShop application running.  As with the previous demos, OctoPetShop redirects to https with a self-signed certificate so you’ll most likely get a warning about it being unsafe.  In this case, it’s OK to ignore the warning and continue.
 
 ![](server-docker-containers.png)
 
@@ -226,6 +228,7 @@ This will add some steps that we can use within our build definition to interact
 ![](teamcity-octopus-steps.png)
 
 ### Add Create Release step
+
 Let’s add a new step to our build definition, OctopusDeploy: Create release:
 
 ![](teamcity-build-step-release.png)
