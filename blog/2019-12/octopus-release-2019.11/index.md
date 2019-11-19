@@ -20,7 +20,11 @@ We're excited to launch our official Jenkins plugin to make it painless to integ
 We're regularly asked about [Jenkins vs Octopus Deploy](blog/2019-12/jenkins-vs-octopus-deploy/index.md) but we feel like they work better together so we've shared our thoughts on the topic.
 :::
 
-This brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. We’ve added support for our build information and work item tracking, and this opens up some fantastic new scenarios:
+This brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. 
+
+* Painless integration of your Jenkins Builds and Octopus deployments
+* **[See what’s new in production](/blog/2019-09/azure-devops-extension-v4/index.md#see-whats-new-in-production)**. Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see ‘What’s New’ in production or any other environment.
+* **[Create and share release notes with your team automatically](/blog/2019-09/azure-devops-extension-v4/index.md#share-release-notes-with-your-team-and-managers)**. Octopus can now generate release notes when deploying to your environments like dev, test, or production. Share them with your team, managers, or executives via email, Slack, and more.
 
 
 
