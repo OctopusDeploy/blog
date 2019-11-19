@@ -10,17 +10,15 @@ tags:
 - Product
 ---
 
-In 2020, we are raising the minimum requirements for hosting and using Octopus Server:
+In 2020, we are seriously considering raising the minimum requirements for hosting and using Octopus Server:
 
 - Windows Server 2012 R2
 - SQL Server 2017
 - Ending mainstream support for IE11
 
-Supporting older servers and browsers drains our time and attention, making it harder for us to innovate and move the Octopus ecosystem forward. We want to break this cycle in 2020. Actually, if Octopus Server is a critical resource in your business, you really should consider a modern operating environment for improved security and performance. Maybe this is the kind of push we all needed?
+Supporting older servers and browsers drains our time and attention, making it harder for us to innovate and move the Octopus ecosystem forward. We want to break this cycle in 2020. Actually, if Octopus Server is a critical resource in your business, you really should consider a modern operating environment for improved security and performance.
 
-Thankfully, you can perform an in-place upgrade for [Windows Server](https://docs.microsoft.com/en-us/windows-server/get-started/installation-and-upgrade) and [SQL Server](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/upgrade-sql-server) in most circumstances.
-
-The rest of this blog post should answer the most common questions. As always, please reach out to [our support team](https://octopus.com/support) if you have any questions or concerns!
+Maybe this is the kind of push we all needed? Maybe we haven't fully considered how difficult this will make your life? The last thing we want to do is stop anyone from adopting or upgrading Octopus! If these proposed minimum requirements will be a problem, please tell us why in the comments, or by [reaching out to us](https://octopus.com/support). The rest of this blog post should answer the most common questions.
 
 Happy Deployments!
 
@@ -29,9 +27,7 @@ Happy Deployments!
 You will only be affected if:
 
 1. You host Octopus Server on Windows Server 2008-2012 or SQL Server 2008-2016, and you want to upgrade to Octopus Server `2020.x`.
-2. Your company forces you to use Internet Explorer 11 regardless of whether you host Octopus Server on your own infrastructure or use Octopus Cloud.
-
-Don't worry, the Octopus Server installer will prevent you from accidentally upgrading without meeting the minimum requirements. If you do want to upgrade to Octopus Server `2020.x` you will need to upgrade your host operating system and/or database server.
+2. You use Internet Explorer 11, by choice or by force, regardless of whether you host Octopus Server on your own infrastructure or use Octopus Cloud.
 
 ## Question: Will my deployments be affected?
 
@@ -86,7 +82,7 @@ If you will be really stuck, please [reach out for a chat](https://octopus.com/s
 
 ## Question: What about Internet Explorer 11?
 
-We aren't going to prevent IE11 from accessing Octopus. We will also leave all the shims in place to keep IE11 working as-is with Octopus for a while longer. However, we will not actively target IE11 during feature development and testing, and we will not actively fix bugs which only affect IE11.
+We aren't going to prevent IE11 from accessing Octopus. We will also leave all the shims in place to keep IE11 working as-is with Octopus for a while longer. However, we will not actively target IE11 during feature development and testing, and we will not actively fix bugs which only affect IE11. Yes, this will probably lead to a degraded experience using IE11 with Octopus over time.
 
 From a selfish point of view, only 3% of our traffic comes from IE nowadays, and the time and effort we spend catering to IE11 does not feel worthwhile.
 
