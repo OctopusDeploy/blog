@@ -1,16 +1,16 @@
 ---
 title: Using template files in Kubernetes
-description: With the help of some open source Docker image tools and mounting options in Kubernetes, it’s possible to deploy a single image across multiple environments that include templated files.
+description: With the help of some open source Docker image tools and Kubernetes mounting options, it’s possible to deploy a single image across multiple environments that include templated files.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2019-11-21
+published: 2019-11-20
 metaImage: kubernetes-template-files.png
 bannerImage: kubernetes-template-files.png
 tags:
  - Engineering
 ---
 
-If you have ever deployed an application in Octopus before, you have probably made use of variable replacements in files as a way of taking a generic application package and injecting environment specific configuration during deployment. This process is convenient because you can produce a single application artifact, and each environment is then responsible for customizing it to match the local infrastructure.
+If you have ever deployed an application in Octopus before, you have probably made use of variable substitution in files as a way of taking a generic application package and injecting environment specific configuration during deployment. This process is convenient because you can produce a single application artifact, and each environment is then responsible for customizing it to match the local infrastructure.
 
 Replacing files in application packages like ZIPs or NUPKGs is straight forward because theses files are standard archives, and can be easily modified after they are downloaded from the artifact repository but before they are deployed to their final target.
 
@@ -32,7 +32,7 @@ The HTML file that is displayed by the Docker app is shown below. The string `#{
 </html>
 ```
 
-To see this Docker image in action, we’ll run the Docker image locally with the following command:
+To see this Docker image in action, we’ll run the Docker image locally with the following Docker run command:
 
 ```
 docker run -p 8888:80 mcasperson/dockerfilereplacement:0.0.1
@@ -52,7 +52,7 @@ The first tool is called [skopeo](https://github.com/containers/skopeo). We’ll
 
 The second tool is called [umoci](https://umo.ci/). We’ll use `umoci` to unpack the file downloaded by `skopeo`, allowing us access to the final directory structure created by all the individual layers in a Docker image.
 
-While both these tools are open source, getting binary builds can be challenging. For this exercise, I am using a SUSE Linux Enterprise VM as an [Octopus worker](https://octopus.com/docs/infrastructure/workers). SUSE created `umoci` and provides [binary downloads from the GitHub releases page](https://github.com/openSUSE/umoci/releases), while the standard SUSE package repositories contain a build of `skopeo`, which means we don’t have to go through the pain of trying to build these tools ourselves.
+While both these tools are open source, getting binary builds can be challenging. For this exercise, I am using a SUSE Linux VM (i.e. SUSE Linux Enterprise Server) as an [Octopus worker](https://octopus.com/docs/infrastructure/workers). SUSE created `umoci` and provides [binary downloads from the GitHub releases page](https://github.com/openSUSE/umoci/releases), while the standard SUSE package repositories contain a build of `skopeo`, which means we don’t have to go through the pain of trying to build these tools ourselves.
 
 ## Downloading and extracting the Docker image
 
@@ -115,9 +115,9 @@ Once we have the contents of the file, we save it as an [output variable](https:
 set_octopusvariable "TemplateHtml" ${TemplateHtml}
 ```
 
-## Creating the ConfigMap
+## Creating the Kubernetes ConfigMap
 
-With the contents of the file saved as an Octopus variable, the next step is to create a ConfigMap that holds the processed value. We’ll do this with the `Deploy raw Kubernetes YAML` step in Octopus.
+With the contents of the file saved as an Octopus variable, the next step is to create a Kubernetes ConfigMap that holds the processed value. We’ll do this with the `Deploy raw Kubernetes YAML` step in Octopus.
 
 The following is the Kubernetes YAML that the step will deploy to create the ConfigMap:
 
@@ -134,19 +134,19 @@ The `template.html` field is the important part of this config map. The key defi
 
 The end result is a ConfigMap that holds the original contents of the `template.html` file but with any variable replacements performed.
 
-## Mounting the ConfigMap
+## Mounting the Kubernetes ConfigMap
 
-The final step is to take the value from the ConfigMap and have it mounted back into the Kubernetes Pod, thus replacing the original, unprocessed file. We’ll do this through the `Deploy Kubernetes containers` step in Octopus.
+The final step is to take the value from the Kubernetes ConfigMap and have it mounted back into the Kubernetes Pod, thus replacing the original, unprocessed file. We’ll do this through the `Deploy Kubernetes containers` step in Octopus.
 
 This is done by defining a Volume that references the ConfigMap created in the previous step.
 
 ![](volumes.png "width=500")
 
-*The summary of the Volume.*
+*The summary of the Kubernetes Volume.*
 
 ![](volume.png "width=500")
 
-*The details of the Volume.*
+*The details of the Kubernetes Volume.*
 
 The ConfigMap is then mounted into the Pod. The trick here is to set the `Mount path` to the full path of the individual file to be replaced and set the `Sub path` to the entry from the ConfigMap that has the contents of the file.
 
@@ -154,7 +154,7 @@ With this configuration we will mount a single file in the Pod containing the va
 
 ![](volume-mount.png "width=500")
 
-*A volume mount that adds a single file to the Kubernetes container.*
+*A Kubernetes volume mount that adds a single file to the Kubernetes container.*
 
 For completeness, this is the Container section from the `Deploy Kubernetes containers` step. You can see we are deploying the image `mcasperson/dockerfilereplacement`, exposing port 80, and mounting the ConfigMap as a volume.
 
