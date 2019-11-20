@@ -1,6 +1,6 @@
 ---
 title: Using template files in Kubernetes
-description: With the help of some open source Docker image tools and Kubernetes mounting options, it’s possible to deploy a single image across multiple environments that include templated files.
+description: With the help of some open source Docker image tools and Kubernetes' mounting options, it’s possible to deploy a single image across multiple environments that include templated files.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2019-11-20
