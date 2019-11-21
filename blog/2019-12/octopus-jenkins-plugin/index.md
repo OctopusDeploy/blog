@@ -1,6 +1,6 @@
 ---
 title: "Octopus plugin for Jenkins: Painless Jenkins integration"
-description: Octopus is launching our official Octopus Deploy plugin for Jenkins automation server making it painless to integrate your Jenkins builds with Octopus deployments.
+description: Octopus is launching our official Octopus Deploy plugin for Jenkins automation server, making it painless to integrate your Jenkins builds with Octopus deployments.
 author: rob.pearson@octopus.com
 visibility: public
 published: 2019-12-02
@@ -36,7 +36,7 @@ This release brings the Jenkins plugin to feature parity with our [TeamCity](htt
 
 Integrating your Jenkins builds with Octopus deployments is now possible without scripting it yourself or relying on the community-supported plugin. Our official plugin provides the build and post-build actions similar to our other build server plugins.
 
-This update lets you to configure an ideal CI/CD pipeline:
+This update lets you configure an ideal CI/CD pipeline:
 
 **Jenkins**:
 
@@ -47,11 +47,11 @@ This update lets you to configure an ideal CI/CD pipeline:
 
 **Octopus Deploy**:
 
-* Package your build output (i.e. ZIP it up).
+* Package your build output (i.e., ZIP it up).
 * Push your zipped packages to Octopus or another artifact repository.
 * Push build information to Octopus to provide linkages to the code, build, and any work items related to the build.
-* Create releases to shapshot your deployment process and dependencies.
-* Deploy releases to your environments like dev, test and production.
+* Create releases to snapshot your deployment process and dependencies.
+* Deploy releases to your environments like dev, test, and production.
 
 NOTE: This release of our plugin does not support Jenkins Pipelines, but it is on our radar.
 
@@ -61,7 +61,7 @@ NOTE: This release of our plugin does not support Jenkins Pipelines, but it is o
 
 ![What’s New in Production](octopus-deploy-what-new-in-production.png "width=600")
 
-Octopus deployments complement Jenkins builds by giving you better visibility and insight into your CI/CD pipeline. Pushing build information to Octopus as a part of your build process enables Octopus to surface your commits, build details, and any work items, for instance, GitHub or Jira issues, are associated with a specific build. This functionality unlocks the ability to see what features, bug fixes, and enhancements contributed to a release and Octopus can also determine which work items have changed since your last deployment. This means you can clearly see **What’s New** in production or any other environment.
+Octopus deployments complement Jenkins builds by giving you better visibility and insight into your CI/CD pipeline. Pushing build information to Octopus as a part of your build process enables Octopus to surface your commits, build details, and any work items, for instance, GitHub or Jira issues, are associated with a specific build. This functionality unlocks the ability to see what features, bug fixes, and enhancements contributed to a release, and Octopus can also determine which work items have changed since your last deployment. This means you can clearly see **What’s New** in production or any other environment.
 
 This feature set gives teams confidence and visibility into the changes included when deploying releases to production.
 
@@ -71,7 +71,7 @@ This feature set gives teams confidence and visibility into the changes included
 
 ![Octopus Jenkins Plugin](octopus-deploy-share-release-notes.png "width=600")
 
-Another benefit of our build information and work item integration is unlocking the ability for teams to improve their communication with other teams and managers. Leveraging release details, including associated issues, Octopus enables teams to generate customized release notes and share them as per their needs. This could be a slack message to an operations teams to keep them in the loop, or an email to customers sharing the latest features included a new release.
+Another benefit of our build information and work item integration is unlocking the ability for teams to improve their communication with other teams and managers. Leveraging release details, including associated issues, Octopus enables teams to generate customized release notes and share them as per their needs. This could be a slack message to an operations teams to keep them in the loop or an email to customers sharing the latest features included a new release.
 
 This functionality eliminates manual collection and sharing of release notes.
 
