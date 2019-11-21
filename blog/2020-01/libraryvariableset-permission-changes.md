@@ -3,7 +3,7 @@ title: "Library Variable Set Permission Changes"
 description: Some upcoming changes how Library Variable Set permissions work
 author: nick.josevski@octopus.com
 visibility: private
-published: 2019-11-01
+published: 2020-01-01
 metaImage: metaimage-team-permissions.png
 bannerImage: blogimage-team-permissions.png
 tags:
