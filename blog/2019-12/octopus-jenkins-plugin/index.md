@@ -12,15 +12,15 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
-We're excited to launch our [official Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) to make it painless to integration Jenkins builds with Octopus deployments. Octopus has had a Jenkins community plugin for years maintained by [Brian Adriance](https://github.com/badriance) and other contributors. Octopus has worked with Brian to take over the plugin and make it officially support by our team. We're indebted to the effort from Brian and other contributors since the project started in 2015. This brings great advantages as we're able to keep the plugin up-to-date and add great new features to it. 
+We're excited to launch our [official Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) to make it painless to integrate Jenkins builds with Octopus deployments. Octopus has had a Jenkins community plugin for many years maintained by [Brian Adriance](https://github.com/badriance) and other contributors. Octopus has worked with Brian to take over the plugin and make it officially support by our team. We're indebted to the effort from Brian and other contributors since the project started in 2015. This brings great advantages as we're able to keep the plugin up-to-date and add great new features to it. 
 
 :::success
 **Jenkins vs Octopus Deploy**
 
-We're regularly asked about [Jenkins vs Octopus Deploy](/blog/2019-12/jenkins-vs-octopus-deploy/index.md) and we think they work better together to give you a better CI/CD pipeline.
+We're regularly asked about [Jenkins vs Octopus Deploy](/blog/2019-12/jenkins-vs-octopus-deploy/index.md) and we think they work better together to give you a complete CI/CD pipeline.
 :::
 
-This release brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. It brings integration capability includeing our work item and build information featureset.
+This release brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. It brings integration capabilities, including our work item and build information feature set.
 
 * **[Painless integration of your Jenkins builds and Octopus deployments](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#painless-integration-of-your-jenkins-builds-and-octopus-deployments)**
 * **[Better visibility: See what’s new in production](/blog/2019-12/jenkins-vs-octopus-deploy/index.md#better-visibility-see-what’s-new-in-production)**. Octopus can show you what's included in a release and calculate what has changed since your last deployment. This functionality gives you the power to see ‘What’s New’ in production or any other environment.
@@ -32,7 +32,7 @@ This release brings the Jenkins plugin to feature parity with our [TeamCity](htt
 
 ![Octopus Jenkins Plugin](octopus-deploy-jenkins-plugin.png "width=600")
 
-Integrating your Jenkins builds with Octopus deploys is now possible without scripting it yourself or relying on the community supported plugin. Our official plugin provides the build and post-build actions similar to our other build server plugins.
+Integrating your Jenkins builds with deployments via Octopus is now possible without scripting it yourself or relying on the community supported plugin. Our official plugin provides the build and post-build actions similar to our other build server plugins.
 
 This enables you to configure an ideal CI/CD pipeline:
 
@@ -40,7 +40,7 @@ This enables you to configure an ideal CI/CD pipeline:
 
 * Build your front end codebase (bundling, linting etc)
 * Build any micro services/web services
-* Run unit tests
+* Run unit/integration tests
 * Run static analysis 
 
 and more.
