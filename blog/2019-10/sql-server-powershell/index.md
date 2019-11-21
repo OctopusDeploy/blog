@@ -5,10 +5,9 @@ author: james.chatmas@octopus.com
 visibility: private
 bannerImage:
 metaImage:
-published: 2020-09-01
+published: 2019-11-27
 tags:
- - sqlserver
- - powershell
+ - DevOps
 ---
 
 Our goal at Octopus Deploy has always been to make automated application deployments easy, and application deployments often require database management during the process. My goal in this post, is to provide some common examples of SQL Server management through PowerShell to make integration into deployments that much more straightforward.
