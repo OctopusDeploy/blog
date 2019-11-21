@@ -2,13 +2,15 @@
 title: Bootstrap a .NET Core development environment for Linux
 description: Use Linux for your development workstation with Docker and Vagrant
 author: jim.burger@octopus.com
-visibility: public
-published: 2029-10-01
+visibility: private
+published: 2019-11-25
+metaImage: bootstrapping_netcore_dev_on_linux.png
+bannerImage: bootstrapping_netcore_dev_on_linux.png
 tags:
- - Linux
- - .NET Core
- - Containers
+ - Engineering
 ---
+
+![Bootstrap a .NET Core development environment for Linux](bootstrapping_netcore_dev_on_linux.png)
 
 Microsoft .NET now has great cross-platform support giving .NET developers the ability to do much of their development on Linux distributions or macOS. In this post, I’ll go through how you can get started and what tools are available to support developers.
 
