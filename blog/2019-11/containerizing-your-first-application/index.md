@@ -5,9 +5,9 @@ author: shawn.sesna@octopus.com
 visibility: private
 bannerImage:
 metaImage:
-published: 2020-10-23
+published: 2010-11-26
 tags:
- - Docker
+ - DevOps
 ---
 
 Designing your application to run in a container has become quite popular, but where do you start?  How do you take an existing application and make it container compatible?  In this post, I aim to demystify what it means to containerize your application.
