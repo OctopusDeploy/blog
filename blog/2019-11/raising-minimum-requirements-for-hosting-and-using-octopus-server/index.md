@@ -42,7 +42,7 @@ We will continue to support Octopus Server `2019.9 LTS` under our [long-term sup
 Staying up to date helps on both sides of this relationship:
 
 - We can give you the best kind of support when you run modern Octopus Server. We can turn around issues with less overhead, and upgrading is less risky when you apply incremental upgrades.
-- You benefit from everything we've done since you last upgraded, including delightful new features like [the streamlined process editor](https://octopus.com/blog/octopus-release-2019.8) or [operations runbooks](https://octopus.com/blog/operations-runbooks). Also, [take a look at our dynamic roadmap](https://octopus.com/roadmap) to see what we are planning to ship very soon.
+- You benefit from everything we've done since you last upgraded, including delightful new features like the streamlined process editor or operations runbooks. Take a look at [what's new](https://octopus.com/whatsnew). Also, [take a look at our dynamic roadmap](https://octopus.com/roadmap) to see what we are planning to ship very soon.
 - We are proactive when it comes to security and trust. Keeping your Octopus Server up to date is the foundation of [a secure and trustworthy installation](https://octopus.com/docs/administration/security/hardening-octopus). Without wanting to be alarmist, here is a list of [reasons to upgrade from a security perspective](https://www.cvedetails.com/vulnerability-list/vendor_id-16785/product_id-39115/Octopus-Octopus-Deploy.html).
 
 ## Question: Why will Windows Server 2012 R2 be the minimum operating system?
@@ -66,7 +66,7 @@ The driving reason for us is simple: We make heavy use of JSON in our hybrid dat
 3. We could have authored more efficient database queries making Octopus faster, rather than being constrained by the lowest-common denominator.
 4. We could have leveraged new database engine features to make every Octopus installation faster.
 
-We think 2020 is the time to rip off the proverbial BandAid(TM) so we can offer better value and faster turnaround to all of our customers.
+We think 2020 is the time to rip off the proverbial Band-Aid(TM) so we can offer better value and faster turnaround to all of our customers.
 
 ## Question: How do I upgrade my database server?
 
