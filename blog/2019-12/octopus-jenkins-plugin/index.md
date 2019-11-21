@@ -12,7 +12,7 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
 
-We're excited to launch our [official Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) to make it painless to integrate Jenkins builds with Octopus deployments. Octopus has had a Jenkins community plugin for many years maintained by [Brian Adriance](https://github.com/badriance) and other contributors. Octopus has worked with Brian to take over the plugin and make it officially support by our team. We're indebted to the effort from Brian and other contributors since the project started in 2015. This brings great advantages as we're able to keep the plugin up-to-date and add great new features to it. 
+We're excited to launch our official Octopus Deploy [Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) to make it painless to integrate Jenkins builds with Octopus deployments. Octopus has had a Jenkins community plugin for many years maintained by [Brian Adriance](https://github.com/badriance) and other contributors. Octopus has worked with Brian to take over the plugin and make it officially support by our team. We're indebted to the effort from Brian and other contributors since the project started in 2015. This brings great advantages as we're able to keep the plugin up-to-date and add great new features to it. 
 
 :::success
 **Jenkins vs Octopus Deploy**
