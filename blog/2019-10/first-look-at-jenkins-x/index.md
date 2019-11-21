@@ -3,7 +3,7 @@ title: A first look at Jenkins X
 description: Jenkins X is a complete mental shift from the traditional role of a CI server. In this post, we take a high-level look at Jenkins X and highlight why you need to appreciate it on its own terms.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2019-08-29
+published: 2019-12-04
 metaImage:
 bannerImage:
 tags:
