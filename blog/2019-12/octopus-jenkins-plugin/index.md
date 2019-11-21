@@ -31,7 +31,9 @@ This release brings the Jenkins plugin to feature parity with our [TeamCity](htt
 
 ## Painless integration of your Jenkins builds and Octopus deployments
 
-![Octopus Jenkins Plugin](octopus-deploy-jenkins-plugin.png "width=600")
+![Octopus Jenkins Plugin](octopus-deploy-jenkins-plugin-1.png "width=600")
+
+![Octopus Jenkins Plugin](octopus-deploy-jenkins-plugin-2.png "width=600")
 
 Integrating your Jenkins builds with Octopus deployments is now possible without scripting it yourself or relying on the community-supported plugin. Our official plugin provides the build and post-build actions similar to our other build server plugins.
 
