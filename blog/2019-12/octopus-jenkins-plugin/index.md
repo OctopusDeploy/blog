@@ -2,10 +2,10 @@
 title: "Octopus plugin for Jenkins: Painless Jenkins integration"
 description: Octopus is launching our official Octopus Deploy plugin for Jenkins automation server, making it painless to integrate your Jenkins builds with Octopus deployments.
 author: rob.pearson@octopus.com
-visibility: public
+visibility: private
 published: 2019-12-02
-metaImage: octopus-2019.11-release-image.png
-bannerImage: octopus-2019.11-release-image.png
+metaImage: 
+bannerImage: 
 tags:
  - Product
 ---
