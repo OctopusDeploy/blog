@@ -66,7 +66,7 @@ The driving reason for us is simple: We make heavy use of JSON in our hybrid dat
 3. We could have authored more efficient database queries making Octopus faster, rather than being constrained by the lowest-common denominator.
 4. We could have leveraged new database engine features to make every Octopus installation faster.
 
-We think 2020 is the time to rip off the proverbial Band-Aid(TM) so we can offer better value and faster turnaround to all of our customers.
+We don't any value progressively rolling from SQL Server 2012 to 2014 to 2016, forcing you to upgrade each time. We think it is time to rip off the proverbial Band-Aid(TM), and jump straight to SQL Server 2017, so we can offer better value and faster turnaround to all of our customers.
 
 ## Question: How do I upgrade my database server?
 
@@ -77,6 +77,8 @@ You can perform an in-place upgrade of your SQL Server. Learn about [upgrading t
 We don't want upgrading Octopus Server to be hard - hopefully that has been your experience in the last 5 years! However, we believe the end result will be worth the effort. In this situation, all of the applications hosted on that database server will probably benefit from the improvements to the SQL Server engine. [Here is a good post on the subject](https://sqlperformance.com/2018/04/sql-server-2017/reasons-to-upgrade-to-sql-server-2017).
 
 Alternatively, you can consider moving your Octopus to a free edition of SQL Server 2017 until the shared database server is upgraded.
+
+Another alternative is to consider [moving to Octopus Cloud](https://octopus.com/cloud) where we take care of everything on your behalf.
 
 If you will be really stuck, please [reach out for a chat](https://octopus.com/support)!
 
