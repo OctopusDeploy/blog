@@ -14,7 +14,8 @@ In 2020, we will raise the minimum requirements for hosting and using Octopus Se
 
 - Windows Server 2012 R2
 - SQL Server 2017
-- Ending mainstream support for IE11
+
+Additionally, we're also ending mainstream support for IE11.
 
 Supporting older servers and browsers drains our time and attention, making it harder for us to innovate and move the Octopus ecosystem forward. We want to break this cycle in 2020. From another perspective, if Octopus Server is a critical resource in your business, you really should consider a modern operating environment for improved security and performance.
 
