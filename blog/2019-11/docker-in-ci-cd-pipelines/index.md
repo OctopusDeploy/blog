@@ -18,21 +18,35 @@ In a previous post, I showed you how to create Docker container images for the O
 - Creating an Octopus Deploy project.
 - Deploying our containers to a machine running Docker.
 
+!toc
+
 ## Build server
 
-All of the major build servers (Azure DevOps, TeamCity, Jenkins, and Bamboo) can build Docker images either with a built-in step or a downloadable plug-in.  For this demonstration, I use TeamCity as most of my experience is with Azure DevOps and I wanted to expand my horizons.  One thing I found with both Azure DevOps and TeamCity (and I imagine this is true for other build servers as well) is that even though they had built-in steps to perform Docker builds, the build agents still need Docker installed to work.  It makes sense, but it seemed counter-intuitive since it was an available step you could choose.
+Continuous Integration is done on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as a specific time of day or a developer check-in.  For our build server, we'll be performing the following tasks:
 
-Rather than create a new VM, install and configure an OS, install the build agent, and finally install Docker, I chose a much nerdier path.  JetBrains, maker of TeamCity (amongst other products), provides a [Docker image for their build agent](https://hub.docker.com/r/jetbrains/teamcity-agent/). Not only do they have a build agent image, this image can also run Docker to do Docker builds (I chose option two under Running Builds Which Require Docker in the linked document above). My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but this article: [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
+- Creating a project
+- Creating a build definition
+- Defining build steps
+
+## Adding the Build Docker capability to the build agent
+
+All of the major build servers (Azure DevOps, TeamCity, Jenkins, and Bamboo) can build Docker images either with a built-in step or a downloadable plug-in.  For this demonstration, I used TeamCity as most of my experience is with Azure DevOps and I wanted to expand my horizons.  One thing I found with both Azure DevOps and TeamCity (and I imagine this is true for other build servers as well) is that even though they had built-in steps to perform Docker builds, the build agents still need Docker installed to work.  It makes sense, but it seemed counter-intuitive since it was an available step you could choose.
+
+Rather than create a new VM, install and configure an OS, install the build agent, and finally install Docker, I chose a much nerdier path.  JetBrains, maker of TeamCity (amongst other products), provides a [Docker image for their build agent](https://hub.docker.com/r/jetbrains/teamcity-agent/). Not only do they have a build agent image, this image can also run Docker to do Docker builds (I chose option two under Running Builds Which Require Docker in the linked document above). 
+
+:::hint
+My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but this article: [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
 
 With the DNS issue resolved, the container started up and registered itself to my TeamCity server under the Unauthorized category of agents:
 
 ![](teamcity-unauthorized-agent.png)
+:::
 
 Clicking the **Authorize** button finalized the connection and the agent was available to perform builds.
 
 ## The Docker project
 
-Using my local instance of Azure DevOps as my source control repository for the OctoPetShop project, I created a new project within TeamCity and connected my Azure DevOps repo to it.  This post assumes you already know how to create a project within TeamCity and focuses on the build and deploy process.
+Using my local instance of Azure DevOps as my source control repository for the OctoPetShop project, I created a new project within TeamCity and connected my Azure DevOps repo to it.  This post assumes you already know how to [create a project](https://www.jetbrains.com/help/teamcity/creating-and-editing-projects.html) within TeamCity and focuses on the build and deploy process.
 
 ### Adding a connection to Docker Hub
 
@@ -161,7 +175,11 @@ The form for a Docker container step is rather long, so the screen shots are bro
 
 ![](octopus-project-step-docker1.png)
 
-Choose our Docker Hub external feed and choose the `microsoft/mssql-server-linux` image (tip: type `mssql` in the search box to find the image):
+Choose our Docker Hub external feed and choose the `microsoft/mssql-server-linux` image 
+
+:::hint
+Type `mssql` in the search box to find the image):
+:::
 
 ![](octopus-project-step-docker2.png)
 
@@ -173,9 +191,10 @@ To make our database server accessible, we need to add a port mapping.  Specify 
 
 ![](octopus-project-step-docker4.png)
 
-Scroll down to **Additional Arguments**.  This image needs a couple of environment variables passed to it: `SA_PASSWORD` and `ACCEPT_EULA`:
+Scroll down to **Variables** and add some Explicit Variable Mapping.  This image needs a couple of environment variables passed to it: `SA_PASSWORD` and `ACCEPT_EULA`.  Create a Project Variable of type Sensitive for the SA_PASSWORD
 
 ![](octopus-project-step-docker5.png)
+![](octopus-project-step-docker6.png)
 
 And that’s it for this container. Click **SAVE** to commit the step to the process.
 
@@ -184,26 +203,35 @@ Here are the details for the remaining containers:
 #### OctoPetShop Web
 - Docker Image: `octopussamples/octopetshop-web`
 - Network type: `Host`
-- Additional Arguments: `--env ProductServiceBaseUrl=http://localhost:5011/ --env ShoppingCartServiceBaseUrl=http://localhost:5012`
+- Explicit Variable Mapping:
+    - ProductServiceBaseUrl = http://localhost:5011/ 
+    - ShoppingCartServiceBaseUrl = http://localhost:5012
 
 #### OctoPetShop product service
 - Docker Image: `octopussamples/octopetshop-productservice`
 - Network Type: `Bridge`
 - Port Mapping: `5011:5011`
-- Additional Arguments: `--env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
+- Explicit Variable Mapping:
+    - OPSConnectionString = "Data Source=#{Octopus.Machine.Hostname}; Initial Catalog=OctoPetShop; User ID=sa; Password=#{Project.Database.SA.Password}
 
 #### OctoPetShop shopping cart service
 - Docker Image: `octopussamples/octopetshop-shoppingcartservice`
 - Network Type: `Bridge`
 - Port Mapping: `5012:5012`
-- Additional Arguments: `--env OPSConnectionString="Data Source=#{Octopus.Machine.Hostname};Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
+- Explicit Variable Mapping:
+    - OPSConnectionString =    "Data Source=#{Octopus.Machine.Hostname}; Initial Catalog=OctoPetShop; User ID=sa; Password=#{Project.Database.SA.Password}
 
 #### OctoPetShop database
 - Docker Image: `octopussamples/octopetshop-database`
 - Network Type: `Host`
-- Additional Arguments: `--env DbUpConnectionString="Data Source=localhost;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword"`
+- Explicit Variable Mapping:
+    - DbUpConnectionString = "Data Source=#{Octopus.Machine.Hostname}; Initial Catalog=OctoPetShop; User ID=sa; Password=#{Project.Database.SA.Password}
 
 With all of our steps defined, we can create a release and deploy it:
+
+:::hint
+For information on how to set up a Tentacle for Linux, see our [documentation](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) page.
+:::
 
 ![](octopus-project-release-success.png)
 
