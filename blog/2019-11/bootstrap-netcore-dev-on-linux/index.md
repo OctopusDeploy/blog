@@ -2,8 +2,8 @@
 title: Bootstrap a .NET Core development environment for Linux
 description: Use Linux for your development workstation with Docker and Vagrant
 author: jim.burger@octopus.com
-visibility: private
-published: 2019-11-25
+visibility: public
+published: 2019-11-26
 metaImage: bootstrapping_netcore_dev_on_linux.png
 bannerImage: bootstrapping_netcore_dev_on_linux.png
 tags:

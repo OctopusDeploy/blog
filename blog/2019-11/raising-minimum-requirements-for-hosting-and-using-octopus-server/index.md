@@ -2,15 +2,15 @@
 title: Raising the minimum requirements for hosting and using Octopus Server
 description: In 2020, we will raise the minimum requirements for hosting and using Octopus Server.
 author: michael.noonan@octopus.com
-visibility: private
-published: 2019-11-25
-metaImage: blogimage-octopusserverlinux-2.png
-bannerImage: blogimage-octopusserverlinux-2.png
+visibility: public
+published: 2019-11-27
+metaImage: minimum_requirements_octopus_2020.png
+bannerImage: minimum_requirements_octopus_2020.png
 tags:
 - Product
 ---
 
-![Raising the minimum requirements for hosting and using Octopus Server](blogimage-octopusserverlinux-2.png)
+![Raising the minimum requirements for hosting and using Octopus Server](minimum_requirements_octopus_2020.png)
 
 In 2020, we will raise the minimum requirements for hosting and using Octopus Server:
 
