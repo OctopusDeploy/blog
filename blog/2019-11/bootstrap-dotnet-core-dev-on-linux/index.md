@@ -1,6 +1,6 @@
 ---
 title: Bootstrap a .NET Core development environment for Linux
-description: Use Linux for your development workstation with Docker and Vagrant
+description: This post covers how to bootstrap a Linux-based development environment for day to day .NET Core development.
 author: jim.burger@octopus.com
 visibility: public
 published: 2019-11-26
@@ -12,23 +12,25 @@ tags:
 
 ![Bootstrap a .NET Core development environment for Linux](bootstrapping_netcore_dev_on_linux.png)
 
-Microsoft .NET now has great cross-platform support giving .NET developers the ability to do much of their development on Linux distributions or macOS. In this post, I’ll go through how you can get started and what tools are available to support developers.
+Microsoft .NET Core has great cross-platform support giving a .NET developer the ability to do much of their development on Linux distributions or macOS. In this post, I’ll go through how you can get started and what tools are available to support developers.
+
+<h2>In this post</h2>
 
 !toc
 
 ## Use the tools that make you happy
 
-One of the things I truly appreciate about working at Octopus Deploy is that I’m encouraged to work in the way that I choose, that maximizes my happiness and my productivity.
+One of the things I truly appreciate about working at [Octopus Deploy](https://octopus.com) is that I’m encouraged to work in the way that I choose, that maximizes my happiness and my productivity.
 
 Earlier this year, I decided to make the switch to Linux for my day to day working environment, and I haven’t regretted it. Unix-like operating systems have always been something I prefer, but I have never been able to settle on it at work for development as a .NET developer.
 
-I’ll discuss some of the options for .NET developers on Linux and show you how I got my stack together with some scripts I use regularly.
+I’ll discuss some of the options for a .NET developer on Linux and show you how I got my stack together with some scripts I use regularly.
 
 ## Using containers to manage development time database & logging servers
 
 Much like my colleague [Bob Walker](https://octopus.com/blog/automate-sql-server-install-using-linux-docker#docker-compose), I personally like to use `docker-compose` to speed up the process of dealing with dependencies like my SQL & Logging servers. What do I like the most about it? The setup for a database and log server is less than 20 lines of YAML!
 
-For example, this lets me quickly spin up an SQL server and [Seq](https://datalust.co/seq), our preferred logging tool that we use in dev, test, and prod:
+For example, this lets me quickly spin up an [SQL server](https://www.microsoft.com/en-us/sql-server/) and [Seq](https://datalust.co/seq), our preferred logging tool that we use in dev, test, and prod:
 
 ```yaml
 ---
@@ -77,7 +79,7 @@ If you prefer, Microsoft has a rather nice [VS Code extension](https://github.co
 
 Based on this, I created a collection of [convenience scripts](https://github.com/jburger/devenv) to demonstrate some possibilities. Here’s a screencast on how to use them:
 
-[![Using bash scripts to simplify using docker compose](https://asciinema.org/a/AUXSaRj6hfqQS1QQqflrITrX0.svg)](https://asciinema.org/a/AUXSaRj6hfqQS1QQqflrITrX0)
+![Using bash scripts to simplify using docker compose](https://asciinema.org/a/AUXSaRj6hfqQS1QQqflrITrX0.svg)
 
 ### Database management
 
