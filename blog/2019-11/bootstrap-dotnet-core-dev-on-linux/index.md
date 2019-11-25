@@ -3,7 +3,7 @@ title: Bootstrap a .NET Core development environment for Linux
 description: This post covers how to bootstrap a Linux-based development environment for day to day .NET Core development.
 author: jim.burger@octopus.com
 visibility: public
-published: 2019-11-26
+published: 2019-11-25
 metaImage: bootstrapping_netcore_dev_on_linux.png
 bannerImage: bootstrapping_netcore_dev_on_linux.png
 tags:
