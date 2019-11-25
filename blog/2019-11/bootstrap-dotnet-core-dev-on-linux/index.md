@@ -95,9 +95,9 @@ A free alternative from Microsoft for working with SQL Server is the [`Azure Dat
 
 There are a tonne of options for development tooling, but here are the ones I like to use for .NET engineering at Octopus Deploy.
 
-### IDEs
+### Integrated Development Environment (IDE)
 
-There are a few great IDE options out there for .NET developers now!
+There are a few great IDE options out there for .NET developers on Linux now!
 
 I personally love the `Jetbrains` [toolbox](https://www.jetbrains.com/toolbox-app/) for IDE and database tools. `Rider`, `Datagrip`, and `Webstorm` are *go to* tools for me on a daily basis. I also use `Clion` for learning about rust development in my spare time. One of the benefits I find is that each is tailored to the style of development they represent while maintaining a consistent keyboard shortcut scheme.
 
@@ -112,7 +112,7 @@ I also love `VS Code` for tasks that don’t need a debugger, like parsing logs 
 Ok, so, if you’re in this camp, you probably already know what you’re doing! That said, I can confirm .NET productivity is possible with a lofi toolbox. If you’re interested in exploring this as an option, here are some tools to get you started.
 
 - [ranger: a neat little file browser that works like vim](https://wiki.archlinux.org/index.php/Ranger).
-- [vim (and whatever plugins make you a happy person)](https://wiki.archlinux.org/index.php/vim).
+- [vim and whatever plugins make you a happy person](https://wiki.archlinux.org/index.php/vim).
 - [omnisharp for vim](https://github.com/OmniSharp/omnisharp-vim).
 - [tmux for managing multiple consoles](https://wiki.archlinux.org/index.php/tmux).
 - [dotnet watch](https://docs.microsoft.com/en-us/aspnet/core/tutorials/dotnet-watch?view=aspnetcore-3.0).
@@ -125,7 +125,7 @@ For simple things, I still stick to the command line, `zsh` has a sweet plugin f
 For dealing with complex trees, I think [Gitkraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well, and integrates with GitHub.
 
 ### Installing apps from the command line
-I know many Windows developers who swear by [boxstarter](https://boxstarter.org/) and [chocolatey](https://chocolatey.org/) to install their favorite tools. This allows them to keep a script of favorite tools and run them on new machines. You can do the same on Linux.
+It's common for a Windows developer to swear by [boxstarter](https://boxstarter.org/) and [chocolatey](https://chocolatey.org/) to install their favorite tools. This allows them to keep a script of favorite tools and run them on new machines. You can do the same on Linux.
 
 Most distributions come with their own [package manager](https://www.linode.com/docs/tools-reference/linux-package-management/) for installing tools, each with their own command interface. There is also [snapd](https://snapcraft.io) which is a cross-distribution option.
 
