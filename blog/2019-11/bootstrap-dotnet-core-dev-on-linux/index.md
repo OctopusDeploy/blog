@@ -79,15 +79,15 @@ If you prefer, Microsoft has a rather nice [VS Code extension](https://github.co
 
 Based on this, I created a collection of [convenience scripts](https://github.com/jburger/devenv) to demonstrate some possibilities. Here’s a screencast on how to use them:
 
-![Using bash scripts to simplify using docker compose](https://asciinema.org/a/AUXSaRj6hfqQS1QQqflrITrX0.svg)
+![Using bash scripts to simplify using docker compose](AUXSaRj6hfqQS1QQqflrITrX0.svg)
 
 ### Database management
 
-Of course, MS SQL is not the only game in town on Linux, far from it. However, if you’re like me and your *hometown* is MS SQL, then you’ll be happy to know there are some industrial-strength options for working with it.
+Of course, Microsoft SQL Server is not the only game in town on Linux, far from it. However, if you’re like me and your *hometown* is MS SQL, then you’ll be happy to know there are some industrial-strength options for working with it.
 
 I use [Datagrip](https://www.jetbrains.com/datagrip/), which is an awesome tool for working with a wide variety of databases, and has great intellisense and refactoring features. My favorite feature is being able to assign a color to each database connection (e.g., green in test, and red in production).
 
-A free alternative from Microsoft for working with MS SQL is the [`Azure Data Studio`](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-ver15#get-azure-data-studio-for-linux). It provides a nice and simple experience for those not wanting to outlay money on heavier tools.
+A free alternative from Microsoft for working with SQL Server is the [`Azure Data Studio`](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-ver15#get-azure-data-studio-for-linux). It provides a nice and simple experience for those not wanting to outlay money on heavier tools.
 
 ![Azure data studio](azure-data-std.png)
 
