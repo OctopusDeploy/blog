@@ -77,9 +77,7 @@ If you prefer, Microsoft has a rather nice [VS Code extension](https://github.co
 
 ![docker-compose in vs code terminal](docker-compose.png)
 
-Based on this, I created a collection of [convenience scripts](https://github.com/jburger/devenv) to demonstrate some possibilities. Here’s a screencast on how to use them:
-
-![Using bash scripts to simplify using docker compose](bash-script-docker-compose.svg)
+Based on this, I created a collection of [convenience scripts](https://github.com/jburger/devenv) to demonstrate some possibilities and I also recorded a [screencast](https://asciinema.org/a/AUXSaRj6hfqQS1QQqflrITrX0) to show how to use them.
 
 ### Database management
 
