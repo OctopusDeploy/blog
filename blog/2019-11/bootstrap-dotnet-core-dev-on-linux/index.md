@@ -79,7 +79,7 @@ If you prefer, Microsoft has a rather nice [VS Code extension](https://github.co
 
 Based on this, I created a collection of [convenience scripts](https://github.com/jburger/devenv) to demonstrate some possibilities. Here’s a screencast on how to use them:
 
-![Using bash scripts to simplify using docker compose](AUXSaRj6hfqQS1QQqflrITrX0.svg)
+![Using bash scripts to simplify using docker compose](bash-script-docker-compose.svg)
 
 ### Database management
 
@@ -119,8 +119,8 @@ Ok, so, if you’re in this camp, you probably already know what you’re doing!
 
 ![ranger, vim & omnisharp](tmux-vim-dotnet.gif)
 
-### Source control
-For simple things, I still stick to the command line, `zsh` has a sweet plugin for [just about everything](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins), including git.
+### Git source control
+For simple things, I still stick to git at the command line, `zsh` has a sweet plugin for [just about everything](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins), including git.
 
 For dealing with complex trees, I think [Gitkraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well, and integrates with GitHub.
 
