@@ -120,9 +120,9 @@ Ok, so, if you’re in this camp, you probably already know what you’re doing!
 ![ranger, vim & omnisharp](tmux-vim-dotnet.gif)
 
 ### Git source control
-For simple things, I still stick to git at the command line, `zsh` has a sweet plugin for [just about everything](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins), including git.
+For simple things, I still stick to Git at the command line, `zsh` has a sweet plugin for [just about everything](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins), including Git.
 
-For dealing with complex trees, I think [Gitkraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well, and integrates with GitHub.
+For dealing with complex trees, I think [GitKraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well, and integrates with GitHub.
 
 ### Installing apps from the command line
 It's common for a Windows developer to swear by [boxstarter](https://boxstarter.org/) and [chocolatey](https://chocolatey.org/) to install their favorite tools. This allows them to keep a script of favorite tools and run them on new machines. You can do the same on Linux.
@@ -151,7 +151,7 @@ Getting started with [snapd is easy](https://snapcraft.io/docs/getting-started),
 
 ## Vagrant boxes for isolated environments
 
-Containers are great, but they [aren’t quite as isolated](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm) as a virtual machine. For example, when I’m dealing with some un-trusted binaries during triage, I’ll use a machine separate from my main development environment. I like to use [Vagrant](https://www.vagrantup.com/) to manage temporary VM lifetimes; it’s almost as easy as using docker!
+Containers are great, but they [aren’t quite as isolated](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm) as a virtual machine (VM). For example, when I’m dealing with some un-trusted binaries during triage, I’ll use a machine separate from my main development environment. I like to use [Vagrant](https://www.vagrantup.com/) by HashiCorp to manage temporary VM lifetimes; it’s almost as easy as using docker!
 
 Here is an example of a lightweight Arch Linux environment. Its got the basics, ready for tweaking, using, and then destroying later:
 
