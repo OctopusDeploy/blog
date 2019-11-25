@@ -5,7 +5,7 @@ author: james.chatmas@octopus.com
 visibility: public
 bannerImage: sql-server-powershell-examples.png
 metaImage: sql-server-powershell-examples.png
-published: 2019-11-26
+published: 2019-11-27
 tags:
  - DevOps
 ---
