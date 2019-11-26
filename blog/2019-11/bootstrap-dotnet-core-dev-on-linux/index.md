@@ -12,7 +12,7 @@ tags:
 
 ![Bootstrap a .NET Core development environment for Linux](bootstrapping_netcore_dev_on_linux.png)
 
-Microsoft .NET Core has great cross-platform support giving a .NET developer the ability to do much of their development on Linux distributions or macOS. In this post, I’ll go through how you can get started and what tools are available to support developers.
+Microsoft .NET Core has great cross-platform support, giving .NET developers the ability to do much of their development on Linux distributions or macOS. In this post, I’ll go through how you can get started and what tools are available to support developers.
 
 <h2>In this post</h2>
 
@@ -24,7 +24,7 @@ One of the things I truly appreciate about working at [Octopus Deploy](https://o
 
 Earlier this year, I decided to make the switch to Linux for my day to day working environment, and I haven’t regretted it. Unix-like operating systems have always been something I prefer, but I have never been able to settle on it at work for development as a .NET developer.
 
-I’ll discuss some of the options for a .NET developer on Linux and show you how I got my stack together with some scripts I use regularly.
+I’ll discuss some of the options for .NET developers on Linux and show you how I got my stack together with some scripts I use regularly.
 
 ## Using containers to manage development time database & logging servers
 
@@ -77,7 +77,7 @@ If you prefer, Microsoft has a rather nice [VS Code extension](https://github.co
 
 ![docker-compose in vs code terminal](docker-compose.png)
 
-Based on this, I created a collection of [convenience scripts](https://github.com/jburger/devenv) to demonstrate some possibilities and I also recorded a [screencast](https://asciinema.org/a/AUXSaRj6hfqQS1QQqflrITrX0) to show how to use them.
+Based on this, I created a collection of [convenience scripts](https://github.com/jburger/devenv) to demonstrate some possibilities, and I recorded a [screencast](https://asciinema.org/a/AUXSaRj6hfqQS1QQqflrITrX0) to show you how to use them.
 
 ### Database management
 
@@ -123,7 +123,7 @@ For simple things, I still stick to Git at the command line, `zsh` has a sweet p
 For dealing with complex trees, I think [GitKraken](https://www.gitkraken.com/) is a pretty slick option, it looks great, performs well, and integrates with GitHub.
 
 ### Installing apps from the command line
-It's common for a Windows developer to swear by [boxstarter](https://boxstarter.org/) and [chocolatey](https://chocolatey.org/) to install their favorite tools. This allows them to keep a script of favorite tools and run them on new machines. You can do the same on Linux.
+It's common for Windows developers to swear by [boxstarter](https://boxstarter.org/) and [chocolatey](https://chocolatey.org/) to install their favorite tools. This allows them to keep a script of favorite tools and run them on new machines. You can do the same on Linux.
 
 Most distributions come with their own [package manager](https://www.linode.com/docs/tools-reference/linux-package-management/) for installing tools, each with their own command interface. There is also [snapd](https://snapcraft.io) which is a cross-distribution option.
 
