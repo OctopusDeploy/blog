@@ -19,26 +19,33 @@ If the majority of your customers are asleep, then that's probably acceptable. B
 
 ## What are rolling deployments?
 
-A rolling deployment is a deployment pattern (also known as an incremental, batched or ramped deployment) where new software is delivered, usually to a small subset of deployment targets at a time, until all of the targets have the updated version of software rolled out.
+A rolling deployment is a deployment pattern (also known as an incremental, batched or ramped deployment) where new software is delivered, usually to a small subset of deployment targets at a time, until all of the targets have the updated version of software rolled out. 
 
-**[IMAGE?]**
+A rolling deployment typically consists of the following process:
 
-### Connection draining
+ Drain the first set of nodes and take them out of the load-balancer pool
+
+![Rolling Deployment: Draining nodes](rolling-deploy-1.png)
+
+ Stop application, deploy new version of application and (optionally) verify deployment successful
+
+ ![Rolling Deployment: Update nodes with new versions](rolling-deploy-2.png)
+
+Once the first nodes have updated successfully, proceed with draining any additional nodes, whilst your new version is now online serving traffic.
+
+ ![Rolling Deployment: Drain remaining nodes in pool](rolling-deploy-3.png)
+
+ Stop the application on the remaining nodes, deploy new version of application and (optionally) verify deployment successful again
+
+ ![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-4.png)
+ 
+ Once the application has been deployed successfully, you now have version 2 of your software running successfully.
+
+![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-5.png)
 
 This incremental approach is often favoured in web applications which sit behind a load balancer, as most load balancers support a concept known as `Connection draining`. This is simply allowing connections to a service to finish naturally, as well as preventing any new connections. 
 
 By performing this draining action, this allows the instances that are selected to be updated to be removed from the available pool, whilst a number remain online serving traffic.
-
-A rolling deployment typically consists of the following steps:
-
-For-each instance:
-
- 1. Take out of load-balancer pool
- 2. Stop application
- 3. Deploy new version of application
- 4. Verify deployment successful
- 5. Start application
- 6. Return into load-balancer pool
 
 :::hint Although the scenario above describes a web application rolling deployment, it's equally possible to achieve rolling deployments for other types of application, providing they are built in a way which supports ending their process safely.
 :::
@@ -61,7 +68,7 @@ Whilst you go about updating a small number of your application instances, the r
 
 ### Controlled Verification
 
-TODO
+_TODO_
 
 ### Parallelism
 
@@ -77,15 +84,15 @@ The following sections show how to perform rolling deployments
 
 ### Kubernetes Rolling updates
 
-TODO
+_TODO_
 
 ### Azure DevOps
 
-TODO
+_TODO_
 
 ### Octopus Rolling deploy
 
-TODO
+_TODO_
 
 ## A word on the database
 
