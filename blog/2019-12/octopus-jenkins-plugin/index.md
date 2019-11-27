@@ -10,15 +10,7 @@ tags:
  - Product
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
-
 We’re excited to launch our official Octopus Deploy [Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) to make it painless to integrate Jenkins builds with Octopus deployments. Octopus has had a Jenkins community plugin for many years maintained by [Brian Adriance](https://github.com/badriance) and other contributors, and Octopus has worked with Brian to take over the plugin and provide official support from our team. We’re indebted to Brian and other contributors for their efforts since the project started in 2015.   Making this an official plugin brings significant advantages, as can keep the plugin up-to-date and add great new features.
-
-:::success
-**Jenkins vs Octopus Deploy**
-
-We’re regularly asked about the differences between Jenkins and Octopus, so we’ve captured our thoughts on the question in this blog post: Jenkins vs Octopus Deploy TODO (/blog/2019-12/jenkins-vs-octopus-deploy/index.md). **TL;DR**: We think they work better together to give you a complete CI/CD pipeline.
-:::
 
 This release brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. It brings integration capabilities, including our work item and build information feature set.
 
