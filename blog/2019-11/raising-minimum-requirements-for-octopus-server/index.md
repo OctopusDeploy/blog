@@ -69,7 +69,7 @@ The driving reason for us is simple: We make heavy use of JSON in our hybrid dat
 3. We could have authored more efficient database queries making Octopus faster, rather than being constrained by the lowest-common denominator.
 4. We could have leveraged new database engine features to make every Octopus installation faster.
 
-We don’t any value progressively rolling from SQL Server 2012 to 2014 to 2016, forcing you to upgrade each time. We think it is time to rip off the proverbial Band-Aid(TM), and jump straight to SQL Server 2017, so we can offer better value and faster turnaround to all of our customers.
+We don’t see any value progressively rolling from SQL Server 2012 to 2014 to 2016, forcing you to upgrade each time. We think it is time to rip off the proverbial Band-Aid(TM), and jump straight to SQL Server 2017, so we can offer better value and faster turnaround to all of our customers.
 
 ## Question: How do I upgrade my database server?
 
