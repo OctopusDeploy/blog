@@ -12,9 +12,9 @@ tags:
 
 ![SQL Server and PowerShell: Practical Examples](sql-server-powershell-examples.png)
 
-One of our goals at Octopus Deploy has always been to help make automated application deployments easy, and application deployments often require database management during the process. My goal in this post, is to provide some common examples of SQL Server database management with PowerShell to make integration into deployments that much more straightforward.
+One of our goals at Octopus Deploy has always been to help make automated application deployments easy, and application deployments often require database management during the process. My goal in this post, is to provide some common examples of SQL Server database management with PowerShell to make integration into deployments much more straightforward.
 
-The source for all of these examples are available on [GitHub](https://github.com/OctopusSamples/sql-server-powershell-examples). If you run into any problems or have suggestions for changes, feel free to post to the GitHub repository’s issue list or send a pull request!
+The source for all of these examples is available on [GitHub](https://github.com/OctopusSamples/sql-server-powershell-examples). If you run into any problems or have suggestions for changes, feel free to post to the GitHub repository’s issue list or send a pull request!
 
 !toc
 
@@ -40,7 +40,7 @@ Uninstall-Module -Name SqlServer
 Install-Module -Name SqlServer
 ```
 
-For more information on installing the **SqlServer** module, please see this MicroSoft doc: [Install SQL Server PowerShell module](https://docs.microsoft.com/en-us/sql/powershell/download-sql-server-ps-module).
+For more information on installing the **SqlServer** module, please see this Microsoft doc: [Install SQL Server PowerShell module](https://docs.microsoft.com/en-us/sql/powershell/download-sql-server-ps-module).
 
 ## Test connectivity to SQL Server
 
@@ -75,11 +75,11 @@ catch
 }
 ```
 
-With the connection tested at the beginning of your deployment, you can move forward knowing  you will can make the calls you need against your SQL Server.
+With the connection tested at the beginning of your deployment, you can move forward knowing you can make the calls you need against your SQL Server.
 
 ## Create SQL Server login
 
-For proper segregation of permissions within your server or instance, you may want to create a new login for your application or associated service. A cmdlet from the Sql Server module will do the trick:
+For proper segregation of permissions within your server or instance, you may want to create a new login for your application or associated service. A cmdlet from the SQL Server module will do the trick:
 
 ```ps
 # To run in a non-interactive mode, such as through an Octopus deployment, you will most likely need to pass the new login credentials as a PSCredential object.
@@ -94,14 +94,14 @@ Add-SqlLogin -ServerInstance YourInstance -LoginPSCredential $loginCred -LoginTy
 
 This cmdlet greatly simplifies the creation of a SQL Server login along with the flexibility of using built-in flags such as `-MustChangePasswordAtNextLogin` or `-ConnectionTimeout.` If you are using this command within an Octopus deployment process, you may find it useful to include the following flags:
 
- - `-Enable` to ensure the login is available later in your deployment.
-  - `-GrantConnectSql` to allow the login to connect to the database engine.
+- `-Enable` to ensure the login is available later in your deployment.
+- `-GrantConnectSql` to allow the login to connect to the database engine.
 
 For more information, see the [Add-SqlLogin reference](https://docs.microsoft.com/en-us/powershell/module/sqlserver/Add-SqlLogin).
 
 ## Create SQL Server database and assign an owner
 
-Surprisingly, Microsoft does not provide a cmdlet out of the box to create a database, so there are two main routes you can follow to get a database up and running without a prior backup. Both are fairly simple. Creating a new, blank database is accomplished with either of the following commands:
+Surprisingly, Microsoft does not provide a cmdlet out of the box to create a database, so there are two main routes you can follow to get a database up and running without a prior backup. Both are fairly simple. Creating a new blank database is accomplished with either of the following commands:
 
 Run straight SQL against your instance to create the database:
 ```ps
@@ -131,7 +131,7 @@ If you *do* have a database backup you would like to restore rather than creatin
 $backupFile = "\\SQLBackups\YourDBBackup.bak"
 Restore-SqlDatabase -ServerInstance YourInstance -Database YourDB -BackupFile $backupFile
 ```
-More information on the **Restore-SqlDatabase** cmdlet can be found in this MicroSoft doc: [Restore-SqlDatabase](https://docs.microsoft.com/en-us/powershell/module/sqlserver/restore-sqldatabase?view=sqlserver-ps).
+More information on the **Restore-SqlDatabase** cmdlet can be found in this Microsoft doc: [Restore-SqlDatabase](https://docs.microsoft.com/en-us/powershell/module/sqlserver/restore-sqldatabase?view=sqlserver-ps).
 
 Now that your database is in place, let’s change the database owner to `NewOwner`:
 
@@ -168,7 +168,7 @@ With the new database in place, perhaps there are changes to settings that need 
 Invoke-Sqlcmd -InputFile .\alter_script.sql -ServerInstance YourInstance -Database YourDB
 ```
 
-Additional `Invoke-Sqlcmd` information can be found at this MicroSoft doc: [Invoke-Sqlcmd cmdlet](https://docs.microsoft.com/en-us/sql/database-engine/invoke-sqlcmd-cmdlet?view=sql-server-2014).
+Additional `Invoke-Sqlcmd` information can be found at this Microsoft doc: [Invoke-Sqlcmd cmdlet](https://docs.microsoft.com/en-us/sql/database-engine/invoke-sqlcmd-cmdlet?view=sql-server-2014).
 
 ## Run inline SQL commands
 Finally, you might need to run some SQL queries to verify the database contains the correct data (a sanity check that everything is well). PowerShell has the ability to run inline SQL queries directly from the console window. Let’s run a quick query to check for the number of rows in a table:
@@ -180,7 +180,7 @@ Invoke-Sqlcmd -ServerInstance YourInstance -Database YourDatabase -Query $rowcou
 
 ## Conclusion
 
-Whether you are automating the configuration of a new database each time you deploy a release from Octopus or running one-time commands against an existing database, PowerShell and the Sql Server module are the right tools for the job.
+Whether you are automating the configuration of a new database each time you deploy a release from Octopus or running one-time commands against an existing database, PowerShell and the SQL Server module are the right tools for the job.
 
 Do you have any additional scenarios or specific questions? Leave a comment here or join us on our [Community Slack](https://octopus.com/slack).
 
