@@ -10,6 +10,8 @@ tags:
  - Engineering
 ---
 
+![Why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud](octopus-cloud-why-kubernetes.png)
+
 We’re publishing a series about our engineering journey with Octopus Cloud. It’s the story of our v1 launch of Octopus Cloud on AWS, our $100K/month AWS bills, MVP’s and testing customer demand, spending 6 months of engineering effort and then running the service at a loss, spending another 9 months rebuilding it from the ground-up, and of all the considerations we made when rebuilding Octopus Cloud v2, including switching from AWS to Azure, going all-in on Kubernetes, and more.
 
 In this post, we look at the compute options available to reduce our costs, increase performance and how we eventually decided to move to Kubernetes, Linux, and .NET Core.
