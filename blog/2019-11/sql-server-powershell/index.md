@@ -14,7 +14,7 @@ tags:
 
 One of our goals at Octopus Deploy has always been to help make automated application deployments easy, and application deployments often require database management during the process. My goal in this post, is to provide some common examples of SQL Server database management with PowerShell to make integration into deployments that much more straightforward.
 
-The source for all of these examples are availabe on [GitHub](https://github.com/OctopusSamples/sql-server-powershell-examples). If you run into any problems or have suggestions for changes, feel free to post to the GitHub repository’s issue list or send a pull request!
+The source for all of these examples are available on [GitHub](https://github.com/OctopusSamples/sql-server-powershell-examples). If you run into any problems or have suggestions for changes, feel free to post to the GitHub repository’s issue list or send a pull request!
 
 !toc
 
