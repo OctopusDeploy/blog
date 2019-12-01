@@ -77,3 +77,40 @@ Writing is hard, and we all have different voices, but we want the experience of
 1. We're not Octo-obsessed.
 
     Octopus isn't the only thing we write about. We love Octopus, and we hope our users do too, but Octopus isn't the only tool that can solve our users' problems, and sometimes, it's not even the right tool, but that shouldn't stop us sharing useful content with our users.
+
+## Self editing
+
+All the posts are edited before we publish them, but the following tips will help you get your post in the best possible shape.
+
+1. Done doesn't mean deployed when it comes to your first draft. 
+
+   The first draft is typically where you'll explore your ideas and make your points. The second and third drafts are where you refine your points and craft a post that people will enjoy reading.
+
+1. Eliminate ambiguity
+
+
+
+
+
+1. Turn on your spell checker.
+
+   Typos happen to the best of us, but there's a direct correlation between the number of silly mistakes in a post and the restraint the editor ;) exercises in regard to the rest of the post.
+
+1. Use Grammarly
+
+   We have a corporate Grammarly account (details are with the software policies). Grammarly's suggestions are right more than they're wrong
+
+1. Review the edits 
+
+
+and question the edits if they don't seem right
+
+
+1. white space is your friend
+
+1. Text to speech
+
+1. Read the post, re-read it, and then read it again.
+
+   When you're happy with the post, read 
+
