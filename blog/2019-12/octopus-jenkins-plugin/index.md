@@ -17,10 +17,10 @@ We’re excited to launch our official Octopus Deploy [Jenkins plugin](https://p
 This release brings the Jenkins plugin to feature parity with our [TeamCity](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration/), [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks), and [Bamboo Server](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview) plugins. It brings integration capabilities, including our work item and build information feature set.
 
 * **[Painless integration of your Jenkins builds and Octopus deployments](/blog/2019-12/octopus-jenkins-plugin/index.md#painless-integration-of-your-jenkins-builds-and-octopus-deployments)**. Configure Jenkins to build and test your application and Octopus to manage your releases and deployments.
-* **[Better visibility: See what’s new in production](/blog/2019-12/octopus-jenkins-plugin/index.md#better-visibility-see-what’s-new-in-production)**. Octopus can surface the changes included in a release and calculate what has changed since your last deployment. This functionality gives you the power to see “What’s New” in production or any other environment.
+* **[Better visibility: See what’s new in production](/blog/2019-12/octopus-jenkins-plugin/index.md#better-visibility-see-whats-new-in-production)**. Octopus can surface the changes included in a release and calculate what has changed since your last deployment. This functionality gives you the power to see “What’s New” in production or any other environment.
 * **[Better communication: Generate and share releases notes automatically](/blog/2019-12/octopus-jenkins-plugin/index.md#better-communication-generate-and-share-releases-notes-automatically)**. Octopus can generate release notes when deploying to your environments like dev, test, or production. Share them with your team, managers, or executives via email, Slack, and more.
 
-[Learn how to install or update the extension](/blog/2019-12/octopus-jenkins-plugin/index.md#how-to-install-jenkins-plugin)
+[Learn how to install or update the extension](/blog/2019-12/octopus-jenkins-plugin/index.md#how-to-install-or-update-the-octopus-deploy-jenkins-plugin)
 
 ## Painless integration of your Jenkins builds and Octopus deployments
 
