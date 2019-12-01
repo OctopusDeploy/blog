@@ -63,7 +63,7 @@ This feature set gives teams confidence and visibility into the changes included
 
 ![Octopus Jenkins Plugin](octopus-deploy-share-release-notes.png "width=600")
 
-Another benefit of our build information and work item integration is unlocking the ability for teams to improve their communication with other teams, managers or customers. Leveraging release details, including associated issues, Octopus enables teams to generate customized release notes and share them as per their needs. This could be a slack message to an operations teams to keep them in the loop or an email to customers sharing the latest features included a new release.
+Another benefit of our build information and work item integration is unlocking the ability for teams to improve their communication with other teams, managers, or customers. Leveraging release details, including associated issues, Octopus enables teams to generate customized release notes and share them as per their needs. This could be a slack message to an operations teams to keep them in the loop or an email to customers sharing the latest features included a new release.
 
 This functionality eliminates manual collection and sharing of release notes.
 
