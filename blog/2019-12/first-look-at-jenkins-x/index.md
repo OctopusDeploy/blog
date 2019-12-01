@@ -2,13 +2,15 @@
 title: A first look at Jenkins X
 description: Jenkins X is a complete mental shift from the traditional role of a CI server. In this post, we take a high-level look at Jenkins X and highlight why you need to appreciate it on its own terms.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2019-12-04
-metaImage:
-bannerImage:
+metaImage: first-look-jenkins-x.png
+bannerImage: first-look-jenkins-x.png
 tags:
  - DevOps
 ---
+
+![Jenkins X first look](first-look-jenkins-x.png)
 
 As a free and open source build server, Jenkins is [used by millions](https://www.cloudbees.com/press/jenkins-community-announces-record-growth-and-innovation-2017), so most developers have either used or at least heard about Jenkins. Like most build servers, Jenkins is typically installed on a server to consume source code, execute a build process on build agents, and either deploy or publish the resulting artifact.
 
