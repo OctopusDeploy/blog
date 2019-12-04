@@ -13,7 +13,7 @@ tags:
 ![Rolling Deployments](rolling-deployments.png)
 
 Whilst you can deploy new versions of your application, such as a web site by bringing the whole site offline, the question is, what's the impact?
-If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? Today, it's increasingly common to expect systems to always be online and there are a few deployment patterns you can use to achieve this. In this article I'll discuss one of these patterns in more depth; Rolling deployments.
+If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? Today, it's increasingly common to expect systems to always be online and there are a few deployment patterns you can use to achieve this. In this article I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of doing it.
 
 !toc
 
@@ -54,17 +54,17 @@ For example, Octopus Deploy's [High Availability](https://octopus.com/docs/admin
 
 ## Why are they useful?
 
-So why use rolling deployments over other patterns (canary, blue/green)? Well, rolling deployments offer the following benefits
+So why use rolling deployments over other patterns (canary, blue/green)? Well, rolling deployments offer the following benefits:
 
 ### Incremental update
  
 New versions of your application are rolled-out incrementally. This allows you to verify that it's working as more traffic is directed to your newly deployed software.
 
-The staggered approach to roll-outs also means that in the unlikely event that you need to initiate a rollback, you can do that in a controlled, incremental way.
+In the unlikely event that you need to initiate a rollback, you can do so in a controlled manner.
 
 ### Keeping the lights on
 
-Whilst you go about updating a small number of your application instances, the rest continue to serve requests. This means there is no downtime for your application, as it is available for your users throughout the deployment.
+Whilst you go about updating a small number of your application instances, the rest continue to serve requests. This means there is no downtime for your application, as it's available for your users throughout the deployment.
 
 ### Controlled Verification
 
@@ -72,7 +72,7 @@ _TODO_
 
 ### Parallelism
 
-Depending on what's performing the rolling deployment, there are often parameters to allow you to control the number of concurrent instances that are updated at any one time. Further deployments won't start until a previous deployment has finished.
+You can _usually_ control the number of concurrent instances that are deployed to at any one time. Further deployments won't start until a previous deployment has finished.
 
 :::hint
 You can use the `Window size` option within an Octopus rolling deployment to control how many deployment targets can be deployed to at once.
@@ -80,7 +80,9 @@ You can use the `Window size` option within an Octopus rolling deployment to con
 
 ## Rolling deployment patterns [HOWTO]
 
-The following sections show how to perform rolling deployments.
+How would you go about implementing a rolling deployment in practise? I've spent some time finding out using various methods. Read on to find out more
+
+### Docker rolling application updates
 
 ### Kubernetes Rolling updates
 
@@ -100,13 +102,13 @@ _TODO_
 
 ## A word on the database
 
-The proverbial elephant in the room I haven't discussed yet, is the database for your application. Performing rolling deployments with a central shared database can be tricky, but not impossible. 
-If you wanted to perform rolling deployments with database changes involved, then I'd recommend deploying the database first. You would need also need to make any changes to your database backwards compatible with previous versions of code you have deployed.
+The elephant in the room I haven't discussed yet, is the database for your application. Performing rolling deployments with a database can sometimes be tricky, but not impossible. The devil is in the detail.
+If you want to perform rolling deployments with database changes involved, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
 
-We have a series of posts on [database deployments](http://octopus.com/database-deployments) that go into more detail.
+We have a series of posts on [database deployments](http://octopus.com/database-deployments) that go into more detail on this.
 
 ## Wrapping up
 
 No matter which tool you are using, rolling deployments is just one pattern available in your toolset to optimise deployment of your software. But with an incremental approach, it allows you to keep your applications online whilst slowly rolling out newer versions of your software, making it a favourite of mine for minimal disruption.
 
-Feel free to leave us a comment, and let us know what you think about rolling deployments!
+Feel free to leave a comment, and let us know what you think about rolling deployments!
