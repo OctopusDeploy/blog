@@ -45,9 +45,9 @@ A typical process looks something like this:
 
 This incremental approach is often favoured in web applications which sit behind a load balancer, as most load balancers support a concept known as `Connection draining`. This is simply allowing connections to a service to finish naturally, as well as preventing any new connections to be established. 
 
-By performing this draining action, this allows the instances that are selected to be updated to be removed from the available pool, whilst a number remain online serving traffic.
+By performing this action, instances which are selected to be updated, can be removed from the available pool after they have finished their work, whilst a number remain online serving traffic.
 
-:::hint Although the scenario above describes a web application rolling deployment, it's equally possible to achieve rolling deployments for other types of application, providing they are built in a way which supports ending their process safely.
+:::hint Although the scenario above describes a web application rolling deployment, it's possible to achieve rolling deployments for other types of application, providing they are built in a way which supports ending their process safely.
 :::
 
 For example, Octopus Deploy's [High Availability](https://octopus.com/docs/administration/high-availability) configuration also has a [drain](https://octopus.com/docs/administration/high-availability/managing-high-availability-nodes#ManagingHighAvailabilityNodes-Drain) option, which prevents any new tasks from executing, and finishes up any tasks it's currently executing until idle. Features like draining allow for the safe termination of a process, which can then be updated and brought back online. 
@@ -62,13 +62,13 @@ New versions of your application are rolled-out incrementally. This allows you t
 
 In the unlikely event that you need to initiate a rollback, you can do so in a controlled manner.
 
-### Keeping the lights on
-
-Whilst you go about updating a small number of your application instances, the rest continue to serve requests. This means there is no downtime for your application, as it's available for your users throughout the deployment.
-
 ### Controlled Verification
 
 _TODO_
+
+### Keeping the lights on
+
+Whilst you go about updating a small number of your application instances, the rest continue to serve requests. This means there is no downtime for your application, as it's available for your users throughout the deployment.
 
 ### Parallelism
 
@@ -78,9 +78,9 @@ You can _usually_ control the number of concurrent instances that are deployed t
 You can use the `Window size` option within an Octopus rolling deployment to control how many deployment targets can be deployed to at once.
 :::
 
-## Rolling deployment patterns [HOWTO]
+## Rolling deployment patterns in Practise
 
-How would you go about implementing a rolling deployment in practise? I've spent some time finding out using various methods. Read on to find out more
+To demonstrate the different approaches for rolling deployments, we have a very simple .NET Core 3.1 application which will display a HTML page. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp). If you run into any problems or have suggestions for changes, feel free to post to the repository's issue list or send us a pull request!
 
 ### Docker rolling application updates
 
@@ -102,7 +102,7 @@ _TODO_
 
 ## A word on the database
 
-The elephant in the room I haven't discussed yet, is the database for your application. Performing rolling deployments with a database can sometimes be tricky, but not impossible. The devil is in the detail.
+The elephant in the room I haven't discussed yet, is the database. Performing rolling deployments which involve some persistent storage such as a database can sometimes be tricky, though not impossible. The devil is in the detail.
 If you want to perform rolling deployments with database changes involved, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
 
 We have a series of posts on [database deployments](http://octopus.com/database-deployments) that go into more detail on this.
