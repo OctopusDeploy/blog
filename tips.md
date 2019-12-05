@@ -23,31 +23,31 @@ Writing is hard, and we all have different voices, but we want the experience of
 1. We're direct and honest, and we don't use hyperbole or marketing-speak.
 
     Our users are educated professionals, who prefer directness and honesty so they can decide for themselves if something is useful or interesting. They're (rightly) suspicious of anything that sounds like marketing-speak, and they want to know the details. We don't use hyperbole or try to hoodwink people into reading on. This applies throughout every post, but clearly explaining the topic in the opening sentences lets readers decide if they care enough to read on. Even if one topic doesn't appeal to them, by not wasting their time, they're more likely to read on the next time they see a post from us that does appeal, however, if we did waste their time, it's unlikely they'd return at all.
-    
+
 1. The posts we write have well-defined topics.
 
     After reading one of our posts, we want our readers to feel like they learned something useful. Our posts help readers solve specific problems, tell a story, or otherwise inform them. The better you define your topic and the problem you want to solve before you start writing, the better the chances are your post will be useful, direct, and informative. Having a well-defined topic helps keep us on a direct path from Problem to Solution without wandering off into side stories or anecdotes that don't directly support the solution being presented.
-    
+
 1. We're clear and concise.
 
     We remove the obstacles between the reader and our meaning. This means editing out unnecessary sentences, clauses, and words that don't directly convey meaning. Often the topics we write about are complicated, and the potential for confusion is high; because of this, we opt for simple sentence structures that don't place additional cognitive load on the reader.
-    
+
     For instance, the first sentence in this section originally read:
 
     > We try to remove as many of the obstacles between the reader and their understanding as we can.
-    
+
     I revised it to:
-    
+
     > We remove the obstacles between the reader and our meaning.
-    
+
     There are fewer words to process and trip over in the second version.
 
-    Being clear and concise in a first draft is difficult, so sometimes it's best to get the first draft down, and then go back through the text and delete anything that can be deleted. 
+    Being clear and concise in a first draft is difficult, so sometimes it's best to get the first draft down, and then go back through the text and delete anything that can be deleted.
 
     A simple rule here is:
-     
+
     > If something can be deleted without altering the meaning or tone of the text, it probably should be deleted.
-    
+
 1. We structure posts logically so they are easy to follow.
 
     We want our audience to read our posts straight through without needing to go back or read ahead to understand the current point. This can be more work for us, but by structuring our posts in a logical way we're not asking more of our readers.
@@ -71,9 +71,9 @@ Writing is hard, and we all have different voices, but we want the experience of
     **Conclusion**: Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
 
 1. We're writing for an international audience.
-    
+
     Our customers are everywhere. Some of them are native English speakers, but many of them are not. We avoid colloquialisms that would likely confuse them, and we use US English.
-   
+
 1. We're not Octo-obsessed.
 
     Octopus isn't the only thing we write about. We love Octopus, and we hope our users do too, but Octopus isn't the only tool that can solve our users' problems, and sometimes, it's not even the right tool, but that shouldn't stop us sharing useful content with our users.
@@ -82,7 +82,7 @@ Writing is hard, and we all have different voices, but we want the experience of
 
 All the posts are edited before we publish them, but the following tips will help you get your post in the best possible shape.
 
-1. Done doesn't mean deployed when it comes to your first draft. 
+1. Done doesn't mean deployed when it comes to your first draft.
 
    The first draft is typically where you'll explore your ideas and make your points. The second and third drafts are where you refine your points and craft a post that people will enjoy reading.
 
@@ -100,7 +100,7 @@ All the posts are edited before we publish them, but the following tips will hel
 
    We have a corporate Grammarly account (details are with the software policies). Grammarly's suggestions are right more than they're wrong
 
-1. Review the edits 
+1. Review the edits
 
 
 and question the edits if they don't seem right
@@ -110,7 +110,10 @@ and question the edits if they don't seem right
 
 1. Text to speech
 
+1. Be specific
+
+look for it, they, them and be more specific.
+
 1. Read the post, re-read it, and then read it again.
 
-   When you're happy with the post, read 
-
+   When you're happy with the post, read
