@@ -80,9 +80,31 @@ You can use the `Window size` option within an Octopus rolling deployment to con
 
 ## Rolling deployment patterns in Practise
 
-To demonstrate the different approaches for rolling deployments, we have a very simple .NET Core 3.1 application which will display a HTML page. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp). If you run into any problems or have suggestions for changes, feel free to post to the repository's issue list or send us a pull request!
+To demonstrate the different approaches for rolling deployments, we have a very simple .NET Core 3.1 application which will display a web page. 
+
+The HTML for the section I'm interested in is shown below
+
+```html
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>If you are seeing this, then <strong>Congratulations!</strong> 
+    <br/>You've got the example application running. </p>
+</div>
+```
+We'll make changes to the text and incrementally roll them out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
 
 ### Docker rolling application updates
+
+Firstly, to see the Docker image of this running standalone, we'll run the Docker image locally with the following command:
+
+```
+docker run -p 5001:80 harrisonmeister/rolling-deploy-example:0.0.1
+```
+
+Unsurprisingly, running this Docker image locally displays the web page:
+
+![](local-docker.png)
+
 
 ### Kubernetes Rolling updates
 
