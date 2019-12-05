@@ -98,7 +98,7 @@ We'll make changes to the text and incrementally roll them out using different t
 Firstly, to see the Docker image of this running standalone, we'll run the Docker image locally with the following command:
 
 ```
-docker run -p 5001:80 harrisonmeister/rolling-deploy-example:0.0.1
+docker run -p 5001:5001 harrisonmeister/rolling-deploy-example:0.0.1
 ```
 
 Unsurprisingly, running this Docker image locally displays the web page:
