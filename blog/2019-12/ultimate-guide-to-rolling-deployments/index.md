@@ -1,6 +1,6 @@
 ---
 title: The Ultimate Guide to rolling deployments
-description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and how to use it.
+description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and how to do this with different tools.
 author: mark.harrison@octopus.com
 visibility: private
 published: 2020-02-01
@@ -13,13 +13,13 @@ tags:
 ![Rolling Deployments](rolling-deployments.png)
 
 Whilst you can deploy new versions of your application, such as a web site by bringing the whole site offline, the question is, what's the impact?
-If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? Today, it's increasingly common to expect systems to always be online and there are a few deployment patterns you can use to achieve this. In this article I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of doing it.
+If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? Today, it's increasingly common to expect systems to always be online and there are a few deployment patterns you can use to achieve this. In this article I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using different tools.
 
 !toc
 
 ## What are rolling deployments?
 
-A rolling deployment is a deployment pattern (also known as an incremental, batched or ramped deployment) where new software is delivered, usually to a small subset of deployment targets at a time, until all of the targets have the updated version of software rolled out. 
+A rolling deployment is a deployment pattern (also known as an incremental, batched or ramped deployment) where new software is delivered, usually to a small subset of deployment targets at a time, until all of the targets have the updated version of software rolled out.
 
 A typical process looks something like this:
 
@@ -135,7 +135,7 @@ Let's unpick what we are asking of Docker here:
 - Lastly, we specify the image to use `harrisonmeister/rolling-deploy-example:0.0.1`
 
 :::hint
-You can also specify the attributes for a service in a `docker-compose` file.
+You can also specify the attributes for a service in a `docker-compose` file. 
 :::
 
 Executing this results in our service being deployed to Docker Swarm with 3 instances.
