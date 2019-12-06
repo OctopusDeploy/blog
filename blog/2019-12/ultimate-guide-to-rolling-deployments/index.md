@@ -91,11 +91,11 @@ The HTML for the section I'm interested in is shown below
     <br/>You've got the example application running. </p>
 </div>
 ```
-We'll make changes to the text and incrementally roll them out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
+We'll make changes to the text and incrementally roll a new version out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
 
 ### Docker rolling application updates
 
-Firstly, to see the Docker image of this running standalone, we'll run the Docker image locally with the following command:
+Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
 
 ```
 docker run -p 5001:5001 harrisonmeister/rolling-deploy-example:0.0.1
@@ -103,8 +103,46 @@ docker run -p 5001:5001 harrisonmeister/rolling-deploy-example:0.0.1
 
 Unsurprisingly, running this Docker image locally displays the web page:
 
-![](local-docker.png)
+![](docker-run.png "width=500")
 
+To deploy more than one instance of our container, we have to create a Docker [service](https://docs.docker.com/engine/reference/commandline/service) which uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator.
+
+```
+docker service create 
+ --name rolling-deploy-svc 
+ --replicas 3
+ --update-delay 10s
+ --update-parallelism 1 
+ harrisonmeister/rolling-deploy-example:0.0.1
+```
+:::warning
+When running the command for the first time, you may receive a warning of `This node is not a swarm manager` (just as I did!). To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
+:::
+
+Let's unpick what we are asking of Docker here:
+- The `--name` flag is pretty self explanatory. 
+- The `--replicas` flag controls the number of containers we want (3).
+- The `--update-delay` configures the time delay (10s) between updates to a service task
+- The `--update-parallelism` controls the maximum number of service tasks that Docker will schedule simultaneously (1).
+- Lastly, we specify the image to use `harrisonmeister/rolling-deploy-example:0.0.1`
+
+:::hint
+You can also specify the attributes for a service in a `docker-compose` file.
+:::
+
+Executing this results in our service being deployed to Docker Swarm with 3 instances.
+
+![](docker-service-create.png "width=500")
+
+We can also check our service has our configuration by running the command:
+
+```
+docker service inspect rolling-deploy-svc --pretty
+```
+
+The result of this shows we have our desired `UpdateConfig`
+
+![](docker-service-inspect.png "width=500")
 
 ### Kubernetes Rolling updates
 
