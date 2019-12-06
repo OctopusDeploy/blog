@@ -102,7 +102,7 @@ We'll make changes to the ``AppVersion`` and roll this out using different tools
 ### Docker rolling application updates
 
 :::success
-For the sake of simplicity, I am doing this exercise from the command line. But there are production-ready setups to automate this which feature the definition of your services in either a `Docker Compose` or `Stack` files.
+For the sake of simplicity, I am doing this exercise from the command line. But there are production-ready setups to automate this, which feature the definition of your services in either a `Docker Compose` or `Stack` files.
 :::
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
