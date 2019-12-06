@@ -162,13 +162,17 @@ Docker runs the update to each container, 1 task at a time just as we have confi
 
 ![](docker-service-update-1.png "width=500")
 
-Once the first task is complete, it moves onto task 2
+Once the first task is complete, it moves onto task 2:
 
 ![](docker-service-update-2.png "width=500")
 
 Until all of the tasks to update the containers to `v0.0.2` is complete.
 
 ![](docker-service-update-3.png "width=500")
+
+Then browsing to the website shows the text which applies for `v0.0.2`
+
+![](docker-service-v0.0.2.png "width=500")
 
 ### Kubernetes Rolling updates
 
