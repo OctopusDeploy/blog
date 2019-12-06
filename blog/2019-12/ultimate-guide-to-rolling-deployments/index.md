@@ -1,6 +1,6 @@
 ---
 title: The Ultimate Guide to rolling deployments
-description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and how to do this with different tools.
+description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and practical examples of how to do this with different tools.
 author: mark.harrison@octopus.com
 visibility: private
 published: 2020-02-01
@@ -12,8 +12,10 @@ tags:
 
 ![Rolling Deployments](rolling-deployments.png)
 
-Whilst you can deploy new versions of your application, such as a web site by bringing the whole site offline, the question is, what's the impact?
-If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? Today, it's increasingly common to expect systems to always be online and there are a few deployment patterns you can use to achieve this. In this article I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using different tools.
+When tasked with deploying a new version of your application, such as a web site, I've often seen the approach where the entire site has been taken offline to accommodate the update. 
+If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? 
+
+Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using a number of different tools.
 
 !toc
 
@@ -58,13 +60,9 @@ So why use rolling deployments over other patterns (canary, blue/green)? Well, r
 
 ### Incremental update
  
-New versions of your application are rolled-out incrementally. This allows you to verify that it's working as more traffic is directed to your newly deployed software.
+New versions of your application are rolled-out incrementally. This allows you to verify that it's working, for example, by running health checks or tests before moving on to the next batch of updates.
 
-In the unlikely event that you need to initiate a rollback, you can do so in a controlled manner.
-
-### Controlled Verification
-
-_TODO_
+In the event that you need to initiate a rollback, you can also do this in a safe, controlled manner.
 
 ### Keeping the lights on
 
@@ -72,7 +70,7 @@ Whilst you go about updating a small number of your application instances, the r
 
 ### Parallelism
 
-You can _usually_ control the number of concurrent instances that are deployed to at any one time. Further deployments won't start until a previous deployment has finished.
+You can usually control the number of concurrent instances that are deployed to at any one time. Further deployments won't start until a previous deployment has finished.
 
 :::hint
 You can use the `Window size` option within an Octopus rolling deployment to control how many deployment targets can be deployed to at once.
@@ -97,6 +95,7 @@ The HTML for the section I'm interested in is shown below
     }
 </div>
 ```
+
 We'll make changes to the ``AppVersion`` and roll this out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
 
 ### Docker rolling application updates
@@ -178,7 +177,11 @@ Then browsing to the website shows the text which applies for `v0.0.2`
 
 ![](docker-service-v0.0.2.png "width=500")
 
+As you can see, it doesn't take much setup to get rolling deployments working in Docker!
+
 ### Kubernetes Rolling updates
+
+Rolling deployments in Kubernetes is done with `Rolling Updates`. A Pods instances will be updated incrementally with new ones. It supports both a max number (or percentage) of pods to be unavailable during an update, as well as a max number of new Pods that can be created. In addition to this Kubernetes has a handy built-in feature to allow updates to be reverted to a previous version. 
 
 _TODO_
 
