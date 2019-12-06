@@ -129,7 +129,7 @@ When running the command for the first time, you may receive a warning of `This 
 Let's unpick what we are asking of Docker here:
 - The `--name` is pretty self explanatory. 
 - The `--replicas` flag controls the number of containers we want (3).
-- The `--publish published=5001,target=5001` specifies we wish to access the service on 5001 using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service).
+- The `--publish published=5001,target=5001` specifies we wish to access the service on port 5001 using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service).
 - The `--update-delay` configures the time delay (10s) between updates to a service task.
 - The `--update-parallelism` controls the maximum number of service tasks that Docker will schedule simultaneously (1).
 - Lastly, we specify the image to use `harrisonmeister/rolling-deploy-example:0.0.1`
@@ -166,7 +166,7 @@ Once the first task is complete, it moves onto task 2
 
 ![](docker-service-update-2.png "width=500")
 
-Until all of the tasks to update the containers to `v0.0.2` is complete
+Until all of the tasks to update the containers to `v0.0.2` is complete.
 
 ![](docker-service-update-3.png "width=500")
 
