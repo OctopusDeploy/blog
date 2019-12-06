@@ -87,11 +87,17 @@ The HTML for the section I'm interested in is shown below
 ```html
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>If you are seeing this, then <strong>Congratulations!</strong> 
-    <br/>You've got the example application running. </p>
+    <p>If you are seeing this, then <strong>Congratulations!</strong> <br/> You've got the example application running. </p>
+    
+    @if(Settings.Value.AppVersion == "0.0.2") {
+        <p>v0.0.2 of the application comes with this text </p>
+    }
+    @if(Settings.Value.AppVersion == "0.0.3") {
+        <p>But don't miss out on v0.0.3 of the application which comes with this text! </p>
+    }
 </div>
 ```
-We'll make changes to the text and incrementally roll a new version out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
+We'll make changes to the ``AppVersion`` and roll this out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
 
 ### Docker rolling application updates
 
@@ -142,9 +148,27 @@ We can also check our service has the correct update configuration by running th
 docker service inspect rolling-deploy-svc --pretty
 ```
 
-The result of this shows we have our desired `UpdateConfig`
+The result of this shows we have our desired `UpdateConfig` 
 
 ![](docker-service-inspect.png "width=500")
+
+Now we can update the container image for `harrisonmeister/rolling-deploy-example` to `v0.0.2` by running the following command:
+
+```
+docker service update rolling-deploy-svc --image harrisonmeister/rolling-deploy-example:0.0.2
+```
+
+Docker runs the update to each container, 1 task at a time just as we have configured it to:
+
+![](docker-service-update-1.png "width=500")
+
+Once the first task is complete, it moves onto task 2
+
+![](docker-service-update-2.png "width=500")
+
+Until all of the tasks to update the containers to `v0.0.2` is complete
+
+![](docker-service-update-3.png "width=500")
 
 ### Kubernetes Rolling updates
 
