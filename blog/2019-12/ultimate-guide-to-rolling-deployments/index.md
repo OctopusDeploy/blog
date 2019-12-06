@@ -111,6 +111,7 @@ To deploy more than one instance of our container, we have to create a Docker [s
 docker service create 
  --name rolling-deploy-svc 
  --replicas 3
+ --publish published=5001,target=5001
  --update-delay 10s
  --update-parallelism 1 
  harrisonmeister/rolling-deploy-example:0.0.1
@@ -120,9 +121,10 @@ When running the command for the first time, you may receive a warning of `This 
 :::
 
 Let's unpick what we are asking of Docker here:
-- The `--name` flag is pretty self explanatory. 
+- The `--name` is pretty self explanatory. 
 - The `--replicas` flag controls the number of containers we want (3).
-- The `--update-delay` configures the time delay (10s) between updates to a service task
+- The `--publish published=5001,target=5001` specifies we wish to access the service on 5001 using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service).
+- The `--update-delay` configures the time delay (10s) between updates to a service task.
 - The `--update-parallelism` controls the maximum number of service tasks that Docker will schedule simultaneously (1).
 - Lastly, we specify the image to use `harrisonmeister/rolling-deploy-example:0.0.1`
 
@@ -134,7 +136,7 @@ Executing this results in our service being deployed to Docker Swarm with 3 inst
 
 ![](docker-service-create.png "width=500")
 
-We can also check our service has our configuration by running the command:
+We can also check our service has the correct update configuration by running the command:
 
 ```
 docker service inspect rolling-deploy-svc --pretty
