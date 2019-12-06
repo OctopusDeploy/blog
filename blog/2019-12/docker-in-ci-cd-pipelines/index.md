@@ -3,12 +3,14 @@ title: "Beyond Hello World: Docker containers in a CI/CD pipeline"
 description: Demonstrating how to incorporate Docker containers in a CI/CD pipeline.
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage:
-metaImage:
-published: 2020-10-23
+bannerImage: docker-in-a-ci-cd-pipeline.png
+metaImage: docker-in-a-ci-cd-pipeline.png
+published: 2019-12-10
 tags:
- - Docker
+ - DevOps
 ---
+
+![Docker containers in a CI/CD pipeline](docker-in-a-ci-cd-pipeline.png)
 
 In a previous post, I showed you how to create Docker container images for the OctoPetShop application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (CI/CD) pipeline. In this post, we cover:
 

@@ -1,14 +1,16 @@
 ---
-title: "Beyond Hello World: Containerizing your first application"
-description: Demonstrating how to make a .NET core application a Docker container
+title: "Beyond Hello World: Containerizing a real-world application"
+description: Demonstrating how to containerize a real-world .NET Core web application, with web services (micro services) and databases.
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage:
-metaImage:
-published: 2010-11-26
+bannerImage: containerize-a-real-world-application.png
+metaImage: containerize-a-real-world-application.png
+published: 2019-12-09
 tags:
  - DevOps
 ---
+
+![Containerizing a real-world application](containerize-a-real-world-application.png)
 
 Designing your application to run in a container has become quite popular, but where do you start?  How do you take an existing application and make it container compatible?  In this post, I aim to demystify what it means to containerize your application.
 
