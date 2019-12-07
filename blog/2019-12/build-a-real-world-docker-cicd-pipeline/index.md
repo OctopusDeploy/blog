@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: docker-in-a-ci-cd-pipeline.png
 metaImage: docker-in-a-ci-cd-pipeline.png
-published: 2019-12-10
+published: 2019-12-11
 tags:
  - DevOps
 ---
