@@ -2,7 +2,7 @@
 title: "Beyond Hello World: Docker containers in a CI/CD pipeline"
 description: Demonstrating how to incorporate Docker containers in a CI/CD pipeline.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 bannerImage: docker-in-a-ci-cd-pipeline.png
 metaImage: docker-in-a-ci-cd-pipeline.png
 published: 2019-12-10

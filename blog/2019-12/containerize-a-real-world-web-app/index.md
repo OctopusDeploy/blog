@@ -1,8 +1,8 @@
 ---
-title: "Beyond Hello World: Containerizing a real-world application"
+title: "Beyond Hello World: Containerizing a real-world web application"
 description: Demonstrating how to containerize a real-world .NET Core web application, with web services (micro services) and databases.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 bannerImage: containerize-a-real-world-application.png
 metaImage: containerize-a-real-world-application.png
 published: 2019-12-09
@@ -10,14 +10,14 @@ tags:
  - DevOps
 ---
 
-![Containerizing a real-world application](containerize-a-real-world-application.png)
+![Containerizing a real-world web application](containerize-a-real-world-application.png)
 
 Designing your application to run in a container has become quite popular, but where do you start?  How do you take an existing application and make it container compatible?  In this post, I aim to demystify what it means to containerize your application.
 
-## Containers
+## What is a Container? What is Containerization?
 Similar to VMs, containers have their own RAM, CPU, and filesystem.  However, containers rely on the host operating system (OS) for a lot of their base functionality, which makes them lightweight and portable.  Where a VM requires its own OS and all of the specialized components for an application to be installed, a container bundles the required components for the application to function into what is known as an `image`.  These images are completely self-contained and immutable, meaning they cannot be modified during their life.  If an update needs to be made to a container, any running instances must be destroyed before being replaced by the new version.  This can be a problem if the container needs to retain any data (such as a database), though, there are ways to persist data when a container is destroyed.
 
-## Docker
+## What is Docker? How does it fit in the container world?
 The most popular container technology is Docker.  Docker is an engine installed on either Windows or Linux that uses OS-level virtualization to run containers. At the time of this writing, containers are built for either Windows or Linux and are not cross-platform.  A hypervisor/virtual machine (VM) architecture looks like this:
 NOTE: a hypervisor is the technology that runs VMs such as Windows Hyper-V or VMWare ESXi.
 
