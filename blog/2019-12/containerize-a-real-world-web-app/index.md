@@ -12,6 +12,13 @@ tags:
 
 ![Containerizing a real-world web application](containerize-a-real-world-application.png)
 
+Docker and containers are excellent technologies to have in your DevOps tool-belt. This blog series covers how to use them with a real-world application.
+
+- **Beyond Hello World: Containerizing a real-world web application**
+- [Beyond Hello World: Building a real-world Docker container CI/CD pipeline](/blog/2019-12/containerize-a-real-world-web-app/index.md)
+
+---
+
 Designing your application to run in a container has become quite popular, but where do you start?  How do you take an existing application and make it container compatible?  In this post, I aim to demystify what it means to containerize your application.
 
 ## What is a Container? What is Containerization?

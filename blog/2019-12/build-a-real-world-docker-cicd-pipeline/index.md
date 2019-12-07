@@ -1,6 +1,6 @@
 ---
-title: "Beyond Hello World: Building a real world Docker container CI/CD pipeline"
-description: Demonstrating how to incorporate Docker containers in a CI/CD pipeline.
+title: "Beyond Hello World: Building a real-world Docker container CI/CD pipeline"
+description: Demonstrating how to incorporate Docker containers in the CI/CD pipeline for a real-world web application with web services and a database project.
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: docker-in-a-ci-cd-pipeline.png
@@ -10,7 +10,14 @@ tags:
  - DevOps
 ---
 
-![Docker containers in a CI/CD pipeline](docker-in-a-ci-cd-pipeline.png)
+![Building a real-world Docker container CI/CD pipeline](docker-in-a-ci-cd-pipeline.png)
+
+Docker and containers are excellent technologies to have in your DevOps tool-belt. This blog series covers how to use them with a real-world application.
+
+- [Beyond Hello World: Containerizing a real-world web application]()
+- **Beyond Hello World: Building a real-world Docker container CI/CD pipeline**
+
+---
 
 In a previous post, I showed you how to create Docker container images for the OctoPetShop application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (CI/CD) pipeline. In this post, we cover:
 
