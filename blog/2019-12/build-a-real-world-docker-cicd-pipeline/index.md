@@ -1,5 +1,5 @@
 ---
-title: "Beyond Hello World: Docker containers in a CI/CD pipeline"
+title: "Beyond Hello World: Building a real world Docker container CI/CD pipeline"
 description: Demonstrating how to incorporate Docker containers in a CI/CD pipeline.
 author: shawn.sesna@octopus.com
 visibility: public
