@@ -73,7 +73,7 @@ Choose **Docker Registry** from the drop-down and fill in the username and passw
 
 With that bit of housekeeping out of the way, we can proceed with our build definition.
 
-### Build definition
+### Crafting the build definition
 After the project has been created, we can create a new build definition that will perform our Docker build operation.  This build definition needs to perform the following steps:
 - Build OctoPetShop web front-end.
 - Build OctoPetShop product service.
@@ -111,7 +111,7 @@ For docker images, it’s considered best practice to tag your image with the `D
 
 We’ll add three more steps just like this one for product service, shopping cart service, and database.
 
-The last step we’ll add is the step that pushes our built images to the Docker Hub.  For this step, we’ll fill in the following:
+The last step we’ll add is the step that pushes our built images (i.e. execute a Docker push command) to Docker Hub.  For this step, we’ll fill in the following:
 - Runner type: `Docker`
 - Docker command: `push`
 - Image name:tag
@@ -155,7 +155,7 @@ Test the feed to make sure Octopus can log into Docker Hub:
 
 With our external feed configured, we can now define our steps.
 
-### Octopus Deploy project
+### Crafting the Octopus Deploy project
 
 To create a new project, click on the **Projects** tab, and then click the **ADD PROJECT** button:
 
