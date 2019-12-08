@@ -252,8 +252,8 @@ If we now navigate to the server we just deployed to, we should see our OctoPetS
 ## Completing the CI/CD pipeline
 So far we’ve done the CI and the CD portions, but we’ve not yet connected them together.  To fit these pieces together, we go back to our TeamCity server.
 
-### Install the Octopus Deploy Plugin
-First, we need to go to [https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration) and download the Octopus Deploy plugin.
+### Install the Octopus Deploy plugin
+First, we need to navigate to the [Octopus Deploy plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration) and download the Octopus Deploy plugin.
 
 After that has been downloaded, go to {{Administration,Plugins List}} in our TeamCity server.  From here, we’ll click on the **Upload plugin zip** button to add the plugin:
 
