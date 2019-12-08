@@ -19,15 +19,13 @@ Docker and containers are excellent technologies to have in your DevOps tool-bel
 
 ---
 
-In a previous post, I showed you how to create Docker container images for the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (CI/CD) pipeline. In this post, we cover:
+In the last post, I showed you how to create Docker container images for the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application. In this post, I take it further by including the images in a CI/CD pipeline. We cover the steps to configure continuous integration with JetBrain's TeamCity and configure continous delivery with Octopus Deploy.
 
-- Configuring a TeamCity build agent to build Docker images.
-- Creating a build definition to build our Docker images.
-- Uploading our Docker images to Docker Hub.
-- Creating an Octopus Deploy project.
-- Deploying our containers to a machine running Docker.
+<h2>In this post</h2>
 
-## Configuring the Build server and Continous Integration
+!toc
+
+## Configuring continous integration with JetBrain's TeamCity 
 
 Continuous Integration happens on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as source code commits or a specific time of day.  For our build server, we’ll be performing the following tasks:
 
@@ -126,7 +124,7 @@ For the push step, we specify all of the images that were built in steps 1-4 and
 
 Congratulations!  We just finished the CI portion of this article.  The only thing left to do is to add a trigger so that when someone commits to source control, a build will automatically execute.
 
-## Octopus Deploy
+## Configuring continous delivery with Octopus Deploy
 For the CD portion of this article, we’ll use Octopus Deploy.  Within Octopus, we’ll do the following:
 - Add Docker Hub as an external feed.
 - Create a new project.
