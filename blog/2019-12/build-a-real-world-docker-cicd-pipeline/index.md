@@ -27,19 +27,15 @@ In a previous post, I showed you how to create Docker container images for the [
 - Creating an Octopus Deploy project.
 - Deploying our containers to a machine running Docker.
 
-<h2>In this post</h2>
+## Configuring the Build server and Continous Integration
 
-!toc
-
-## Build server
-
-Continuous Integration happens on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as a specific time of day or a developer check-in.  For our build server, we’ll be performing the following tasks:
+    Continuous Integration happens on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as source code commits or a specific time of day.  For our build server, we’ll be performing the following tasks:
 
 - Creating a project.
 - Creating a build definition.
 - Defining build steps.
 
-## Adding the Build Docker capability to the build agent
+### Adding the Build Docker capability to the build agent
 
 All of the major build servers (Azure DevOps, TeamCity, Jenkins, and Bamboo) can build Docker images either with a built-in step or a downloadable plug-in.  For this demonstration, I used TeamCity as most of my experience is with Azure DevOps and I wanted to expand my horizons.  One thing I found with both Azure DevOps and TeamCity (and I imagine this is true for other build servers as well) is that even though they had built-in steps to perform Docker builds, the build agents still need Docker installed to work.  It makes sense, but it seemed counter-intuitive since it was an available step you could choose.
 
@@ -56,11 +52,11 @@ With the DNS issue resolved, the container started up and registered itself to m
 
 Clicking the **Authorize** button finalized the connection and the agent was available to perform builds.
 
-## The Docker project
+### The Docker project
 
 Using my local instance of Azure DevOps as my source control repository for the OctoPetShop project, I created a new project within TeamCity and connected my Azure DevOps repo to it.  This post assumes you already know how to [create a project](https://www.jetbrains.com/help/teamcity/creating-and-editing-projects.html) within TeamCity and focuses on the build and deploy process.
 
-### Adding a connection to Docker Hub
+#### Adding a connection to Docker Hub
 
 To push our images to Docker Hub, we need to configure a connection to Docker Hub with an authorized user.
 
@@ -79,7 +75,7 @@ Choose **Docker Registry** from the drop-down and fill in the username and passw
 
 With that bit of housekeeping out of the way, we can proceed with our build definition.
 
-### Build definition
+#### Build definition
 After the project has been created, we can create a new build definition that will perform our Docker build operation.  This build definition needs to perform the following steps:
 - Build OctoPetShop web front-end.
 - Build OctoPetShop product service.
@@ -87,7 +83,7 @@ After the project has been created, we can create a new build definition that wi
 - Build OctoPetShop database DbUp.
 - Push the images to Docker Hub for use in deployment.
 
-#### Adding Docker support Build Feature
+##### Adding Docker support Build Feature
 We need to connect our Docker Hub connection to our build definition.  To do this, we click on the **Build Features** tab and **Add build feature**:
 
 ![](teamcity-add-build-feature.png)
@@ -100,7 +96,7 @@ Check **Log in to the Docker registry before the build** and choose the connecti
 
 ![](teamcity-build-feature-add-connection.png)
 
-#### Add build steps
+##### Add build steps
 Steps 1-4 are going to be identical, the only difference is the docker file that we’re going to build.  Click on the **Build Steps** tab, then click the **Add build step** button:
 
 ![](teamcity-build-add-step.png)
