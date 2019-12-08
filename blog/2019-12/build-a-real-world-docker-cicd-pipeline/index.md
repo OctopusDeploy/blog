@@ -19,7 +19,7 @@ Docker and containers are excellent technologies to have in your DevOps tool-bel
 
 ---
 
-In the last post, I showed you how to containerize the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application and produce Docker images. In this post, I take it further configuring a complete CI/CD pipeline to automate the entire process. This covers the steps to configure continuous integration with JetBrain's TeamCity and configure continous delivery with Octopus Deploy.
+In the last post, I showed you how to containerize the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application and produce Docker images for it. In this post, I take it further by configuring a complete CI/CD pipeline to automate the process. This covers the steps to configure continuous integration with JetBrain's TeamCity and configure continuous delivery with Octopus Deploy.
 
 <h2>In this post</h2>
 
@@ -41,14 +41,14 @@ Rather than create a new virtual machine (VM), install and configure an OS, inst
 
 :::hint
 **Hint**
-My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but this article: [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
+My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but Robin Winslow's article, [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
 
 With the DNS issue resolved, the container started up and registered itself to my TeamCity server under the Unauthorized category of agents:
 
 ![](teamcity-unauthorized-agent.png)
-:::
 
 Clicking the **Authorize** button finalized the connection and the agent was available to perform builds.
+:::
 
 ### The Docker project
 
