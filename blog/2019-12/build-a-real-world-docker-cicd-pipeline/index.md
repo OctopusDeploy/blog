@@ -19,13 +19,15 @@ Docker and containers are excellent technologies to have in your DevOps tool-bel
 
 ---
 
-In a previous post, I showed you how to create Docker container images for the OctoPetShop application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (CI/CD) pipeline. In this post, we cover:
+In a previous post, I showed you how to create Docker container images for the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application. In this post, I take it further by including the images in a Continuous Integration/Continuous Delivery (CI/CD) pipeline. In this post, we cover:
 
 - Configuring a TeamCity build agent to build Docker images.
 - Creating a build definition to build our Docker images.
 - Uploading our Docker images to Docker Hub.
 - Creating an Octopus Deploy project.
 - Deploying our containers to a machine running Docker.
+
+<h2>In this post</h2>
 
 !toc
 
