@@ -12,10 +12,10 @@ tags:
 
 ![Building a real-world Docker container CI/CD pipeline](docker-in-a-ci-cd-pipeline.png)
 
-Docker and containers are excellent technologies to have in your DevOps tool-belt. This blog series covers how to use them with a real-world application.
+Docker and containers are excellent technologies to have in your DevOps tool-belt. The 'Beyond Hello World' blog series covers how to use them with a real-world application.
 
-- [Beyond Hello World: Containerizing a real-world web application](/blog/2019-12/containerize-a-real-world-web-app/index.md)
-- **Beyond Hello World: Building a real-world Docker container CI/CD pipeline**
+- [Containerizing a real-world web application](/blog/2019-12/containerize-a-real-world-web-app/index.md)
+- **Building a real-world Docker container CI/CD pipeline**
 
 ---
 
