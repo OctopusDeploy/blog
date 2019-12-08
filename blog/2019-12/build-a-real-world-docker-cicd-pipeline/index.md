@@ -50,9 +50,9 @@ With the DNS issue resolved, the container started up and registered itself to m
 Clicking the **Authorize** button finalized the connection and the agent was available to perform builds.
 :::
 
-### The Docker project
+### Creating a project
 
-My first step was to created a new TeamCity project within and connect my git repository to it. The [OctoPetShop](https://github.com/octopussamples/octopetshop) source code is available on GitHub but I used a local Azure DevOps instance to host mine.  This post assumes you already know how to [create a project](https://www.jetbrains.com/help/teamcity/creating-and-editing-projects.html) within TeamCity and focuses on the build and deploy process.
+My first step was to create a new TeamCity project and connect my git repository to it. The [OctoPetShop](https://github.com/octopussamples/octopetshop) source code is available on GitHub but I used a local Azure DevOps instance to host mine.  This post assumes you already know how to [create a project](https://www.jetbrains.com/help/teamcity/creating-and-editing-projects.html) within TeamCity and focuses on the build and deploy process.
 
 ### Adding a connection to Docker Hub
 
@@ -81,7 +81,7 @@ After the project has been created, we can create a new build definition that wi
 - Build OctoPetShop database DbUp.
 - Push the images to Docker Hub for use in deployment.
 
-#### Adding Docker support Build Feature
+### Adding the Docker support Build Feature
 We need to connect our Docker Hub connection to our build definition.  To do this, we click on the **Build Features** tab and **Add build feature**:
 
 ![](teamcity-add-build-feature.png)
@@ -94,7 +94,7 @@ Check **Log in to the Docker registry before the build** and choose the connecti
 
 ![](teamcity-build-feature-add-connection.png)
 
-#### Add build steps
+### Add build steps
 Steps 1-4 are going to be identical, the only difference is the docker file that we’re going to build.  Click on the **Build Steps** tab, then click the **Add build step** button:
 
 ![](teamcity-build-add-step.png)
