@@ -1,5 +1,5 @@
 ---
-title: "Beyond Hello World: Building a real-world Docker container CI/CD pipeline"
+title: "Beyond Hello World: Building a real-world Docker CI/CD pipeline"
 description: Demonstrating how to incorporate Docker containers in the CI/CD pipeline for a real-world web application with web services and a database project.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -10,22 +10,22 @@ tags:
  - DevOps
 ---
 
-![Building a real-world Docker container CI/CD pipeline](docker-in-a-ci-cd-pipeline.png)
+![Building a real-world CI/CD docker pipeline](docker-in-a-ci-cd-pipeline.png)
 
 Docker and containers are excellent technologies to have in your DevOps tool-belt. The 'Beyond Hello World' blog series covers how to use them with a real-world application.
 
 - [Containerizing a real-world web application](/blog/2019-12/containerize-a-real-world-web-app/index.md)
-- **Building a real-world Docker container CI/CD pipeline**
+- **Building a real-world Docker CI/CD pipeline**
 
 ---
 
-In the last post, I showed you how to containerize the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application and produce Docker images for it. In this post, I take it further by configuring a complete CI/CD pipeline to automate the process. This covers the steps to configure continuous integration with JetBrain's TeamCity and configure continuous delivery with Octopus Deploy.
+In the last post, I showed you how to containerize the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application and produce Docker images for it. In this post, I take it further by configuring a complete docker CI/CD pipeline to automate the process. This covers the steps to configure continuous integration with JetBrain's TeamCity and configure continuous delivery with Octopus Deploy.
 
 <h2>In this post</h2>
 
 !toc
 
-## Configuring continous integration with JetBrain's TeamCity 
+## Configuring docker continuous integration with JetBrain's TeamCity 
 
 Continuous Integration happens on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as source code commits or a specific time of day.  For our build server, we’ll be performing the following tasks:
 
@@ -50,7 +50,7 @@ With the DNS issue resolved, the container started up and registered itself to m
 Clicking the **Authorize** button finalized the connection and the agent was available to perform builds.
 :::
 
-### Creating a project
+### Creating a TeamCity project
 
 My first step was to create a new TeamCity project and connect my git repository to it. The [OctoPetShop](https://github.com/octopussamples/octopetshop) source code is available on GitHub but I used a local Azure DevOps instance to host mine.  This post assumes you already know how to [create a project](https://www.jetbrains.com/help/teamcity/creating-and-editing-projects.html) within TeamCity and focuses on the build and deploy process.
 
@@ -124,7 +124,7 @@ For the push step, we specify all of the images that were built in steps 1-4 and
 
 Congratulations!  We just finished the CI portion of this article.  The only thing left to do is to add a trigger so that when someone commits to source control, a build will automatically execute.
 
-## Configuring continous delivery with Octopus Deploy
+## Configuring docker continuous delivery with Octopus Deploy
 For the CD portion of this article, we’ll use Octopus Deploy.  Within Octopus, we’ll do the following:
 - Add Docker Hub as an external feed.
 - Create a new project.
@@ -249,10 +249,10 @@ If we now navigate to the server we just deployed to, we should see our OctoPetS
 
 ![](server-docker-octopetshop.png)
 
-## Completing the CI/CD pipeline
+## Completing the docker CI/CD pipeline
 So far we’ve done the CI and the CD portions, but we’ve not yet connected them together.  To fit these pieces together, we go back to our TeamCity server.
 
-### Install the Octopus Deploy plugin
+### Install the Octopus Deploy TeamCity plugin
 First, we need to navigate to the [Octopus Deploy plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration) and download the Octopus Deploy plugin.
 
 After that has been downloaded, go to {{Administration,Plugins List}} in our TeamCity server.  From here, we’ll click on the **Upload plugin zip** button to add the plugin:
@@ -278,4 +278,5 @@ Now, when we run a build, it will automatically create a release in Octopus Depl
 If we wanted to, we could add the automatic deployment of that release to development directly from the build definition.
 
 ## Conclusion
-This post walked you through how to create a CI/CD pipeline for Docker container images using TeamCity and Octopus Deploy.  In the next article, I’ll expand on this concept by automating a deployment of OctoPetShop to Kubernetes.
+
+This post showed it's possible to create a complete CI/CD pipeline for a real-world application using Docker containers. It covered how to automate a docker build pipeline with JetBrains TeamCity and how to configure docker continous delivery with Octopus Deploy. 
