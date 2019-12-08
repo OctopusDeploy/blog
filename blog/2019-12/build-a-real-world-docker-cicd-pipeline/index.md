@@ -29,7 +29,7 @@ In a previous post, I showed you how to create Docker container images for the [
 
 ## Configuring the Build server and Continous Integration
 
-    Continuous Integration happens on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as source code commits or a specific time of day.  For our build server, we’ll be performing the following tasks:
+Continuous Integration happens on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as source code commits or a specific time of day.  For our build server, we’ll be performing the following tasks:
 
 - Creating a project.
 - Creating a build definition.
