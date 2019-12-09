@@ -362,6 +362,10 @@ You can use it to deploy containerized applications, manage and interact with yo
 
 ![](minikube-dashboard.png "width=500")
 
+***Scaling Replicas***
+
+Now, in order to perform a rolling update we need more than one replica of our application. 
+
 ### Azure DevOps?
 
 _TODO?_
