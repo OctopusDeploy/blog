@@ -241,9 +241,58 @@ As you can see, it doesn't take much setup to get rolling deployments working in
 
 ### Kubernetes Rolling updates
 
-Rolling deployments in Kubernetes is done with `Rolling Updates`. A Pods instances will be updated incrementally with new ones. It supports both a max number (or percentage) of pods to be unavailable during an update, as well as a max number of new Pods that can be created. In addition to this Kubernetes has a handy built-in feature to allow updates to be reverted to a previous version. 
+Rolling deployments in Kubernetes is called [Rolling Updates](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update). 
 
-_TODO_
+A Pod's instances will be updated incrementally with new ones. It supports both a max number or percentage of pods to be unavailable during an update, as well as a max number of new Pods that can be created. In addition to this Kubernetes has a handy built-in feature to allow updates to be reverted to a previous version.
+
+The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) on updates includes a nice diagram showing how it works:
+
+![](k8s-rolling-update.png)
+
+As with my previous Docker example, I will be demonstrating using a local instance of Kubernetes on my Windows machine, [minikube](https://minikube.sigs.k8s.io/).
+
+Before you install minikube on Windows, it's worth noting that there are some prerequisites:
+
+- Windows 8 or above
+- A hypervisor, like Hyper-V or VirtualBox
+- Hardware virtualization support enabled in your BIOS
+- At least 4GB of RAM
+
+After installing minikube, the first thing to do is to start it up:
+
+```ps
+minikube start --vm-driver=hyperv
+```
+
+On first initialisation, it will download the VM boot image and create a machine using your chosen Hypervisor, in my case Hyper-V:
+
+```ps
+* Downloading VM boot image ...
+    > minikube-v1.5.1.iso.sha256: 65 B / 65 B [--------------] 100.00% ? p/s 0s
+    > minikube-v1.5.1.iso: 143.76 MiB / 143.76 MiB [-] 100.00% 18.41 MiB p/s 8s
+* Creating hyperv VM (CPUs=2, Memory=2000MB, Disk=20000MB) ...
+* Preparing Kubernetes v1.16.2 on Docker '18.09.9' ...
+* Downloading kubeadm v1.16.2
+* Downloading kubelet v1.16.2
+* Pulling images ...
+* Launching Kubernetes ...
+* Waiting for: apiserver
+*Done! kubectl is now configured to use "minikube"
+! C:\Program Files\Docker\Docker\Resources\bin\kubectl.exe is version 1.14.8, and is incompatible with Kubernetes 1.16.2. You will need to update C:\Program Files\Docker\Docker\Resources\bin\kubectl.exe or use 'minikube kubectl' to connect with this cluster
+```
+
+
+:::warning
+**Docker Desktop and kubectl**
+You'd be forgiven if you missed the error at the end of the command output above. 
+
+Having downloaded installed Docker Desktop for Windows first on my local machine, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed minikube, it requires a later version: `1.16.2`. 
+
+After a quick Google for the latest version, I found the kubectl install [documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows) which even warns you about this issue
+
+> Note: Docker Desktop for Windows adds its own version of kubectl to PATH. If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop’s kubectl.
+
+:::
 
 ### Jenkins?
 
