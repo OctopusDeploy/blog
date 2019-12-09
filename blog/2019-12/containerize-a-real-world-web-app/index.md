@@ -1,6 +1,6 @@
 ---
 title: "Beyond Hello World: Containerizing a real-world web application"
-description: Demonstrating how to containerize a real-world .NET Core web application, with web services and databases.
+description: This post demonstrates how to containerize a real-world .NET Core web application with web services and databases.
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: containerize-a-real-world-application.png
@@ -12,35 +12,39 @@ tags:
 
 ![Containerizing a real-world web application](containerize-a-real-world-application.png)
 
-Docker and containers are excellent technologies to have in your DevOps tool-belt. The 'Beyond Hello World' blog series covers how to use them with a real-world application.
+Docker and containers are excellent technologies to have in your DevOps tool-belt. This **Beyond Hello World** blog series covers how to use them with a real-world application.
 
 - **Containerizing a real-world web application**
 - [Building a real-world Docker CI/CD pipeline](/blog/2019-12/build-a-real-world-docker-cicd-pipeline/index.md)
 
 ---
 
-Designing your application to run in a container has become quite popular, but where do you start?  How do you take an existing application and make it container compatible?  In this post, I aim to demystify what it means to containerize your application.
+Designing your application to run in a container has become quite popular, but where do you start?  How do you take an existing application and make it container compatible?  
 
-## What is a Container? What is Containerization?
-Similar to virtual machines (VMs), containers have their own RAM, CPU, and filesystem.  However, containers rely on the host operating system (OS) for a lot of their base functionality, which makes them lightweight and portable.  Where a VM requires its own OS and all of the specialized components for an application to be installed, a container bundles the required components for the application to function into what is known as an `image`.  These images are completely self-contained and immutable, meaning they cannot be modified during their life.  If an update needs to be made to a container, any running instances must be destroyed before being replaced by the new version.  This can be a problem if the container needs to retain any data (such as a database), though, there are ways to persist data when a container is destroyed.
+In this post, I aim to demystify what it means to containerize your application.
 
-## What is Docker? How does it compare with Virtual Machines?
-The most popular container technology is Docker.  Docker is an engine installed on either Windows or Linux that uses OS-level virtualization to run containers. At the time of this writing, containers are built for either Windows or Linux and are not cross-platform. 
+## What is a container, and what is containerization?
 
-To illustrate the differences between virtual machines and containers, consider the following diagrams. First, let's look at a virtual machine (hypervisor) architecture.
+Similar to virtual machines (VMs), containers have their own RAM, CPU, and filesystem.  However, containers rely on the host operating system (OS) for a lot of their base functionality, which makes them lightweight and portable.  Where a VM requires its own OS and all of the specialized components for an application to be installed, a container bundles the required components for the application to function into what is known as an `image`.  These images are completely self-contained and immutable, meaning they cannot be modified during their life.  If an update needs to be made to a container, any running instances must be destroyed before being replaced by the new version of the container.  This can be a problem if the container needs to retain any data (such as a database); however, there are ways to persist data when a container is destroyed.
+
+## What is Docker, and how does it compare with virtual machines?
+
+The most popular container technology is Docker.  Docker is an engine installed on either Windows or Linux that uses OS-level virtualization to run containers. At the time of this writing, containers are built for either Windows or Linux and are not cross-platform.
+
+To illustrate the differences between virtual machines and containers, consider the following diagrams. First, let’s look at a virtual machine (hypervisor) architecture.
 
 NOTE: A hypervisor is the technology that runs VMs such as Windows Hyper-V or VMWare ESXi.
 
 ![](https://www.docker.com/sites/default/files/d8/2018-11/container-vm-whatcontainer_2.png)
 
-In the above diagram, each virtual machine and the hypervisor have their own OS, working somewhat independently (other than the VM requires the hypervisor to function.)  The applications are then deployed to the VM and served up using virtual hardware: networking, RAM, CPU, etc...
+In the above diagram, each virtual machine and the hypervisor have their own OS, working somewhat independently (other than the VMs requiring the hypervisor to function.)  The applications are then deployed to the VM and served up using virtual hardware: networking, RAM, CPU, etc...
 
 With Docker, the hypervisor is eliminated, and the containers run directly off the host OS through the Docker engine:
 
 ![](https://www.docker.com/sites/default/files/d8/2018-11/docker-containerized-appliction-blue-border_2.png)
 
 ### Docker Desktop
-[Docker Desktop](https://www.docker.com/products/docker-desktop) is a free tool you can download from Docker to use for local development.  Docker Desktop creates a VM on your local machine that you can use to interact with the Docker engine from your host machine (i.e. the Docker host).  Along with the Docker engine, Docker Desktop allows you to:
+[Docker Desktop](https://www.docker.com/products/docker-desktop) is a free tool you can download from Docker to use for local development.  Docker Desktop creates a VM on your local machine that you can use to interact with the Docker engine from your host machine (i.e., the Docker host).  Along with the Docker engine, Docker Desktop allows you to:
 - Switch between Windows and Linux containers.
 - Run Docker Compose.
 - Run a local version of Kubernetes.
@@ -80,7 +84,8 @@ It’s important to note that each line within a dockerfile builds a new image, 
 Let’s take a closer look at each line in the dockerfile example.
 
 ### FROM mcr.microsoft.com/dotnet/core/sdk:2.1
-The `FROM` section of a dockerfile example tells Docker what the base image is.  For the OctoPetShop front-end (as well as the product service, shopping cart service, and database), the base image is `mcr.microsoft.com/dotnet/core/sdk:2.1` which contains the .NET Core SDK.  These base images are downloaded from the public repository, [Docker Hub](https://hub.docker.com).  When building docker images, docker first downloads the base image to disk and then caches it.
+
+The `FROM` section of a dockerfile example tells Docker what the base image is.  For the OctoPetShop front-end (as well as the product service, shopping cart service, and database), the base image is `mcr.microsoft.com/dotnet/core/sdk:2.1` which contains the .NET Core SDK.  These base images are downloaded from the public repository [Docker Hub](https://hub.docker.com).  When building docker images, Docker first downloads the base image to disk and then caches it.
 
 The first part of the image name, `mcr.microsoft.com`, is the username of the repository the image belongs to.  The next part, `/dotnet/core/`, is the folder path within the repository, where the SDK image resides.  The final part, `:2.1`, is the tag name for the image SDK.  This tag is how the SDK image is differentiated from other images of the same name and location.
 
@@ -88,7 +93,7 @@ The first part of the image name, `mcr.microsoft.com`, is the username of the re
 `RUN` is the instruction we’re telling Docker to perform.  For this line, we tell Docker to create a new directory (mkdir) called src.
 
 ### WORKDIR
-Like `RUN`, `WORKDIR` is another instruction.  `WORKDIR` sets the Working Directory other commands will be run from.
+Like `RUN`, `WORKDIR` is another instruction.  `WORKDIR` sets the working directory other commands will be run from.
 
 ### ADD . /SRC
 The `ADD` instruction copies files and folders into the container image.  On this line, we instruct Docker to copy all of the files and folders in the current directory into the /src directory we created previously.
@@ -103,13 +108,15 @@ Any instruction that needs more than one argument requires the arguments are pla
 The `EXPOSE` instruction is used to open ports to the container.  For the OctoPetShop web front-end, we open ports 5000 and 5001.
 
 ### ENV ASPNETCORE_URLS="http://+:5000;https://+:5001" and ENV ASPNETCORE_ENVIRONMENT="Production"
-`ENV` is short for environment variable.  We need to tell our Kestrel server which address/ports to listen on. The address/port can be overwritten by using the environment variable `ASPNETCORE_URLS`.  We can also overwrite the environment name with `ASPNETCORE_ENVIRONMENT`.
+`ENV` is short for *environment variable*.  We need to tell our Kestrel server which address/ports to listen on. The address/port can be overwritten by using the environment variable `ASPNETCORE_URLS`.  We can also overwrite the environment name with `ASPNETCORE_ENVIRONMENT`.
 
 ### ENTRYPOINT [ "dotnet", "run", "--no-launch-profile" ]
-The `ENTRYPOINT` command runs when the container starts.  Just like our `RUN` command, if the command requires multiple arguments, they need to be encapsulated within an array.
+The `ENTRYPOINT` command runs when the container starts.  Just like our `RUN` command, if the command requires multiple arguments, they need to be encapsulated inside an array.
 
-#### ENTRYPOINT vs CMD
+:::warning
+**ENTRYPOINT vs CMD**
 Docker has another command that is similar to `ENTRYPOINT` called `CMD` that can often cause confusion. `ENTRYPOINT` configures a container to be run as an executable, where `CMD` sets a default command and/or parameters that can be overwritten from the command-line when the container runs.
+:::
 
 ## Building your web application as an image with Docker build
 The command to build your application into an image is `docker build`.  When you run a docker build, you need to tell Docker where the dockerfile is.  If the dockerfile exists in the current directory, you run the build command `docker build .`.  It is common practice to tag your build with your Docker username/application name.  To Tag your build, simply add the `-t username/application name` to the build command:
@@ -161,12 +168,14 @@ Successfully tagged octopussamples/octopetshop-web:latest
 We’ve just successfully containerized the OctoPetShop front-end!  
 
 ## Building web services and database projects as Docker images with Docker build
-OctoPetShop contains two web services and a database project that we need to containerize into Docker images. This process to containerize these components mirrors the one for the front-end and you can find dockerfile example files in the [OctoPetShop repo](https://github.com/OctopusSamples/OctoPetShop). 
+OctoPetShop contains two web services and a database project that we need to containerize into Docker images. The process to containerize these components mirrors the one for the front-end, and you can find dockerfile example files in the [OctoPetShop repo](https://github.com/OctopusSamples/OctoPetShop).
 
 The database project uses [DbUp](https://dbup.github.io/) and contains scripts (database migrations) to both create our database and seed it with data. The only thing missing is a database server.  Luckily for us, Microsoft makes a container image for SQL Server 2017: `microsoft/mssql-server-linux:2017-latest`.
 
 ## Running your containerized application with Docker run
-Now that we have all of the components neatly within containers, we need to get them up and running.  To start our containers, we use the `docker run <image>` command.  Any ports that were opened with the `EXPOSE` instruction need to be mapped to the host ports for the containers to be accessible.  This is done using the `-p` switch for the docker run command and can be specified more than once if you need to map multiple ports for a container.  The `-e` switch will pass in environment variables to the container.  Our OctoPetShop web front-end needs to know the address to the back-end services of the product service and the shopping cart service.  These values are stored within the appsettings.json file of our application, however, we’ve coded the application to override those if environment variables are present.
+Now that we have all of the components neatly within containers, we need to get them up and running.  To start our containers, we use the `docker run <image>` command.  Any ports that were opened with the `EXPOSE` instruction need to be mapped to the host ports for the containers to be accessible.  This is done using the `-p` switch for the docker run command and can be specified more than once if you need to map multiple ports for a container.  The `-e` switch will pass in environment variables to the container.  
+
+Our OctoPetShop web front-end needs to know the address to the back-end services of the product service and the shopping cart service.  These values are stored within the appsettings.json file of our application; however, we’ve coded the application to override those if environment variables are present.
 
 To get our entire solution working (including running the database server as a container), we run the following commands:
 
@@ -182,14 +191,14 @@ docker run -p 5012:5012 -e OPSConnectionString="Data Source=172.17.0.2;Initial C
 docker run -e DbUpConnectionString="Data Source=172.17.0.2;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword" -d octopussamples/octopetshop-database
 ```
 
-The IP address of `172.17.0.2` is the address that the SQL Server container is assigned.
+The IP address of `172.17.0.2` is the address the SQL Server container is assigned.
 
 With our containers running, we can navigate to http://localhost:5000.  OctoPetShop automatically redirects to an https address (using port 5001) and uses a self-signed certificate.  You will most likely be presented with a warning that it’s insecure. In this case, we can safely ignore the warning.  When the page loads, you should receive:
 
 ![](octopetshop-front-end.png)
 
 ## Running your containerized application with Docker Compose
-Running docker commands one-by-one can get quite tedious.  To solve this, Docker created Docker Compose.  With a single docker compose YAML file, you can build all of your containers, set up their ports, create a local network for them to use, and define the environment variables for each.  In the following YAML code, we set up all of our containers similar to the docker run commands above.  Instead of mapping host ports to container ports, we create a docker network called `container_net`.  With the container_net network, the only ports that need to be mapped to the host are web front-end ports (5000 and 5001), leaving the rest only accessible to the other containers:
+Running Docker commands one-by-one can get quite tedious.  To solve this, Docker created Docker Compose.  With a single Docker Compose YAML file, you can build all of your containers, set up their ports, create a local network for them to use, and define the environment variables for each.  In the following YAML code, we set up all of our containers similar to the Docker run commands above.  Instead of mapping host ports to container ports, we create a Docker network called `container_net`.  With the container_net network, the only ports that need to be mapped to the host are web front-end ports (5000 and 5001), leaving the rest accessible only to the other containers:
 
 ```
 version: '3'
@@ -251,7 +260,7 @@ networks:
         - subnet: 192.168.0.0/16
 ```
 
-Unlike the previous method of using docker run for each of our containers, we can start our entire solution by running `docker-compose up`, which is much less typing.  Running Docker Compose will also show us the output of from the containers as they’re running:
+Unlike the previous method of using Docker run for each of our containers, we can start our entire solution by running `docker-compose up`, which is much less typing.  Running Docker Compose will also show us the output of from the containers as they’re running:
 
 ```
 Starting octopetshop_database_1            ... done                                                                     Starting octopetshop_octopetshop_1         ... done                                                                     Recreating sql-server-db                   ... done                                                                     Starting octopetshop_shoppingcartservice_1 ... done                                                                     Starting octopetshop_productservice_1      ... done                                                                     Attaching to octopetshop_octopetshop_1, octopetshop_shoppingcartservice_1, octopetshop_productservice_1, sql-server-db, octopetshop_database_1
@@ -380,7 +389,8 @@ octopetshop_database_1 exited with code 0
 ```
 
 ## Incorporating containers into a CI/CD pipeline
-Thus far, we've done everything on the command line and not in any sort of automated fashion (other than docker compose).  The next logical step is to hand off the building and uploading of our container images to a build server.  Popular build servers such as Microsoft [Azure DevOps](https://dev.azure.com), JetBrains [TeamCity](https://www.jetbrains.com/teamcity/), [Jenkins](https://jenkins.io), and Atlassian [Bamboo](https://www.atlassian.com/software/bamboo) all have steps either built-in or a downloadable plugin that will build your docker images and push them to a respository.  Once in the repository, you can use continuous delivery software such as Azure DevOps Pipelines or Octopus Deploy to automate the deployment of the images to either machines running the docker engine or kubernetes clusters.
+
+Thus far, we’ve done everything on the command line and not in any sort of automated fashion (other than Docker Compose).  The next logical step is to hand off the building and uploading of our container images to a build server.  Popular build servers such as Microsoft [Azure DevOps](https://dev.azure.com), JetBrains [TeamCity](https://www.jetbrains.com/teamcity/), [Jenkins](https://jenkins.io), and Atlassian [Bamboo](https://www.atlassian.com/software/bamboo) all have steps either built-in or available in a downloadable plugin that will build your Docker images and push them to a repository.  Once in the repository, you can use continuous delivery software such as Azure DevOps Pipelines or Octopus Deploy to automate the deployment of the images to either machines running the Docker engine or Kubernetes clusters.
 
 ## Conclusion
 Running applications as containers was pure magic to me before I went through the exercise of creating containers for OctoPetShop.  This experience has given me the confidence to proceed with running OctoPetShop in a Kubernetes cluster!  Stay tuned for that post soon.
