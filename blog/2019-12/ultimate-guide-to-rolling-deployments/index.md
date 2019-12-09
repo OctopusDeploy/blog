@@ -286,7 +286,7 @@ On first initialisation, it will download the VM boot image and create a machine
 **Docker Desktop and kubectl**
 You'd be forgiven if you missed the error at the end of the command output above. 
 
-Having downloaded installed Docker Desktop for Windows first on my local machine, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed minikube, it requires a later version: `1.16.2`. 
+Having installed Docker Desktop for Windows first on my local machine, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed minikube, it requires a later version: `1.16.2`. 
 
 After a quick Google for the latest version, I found the kubectl install [documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows) which even warns you about this issue
 
