@@ -103,7 +103,7 @@ We'll make changes to the ``AppVersion`` and roll this out using different tools
 ### Docker rolling application updates
 
 :::success
-For the sake of simplicity, I am doing this exercise in Docker from the command line. But there are production-ready setups to automate this, which feature the definition of your services in either a `Docker Compose` or `Stack` files. 
+For the sake of simplicity, I am doing this exercise in Docker from the command line. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file.
 If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
 :::
 
@@ -117,7 +117,14 @@ Unsurprisingly, running this Docker image locally displays the web page:
 
 ![](docker-run.png "width=500")
 
-To deploy more than one instance of our container, we have to create a Docker [service](https://docs.docker.com/engine/reference/commandline/service) which uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator.
+To deploy more than one instance of our container, we need to create a Docker [service](https://docs.docker.com/engine/reference/commandline/service) which uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator under the hood.
+
+:::warning
+**Docker Kubernetes Orchestrator**
+Docker also supports Kubernetes as an orchestator when deploying containers using the Docker [stack](https://docs.docker.com/engine/reference/commandline/stack) command, but it's not possible to specify the orchestrator when using `service create`.
+:::
+
+So lt's see what our command to create a service looks like:
 
 ```ps
 docker service create 
@@ -128,18 +135,19 @@ docker service create
  --update-parallelism 1 
  harrisonmeister/rolling-deploy-example:0.0.1
 ```
-:::hint
-**Hint**
-When running the command for the first time, you may receive a warning of `This node is not a swarm manager` (just as I did!). To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
-:::
 
 Let's unpick what we are asking of Docker here:
 - The `--name` is pretty self explanatory. 
 - The `--replicas` flag controls the number of containers we want (3).
-- The `--publish published=5001,target=5001` specifies we want the service to be accessed on port 5001 using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service).
+- The `--publish published=5001,target=5001` specifies we want the service to be accessed on port 5001, using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service) which acts essentially like a software load-balancer.
 - The `--update-delay` configures the time delay (10s) between updates to a service task.
 - The `--update-parallelism` controls the maximum number of service tasks that Docker will schedule simultaneously (1).
-- Lastly, we specify the image to use `harrisonmeister/rolling-deploy-example:0.0.1`
+- Lastly, we specify the image to use: `harrisonmeister/rolling-deploy-example:0.0.1`
+
+:::hint
+**Hint**
+When running ``service create`` for the first time, you may receive a warning, just as I did of: `This node is not a swarm manager`. To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
+:::
 
 Executing this results in our service being deployed to Docker Swarm with 3 instances (ID will be different)
 
