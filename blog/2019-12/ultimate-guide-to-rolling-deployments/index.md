@@ -286,13 +286,60 @@ On first initialisation, it will download the VM boot image and create a machine
 **Docker Desktop and kubectl**
 You'd be forgiven if you missed the error at the end of the command output above. 
 
-Having installed Docker Desktop for Windows first on my local machine, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed minikube, it requires a later version: `1.16.2`. 
+Having installed Docker Desktop for Windows on my local machine first, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed minikube, it required a later version: `1.16.2`. 
 
-After a quick Google for the latest version, I found the kubectl install [documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows) which even warns you about this issue
+After a quick Google, I found the kubectl install [documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows) which even warns you about this issue:
 
 > Note: Docker Desktop for Windows adds its own version of kubectl to PATH. If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop’s kubectl.
 
+I fixed the error by adding my `PATH` entry before the one added by Docker Desktop.
 :::
+
+Once we have minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deployment-svc`, and expose it on port 5001 as before, using the `--port` flag
+
+:::hint
+
+**Kubernetes Deployments**
+
+Google describes Kubernetes [Deployments](https://cloud.google.com/kubernetes-engine/docs/concepts/deployment) as items which:
+
+> represent a set of multiple, identical Pods with no unique identities. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. In this way, Deployments help ensure that one or more instances of your application are available to serve user requests. Deployments are managed by the Kubernetes Deployment controller.
+:::
+
+To set up our Deployment, we run the following command:
+
+```ps
+kubectl create deployment rollingdeploy-minikube --image=harrisonmeister/rolling-deploy-example:0.0.1
+```
+
+The output from this command confirms our Deployment has been successfully created:
+
+```ps
+deployment.apps/rollingdeploy-minikube created
+```
+
+Next up, we need to gain access to our Deployment, so we run the `expose` command:
+
+```ps
+kubectl expose deployment rollingdeploy-minikube --type=NodePort --port=5001
+```
+
+```ps
+service/rollingdeploy-minikube exposed
+```
+
+```
+minikube dashboard
+```
+
+This enables and opens the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) for you to deploy containerized applications, manage and interact with your cluster resources. For example, you can initiate a rolling update.
+```
+* Enabling dashboard ...
+* Verifying dashboard health ...
+* Launching proxy ...
+* Verifying proxy health ...
+* Opening http://127.0.0.1:55436/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
+```
 
 ### Jenkins?
 
