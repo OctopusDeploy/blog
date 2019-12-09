@@ -17,6 +17,8 @@ If the majority of your customers are asleep, then that's probably acceptable. B
 
 Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using a number of different tools.
 
+<h2>In this post</h2>
+
 !toc
 
 ## What are rolling deployments?
@@ -145,7 +147,15 @@ You can also specify the attributes for a service in a `docker-compose` file.
 
 Executing this results in our service being deployed to Docker Swarm with 3 instances.
 
-![](docker-service-create.png "width=500")
+```ps
+docker service create --name rolling-deploy-svc --replicas 3 --update-delay 10s --update-parallelism 1 --publish published=5001,target=5001 harrisonmeister/rolling-deploy-example:0.0.1
+wxi1w4m7crknaz1f800kr9ztt
+overall progress: 3 out of 3 tasks
+1/3: running   [==================================================>]
+2/3: running   [==================================================>]
+3/3: running   [==================================================>]
+verify: Service converged 
+```
 
 We can also check our service has the correct update configuration by running the command:
 
