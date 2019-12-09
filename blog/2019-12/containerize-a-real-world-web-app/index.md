@@ -83,7 +83,9 @@ It’s important to note that each line within a dockerfile builds a new image, 
 
 Let’s take a closer look at each line in the dockerfile example.
 
-`FROM mcr.microsoft.com/dotnet/core/sdk:2.1`
+```
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1
+```
 
 The `FROM` section of a dockerfile example tells Docker what the base image is.  For the OctoPetShop front-end (as well as the product service, shopping cart service, and database), the base image is `mcr.microsoft.com/dotnet/core/sdk:2.1` which contains the .NET Core SDK.  These base images are downloaded from the public repository [Docker Hub](https://hub.docker.com).  When building docker images, Docker first downloads the base image to disk and then caches it.
 
