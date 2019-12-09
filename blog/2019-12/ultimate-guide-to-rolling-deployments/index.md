@@ -306,7 +306,7 @@ Google describes Kubernetes [Deployments](https://cloud.google.com/kubernetes-en
 > represent a set of multiple, identical Pods with no unique identities. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. In this way, Deployments help ensure that one or more instances of your application are available to serve user requests. Deployments are managed by the Kubernetes Deployment controller.
 :::
 
-To set up our Deployment, we run the following command:
+To set up our Deployment for our application, we run the following command:
 
 ```ps
 kubectl create deployment rollingdeploy-minikube --image=harrisonmeister/rolling-deploy-example:0.0.1
@@ -318,21 +318,39 @@ The output from this command confirms our Deployment has been successfully creat
 deployment.apps/rollingdeploy-minikube created
 ```
 
-Next up, we need to gain access to our Deployment, so we run the `expose` command:
+Next up, we need to gain access to our Deployment on port `5001`, so we run the `expose` command:
 
 ```ps
 kubectl expose deployment rollingdeploy-minikube --type=NodePort --port=5001
 ```
 
+The output confirms the command worked 
+
 ```ps
 service/rollingdeploy-minikube exposed
 ```
 
+Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status in a couple of ways. 
+
+We can query the Pod's status directly by running:
+
+```ps
+kubectl get pod
+```
+
+The result of this will show us the status of the Pod (Name may be different):
+
+```ps
+NAME                                      READY   STATUS    RESTARTS   AGE
+rollingdeploy-minikube-6844478945-zjw9q   1/1     Running   0          1m
+```
+
+The alternative is to run the `dashboard` command available in minikube. 
 ```
 minikube dashboard
 ```
+This enables and opens the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) on your local machine. 
 
-This enables and opens the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) for you to deploy containerized applications, manage and interact with your cluster resources. For example, you can initiate a rolling update.
 ```
 * Enabling dashboard ...
 * Verifying dashboard health ...
@@ -340,10 +358,9 @@ This enables and opens the Kubernetes [dashboard](https://kubernetes.io/docs/tas
 * Verifying proxy health ...
 * Opening http://127.0.0.1:55436/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
 ```
+You can use it to deploy containerized applications, manage and interact with your cluster resources. For example, you can initiate a rolling update.
 
-### Jenkins?
-
-_TODO?_
+![](minikube-dashboard.png "width=500")
 
 ### Azure DevOps?
 
