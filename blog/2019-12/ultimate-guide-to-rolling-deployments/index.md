@@ -101,7 +101,8 @@ We'll make changes to the ``AppVersion`` and roll this out using different tools
 ### Docker rolling application updates
 
 :::success
-For the sake of simplicity, I am doing this exercise from the command line. But there are production-ready setups to automate this, which feature the definition of your services in either a `Docker Compose` or `Stack` files.
+For the sake of simplicity, I am doing this exercise in Docker from the command line. But there are production-ready setups to automate this, which feature the definition of your services in either a `Docker Compose` or `Stack` files. 
+If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
 :::
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
@@ -125,7 +126,8 @@ docker service create
  --update-parallelism 1 
  harrisonmeister/rolling-deploy-example:0.0.1
 ```
-:::warning
+:::hint
+**Hint**
 When running the command for the first time, you may receive a warning of `This node is not a swarm manager` (just as I did!). To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
 :::
 
