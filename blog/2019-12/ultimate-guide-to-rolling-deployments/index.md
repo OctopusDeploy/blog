@@ -141,10 +141,6 @@ Let's unpick what we are asking of Docker here:
 - The `--update-parallelism` controls the maximum number of service tasks that Docker will schedule simultaneously (1).
 - Lastly, we specify the image to use `harrisonmeister/rolling-deploy-example:0.0.1`
 
-:::hint
-You can also specify the attributes for a service in a `docker-compose` file. 
-:::
-
 Executing this results in our service being deployed to Docker Swarm with 3 instances (ID will be different)
 
 ```ps
