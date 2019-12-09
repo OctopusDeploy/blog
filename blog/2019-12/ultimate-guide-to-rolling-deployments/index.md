@@ -109,7 +109,7 @@ If you are new to Docker, my colleague Shawn has written an excellent series on 
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
 
-```
+```ps
 docker run -p 5001:5001 harrisonmeister/rolling-deploy-example:0.0.1
 ```
 
@@ -119,7 +119,7 @@ Unsurprisingly, running this Docker image locally displays the web page:
 
 To deploy more than one instance of our container, we have to create a Docker [service](https://docs.docker.com/engine/reference/commandline/service) which uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator.
 
-```
+```ps
 docker service create 
  --name rolling-deploy-svc 
  --replicas 3
@@ -145,10 +145,9 @@ Let's unpick what we are asking of Docker here:
 You can also specify the attributes for a service in a `docker-compose` file. 
 :::
 
-Executing this results in our service being deployed to Docker Swarm with 3 instances.
+Executing this results in our service being deployed to Docker Swarm with 3 instances (ID will be different)
 
 ```ps
-docker service create --name rolling-deploy-svc --replicas 3 --update-delay 10s --update-parallelism 1 --publish published=5001,target=5001 harrisonmeister/rolling-deploy-example:0.0.1
 wxi1w4m7crknaz1f800kr9ztt
 overall progress: 3 out of 3 tasks
 1/3: running   [==================================================>]
@@ -159,31 +158,76 @@ verify: Service converged
 
 We can also check our service has the correct update configuration by running the command:
 
-```
+```ps
 docker service inspect rolling-deploy-svc --pretty
 ```
 
 The result of this shows we have our desired `UpdateConfig` 
 
-![](docker-service-inspect.png "width=500")
+```ps
+ID:             wxi1w4m7crknaz1f800kr9ztt
+Name:           rolling-deploy-svc
+Service Mode:   Replicated
+ Replicas:      3
+Placement:
+UpdateConfig:
+ Parallelism:   1
+ Delay:         10s
+ On failure:    pause
+ Monitoring Period: 5s
+ Max failure ratio: 0
+ Update order:      stop-first
+RollbackConfig:
+ Parallelism:   1
+ On failure:    pause
+ Monitoring Period: 5s
+ Max failure ratio: 0
+ Rollback order:    stop-first
+ContainerSpec:
+ Image:         harrisonmeister/rolling-deploy-example:0.0.1@sha256:a81de2d040159c8c88ee4b67ac1345fdfc7cfdb4c4f09d43d26c4cae94f884e7
+ Init:          false
+Resources:
+Endpoint Mode:  vip
+Ports:
+ PublishedPort = 5001
+  Protocol = tcp
+  TargetPort = 5001
+  PublishMode = ingress
+```
 
 Now we can update the container image for `harrisonmeister/rolling-deploy-example` to `v0.0.2` by running the following command:
 
-```
+```ps
 docker service update rolling-deploy-svc --image harrisonmeister/rolling-deploy-example:0.0.2
 ```
 
 Docker runs the update to each container, 1 task at a time just as we have configured it to:
 
-![](docker-service-update-1.png "width=500")
+```ps
+overall progress: 0 out of 3 tasks 
+1/3: running   [=============================================>     ]
+2/3:
+3/3:
+```
 
 Once the first task is complete, it moves onto task 2:
 
-![](docker-service-update-2.png "width=500")
+```ps
+overall progress: 1 out of 3 tasks 
+1/3: starting  [==================================================>]
+2/3: ready     [=====================================>             ]
+3/3: 
+```
 
-Until all of the tasks to update the containers to `v0.0.2` is complete.
+Until all of the tasks to update the containers to `v0.0.2` is complete:
 
-![](docker-service-update-3.png "width=500")
+```ps
+overall progress: 3 out of 3 tasks 
+1/3: running   [==================================================>]
+2/3: running   [==================================================>]
+3/3: running   [==================================================>]
+verify: Service converged
+```
 
 Then browsing to the website shows the text which applies for `v0.0.2`
 
