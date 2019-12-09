@@ -83,41 +83,41 @@ It’s important to note that each line within a dockerfile builds a new image, 
 
 Let’s take a closer look at each line in the dockerfile example.
 
-> `FROM mcr.microsoft.com/dotnet/core/sdk:2.1`
+`FROM mcr.microsoft.com/dotnet/core/sdk:2.1`
 
 The `FROM` section of a dockerfile example tells Docker what the base image is.  For the OctoPetShop front-end (as well as the product service, shopping cart service, and database), the base image is `mcr.microsoft.com/dotnet/core/sdk:2.1` which contains the .NET Core SDK.  These base images are downloaded from the public repository [Docker Hub](https://hub.docker.com).  When building docker images, Docker first downloads the base image to disk and then caches it.
 
 The first part of the image name, `mcr.microsoft.com`, is the username of the repository the image belongs to.  The next part, `/dotnet/core/`, is the folder path within the repository, where the SDK image resides.  The final part, `:2.1`, is the tag name for the image SDK.  This tag is how the SDK image is differentiated from other images of the same name and location.
 
-> `RUN mkdir /src`
+`RUN mkdir /src`
 
 `RUN` is the instruction we’re telling Docker to perform.  For this line, we tell Docker to create a new directory (mkdir) called src.
 
-> `WORKDIR`
+`WORKDIR`
 
 Like `RUN`, `WORKDIR` is another instruction.  `WORKDIR` sets the working directory other commands will be run from.
 
-> `ADD . /SRC`
+`ADD . /SRC`
 
 The `ADD` instruction copies files and folders into the container image.  On this line, we instruct Docker to copy all of the files and folders in the current directory into the /src directory we created previously.
 
-> `RUN dotnet restore`
+`RUN dotnet restore`
 
 This instruction runs the `dotnet restore` command, which will download any missing NuGet references our application needs for building.
 
-> `RUN ["dotnet", "build", "--configuration", "release"]`
-\
+`RUN ["dotnet", "build", "--configuration", "release"]`
+
 Any instruction that needs more than one argument requires the arguments are placed within an array.  Here we run the `dotnet build` command, which compiles our application within the image itself.
 
-> `EXPOSE 5000 and EXPOSE 5001`
+`EXPOSE 5000 and EXPOSE 5001`
 
 The `EXPOSE` instruction is used to open ports to the container.  For the OctoPetShop web front-end, we open ports 5000 and 5001.
 
-> `ENV ASPNETCORE_URLS="http://+:5000;https://+:5001" and ENV ASPNETCORE_ENVIRONMENT="Production"`
+`ENV ASPNETCORE_URLS="http://+:5000;https://+:5001" and ENV ASPNETCORE_ENVIRONMENT="Production"`
 
 `ENV` is short for *environment variable*.  We need to tell our Kestrel server which address/ports to listen on. The address/port can be overwritten by using the environment variable `ASPNETCORE_URLS`.  We can also overwrite the environment name with `ASPNETCORE_ENVIRONMENT`.
 
-> `ENTRYPOINT [ "dotnet", "run", "--no-launch-profile" ]`
+`ENTRYPOINT [ "dotnet", "run", "--no-launch-profile" ]`
 
 The `ENTRYPOINT` command runs when the container starts.  Just like our `RUN` command, if the command requires multiple arguments, they need to be encapsulated inside an array.
 
