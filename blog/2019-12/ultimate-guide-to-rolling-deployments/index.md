@@ -324,32 +324,18 @@ Next up, we need to gain access to our Deployment on port `5001`, so we run the 
 kubectl expose deployment rollingdeploy-minikube --type=NodePort --port=5001
 ```
 
-The output confirms the command worked 
+The output confirms the command worked
 
 ```ps
 service/rollingdeploy-minikube exposed
 ```
 
-Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status in a couple of ways. 
+Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status by using the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) provided in minikube:
 
-We can query the Pod's status directly by running:
-
-```ps
-kubectl get pod
-```
-
-The result of this will show us the status of the Pod (Name may be different):
-
-```ps
-NAME                                      READY   STATUS    RESTARTS   AGE
-rollingdeploy-minikube-6844478945-zjw9q   1/1     Running   0          1m
-```
-
-The alternative is to run the `dashboard` command available in minikube. 
 ```
 minikube dashboard
 ```
-This enables and opens the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) on your local machine. 
+This will enable and open the dashboard on your local machine. 
 
 ```
 * Enabling dashboard ...
@@ -364,7 +350,57 @@ You can use it to deploy containerized applications, manage and interact with yo
 
 ***Scaling Replicas***
 
-Now, in order to perform a rolling update we need more than one replica of our application. 
+In order to perform a rolling update we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three elipsis on the right hand side of the **Deployments** section:
+
+![](minikube-dashboard-scale-ellipsis.png "width=500")
+
+For our Kubernetes application, I want 3 replicas to perform a rolling update on:
+
+![](minikube-dashboard-scale.png "width=500")
+
+:::hint
+**Equivalent kubectl commands**
+You may have noticed that most of the actions that are taken in the dashboard will also handily provide the equivalent command to run. For scaling our resource, that is:
+
+```
+kubectl scale -n default deployment rollingdeploy-minikube --replicas=3
+```
+:::
+
+Once the Pods have been provisioned by the Kubernetes engine, we can confirm this by querying the Pod's status directly by running:
+
+```ps
+kubectl get pod
+```
+
+The result of this will show us the status of the Pod (Names may be different):
+
+```ps
+NAME                                      READY   STATUS    RESTARTS   AGE
+rollingdeploy-minikube-6844478945-jnz8r   1/1     Running   0          71s
+rollingdeploy-minikube-6844478945-tvl9b   1/1     Running   0          71s
+rollingdeploy-minikube-6844478945-vgg9q   1/1     Running   0          158m
+```
+
+To verify our application is working, we can ask minikube for the url to the `Deployment` we created at the start:
+
+```ps
+minikube service --url=true rollingdeploy-minikube
+```
+
+The url for the service will then be displayed for us by minikube:
+
+```
+http://172.17.181.236:32527
+```
+
+:::hint
+Note: The IP address and will be different when running this on your own machine. A random port will also be assigned by minikube.
+:::
+
+Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in minikube:
+
+![](minikube-v0.0.1.png "width=500")
 
 ### Azure DevOps?
 
