@@ -243,7 +243,7 @@ The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics
 
 ![](k8s-rolling-update.png)
 
-I will be demonstrating using [Minikube](https://minikube.sigs.k8s.io/). Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM) on your laptop for. It's useful for people like me who are to try out Kubernetes or do some development with it.
+I will be demonstrating using [Minikube](https://minikube.sigs.k8s.io/). Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM). It's useful for people like me who want to try out Kubernetes or do some development with it.
 
 Before you install Minikube, it's worth noting that there are some prerequisites for Windows:
 
@@ -347,13 +347,13 @@ In order to perform a rolling update we need more than one replica of our applic
 
 ![](minikube-dashboard-scale-ellipsis.png "width=500")
 
-For our Kubernetes application, I want 3 replicas to perform a rolling update on:
+For our Kubernetes application, I update the **Desired Replicas** to 3 replicas so I can perform a rolling update and then hit **Scale**.
 
 ![](minikube-dashboard-scale.png "width=500")
 
 :::hint
 **Equivalent kubectl commands**
-You may have noticed that most of the actions that are taken in the dashboard will also handily provide the equivalent command to run. For scaling our resource, that is:
+You may have noticed that the dashboard handily provides the equivalent command to run for our action. For scaling our resource, that is:
 
 ```
 kubectl scale -n default deployment rollingdeploy-minikube --replicas=3
@@ -384,7 +384,7 @@ minikube service --url=true rollingdeploy-minikube
 The url for the service will then be displayed for us by minikube:
 
 ```
-http://192.168.87.115:32527
+http://192.168.87.124:31861
 ```
 
 :::hint
