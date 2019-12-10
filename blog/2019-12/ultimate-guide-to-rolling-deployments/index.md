@@ -198,7 +198,7 @@ Ports:
   PublishMode = ingress
 ```
 
-#### Docker rolling update in action
+#### Docker Rolling Update in action
 
 Now we can update the container image for `harrisonmeister/rolling-deploy-example` to `v0.0.2` by running the following command:
 
@@ -284,7 +284,6 @@ On first initialisation, it will download the VM boot image and create a machine
 ! C:\Program Files\Docker\Docker\Resources\bin\kubectl.exe is version 1.14.8, and is incompatible with Kubernetes 1.16.2. You will need to update C:\Program Files\Docker\Docker\Resources\bin\kubectl.exe or use 'minikube kubectl' to connect with this cluster
 ```
 
-
 :::warning
 **Docker Desktop and kubectl**
 You'd be forgiven if you missed the error at the end of the command output above. 
@@ -353,7 +352,6 @@ You can use it to deploy containerized applications, manage and interact with yo
 
 ![](minikube-dashboard.png "width=500")
 
-
 In order to perform a rolling update we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three elipsis on the right hand side of the **Deployments** section:
 
 ![](minikube-dashboard-scale-ellipsis.png "width=500")
@@ -383,7 +381,7 @@ The result of this will show us the status of the Pod (Names may be different):
 NAME                                      READY   STATUS    RESTARTS   AGE
 rollingdeploy-minikube-6844478945-jnz8r   1/1     Running   0          71s
 rollingdeploy-minikube-6844478945-tvl9b   1/1     Running   0          71s
-rollingdeploy-minikube-6844478945-vgg9q   1/1     Running   0          158m
+rollingdeploy-minikube-6844478945-vgg9q   1/1     Running   0          71s
 ```
 
 To verify our application is working, we can ask minikube for the url to the `Deployment` we created at the start:
@@ -405,6 +403,75 @@ Note: The IP address will be different when running this on your own machine. A 
 Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in minikube:
 
 ![](minikube-v0.0.1.png "width=500")
+
+#### Kubernetes Rolling Update in action
+
+Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `harrisonmeister/rolling-deploy-example` by running the following command:
+
+```ps
+kubectl set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2
+```
+
+If all is well, you will get an output similar to this:
+
+```ps
+deployment.apps/rollingdeploy-minikube image updated
+```
+
+Next, we can check the progress of our rollout by running::
+
+```
+kubectl rollout status deployment.v1.apps/rollingdeploy-minikube
+```
+
+This will provide a live update of the rollout status until its completem and it is showing us that it is updating 1 Pod at a time:
+
+```ps
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 old replicas are pending termination...
+deployment "rollingdeploy-minikube" successfully rolled out
+```
+
+Kubernetes Deployments ensure that only a certain number of Pods are down while they are being updated. It does this by creating a new Pod and destroying the old ones after it has completed.
+
+:::hint
+**Default Pod Update control**
+
+By default, Kubernetes ensures that at there are at least 75% of the desired number of Pods available.
+In addition, another default is to create no more than 25% of the overall desired amount of Pods.
+:::
+
+Opening the url in a browser, and we can now see that we have `v0.0.2` of our application running in minikube:
+
+![](minikube-v0.0.2.png "width=500")
+
+The Deployment's rollout was triggered here as `set image` caused an update to the underlying Deployment Pod's [Template](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates). A Template is a specification document which describes the way a [Replication Controller](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) should create an actual pod.
+
+We can see what the Template looks like for our application by running:
+
+```ps
+kubectl edit deployment.v1.apps/rollingdeploy-minikube
+```
+
+This will open up the template file in a text editor, and on my machine that's Notepad:
+
+![](kubectl-edit-deployment.png)
+
+You can edit this file interactively. Changing the Deployment Pod's template (the section within `.spec.template`) will result in triggering the Deployment's rollout. 
+
+:::hint
+**Note:**
+Other updates to a Deployment, like the scaling we did earlier doesn't result in a rollout being triggered.
+:::
+
+
+#### Kubernetes Deployment Rollback
 
 ### Azure DevOps?
 
