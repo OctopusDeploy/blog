@@ -38,7 +38,7 @@ No, your deployments will not be affected. These requirements only affect the ho
 
 ## Question: How much time do I have to plan my upgrade?
 
-We will continue to support Octopus Server `2019.9 LTS` under our [long-term support program](https://octopus.com/docs/administration/upgrading/long-term-support) **until the end of March 2020**, after which you should seriously consider upgrading Octopus Server. We hope this gives you sufficient time to plan the full upgrade.
+We will ship one more LTS release of Octopus Server in January 2020, with the version `2019.12 LTS`, which will be supported under our [long-term support program](https://octopus.com/docs/administration/upgrading/long-term-support) **until July 2020**, after which you should seriously consider upgrading Octopus Server. We hope this gives you sufficient time to plan the full upgrade.
 
 ## Question: Should I upgrade Octopus Server anyhow?
 
