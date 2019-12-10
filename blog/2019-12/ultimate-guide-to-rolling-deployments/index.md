@@ -297,7 +297,7 @@ After a quick Google, I found the kubectl install [documentation](https://kubern
 I fixed the error by adding my `PATH` entry before the one added by Docker Desktop.
 :::
 
-Once we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deployment-svc`, and expose it on port 5001 as before, using the `--port` flag
+Once we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-example`, and expose it on port 5001 as before, using the `--port` flag
 
 :::hint
 
