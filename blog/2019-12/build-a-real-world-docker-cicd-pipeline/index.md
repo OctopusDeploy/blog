@@ -21,7 +21,7 @@ Docker and containers are excellent technologies to have in your DevOps tool-bel
 
 In the last post, I showed you how to containerize the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application and produce Docker images for it.
 
-In this post, I configure a complete Docker CI/CD pipeline to automate the process. This covers the steps to configure continuous integration with JetBrain’s TeamCity and continuous delivery with Octopus Deploy.
+In this post, I configure a complete Docker CI/CD pipeline to automate the process. This covers the steps to configure continuous integration with JetBrains’ TeamCity and continuous delivery with Octopus Deploy.
 
 <h2>In this post</h2>
 
