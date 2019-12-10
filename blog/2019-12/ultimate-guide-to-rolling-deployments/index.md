@@ -127,21 +127,15 @@ Docker also supports Kubernetes as an orchestator when deploying containers usin
 So lt's see what our command to create a service looks like:
 
 ```ps
-docker service create 
- --name rolling-deploy-svc 
- --replicas 3
- --publish published=5001,target=5001
- --update-delay 10s
- --update-parallelism 1 
- harrisonmeister/rolling-deploy-example:0.0.1
+docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 harrisonmeister/rolling-deploy-example:0.0.1
 ```
 
-Let's unpick what we are asking of Docker here:
+There's quite a lot going on in that command, so let's unpick what we are asking of Docker here:
 - The `--name` is pretty self explanatory. 
 - The `--replicas` flag controls the number of containers we want (3).
 - The `--publish published=5001,target=5001` specifies we want the service to be accessed on port 5001, using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service) which acts essentially like a software load-balancer.
 - The `--update-delay` configures the time delay (10s) between updates to a service task.
-- The `--update-parallelism` controls the maximum number of service tasks that Docker will schedule simultaneously (1).
+- The `--update-parallelism` controls the maximum number of tasks that Docker will schedule simultaneously (1).
 - Lastly, we specify the image to use: `harrisonmeister/rolling-deploy-example:0.0.1`
 
 :::hint
@@ -249,16 +243,16 @@ The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics
 
 ![](k8s-rolling-update.png)
 
-As with my previous Docker example, I will be demonstrating using a local instance of Kubernetes on my Windows machine, [minikube](https://minikube.sigs.k8s.io/).
+I will be demonstrating using [Minikube](https://minikube.sigs.k8s.io/). Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM) on your laptop for. It's useful for people like me who are to try out Kubernetes or do some development with it.
 
-Before you install minikube on Windows, it's worth noting that there are some prerequisites:
+Before you install Minikube, it's worth noting that there are some prerequisites for Windows:
 
 - Windows 8 or above
 - A hypervisor, like Hyper-V or VirtualBox
 - Hardware virtualization support enabled in your BIOS
 - At least 4GB of RAM
 
-After installing minikube, the first thing to do is to start it up:
+After installing Minikube, the first thing to do is to start it up:
 
 ```ps
 minikube start --vm-driver=hyperv
@@ -286,7 +280,7 @@ On first initialisation, it will download the VM boot image and create a machine
 **Docker Desktop and kubectl**
 You'd be forgiven if you missed the error at the end of the command output above. 
 
-Having installed Docker Desktop for Windows on my local machine first, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed minikube, it required a later version: `1.16.2`. 
+Having installed Docker Desktop for Windows on my local machine first, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed Minikube, it required a later version: `1.16.2`. 
 
 After a quick Google, I found the kubectl install [documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows) which even warns you about this issue:
 
@@ -295,7 +289,7 @@ After a quick Google, I found the kubectl install [documentation](https://kubern
 I fixed the error by adding my `PATH` entry before the one added by Docker Desktop.
 :::
 
-Once we have minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deployment-svc`, and expose it on port 5001 as before, using the `--port` flag
+Once we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deployment-svc`, and expose it on port 5001 as before, using the `--port` flag
 
 :::hint
 
@@ -330,7 +324,7 @@ The output confirms the command worked
 service/rollingdeploy-minikube exposed
 ```
 
-Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status by using the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) provided in minikube:
+Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status by using the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) provided in Minikube:
 
 ```
 minikube dashboard
@@ -348,7 +342,6 @@ You can use it to deploy containerized applications, manage and interact with yo
 
 ![](minikube-dashboard.png "width=500")
 
-***Scaling Replicas***
 
 In order to perform a rolling update we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three elipsis on the right hand side of the **Deployments** section:
 
@@ -391,11 +384,11 @@ minikube service --url=true rollingdeploy-minikube
 The url for the service will then be displayed for us by minikube:
 
 ```
-http://172.17.181.236:32527
+http://192.168.87.115:32527
 ```
 
 :::hint
-Note: The IP address and will be different when running this on your own machine. A random port will also be assigned by minikube.
+Note: The IP address will be different when running this on your own machine. A random port will also be assigned by Minikube.
 :::
 
 Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in minikube:
