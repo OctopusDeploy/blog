@@ -102,8 +102,13 @@ We'll make changes to the ``AppVersion`` and roll this out using different tools
 
 ### Docker rolling application updates
 
-:::success
-For the sake of simplicity, I am doing this exercise in Docker from the command line. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file.
+_TODO: Brief intro to Docker_
+
+#### Docker containerised application
+
+I am doing this exercise using [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file.
+
+:::hint
 If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
 :::
 
@@ -193,6 +198,8 @@ Ports:
   PublishMode = ingress
 ```
 
+#### Docker rolling update in action
+
 Now we can update the container image for `harrisonmeister/rolling-deploy-example` to `v0.0.2` by running the following command:
 
 ```ps
@@ -242,6 +249,8 @@ A Pod's instances will be updated incrementally with new ones. It supports both 
 The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) on updates includes a nice diagram showing how it works:
 
 ![](k8s-rolling-update.png)
+
+#### Kubernetes cluster setup
 
 I will be demonstrating using [Minikube](https://minikube.sigs.k8s.io/). Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM). It's useful for people like me who want to try out Kubernetes or do some development with it.
 
@@ -299,6 +308,8 @@ Google describes Kubernetes [Deployments](https://cloud.google.com/kubernetes-en
 
 > represent a set of multiple, identical Pods with no unique identities. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. In this way, Deployments help ensure that one or more instances of your application are available to serve user requests. Deployments are managed by the Kubernetes Deployment controller.
 :::
+
+#### Kubernetes containerised application setup
 
 To set up our Deployment for our application, we run the following command:
 
