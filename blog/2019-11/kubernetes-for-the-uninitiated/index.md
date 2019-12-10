@@ -21,7 +21,7 @@ This post is a continuation of my [last article](link to it), where I covered cr
 ## What is Kubernetes?
 Kubernetes is a container orchestration technology.  Machines that are running Kubernetes are referred to as `nodes`.  Nodes make up a Kubernetes `cluster`, though it is possible to have a cluster with a single node.  Nodes run containers in what is called a `pod`.
 
-![](https://d33wubrfki0l68.cloudfront.net/5cb72d407cbe2755e581b6de757e0d81760d5b86/a9df9/docs/tutorials/kubernetes-basics/public/images/module_03_nodes.svg)
+![](module-03-nodes.svg)
 
 ## Docker Desktop and Kubernetes
 
@@ -100,7 +100,7 @@ See [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop/tree/master/k8s)
 
 Deployments will create the pods for our application, but we still need a way for them to communicate.
 
-![](https://d33wubrfki0l68.cloudfront.net/fe03f68d8ede9815184852ca2a4fd30325e5d15a/98064/docs/tutorials/kubernetes-basics/public/images/module_03_pods.svg)
+![](module-03-pods.svg)
 
 Each pod on a node has an internal IP address assigned by the node.  Within our containers, we’ve specified the port to expose to the pod, but those are still only within the pod and not exposed to the node.  To allow connectivity between pods on a node, we need to create a `service` for each pod.
 
