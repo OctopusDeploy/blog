@@ -10,22 +10,24 @@ tags:
  - DevOps
 ---
 
-![Building a real-world CI/CD docker pipeline](docker-in-a-ci-cd-pipeline.png)
+![Building a real-world CI/CD Docker pipeline](docker-in-a-ci-cd-pipeline.png)
 
-Docker and containers are excellent technologies to have in your DevOps tool-belt. The 'Beyond Hello World' blog series covers how to use them with a real-world application.
+Docker and containers are excellent technologies to have in your DevOps tool-belt. The **Beyond Hello World** blog series covers how to use them with a real-world application.
 
 - [Containerizing a real-world web application](/blog/2019-12/containerize-a-real-world-web-app/index.md)
 - **Building a real-world Docker CI/CD pipeline**
 
 ---
 
-In the last post, I showed you how to containerize the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application and produce Docker images for it. In this post, I take it further by configuring a complete docker CI/CD pipeline to automate the process. This covers the steps to configure continuous integration with JetBrain's TeamCity and configure continuous delivery with Octopus Deploy.
+In the last post, I showed you how to containerize the [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) web application and produce Docker images for it.
+
+In this post, I configure a complete Docker CI/CD pipeline to automate the process. This covers the steps to configure continuous integration with JetBrain’s TeamCity and continuous delivery with Octopus Deploy.
 
 <h2>In this post</h2>
 
 !toc
 
-## Configuring docker continuous integration with JetBrain's TeamCity 
+## Configuring Docker continuous integration with JetBrain’s TeamCity
 
 Continuous Integration happens on the build server.  The Continuous part is usually associated with some sort of event that triggers a build such as source code commits or a specific time of day.  For our build server, we’ll be performing the following tasks:
 
@@ -41,7 +43,7 @@ Rather than create a new virtual machine (VM), install and configure an OS, inst
 
 :::hint
 **Hint**
-My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but Robin Winslow's article, [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
+My first attempt at running this ran into an issue where the agent container couldn’t resolve local DNS entries, but Robin Winslow’s article, [Fix Docker’s networking DNS config](https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/), showed me a neat trick to fix that problem.
 
 With the DNS issue resolved, the container started up and registered itself to my TeamCity server under the Unauthorized category of agents:
 
@@ -95,7 +97,7 @@ Check **Log in to the Docker registry before the build** and choose the connecti
 ![](teamcity-build-feature-add-connection.png)
 
 ### Add build steps
-Steps 1-4 are going to be identical, the only difference is the docker file that we’re going to build.  Click on the **Build Steps** tab, then click the **Add build step** button:
+Steps 1-4 are going to be identical, the only difference is the dockerfile that we’re going to build.  Click on the **Build Steps** tab, then click the **Add build step** button:
 
 ![](teamcity-build-add-step.png)
 
@@ -107,7 +109,7 @@ For the step, fill in the following:
 
 ![](teamcity-build-step-docker.png)
 
-For docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer when selecting package versions, which `latest` doesn’t follow.  In this example I’ve hardcoded `1.0.0.0` as the version number, but we could just as easily used a TeamCity Parameter to dynamically assign the version number.
+For Docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer when selecting package versions, which `latest` doesn’t follow.  In this example I’ve hardcoded `1.0.0.0` as the version number, but we could just as easily used a TeamCity Parameter to dynamically assign the version number.
 
 We’ll add three more steps just like this one for product service, shopping cart service, and database.
 
@@ -124,7 +126,7 @@ For the push step, we specify all of the images that were built in steps 1-4 and
 
 Congratulations!  We just finished the CI portion of this article.  The only thing left to do is to add a trigger so that when someone commits to source control, a build will automatically execute.
 
-## Configuring docker continuous delivery with Octopus Deploy
+## Configuring Docker continuous delivery with Octopus Deploy
 For the CD portion of this article, we’ll use Octopus Deploy.  Within Octopus, we’ll do the following:
 - Add Docker Hub as an external feed.
 - Create a new project.
@@ -249,7 +251,7 @@ If we now navigate to the server we just deployed to, we should see our OctoPetS
 
 ![](server-docker-octopetshop.png)
 
-## Completing the docker CI/CD pipeline
+## Completing the Docker CI/CD pipeline
 So far we’ve done the CI and the CD portions, but we’ve not yet connected them together.  To fit these pieces together, we go back to our TeamCity server.
 
 ### Install the Octopus Deploy TeamCity plugin
@@ -279,4 +281,4 @@ If we wanted to, we could add the automatic deployment of that release to develo
 
 ## Conclusion
 
-This post showed it's possible to create a complete CI/CD pipeline for a real-world application using Docker containers. It covered how to automate a docker build pipeline with JetBrains TeamCity and how to configure docker continous delivery with Octopus Deploy. 
+This post showed it’s possible to create a complete CI/CD pipeline for a real-world application using Docker containers. It covered how to automate a Docker build pipeline with JetBrains TeamCity and how to configure Docker continuous delivery with Octopus Deploy.
