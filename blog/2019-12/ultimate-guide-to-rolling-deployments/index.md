@@ -470,8 +470,45 @@ You can edit this file interactively. Changing the Deployment Pod's template (th
 Other updates to a Deployment, like the scaling we did earlier doesn't result in a rollout being triggered.
 :::
 
+It felt like there was a little more to the setup for a rolling deployment with Kubernetes than with Docker, but once configured, it worked excellently.
+
 #### Kubernetes Deployment Rollback
 
+A Successful rolling deployment is obviously what we all hope for, but it's inevitable that at some point, you'll need to initiate a rollback, either part of the way through a rollout itself, or some time after.
+
+With Kubernetes, all of a Deployment's rollout history is kept in the system by default. That means, you can rollback anytime you want.
+
+:::warning
+ **Hint:**
+ Whislt it is possible to change the amount of history that's stored for a Deployment's rollout by modifying the revision history limit, it's not generally recommended as it limits your ability to rollback a deplpyment.
+:::
+
+To see the rollout history for our deployment, we can run:
+
+```ps
+kubectl rollout history deployment.v1.apps/rollingdeploy-minikube
+```
+
+This will display all of the changes to our `rollingdeploy-minikube` Deployment:
+
+```ps
+REVISION  CHANGE-CAUSE
+2         kubectl.exe set image deployment/rollingdeploy-minikube rollingdeploy-minikube=rolling-deploy-example:0.0.2 --record=true
+3         kubectl.exe set image deployment/rollingdeploy-minikube rollingdeploy-minikube=rolling-deploy-example:0.0.2 --record=true
+4         kubectl.exe set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record=true--record=true
+```
+
+We can choose to revert back to the previously deployed version `v0.0.1` by running:
+
+```ps
+kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube
+```
+
+Or we can choose a specific revision to revert to by running:
+
+```ps
+kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=2
+```
 
 ### Azure DevOps?
 
