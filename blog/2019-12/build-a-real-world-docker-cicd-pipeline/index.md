@@ -33,13 +33,13 @@ Continuous integration happens on the build server.  The continuous part is usua
 
 - Create a project.
 - Create a build definition.
-- Define build steps.
+- Define the build steps.
 
 ### Adding the Docker build capability to the build agent
 
-Most major build servers can build Docker images either with a built-in step or a downloadable plug-in. For this demonstration, I use TeamCity as most of my experience is with Azure DevOps, and I want to expand my horizons.
+Most major build servers can build Docker images either with a built-in step or a downloadable plugin. For this demonstration, I use TeamCity as most of my experience is with Azure DevOps, and I want to expand my horizons.
 
-Rather than create a new virtual machine (VM), install and configure an OS, install the build agent, and finally install Docker, I chose a much nerdier path.  JetBrains, maker of TeamCity (amongst other products), provides a [Docker image for their build agent](https://hub.docker.com/r/jetbrains/teamcity-agent/). Not only do they have a build agent image, this image can also run Docker to do Docker builds (I chose option two under Running Builds Which Require Docker in the linked document above).
+Rather than create a new virtual machine (VM), install and configure an OS, install the build agent, and finally install Docker, I chose a much nerdier path.  JetBrains, maker of TeamCity (amongst other products), provides a [Docker image for their build agent](https://hub.docker.com/r/jetbrains/teamcity-agent/). Not only do they have a build agent image, but this image can also run Docker to do Docker builds (I chose option two under Running Builds Which Require Docker in the linked document above).
 
 :::hint
 **Hint**
@@ -54,7 +54,7 @@ Clicking the **Authorize** button finalized the connection, and the agent was av
 
 ### Create a TeamCity project
 
-My first step was to create a new TeamCity project and connect my git repository to it. The [OctoPetShop](https://github.com/octopussamples/octopetshop) source code is available on GitHub but I used a local Azure DevOps instance to host mine.  This post assumes you already know how to [create a project](https://www.jetbrains.com/help/teamcity/creating-and-editing-projects.html) within TeamCity and focuses on the build and deploy process.
+My first step was to create a new TeamCity project and connect my git repository to it. The [OctoPetShop](https://github.com/octopussamples/octopetshop) source code is available on GitHub, but I used a local Azure DevOps instance to host mine.  This post assumes you already know how to [create a project](https://www.jetbrains.com/help/teamcity/creating-and-editing-projects.html) within TeamCity and focuses on the build and deploy process.
 
 ### Add a connection to Docker Hub
 
@@ -97,7 +97,7 @@ Check **Log in to the Docker registry before the build**, choose the connection 
 ![](teamcity-build-feature-add-connection.png)
 
 ### Add build steps
-Steps 1-4 are identical, the only difference is the dockerfile that we’ll build.  Click on the **Build Steps** tab, then click the **Add build step** button:
+Steps 1-4 are identical; the only difference is the dockerfile we’ll build.  Click on the **Build Steps** tab, then click the **Add build step** button:
 
 ![](teamcity-build-add-step.png)
 
@@ -111,9 +111,9 @@ For the step, fill in the following:
 
 For Docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer for package versions, and in this example, I’ve hardcoded `1.0.0.0` as the version number, but we could just as easily used a TeamCity Parameter to dynamically assign the version number.
 
-We’ll add three more steps just like this one for product service, shopping cart service, and database.
+We’ll add three more steps like this one for product service, shopping cart service, and database.
 
-The last step we’ll add pushes our built images (i.e. execute a Docker push command) to Docker Hub.  For this step, we’ll fill in the following:
+The last step we’ll add pushes our built images (i.e., execute a Docker push command) to Docker Hub.  For this step, we’ll fill in the following:
 - Runner type: `Docker`
 - Docker command: `push`
 - Image name:tag
@@ -167,7 +167,7 @@ Give the project a name, and click **SAVE**:
 
 ![](octopus-project-name.png)
 
-Similar to our build, the steps in Octopus are going to be largely the same with only minor differences.  I’ll walk you through the first step we’ll add to our process and point out the differences in the remaining steps.
+Similar to our build, the steps in Octopus are going to be largely the same, with only minor differences.  I’ll walk you through the first step we’ll add to our process and point out the differences in the remaining steps.
 
 On the **Process** tab of our project, click **ADD STEP**:
 
@@ -177,9 +177,9 @@ Choose the **Docker** category and the **Run a Docker Container** step:
 
 ![](octopus-project-step-add-docker.png)
 
-For this demo, we use the Microsoft SQL Server 2017 Docker image as our database server. This will be the first container we configure in our deployment
+For this demo, we use the Microsoft SQL Server 2017 Docker image as our database server. This will be the first container we configure in our deployment.
 
-The form for a Docker container step is rather long, so I’ve broken the screen shots into parts.  For the first part, give the step a name and the Role it will be deploying to.  For this demonstration, I’m using a simple role of `Docker`, but in a Production scenario, the role would be something more meaningful like: `OctoPetShop-Web-Container`.
+The form for a Docker container step is rather long, so I’ve broken the screenshots into parts.  For the first part, give the step a name and the role it will be deploying to.  For this demonstration, I’m using a simple role of `Docker`, but in a Production scenario, the role would be something more meaningful like: `OctoPetShop-Web-Container`.
 
 ![](octopus-project-step-docker1.png)
 
