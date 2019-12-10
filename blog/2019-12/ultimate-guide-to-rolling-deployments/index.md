@@ -365,7 +365,7 @@ For our Kubernetes application, I update the **Desired Replicas** to 3 replicas 
 You may have noticed that the dashboard handily provides the equivalent command to run for our action. For scaling our resource, that is:
 
 ```
-kubectl scale -n default deployment rollingdeploy-minikube --replicas=3
+kubectl scale -n default deployment rollingdeploy-minikube --replicas=3 
 ```
 :::
 
@@ -409,7 +409,7 @@ Opening the url in a browser, and we can see that we have `v0.0.1` of our applic
 Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `harrisonmeister/rolling-deploy-example` by running the following command:
 
 ```ps
-kubectl set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2
+kubectl set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record
 ```
 
 If all is well, you will get an output similar to this:
@@ -493,9 +493,8 @@ This will display all of the changes to our `rollingdeploy-minikube` Deployment:
 
 ```ps
 REVISION  CHANGE-CAUSE
-2         kubectl.exe set image deployment/rollingdeploy-minikube rollingdeploy-minikube=rolling-deploy-example:0.0.2 --record=true
-3         kubectl.exe set image deployment/rollingdeploy-minikube rollingdeploy-minikube=rolling-deploy-example:0.0.2 --record=true
-4         kubectl.exe set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record=true--record=true
+1         <none>
+2         kubectl.exe set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record=true
 ```
 
 We can choose to revert back to the previously deployed version `v0.0.1` by running:
@@ -504,10 +503,53 @@ We can choose to revert back to the previously deployed version `v0.0.1` by runn
 kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube
 ```
 
-Or we can choose a specific revision to revert to by running:
+If that succeeds, you should see the following:
 
 ```ps
-kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=2
+deployment.apps/rollingdeploy-minikube rolled back
+```
+
+We can confirm we have rolled back, either by looking back in the dashboard, or running the `describe` command:
+
+```ps
+kubectl describe deployment
+```
+
+The output is as follows:
+```ps
+Name:                   rollingdeploy-minikube
+Namespace:              default
+CreationTimestamp:      Tue, 10 Dec 2019 17:38:29 +0000
+Labels:                 app=rollingdeploy-minikube
+Annotations:            deployment.kubernetes.io/revision: 3
+Selector:               app=rollingdeploy-minikube
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=rollingdeploy-minikube
+  Containers:
+   rolling-deploy-example:
+    Image:        harrisonmeister/rolling-deploy-example:0.0.1
+    Port:         <none>
+    Host Port:    <none>
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   rollingdeploy-minikube-6844478945 (3/3 replicas created)
+```
+
+Alternatively you can choose a specific revision to revert to by running:
+
+```ps
+kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
 ```
 
 ### Azure DevOps?
