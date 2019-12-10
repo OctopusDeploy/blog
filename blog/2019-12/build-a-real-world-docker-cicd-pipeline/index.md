@@ -60,7 +60,7 @@ My first step was to create a new TeamCity project and connect my git repository
 
 To push your images to Docker Hub, you need to configure a connection to Docker Hub with an authorized user.
 
-For this, we navigate to the **Connections** tab of our OctoPetShop project:
+For this, navigate to the **Connections** tab of our OctoPetShop project:
 
 ![](teamcity-project-connections.png)
 
@@ -92,12 +92,12 @@ Choose **Docker Support** from the dropdown menu:
 
 ![](teamcity-build-feature-docker.png)
 
-Check **Log in to the Docker registry before the build**, choose the connection you created for your project, and click Save:
+Check **Log in to the Docker registry before the build**, choose the connection you created for your project, and click **Save**:
 
 ![](teamcity-build-feature-add-connection.png)
 
 ### Add build steps
-Steps 1 to 4 are identical; the only difference is the dockerfile you’ll build.  Click on the **Build Steps** tab, then click the **Add build step** button:
+Steps 1 to 4 are almost identical; the only difference is the dockerfile you’ll build.  Click on the **Build Steps** tab, and click the **Add build step** button:
 
 ![](teamcity-build-add-step.png)
 
@@ -109,7 +109,7 @@ For the step, fill in the following:
 
 ![](teamcity-build-step-docker.png)
 
-For Docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer for package versions, and in this example, I’ve hardcoded `1.0.0.0` as the version number, but you could just as easily use a TeamCity Parameter to dynamically assign the version number.
+For Docker images, it’s considered best practice to tag your image with the `DockerId/ImageName:version`.  It’s not uncommon to omit the `version` part of the tag, but whenever a new version of an image is uploaded to Docker Hub, it will automatically attach `latest` as the version if a version number is not specified.  Octopus Deploy uses SemVer for package versions, and in this example, I’ve hardcoded `1.0.0.0` as the version number, but you could just as easily use a TeamCity parameter to dynamically assign the version number.
 
 You’ll add three more steps like this one for the product service, the shopping cart service, and the database.
 
@@ -157,7 +157,7 @@ Test the feed to make sure Octopus can log into Docker Hub:
 
 With your external feed configured, you can define our steps.
 
-### Craft the Octopus Deploy project
+### Create the Octopus Deploy project
 
 To create a new project, click on the **Projects** tab, and click the **ADD PROJECT** button:
 
@@ -196,11 +196,11 @@ Choose the Network Type of `Bridge`:
 
 ![](octopus-project-step-docker3.png)
 
-To make your database server accessible, you need to add a port mapping.  Specify the default SQL Serve port of `1433`:
+To make your database server accessible, you need to add a port mapping.  Specify the default SQL Server port of `1433`:
 
 ![](octopus-project-step-docker4.png)
 
-Scroll down to the **Variables** section and add the following Explicit Variable Mapping.  This image needs a couple of environment variables passed to it: `SA_PASSWORD` and `ACCEPT_EULA`.  Create a Project Variable of type Sensitive for the SA_PASSWORD:
+Scroll down to the **Variables** section and add the following Explicit Variable Mapping.  This image needs a couple of environment variables passed to it: `SA_PASSWORD` and `ACCEPT_EULA`.  Create a Project Variable of type *Sensitive* for the `SA_PASSWORD`:
 
 ![](octopus-project-step-docker5.png)
 ![](octopus-project-step-docker6.png)
@@ -267,7 +267,7 @@ This will add some steps that you can use with your build definition to interact
 
 ### Add Create Release step
 
-Next, add a new step to your build definition, OctopusDeploy: Create release:
+Next, add a new step to your build definition, **OctopusDeploy: Create release**:
 
 ![](teamcity-build-step-release.png)
 
