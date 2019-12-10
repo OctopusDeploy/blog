@@ -129,7 +129,7 @@ To deploy more than one instance of our container, we need to create a Docker [s
 Docker also supports Kubernetes as an orchestator when deploying containers using the Docker [stack](https://docs.docker.com/engine/reference/commandline/stack) command, but it's not possible to specify the orchestrator when using `service create`.
 :::
 
-So lt's see what our command to create a service looks like:
+So let's see what our command to create a service looks like:
 
 ```ps
 docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 harrisonmeister/rolling-deploy-example:0.0.1
@@ -352,7 +352,7 @@ You can use it to deploy containerized applications, manage and interact with yo
 
 ![](minikube-dashboard.png "width=500")
 
-In order to perform a rolling update we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three elipsis on the right hand side of the **Deployments** section:
+In order to perform a rolling update we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three ellipsis on the right hand side of the **Deployments** section:
 
 ![](minikube-dashboard-scale-ellipsis.png "width=500")
 
@@ -424,7 +424,7 @@ Next, we can check the progress of our rollout by running::
 kubectl rollout status deployment.v1.apps/rollingdeploy-minikube
 ```
 
-This will provide a live update of the rollout status until its completem and it is showing us that it is updating 1 Pod at a time:
+This will provide a live progress of the rollout until its complete, and it is indicating that it is updating 1 Pod at a time:
 
 ```ps
 Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
@@ -470,8 +470,8 @@ You can edit this file interactively. Changing the Deployment Pod's template (th
 Other updates to a Deployment, like the scaling we did earlier doesn't result in a rollout being triggered.
 :::
 
-
 #### Kubernetes Deployment Rollback
+
 
 ### Azure DevOps?
 
