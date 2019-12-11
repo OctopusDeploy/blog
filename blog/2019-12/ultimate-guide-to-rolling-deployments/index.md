@@ -148,9 +148,9 @@ There's quite a lot going on in that command, so let's unpick what we are asking
 When running ``service create`` for the first time, you may receive a warning, just as I did of: `This node is not a swarm manager`. To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
 :::
 
-Executing this results in our service being deployed to Docker Swarm with 3 instances (ID will be different)
+Executing this results in our service being deployed to Docker Swarm with 3 instances:
 
-```ps
+```
 wxi1w4m7crknaz1f800kr9ztt
 overall progress: 3 out of 3 tasks
 1/3: running   [==================================================>]
@@ -167,7 +167,7 @@ docker service inspect rolling-deploy-svc --pretty
 
 The result of this shows we have our desired `UpdateConfig` 
 
-```ps
+```
 ID:             wxi1w4m7crknaz1f800kr9ztt
 Name:           rolling-deploy-svc
 Service Mode:   Replicated
@@ -208,7 +208,7 @@ docker service update rolling-deploy-svc --image harrisonmeister/rolling-deploy-
 
 Docker runs the update to each container, 1 task at a time just as we have configured it to:
 
-```ps
+```
 overall progress: 0 out of 3 tasks 
 1/3: running   [=============================================>     ]
 2/3:
@@ -217,7 +217,7 @@ overall progress: 0 out of 3 tasks
 
 Once the first task is complete, it moves onto task 2:
 
-```ps
+```
 overall progress: 1 out of 3 tasks 
 1/3: starting  [==================================================>]
 2/3: ready     [=====================================>             ]
@@ -226,7 +226,7 @@ overall progress: 1 out of 3 tasks
 
 Until all of the tasks to update the containers to `v0.0.2` is complete:
 
-```ps
+```
 overall progress: 3 out of 3 tasks 
 1/3: running   [==================================================>]
 2/3: running   [==================================================>]
@@ -269,7 +269,7 @@ minikube start --vm-driver=hyperv
 
 On first initialisation, it will download the VM boot image and create a machine using your chosen Hypervisor, in my case Hyper-V:
 
-```ps
+```
 * Downloading VM boot image ...
     > minikube-v1.5.1.iso.sha256: 65 B / 65 B [--------------] 100.00% ? p/s 0s
     > minikube-v1.5.1.iso: 143.76 MiB / 143.76 MiB [-] 100.00% 18.41 MiB p/s 8s
@@ -318,7 +318,7 @@ kubectl create deployment rollingdeploy-minikube --image=harrisonmeister/rolling
 
 The output from this command confirms our Deployment has been successfully created:
 
-```ps
+```
 deployment.apps/rollingdeploy-minikube created
 ```
 
@@ -330,7 +330,7 @@ kubectl expose deployment rollingdeploy-minikube --type=NodePort --port=5001
 
 The output confirms the command worked
 
-```ps
+```
 service/rollingdeploy-minikube exposed
 ```
 
@@ -377,7 +377,7 @@ kubectl get pod
 
 The result of this will show us the status of the Pod (Names may be different):
 
-```ps
+```
 NAME                                      READY   STATUS    RESTARTS   AGE
 rollingdeploy-minikube-6844478945-jnz8r   1/1     Running   0          71s
 rollingdeploy-minikube-6844478945-tvl9b   1/1     Running   0          71s
@@ -414,7 +414,7 @@ kubectl set image deployment/rollingdeploy-minikube rolling-deploy-example=harri
 
 If all is well, you will get an output similar to this:
 
-```ps
+```
 deployment.apps/rollingdeploy-minikube image updated
 ```
 
@@ -426,7 +426,7 @@ kubectl rollout status deployment.v1.apps/rollingdeploy-minikube
 
 This will provide a live progress of the rollout until its complete, and it is indicating that it is updating 1 Pod at a time:
 
-```ps
+```
 Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
 Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
 Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
@@ -480,7 +480,7 @@ With Kubernetes, all of a Deployment's rollout history is kept in the system by 
 
 :::warning
  **Hint:**
- Whislt it is possible to change the amount of history that's stored for a Deployment's rollout by modifying the revision history limit, it's not generally recommended as it limits your ability to rollback a deplpyment.
+ Whislt it's possible to change the amount of history that's stored for a Deployment's rollout (by modifying the revision history limit), it's not generally recommended. This limits your ability to rollback a deployment.
 :::
 
 To see the rollout history for our deployment, we can run:
@@ -491,7 +491,7 @@ kubectl rollout history deployment.v1.apps/rollingdeploy-minikube
 
 This will display all of the changes to our `rollingdeploy-minikube` Deployment:
 
-```ps
+```
 REVISION  CHANGE-CAUSE
 1         <none>
 2         kubectl.exe set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record=true
@@ -505,7 +505,7 @@ kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube
 
 If that succeeds, you should see the following:
 
-```ps
+```
 deployment.apps/rollingdeploy-minikube rolled back
 ```
 
@@ -516,7 +516,7 @@ kubectl describe deployment
 ```
 
 The output is as follows:
-```ps
+```
 Name:                   rollingdeploy-minikube
 Namespace:              default
 CreationTimestamp:      Tue, 10 Dec 2019 17:38:29 +0000
