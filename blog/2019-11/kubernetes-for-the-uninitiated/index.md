@@ -273,9 +273,6 @@ OctoPetShop is written to redirect to https, and you will most likely receive a 
 
 ![](octopetshop.png)
 
-## Including Kubernetes in a CI/CD pipeline
-Kubernetes doesn’t have anything that needs to be built, other than the Docker images it uses.  For this, we’d focus on the Continuous Delivery (CD) portion of a CI/CD pipeline.  Release management software such as Azure DevOps Pipelines and Octopus Deploy contain steps that can be used to automate the deployment of Kubernetes clusters.
-
 ## Conclusion
 Before embarking on the journey to containerize OctoPetShop with the eventual goal of getting it running on Kubernetes, I viewed Kubernetes as a complex monster.  Now that I’ve gone through the motion of containerizing an application and getting it to run, I still think that, but getting an application to run on it isn’t really that hard.
 
