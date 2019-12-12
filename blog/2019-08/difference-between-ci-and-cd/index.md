@@ -20,15 +20,15 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 * The features provided by good CD tools.
 * Why you may consider using separate tools for your CI/CD workflow.
 
-## What is continuous integration?  
+## What is Continuous Integration?  
 
-At a high level, CI is all about taking the code written by developers and compiling it into an artifact, running automated tests, and capturing the log files so any failed builds or tests can be resolved. A CI server facilities this process by running builds and tests with each commit.
+At a high level, CI is all about taking the code written by developers and compiling it into an artifact, running automated tests, and capturing the log files so any failed builds or tests can be resolved. A CI server facilitates this process by running builds and tests with each commit.
 
 The CI process can be described as the equation:
 
 `code + dependencies + build tools + execution environment = test results + logs + compiled artifact`
 
-![CI inputs and outpus graphic](input-output-graphic.png)
+![CI inputs and output graphic](input-output-graphic.png)
 
 The left side of the equation takes the code written by developers, any dependencies of the code, a build tool, and the environment where the build and tests are executed. When these inputs are available, a CI server completes the build to produce the elements on the right side of the equation.
 
@@ -38,7 +38,7 @@ This means that the CI process is machine-driven, so much so that it is common f
 
 The other important aspect of the CI equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the CI server.
 
-## What is continuous deployment?
+## What is Continuous Deployment?
 
 Taken literally, CD takes the compiled artifacts from a successful build performed by the CI server and deploys them into the production environment. In this scenario, CD is quite rightly an extension of CI, and the distinction between the two becomes arbitrary.
 
