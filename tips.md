@@ -86,15 +86,15 @@ If you'd like to use screenshots or other images, here are a couple of tips to k
 
 1. Don't over rely on screenshots.
 
-    Screenshots can help guide readers to the right place in the UI or reassure them that they're on the right track, but on their own they often lack context and readers can be left wondering what exactly they're supposed to be looking. When you include screenshots make sure you provide enough context that the user understands what's expected of them.
+    Screenshots can help guide readers to the right place in the UI or reassure them that they're on the right track, but on their own, they often lack context and readers can be left wondering what exactly they're supposed to be looking. When you include screenshots make sure you provide enough context that the user understands what exactly the screenshot demonstrates.
 
 1. Consider if a screenshot is the right tool for the job.
 
-    Screenshots are easy to grab, code blocks can be a lot more work, however, it's good to consider what will be most helpful to the reader. If they's a chance your reader will want to copy commands from a screenshot, it's more helpful to copy the commands into a code block.
+    Screenshots are easy to capture, code blocks can be a lot more work, however, it's good to consider what will be most helpful to the reader. If they's a chance your reader will want to copy commands from a screenshot, it's more helpful to copy the commands into a code block.
 
 1. Check the rights on images you source online.
 
-     If you want to include an image you find online in one of your blog posts, check the rights for the image. Not all images can be reused for free without the owner's permission.
+     If you want to include an image you find online in one of your blog posts, check the rights for the image. Not all images can be reused for free without the owner's permission and some images may require attribution.
 
 1. No comics or funny Gifs.
 
