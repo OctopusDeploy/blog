@@ -35,13 +35,13 @@ To illustrate the differences between virtual machines and containers, consider 
 
 NOTE: A hypervisor is the technology that runs VMs such as Windows Hyper-V or VMWare ESXi.
 
-![](container-vm-whatcontainer_2.png)
+![Core concepts of running an application in with virtual machines](vm-core-concepts.png "width=600")
 
 In the above diagram, each virtual machine and the hypervisor have their own OS, working somewhat independently (other than the VMs requiring the hypervisor to function.)  The applications are then deployed to the VM and served up using virtual hardware: networking, RAM, CPU, etc...
 
 With Docker, the hypervisor is eliminated, and the containers run directly off the host OS through the Docker engine:
 
-![](docker-containerized-appliction-blue-border_2.png)
+![Core concepts of running an application with Docker](docker-core-concepts.png "width=600")
 
 ### Docker Desktop
 [Docker Desktop](https://www.docker.com/products/docker-desktop) is a free tool you can download from Docker to use for local development.  Docker Desktop creates a VM on your local machine that you can use to interact with the Docker engine from your host machine (i.e., the Docker host).  Along with the Docker engine, Docker Desktop allows you to:
