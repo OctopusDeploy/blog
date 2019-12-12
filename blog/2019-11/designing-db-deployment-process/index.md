@@ -22,6 +22,8 @@ In the next couple of articles, I walk you through designing an automated databa
 
 All of our database deployment articles can be found [here](https://octopus.com/database-deployments).
 
+## Table of Contents
+
 !toc
 
 ## A typical manual database deployment process
