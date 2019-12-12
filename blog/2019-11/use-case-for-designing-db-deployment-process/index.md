@@ -106,7 +106,7 @@ Those issues resulted in 2 to 4 hour `production` deployments, and we didn’t t
 
 Drafting the ideal process took quite a bit of time.  This was caused by a lack of knowledge of what the tooling could provide.  At the time, we knew about source control, build servers, and Redgate tooling, but we were all unfamiliar with what deployment tooling could provide.  Thankfully, Redgate was there to help educate us.
 
-We first listed the various tools and the functionality they provide.
+First, we listed the various tools and the functionality they provide:
 
 - Source control
     - It stores all the SQL scripts.
@@ -129,7 +129,7 @@ We first listed the various tools and the functionality they provide.
 
 With the tooling responsibilities out of the way, we spent a great deal of time discussing a shared database model vs. a dedicated database model.  A dedicated database model means each developer runs the database server on their own machine. Using a shared database model, we found:
 
-- Database changes were made, with code changes taking an hour to several days to use the new database change.  Some of the time that stopped other developers and QA from using a specific feature or area in the application.
+- Database changes were made, and code changes took an hour to several days to use the new database change.  Some of the time that stopped other developers and QA from using a specific feature or area in the application.
 - There were two truth centers, source control and the shared database which all changes were made to and then saved to source control.  If there was a conflict between source control and the shared database, which won?
 - We were unable to leverage branches effectively.  There can be 1 to N branches, but only one database.  
 - Changes were made to a central database prior to review, but when should the review occur?
@@ -137,9 +137,9 @@ With the tooling responsibilities out of the way, we spent a great deal of time 
 
 We decided to switch to dedicated databases.  In our case, it made a lot of sense. We knew how the tooling worked and where changes would be made.
 
-It was time to outline the ideal process.
+It was time to outline the ideal process:
 
-1. A developer/database developer/lead developer creates a branch.
+1. A developer/database developer/lead developer created a branch.
 2. All database changes and code changes are made on that branch.
 3. Changes are completed and checked into the branch.
 4. A merge request is created, which kicks off a build. The build verifies the changes are valid SQL.
@@ -172,7 +172,7 @@ When coming up with that process, we purposely avoided tooling.  Tooling wasn’
 
 TFS 2012 was on its way out, so it didn’t make sense to continue using it. My team was part of the group who switched over to Git and TeamCity.   
 
-Redgate had flown out to help us.  We had a prototype working with their tooling.  We discussed SSDT and RoundhousE, but they failed for roughly the same reason.  95% of the people making the database changes did so in SQL Server Management Studio, and too many people forgot to migrate those changes over to SSDT or RoundhousE.  Our discussion, along with the process we designed, led to the following key requirements of the tooling:  
+Redgate had flown out to help us.  We had a prototype working with their tooling.  We discussed SSDT and RoundhousE, but they failed for roughly the same reason.  95% of the people making the database changes did so in SQL Server Management Studio, and too many people forgot to migrate those changes over to SSDT or RoundhousE.  Our discussion, along with the process we designed, led to the following key requirements for the tooling:  
 
 1. Can save database changes from SSMS.
 2. Automatic detection of database changes.  
@@ -184,7 +184,7 @@ We didn’t have a deployment server, but after the Redgate folk explained the b
 
 ## Implementing the process
 
-The agreed-upon process was put into place using the tooling.  Getting it going in `development` and `staging` took very little time.  We did run into a couple of hiccups we didn’t anticipate in the kick-off meeting.
+The agreed-upon process was put into place using the tooling.  Getting it going in `development` and `staging` took very little time.  We did run into a couple of hiccups we didn’t anticipate in the kick-off meeting:
 
 - Permissions: What can the automated process do vs. what can’t it do.  We landed on preventing the process from creating new users and adding them to roles.  This way, someone couldn’t give themselves db_owner permissions in `production`.
 - Resolving the delta between all environments: There were schema changes in `production` not on `development`.  The first time we tried to run the process in `production`, we almost wiped them out.  We quickly added that change into source control, rebuilt the package, and pushed it through the environments to `production`.  
