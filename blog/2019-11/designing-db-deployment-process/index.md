@@ -22,7 +22,7 @@ In the next couple of articles, I walk you through designing an automated databa
 
 All of our database deployment articles can be found [here](https://octopus.com/database-deployments).
 
-## Table of Contents
+## In this article
 
 !toc
 
@@ -32,14 +32,14 @@ I often see manual database deployment processes that look like:
 - A developer makes a change in `development`.
 - The developer adds that change to a Word document, Excel spreadsheet, Trello board (insert your board tool of choice), or on a piece of paper.
 - Those changes are manually compiled into a delta script to push to `test`, `staging`, or `production`.
-- The delta script is given to a DBA (or a person who has the correct permissions) to run.
+- The delta script is given to a DBA (or a person who has the correct permissions) to run it.
 - The DBA runs the script and sends the results back to the requester.
 
-Let’s take a step back and evaluate why that process exists.
+Let’s take a step back and evaluate why that process exists:
 
 - No source control to keep track of history, such as why a change was made, when it was made, and who made it.  
 - Without source control it is extremely difficult to enforce a review process.
-- If/when reviews do occur, they occur very late in the development life cycle, and it’s often too late to hold up a deployment unless there is something very wrong.
+- If/when reviews do occur, they occur very late in the development life cycle, and it’s often too late to hold up a deployment unless something is very wrong.
 - Without a consistent review process there is a much higher chance for a suboptimal change to be introduced.
 - There is no history of the review process detailing who approved it or when it was approved.
 - Most companies require a separation of duties, so the person who made the change cannot be the one who deploys the change.  
