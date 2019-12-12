@@ -19,7 +19,7 @@ This article is a continuation of the previous article: [How to design an automa
 
 All of our database deployment articles can be found [here](https://octopus.com/database-deployments).
 
-## Table of Contents
+## In this article
 
 !toc
 
