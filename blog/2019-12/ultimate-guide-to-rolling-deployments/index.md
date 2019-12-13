@@ -297,16 +297,13 @@ After a quick Google, I found the kubectl install [documentation](https://kubern
 I fixed the error by adding my `PATH` entry before the one added by Docker Desktop.
 :::
 
-Once we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-example`, and expose it on port 5001 as before, using the `--port` flag
-
-:::hint
+Now we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-example`, and set it to listen on port 5001.
 
 **Kubernetes Deployments**
 
 Google describes Kubernetes [Deployments](https://cloud.google.com/kubernetes-engine/docs/concepts/deployment) as items which:
 
 > represent a set of multiple, identical Pods with no unique identities. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. In this way, Deployments help ensure that one or more instances of your application are available to serve user requests. Deployments are managed by the Kubernetes Deployment controller.
-:::
 
 #### Kubernetes containerised application setup
 
@@ -322,19 +319,19 @@ The output from this command confirms our Deployment has been successfully creat
 deployment.apps/rollingdeploy-minikube created
 ```
 
-Next up, we need to gain access to our Deployment on port `5001`, so we run the `expose` command:
+Next up, we'll set the application pods to listen on port `5001`. To do that, we run the [expose](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#expose) command:
 
 ```ps
 kubectl expose deployment rollingdeploy-minikube --type=NodePort --port=5001
 ```
 
-The output confirms the command worked
+The output confirms the command worked:
 
 ```
 service/rollingdeploy-minikube exposed
 ```
 
-Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status by using the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) provided in Minikube:
+Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status by using the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) which is included in Minikube:
 
 ```
 minikube dashboard
@@ -397,7 +394,7 @@ http://192.168.87.124:31861
 ```
 
 :::hint
-Note: The IP address will be different when running this on your own machine. A random port will also be assigned by Minikube.
+Note: The IP address will be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will also be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
 :::
 
 Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in minikube:
