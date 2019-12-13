@@ -113,21 +113,23 @@ Let’s take our original list of three Windows Features and put them into a DSC
 ```PS
 @{
   AllNodes = @(
-    NodeName = $env:COMPUTERNAME
-    WindowsFeatures = @(
-      @{
-        Name = "Web-Server"
-        Ensure = "Present"
-      },
-      @{
-        Name = "Web-Mgmt-Tools"
-        Ensure = "Present"
-      },
-      @{
-        Name = "Web-Default-Doc"
-        Ensure = "Present"
-      }
-    )
+    @{
+      NodeName = $env:COMPUTERNAME
+      WindowsFeatures = @(
+        @{
+          Name = "Web-Server"
+          Ensure = "Present"
+        },
+        @{
+          Name = "Web-Mgmt-Tools"
+          Ensure = "Present"
+        },
+        @{
+          Name = "Web-Default-Doc"
+          Ensure = "Present"
+        }
+      )
+    }
   )
 }
 ```
