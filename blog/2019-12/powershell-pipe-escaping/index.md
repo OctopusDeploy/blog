@@ -3,14 +3,16 @@ title: Escaping the pipe character in PowerShell commands
 description: Using the pipe commands in PowerShell commands is not as simple as it seems.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-01-01
-metaImage:
-bannerImage:
+published: 2019-12-16
+metaImage: powershell-escape-pipe-character.png
+bannerImage: powershell-escape-pipe-character.png
 tags:
  - Octopus
 ---
 
-Recently I was tasked with spinning up some Azure web applications, and to save some time, I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`. This resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`, and it took me some Googling to understand the problem.
+![Escaping the pipe character in PowerShell commands](powershell-escape-pipe-character.png)
+
+Recently I was tasked with spinning up some Azure web applications, and to save some time, I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`. This resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`, and it took me some Googling to understand the problem. PowerShell escape characters didn't help as I expected.
 
 In this blog post, we'll look at some of the ways to resolve this error.
 
@@ -45,7 +47,7 @@ $runtime='node"|"10.6'
 az webapp create -g testgroup -p testplan -n testapp --runtime $runtime
 ```
 
-## Use the stop parse symbol
+## Use the PowerShell stop-parsing symbol
 
 The stop parse symbol (--%) can be added to the command to instruct PowerShell to stop trying to interpret the string, resulting in a command like:
 ```PowerShell
@@ -96,7 +98,7 @@ PS C:\Users\Matthew> az webapp create -g testgroup -p testplan -n testapp --runt
 operable program or batch file.
 ```
 
-Escaping the pipe character with `^` doesn't work. This is how you escape the pipe character in the Windows Command Prompt,
+Using the PowerShell escape character `^` doesn't work. This is how you escape the pipe character in the Windows Command Prompt,
 and I have seen it incorrectly suggested as a solution for PowerShell as well:
 
 ```PowerShell
