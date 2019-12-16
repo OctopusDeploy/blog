@@ -2,7 +2,7 @@
 title: Escaping the pipe character in PowerShell commands
 description: Using the pipe commands in PowerShell commands is not as simple as it seems.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2019-12-16
 metaImage: powershell-escape-pipe-character.png
 bannerImage: powershell-escape-pipe-character.png

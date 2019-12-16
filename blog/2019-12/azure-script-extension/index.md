@@ -2,7 +2,7 @@
 title: Using the Azure custom script extension for complex installations
 description: A deep dive into the Azure custom script extension for Windows VMs
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2019-12-18
 metaImage: azure-script-extension.png
 bannerImage: azure-script-extension.png
