@@ -3,18 +3,20 @@ title: Using the Azure custom script extension for complex installations
 description: A deep dive into the Azure custom script extension for Windows VMs
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-01-01
-metaImage:
-bannerImage:
+published: 2019-12-18
+metaImage: azure-script-extension.png
+bannerImage: azure-script-extension.png
 tags:
  - DevOps
 ---
+
+![Azure custom script extensions](azure-script-extension.png)
 
 When booting a VM for the first time, it is often useful to run a custom script. This script may install additional software, configure the VM, or perform some other management task.
 
 In Azure, the [custom script extension](https://docs.microsoft.com/en-au/azure/virtual-machines/extensions/custom-script-windows) provides this ability to run scripts. When Windows VMs are combined with tools like Chocolatey, it becomes possible to initialize a new VM with almost any software you require.
 
-However, there are some edge cases with Windows that you need to take into account, and in this blog post, we’ll dive into the details on performing complex installations via the custom script extension.
+However, there are some edge cases with Windows that you need to take into account, and in this blog post, we’ll dive into the details on performing complex installations via the Azure custom script extension.
 
 ## A simple example
 
