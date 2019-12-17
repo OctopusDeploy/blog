@@ -26,23 +26,23 @@ The shared context provided by two people looking at the same screen instantly r
 
 Why can’t technical documentation be like that?
 
-At Octopus, we were given the opportunity to rethink our documentation. It was clear that an integration tool like ours, which was always sitting in the middle of any of a dozen different (and equally-complex) platforms and tools, was not going to provide a world class experience for our customers with yet more pages of isolated text. We needed to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
+At Octopus, we were given the opportunity to rethink our documentation. It was clear that an integration tool like ours, which was always sitting in the middle of any of a dozen different (and equally complex) platforms and tools, was not going to provide a world class experience for our customers with yet more pages of isolated text. We needed to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
 
-The result of this project is what we are calling Octopus Guides. If you visit our homepage, you’ll have the opportunity to select your technology stack and then be taken to a dedicated guide that steps you through the process from compiling your code to deploying it to its destination (or vote for the guide if we haven’t written it yet).
+The result of this project is what we are calling [Octopus Guides](https://octopus.com/docs/guides). If you visit our [homepage](https://octopus.com), you’ll have the opportunity to select your technology stack and then be taken to a dedicated guide that steps you through the process from compiling your code to deploying it to its destination (or vote for the guide if we haven’t written it yet).
 
 ![](guides.png "width=500")
 
-To recreate the efficiency of two people looking at the same screen, each guide is illustrated with over 100 highlighted images, and the entire process is captured with a screencast showing each mouse click. And because each guide is tailored to the selected software stack, you’re not left on your own to Google the next step in the process.
+To recreate the efficiency of two people looking at the same screen, each guide is illustrated with over 100 highlighted images, and the entire process is captured by a screencast showing each mouse click. And because each guide is tailored to the selected software stack, you’re not left on your own to Google the next step in the process.
 
-Creating this suite of tailored documentation is not a trivial task. At the time of writing we have around 60 such individual guides with over 6,000 annotated images, 25 hours of video and close to 300,000 words documenting various combinations of around 16 technology stacks. A good number of those applications were being released on a monthly or weekly schedule, and ideally our screenshots would be kept up to date. And this content was to be created and maintained by a team of two (myself as writer/developer and an editor to polish the content) over the course of a few months.  
+Creating this suite of tailored documentation is not a trivial task. At the time of writing we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video and close to 300,000 words documenting various combinations of around 16 technology stacks. A good number of those applications were being released on a monthly or weekly schedule, and ideally our screenshots would be kept up to date. And this content was to be created and maintained by a team of two (myself as writer/developer and an editor to polish the content) over the course of a few months.  
 
-Clearly, we needed a solution that could scale up far beyond a traditional commit, transform and publish workflow. Without the luxury of throwing more people at the problem, we needed to lean heavily on devops practices such as automated tests, infrastructure as code and automated pipelines to generate screenshots and video, and to ensure that the process we were documenting worked as described.
+Clearly, we needed a solution that could scale up far beyond a traditional write, commit, transform and publish workflow. Without the luxury of throwing more people at the problem, we needed to lean heavily on devops practices such as automated tests, infrastructure as code and automated pipelines to generate screenshots and video, and to ensure that the process we were documenting worked as described.
 
 ## A simple example
 
 To demonstrate the process we used to create the guides, we’ll create a simple example. For this scenario we’ll write some documentation for performing a Google search.
 
-<iframe src="https://fast.wistia.net/embed/iframe/eecl0uod01?videoFoam=true" title="google-example Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="100%" height="100%"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/eecl0uod01?videoFoam=true" title="google-example Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="500px" height="400px"></iframe>
 
 1. Open https://google.com.
 2. Enter the search term into the text box and click the Google Search button:
