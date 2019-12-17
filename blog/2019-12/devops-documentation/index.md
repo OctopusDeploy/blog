@@ -330,7 +330,7 @@ Although the documentation is still written by hand, there is now a one to one m
 
 By adopting DevOps best practices like infrastructure as code, automated pipelines and testing, it is possible to streamline some of the most manual, tedious and expensive aspects of creating and maintaining significant volumes of high quality documentation. With just a few months worth of work, a team of 2 was able to produce thousands of screenshots, hours of video and hundreds of thousands of words, all automatically generated and verified.
 
-If you and Octopus customer we hope that you find these new guides valuable, and if you are interested in producing similar content the links below will take you to the resources that were mentioned in this blog.
+If you are a Octopus customer we hope that you find these new guides valuable, and if you are interested in producing similar content the links below will take you to the resources that were mentioned in this blog.
 
 * [Octopus Guides](https://octopus.com/docs/guides/) homepage.
 * The [GitHub repo](https://github.com/OctopusDeploy/OctopusGuides) containing the code used to create the guides
