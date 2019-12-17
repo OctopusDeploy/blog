@@ -14,7 +14,7 @@ If you are reading this post, then I'll assume that you have had the experience 
 
 *Click the big green “OK” button. You’ll need to scroll down the page. It’s in the bottom right hand corner. No, not that button. No, not that one either. No, don’t click the back button. Sigh... OK, let’s start again.*
 
-Now imagine the setting from that first phone call is changed to sitting with someone directing their actions on the screen. The process is *much* more efficient as you get to point to the screen while issuing directions:
+Now imagine the setting from that phone call is changed to sitting with someone directing their actions on the screen. The process is *much* more efficient as you get to point to the screen while issuing directions:
 
 *Click that. Click that. Scroll down. Click that. No, not that. Yes, click that.*
 
@@ -71,9 +71,9 @@ To see this in action, let’s take a look at a [sample project](https://github.
 
 Let’s take a look at the workflow used to capture the screencast. The code for this workflow can be found [here](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/.github/workflows/video.yml).
 
-We start with some boilerplate YAML defining the name of the workflow, when it is to be run, and defining a job called build to be executed on an Ubuntu virtual machine.
+We start with some boilerplate YAML defining the name of the workflow, when it is to be run, and defining a job called `build` to be executed on an Ubuntu virtual machine.
 
-The `push` option means each commit to the repository will trigger a build, while the `schedule` option has been set to run the build at midnight UTC every day. Running the build on a schedule like this means we can be assured that our screenshots and videos are current, even if the applications being used are updated. Or in the case of this example, ensure that our documentation captures the latest Google doodle.
+The `push` option means each commit to the repository will trigger a build, while the `schedule` option has been set to run the build at midnight UTC every day. Running the build on a schedule like this means we can be assured that our screenshots and videos are current, even if the applications being used are updated. Or in this case, ensure that our documentation captures the latest Google doodle.
 
 This is important, because we don’t want our documentation to be full of stale media.
 
