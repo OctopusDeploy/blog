@@ -18,23 +18,23 @@ Imagine if instead of trying this over the phone, you’re sitting with someone 
 
 *Click that. Click that. Scroll down. Click that. No, not that. Yes, click that.*
 
-The shared context provided by two people looking at the same screen instantly removes the ambiguity around trying to describe the location of elements on a complex form with imprecise language like, “bottom right corner,” describing icons with phrases like, “it’s the floppy disk icon,” and using generic terms like *button* or *text box* against the infinite styling options available in modern user interfaces. The entire process can now be tackled from start to end without getting to the next screen and wondering if the person you’re helping is in the right place or what to do next.
+The shared context provided by two people looking at the same screen instantly removes the ambiguity around trying to describe the location of elements on a complex form with imprecise language like, “bottom right corner,” describing icons with phrases like, “it’s the floppy disk icon,” and using generic terms like *button* or *text box* against the infinite styling options available in modern user interfaces. The entire process can now be tackled from start to finish without wondering if the person you’re helping is in the right place or how to describe the next screen.
 
-With this in mind, we were given the opportunity to rethink our documentation. It was clear that with an integration tool like ours, which was always sitting in the middle of any of a dozen different (and equally complex) platforms and tools, we need to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
+With this in mind, we recently tackled adding some end-to-end guides to our documentation. It’s clear that with an integration tool like ours, which always sits in the middle of any of a dozen different (and equally complex) platforms and tools, we need to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
 
 We’re calling the results of this project [Octopus Guides](https://octopus.com/docs/guides). If you visit our [homepage](https://octopus.com), you can select your technology stack and see a dedicated guide that steps you through the process from compiling your code to deploying it to its destination. We haven’t completed every combination yet, but if you find a combination that hasn’t been written yet, you can vote for it.
 
 ![](guides.png "width=500")
 
-To recreate the efficiency of two people looking at the same screen, each guide is illustrated with over 100 highlighted images, and the entire process is captured by a screencast showing each mouse click. And because each guide is tailored to the selected software stack, you’re not left on your own to Google the next step in the process.
+To recreate the efficiency of two people looking at the same screen, each guide is illustrated with over 100 highlighted images, and the entire process is captured by a screencast that shows every mouse click. And because each guide is tailored to the selected software stack, you’re not left on your own to Google the next step in the process.
 
-Creating this suite of tailored documentation is not a trivial task. At the time of writing, we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video, and close to 300,000 words documenting various combinations of around 16 technology stacks. A good number of those applications were being released on a monthly or weekly schedule, and ideally, our screenshots would be kept up to date. And this content was to be created and maintained by a team of two (myself as writer/developer and an editor to polish the content) over the course of a few months.  
+Creating this suite of tailored documentation is not a trivial task. At the time of writing, we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video, and close to 300,000 words documenting various combinations of around 16 technology stacks. Many of the applications included in the guides are released on a monthly or weekly schedule, and ideally, our screenshots should be kept up to date. This content was created and will be maintained by a team of two (myself as writer/developer and an editor to polish the content) over the course of a few months.  
 
-Clearly, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we needed to lean heavily on DevOps practices such as automated tests, infrastructure as code, and automated pipelines to generate screenshots and video and to ensure that the process we were documenting worked as described.
+Clearly, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as automated tests, infrastructure as code, and automated pipelines to generate screenshots and video, and to ensure that the process we were documenting worked as described.
 
 ## A simple example
 
-To demonstrate the process we used to create the guides, we’ll create a simple example documenting the process of performing a Google search.
+To demonstrate the process we used to create the guides, we’ll create a simple example that documents the process of performing a Google search:
 
 <iframe src="https://fast.wistia.net/embed/iframe/eecl0uod01?videoFoam=true" title="google-example Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="500px" height="400px"></iframe>
 
@@ -48,15 +48,15 @@ To demonstrate the process we used to create the guides, we’ll create a simple
 
 ![](https://i.octopus.com/guides/google/020-search-results.png "width=500")
 
-This is a very simple example, but it illustrates two of the features of the guides that we are looking to implement.
+This is a trivial example, but it illustrates two of the features of the guides we implemented.
 
-First, we have a screencast showing the interaction with the browser, tracking each mouse click and form entry. This video is a big part of the “show, don’t tell” philosophy as it demonstrates exactly what the documentation will be describing.
+First, we have a screencast showing the interaction with the browser, tracking each mouse click and form entry. This video is a big part of the *show, don’t tell* philosophy as it demonstrates exactly what the documentation describes.
 
-Next, you’ll notice is that the elements that we have interacted with on the search screen have been highlighted with a fluorescent green box in the screenshots. This is the equivalent of sitting over someone’s shoulder pointing to the screen rather than relying on awkward written descriptions of visual user interfaces.
+Next, you’ll notice the elements we interact with on the search screen are highlighted with a fluorescent green box in the screenshots. This is the equivalent of sitting over someone’s shoulder and pointing to the screen rather than relying on awkward written descriptions of visual user interfaces.
 
 ## Automating the process
 
-Given the simplicity of this example guide, the video and screenshots could have been created and edited manually. But given that we are building the foundation for a workflow that will expand to dozens (if not hundreds) of such guides, we need a way for these assets to be created automatically.
+Given the simplicity of this example guide, the video and screenshots could have been created and edited manually, but given that we’re building the foundation for a workflow that will expand to dozens (if not hundreds) of such guides, we need a way for these assets to be created automatically.
 
 Automating the creation and updating of these assets requires four services:
 
@@ -65,17 +65,22 @@ Automating the creation and updating of these assets requires four services:
 * A tool for scripting the interactions with a web browser.
 * A service that executes the scripting.
 
-For the Octopus Guides, we used Wista for our video hosting, AWS S3 for our image hosting, a custom tool using WebDriver for scripting a web browser, and GitHub Actions to execute everything.
+For the Octopus Guides, we used:
 
-To see this in action, let’s take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows to be executed by GitHub actions: one to capture the screencast, and another to generate the screenshots.
+* Wista for our video hosting.
+* AWS S3 for our image hosting.
+* A custom tool using WebDriver for scripting a web browser.
+* GitHub Actions to execute everything.
+
+To see this in action, let’s take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows that are executed by GitHub actions: one to capture the screencast, and another to generate the screenshots.
 
 Let’s take a look at the workflow used to capture the screencast. The code for this workflow can be found [here](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/.github/workflows/video.yml).
 
-We start with some boilerplate YAML defining the name of the workflow, when it is to be run, and defining a job called `build` to be executed on an Ubuntu virtual machine.
+We start with some boilerplate YAML that names the workflow, when to run it, and defines a job called `build` that is executed on an Ubuntu virtual machine.
 
-The `push` option means each commit to the repository will trigger a build, while the `schedule` option has been set to run the build at midnight UTC every day. Running the build on a schedule like this means we can be assured that our screenshots and videos are current, even if the applications being used are updated. Or in this case, ensure that our documentation captures the latest Google doodle.
+The `push` option means each commit to the repository will trigger a build, while the `schedule` option has been set to run the build at midnight UTC every day. Running the build on a schedule like this means we know that our screenshots and videos are current, even if the applications being used are updated. Or in the case of this example, ensures our documentation captures the latest Google doodle.
 
-This is important because we don’t want our documentation to be full of stale media.
+This is important because we don’t want our documentation to be full of stale media:
 
 ```yaml
 name: Google Agile Docs Video
