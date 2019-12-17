@@ -327,7 +327,7 @@ By adopting DevOps best practices like infrastructure as code, automated pipelin
 If you are a Octopus customer we hope that you find these new guides valuable, and if you are interested in producing similar content the links below will take you to the resources that were mentioned in this blog.
 
 * [Octopus Guides](https://octopus.com/docs/guides/) homepage.
-* The [GitHub repo](https://github.com/OctopusDeploy/OctopusGuides) containing the code used to create the guides
+* The [GitHub repo](https://github.com/OctopusDeploy/OctopusGuides) that contains the code used to create the guides.
 * [Creating a Selenium WebDriver test framework](https://octopus.com/blog/selenium/0-toc/webdriver-toc) - A 30 part blog series that explains the code behind the WebDriver scripting used in this post.
 * The [Docker image](https://hub.docker.com/repository/docker/mcasperson/webdriver) called from GitHub actions.
 * The [WebDriver application source code](https://github.com/OctopusDeploy/WebDriverTraining).
