@@ -131,7 +131,7 @@ Here you can see a number of the global environment variables are passed as Java
 * Enable the mouse cursor movement as part of the WebDriver script (`moveCursorToElement`).
 * Disable the green highlights from being placed on elements (`disableHighlights`).
 * Disable screenshots (`disableScreenshots`).
-* Define the high of the browser UI top elements (`mouseMoveVerticalOffset`).
+* Define the height of the browser UI's top widgets (`mouseMoveVerticalOffset`).
 * Define some aliases to be used in the script (`CucumberAlias-[Alias Name]`)
 
 Finally the arguments to be passed to the Docker image are defined. The arguments are passed to the Cucumber CLI, which this Docker image implements. The first argument enables the progress plugin (`--plugin progress`), and passes the path of the feature file to be run (`/github/workspace/google.feature`).
