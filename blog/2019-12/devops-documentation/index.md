@@ -308,7 +308,7 @@ The entire process is automated and scheduled using GitHub actions. This allows 
 
 ### Verifiable rather than aspirational documentation
 
-Have you ever read technical documentation and thought that the writer was describing how though thought the product *should* work rather than how it *does* work? Or maybe you hit a wall because the developer writing the docs forgot to mention a dependency they installed years ago and simply didn’t realize was critical to the process.
+Have you ever read technical documentation and thought that the writer was describing how they thought the product *should* work rather than how it *does* work? Or maybe you hit a wall because the developer writing the docs forgot to mention a dependency they installed years ago and simply didn’t realize was critical to the process.
 
 By utilizing Puppet and the blank slate VMs provided by GitHub Actions, we force ourselves to rebuild the environment that we are documenting from scratch every time. Although this example didn’t install any local infrastructure and only accessed Google, the Octopus Guides workflows install the CI servers, databases, build tools and web servers with each and every run. This means that the guides can verifiably demonstrate how Octopus and the associated tools actually work rather than describing how things are assumed to work.
 
