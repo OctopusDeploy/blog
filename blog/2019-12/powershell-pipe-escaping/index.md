@@ -12,7 +12,7 @@ tags:
 
 ![Escaping the pipe character in PowerShell commands](powershell-escape-pipe-character.png)
 
-Recently I was tasked with spinning up some Azure web applications, and to save some time, I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`. This resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`, and it took me some Googling to understand the problem. PowerShell escape characters didn't help as I expected.
+Recently I was tasked with spinning up some Azure web applications, and to save some time, I use the Azure CLI to run the command `az webapp create -g testgroup -p testplan -n testapp --runtime "node|10.6"`. This resulted in the very obtuse error `'10.6' is not recognized as an internal or external command, operable program or batch file.`, and it took me some Googling to understand the problem. PowerShell escape characters didn't help the way I'd expected them to.
 
 In this blog post, we'll look at some of the ways to resolve this error.
 
