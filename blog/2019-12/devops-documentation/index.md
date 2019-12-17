@@ -14,19 +14,13 @@ If you are reading this post, then I'll assume that you have had the experience 
 
 *Click the big green “OK” button. You’ll need to scroll down the page. It’s in the bottom right hand corner. No, not that button. No, not that one either. No, don’t click the back button. Sigh... OK, let’s start again.*
 
-I’ll also assume you are familiar with the tendency of technical documentation to describe features in isolation, with the expectation that you will understand the overall journey well enough to articulate each step and then refer to the appropriate documentation to learn any required information.
-
-Unfortunately, interacting with technical documentation is often like stringing together a series of awkward phone conversations where you are forced to build a shared context with imprecise language, only to then work out what the next step is and repeat the process. It’s almost as if the style guides for most technical writing teams have explicitly stated that screenshots should not be used, and must rely exclusively on written language to describe visual user interfaces.
-
-Now imagine the setting from that first phone call is changed to sitting with someone directing their actions on the screen. The process is much more efficient as you get to point to the screen while issuing directions:
+Now imagine the setting from that first phone call is changed to sitting with someone directing their actions on the screen. The process is *much* more efficient as you get to point to the screen while issuing directions:
 
 *Click that. Click that. Scroll down. Click that. No, not that. Yes, click that.*
 
 The shared context provided by two people looking at the same screen instantly removes the ambiguity around trying to describe the location of elements on a complex form with imprecise language like “bottom right corner”, describing icons with phrases like “it’s the floppy disk icon”, and using generic terms like “button” or “text box” against the infinite styling options available in modern user interfaces. The entire process is also now tackled from start to end without getting to the next screen and wondering what to do next.
 
-Why can’t technical documentation be like that?
-
-At Octopus, we were given the opportunity to rethink our documentation. It was clear that an integration tool like ours, which was always sitting in the middle of any of a dozen different (and equally complex) platforms and tools, was not going to provide a world class experience for our customers with yet more pages of isolated text. We needed to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
+With this in mind, we were given the opportunity to rethink our documentation. It was clear that with an integration tool like ours, which was always sitting in the middle of any of a dozen different (and equally complex) platforms and tools, we needed to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
 
 The result of this project is what we are calling [Octopus Guides](https://octopus.com/docs/guides). If you visit our [homepage](https://octopus.com), you’ll have the opportunity to select your technology stack and then be taken to a dedicated guide that steps you through the process from compiling your code to deploying it to its destination (or vote for the guide if we haven’t written it yet).
 
