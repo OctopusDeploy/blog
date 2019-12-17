@@ -40,7 +40,7 @@ Clearly, we needed a solution that could scale up far beyond a traditional write
 
 ## A simple example
 
-To demonstrate the process we used to create the guides, we’ll create a simple example. For this scenario we’ll write some documentation for performing a Google search.
+To demonstrate the process we used to create the guides, we’ll create a simple example documenting the process of performing a Google search.
 
 <iframe src="https://fast.wistia.net/embed/iframe/eecl0uod01?videoFoam=true" title="google-example Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="500px" height="400px"></iframe>
 
@@ -73,9 +73,9 @@ Automating the creation and updating of these assets requires four services:
 
 For the Octopus Guides we used Wista for our video hosting, AWS S3 for our image hosting, a custom tool using WebDriver for scripting a web browser and GitHub Actions to execute everything.
 
-To see this in action, let’s take a look at a sample project at https://github.com/OctopusSamples/GoogleAgileDocs. This project includes two workflows to be executed by GitHub actions: one to capture the screencast, and another to generate the screenshots.
+To see this in action, let’s take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows to be executed by GitHub actions: one to capture the screencast, and another to generate the screenshots.
 
-Let’s take a look at the workflow used to capture the screencast. The code for this workflow can be found at https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/.github/workflows/video.yml.
+Let’s take a look at the workflow used to capture the screencast. The code for this workflow can be found [here](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/.github/workflows/video.yml).
 
 We start with some boilerplate YAML defining the name of the workflow, when it is to be run, and defining a job called build to be executed on an Ubuntu virtual machine.
 
