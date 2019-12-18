@@ -20,7 +20,7 @@ We shipped [early access to Runbooks](/blog/2019-10/octopus-release-2019.10/inde
 
 !toc
 
-## Operations Runbooks RTW
+## Operations Runbooks
 
 ![Operations Runbooks in an Octopus Project](operations-runbooks.gif "width=800")
 
