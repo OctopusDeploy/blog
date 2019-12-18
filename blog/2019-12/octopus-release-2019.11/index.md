@@ -1,5 +1,5 @@
 ---
-title: “Octopus Deploy 2019.11: Operations Runbooks RTW”
+title: "Octopus Deploy 2019.11: Operations Runbooks RTW"
 description: Octopus 2019.11 introduces our runbooks platform for automating operations tasks with support for scheduling, permissions, parameterized runs and more.
 author: rob.pearson@octopus.com
 visibility: public
