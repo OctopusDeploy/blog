@@ -45,8 +45,7 @@ Our team continually adds updates and bug fixes driven by customer feedback and 
 
 This release includes the following breaking changes. 
 
-* asdf
-* asdf
+`TODO: Waiting for the list from Blue Ring. Initial blurb is below but it needs massaging and there's more.`
 
 The API has changed as part of this issue, versions of Octopus.Client prior to 8.0.0 will not be able to create scheduled triggers on an Octopus Server where the version is older than 2019.11.0.
 The scheduled trigger criteria `DaysPerWeekScheduledTriggerFilterResource` and `DailyScheduledTriggerFilterResource` have been superseded by `ContinuousDailyScheduledTriggerFilterResource` and `OnceDailyScheduledTriggerFilterResource`.
