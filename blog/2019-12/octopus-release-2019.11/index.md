@@ -22,7 +22,7 @@ We shipped [early access to Runbooks](/blog/2019-10/octopus-release-2019.10/inde
 
 ## Operations Runbooks RTW
 
-![Operations Runbooks in an Octopus Project](operations-runbooks.gif “width=800”)
+![Operations Runbooks in an Octopus Project](operations-runbooks.gif "width=800")
 
 Our first-class runbook platform automates routine maintenance and emergency operations tasks, including infrastructure provisioning, database management, and website failover and restoration.
 
