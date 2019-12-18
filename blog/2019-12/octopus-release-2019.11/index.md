@@ -24,9 +24,12 @@ tags:
 
 This release introduces our first-class runbook platform for automating routine maintenance and emergency operations tasks. Runbook examples include infrastructure provisioning, database management, and website failover and restoration. 
 
-This feature was designed to make modelling and executing operations tasks feel as natural as deploying applications does today. It brings support to execute runbooks directly against infrastructure with strong scheduling support. 
-
-Runbooks are executed and managed by Octopus, so teams can run them even if they don’t have permission to the infrastructure the runbook will be executed on. This also means there’s a complete audit trail that can be reviewed at a later date, making it easy to see what happened, when and why, and if anything needs to be changed.
+Our runbooks feature is now ready for production and brings the following:
+* A familiar configuration process for anyone who has configured a deployment process.
+* The ability to execute runbooks directly against infrastructure on-demand or on a schedule (nightly, weekdays, once a month, etc.) as per your team’s needs. 
+* Runbooks can be parameterized with prompted variables.
+* You can make changes to your runbooks with confidence, and only publish them after they have been safely tested.
+* Runbooks are managed and executed by Octopus, so this means there’s a complete audit trail that can be reviewed at a later date, making it easy to see what happened, when and why, and if anything needs to be changed.
 
 [Learn more](https://octopus.com/docs/deployment-process/operations-runbooks)
 
@@ -35,10 +38,10 @@ Runbooks are executed and managed by Octopus, so teams can run them even if they
 Our team continually adds updates and bug fixes driven by customer feedback and support tickets. We want to highlight some of these changes in this release. 
 
 * **Simpler Octopus dashboard configuration**, so it's clearer to understand what is filtered.
-* **Added support to test Azure DevOps issue tracker connectivity**. This changes can help when configuring build server integration and work item tracking.
-* **Space selection is no longer visible** if a user only has 1 space and they don't have permission to add more.
+* **Added support to test Azure DevOps issue tracker connectivity**. This change can help when configuring build server integration and work item tracking.
+* **Space selection is no longer visible if a user only has 1 space** and they don't have permission to add more.
 * **Added support to upgrade a subset of Tentacles**. This applies to groups of Tentacle/Workers in an environment or worker pool rather than all deployment targets.
-* Added support to **Redeploy previous deployments** so it's easier to redeploy/rollback successful release.
+* Added support to **Redeploy previous successful deployments** so it's easier to rollback other releases.
 * **Swagger API documentation** is far more accurate making it easier for teams to integrate with the Octopus API. 
 * **Improved performance to the Tenants page** - It's now much faster to render for customers with hundreds and thousands of tenants. 
 * **Improved supportability** We've improved logging for automatic deploys and dynamic infrastructure provisioning to help teams understand what happens if things go wrong.
