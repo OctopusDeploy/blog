@@ -18,7 +18,7 @@ Imagine if instead of trying this over the phone, you’re sitting with someone 
 
 *Click that. Click that. Scroll down. Click that. No, not that. Yes, click that.*
 
-The shared context provided by two people looking at the same screen instantly removes the ambiguity around trying to describe the location of elements on a complex form with imprecise language like, “bottom right corner,” describing icons with phrases like, “it’s the floppy disk icon,” and using generic terms like *button* or *text box* against the infinite styling options available in modern user interfaces. The entire process can now be tackled from start to finish without wondering if the person you’re helping is in the right place or how to describe the next screen.
+The shared context provided by two people looking at the same screen instantly removes the ambiguity around trying to describe the location of elements on a complex form with imprecise language like, “bottom right corner,” describing icons with phrases like, “it’s the floppy disk icon,” or using generic terms like *button* and *text box* against the infinite styling options available in modern user interfaces. Sitting in the same room with the person you’re helping means the entire process can be tackled from start to finish without wondering if the person you’re helping is in the right place or how to describe the next screen.
 
 With this in mind, we recently tackled adding some end-to-end guides to our documentation. It’s clear that with an integration tool like ours, which always sits in the middle of any of a dozen different (and equally complex) platforms and tools, we need to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
 
@@ -28,7 +28,7 @@ We’re calling the results of this project [Octopus Guides](https://octopus.com
 
 To recreate the efficiency of two people looking at the same screen, each guide is illustrated with over 100 highlighted images, and the entire process is captured by a screencast that shows every mouse click. And because each guide is tailored to the selected software stack, you’re not left on your own to Google the next step in the process.
 
-Creating this suite of tailored documentation is not a trivial task. At the time of writing, we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video, and close to 300,000 words documenting various combinations of around 16 technology stacks. Many of the applications included in the guides are released on a monthly or weekly schedule, and ideally, our screenshots should be kept up to date. This content was created and will be maintained by a team of two (myself as writer/developer and an editor to polish the content) over the course of a few months.  
+Creating this suite of tailored documentation is not a trivial task. At the time of writing, we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video, and close to 300,000 words documenting various combinations of around 16 technology stacks. Many of the applications included in the guides are released on a monthly or weekly schedule, and ideally, our screenshots should be kept up to date. This content was created and will be maintained by a team of two (myself as writer/developer and an editor to review and polish the content) over the course of a few months.  
 
 Clearly, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as automated tests, infrastructure as code, and automated pipelines to generate screenshots and video, and to ensure that the process we were documenting worked as described.
 
@@ -56,7 +56,7 @@ Next, you’ll notice the elements we interact with on the search screen are hig
 
 ## Automating the process
 
-Given the simplicity of this example guide, the video and screenshots could have been created and edited manually, but given that we’re building the foundation for a workflow that will expand to dozens (if not hundreds) of such guides, we need a way for these assets to be created automatically.
+This is a trivial example, and the video and screenshots could have been created and edited manually, but given that we’re building the foundation for a workflow that expanded to dozens (if not hundreds) of guides, we needed a way for these assets to be created automatically.
 
 Automating the creation and updating of these assets requires four services:
 
@@ -72,7 +72,7 @@ For the Octopus Guides, we used:
 * A custom tool using WebDriver for scripting a web browser.
 * GitHub Actions to execute everything.
 
-To see this in action, let’s take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows that are executed by GitHub actions: one to capture the screencast, and another to generate the screenshots.
+To see this in action, we’ll take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows that are executed by GitHub Actions: one to capture the screencast, and another to generate the screenshots.
 
 Let’s take a look at the workflow used to capture the screencast. The code for this workflow can be found [here](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/.github/workflows/video.yml).
 
@@ -80,7 +80,7 @@ We start with some boilerplate YAML that names the workflow, when to run it, and
 
 The `push` option means each commit to the repository will trigger a build, while the `schedule` option has been set to run the build at midnight UTC every day. Running the build on a schedule like this means we know that our screenshots and videos are current, even if the applications being used are updated. Or in the case of this example, ensures our documentation captures the latest Google doodle.
 
-This is important because we don’t want our documentation to be full of stale media:
+This is important because we don’t want our documentation to be full of stale media.
 
 ```yaml
 name: Google Agile Docs Video
@@ -95,7 +95,7 @@ jobs:
 
 Next, we define a set of common environment variables to be shared with steps in the job. These variables define the AWS credentials that are used to upload images, Wista credentials and the video ID for replacing the video, boolean flags to configure the WebDriver scripting tool, and a hardcoded offset that defines the number of pixels that the browser UI takes up before displaying the HTML content.
 
-Because browsers can only report the position of an element relative to the browser window rather than the position on the screen, the vertical offset value is added to the relative window position to find the absolute screen position of an element, which in turn allows the WebDriver tool to move the mouse cursor to it.
+Because browsers can only report the position of an element relative to the browser window rather than the position on the screen, the vertical offset value is added to the relative window position to find the absolute screen position of an element, which in turn allows the WebDriver tool to move the mouse cursor to it:
 
 ```yaml
     env:
@@ -113,33 +113,33 @@ Because browsers can only report the position of an element relative to the brow
       MOUSE_VERTICAL_OFFSET: 74
 ```
 
-Next, we start defining the steps that make up the workflow. The first step checks out the code from the GitHub repo.
+Next, we start defining the steps that make up the workflow. The first step checks out the code from the GitHub repo:
 
 ```yaml
     steps:
       - uses: actions/checkout@v1
 ```
 
-The next step uses Puppet to install the tools that we need, like the AWS CLI for uploading the images, and VLC and FFmpeg to process the video.
+The next step uses Puppet to install the tools we need, like the AWS CLI for uploading the images, and VLC and FFmpeg to process the video.
 
-We use Puppet instead of the native GitHub Actions because Puppet can be run outside of GitHub Actions in a development VM to debug the process and because the scenarios documented by the Octopus Guides involve some rather complex infrastructure initialization of CI servers, Octopus Deploy, package repositories like Artifactory, Kubernetes clusters with Minikube and web servers. Puppet is well suited to deploy this infrastructure, while GitHub Actions tend to be limited to building and testing code.
+We use Puppet instead of the native GitHub Actions because Puppet can be run outside of GitHub Actions in a development VM to debug the process and because the scenarios documented by the Octopus Guides involve complex infrastructure initialization: CI servers, Octopus Deploy, package repositories like Artifactory, Kubernetes clusters with Minikube and web servers. Puppet is well suited to deploy this infrastructure, while GitHub Actions tend to be limited to building and testing code:
 
 ```yaml
       - name: Configure VM
         run: ./puppet/install.sh setup.pp
 ```
 
-The next step runs our custom WebDriver scripting tool. The code for this tool can be found in this [GitHub repo](https://github.com/OctopusDeploy/WebDriverTraining). If “WebDriverTraining” sounds like an odd name, it is because this code was originally written as part of a [blog series](https://octopus.com/blog/selenium/0-toc/webdriver-toc) that describes the process of creating a WebDriver testing tool from scratch. This project turned out to be ideal for generating assets for the guides, and so was extended and bundled into a [Docker image](https://hub.docker.com/r/mcasperson/webdriver) for integration with GitHub Actions.
+The next step runs our custom WebDriver scripting tool. The code for this tool can be found in this [GitHub repo](https://github.com/OctopusDeploy/WebDriverTraining). If “WebDriverTraining” sounds like an odd name, it’s because this code was originally written as part of a [blog series](https://octopus.com/blog/selenium/0-toc/webdriver-toc) that describes the process of creating a WebDriver testing tool from scratch. That project was ideal for generating assets for the guides, and so was extended and bundled into a [Docker image](https://hub.docker.com/r/mcasperson/webdriver) for integration with GitHub Actions.
 
 Here you can see a number of the global environment variables are passed as Java properties via the `JAVA_OPTS` environment variable. These properties are defined with the `-D` argument, the name of the property, and the value of the property. The properties defined here:
 
-* Enable the mouse cursor movement as part of the WebDriver script (`moveCursorToElement`).
-* Disable the green highlights from being placed on elements (`disableHighlights`).
-* Disable screenshots (`disableScreenshots`).
-* Define the height of the browser UI’s top widgets (`mouseMoveVerticalOffset`).
-* Define some aliases to be used in the script (`CucumberAlias-[Alias Name]`)
+* `moveCursorToElement`: Enable the mouse cursor movement as part of the WebDriver script.
+* `disableHighlights`: Disable the green highlights from being placed on elements.
+* `disableScreenshots`: Disable screenshots.
+* `mouseMoveVerticalOffset`: Define the height of the browser UI’s top widgets.
+* `CucumberAlias-[Alias Name]`: Define some aliases to be used in the script.
 
-Finally, the arguments to be passed to the Docker image are defined. The arguments are passed to the Cucumber CLI, which this Docker image implements. The first argument enables the progress plugin (`--plugin progress`), and passes the path of the feature file to be run (`/github/workspace/google.feature`).
+Finally, the arguments to be passed to the Docker image are defined. The arguments are passed to the Cucumber CLI, which this Docker image implements. The first argument enables the progress plugin (`--plugin progress`), and passes the path of the feature file to be run (`/github/workspace/google.feature`):
 
 ```yaml
       - name: Run script
@@ -158,7 +158,7 @@ Finally, the arguments to be passed to the Docker image are defined. The argumen
           args: --plugin progress /github/workspace/google.feature
 ```
 
-After this step has been run, we will have one or more AVI files in the workspace directory. The next step uses VLC to convert the files to MP4 and combine them into a single video. It then uses FFmpeg to speed the videos up to make them easier to watch. The script that does this can be found [here](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/process-video.sh).
+After this step has run, we have one or more AVI files in the workspace directory. The next step uses VLC to convert the files to MP4 and combine them into a single video. It then uses FFmpeg to speed the videos up to make them easier to watch. The script that does this can be found [here](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/process-video.sh):
 
 ```yaml
       - name: Process video
@@ -167,7 +167,7 @@ After this step has been run, we will have one or more AVI files in the workspac
 
 The final step is to replace a video that has already been uploaded to Wistia. Replacing the video means any existing HTML pages that embed it will display the new content without any further edits.
 
-Unfortunately, the Wistia API does not expose the ability to replace a video, but it can be done via the website. This is a perfect use case for the same WebDriver scripting we are performing for our own documentation. In this case, we are not generating any media assets from the script, so all screenshots and video recording has been disabled.
+Unfortunately, the Wistia API does not expose the ability to replace a video, but it can be done via the website. This is a perfect use case for the same WebDriver scripting we’re performing for our own documentation. In this case, we’re not generating any media assets from the script, so all screenshots and video recording has been disabled:
 
 ```yaml
       - name: Replace Wistia video
@@ -227,7 +227,7 @@ Feature: Search with Google
     Then I close the browser
 ```
 
-The file is identified with a top-level feature and several child Scenarios. The first scenario opens the web browser, maximizes it, and opens the Google homepage.
+The file is identified with a top-level feature and several child Scenarios. The first scenario opens the web browser, maximizes it, and opens the Google homepage:
 
 ```
   Scenario: Open Page
@@ -236,7 +236,7 @@ The file is identified with a top-level feature and several child Scenarios. The
     And I open the URL "https://google.com"
 ```
 
-The second scenario is where we perform the search. The first step in the scenario is to define aliases (which are key/value pairs) that assign a human-readable name to an XPath that identifies the elements on the page that we will interact with. For this example, there are two elements we will interact with: the search text box and the search button.
+The second scenario is where we perform the search. The first step in the scenario is to define aliases (which are key/value pairs) that assign a human-readable name to an XPath that identifies the elements on the page that we will interact with. For this example, there are two elements we will interact with, the search text box and the search button:
 
 ```
   Scenario: Perform Search
@@ -245,57 +245,57 @@ The second scenario is where we perform the search. The first step in the scenar
       | Google Search | //input[@value='Google Search'] |
 ```
 
-The next step starts recording to a directory defined in the alias called `ExternalVideoDir` (unless all recording has been disabled from the command line).  Unlike the aliases defined above, this alias was defined as part of the `JAVA_OPTS` environment variable in the GitHub Actions workflow file with the setting `-DCucumberAlias-ExternalVideoDir=/github/workspace`.
+The next step starts recording to a directory defined in the alias called `ExternalVideoDir` (unless all recording has been disabled from the command-line).  Unlike the aliases defined above, this alias was defined as part of the `JAVA_OPTS` environment variable in the GitHub Actions workflow file with the setting `-DCucumberAlias-ExternalVideoDir=/github/workspace`:
 
 ```
     And I start recording the screen to the directory "ExternalVideoDir"
 ```
 
-We now start interacting with the page by entering a query into the search text box. Notice here that we refer to the element that we are interacting with via the alias `Search`.
+We now start interacting with the page by entering a query into the search text box. Notice here that we refer to the element that we are interacting with via the alias `Search`:
 
 ```
     When I populate the "Search" text box with "Octopus Deploy"
 ```
 
-The next two steps add the fluorescent green highlights around elements on the page (unless all highlighting has been disabled from the command line). These highlights are used to help readers quickly pinpoint the elements that are referenced in the documentation.
+The next two steps add the fluorescent green highlights around elements on the page (unless all highlighting has been disabled from the command-line). These highlights are used to help readers quickly pinpoint the elements that are referenced in the documentation:
 
 ```
     And I highlight outside the "Search" text box with an offset of "2"
     And I highlight outside the "Google Search" button with an offset of "2"
 ```
 
-With the highlights applied, we capture a screenshot. Here we have used interpolation to create the path of the screenshot from the value of the alias called `ExternalScreenshotDir` and the fixed path of `/google/010-search.png`.
+With the highlights applied, we capture a screenshot. Here we have used interpolation to create the path of the screenshot from the value of the alias called `ExternalScreenshotDir` and the fixed path of `/google/010-search.png`:
 
 ```
     And I save a screenshot to "#{ExternalScreenshotDir}/google/010-search.png"
 ```
 
-We then click the search button, referenced by the alias `Google Search`.
+We then click the search button, referenced by the alias `Google Search`:
 
 ```
     And I click the "Google Search" button
 ```
 
-We grab another screenshot of the search results.
+We grab another screenshot of the search results:
 
 ```
     And I save a screenshot to "#{ExternalScreenshotDir}/google/020-search-results.png"
 ```
 
-The final step in this scenario verifies that the URL of the resulting page matches a regular expression. This verification provides us with a guarantee that we filled the search form out correctly.
+The final step in this scenario verifies that the URL of the resulting page matches a regular expression. This verification provides us with a guarantee that we filled the search form out correctly:
 
 ```
     Then I verify the current URL matches the regex "https://www.google.com/search.*"
 ```
 
-The final scenario shuts down the browser. This will also stop any video recording.
+The final scenario shuts down the browser. This will also stop any video recording:
 
 ```
   Scenario: Close browser
     Then I close the browser
 ```
 
-This same script is run twice: once to capture the video with all highlights disabled, and once to capture the screenshots with video recording disabled. The output of these two passes gives us highlighted screenshots and a screencast, which we can reference in the final documentation.
+This same script is run twice, once to capture the video with all highlights disabled, and once to capture the screenshots with video recording disabled. The output of these two passes gives us highlighted screenshots and a screencast, which we can reference in the final documentation.
 
 ## Bringing DevOps to documentation
 
@@ -303,17 +303,17 @@ Although this was a trivial example, the workflow that we have created here is f
 
 ### Near infinite execution scale
 
-The entire process is automated and scheduled using GitHub actions. This allows us to scale out by running multiple workflows in parallel, with the only limit being how much you want to spend on compute costs and the limitations imposed by GitHub. GitHub takes care of provisioning and cleaning up the build environments, so all we need to do is set the appropriate schedule.
+The entire process is automated and scheduled using GitHub Actions. This allows us to scale out by running multiple workflows in parallel, with the only limit being how much you want to spend on compute costs and the limitations imposed by GitHub. GitHub takes care of provisioning and cleaning up the build environments, so all we need to do is set the appropriate schedule.
 
 ### Verifiable rather than aspirational documentation
 
-Have you ever read technical documentation and thought that the writer was describing how they thought the product *should* work rather than how it *does* work? Or maybe you hit a wall because the developer writing the docs forgot to mention a dependency they installed years ago and simply didn’t realize was critical to the process.
+Have you ever read technical documentation and thought that the writer was describing how they thought the product *should* work rather than how it *does* work? Or maybe you hit a wall because the developer writing the docs forgot to mention a dependency they installed years ago and simply didn’t realize was critical to the process?
 
-By utilizing Puppet and the blank slate VMs provided by GitHub Actions, we force ourselves to rebuild the environment that we are documenting from scratch every time. Although this example didn’t install any local infrastructure and only accessed Google, the Octopus Guides workflows install the CI servers, databases, build tools, and web servers with each and every run. This means that the guides can verifiably demonstrate how Octopus and the associated tools actually work rather than describing how things are assumed to work.
+By utilizing Puppet and the blank-slate VMs provided by GitHub Actions, we force ourselves to rebuild the environment that we are documenting from scratch every time. Although this example didn’t install any local infrastructure and only accessed Google, the Octopus Guides workflows install the CI servers, databases, build tools, and web servers with each and every run. This means that the guides can verifiably demonstrate how Octopus and the associated tools actually work rather than describing how things are assumed to work.
 
 ### Documentation is always up to date
 
-Although the purpose of these browser scripts is to generate the screenshots and videos consumed by our documentation, they are also essentially end-to-end tests. If the script fails, for example, if an HTML element is no longer available or a manual verification step does not succeed, the GitHub action fails, we are notified, and can determine if some aspect of our documentation needs to be updated.
+Although the purpose of these browser scripts is to generate the screenshots and videos consumed by our documentation, they are also essentially end-to-end tests. If the script fails, for example, if an HTML element is no longer available or a manual verification step does not succeed, the GitHub Action fails, we are notified, and can determine if some aspect of our documentation needs to be updated.
 
 On the flip side, if the script passes, we can be quite confident that the screenshots and video we collected are valid, and they can be updated immediately.
 
@@ -323,17 +323,17 @@ So if Jenkins ever refreshes their UI, you can be assured that the Octopus Guide
 
 ### Testable documentation
 
-Although the documentation is still written by hand, there is now a one to one mapping between the steps outlined in the documentation to the Gherkin script that we execute and verify with GitHub Actions. This means we now have documentation that is backed by automated tests, which is essential when producing the amount of content that we include with the Octopus Guides. Scheduling regular runs of the workflows mean we can be notified of any product updates that might break our scripts, and therefore require the documentation to be updated.
+Although the documentation is still written by hand, there is now a one-to-one mapping between the steps outlined in the documentation to the Gherkin script that we execute and verify with GitHub Actions. This means we now have documentation that is backed by automated tests, which is essential when producing the amount of content that we include with the Octopus Guides. Scheduling regular runs of the workflows mean we can be notified of any product updates that might break our scripts, and therefore require the documentation to be updated.
 
 ## Conclusion
 
-By adopting DevOps best practices like infrastructure as code, automated pipelines, and testing, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. With just a few months’ worth of work, a team of 2 was able to produce thousands of screenshots, hours of video, and hundreds of thousands of words, all automatically generated and verified.
+By adopting DevOps best practices like infrastructure as code, automated pipelines, and testing, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. With just a few months’ worth of work, a team of 2 produced thousands of screenshots, hours of video, and hundreds of thousands of words, all automatically generated and verified.
 
 If you are an Octopus customer, we hope you find these new guides valuable, and if you’re interested in producing similar content the links below will take you to the resources that were mentioned in this blog:
 
 * [Octopus Guides](https://octopus.com/docs/guides/) homepage.
 * The [GitHub repo](https://github.com/OctopusDeploy/OctopusGuides) that contains the code used to create the guides.
 * [Creating a Selenium WebDriver test framework](https://octopus.com/blog/selenium/0-toc/webdriver-toc) - A 30 part blog series that explains the code behind the WebDriver scripting used in this post.
-* The [Docker image](https://hub.docker.com/repository/docker/mcasperson/webdriver) called from GitHub actions.
+* The [Docker image](https://hub.docker.com/repository/docker/mcasperson/webdriver) called from GitHub Actions.
 * The [WebDriver application source code](https://github.com/OctopusDeploy/WebDriverTraining).
 * The [GitHub repo](https://github.com/OctopusSamples/GoogleAgileDocs) holding the example project described in this post.
