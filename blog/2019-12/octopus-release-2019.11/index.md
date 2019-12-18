@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2019.11 is now available](octopus-2019.11-release-image.png)
 
-**Octopus Deploy 2019.11** is now available and it brings a greate new feature and lots of small improvements driven by customer feedback. The most exciting is our new Operations Runbooks feature has reached release to web (RTW) status. This means we've removed the feature toggle and we're proud to ship a complete solution to help teams automate their operations tasks. 
+**Octopus Deploy 2019.11** is now available and it introduces our Operations Runbooks feature and numerous small improvements driven by customer feedback. We're excited to share that our Runbooks has reached release to web (RTW) status. This means we've removed the feature toggle and we're proud to ship a complete solution to help teams automate their operations tasks. 
 
 <h2>In this post</h2>
 
@@ -43,21 +43,14 @@ Our team continually adds updates and bug fixes driven by customer feedback and 
 
 ## Breaking Changes
 
-This release includes the following breaking changes. 
-
-`TODO: Waiting for the list from Blue Ring. Initial blurb is below but it needs massaging and there's more.`
-
-The API has changed as part of this issue, versions of Octopus.Client prior to 8.0.0 will not be able to create scheduled triggers on an Octopus Server where the version is older than 2019.11.0.
-The scheduled trigger criteria `DaysPerWeekScheduledTriggerFilterResource` and `DailyScheduledTriggerFilterResource` have been superseded by `ContinuousDailyScheduledTriggerFilterResource` and `OnceDailyScheduledTriggerFilterResource`.
+The [Octopus API has changed](https://github.com/OctopusDeploy/Issues/issues/4925) as part of this release, versions of Octopus.Client prior to 8.0.0 will not be able to create scheduled triggers on an Octopus Server where the version is older than 2019.11.0.
 
 ## Upgrading
 
-As usual the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.10.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2019.10.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during your maintenance window. 
+As usual the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2019.11.0) for further information. Self-Hosted Octopus customers can [download](https://octopus.com/downloads/2019.11.0) the latest release now. For Octopus Cloud, you will start receiving the latest bits next week during your maintenance window. 
 
 ## Wrap up
 
-This is our final release of the 2019 and we're looking forward to 2020. Feel free to leave us a comment, and let us know what you think! 
-
-Keep an eye on our [roadmap](https://octopus.com/roadmap) as we're updating it regularly. 
+This is our final release of the 2019 and we're looking forward to 2020. Keep an eye on our [roadmap](https://octopus.com/roadmap) as we're updating it regularly. 
 
 Happy deployments!
