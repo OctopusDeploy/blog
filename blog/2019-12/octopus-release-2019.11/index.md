@@ -24,9 +24,13 @@ tags:
 
 Our first-class runbook platform automates routine maintenance and emergency operations tasks, including infrastructure provisioning, database management, and website failover and restoration.
 
-This feature was designed to make modeling and executing operations tasks feel as natural as deploying applications does today. It brings support to execute runbooks directly against infrastructure with strong scheduling support.
+Our runbooks feature is now ready for production and includes the following:
 
-Runbooks are executed and managed by Octopus, so teams can run them even if they don’t have permission for the infrastructure the runbook will be executed on. This also means there’s a complete audit trail that can be reviewed at a later date, making it easy to see what happened, when and why, and if anything needs to be changed.
+* A familiar configuration process for anyone who has configured a deployment process.
+* The ability to execute runbooks directly against infrastructure on-demand or on a schedule (nightly, weekdays, once a month, etc.) as per your team’s needs.
+* Runbooks can be parameterized with prompted variables.
+* You can make changes to your runbooks and only publish them after they have been safely tested.
+* Runbooks are managed and executed by Octopus, so this means there’s a complete audit trail that can be reviewed at a later date, making it easy to see what happened, when and why, and if anything needs to be changed.
 
 [Learn more](https://octopus.com/docs/deployment-process/operations-runbooks)
 
@@ -36,9 +40,9 @@ Our team continually adds updates and bug fixes driven by customer feedback and 
 
 * **Simpler Octopus dashboard configuration**, making it clearer to understand what is filtered.
 * **Added support to test Azure DevOps issue tracker connectivity**. This change can help when configuring build server integration and work item tracking.
-* **Space selection is no longer visible** if a user only has 1 space and they don’t have permission to add more.
+* **Space selection is no longer visible if a user only has 1 space** and they don’t have permission to add more.
 * **Added support to upgrade a subset of Tentacles**. This applies to groups of Tentacles/Workers in an environment or worker pool rather than all deployment targets.
-* Added support to **Redeploy previous deployments** so it’s easier to redeploy/rollback successful release.
+* Added support to **Redeploy previous successful deployments** so it’s easier to rollback other releases.
 * **Swagger API documentation** is far more accurate, making it easier for teams to integrate with the Octopus API.
 * **Improved performance to the Tenants page**. The Tenants page now renders much faster when customers have hundreds and thousands of tenants.
 * **Improved supportability**. We’ve improved logging for automatic deploys and dynamic infrastructure provisioning to help teams understand what happens if things go wrong.
