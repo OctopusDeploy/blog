@@ -20,7 +20,7 @@ tags:
 
 ## Operations Runbooks RTW
 
-`TODO: Add GIF showing a project, then navigating to a specific runbook example`
+![Operations Runbooks in an Octopus Project](operations-runbooks.gif)
 
 This release introduces our first-class runbook platform for automating routine maintenance and emergency operations tasks. Runbook examples include infrastructure provisioning, database management, and website failover and restoration. 
 
