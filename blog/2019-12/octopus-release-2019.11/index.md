@@ -12,7 +12,7 @@ tags:
 
 ![Octopus Deploy 2019.11 is now available](octopus-2019.11-release-image.png)
 
-**Octopus Deploy 2019.11** is now available and it introduces our Operations Runbooks feature and numerous small improvements driven by customer feedback. We're excited to share that our Runbooks has reached release to web (RTW) status. This means we've removed the feature toggle and we're proud to ship a complete solution to help teams automate their operations tasks. 
+**Octopus Deploy 2019.11** is now available and it introduces our Operations Runbooks feature and numerous small improvements driven by customer feedback. We're excited to share that our Runbooks has reached release to web (RTW) status. This means we've removed the early access feature toggle and we're proud to ship a complete solution to help teams automate their operations tasks. 
 
 <h2>In this post</h2>
 
@@ -35,7 +35,7 @@ Runbooks are executed and managed by Octopus, so teams can run them even if they
 Our team continually adds updates and bug fixes driven by customer feedback and support tickets. We want to highlight some of these changes in this release. 
 
 * **Simpler Octopus dashboard configuration**, so it's clearer to understand what is filtered.
-* It's now possible to **test Azure DevOps issue tracker connectivity**. This changes can help when configuring build server integration and work item tracking.
+* **Added support to test Azure DevOps issue tracker connectivity**. This changes can help when configuring build server integration and work item tracking.
 * **Space selection is no longer visible** if a user only has 1 space and they don't have permission to add more.
 * **Added support to upgrade a subset of Tentacles**. This applies to groups of Tentacle/Workers in an environment or worker pool rather than all deployment targets.
 * Added support to **Redeploy previous deployments** so it's easier to redeploy/rollback successful release.
