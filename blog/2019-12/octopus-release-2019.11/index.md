@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy 2019.11 - Operations Runbooks RTW
-description: Octopus 2019.11 introduces 
+description: Octopus 2019.11 introduces our runbooks platform for automating operations tasks with support for scheduling, permissions, paramaterized runs and more.
 author: rob.pearson@octopus.com
 visibility: private
 published: 2019-12-18
@@ -20,7 +20,7 @@ tags:
 
 ## Operations Runbooks RTW
 
-![Operations Runbooks in an Octopus Project](operations-runbooks.gif)
+![Operations Runbooks in an Octopus Project](operations-runbooks.gif "width=600")
 
 This release introduces our first-class runbook platform for automating routine maintenance and emergency operations tasks. Runbook examples include infrastructure provisioning, database management, and website failover and restoration. 
 
