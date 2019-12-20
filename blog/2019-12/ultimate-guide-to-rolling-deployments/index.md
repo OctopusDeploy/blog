@@ -394,7 +394,7 @@ http://192.168.87.124:31861
 ```
 
 :::hint
-Note: The IP address will be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will also be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
+**Note:** The IP address will be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will also be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
 :::
 
 Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in minikube:
