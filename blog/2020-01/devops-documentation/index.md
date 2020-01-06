@@ -4,11 +4,13 @@ description: 300,000 words, 6000 images, 25 hours of video, 60 guides, and a tea
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-01-08
-metaImage: 
-bannerImage:
+metaImage: devops_documentation_2020.png
+bannerImage: devops_documentation_2020.png
 tags:
  - DevOps
 ---
+
+![DevOps practices power Octopus documentation](devops_documentation_2020.png)
 
 We recently added detailed end-to-end CI/CD guides to [Octopus documentation](https://octopus) to help teams configure their delivery pipeline as easily as possible. We applied DevOps principles to this process and achieved a great outcome. High-quality writing, easy screenshot maintainance and a screencast of the entire process as a bonus. 
 
