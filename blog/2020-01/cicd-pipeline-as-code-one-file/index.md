@@ -3,20 +3,20 @@ title: Should your CI/CD process be implemented in a single Pipeline as Code fil
 description: As more teams move to Pipeline as Code, there are some important questions to ask when deciding to merge a CI/CD process into a single PaC file.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2021-01-01
+published: 2020-01-06
 metaImage: pipeline-as-code.png
 bannerImage: pipeline-as-code.png
 tags:
- - Octopus
+ - DevOps
 ---
 
 ![CI/CD Pipeline as Code](pipeline-as-code.png)
 
-The concept of Pipeline as Code (PaC) was pioneered by build tools as a way of collocating the code being developed with the scripting required to build and test the code. This process immediately appealed to developers, and for this use case, PaC is ideal because the PaC logic and infrastructure it creates are very closely aligned with the code that it’s collocated with.
+The concept of Pipeline as Code (PaC) was pioneered by build tools (i.e. Jenkins pipelines, Azure pipelines, GitLab CI/CD pipelines etc.) as a way of collocating the code being developed with the scripting required to build and test the code. This process immediately appealed to developers, and for this use case, PaC is ideal because the PaC logic and infrastructure it creates are very closely aligned with the code that it’s collocated with.
 
-## PaC for building and testing
+## Pipeline as Code for building and testing
 
-The PaC file shares the same lifetime as the code being committed. Like a unit test, PaC logic is designed to build and test the code it was committed with. And just as you wouldn’t use the code in unit tests from previous commits to validate the current state of the codebase, you likewise wouldn’t use a previous version of the PaC file to build and test the current codebase.
+The Pipeline as Code file shares the same lifetime as the code being committed. Like a unit test, PaC logic is designed to build and test the code it was committed with. And just as you wouldn’t use the code in unit tests from previous commits to validate the current state of the codebase, you likewise wouldn’t use a previous version of the PaC file to build and test the current codebase.
 
 If the PaC logic creates any test infrastructure, that infrastructure would also be short-lived, likely for no longer than an hour or so. Tests that take more than an hour will frustrate developers and are generally not considered good practice.
 
@@ -24,9 +24,9 @@ Because the PaC logic is limited to building and testing code, the PaC process i
 
 The PaC workflow is a natural fit when it’s used as an extension of the build and test cycle. The same people are responsible for PaC code as the rest of the codebase, the PaC file lives and dies with each commit, and infrastructure created by the PaC logic is short-lived.
 
-## Challenges extending a PaC file for deployments
+## Challenges extending a Pipline as Code file for deployments
 
-Naturally, there’s an inclination to extend PaC beyond building and testing into deployments. At first glance, this appears to be the inevitable evolution of PaC, but there are good reasons not to have one pipeline for your entire CI/CD workflow.
+Naturally, there’s an inclination to extend Pipeline as Code beyond building and testing into deployments. At first glance, this appears to be the inevitable evolution of PaC, but there are good reasons not to have one pipeline for your entire CI/CD workflow.
 
 While the process of building code and validating it through automated testing is measured in hours at most, the process of deploying a release through to production is exponentially longer; it’s not unheard of for release cycles to be measured in months.
 
