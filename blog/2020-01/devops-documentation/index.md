@@ -2,12 +2,16 @@
 title: How DevOps practices power Octopus documentation
 description: 300,000 words, 6000 images, 25 hours of video, 60 guides, and a team of 2.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2030-01-01
-metaImage:
+visibility: public
+published: 2020-01-08
+metaImage: 
 bannerImage:
 tags:
- - Octopus
+ - DevOps
+---
+
+We recently added detailed end-to-end CI/CD guides to [Octopus documentation](https://octopus) to help teams configure their delivery pipeline as easily as possible. We applied DevOps principles to this process and achieved a great outcome. High-quality writing, easy screenshot maintainance and a screencast of the entire process as a bonus. 
+
 ---
 
 If you are reading this post, I’ll assume you’ve had the experience of supporting a friend, colleague, customer, or family member with a technical issue over the phone. And you know how inefficient that conversation is:
@@ -67,9 +71,9 @@ Automating the creation and updating of these assets requires four services:
 
 For the Octopus Guides, we used:
 
-* Wista for our video hosting.
+* Wista for our video hosting (YouTube is another good option).
 * AWS S3 for our image hosting.
-* A custom tool using WebDriver for scripting a web browser.
+* A custom tool using Selenium WebDriver for scripting a web browser.
 * GitHub Actions to execute everything.
 
 To see this in action, we’ll take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows that are executed by GitHub Actions: one to capture the screencast, and another to generate the screenshots.
@@ -129,7 +133,7 @@ We use Puppet instead of the native GitHub Actions because Puppet can be run out
         run: ./puppet/install.sh setup.pp
 ```
 
-The next step runs our custom WebDriver scripting tool. The code for this tool can be found in this [GitHub repo](https://github.com/OctopusDeploy/WebDriverTraining). If “WebDriverTraining” sounds like an odd name, it’s because this code was originally written as part of a [blog series](https://octopus.com/blog/selenium/0-toc/webdriver-toc) that describes the process of creating a WebDriver testing tool from scratch. That project was ideal for generating assets for the guides, and so was extended and bundled into a [Docker image](https://hub.docker.com/r/mcasperson/webdriver) for integration with GitHub Actions.
+The next step runs our custom Selenium WebDriver scripting tool. The code for this tool can be found in this [GitHub repo](https://github.com/OctopusDeploy/WebDriverTraining). If “WebDriverTraining” sounds like an odd name, it’s because this code was originally written as part of a [blog series](https://octopus.com/blog/selenium/0-toc/webdriver-toc) that describes the process of creating a WebDriver testing tool from scratch. That project was ideal for generating assets for the guides, and so was extended and bundled into a [Docker image](https://hub.docker.com/r/mcasperson/webdriver) for integration with GitHub Actions.
 
 Here you can see a number of the global environment variables are passed as Java properties via the `JAVA_OPTS` environment variable. These properties are defined with the `-D` argument, the name of the property, and the value of the property. The properties defined here:
 
