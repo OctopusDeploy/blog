@@ -4,11 +4,13 @@ description: As more teams move to Pipeline as Code, there are some important qu
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2021-01-01
-metaImage:
-bannerImage:
+metaImage: pipeline-as-code.png
+bannerImage: pipeline-as-code.png
 tags:
  - Octopus
 ---
+
+![CI/CD Pipeline as Code](pipeline-as-code.png)
 
 The concept of Pipeline as Code (PaC) was pioneered by build tools as a way of collocating the code being developed with the scripting required to build and test the code. This process immediately appealed to developers, and for this use case, PaC is ideal because the PaC logic and infrastructure it creates are very closely aligned with the code that it’s collocated with.
 
