@@ -94,9 +94,9 @@ With runbooks, the result of each query is captured in a log file, and the histo
 
 ## A common context
 
-Best practice for continuous deployments involves pushing changes through environments. High availability means spreading your production infrastructure across availability zones or regions, deploying across cloud providers, or having hybrid on-premises/cloud infrastructure.
+Best practice for continuous deployments involves pushing changes through environments. High availability means spreading your production infrastructure across availability zones or regions, deploying across multiple cloud providers, or having hybrid on-premises/cloud infrastructure.
 
-Octopus has long supported multiple cloud providers and on-premises deployments, capturing that topology via targets and environments. Runbooks leverage that same context, allowing tasks to be executed across your existing infrastructure without redefining it.
+Octopus has long supported multiple cloud providers and on-premises deployments, capturing that topology with targets and environments. Runbooks leverage that same context, allowing tasks to be executed across your existing infrastructure without redefining it.
 
 ## Conclusion
 
