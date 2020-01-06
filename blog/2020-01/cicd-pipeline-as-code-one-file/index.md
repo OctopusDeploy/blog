@@ -2,7 +2,7 @@
 title: Should your CI/CD process be implemented in a single Pipeline as Code file?
 description: As more teams move to Pipeline as Code, there are some important questions to ask when deciding to merge a CI/CD process into a single PaC file.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-01-06
 metaImage: pipeline-as-code.png
 bannerImage: pipeline-as-code.png
