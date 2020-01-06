@@ -18,7 +18,7 @@ In this blog post we'll look at a simple runbook, and highlight the advantages o
 
 ## A simple runbook
 
-Listing the pods to see their status is a common first step when supporting a Kubernetes cluster. This sounds easy enough, and it is tempting to think that this process is nothing more than running `kubectl get pods`. But with Runbooks it is possible to enrich this diagnostic procedure. Below is an example of a "Get Pods" script you might create as part of a runbook:
+Listing Kubernetes pods to see their status is a common first step when supporting a Kubernetes cluster. This sounds easy enough, and it is tempting to think that this process is nothing more than running `kubectl get pods`. But with Runbooks it is possible to enrich this diagnostic procedure. Below is an example of a "Get Pods" script you might create as part of a runbook:
 
 ```PowerShell
 $arguments = @("get", "pods")
@@ -66,7 +66,7 @@ At the very least interacting with a Kubernetes cluster requires the `kubectl` c
 
 In my experience the "support laptop" is something that sits under a desk, whether in the office or at the home of the person on call that week. If things have been done right the laptop is rarely used, and even less frequently updated. This is a problem when you consider the range of command line tools used when interacting with Kubernetes, some of which (like `helm`) can be particularly fickle when it comes to versioning.
 
-By executing `kubectl` and other Kubernetes cli tools from a runbook, there is no longer any need for local tools to be installed. All you need is a web browser, and the Octopus server or workers can be configured with any tools required.
+By executing `kubectl` and other Kubernetes CLI tools from a runbook, there is no longer any need for local tools to be installed. All you need is a web browser, and the Octopus server or workers can be configured with any tools required.
 
 ## No additional permissions required
 
@@ -91,3 +91,13 @@ Priority number one during an outage is getting a cluster back online. But the n
 Why were those particular pods restarted? What was in the log files? How many resources were the pods using before they were deleted? All too often the answers to these questions are lost when the local terminal running `kubectl` is closed.
 
 With runbooks, the result of each query is captured in a log file, and the history of each action is captured in an audit log. You can also ensure that a `kubectl delete pod` is *always* preceded by a `kubectl logs` or `kubectl describe pod`, making the state of a deleted pod easy to review the next day.
+
+## A common context
+
+Best practice for continuous deployments involves pushing changes through environments. High availability means spreading your production infrastructure across availability zones or regions, deploying across cloud providers, or having hybrid on-premises/cloud infrastructure.
+
+Octopus has long supported multiple cloud providers and on-premises deployments, capturing that topology via targets and environments. Runbooks leverage that same context, allowing tasks to be executed across your existing infrastructure without redefining it.
+
+## Conclusion
+
+In a world where it can  feel like you need to learn 30 different things to deploy an application, Octopus strives to provide you with a single "Deploy" button. With Runbooks, the same battle-tested processes that drive Octopus deployments is now available for DevOps support an maintenance tasks.
