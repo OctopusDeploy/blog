@@ -12,11 +12,9 @@ tags:
 
 ![DevOps practices power Octopus documentation](devops_documentation_2020.png)
 
-We recently added detailed end-to-end CI/CD guides to [Octopus documentation](https://octopus) to help teams configure their delivery pipeline. We applied DevOps principles to the process of creating software documentation and achieved a great outcome. Useful step-by-step guides, easy screenshot maintenance and a screencast of the entire process as a bonus. Read on to learn how we did it.
+We recently added detailed end-to-end CI/CD guides to [Octopus documentation](https://octopus.com/docs/guides) to help teams configure their delivery pipeline. We applied DevOps principles to the process of creating software documentation that allowed us to create useful step-by-step guides, with automated screenshot maintenance and a screencast of the entire process as a bonus.
 
----
-
-If you are reading this post, I’ll assume you’ve had the experience of supporting a friend, colleague, customer, or family member with a technical issue over the phone. And you know how inefficient that conversation is:
+If you've ever tried supporting a friend, colleague, customer, or family member with a technical issue over the phone, you know how inefficient that conversation can be:
 
 *Click the big green “OK” button. You’ll need to scroll down the page. It’s in the bottom right-hand corner. No, not that button. No, not that one either. No, don’t click the back button. Sigh… OK, let’s start again.*
 
@@ -24,9 +22,9 @@ Imagine if instead of trying this over the phone, you’re sitting with someone 
 
 *Click that. Click that. Scroll down. Click that. No, not that. Yes, click that.*
 
-The shared context provided by two people looking at the same screen instantly removes the ambiguity around trying to describe the location of elements on a complex form with imprecise language like, “bottom right corner,” describing icons with phrases like, “it’s the floppy disk icon,” or using generic terms like *button* and *text box* against the infinite styling options available in modern user interfaces. Sitting in the same room with the person you’re helping means the entire process can be tackled from start to finish without wondering if the person you’re helping is in the right place or how to describe the next screen.
+The shared context provided by two people looking at the same screen instantly removes the ambiguity and the whole process is much smoother.
 
-With this in mind, we recently tackled adding some end-to-end guides to our documentation. It’s clear that with an integration tool like ours, which always sits in the middle of any of a dozen different (and equally complex) platforms and tools, we need to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.  
+With this in mind, when we started work on the end-to-end guides, we knew that an integration tool like Octopus, which sits in the middle of any of a dozen different (and equally complex) platforms and tools, we needed to show rather than tell and provide complete journeys rather than assuming people already know what the big picture is.
 
 We’re calling the results of this project [Octopus Guides](https://octopus.com/docs/guides). If you visit our [homepage](https://octopus.com), you can select your technology stack and see a dedicated guide that steps you through the process from compiling your code to deploying it to its destination. We haven’t completed every combination yet, but if you find a combination that hasn’t been written yet, you can vote for it.
 
