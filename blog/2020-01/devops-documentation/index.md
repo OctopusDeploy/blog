@@ -60,7 +60,7 @@ Next, you’ll notice the elements we interact with on the search screen are hig
 
 ## Automating the process
 
-This video and screenshots could have been created and edited manually, but given that we’re building the foundation for a workflow that expanded to dozens (if not hundreds) of guides, we needed a way for these assets to be created automatically.
+This video and the screenshots could have been created and edited manually, but given that we’re building the foundation for a workflow that expanded to dozens (if not hundreds) of guides, we needed a way for these assets to be created automatically.
 
 Automating the creation and updating of these assets requires four services:
 
