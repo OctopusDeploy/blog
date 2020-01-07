@@ -66,7 +66,7 @@ Overall though this is a very cool app, and definitely a project to keep an eye 
 
 [Kubernator Homepage](https://github.com/smpio/kubernator)
 
-> In contrast to high-level Kubernetes Dashboard, [Kubernator] provides low-level control and clean view on all objects in a cluster with the ability to create new ones, edit and resolve conflicts.
+> In contrast to high-level Kubernetes Dashboard, Kubernator provides low-level control and clean view on all objects in a cluster with the ability to create new ones, edit and resolve conflicts.
 
 Kubernator is a capable YAML editor linked directly into a Kubernetes cluster. The navigation tree displays a filesystem like view of the cluster, while the editor provides features like tabs, keyboard shortcuts and diff views.
 
