@@ -14,11 +14,11 @@ In the beginning there was *the* [Kubernetes Dashboard](https://github.com/kuber
 
 In this blog we'll take a look at some of these alternative Kubernetes dashboards.
 
-##The sample cluster
+## The sample cluster
 
 For this post I've run minikube locally, populated with the [Bookinfo](https://istio.io/docs/examples/bookinfo/) application provided by Istio.
 
-##K8Dash
+## K8Dash
 
 [K8Dash Homepage](https://github.com/herbrandson/k8dash)
 
@@ -36,7 +36,7 @@ kubectl port-forward service/k8dash 9999:80 -n kube-system
 ![](k8dash1.png "width=500")
 ![](k8dash2.png "width=500")
 
-##Konstellate
+## Konstellate
 
 [Konstellate Homepage](https://github.com/containership/konstellate)
 
@@ -62,7 +62,7 @@ Konstellate is built from source, and does not provide any prebuilt Docker image
 
 Overall though this is a very cool app, and definitely a project to keep an eye on.
 
-##Kubernator
+## Kubernator
 
 [Kubernator Homepage](https://github.com/smpio/kubernator)
 
@@ -87,7 +87,7 @@ kubectl proxy
 
 Then open the [service proxy URL](http://localhost:8001/api/v1/namespaces/kubernator/services/kubernator/proxy/) in your browser.
 
-##Kubernetes Operational View
+## Kubernetes Operational View
 [Kubernetes Operational View Homepage](https://github.com/hjacobs/kube-ops-view)
 
 > Read-only system dashboard for multiple K8s clusters
@@ -109,7 +109,7 @@ kubectl apply -f deploy
 kubectl port-forward service/kube-ops-view 8080:80
 ```
 
-##Kubricks
+## Kubricks
 
 [Kubricks Homepage](https://kubricks.io/)
 
@@ -133,7 +133,7 @@ I have to admit that I struggled to understand what Kubricks was showing me. To 
 
 Installation is easy with downloads for macOS and Linux.
 
-##Octant
+## Octant
 
 [Octant Homepage](https://github.com/vmware-tanzu/octant)
 
@@ -152,7 +152,7 @@ I particularly liked the ability to configure port forwarding directly from the 
 
 Installation was easy with packages available from Brew and Chocolatey, and compiled RPM and DEB packages for Linux.
 
-##Weave Scope
+## Weave Scope
 
 [Weave Scope Homepage](https://github.com/ weaveworks/scope)
 
@@ -176,6 +176,6 @@ kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl
 kubectl port-forward -n weave "$(kubectl get -n weave pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4040
 ```
 
-##Conclusion
+## Conclusion
 
 If the official Kubernetes dashboard is not meeting your needs, there is a huge range of high quality, free and open source alternatives to choose from. Overall I was impressed at how easy these dashboards were to install, and it is clear that a great deal of work has gone into their design, with most offering at least one compelling reason to switch.
