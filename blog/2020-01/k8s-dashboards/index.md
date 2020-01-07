@@ -16,7 +16,7 @@ In this blog we'll take a look at some of these alternative Kubernetes dashboard
 
 ##The sample cluster
 
-For this post I've run minikube locally populated with the [Bookinfo](https://istio.io/docs/examples/bookinfo/) application provided by Istio.
+For this post I've run minikube locally, populated with the [Bookinfo](https://istio.io/docs/examples/bookinfo/) application provided by Istio.
 
 ##K8Dash
 
@@ -24,17 +24,12 @@ For this post I've run minikube locally populated with the [Bookinfo](https://is
 
 > K8Dash is the easiest way to manage your Kubernetes cluster.
 
-K8Dash has a clean, modern interface that should be familiar to anyone who has used the official Kubernetes Dashboard. One of the selling points of K8Dash is that the interface is automatically updated, removing the need to manually refresh the page to see the current state of the cluster.
+K8Dash has a clean, modern interface that should be familiar to anyone who has used the official Kubernetes Dashboard. A K8Dash selling point is that the interface is automatically updated, removing the need to manually refresh the page to see the current state of the cluster.
 
-Installation was painless with a single command:
+Installation was painless with the following commands:
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/herbrandson/k8dash/master/kubernetes-k8dash.yaml
-```
-
-I then exposed the service port locally:
-
-```
 kubectl port-forward service/k8dash 9999:80 -n kube-system
 ```
 
@@ -49,7 +44,7 @@ kubectl port-forward service/k8dash 9999:80 -n kube-system
 
 Konstellate is not so much a Kubernetes dashboard as a tool for creating, linking and visualizing Kubernetes resources.
 
-The main canvas allows you to add new Kubernetes resources like Deployments, Services And Ingresses. A dynamic user interface allows you to build up the YAML description of these resources, exposing the valid child properties with an associated description.
+The main canvas allows you to add new Kubernetes resources like Deployments, Services and Ingresses. A dynamic user interface allows you to build up the YAML description of these resources, exposing the available child properties with an associated description.
 
 ![](konstellate2.png "width=500")
 ![](konstellate3.png "width=500")
@@ -73,11 +68,11 @@ Overall though this is a very cool app, and definitely a project to keep an eye 
 
 > In contrast to high-level Kubernetes Dashboard, [Kubernator] provides low-level control and clean view on all objects in a cluster with the ability to create new ones, edit and resolve conflicts.
 
-Kubernator is a capable YAML editor linked directly into a Kubernetes cluster. The navigation tree provides a filesystem like view of the cluster, while the editor provides features like tabs, keyboard shortcuts and diff views.
+Kubernator is a capable YAML editor linked directly into a Kubernetes cluster. The navigation tree displays a filesystem like view of the cluster, while the editor provides features like tabs, keyboard shortcuts and diff views.
 
 ![](kubernator1.png "width=500")
 
-I addition to editing raw YAML, Kubernator will visualize the Role Based Access Control (RBAC) resources showing the relationships between users, groups, service accounts, roles and cluster roles.
+In addition to editing raw YAML, Kubernator will visualize the Role Based Access Control (RBAC) resources showing the relationships between users, groups, service accounts, roles and cluster roles.
 
 ![](kubernator2.png "width=500")
 
@@ -97,7 +92,7 @@ Then open the [service proxy URL](http://localhost:8001/api/v1/namespaces/kubern
 
 > Read-only system dashboard for multiple K8s clusters
 
-Have you ever wanted to manage your Kubernetes cluster like an ubergeek from just about any movie or TV show? Then KOV is for you.
+Have you ever wanted to manage your Kubernetes cluster like an ubergeek from the movies? Then KOV is for you.
 
 Built on WebGL, KOV visualizes your Kubernetes dashboard as a series of nested boxes showing the cluster, nodes and pods. Additional graphs are nested directly into these elements, and tooltips provide additional details. The visualization can be zoomed and panned to drill down into individual pods.
 
@@ -105,9 +100,9 @@ Built on WebGL, KOV visualizes your Kubernetes dashboard as a series of nested b
 
 KOV is a readonly dashboard, so you can't manage a cluster with it or set alerts.
 
-However, I've used KOV as a way of demonstrating how a Kubernetes cluster works as pods and nodes are added and deleted, with people saying that this particular visualization was the first time that they understood what Kubernetes was.
+However, I've used KOV as a way of demonstrating how a Kubernetes cluster works as pods and nodes are added and removed, with people saying that this particular visualization was the first time that they understood what Kubernetes was.
 
-KOV provides a collection of YAML files that can be deployed as a group to an existing cluster, making installation easy.
+KOV provides a collection of YAML files that can be deployed as a group to an existing cluster, making installation easy:
 
 ```
 kubectl apply -f deploy
@@ -122,15 +117,15 @@ kubectl port-forward service/kube-ops-view 8080:80
 
 Kubricks is a desktop application that visualizes the Kubernetes cluster and allows you to drill down from the node level to a traffic view mirroring the way kube-proxy directs incoming requests to different pods through services.
 
-My minikube cluster isn't that interesting to look at, having only a single node.
+My minikube cluster isn't that interesting to look at, having only a single node:
 
 ![](kubricks.png "width=500")
 
-Clicking on the node shows the pods deployed to the node.
+Clicking on the node shows the pods deployed to the node:
 
 ![](kubricks2.png "width=500")
 
-Kubricks also provides a traffic view.
+Here is the Kubricks traffic view:
 
 ![](kubricks3.png "width=500")
 
@@ -144,7 +139,7 @@ Installation is easy with downloads for macOS and Linux.
 
 >A web-based, highly extensible platform for developers to better understand the complexity of Kubernetes clusters.
 
-Octant is a locally installed application that exposing a web based dashboard. Octant has an intuitive interface for navigating, inspecting and editing Kubernetes resources, with the ability to visualize related resources. It also has a light and dark mode.
+Octant is a locally installed application that exposes a web based dashboard. Octant has an intuitive interface for navigating, inspecting and editing Kubernetes resources, with the ability to visualize related resources. It also has a light and dark mode.
 
 ![](octant3.png "width=500")
 ![](octant2.png "width=500")
