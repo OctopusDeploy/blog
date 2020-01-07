@@ -11,13 +11,15 @@ tags:
 ---
 ![Octopus enjoying a Raspberry Pi](blogimage-raspberrypi.png)
 
-.NET Core has come a long way in the last few years, and Octopus Deploy has too.  A while back, we added support for running [Calamari without Mono](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono), and in this post I will walk you through how to deploy .NET Core applications on to a Raspberry Pi 3, no Mono required.
+:::info
+**Update January 2020**
+*Out of the box* support for Linux ARM SSH tagets was included in *Octopus Server 2019.11.2*
+If you are using this version or later you will not need to perform the workaround steps **Modify the Target Config** and **Download Calamari**. 
+:::
+
+.NET Core has come a long way in the last few years, and Octopus Deploy has too. A while back, we added support for running [Calamari without Mono](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono), and in this post I will walk you through how to deploy .NET Core applications on to a Raspberry Pi 3, no Mono required.
 
 In this post, I will show you that it is possible to deploy and run .NET Core applications on the Raspberry Pi 3, and along the way describe some of the different ways that you can interact with your Octopus Deploy server.
-
-:::warn
-At the time of writing, support for ARM architecture is not included by default and needs to be manually enabled.
-:::
 
 ## Requirements Before Starting
 
@@ -127,6 +129,10 @@ Then finally, create a deployment target under *Infrastructure* > *Deployment Ta
 Set the targets role to something that represents the responsibility of the target, e.g `PiWeb`.
 After filling in the details (IP Address or DNS name, SSH port and account), under the .NET section, ensure that you select _Mono not installed_, don't worry about the platform, we will change that later.
 
+:::warn
+If you are running *Octopus Server 2019.11.2* or later, you can select `Linux ARM` as the platform and skip the **Modifiy the Target Config** step.
+:::
+
 ![](dotnet-not-mono.png "width=500")
 
 ### Modify the Target Config to Specify the Calamari Version as `linux-arm`
@@ -161,6 +167,10 @@ The `% { $_ }` line unwraps the top-level array that is being returned, which se
 
 ### Download Calamari for linux-arm
 
+:::warn
+This step can be skipped if you are running *Octopus Server 2019.11.2* or later.
+:::
+
 ```powershell
 curl https://f.feedz.io/octopus-deploy/dependencies/packages/Calamari.linux-arm/4.4.15/download -L -o "c:\Program Files\Octopus Deploy\Octopus\Calamari.linux-arm.nupkg"
 ```
@@ -169,7 +179,7 @@ Replace the output path, `-o`, with the path to your Octopus Installation, if re
 Replace the version number in the `curl` command (_4.4.15_) with the current version number supplied with your Octopus installation, this number can be obtained from the verbose log of another project. Look for a line that looks like `Using Calamari.linux-x64 x.y.z`, which will give you the Calamari version in use on your Octopus Server.
 
 :::info
-The `linux-arm` Calamari package, will be provided in future releases.
+The `linux-arm` Calamari package was provided in *Octopus Server 2019.11.2*.
 If upgrading the Octopus Server installation before support is included by default, you will need to update the Calamari version to match the version of the other Calamari packages. The version number can be obtained from the `Calamari.nupkg` package using [Nuget Package Explorer](https://github.com/NuGetPackageExplorer/NuGetPackageExplorer).
 :::
 
