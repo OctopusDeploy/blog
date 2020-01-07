@@ -137,7 +137,7 @@ Installation is easy with downloads for macOS and Linux.
 
 [Octant Homepage](https://github.com/vmware-tanzu/octant)
 
->A web-based, highly extensible platform for developers to better understand the complexity of Kubernetes clusters.
+> A web-based, highly extensible platform for developers to better understand the complexity of Kubernetes clusters.
 
 Octant is a locally installed application that exposes a web based dashboard. Octant has an intuitive interface for navigating, inspecting and editing Kubernetes resources, with the ability to visualize related resources. It also has a light and dark mode.
 
@@ -156,7 +156,7 @@ Installation was easy with packages available from Brew and Chocolatey, and comp
 
 [Weave Scope Homepage](https://github.com/weaveworks/scope)
 
->Monitoring, visualisation & management for Docker & Kubernetes
+> Monitoring, visualisation & management for Docker & Kubernetes
 
 Weave Scope provides a visualization of the Kubernetes nodes, pods and containers showing details about memory and CPU usage.
 
