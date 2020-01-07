@@ -154,7 +154,7 @@ Installation was easy with packages available from Brew and Chocolatey, and comp
 
 ## Weave Scope
 
-[Weave Scope Homepage](https://github.com/ weaveworks/scope)
+[Weave Scope Homepage](https://github.com/weaveworks/scope)
 
 >Monitoring, visualisation & management for Docker & Kubernetes
 
