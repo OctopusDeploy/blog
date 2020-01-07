@@ -16,7 +16,7 @@ NGINX has long provided one of the most popular ingress controllers, but anythin
 
 Until recently the solution was to define these additional settings settings via annotations or providing configuration blocks in configmaps. But with version 1.5 the NGINX ingress controller provides two custom resource definitions (CRDs) defining more complex networking rules than the baseline ingress resources.
 
-In this post we'll explore the new functionality provided by the `VirtualServer` and `VirtualServerRoute` CRDs.
+In this post we'll explore some of the new functionality provided by the `VirtualServer` and `VirtualServerRoute` CRDs.
 
 ## The sample cluster
 
@@ -30,8 +30,12 @@ For this blog I've used the Kubernetes distribution bundled with Docker Desktop.
 kubectl apply -f https://raw.githubusercontent.com/mcasperson/NodejsProxy/master/kubernetes/example.yaml
 ```
 
+The resulting cluster looks like this:
+
+![](sampleapp.svg "width=500")
+
 I've used Helm to install NGINX, but it is not as easy as it could be. The [GitHub docs](https://github.com/nginxinc/kubernetes-ingress/tree/master/deployments/helm-chart#installing-via-helm-repository) point you to the Helm repo at https://helm.nginx.com/edge, which failed for me. The chart from the official Helm repoistory at https://kubernetes-charts.storage.googleapis.com/ did not include the CRDs.
-s
+
 The solution was to clone the NGINX Git repo and install the Helm chart from a local file. These commands worked with Helm 3:
 
 ```
@@ -42,19 +46,202 @@ helm install nginx-release .
 
 ## A basic VirtualServer
 
+We'll start with a basic `VirtualServer` resource to expose the proxy.
+
 ```YAML
 apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
 metadata:
-  name: webserver
+  name: virtualserver
+spec:
+  host: localhost
+  upstreams:
+  - name: proxy
+    service: proxy
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: proxy
+```
+
+The `upstreams` property defines the services that traffic can be sent to. In this example we direct traffic to the `proxy` service.
+
+The `routes` match incoming requests and performs an action in response. Typically the action is to direct traffic to an upstream server, which we have done with the `action.pass: proxy` configuration.
+
+This `VirtualServer` replicates the functionality we might otherwise have defined in an `Ingress` resource, and once deployed to the cluster we can open http://localhost/whatever/you/want to view the proxy web application.
+
+## Custom actions
+
+Things become interesting when we start digging into the new functionality that the `VirtualServer` exposes.
+
+Instead of passing requests to an upstream service, the `VirtualServer` can redirect the client to a new URL. Here we direct traffic back to the NGINX homepage.
+
+```YAML
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: virtualserver
+spec:
+  host: localhost
+  routes:
+  - path: /
+    action:
+      redirect:
+        url: http://www.nginx.com
+        code: 301
+```
+
+In this example we define the content to be returned directly in the `VirtualServer` resource. This is great for testing.
+
+```YAML
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: virtualserver
+spec:
+  host: localhost
+  routes:
+  - path: /
+    action:
+      return:
+        code: 200
+        type: text/plain
+        body: "Hello World\n"
+```
+
+## Traffic splitting
+
+Traffic splitting can be used for canary deployments by directing a percentage of traffic to a new service. Here we configure the `VirtualServer` to pass traffic to the webserver services, splitting traffic between version 1 and 2.
+
+```YAML
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: virtualserver
+spec:
+  host: localhost
+  upstreams:
+  - name: webserverv1
+    service: webserverv1
+    port: 80
+  - name: webserverv2
+    service: webserverv2
+    port: 80
+  routes:
+  - path: /
+    splits:
+    - weight: 80
+      action:
+        pass: webserverv1
+    - weight: 20
+      action:
+        pass: webserverv2
+```
+
+## Load balancing
+
+In [https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-iptables](iptables proxy mode) endpoints available to a servoce are chosen at random. If you look at the diagram above, the `webserver` service directs traffic to both `webserverv1` and `webserverv2` pods, so traffic to the `webserver` service would be randomly distributed between both pods.
+
+NGINX allows us to specify the [load balancing rules](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#choosing-a-load-balancing-method) used to direct traffic to upstream services. In the example below we set the `lb-method` property to the `ip_hash` load balancing algorithm to ensure a client is always sent to the same backend pod.
+
+```YAML
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: virtualserver
 spec:
   host: localhost
   upstreams:
   - name: webserver
     service: webserver
     port: 80
+    lb-method: ip_hash
   routes:
   - path: /
     action:
       pass: webserver
 ```
+
+## Timeouts, retries and keepalives
+
+Lower level configuration details like connections timeouts, retries and keepalives used to be defined as annotations on `Ingress` resources. With a `VirtualServer` resource these settings are now exposed as first class properties.
+
+```YAML
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: virtualserver
+spec:
+  host: localhost
+  upstreams:
+  - name: webserver
+    service: webserver
+    port: 80
+    fail-timeout: 10s
+    max-fails: 1
+    max-conns: 32
+    keepalive: 32
+    connect-timeout: 30s
+    read-timeout: 30s
+    send-timeout: 30s
+    next-upstream: "error timeout non_idempotent"
+    next-upstream-timeout: 5s
+    next-upstream-tries: 10
+    client-max-body-size: 2m
+  routes:
+  - path: /
+    action:
+      pass: webserver
+```
+
+## Adding VirtualServerRoutes
+
+`VirtualServer` resources can delegate the request to a `VirtualServerRoute`. This allows a master `VirtualServer` resource to configure top level traffic rules with `VirtualServerRoute` resources handling more specific routing rules.
+
+In the example below requests are sent to a `VirtualServerRoute` resource which selects one of three possible upstream services based on the path:
+
+```YAML
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: virtualserver
+spec:
+  host: localhost
+  routes:
+  - path: /
+    route: virtualserverroute
+---
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: virtualserverroute
+spec:
+  host: localhost
+  upstreams:
+  - name: proxy
+    service: proxy
+    port: 80
+  - name: webserverv1
+    service: webserverv1
+    port: 80
+  - name: webserverv2
+    service: webserverv2
+    port: 80
+  subroutes:
+  - path: /webserverv1
+    action:
+      pass: webserverv1
+  - path: /webserverv2
+    action:
+      pass: webserverv2
+  - path: /
+    action:
+      pass: proxy
+```
+
+## Conclusion
+
+Ingress controllers started as cottage industry in the Kubernetes ecosystem, but as each provider differentiated itself from the competition with new configuration options and features, the annotations added to `Ingress` resources made them unwieldy and unportable.
+
+By implementing CRDs, NGINX can now expose advanced functionality with verifiable properties. I expect these CRDs will be enriched even further as common use cases are identified.
