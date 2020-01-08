@@ -3,7 +3,7 @@ title: How DevOps principles power Octopus documentation
 description: How DevOps principles power Octopus documentation producing 60 guides with 300,000 words, 6,000 images and 25 hours of video maintained by a team of two.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-01-09
+published: 2020-01-08
 metaImage: devops_documentation_2020.png
 bannerImage: devops_documentation_2020.png
 tags:
