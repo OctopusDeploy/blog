@@ -3,12 +3,14 @@ title: "Beyond Hello World: Kubernetes for the uninitiated"
 description: A high-level overview of Kubernetes
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage:
-metaImage:
+bannerImage: kubernetes-for-the-uninitiated.png
+metaImage: kubernetes-for-the-uninitiated.png
 published: 2020-10-23
 tags:
  - Kubernetes
 ---
+
+![Beyond Hello World - Kubernetes for the uninitiated](kubernetes-for-the-uninitiated.png)
 
 By now, you’ve undoubtedly heard the term Kubernetes, but is it just the latest buzzword or is there more to it?  In this post, I cover what Kubernetes (or k8s for short) is and demonstrate how to run a real-world web application, [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), on k8s.
 
