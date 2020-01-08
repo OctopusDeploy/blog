@@ -5,9 +5,9 @@ author: shawn.sesna@octopus.com
 visibility: private
 bannerImage: kubernetes-for-the-uninitiated.png
 metaImage: kubernetes-for-the-uninitiated.png
-published: 2020-10-23
+published: 2020-01-13
 tags:
- - Kubernetes
+ - DevOps
 ---
 
 ![Beyond Hello World - Kubernetes for the uninitiated](kubernetes-for-the-uninitiated.png)

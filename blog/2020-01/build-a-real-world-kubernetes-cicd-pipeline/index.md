@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: private
 bannerImage: build-a-real-world-kubernetes-cicd-pipeline.png
 metaImage: build-a-real-world-kubernetes-cicd-pipeline.png
-published: 2020-12-11
+published: 2020-01-15
 tags:
  - DevOps
 ---
