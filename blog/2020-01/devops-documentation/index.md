@@ -34,7 +34,7 @@ To recreate the efficiency of two people looking at the same screen, each guide 
 
 Creating this suite of tailored software documentation is not a trivial task. At the time of writing, we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video, and close to 300,000 words documenting various combinations of around 16 technology stacks. Many of the applications included in the guides are released on a monthly or weekly schedule, and ideally, our screenshots will be kept up to date. This content was created and will be maintained by a team of two (myself as writer/developer and an editor to review and edit the content) over the course of a few months.  
 
-To achieve this, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as automated testing (to ensure he process we were documenting worked as described), infrastructure as code, and automated pipelines to generate screenshots and video.
+To achieve this, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as automated testing (to ensure the process we were documenting worked as described), infrastructure as code, and automated pipelines to generate screenshots and video.
 
 ## A simple example
 
