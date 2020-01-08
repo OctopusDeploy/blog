@@ -12,6 +12,15 @@ tags:
 
 ![Beyond Hello World - Kubernetes for the uninitiated](kubernetes-for-the-uninitiated.png)
 
+Docker containers and Kubernetes are excellent technologies to have in your DevOps tool-belt. This **Beyond Hello World** blog series covers how to use them with a real-world application.
+
+- [Containerizing a real-world web application](/blog/2019-12/containerize-a-real-world-web-app/index.md)
+- [Building a real-world Docker CI/CD pipeline](/blog/2019-12/build-a-real-world-docker-cicd-pipeline/index.md)
+- **Kubernetes for the uninitiated**
+- [Building a real-world Kubernetes CI/CD pipeline](/blog/2020-01/build-a-real-world-kubernetes-cicd-pipeline/index.md)
+
+---
+
 By now, you’ve undoubtedly heard the term Kubernetes, but is it just the latest buzzword or is there more to it?  In this post, I cover what Kubernetes (or k8s for short) is and demonstrate how to run a real-world web application, [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), on k8s.
 
 :::success
