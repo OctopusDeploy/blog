@@ -136,7 +136,15 @@ Add a Deploy raw Kubernetes YAML step to our process
 
 ![](octopus-project-step-raw-yaml.png)
 
-This first step will deploy the SQL Server Cluster IP Service.  Deploying to Kubernetes is done via API, this means that all of tasks need to be handled by Workers versus traditional Deployment Targets.  You'll need to make sure a version of kubectl is installed on the Workers to make this work.
+This first step will deploy the SQL Server Cluster IP Service. Deploying to Kubernetes is done via its REST API, and it uses the `kubectl` CLI tool under the hood. Octopus executes this deployment work on workers instead of deployment targets so you'll need to make sure a version of kubectl is installed on the Workers to make this work. 
+
+:::hint
+[Workers](https://octopus.com/docs/infrastructure/workers) and [worker pools](https://octopus.com/docs/infrastructure/workers/worker-pools) are a good fit for this scenario.
+* Deploying to cloud services: We're deploying to a cloud service (Kubernetes) and not specific web or application servers. In other words, any machine with the appropriate dependencies can execute this deployment work.
+* Dependency management: You can create pools of workers with specific dependencies installed on them. In this case, the latest version of the `kubectl` CLI is appropriate however, additional pools could be created with different versions if required. 
+* Scalability: Workers are grouped in worker pools, and an individual worker is only utilised to execute a specific task before returning to its pools. This means a worker pool could be utilised by many teams and can scale to their needs.
+:::
+
 
 For YAML Source, choose File inside a package, specify the package and the file within the package
 
