@@ -12,7 +12,7 @@ tags:
 
 There are many solutions for creating a local test Kubernetes environment such as [minikube](https://github.com/kubernetes/minikube) or [MicroK8s](https://microk8s.io/), but a new project called [KIND](https://github.com/kubernetes-sigs/kind) offers a fresh approach that may interest Kubernetes developers and administrators.
 
-KIND stands for Kubernetes IN Docker, and as the name suggests it creates a Kubernetes cluster using Docker to host the nodes. This is a novel approach, taking advantage Docker's easy, self contained deployments and cleanup to create the test Kubernetes infrastructure.
+KIND stands for Kubernetes IN Docker, and as the name suggests it creates a Kubernetes cluster using Docker to host the nodes. This is a novel approach, taking advantage of Docker's easy, self contained deployments and cleanup to create the test Kubernetes infrastructure.
 
 ## Installation
 
@@ -32,7 +32,7 @@ kind create cluster --name mycluster
 
 The first cluster takes a little while to download KIND Docker images, although subsequent clusters take less than a minute to create.
 
-KIND will add the new cluster details as a new context to your `~/.kube/config` file, so you can test that the cluster is up and running with the command:
+KIND will add the new cluster details as a context to your `~/.kube/config` file, so you can test that the cluster is up and running with the command:
 
 ```
 kubectl cluster-info --context kind-mycluster
@@ -46,9 +46,9 @@ kubectl config use-context kind-mycluster
 
 ## Using the cluster
 
-The most immediate issue I ran into when using KIND was accessing the services that I had deployed to the cluster.
+The most immediate issue I ran into when using KIND was accessing the servicesß deployed to the cluster.
 
-By default KIND only exposes the Kubernetes API server. This means `kubectl` will work as expected. This means you can deploy to the cluster and query resources, but accessing your services requires some extra work.
+By default KIND only exposes the Kubernetes API server. This means `kubectl` will work as expected. So you can deploy to the cluster and query resources, but accessing your services requires some extra work.
 
 A solution is to use `kubectl` as a proxy:
 
@@ -82,13 +82,13 @@ The KIND documentation also provides some additional details on how to [expose i
 
 ## First impressions
 
-Once I got around the issue of accessing my services, KIND performed remarkably well for an beta release. External tools like Helm worked fine, and I could deploy custom dashboards to the cluster.
+Once I got around the issue of accessing my services, KIND performed remarkably well for a beta release. External tools like Helm worked fine, and I could deploy custom dashboards to the cluster.
 
 I appreciated the fact the KIND was so self contained. Because everything is a Docker container, creating the cluster was quick, and once it was cleaned up afterwards there was nothing left running on the system.
 
 ## Conclusion
 
-Getting a Kubernetes cluster running locally isn't that difficult these days, but KIND makes it especially to create a cluster. Admittedly Kubernetes running on Docker to orchestrate Docker is a little mind bending, but it can't be beat for convenience.
+Getting a Kubernetes cluster running locally isn't that difficult these days, but KIND makes it especially easy to create a cluster. Admittedly Kubernetes running on Docker to orchestrate Docker is a little mind bending, but it can't be beat for convenience.
 
 The real value of KIND is the ability to run it as part of automated tests. I didn't have a use case for this personally, but I'm sure it lives up to the promise.
 
