@@ -112,7 +112,7 @@ For demonstration purposes, we're using the built-in NuGet repository for Octopu
 
 And that's all, folks!  Our build definition will now package up all the YAML files for our deployment and ship them over the our Octopus Deploy server!  Now comes the Continuous Delivery part :)
 
-## Configure continuous delivery with Octoups Depoloy
+## Configure continuous delivery with Octopus Deploy
 With our YAML files package in Octopus Deploy, we can create our deployment process.  In this section we'll be doing the following:
 - Create a new project
 - Define our deployment steps
