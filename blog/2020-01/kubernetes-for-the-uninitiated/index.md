@@ -21,16 +21,15 @@ Docker containers and Kubernetes are excellent technologies to have in your DevO
 
 ---
 
-By now, you’ve undoubtedly heard the term Kubernetes, but is it just the latest buzzword or is there more to it?  In this post, I cover what Kubernetes (or k8s for short) is and demonstrate how to run a real-world web application, [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), on k8s.
+By now, you’ve undoubtedly heard the term Kubernetes, but is it just the latest buzzword or is there more to it?  In this post, I cover what Kubernetes (or k8s for short) is and demonstrate how to run [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop), a real-world web application on k8s.
 
 :::success
 There are eight letters between the K and the S in Kubernetes, hence k8s.
 :::
 
-This post is a continuation of my [last article](link to it), where I covered creating Docker images and used OctoPetShop as an example.
-
 ## What is Kubernetes?
-Kubernetes is a container orchestration technology.  Machines that are running Kubernetes are referred to as `nodes`.  Nodes make up a Kubernetes `cluster`, though it is possible to have a cluster with a single node.  Nodes run containers in what is called a `pod`.
+
+Kubernetes is a container orchestration technology. Machines that are running Kubernetes are referred to as `nodes`.  Nodes make up a Kubernetes `cluster`, though it is possible to have a cluster with a single node.  Nodes run containers in what is called a `pod`.
 
 ![](kubernetes-node.png)
 
@@ -38,7 +37,8 @@ Kubernetes is a container orchestration technology.  Machines that are running K
 
 My previous post used Docker Desktop for local development of Docker containers, but Docker Desktop also contains an implementation of Kubernetes, which makes local development and testing a breeze.
 
-## Creating the OctoPetShop Kubernetes components
+## Create the OctoPetShop Kubernetes components
+
 In order to run our OctoPetShop container images on Kubernetes, we need to create the YAML files to define the different resources required for our application.  Resource types are called `kind`, and the kind for containers is called a `deployment`.  
 
 The OctoPetShop application has three main components:
@@ -100,10 +100,10 @@ spec:
 
 Each container gets:
 
-- Name: The name we give the container.
-- Image: The Docker Hub image to use for the container.
-- Ports: An array of the ports that the container will expose to the pod network.
-- Env: An array of environment variables for the container.
+- **Name**: The name we give the container.
+- **Image**: The Docker Hub image to use for the container.
+- **Ports**: An array of the ports that the container will expose to the pod network.
+- **Env**: An array of environment variables for the container.
 
 :::success
 See [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop/tree/master/k8s) for the rest of the Deployment YAML files.
@@ -116,7 +116,7 @@ Deployments will create the pods for our application, but we still need a way fo
 Each pod on a node has an internal IP address assigned by the node.  Within our containers, we’ve specified the port to expose to the pod, but those are still only within the pod and not exposed to the node.  To allow connectivity between pods on a node, we need to create a `service` for each pod.
 
 ### Services
-There are a number of different services available via the API, but we’re going to focus on the specific services that allow our OctoPetShop application to function.  Our web front-end pod needs the ability to talk to the product service and shopping cart service pods.  The product service and shopping cart service pods need to be able to communicate to the SQL Server pod.  To make this possible, we need to create a `ClusterIP` service for the product service, shopping cart service, and the SQL Server pods.  Below is the YAML to create the ClustIP service for the product service:
+There are a number of different services available via the API, but we’re going to focus on the specific services that allow our OctoPetShop application to function.  Our web front-end pod needs the ability to talk to the product service and shopping cart service pods. The product service and shopping cart service pods need to be able to communicate to the SQL Server pod. To make this possible, we need to create a `ClusterIP` service for the product service, shopping cart service, and the SQL Server pods.  Below is the YAML to create the ClustIP service for the product service:
 
 ```
 apiVersion: v1
@@ -136,7 +136,7 @@ spec:
       name: https-port
 ```
 
-In the above YAML, we’ve created a service that maps a pod port to a container port to allow pod-to-container communication within the node. This service does not expose the port at the node level, so external access is not possible.  It’s important to note the metadata name as the name will create a DNS entry so that the service can be referenced by DNS name.  In our previous web front-end YAML, we declared an environment variable for the product service URL, which contained octopetshop-productservice-cluster-ip-service as the DNS entry.  The ClusterIP service for the product service is where that came from.
+In the above YAML, we’ve created a service that maps a pod port to a container port to allow pod-to-container communication within the node. This service does not expose the port at the node level, so external access is not possible.  It’s important to note the metadata name, as the name will create a DNS entry so that the service can be referenced by DNS name.  In our previous web front-end YAML, we declared an environment variable for the product service URL, which contained octopetshop-productservice-cluster-ip-service as the DNS entry.  The ClusterIP service for the product service is where that came from.
 
 ### Allowing external access
 To allow external access to the node, we need to define either an `Ingress` or a `LoadBalancer` service.  In our case, we’ve chosen a LoadBalancer service to allow access to the web front-end:
@@ -159,13 +159,14 @@ spec:
   type: LoadBalancer
   externalIP: <IPAddress>
 ```
+
 :::warning
 **Warning**
 When using a hosting provider such as Azure, the externalIP line can be omitted as the hosting provider automatically provisions a public IP resource and connects it.
 :::
 
 ### Job
-Included in our solution for OctoPetShop is a DbUp project which contains the scripts that will both create and seed our database.  DbUp is a console application that executes and then stops, so we don’t want to use a Deployment kind as Kubernetes will attempt to keep it running.  For this, we want to use a kind of `Job` which is specifically meant to terminate after it has completed:
+Included in our solution for OctoPetShop is a DbUp project which contains the scripts that will both create and seed our database.  DbUp is a console application that executes and then stops, so we don’t want to use `kind: Deployment`, as Kubernetes will attempt to keep it running.  For this, we want to use `kind: Job` which is specifically meant to terminate after it has completed:
 
 ```
 apiVersion: batch/v1
@@ -203,7 +204,9 @@ service/octopetshop-sqlserver-cluster-ip-service created
 service/octopetshop-web-cluster-ip-service created
 deployment.apps/octopetshop-web-deployment created
 ```
-### Checking status of pods
+
+### Check the status of pods
+
 The apply command shows us that it ran the YAML files but not much else.  To check the status of our pods, we run the command `kubectl get pods`:
 
 ```
@@ -216,7 +219,7 @@ octopetshop-web-deployment-7b6d499d69-f9jsp                  1/1     Running    
 sqlserver-deployment-784d755db-8vbwk                         1/1     Running     0          2m55s
 ```
 
-This command shows us how many pods are running and how many pods should be running.  In our case, we specified our replicas as 1, so there should only be 1 instance in our pods.  You’ll note that the octopetshop-dbup pod has 0 of 1 pods ready.  Since we defined the octopershop-dbup with a kind of job, this is normal as it is supposed to terminate after it has run.
+This command shows us how many pods are running and how many pods should be running.  In our case, we specified our replicas as 1, so there should only be 1 instance in our pods.  You’ll note that the octopetshop-dbup pod has 0 of 1 pods ready.  Since we defined the octopershop-dbup with `kind: Job`, this is normal as it is supposed to terminate after it has run.
 
 ### Displaying logs
 Unlike docker compose, running the kubectl apply command didn’t show any output from the pods or containers.  When a pod fails, it’s useful to know why.  Let’s change the password for our octopetshop-dbup job so that it fails:
@@ -276,6 +279,7 @@ Unhandled Exception: System.Data.SqlClient.SqlException: A connection was succes
 ```
 
 ## OctoPetShop running in Kubernetes
+
 After the YAML has successfully run, the OctoPetShop application should be running. Navigate to http://localhost:5000.
 
 :::warning
