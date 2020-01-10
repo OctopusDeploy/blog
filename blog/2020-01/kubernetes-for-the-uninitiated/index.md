@@ -93,8 +93,8 @@ spec:
  - **metadata - name**: This is the unique name of our deployment.
  - **spec - replicas**: The number of container instances to run.
  - **spec - selector - matchlabels**:
-   - **Selector**: The selector field defines how Kubernetes objects find which pods to manage.
-   - **Labels**: Labels are key/value pairs that are attached to objects used to specify identifying attributes.
+   - **selector**: The selector field defines how Kubernetes objects find which pods to manage.
+   - **labels**: Labels are key/value pairs that are attached to objects used to specify identifying attributes.
  - **template**: The pod’s template specification.
  - **template - spec - containers**:  This section is an array of containers that this deployment will run.
 
@@ -138,7 +138,7 @@ spec:
 
 In the above YAML, we’ve created a service that maps a pod port to a container port to allow pod-to-container communication within the node. This service does not expose the port at the node level, so external access is not possible.  It’s important to note the metadata name, as the name will create a DNS entry so that the service can be referenced by DNS name.  In our previous web front-end YAML, we declared an environment variable for the product service URL, which contained octopetshop-productservice-cluster-ip-service as the DNS entry.  The ClusterIP service for the product service is where that came from.
 
-### Allowing external access
+### Allow external access
 To allow external access to the node, we need to define either an `Ingress` or a `LoadBalancer` service.  In our case, we’ve chosen a LoadBalancer service to allow access to the web front-end:
 
 ```
@@ -188,7 +188,7 @@ spec:
 ## Kubectl
 Kubectl is the command-line program used for Kubernetes.
 
-### Starting OctoPetShop in Kubernetes
+### Start OctoPetShop in Kubernetes
 To run a Kubernetes YAML file, you run the command `kubectl apply -f <YAMLFile>`.  However, it is possible to specify a folder instead of an individual file.  This is the main reason the OctoPetShop repo has all of the Kubernetes YAML files stored in the k8s folder.  If you’ve cloned the repo, you can run `kubectl apply -f k8s` to get the entire cluster running with one command:
 
 ```
@@ -221,7 +221,7 @@ sqlserver-deployment-784d755db-8vbwk                         1/1     Running    
 
 This command shows us how many pods are running and how many pods should be running.  In our case, we specified our replicas as 1, so there should only be 1 instance in our pods.  You’ll note that the octopetshop-dbup pod has 0 of 1 pods ready.  Since we defined the octopershop-dbup with `kind: Job`, this is normal as it is supposed to terminate after it has run.
 
-### Displaying logs
+### Display logs
 Unlike docker compose, running the kubectl apply command didn’t show any output from the pods or containers.  When a pod fails, it’s useful to know why.  Let’s change the password for our octopetshop-dbup job so that it fails:
 
 ```
@@ -278,7 +278,7 @@ Unhandled Exception: System.Data.SqlClient.SqlException: A connection was succes
    at OctopusSamples.OctoPetShopDatabase.Program.Main(String[] args) in /src/Program.cs:line 16
 ```
 
-## OctoPetShop running in Kubernetes
+## Run OctoPetShop in Kubernetes
 
 After the YAML has successfully run, the OctoPetShop application should be running. Navigate to http://localhost:5000.
 
