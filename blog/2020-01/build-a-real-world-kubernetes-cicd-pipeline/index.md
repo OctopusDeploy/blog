@@ -136,7 +136,7 @@ Add a Deploy raw Kubernetes YAML step to our process:
 
 ![](octopus-project-step-raw-yaml.png)
 
-This first step will deploy the SQL Server Cluster IP Service. Deploying to Kubernetes is done via its REST API, and it uses the `kubectl` CLI tool under the hood. Octopus executes this deployment work on  [workers](https://octopus.com/docs/infrastructure/workers) instead of deployment targets so you’ll need to make sure a version of kubectl is installed on the workers to make this work.
+This first step will deploy the SQL Server Cluster IP Service. Deploying to Kubernetes is done via its REST API, and it uses the `kubectl` CLI tool under the hood. Octopus executes this deployment work on [workers](https://octopus.com/docs/infrastructure/workers) instead of deployment targets so you’ll need to make sure a version of kubectl is installed on the workers to make this work.
 
 For YAML Source, choose File inside a package, specify the package and the file within the package:
 
