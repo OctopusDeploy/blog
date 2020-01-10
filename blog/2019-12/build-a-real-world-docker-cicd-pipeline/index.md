@@ -1,5 +1,5 @@
 ---
-title: "Beyond Hello World: Building a real-world Docker CI/CD pipeline"
+title: "Beyond Hello World: Build a real-world Docker CI/CD pipeline"
 description: This post demonstrates incorporating Docker containers in the CI/CD pipeline for a real-world web application with web services and a database project.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -10,12 +10,12 @@ tags:
  - DevOps
 ---
 
-![Building a real-world CI/CD Docker pipeline](docker-in-a-ci-cd-pipeline.png)
+![Build a real-world CI/CD Docker pipeline](docker-in-a-ci-cd-pipeline.png)
 
 Docker and containers are excellent technologies to have in your DevOps tool-belt. This **Beyond Hello World** blog series covers how to use them with a real-world application.
 
-- [Containerizing a real-world web application](/blog/2019-12/containerize-a-real-world-web-app/index.md)
-- **Building a real-world Docker CI/CD pipeline**
+- [Containerize a real-world web application](/blog/2019-12/containerize-a-real-world-web-app/index.md)
+- **Build a real-world Docker CI/CD pipeline**
 
 ---
 
@@ -27,7 +27,7 @@ In this post, I configure a complete Docker CI/CD pipeline to automate the proce
 
 !toc
 
-## Configuring Docker continuous integration with JetBrains’ TeamCity
+## Configure Docker continuous integration with JetBrains’ TeamCity
 
 Continuous integration happens on the build server.  The continuous part is usually associated with an event that triggers a build, such as source code commits or a predefined schedule.  For our build server, we’ll perform the following tasks:
 
@@ -35,7 +35,7 @@ Continuous integration happens on the build server.  The continuous part is usua
 - Create a build definition.
 - Define the build steps.
 
-### Adding the Docker build capability to the build agent
+### Add the Docker build capability to the build agent
 
 Most major build servers can build Docker images either with a built-in step or a downloadable plugin. For this demonstration, I use TeamCity as most of my experience is with Azure DevOps, and I want to expand my horizons.
 
@@ -251,7 +251,7 @@ If you navigate to the server you just deployed to, you should see your OctoPetS
 
 ![](server-docker-octopetshop.png)
 
-## Completing the Docker CI/CD pipeline
+## Complete the Docker CI/CD pipeline
 So far we’ve done the CI and the CD portions, but you still need to connect them.  To fit these pieces together, go back to your TeamCity server.
 
 ### Install the Octopus Deploy TeamCity plugin
