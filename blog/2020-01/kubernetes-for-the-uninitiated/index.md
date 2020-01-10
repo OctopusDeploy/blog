@@ -1,6 +1,6 @@
 ---
 title: "Beyond Hello World: Kubernetes for the uninitiated"
-description: This post provides a high-level overview of Kubernetes with a real-world .NET Core web application with web services and databases.
+description: A high-level overview of Kubernetes with a real-world .NET Core web application with web services and databases.
 author: shawn.sesna@octopus.com
 visibility: private
 bannerImage: kubernetes-for-the-uninitiated.png
