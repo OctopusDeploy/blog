@@ -113,7 +113,7 @@ For demonstration purposes, we’re using the built-in NuGet repository for Octo
 Our build definition will now package all the YAML files for our deployment and ship them over to our Octopus Deploy server!  Now comes the Continuous Delivery part.
 
 ## Configure continuous delivery with Octopus Deploy
-With our YAML files package in Octopus Deploy, we can create our deployment process.  In this section, we’ll be doing the following:
+With our YAML files package in Octopus Deploy, we can create our deployment process.  In this section, we’ll do the following:
 - Create a new project.
 - Define our deployment steps.
 
@@ -136,7 +136,7 @@ Add a Deploy raw Kubernetes YAML step to our process:
 
 ![](octopus-project-step-raw-yaml.png)
 
-This first step will deploy the SQL Server Cluster IP Service. Deploying to Kubernetes is done via its REST API, and it uses the `kubectl` CLI tool under the hood. Octopus executes this deployment work on workers instead of deployment targets so you’ll need to make sure a version of kubectl is installed on the [workers](https://octopus.com/docs/infrastructure/workers) to make this work.
+This first step will deploy the SQL Server Cluster IP Service. Deploying to Kubernetes is done via its REST API, and it uses the `kubectl` CLI tool under the hood. Octopus executes this deployment work on  [workers](https://octopus.com/docs/infrastructure/workers) instead of deployment targets so you’ll need to make sure a version of kubectl is installed on the workers to make this work.
 
 For YAML Source, choose File inside a package, specify the package and the file within the package:
 
