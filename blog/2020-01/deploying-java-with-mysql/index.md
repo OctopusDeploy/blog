@@ -10,10 +10,10 @@ tags:
  - DevOps
 ---
 
-Octopus Deploy is well known for its ability to easily automate the deployment of .NET applications.  Though those are our roots, we've expanded our support to include things such as Java, Docker, and Kubernetes.  In this post, I walk through how to build a deploy a Java-based web application that uses a MySql backend database, then automate the updates to both the web application and the database code using Octopus Deploy.
+Octopus Deploy is well known for its ability to easily automate the deployment of .NET applications.  Though those are our roots, we've expanded our support to include things such as Java, Docker, and Kubernetes.  In this post, I walk through how to build and deploy a Java-based web application that uses a MySql backend database.
 
 ## Setting up the build server
-For this demonstration, I used Azure DevOps as my build server.  When people think of Azure DevOps, they immediatly think .NET/.NET core, not Java.  However, the Microsoft build server comes with both Maven and ANT build tasks built-in to their task library!  Wait, that seems ... too easy.  You'd be right to be suspicious, though the tasks exist, they don't actually work without a little configuration :)  Luckily for us, it's all rather straight forward.
+For this demonstration, I used Azure DevOps as my build server.  When people think of Azure DevOps, they immediatly think .NET/.NET core, not Java.  However, the Microsoft build server comes with both Maven and ANT build tasks built-in to their task library!  Wait, that seems ... too easy.  You'd be right to be suspicious, though the tasks exist, they don't actually work without a little configuration :)  Luckily for us, it's all rather straight-forward.
 
 ### Java on the build agent
 To build Java, you need the Java Development Kit (JDK) on your build agent, which can be downloaded [here](https://www.oracle.com/technetwork/java/javase/downloads/index.html).  If you're a Windows guy like me, you'd think that running the installer on Windows would do everything necessary to make Java work.  Unfortunately, you'd be incorrect.  There are two additional steps necessary to make Java functional (at least on Windows):
@@ -24,8 +24,8 @@ To build Java, you need the Java Development Kit (JDK) on your build agent, whic
 ### Maven on the build agent
 The next thing we need to is install Maven on our build agent.  Maven doesn't have an installer and is merely a .zip file that needs to be extracted and placed on the build agent.  Similar to Java, we need to do a couple of things with Environment Variables:
 
-- Create MAVEN_HOME and point it to where we extracted Maven to
-- Adding the \bin folder to the Path Environment Variable
+- Create MAVEN_HOME and point it to where we extracted Maven to (ie c:\maven)
+- Adding the \bin folder to the Path Environment Variable (ie c:\maven\bin)
 
 ### Add the Maven capability
 If you are creating a new build agent, this step may not be necessary as part of the agent installation scans the machine for capabilities and will automatically add Maven if it's found.  If you're using an existing agent, you will need to go into Azure DevOps (ADO) and add the capability to the agent manually.
@@ -34,7 +34,7 @@ Navigate to the Agent Pools section of ADO.  Select the agent you want to modify
 
 ![](ado-agent-pools.png)
 
-Click on Add capability button and add the following
+Click on Add capability button and add the following (see screenshot for the values I used)
 
 - JAVA_HOME 
 - maven
@@ -42,10 +42,10 @@ Click on Add capability button and add the following
 
 ![](ado-add-capability.png)
 
-With that work complete, our ADO instance can now be able to build Maven projects!
+With that work complete, your ADO instance can now be able to build Maven projects!
 
 :::hint
-The steps for configuring ADO to build ANT projects are nearly identical to these.  Replace the Maven with ANT for the build agent and capablity sections
+The steps for configuring ADO to build ANT projects are nearly identical to these.  Replace Maven with ANT for the build agent and capablity sections
 :::
 
 ## The sample application
@@ -79,7 +79,7 @@ The variable name `project.versionNumber` is merely the name that I chose, you c
 :::
 
 #### Change the active database profile to MySql
-The author(s) of this repo did a fantastic job of making this application support multiple database backends; HyperSQL, MySQL, and PostgreSQL.  The default is set to the HyperSQL profile (HSQLDB).  To change it to MySQL was a simple matter of moving the `<activation>` XML node from the HSQLDB profile to the MySQL profile.  To do this, find the `<profiles>` XML node in the POM.XML file.  Locate the `<profile>` node that has a child node of `<id>HSQLDB</id>`.  Directly underneath the `<id>` node is an `<activation>` node.  Move `<activation>` node to the MySQL node.  The resulting MySQL node should look like this:
+The author(s) of this repo did a fantastic job of making this application support multiple database backends; HyperSQL, MySQL, and PostgreSQL.  The default is set to the HyperSQL profile (HSQLDB).  To change it to MySQL was a simple matter of moving the `<activation>` XML node from the HSQLDB profile to the MySQL profile.  To do this, find the `<profiles>` XML node in the POM.XML file.  Locate the `<profile>` node that has a child node of `<id>HSQLDB</id>`.  Directly underneath the `<id>` node is an `<activation>` node.  Move the `<activation>` node to the MySQL node.  The resulting MySQL node should look like this:
 
 ```
 <profile>
@@ -114,7 +114,7 @@ When the Maven project is compiled, the properties of the active database profil
 ```
 
 #### Alter the finalName attribute
-The `finalName` attribute of the POM.XML is what the name of the .war archive will be when the project is packaged.  The default finalName is:
+The `finalName` attribute of the POM.XML is what the name of the .war archive will be when the project is packaged.  The default finalName is petclinic:
 
 ```
 <finalName>petclinic</finalName>
@@ -145,7 +145,7 @@ If you're application renders like
 your `<cssDestinationFolder>` is incorrect
 :::
 
-If your recall I mentioned the learning curve, there you have it ;)  There is one more piece we need to do, but it's not in the POM.
+If you recall I mentioned the learning curve, there you have it ;)  There is one more piece we need to do, but it's not in the POM.
 
 ### Updating datasource-config.xml
 There was one last thing that I learned with this example application, it ran the included database scripts whenever it was deployed.  After a bit of digging, I found that I could comment out some XML in the datasource-config.xml file that would stop it from doing that.  I still need the database scripts, I just didn't want them to execute every time the application was deployed.  More on this later.
@@ -163,10 +163,10 @@ Navigate to `/src/main/resources/spring/datasource-config.xml` and comment out t
     -->
 ```
 ## Adding a Flyway project
-[Flyway](https://flywaydb.org) is a free, migrations-based database deployment tool.  In a nutshell, it's a command-line utility that you include in your project that uses a specific folder structure to execute SQL scripts in a specified order.  The download of Flyway is essentially the project that you will add to your project source control.
+[Flyway](https://flywaydb.org) is a migrations-based database deployment tool.  In a nutshell, it's a command-line utility that you include in your project that uses a specific folder structure to execute SQL scripts in a specified order.  The download of Flyway is essentially the project that you will add to your project source control.
 
 ### Adding the .sql scripts to Flyway
-Within the Java application source, copy the .sql files located in src/main/resources/db/mysql to the /sql folder of your Flyway project.  Once the files are there, rename them to conform to [Flyway works](https://flywaydb.org/getstarted/how).  This is what mine looked like:
+Within the Java application source, copy the .sql files located in `src/main/resources/db/mysql` to the `/sql` folder of your Flyway project.  Once the files are there, rename them to conform to how [Flyway works](https://flywaydb.org/getstarted/how).  This is what mine looked like:
 
 - V1__initDb.sql
 - V1_1__populateDb.sql
@@ -174,7 +174,7 @@ Within the Java application source, copy the .sql files located in src/main/reso
 And that's it!  Pretty simple, huh?  :)
 
 ## Creating the build definition
-Now that we've done the prequisite work of installing Maven on the build agent, and tweaked a couple of files, and adding Flyway, we're in a positon to create our build definition!
+Now that we've done the prequisite work of installing Maven on the build agent, tweaked a couple of files, and added Flyway, we're in a positon to create our build definition!
 
 ### Adding the Maven task
 Create a new build definition, this demonstration is using the classic editor instead of the YAML approach.
@@ -216,6 +216,8 @@ Hop over to Variables and create the following
 
 If you're not familiar with the #{} syntax used for the variable value, it's Octostache which is used for variable replacement in Octopus Deploy.
 
+Skipping the tests was necessary as the tests attempt to connect to the database backend.  Since we are making them variables for our deployment process, the connection attempt will fail and fail the build entirely.
+
 ![](ado-project-variables.png)
 
 You'll note that there are two additional variables defined; MajorVersion and MinorVersion.  I use these variables to create my Build Number format within ADO.  To set this, click on the Options tab and fill in the Build number format, I use $(MajorVersion).$(MinorVersion).$(Year:yy)$(DayOfYear).$(Date:Hmmss)
@@ -224,10 +226,10 @@ You'll note that there are two additional variables defined; MajorVersion and Mi
 
 This is the value that the ADO reference of $(Build.BuildNumber) uses which we are feeding into the project.VersionNumber variable we are passing into the Maven build task.
 
-We're done wi the Maven task!  .war is a supported file type for the built-in package repository in Octopus Deploy, so there's no need to package up the Java application.
+We are done withe the Maven task!  .war is a supported file type for the built-in package repository in Octopus Deploy, so there's no need to package up the Java application.
 
 ### Packaging the Flyway project
-As previously mentioned, Flyway is a command-line utility, so there's no building of the project.  The only thing we need to do is package it up so that Octopus Deploy can do something with it.  For this, we can use any task that creates a ZIP or NuGet package.  This demonstration will use the Octopus Deploy plugin.  
+As previously mentioned, Flyway is a command-line utility, so there's no building of the project.  The only thing we need to do is package it up so that Octopus Deploy can do something with it.  For this, we can use any task that creates a ZIP or NuGet package.  This demonstration will use the Octopus Deploy plugin, Package application task.  
 
 - Package ID: petclinic.flyway
 - Package Format: NuPkg
@@ -238,8 +240,8 @@ As previously mentioned, Flyway is a command-line utility, so there's no buildin
 ![](ado-build-add-flyway-package.png)
 
 
-### Pusing to Octopus Deploy
-The last part of our build process is going to be pushing the packages that we created to our Octopus Deploy server.
+### Pushing to Octopus Deploy
+The last part of our build process is going to be pushing the packages that we created to our Octopus Deploy server.  Add a Push to Octopus Deploy task:
 
 - Space: Select the space you're using
 - Package
@@ -291,7 +293,7 @@ This is the password for the user account for the database connection.
 ![](octopus-project-variables-values.png)
 
 #### Process
-With our variables filled in, let's define our process!  Click on the Process button on the left-hand side.
+With our variables defined, let's create our process!  Click on the Process button on the left-hand side.
 
 ![](octopus-project-process-tab.png)
 
@@ -324,7 +326,7 @@ Select `Substitute Variables in Files`
 
 ![](octopus-project-step-variable-replacement.png)
 
-Click OK, then scroll down and expand the Substitute Variables in Files section.  For `Target files`, enter the value sql/*.sql and click SAVE
+Click OK, then scroll down and expand the Substitute Variables in Files section.  For `Target files`, enter the value `sql/*.sql` and click SAVE
 
 ![](octopus-project-step-variable-replacement-sql.png)
 
@@ -371,4 +373,43 @@ Fill in the details of the step template
 - Management password: [Password for management account]
 - Deployment name: PetClinic.war
 
-That's it!  You're done!
+![](octopus-project-step-wildfly.png)
+
+We've one last thing to do with the Wildfly step, replace the OctoStache variables in the datasource-config.xml.  Click on the CONFIGURE FEATURES button and select the `Substitute Variables in Files` like we did in the Deploy a Package step.  In the `Target files` section, enter the following value:
+WEB-INF/classes/spring/datasource-config.xml
+
+That's it!  You're done!  Let's create our first release!!!
+
+### Deployment time!
+We're now ready to deploy our application!  Click on the CREATE RELEASE button
+
+![](octopus-project-create-release.png)
+
+Click SAVE
+
+![](octopus-project-create-release-save.png)
+
+Click on DEPLOY TO DEVELOPMENT (replace DEVELOPMENT with whatever you named your environment)
+
+![](octopus-project-deploy.png)
+
+Click to DEPLOY and watch it rip!
+
+![](octopus-project-deploy-execute.png)
+
+When finished, it should have a screen that looks like this
+
+![](octopus-project-deployment-complete.png)
+
+You'll note that the deployment to the web server got deployed to two servers, Wildfly1 (Windows) and Wildfly2 (Linux).
+
+Clicking on the TASK LOG tab, we can see more detailed information about our deployment
+
+Flyway
+![](octopus-project-deployment-mysql.png)
+
+Wildfly
+![](octopus-project-deployment-wildfly.png)
+
+## Conclusion
+While Octopus Deploy is really awesome at deploying .NET, it's equally awesome at deploying Java as well!
