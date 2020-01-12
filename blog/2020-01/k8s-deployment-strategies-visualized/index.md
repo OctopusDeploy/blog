@@ -18,7 +18,7 @@ But what do these strategies actually do? In this blog post we'll visualize thes
 
 ## Recreate
 
-<iframe src="https://fast.wistia.net/embed/iframe/1naw15ylem" title="recreate Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="344"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/1naw15ylem" title="recreate Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="344" qualityMin="720"></iframe>
 <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
 
 The *recreate* strategy is the most simple of the three. When a deployment configured with the *recreate* strategy is updated, Kubernetes will first delete the pods from the existing deployment, and once those pods are removed, the new pods are created.
@@ -29,7 +29,7 @@ The *recreate* strategy ensures that the old and new pods do not run concurrentl
 
 ## Rolling Updates
 
-<iframe src="https://fast.wistia.net/embed/iframe/5p253x9845" title="rollingupdate Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="344"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/5p253x9845" title="rollingupdate Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="344" qualityMin="720"></iframe>
 <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
 
 As its name suggests, the *rolling update* strategy incrementally deploys new pods as the old pods are removed. You can see this in the video above where a number of the pods on the first node are deleted at the same time as new pods are created on the second node. Eventually the pods on the first node are all removed, and all the new pods are created on the second node.
@@ -38,7 +38,7 @@ The *rolling update* strategy ensures that there are some pods available to cont
 
 ## Blue/Green
 
-<iframe src="https://fast.wistia.net/embed/iframe/445p3d8nyb" title="bluegreen Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="342"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/445p3d8nyb" title="bluegreen Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="342" qualityMin="720"></iframe>
 <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
 
 Unlike the other deployment strategies, the *blue/green* strategy is not something natively implemented by Kubernetes. It involves creating an entirely new deployment resource (i.e. a deployment resource with a new name), waiting for the new deployment to become ready, switching traffic from the old deployment to the new deployment, and finally deleting the old deployment. This process is implemented in Octopus via the *Deploy Kubernetes containers* step.
