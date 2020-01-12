@@ -12,9 +12,15 @@ tags:
 
 One of the benefits Kubernetes provides administrators and developers is the ability to intelligently manage deployments of new software or configuration.
 
-Kubernetes includes two built-in strategies called *recreate* or *rolling updates*, which are configured directly on the deployment resources. Octopus offers a third deployment strategy called *blue/green*, which is managed through the *Deploy Kubernetes containers* step.
+Kubernetes includes two built-in strategies called *recreate* and *rolling updates*, which are configured directly on the deployment resources. Octopus offers a third deployment strategy called *blue/green*, which is managed through the *Deploy Kubernetes containers* step.
 
-But what do these strategies actually do? In this blog post we'll visualize these deployment strategies to highlight their differences and note why you would chose one strategy over another.
+But what do these strategies actually do? In this blog post we'll visualize these deployment strategies to highlight their differences and note why you would choose one strategy over another.
+
+## The test deployment
+
+For the videos below we will watch a deployment as it is updated on a multinode Kubernetes cluster. Each node in the cluster has a unique label, and the deployment is updated to place the new pods on a specific node.
+
+The end result is that the new deployment shifts pods from one node to the other. We can then watch how the pods are moved between nodes to see the effect of the different deployment strategies.
 
 ## Recreate
 
@@ -25,7 +31,7 @@ The *recreate* strategy is the most simple of the three. When a deployment confi
 
 In the video above you can see all the pods on node 1 are deleted, and only when they are removed are the new pods on the second node created.
 
-The *recreate* strategy ensures that the old and new pods do not run concurrently. This can be beneficial when synchronizing changes to a backend datastore that does not support two different client versions accessing it. However there is a period of downtime before the new pods start accepting traffic.
+The *recreate* strategy ensures that the old and new pods do not run concurrently. This can be beneficial when synchronizing changes to a backend datastore that does not support access from two different client versions. However there is a period of downtime before the new pods start accepting traffic.
 
 ## Rolling Updates
 
@@ -34,7 +40,7 @@ The *recreate* strategy ensures that the old and new pods do not run concurrentl
 
 As its name suggests, the *rolling update* strategy incrementally deploys new pods as the old pods are removed. You can see this in the video above where a number of the pods on the first node are deleted at the same time as new pods are created on the second node. Eventually the pods on the first node are all removed, and all the new pods are created on the second node.
 
-The *rolling update* strategy ensures that there are some pods available to continue serving traffic during the update, so there is no downtime. However both the old and new pods run side by side while the update is taking place, so any datastores or clients must be able to interact with both versions.
+The *rolling update* strategy ensures that there are some pods available to continue serving traffic during the update, so there is no downtime. However both the old and new pods run side by side while the update is taking place, meaning any datastores or clients must be able to interact with both versions.
 
 ## Blue/Green
 
@@ -45,8 +51,10 @@ Unlike the other deployment strategies, the *blue/green* strategy is not somethi
 
 In the video above you can see that during a blue/green deployment the pods on the second node are deployed and initialized, and once they are ready the pods on the first node are deleted.
 
-The *blue/green* strategy ensures that the new deployment is fully initialized and healthy before any traffic is sent to it. Should the new deployment fail, the old deployment continues to server traffic.
+The *blue/green* strategy ensures that the new deployment is fully initialized and healthy before any traffic is sent to it. Should the new deployment fail, the old deployment continues to serve traffic.
 
-Like the *rolling update* strategy, the *blue/green* strategy deploys two versions side by side for a period of time, so any backing datastores need to support two different clients. However, by cutting all traffic over to the new deployment when it is ready, only one version of the deployment will be active at any time.
+Like the *rolling update* strategy, the *blue/green* strategy deploys two versions side by side for a period of time, so any backing datastores need to support two different clients. However, by cutting all traffic over to the new deployment when it is ready, only one version of the deployment will accessible at any time.
 
 ## Conclusion
+
+Selecting the correct deployment strategy is crucial to ensuring that your Kubernetes updates are reliable and remove or minimize downtime. Visualizing the available update strategies is helpful in understanding the differences between the various strategies, and in this post we saw how pods were created and destroyed with the Kubernetes native strategies of *recreate* and *rolling updates*, and then with the *blue/green* strategy implemented by Octopus.
