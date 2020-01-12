@@ -57,4 +57,4 @@ Like the *rolling update* strategy, the *blue/green* strategy deploys two versio
 
 ## Conclusion
 
-Selecting the correct deployment strategy is crucial to ensuring that your Kubernetes updates are reliable and remove or minimize downtime. Visualizing the available update strategies is helpful in understanding the differences between the various strategies, and in this post we saw how pods were created and destroyed with the Kubernetes native strategies of *recreate* and *rolling updates*, and then with the *blue/green* strategy implemented by Octopus.
+Selecting the correct deployment strategy is crucial to ensuring that your Kubernetes updates are reliable and remove or minimize downtime. Visualizing the available update strategies is helpful in understanding the differences between them, and in this post we saw how pods were created and destroyed with the Kubernetes native strategies of *recreate* and *rolling updates*, and then with the *blue/green* strategy implemented by Octopus.
