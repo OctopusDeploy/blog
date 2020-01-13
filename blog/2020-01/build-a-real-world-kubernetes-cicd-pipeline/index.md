@@ -2,7 +2,7 @@
 title: "Beyond Hello World: Build a real-world Kubernetes CI/CD pipeline"
 description: How to incorporate Kubernetes in the CI/CD pipeline for a real-world web application with web services and a database project.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 bannerImage: build-a-real-world-kubernetes-cicd-pipeline.png
 metaImage: build-a-real-world-kubernetes-cicd-pipeline.png
 published: 2020-01-15
