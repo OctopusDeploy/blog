@@ -56,7 +56,7 @@ The `New-OctopusArtifact` Cmdlet takes the file and saves it as an Octopus artif
 
 ![](task-summary.png)
 
-The script then calls `kubetctl` again, this time looking for pods that are not in the running state. Any pods found are listed in the output.
+The script then calls `kubectl` again, this time looking for pods that are not in the running state. Any pods found are listed in the output.
 
 This script is not particularly complex or clever, but it does highlight a number of benefits to using runbooks.
 
@@ -66,13 +66,13 @@ At the very least interacting with a Kubernetes cluster requires the `kubectl` c
 
 In my experience the *support laptop* is something that sits under a desk, whether in the office or at the home of the person on call that week. If things have been done right, the laptop is rarely used and updated even less frequently. This is a problem when you consider the range of command-line tools used for interacting with Kubernetes, some of which (like `helm`) can be particularly fickle when it comes to versioning.
 
-By executing `kubectl` and other Kubernetes CLI tools from a runbook, you no longer need to install local tools. All you need is a web browser, and the Octopus server (or workers) can be configured with the required tools.
+By executing `kubectl` and other Kubernetes CLI tools from a runbook, you no longer need to install local tools. All you need is a web browser, and the Octopus server (or workers) configured with the required tools.
 
 ## No additional permissions required
 
 If you are following best security practices, your Kubernetes cluster will not have a single administrator account, but instead, limited service accounts for each functional area in the cluster. The passwords for these accounts will be refreshed frequently to limit the potential damage of any leaked credentials.
 
-But how do share these credentials with your support team?
+But how do you share these credentials with your support team?
 
 Using runbooks removes the burden from the end user to maintain infrastructure credentials. Each Kubernetes target can have as much or as little access to the cluster as needed, and Octopus permissions can limit who can run which runbooks on which targets.
 
