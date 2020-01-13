@@ -71,7 +71,7 @@ Automating the creation and updating of these assets requires four services:
 
 For the Octopus Guides, we used:
 
-* [Wista](https://wistia.com) for our video hosting.
+* [Wistia](https://wistia.com) for our video hosting.
 * [AWS S3](https://aws.amazon.com/s3/) for our image hosting.
 * A custom tool using [Selenium WebDriver](https://selenium.dev/) for scripting a web browser.
 * [GitHub Actions](https://github.com/features/actions) to execute everything.
