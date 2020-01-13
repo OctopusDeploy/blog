@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: kubernetes-for-the-uninitiated.png
 metaImage: kubernetes-for-the-uninitiated.png
-published: 2020-01-14
+published: 2020-01-13
 tags:
  - DevOps
 ---
@@ -29,13 +29,13 @@ There are eight letters between the K and the S in Kubernetes, hence k8s.
 
 ## What is Kubernetes?
 
-Kubernetes is a container orchestration technology. Machines that are running Kubernetes are referred to as `nodes`.  Nodes make up a Kubernetes `cluster`, though it is possible to have a cluster with a single node.  Nodes run containers in what is called a `pod`.
+Kubernetes is a container orchestration technology. Conceptually, Kubernetes architecture is pretty straight-forward. Machines that are running Kubernetes are referred to as `nodes`.  Nodes make up a Kubernetes `cluster`, though it is possible to have a cluster with a single node.  Nodes run containers in what is called a `pod`.
 
 ![](kubernetes-node.png)
 
 ## Docker Desktop and Kubernetes
 
-My previous post used Docker Desktop for local development of Docker containers, but Docker Desktop also contains an implementation of Kubernetes, which makes local development and testing a breeze.
+My [previous post](/blog/2019-12/containerize-a-real-world-web-app/index.md) used Docker Desktop for local development of Docker containers, but Docker Desktop also contains an implementation of Kubernetes, which makes local development and testing a breeze.
 
 ## Create the OctoPetShop Kubernetes components
 
@@ -52,7 +52,7 @@ In addition to those components, OctoPetShop also needs a database server and da
 - Shopping cart service.
 - Microsoft SQL Server.
 
-### Deployments
+### Kubernetes Deployments
 
 Below is the deployment YAML file for the front-end:
 
@@ -86,7 +86,7 @@ spec:
               value: http://octopetshop-shoppingcart-cluster-ip-service:5012
 ```
 
-### Anatomy of the YAML file
+### Anatomy of the Kubernetes YAML file
 
  - **apiVersion**: Kubernetes provides an [API reference](https://kubernetes.io/docs/reference/#api-reference) to help determine which version to choose.  For kind *deployment*, `apps/v1` is the correct choice.
  - **kind**: This tells Kubernetes what type of resource we are deploying.
@@ -115,7 +115,7 @@ Deployments will create the pods for our application, but we still need a way fo
 
 Each pod on a node has an internal IP address assigned by the node.  Within our containers, we’ve specified the port to expose to the pod, but those are still only within the pod and not exposed to the node.  To allow connectivity between pods on a node, we need to create a `service` for each pod.
 
-### Services
+### Kubernetes Services
 There are a number of different services available via the API, but we’re going to focus on the specific services that allow our OctoPetShop application to function.  Our web front-end pod needs the ability to talk to the product service and shopping cart service pods. The product service and shopping cart service pods need to be able to communicate to the SQL Server pod. To make this possible, we need to create a `ClusterIP` service for the product service, shopping cart service, and the SQL Server pods.  Below is the YAML to create the ClustIP service for the product service:
 
 ```
@@ -136,7 +136,7 @@ spec:
       name: https-port
 ```
 
-In the above YAML, we’ve created a service that maps a pod port to a container port to allow pod-to-container communication within the node. This service does not expose the port at the node level, so external access is not possible.  It’s important to note the metadata name, as the name will create a DNS entry so that the service can be referenced by DNS name.  In our previous web front-end YAML, we declared an environment variable for the product service URL, which contained octopetshop-productservice-cluster-ip-service as the DNS entry.  The ClusterIP service for the product service is where that came from.
+In the above Kubernetes YAML, we’ve created a service that maps a pod port to a container port to allow pod-to-container communication within the node. This service does not expose the port at the node level, so external access is not possible.  It’s important to note the metadata name, as the name will create a DNS entry so that the service can be referenced by DNS name.  In our previous web front-end YAML, we declared an environment variable for the product service URL, which contained octopetshop-productservice-cluster-ip-service as the DNS entry.  The ClusterIP service for the product service is where that came from.
 
 ### Allow external access
 To allow external access to the node, we need to define either an `Ingress` or a `LoadBalancer` service.  In our case, we’ve chosen a LoadBalancer service to allow access to the web front-end:
@@ -165,7 +165,7 @@ spec:
 When using a hosting provider such as Azure, the externalIP line can be omitted as the hosting provider automatically provisions a public IP resource and connects it.
 :::
 
-### Job
+### Kubernetes Jobs
 Included in our solution for OctoPetShop is a DbUp project which contains the scripts that will both create and seed our database.  DbUp is a console application that executes and then stops, so we don’t want to use `kind: Deployment`, as Kubernetes will attempt to keep it running.  For this, we want to use `kind: Job` which is specifically meant to terminate after it has completed:
 
 ```
@@ -205,7 +205,7 @@ service/octopetshop-web-cluster-ip-service created
 deployment.apps/octopetshop-web-deployment created
 ```
 
-### Check the status of pods
+### Check Kubernetes pod status
 
 The apply command shows us that it ran the YAML files but not much else.  To check the status of our pods, we run the command `kubectl get pods`:
 
