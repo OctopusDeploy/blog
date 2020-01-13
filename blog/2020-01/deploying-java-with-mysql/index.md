@@ -378,6 +378,11 @@ Fill in the details of the step template
 We've one last thing to do with the Wildfly step, replace the OctoStache variables in the datasource-config.xml.  Click on the CONFIGURE FEATURES button and select the `Substitute Variables in Files` like we did in the Deploy a Package step.  In the `Target files` section, enter the following value:
 WEB-INF/classes/spring/datasource-config.xml
 
+:::hint
+Use of `/` instead of `\` is to support Linux deployment targets.
+:::
+
+
 That's it!  You're done!  Let's create our first release!!!
 
 ### Deployment time!
