@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
 metaImage: blogimage-ltsrelease.png
-published: 2020-01-14
+published: 2020-01-15
 tags:
 - Product
 ---
@@ -32,7 +32,7 @@ Keep reading to learn about what's in this release and any breaking changes.
 
 ## Operations Runbooks
 
-![Screenshot ](TODO.png "width=600")
+![Operations Runbooks](operations-runbooks.png "width=600")
 
 Our runbook platform was built to help teams automate routine maintenance and emergency operations tasks like infrastructure provisioning, database management, and website failover and restoration. 
 
@@ -43,12 +43,13 @@ This LTS release includes support for operations runbooks and it brings:
 * Runbooks can be parameterized with prompted variables.
 * You can make changes to your runbooks with confidence, and only publish them after they have been safely tested.
 * Runbooks are managed and executed by Octopus, so this means there’s a complete audit trail that can be reviewed at a later date, making it easy to see what happened, when and why, and if anything needs to be changed.
+* You can give your entire team permission to execute your runbooks, without assigning everybody on the team permissions for the infrastructure the runbooks will execute against.
 
 [Learn more](https://octopus.com/docs/deployment-process/operations-runbooks)
 
 ## PowerShell Core support
 
-![Screenshot ](TODO.png "width=600")
+![Screenshot ](powershell-core.png "width=600")
 
 We've added PowerShell Core support enabling teams to write cross-platform scripts using Microsoft’s modern automation framework. Our built-in PowerShell Core support just works, and it pairs very well with our [expanded support](https://octopus.com/blog/tentacle-on-linux) for Linux deployments. 
 
@@ -77,12 +78,12 @@ We previously shipped support to customize release notes templates in project se
 
 [Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
 
-
 ## Other improvements
 
 Our team continually adds updates and bug fixes driven by customer feedback and support tickets. We want to highlight some of these changes in this release:
 
-* **Simpler Octopus dashboard configuration**, making it clearer to understand what is filtered.
+* **Simpler package-based step templates** makes makes it easier to create step templates with packages, and let teams bind against these parameters.
+* **Easier Octopus dashboard configuration**, making it clearer to understand what is filtered.
 * **Added support to test Azure DevOps issue tracker connectivity**. This change can help when configuring build server integration and work item tracking.
 * **Space selection is no longer visible if a user only has 1 space** and they don’t have permission to add more.
 * **Added support to upgrade a subset of Tentacles**. This applies to groups of Tentacles/Workers in an environment or worker pool rather than all deployment targets.
@@ -90,8 +91,6 @@ Our team continually adds updates and bug fixes driven by customer feedback and 
 * **Swagger API documentation is far more accurate**, making it easier for teams to integrate with the Octopus API.
 * **Improved performance to the Tenants page**. The Tenants page now renders much faster when customers have hundreds and thousands of tenants.
 * **Improved supportability**. We’ve improved logging for automatic deploys and dynamic infrastructure provisioning to help teams understand what happens if things go wrong.
-
-[Learn more](https://octopus.com/blog/octopus-release-2019.8)
 
 ## Breaking changes
 
