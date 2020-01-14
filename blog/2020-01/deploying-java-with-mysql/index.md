@@ -10,13 +10,13 @@ tags:
  - DevOps
 ---
 
-Octopus Deploy is well known for its ability to easily automate the deployment of .NET applications.  Though those are our roots, we've expanded our support to include things such as Java, Docker, and Kubernetes.  In this post, I walk through how to build and deploy a Java-based web application that uses a MySql backend database.
+Octopus Deploy is well known for its ability to easily automate the deployment of Microsoft technologies.  Though those are our roots, we've expanded our support to include things such as Java, Docker, and Kubernetes.  In this post, I walk through how to build and deploy a Java-based web application that uses a MySql backend database.
 
 ## Setting up the build server
 For this demonstration, I used Azure DevOps as my build server.  When people think of Azure DevOps, they immediatly think .NET/.NET core, not Java.  However, the Microsoft build server comes with both Maven and ANT build tasks built-in to their task library!  Wait, that seems ... too easy.  You'd be right to be suspicious, though the tasks exist, they don't actually work without a little configuration :)  Luckily for us, it's all rather straight-forward.
 
 ### Java on the build agent
-To build Java, you need the Java Development Kit (JDK) on your build agent, which can be downloaded [here](https://www.oracle.com/technetwork/java/javase/downloads/index.html).  If you're a Windows guy like me, you'd think that running the installer on Windows would do everything necessary to make Java work.  Unfortunately, you'd be incorrect.  There are two additional steps necessary to make Java functional (at least on Windows):
+To build Java, you need the Java Development Kit (JDK) on your build agent, which can be downloaded [here](https://openjdk.java.net/).  If you're a Windows guy like me, you'd think that running the installer on Windows would do everything necessary to make Java work.  Unfortunately, you'd be incorrect.  There are two additional steps necessary to make Java functional (at least on Windows):
 
 - Creating the JAVA_HOME Environment Variable and setting it to the root of your Java installation (ie c:\Program Files\Java)
 - Adding the \bin folder to the Path Environment Variable (ie c:\Program Files\Java\JavaVersion\bin)
@@ -49,7 +49,7 @@ The steps for configuring ADO to build ANT projects are nearly identical to thes
 :::
 
 ## The sample application
-Ok, I cheated.  I didn't write the sample application myself. Instead, I found a [great sample](https://github.com/spring-petclinic/spring-framework-petclinic) already built :)  Not being a Java guy, I needed something that both worked and used MySql, this repo ticked all the boxes and I was able to get it running in pretty short order!  (Okay, so there was a bit of a learning curve, but that was the fun part!).
+For this demonstration, I'm using the [Pet Clinic](https://github.com/spring-petclinic/spring-framework-petclinic) sample application, originally developed to demonstrate the capabilities of the Spring framework.  Pet Clinic was already configured to be built with Maven and also has the ability to use MySql as a database back end!  Out of the box, Pet Clinic is completely functional, so naturally we had to modify it :)
 
 ### Tweaking the POM
 There were some tweaks I needed to make to the POM.XML (Maven Project Object Model) file to make it work for this post:
@@ -145,7 +145,7 @@ If you're application renders like
 your `<cssDestinationFolder>` is incorrect
 :::
 
-If you recall I mentioned the learning curve, there you have it ;)  There is one more piece we need to do, but it's not in the POM.
+There is one more piece we need to do, but it's not in the POM.
 
 ### Updating datasource-config.xml
 There was one last thing that I learned with this example application, it ran the included database scripts whenever it was deployed.  After a bit of digging, I found that I could comment out some XML in the datasource-config.xml file that would stop it from doing that.  I still need the database scripts, I just didn't want them to execute every time the application was deployed.  More on this later.
@@ -331,7 +331,7 @@ Click OK, then scroll down and expand the Substitute Variables in Files section.
 ![](octopus-project-step-variable-replacement-sql.png)
 
 ##### Add the Flyway Migrate step
-The Flyway step is not a built-in step to Octopus Deploy.  This step was developed by the Octopus Deploy community and added to our Community Step Template Library.
+This step is available on the Community Step Template Library.
 
 Just like before, click on the ADD STEP button.  When the window comes up, type in flyway to filter the steps.  Immediatly, you'll notice all categories except Community Steps get grayed out.  Mouse-over the Flyway Migrate and click on Install and Add.
 
@@ -416,5 +416,9 @@ Flyway
 Wildfly
 ![](octopus-project-deployment-wildfly.png)
 
+PetClinic
+![](petclinic-web.png)
+
 ## Conclusion
-While Octopus Deploy is really awesome at deploying .NET, it's equally awesome at deploying Java as well!
+In this post, we configured a CI/CD pipeline to build and deploy a Java-based web application using Flyway to manage the MySql database!
+![](java-octopus-placeholder.png)
