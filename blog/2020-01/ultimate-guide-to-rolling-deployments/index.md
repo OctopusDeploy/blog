@@ -108,10 +108,10 @@ Services support a number of different options, including a rolling update polic
 
 #### Docker containerised application
 
-I am doing this exercise using [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file.
+I am doing this exercise using [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line manually. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings.
 
 :::hint
-I don't go through how to build a conatiner image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
+I don't go through how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
 :::
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
@@ -290,7 +290,6 @@ verify: Service converged
  The Docker [documentation](https://docs.docker.com/engine/reference/commandline/create/#options) has a full list of parameters you can use.
 :::
 
-
 Finally, we can verify the rollback was successful using the same command to inspect the service as before: 
 
 ```
@@ -302,7 +301,7 @@ This results in the expected `v0.0.2` version being displayed:
 harrisonmeister/rolling-deploy-example:0.0.2@sha256:ce164b71b80d95e2f6ea8fc0bb22b985efac23541842939779ccf4015969044c
 ```
 
-As you can see, it doesn't take much setup to get rolling deployments working in Docker!
+As you can see, it doesn't take much setup to get rolling deployments working in Docker.
 
 ### Kubernetes Rolling updates
 
