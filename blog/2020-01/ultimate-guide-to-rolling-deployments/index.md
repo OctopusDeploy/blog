@@ -1,6 +1,6 @@
 ---
 title: The Ultimate Guide to rolling deployments
-description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and practical examples of how to do this with different tools.
+description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and practical examples of how to do this with different technologies.
 author: mark.harrison@octopus.com
 visibility: private
 published: 2020-02-01
@@ -15,7 +15,7 @@ tags:
 When tasked with deploying a new version of your application, such as a web site, I've often seen the approach where the entire site has been taken offline to accommodate the update. 
 If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? 
 
-Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using a number of different tools.
+Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using a number of different technologies
 
 <h2>In this post</h2>
 
@@ -82,7 +82,7 @@ You can use the `Window size` option within an Octopus rolling deployment to con
 
 To demonstrate the different approaches for rolling deployments, we have a very simple .NET Core 3.1 application which will display a web page. 
 
-The HTML for the section I'm interested in is shown below
+The HTML for the section I'm interested in is shown below:
 
 ```html
 <div class="text-center">
@@ -98,7 +98,7 @@ The HTML for the section I'm interested in is shown below
 </div>
 ```
 
-We'll make changes to the ``AppVersion`` and roll this out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
+The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-exampleapp/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example). We'll roll out the different versions using some popular technologies.
 
 ### Docker rolling application updates
 
