@@ -629,7 +629,32 @@ The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/ku
 
 ### Octopus Rolling deploy
 
-Octopus has supported the concept of [rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments) since Octopus 2.0.
+Octopus has supported the concept of rolling deployments since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/rolling-deployments). 
+
+With the use of child steps, we can set-up our deployment process for the `rolling-deploy-example` application in Octopus.
+
+After creating a new Octopus project, we configure a rolling deployment with 3 steps:
+
+ - A Script to remove the node from the Load Balancer
+ - Deployment of the Web Application
+ - A script to add the node back into the Load Balancer 
+
+ To achieve an incremental release in Octopus, we need to make the **Rolling window** size lower than the total number of deployment targets. In my example I have set this to `1`, as you can see below
+
+ ![](od-rolling-win-size.png "width=500")
+
+I have 2 deployment targets configured with a [target role](https://octopus.com/docs/octopus-concepts/target-roles) of `rolling-deploy-webapp`.
+
+When I deploy the release to the `Test` environment, Octopus deploys to one deployment target at a time, as I configured in my deployment process earlier:
+
+![](od-0.0.1-test.png)
+
+And thats all there is to it! Check out our [docs](https://octopus.com/docs/deployment-patterns/rolling-deployments) for a complete reference on Rolling deployments in Octopus.
+
+:::success
+**Sample Octopus Project**
+You can view this Octopus project set-up in our [Samples](https://samples.octopus.app/app#/Spaces-45/projects/rolling-deployments/deployments) instance
+:::
 
 ## A word on the database
 
