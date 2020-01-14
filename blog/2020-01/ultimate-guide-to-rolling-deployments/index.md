@@ -247,6 +247,8 @@ Then browsing to the website shows the text which applies for `v0.0.2`
 
 ![](docker-service-v0.0.2.png "width=500")
 
+As you can see, it doesn't take much setup to get rolling deployments working in Docker.
+
 #### Docker Service Rollback
 
 Just as it's straight-forward to roll-out, it's also possible to manually rollback with a simple command in Docker.
@@ -307,8 +309,6 @@ This results in the expected `v0.0.2` version being displayed:
 ```
 harrisonmeister/rolling-deploy-example:0.0.2@sha256:ce164b71b80d95e2f6ea8fc0bb22b985efac23541842939779ccf4015969044c
 ```
-
-As you can see, it doesn't take much setup to get rolling deployments working in Docker.
 
 ### Kubernetes Rolling updates
 
