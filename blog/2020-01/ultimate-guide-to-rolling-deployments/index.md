@@ -98,7 +98,14 @@ The HTML for the section I'm interested in is shown below:
 </div>
 ```
 
-The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-exampleapp/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example). We'll roll out different versions using some popular technologies.
+The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-exampleapp/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example). 
+
+I wanted to see just how easy it would be to perform a rolling update using some popular technologies, so I chose:
+
+ - [Docker](#Docker-rolling-application-updates)
+ - [Kubernetes](#Kubernetes-Rolling-updates)
+ - [Azure DevOps](#Azure-DevOps-Deployment-Groups)
+ - [Octopus](#Octopus-Rolling-deploy)
 
 ### Docker rolling application updates
 
@@ -618,7 +625,7 @@ Where the `--to-revision` parameter has the revision you wish to go back to.
 The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-undo-em-) has a full list of parameters you can use.
 :::
 
-### Azure DevOps?
+### Azure DevOps Deployment Groups
 
 _TODO?_
 
