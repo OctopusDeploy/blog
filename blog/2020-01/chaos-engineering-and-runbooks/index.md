@@ -1,6 +1,6 @@
 ---
-title: Choas engineering and Runbooks
-description: Learn how Runbooks can enrich your deployments with the Chaos Toolkit
+title: Chaos engineering and runbooks
+description: Learn how runbooks can enrich your deployments with the Chaos Toolkit
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -10,31 +10,35 @@ tags:
  - Octopus
 ---
 
-The promise of declarative systems that automatically reconfigure themselves to a desired state is that most faults from stopped or destroyed resources will be rectified without any manual intervention. Kubernetes is a perfect example of this, where deleted pods in a deployment will be recreated as the deployment brings the cluster back to the desired state.
+The promise of declarative systems that automatically reconfigure themselves to a desired state is:
 
-Proving that a system can tolerate failure of individual components is the essence of chaos engineering. In his talk [BoF Deep Dive: Chaos Engineering](https://youtu.be/Qus15C5vT5Y?list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&t=1447) Sylvain Hellegouarch, the creator of the [Chaos Toolkit](https://chaostoolkit.org/), provides an overview of how to apply chaos engineering to Kubernetes. While the technical details of this talk are valuable, it was the advice he gave about how and when to run chaos experiments that is of most interest to Octopus users (this is 24 minutes into the talk):
+> Most faults caused by stopped or destroyed resources will be rectified without any manual intervention.
 
-> Don't necessarily tie your chaos engineering to your deployment. Run that part orthogonally.
+Kubernetes is a perfect example of this, as deleted pods in a deployment are recreated as the deployment brings the cluster back to the desired state.
+
+Proving that a system can tolerate the failure of individual components is the essence of chaos engineering. In his talk [BoF Deep Dive: Chaos Engineering](https://youtu.be/Qus15C5vT5Y?list=PLj6h78yzYM2PpmMAnvpvsnR4c27wJePh3&t=1447), Sylvain Hellegouarch, the creator of the [Chaos Toolkit](https://chaostoolkit.org/), provides an overview of how to apply chaos engineering to Kubernetes. While the technical details of this talk are valuable, it was the advice he gave about how and when to run chaos experiments that is of most interest to Octopus users (this is 24 minutes into the talk):
+
+> Don’t necessarily tie your chaos engineering to your deployment. Run that part orthogonally.
 
 > You should always have chaos engineering that runs constantly, because the problem with doing [chaos engineering] at rollout is that your system lives between your deployments. It evolves, so keep changing the system as you run.
 
 Until recently, running any kind of automated process in Octopus meant creating a deployment. It was possible to hack the idea of a deployment to implement management tasks, but it was awkward.
 
-With Runbooks, Octopus now has first class support for running management tasks in parallel to deployments. Runbooks have access to all the existing environments, variables, targets, steps, security, auditing and reporting, but without being tied to the concept of a deployment or a lifecycle.
+With runbooks, Octopus now has first-class support for running management tasks in parallel to deployments. runbooks have access to all the existing environments, variables, targets, steps, security, auditing, and reporting, but without being tied to the concept of a deployment or a lifecycle.
 
-This makes Runbooks ideal for running tools like the Chaos Engineering toolkit. In this post we'll create a very simple chaos experiment as a Runbook, and call out the advantages Runbooks provide for this kind of task.
+This makes runbooks ideal for running tools like the Chaos Engineering Toolkit. In this post, we’ll create a very simple chaos experiment as a runbook, and call out the advantages runbooks provide for this kind of task.
 
 ## The Kubernetes deployment
 
- We'll start by creating a deployment process that spins up a number of pods on a Kubernetes cluster. This is implemented with the *Deploy Kubernetes containers* step in Octopus. In the screenshot below you can see that we have created a single deployment that creates 10 NGINX pods.
+ We’ll start by creating a deployment process that spins up a number of pods on a Kubernetes cluster. This is implemented with the *Deploy Kubernetes containers* step in Octopus. In the screenshot below, you can see I have created a single deployment that creates 10 NGINX pods.
 
  ![](k8s-step.png "width=500")
 
- ## The chaos Runbook
+## The chaos runbook
 
- Alongside the deployment we also have a runbook that executes a simple Chaos Toolkit experiment which deletes a pod and ensures that the deployment is healthy using the [microservice_available_and_healthy](https://docs.chaostoolkit.org/drivers/kubernetes/#microservice_available_and_healthy) function.
+ Alongside the deployment, I also have a runbook that executes a simple Chaos Toolkit experiment, which deletes a pod and ensures that the deployment is healthy using the [microservice_available_and_healthy](https://docs.chaostoolkit.org/drivers/kubernetes/#microservice_available_and_healthy) function.
 
- Once the test is completed, a PDF [report](https://docs.chaostoolkit.org/reference/usage/report/) is generated showing the results of the experiment. The output generated by the `chaos` tool and the report are captured as artifacts.
+ After the test has completed, a PDF [report](https://docs.chaostoolkit.org/reference/usage/report/) is generated, showing the results of the experiment. The output generated by the `chaos` tool and the report are captured as artifacts.
 
  ```PowerShell
  Set-Content -Path experiment.json -Value @"
@@ -92,19 +96,19 @@ This makes Runbooks ideal for running tools like the Chaos Engineering toolkit. 
 
 ![](chaos-runbook.png "width=500")
 
-Here is the result of the runbook execution, with the output JSON and report PDF available as artifacts.
+Here is the result of the runbook execution with the output JSON and report PDF available as artifacts:
 
 ![](runbook-results.png "width=500")
 
-We have now successfully implemented a simple chaos engineering experiment alongside the original deployment. So what benefits does Runbooks bring to this process?
+We have now successfully implemented a simple chaos engineering experiment alongside the original deployment. So what benefits do runbooks bring to this process?
 
-## Deployments and Runbooks side by side
+## Deployments and runbooks side by side
 
 By defining the deployment and the runbook in a single project, we have a single context that captures both the deployment process and any ongoing testing or management of the deployment.
 
-From a convenience point of view this means there is a single user interface, a shared set of variables, closely linked overview dashboards, and consolidated reporting.
+From a convenience point of view, this means there is a single user interface, a shared set of variables, closely linked overview dashboards, and consolidated reporting.
 
-From a management point of view, there is a single project to configure security rules against, and a consolidated audit log.
+From a management point of view, there is a single project to configure security rules against and a consolidated audit log.
 
 ![](filtered-audit-log.png "width=500")
 
@@ -112,17 +116,17 @@ Runbooks keeps the management tasks you run against deployments alongside the de
 
 ## Shared context
 
-Complex Kubernetes deployments will implement namespaces to keep resources separate, and RBAC controls on service accounts to ensure rouge deployment definitions don't interfere with the rest of the cluster. When these permission boundaries are represented in Octopus Kubernetes targets, they lend themselves nicely to runbooks by ensuring management tasks are also constrained.
+Complex Kubernetes deployments will implement namespaces to keep resources separate, and RBAC controls on service accounts to ensure rogue deployment definitions don’t interfere with the rest of the cluster. When these permission boundaries are represented in Octopus Kubernetes targets, they lend themselves nicely to runbooks by ensuring management tasks are also constrained.
 
-Like almost any CLI tool that operates with Kubernetes, Chaos Toolkit can access a cluster from the details in a Kubernetes `config` file. Octopus provides a local copy of this configuration file based on the target a deployment or runbook is executing against. So whether a deployment uses a specialized Kubernetes step or a runbook implements a general Kubernetes script, both share a single target that is defined once.
+Like almost any CLI tool that operates with Kubernetes, the Chaos Toolkit can access a cluster from the details in a Kubernetes `config` file. Octopus provides a local copy of this configuration file based on the target a deployment or runbook is executing against. So whether a deployment uses a specialized Kubernetes step or a runbook implements a general Kubernetes script, both share a single target that is defined once.
 
 ## Independent execution workflows
 
-While sharing the same underlying context, runbooks are executed independently from deployments. Runbooks define their own scheduled triggers, or can be run manually against any environment without being bound to a lifecycle.
+While sharing the same underlying context, runbooks are executed independently from deployments. Runbooks define their own scheduled triggers, or they can be run manually against any environment without being bound to a lifecycle.
 
 This is ideal for chaos engineering. As Sylvain noted in his talk, chaos experiments should be run continuously between deployments to validate a cluster.
 
-In the screenshot below the chaos experiment is being run every ten minutes to continuously validate the cluster.
+In the screenshot below, the chaos experiment is being run every ten minutes to continuously validate the cluster.
 
 ![](runbook-trigger.png "width=500")
 
@@ -130,4 +134,4 @@ In the screenshot below the chaos experiment is being run every ten minutes to c
 
 I was pleasantly surprised at how easy it was to get Chaos Toolkit up and running in Octopus. With a Kubernetes deployment already defined, scripting another tool against the existing targets and environments took very little effort.
 
-Beyond the initial ability to simply execute a tool, Octopus provides cross-cutting functionality like logging, audits, security, user management, reporting and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.
+Beyond the initial ability to simply execute a tool, Octopus provides cross-cutting functionality like logging, audits, security, user management, reporting, and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.

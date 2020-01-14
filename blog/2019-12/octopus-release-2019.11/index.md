@@ -33,6 +33,7 @@ Our runbooks feature is now ready for production and includes the following:
 * Runbooks can be parameterized with prompted variables.
 * You can make changes to your runbooks and only publish them after they have been safely tested.
 * Runbooks are managed and executed by Octopus, so this means there’s a complete audit trail that can be reviewed at a later date, making it easy to see what happened, when and why, and if anything needs to be changed.
+* You can give your entire team permission to execute your runbooks, without assigning everybody on the team permissions for the infrastructure the runbooks will execute against.
 
 [Learn more](https://octopus.com/docs/deployment-process/operations-runbooks)
 
