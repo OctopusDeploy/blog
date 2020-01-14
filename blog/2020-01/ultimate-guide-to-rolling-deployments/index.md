@@ -1,6 +1,6 @@
 ---
 title: The Ultimate Guide to rolling deployments
-description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and practical examples of how to do this with different technologies.
+description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and practical examples of how to do this with different tooling.
 author: mark.harrison@octopus.com
 visibility: private
 published: 2020-02-01
@@ -15,7 +15,7 @@ tags:
 When tasked with deploying a new version of your application, such as a web site, I've often seen the approach where the entire site has been taken offline to accommodate the update. 
 If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? 
 
-Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using a number of different technologies
+Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using different tooling.
 
 <h2>In this post</h2>
 
@@ -100,18 +100,17 @@ The HTML for the section I'm interested in is shown below:
 
 The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-exampleapp/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example). 
 
-I wanted to see just how easy it would be to perform a rolling update using some popular technologies, so I chose:
+I wanted to see just how easy it would be to perform a rolling deploy of this application using some popular technologies and tools, so I'll be demonstrating with:
 
  - [Docker](#Docker-rolling-application-updates)
  - [Kubernetes](#Kubernetes-Rolling-updates)
- - [Azure DevOps](#Azure-DevOps-Deployment-Groups)
  - [Octopus](#Octopus-Rolling-deploy)
 
 ### Docker rolling application updates
 
-Docker has probably become one of the defaqto container technologies in the last few years. It will come as no surprise therefore, that it natively supports rolling deployments with its concept of a Docker [service](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/). Typically a service is a small piece of a much larger architectural picture and is popular with microservices.
+Docker has become the defaqto container technology to use in the last few years. It will come as no surprise therefore, that it natively supports rolling deployments with its concept of a Docker [service](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/). Typically a service is a small piece of a much larger architectural picture and is popular with microservices.
 
-Services support a number of different options, including a rolling update policy as well as the ability to rollback.
+Service's support a number of different options, including a rolling update policy as well as the ability to rollback.
 
 #### Docker containerised application
 
@@ -315,6 +314,9 @@ harrisonmeister/rolling-deploy-example:0.0.2@sha256:ce164b71b80d95e2f6ea8fc0bb22
 Rolling deployments in Kubernetes is called [Rolling Updates](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update). 
 
 A Pod's instances will be updated incrementally with new ones. It supports both a max number or percentage of pods to be unavailable during an update, as well as a max number of new Pods that can be created. In addition to this Kubernetes has a handy built-in feature to allow updates to be reverted to a previous version.
+
+:::hint To find out more about Kubernetes, my colleague Shawn continued his container series focussing on it [here](https://octopus.com/blog/kubernetes-for-the-uninitiated).
+:::
 
 The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) on updates includes a nice diagram showing how it works:
 
@@ -625,23 +627,19 @@ Where the `--to-revision` parameter has the revision you wish to go back to.
 The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-undo-em-) has a full list of parameters you can use.
 :::
 
-### Azure DevOps Deployment Groups
-
-_TODO?_
-
 ### Octopus Rolling deploy
 
-_TODO_
+Octopus has supported the concept of [rolling deployments](https://octopus.com/docs/deployment-patterns/rolling-deployments) since Octopus 2.0.
 
 ## A word on the database
 
-The elephant in the room I haven't discussed yet, is the database. Performing rolling deployments which involve some persistent storage such as a database can sometimes be tricky, though not impossible. The devil is in the detail.
+Usually one of the big sticking points with Rolling deployments I haven't discussed yet, is the database. Performing rolling deployments which involve some persistent storage such as a database can sometimes be tricky, though not impossible. The devil is always in the detail.
 If you want to perform rolling deployments with database changes involved, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
 
-We have a series of posts on [database deployments](http://octopus.com/database-deployments) that go into more detail on this.
+We have a series of posts on [database deployments](http://octopus.com/database-deployments) that discuss this and more.
 
 ## Wrapping up
 
-No matter which tool you are using, rolling deployments is just one pattern available in your toolset to optimise deployment of your software. But with an incremental approach, it allows you to keep your applications online whilst slowly rolling out newer versions of your software, making it a favourite of mine for minimal disruption.
+No matter which tooling you are using, rolling deployments is just one pattern available in your toolset to optimise deployment of your software. But with an incremental approach, it allows you to keep your applications online whilst rolling out newer versions of your software in a controlled manner, typically with native support for rollbacks - making it a firm favourite of mine for minimal disruption.
 
 Feel free to leave a comment, and let us know what you think about rolling deployments!
