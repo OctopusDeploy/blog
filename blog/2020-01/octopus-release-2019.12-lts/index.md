@@ -1,6 +1,6 @@
 ---
 title: Octopus Server 2019.12 with Long Term Support (LTS)
-description: Octopus Server 2019.12 LTS is now available, and we recommend this release for self-hosted customers. This release includes Operations Runbooks, PowerShell Core support, improved build information and work item tracking and more.
+description: Octopus Server 2019.12 LTS is now available, and we recommend this release for self-hosted customers. This release includes Operations Runbooks, our official Jenkins plugin, PowerShell Core support, improved build server integration and more.
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
@@ -46,6 +46,29 @@ This LTS release includes support for operations runbooks and it brings:
 * You can give your entire team permission to execute your runbooks, without assigning everybody on the team permissions for the infrastructure the runbooks will execute against.
 
 [Learn more](https://octopus.com/docs/deployment-process/operations-runbooks)
+
+## Jenkins Plugin
+
+![Octopus Deploy Jenkins plugin](octopus-deploy-jenkins-plugin.png)
+
+This release also includes our official Octopus Deploy Jenkins plugin has shipped and it’s now available to install or update (if you’re currently running the community plugin) from the Jenkins plugin repository. This plugin builds upon the fantastic community plugin maintained by [Brian Adriance](https://github.com/badriance) and other contributors.
+
+With this release, you can now integrate your Jenkins builds with Octopus deployments including the following tasks:
+
+Build steps:
+* Package application
+* Push packages to Octopus
+* Push build information to Octopus
+
+Post-build actions:
+* Create release
+* Deploy release
+
+It also gives you better visibility into your CI/CD pipeline, and it can help you improve the communication of your releases.
+
+NOTE: This release of our plugin does not support Jenkins Pipelines, but it is on our radar.
+
+[Learn more](https://octopus.com/blog/octopus-jenkins-plugin)
 
 ## PowerShell Core support
 
