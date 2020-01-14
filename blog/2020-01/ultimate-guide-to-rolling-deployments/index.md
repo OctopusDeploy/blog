@@ -98,20 +98,20 @@ The HTML for the section I'm interested in is shown below:
 </div>
 ```
 
-The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-exampleapp/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example). We'll roll out the different versions using some popular technologies.
+The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-exampleapp/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example). We'll roll out different versions using some popular technologies.
 
 ### Docker rolling application updates
 
-Docker is probably one of the defaqto container technologies in the last few years. It will come as no surprise therefore, that it natively supports rolling deployments with its concept of a Docker [service](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/). Typically a service is a small piece of a much larger architectural picture and is popular with microservices.
+Docker has probably become one of the defaqto container technologies in the last few years. It will come as no surprise therefore, that it natively supports rolling deployments with its concept of a Docker [service](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/). Typically a service is a small piece of a much larger architectural picture and is popular with microservices.
 
-Services support a rolling update policy as well as the ability to rollback.
+Services support a number of different options, including a rolling update policy as well as the ability to rollback.
 
 #### Docker containerised application
 
 I am doing this exercise using [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file.
 
 :::hint
-If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
+I don't go through how to build a conatiner image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
 :::
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
@@ -200,7 +200,7 @@ Ports:
   PublishMode = ingress
 ```
 
-#### Docker Rolling Update in action
+#### Docker Service Update
 
 Now we can update the container image for `harrisonmeister/rolling-deploy-example` to `v0.0.2` by running the following command:
 
@@ -239,6 +239,68 @@ verify: Service converged
 Then browsing to the website shows the text which applies for `v0.0.2`
 
 ![](docker-service-v0.0.2.png "width=500")
+
+#### Docker Service Rollback
+
+Just as it's straight-forward to roll-out, it's also possible to manually rollback with a simple command in Docker.
+
+Firstly we will update to `v0.0.3` of the application by running:
+
+```
+docker service update rolling-deploy-svc --image harrisonmeister/rolling-deploy-example:0.0.3
+```
+
+We can verify the new `v0.0.3` version by checking the image for our service:
+
+```
+docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
+```
+
+This produces the result: 
+
+```
+harrisonmeister/rolling-deploy-example:0.0.3@sha256:8bdd987fde93c225a98dafc5b3394f1fc975a3c2c01c2ec80503dd29b126cf32
+```
+
+Because Docker Swarm knows the previous versions we have deployed, we can revert to the last version using the `rollback` command:
+
+```
+docker service rollback rolling-deploy-svc
+```
+
+Once successfully rolled back, it will confirm the service is running:
+
+```
+rolling-deploy-svc
+rollback: manually requested rollback
+overall progress: rolling back update: 3 out of 3 tasks
+1/3: running   [>                                                  ]
+2/3: running   [>                                                  ]
+3/3: running   [>                                                  ]
+verify: Service converged
+```
+
+:::hint
+**Hint:**
+ As I didn't specify any parameters to the `rollback` command, Docker by default will rollback one task at a time with no delays between each one. You can specify different values by passing the following to the command:
+
+ - `--rollback-parallelism`
+ - `--rollback-delay`
+
+ The Docker [documentation](https://docs.docker.com/engine/reference/commandline/create/#options) has a full list of parameters you can use.
+:::
+
+
+Finally, we can verify the rollback was successful using the same command to inspect the service as before: 
+
+```
+docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
+```
+This results in the expected `v0.0.2` version being displayed: 
+
+```
+harrisonmeister/rolling-deploy-example:0.0.2@sha256:ce164b71b80d95e2f6ea8fc0bb22b985efac23541842939779ccf4015969044c
+```
 
 As you can see, it doesn't take much setup to get rolling deployments working in Docker!
 
@@ -396,14 +458,14 @@ http://192.168.87.124:31861
 ```
 
 :::hint
-**Note:** The IP address will be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will also be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
+**Note:** The IP address may be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will also be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
 :::
 
 Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in minikube:
 
 ![](minikube-v0.0.1.png "width=500")
 
-#### Kubernetes Rolling Update in action
+#### Kubernetes Rolling Update
 
 Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `harrisonmeister/rolling-deploy-example` by running the following command:
 
@@ -544,7 +606,7 @@ Conditions:
 OldReplicaSets:  <none>
 NewReplicaSet:   rollingdeploy-minikube-6844478945 (3/3 replicas created)
 ```
-:::success
+:::hint
 **Hint:**
 You can also choose to revert to a specific revision of your application by running:
 
@@ -553,6 +615,8 @@ kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
 ```
 
 Where the `--to-revision` parameter has the revision you wish to go back to.
+
+The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-undo-em-) has a full list of parameters you can use.
 :::
 
 ### Azure DevOps?
