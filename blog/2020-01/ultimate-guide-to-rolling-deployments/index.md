@@ -98,11 +98,13 @@ The HTML for the section I'm interested in is shown below
 </div>
 ```
 
-We'll make changes to the ``AppVersion`` and roll this out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-sampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
+We'll make changes to the ``AppVersion`` and roll this out using different tools. The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has been published as the image [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example).
 
 ### Docker rolling application updates
 
-_TODO: Brief intro to Docker_
+Docker is probably one of the defaqto container technologies in the last few years. It will come as no surprise therefore, that it natively supports rolling deployments with its concept of a Docker [service](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/). Typically a service is a small piece of a much larger architectural picture and is popular with microservices.
+
+Services support a rolling update policy as well as the ability to rollback.
 
 #### Docker containerised application
 
@@ -122,7 +124,7 @@ Unsurprisingly, running this Docker image locally displays the web page:
 
 ![](docker-run.png "width=500")
 
-To deploy more than one instance of our container, we need to create a Docker [service](https://docs.docker.com/engine/reference/commandline/service) which uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator under the hood.
+To deploy more than one instance of our container, we need to create our Docker service. This uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator under the hood.
 
 :::warning
 **Docker Kubernetes Orchestrator**
@@ -542,12 +544,16 @@ Conditions:
 OldReplicaSets:  <none>
 NewReplicaSet:   rollingdeploy-minikube-6844478945 (3/3 replicas created)
 ```
-
-Alternatively you can choose a specific revision to revert to by running:
+:::success
+**Hint:**
+You can also choose to revert to a specific revision of your application by running:
 
 ```ps
 kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
 ```
+
+Where the `--to-revision` parameter has the revision you wish to go back to.
+:::
 
 ### Azure DevOps?
 
