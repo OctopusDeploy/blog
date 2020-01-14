@@ -51,30 +51,21 @@ This LTS release includes support for operations runbooks and it brings:
 
 ![Screenshot ](powershell-core.png "width=600")
 
-We've added PowerShell Core support enabling teams to write cross-platform scripts using Microsoft’s modern automation framework. Our built-in PowerShell Core support just works, and it pairs very well with our [expanded support](https://octopus.com/blog/tentacle-on-linux) for Linux deployments. 
+We've added PowerShell Core support enabling teams to write cross-platform scripts using Microsoft’s modern automation framework. 
 
-**Windows platforms**
+On Windows platforms, Octopus will use Windows PowerShell by default and provides the option to use PowerShell Core if desired. You can customize this by configuring the PowerShell edition for steps that support custom scripts.
 
-Octopus will use Windows PowerShell by default and provides the option to use PowerShell Core if desired. You can customize this by configuring the PowerShell edition for steps that support custom scripts.
-
-**Linux platforms**
-
-Octopus will automatically execute PowerShell scripts with PowerShell Core if it’s installed.
+On Linux platforms, Octopus will automatically execute PowerShell scripts with PowerShell Core if it’s installed.
 
 [Learn more](http://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
 
-## Improved build information and work item tracking.
+## Improved build information and work item tracking
 
 ![Octopus build information repository](build-information-repository.png  "width=600")
 
-Octopus 2019.4 introduced build information and work item tracking. This is a popular feature, but we received feedback the package metadata functionality was hard to find because it was buried under the package details in the built-in package repository and tricky to understand. As a result, we’ve promoted this functionality to a top-level feature called **Build Information** within the Octopus Library making it more accessible and much easier to understand. We’ve also updated our suite of build server plugins to reflect the name change.
+Octopus 2019.4 introduced build information and work item tracking. This is a popular feature, but we received feedback the package metadata functionality was hard to find and understand. As a result, we’ve promoted this functionality to a top-level feature called **Build Information** within the Octopus Library making it more accessible and much easier to understand. We’ve also updated our suite of build server plugins to reflect the name change.
 
-This feature-set gives teams better end-to-end visibility into their CI/CD pipelines and unlocks quick access to build and commit details. This is visible in a number of ways:
-
-- Release notes
-- Deployment changes
-
-We previously shipped support to customize release notes templates in project settings. In this release, we’re introducing deployment change templates so you can get the same control over the structure of your deployment changes. This gives teams the ability to customize the display to suit their needs. 
+We also added deployment change templates to compliment the existing release notes templates enabling temas to customize the display to suit their needs.
 
 [Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
 
