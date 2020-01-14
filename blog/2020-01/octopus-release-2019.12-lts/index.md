@@ -76,7 +76,7 @@ NOTE: This release of the plugin does not support Jenkins Pipelines, but it is o
 
 We’ve added PowerShell Core support, enabling teams to write cross-platform scripts using Microsoft’s modern automation framework.
 
-On Windows platforms, Octopus will use Windows PowerShell by default and provides the option to use PowerShell Core if desired. You can customize this by configuring the PowerShell edition for steps that support custom scripts.
+On Windows platforms, Octopus will use Windows PowerShell by default, with the option to use PowerShell Core if desired. You can customize this by configuring the PowerShell edition for steps that support custom scripts.
 
 On Linux platforms, Octopus will automatically execute PowerShell scripts with PowerShell Core if it’s installed.
 
@@ -99,7 +99,7 @@ Our team continually adds updates and bug fixes driven by customer feedback and 
 * **Simpler package-based step templates**, making it easier to create step templates with packages and let teams bind against these parameters.
 * **Easier Octopus dashboard configuration**, making it clearer to understand what is filtered.
 * **Added support to test Azure DevOps issue tracker connectivity**. This change can help when configuring build server integration and work item tracking.
-* **Space selection is no longer visible if a user only has one space**, and if they don’t have permission to add more.
+* **Space selection is no longer visible if a user only has one space** and they don’t have permission to add more.
 * **Added support to upgrade a subset of Tentacles**. This applies to groups of Tentacles/Workers in an environment or worker pool rather than all deployment targets.
 * Added support to **redeploy previous successful deployments**, so it’s easier to rollback to previous releases.
 * **Swagger API documentation is far more accurate**, making it easier for teams to integrate with the Octopus API.
@@ -120,7 +120,7 @@ Our build information change involved renaming resources from the API through to
 
 **Octopus API and Octopus.Client**
 
-The [Octopus API has changed](https://github.com/OctopusDeploy/Issues/issues/4925) as a part of this release, versions of Octopus.Client before 8.0.0 can not create scheduled triggers on an Octopus Server where the version is older than 2019.11.0.
+The [Octopus API has changed](https://github.com/OctopusDeploy/Issues/issues/4925) as part of this release, versions of Octopus.Client before 8.0.0 can not create scheduled triggers on an Octopus Server where the version is older than 2019.11.0.
 
 ## Wrapping up
 
