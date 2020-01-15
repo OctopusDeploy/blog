@@ -387,7 +387,7 @@ We’ve one last thing to do with the Wildfly step, replace the #{} variables in
 `WEB-INF/classes/spring/datasource-config.xml`.
 
 :::hint
-Use of `/` instead of `\` is to support Linux deployment targets.
+Use of `/` instead of `\` is to support Linux deployment targets and still works for Windows targets.
 :::
 
 That’s it. Let’s create our first release.
