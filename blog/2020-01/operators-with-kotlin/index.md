@@ -10,11 +10,11 @@ tags:
  - DevOps
 ---
 
-Most environments will initially treat their Kubernetes cluster as tool to orchestrate containers and configure traffic between them. Kubernetes supports this use case very well by providing declarative descriptions of the desired container state and their connections.
+Most environments will initially treat their Kubernetes cluster as a tool to orchestrate containers and configure traffic between them. Kubernetes supports this use case very well by providing declarative descriptions of the desired container state and their connections.
 
-When used in this way, developers and operations staff sit outside of the cluster and look in. The cluster is managed with calls to `kubectl` made in an ad-hoc fashion or from a CI/CD pipeline. This means Kubernetes itself is quite naïve; it understand how to reconfigure itself to match the desired state, but has no understanding of what that state represents.
+When used in this way, developers and operations staff sit outside of the cluster and look in. The cluster is managed with calls to `kubectl` made in an ad-hoc fashion or from a CI/CD pipeline. This means Kubernetes itself is quite naïve; it understands how to reconfigure itself to match the desired state, but has no understanding of what that state represents.
 
-For example, a common Kubernetes deployment might see three pods created: a front end web application, a backend web service and a database. The relationship between these pods is well understood by the developers deploying them as being a classic three-tier architecture, but Kubernetes literally sees  nothing more than three pods to be deployed, monitored and exposed to network traffic.
+For example, a common Kubernetes deployment might see three pods created: a front end web application, a backend web service and a database. The relationship between these pods is well understood by the developers deploying them as being a classic three-tier architecture, but Kubernetes literally sees nothing more than three pods to be deployed, monitored and exposed to network traffic.
 
 The operator pattern has evolved as a way of encapsulating business knowledge and operational workflows in the Kubernetes cluster itself, allowing a cluster to implement high level, domain specific concepts with the common, low level resources like pods, services, deployments etc.
 
@@ -28,11 +28,11 @@ The three key components identified in this definition are:
 * controller
 * domain or application-specific knowledge
 
-In practice, a *resource* means a Custom Resource Definition (CRD), a *controller* means an application integrated into and responding to the Kubernetes API, and the *application-specific knowledge* is the logic implemented in the *controller* to implement high level concepts from standard Kubernetes resources.
+In practice, a *resource* means a Custom Resource Definition (CRD), a *controller* means an application integrated into and responding to the Kubernetes API, and the *application-specific knowledge* is the logic implemented in the *controller* to reify high level concepts from standard Kubernetes resources.
 
-To understand the operator pattern, let's look at a simple example written in Kotlin. The code for this operator is available in [GitHub](https://github.com/OctopusSamples/KotlinK8SOperator), and is based on the code from this [RedHat blog](https://developers.redhat.com/blog/2019/10/07/write-a-simple-kubernetes-operator-in-java-using-the-fabric8-kubernetes-client/). This operator will extend the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with a image known to provide an sample web server.
+To understand the operator pattern, let's look at a simple example written in Kotlin. The code for this operator is available from [GitHub](https://github.com/OctopusSamples/KotlinK8SOperator), and is based on the code from this [RedHat blog](https://developers.redhat.com/blog/2019/10/07/write-a-simple-kubernetes-operator-in-java-using-the-fabric8-kubernetes-client/). The operator will extend the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with a image known to expose a sample web server.
 
-The CRD meets the *resource* requirement, the code we'll write interacting with the Kubernetes API meets the *controller* requirement, and the knowledge that a particular Docker image is used to implement a sample web server is the *application-specific knowledge*.
+The CRD meets the *resource* requirement, the code we'll write interacting with the Kubernetes API meets the *controller* requirement, and the knowledge that a particular Docker image is used to expose a sample web server is the *application-specific knowledge*.
 
 ## The pom.xml file
 
@@ -131,7 +131,7 @@ status:
 
 This resource can be broken down into four components.
 
-The first component is the Group, Version, Kind (GVK). The deployment resource has a group of `apps`, a version of `v1` and a kind of `Deployment`:
+The first component is the Group, Version, and Kind (GVK). The deployment resource has a group of `apps`, a version of `v1` and a kind of `Deployment`:
 
 ```YAML
 apiVersion: apps/v1
@@ -147,7 +147,7 @@ metadata:
     app: nginx
 ```
 
-The third component is the spec, which defines the properties of the specific resource.
+The third component is the spec, which defines the properties of the specific resource:
 
 ```YAML
 spec:
@@ -180,7 +180,7 @@ status:
 
 ## The CRD classes
 
-Now that we know the components that make up a Kubernetes resource, we can look at the code that reflects the CRD implemented by this operator.
+Now that we know the components that make up a Kubernetes resource, we can look at the code that reflects the CRD implemented by the operator.
 
 We are creating a new CRD called `WebServer`, which is represented by a class also called `WebServer`. This class has two properties defining the spec and the status:
 
@@ -193,7 +193,7 @@ data class WebServer(var spec: WebServerSpec = WebServerSpec(),
                      var status: WebServerStatus = WebServerStatus()) : CustomResource()
 ```
 
-The spec for our CRD is represented in the `WebServerSpec` class. This class is extremely simple, with a single field called `replicas` indicating how many web server pods this CRD is responsible for creating:
+The spec for our CRD is represented in the `WebServerSpec` class. This has a single field called `replicas` indicating how many web server pods this CRD is responsible for creating:
 
 ```
 package com.octopus.webserver.operator.crd
@@ -217,7 +217,7 @@ import io.fabric8.kubernetes.api.model.KubernetesResource
 data class WebServerStatus(var count: Int = 0) : KubernetesResource
 ```
 
-The final two classes, called `WebServerList` and `DoneableWebServer`, contain no custom properties of logic, and are boilerplate code required by the fabric8 library:
+The final two classes, called `WebServerList` and `DoneableWebServer`, contain no custom properties or logic, and are boilerplate code required by the fabric8 library:
 
 ```
 package com.octopus.webserver.operator.crd
@@ -310,7 +310,7 @@ The client knows how to configure itself based on the environment it is executed
 val namespace = client.namespace ?: "default"
 ```
 
-The `CustomResourceDefinitionBuilder` is used to define the `WebServer` custom resource that this controller manages. This will be used when working with the client to update resources in the cluster.
+The `CustomResourceDefinitionBuilder` is defines the `WebServer` CRD that this controller manages. This is used when working with the client to update resources in the cluster.
 
 ```
 val podSetCustomResourceDefinition = CustomResourceDefinitionBuilder()
@@ -324,7 +324,7 @@ val podSetCustomResourceDefinition = CustomResourceDefinitionBuilder()
         .build()
 ```
 
-The controller works by listening to events indicating that resources it should be managing have been changed. To listen to events relating to the `WebServer` CRD, we create a `CustomResourceDefinitionContext`.
+The controller works by listening to events indicating that resources it should be managing have been changed. To listen to events relating to the `WebServer` CRD, we create a `CustomResourceDefinitionContext`:
 
 ```
 val webServerCustomResourceDefinitionContext = CustomResourceDefinitionContext.Builder()
@@ -335,7 +335,7 @@ val webServerCustomResourceDefinitionContext = CustomResourceDefinitionContext.B
         .build()
 ```
 
-We are notified of events through informers, and the informers are created from a factory provided by the client.
+We are notified of events through informers, and the informers are created from a factory provided by the client:
 
 ```
 val informerFactory = client.informers()
@@ -350,7 +350,7 @@ val podSharedIndexInformer = informerFactory.sharedIndexInformerFor(
         10 * 60 * 1000.toLong())
 ```
 
-Here we create an informer that will notify us of events relating to our CRD. This required the `CustomResourceDefinitionContext` we created previously:
+Here we create an informer that will notify us of events relating to our CRD. This required the `CustomResourceDefinitionContext` created previously:
 
 ```
 val webServerSharedIndexInformer = informerFactory.sharedIndexInformerForCustomResource(
@@ -360,7 +360,7 @@ val webServerSharedIndexInformer = informerFactory.sharedIndexInformerForCustomR
         10 * 60 * 1000.toLong())
 ```
 
-The logic of the operator is contained in the controller. In this project the `WebServerController` class plays the role of the controller:
+The logic of the operator is contained in the controller. In this project the `WebServerController` class fulfils the role of the controller:
 
 ```
 val webServerController = WebServerController(
@@ -604,7 +604,7 @@ private fun getControllerOf(pod: Pod): OwnerReference? =
         pod.metadata.ownerReferences.firstOrNull { it.controller }
 ```
 
-`reconcile()` provides the logic that ensures the cluster has as many pods as required by the `WbeServer` CRD. It calls `podCountByLabel()` to find out how many pods exist, and updates the status of the CRD with a call to `updateStatus()`. If there are too few pods to meet the requirements, `createPod()` is called. If there are too many pods, one is deleted.
+`reconcile()` provides the logic that ensures the cluster has as many pods as required by the `WebServer` CRD. It calls `podCountByLabel()` to find out how many pods exist, and updates the status of the CRD with a call to `updateStatus()`. If there are too few pods to meet the requirements, `createPod()` is called. If there are too many pods, one is deleted.
 
 By continually creating or deleting pods to push the cluster towards the desired state, we will eventually satisfy the requirements of the `WebServer` CRD:
 
@@ -628,7 +628,7 @@ private fun reconcile(webServer: WebServer) {
 }
 ```
 
-`updateStatus()` uses the client to update the status component of our CRD. The status component is unique because updating it does not trigger an update event in our code. Only a controller can update the status component of a resource, and Kubernetes has been designed to prevent status updates from trigger in an infinite event loop:
+`updateStatus()` uses the client to update the status component of our custom resource. The status component is unique because updating it does not trigger an update event in our code. Only a controller can update the status component of a resource, and Kubernetes has been designed to prevent status updates from triggering an infinite event loop:
 
 ```
 private fun updateStatus(webServer: WebServer) =
@@ -676,7 +676,7 @@ private fun createNewPod(webServer: WebServer): Pod =
                 .build()
 ```
 
-The `run()` method is an infinite loop continually consuming a webserver CRDs added to the `workQueue` by the event listeners and passing it to the `reconcile()` method:
+The `run()` method is an infinite loop continually consuming a webserver resource ID added to the `workQueue` by the event listeners and passing it to the `reconcile()` method:
 
 ```
 fun run() {
@@ -702,7 +702,7 @@ private fun blockUntilSynced() {
 
 ## The CRD YAML
 
-The final piece of the puzzle is the CRD itself. A CRD is simply another Kubernetes resource, and so we define it in the following YAML:
+The final piece of the operator is the CRD itself. A CRD is simply another Kubernetes resource, and we define it in the following YAML:
 
 ```YAML
 apiVersion: apiextensions.k8s.io/v1beta1
@@ -786,11 +786,11 @@ metadata:
 
 ## The power of operators
 
-Without an operator, the concept of a test web server lived outside of the cluster. Developer may have emailed around the YAML they use to create test pods with, but more likely everyone had their own opinion of what a test web server was.
+Without an operator, the concept of a test web server lived outside of the cluster. Developers may have emailed around the YAML they use to create test pods with, but more likely everyone had their own opinion of what a test web server was.
 
 The operator we created extends our Kubernetes cluster with a specific implementation of a test web server. Encapsulating this business knowledge allows the cluster to create and manage high level concepts specific to our environment.
 
-Creating and managing new types of things is just one example of what an operator can do. Automating tasks like security scans, reporting and load testing are all valid use cases for operators. A list of popular operators is available [here](https://github.com/operator-framework/awesome-operators).
+Creating and managing new resources is just one example of what an operator can do. Automating tasks like security scans, reporting and load testing are all valid use cases for operators. A list of popular operators is available [here](https://github.com/operator-framework/awesome-operators).
 
 ## Conclusion
 
