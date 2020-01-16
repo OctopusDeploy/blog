@@ -108,13 +108,13 @@ I wanted to see just how easy it would be to perform a rolling deploy of this ap
 
 ### Docker rolling application updates
 
-Docker has become the defaqto container technology to use in the last few years. It will come as no surprise therefore, that it natively supports rolling deployments with its concept of a Docker [service](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/). Typically a service is a small piece of a much larger architectural picture and is popular with microservices.
+Docker has become the defaqto container technology to use in the last few years. It will come as no surprise therefore, that it natively supports rolling deployments with its concept of a Docker [service](https://docs.docker.com/engine/swarm/how-swarm-mode-works/services). Typically a service is a small piece of a much larger architectural picture and is popular with microservices.
 
 Service's support a number of different options, including a rolling update policy as well as the ability to rollback.
 
 #### Docker containerised application
 
-I am doing this exercise using [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line manually. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings.
+I'm using a pre-built container image of our sample application and utilizng [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line manually. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings.
 
 :::hint
 I don't go through how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
@@ -122,7 +122,7 @@ I don't go through how to build a container image in this post. If you are new t
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
 
-```ps
+```
 docker run -p 5001:5001 harrisonmeister/rolling-deploy-example:0.0.1
 ```
 
@@ -139,7 +139,7 @@ Docker also supports Kubernetes as an orchestator when deploying containers usin
 
 So let's see what our command to create a service looks like:
 
-```ps
+```
 docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 harrisonmeister/rolling-deploy-example:0.0.1
 ```
 
@@ -169,7 +169,7 @@ verify: Service converged
 
 We can also check our service has the correct update configuration by running the command:
 
-```ps
+```
 docker service inspect rolling-deploy-svc --pretty
 ```
 
@@ -210,7 +210,7 @@ Ports:
 
 Now we can update the container image for `harrisonmeister/rolling-deploy-example` to `v0.0.2` by running the following command:
 
-```ps
+```
 docker service update rolling-deploy-svc --image harrisonmeister/rolling-deploy-example:0.0.2
 ```
 
@@ -324,7 +324,7 @@ The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics
 
 #### Kubernetes cluster setup
 
-I will be demonstrating using [Minikube](https://minikube.sigs.k8s.io/). Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM). It's useful for people like me who want to try out Kubernetes or do some development with it.
+Just as before, I'll be using the pre-built container image for this demonstration, this time using [Minikube](https://minikube.sigs.k8s.io/). Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM). It's useful for people like me who want to try out Kubernetes or do some development with it.
 
 Before you install Minikube, it's worth noting that there are some prerequisites for Windows:
 
@@ -335,7 +335,7 @@ Before you install Minikube, it's worth noting that there are some prerequisites
 
 After installing Minikube, the first thing to do is to start it up:
 
-```ps
+```
 minikube start --vm-driver=hyperv
 ```
 
@@ -369,19 +369,21 @@ After a quick Google, I found the kubectl install [documentation](https://kubern
 I fixed the error by adding my `PATH` entry before the one added by Docker Desktop.
 :::
 
-Now we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-example`, and set it to listen on port 5001.
-
 **Kubernetes Deployments**
+
+Now we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-example`, and set it to listen on port 5001.
 
 Google describes Kubernetes [Deployments](https://cloud.google.com/kubernetes-engine/docs/concepts/deployment) as items which:
 
 > represent a set of multiple, identical Pods with no unique identities. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. In this way, Deployments help ensure that one or more instances of your application are available to serve user requests. Deployments are managed by the Kubernetes Deployment controller.
 
+This sounds perfect for a rolling deployment.
+
 #### Kubernetes containerised application setup
 
 To set up our Deployment for our application, we run the following command:
 
-```ps
+```
 kubectl create deployment rollingdeploy-minikube --image=harrisonmeister/rolling-deploy-example:0.0.1
 ```
 
@@ -393,7 +395,7 @@ deployment.apps/rollingdeploy-minikube created
 
 Next up, we'll set the application pods to listen on port `5001`. To do that, we run the [expose](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#expose) command:
 
-```ps
+```
 kubectl expose deployment rollingdeploy-minikube --type=NodePort --port=5001
 ```
 
@@ -440,7 +442,7 @@ kubectl scale -n default deployment rollingdeploy-minikube --replicas=3
 
 Once the Pods have been provisioned by the Kubernetes engine, we can confirm this by querying the Pod's status directly by running:
 
-```ps
+```
 kubectl get pod
 ```
 
@@ -455,7 +457,7 @@ rollingdeploy-minikube-6844478945-vgg9q   1/1     Running   0          71s
 
 To verify our application is working, we can ask minikube for the url to the `Deployment` we created at the start:
 
-```ps
+```
 minikube service --url=true rollingdeploy-minikube
 ```
 
@@ -477,7 +479,7 @@ Opening the url in a browser, and we can see that we have `v0.0.1` of our applic
 
 Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `harrisonmeister/rolling-deploy-example` by running the following command:
 
-```ps
+```
 kubectl set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record
 ```
 
@@ -524,7 +526,7 @@ The Deployment's rollout was triggered here as `set image` caused an update to t
 
 We can see what the Template looks like for our application by running:
 
-```ps
+```
 kubectl edit deployment.v1.apps/rollingdeploy-minikube
 ```
 
@@ -554,7 +556,7 @@ With Kubernetes, all of a Deployment's rollout history is kept in the system by 
 
 To see the rollout history for our deployment, we can run:
 
-```ps
+```
 kubectl rollout history deployment.v1.apps/rollingdeploy-minikube
 ```
 
@@ -568,7 +570,7 @@ REVISION  CHANGE-CAUSE
 
 We can choose to revert back to the previously deployed version `v0.0.1` by running:
 
-```ps
+```
 kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube
 ```
 
@@ -580,7 +582,7 @@ deployment.apps/rollingdeploy-minikube rolled back
 
 We can confirm we have rolled back, either by looking back in the dashboard, or running the `describe` command:
 
-```ps
+```
 kubectl describe deployment
 ```
 
@@ -618,7 +620,7 @@ NewReplicaSet:   rollingdeploy-minikube-6844478945 (3/3 replicas created)
 **Hint:**
 You can also choose to revert to a specific revision of your application by running:
 
-```ps
+```
 kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
 ```
 
@@ -627,19 +629,19 @@ Where the `--to-revision` parameter has the revision you wish to go back to.
 The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-undo-em-) has a full list of parameters you can use.
 :::
 
-### Octopus Rolling deploy
+### Rolling deployments with Octopus
 
 Octopus has supported the concept of rolling deployments since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/rolling-deployments). 
 
 With the use of child steps, we can set-up our deployment process for the `rolling-deploy-example` application in Octopus.
 
-After creating a new Octopus project, we configure a rolling deployment with 3 steps:
+After creating a new project, we configure a rolling deployment with 3 steps:
 
  - A Script to remove the node from the Load Balancer
  - Deployment of the Web Application
  - A script to add the node back into the Load Balancer 
 
- To achieve an incremental release in Octopus, we need to make the **Rolling window** size lower than the total number of deployment targets. In my example I have set this to `1`, as you can see below
+ To achieve an incremental release in Octopus, we need to make our **Window size** lower than the total number of deployment targets. In my example I have set this to `1`, as you can see below:
 
  ![](od-rolling-win-size.png "width=500")
 
@@ -656,15 +658,17 @@ And thats all there is to it! Check out our [docs](https://octopus.com/docs/depl
 You can view this Octopus project set-up in our [Samples](https://samples.octopus.app/app#/Spaces-45/projects/rolling-deployments/deployments) instance
 :::
 
-## A word on the database
+## A word on databases
 
-Usually one of the big sticking points with Rolling deployments I haven't discussed yet, is the database. Performing rolling deployments which involve some persistent storage such as a database can sometimes be tricky, though not impossible. The devil is always in the detail.
-If you want to perform rolling deployments with database changes involved, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
+Usually one of the big sticking points with Rolling deployments I haven't discussed yet, is the database. Performing rolling deployments which involve some kind of persistent storage can sometimes be tricky, though not impossible. The devil is always in the detail.
 
-We have a series of posts on [database deployments](http://octopus.com/database-deployments) that discuss this and more.
+
+If you want to perform rolling deployments which includes database changes, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
+
+We have an excellent series of posts on [database deployments](http://octopus.com/database-deployments) that discuss this topic and more.
 
 ## Wrapping up
 
-No matter which tooling you are using, rolling deployments is just one pattern available in your toolset to optimise deployment of your software. But with an incremental approach, it allows you to keep your applications online whilst rolling out newer versions of your software in a controlled manner, typically with native support for rollbacks - making it a firm favourite of mine for minimal disruption.
+No matter which tooling you are using, rolling deployments is just one pattern available in your toolset to optimise deployment of your software. But with an incremental approach, it allows you to keep your applications online whilst rolling out newer versions of your software in a controlled manner, often with native support for rollbacks - making it a firm favourite of mine for minimal disruption.
 
 Feel free to leave a comment, and let us know what you think about rolling deployments!
