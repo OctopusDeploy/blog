@@ -30,7 +30,7 @@ The three key components identified in this definition are:
 
 In practice, a *resource* means a Custom Resource Definition (CRD), a *controller* means an application integrated into and responding to the Kubernetes API, and the *application-specific knowledge* is the logic implemented in the *controller* to implement high level concepts from standard Kubernetes resources.
 
-To understand the operator pattern, let's look at a simple example written in Kotlin. This operator will extend the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with a image known to provide an sample web server.
+To understand the operator pattern, let's look at a simple example written in Kotlin. The code for this operator is available in [GitHub](https://github.com/OctopusSamples/KotlinK8SOperator), and is based on the code from this [RedHat blog](https://developers.redhat.com/blog/2019/10/07/write-a-simple-kubernetes-operator-in-java-using-the-fabric8-kubernetes-client/). This operator will extend the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with a image known to provide an sample web server.
 
 The CRD meets the *resource* requirement, the code we'll write interacting with the Kubernetes API meets the *controller* requirement, and the knowledge that a particular Docker image is used to implement a sample web server is the *application-specific knowledge*.
 
@@ -783,3 +783,15 @@ metadata:
   resourceVersion: ""
   selfLink: ""
 ```
+
+## The power of operators
+
+Without an operator, the concept of a test web server lived outside of the cluster. Developer may have emailed around the YAML they use to create test pods with, but more likely everyone had their own opinion of what a test web server was.
+
+The operator we created extends our Kubernetes cluster with a specific implementation of a test web server. Encapsulating this business knowledge allows the cluster to create and manage high level concepts specific to our environment.
+
+Creating and managing new types of things is just one example of what an operator can do. Automating tasks like security scans, reporting and load testing are all valid use cases for operators. A list of popular operators is available [here](https://github.com/operator-framework/awesome-operators).
+
+## Conclusion
+
+Operators are a much hyped but often poorly understood pattern. With the definition from the original blog post describing operators we saw the three simple parts to an operator: a resource to define them, a controller to act on the Kubernetes resources, and logic to implement application specific knowledge. We then implemented a simple operator in Kotlin to create test web servers.
