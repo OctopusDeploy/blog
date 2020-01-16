@@ -29,13 +29,13 @@ To build Java, you need the Java Development Kit (JDK) on your build agent, whic
 ### Maven on the build agent
 The next thing we need to do is install Maven on our build agent.  Maven doesn’t have an installer, it’s a .zip file that needs to be extracted and placed on the build agent. Similar to Java, we need to configure the Environment Variables:
 
-- Create MAVEN_HOME and point it to where we extracted Maven (i.e., c:\maven).
+- Create MAVEN_HOME and point it to the location where Maven was extracted (i.e., c:\maven).
 - Add the \bin folder to the Path Environment Variable (i.e., c:\maven\bin).
 
 ### Add the Maven capability
-If you‘re creating a new build agent, this step might not be necessary, part of the agent installation scans the machine for capabilities automatically add Maven if it’s found.  If you’re using an existing agent, you need to go into Azure DevOps (ADO) and add the capability to the agent manually.
+If you‘re creating a new build agent, this step might not be necessary, part of the agent installation scans the machine for capabilities and will automatically add Maven if it’s found.  If you’re using an existing agent, you need to go into Azure DevOps (ADO) and add the capability to the agent manually.
 
-Navigate to the Agent Pools section of ADO.  Select the agent you want to modify and click on **Capabilities**:
+Navigate to the Agent Pools section of ADO.  Select the agent you want to modify and click **Capabilities**:
 
 ![](ado-agent-pools.png)
 
@@ -66,20 +66,14 @@ There were some tweaks I needed to make to the POM.XML (Maven Project Object Mod
 - Update the `cssDestinationFolder` attribute.
 
 #### Making the version number dynamic
-The version number in the original project was hardcoded, but I wanted to make this a dynamic value based on the build number.  This is easily accomplished with variables which are inserted into the Maven build process. Locate `<version>5.2.1</version>` in the POM.xml file and change it to:
-
-```
-...
-<version>${project.versionNumber}</version>
-...
-```
+The version number in the original project was hardcoded, but I wanted to make this a dynamic value based on the build number.  This is easily accomplished with variables which are inserted into the Maven build process. Locate `<version>5.2.1</version>` in the POM.xml file and change it to `<version>${project.versionNumber}</version>`.
 
 :::hint
 The variable name `project.versionNumber` is the name I chose, but you can name it whatever you want.
 :::
 
 #### Change the active database profile to MySQL
-The author(s) of this repo did a fantastic job of making this application support multiple database backends: HyperSQL, MySQL, and PostgreSQL.  The default is set to the HyperSQL profile (HSQLDB).  To change it to MySQL was a simple matter of moving the `<activation>` XML node from the HSQLDB profile to the MySQL profile.  
+The author(s) of this repo did a fantastic job of making this application support multiple database backends: HyperSQL, MySQL, and PostgreSQL.  The default is set to the HyperSQL profile (HSQLDB).  To change it to MySQL was simply a matter of moving the `<activation>` XML node from the HSQLDB profile to the MySQL profile.  
 
 To do this:
 
@@ -123,7 +117,7 @@ When the Maven project is compiled, the properties of the active database profil
 ```
 
 #### Alter the finalName attribute
-The `finalName` attribute of the POM.XML is the name the .war archive will be given when the project is packaged.  The default `finalName` is petclinic:
+The `finalName` attribute of the POM.XML is the name the .war archive will be given when the project is packaged.  The default `finalName` is `petclinic`:
 
 ```
 <finalName>petclinic</finalName>
@@ -205,9 +199,7 @@ Fill in the task input fields:
 - Goal(s):
     - `clean package dependency:purge-local-repository`
 - Options:
-```
--Dproject.versionNumber=$(Build.BuildNumber) -DdatabaseServerName=$(DatabaseServerName) -DdatabaseName=$(DatabaseName) -DskipTests=$(SkipTests)
-```
+    - `-Dproject.versionNumber=$(Build.BuildNumber) -DdatabaseServerName=$(DatabaseServerName) -DdatabaseName=$(DatabaseName) -DskipTests=$(SkipTests)`
 
 :::hint
 The dependency:purge-local-repository goal may not be necessary, but I like to clean my sources folder when building.
@@ -220,13 +212,13 @@ Navigate to Variables and create the following:
 - DatabaseServerName: `#{Project.MySql.Database.ServerName}`
 - SkipTests: `true`
 
-If you’re not familiar with the #{} syntax used for the variable value, it’s used for variable replacement in Octopus Deploy.
+If you’re not familiar with the #{} syntax used for the variable value, Octopus Deploy uses this for variable replacement.
 
 Skipping the tests was necessary as the tests attempt to connect to the database backend.  Since we are making them variables for our deployment process, the connection attempt will fail and fail the build entirely:
 
 ![](ado-project-variables.png)
 
-You’ll note that there are two additional variables defined; `MajorVersion` and `MinorVersion`.  I use these variables to create my Build Number format within ADO.  To set this, click on the Options tab and fill in the Build number format, I used `$(MajorVersion).$(MinorVersion).$(Year:yy)$(DayOfYear).$(Date:Hmmss)`:
+You’ll note that there are two additional variables defined; `MajorVersion` and `MinorVersion`.  I use these variables to create my Build Number format within ADO.  To set this, click the Options tab and fill in the Build number format, I used `$(MajorVersion).$(MinorVersion).$(Year:yy)$(DayOfYear).$(Date:Hmmss)`:
 
 ![](ado-build-number-format.png)
 
@@ -254,13 +246,14 @@ The last part of our build process is pushing the packages that we created to ou
  - `$(Build.SourcesDirectory)\target\*.war`
  - `$(build.artifactstagingdirectory)\*.nupkg`
 
+
  ![](ado-build-push-packages.png)
 
  That’s it for your build definition.
 
 ## Creating the Octopus Deploy project
 
-In the Octopus Deploy web portal, click on the Projects tab, then click **ADD PROJECT**:
+In the Octopus Deploy web portal, click the Projects tab, then click **ADD PROJECT**:
 
  ![](octopus-create-project.png)
 
@@ -270,7 +263,7 @@ Give the project a name then click **SAVE**.  Optionally, you can select which p
 
 ### Variables
 
-After we click **SAVE**, we’re taken directly into our brand new project. Click on Variables to define some of our variables real quick, as we need them to exist first before we define our process:
+After we click **SAVE**, we’re taken directly into our brand new project. Click on Variables to define some of our variables, as we need them to exist first before we define our process:
 
 ![](octopus-project-variables.png)
 
@@ -280,7 +273,7 @@ On the Variables screen, we create the following variables:
 - `Project.MySql.Database.User.Name`
 - `Project.MySql.Database.User.Password`
 
-Namespacing your variables is considered a Best Practice for Octopus Deploy; it helps users identify where the variable is coming from and what it’s used for.
+Namespacing your variables is considered a best practice for Octopus Deploy; it helps users identify where the variable is coming from and what it’s used for.
 
 #### Project.MySql.Database.Name
 This variable is one of the variables we set up with our build process using the #{} syntax.  We’ll cover how the variable is replaced soon.  For now, give this variable the value of your database name.  In my case, I used `petclinic`.
@@ -302,7 +295,7 @@ With our variables defined, let’s create our process.  Click on the **Process*
 ![](octopus-project-process-tab.png)
 
 #### Add Deploy Package Step
-On the Process screen, click on the **ADD STEP** button:
+On the Process screen, click the **ADD STEP** button:
 
 ![](octopus-project-add-step.png)
 
@@ -311,11 +304,11 @@ Choose the **Package** category and the **Deploy a Package** step:
 ![](octopus-project-add-deploy-package.png)
 
 Fill in the properties of the step:
-- Step Name: Deploy Flyway package.
-- On Targets Roles: PetClinic-Db (this is what I named the role).
-- Package: petclinic.flyway.
+- Step Name: `Deploy Flyway package`.
+- On Targets Roles: `PetClinic-Db` (this is what I named the role).
+- Package: `petclinic.flyway`.
 
-This is what the step looks like after you click SAVE:
+This is what the step looks like after you click **SAVE**:
 
 ![](octopus-flyway-package-step.png)
 
@@ -330,14 +323,14 @@ Select **Substitute Variables in Files**:
 
 ![](octopus-project-step-variable-replacement.png)
 
-Click **OK**, then scroll down and expand the Substitute Variables in Files section.  For **Target files**, enter the value `sql/*.sql` and click SAVE:
+Click **OK**, then scroll down and expand the Substitute Variables in Files section.  For **Target files**, enter the value `sql/*.sql` and click **SAVE**:
 
 ![](octopus-project-step-variable-replacement-sql.png)
 
 #### Add the Flyway Migrate step
 This step is available on the Community Step Template Library.
 
-As before, click the **ADD STEP** button.  When the window comes up, type in flyway to filter the steps.  Immediately, you’ll notice all categories except Community Steps get grayed out.  Mouse-over Flyway Migrate and click on **Install and Add**:
+As before, click the **ADD STEP** button.  When the window comes up, type in flyway to filter the steps. Mouse-over Flyway Migrate and click **Install and Add**:
 
 ![](octopus-community-steps.png)
 
@@ -354,7 +347,7 @@ Fill in the required properties of the step template:
 - Target -user: `#{Project.MySql.Database.User.Name}`
 - Target -password: `#{Project.MySql.Database.User.Password}`
 
-Since this is a sensitive variable, we need to click on the Bind icon to set it to use a variable:
+Since this is a sensitive variable, we need to click the Bind icon to set it to use a variable:
 
 ![](octopus-project-step-bind.png)
 ![](octopus-project-step-password.png)
@@ -362,7 +355,7 @@ Since this is a sensitive variable, we need to click on the Bind icon to set it 
 That’s it for this step, click **SAVE**.
 
 ::: hint
-At the time of this writing, the Deploy a Package step and the Flyway migrate step must be executed on a target.  However, a worker friendly version of a Flyway Migrate step is under review.
+At the time of writing, the Deploy a Package step and the Flyway migrate step must be executed on a target.  However, a worker friendly version of a Flyway Migrate step is under review.
 :::
 
 #### Deploying the website step
@@ -372,7 +365,7 @@ As before, click **ADD STEP**, then filter by Wildfly.  Choose the **Deploy to W
 
 ![](octopus-project-add-wildfly.png)
 
-Fill in the details of the step template:
+Fill in the details for the step template:
 - Step Name: `Deploy Petclinic Web`
 - On Targets in Roles: `Petclinic-Web`
 - Package ID: `petclinic.web`
@@ -383,7 +376,7 @@ Fill in the details of the step template:
 
 ![](octopus-project-step-wildfly.png)
 
-We’ve one last thing to do with the Wildfly step, replace the #{} variables in the datasource-config.xml.  Click the **CONFIGURE FEATURES** button and select the **Substitute Variables in Files** as we did in the **Deploy a Package** step. In the **Target files** section, enter the following value
+There’s one last thing to configure for the Wildfly step, replace the #{} variables in the datasource-config.xml.  Click the **CONFIGURE FEATURES** button and select the **Substitute Variables in Files** as we did in the **Deploy a Package** step. In the **Target files** section, enter the following value
 `WEB-INF/classes/spring/datasource-config.xml`.
 
 :::hint
@@ -413,9 +406,9 @@ When finished, you should have a screen that looks like this:
 
 ![](octopus-project-deployment-complete.png)
 
-You’ll note that the deployment to the web server got deployed to two servers, Wildfly1 (Windows) and Wildfly2 (Linux).
+Note the deployment to the web server got deployed to two servers, Wildfly1 (Windows) and Wildfly2 (Linux).
 
-Click on the **TASK LOG** tab to see more detailed information about our deployment:
+Click the **TASK LOG** tab to see more detailed information about our deployment:
 
 Flyway:
 ![](octopus-project-deployment-mysql.png)
