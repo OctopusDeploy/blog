@@ -14,7 +14,7 @@ Most environments will initially treat their Kubernetes cluster as tool to orche
 
 When used in this way, developers and operations staff sit outside of the cluster and look in. The cluster is managed with calls to `kubectl` made in an ad-hoc fashion or from a CI/CD pipeline. This means Kubernetes itself is quite naïve; it understand how to reconfigure itself to match the desired state, but has no understanding of what that state represents.
 
-For example, a common Kubernetes deployment might see three pods created: a front end web application, a backend web service and a database. The relationship between these pods is well understood by the developers deploying them, but Kubernetes only sees three pods to be deployed, monitored and exposed to network traffic.
+For example, a common Kubernetes deployment might see three pods created: a front end web application, a backend web service and a database. The relationship between these pods is well understood by the developers deploying them as being a classic three-tier architecture, but Kubernetes literally sees  nothing more than three pods to be deployed, monitored and exposed to network traffic.
 
 The operator pattern has evolved as a way of encapsulating business knowledge and operational workflows in the Kubernetes cluster itself, allowing a cluster to implement high level, domain specific concepts with the common, low level resources like pods, services, deployments etc.
 
@@ -28,11 +28,11 @@ The three key components identified in this definition are:
 * controller
 * domain or application-specific knowledge
 
-In practice, a *resource* means a Custom Resource Definition (CRD), a *controller* means an application integrated into the Kubernetes API, and the *application-specific knowledge* is the logic implemented in the *controller* to implement high level concepts (like a three-tier application) from standard Kubernetes resources.
+In practice, a *resource* means a Custom Resource Definition (CRD), a *controller* means an application integrated into and responding to the Kubernetes API, and the *application-specific knowledge* is the logic implemented in the *controller* to implement high level concepts from standard Kubernetes resources.
 
-To understand the operator pattern, let's look at a simple example written in Kotlin. This operator will enrich the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with a image known to provide an sample web server.
+To understand the operator pattern, let's look at a simple example written in Kotlin. This operator will extend the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with a image known to provide an sample web server.
 
-The CRD meets the *resource* requirement, the code we'll write interacting with the Kubernetes API meets the *controller* requirement, and the knowledge that a particular Docker image can be used to implement a sample web server is the *application-specific knowledge*.
+The CRD meets the *resource* requirement, the code we'll write interacting with the Kubernetes API meets the *controller* requirement, and the knowledge that a particular Docker image is used to implement a sample web server is the *application-specific knowledge*.
 
 ## The pom.xml file
 
@@ -195,7 +195,7 @@ data class WebServer(var spec: WebServerSpec = WebServerSpec(),
 
 The spec for our CRD is represented in the `WebServerSpec` class. This class is extremely simple, with a single field called `replicas` indicating how many web server pods this CRD is responsible for creating:
 
-```Kotlin
+```
 package com.octopus.webserver.operator.crd
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
@@ -211,12 +211,13 @@ The status of our CRD is represented in the `WebServerStatus` class. It contains
 package com.octopus.webserver.operator.crd
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import io.fabric8.kubernetes.api.model.KubernetesResource
 
 @JsonDeserialize
-data class WebServerStatus(var count: Int = 0)
+data class WebServerStatus(var count: Int = 0) : KubernetesResource
 ```
 
-A final class called `WebServerList` represents a collection of the CRD resources. There are no custom properties of logic in the class, as it is boilerplate code required by the fabric8 library:
+The final two classes, called `WebServerList` and `DoneableWebServer`, contain no custom properties of logic, and are boilerplate code required by the fabric8 library:
 
 ```
 package com.octopus.webserver.operator.crd
@@ -224,4 +225,561 @@ package com.octopus.webserver.operator.crd
 import io.fabric8.kubernetes.client.CustomResourceList
 
 class WebServerList : CustomResourceList<WebServer>()
+```
+
+```
+package com.octopus.webserver.operator.crd
+
+import io.fabric8.kubernetes.client.CustomResourceDoneable
+import io.fabric8.kubernetes.api.builder.Function
+
+class DoneableWebServer(resource: WebServer, function: Function<WebServer,WebServer>) :
+        CustomResourceDoneable<WebServer>(resource, function)
+```
+
+## The main function
+
+The `main()` function is the entry point to our controller. Here is the complete code:
+
+```
+package com.octopus.webserver.operator
+
+import com.octopus.webserver.operator.controller.WebServerController
+import com.octopus.webserver.operator.crd.WebServer
+import com.octopus.webserver.operator.crd.WebServerList
+import io.fabric8.kubernetes.api.model.Pod
+import io.fabric8.kubernetes.api.model.PodList
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionBuilder
+import io.fabric8.kubernetes.client.DefaultKubernetesClient
+import io.fabric8.kubernetes.client.dsl.base.CustomResourceDefinitionContext
+
+
+fun main(args: Array<String>) {
+    val client = DefaultKubernetesClient()
+    client.use {
+        val namespace = client.namespace ?: "default"
+        val podSetCustomResourceDefinition = CustomResourceDefinitionBuilder()
+                .withNewMetadata().withName("webservers.demo.k8s.io").endMetadata()
+                .withNewSpec()
+                .withGroup("demo.k8s.io")
+                .withVersion("v1alpha1")
+                .withNewNames().withKind("WebServer").withPlural("webservers").endNames()
+                .withScope("Namespaced")
+                .endSpec()
+                .build()
+        val webServerCustomResourceDefinitionContext = CustomResourceDefinitionContext.Builder()
+                .withVersion("v1alpha1")
+                .withScope("Namespaced")
+                .withGroup("demo.k8s.io")
+                .withPlural("webservers")
+                .build()
+        val informerFactory = client.informers()
+        val podSharedIndexInformer = informerFactory.sharedIndexInformerFor(
+                Pod::class.java,
+                PodList::class.java,
+                10 * 60 * 1000.toLong())
+        val webServerSharedIndexInformer = informerFactory.sharedIndexInformerForCustomResource(
+                webServerCustomResourceDefinitionContext,
+                WebServer::class.java,
+                WebServerList::class.java,
+                10 * 60 * 1000.toLong())
+        val webServerController = WebServerController(
+                client,
+                podSharedIndexInformer,
+                webServerSharedIndexInformer,
+                podSetCustomResourceDefinition,
+                namespace)
+
+        webServerController.create()
+        informerFactory.startAllRegisteredInformers()
+
+        webServerController.run()
+    }
+}
+```
+
+We create a `DefaultKubernetesClient`, which gives us access to the Kubernetes API:
+
+```
+val client = DefaultKubernetesClient()
+```
+
+The client knows how to configure itself based on the environment it is executed in. We'll run this code locally when testing, meaning the client will access the details of the Kubernetes cluster from the `~/.kube/config` file. The namespace is then extracted from the client's configuration, or set to `default` if no namespace setting was found:
+
+```
+val namespace = client.namespace ?: "default"
+```
+
+The `CustomResourceDefinitionBuilder` is used to define the `WebServer` custom resource that this controller manages. This will be used when working with the client to update resources in the cluster.
+
+```
+val podSetCustomResourceDefinition = CustomResourceDefinitionBuilder()
+        .withNewMetadata().withName("webservers.demo.k8s.io").endMetadata()
+        .withNewSpec()
+        .withGroup("demo.k8s.io")
+        .withVersion("v1alpha1")
+        .withNewNames().withKind("WebServer").withPlural("webservers").endNames()
+        .withScope("Namespaced")
+        .endSpec()
+        .build()
+```
+
+The controller works by listening to events indicating that resources it should be managing have been changed. To listen to events relating to the `WebServer` CRD, we create a `CustomResourceDefinitionContext`.
+
+```
+val webServerCustomResourceDefinitionContext = CustomResourceDefinitionContext.Builder()
+        .withVersion("v1alpha1")
+        .withScope("Namespaced")
+        .withGroup("demo.k8s.io")
+        .withPlural("webservers")
+        .build()
+```
+
+We are notified of events through informers, and the informers are created from a factory provided by the client.
+
+```
+val informerFactory = client.informers()
+```
+
+Here we create an informer that will notify us of events relating to pods. Because pods are a standard resource in Kubernetes, creating this informer did not require a `CustomResourceDefinitionContext`:
+
+```
+val podSharedIndexInformer = informerFactory.sharedIndexInformerFor(
+        Pod::class.java,
+        PodList::class.java,
+        10 * 60 * 1000.toLong())
+```
+
+Here we create an informer that will notify us of events relating to our CRD. This required the `CustomResourceDefinitionContext` we created previously:
+
+```
+val webServerSharedIndexInformer = informerFactory.sharedIndexInformerForCustomResource(
+        webServerCustomResourceDefinitionContext,
+        WebServer::class.java,
+        WebServerList::class.java,
+        10 * 60 * 1000.toLong())
+```
+
+The logic of the operator is contained in the controller. In this project the `WebServerController` class plays the role of the controller:
+
+```
+val webServerController = WebServerController(
+        client,
+        podSharedIndexInformer,
+        webServerSharedIndexInformer,
+        podSetCustomResourceDefinition,
+        namespace)
+```
+
+The controller links up event handlers in the `create()` method, we start listening for events, and then enter the reconcile loop by calling the `run()` method:
+
+```
+webServerController.create()
+informerFactory.startAllRegisteredInformers()
+
+webServerController.run()
+```
+
+## The controller
+
+The `WebServerController` class implements the controller in our operator. Its job is to listen for changes to Kubernetes resources and reconcile the current state with the desired state. The complete code for the class is shown below:
+
+```
+package com.octopus.webserver.operator.controller
+
+import com.octopus.webserver.operator.crd.DoneableWebServer
+import com.octopus.webserver.operator.crd.WebServer
+import com.octopus.webserver.operator.crd.WebServerList
+import io.fabric8.kubernetes.api.model.OwnerReference
+import io.fabric8.kubernetes.api.model.Pod
+import io.fabric8.kubernetes.api.model.PodBuilder
+import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition
+import io.fabric8.kubernetes.client.KubernetesClient
+import io.fabric8.kubernetes.client.informers.ResourceEventHandler
+import io.fabric8.kubernetes.client.informers.SharedIndexInformer
+import io.fabric8.kubernetes.client.informers.cache.Cache
+import io.fabric8.kubernetes.client.informers.cache.Lister
+import java.util.*
+import java.util.AbstractMap.SimpleEntry
+import java.util.concurrent.ArrayBlockingQueue
+
+
+class WebServerController(private val kubernetesClient: KubernetesClient,
+                          private val podInformer: SharedIndexInformer<Pod>,
+                          private val webServerInformer: SharedIndexInformer<WebServer>,
+                          private val webServerResourceDefinition: CustomResourceDefinition,
+                          private val namespace: String) {
+    private val APP_LABEL = "app"
+    private val webServerLister = Lister<WebServer>(webServerInformer.indexer, namespace)
+    private val podLister = Lister<Pod>(podInformer.indexer, namespace)
+    private val workQueue = ArrayBlockingQueue<String>(1024)
+
+    fun create() {
+        webServerInformer.addEventHandler(object : ResourceEventHandler<WebServer> {
+            override fun onAdd(webServer: WebServer) {
+                enqueueWebServer(webServer)
+            }
+
+            override fun onUpdate(webServer: WebServer, newWebServer: WebServer) {
+                enqueueWebServer(newWebServer)
+            }
+
+            override fun onDelete(webServer: WebServer, b: Boolean) {}
+        })
+
+        podInformer.addEventHandler(object : ResourceEventHandler<Pod> {
+            override fun onAdd(pod: Pod) {
+                handlePodObject(pod)
+            }
+
+            override fun onUpdate(oldPod: Pod, newPod: Pod) {
+                if (oldPod.metadata.resourceVersion == newPod.metadata.resourceVersion) {
+                    return
+                }
+                handlePodObject(newPod)
+            }
+
+            override fun onDelete(pod: Pod, b: Boolean) {}
+        })
+    }
+
+    private fun enqueueWebServer(webServer: WebServer) {
+        val key: String = Cache.metaNamespaceKeyFunc(webServer)
+        if (key.isNotEmpty()) {
+            workQueue.add(key)
+        }
+    }
+
+    private fun handlePodObject(pod: Pod) {
+        val ownerReference = getControllerOf(pod)
+
+        if (ownerReference?.kind?.equals("WebServer", ignoreCase = true) != true) {
+            return
+        }
+
+        webServerLister
+                .get(ownerReference.name)
+                ?.also { enqueueWebServer(it) }
+    }
+
+    private fun getControllerOf(pod: Pod): OwnerReference? =
+            pod.metadata.ownerReferences.firstOrNull { it.controller }
+
+    private fun reconcile(webServer: WebServer) {
+        val pods = podCountByLabel(APP_LABEL, webServer.metadata.name)
+        val existingPods = pods.size
+
+        webServer.status.count = existingPods
+        updateStatus(webServer)
+
+        if (existingPods < webServer.spec.replicas) {
+            createPod(webServer)
+        } else if (existingPods > webServer.spec.replicas) {
+            kubernetesClient
+                    .pods()
+                    .inNamespace(webServer.metadata.namespace)
+                    .withName(pods[0])
+                    .delete()
+        }
+    }
+
+    private fun updateStatus(webServer: WebServer) =
+            kubernetesClient.customResources(webServerResourceDefinition, WebServer::class.java, WebServerList::class.java, DoneableWebServer::class.java)
+                    .inNamespace(webServer.metadata.namespace)
+                    .withName(webServer.metadata.name)
+                    .updateStatus(webServer)
+
+    private fun podCountByLabel(label: String, webServerName: String): List<String> =
+            podLister.list()
+                    .filter { it.metadata.labels.entries.contains(SimpleEntry(label, webServerName)) }
+                    .filter { it.status.phase == "Running" || it.status.phase == "Pending" }
+                    .map { it.metadata.name }
+
+    private fun createPod(webServer: WebServer) =
+            createNewPod(webServer).let { pod ->
+                kubernetesClient.pods().inNamespace(webServer.metadata.namespace).create(pod)
+            }
+
+    private fun createNewPod(webServer: WebServer): Pod =
+            PodBuilder()
+                    .withNewMetadata()
+                    .withGenerateName(webServer.metadata.name.toString() + "-pod")
+                    .withNamespace(webServer.metadata.namespace)
+                    .withLabels(Collections.singletonMap(APP_LABEL, webServer.metadata.name))
+                    .addNewOwnerReference()
+                    .withController(true)
+                    .withKind("WebServer")
+                    .withApiVersion("demo.k8s.io/v1alpha1")
+                    .withName(webServer.metadata.name)
+                    .withNewUid(webServer.metadata.uid)
+                    .endOwnerReference()
+                    .endMetadata()
+                    .withNewSpec()
+                    .addNewContainer().withName("nginx").withImage("nginxdemos/hello").endContainer()
+                    .endSpec()
+                    .build()
+
+    fun run() {
+        blockUntilSynced()
+        while (true) {
+            try {
+                workQueue
+                        .take()
+                        .split("/")
+                        .toTypedArray()[1]
+                        .let { webServerLister.get(it) }
+                        ?.also { reconcile(it) }
+            } catch (interruptedException: InterruptedException) {
+                // ignored
+            }
+        }
+    }
+
+    private fun blockUntilSynced() {
+        while (!podInformer.hasSynced() || !webServerInformer.hasSynced()) {}
+    }
+}
+```
+
+The `create()` method assigns anonymous classes as informer event handlers. The event handlers identify instances of the `WebServer` CRDs that need to be processed by calling either `enqueueWebServer()` or `handlePodObject()`:
+
+```
+fun create() {
+        webServerInformer.addEventHandler(object : ResourceEventHandler<WebServer> {
+            override fun onAdd(webServer: WebServer) {
+                enqueueWebServer(webServer)
+            }
+
+            override fun onUpdate(webServer: WebServer, newWebServer: WebServer) {
+                enqueueWebServer(newWebServer)
+            }
+
+            override fun onDelete(webServer: WebServer, b: Boolean) {}
+        })
+
+        podInformer.addEventHandler(object : ResourceEventHandler<Pod> {
+            override fun onAdd(pod: Pod) {
+                handlePodObject(pod)
+            }
+
+            override fun onUpdate(oldPod: Pod, newPod: Pod) {
+                if (oldPod.metadata.resourceVersion == newPod.metadata.resourceVersion) {
+                    return
+                }
+                handlePodObject(newPod)
+            }
+
+            override fun onDelete(pod: Pod, b: Boolean) {}
+        })
+    }
+```
+
+`enqueueWebServer()` creates a key identifying the `WebServer` CRD and adds it to the `workQueue`:
+
+```
+private fun enqueueWebServer(webServer: WebServer) {
+    val key: String = Cache.metaNamespaceKeyFunc(webServer)
+    if (key.isNotEmpty()) {
+        workQueue.add(key)
+    }
+}
+```
+
+`handlePodObject()` first determines if the pod is managed by a `WebServer` through the ownerReference. If it is, the owning `WebServer` is added to the `workQueue` by calling `enqueueWebServer()`:
+
+```
+private fun handlePodObject(pod: Pod) {
+    val ownerReference = getControllerOf(pod)
+
+    if (ownerReference?.kind?.equals("WebServer", ignoreCase = true) != true) {
+        return
+    }
+
+    webServerLister
+            .get(ownerReference.name)
+            ?.also { enqueueWebServer(it) }
+}
+
+private fun getControllerOf(pod: Pod): OwnerReference? =
+        pod.metadata.ownerReferences.firstOrNull { it.controller }
+```
+
+`reconcile()` provides the logic that ensures the cluster has as many pods as required by the `WbeServer` CRD. It calls `podCountByLabel()` to find out how many pods exist, and updates the status of the CRD with a call to `updateStatus()`. If there are too few pods to meet the requirements, `createPod()` is called. If there are too many pods, one is deleted.
+
+By continually creating or deleting pods to push the cluster towards the desired state, we will eventually satisfy the requirements of the `WebServer` CRD:
+
+```
+private fun reconcile(webServer: WebServer) {
+    val pods = podCountByLabel(APP_LABEL, webServer.metadata.name)
+    val existingPods = pods.size
+
+    webServer.status.count = existingPods
+    updateStatus(webServer)
+
+    if (existingPods < webServer.spec.replicas) {
+        createPod(webServer)
+    } else if (existingPods > webServer.spec.replicas) {
+        kubernetesClient
+                .pods()
+                .inNamespace(webServer.metadata.namespace)
+                .withName(pods[0])
+                .delete()
+    }
+}
+```
+
+`updateStatus()` uses the client to update the status component of our CRD. The status component is unique because updating it does not trigger an update event in our code. Only a controller can update the status component of a resource, and Kubernetes has been designed to prevent status updates from trigger in an infinite event loop:
+
+```
+private fun updateStatus(webServer: WebServer) =
+        kubernetesClient.customResources(webServerResourceDefinition, WebServer::class.java, WebServerList::class.java, DoneableWebServer::class.java)
+                .inNamespace(webServer.metadata.namespace)
+                .withName(webServer.metadata.name)
+                .updateStatus(webServer)
+```
+
+`podCountByLabel()` returns the names of pods that are managed by the CRD that are either running or in the process of being created:
+
+```
+private fun podCountByLabel(label: String, webServerName: String): List<String> =
+        podLister.list()
+                .filter { it.metadata.labels.entries.contains(SimpleEntry(label, webServerName)) }
+                .filter { it.status.phase == "Running" || it.status.phase == "Pending" }
+                .map { it.metadata.name }
+```
+
+`createPod()` and `createNewPod()` create a new pod. It is here that our business logic has been codified with the use of the `nginxdemos/hello` Docker image as our test web server:
+
+```
+private fun createPod(webServer: WebServer) =
+        createNewPod(webServer).let { pod ->
+            kubernetesClient.pods().inNamespace(webServer.metadata.namespace).create(pod)
+        }
+
+private fun createNewPod(webServer: WebServer): Pod =
+        PodBuilder()
+                .withNewMetadata()
+                .withGenerateName(webServer.metadata.name.toString() + "-pod")
+                .withNamespace(webServer.metadata.namespace)
+                .withLabels(Collections.singletonMap(APP_LABEL, webServer.metadata.name))
+                .addNewOwnerReference()
+                .withController(true)
+                .withKind("WebServer")
+                .withApiVersion("demo.k8s.io/v1alpha1")
+                .withName(webServer.metadata.name)
+                .withNewUid(webServer.metadata.uid)
+                .endOwnerReference()
+                .endMetadata()
+                .withNewSpec()
+                .addNewContainer().withName("nginx").withImage("nginxdemos/hello").endContainer()
+                .endSpec()
+                .build()
+```
+
+The `run()` method is an infinite loop continually consuming a webserver CRDs added to the `workQueue` by the event listeners and passing it to the `reconcile()` method:
+
+```
+fun run() {
+    blockUntilSynced()
+    while (true) {
+        try {
+            workQueue
+                    .take()
+                    .split("/")
+                    .toTypedArray()[1]
+                    .let { webServerLister.get(it) }
+                    ?.also { reconcile(it) }
+        } catch (interruptedException: InterruptedException) {
+            // ignored
+        }
+    }
+}
+
+private fun blockUntilSynced() {
+    while (!podInformer.hasSynced() || !webServerInformer.hasSynced()) {}
+}
+```
+
+## The CRD YAML
+
+The final piece of the puzzle is the CRD itself. A CRD is simply another Kubernetes resource, and so we define it in the following YAML:
+
+```YAML
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: webservers.demo.k8s.io
+spec:
+  group: demo.k8s.io
+  version: v1alpha1
+  names:
+    kind: WebServer
+    plural: webservers
+  scope: Namespaced
+  subresources:
+    status: {}
+```
+
+## Putting it all together
+
+To run the operator we first need to apply the CRD YAML:
+
+```
+kubectl apply -f crd.yml
+```
+
+We then create an instance of our CRD with the YAML:
+
+```YAML
+apiVersion: demo.k8s.io/v1alpha1
+kind: WebServer
+metadata:
+  name: example-webserver
+spec:
+  replicas: 5
+```
+
+The controller can then be run locally. Because the client we used in our code knows how to configure itself based on where it is run, executing our code locally means that the client configures itself from the `~/.kube/config` file. In the screenshot below you can see the controller run directly from my IDE:
+
+![](intellij.png "width=500")
+
+The controller responds to the new webserver CRD and creates the required pods:
+
+```
+$ kubectl get pods
+NAME                         READY   STATUS    RESTARTS   AGE
+example-webserver-pod92ht9   1/1     Running   0          54s
+example-webserver-podgbz86   1/1     Running   0          54s
+example-webserver-podk58gz   1/1     Running   0          54s
+example-webserver-podkftmp   1/1     Running   0          54s
+example-webserver-podpwzrt   1/1     Running   0          54s
+```
+
+The status of the webserver resource is updated with the `count` of the pods it has successfully created:
+
+```
+$ kubectl get webservers -n default -o yaml
+apiVersion: v1
+items:
+- apiVersion: demo.k8s.io/v1alpha1
+  kind: WebServer
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"demo.k8s.io/v1alpha1","kind":"WebServer","metadata":{"annotations":{},"name":"example-webserver","namespace":"default"},"spec":{"replicas":5}}
+    creationTimestamp: "2020-01-16T20:19:23Z"
+    generation: 1
+    name: example-webserver
+    namespace: default
+    resourceVersion: "112308"
+    selfLink: /apis/demo.k8s.io/v1alpha1/namespaces/default/webservers/example-webserver
+    uid: 9eb08575-8fa1-4bc9-bb2b-6f11b7285b68
+  spec:
+    replicas: 5
+  status:
+    count: 5
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
 ```
