@@ -153,7 +153,7 @@ There's quite a lot going on in that command, so let's unpick what we are asking
 
 :::hint
 **Hint**
-When running ``service create`` for the first time, you may receive a warning, just as I did of: `This node is not a swarm manager`. To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
+When running ``service create`` for the first time, you may receive a warning, just as I did: `This node is not a swarm manager`. To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
 :::
 
 Executing this results in our service being deployed to Docker Swarm with 3 instances:
@@ -419,15 +419,15 @@ This will enable and open the dashboard on your local machine.
 * Verifying proxy health ...
 * Opening http://127.0.0.1:55436/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
 ```
-You can use it to deploy containerized applications, manage and interact with your cluster resources. For example, you can initiate a rolling update.
+Once open, you can use it to deploy containerized applications, manage and interact with your cluster resources:
 
 ![](minikube-dashboard.png "width=500")
 
-In order to perform a rolling update we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three ellipsis on the right hand side of the **Deployments** section:
+In order to perform a rolling update, firstly we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three ellipsis on the right hand side of the **Deployments** section:
 
 ![](minikube-dashboard-scale-ellipsis.png "width=500")
 
-For our Kubernetes application, I update the **Desired Replicas** to 3 replicas so I can perform a rolling update and then hit **Scale**.
+For our Kubernetes application, I update the **Desired Replicas** to 3 so I can perform a rolling update and then hit **Scale**.
 
 ![](minikube-dashboard-scale.png "width=500")
 
