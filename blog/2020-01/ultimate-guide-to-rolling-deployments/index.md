@@ -12,8 +12,9 @@ tags:
 
 ![Rolling Deployments](rolling-deployments.png)
 
-When tasked with deploying a new version of your application, such as a web site, I've often seen the approach where the entire site has been taken offline to accommodate the update. 
-If the majority of your customers are asleep, then that's probably acceptable. But what happens if your customers are using your applications 24-7? 
+When tasked with deploying a new version of your application, such as a web site, it's still common for teams to take their entire website down while they do deployments.
+
+If the majority of your customers only use your application during business hours, then this big-bang approach is probably acceptable. But what happens if your customers are using your applications 24-7? 
 
 Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using different tooling.
 
@@ -23,29 +24,33 @@ Today, users expect applications to be available all of the time and there are a
 
 ## What are rolling deployments?
 
-A rolling deployment is a deployment pattern (also known as an incremental, batched or ramped deployment) where new software is delivered, usually to a small subset of deployment targets at a time, until all of the targets have the updated version of software rolled out.
+A rolling deployment is a deployment pattern (also known as an incremental, batched or ramped deployment) where new software is delivered, usually to 1 or more deployment targets at a time, until all of the targets have the updated version of software rolled out.
 
 A typical process looks something like this:
 
- 1. With 4 nodes running `v1.0` of your application, drain the first 2 nodes to be updated, and take them out of the load-balancer pool. Leave the remaining 2 nodes online to serve traffic.
+ 1. With 2 nodes running `v1.0` of your application, drain the first node to be updated, and take it out of the load-balancer pool. Leave the remaining node online to serve traffic.
 
 ![Rolling Deployment: Draining nodes](rolling-deploy-1.png)
 
- 2. Stop the `v1.0` application from running, then deploy the new `v2.0` version of the application. Optionally, also verify that the deployment was successful by running tests on your newly deployed application. All the while, still maintaining 2 nodes running `v1.0` of your appplication.
+ 2. Stop the `v1.0` application from running, then deploy the new `v1.1` version. *Optionally*, verify that the deployment was successful by running tests on your newly deployed application. All the while, still maintaining at least one node running `v1.0` of your appplication.
 
  ![Rolling Deployment: Update nodes with new versions](rolling-deploy-2.png)
 
-3. Once the first 2 nodes have updated successfully, proceed with draining any additional nodes still running `v1.0` of your application, whilst your new `v2.0` version is now online serving traffic.
+3. Once the first node has updated successfully, proceed with draining the remaining node still running `v1.0` of your application, whilst your new `v1.1` version is now online serving traffic.
 
  ![Rolling Deployment: Drain remaining nodes in pool](rolling-deploy-3.png)
 
- 4. Stop the `v1.0` application on the remaining nodes from running, deploy the new `v2.0` version. Again, optionally verify the deployment was successful.
+ 4. Stop the `v1.0` application on the remaining node from running, deploy the new `v1.1` version. Again, optionally verify the deployment was successful.
 
  ![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-4.png)
  
- 5. Finally, once `v2.0` of your application has been deployed successfully to all 4 of your nodes, your rolling deployment is complete!
+ 5. Finally, once `v1.1` of your application has been deployed successfully to all of your nodes, your rolling deployment is complete!
 
 ![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-5.png)
+
+If you wanted to ramp up your rolling deployment and deliver a new version to more than one node simultaneously, say 2 for example, then it would look like this:
+
+![Rolling Deployment: Update multiple nodes in pool](rolling-deploy-multiple.png)
 
 This incremental approach is often favoured in web applications which sit behind a load balancer, as most load balancers support a concept known as `Connection draining`. This is simply allowing connections to a service to finish naturally, as well as preventing any new connections to be established. 
 
@@ -98,7 +103,7 @@ The HTML for the section I'm interested in is shown below:
 </div>
 ```
 
-The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-exampleapp) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-exampleapp/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [harrisonmeister/rolling-deploy-example](https://hub.docker.com/r/harrisonmeister/rolling-deploy-example). 
+The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-web-example) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-web-example/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [octopusdeploy/rolling-deploy-web-example](https://hub.docker.com/r/octopusdeploy/rolling-deploy-web-example). 
 
 I wanted to see just how easy it would be to perform a rolling deploy of this application using some popular technologies and tools, so I'll be demonstrating with:
 
@@ -117,18 +122,26 @@ Service's support a number of different options, including a rolling update poli
 I'm using a pre-built container image of our sample application and utilizng [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line manually. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings.
 
 :::hint
-I don't go through how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on [containers](https://octopus.com/blog/containerize-a-real-world-web-app).
+I don't go through how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on how to containerize a [real world application](https://octopus.com/blog/containerize-a-real-world-web-app), instead of a Hello world one.
 :::
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
 
 ```
-docker run -p 5001:5001 harrisonmeister/rolling-deploy-example:0.0.1
+docker run -p 5001:5001 octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
 Unsurprisingly, running this Docker image locally displays the web page:
 
 ![](docker-run.png "width=500")
+
+**Container clean-up**
+
+A quick-tidy up is needed next. To delete the container we created using the `run` command above, we need to stop it, and then remove it using the `rm` command:
+
+```
+docker rm $(docker stop $(docker ps -a -q --filter ancestor=octopusdeploy/rolling-deploy-web-example:0.0.1 --format="{{.ID}}"))
+```
 
 To deploy more than one instance of our container, we need to create our Docker service. This uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator under the hood.
 
@@ -140,7 +153,7 @@ Docker also supports Kubernetes as an orchestator when deploying containers usin
 So let's see what our command to create a service looks like:
 
 ```
-docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 harrisonmeister/rolling-deploy-example:0.0.1
+docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
 There's quite a lot going on in that command, so let's unpick what we are asking of Docker here:
@@ -149,7 +162,7 @@ There's quite a lot going on in that command, so let's unpick what we are asking
 - The `--publish published=5001,target=5001` specifies we want the service to be accessed on port 5001, using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service) which acts essentially like a software load-balancer.
 - The `--update-delay` configures the time delay (10s) between updates to a service task.
 - The `--update-parallelism` controls the maximum number of tasks that Docker will schedule simultaneously (1).
-- Lastly, we specify the image to use: `harrisonmeister/rolling-deploy-example:0.0.1`
+- Lastly, we specify the image to use: `octopusdeploy/rolling-deploy-web-example:0.0.1`
 
 :::hint
 **Hint**
@@ -195,7 +208,7 @@ RollbackConfig:
  Max failure ratio: 0
  Rollback order:    stop-first
 ContainerSpec:
- Image:         harrisonmeister/rolling-deploy-example:0.0.1@sha256:a81de2d040159c8c88ee4b67ac1345fdfc7cfdb4c4f09d43d26c4cae94f884e7
+ Image:         octopusdeploy/rolling-deploy-web-example:0.0.1@sha256:4da10d630025bf268b855b0b4afafa7334769ab6d0b3e75e11a3f11949708552
  Init:          false
 Resources:
 Endpoint Mode:  vip
@@ -208,10 +221,10 @@ Ports:
 
 #### Docker Service Update
 
-Now we can update the container image for `harrisonmeister/rolling-deploy-example` to `v0.0.2` by running the following command:
+Now we can update the container image for `octopusdeploy/rolling-deploy-web-example` to `v0.0.2` by running the following command:
 
 ```
-docker service update rolling-deploy-svc --image harrisonmeister/rolling-deploy-example:0.0.2
+docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.2
 ```
 
 Docker runs the update to each container, 1 task at a time just as we have configured it to:
@@ -246,8 +259,6 @@ Then browsing to the website shows the text which applies for `v0.0.2`
 
 ![](docker-service-v0.0.2.png "width=500")
 
-As you can see, it doesn't take much setup to get rolling deployments working in Docker.
-
 #### Docker Service Rollback
 
 Just as it's straight-forward to roll-out, it's also possible to manually rollback with a simple command in Docker.
@@ -255,10 +266,10 @@ Just as it's straight-forward to roll-out, it's also possible to manually rollba
 Firstly we will update to `v0.0.3` of the application by running:
 
 ```
-docker service update rolling-deploy-svc --image harrisonmeister/rolling-deploy-example:0.0.3
+docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.3
 ```
 
-We can verify the new `v0.0.3` version by checking the image for our service:
+We can verify the new `v0.0.3` version by checking the image used for our service:
 
 ```
 docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
@@ -267,7 +278,7 @@ docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rol
 This produces the result: 
 
 ```
-harrisonmeister/rolling-deploy-example:0.0.3@sha256:8bdd987fde93c225a98dafc5b3394f1fc975a3c2c01c2ec80503dd29b126cf32
+octopusdeploy/rolling-deploy-web-example:0.0.3@sha256:151a8f2aaed0192bf9f22eaeff487d546e6ff8fec4d0691e6697dede743b187c
 ```
 
 Because Docker Swarm knows the previous versions we have deployed, we can revert to the last version using the `rollback` command:
@@ -298,7 +309,7 @@ verify: Service converged
  The Docker [documentation](https://docs.docker.com/engine/reference/commandline/create/#options) has a full list of parameters you can use.
 :::
 
-Finally, we can verify the rollback was successful using the same command to inspect the service as before: 
+We can verify the rollback was successful using the same command to inspect the service as before: 
 
 ```
 docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
@@ -306,8 +317,20 @@ docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rol
 This results in the expected `v0.0.2` version being displayed: 
 
 ```
-harrisonmeister/rolling-deploy-example:0.0.2@sha256:ce164b71b80d95e2f6ea8fc0bb22b985efac23541842939779ccf4015969044c
+octopusdeploy/rolling-deploy-web-example:0.0.2@sha256:4843a91ba84ace97cb11a6e3f68827a8c28a628d509159910c868f9ad02c3053
 ```
+
+#### Docker Service clean-up
+
+Finally to remove our Docker service we just run the `rm` command:
+
+```
+docker service rm rolling-deploy-svc
+```
+
+#### Docker Summary
+
+As you can see, it doesn't take much setup to get rolling deployments working in Docker. Coupled with support for rollbacks also makes it an attractive option to consider.
 
 ### Kubernetes Rolling updates
 
@@ -371,7 +394,7 @@ I fixed the error by adding my `PATH` entry before the one added by Docker Deskt
 
 **Kubernetes Deployments**
 
-Now we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-example`, and set it to listen on port 5001.
+Now we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-web-example`, and set it to listen on port 5001.
 
 Google describes Kubernetes [Deployments](https://cloud.google.com/kubernetes-engine/docs/concepts/deployment) as items which:
 
@@ -384,7 +407,7 @@ This sounds perfect for a rolling deployment.
 To set up our Deployment for our application, we run the following command:
 
 ```
-kubectl create deployment rollingdeploy-minikube --image=harrisonmeister/rolling-deploy-example:0.0.1
+kubectl create deployment rollingdeploy-minikube --image=octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
 The output from this command confirms our Deployment has been successfully created:
@@ -477,10 +500,10 @@ Opening the url in a browser, and we can see that we have `v0.0.1` of our applic
 
 #### Kubernetes Rolling Update
 
-Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `harrisonmeister/rolling-deploy-example` by running the following command:
+Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `octopusdeploy/rolling-deploy-web-example` by running the following command:
 
 ```
-kubectl set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record
+kubectl set image deployment/rollingdeploy-minikube rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --record
 ```
 
 If all is well, you will get an output similar to this:
@@ -537,7 +560,7 @@ This will open up the template file in a text editor, and on my machine that's N
 You can edit this file interactively. Changing the Deployment Pod's template (the section within `.spec.template`) will result in triggering the Deployment's rollout. 
 
 :::hint
-**Note:**
+**Hint:**
 Other updates to a Deployment, like the scaling we did earlier doesn't result in a rollout being triggered.
 :::
 
@@ -550,8 +573,8 @@ A Successful rolling deployment is obviously what we all hope for, but it's inev
 With Kubernetes, all of a Deployment's rollout history is kept in the system by default. That means, you can rollback anytime you want.
 
 :::warning
- **Hint:**
- Whislt it's possible to change the amount of history that's stored for a Deployment's rollout (by modifying the revision history limit), it's not generally recommended. This limits your ability to rollback a deployment.
+ **Note:**
+ Whilst it's possible to change the amount of history that's stored for a Deployment's rollout (by modifying the revision history limit), it's not generally recommended. This limits your ability to rollback a deployment.
 :::
 
 To see the rollout history for our deployment, we can run:
@@ -565,7 +588,7 @@ This will display all of the changes to our `rollingdeploy-minikube` Deployment:
 ```
 REVISION  CHANGE-CAUSE
 1         <none>
-2         kubectl.exe set image deployment/rollingdeploy-minikube rolling-deploy-example=harrisonmeister/rolling-deploy-example:0.0.2 --record=true
+2         kubectl.exe set image deployment/rollingdeploy-minikube rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --record=true
 ```
 
 We can choose to revert back to the previously deployed version `v0.0.1` by running:
@@ -601,8 +624,8 @@ RollingUpdateStrategy:  25% max unavailable, 25% max surge
 Pod Template:
   Labels:  app=rollingdeploy-minikube
   Containers:
-   rolling-deploy-example:
-    Image:        harrisonmeister/rolling-deploy-example:0.0.1
+   rolling-deploy-web-example:
+    Image:        octopusdeploy/rolling-deploy-web-example:0.0.1
     Port:         <none>
     Host Port:    <none>
     Environment:  <none>
@@ -633,7 +656,7 @@ The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/ku
 
 Octopus has supported the concept of rolling deployments since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/rolling-deployments). 
 
-With the use of child steps, we can set-up our deployment process for the `rolling-deploy-example` application in Octopus.
+With the use of child steps, we can set-up our deployment process for the `rolling-deploy-web-example` application in Octopus.
 
 After creating a new project, we configure a rolling deployment with 3 steps:
 
@@ -662,10 +685,11 @@ You can view this Octopus project set-up in our [Samples](https://samples.octopu
 
 Usually one of the big sticking points with Rolling deployments I haven't discussed yet, is the database. Performing rolling deployments which involve some kind of persistent storage can sometimes be tricky, though not impossible. The devil is always in the detail.
 
-
 If you want to perform rolling deployments which includes database changes, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
 
+:::hint
 We have an excellent series of posts on [database deployments](http://octopus.com/database-deployments) that discuss this topic and more.
+:::
 
 ## Wrapping up
 
