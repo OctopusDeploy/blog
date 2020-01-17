@@ -10,7 +10,7 @@ tags:
  - DevOps
 ---
 
-Octopus Deploy is well known for its ability to easily automate the deployment of Microsoft technologies.  Though those are our roots, we also support deployments to Java, Docker, and Kubernetes.  In this post, I walk through how to build and deploy a Java-based web application that uses a MySQL backend database.
+In this post, I walk through how to build and deploy a Java-based web application that uses a MySQL backend database.
 
 ## Setting up the build server
 
