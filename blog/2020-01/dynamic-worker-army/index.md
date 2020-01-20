@@ -10,108 +10,52 @@ tags:
  - DevOps
 ---
 
-The advent of Infrastructure as Code (IaC) has been a tremendous leap forward, especially within the cloud space.  The ability to programatically define how the Infrastructure should look has led to environmental consistency and more predictable application behavior.  IaC has also given us the freedom to stop treating our servers as pets, since they can be spun up again the exact same way each time.  Cloud providers have taken IaC a step further by implementing what is commonly referred to as Auto Scaling.  Auto Scaling is the ability to dynamically spin up or tear down resources based on specific criteria.  A common use of Auto Scaling is eCommerce web applications running on cloud infrastructure.  When an increase in load is detected, Auto Scaling can provision additional resources, such as web servers.  Using IaC, the new web server is configured exactly like existing web servers.  Automated deployment softare, such as Octopus Deploy, then deploy the software to the newly provisioned server.  Once the deployment is complete, the server is added to the farm to distribute load.  When load subsides, the additional resources are no longer needed and are automatically torn down.  All of this can occur without a single human ever being involved. 
+The advent of Infrastructure as Code (IaC) has been a tremendous leap forward, especially within the cloud space.  The ability to programatically define how the Infrastructure should look has led to environmental consistency and more predictable application behavior.  Cloud providers have embraced IaC, providing customized IaC implementations to provision and configure resources on their offering.  Unfortunately, this means that you have to learn multiple tools to work with the different providers; for example Amazon Web Services (AWS) CloudFormation or Microsoft Azure Resource Manager (ARM) templates.  HashiCorp created Terraform to solve this very problem, a single tool to work with multiple providers.  In this post, I will show you how to dynamically create Workers for Octopus Deploy using Terraform and AWS Auto-Scaling.
 
-In this post, I will show you how to create a dynamic Octopus Deploy worker army using Terraform and Amazon Web Services (AWS) Auto Scaling groups.
+## Auto-Scaling
+Auto-Scaling is the ability to spin up or tear down resources based on specified criteria.  A common use-case for auto-scaling is an eCommerce web site.  As demand increases, more servers are created to handle the load.  Once load subsides, the additional resources can be deprovisioned automatically.  This allows eCommerce to keep a minimal amount of servers in operation, keeping hosting costs down.
 
-## Definitions
-
-### Terraform
-Terraform, by HashiCorp, is an IaC technology that was developed to ease the configuration of cloud resources through use of Terraform Providers.  These Providers contain the necessary logic to make calls to the cloud provider API to configure the desired resources using the HashiCorp Configuration Language (HCL).
-
-### AWS Auto Scaling Groups
-AWS Auto Scaling Groups dynamically spin up or tear down resources based on specific criteria.
-
-### Octopus Deploy workers
-Octopus Deploy workers are Tentacles that perform work on behalf of the Octopus Deploy Server.  Tasks within Octopus Deploy that don't deploy to targets, such has scripts that execute against APIs, originally executed on the Octopus Server.  Workers were created to offload this work.
-
-## Creating the worker army
-For this demonstration, we're going to use AWS EC2 instances to host our Octopus Deploy workers using Terraform.
-
-## Scenario
-Let's pretend we're working for a small startup.  Our deployment process utilizes Octopus Deploy to deploy our software to a cloud provider.  Many of the deployment tasks utilize workers to execute against various APIs.  As a modern company, we have all of our server resources implemented in AWS versus maintaining our own datacenter, or renting space in one.  We've just entered a phase of exponential growth of the engineering department, deployment frequency has increased tenfold and our provisioned worker count is sometimes insufficient for demand.  Spinning up additional workers would solve the problem, but they're not always needed.  In addition, our existing workers are idle at night when nobody is working.
-
-## The solution: Terraform + AWS + Octopus Deploy
-AWS has a Terraform provider that will create Auto Scaling groups for our workers.  This will allow us to dynamically add additional workers when demand is high or deprovision workers when they're no longer needed.  In addition, we can use Octopus Deploy to schedule the destruction of all workers during the night when no one is working!
-
-### Terraform files
-It is entirely possible to define all of the resources we need in a single file, however, I've opted to logically separate the different components into indvidual files for ease of maintenance.  When Terraform executes, it evaluates all of the files within the folder and assembles the required resources
+## Terraform
+With Terraform, we have the ability to define all of our resources within a single file, or logically separate them.  For this post, we'll separate our files so that they're easy to work with.  This demonstration makes use of 8 files:
 
 - autoscaling.tf
 - autoscalingpolicy.tf
 - backend.tf
+- installTentacle.sh
 - provider.tf
 - securitygroup.tf
 - vars.tf
 - vpc.tf
 
-#### autoscaling.tf
-The autoscaling.tf file contains the resource definitions to create our AWS Autoscaling Groups.  There are two groups defined within this file, one for Linux workers and one for Windows workers.  Both aws_launch_configuration definitions contain a user_data section which contains a script that will automatically download the Tentacle for the given OS, install it, and connect it to our Octopus Deploy server.
+### autoscaling.tf
+This file contains the resource declarations for creating the AWS auto scaling groups and the launch configurations for our workers.  I've created to launch configurations, one for Windows and one for Linux.  Each launch configuration will execute a script that will automatically install and configure the Octopus Deploy Tentacle software, then connect it as a worker to our Octopus Deploy server.  To illustrate how scripts can be connected to launch configurations, the Linux launch configuration reads a file (installTentacle.sh) which contains the commands whereas the Windows launch configuration has the script inline.  For both Windows and Linux, we are configuring Polling tentacles.
+
+:::hint
+The .tf files in this demonstration uses Terraform v0.11 syntax.  At the time of this writing, Octopus Deploy does not support use of Terraform v0.12 without explicitely setting the [`Octopus.Action.Terraform.CustomTerraformExecutable`](https://octopus.com/docs/deployment-examples/terraform-deployments/apply-terraform#special-variables) variable.
+:::
 
 ```terraform
+
 resource "aws_launch_configuration" "dynamic-linux-worker-launchconfig" {
     name_prefix = "dynamic-linux-worker-launchconfig"
-    image_id = var.LINUX_AMIS
+    image_id = "${var.LINUX_AMIS}"
     instance_type = "t2.micro"
     
-    security_groups = [aws_security_group.allow-octopusserver.id]
+    security_groups = ["${aws_security_group.allow-octopusserver.id}"]
   
     # script to run when created
-    user_data = <<-EOT
-        #!/bin/bash
-        serverUrl="#{Project.Octopus.Server.Url}"
-        serverCommsPort="#{Project.Octopus.Server.PollingPort}"
-        apiKey="#{Project.Octopus.Server.ApiKey}"
-        name=$HOSTNAME
-        configFilePath="/etc/octopus/default/tentacle-default.config"
-        applicationPath="/home/Octopus/Applications/"
-        workerPool="#{Project.Octopus.Server.WorkerPool}"
-        machinePolicy="#{Project.Octopus.Server.MachinePolicy}"
+user_data = "${file("installTentacle.sh")}"
 
-        sudo apt-key adv --fetch-keys "https://apt.octopus.com/public.key"
-        sudo add-apt-repository "deb https://apt.octopus.com/ stretch main"
-        sudo apt-get update
-        sudo apt-get install tentacle
-
-        sudo /opt/octopus/tentacle/Tentacle create-instance --config "$configFilePath" --instance "$name"
-        sudo /opt/octopus/tentacle/Tentacle new-certificate --if-blank
-        sudo /opt/octopus/tentacle/Tentacle configure --noListen True --reset-trust --app "$applicationPath"
-        echo "Registering the worker $name with server $serverUrl"
-        sudo /opt/octopus/tentacle/Tentacle register-worker --server "$serverUrl" --apiKey "$apiKey" --name "$name"  --comms-style "TentacleActive" --server-comms-port $serverCommsPort --workerPool "$workerPool" --policy "$machinePolicy"
-
-        cat >> /opt/octopus/tentacle/tentacle.service <<EOL
-        [Unit]
-        Description=Octopus Tentacle
-        After=network.target
-
-        [Service]
-        Type=simple
-        User=root
-        WorkingDirectory=/etc/octopus/Tentacle/
-        ExecStart=/opt/octopus/tentacle/Tentacle run --instance $name --noninteractive
-        Restart=always
-
-        [Install]
-        WantedBy=multi-user.target
-
-        EOL
-
-        sudo cp /opt/octopus/tentacle/tentacle.service /etc/systemd/system/tentacle.service
-        sudo chmod 644 /etc/systemd/system/tentacle.service
-        sudo systemctl start tentacle
-        sudo systemctl enable tentacle
-
-    EOT    
 }
 
 resource "aws_launch_configuration" "dynamic-windows-worker-launchconfig" {
     name_prefix = "dynamic-windows-worker-launchconfig"
-    image_id = var.WINDOWS_AMIS
+    image_id = "${var.WINDOWS_AMIS}"
     instance_type = "t2.micro"
     
-    security_groups = [aws_security_group.allow-octopusserver.id]
+    security_groups = ["${aws_security_group.allow-octopusserver.id}"]
 
-    user_data     = <<-EOF
+    user_data = <<-EOT
 <script>
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"            
 
@@ -123,7 +67,7 @@ choco install octopusdeploy.tentacle -y
 
 @"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" configure --noListen True --reset-trust --app "c:\octopus\applications"
 
-@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" register-worker --server "#{Project.Octopus.Server.Url}" --apiKey "#{Project.Octopus.Server.ApiKey}"  --comms-style "TentacleActive" --server-comms-port "#{Project.Octopus.Server.PollingPort}" --workerPool "#{Project.Octopus.Server.WorkerPool}" --policy "#{Project.Octopus.Server.MachinePolicy}"
+@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" register-worker --server "#{Project.Octopus.Server.Url}" --apiKey "#{Project.Octopus.Server.ApiKey}"  --comms-style "TentacleActive" --server-comms-port "#{Project.Octopus.Server.PollingPort}" --workerPool "#{Project.Octopus.Server.WorkerPool}" --policy "#{Project.Octopus.Server.MachinePolicy}" --space "#{Project.Octopus.Server.Space}"
 
 @"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" service --install
 
@@ -131,13 +75,14 @@ choco install octopusdeploy.tentacle -y
 
 
 </script>
-EOF    
+
+  EOT
 }
 
 resource "aws_autoscaling_group" "dynamic-linux-worker-autoscaling" {
     name = "dynamic-linux-worker-autoscaling"
-    vpc_zone_identifier = [aws_subnet.worker-public-1.id, aws_subnet.worker-public-2.id, aws_subnet.worker-public-3.id]
-    launch_configuration = aws_launch_configuration.dynamic-linux-worker-launchconfig.name
+    vpc_zone_identifier = ["${aws_subnet.worker-public-1.id}", "${aws_subnet.worker-public-2.id}", "${aws_subnet.worker-public-3.id}"]
+    launch_configuration = "${aws_launch_configuration.dynamic-linux-worker-launchconfig.name}"
     min_size = 2
     max_size = 3
     health_check_grace_period = 300
@@ -151,10 +96,10 @@ resource "aws_autoscaling_group" "dynamic-linux-worker-autoscaling" {
     }
 }
 
-resource "aws_autoscaling_group" "dynamic-winodws-worker-autoscaling" {
+resource "aws_autoscaling_group" "dynamic-windows-worker-autoscaling" {
     name = "dynamic-windows-worker-autoscaling"
-    vpc_zone_identifier = [aws_subnet.worker-public-1.id, aws_subnet.worker-public-2.id, aws_subnet.worker-public-3.id]
-    launch_configuration = aws_launch_configuration.dynamic-windows-worker-launchconfig.name
+    vpc_zone_identifier = ["${aws_subnet.worker-public-1.id}", "${aws_subnet.worker-public-2.id}", "${aws_subnet.worker-public-3.id}"]
+    launch_configuration = "${aws_launch_configuration.dynamic-windows-worker-launchconfig.name}"
     min_size = 2
     max_size = 3
     health_check_grace_period = 300
@@ -168,19 +113,15 @@ resource "aws_autoscaling_group" "dynamic-winodws-worker-autoscaling" {
     }
 }
 ```
-
-#### autoscalingpolicy.tf
-The autoscalingpolicy.tf file contains the resource definitions for auto scaling triggers.  This file has the policy for both:
-
-- Scale up
-- Scale down
+### autoscalingpolicy.tf
+This file contains the policy and trigger definitions to both scale up and down our EC2 instances
 
 ```terraform
 # scale up alarm
 
 resource "aws_autoscaling_policy" "linux-worker-cpu-policy" {
   name                   = "linux-worker-cpu-policy"
-  autoscaling_group_name = aws_autoscaling_group.dynamic-linux-worker-autoscaling.name
+  autoscaling_group_name = "${aws_autoscaling_group.dynamic-linux-worker-autoscaling.name}"
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "1"
   cooldown               = "300"
@@ -199,17 +140,17 @@ resource "aws_cloudwatch_metric_alarm" "linux-worker-cpu-alarm" {
   threshold           = "30"
 
   dimensions = {
-    "AutoScalingGroupName" = aws_autoscaling_group.dynamic-linux-worker-autoscaling.name
+    "AutoScalingGroupName" = "${aws_autoscaling_group.dynamic-linux-worker-autoscaling.name}"
   }
 
   actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.linux-worker-cpu-policy.arn]
+  alarm_actions   = ["${aws_autoscaling_policy.linux-worker-cpu-policy.arn}"]
 }
 
 # scale down alarm
 resource "aws_autoscaling_policy" "linux-worker-cpu-policy-scaledown" {
   name                   = "linux-worker-cpu-policy-scaledown"
-  autoscaling_group_name = aws_autoscaling_group.dynamic-linux-worker-autoscaling.name
+  autoscaling_group_name = "${aws_autoscaling_group.dynamic-linux-worker-autoscaling.name}"
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "-1"
   cooldown               = "300"
@@ -228,16 +169,16 @@ resource "aws_cloudwatch_metric_alarm" "linux-worker-cpu-alarm-scaledown" {
   threshold           = "5"
 
   dimensions = {
-    "AutoScalingGroupName" = aws_autoscaling_group.dynamic-linux-worker-autoscaling.name
+    "AutoScalingGroupName" = "${aws_autoscaling_group.dynamic-linux-worker-autoscaling.name}"
   }
 
   actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.linux-worker-cpu-policy-scaledown.arn]
+  alarm_actions   = ["${aws_autoscaling_policy.linux-worker-cpu-policy-scaledown.arn}"]
 }
 
 resource "aws_autoscaling_policy" "windows-worker-cpu-policy" {
   name                   = "windows-worker-cpu-policy"
-  autoscaling_group_name = aws_autoscaling_group.dynamic-windows-worker-autoscaling.name
+  autoscaling_group_name = "${aws_autoscaling_group.dynamic-windows-worker-autoscaling.name}"
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "1"
   cooldown               = "300"
@@ -256,17 +197,17 @@ resource "aws_cloudwatch_metric_alarm" "windows-worker-cpu-alarm" {
   threshold           = "30"
 
   dimensions = {
-    "AutoScalingGroupName" = aws_autoscaling_group.dynamic-windows-worker-autoscaling.name
+    "AutoScalingGroupName" = "${aws_autoscaling_group.dynamic-windows-worker-autoscaling.name}"
   }
 
   actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.windows-worker-cpu-policy.arn]
+  alarm_actions   = ["${aws_autoscaling_policy.windows-worker-cpu-policy.arn}"]
 }
 
 # scale down alarm
 resource "aws_autoscaling_policy" "windows-worker-cpu-policy-scaledown" {
   name                   = "windows-worker-cpu-policy-scaledown"
-  autoscaling_group_name = aws_autoscaling_group.dynamic-windows-worker-autoscaling.name
+  autoscaling_group_name = "${aws_autoscaling_group.dynamic-windows-worker-autoscaling.name}"
   adjustment_type        = "ChangeInCapacity"
   scaling_adjustment     = "-1"
   cooldown               = "300"
@@ -285,16 +226,16 @@ resource "aws_cloudwatch_metric_alarm" "windows-worker-cpu-alarm-scaledown" {
   threshold           = "5"
 
   dimensions = {
-    "AutoScalingGroupName" = aws_autoscaling_group.dynamic-windows-worker-autoscaling.name
+    "AutoScalingGroupName" = "${aws_autoscaling_group.dynamic-windows-worker-autoscaling.name}"
   }
 
   actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.windows-worker-cpu-policy-scaledown.arn]
+  alarm_actions   = ["${aws_autoscaling_policy.windows-worker-cpu-policy-scaledown.arn}"]
 }
 ```
 
-#### backend.tf
-When using Terraform locally, the state files are stored on your local machine.  When executing this on Octopus Deploy, it does not keep the state files so we need to configure an external storage location.  The backend.tf creates a folder within an AWS S3 bucket to maintain state.
+### backend.tf
+When executing Terraform from your local machine, the state files are stored locally.  Octopus Deploy will not keep the state files after the Apply has been performed so it's necessary to store our state files on an external storage location.  This file tells Terraform to use an AWS S3 bucket to store the state files
 
 ```terraform
 terraform {
@@ -306,34 +247,55 @@ terraform {
 }
 ```
 
-#### provider.tf
-The provider.tf file defines which provider Terraform is going to use.  In our case, we're using the AWS Terraform provider
+### installTentacle.sh
+This is the bash script file referenced in the autoscaling.tf launch configuration for the Linux variant.  This contains the commands necessary to download, install, and configure the Octopus Deploy Tentacle software as well as connecting it to our Octopus Deploy server
+
+```bash
+#!/bin/bash
+serverUrl="#{Project.Octopus.Server.Url}"
+serverCommsPort="#{Project.Octopus.Server.PollingPort}"
+apiKey="#{Project.Octopus.Server.ApiKey}"
+name=$HOSTNAME
+configFilePath="/etc/octopus/default/tentacle-default.config"
+applicationPath="/home/Octopus/Applications/"
+workerPool="#{Project.Octopus.Server.WorkerPool}"
+machinePolicy="#{Project.Octopus.Server.MachinePolicy}"
+space="#{Project.Octopus.Server.Space}"
+
+sudo apt-key adv --fetch-keys "https://apt.octopus.com/public.key"
+sudo add-apt-repository "deb https://apt.octopus.com/ stretch main"
+sudo apt-get update
+sudo apt-get install tentacle
+
+sudo /opt/octopus/tentacle/Tentacle create-instance --config "$configFilePath" --instance "$name"
+sudo /opt/octopus/tentacle/Tentacle new-certificate --if-blank
+sudo /opt/octopus/tentacle/Tentacle configure --noListen True --reset-trust --app "$applicationPath"
+echo "Registering the worker $name with server $serverUrl"
+sudo /opt/octopus/tentacle/Tentacle register-worker --server "$serverUrl" --apiKey "$apiKey" --name "$name"  --comms-style "TentacleActive" --server-comms-port $serverCommsPort --workerPool "$workerPool" --policy "$machinePolicy" --space "$space"
+sudo /opt/octopus/tentacle/Tentacle service --install --start
+```
+
+### provider.tf
+The provider.tf informs Terraform which provider we are going to be using.  In our case, we're using AWS.
 
 ```terraform
 provider "aws" {
-  region     = var.AWS_REGION
+  region     = "${var.AWS_REGION}"
 }
 ```
 
-#### securitygroup.tf
-AWS, among others, call firewall rules security groups.  In this file, we define both the ingress and egress rules for our instances.  For egress, we're allowing all traffic out from the server.  For ingress, we've defined both SSH and RDP ports.  These are used for debugging and can be omitted for Production use.
+### securitygroup.tf
+The term security group can sometimes be misleading.  When dealing with cloud providers, security groups synonomous with firewall rules.  The securitygroup.tf file contains the ingress and egress rules for our EC2 instances.  In this case, ports 22 and 3389 are opened for debugging purposes and can be omitted.
 
 ```terraform
 resource "aws_security_group" "allow-octopusserver" {
-  vpc_id      = aws_vpc.worker_vpc.id
+  vpc_id      = "${aws_vpc.worker_vpc.id}"
   name        = "allow-octopusserver"
   description = "Security group that allows traffic to the worker from the Octpus Server"
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 10933
-    to_port     = 10933
-    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -357,12 +319,14 @@ resource "aws_security_group" "allow-octopusserver" {
 }
 ```
 
-#### vars.tf
-The vars.tf file is what is commonly used to define all of the variables we use within our Terraform templates.  Our vars.tf contains:
+### vars.tfs
+This file contains the different variables used within our Terraform scripts.  Within this file we've defined which Amazon Machine Image (AMI) to use for our EC2 instances.  The AMI values are hardcoded in this file, but could be easily replaced with variables from Octopus Deploy using the Octostache syntax like the AWS_REGION variable.  This file defines the following variables:
 
-- AWS_REGION - the region that we're using for our AWS resources
-- LINUX_AMIS - the name of the ami for our Linux workers
-- WINDOWS_AMIS - the name of the ami for our Windows workers
+- AWS_REGION - the region of AWS we're using
+- LINUX_AMIS - the AMI for our Linux EC2 instances
+- WINDOWS_AMIS - the AMI for our Windows EC2 instances
+- PATH_TO_PRIVATE_KEY - path to the private key associated with the AWS key pair used for logging into our instances (used for debugging, not included)
+- PATH_TO_PUBLIC_KEY - path to the public key associated with the AWS key pair used for logging into our instances (used for debugging, not included)
 
 ```terraform
 variable "AWS_REGION" {
@@ -376,16 +340,18 @@ variable "LINUX_AMIS" {
 variable "WINDOWS_AMIS"{
   default = "ami-087ee25b86edaf4b1"
 }
+
+variable "PATH_TO_PRIVATE_KEY" {
+  default = "mykey"
+}
+
+variable "PATH_TO_PUBLIC_KEY" {
+  default = "mykey.pub"
+}
 ```
 
-#### vpc.tf
-To keep our AWS resources logically separated, I've created our resources within their own Virtual Private Cloud (VPC).  This file contains the following resource definitions:
-
-- Vpc
-- Subnets
-- Internet gateway
-- Route table
-- Route table associations
+### vpc.tf
+This file contains the necessary resources for creating a Virtual Private Cloud (VPC) in AWS.  It contains the definitions for the VPC, subnets, Internet Gateway, route table, and route table associations.
 
 ```terraform
 # Internet VPC
@@ -402,7 +368,7 @@ resource "aws_vpc" "worker_vpc" {
 
 # Subnets
 resource "aws_subnet" "worker-public-1" {
-  vpc_id                  = aws_vpc.worker_vpc.id
+  vpc_id                  = "${aws_vpc.worker_vpc.id}"
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = "${var.AWS_REGION}a"
@@ -413,7 +379,7 @@ resource "aws_subnet" "worker-public-1" {
 }
 
 resource "aws_subnet" "worker-public-2" {
-  vpc_id                  = aws_vpc.worker_vpc.id
+  vpc_id                  = "${aws_vpc.worker_vpc.id}"
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = "${var.AWS_REGION}b"
@@ -424,7 +390,7 @@ resource "aws_subnet" "worker-public-2" {
 }
 
 resource "aws_subnet" "worker-public-3" {
-  vpc_id                  = aws_vpc.worker_vpc.id
+  vpc_id                  = "${aws_vpc.worker_vpc.id}"
   cidr_block              = "10.0.3.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = "${var.AWS_REGION}c"
@@ -435,7 +401,7 @@ resource "aws_subnet" "worker-public-3" {
 }
 
 resource "aws_subnet" "worker-private-1" {
-  vpc_id                  = aws_vpc.worker_vpc.id
+  vpc_id                  = "${aws_vpc.worker_vpc.id}"
   cidr_block              = "10.0.4.0/24"
   map_public_ip_on_launch = "false"
   availability_zone       = "${var.AWS_REGION}a"
@@ -446,7 +412,7 @@ resource "aws_subnet" "worker-private-1" {
 }
 
 resource "aws_subnet" "worker-private-2" {
-  vpc_id                  = aws_vpc.worker_vpc.id
+  vpc_id                  = "${aws_vpc.worker_vpc.id}"
   cidr_block              = "10.0.5.0/24"
   map_public_ip_on_launch = "false"
   availability_zone       = "${var.AWS_REGION}b"
@@ -457,7 +423,7 @@ resource "aws_subnet" "worker-private-2" {
 }
 
 resource "aws_subnet" "worker-private-3" {
-  vpc_id                  = aws_vpc.worker_vpc.id
+  vpc_id                  = "${aws_vpc.worker_vpc.id}"
   cidr_block              = "10.0.6.0/24"
   map_public_ip_on_launch = "false"
   availability_zone       = "${var.AWS_REGION}c"
@@ -469,7 +435,7 @@ resource "aws_subnet" "worker-private-3" {
 
 # Internet GW
 resource "aws_internet_gateway" "worker-gw" {
-  vpc_id = aws_vpc.worker_vpc.id
+  vpc_id = "${aws_vpc.worker_vpc.id}"
 
   tags = {
     Name = "worker"
@@ -478,10 +444,10 @@ resource "aws_internet_gateway" "worker-gw" {
 
 # route tables
 resource "aws_route_table" "worker-public" {
-  vpc_id = aws_vpc.worker_vpc.id
+  vpc_id = "${aws_vpc.worker_vpc.id}"
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.worker-gw.id
+    gateway_id = "${aws_internet_gateway.worker-gw.id}"
   }
 
   tags = {
@@ -491,17 +457,18 @@ resource "aws_route_table" "worker-public" {
 
 # route associations public
 resource "aws_route_table_association" "worker-public-1-a" {
-  subnet_id      = aws_subnet.worker-public-1.id
-  route_table_id = aws_route_table.worker-public.id
+  subnet_id      = "${aws_subnet.worker-public-1.id}"
+  route_table_id = "${aws_route_table.worker-public.id}"
 }
 
 resource "aws_route_table_association" "worker-public-2-a" {
-  subnet_id      = aws_subnet.worker-public-2.id
-  route_table_id = aws_route_table.worker-public.id
+  subnet_id      = "${aws_subnet.worker-public-2.id}"
+  route_table_id = "${aws_route_table.worker-public.id}"
 }
 
 resource "aws_route_table_association" "worker-public-3-a" {
-  subnet_id      = aws_subnet.worker-public-3.id
-  route_table_id = aws_route_table.worker-public.id
+  subnet_id      = "${aws_subnet.worker-public-3.id}"
+  route_table_id = "${aws_route_table.worker-public.id}"
 }
 ```
+
