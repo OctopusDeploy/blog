@@ -3,12 +3,14 @@ title: "Deploying Java with a MySQL backend through Octopus Deploy"
 description: This post demonstrates how to deploy a Java application that uses a MySQL backend using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage:
-metaImage:
-published: 2021-01-13
+bannerImage: deploy-java-and-mysql.png
+metaImage: deploy-java-and-mysql.png
+published: 2020-01-22
 tags:
  - DevOps
 ---
+
+![Deploying a Java web app with a My](deploy-java-and-mysql.png)
 
 In this post, I walk through how to build and deploy a Java-based web application that uses a MySQL backend database.
 
