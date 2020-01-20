@@ -2,7 +2,7 @@
 title: Kubernetes testing with KIND
 description: KIND offers a new solution for spinning up Kubernetes clusters for testing and development
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-01-20
 metaImage: kubernetes-in-docker.png
 bannerImage: kubernetes-in-docker.png
