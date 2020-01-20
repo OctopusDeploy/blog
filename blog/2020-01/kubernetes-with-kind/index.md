@@ -3,18 +3,20 @@ title: Kubernetes testing with KIND
 description: KIND offers a new solution for spinning up Kubernetes clusters for testing and development
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+published: 2020-01-20
+metaImage: kubernetes-in-docker.png
+bannerImage: kubernetes-in-docker.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Kubernetes in Docker (KIND)](kubernetes-in-docker.png)
 
 There are many solutions for creating a local test Kubernetes environment, such as [minikube](https://github.com/kubernetes/minikube) or [MicroK8s](https://microk8s.io/), but a new project called [KIND](https://github.com/kubernetes-sigs/kind) offers a fresh approach that may interest Kubernetes developers and administrators.
 
 KIND stands for Kubernetes IN Docker, and as the name suggests, it creates a Kubernetes cluster using Docker to host the nodes. This is a novel approach, that takes advantage of Docker’s easy, self-contained deployments and cleanup to create the test Kubernetes infrastructure.
 
-## Installation
+## KIND Installation
 
 Make sure you have [Docker](https://docs.docker.com/install/) and [Go](https://golang.org/doc/install) installed, and then install KIND with the command:
 
@@ -44,7 +46,7 @@ You can set this context as the default with the command:
 kubectl config use-context kind-mycluster
 ```
 
-## Using the cluster
+## Using the KIND Kubernetes cluster
 
 The most immediate issue I ran into when using KIND was accessing the services deployed to the cluster.
 
