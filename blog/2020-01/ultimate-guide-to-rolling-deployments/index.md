@@ -119,41 +119,54 @@ Service's support a number of different options, including a rolling update poli
 
 #### Docker containerised application
 
-I'm using a pre-built container image of our sample application and utilizng [Docker Desktop](https://docs.docker.com/docker-for-windows/install) for Windows. For the sake of simplicity, I am running it predominantly from the command line manually. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings.
+I'm running Docker on an [Ubuntu](https://ubuntu.com/download/server) server and using our pre-built container image. There are a couple of ways to install Docker on Ubuntu:
 
-:::hint
-I don't go through how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on how to containerize a [real world application](https://octopus.com/blog/containerize-a-real-world-web-app), instead of a Hello world one.
+1. Use the Ubuntu repository by running: `sudo apt-get install docker.io`
+1. Using the Official [Docker guide](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-engine---community)
+
+I opted for the Ubuntu repository as it seemed quicker and easier, but your mileage may vary. Whichever method you choose, it's worth ensuring you meet the installation [prerequisites](https://docs.docker.com/install/linux/docker-ce/ubuntu/#prerequisites).
+
+For the sake of simplicity, I will be interacting with Docker from the command line using an SSH connection to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
+
+:::warning
+**Permissions requirement:**
+Most of the commands in this demonstration make use of [sudo](https://www.linux.com/tutorials/linux-101-introduction-sudo/). By default the Docker daemon runs as the root user, and therefore it requires elevated permissions to execute commands. If you prefer not to use `sudo` when executing your commands, be sure to follow the Docker [post-install](https://docs.docker.com/install/linux/linux-postinstall/) instructions.
 :::
 
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
 
-```
-docker run -p 5001:5001 octopusdeploy/rolling-deploy-web-example:0.0.1
+```bash
+sudo docker run -d -p 5001:5001 octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
 Unsurprisingly, running this Docker image locally displays the web page:
 
 ![](docker-run.png "width=500")
 
+:::hint
+I don't go through how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on how to containerize a [real world application](https://octopus.com/blog/containerize-a-real-world-web-app), instead of a "Hello World" one.
+:::
+
 **Container clean-up**
 
-A quick-tidy up is needed next. To delete the container we created using the `run` command above, we need to stop it, and then remove it using the `rm` command:
+A quick-tidy up is needed next. To delete the container we created using the `run` command above, we need to stop it, and then remove it using the `rm` command. We can do this in a handy one-liner:
 
+```bash
+sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --filter ancestor=octopusdeploy/rolling-deploy-web-example:0.0.1 --format="{{.ID}}"))
 ```
-docker rm $(docker stop $(docker ps -a -q --filter ancestor=octopusdeploy/rolling-deploy-web-example:0.0.1 --format="{{.ID}}"))
-```
+The command above simply locates our container by image name of `octopusdeploy/rolling-deploy-web-example:0.0.1` and then passes that to the `stop` command, and finally passes that to the `rm` command.
 
 To deploy more than one instance of our container, we need to create our Docker service. This uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator under the hood.
 
-:::warning
+:::hint
 **Docker Kubernetes Orchestrator**
 Docker also supports Kubernetes as an orchestator when deploying containers using the Docker [stack](https://docs.docker.com/engine/reference/commandline/stack) command, but it's not possible to specify the orchestrator when using `service create`.
 :::
 
 So let's see what our command to create a service looks like:
 
-```
-docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 octopusdeploy/rolling-deploy-web-example:0.0.1
+```bash
+sudo docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
 There's quite a lot going on in that command, so let's unpick what we are asking of Docker here:
@@ -164,9 +177,11 @@ There's quite a lot going on in that command, so let's unpick what we are asking
 - The `--update-parallelism` controls the maximum number of tasks that Docker will schedule simultaneously (1).
 - Lastly, we specify the image to use: `octopusdeploy/rolling-deploy-web-example:0.0.1`
 
-:::hint
-**Hint**
-When running ``service create`` for the first time, you may receive a warning, just as I did: `This node is not a swarm manager`. To fix this, either run `docker swarm init` or `docker swarm join` to connect your local node to swarm.
+:::warning
+**Hint:**
+When running ``service create`` for the first time, you may receive a warning, just as I did: `This node is not a swarm manager`. To fix this, either run:
+ - `sudo docker swarm init` - This will initialise your current node as a Swarm manager.
+ - `sudo docker swarm join` - This will connect your local node to swarm.
 :::
 
 Executing this results in our service being deployed to Docker Swarm with 3 instances:
@@ -182,14 +197,14 @@ verify: Service converged
 
 We can also check our service has the correct update configuration by running the command:
 
-```
-docker service inspect rolling-deploy-svc --pretty
+```bash
+sudo docker service inspect rolling-deploy-svc --pretty
 ```
 
 The result of this shows we have our desired `UpdateConfig` 
 
 ```
-ID:             wxi1w4m7crknaz1f800kr9ztt
+ID:             bh03s0yjzkevzkkwvu8q2h0jj
 Name:           rolling-deploy-svc
 Service Mode:   Replicated
  Replicas:      3
@@ -223,8 +238,8 @@ Ports:
 
 Now we can update the container image for `octopusdeploy/rolling-deploy-web-example` to `v0.0.2` by running the following command:
 
-```
-docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.2
+```bash
+sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.2
 ```
 
 Docker runs the update to each container, 1 task at a time just as we have configured it to:
@@ -263,16 +278,16 @@ Then browsing to the website shows the text which applies for `v0.0.2`
 
 Just as it's straight-forward to roll-out, it's also possible to manually rollback with a simple command in Docker.
 
-Firstly we will update to `v0.0.3` of the application by running:
+Firstly we will update to our final version `v0.0.3` of the application by running:
 
-```
-docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.3
+```bash
+sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.3
 ```
 
 We can verify the new `v0.0.3` version by checking the image used for our service:
 
-```
-docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
+```bash
+sudo docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
 ```
 
 This produces the result: 
@@ -281,10 +296,10 @@ This produces the result:
 octopusdeploy/rolling-deploy-web-example:0.0.3@sha256:151a8f2aaed0192bf9f22eaeff487d546e6ff8fec4d0691e6697dede743b187c
 ```
 
-Because Docker Swarm knows the previous versions we have deployed, we can revert to the last version using the `rollback` command:
+Because Docker Swarm knows the versions we have deployed, we can revert to the previous one (`v0.0.2`) using the `rollback` command:
 
-```
-docker service rollback rolling-deploy-svc
+```bash
+sudo docker service rollback rolling-deploy-svc
 ```
 
 Once successfully rolled back, it will confirm the service is running:
@@ -311,8 +326,8 @@ verify: Service converged
 
 We can verify the rollback was successful using the same command to inspect the service as before: 
 
-```
-docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
+```bash
+sudo docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
 ```
 This results in the expected `v0.0.2` version being displayed: 
 
@@ -325,12 +340,12 @@ octopusdeploy/rolling-deploy-web-example:0.0.2@sha256:4843a91ba84ace97cb11a6e3f6
 Finally to remove our Docker service we just run the `rm` command:
 
 ```
-docker service rm rolling-deploy-svc
+sudo docker service rm rolling-deploy-svc
 ```
 
 #### Docker Summary
 
-As you can see, it doesn't take much setup to get rolling deployments working in Docker. Coupled with support for rollbacks also makes it an attractive option to consider.
+As you can see, it doesn't take much setup to get rolling deployments working in Docker. Coupled with it's support for rollbacks also makes it an attractive option to consider.
 
 ### Kubernetes Rolling updates
 
