@@ -97,7 +97,7 @@ We start with the Maven `pom.xml` file. This file defines the dependencies requi
 
 ## Anatomy of a Kubernetes resource
 
-Before we dive into the Kotlin code, we first need to understand the common structure of all Kubernetes resources. Here is the YAML definition of a deployment resource that we’ll use as an example:
+Before we dive into the Kotlin code, we need to understand the common structure of all Kubernetes resources. Here is the YAML definition of a deployment resource that we’ll use as an example:
 
 ```YAML
 apiVersion: apps/v1
@@ -676,7 +676,7 @@ private fun createNewPod(webServer: WebServer): Pod =
                 .build()
 ```
 
-The `run()` method is an infinite loop continually consuming a webserver resource ID added to the `workQueue` by the event listeners and passing it to the `reconcile()` method:
+The `run()` method is an infinite loop continually consuming a web server resource ID added to the `workQueue` by the event listeners and passing it to the `reconcile()` method:
 
 ```
 fun run() {
@@ -728,7 +728,7 @@ To run the operator, we first need to apply the CRD YAML:
 kubectl apply -f crd.yml
 ```
 
-We then create an instance of our CRD with the YAML:
+Then, we create an instance of our CRD with the YAML:
 
 ```YAML
 apiVersion: demo.k8s.io/v1alpha1
@@ -743,7 +743,7 @@ The controller can then run locally. Because the client we used in our code know
 
 ![](intellij.png "width=500")
 
-The controller responds to the new webserver CRD and creates the required pods:
+The controller responds to the new web server CRD and creates the required pods:
 
 ```
 $ kubectl get pods
@@ -755,7 +755,7 @@ example-webserver-podkftmp   1/1     Running   0          54s
 example-webserver-podpwzrt   1/1     Running   0          54s
 ```
 
-The status of the webserver resource is updated with the `count` of the pods it has successfully created:
+The status of the web server resource is updated with the `count` of the pods it has successfully created:
 
 ```
 $ kubectl get webservers -n default -o yaml
