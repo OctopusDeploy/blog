@@ -195,7 +195,7 @@ overall progress: 3 out of 3 tasks
 verify: Service converged 
 ```
 
-We can also check our service has the correct update configuration by running the command:
+We can also check our service has the correct update configuration by running the `service inspect` command:
 
 ```bash
 markh@ubuntu01:~$ sudo docker service inspect rolling-deploy-svc --pretty
