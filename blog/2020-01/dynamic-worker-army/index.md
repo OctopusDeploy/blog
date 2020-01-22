@@ -28,7 +28,7 @@ With Terraform, we have the ability to define all of our resources within a sing
 - vpc.tf
 
 ### autoscaling.tf
-This file contains the resource declarations for creating the AWS auto scaling groups and the launch configurations for our workers.  I've created to launch configurations, one for Windows and one for Linux.  Each launch configuration will execute a script that will automatically install and configure the Octopus Deploy Tentacle software, then connect it as a worker to our Octopus Deploy server.  To illustrate how scripts can be connected to launch configurations, the Linux launch configuration reads a file (installTentacle.sh) which contains the commands whereas the Windows launch configuration has the script inline.  For both Windows and Linux, we are configuring Polling tentacles.
+This file contains the resource declarations for creating the AWS auto scaling groups and the launch configurations for our workers.  I've created two launch configurations, one for Windows and one for Linux.  Each launch configuration will execute a script that will automatically install and configure the Octopus Deploy Tentacle software, then connect it as a worker to our Octopus Deploy server.  To illustrate how scripts can be connected to launch configurations, the Linux launch configuration reads a file (installTentacle.sh) which contains the commands whereas the Windows launch configuration has the script inline.  For both Windows and Linux, we are configuring Polling tentacles.
 
 :::hint
 The .tf files in this demonstration uses Terraform v0.11 syntax.  At the time of this writing, Octopus Deploy does not support use of Terraform v0.12 without explicitely setting the [`Octopus.Action.Terraform.CustomTerraformExecutable`](https://octopus.com/docs/deployment-examples/terraform-deployments/apply-terraform#special-variables) variable.
@@ -472,3 +472,132 @@ resource "aws_route_table_association" "worker-public-3-a" {
 }
 ```
 
+And there you have it!  All of the Terraform script necessary to create our AWS Auto-Scaling worker army!  All that's left is to package these files up into either a .zip or a .nupkg using a build server or the Octopus Deploy CLI.  Once the package has been created, we can include it in our deployment process.
+
+## Octopus Deploy
+Setting up the Terraform files was by far the harest part of this entire process.  The steps for creating the deployment within Octopus Deploy are quite short.  For our purposes, we only need two environments, Spinup and Teardown.
+
+### Environments
+To create our environments, click on the Infrastructure tab -> Environments -> ADD ENVIRONMENT
+
+![](octopus-create-environments.png)
+
+Create the following:
+- Spinup
+- Teardown
+
+For this demonstration, we're using the Default lifecycle.  It may be necessary to create a new lifecycle for this project if others already exist.
+
+### AWS Account
+To work with AWS, we're going to need an account with the necessary rights to create EC2 instances.  Once that has been created in AWS, we'll need to add this account to Octopus Deploy.  To do this, we'll click on Infrastructure -> Accounts -> ADD ACCOUNT
+
+![](octopus-create-account.png)
+
+Choose AWS Account
+
+![](octopus-create-account-aws.png)
+
+Fill in the in the Access and Secret keys.  Be sure to click the Save and Test to make sure your account works correctly.
+
+![](octopus-create-account-details.png)
+
+### Project
+With the Environments created, we can now create our project to create our workers.
+
+Click on Projects -> ADD PROJECT
+
+![](octopus-create-project.png)
+
+#### Variables
+The Terraform scripts that we created above had Octostache variables that need to be replaced at deploy-time.  To define our variables, click on the Variables tab
+
+![](octopus-project-variables.png)
+
+and create the following variables (I've namespaced my variables to more easily identify where they came from):
+
+- Project.AWS.Account - the AWS Account we created above.
+- Project.AWS.Region - The region in AWS we're using
+- Project.AWS.S3.Bucket - The bucket that we're going to store our state files in
+- Project.AWS.S3.Key - The key that will store our state
+- Project.Octopus.Server.ApiKey - The API Key that will be used when connecting the Worker to the Octopus server (sensitive)
+- Project.Octopus.Server.MachinePolicy - The name of the Machine Policy that the worker will be attached to
+- Project.Octopus.Server.PollingPort - The port that the Octopus Server uses for Polling Tentacles
+- Project.Octopus.Server.Space - Name of the space that the worker will be attached to (leave blank for default)
+- Project.Octopus.Server.Url - The Octopus Server Url
+- Project.Octopus.Server.WorkerPool - The name of the worker pool the worker will join
+
+![](octopus-project-variables-complete.png)
+
+#### Steps
+Our deployment process will consist of a total of two steps; a Terraform Apply step and a Terraform Destroy step.
+
+##### Apply Terraform template
+
+Click on Process -> ADD STEP
+
+![](octopus-project-add-step.png)
+
+Click on the Terraform Category and choose the Apply a Terraform template
+
+![](octopus-project-add-terraform-apply.png)
+
+Give the step a name and have it execute on a worker in the Default pool
+
+![](octopus-add-terraform1.png)
+
+Enable Account Integration, choose our AWS account and specify the region
+
+![](octopus-add-terraform2.png)
+
+Select the package that contains our Terraform files.  Uncheck the Replace variables in default Terraform files.  In the Target files section, add two entries
+- *.tf
+- *.sh
+
+![](octopus-add-terraform3.png)
+
+Under Conditions, have this step only execute in the Spinup environment
+
+![](octopus-add-terraform4.png)
+
+We're done with the Apply a Terraform template step.
+
+##### Destroy Terraform resources
+To help conserve costs, we can tear down the resources we've created when we know they will not be used, such as the end of the work day.  In this demonstration, we've chosen to have it be part of our deployment, however, we could easily implement this as a scheduled Runbook.
+
+Click on ADD STEP, choose the Terraform category, then choose Destroy Terraform resources
+
+![](octopus-destroy-terraform1.png)
+
+Fill in the same values for this as we did for the Apply Terraform template with the exception of which environment to run in.  For the Destroy step, we only want it to run in the Teardown environment.
+
+That's all!  We're not ready to create our release and deploy our Terraform template!
+
+### Applying the template
+Click on the CREATE RELEASE button
+
+![](octopus-project-create-release.png)
+
+Click SAVE
+
+![](octopus-project-create-release-save.png)
+
+Click on either DEPLOY TO SPINUP or the DEPLOY button on the line for the SpinUp environment
+
+![](octopus-project-create-release-deploy.png)
+
+Finally, click DEPLOY!
+
+![](octopus-project-create-release-final.png)
+
+Once the deployment is complete, we should see four workers in our Dynamic Worker Pool!
+
+:::hint
+Linux workers will show up sooner than Windows workers.  If at first you don't see four workers, give it a little more time for the Windows workers to finish provisioning
+:::
+
+![](octopus-project-deployment.png)
+
+![](octopus-workers.png)
+
+## Conclusion
+In this post I walked you through creating some Terraform files that will create an AWS Auto-scaling group that will dynamically create Octopus Deploy worker infrastructure that will scale up and down based on demand.
