@@ -13,10 +13,12 @@ tags:
 The advent of Infrastructure as Code (IaC) has been a tremendous leap forward, especially within the cloud space.  The ability to programatically define how the Infrastructure should look has led to environmental consistency and more predictable application behavior.  Cloud providers have embraced IaC, providing customized IaC implementations to provision and configure resources on their offering.  Unfortunately, this means that you have to learn multiple tools to work with the different providers; for example Amazon Web Services (AWS) CloudFormation or Microsoft Azure Resource Manager (ARM) templates.  HashiCorp created Terraform to solve this very problem, a single tool to work with multiple providers.  In this post, I will show you how to dynamically create Workers for Octopus Deploy using Terraform and AWS Auto-Scaling.
 
 ## Auto-Scaling
-Auto-Scaling is the ability to spin up or tear down resources based on specified criteria.  A common use-case for auto-scaling is an eCommerce web site.  As demand increases, more servers are created to handle the load.  Once load subsides, the additional resources can be deprovisioned automatically.  This allows eCommerce to keep a minimal amount of servers in operation, keeping hosting costs down.
+Auto-Scaling is the ability to spin up or tear down resources based on specified criteria.  A common use-case for auto-scaling is an eCommerce web site.  As demand increases, more servers are created to handle the load.  Once load subsides, the additional resources can be deprovisioned automatically.  This allows eCommerce to keep a minimal amount of servers in operation, thus keeping hosting costs down.
 
 ## Terraform
-With Terraform, we have the ability to define all of our resources within a single file, or logically separate them.  For this post, we'll separate our files so that they're easy to work with.  This demonstration makes use of 8 files:
+Using declaritive configuration files, Terraform can create new resources, manage existing ones, or destroy ones that ar eno longer necessary.
+
+With Terraform, we have the ability to define all of our resources within a single file, or logically separate them.  For this post, we'll separate our files so that they're easy to work with.  We'll make use of 8 files:
 
 - autoscaling.tf
 - autoscalingpolicy.tf
@@ -235,7 +237,7 @@ resource "aws_cloudwatch_metric_alarm" "windows-worker-cpu-alarm-scaledown" {
 ```
 
 ### backend.tf
-When executing Terraform from your local machine, the state files are stored locally.  Octopus Deploy will not keep the state files after the Apply has been performed so it's necessary to store our state files on an external storage location.  This file tells Terraform to use an AWS S3 bucket to store the state files
+When executing Terraform from your local machine, the state files are stored locally.  Octopus Deploy will not keep the state files after the Apply has been performed so it's necessary to store our state files on external storage.  This file tells Terraform to use an AWS S3 bucket to store the state files
 
 ```terraform
 terraform {
@@ -285,7 +287,7 @@ provider "aws" {
 ```
 
 ### securitygroup.tf
-The term security group can sometimes be misleading.  When dealing with cloud providers, security groups synonomous with firewall rules.  The securitygroup.tf file contains the ingress and egress rules for our EC2 instances.  In this case, ports 22 and 3389 are opened for debugging purposes and can be omitted.
+When dealing with cloud providers, security groups are firewall rules.  The securitygroup.tf file contains the ingress and egress rules for our EC2 instances.  In this case, ports 22 and 3389 are opened for debugging purposes and can be omitted.
 
 ```terraform
 resource "aws_security_group" "allow-octopusserver" {
@@ -351,7 +353,13 @@ variable "PATH_TO_PUBLIC_KEY" {
 ```
 
 ### vpc.tf
-This file contains the necessary resources for creating a Virtual Private Cloud (VPC) in AWS.  It contains the definitions for the VPC, subnets, Internet Gateway, route table, and route table associations.
+This file contains the necessary resources for creating a Virtual Private Cloud (VPC) in AWS.  It contains the definitions for:
+
+- VPC
+- Subnets
+- Internet Gateway 
+- Route table 
+- Route table associations
 
 ```terraform
 # Internet VPC
@@ -472,7 +480,7 @@ resource "aws_route_table_association" "worker-public-3-a" {
 }
 ```
 
-And there you have it!  All of the Terraform script necessary to create our AWS Auto-Scaling worker army!  All that's left is to package these files up into either a .zip or a .nupkg using a build server or the Octopus Deploy CLI.  Once the package has been created, we can include it in our deployment process.
+And there you have it!  All of the Terraform script necessary to create our AWS Auto-Scaling worker army!  All that's left is to package these files up into either a .zip or a .nupkg using a build server or the Octopus Deploy CLI.  Once the package has been created and uploaded to our Octopus Server, we can include it in our deployment process.
 
 ## Octopus Deploy
 Setting up the Terraform files was by far the harest part of this entire process.  The steps for creating the deployment within Octopus Deploy are quite short.  For our purposes, we only need two environments, Spinup and Teardown.
@@ -489,7 +497,7 @@ Create the following:
 For this demonstration, we're using the Default lifecycle.  It may be necessary to create a new lifecycle for this project if others already exist.
 
 ### AWS Account
-To work with AWS, we're going to need an account with the necessary rights to create EC2 instances.  Once that has been created in AWS, we'll need to add this account to Octopus Deploy.  To do this, we'll click on Infrastructure -> Accounts -> ADD ACCOUNT
+To work with AWS, we're going to need an account with the necessary rights to create our resources.  Once that has been created in AWS, we'll need to add this account to Octopus Deploy.  To do this, we'll click on Infrastructure -> Accounts -> ADD ACCOUNT
 
 ![](octopus-create-account.png)
 
@@ -501,12 +509,25 @@ Fill in the in the Access and Secret keys.  Be sure to click the Save and Test t
 
 ![](octopus-create-account-details.png)
 
+### Worker pool
+For this post, we're going to be placing our dynamic workers into their own pool.  To do this, we'll first need to create it :)
+
+Click on the Infrastructure tab -> Worker Pools -> ADD WORKER POOL
+
+![](octopus-infrastructure-workerpool.png)
+
+Give the worker pool a name and click SAVE
+
+![](octopus-infrastructure-workerpool-name.png)
+
 ### Project
 With the Environments created, we can now create our project to create our workers.
 
 Click on Projects -> ADD PROJECT
 
 ![](octopus-create-project.png)
+
+After you give it a name and click SAVE, we'll be taken to our brand new project.
 
 #### Variables
 The Terraform scripts that we created above had Octostache variables that need to be replaced at deploy-time.  To define our variables, click on the Variables tab
