@@ -126,7 +126,7 @@ I'm running Docker on an [Ubuntu](https://ubuntu.com/download/server) server and
 
 I opted for the Ubuntu repository as it seemed quicker and easier, but your mileage may vary. Whichever method you choose, it's worth ensuring you meet the installation [prerequisites](https://docs.docker.com/install/linux/docker-ce/ubuntu/#prerequisites).
 
-For the sake of simplicity, I will be interacting with Docker from the command line using an SSH connection to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
+For the sake of simplicity, I'll be interacting with Docker from the command line using an SSH connection to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
 
 :::warning
 **Permissions requirement:**
@@ -362,54 +362,50 @@ The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics
 
 #### Kubernetes cluster setup
 
-Just as before, I'll be using the pre-built container image for this demonstration, this time using [Minikube](https://minikube.sigs.k8s.io/). Minikube runs a single-node Kubernetes cluster inside a Virtual Machine (VM). It's useful for people like me who want to try out Kubernetes or do some development with it.
+Just as before, I'll be re-using our pre-built container image for this demonstration, this time using [MicroK8s](https://microk8s.io/). I'll also be interacting with it primarily over an SSH connection.
 
-Before you install Minikube, it's worth noting that there are some prerequisites for Windows:
+The authors, Canonical describe MicroK8s as:
 
-- Windows 8 or above
-- A hypervisor, like Hyper-V or VirtualBox
-- Hardware virtualization support enabled in your BIOS
-- At least 4GB of RAM
+> a single package of k8s for 42 flavours of Linux. Made for developers, and great for edge, IoT and appliances.
 
-After installing Minikube, the first thing to do is to start it up:
+It's useful for people like me who want to try out Kubernetes or do some development with it.
 
-```
-minikube start --vm-driver=hyperv
-```
+One of the benefits of MicroK8s is that it doesn't require any type of Virtual Machine as with other Kubernetes choices (such as [Minikube](https://minikube.sigs.k8s.io/)). 
 
-On first initialisation, it will download the VM boot image and create a machine using your chosen Hypervisor, in my case Hyper-V:
+Before you install MicroK8s, it's worth noting that there are some prerequisites:
 
-```
-* Downloading VM boot image ...
-    > minikube-v1.5.1.iso.sha256: 65 B / 65 B [--------------] 100.00% ? p/s 0s
-    > minikube-v1.5.1.iso: 143.76 MiB / 143.76 MiB [-] 100.00% 18.41 MiB p/s 8s
-* Creating hyperv VM (CPUs=2, Memory=2000MB, Disk=20000MB) ...
-* Preparing Kubernetes v1.16.2 on Docker '18.09.9' ...
-* Downloading kubeadm v1.16.2
-* Downloading kubelet v1.16.2
-* Pulling images ...
-* Launching Kubernetes ...
-* Waiting for: apiserver
-*Done! kubectl is now configured to use "minikube"
-! C:\Program Files\Docker\Docker\Resources\bin\kubectl.exe is version 1.14.8, and is incompatible with Kubernetes 1.16.2. You will need to update C:\Program Files\Docker\Docker\Resources\bin\kubectl.exe or use 'minikube kubectl' to connect with this cluster
+- Ubuntu 18.04 LTS or 16.04 LTS (or other OS which supports `snapd`)
+- At least 20G free disk space
+- 4GB of RAM
+- At internet connection
+
+To install MicroK8s, we run the [snap](https://docs.snapcraft.io/installing-snapd) `install` command:
+
+```bash
+markh@ubuntu01:~$ sudo snap install microk8s --classic
+
+microk8s v1.17.0 from Canonical✓ installed
 ```
 
-:::warning
-**Docker Desktop and kubectl**
-You'd be forgiven if you missed the error at the end of the command output above. 
+:::hint
+**Full install output**
+If you wanted to see the full install output from `snap` you would run the `snap changes` command:
 
-Having installed Docker Desktop for Windows on my local machine first, it bundled an earlier version of kubectl, `1.14.8` with it. Next, when I installed Minikube, it required a later version: `1.16.2`. 
+```bash
+markh@ubuntu01:~$ snap changes
 
-After a quick Google, I found the kubectl install [documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows) which even warns you about this issue:
+ID   Status  Spawn               Ready               Summary
+1    Done    today at 10:17 UTC  today at 10:17 UTC  Initialize system state
+2    Done    today at 10:17 UTC  today at 10:17 UTC  Initialize device
+3    Done    today at 14:38 UTC  today at 14:38 UTC  Install "microk8s" snap
+```
 
-> Note: Docker Desktop for Windows adds its own version of kubectl to PATH. If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop’s kubectl.
-
-I fixed the error by adding my `PATH` entry before the one added by Docker Desktop.
+From this, you can then run the command `snap change 3`, where `3` is the number from the `ID` column above for the installation of MicroK8s. This will give you a line breakdown of the install steps.
 :::
 
 **Kubernetes Deployments**
 
-Now we have Minikube installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-web-example`, and set it to listen on port 5001.
+Now we have MicroK8s installed and running, let's go ahead and create a Kubernetes Deployment using our existing image `rolling-deploy-web-example`, and set it to listen on port 5001.
 
 Google describes Kubernetes [Deployments](https://cloud.google.com/kubernetes-engine/docs/concepts/deployment) as items which:
 
@@ -419,133 +415,122 @@ This sounds perfect for a rolling deployment.
 
 #### Kubernetes containerised application setup
 
-To set up our Deployment for our application, we run the following command:
+To set up our Deployment for our application, we will use the [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) binary which is packaged with MicroK8s. This is the command-line interface (CLI) for managing Kubernetes. It's specially prefixed with `microk8s.` to avoid any naming conflicts with any other instances of Kubernetes you may have running. If we run the `create deployment` command:
 
-```
-kubectl create deployment rollingdeploy-minikube --image=octopusdeploy/rolling-deploy-web-example:0.0.1
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl create deployment rollingdeploy-microk8s --image=octopusdeploy/rolling-deploy-web-example:0.0.1
+
+deployment.apps/rollingdeploy-microk8s created
 ```
 
-The output from this command confirms our Deployment has been successfully created:
-
-```
-deployment.apps/rollingdeploy-minikube created
-```
+MicroK8s will create our Deployment and confirm it has been successfully created.
 
 Next up, we'll set the application pods to listen on port `5001`. To do that, we run the [expose](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#expose) command:
 
-```
-kubectl expose deployment rollingdeploy-minikube --type=NodePort --port=5001
-```
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl expose deployment rollingdeploy-microk8s --type=NodePort --port=5001
 
-The output confirms the command worked:
-
-```
-service/rollingdeploy-minikube exposed
+service/rollingdeploy-microk8s exposed
 ```
 
-Although the `rollingdeploy-minikube` Pod will have been created, it might not be available immediately. We can check it's status by using the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) which is included in Minikube:
+##### Kubernetes Dashboard
 
+Although the `rollingdeploy-microk8s` Pod will have been created, it might not be available immediately. We can check it's status by looking at our service using the Kubernetes [dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) which is included as an [Add-on](https://microk8s.io/docs/addon-dashboard) in MicroK8s.
+
+Attempting to access the dashboard remotely requires you to jump through a few hoops. Once the add-on was enabled, I found the simplest way was to to create a proxy from your machine to the server by running the `kubectl proxy` command:
+
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl proxy --accept-hosts=.* --address=0.0.0.0
+
+Starting to serve on [::]:8001
 ```
-minikube dashboard
-```
-This will enable and open the dashboard on your local machine. 
 
-```
-* Enabling dashboard ...
-* Verifying dashboard health ...
-* Launching proxy ...
-* Verifying proxy health ...
-* Opening http://127.0.0.1:55436/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
-```
-Once open, you can use it to deploy containerized applications, manage and interact with your cluster resources:
+From there you can access the dashboard on port `8001`, but you'll need either a `Kubeconfig` file or `Token` to login. See the MicroK8s [Dashboard add-on](https://microk8s.io/docs/addon-dashboard) for further details. 
 
-![](minikube-dashboard.png "width=500")
+:::warning
+Note: You can skip the login by setting the `--enable-skip-login` argument for the dashboard container, but this isn't advised as it goes against security best practices 
+:::
 
-In order to perform a rolling update, firstly we need more than one replica of our application. We can scale our Deployment from the dashboard, by clicking on the three ellipsis on the right hand side of the **Deployments** section:
+ Once open, you can use the dashboard to deploy containerized applications, manage and interact with your cluster resources. 
+ 
+ In order to perform a rolling update, firstly we need more than one replica of our application. We can scale our Deployment directly from the dashboard, by clicking on the three ellipsis on the right hand side of the **Deployments** section:
 
-![](minikube-dashboard-scale-ellipsis.png "width=500")
+![](microk8s-dashboard-scale-ellipsis.png "width=500")
 
-For our Kubernetes application, I update the **Desired Replicas** to 3 so I can perform a rolling update and then hit **Scale**.
+For our Kubernetes application, I update the **Desired Replicas** to 3 so I can perform a rolling update and then hit **Scale**:
 
-![](minikube-dashboard-scale.png "width=500")
+![](microk8s-dashboard-scale.png "width=500")
 
 :::hint
 **Equivalent kubectl commands**
-You may have noticed that the dashboard handily provides the equivalent command to run for our action. For scaling our resource, that is:
+You may have noticed that the dashboard provides the equivalent command to run for our action. For scaling our resource, that would be:
 
-```
-kubectl scale -n default deployment rollingdeploy-minikube --replicas=3 
+```bash
+sudo microk8s.kubectl scale -n default deployment rollingdeploy-microk8s --replicas=3 
 ```
 :::
 
-Once the Pods have been provisioned by the Kubernetes engine, we can confirm this by querying the Pod's status directly by running:
+Once the Pods have been provisioned, we can confirm this by querying the Pod's status directly running the `get pod` command (names may be different):
 
-```
-kubectl get pod
-```
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl get pod
 
-The result of this will show us the status of the Pod (Names may be different):
-
-```
 NAME                                      READY   STATUS    RESTARTS   AGE
-rollingdeploy-minikube-6844478945-jnz8r   1/1     Running   0          71s
-rollingdeploy-minikube-6844478945-tvl9b   1/1     Running   0          71s
-rollingdeploy-minikube-6844478945-vgg9q   1/1     Running   0          71s
+rollingdeploy-microk8s-794bdc64c4-fv7zt   1/1     Running   0          76s
+rollingdeploy-microk8s-794bdc64c4-t6mh5   1/1     Running   0          76s
+rollingdeploy-microk8s-794bdc64c4-trr6f   1/1     Running   0          76s
 ```
 
-To verify our application is working, we can ask minikube for the url to the `Deployment` we created at the start:
+To verify our application is working, we need to find the port that has been exposed by Kubernetes to the `Deployment` we created at the start:
+
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl get service rollingdeploy-microk8s
+
+NAME                     TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+rollingdeploy-microk8s   NodePort   10.152.183.39   <none>        5001:32334/TCP   1m
+```
+
+In my case, the port is `32334` so my url to access my service becomes
 
 ```
-minikube service --url=true rollingdeploy-minikube
-```
-
-The url for the service will then be displayed for us by minikube:
-
-```
-http://192.168.87.124:31861
+http://ubuntu01.octopusdemos.com:32334
 ```
 
 :::hint
-**Note:** The IP address may be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will also be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
+**Note:** The port may be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will  be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
 :::
 
-Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in minikube:
+Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in microk8s:
 
-![](minikube-v0.0.1.png "width=500")
+![](microk8s-v0.0.1.png "width=500")
 
 #### Kubernetes Rolling Update
 
 Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `octopusdeploy/rolling-deploy-web-example` by running the following command:
 
-```
-kubectl set image deployment/rollingdeploy-minikube rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --record
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl set image deployment/rollingdeploy-microk8s rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --record
+
+deployment.apps/rollingdeploy-microk8s image updated
 ```
 
-If all is well, you will get an output similar to this:
+Next, we can watch the live progress of our rollout until its complete by running the `rollout status` command:
 
-```
-deployment.apps/rollingdeploy-minikube image updated
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl rollout status deployment.v1.apps/rollingdeploy-microk8s
+
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "rollingdeploy-microk8s" rollout to finish: 1 old replicas are pending termination...
+deployment "rollingdeploy-microk8s" successfully rolled out
 ```
 
-Next, we can check the progress of our rollout by running::
-
-```
-kubectl rollout status deployment.v1.apps/rollingdeploy-minikube
-```
-
-This will provide a live progress of the rollout until its complete, and it is indicating that it is updating 1 Pod at a time:
-
-```
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 out of 3 new replicas have been updated...
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 2 out of 3 new replicas have been updated...
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 2 out of 3 new replicas have been updated...
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 2 out of 3 new replicas have been updated...
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 old replicas are pending termination...
-Waiting for deployment "rollingdeploy-minikube" rollout to finish: 1 old replicas are pending termination...
-deployment "rollingdeploy-minikube" successfully rolled out
-```
+You can see that it indicated that it was updating 1 Pod at a time.
 
 Kubernetes Deployments ensure that only a certain number of Pods are down while they are being updated. It does this by creating a new Pod and destroying the old ones after it has completed.
 
@@ -556,30 +541,27 @@ By default, Kubernetes ensures that at there are at least 75% of the desired num
 In addition, another default is to create no more than 25% of the overall desired amount of Pods.
 :::
 
-Opening the url in a browser, and we can now see that we have `v0.0.2` of our application running in minikube:
+Opening the url in a browser, and we can now see that we have `v0.0.2` of our application running in Microk8s:
 
-![](minikube-v0.0.2.png "width=500")
+![](microk8s-v0.0.2.png "width=500")
 
 The Deployment's rollout was triggered here as `set image` caused an update to the underlying Deployment Pod's [Template](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates). A Template is a specification document which describes the way a [Replication Controller](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) should create an actual pod.
 
 We can see what the Template looks like for our application by running:
 
-```
-kubectl edit deployment.v1.apps/rollingdeploy-minikube
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl edit deployment.v1.apps/rollingdeploy-microk8s
 ```
 
-This will open up the template file in a text editor, and on my machine that's Notepad:
+This will open up the template file in a text editor. For me, that's in the terminal itself. You can edit this file interactively. Changing the Deployment Pod's template (the section within `.spec.template`) will result in triggering the Deployment's rollout:
 
 ![](kubectl-edit-deployment.png)
 
-You can edit this file interactively. Changing the Deployment Pod's template (the section within `.spec.template`) will result in triggering the Deployment's rollout. 
 
 :::hint
 **Hint:**
 Other updates to a Deployment, like the scaling we did earlier doesn't result in a rollout being triggered.
 :::
-
-It felt like there was a little more to the setup for a rolling deployment with Kubernetes than with Docker, but once configured, it worked excellently.
 
 #### Kubernetes Deployment Rollback
 
@@ -592,52 +574,42 @@ With Kubernetes, all of a Deployment's rollout history is kept in the system by 
  Whilst it's possible to change the amount of history that's stored for a Deployment's rollout (by modifying the revision history limit), it's not generally recommended. This limits your ability to rollback a deployment.
 :::
 
-To see the rollout history for our deployment, we can run:
+To see the rollout history for our deployment, we can run the `rollout history` command:
 
-```
-kubectl rollout history deployment.v1.apps/rollingdeploy-minikube
-```
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl rollout history deployment.v1.apps/rollingdeploy-microk8s
 
-This will display all of the changes to our `rollingdeploy-minikube` Deployment:
-
-```
+deployment.apps/rollingdeploy-microk8s
 REVISION  CHANGE-CAUSE
 1         <none>
-2         kubectl.exe set image deployment/rollingdeploy-minikube rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --record=true
+2         kubectl set image deployment/rollingdeploy-microk8s rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --kubeconfig=/var/snap/microk8s/1107/credentials/client.config --record=true
 ```
 
 We can choose to revert back to the previously deployed version `v0.0.1` by running:
 
-```
-kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl rollout undo deployment.v1.apps/rollingdeploy-microk8s
+
+deployment.apps/rollingdeploy-microk8s rolled back
 ```
 
-If that succeeds, you should see the following:
+We can confirm we have rolled back, either by looking back in the dashboard, viewing the application in a browser, or by running the `describe` command:
 
-```
-deployment.apps/rollingdeploy-minikube rolled back
-```
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl describe deployment
 
-We can confirm we have rolled back, either by looking back in the dashboard, or running the `describe` command:
-
-```
-kubectl describe deployment
-```
-
-The output is as follows:
-```
-Name:                   rollingdeploy-minikube
+Name:                   rollingdeploy-microk8s
 Namespace:              default
-CreationTimestamp:      Tue, 10 Dec 2019 17:38:29 +0000
-Labels:                 app=rollingdeploy-minikube
+CreationTimestamp:      Wed, 22 Jan 2020 13:19:30 +0000
+Labels:                 app=rollingdeploy-microk8s
 Annotations:            deployment.kubernetes.io/revision: 3
-Selector:               app=rollingdeploy-minikube
+Selector:               app=rollingdeploy-microk8s
 Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
 StrategyType:           RollingUpdate
 MinReadySeconds:        0
 RollingUpdateStrategy:  25% max unavailable, 25% max surge
 Pod Template:
-  Labels:  app=rollingdeploy-minikube
+  Labels:  app=rollingdeploy-microk8s
   Containers:
    rolling-deploy-web-example:
     Image:        octopusdeploy/rolling-deploy-web-example:0.0.1
@@ -652,20 +624,39 @@ Conditions:
   Available      True    MinimumReplicasAvailable
   Progressing    True    NewReplicaSetAvailable
 OldReplicaSets:  <none>
-NewReplicaSet:   rollingdeploy-minikube-6844478945 (3/3 replicas created)
+NewReplicaSet:   rollingdeploy-microk8s-794bdc64c4 (3/3 replicas created)
+Events:
 ```
+
+This shows us the `Image` is set to `octopusdeploy/rolling-deploy-web-example:0.0.1` as we would expect.
+
 :::hint
 **Hint:**
 You can also choose to revert to a specific revision of your application by running:
 
 ```
-kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
+markh@ubuntu01:~$ kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
 ```
 
 Where the `--to-revision` parameter has the revision you wish to go back to.
 
 The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-undo-em-) has a full list of parameters you can use.
 :::
+
+#### Kubernetes Deployment clean-up
+
+To remove all of the resources associated with our Kubernetes Deployment, we use the `delete` command:
+
+```bash
+markh@ubuntu01:~$ sudo microk8s.kubectl delete services,deployment rollingdeploy-microk8s -n default
+
+service "rollingdeploy-microk8s" deleted
+deployment.apps "rollingdeploy-microk8s" deleted
+```
+
+#### Kubernetes Summary
+
+It felt like there was a little more to the setup for a rolling deployment with Kubernetes than with Docker, particularly with gaining access to the Dashboard. But once it was all configured, it worked excellently.
 
 ### Rolling deployments with Octopus
 
@@ -675,7 +666,7 @@ With the use of child steps, we can set-up our deployment process for the `rolli
 
 After creating a new project, we configure a rolling deployment with 3 steps:
 
- - A Script to remove the node from the Load Balancer
+ - A script to remove the node from the Load Balancer
  - Deployment of the Web Application
  - A script to add the node back into the Load Balancer 
 
