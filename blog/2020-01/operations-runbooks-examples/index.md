@@ -44,7 +44,7 @@ Runbooks and runbook automation brings a number of benefits.
 
 ## Why use Octopus for Runbook automation? 
 
-It's already possible to document and script operations processes, so why use Ocotpus Operations Runbooks?
+It's already possible to document and script operations processes, so why use Octopus Operations Runbooks?
 
 * **Runbooks and deployment processes sit side-by-side.** Runbooks are designed to automate operations tasks, and they can share configuration settings, secrets, step templates, scripts, and more. Runbooks are lightweight automated processes that are executed against your infrastructure without going through an deployment lifecycle (i.e. dev, test, production).
 * **Octopus is already aware of your infrastructure.** Runbooks leverage the infrastructure that your applications are deployed to, so there's nothing new to configure, reducing the friction to getting started with running operations processes.
