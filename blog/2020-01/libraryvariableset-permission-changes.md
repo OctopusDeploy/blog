@@ -32,7 +32,7 @@ But making changes to permissions has always been a challenge. Octopus cannot se
 
 With the introduction of this change (as of version 2020.1.0) you will be able to grant granular access access to what users can view and edit in Library Variable Sets, independent of the environments they can view. This change delivers a good step forward to increase the capability of Library Variable Sets.
 
-The decoupling of `LibraryVariableSetView` and `LibraryVariableSetEdit` from `EnvironmentView` gives these permissions the capabilities similar to `VariableView` and `VariableEdit`.
+The decoupling of `LibraryVariableSetView` and `LibraryVariableSetEdit` from `EnvironmentView` gives these permissions the capabilities similar to `VariableView` and `VariableEdit` (they're all grown up now).
 
 The scoping that will be supported on `LibraryVariableSetView` and `LibraryVariableSetEdit` is `Environments` and `Tenants`. Going forward you can scope variables in a Library Variable Set to [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets), and if those targets are Tenanted the access will also be enforced for users with Tenant scoped `LibraryVariableSetView` and `LibraryVariableSetEdit`. Environment scoping will function as it previously did for View, but this change extends environment scoping to `LibraryVariableSetEdit`.
 
