@@ -446,7 +446,7 @@ Note: You can skip the login by setting the `--enable-skip-login` argument for t
 
 ![](microk8s-dashboard-scale-ellipsis.png "width=500")
 
-For our Kubernetes application, I update the **Desired Replicas** to 3 so I can perform a rolling update and then hit **Scale**:
+For our Kubernetes Deployment, I update the **Desired Replicas** to 3 so I can perform a rolling update and then hit **Scale**:
 
 ![](microk8s-dashboard-scale.png "width=500")
 
@@ -470,7 +470,7 @@ rollingdeploy-microk8s-794bdc64c4-t6mh5   1/1     Running   0          76s
 rollingdeploy-microk8s-794bdc64c4-trr6f   1/1     Running   0          76s
 ```
 
-To verify our application is working, we need to find the port that has been exposed by Kubernetes to the `Deployment` we created at the start by running `get service`:
+To verify our application is working, we need to find the port that has been exposed by Kubernetes to the Deployment we created at the start by running `get service`:
 
 ```bash
 markh@ubuntu01:~$ sudo microk8s.kubectl get service rollingdeploy-microk8s
@@ -489,7 +489,7 @@ http://ubuntu01.octopusdemos.com:32334
 **Note:** The port may be different when running this on your own machine. A random port, in the range 30000-32767 (by default) will  be assigned by Kubernetes as we chose a `NodePort` type when we ran the `expose` command earlier.
 :::
 
-Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in microk8s:
+Opening the url in a browser, and we can see that we have `v0.0.1` of our application running in Microk8s:
 
 ![](microk8s-v0.0.1.png "width=500")
 
