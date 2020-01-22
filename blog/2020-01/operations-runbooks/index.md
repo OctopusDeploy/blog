@@ -2,7 +2,7 @@
 title: Operations Runbooks Examples
 description: Runbook automation examples in Octopus Deploy.
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: blogimage-runbookslaunch.png
 metaImage: blogimage-runbookslaunch.png
 published: 2020-01-29
@@ -20,7 +20,7 @@ We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/
 - Website failover and restoration
 - Server maintenance
 
-In this blog post, we're going take a look at runbooks, why they're valuable and several examples.
+In this blog post, we're going take a look at runbooks, why they're valuable and highlight some scenarios where they fit.
 
 <h2>In this post </h2>
 
