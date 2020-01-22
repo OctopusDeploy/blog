@@ -109,7 +109,7 @@ I wanted to see just how easy it would be to perform a rolling deploy of this ap
 
  - [Docker](#Docker-rolling-application-updates)
  - [Kubernetes](#Kubernetes-Rolling-updates)
- - [Octopus](#Octopus-Rolling-deploy)
+ - [Octopus](#Rolling-deployments-with-Octopus)
 
 ### Docker rolling application updates
 
