@@ -126,7 +126,7 @@ I'm running Docker on an [Ubuntu](https://ubuntu.com/download/server) server and
 
 I opted for the Ubuntu repository as it seemed quicker and easier, but your mileage may vary. Whichever method you choose, it's worth ensuring you meet the installation [prerequisites](https://docs.docker.com/install/linux/docker-ce/ubuntu/#prerequisites).
 
-For the sake of simplicity, I'll be interacting with Docker an SSH terminal connection to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
+For the sake of simplicity, I'll be interacting with Docker in an SSH terminal session to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
 
 :::warning
 **Permissions requirement:**
@@ -351,7 +351,7 @@ The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics
 
 #### Kubernetes cluster setup
 
-Just as before, I'll be re-using our pre-built container image for this demonstration, this time using [MicroK8s](https://microk8s.io/). I'll also be interacting with it primarily over an SSH connection.
+Just as before, I'll be re-using our pre-built container image for this demonstration, this time using [MicroK8s](https://microk8s.io/). I'll also be interacting with it primarily in an SSH terminal session.
 
 The authors, Canonical describe MicroK8s as:
 
@@ -470,7 +470,7 @@ rollingdeploy-microk8s-794bdc64c4-t6mh5   1/1     Running   0          76s
 rollingdeploy-microk8s-794bdc64c4-trr6f   1/1     Running   0          76s
 ```
 
-To verify our application is working, we need to find the port that has been exposed by Kubernetes to the `Deployment` we created at the start:
+To verify our application is working, we need to find the port that has been exposed by Kubernetes to the `Deployment` we created at the start by running `get service`:
 
 ```bash
 markh@ubuntu01:~$ sudo microk8s.kubectl get service rollingdeploy-microk8s
@@ -495,7 +495,7 @@ Opening the url in a browser, and we can see that we have `v0.0.1` of our applic
 
 #### Kubernetes Rolling Update
 
-Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `octopusdeploy/rolling-deploy-web-example` by running the following command:
+Let's go ahead and instruct Kubernetes to update our 3 pods with `v0.0.2` of our image `octopusdeploy/rolling-deploy-web-example` by running the `set image` command:
 
 ```bash
 markh@ubuntu01:~$ sudo microk8s.kubectl set image deployment/rollingdeploy-microk8s rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --record
@@ -536,7 +536,7 @@ Opening the url in a browser, and we can now see that we have `v0.0.2` of our ap
 
 The Deployment's rollout was triggered here as `set image` caused an update to the underlying Deployment Pod's [Template](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#pod-templates). A Template is a specification document which describes the way a [Replication Controller](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) should create an actual pod.
 
-We can see what the Template looks like for our application by running:
+We can see what the Template looks like for our application by running `edit`:
 
 ```bash
 markh@ubuntu01:~$ sudo microk8s.kubectl edit deployment.v1.apps/rollingdeploy-microk8s
@@ -574,7 +574,7 @@ REVISION  CHANGE-CAUSE
 2         kubectl set image deployment/rollingdeploy-microk8s rolling-deploy-web-example=octopusdeploy/rolling-deploy-web-example:0.0.2 --kubeconfig=/var/snap/microk8s/1107/credentials/client.config --record=true
 ```
 
-We can choose to revert back to the previously deployed version `v0.0.1` by running:
+We can choose to revert back to the previously deployed version `v0.0.1` by running `rollout undo`:
 
 ```bash
 markh@ubuntu01:~$ sudo microk8s.kubectl rollout undo deployment.v1.apps/rollingdeploy-microk8s
