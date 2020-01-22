@@ -1,6 +1,6 @@
 ---
 title: "Library Variable Set Permission Changes"
-description: Some upcoming changes how Library Variable Set permissions work
+description: Some upcoming changes to how Library Variable Set permissions work
 author: nick.josevski@octopus.com
 visibility: private
 published: 2020-01-01
@@ -14,15 +14,15 @@ tags:
 
 [Library Variable Sets](https://octopus.com/docs/deployment-process/variables/library-variable-sets) in Octopus are a much loved and useful feature, they make it possible to define variables for use with multiple projects.
 
-They were always designed to be global and as many customers grew in their usage of Octopus this surfaced some complications that we are addressing.
+They were always designed to be global and, as many customers grew in their usage of Octopus, this surfaced some complications that we are addressing.
 
-To be able to deliver a major step forward in consistent and configurable access to variables housed in Library Variable Sets. We need to make a breaking change to how 2 permissions; `LibraryVariableSetView` and `LibraryVariableSetEdit` work and behave.
+To be able to deliver a major step forward in consistent and configurable access to variables housed in Library Variable Sets we need to make a breaking change to how two permissions (`LibraryVariableSetView` and `LibraryVariableSetEdit`) work and behave.
 
 ![role-based access control](blogimage-team-permissions.png)
 
 ## Background
 
-When Library Variable Sets were introduced along with the permissions `LibraryVariableSetView` and `LibraryVariableSetEdit` the Octopus world was simpler. A choice was made to tightly couple the behavior of these two permissions to a third permission `EnvironmentView`.
+When Library Variable Sets were introduced, along with the permissions `LibraryVariableSetView` and `LibraryVariableSetEdit`, the Octopus world was simpler. A choice was made to tightly couple the behavior of these two permissions to a third permission `EnvironmentView`.
 
 This decision restricted the ability for consistent granular control of the these 2 permissions. Many customers have requested we make improvements in this area.
 
@@ -30,9 +30,9 @@ But making changes to permissions has always been a challenge. Octopus cannot se
 
 ## Improving Variable Set Access
 
-We've been working on this change for a while, it's been a slow process as there was much to consider and test. This change delivers a good step forward to increase the capability of Library Variable Sets. When you are on a version of Octopus with this change, you will be able to grant granular access to what users can view and edit in Library Variable Sets, independent of the environments they can view.
+With the introduction of this change (as of version 2020.1.0) you will be able to grant granular access access to what users can view and edit in Library Variable Sets, independent of the environments they can view. This change delivers a good step forward to increase the capability of Library Variable Sets.
 
-The decoupling of `LibraryVariableSetView` and `LibraryVariableSetEdit` from `EnvironmentView` gives these permissions, capabilities similar to `VariableView` and `VariableEdit`.
+The decoupling of `LibraryVariableSetView` and `LibraryVariableSetEdit` from `EnvironmentView` gives these permissions the capabilities similar to `VariableView` and `VariableEdit`.
 
 The scoping that will be supported on `LibraryVariableSetView` and `LibraryVariableSetEdit` is `Environments` and `Tenants`. Going forward you can scope variables in a Library Variable Set to [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets), and if those targets are Tenanted the access will also be enforced for users with Tenant scoped `LibraryVariableSetView` and `LibraryVariableSetEdit`. Environment scoping will function as it previously did for View, but this change extends environment scoping to `LibraryVariableSetEdit`.
 
@@ -59,11 +59,11 @@ In order to preserve the current access levels for such users, Octopus will need
 
 We believe most customers will not be negatively impacted by this. As part of developing and testing this, we have spoken to some customers with large instances.
 
-This change highlighted an undesired misconfiguration for some. These customers have acted on the gap in their permissions and made a suitable change to their team set up. This migration will not result in a change for them since they took this earlier access-rights adjusting step.
+This change highlighted an undesired misconfiguration for some (see below to see if this impacts you). These customers have acted on the gap in their permissions and made a suitable change to their team set up. This migration will not result in a change for them since they took this earlier access-rights adjusting step.
 
 ### Does this impact me?
 
-If you have configured custom user roles, and those roles contain `LibraryVariableSetView` and `LibraryVariableSetEdit` but do not also contain `EnvironmentView` you may be affected.
+If you have configured custom user roles, and those roles contain `LibraryVariableSetView` and `LibraryVariableSetEdit` but do not also contain `EnvironmentView`, you may be affected.
 
 Here are some example scenarios to work out if this will impact you.
 
@@ -72,8 +72,8 @@ Here are some example scenarios to work out if this will impact you.
 
 We will migrate user access in these cases:
 
-  1. You have defined a `Custom User Role` it contains `LibraryVariableSetView` or `LibraryVariableSetEdit`, you have used this role to define the permissions for a set of users, and no other roles are granting those users access. In this scenario, prior to this upcoming change. `LibraryVariableSetView` did not work as expected, because the users lacked `EnvironmentView`.
-  2. You are using a User Role that has `LibraryVariableSetView` or `LibraryVariableSetEdit` with different scoping to what the user is scoped to on the `EnvironmentView` permission, we must apply the same scoping they currently have on `EnvironmentView` to `LibraryVariableSetView` and `LibraryVariableSetEdit`.
+  1. You have defined a `Custom User Role` and it contains `LibraryVariableSetView` or `LibraryVariableSetEdit`, you have used this role to define the permissions for a set of users, and no other roles are granting those users access. In this scenario, prior to this upcoming change. `LibraryVariableSetView` did not work as expected, because the users lacked `EnvironmentView`.
+  2. You are using a User Role that has `LibraryVariableSetView` or `LibraryVariableSetEdit` with different scoping to what the user is scoped to on the `EnvironmentView` permission. In this scenario we must apply the same scoping they currently have on `EnvironmentView` to `LibraryVariableSetView` and `LibraryVariableSetEdit`.
 
 #### Not Affected Examples
 
@@ -106,8 +106,8 @@ To achieve this, it will run as a Task in every Space you have configured. This 
 
 This change is a breaking change.
 
-If you relied on the existing behavior of how `LibraryVariableSetView` and `LibraryVariableSetEdit` worked it they will behave differently, and you'll need to modify any automation you have granting this kind of access.
+If you relied on the existing behavior of how `LibraryVariableSetView` and `LibraryVariableSetEdit` worked, they will behave differently, and you'll need to modify any automation you have granting this kind of access.
 
 ## Contact Us
 
-If you have questions about this, please contact Octopus Support we can help you with confidence work out if this will have any impact on you, and steps you can take to improve your permission configuration before you upgrade to this version.
+If you have questions about this, please contact Octopus Support. We can help you with confidence to work out if this will have any impact on you, and steps you can take to improve your permission configuration before you upgrade to this version.
