@@ -690,4 +690,9 @@ We have an excellent series of posts on [database deployments](http://octopus.co
 
 No matter which tooling you are using, rolling deployments is just one pattern available in your toolset to optimise deployment of your software. But with an incremental approach, it allows you to keep your applications online whilst rolling out newer versions of your software in a controlled manner, often with native support for rollbacks - making it a firm favourite of mine for minimal disruption.
 
+:::hint
+**CI/CD Pipeline Tutorials**
+If you need any additional help configuring your CI/CD pipeline, we have created our [tutorials](https://octopus.com/docs/guides) which includes step-by-step instructions on how to setup CI/CD pipelines for various technology stacks, including Docker and Kubernetes.
+:::
+
 Feel free to leave a comment, and let us know what you think about rolling deployments!
