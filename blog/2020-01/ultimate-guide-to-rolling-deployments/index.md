@@ -324,6 +324,11 @@ octopusdeploy/rolling-deploy-web-example:0.0.2@sha256:4843a91ba84ace97cb11a6e3f6
 ```
 This results in the expected `v0.0.2` version in the output.
 
+:::warning
+**Database rollbacks**
+When a service in Docker utilises a database for storage, it's important to have a strategy in place to deal with a service rollback, particularly if the database is within a container itself. Docker won't rollback database changes for you automatically, and that could leave your database and application in an incompatible state. The Docker [storage](https://docs.docker.com/storage/) documentation provides some guidance on the different options for storage in a container.
+:::
+
 #### Docker Service clean-up
 
 Finally to remove our Docker service we just run the `rm` command:
@@ -582,6 +587,19 @@ markh@ubuntu01:~$ sudo microk8s.kubectl rollout undo deployment.v1.apps/rollingd
 deployment.apps/rollingdeploy-microk8s rolled back
 ```
 
+:::hint
+**Hint:**
+You can also choose to revert to a specific revision of your application by running:
+
+```
+markh@ubuntu01:~$ kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
+```
+
+Where the `--to-revision` parameter has the revision you wish to go back to.
+
+The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-undo-em-) has a full list of parameters you can use.
+:::
+
 We can confirm we have rolled back, either by looking back in the dashboard, viewing the application in a browser, or by running the `describe` command:
 
 ```bash
@@ -619,17 +637,9 @@ Events:
 
 This shows us the `Image` is set to `octopusdeploy/rolling-deploy-web-example:0.0.1` as we would expect.
 
-:::hint
-**Hint:**
-You can also choose to revert to a specific revision of your application by running:
-
-```
-markh@ubuntu01:~$ kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
-```
-
-Where the `--to-revision` parameter has the revision you wish to go back to.
-
-The Kubernetes [documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-em-undo-em-) has a full list of parameters you can use.
+:::warning
+**Database rollbacks**
+As with Docker, it's important to understand what will happen with any databases you may have when you initiate a Kubernetes rollback. Google has a great [article](https://cloud.google.com/blog/products/databases/to-run-or-not-to-run-a-database-on-kubernetes-what-to-consider) discussing running databases on Kubernetes in more depth.
 :::
 
 #### Kubernetes Deployment clean-up
@@ -678,9 +688,11 @@ You can view this Octopus project set-up in our [Samples](https://samples.octopu
 
 ## A word on databases
 
-Usually one of the big sticking points with Rolling deployments I haven't discussed yet, is the database. Performing rolling deployments which involve some kind of persistent storage can sometimes be tricky, though not impossible. The devil is always in the detail.
+Usually one of the main sticking points with Rolling deployments, is the database. Performing rolling deployments which involve some kind of persistent storage can sometimes be tricky, though not impossible. The devil is always in the detail.
 
-If you want to perform rolling deployments which includes database changes, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
+If you want to perform rolling deployments which includes database changes, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed. 
+
+Lastly, it's definitely a good idea to test your rollback strategy *frequently*!
 
 :::hint
 We have an excellent series of posts on [database deployments](http://octopus.com/database-deployments) that discuss this topic and more.
