@@ -136,7 +136,7 @@ Most of the commands in this demonstration make use of [sudo](https://www.linux.
 Firstly, to see the Docker image of this running standalone, we'll run it locally with the following command:
 
 ```bash
-sudo docker run -d -p 5001:5001 octopusdeploy/rolling-deploy-web-example:0.0.1
+markh@ubuntu01:~$ sudo docker run -d -p 5001:5001 octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
 Unsurprisingly, running this Docker image locally displays the web page:
@@ -149,12 +149,12 @@ I don't go through how to build a container image in this post. If you are new t
 
 **Container clean-up**
 
-A quick-tidy up is needed next. To delete the container we created using the `run` command above, we need to stop it, and then remove it using the `rm` command. We can do this in a handy one-liner:
+A quick-tidy up is needed next. To delete the container we created using the `run` command above, we need to stop it, and then remove it using the `rm` command. We can do this in a condensed one-liner:
 
 ```bash
 sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --filter ancestor=octopusdeploy/rolling-deploy-web-example:0.0.1 --format="{{.ID}}"))
 ```
-The command above simply locates our container by image name of `octopusdeploy/rolling-deploy-web-example:0.0.1` and then passes that to the `stop` command, and finally passes that to the `rm` command.
+This simply locates our container by image name of `octopusdeploy/rolling-deploy-web-example:0.0.1` and then passes that to the `stop` command, and finally passes that to the `rm` command.
 
 To deploy more than one instance of our container, we need to create our Docker service. This uses [Docker Swarm](https://docs.docker.com/engine/swarm) as its orchestrator under the hood.
 
@@ -166,7 +166,7 @@ Docker also supports Kubernetes as an orchestator when deploying containers usin
 So let's see what our command to create a service looks like:
 
 ```bash
-sudo docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 octopusdeploy/rolling-deploy-web-example:0.0.1
+markh@ubuntu01:~$ sudo docker service create --name rolling-deploy-svc --replicas 3 --publish published=5001,target=5001 --update-delay 10s --update-parallelism 1 octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
 There's quite a lot going on in that command, so let's unpick what we are asking of Docker here:
@@ -198,12 +198,8 @@ verify: Service converged
 We can also check our service has the correct update configuration by running the command:
 
 ```bash
-sudo docker service inspect rolling-deploy-svc --pretty
-```
+markh@ubuntu01:~$ sudo docker service inspect rolling-deploy-svc --pretty
 
-The result of this shows we have our desired `UpdateConfig` 
-
-```
 ID:             bh03s0yjzkevzkkwvu8q2h0jj
 Name:           rolling-deploy-svc
 Service Mode:   Replicated
@@ -233,13 +229,14 @@ Ports:
   TargetPort = 5001
   PublishMode = ingress
 ```
+The result of this shows we have our desired `UpdateConfig` which will update 1 task at a time.
 
 #### Docker Service Update
 
 Now we can update the container image for `octopusdeploy/rolling-deploy-web-example` to `v0.0.2` by running the following command:
 
 ```bash
-sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.2
+markh@ubuntu01:~$ sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.2
 ```
 
 Docker runs the update to each container, 1 task at a time just as we have configured it to:
@@ -281,30 +278,22 @@ Just as it's straight-forward to roll-out, it's also possible to manually rollba
 Firstly we will update to our final version `v0.0.3` of the application by running:
 
 ```bash
-sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.3
+markh@ubuntu01:~$ sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.3
 ```
 
 We can verify the new `v0.0.3` version by checking the image used for our service:
 
 ```bash
-sudo docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
-```
+markh@ubuntu01:~$ sudo docker service inspect --format='{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
 
-This produces the result: 
-
-```
 octopusdeploy/rolling-deploy-web-example:0.0.3@sha256:151a8f2aaed0192bf9f22eaeff487d546e6ff8fec4d0691e6697dede743b187c
 ```
 
 Because Docker Swarm knows the versions we have deployed, we can revert to the previous one (`v0.0.2`) using the `rollback` command:
 
 ```bash
-sudo docker service rollback rolling-deploy-svc
-```
+markh@ubuntu01:~$ sudo docker service rollback rolling-deploy-svc
 
-Once successfully rolled back, it will confirm the service is running:
-
-```
 rolling-deploy-svc
 rollback: manually requested rollback
 overall progress: rolling back update: 3 out of 3 tasks
@@ -314,9 +303,11 @@ overall progress: rolling back update: 3 out of 3 tasks
 verify: Service converged
 ```
 
+Once successfully rolled back, it has confirmed the service is running.
+
 :::hint
 **Hint:**
- As I didn't specify any parameters to the `rollback` command, Docker by default will rollback one task at a time with no delays between each one. You can specify different values by passing the following to the command:
+ As I didn't specify any parameters to the `rollback` command, Docker will by default rollback one task at a time with no delays between each one. You can specify different values by passing the following to the command:
 
  - `--rollback-parallelism`
  - `--rollback-delay`
@@ -327,20 +318,18 @@ verify: Service converged
 We can verify the rollback was successful using the same command to inspect the service as before: 
 
 ```bash
-sudo docker service inspect --format='{{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
-```
-This results in the expected `v0.0.2` version being displayed: 
+markh@ubuntu01:~$ sudo docker service inspect --format='{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
 
-```
 octopusdeploy/rolling-deploy-web-example:0.0.2@sha256:4843a91ba84ace97cb11a6e3f68827a8c28a628d509159910c868f9ad02c3053
 ```
+This results in the expected `v0.0.2` version in the output.
 
 #### Docker Service clean-up
 
 Finally to remove our Docker service we just run the `rm` command:
 
 ```
-sudo docker service rm rolling-deploy-svc
+markh@ubuntu01:~$ sudo docker service rm rolling-deploy-svc
 ```
 
 #### Docker Summary
