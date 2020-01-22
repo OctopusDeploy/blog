@@ -49,32 +49,88 @@ It's already possible to document and script operations processes, so why use Oc
 * **Octopus is already aware of your infrastructure.** Runbooks leverage the infrastructure that your applications are deployed to, so there's nothing new to configure, reducing the friction to getting started with running operations processes.
 * **Security, permissions, and auditing.** Runbooks are managed and executed by Octopus, so there’s a complete audit trail that can be reviewed in retrospectives, making it easy to see what happened, when and why, and if anything needs to be changed. Octopus enables teams to control who can execute which Runbooks in what environments with advanced security and permissions.
 * **Better emergency management and reduced incident resolution time.** With Runbooks in Octopus, no local tooling is required, no additional permissions are needed and you have a detailed audit log of everything. On-call team members can quickly execute Runbooks without worrying about dependencies or infrastructure.
-* Discoverability and visibility. Octopus creates a central location for teams to manage, control, audit, schedule, and run runbooks. You can see when a runbook was last ran, you can see the changes to the runbook, and you can run the same runbook against different environments. Team members can easily find a runbook, and click a big green button to run it. And everyone can see the output from the last run and whether it succeeded or not.
-* World-class scheduling and execution. Execute runbooks on demand or schedule them at any frequency.
+* **Discoverability and visibility.** Octopus creates a central location for teams to manage, control, audit, schedule, and run runbooks. You can see when a runbook was last ran, you can see the changes to the runbook, and you can run the same runbook against different environments. Team members can easily find a runbook, and click a big green button to run it. And everyone can see the output from the last run and whether it succeeded or not.
+* **World-class scheduling and execution.** Execute runbooks on demand or schedule them at any frequency.
 
 ## Runbook examples
+
+I'd like to highlight some great runbook examples and I'll add new ones as times goes on. Feel free to add a comment with your favourite runbook idea.
 
 ### Routine maintenance
 
 #### Recycle IIS App Pool
 
-Stock standard question. 
+TODO: Screenshot
+
+Most developers who work on the Microsoft stack have experience sporatic web application or Windows service problems like memory leaks or unexplained performance issues. The problems are commonly resolve by recycling the IIS web server app pool or restarting a windows service. While this doesn't address the underlying issue, it does quicly resolve problems and enable customers to continue to use the applications they support. 
+
+This is a simple but very straightforward runbook containing a few lines of PowerShell.
+
+```powershell
+
+# TODO
+
+```
 
 #### Restart Docker Container
 
-As per #topic-linux
+TODO: Screenshot
+
+Description
+
+```bash
+
+# TODO
+
+```
+
+#### Provision test infrastructure
+
+TODO: Screenshot
+
+Description
 
 #### File clean-up
+
+TODO: Screenshot
+
+It's not uncommon for web services that do run various business processes to leave artifacts on file systems or cloud storage and this can exceed it's limits. 
+
+```bash
+
+# TODO
+
+```
 
 ### Emergency scenarios
 
 #### Website failover
 
-#### Run a database administration script of some sort
+TODO: Screenshot
+
+Most modern websites are highly available nowadays have have some sort of elastic or scaling capability. This is further enhanced with cloud platforms like [Microsoft Azure](https://azure.microsoft.com/) and [Amazon Web Services](https://aws.amazon.com/). That said, it's not uncommon for entire regions to have outages and wreak havoc with websites, databases and other infrastructure. 
+
+This is where a disaster recovery site can help in a different cloud or region however it can be complicated to make the switch over. This is often captured in runbook documentation however it's the ideal candidate to be automated. The example above shows 
+
+#### Running a database administration scripts
+
+Sudden increases in activity for a website or service can greatly change the performance of a database and affect the service. In situations like this, you could either 
+
+```sql
+
+-- TODO
+
+```
+
+NOTE: This type of runbook could be considered a 
 
 #### Server running out of disk space
 
+TODO: Screenshot
 
+Screenshot
+
+Description
 
 ## Conclusion
 
