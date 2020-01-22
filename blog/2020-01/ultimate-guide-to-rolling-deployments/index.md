@@ -233,7 +233,7 @@ The result of this shows we have our desired `UpdateConfig` which will update 1 
 
 #### Docker Service Update
 
-Now we can update the container image for `octopusdeploy/rolling-deploy-web-example` to `v0.0.2` by running the following command:
+Now we can update the container image for `octopusdeploy/rolling-deploy-web-example` to `v0.0.2` by running the `service update` command:
 
 ```bash
 markh@ubuntu01:~$ sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.2
@@ -281,7 +281,7 @@ Firstly we will update to our final version `v0.0.3` of the application by runni
 markh@ubuntu01:~$ sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.3
 ```
 
-We can verify the new `v0.0.3` version by checking the image used for our service:
+We can verify the new `v0.0.3` version by checking the image version. We do this by running the `service inspect` command, passing in a `--format` parameter of only the output we want to see: 
 
 ```bash
 markh@ubuntu01:~$ sudo docker service inspect --format='{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
