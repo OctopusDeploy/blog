@@ -126,7 +126,7 @@ I'm running Docker on an [Ubuntu](https://ubuntu.com/download/server) server and
 
 I opted for the Ubuntu repository as it seemed quicker and easier, but your mileage may vary. Whichever method you choose, it's worth ensuring you meet the installation [prerequisites](https://docs.docker.com/install/linux/docker-ce/ubuntu/#prerequisites).
 
-For the sake of simplicity, I'll be interacting with Docker from the command line using an SSH connection to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
+For the sake of simplicity, I'll be interacting with Docker an SSH terminal connection to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
 
 :::warning
 **Permissions requirement:**
