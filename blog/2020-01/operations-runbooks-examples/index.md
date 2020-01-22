@@ -1,6 +1,6 @@
 ---
 title: Operations Runbooks Examples
-description: Operations Runbooks examples
+description: Runbook automation examples in Octopus Deploy.
 author: rob.pearson@octopus.com
 visibility: private
 bannerImage: blogimage-runbookslaunch.png
@@ -8,6 +8,7 @@ metaImage: blogimage-runbookslaunch.png
 published: 2020-01-29
 tags:
 - Product
+- DevOps
 ---
 
 ![Operations runbooks examples](blogimage-runbookslaunch.png)
@@ -54,7 +55,7 @@ It's already possible to document and script operations processes, so why use Oc
 
 ## Runbook examples
 
-I'd like to highlight some great runbook examples and I'll add new ones as times goes on. Feel free to add a comment with your favourite runbook idea.
+I'd like to highlight some runbook examples and I'll add new ones over time. Add a comment with your favourite runbook or automated operations process.
 
 ### Routine maintenance
 
@@ -64,23 +65,27 @@ TODO: Screenshot
 
 Most developers who work on the Microsoft stack have experience sporatic web application or Windows service problems like memory leaks or unexplained performance issues. The problems are commonly resolve by recycling the IIS web server app pool or restarting a windows service. While this doesn't address the underlying issue, it does quicly resolve problems and enable customers to continue to use the applications they support. 
 
-This is a simple but very straightforward runbook containing a few lines of PowerShell.
+In Octopus, this is a very straighforward runbook with a single Script step that executes the following PowerShell script.
 
 ```powershell
-
-# TODO
-
+# Example 1: Restart IIS app pool
+Restart-WebAppPool MyAppPool
 ```
 
-#### Restart Docker Container
+#### Restart NGINX or restart a Docker container (containerized application)
 
-TODO: Screenshot
+If 
 
-Description
+ NGINX or re
+
+Similar to the first runbook example, another common operations task is to restart an NGINX (via systemd) or restart an containerized application. 
+
+In Octopus, this is a simple runbook with a single script step that executes the following bash script.
 
 ```bash
 
-# TODO
+# Restart NGINX 
+sudo systemctl reload nginx
 
 ```
 
