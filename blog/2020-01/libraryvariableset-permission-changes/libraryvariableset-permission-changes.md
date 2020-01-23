@@ -45,7 +45,7 @@ The scoping that will be supported on `LibraryVariableSetView` and `LibraryVaria
 
 `LibraryVariableSetView` and `LibraryVariableSetEdit` permissions will respond to scoping similar to `VariableView` and `VariableEdit`. You can now more finely control variables within a Library Variable Set, independent to the environments a user can see.
 
-In this example, we will give a user the ability to see all Environments. But only `LibraryVariableSetView` on a sub set of those.
+Suppose we have a user in the "QA Team" with the ability to see all the current environments: development, test and production. This is granted to them via the "environment viewer" role which does not have scoping applied. They are also granted the "project deployer" role which contains `LibraryVariableSetView` this restricts their ability to see Library Variables in any set to only those scoped to Development and Test, excluding Production.
 
 ![configured-userroles](blogimage-configured-userroles.png)
 
