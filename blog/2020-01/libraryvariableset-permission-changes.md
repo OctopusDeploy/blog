@@ -3,11 +3,12 @@ title: "Library Variable Set Permission Changes"
 description: Some upcoming changes to how Library Variable Set permissions work
 author: nick.josevski@octopus.com
 visibility: private
-published: 2020-01-01
+published: 2020-01-23
 metaImage: metaimage-team-permissions.png
 bannerImage: blogimage-team-permissions.png
 tags:
  - Permissions
+ - Library
 ---
 
 ## Library Variable Set Permission Changes
@@ -30,7 +31,7 @@ But making changes to permissions has always been a challenge. Octopus cannot se
 
 ## Improving Variable Set Access
 
-With the introduction of this change (as of version 2020.1.0) you will be able to grant granular access to what users can view and edit in Library Variable Sets, independent of the environments they can view. This change delivers a good step forward to increase the capability of Library Variable Sets.
+With the introduction of this change (in an upcoming version of Octopus) you will be able to grant granular access to what users can view and edit in Library Variable Sets, independent of the environments they can view. This change delivers a good step forward to increase the capability of Library Variable Sets.
 
 The decoupling of `LibraryVariableSetView` and `LibraryVariableSetEdit` from `EnvironmentView` gives these permissions the capabilities similar to `VariableView` and `VariableEdit` (they're all grown up now).
 
