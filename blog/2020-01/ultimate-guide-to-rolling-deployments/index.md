@@ -4,17 +4,17 @@ description: What are rolling deployments and why they are useful? This post cov
 author: mark.harrison@octopus.com
 visibility: private
 published: 2020-02-01
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - DevOps
 ---
 
-![Rolling Deployments](rolling-deployments.png)
+<!-- ![Rolling Deployments](rolling-deployments.png) -->
 
 When tasked with deploying a new version of your application, such as a web site, it's still common for teams to take their entire website down while they do deployments.
 
-If the majority of your customers only use your application during business hours, then this big-bang approach is probably acceptable. But what happens if your customers are using your applications 24-7? 
+If the majority of your customers only use your application during business hours, then this big-bang approach is probably acceptable. But what happens if your customers are using your applications 24-7?
 
 Today, users expect applications to be available all of the time and there are a few deployment patterns you can use to achieve zero-downtime. In this post, I'll discuss one of these patterns in more depth; Rolling deployments, and provide you with some practical examples of how to do this using different tooling.
 
@@ -43,7 +43,7 @@ A typical process looks something like this:
  4. Stop the `v1.0` application on the remaining node from running, deploy the new `v1.1` version. Again, optionally verify the deployment was successful.
 
  ![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-4.png)
- 
+
  5. Finally, once `v1.1` of your application has been deployed successfully to all of your nodes, your rolling deployment is complete!
 
 ![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-5.png)
@@ -52,21 +52,21 @@ If you wanted to ramp up your rolling deployment and deliver a new version to mo
 
 ![Rolling Deployment: Update multiple nodes in pool](rolling-deploy-multiple.png)
 
-This incremental approach is often favoured in web applications which sit behind a load balancer, as most load balancers support a concept known as `Connection draining`. This is simply allowing connections to a service to finish naturally, as well as preventing any new connections to be established. 
+This incremental approach is often favoured in web applications which sit behind a load balancer, as most load balancers support a concept known as `Connection draining`. This is simply allowing connections to a service to finish naturally, as well as preventing any new connections to be established.
 
 By performing this action, instances which are selected to be updated, can be removed from the available pool after they have finished their work, whilst a number remain online serving traffic.
 
 :::hint Although the scenario above describes a web application rolling deployment, it's possible to achieve rolling deployments for other types of application, providing they are built in a way which supports ending their process safely.
 :::
 
-For example, Octopus Deploy's [High Availability](https://octopus.com/docs/administration/high-availability) configuration also has a [drain](https://octopus.com/docs/administration/high-availability/managing-high-availability-nodes#ManagingHighAvailabilityNodes-Drain) option, which prevents any new tasks from executing, and finishes up any tasks it's currently executing until idle. Features like draining allow for the safe termination of a process, which can then be updated and brought back online. 
+For example, Octopus Deploy's [High Availability](https://octopus.com/docs/administration/high-availability) configuration also has a [drain](https://octopus.com/docs/administration/high-availability/managing-high-availability-nodes#ManagingHighAvailabilityNodes-Drain) option, which prevents any new tasks from executing, and finishes up any tasks it's currently executing until idle. Features like draining allow for the safe termination of a process, which can then be updated and brought back online.
 
 ## Why are they useful?
 
 So why use rolling deployments over other patterns (canary, blue/green)? Well, rolling deployments offer the following benefits:
 
 ### Incremental update
- 
+
 New versions of your application are rolled-out incrementally. This allows you to verify that it's working, for example, by running health checks or tests before moving on to the next batch of updates.
 
 In the event that you need to initiate a rollback, you can also do this in a safe, controlled manner.
@@ -85,7 +85,7 @@ You can use the `Window size` option within an Octopus rolling deployment to con
 
 ## Rolling deployment patterns in Practise
 
-To demonstrate the different approaches for rolling deployments, we have a very simple .NET Core 3.1 application which will display a web page. 
+To demonstrate the different approaches for rolling deployments, we have a very simple .NET Core 3.1 application which will display a web page.
 
 The HTML for the section I'm interested in is shown below:
 
@@ -93,7 +93,7 @@ The HTML for the section I'm interested in is shown below:
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>If you are seeing this, then <strong>Congratulations!</strong> <br/> You've got the example application running. </p>
-    
+
     @if(Settings.Value.AppVersion == "0.0.2") {
         <p>v0.0.2 of the application comes with this text </p>
     }
@@ -103,7 +103,7 @@ The HTML for the section I'm interested in is shown below:
 </div>
 ```
 
-The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-web-example) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-web-example/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [octopusdeploy/rolling-deploy-web-example](https://hub.docker.com/r/octopusdeploy/rolling-deploy-web-example). 
+The code for the application is available on [GitHub](https://github.com/OctopusSamples/rolling-deploy-web-example) and has a [Tag](https://github.com/OctopusSamples/rolling-deploy-web-example/releases) corresponding to the 3 different `AppVersion` values. A Docker image has also been published as [octopusdeploy/rolling-deploy-web-example](https://hub.docker.com/r/octopusdeploy/rolling-deploy-web-example).
 
 I wanted to see just how easy it would be to perform a rolling deploy of this application using some popular technologies and tools, so I'll be demonstrating with:
 
@@ -126,7 +126,7 @@ I'm running Docker on an [Ubuntu](https://ubuntu.com/download/server) server and
 
 I opted for the Ubuntu repository as it seemed quicker and easier, but your mileage may vary. Whichever method you choose, it's worth ensuring you meet the installation [prerequisites](https://docs.docker.com/install/linux/docker-ce/ubuntu/#prerequisites).
 
-For the sake of simplicity, I'll be interacting with Docker in an SSH terminal session to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings. 
+For the sake of simplicity, I'll be interacting with Docker in an SSH terminal session to my Linux box. But there are production-ready setups to automate this, which feature the definition of your services in a [Docker Compose](https://docs.docker.com/compose/compose-file/) file, including sections to control automatic updates and rollback settings.
 
 :::warning
 **Permissions requirement:**
@@ -170,7 +170,7 @@ markh@ubuntu01:~$ sudo docker service create --name rolling-deploy-svc --replica
 ```
 
 There's quite a lot going on in that command, so let's unpick what we are asking of Docker here:
-- The `--name` is pretty self explanatory. 
+- The `--name` is pretty self explanatory.
 - The `--replicas` flag controls the number of containers we want (3).
 - The `--publish published=5001,target=5001` specifies we want the service to be accessed on port 5001, using Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/#publish-a-port-for-a-service) which acts essentially like a software load-balancer.
 - The `--update-delay` configures the time delay (10s) between updates to a service task.
@@ -192,7 +192,7 @@ overall progress: 3 out of 3 tasks
 1/3: running   [==================================================>]
 2/3: running   [==================================================>]
 3/3: running   [==================================================>]
-verify: Service converged 
+verify: Service converged
 ```
 
 We can also check our service has the correct update configuration by running the `service inspect` command:
@@ -242,7 +242,7 @@ markh@ubuntu01:~$ sudo docker service update rolling-deploy-svc --image octopusd
 Docker runs the update to each container, 1 task at a time just as we have configured it to:
 
 ```
-overall progress: 0 out of 3 tasks 
+overall progress: 0 out of 3 tasks
 1/3: running   [=============================================>     ]
 2/3:
 3/3:
@@ -251,16 +251,16 @@ overall progress: 0 out of 3 tasks
 Once the first task is complete, it moves onto task 2:
 
 ```
-overall progress: 1 out of 3 tasks 
+overall progress: 1 out of 3 tasks
 1/3: starting  [==================================================>]
 2/3: ready     [=====================================>             ]
-3/3: 
+3/3:
 ```
 
 Until all of the tasks to update the containers to `v0.0.2` is complete:
 
 ```
-overall progress: 3 out of 3 tasks 
+overall progress: 3 out of 3 tasks
 1/3: running   [==================================================>]
 2/3: running   [==================================================>]
 3/3: running   [==================================================>]
@@ -281,7 +281,7 @@ Firstly we will update to our final version `v0.0.3` of the application by runni
 markh@ubuntu01:~$ sudo docker service update rolling-deploy-svc --image octopusdeploy/rolling-deploy-web-example:0.0.3
 ```
 
-We can verify the new `v0.0.3` version by checking the image version. We do this by running the `service inspect` command, passing in a `--format` parameter of only the output we want to see: 
+We can verify the new `v0.0.3` version by checking the image version. We do this by running the `service inspect` command, passing in a `--format` parameter of only the output we want to see:
 
 ```bash
 markh@ubuntu01:~$ sudo docker service inspect --format='{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
@@ -315,7 +315,7 @@ Once successfully rolled back, it has confirmed the service is running.
  The Docker [documentation](https://docs.docker.com/engine/reference/commandline/create/#options) has a full list of parameters you can use.
 :::
 
-We can verify the rollback was successful using the same command to inspect the service as before: 
+We can verify the rollback was successful using the same command to inspect the service as before:
 
 ```bash
 markh@ubuntu01:~$ sudo docker service inspect --format='{.Spec.TaskTemplate.ContainerSpec.Image}}' rolling-deploy-svc
@@ -343,7 +343,7 @@ As you can see, it doesn't take much setup to get rolling deployments working in
 
 ### Kubernetes Rolling updates
 
-Rolling deployments in Kubernetes is called [Rolling Updates](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update). 
+Rolling deployments in Kubernetes is called [Rolling Updates](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update).
 
 A Pod's instances will be updated incrementally with new ones. It supports both a max number or percentage of pods to be unavailable during an update, as well as a max number of new Pods that can be created. In addition to this Kubernetes has a handy built-in feature to allow updates to be reverted to a previous version.
 
@@ -364,7 +364,7 @@ The authors, Canonical describe MicroK8s as:
 
 It's useful for people like me who want to try out Kubernetes or do some development with it.
 
-One of the benefits of MicroK8s is that it doesn't require any type of Virtual Machine as with other Kubernetes choices (such as [Minikube](https://minikube.sigs.k8s.io/)). 
+One of the benefits of MicroK8s is that it doesn't require any type of Virtual Machine as with other Kubernetes choices (such as [Minikube](https://minikube.sigs.k8s.io/)).
 
 Before you install MicroK8s, it's worth noting that there are some prerequisites:
 
@@ -439,14 +439,14 @@ markh@ubuntu01:~$ sudo microk8s.kubectl proxy --accept-hosts=.* --address=0.0.0.
 Starting to serve on [::]:8001
 ```
 
-From there you can access the dashboard on port `8001`, but you'll need either a `Kubeconfig` file or `Token` to login. See the MicroK8s [Dashboard add-on](https://microk8s.io/docs/addon-dashboard) for further details. 
+From there you can access the dashboard on port `8001`, but you'll need either a `Kubeconfig` file or `Token` to login. See the MicroK8s [Dashboard add-on](https://microk8s.io/docs/addon-dashboard) for further details.
 
 :::warning
-Note: You can skip the login by setting the `--enable-skip-login` argument for the dashboard container, but this isn't advised as it goes against security best practices 
+Note: You can skip the login by setting the `--enable-skip-login` argument for the dashboard container, but this isn't advised as it goes against security best practices
 :::
 
- Once open, you can use the dashboard to deploy containerized applications, manage and interact with your cluster resources. 
- 
+ Once open, you can use the dashboard to deploy containerized applications, manage and interact with your cluster resources.
+
  In order to perform a rolling update, firstly we need more than one replica of our application. We can scale our Deployment directly from the dashboard, by clicking on the three ellipsis on the right hand side of the **Deployments** section:
 
 ![](microk8s-dashboard-scale-ellipsis.png "width=500")
@@ -460,7 +460,7 @@ For our Kubernetes Deployment, I update the **Desired Replicas** to 3 so I can p
 You may have noticed that the dashboard provides the equivalent command to run for our action. For scaling our resource, that would be:
 
 ```bash
-sudo microk8s.kubectl scale -n default deployment rollingdeploy-microk8s --replicas=3 
+sudo microk8s.kubectl scale -n default deployment rollingdeploy-microk8s --replicas=3
 ```
 :::
 
@@ -659,7 +659,7 @@ It felt like there was a little more to the setup for a rolling deployment with 
 
 ### Rolling deployments with Octopus
 
-Octopus has supported the concept of rolling deployments since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/rolling-deployments). 
+Octopus has supported the concept of rolling deployments since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/rolling-deployments).
 
 With the use of child steps, we can set-up our deployment process for the `rolling-deploy-web-example` application in Octopus.
 
@@ -667,7 +667,7 @@ After creating a new project, we configure a rolling deployment with 3 steps:
 
  - A script to remove the node from the Load Balancer
  - Deployment of the Web Application
- - A script to add the node back into the Load Balancer 
+ - A script to add the node back into the Load Balancer
 
  To achieve an incremental release in Octopus, we need to make our **Window size** lower than the total number of deployment targets. In my example I have set this to `1`, as you can see below:
 
@@ -690,7 +690,7 @@ You can view this Octopus project set-up in our [Samples](https://samples.octopu
 
 Usually one of the main sticking points with Rolling deployments, is the database. Performing rolling deployments which involve some kind of persistent storage can sometimes be tricky, though not impossible. The devil is always in the detail.
 
-If you want to perform rolling deployments which includes database changes, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed. 
+If you want to perform rolling deployments which includes database changes, then I'd recommend deploying the database first. You'd also want to ensure any changes you make to your database are backwards compatible with previous versions of code you have deployed.
 
 Lastly, it's definitely a good idea to test your rollback strategy *frequently*!
 
