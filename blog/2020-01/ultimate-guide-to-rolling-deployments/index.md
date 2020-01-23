@@ -469,7 +469,7 @@ sudo microk8s.kubectl scale -n default deployment rollingdeploy-microk8s --repli
 ```
 :::
 
-After the pods have been provisioned, we can confirm this by querying the pod’s status directlyby  running the `get pod` command (names may be different):
+After the pods have been provisioned, we can confirm this by querying the pod’s status directly by running the `get pod` command (names may be different):
 
 ```bash
 markh@ubuntu01:~$ sudo microk8s.kubectl get pod
