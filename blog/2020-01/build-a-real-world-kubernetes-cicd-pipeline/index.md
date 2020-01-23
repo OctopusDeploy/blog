@@ -21,7 +21,7 @@ Docker containers and Kubernetes are excellent technologies to have in your DevO
 
 ---
 
-In the last post, I showed you how to set up a Kubernetes cluster using our OctoPetShop containers.
+In the [last post](/blog/2020-01/kubernetes-for-the-uninitiated/index.md), I showed you how to set up a Kubernetes cluster using our OctoPetShop containers.
 
 In this post, I configure the YAML files we created into a CI/CD pipeline.
 
