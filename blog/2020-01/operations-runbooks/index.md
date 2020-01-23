@@ -11,6 +11,7 @@ tags:
 - DevOps
 ---
 
+// TODO: Replace with release tour based on John's feedback. 5 mins of a example.
 ![Operations runbooks examples](blogimage-runbookslaunch.png)
 
 We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations tasks like the following.
@@ -20,7 +21,7 @@ We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/
 - Website failover and restoration
 - Server maintenance
 
-In this blog post, we're going take a look at runbooks, why they're valuable and highlight some scenarios where they fit.
+In this blog post, we're look at what a runbooks is, why Octopus is useful for runbook automation and highlight some scenarios where runbooks offer a lot of value.
 
 <h2>In this post </h2>
 
@@ -30,14 +31,13 @@ In this blog post, we're going take a look at runbooks, why they're valuable and
 
 Traditionally, runbooks document IT processes that keep your applications running smoothly and most teams have something like this. They're often in the form of word docs, wiki pages or service management systems. It's common for people to print them out and tick off the steps as they walk through them.
 
-Teams refer to runbooks for two main reasons:
+Teams use runbooks for two core reasons:
 
 1. Routine operations tasks like database administration and sevice maintenance. 
 2. Emergencies and incidents like website failovers and unplanned infrastructure outages. 
 
-Runbook automation is a way to improve on traditional runbooks documentation. Automating the steps to execute operations procedures and resolve emergencies.
+Runbook automation is a way to improve on traditional runbooks documentation. Automating the steps to execute operations procedures and resolve emergencies. This combination of runbook docs and runbook automation brings a number of benefits.
 
-Runbooks and runbook automation brings a number of benefits.
 * Runbooks capture and share knowledge across teams and they are well suited to teams in a DevOps world. Developers, operations folks as well as on-call staff. Experts not required.
 * Runbook automation is fast and reduces human error. Runbooks are traditionally documented processes and while docs are good, automation is better. Scripts are testable, repeatable and they can be improved over time.
 * Reduced friction and incident resolution time. In emergency scenarios, runbook automation reduce the friction to resolving problems in a fast and efficient manner.
@@ -53,89 +53,23 @@ It's already possible to document and script operations processes, so why use Oc
 * **Discoverability and visibility.** Octopus creates a central location for teams to manage, control, audit, schedule, and run runbooks. You can see when a runbook was last ran, you can see the changes to the runbook, and you can run the same runbook against different environments. Team members can easily find a runbook, and click a big green button to run it. And everyone can see the output from the last run and whether it succeeded or not.
 * **World-class scheduling and execution.** Execute runbooks on demand or schedule them at any frequency.
 
-## Runbook examples
+## Runbook scenarios
 
-I'd like to highlight some runbook examples and I'll add new ones over time. Add a comment with your favourite runbook or automated operations process.
+I'd like to highlight some scenarios where runbooks really shine. 
 
-### Routine maintenance
+### Web application and web service recovery
 
-#### Recycle IIS App Pool
+// TODO: Add Video w/ a runbook screenshot as the cover page.
 
-TODO: Screenshot
+It's common for web applications and services to have problems due to a huge range of problems. It could be due to problems like memory leaks or unexplained performance issues. In the Windows Server world, the problems are commonly resolve by recycling the IIS web server app pool and in the Linux world, it's common to reload NGINX or starter a docker container hosting the server. While this doesn't address the underlying issue, but it enables the teams to resolve the problem so they can work on a proper fix. Sometimes, this happens so sporatically, executing a runbook is the long term solution. 
 
-Most developers who work on the Microsoft stack have experience sporatic web application or Windows service problems like memory leaks or unexplained performance issues. The problems are commonly resolve by recycling the IIS web server app pool or restarting a windows service. While this doesn't address the underlying issue, it does quicly resolve problems and enable customers to continue to use the applications they support. 
+In Octopus, this is a very straighforward runbook with a single Script step using PowerShell, Bash or Python. 
 
-In Octopus, this is a very straighforward runbook with a single Script step that executes the following PowerShell script.
+### Database administration
 
-```powershell
-# Example 1: Restart IIS app pool
-Restart-WebAppPool MyAppPool
-```
+// TODO: Add Video w/ a runbook screenshot as the cover page.
 
-#### Restart NGINX or restart a Docker container (containerized application)
 
-If 
-
- NGINX or re
-
-Similar to the first runbook example, another common operations task is to restart an NGINX (via systemd) or restart an containerized application. 
-
-In Octopus, this is a simple runbook with a single script step that executes the following bash script.
-
-```bash
-
-# Restart NGINX 
-sudo systemctl reload nginx
-
-```
-
-#### Provision test infrastructure
-
-TODO: Screenshot
-
-Description
-
-#### File clean-up
-
-TODO: Screenshot
-
-It's not uncommon for web services that do run various business processes to leave artifacts on file systems or cloud storage and this can exceed it's limits. 
-
-```bash
-
-# TODO
-
-```
-
-### Emergency scenarios
-
-#### Website failover
-
-TODO: Screenshot
-
-Most modern websites are highly available nowadays have have some sort of elastic or scaling capability. This is further enhanced with cloud platforms like [Microsoft Azure](https://azure.microsoft.com/) and [Amazon Web Services](https://aws.amazon.com/). That said, it's not uncommon for entire regions to have outages and wreak havoc with websites, databases and other infrastructure. 
-
-This is where a disaster recovery site can help in a different cloud or region however it can be complicated to make the switch over. This is often captured in runbook documentation however it's the ideal candidate to be automated. The example above shows 
-
-#### Running a database administration scripts
-
-Sudden increases in activity for a website or service can greatly change the performance of a database and affect the service. In situations like this, you could either 
-
-```sql
-
--- TODO
-
-```
-
-NOTE: This type of runbook could be considered a 
-
-#### Server running out of disk space
-
-TODO: Screenshot
-
-Screenshot
-
-Description
 
 ## Conclusion
 
