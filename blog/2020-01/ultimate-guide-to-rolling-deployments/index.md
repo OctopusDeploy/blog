@@ -34,23 +34,23 @@ A typical process looks something like this:
 
  2. Stop the `v1.0` application from running, then deploy the new `v1.1` version. *Optionally*, verify that the deployment was successful by running tests on your newly deployed application. All the while, still maintaining at least one node running `v1.0` of your application.
 
- ![Rolling Deployment: Update nodes with new versions](rolling-deploy-2.png)
+ ![Rolling Deployment Update nodes with new versions](rolling-deploy-2.png)
 
 3. Once the first node has updated successfully, proceed with draining the remaining node still running `v1.0` of your application, whilst your new `v1.1` version is now online serving traffic.
 
- ![Rolling Deployment: Drain remaining nodes in pool](rolling-deploy-3.png)
+ ![Rolling Deployment Drain remaining nodes in pool](rolling-deploy-3.png)
 
  4. Stop the `v1.0` application on the remaining node from running, deploy the new `v1.1` version. Again, optionally verify the deployment was successful.
 
- ![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-4.png)
+ ![Rolling Deployment Update remaining nodes in pool](rolling-deploy-4.png)
 
  5. Finally, once `v1.1` of your application has been deployed successfully to all of your nodes, your rolling deployment is complete!
 
-![Rolling Deployment: Update remaining nodes in pool](rolling-deploy-5.png)
+![Rolling Deployment Update remaining nodes in pool](rolling-deploy-5.png)
 
 If you wanted to ramp up your rolling deployment and deliver a new version to more than one node simultaneously, say 2 for example, then it would look like this:
 
-![Rolling Deployment: Update multiple nodes in pool](rolling-deploy-multiple.png)
+![Rolling Deployment Update multiple nodes in pool](rolling-deploy-multiple.png)
 
 This incremental approach is often favored in web applications which sit behind a load balancer, as most load balancers support a concept known as `Connection draining`. This is simply allowing connections to a service to finish naturally, as well as preventing any new connections to be established.
 
