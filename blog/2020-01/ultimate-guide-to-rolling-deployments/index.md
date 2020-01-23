@@ -134,13 +134,13 @@ For the sake of simplicity, I’ll be interacting with Docker in an SSH terminal
 Most of the commands in this demonstration make use of [sudo](https://www.linux.com/tutorials/linux-101-introduction-sudo/). By default, the Docker daemon runs as the root user and requires elevated permissions to execute commands. If you prefer not to use `sudo` when executing your commands, be sure to follow the Docker [post-install](https://docs.docker.com/install/linux/linux-postinstall/) instructions.
 :::
 
-Firstly, to see the Docker image of this running standalone, we’ll run it locally with the following command:
+Firstly, to see the Docker image of this running standalone, we’ll run it with the following command:
 
 ```bash
 markh@ubuntu01:~$ sudo docker run -d -p 5001:5001 octopusdeploy/rolling-deploy-web-example:0.0.1
 ```
 
-Unsurprisingly, running this Docker image locally displays the web page:
+Unsurprisingly, running this Docker image displays the web page:
 
 ![](docker-run.png "width=500")
 
