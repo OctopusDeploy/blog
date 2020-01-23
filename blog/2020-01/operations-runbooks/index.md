@@ -59,7 +59,7 @@ I want to highlight some scenarios where runbooks shine.
 
 ### Web application and web service recovery
 
-// TODO: Add Video w/ a runbook screenshot as the cover page.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VuSHB0Re9Mo" frameborder="0" allowfullscreen></iframe>
 
 It’s common for web applications and services to have problems due to a vast range of issues. These could be memory leaks or unexplained performance issues. In the Windows Server world, the problems are commonly resolved by recycling the IIS web server app pool, and in the Linux world, it’s common to reload NGINX or start a docker container hosting the server. This doesn’t address the underlying issue, but it enables the teams to resolve the problem so they can work on a proper fix. Sometimes, this happens so sporadically, executing a runbook is the long term solution.
 
