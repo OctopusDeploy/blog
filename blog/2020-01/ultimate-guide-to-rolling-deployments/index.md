@@ -10,6 +10,8 @@ tags:
  - DevOps
 ---
 
+<!-- ![Rolling Deployments](rolling-deployments.png) -->
+
 When tasked with deploying a new version of your application, such as a web site, it's still common for teams to take their entire website down while they do deployments.
 
 If the majority of your customers only use your application during business hours, then this big-bang approach is probably acceptable. But what happens if your customers are using your applications 24-7?
