@@ -21,6 +21,10 @@ To be able to deliver a major step forward in consistent and configurable access
 
 ![role-based access control](blogimage-team-permissions.png)
 
+## TL;DR
+ - You will be able to scope Library Variable Set View and Edit permissions to Environments and Tenants
+ - A breaking behavior change to  `LibraryVariableSetView` and `LibraryVariableSetEdit` will be introduced. This may impact you if you have automation in configuring permissions, please read on to find out more.
+
 ## Background
 
 When Library Variable Sets were introduced, along with the permissions `LibraryVariableSetView` and `LibraryVariableSetEdit`, the Octopus world was simpler. A choice was made to tightly couple the behavior of these two permissions to a third permission `EnvironmentView`.
