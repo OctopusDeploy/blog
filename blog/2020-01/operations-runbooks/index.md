@@ -10,8 +10,6 @@ tags:
 - Product
 ---
 
-// TODO: Replace with release tour based on John's feedback. 5 mins of a example.
-
 ![Operations runbooks examples](blogimage-runbookslaunch.png)
 
 We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations tasks, such as:
