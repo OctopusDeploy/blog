@@ -1,5 +1,5 @@
 ---
-title: The Ultimate Guide to rolling deployments
+title: The ultimate guide to rolling deployments
 description: What are rolling deployments and why they are useful? This post covers the rolling deployment pattern and practical examples of how to do this with different tooling.
 author: mark.harrison@octopus.com
 visibility: private
