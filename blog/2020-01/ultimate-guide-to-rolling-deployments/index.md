@@ -32,15 +32,15 @@ A typical process looks something like this:
 
  2. Stop the `v1.0` application from running, then deploy the new `v1.1` version. *Optionally*, verify that the deployment was successful by running tests on your newly deployed application. All the while, still maintaining at least one node running `v1.0` of your application.
 
- ![Rolling Deployment Update nodes with new versions](rolling-deploy-2.png)
+![Rolling Deployment Update nodes with new versions](rolling-deploy-2.png)
 
 3. Once the first node has updated successfully, proceed with draining the remaining node still running `v1.0` of your application, whilst your new `v1.1` version is now online serving traffic.
 
- ![Rolling Deployment Drain remaining nodes in pool](rolling-deploy-3.png)
+![Rolling Deployment Drain remaining nodes in pool](rolling-deploy-3.png)
 
  4. Stop the `v1.0` application on the remaining node from running, deploy the new `v1.1` version. Again, optionally verify the deployment was successful.
 
- ![Rolling Deployment Update remaining nodes in pool](rolling-deploy-4.png)
+![Rolling Deployment Update remaining nodes in pool](rolling-deploy-4.png)
 
  5. Finally, once `v1.1` of your application has been deployed successfully to all of your nodes, your rolling deployment is complete!
 
@@ -670,7 +670,7 @@ After creating a new project, we configure a rolling deployment with 3 steps:
 
  To achieve an incremental release in Octopus, we need to make our **Window size** lower than the total number of deployment targets. In my example I have set this to `1`, as you can see below:
 
- ![](od-rolling-win-size.png "width=500")
+![](od-rolling-win-size.png "width=500")
 
 I have 2 deployment targets configured with a [target role](https://octopus.com/docs/octopus-concepts/target-roles) of `rolling-deploy-webapp`.
 
