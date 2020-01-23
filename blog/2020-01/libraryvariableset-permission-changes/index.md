@@ -2,13 +2,12 @@
 title: "Library variable set permission changes"
 description: Some upcoming changes to how library variable set permissions work
 author: nick.josevski@octopus.com
-visibility: private
+visibility: public
 published: 2020-01-23
 metaImage: metaimage-team-permissions.png
 bannerImage: blogimage-team-permissions.png
 tags:
- - Permissions
- - Library
+ - Product
 ---
 
 [Library variable sets](https://octopus.com/docs/deployment-process/variables/library-variable-sets) in Octopus are a much loved and useful feature, they make it possible to define variables for use with multiple projects.
