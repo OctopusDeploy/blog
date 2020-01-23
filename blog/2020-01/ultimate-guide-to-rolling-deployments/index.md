@@ -346,7 +346,8 @@ Rolling deployments in Kubernetes is called [Rolling Updates](https://kubernetes
 
 A Pod's instances will be updated incrementally with new ones. It supports both a max number or percentage of pods to be unavailable during an update, as well as a max number of new Pods that can be created. In addition to this Kubernetes has a handy built-in feature to allow updates to be reverted to a previous version.
 
-:::hint To find out more about Kubernetes, my colleague Shawn continued his container series focussing on it [here](https://octopus.com/blog/kubernetes-for-the-uninitiated).
+:::hint
+To find out more about Kubernetes, my colleague Shawn continued his container series focussing on it [here](https://octopus.com/blog/kubernetes-for-the-uninitiated).
 :::
 
 The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) on updates includes a nice diagram showing how it works:
@@ -682,7 +683,7 @@ And thats all there is to it! Check out our [docs](https://octopus.com/docs/depl
 
 :::success
 **Sample Octopus project**
-You can view this Octopus project set-up in our [Samples](https://samples.octopus.app/app#/Spaces-45/projects/rolling-deployments/deployments) instance
+You can view this Octopus project set-up in our [Samples](https://samples.octopus.app/app#/Spaces-45/projects/rolling-deployments/deployments) instance.
 :::
 
 ## A word on databases
