@@ -1,6 +1,6 @@
 ---
-title: Operations Runbooks Examples
-description: Runbook automation examples in Octopus Deploy.
+title: Operations Runbooks - Putting the Ops in DevOps
+description: Operations Runbooks put the Ops in DevOps and automate routine maintenance and emergency operations tasks.
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-runbookslaunch.png
