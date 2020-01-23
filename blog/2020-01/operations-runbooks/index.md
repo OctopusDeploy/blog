@@ -69,7 +69,19 @@ In Octopus, this is a very straighforward runbook with a single Script step usin
 
 // TODO: Add Video w/ a runbook screenshot as the cover page.
 
+Database management is often a slow process that requires emailing your database administration team (DBA) to get things done. This can sometimes be slow as DBAs may not trust developers or operations folks. Databases are a critical part of modern applications and there are a plethora of database tasks that can be requested.
 
+* Database backups
+* Refreshing test databases with sanitised production data
+* Rebuilding indexes to resolve slow queries
+* Revoking permissions in the event that an employee leaves the company
+* etc.
+
+These processes are ideal for runbook automation. Building these runbooks in Octopus in collaboration with database administrators is a great way to build trust and reduce the number of DBA requests for routine maintenance.  
+
+In Octopus, it's straightforward to configure runbooks for any of these tasks with the following steps.
+- SQL step template or custom script
+- Slack or email notification
 
 ## Conclusion
 
