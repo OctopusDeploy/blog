@@ -10,7 +10,7 @@ tags:
  - DevOps
 ---
 
-![DevOps, Runbooks and kubectl](k8s-devops-runbook.png)
+![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
 
 It is safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something more than a few of us agree with.
 
