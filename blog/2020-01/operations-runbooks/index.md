@@ -67,7 +67,7 @@ In Octopus, this is a very straightforward runbook with a single Script step usi
 
 ### Database administration
 
-// TODO: Add Video w/ a runbook screenshot as the cover page.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dAYx8fMV4to" frameborder="0" allowfullscreen></iframe>
 
 Database management is often a slow process that requires emailing your database administration team (DBA) to get things done. It is common for DBAs to distrust developers or operations folks. Databases are a critical part of modern applications, and there are a plethora of database tasks that can be requested, including:
 
