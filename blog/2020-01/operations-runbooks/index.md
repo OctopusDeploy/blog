@@ -61,9 +61,9 @@ I want to highlight some scenarios where runbooks shine.
 
 It’s common for web applications and services to have problems due to a vast range of issues. These could be memory leaks or unexplained performance issues. In the Windows Server world, the problems are commonly resolved by recycling the IIS web server app pool, and in the Linux world, it’s common to reload NGINX or start a docker container hosting the server. This doesn’t address the underlying issue, but it enables the teams to resolve the problem so they can work on a proper fix. Sometimes, this happens so sporadically, executing a runbook is the long term solution.
 
-// TODO: the next sentence says "this is a very straightforward" the above paragraph has two (albeit similar) scenarios, should the following say "there are"?
-
-In Octopus, this is a very straightforward runbook with a single Script step using PowerShell, Bash or Python.
+In Octopus, it’s straightforward to build a runbook to automate this process:
+- Web server step template or custom script (PowerShell, Bash or Python).
+- Slack or email notification.
 
 ### Database administration
 
@@ -78,8 +78,8 @@ Database management is often a slow process that requires emailing your database
 
 These processes are ideal for runbook automation. Building these runbooks in Octopus in collaboration with database administrators is a great way to build trust and reduce the number of DBA requests for routine maintenance.  
 
-In Octopus, it’s straightforward to configure runbooks for any of these tasks with the following steps:
-- SQL step template or custom script.
+In Octopus, it’s easy to configure runbooks for any of these tasks with the following steps:
+- SQL step template or custom script (PowerShell, Bash or Python).
 - Slack or email notification.
 
 ## Conclusion
