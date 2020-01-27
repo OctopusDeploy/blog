@@ -27,14 +27,14 @@ In this blog post, we look at what a runbooks is, why Octopus is useful for runb
 
 ## What is a runbook?
 
-![Runbooks, runbook automation and runbook automation platforms](runbook-comic.png)
-
 Traditionally, a runbook is a document that lists IT processes that need to be executed to keep your applications running smoothly. Most teams have something like this. They’re often in the form of Word docs, wiki pages, or service management systems. It’s common for people to print them out and tick off the steps as they walk through them.
 
 Teams use runbooks for two core reasons:
 
 1. Routine operations tasks, like database administration and service maintenance.
 2. Emergencies and incidents like website failovers and unplanned infrastructure outages.
+
+![Runbooks, runbook automation and runbook automation platforms](runbook-comic.png)
 
 Runbook automation is a way to improve on traditional runbooks documentation by automating the steps to execute operations procedures and resolve emergencies. This combination of runbook docs and runbook automation brings many benefits:
 
@@ -44,7 +44,7 @@ Runbook automation is a way to improve on traditional runbooks documentation by 
 
 ## Why use Octopus for runbook automation?
 
-It’s already possible to document and script operations processes, so why use Octopus Operations Runbooks?
+It’s already possible to document and script operations processes, so why use Octopus Operations Runbooks? 
 
 * **Runbooks and deployment processes sit side-by-side.** Runbooks in Octopus are designed to automate operations tasks, and they can share configuration settings, secrets, step templates, scripts, and more. Runbooks are lightweight automated processes that are executed against your infrastructure without going through a deployment lifecycle (i.e., dev, test, production).
 * **Octopus is already aware of your infrastructure.** Runbooks leverage the infrastructure that your applications are deployed to, so there’s nothing new to configure, reducing the friction to getting started running operations processes.
