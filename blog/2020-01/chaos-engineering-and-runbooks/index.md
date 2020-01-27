@@ -4,11 +4,13 @@ description: Learn how runbooks can enrich your deployments with the Chaos Toolk
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-01-29
-metaImage: 
-bannerImage:
+metaImage: runbooks-chaos-toolkit.png
+bannerImage: runbooks-chaos-toolkit.png
 tags:
  - DevOps
 ---
+
+![Chaos engineering and runbooks](runbooks-chaos-toolkit.png)
 
 The promise of declarative systems that automatically reconfigure themselves to a desired state is:
 
