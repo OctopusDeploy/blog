@@ -27,6 +27,8 @@ In this blog post, we look at what a runbooks is, why Octopus is useful for runb
 
 ## What is a runbook?
 
+![Runbooks, runbook automation and runbook automation platforms](runbook-comic.png)
+
 Traditionally, a runbook is a document that lists IT processes that need to be executed to keep your applications running smoothly. Most teams have something like this. They’re often in the form of Word docs, wiki pages, or service management systems. It’s common for people to print them out and tick off the steps as they walk through them.
 
 Teams use runbooks for two core reasons:
