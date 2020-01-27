@@ -75,7 +75,7 @@ This release also includes early access to our new Operations Runbooks feature. 
 
 We’d love feedback on this feature so join the discussion on our [community slack](https://octopus.com/slack) in the `#runbooks` channel. Our docs cover all the details on how to get started.
 
-[Learn more](/blog/2019-10/operations-runbooks/index.md)
+[Learn more](/blog/2019-10/introducing-operations-runbooks/index.md)
 
 ## Breaking Changes
 
