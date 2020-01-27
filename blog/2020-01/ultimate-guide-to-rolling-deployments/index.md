@@ -702,7 +702,7 @@ If you want to perform rolling deployments which includes database changes, I re
 Lastly, it’s definitely a good idea to test your rollback strategy *frequently*.
 
 :::hint
-We have an excellent series of posts on [database deployments](http://octopus.com/database-deployments) that discuss this topic and more.
+We have an excellent series of posts on [database deployments](https://octopus.com/database-deployments) that discuss this topic and more.
 :::
 
 ## Conclusion
