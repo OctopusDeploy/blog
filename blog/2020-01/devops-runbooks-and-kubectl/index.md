@@ -12,6 +12,15 @@ tags:
 
 ![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
 
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+
+- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
+- **DevOps, Runbooks and kubectl**
+- [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
+- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
+
+--- 
+
 It is safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something more than a few of us agree with.
 
 Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new Runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops tasks across your environments without creating deployments.

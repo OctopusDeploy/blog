@@ -12,6 +12,15 @@ tags:
 
 ![Chaos engineering and runbooks](runbooks-chaos-toolkit.png)
 
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+
+- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
+- [DevOps, Runbooks and kubectl](/blog/2020-01/devops-runbooks-and-kubectl/index.md)
+- **Chaos engineering and runbooks**
+- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
+
+--- 
+
 The promise of declarative systems that automatically reconfigure themselves to a desired state is:
 
 > Most faults caused by stopped or destroyed resources will be rectified without any manual intervention.

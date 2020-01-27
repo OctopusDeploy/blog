@@ -12,6 +12,15 @@ tags:
 
 ![Operations runbooks examples](blogimage-runbookslaunch.png)
 
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+
+- **Operations Runbooks overview** 
+- [DevOps, Runbooks and kubectl](/blog/2020-01/devops-runbooks-and-kubectl/index.md)
+- [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
+- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
+
+--- 
+
 We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations tasks, such as:
 
 - Infrastructure provisioning

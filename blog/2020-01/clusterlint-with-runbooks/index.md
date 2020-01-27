@@ -12,6 +12,15 @@ tags:
 
 ![Kuberentes DevOps Runbook example with clusterlint](k8s-clusterlint-runbook.png)
 
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+
+- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
+- [DevOps, Runbooks and kubectl](/blog/2020-01/devops-runbooks-and-kubectl/index.md)
+- [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
+- **Linting your Kubernetes cluster with Clusterlint and runbooks**
+
+--- 
+
 *Kubernetes made the simple things hard and the hard things possible.* This is an apt statement. You only need to look at the number of best practice guides available for Kubernetes and the surrounding ecosystem to understand that running even a single pod *properly* is a daunting task.
 
 This is where linting tools can help. By encapsulating best practices into an automated check of your cluster, a linting tool can highlight improvements you may not be aware of and create a feedback loop for improving your infrastructure.
