@@ -1,17 +1,20 @@
 ---
-title: Operations Runbooks Examples
+title: Operations Runbooks in Octopus
 description: Runbook automation examples in Octopus Deploy.
 author: rob.pearson@octopus.com
 visibility: private
 bannerImage: blogimage-runbookslaunch.png
 metaImage: blogimage-runbookslaunch.png
-published: 2020-01-29
+published: 2021-01-01
 tags:
-- Product
 - DevOps
 ---
 
-![Operations runbooks examples](blogimage-runbookslaunch.png)
+![Runbooks examples for operations tasks](blogimage-runbookslaunch.png)
+
+The focus of this post is all about examples in an SEO focused way. We want to be own runbook serach terms.
+
+---
 
 We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations tasks like the following.
 
