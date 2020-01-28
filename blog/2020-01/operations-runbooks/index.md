@@ -10,7 +10,7 @@ tags:
 - Product
 ---
 
-![Operations runbooks examples](blogimage-runbookslaunch.png)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Uc5TFqswJkM" frameborder="0" allowfullscreen></iframe>
 
 Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
 
