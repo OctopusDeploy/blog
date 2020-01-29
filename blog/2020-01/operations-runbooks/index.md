@@ -1,6 +1,6 @@
 ---
 title: Operations Runbooks - Putting the Ops in DevOps
-description: Operations Runbooks put the Ops in DevOps and automate routine maintenance and emergency operations tasks.
+description: Operations Runbooks put the Ops in DevOps and automate routine maintenance and emergency operations (incident response) tasks.
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-runbookslaunch.png
@@ -21,7 +21,7 @@ Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a ser
 
 --- 
 
-We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations tasks, such as:
+We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations (incident response) tasks, such as:
 
 - Infrastructure provisioning
 - Database management
@@ -41,7 +41,7 @@ So what is a runbook? Traditionally, a runbook is a document that lists IT proce
 Teams use runbooks for two core reasons:
 
 1. Routine operations tasks, like database administration and service maintenance.
-2. Emergencies and incidents like website failovers and unplanned infrastructure outages.
+2. Emergencies and incident response like website failovers and unplanned infrastructure outages.
 
 ![Runbooks, runbook automation and runbook automation platforms](runbook-comic.png)
 
@@ -70,7 +70,7 @@ I want to highlight some scenarios where runbooks shine.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VuSHB0Re9Mo" frameborder="0" allowfullscreen></iframe>
 
-It’s common for web applications and services to have problems due to a vast range of issues. These could be memory leaks or unexplained performance issues. In the Windows Server world, the problems are commonly resolved by recycling the IIS web server app pool, and in the Linux world, it’s common to reload NGINX or start a docker container hosting the server. This doesn’t address the underlying issue, but it enables the teams to resolve the problem so they can work on a proper fix. Sometimes, this happens so sporadically, executing a runbook is the long term solution.
+It’s common for web applications and services to have problems due to a vast range of issues. These could be memory leaks or unexplained performance issues. In the Windows Server world, the problems are commonly resolved by recycling the IIS web server app pool, and in the Linux world, it’s common to reload NGINX or restart the docker container hosting the application. This doesn’t address the underlying issue, but it enables the teams to resolve the problem so they can work on a proper fix. Sometimes, this happens so sporadically, executing a runbook is the long term solution.
 
 In Octopus, it’s straightforward to build a runbook process (runbook example) to automate this process:
 - Web server step template or custom script (PowerShell, Bash or Python).
