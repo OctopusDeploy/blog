@@ -145,4 +145,4 @@ In the screenshot below, the chaos experiment is being run every ten minutes to 
 
 I was pleasantly surprised at how easy it was to get Chaos Toolkit up and running in Octopus. With a Kubernetes deployment already defined, scripting another tool against the existing targets and environments took very little effort.
 
-Beyond the initial ability to simply execute a tool, Octopus provides cross-cutting functionality like logging, audits, security, user management, reporting, and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.
+Beyond the initial ability to simply execute a tool, Octopus runbook automation provides cross-cutting functionality like logging, audits, security, user management, reporting, and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.
