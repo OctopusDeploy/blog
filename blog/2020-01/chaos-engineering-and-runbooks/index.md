@@ -35,7 +35,7 @@ Proving that a system can tolerate the failure of individual components is the e
 
 Until recently, running any kind of automated process in Octopus meant creating a deployment. It was possible to hack the idea of a deployment to implement management tasks, but it was awkward.
 
-With runbooks, Octopus now has first-class support for running management tasks in parallel to deployments. runbooks have access to all the existing environments, variables, targets, steps, security, auditing, and reporting, but without being tied to the concept of a deployment or a lifecycle.
+With runbooks, Octopus now has first-class support for running management tasks in parallel to deployments. Runbooks have access to all the existing environments, variables, targets, steps, security, auditing, and reporting, but without being tied to the concept of a deployment or a lifecycle.
 
 This makes runbooks ideal for running tools like the Chaos Engineering Toolkit. In this post, we’ll create a very simple chaos experiment as a runbook, and call out the advantages runbooks provide for this kind of task.
 
@@ -45,7 +45,7 @@ This makes runbooks ideal for running tools like the Chaos Engineering Toolkit. 
 
  ![](k8s-step.png "width=500")
 
-## The chaos runbook
+## The chaos runbook example
 
  Alongside the deployment, I also have a runbook that executes a simple Chaos Toolkit experiment, which deletes a pod and ensures that the deployment is healthy using the [microservice_available_and_healthy](https://docs.chaostoolkit.org/drivers/kubernetes/#microservice_available_and_healthy) function.
 
