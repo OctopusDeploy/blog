@@ -28,7 +28,7 @@ We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/
 - Website failover and restoration
 - Server maintenance
 
-In this blog post, we look at what a runbooks is, why Octopus is useful for runbook automation, and we highlight some scenarios where runbooks can really help.
+In this blog post, we look at what a runbooks is, why Octopus is useful for runbook automation, and share some runbook examples where they can really help.
 
 <h2>In this post </h2>
 
@@ -36,7 +36,7 @@ In this blog post, we look at what a runbooks is, why Octopus is useful for runb
 
 ## What is a runbook?
 
-Traditionally, a runbook is a document that lists IT processes that need to be executed to keep your applications running smoothly. Most teams have something like this. They’re often in the form of Word docs, wiki pages, or service management systems. It’s common for people to print them out and tick off the steps as they walk through them.
+So what is a runbook? Traditionally, a runbook is a document that lists IT processes that need to be executed to keep your applications running smoothly. Most teams have something like this. They’re often in the form of Word docs, wiki pages, or service management systems. It’s common for people to print them out and tick off the steps as they walk through them.
 
 Teams use runbooks for two core reasons:
 
@@ -45,7 +45,7 @@ Teams use runbooks for two core reasons:
 
 ![Runbooks, runbook automation and runbook automation platforms](runbook-comic.png)
 
-Runbook automation is a way to improve on traditional runbooks documentation by automating the steps to execute operations procedures and resolve emergencies. This combination of runbook docs and runbook automation brings many benefits:
+Runbook automation is a way to improve on traditional runbook documentation by automating the steps to execute operations procedures and resolve incidents. This combination of runbook documentation and runbook automation brings many benefits:
 
 * Runbooks capture and share knowledge across teams, and they are well suited to teams in a DevOps world. Developers, operations folks, as well as on-call staff. Expert domain knowledge not required.
 * Runbook automation is fast and reduces human error. Traditionally, runbooks are written processes, and while docs are good, automation is better. Scripts are testable, repeatable, and they can be improved over time.
@@ -66,17 +66,19 @@ It’s already possible to document and script operations processes, so why use 
 
 I want to highlight some scenarios where runbooks shine.
 
-### Web application and web service recovery
+### Runbook example: web application and web service recovery
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VuSHB0Re9Mo" frameborder="0" allowfullscreen></iframe>
 
 It’s common for web applications and services to have problems due to a vast range of issues. These could be memory leaks or unexplained performance issues. In the Windows Server world, the problems are commonly resolved by recycling the IIS web server app pool, and in the Linux world, it’s common to reload NGINX or start a docker container hosting the server. This doesn’t address the underlying issue, but it enables the teams to resolve the problem so they can work on a proper fix. Sometimes, this happens so sporadically, executing a runbook is the long term solution.
 
-In Octopus, it’s straightforward to build a runbook to automate this process:
+In Octopus, it’s straightforward to build a runbook process (runbook example) to automate this process:
 - Web server step template or custom script (PowerShell, Bash or Python).
 - Slack or email notification.
 
-### Database administration
+This is a very common runbook example.
+
+### Runbook example: database administration
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dAYx8fMV4to" frameborder="0" allowfullscreen></iframe>
 
@@ -89,9 +91,11 @@ Database management is often a slow process that requires emailing your database
 
 These processes are ideal for runbook automation. Building these runbooks in Octopus in collaboration with database administrators is a great way to build trust and reduce the number of DBA requests for routine maintenance.  
 
-In Octopus, it’s easy to configure runbooks for any of these tasks with the following steps:
+In Octopus, it’s easy to configure runbook processes (runbook example) for any of these tasks with the following steps:
 - SQL step template or custom script (PowerShell, Bash or Python).
 - Slack or email notification.
+
+This project could be consider a runbook template as it could be cloned for different tasks.
 
 ## Conclusion
 
