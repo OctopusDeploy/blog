@@ -37,13 +37,13 @@ A better solution is to implement linting outside of the deployment workflow, at
 
 So how do you implement a workflow that sits outside of a deployment using Octopus? Until recently, every automated process in Octopus was considered to be a deployment. Now, with the introduction of runbooks, Octopus has first-class support for running management and maintenance tasks without a deployment.
 
-## A linting runbook
+## A linting runbook example
 
 In the screenshot below, you can see a runbook that calls the `clusterlint` executable.
 
 ![](clusterlint-runbook.png "width=500")
 
-What is notable about this runbook is how simple it is. Just one line of code is all it takes to add an automated check of your Kubernetes cluster.
+What is notable about this runbook example is how simple it is. Just one line of code is all it takes to add an automated check of your Kubernetes cluster.
 
 The runbook is simple because it leverages existing support for Kubernetes in Octopus. The `Run a kubectl Script` step is used to execute `clusterlint` with a `kubectl` config file generated from a Kubernetes target. If you are performing Kubernetes deployments with Octopus, these targets are already configured.
 
@@ -83,4 +83,4 @@ And these examples are just the tip of the iceberg. You can use [security rules]
 
 Conceptually, runbooks are a simple idea. They let you run the same automated processes that power deployments, just without requiring a deployment.
 
-But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbooks, you get security, logging, auditing, reporting, dashboards, and scheduling built-in. And as we have seen in this post, even the simplest one line script can take advantage of these features to scale up to a robust, production ready solution.
+But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in. And as we have seen in this post, even the simplest one line script can take advantage of these features to scale up to a robust, production ready solution.
