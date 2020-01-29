@@ -28,7 +28,7 @@ We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/
 - Website failover and restoration
 - Server maintenance
 
-In this blog post, we look at what a runbooks is, why Octopus is useful for runbook automation, and share some runbook examples where they can really help.
+In this blog post, we answer the question, what is a runbook, why Octopus is useful for runbook automation, and share some runbook examples where they can really help.
 
 <h2>In this post </h2>
 
@@ -36,7 +36,7 @@ In this blog post, we look at what a runbooks is, why Octopus is useful for runb
 
 ## What is a runbook?
 
-So what is a runbook? Traditionally, a runbook is a document that lists IT processes that need to be executed to keep your applications running smoothly. Most teams have something like this. They’re often in the form of Word docs, wiki pages, or service management systems. It’s common for people to print them out and tick off the steps as they walk through them.
+Traditionally, a runbook is a document that lists IT processes that need to be executed to keep your applications running smoothly. Most teams have something like this. They’re often in the form of Word docs, wiki pages, or service management systems. It’s common for people to print them out and tick off the steps as they walk through them.
 
 Teams use runbooks for two core reasons:
 
