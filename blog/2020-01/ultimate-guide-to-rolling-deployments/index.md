@@ -3,14 +3,14 @@ title: The ultimate guide to rolling deployments
 description: What are rolling deployments and why are they useful? This post covers the rolling deployment pattern and practical examples of how to implement it with different tooling.
 author: mark.harrison@octopus.com
 visibility: private
-published: 2020-02-01
-metaImage:
-bannerImage:
+published: 2020-02-03
+metaImage: rolling-deployments.png
+bannerImage: rolling-deployments.png
 tags:
  - DevOps
 ---
 
-<!-- ![Rolling Deployments](rolling-deployments.png) -->
+![Rolling Deployments](rolling-deployments.png)
 
 When tasked with deploying a new version of an application, such as a web site, it’s still common for some teams to take their entire website down while they *do deployments*.
 
