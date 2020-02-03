@@ -3,7 +3,7 @@ title: The ultimate guide to rolling deployments
 description: What are rolling deployments and why are they useful? This post covers the rolling deployment pattern and practical examples of how to implement it with different tooling.
 author: mark.harrison@octopus.com
 visibility: public
-published: 2020-02-04
+published: 2020-02-03
 metaImage: rolling-deployments.png
 bannerImage: rolling-deployments.png
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ![Rolling Deployments](rolling-deployments.png)
 
-When tasked with deploying a new version of an application, such as a web site, it’s still common for some teams to take their entire website down while they *do deployments*.
+When deploying new versions of modern software, like web applications and services, it’s still common for some teams to take their entire website down while they *do deployments*.
 
 If the majority of your customers only use your application during business hours, then this big-bang approach is probably acceptable, but what happens if your customers are using your applications 24-7?
 
@@ -24,7 +24,7 @@ Today, users expect applications to be available all the time, and there are a f
 
 ## What are rolling deployments?
 
-A rolling deployment is a deployment pattern (also known as an incremental, batched, or ramped deployment) where new software is delivered, usually to one or more deployment targets at a time, until all of the targets have the updated version of the software rolled out.
+A rolling deployment is a deployment pattern (also known as an incremental deployments, batched deployments, or ramped deployment) where new software is delivered, usually to one or more deployment targets at a time, until all of the targets have the updated version of the software rolled out.
 
 A typical process looks something like this:
 
@@ -145,7 +145,7 @@ Unsurprisingly, running this Docker image displays the web page:
 ![](docker-run.png "width=500")
 
 :::hint
-I don’t explain how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on how to containerize a [real world application](https://octopus.com/blog/containerize-a-real-world-web-app), instead of a “Hello World” one.
+I don’t explain how to build a container image in this post. If you are new to Docker, my colleague Shawn has written an excellent series on how to containerize a [real world application](https://octopus.com/blog/containerize-a-real-world-web-app), instead of another “Hello World” example.
 :::
 
 **Container clean-up**
@@ -353,7 +353,7 @@ Rolling deployments in Kubernetes is called [rolling updates](https://kubernetes
 A pod’s instances will be updated incrementally with new ones. It supports both a max number or percentage of pods to be unavailable during an update, as well as a max number of new pods that can be created. In addition to this, Kubernetes has a handy built-in feature to allow updates to be reverted to a previous version.
 
 :::hint
-To find out more about Kubernetes, my colleague Shawn continued his container series focussing on [Kubernetes]](https://octopus.com/blog/kubernetes-for-the-uninitiated).
+To find out more about Kubernetes, my colleague Shawn continued his container series focussing on [Kubernetes](https://octopus.com/blog/kubernetes-for-the-uninitiated).
 :::
 
 The Kubernetes [tutorial](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) on updates includes a nice diagram showing how it works:
