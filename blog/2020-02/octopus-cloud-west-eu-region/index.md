@@ -10,21 +10,17 @@ tags:
 - Product
 ---
 
-Octopus Cloud is now available in Western Europe hosting region. 
+`tl;dr` - Octopus Cloud is now available in the following regions: 
 
+* Azure West US 2 (Washington, USA)
+* Azure West Europe (Netherlands) - New!
 
 ## Octopus Cloud hosting regions
 
-Octopus Cloud originally launched running on Amazon Web Services (AWS) in a single region West-US (Portland) as we tested customer demand and got comfortable running a cloud hosted software as a service (SaaS) product.
+Octopus Cloud originally launched running on Amazon Web Services (AWS) in a single AWS region West-US located in Portland, Oregon, USA 
 
-In 2019, we redesigned 
-
-We redesigned the solution after it proved a success. Part of this process involved moving it from AWS to Azure. 
-
+In 2019, we [rearchitected](/blog/2019-10/octopus-cloud-1.0-reflections/index.md) Octopus Cloud to improve it's performance and reduce it's running costs. As a part of this shift, we moved from AWS to Microsoft's Azure platform and we had a new default hosting region of Azure West US 2 located in Washington, USA. We are now expanding our supported regions to include Azure West Europe located in the Netherlands.
 
 ## Conclusion
 
-Octopus Cloud is now available in Western Europe hosting region
-
-Octopus Cloud was introduced in June 2018, we rebuild our hosting platform and shipped it in 
-
+Octopus Cloud is now available in two regions and we'll continue to add more as per customer demand.
