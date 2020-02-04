@@ -2,7 +2,7 @@
 title: Kubernetes deployment strategies visualized
 description: See pods being deployed with either rolling updates, recreates, or blue/green deployments.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-02-06
 metaImage: kubernetes-deployments-strategies.png
 bannerImage: kubernetes-deployments-strategies.png
