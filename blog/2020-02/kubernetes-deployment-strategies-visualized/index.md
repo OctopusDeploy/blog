@@ -3,12 +3,14 @@ title: Kubernetes deployment strategies visualized
 description: See pods being deployed with either rolling updates, recreates, or blue/green deployments.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+published: 2020-02-06
+metaImage: kubernetes-deployments-strategies.png
+bannerImage: kubernetes-deployments-strategies.png
 tags:
  - DevOps
 ---
+
+![Kubernetes deployment strategies](kubernetes-deployments-strategies.png)
 
 One of the benefits Kubernetes provides administrators and developers is the ability to intelligently manage deployments of new software or configuration.
 
@@ -22,7 +24,7 @@ For the videos below, we will watch a deployment as it is updated on a multi-nod
 
 The end result is that the new deployment shifts pods from one node to the other. We can then watch how the pods are moved between nodes to see the effect of the different deployment strategies.
 
-## Recreate
+## Kubernetes recreate strategy
 
 <iframe src="https://fast.wistia.net/embed/iframe/1naw15ylem" title="recreate Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="344" qualityMin="720"></iframe>
 <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
@@ -33,7 +35,7 @@ In the above video, you can see all the pods on node 1 are deleted, and only aft
 
 The *recreate* strategy ensures that the old and new pods do not run concurrently. This can be beneficial when synchronizing changes to a backend datastore that does not support access from two different client versions. However, there is a period of downtime before the new pods start accepting traffic.
 
-## Rolling Updates
+## Kubernetes rolling updates
 
 <iframe src="https://fast.wistia.net/embed/iframe/5p253x9845" title="rollingupdate Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="344" qualityMin="720"></iframe>
 <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
@@ -42,7 +44,7 @@ As its name suggests, the *rolling update* strategy incrementally deploys new po
 
 The *rolling update* strategy ensures there are some pods available to continue serving traffic during the update, so there is no downtime. However, both the old and new pods run side by side while the update is taking place, meaning any datastores or clients must be able to interact with both versions.
 
-## Blue/Green
+## Kubernetes blue/green deployments
 
 <iframe src="https://fast.wistia.net/embed/iframe/445p3d8nyb" title="bluegreen Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="342" qualityMin="720"></iframe>
 <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
