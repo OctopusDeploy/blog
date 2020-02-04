@@ -2,13 +2,15 @@
 title: Octopus Cloud - Western Europe region is now available
 description: Octopus Cloud - Western Europe region is now available
 author: rob.pearson@octopus.com
-visibility: private
-bannerImage: 
-metaImage: 
-published: 2020-02-04
+visibility: public
+bannerImage: octopus-cloud-regions.png
+metaImage: octopus-cloud-regions.png
+published: 2020-02-05
 tags:
 - Product
 ---
+
+![](octopus-cloud-regions.png)
 
 `tl;dr` - Octopus Cloud is now available in the following regions: 
 
