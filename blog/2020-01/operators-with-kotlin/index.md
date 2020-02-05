@@ -12,27 +12,27 @@ tags:
 
 Most environments will initially treat their Kubernetes cluster as a tool to orchestrate containers and configure traffic between them. Kubernetes supports this use case very well by providing declarative descriptions of the desired container state and their connections.
 
-When used in this way, developers and operations staff sit outside of the cluster and look in. The cluster is managed with calls to `kubectl` made in an ad-hoc fashion or from a CI/CD pipeline. This means Kubernetes itself is quite naïve; it understands how to reconfigure itself to match the desired state, but has no understanding of what that state represents.
+When used in this way, developers and operations staff sit outside of the cluster, looking in. The cluster is managed with calls to `kubectl` that are made in an ad-hoc fashion or from a CI/CD pipeline. This means Kubernetes itself is quite naïve; it understands how to reconfigure itself to match the desired state, but it has no understanding of what that state represents.
 
-For example, a common Kubernetes deployment might see three pods created: a front end web application, a backend web service and a database. The relationship between these pods is well understood by the developers deploying them as being a classic three-tier architecture, but Kubernetes literally sees nothing more than three pods to be deployed, monitored and exposed to network traffic.
+For example, a common Kubernetes deployment might see three pods created: a front end web application, a backend web service, and a database. The relationship between these pods is well understood by the developers deploying them as a classic three-tier architecture, but Kubernetes literally sees nothing more than three pods to be deployed, monitored, and exposed to network traffic.
 
-The operator pattern has evolved as a way of encapsulating business knowledge and operational workflows in the Kubernetes cluster itself, allowing a cluster to implement high level, domain specific concepts with the common, low level resources like pods, services, deployments etc.
+The operator pattern has evolved as a way of encapsulating business knowledge and operational workflows in the Kubernetes cluster itself, allowing a cluster to implement high level, domain-specific concepts with the common, low-level resources like pods, services, and deployments, etc.
 
-The term was originally coined by Brandon Philips in the blog post [Introducing Operators: Putting Operational Knowledge into Software](https://coreos.com/blog/introducing-operators.html), and offers this definition:
+The term was originally coined by Brandon Philips in the blog post [Introducing Operators: Putting Operational Knowledge into Software](https://coreos.com/blog/introducing-operators.html) and offers this definition:
 
 > It builds upon the basic Kubernetes resource and controller concepts but includes domain or application-specific knowledge to automate common tasks.
 
 The three key components identified in this definition are:
 
-* resource
-* controller
-* domain or application-specific knowledge
+* Resource
+* Controller
+* Domain or application-specific knowledge
 
-In practice, a *resource* means a Custom Resource Definition (CRD), a *controller* means an application integrated into and responding to the Kubernetes API, and the *application-specific knowledge* is the logic implemented in the *controller* to reify high level concepts from standard Kubernetes resources.
+In practice, a *resource* means a Custom Resource Definition (CRD), a *controller* means an application integrated into and responding to the Kubernetes API, and the *application-specific knowledge* is the logic implemented in the *controller* to reify high-level concepts from standard Kubernetes resources.
 
-To understand the operator pattern, let's look at a simple example written in Kotlin. The code for this operator is available from [GitHub](https://github.com/OctopusSamples/KotlinK8SOperator), and is based on the code from this [RedHat blog](https://developers.redhat.com/blog/2019/10/07/write-a-simple-kubernetes-operator-in-java-using-the-fabric8-kubernetes-client/). The operator will extend the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with a image known to expose a sample web server.
+To understand the operator pattern, let’s look at a simple example written in Kotlin. The code for this operator is available from [GitHub](https://github.com/OctopusSamples/KotlinK8SOperator), and it is based on the code from this [RedHat blog](https://developers.redhat.com/blog/2019/10/07/write-a-simple-kubernetes-operator-in-java-using-the-fabric8-kubernetes-client/). The operator will extend the Kubernetes cluster with the concept of a web server with a `WebServer` CRD and a controller that builds pods with an image known to expose a sample web server.
 
-The CRD meets the *resource* requirement, the code we'll write interacting with the Kubernetes API meets the *controller* requirement, and the knowledge that a particular Docker image is used to expose a sample web server is the *application-specific knowledge*.
+The CRD meets the *resource* requirement, the code we’ll write to interact with the Kubernetes API meets the *controller* requirement, and the knowledge that a particular Docker image is used to expose a sample web server is the *application-specific knowledge*.
 
 ## The pom.xml file
 
@@ -97,7 +97,7 @@ We start with the Maven `pom.xml` file. This file defines the dependencies requi
 
 ## Anatomy of a Kubernetes resource
 
-Before we dive into the Kotlin code, we first need to understand the common structure of all Kubernetes resources. Here is the YAML definition of a deployment resource that we'll use as an example:
+Before we dive into the Kotlin code, we need to understand the common structure of all Kubernetes resources. Here is the YAML definition of a deployment resource that we’ll use as an example:
 
 ```YAML
 apiVersion: apps/v1
@@ -138,7 +138,7 @@ apiVersion: apps/v1
 kind: Deployment
 ```
 
-The second component is the metadata. This is where labels, annotations, names and namespaces are defined:
+The second component is the metadata. This is where labels, annotations, names, and namespaces are defined:
 
 ```YAML
 metadata:
@@ -304,13 +304,13 @@ We create a `DefaultKubernetesClient`, which gives us access to the Kubernetes A
 val client = DefaultKubernetesClient()
 ```
 
-The client knows how to configure itself based on the environment it is executed in. We'll run this code locally when testing, meaning the client will access the details of the Kubernetes cluster from the `~/.kube/config` file. The namespace is then extracted from the client's configuration, or set to `default` if no namespace setting was found:
+The client knows how to configure itself based on the environment it is executed in. We’ll run this code locally when testing, meaning the client will access the details of the Kubernetes cluster from the `~/.kube/config` file. The namespace is then extracted from the client’s configuration, or set to `default` if no namespace setting was found:
 
 ```
 val namespace = client.namespace ?: "default"
 ```
 
-The `CustomResourceDefinitionBuilder` is defines the `WebServer` CRD that this controller manages. This is used when working with the client to update resources in the cluster.
+The `CustomResourceDefinitionBuilder` defines the `WebServer` CRD that this controller manages. This is used when working with the client to update resources in the cluster.
 
 ```
 val podSetCustomResourceDefinition = CustomResourceDefinitionBuilder()
@@ -324,7 +324,7 @@ val podSetCustomResourceDefinition = CustomResourceDefinitionBuilder()
         .build()
 ```
 
-The controller works by listening to events indicating that resources it should be managing have been changed. To listen to events relating to the `WebServer` CRD, we create a `CustomResourceDefinitionContext`:
+The controller works by listening to events that indicate the resources it should be managing have changed. To listen to events relating to the `WebServer` CRD, we create a `CustomResourceDefinitionContext`:
 
 ```
 val webServerCustomResourceDefinitionContext = CustomResourceDefinitionContext.Builder()
@@ -360,7 +360,7 @@ val webServerSharedIndexInformer = informerFactory.sharedIndexInformerForCustomR
         10 * 60 * 1000.toLong())
 ```
 
-The logic of the operator is contained in the controller. In this project the `WebServerController` class fulfils the role of the controller:
+The logic of the operator is contained in the controller. In this project, the `WebServerController` class fulfills the role of the controller:
 
 ```
 val webServerController = WebServerController(
@@ -676,7 +676,7 @@ private fun createNewPod(webServer: WebServer): Pod =
                 .build()
 ```
 
-The `run()` method is an infinite loop continually consuming a webserver resource ID added to the `workQueue` by the event listeners and passing it to the `reconcile()` method:
+The `run()` method is an infinite loop continually consuming a web server resource ID added to the `workQueue` by the event listeners and passing it to the `reconcile()` method:
 
 ```
 fun run() {
@@ -722,13 +722,13 @@ spec:
 
 ## Putting it all together
 
-To run the operator we first need to apply the CRD YAML:
+To run the operator, we first need to apply the CRD YAML:
 
 ```
 kubectl apply -f crd.yml
 ```
 
-We then create an instance of our CRD with the YAML:
+Then, we create an instance of our CRD with the YAML:
 
 ```YAML
 apiVersion: demo.k8s.io/v1alpha1
@@ -739,11 +739,11 @@ spec:
   replicas: 5
 ```
 
-The controller can then be run locally. Because the client we used in our code knows how to configure itself based on where it is run, executing our code locally means that the client configures itself from the `~/.kube/config` file. In the screenshot below you can see the controller run directly from my IDE:
+The controller can then run locally. Because the client we used in our code knows how to configure itself based on where it is run, executing our code locally, means that the client configures itself from the `~/.kube/config` file. In the screenshot below you can see the controller run directly from my IDE:
 
 ![](intellij.png "width=500")
 
-The controller responds to the new webserver CRD and creates the required pods:
+The controller responds to the new web server CRD and creates the required pods:
 
 ```
 $ kubectl get pods
@@ -755,7 +755,7 @@ example-webserver-podkftmp   1/1     Running   0          54s
 example-webserver-podpwzrt   1/1     Running   0          54s
 ```
 
-The status of the webserver resource is updated with the `count` of the pods it has successfully created:
+The status of the web server resource is updated with the `count` of the pods it has successfully created:
 
 ```
 $ kubectl get webservers -n default -o yaml
@@ -786,12 +786,12 @@ metadata:
 
 ## The power of operators
 
-Without an operator, the concept of a test web server lived outside of the cluster. Developers may have emailed around the YAML they use to create test pods with, but more likely everyone had their own opinion of what a test web server was.
+Without an operator, the concept of a test web server lived outside of the cluster. Developers may have emailed around the YAML they use to create test pods with, but more likely, everyone had their own opinion of what a test web server was.
 
-The operator we created extends our Kubernetes cluster with a specific implementation of a test web server. Encapsulating this business knowledge allows the cluster to create and manage high level concepts specific to our environment.
+The operator we created extends our Kubernetes cluster with a specific implementation of a test web server. Encapsulating this business knowledge allows the cluster to create and manage high-level concepts specific to our environment.
 
-Creating and managing new resources is just one example of what an operator can do. Automating tasks like security scans, reporting and load testing are all valid use cases for operators. A list of popular operators is available [here](https://github.com/operator-framework/awesome-operators).
+Creating and managing new resources is just one example of what an operator can do. Automating tasks like security scans, reporting, and load testing are all valid use cases for operators. A list of popular operators is available [here](https://github.com/operator-framework/awesome-operators).
 
 ## Conclusion
 
-Operators are a much hyped but often poorly understood pattern. With the definition from the original blog post describing operators we saw the three simple parts to an operator: a resource to define them, a controller to act on the Kubernetes resources, and logic to implement application specific knowledge. We then implemented a simple operator in Kotlin to create test web servers.
+Operators are a much hyped but often poorly understood pattern. With the definition from the original blog post describing operators, we saw the three simple parts to an operator: a resource to define them, a controller to act on the Kubernetes resources, and logic to implement application-specific knowledge. We then implemented a simple operator in Kotlin to create test web servers.

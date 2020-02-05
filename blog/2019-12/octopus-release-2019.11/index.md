@@ -14,7 +14,7 @@ tags:
 
 **Octopus Deploy 2019.11** is now available, this release introduces our Operations Runbooks feature and other numerous small improvements driven by customer feedback. 
 
-We shipped [early access to Runbooks](/blog/2019-10/octopus-release-2019.10/index.md) in Octopus 2019.10 and we wrote about [why teams should care about them](/blog/2019-10/operations-runbooks/index.md). We’re excited to share that runbooks has reached release to web (RTW) status. This means we’ve removed the early access feature toggle and we’re proud to ship a complete solution to help teams automate their operations tasks.
+We shipped [early access to Runbooks](/blog/2019-10/octopus-release-2019.10/index.md) in Octopus 2019.10 and we wrote about [why teams should care about them](/blog/2019-10/introducing-operations-runbooks/index.md). We’re excited to share that runbooks has reached release to web (RTW) status. This means we’ve removed the early access feature toggle and we’re proud to ship a complete solution to help teams automate their operations tasks.
 
 <h2>In this post</h2>
 

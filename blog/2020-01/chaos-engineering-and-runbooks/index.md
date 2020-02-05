@@ -2,13 +2,24 @@
 title: Chaos engineering and runbooks
 description: Learn how runbooks can enrich your deployments with the Chaos Toolkit
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-01-29
+metaImage: runbooks-chaos-toolkit.png
+bannerImage: runbooks-chaos-toolkit.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Chaos engineering and runbooks](runbooks-chaos-toolkit.png)
+
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+
+- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
+- [DevOps, Runbooks and kubectl](/blog/2020-01/devops-runbooks-and-kubectl/index.md)
+- **Chaos engineering and runbooks**
+- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
+
+--- 
 
 The promise of declarative systems that automatically reconfigure themselves to a desired state is:
 
@@ -24,7 +35,7 @@ Proving that a system can tolerate the failure of individual components is the e
 
 Until recently, running any kind of automated process in Octopus meant creating a deployment. It was possible to hack the idea of a deployment to implement management tasks, but it was awkward.
 
-With runbooks, Octopus now has first-class support for running management tasks in parallel to deployments. runbooks have access to all the existing environments, variables, targets, steps, security, auditing, and reporting, but without being tied to the concept of a deployment or a lifecycle.
+With runbooks, Octopus now has first-class support for running management tasks in parallel to deployments. Runbooks have access to all the existing environments, variables, targets, steps, security, auditing, and reporting, but without being tied to the concept of a deployment or a lifecycle.
 
 This makes runbooks ideal for running tools like the Chaos Engineering Toolkit. In this post, we’ll create a very simple chaos experiment as a runbook, and call out the advantages runbooks provide for this kind of task.
 
@@ -34,7 +45,7 @@ This makes runbooks ideal for running tools like the Chaos Engineering Toolkit. 
 
  ![](k8s-step.png "width=500")
 
-## The chaos runbook
+## The chaos runbook example
 
  Alongside the deployment, I also have a runbook that executes a simple Chaos Toolkit experiment, which deletes a pod and ensures that the deployment is healthy using the [microservice_available_and_healthy](https://docs.chaostoolkit.org/drivers/kubernetes/#microservice_available_and_healthy) function.
 
@@ -134,4 +145,4 @@ In the screenshot below, the chaos experiment is being run every ten minutes to 
 
 I was pleasantly surprised at how easy it was to get Chaos Toolkit up and running in Octopus. With a Kubernetes deployment already defined, scripting another tool against the existing targets and environments took very little effort.
 
-Beyond the initial ability to simply execute a tool, Octopus provides cross-cutting functionality like logging, audits, security, user management, reporting, and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.
+Beyond the initial ability to simply execute a tool, Octopus runbook automation provides cross-cutting functionality like logging, audits, security, user management, reporting, and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.

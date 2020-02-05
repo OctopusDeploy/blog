@@ -2,23 +2,34 @@
 title: DevOps, Runbooks and kubectl
 description: The top reasons to use Runbooks to manage your Kubernetes cluster.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-01-28
+metaImage: k8s-devops-runbook.png
+bannerImage: k8s-devops-runbook.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
+
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+
+- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
+- **DevOps, Runbooks and kubectl**
+- [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
+- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
+
+--- 
 
 It is safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something more than a few of us agree with.
 
-Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new Runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops tasks across your environments without creating deployments.
+Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new Runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
 
 In this blog post, we’ll look at a simple runbook and highlight the advantages of creating reusable runbooks over manual scripting and ad-hoc debugging.
 
-## A simple runbook
+## A simple runbook example
 
-Listing Kubernetes pods to see their status is a common first step when supporting a Kubernetes cluster. This sounds easy enough, and it’s tempting to think this process is nothing more than running `kubectl get pods`. But with runbooks it is possible to enrich this diagnostic procedure. Below is an example of a **Get Pods** script you might create as part of a runbook:
+Listing Kubernetes pods to see their status is a common first step when supporting a Kubernetes cluster. This sounds easy enough, and it’s tempting to think this process is nothing more than running `kubectl get pods`. But with a runbook it is possible to enrich this diagnostic procedure. Below is an example of a **Get Pods** script you might create as part of a runbook:
 
 ```PowerShell
 $arguments = @("get", "pods")
@@ -74,7 +85,7 @@ If you are following best security practices, your Kubernetes cluster will not h
 
 But how do you share these credentials with your support team?
 
-Using runbooks removes the burden from the end user to maintain infrastructure credentials. Each Kubernetes target can have as much or as little access to the cluster as needed, and Octopus permissions can limit who can run which runbooks on which targets.
+Using a runbook removes the burden from the end user to maintain infrastructure credentials. Each Kubernetes target can have as much or as little access to the cluster as needed, and Octopus permissions can limit who can run which runbook on which targets.
 
 ## Enrich scripts with business intelligence
 
