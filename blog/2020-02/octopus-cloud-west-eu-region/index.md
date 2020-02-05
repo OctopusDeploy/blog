@@ -12,10 +12,10 @@ tags:
 
 ![](octopus-cloud-regions.png)
 
-`tl;dr`: Octopus Cloud is now available in the following regions:
+`tl;dr` Octopus Cloud is now available in the following regions:
 
 * Azure West US 2 (Washington, USA).
-* Azure West Europe (Netherlands) - New!
+* Azure West Europe (Netherlands) - **New!**
 
 ## Octopus Cloud hosting regions
 
