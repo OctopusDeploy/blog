@@ -30,9 +30,18 @@ We have plans to release migration tooling to help you seamlessly transition you
 
 ### I live somewhere that isn't near any of the available cloud regions: can I have my Octopus Cloud instance hosted nearer to my location?
 
-At launch we will only be supporting a few specific cloud regions (initially Oregon, USA), but we have plans to bring more regions online as demand for instances grows.
+In 2018, Octopus Cloud supported one region in Oregon, USA (AWS us-west-2). 
+
+In 2019, we rearchitected Octopus Cloud, and we now support the following regions: 
+
+* Washington, USA (Azure West US 2).
+* Netherlands (Azure West Europe).
 
 If you want to specifically request a region, please send us an email at [support@octopus.com](mailto:support@octopus.com) and we'll add your request to the list.
+
+### I want to move my existing Cloud instance to a different region. Is that possible?
+
+Yes, this is possible. Please send us an email at [support@octopus.com](mailto:support@octopus.com) and we will move your instance in the next outage window.
 
 ## Features & Usage
 
