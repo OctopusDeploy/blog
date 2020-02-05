@@ -1,6 +1,6 @@
 ---
-title: DevOps, Runbooks and kubectl
-description: The top reasons to use Runbooks to manage your Kubernetes cluster.
+title: DevOps, runbooks and kubectl
+description: The top reasons to use runbooks to manage your Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-01-28
@@ -12,18 +12,18 @@ tags:
 
 ![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
 
-Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+Operations runbooks in Octopus put the Ops in DevOps. This post is part of a series:
 
-- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
-- **DevOps, Runbooks and kubectl**
+- [Operations runbooks overview](/blog/2020-01/operations-runbooks/index.md)
+- **DevOps, runbooks and kubectl**
 - [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
 - [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
 
---- 
+---
 
 It is safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something more than a few of us agree with.
 
-Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new Runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
+Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
 
 In this blog post, we’ll look at a simple runbook and highlight the advantages of creating reusable runbooks over manual scripting and ad-hoc debugging.
 
@@ -111,4 +111,4 @@ Octopus has long supported multiple cloud providers and on-premises deployments,
 
 ## Conclusion
 
-In a world where it can feel like you need to learn 30 different things to deploy an application, Octopus strives to provide you with a single **Deploy** button. With Runbooks, the same battle-tested processes that drive Octopus deployments are now available for DevOps support and maintenance tasks.
+In a world where it can feel like you need to learn 30 different things to deploy an application, Octopus strives to provide you with a single **Deploy** button. With runbooks, the same battle-tested processes that drive Octopus deployments are now available for DevOps support and maintenance tasks.
