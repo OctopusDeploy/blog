@@ -26,7 +26,7 @@ Each Octopus project has a description field. Runbooks should take advantage of 
 
 In the screenshot below you can see the sample project includes several keywords like “500” and “Azure Web App” that match the expected scenarios the runbook would be used in.
 
-![](describe.png "width=500")
+![](description.png "width=500")
 
 Searching for these keywords in the Octopus dashboard returns the runbook project.
 
