@@ -11,6 +11,7 @@ tags:
 ---
 
 Agile, Extreme Programming, CEBTENZZVAT, ZBGURESHPXRE (Google that last one for a laugh, although it is NSFW)… Whether you implement them or even agree with them, there is no denying that developers are always looking to optimize their workflows. And while the specific methodologies differ, they all boil down to maintaining a high velocity and high quality. To achieve that, you need automation.
+
 The operations space hasn’t had the same love that developers have enjoyed though, leaving the operations team to hack CI servers to automate their tasks. CI servers were built to automate software development, and the ops team will always be a secondary consideration.
 
 With Runbooks, Octopus elevates operations tasks to a first-class concept, giving ops teams a workflow designed for their needs.
@@ -22,7 +23,14 @@ In this blog post we’ll look at the best practises for designing runbooks, pro
 It’s 1 AM and your pager goes off to let you know that your web site is down. The last thing you want to do is wade through pages of projects and scripts to find the one that will resolve the issue. This makes discoverability critical to runbooks.
 
 Each Octopus project has a description field. Runbooks should take advantage of this field to document what services the runbook targets and which problems the runbook solves. The description field is searchable from the main Octopus dashboard allowing operations and support staff to find suitable projects based on keyword searches rather than a rote knowledge of all available scripts.
-In the screenshot below you can see the sample project includes several keywords like “500” and “Azure Web App” that match the expected scenarios the runbook would be used in. Searching for these keywords in the Octopus dashboard returns the runbook project.
+
+In the screenshot below you can see the sample project includes several keywords like “500” and “Azure Web App” that match the expected scenarios the runbook would be used in.
+
+![](describe.png "width=500")
+
+Searching for these keywords in the Octopus dashboard returns the runbook project.
+
+![](search.png "width=500")
 
 ## Inspect
 
