@@ -86,11 +86,11 @@ In our example the verify step enters a loop to check the HTTP status code over 
 
 for ($x = 0; $x -lt 30; ++$x)
 {
-	$status = [int]([System.Net.WebRequest]::Create("https://$Hostname").GetResponse().StatusCode)
-    if ($status -eq 200) {
-    	exit 0
-    }
-    Start-Sleep 10
+  $status = [int]([System.Net.WebRequest]::Create("https://$Hostname").GetResponse().StatusCode)
+  if ($status -eq 200) {
+    exit 0
+  }
+  Start-Sleep 10
 }
 
 # We didn't get a good response in 5 mins, so we failed
