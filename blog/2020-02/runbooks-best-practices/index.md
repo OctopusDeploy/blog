@@ -40,7 +40,7 @@ The script below captures the log file and tests the HTTP response code:
 
 # Redirect to a file to removeoutput printed to stderr
 az webapp log download `
-	--name MySalesWebApp `
+  --name MySalesWebApp `
   --resource-group SalesResourceGroup `
   --log-file logs.zip
 
@@ -48,7 +48,7 @@ New-OctopusArtifact "logs.zip"
 
 $status = [int]([System.Net.WebRequest]::Create("https://$Hostname").GetResponse().StatusCode)
 Set-OctopusVariable `
-	-name "TestResult" `
+  -name "TestResult" `
   -value ($status -eq 200)
 
 Write-Host "Web application returned HTTP status code $status"
