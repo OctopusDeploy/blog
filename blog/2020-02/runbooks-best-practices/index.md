@@ -123,6 +123,8 @@ Implementing the previous steps means that your runbook accurately identifies wh
 
 At this point you have the ability to trigger the runbook automatically on a regular schedule. To do this, the confirm step is disabled or removed, use the run condition `#{unless Octopus.Action[Inspect].Output.TestResult}true#{/unless}` for the remaining steps, and a scheduled trigger is created to execute the runbook as needed.
 
+![](triggers.png "width=500")
+
 ## Summary
 
 Whatever methodology you ascribe to, achieving high velocity and high quality demands automation. The steps outlined in this post are designed to produce a runbook that can be confidently run automatically.
