@@ -48,16 +48,29 @@ TeamCity doesn't have a plugin available to perform the build.  Pavel Hofman has
 #### Jenkins
 Similar to TeamCity, Jenkins does not have any plugins available to perform a Visual Studio build.  However, performing similar steps to the TeamCity solution should yield the same results.
 
-### Packaging the artifact
+### Building the project
+In this post, we'll be using Azure DevOps to perform our build.
+
+#### Build task
+Fill in the build task details
+
+![](ado-ssis-task.png)
+![](ado-ssis-task2.png)
+
+#### Packaging the artifact
 Once the SSIS project has been built, it will produce an .ispac file, which contains the necessary components for deployent.  .ispac isn't a standard archive like .zip or .nupkg, so we'll need to have an additional step that packages it up to a supported format.  For ADO, TeamCity, and Jenkins, Octopus Deploy has plugins or extensions that contains steps that can do this.
 
-### Pushing the artifact to a repository
+![](ado-package-task.png)
+
+#### Pushing the artifact to a repository
 Once the .ispac file has been packaged, we need to package it up and send it to a repository, such as:
 
 - Octopus Deploy built-in repository
 - Artifactory
 - Nexus
 - ADO/TFS repository
+
+![](ado-push-task.png)
 
 ## Octopus Deploy
 Now that we have the package ready, we can create and configure out Octopus Deploy project!
