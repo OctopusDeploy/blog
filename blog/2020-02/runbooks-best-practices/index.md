@@ -63,7 +63,7 @@ The script below captures the Azure Web App log file and saves it as an Octopus 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
 
 az webapp log download `
-	--name MySalesWebApp `
+    --name MySalesWebApp `
     --resource-group SalesResourceGroup `
     --log-file logs.zip
 
