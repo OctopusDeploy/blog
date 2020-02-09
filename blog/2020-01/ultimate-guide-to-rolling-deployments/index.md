@@ -599,7 +599,7 @@ deployment.apps/rollingdeploy-microk8s rolled back
 You can also choose to revert to a specific revision of your application by running:
 
 ```
-markh@ubuntu01:~$ kubectl rollout undo deployment.v1.apps/rollingdeploy-minikube --to-revision=1
+markh@ubuntu01:~$ sudo microk8s.kubectl rollout undo deployment.v1.apps/rollingdeploy-microk8s --to-revision=1
 ```
 
 Where the `--to-revision` parameter has the revision you wish to go back to.
