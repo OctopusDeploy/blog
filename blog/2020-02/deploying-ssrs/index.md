@@ -36,5 +36,64 @@ And that's all we need for our build definition!
 Now that we have the our artifacts in Octopus Deploy, we can create our project for deployment
 
 ### Creating the project
+Click on Projects, then **ADD PROJECT**
+
+![](octopus-create-project.png)
+
+### Deploying the package
+The first step in our process is to deploy the package to the SSRS server. Click **ADD STEP** 
+
+![](octopus-project-add-step.png)
+
+and add a Deploy a Package step and select the package we pushed to the Octopus Server.
+
+![](octopus-project-add-deploy-package.png)
+
+Once the step has been added, fill in the textboxes
 
 
+![](octopus-project-deploy-package1.png)
+![](octopus-project-deploy-package2.png)
+
+### Adding the SSRS step
+To deploy SSRS reports, we'll be adding a Community Step template.  Filter steps by SSRS and select Deploy SSRS Reports from a package step
+
+![](octopus-project-ssrs-step.png)
+
+This step needs to execute on the same target that the package was deployed, for the Execution Location, choose Deployment Target and fill in the same role you chose for the Deploy a package step
+
+![](octopus-project-ssrs-step1.png)
+
+Fill in the values for the step
+
+- SSRS Package Step: This is the Deploy a Package step we created previously.
+
+- Url of SSRS Server service:  This is the Url of the Report Service web service.  For example, http://servername/ReportServer/reportservice2010.asmx?wsdl
+
+- Report Execution Url:  This is the url of the Report Execution web service.  For example, http://servername/ReportServer/ReportExecution2005.asmx?wsdl
+
+- Report Folder: Relative path to the folder where the reports will be deployed.  For example, /MyFolder
+
+- Report data source folder: Relative path to the folder where the datasources will be deployed.  For example /MyFolder/MyDataSources
+
+- Overwrite Datasources: Check this if you want to overwrite the datasources when deploying
+
+- Backup Location (optional):  Location on the Deployment Target to back up reports before overwriting them.
+
+- DataSet Folder (optional):  Relative path to the folder where Shared DataSets will be deployed.  For example /MyFolder/MyDatasets
+
+- Report Parts Folder (optional): Relative path to the folder where Report Parts will be deployed.  For example /MyFolder/MyReportParts
+
+- Service Domain (optional):  Domain name of account to use when deploying.
+
+- Service Username (optional):  Username of the account to use when deploying.
+
+- Service Password (optional:)  Password for the user to use when deploying.
+
+- Clear the report folder: Check this box if you want to delete reports from the target folder prior to deployment
+
+![](octopus-project-ssrs-step-complete.png)
+
+That's all for the steps!  We're now ready to deploy!
+
+## Deploy the reports
