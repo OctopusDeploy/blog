@@ -34,25 +34,14 @@ Searching for these keywords in the Octopus dashboard returns the runbook projec
 
 ## Inspect
 
-The first step in the runbook should attempt to inspect the current state of the system it interacts with to do two things:
+The first step in the runbook inspects the current state of the system to determine if it is degraded.
 
-1.	Capture any relevant information that may be useful in debugging the root cause. This may include things like application log files and metrics.
-2.	Determine if the system is degraded. For example, checking the HTTP response codes from a web application.
-
-For our example runbook we’ll use the `Run an Azure Powershell script` step to download the application logs, capture the resulting zip file as an artifact, and then make a HTTP request to the website to inspect the response code. The result of the HTTP call is then saved in the Octopus variable `TestResult`.
+For our example runbook we’ll use the `Run an Azure Powershell script` step to make a HTTP request to the website to inspect the response code. The result of the HTTP call is then saved in the Octopus variable `TestResult`.
 
 The script below captures the log file and tests the HTTP response code:
 
 ```
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
-
-# Redirect to a file to removeoutput printed to stderr
-az webapp log download `
-  --name MySalesWebApp `
-  --resource-group SalesResourceGroup `
-  --log-file logs.zip
-
-New-OctopusArtifact "logs.zip"
 
 $status = [int]([System.Net.WebRequest]::Create("https://$Hostname").GetResponse().StatusCode)
 Set-OctopusVariable `
@@ -60,6 +49,25 @@ Set-OctopusVariable `
   -value ($status -eq 200)
 
 Write-Host "Web application returned HTTP status code $status"
+```
+
+## Collect
+
+To supplement the previous step we need to collect diagnostic information that allows us to determine the root cause of the issue at a later date.
+
+The information gathered here may also be used in the next step to allow an operator to determine if the system is degraded regardless of the HTTP response code that was returned in the previous step.
+
+The script below captures the Azure Web App log file and saves it as an Octopus artifact.
+
+```
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
+
+az webapp log download `
+	--name MySalesWebApp `
+    --resource-group SalesResourceGroup `
+    --log-file logs.zip
+
+New-OctopusArtifact "logs.zip"
 ```
 
 ## Confirm
