@@ -7,7 +7,11 @@ published: 3020-01-01
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 tags:
- - DevOps
+  - DevOps
+  - Company
+  - Product
+  - Events and Webinars
+  - Engineering
 ---
 
 Introductory paragraph that tells the reader why they should read on.
