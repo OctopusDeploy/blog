@@ -78,6 +78,22 @@ Fill in the values for the step
 
 - Overwrite Datasources: Check this if you want to overwrite the datasources when deploying
 
+:::hint
+To specify the datasource details, you need to create Octopus Deploy variables that match the datasource to overwrite.  The following properties can be overridden:
+
+- ConnectionString
+- Username
+- Password
+
+For example, if the name of the datasource is MyDatasource, the variables would be:
+
+- MyDatasource.ConnectionString
+- MyDatasource.Username
+- MyDatasource.Password
+
+If the username and password are for a domain account, you'll need to create an additional variable called MyDatasource.WindowsCredentials with a value of True
+:::
+
 - Backup Location (optional):  Location on the Deployment Target to back up reports before overwriting them.
 
 - DataSet Folder (optional):  Relative path to the folder where Shared DataSets will be deployed.  For example /MyFolder/MyDatasets
@@ -97,3 +113,21 @@ Fill in the values for the step
 That's all for the steps!  We're now ready to deploy!
 
 ## Deploy the reports
+With our process complete, let's deploy 'em!  Click **CREATE RELEASE**
+
+![](octopus-project-create-release.png)
+
+After you click **SAVE**, choose the deployment environment
+
+![](octopus-project-create-deployment1.png)
+
+Click **DEPLOY** and let 'er rip!
+
+![](octopus-project-create-deployment2.png)
+
+Once the deployment is complete, it should look like this
+
+![](octopus-project-deploy-complete.png)
+
+## Conclusion
+In this post, I demonstrated how easy it is to deploy SSRS reports using Octopus Deploy :)  Happy Deployments!
