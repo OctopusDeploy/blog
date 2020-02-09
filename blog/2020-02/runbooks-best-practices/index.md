@@ -36,9 +36,9 @@ Searching for these keywords in the Octopus dashboard returns the runbook projec
 
 The first step in the runbook inspects the current state of the system to determine if it is degraded.
 
-For our example runbook we’ll use the `Run an Azure Powershell script` step to make a HTTP request to the website to inspect the response code. The result of the HTTP call is then saved in the Octopus variable `TestResult`.
+For our example runbook we’ll use the `Run an Azure Powershell script` step to make a HTTP request to the website and inspect the response code. The result of the HTTP call is saved in the Octopus variable `TestResult`.
 
-The script below captures the log file and tests the HTTP response code:
+The script below tests the HTTP response code:
 
 ```
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
@@ -55,7 +55,7 @@ Write-Host "Web application returned HTTP status code $status"
 
 To supplement the previous step we need to collect diagnostic information that allows us to determine the root cause of the issue at a later date.
 
-The information gathered here may also be used in the next step to allow an operator to determine if the system is degraded regardless of the HTTP response code that was returned in the previous step.
+The information gathered here may also be used in the next step to allow a support staff to determine if the system is degraded regardless of the HTTP response code that was returned in the previous step.
 
 The script below captures the Azure Web App log file and saves it as an Octopus artifact.
 
@@ -74,17 +74,17 @@ New-OctopusArtifact "logs.zip"
 
 There are many potential reasons why a web application would be down. For example, memory leaks and resource spikes can render a site unusable while still occasionally returning a valid HTTP response code.
 
-If the inspect step failed to identify an issue, we display a prompt asking whether the runbook should continue regardless, giving support staff the opportunity to run manual tests and make their decision to proceed.
+If the inspect step failed to identify an issue, we display a prompt asking whether the runbook should continue regardless, giving support staff the opportunity to run manual tests or review the diagnostic information retrieved in the collect step and make their decision to proceed.
 
-In practical terms this step is implemented as a manual intervention step that runs on the condition that the `TestResult` variable created in the last step is true (or in other words if the last step successfully contacted the web application, thus not finding a problem).
+In practical terms this step is implemented as a manual intervention step that runs on the condition that the `TestResult` variable created in the last step is true (or in other words if the inspect step successfully contacted the web application, thus not finding a problem).
 
 ![](confirm.png "width=500")
 
-It is worth paying attention to how often the confirmation step is presented. If it is the norm to manually proceed, it means the inspect step doesn’t accurately identify the error state of the system.
+It is worth paying attention to how often the confirmation step is presented. If it is the norm to manually proceed, it means the inspect step doesn’t accurately identify the error state of the system. Accurately determining that the system is degraded is an important requirement for automating the process.
 
 ## Rectify
 
-The rectify step is the meat of the runbook, and in our example is where the Azure web app is restarted. This is implemented with a Run an Azure Powershell script step calling the following script to restart the web app:
+The rectify step is the meat of the runbook, and in our example is where the Azure web app is restarted. This is implemented with a `Run an Azure Powershell script` step calling the following script to restart the web app:
 ```
 az webapp restart
 ```
@@ -115,7 +115,7 @@ exit 1
 
 ## Notify
 
-It is often useful to notify other members of the team that a restart was performed. Octopus has steps for sending messages through several communications platforms, and here we have used the Slack - Send Simple Notification community step to report the status of each proceeding step.
+It is useful to notify other members of the team that a restart was performed. Octopus has steps for sending messages through several communications platforms, and here we have used the `Slack - Send Simple Notification` community step to report the status of each proceeding step.
 
 The text below loops over the runbook steps and prints their status.
 ```
