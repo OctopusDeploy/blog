@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: octopus-dynamic-targets.png
 metaImage: octopus-dynamic-targets.png
-published: 2020-02-11
+published: 2020-02-10
 tags:
  - DevOps
 ---
