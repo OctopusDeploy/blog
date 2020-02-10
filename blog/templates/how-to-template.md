@@ -22,7 +22,7 @@ Tell them what the how to demonstrates, and when/why the user might find this us
 
 Tell the reader what tech they need and anything else they **need** to know before you jump into the steps.
 
-### Configure 
+### Configure
 
 Break the steps the user needs to take into logical groups:
 
@@ -38,10 +38,9 @@ Use screenshots to help orient the user if they're moving between screens/system
 
 ## Conclusion
 
-Recap what the purpose of the post and the steps the user took to
-
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+Close off the post by restating the what was achieved in the how-to, share any closing thoughts, and invite feedback.
 
 ## Learn more
 
 - [link](https://www.example.com/resource)
+- [repo with examples if used](https://www.github.com/repo)
