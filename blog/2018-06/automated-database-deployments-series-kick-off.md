@@ -46,15 +46,15 @@ Something had to give. Database changes had to go into source control, and those
 
 The impact was noticeable almost immediately.
 
-Having the database in source control allowed us to see when somebody made a change.  We could tie it back to stories, we knew why a change was made, and we set it up, so that changes that weren’t in source control were deleted. If an index was in QA but not in source control, it got deleted.  It was a little harsh, but it guaranteed the database schema matched what was in source control.
+Having the database in source control allowed us to see when somebody made a change.  We could tie it back to stories, we knew why a change was made, and we set it up, so that changes that weren’t in source control were deleted. If an index was in QA but not in source control, we deleted it.  It was a little harsh, but it guaranteed the database schema matched what was in source control.
 
-Emergency fixes that were due to a random view or stored procedure being missed, dropped to near zero.  We set up a manual intervention step in Octopus Deploy, which allowed us to view and approve the database delta scripts prior to deploying.  What everyone really liked about the manual intervention step was the ability to cancel a deployment in the event of an unexpected database change appearing in the delta script.  Having that in place helped everyone, developers, QA, and DBAs, trust the process.   
+Emergency fixes that were due to a random view or stored procedure being missed, dropped to almost zero.  We set up a manual intervention step in Octopus Deploy, which allowed us to view and approve the database delta scripts prior to deploying.  What everyone really liked about the manual intervention step was the ability to cancel a deployment in the event of an unexpected database change appearing in the delta script.  Having that in place helped everyone, developers, QA, and DBAs, trust the process.   
 
 Confidence in the deployments started increasing.  Soon we were doing deployments once a month.  Then once a week.  Features could be delivered to the user as soon as they passed verification by QA and a business owner.  A bug could be reported, and the fix could be in the user’s hands as soon as it passed verification.  We were releasing so frequently the number of changes per release decreased significantly and deployments went from taking two to three hours down to five to twenty minutes.
 
-Putting it all in Octopus Deploy had the side benefit of giving the DBAs and operations team their nights and weekends back.  Now they could schedule deployments, and they would have to get online only if something went wrong.
+Putting it all in Octopus Deploy had the side benefit of giving the DBAs and operations team their nights and weekends back.  Now they could schedule deployments, and they only had to go online if something went wrong.
 
-## A new blog series
+## A blog series
 This post is the first in a series I’m kicking off where I walk you through the process of setting up database lifecycle management (DLM) and database deployment automation. The goal of the series is to provide you with some real-world examples using a variety of database deployment tools.  In addition to that, we will discuss some common pitfalls you will run across.
 
 ---
