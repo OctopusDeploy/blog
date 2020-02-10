@@ -2,13 +2,15 @@
 title: Deploying to dynamically provisioned infrastructure
 description: How to dynamically include new infrastructure during a deployment
 author: shawn.sesna@octopus.com
-visibility: private
-bannerImage:
-metaImage:
-published: 2020-10-01
+visibility: public
+bannerImage: octopus-dynamic-targets.png
+metaImage: octopus-dynamic-targets.png
+published: 2020-02-11
 tags:
  - DevOps
 ---
+
+![Deploying to dynamically provisioned infrastructure](octopus-dynamic-targets.png)
 
 Using project triggers, it’s possible to have your application deployed to dynamically created deployment targets.  This works especially well when you have an application that is configured with scaling capabilities.  As more servers are added to handle the load, your application is automatically deployed.  That being said, there are situations where the creation of your deployment target is part of your deployment process, and this can get a bit tricky as Octopus Deploy chooses the targets to deploy to when the deployment starts.  In this post, I show you how to include a dynamically added target as part of the deployment process.
 
