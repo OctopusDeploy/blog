@@ -22,7 +22,7 @@ Tell them what the how to demonstrates, and when/why the user might find this us
 
 Tell the reader what tech they need and anything else they **need** to know before you jump into the steps.
 
-### Configure
+### Configure X
 
 Break the steps the user needs to take into logical groups:
 
@@ -35,6 +35,12 @@ Let the users know they're on the right track by telling them the outcome of the
 Use screenshots to help orient the user if they're moving between screens/systems and/or if screenshots will provide additionally clarity (or they're cool and you want to show them off):
 
 ![Description of the screenshot][image-name.png]
+
+### Configure Y
+
+1. Include as many procedures as necessary.
+2. Use clear declarative language.
+    1. Break steps into multiple nested parts so you're not asking the user to process too much all at once.
 
 ## Conclusion
 
