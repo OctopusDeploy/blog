@@ -22,7 +22,7 @@ Tell them what the how to demonstrates, and when/why the user might find this us
 
 Tell the reader what tech they need and anything else they **need** to know before you jump into the steps.
 
-### Configure 
+### Configure X
 
 Break the steps the user needs to take into logical groups:
 
@@ -36,12 +36,17 @@ Use screenshots to help orient the user if they're moving between screens/system
 
 ![Description of the screenshot][image-name.png]
 
+### Configure Y
+
+1. Include as many procedures as necessary.
+2. Use clear declarative language.
+    1. Break steps into multiple nested parts so you're not asking the user to process too much all at once.
+
 ## Conclusion
 
-Recap what the purpose of the post and the steps the user took to
-
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+Close off the post by restating the what was achieved in the how-to, share any closing thoughts, and invite feedback.
 
 ## Learn more
 
 - [link](https://www.example.com/resource)
+- [repo with examples if used](https://www.github.com/repo)

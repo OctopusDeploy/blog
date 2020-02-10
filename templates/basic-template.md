@@ -20,6 +20,10 @@ Introductory paragraph that tells the reader why they should read on.
 
 The body of the post is where you share your hypothesis, how-to, or story.
 
+### Subheadings
+
+Use three #s to introduce subheadings.
+
 ## Conclusion
 
 Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
