@@ -3,7 +3,7 @@ title: Why consider database deployment automation?
 description: This post explores why automating scripts to deploy database changes is valuable and some of the benefits of database deployment automation.
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-06-08
+published: 2020-02-11
 metaImage: metaimage-database-kickoff.png
 bannerImage: blogimage-database-kickoff.png
 tags:
