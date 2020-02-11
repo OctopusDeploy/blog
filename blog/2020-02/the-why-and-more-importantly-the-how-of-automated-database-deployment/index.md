@@ -54,7 +54,3 @@ The reason I’m not so sure about this is that, from the teams I’ve talked to
 ## Conclusion
 
 For the teams we talked to, getting environments and process into shape was much more challenging than the automation itself, but even so, we couldn’t find anyone who would accept a step backwards away from deployment automation. Even moving jobs, they would insist on applying their automation knowledge to new situations. Putting the work into the deployment process, rather than individual deployments, has meant that all the love and care paid off hundreds of times over.
-
----
-
-This is a guest post by Elizabeth Ayer from Redgate. Redgate helps you meet the needs of the business and IT, with solutions that accelerate software delivery and aid compliance with data protection regulations. [Learn more](https://www.red-gate.com/).
