@@ -63,7 +63,7 @@ This post is the first in a series where I walk you through the process of setti
 Posts in the database deployment automation series:
 
 - **Why consider database deployment automation?**
-- [Iteration Zero](/blog/2018-06/automated-database-deployments-iteration-zero.md)
+- [Iteration Zero](/blog/2020-02/automated-database-deployments-iteration-zero/index.md)
 - [Automated database deployments using state-based Redgate SQL change automation](blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md)
 - [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
 - [Deploy to Oracle Database using Octopus Deploy and Redgate](/blog/2018-10/oracle-database-using-redgate/index.md)
