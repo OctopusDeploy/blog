@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Hopefully after reading the [previous post](/blog/2020-02/automated-database-deployments-series-kick-off/index.md) you are ready to get started and dive right in with automated database deployments.  Hold on for a second before diving in.  Depending on your company, automating database deployments could be a large change which "moves a lot of cheese".  Moving that cheese could cause friction.  Friction is the enemy of change.  The higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  Before diving in too far, I want to point out this post covers Microsoft SQL Server.  The principles still apply to your database technology of choice. 
+Hopefully after reading the [previous post](/blog/2020-02/automated-database-deployments-kick-off/index.md) you are ready to get started and dive right in with automated database deployments.  Hold on for a second before diving in.  Depending on your company, automating database deployments could be a large change which "moves a lot of cheese".  Moving that cheese could cause friction.  Friction is the enemy of change.  The higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  Before diving in too far, I want to point out this post covers Microsoft SQL Server.  The principles still apply to your database technology of choice. 
 
 This post will be discussing the following:
 
