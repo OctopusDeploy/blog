@@ -30,6 +30,8 @@ Select Custom Deployment Scripts
 
 ![](octopus-project-k8s-step-configure-features-scripts.png)
 
+In the case of K8s, Octopus Deploy has created a helper cmdlet called [New-OctopusKubernetesTarget](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure/kubernetes-target).  For this article, I'll be using a script that can add any type of target.
+
 Expand the **Custom Deployment Scripts** section and enter the following into the Post-Deployment Script window.  This script will first check to see if it already exists, if not, create the payload for the API call to add it.
 
 ```powershell
