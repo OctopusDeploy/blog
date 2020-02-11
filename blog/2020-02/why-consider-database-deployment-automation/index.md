@@ -25,9 +25,9 @@ We had automated code deployments, but the database delta scripts were manually 
 
 Due to the risk, deployments could only occur after hours, which meant evenings or weekends, but it did mean we could take backups for rollbacks. In addition to the dev team doing the deployment, we also had a DBA and operations person online. The operations person had to wait for the DBA to run all of the scripts, which could take a second or twenty minutes to finish.  
 
-The difficulty with scheduling and the risks meant we could only deploy major releases once a quarter, with minor bug fixes done in between.  After a major release, we typically had several bug fix releases, usually because some schema change was missed.  Deploying once a quarter meant a lot of changes were put in all at once.  Verification of the changes took a long time, and it was common for each release to take two or three hours.
+The risks and difficulty around scheduling meant we could only deploy major releases once a quarter, with minor bug fixes done in between.  After a major release, we typically had several bug fix releases, usually because some schema change was missed.  Deploying once a quarter meant a lot of changes were put in all at once.  Verification of the changes took a long time, and it was common for each release to take two or three hours.
 
-Database schema changes were missed because there was no source of truth for the database.  An index might exist in pre-production but not QA, so which environment was right?  When was that index added?  Who added it?  To compound this, the database had close to 6,000 objects in it (mostly CRUD stored procedures).  The database developer had to resort to manually keeping track of all the changes.  80% of the time, the database developer would make the change, and the other 20% a developer would make the change. If the database developer was out that day, we tried to remember to email them the change, but think about all the changes you made to your code in the last quarter.  Do you remember all of them?  
+Database schema changes were missed because there was no source of truth for the database.  An index might exist in pre-production but not QA, so which environment was right?  When was that index added?  Who added it?  To compound this, the database had close to 6,000 objects in it (mostly CRUD stored procedures).  The database developer had to resort to manually keeping track of all the changes.  80% of the time, the database developer made the change, and the other 20% a developer made the change. If the database developer was out that day, we tried to remember to email them the change, but think about all the changes you made to your code in the last quarter.  Do you remember all of them?  
 
 In a nutshell, we had all this automation, except on the most crucial part of the application.  The exact same code was tested multiple times as it moved through environments.  A unique database delta script was manually created per environment.  There was no source of truth for the database schema, and the DBAs were pulling out their hair, trying to keep everything running.
 
@@ -43,7 +43,7 @@ To summarize our challenges:
 Database change control was the wild west.  
 
 ## Database deployment automation
-Something had to give. Database changes had to go into source control, and those scripts needed to be packaged and automatically run during a deployment.  After a lot of discussion, research, and testing, we landed on a tool.  The tool itself isn’t important.  What was important is that we automated the database deployments.
+Something had to give. Database changes had to go into source control, and those scripts needed to be packaged and automatically run during deployments.  After a lot of discussion, research, and testing, we landed on a tool.  The tool itself isn’t important.  What was important is that we automated the database deployments.
 
 The impact was noticeable almost immediately.
 
@@ -56,7 +56,7 @@ Confidence in the deployments started increasing.  Soon we were doing deployment
 Putting it all in Octopus Deploy had the side benefit of giving the DBAs and operations team their nights and weekends back.  Now they could schedule deployments, and they only had to go online if something went wrong.
 
 ## A blog series
-This post is the first in a series I’m kicking off where I walk you through the process of setting up database lifecycle management (DLM) and database deployment automation. The goal of the series is to provide you with some real-world examples using a variety of database deployment tools.  In addition to that, we will discuss some common pitfalls you will run across.
+This post is the first in a series where I walk you through the process of setting up database lifecycle management (DLM) and database deployment automation. The goal of the series is to provide you with some real-world examples using a variety of database deployment tools.  In addition to that, we will discuss some common pitfalls you will run across.
 
 ---
 
