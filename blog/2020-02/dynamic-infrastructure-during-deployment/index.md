@@ -30,7 +30,7 @@ Select Custom Deployment Scripts
 
 ![](octopus-project-k8s-step-configure-features-scripts.png)
 
-Expand the **Custome Deployment Scripts** section and enter the following into the Post-Deployment Script window.  This script will first check to see if it already exists, if not, create the payload for the API call to add it.
+Expand the **Custom Deployment Scripts** section and enter the following into the Post-Deployment Script window.  This script will first check to see if it already exists, if not, create the payload for the API call to add it.
 
 ```powershell
 # Get current clustername
