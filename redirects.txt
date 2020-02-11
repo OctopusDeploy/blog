@@ -1,2 +1,3 @@
 from-file-path -> to-file-path   #DO NOT DELETE THIS LINE
 blog/2018-06/automated-database-deployments-series-kick-off.md -> blog/2020-02/why-consider-database-deployment-automation/index.md
+blog/2018-06/automated-database-deployments-iteration-zero.md -> blog/2020-02/automated-database-deployments-iteration-zero/index.md

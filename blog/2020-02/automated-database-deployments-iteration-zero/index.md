@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Hopefully, after reading the [automated database deployments kick-off post](/blog/2018-06/automated-database-deployments-series-kick-off.md) you’re ready to dive into automated database deployments. Depending on your company, automating database deployments could be a large change, and it could cause friction.  Friction is the enemy of change; the higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  
+Hopefully, after reading the [automated database deployments kick-off post](/blog/2020-02/why-consider-database-deployment-automation/index.md) you’re ready to dive into automated database deployments. Depending on your company, automating database deployments could be a large change, and it could cause friction.  Friction is the enemy of change; the higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  
 
 This post demonstrates the principles with Microsoft SQL Server, but those same principles still apply to your database technology of choice.
 
@@ -142,7 +142,7 @@ My recommendation for rolling this out is:
 
 Posts in the automated database deployments series:
 
-- [Automated database deployment series kick-off](/blog/2018-06/automated-database-deployments-series-kick-off.md)
+- [Automated database deployment series kick-off](/blog/2020-20/why-consider-database-deployment-automation.md)
 - **Iteration Zero**
 - [Automated database deployments using state-based Redgate SQL change automation](blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md)
 - [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
