@@ -22,6 +22,69 @@ Let’s say we have an application that uses Kubernetes on Azure. We use an Azur
 
 We dynamically create a resource group, a Kubernetes cluster, then start deploying to it.
 
+In order to add the Kubernetes cluster, we first need to add a Post Deployment Script to the Create K8 cluster step.  Edit the step and click on the **CONFIGURE FEATURES** button
+
+![](octopus-project-k8s-step-configure-features.png)
+
+Select Custom Deployment Scripts
+
+![](octopus-project-k8s-step-configure-features-scripts.png)
+
+In the case of K8s, Octopus Deploy has created a helper cmdlet called [New-OctopusKubernetesTarget](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure/kubernetes-target).  For this article, I'll be using a script that can add any type of target.
+
+Expand the **Custom Deployment Scripts** section and enter the following into the Post-Deployment Script window.  This script will first check to see if it already exists, if not, create the payload for the API call to add it.
+
+```powershell
+# Get current clustername
+$kubernetesCluster = (Invoke-RestMethod -Method Get -Uri "$($OctopusParameters['Octopus.Web.BaseUrl'])/api/Spaces-1/machines/all" -Headers @{"X-Octopus-ApiKey"="$($OctopusParameters['Global.Octopus.ApiKey'])"}) | Where-Object {$_.Name -eq $OctopusParameters['Project.Azure.Kubernetes.ClusterName']} 
+
+# Check for null
+if ($null -eq $kubernetesCluster)
+{
+  # Create payload for call
+  $kubernetesClusterTarget = @{
+  #Id= $null
+  MachinePolicyId= "MachinePolicies-1"
+  Name= $OctopusParameters['Project.Azure.Kubernetes.ClusterName']
+  IsDisabled= $false
+  HealthStatus= "Unknown"
+  HasLatestCalamari= $true
+  StatusSummary= $null
+  IsInProcess= $true
+  EndPoint= @{
+  #Id= $null
+  CommunicationStyle= "Kubernetes"
+  Links= $null
+  Authentication= @{
+  AuthenticationType= "KubernetesAzure"
+  AccountId= $OctopusParameters['Project.Azure.Account']
+  ClusterName= $OctopusParameters['Project.Azure.Kubernetes.ClusterName']
+  ClusterResourceGroup= $OctopusParameters['Project.Azure.ResourceGroup.Name']
+  }
+  AccountType= "AzureServicePrincipal"
+  ClusterUrl= $null
+  ClusterCertificate= $null
+  SkipTlsVerification= $null
+  DefaultWorkerPoolId= "WorkerPools-41"
+  }
+  Links= $null
+  TenantedDeploymentParticipation= "Untenanted"
+  Roles= @("OctoPetShop-K8")
+  EnvironmentIds= @($OctopusParameters['Octopus.Environment.Id'])
+  TenantIds= @()
+  TenantTags= @()
+  }
+
+  # Convert to json
+  $jsonBody = $kubernetesClusterTarget | ConvertTo-Json -Depth 10
+
+  # Add cluster to deployment targets
+  Invoke-RestMethod -Method Post -Uri "$($OctopusParameters['Octopus.Web.BaseUrl'])/api/Spaces-1/machines" -Body $jsonBody -Headers @{"X-Octopus-ApiKey"="$($OctopusParameters['Global.Octopus.ApiKey'])"}
+}
+```
+
+![](octopus-project-k8s-step-powershell.png)
+
 We then update the project settings to allow deployments to be created, even when targets do not exist:
 
 ![](project-target-settings.png)
