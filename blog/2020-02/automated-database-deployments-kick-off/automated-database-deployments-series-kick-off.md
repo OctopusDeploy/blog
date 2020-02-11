@@ -1,6 +1,6 @@
 ---
-title: Automated database deployments series kick-off
-description: Automated database deployments series kick-off
+title: Why consider database deployment automation?
+description: This post explores why automating scripts to deploy database changes is valuable and some of the benefits of database deployment automation.
 author: bob.walker@octopus.com
 visibility: public
 published: 2018-06-08
@@ -11,13 +11,14 @@ tags:
  - Database Deployments
 ---
 
-This is the first post in a series of automated database deployment posts.
+This is the first post in a series on database deployment automation.
 
 For me, the database is the most nerve-racking part of any deployment.  Deploying code is far less stressful.  If something isn’t right, the code can be rolled back. By the time it reaches production, there should be zero surprises if it’s the same code that was tested in dev, QA, and pre-production.
 
-Databases are not as flexible.  Imagine there’s an error in a script, and the names of all users get deleted.  There isn’t a good way to roll that back.  A backup could be restored, but when was that backup taken and have any users been in the system since that backup?  What data will be lost if the backup is restored?
+Databases are not as flexible.  Imagine there’s an error in a database script, and the names of all users get deleted.  There isn’t a good way to roll that back.  A backup could be restored, but when was that backup taken and have any users been in the system since that backup?  What data will be lost if the backup is restored?
 
-## A manual process
+## The problems with manual database deployments
+
 Before working at Octopus Deploy, I was a lead developer on a loan origination system for a large financial institution in the United States.  At any given moment, hundreds of millions of dollars of loans were in flight.  These were large loans that required many individuals to work on them.  Each person might spend anywhere from fifteen minutes to an hour on a loan.  A financial officer could spend half an hour entering customer’s financials, and an underwriter could spend an hour researching the customer and placing notes and conditions on the loan.  Needless to say, restoring a database backup was the last resort.  Telling people they have to re-enter the information can happen only so many times before they would want to hunt me down.
 
 We had automated code deployments, but the database delta scripts were manually created by a database developer before the deployment.  It was common for them to spend one or two full business days putting the scripts together.  That manual creation also meant very little testing could occur.  When the script ran in production, it was most likely the first time it had ever been run.  We also used tools like Redgate’s SQL Compare and tested on restored backups when possible, but that could only do so much.
@@ -26,7 +27,7 @@ Due to the risk, deployments could only occur after hours, which meant evenings 
 
 The difficulty with scheduling and the risks meant we could only deploy major releases once a quarter, with minor bug fixes done in between.  After a major release, we typically had several bug fix releases, usually because some schema change was missed.  Deploying once a quarter meant a lot of changes were put in all at once.  Verification of the changes took a long time, and it was common for each release to take two or three hours.
 
-Schema changes were missed because there was no source of truth for the database.  An index might exist in pre-production but not QA, so which environment was right?  When was that index added?  Who added it?  To compound this, the database had close to 6,000 objects in it (mostly CRUD stored procedures).  The database developer had to resort to manually keeping track of all the changes.  80% of the time, the database developer would make the change, and the other 20% a developer would make the change. If the database developer was out that day, we tried to remember to email them the change, but think about all the changes you made to your code in the last quarter.  Do you remember all of them?  
+Database schema changes were missed because there was no source of truth for the database.  An index might exist in pre-production but not QA, so which environment was right?  When was that index added?  Who added it?  To compound this, the database had close to 6,000 objects in it (mostly CRUD stored procedures).  The database developer had to resort to manually keeping track of all the changes.  80% of the time, the database developer would make the change, and the other 20% a developer would make the change. If the database developer was out that day, we tried to remember to email them the change, but think about all the changes you made to your code in the last quarter.  Do you remember all of them?  
 
 In a nutshell, we had all this automation, except on the most crucial part of the application.  The exact same code was tested multiple times as it moved through environments.  A unique database delta script was manually created per environment.  There was no source of truth for the database schema. The DBAs were pulling their hair out, trying to keep everything running.
 
@@ -41,7 +42,7 @@ To summarize our challenges:
 
 To put it mildly, database change control was the wild west.  
 
-## Automating database deployments
+## Database deployment automation
 Something had to give. Database changes had to go into source control, and those scripts needed to be packaged and automatically run during a deployment.  After a lot of discussion, research, and testing, we landed on a tool.  The tool itself isn’t important.  What was important is that we automated the database deployments.
 
 The impact was noticeable almost immediately.
@@ -61,7 +62,7 @@ This post is the first in a series I’m kicking off where I walk you through th
 
 Posts in the automated database deployments series:
 
-- **Automated database deployment series kick-off**
+- **Database deployment automation series kick-off**
 - [Iteration Zero](/blog/2020-02/automated-database-deployments-iteration-zero/index.md)
 - [Automated database deployments using state-based Redgate SQL change automation](blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md)
 - [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
@@ -69,13 +70,3 @@ Posts in the automated database deployments series:
 -  [Add post deployment scripts to Oracle database deployments using Octopus Deploy, Jenkins, and Redgate](/blog/2018-11/oracle-database-using-redgate-part-2/index.md)
 - [Using DbUp and workers to automate database deployments](/blog/2019-02/dbup-database-deployments/index.md)
 - [Automatic approvals in your automated database deployment process](/blog/2019-03/autoapprove-database-deployments/index.md)
-
-
-## Learn more
-
-* Documentation: [SQL Server Databases](https://hubs.ly/H0gCK_f0)
-* [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCLtx0)
-* [How to deploy an SQL Server with a DACPAC](https://hubs.ly/H0gCLtM0)
-* [DevOps best practice: How Octopus handles rollbacks](https://hubs.ly/H0gCK_k0)
-* [Octopus vs. Build Servers - Why should I use Octopus when I already have a CI Server?](https://hubs.ly/H0gCK_n0)
-* Video: [Deploying to SQL Server with Entity Framework Core](https://hubs.ly/H0gCLv20)
