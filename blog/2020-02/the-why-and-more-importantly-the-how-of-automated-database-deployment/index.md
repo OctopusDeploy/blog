@@ -11,7 +11,7 @@ tags:
 
 ![Why and how your should automate your database deployments](redgate-database-deployments.png)
 
-This post is a guest article from Elizabeth Ayer from the Redgate blog. Redgate is the leading provider of software for professionals working on the Microsoft data platform. They help over 800,000 people in every type of organization around the world, from small and medium sized businesses to 91% of companies in the Fortune 100. Our SQL Toolbelt helps users implement DevOps best practice for their databases, easily monitor database performance, and improve team productivity.
+This post is a guest article from Elizabeth Ayer from the Redgate blog. Redgate is the leading provider of software for professionals working on the Microsoft data platform. They help over 800,000 people in every type of organization around the world, from small and medium sized businesses to 91% of companies in the Fortune 100. Their SQL Toolbelt helps users implement DevOps best practice for their databases, easily monitor database performance, and improve team productivity.
 
 [Learn more](https://www.red-gate.com)
 
