@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Hopefully after reading the [previous post](/blog/2018-06/automated-database-deployments-series-kick-off.md) you are ready to get started and dive right in with automated database deployments.  Hold on for a second before diving in.  Depending on your company, automating database deployments could be a large change which "moves a lot of cheese".  Moving that cheese could cause friction.  Friction is the enemy of change.  The higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  Before diving in too far, I want to point out this post covers Microsoft SQL Server.  The principles still apply to your database technology of choice. 
+Hopefully after reading the [previous post](/blog/2020-02/why-consider-database-deployment-automation/index.md) you are ready to get started and dive right in with automated database deployments.  Hold on for a second before diving in.  Depending on your company, automating database deployments could be a large change which "moves a lot of cheese".  Moving that cheese could cause friction.  Friction is the enemy of change.  The higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  Before diving in too far, I want to point out this post covers Microsoft SQL Server.  The principles still apply to your database technology of choice. 
 
 This post will be discussing the following:
 
@@ -35,7 +35,7 @@ All the file system interaction happens behind the scenes.  The tool keeps track
 
 Having a file containing the desired state in source control makes it very easy to view what it should look like as well as the history of a specific object.  All you have to do is go to the file in source control and open it up.  
 
-Finally, some of the tools allow you to mark a table as "static data."  The data itself is checked into source control.  During deployments, the tool will check the data in the destination table.  If the destination table is missing data or the data is incorrect the delta script will include data change T-SQL statements. 
+Finally, some of the tools allow you to mark a table as "static data."  The data itself is checked into source control.  During deployments, the tool will check the data in the destination table.  If the destination table is missing data or the data is incorrect the delta script will include data change T-SQL statements.
 
 #### Model-Driven Cons
 A unique delta script is generated during deployment per environment.  This is because a change could have been applied to one environment (dev) but not a higher environment (pre-production or production).  That makes the tooling much more complex.  Every once in a while, the tool will generate a delta script where an unexpected change is included, especially if permissions are not set correctly.
@@ -100,7 +100,7 @@ Automating database deployments introduces an interesting challenge.  Prior to t
 
 ## Building Trust
 
-In the past, DBAs were the ones who ran the scripts in production because they had the permissions.  Now an automated process will be doing that work.  That can be really scary.  If something goes wrong and the data is lost it could be very difficult to get it back.  Everyone is going to have to trust the process and tooling.  In my experience, the best way to build trust is to use Octopus Deploy artifacts and setting permissions on SQL Server. 
+In the past, DBAs were the ones who ran the scripts in production because they had the permissions.  Now an automated process will be doing that work.  That can be really scary.  If something goes wrong and the data is lost it could be very difficult to get it back.  Everyone is going to have to trust the process and tooling.  In my experience, the best way to build trust is to use Octopus Deploy artifacts and setting permissions on SQL Server.
 
 ### Octopus Deploy Artifacts
 With Octopus Deploy [artifacts](https://octopus.com/docs/deployment-process/artifacts) you can create a file containing all the scripts about to be run on the tentacle and upload it to the server.  A DBA can approve that script prior to it running on the database.  
@@ -140,7 +140,7 @@ At first glance, this feels like a lot of prep-work.  The important thing to rem
 * Blog Series: [Automating your database deployments with Octopus Deploy](https://hubs.ly/H0gCL070)
 * Octopus Deep Dive: [Using Ad-Hoc Scripts in your Automated Database Deployment Pipeline](https://hubs.ly/H0gCLCl0)
 
-## Learn more 
+## Learn more
 
 * Documentation: [SQL Server Databases](https://hubs.ly/H0gCLCD0)
 * [Database deployments with Octopus and Redgate SQL Release](https://hubs.ly/H0gCL0b0)

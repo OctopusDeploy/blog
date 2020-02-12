@@ -1,13 +1,22 @@
 ---
 title: The why and more importantly the how of automated database deployment
 description: Why and how your should automate your database deployments
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-02-12
+metaImage: redgate-database-deployments.png
+bannerImage: redgate-database-deployments.png
 tags:
  - DevOps
 ---
+
+![Why and how your should automate your database deployments](redgate-logo.png)
+
+This post is a guest article from Elizabeth Ayer from the Redgate blog. Redgate is the leading provider of software for professionals working on the Microsoft data platform. They help over 800,000 people in every type of organization around the world, from small and medium sized businesses to 91% of companies in the Fortune 100. Their SQL Toolbelt helps users implement DevOps best practice for their databases, easily monitor database performance, and improve team productivity.
+
+[Learn more](https://www.red-gate.com)
+
+---
+
 Reliability, traceability, speed: these are the top three motivators for automating the deployment of database changes. Especially when it comes to Production, there is no compromising on the level of scrutiny that may just prevent something disastrous happening in Production.
 
 This need for quality has a strange effect. We talked recently to 30 teams at various stages of automating database deployment, and we were surprised that for many teams the need for quality deployments prevented them automating at first.
@@ -45,7 +54,3 @@ The reason I’m not so sure about this is that, from the teams I’ve talked to
 ## Conclusion
 
 For the teams we talked to, getting environments and process into shape was much more challenging than the automation itself, but even so, we couldn’t find anyone who would accept a step backwards away from deployment automation. Even moving jobs, they would insist on applying their automation knowledge to new situations. Putting the work into the deployment process, rather than individual deployments, has meant that all the love and care paid off hundreds of times over.
-
----
-
-This is a guest post by Elizabeth Ayer from Redgate. Redgate helps you meet the needs of the business and IT, with solutions that accelerate software delivery and aid compliance with data protection regulations. [Learn more](https://www.red-gate.com/).
