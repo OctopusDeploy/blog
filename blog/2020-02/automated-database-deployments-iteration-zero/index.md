@@ -11,9 +11,9 @@ tags:
  - Database Deployments
 ---
 
-Hopefully, after reading the [automated database deployments kick-off post](/blog/2020-02/why-consider-database-deployment-automation/index.md) you’re ready to dive into automated database deployments. Depending on your company, automating database deployments could be a large change, and it could cause friction.  Friction is the enemy of change; the higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  
+Hopefully, after reading [Why consider database deployment automation?](/blog/2020-02/why-consider-database-deployment-automation/index.md) you’re ready to dive into automated database deployments. Depending on your company, automating database deployments could be a large change, and it could cause friction.  Friction is the enemy of change; the higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  
 
-This post demonstrates the principles with Microsoft SQL Server, but those same principles still apply to your database technology of choice.
+I demonstrate the principles with Microsoft SQL Server, but those same principles also apply to your database technology of choice.
 
 This post discusses the following:
 
@@ -25,7 +25,7 @@ Deploying databases can be very complex, and there are multiple approaches. Octo
 
 ### #1 Model-driven approach
 
-With the model-driven approach, the desired state of the database is defined.  The state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
+With the model-driven approach, the desired state of the database is defined, and the state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
 
 ![](model-driven-approach.png)
 
@@ -44,9 +44,9 @@ A unique delta script is generated during deployment per environment.  This is b
 
 The tooling will want to control everything about the database, from the tables to the schemas to the users.  You must configure the tool to ignore certain parts of the database.
 
-As smart as the tooling is, it has a difficult time handling more complex changes.  For example, when moving a column from one table to another, the tool doesn’t know that’s your intention, and it will drop the column from the old table and create a new empty column in the new table.  The tooling will often include some sort of migration script functionality where you can write your own migration scripts, but the migration scripts have their own rules you must follow.  
+As smart as the tooling is, it has a difficult time handling more complex changes.  For example, when moving a column from one table to another, the tool doesn’t know that’s your intention, and it will drop the column from the old table and create a new empty column in the new table.  The tooling will often include some sort of migration script functionality where you can write your own migration scripts, but the migration scripts have their own rules, and you must adhere to.  
 
-This lack of control can be a burden at times.  You might end up creating a custom process that works alongside the tool.  For example, the tool might not support post-deployment scripts, and in order to get that, you would have to create a post-deploy folder that can be packaged and sent to Octopus.  You would then have to update your process in Octopus to look for the folder and run any scripts it finds.  It works, but now you are responsible for maintaining that process.
+This lack of control can be a burden at times.  You might end up creating a custom process that works alongside the tool.  For example, the tool might not support post-deployment scripts, and in order to get that, you have to create a post-deploy folder that can be packaged and sent to Octopus.  You would then have to update your process in Octopus to look for the folder and run any scripts it finds.  It works, but now you are responsible for maintaining that process.
 
 ### #2 Change-driven approach
 A change-driven approach is where all the necessary delta scripts are handwritten.  This is also known as migrations.  Those scripts are checked into source control.  During the deployment, the tool will look to see which change scripts have not been run on the destination database and run them in a specific order.  
@@ -59,9 +59,9 @@ With the change-driven approach, you have complete control over all the scripts.
 #### Change-driven cons
 The model-driven approach ensures the entire destination database matches the desired state.  Not so with the change-driven approach.  A new table could be added to the destination database outside of the process.  Everyone who has permissions to change the database has to be on board and using the process because one or two rogue developers could cause havoc.  
 
-It is much harder to see the history of a specific object like a table or a stored procedure.  Instead of going to a single file and viewing the history, you must do a search to find all the files where the object was changed.  Depending on the number of table changes, it could be easy to miss a key change and not even know it.  
+It is much harder to see the history of a specific object like a table or a stored procedure.  Instead of going to a single file and viewing the history, you must do a search to find all the files where the object was changed.  Depending on the number of table changes, it could be easy to miss a key change.
 
-Finally, a lot of developers are not expert SQL developers.  They are used to using the SQL Server Management Studio UI to create tables and indexes, and they don’t know how to write a lot of the changes being made by hand.  It takes a lot of practice to get the T-SQL syntax memorized.  In the case where the tool allows you to write code for more complex changes, there is another learning curve to understand the syntax and the rules.
+Finally, a lot of developers are not expert SQL developers.  They use the SQL Server Management Studio UI to create tables and indexes, and they don’t know how to write a lot of the changes being made by hand.  It takes a lot of practice to get the T-SQL syntax memorized.  In the case where the tool allows you to write code for more complex changes, there’s another learning curve to understand the syntax and the rules.
 
 ### Picking an approach
 
