@@ -275,7 +275,7 @@ Until next time, happy deployments!
 
 Posts in the automated database deployments series:
 
-- [Automated database deployment series kick-off](/blog/2020-20/why-consider-database-deployment-automation/index.md)
+- [Automated database deployment series kick-off](/blog/2020-02/why-consider-database-deployment-automation/index.md)
 - [Iteration Zero](/blog/2018-06/automated-database-deployments-iteration-zero.md)
 - **Automated database deployments using state-based Redgate SQL Change Automation**
 - [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
