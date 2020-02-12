@@ -73,7 +73,7 @@ The model-driven approach works best when any of the following apply:
 - There are multiple people/teams changing the database.
 - Your company is first getting into automating database deployments.
 - Your codebase consists of mature databases, and you don’t expect many changes.
-- You want to force developers to follow the process automatically (if a change is made to a destination database and it is not checked in it will get deleted; that only needs to happen once before a person learns).
+- You want to force developers to follow the process automatically (if a change is made to a destination database and it is not checked in it will get deleted; that only needs to happen once for somebody to learn).
 - The majority of the developers who will be making the changes lack the experience at making complex T-SQL statements.
 
 The change-driven approach works best when:
@@ -118,7 +118,7 @@ During the deployment, it created the artifacts automatically:
 The artifacts help build that trust by not allowing an approval process, but it also provides an audit history.  In three months, I could come back to this deployment and view what changed on the database.
 
 ### Permissions
-When implementing automated database deployments, a common question I heard was, “how can we prevent someone from inserting a script to give themselves sysadmin privileges?”  Using the artifacts is a good start, but it doesn’t completely solve the problem.  If the DBA, or the person doing the approval, is swamped, they could easily miss that specific SQL statement in the artifact.  The best way to prevent that from happening is to restrict the permission on the account doing the deployment.  [Our documentation](https://octopus.com/docs/deployment-examples/sql-server-databases#SQLServerdatabases-Permissions) provides several examples, from the least restrictive to the most restrictive.  Keep in mind, those are recommendations.  I encourage talking to your team to determine what you are comfortable with.
+When implementing automated database deployments, a common question I hear is, “how can we prevent someone from inserting a script to give themselves sysadmin privileges?”  Using artifacts is a good start, but it doesn’t completely solve the problem.  If the DBA, or the person doing the approval, is swamped, they could easily miss that specific SQL statement in the artifact.  The best way to prevent that from happening is to restrict the permission on the account doing the deployment.  [Our documentation](https://octopus.com/docs/deployment-examples/sql-server-databases#SQLServerdatabases-Permissions) provides several examples, from the least restrictive to the most restrictive.  Keep in mind, those are recommendations.  I encourage talking to your team to determine what you are comfortable with.
 
 ## Where to install the Tentacle
 
