@@ -348,8 +348,8 @@ You could move the older files into a new folder and add a new command line argu
 I’m going to assume you know how to build a .NET Core application and package it.  If you do not, here is the quick TL;DR;  
 
 - Run the `dotnet publish` command on the project (don’t forget the output path).
-- Run `octo.exe pack` to package the output path (or use the Octopus Deploy build server plug-in).
-- Push the package to Octopus Deploy using `octo.exe push` command (or use the Octopus Deploy build server plug-in).
+- Run `octo pack` to package the output path (or use the Octopus Deploy build server plug-in).
+- Push the package to Octopus Deploy using `octo push` command (or use the Octopus Deploy build server plug-in).
 
 To make your life easier for this demo I have included version 1.0.0.1 of the sample application as a zip file in GitHub repo.  You can find that file in the root directory of the repo.  A quick upload and we now have a package ready to deploy:
 

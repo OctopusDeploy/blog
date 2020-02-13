@@ -95,7 +95,7 @@ Scroll down a little bit until you find the Octopus Deploy plug-in section.  Ent
 
 ![](jenkins-add-octopus-server.png)
 
-The Octopus Deploy plug-in will handle creating the release and deploying the release, but it doesn't handle packing and publishing those packages.  For this, we will use Octo.exe.  You can download the latest version at https://octopus.com/downloads.  I'm going to be putting octo.exe into a folder for the build to access.  In this case, it will be `C:\Utilities\Octo`.
+The Octopus Deploy plug-in will handle creating the release and deploying the release, but it doesn't handle packing and publishing those packages.  For this, we will use the Octopus CLI.  You can download the latest version at https://octopus.com/downloads.  I'm going to be putting the Octopus CLI into a folder for the build to access.  In this case, it will be `C:\Utilities\Octo`.
 
 **Please Note:** The Octopus Deploy plug-in was created by the Jenkins community.  They have done an awesome job.  But it doesn't have the exact functionality our other plug-ins have.
 
@@ -136,8 +136,8 @@ Let's make a couple of tweaks to the pack and push process.  Use %BUILD_NUMBER% 
 Rather than trying to copy my text out of an image, here are the command lines for you to use.
 
 ```
-C:\Utilities\Octo\Octo.exe Pack --Id=RedgateOracle --format=Zip --version=2018.11.1.%BUILD_NUMBER% --BasePath=db\src
-C:\Utilities\Octo\Octo.exe Push --Package=RedgateOracle.2018.11.1.%BUILD_NUMBER%.zip --Server=[Your Server URL] --ApiKey=[Your API Key]
+C:\Utilities\Octo\octo Pack --Id=RedgateOracle --format=Zip --version=2018.11.1.%BUILD_NUMBER% --BasePath=db\src
+C:\Utilities\Octo\octo Push --Package=RedgateOracle.2018.11.1.%BUILD_NUMBER%.zip --Server=[Your Server URL] --ApiKey=[Your API Key]
 ```
 
 ![](jenkins-correct-pack-and-push.png)

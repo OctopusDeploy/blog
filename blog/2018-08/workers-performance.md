@@ -97,7 +97,7 @@ There's also the option for Tentacles to acquire packages directly, rather than 
 
 Azure deployments all need a Worker.  All the Azure steps either use WebDeploy or the Azure CmdLets, so it's either the Built-in or external Workers.
 
-For this test, I cloned a public ASP.NET Core project from Github, made some small changes to allow for Octopus variable replacement, built and packaged using `dotnet publish` and `Octo.exe pack` and deployed as a Web App using our built-in step.  The final package was pretty small, ending up at just over 21MB.
+For this test, I cloned a public ASP.NET Core project from Github, made some small changes to allow for Octopus variable replacement, built and packaged using `dotnet publish` and `octo pack` and deployed as a Web App using our built-in step.  The final package was pretty small, ending up at just over 21MB.
 
 Once more, the step is targeted to run on the Default Worker Pool.  So when the pool is empty, it runs on the Built-in Worker on the Octopus Server and gives the graphs on the left below, when the pool contains a Worker, the step runs on that machine and the impact on the Octopus Server is shown in the graphs on the right.
 

@@ -17,6 +17,8 @@ tags:
 If you are using this version or later you will not need to perform the workaround steps **Modify the Target Config** and **Download Calamari**. 
 :::
 
+!include <octopus-cli>
+
 .NET Core has come a long way in the last few years, and Octopus Deploy has too. A while back, we added support for running [Calamari without Mono](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono), and in this post I will walk you through how to deploy .NET Core applications on to a Raspberry Pi 3, no Mono required.
 
 In this post, I will show you that it is possible to deploy and run .NET Core applications on the Raspberry Pi 3, and along the way describe some of the different ways that you can interact with your Octopus Deploy server.
@@ -64,19 +66,19 @@ dotnet publish -o publish --self-contained -r linux-arm
 ```
 
 ### Package It Up
-The simplest way to create a package of a .NET Core application is using the `Octo.exe` command line tool.
+The simplest way to create a package of a .NET Core application is using the Octopus CLI tool.
 
-Create an `artifacts` directory and then use the `Octo Pack` command to create the package:
+Create an `artifacts` directory and then use the `octo pack` command to create the package:
 
 ```powershell
 mkdir artifacts
-octo.exe pack --id core4pi --version 1.0.0 --format zip --outFolder artifacts --basePath publish
+octo pack --id core4pi --version 1.0.0 --format zip --outFolder artifacts --basePath publish
 ```
 
-Using Octo.exe again, push the package to the server:
+Using the Octopus CLI again, push the package to the server:
 
 ```powershell
-octo.exe push --server http://octopus/ --apikey API-ABCDEF123456 --package artifacts\core4pi.1.0.0.zip
+octo push --server http://octopus/ --apikey API-ABCDEF123456 --package artifacts\core4pi.1.0.0.zip
 ```
 
 ## Building a Service Definition
@@ -107,14 +109,14 @@ This output variable will contain the path to the newly installed service. This 
 
 Create a package for the service definition and push it to the Octopus Server:
 ```powershell
-octo.exe pack --id core4pi.service --version 1.0.0 --format zip --outFolder artifacts
-octo.exe push --server http://octopus/ --apikey API-ABCDEF123456 --package artifacts\core4pi.service.1.0.0.zip
+octo pack --id core4pi.service --version 1.0.0 --format zip --outFolder artifacts
+octo push --server http://octopus/ --apikey API-ABCDEF123456 --package artifacts\core4pi.service.1.0.0.zip
 ```
 
 ## Create Infrastructure
 If you don't already have an Octopus environment configured for your Raspberry Pi, create one either at the command line:
 ```powershell
-octo.exe create-environment --server http://octopus/ --apikey API-ABCDEF123456 --name "Pi Dev"
+octo create-environment --server http://octopus/ --apikey API-ABCDEF123456 --name "Pi Dev"
 ```
 
 Or using the web interface via *Infrastructure* > *Environments* > *Add Environments*.

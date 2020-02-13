@@ -10,9 +10,9 @@ tags:
  - Engineering
 ---
 
-!include <octopus-cli>
-
 ![Bitbucket pipelinse and Octopus Deploy](blogimage-bitbucket.png)
+
+!include <octopus-cli>
 
 Back in February (which is years ago in Internet land), we [published a post](https://octopus.com/blog/continuous-delivery-bitbucket-pipelines) about how you can link your [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) build process with deployments through Octopus Deploy. In the time since we wrote this, we have started to publish up-to-date container images of our [octo.exe](https://octopus.com/docs/octopus-rest-api/octopus-cli) command line tool that will turbo-charge your continuous deployment process when scripting outside of the Octopus Portal, particularly for these container-based build chains.
 
