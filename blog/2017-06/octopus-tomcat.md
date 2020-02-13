@@ -14,8 +14,6 @@ tags:
 <img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Depoloy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
 </div>
 
-!include <octopus-cli>
-
 Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to deploy packages to a variety of different destinations and via different methods.
  
 Fortunately these same deployment steps can be used to deploy Java packages to Java web servers running in Linux out of the box. 
@@ -77,7 +75,7 @@ required for various Linux distributions.
  
 To create the package, run the command:
 ```
-Octo pack --id=Demo --version=1.0.0 --basePath=target --include=*.war --format=zip
+octo pack --id=Demo --version=1.0.0 --basePath=target --include=*.war --format=zip
 ```
  
 This will create the file `Demo.1.0.0.zip` which contains the WAR file.
@@ -87,9 +85,9 @@ Using the CLI tool is not required for creating the ZIP file. Any ZIP tool will 
 :::
 
 ## Pushing the Package
-To push the package, use the [push command](https://octopus.com/docs/octopus-rest-api/octopus-cli/pushing-packages):
+To push the package, use the [push command](https://octopus.com/docs/octopus-rest-api/octopus-cli/push):
 ```
-Octo push --package Demo.1.0.0.zip --server http://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
+octo push --package Demo.1.0.0.zip --server http://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
 ```
 
 You can find information on API keys at [How to create an API key](https://octopus.com/docs/how-to/how-to-create-an-api-key).
