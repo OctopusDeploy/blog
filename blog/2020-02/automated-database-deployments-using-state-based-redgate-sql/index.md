@@ -59,7 +59,7 @@ This is the machine you will use to make the schema changes and check them into 
 Both Octopus Deploy and Redgate have plug-ins for the major build servers:
 
 - Jenkins:
-    - [Octopus download](https://download.octopusdeploy.com/octopus-tools/4.37.0/OctopusTools.4.37.0.zip). Please note, you can have Jenkins interact with Octopus by using octo.exe.  You can read more about that in our [documentation](https://octopus.com/docs/api-and-integration/jenkins).
+    - [Octopus download](https://download.octopusdeploy.com/octopus-tools/4.37.0/OctopusTools.4.37.0.zip). Please note, you can have Jenkins interact with Octopus by using octo.exe.  You can read more about that in our [documentation](https://octopus.com/docs/packaging-applications/build-servers/jenkins).
     - [Redgate download](https://plugins.jenkins.io/redgate-sql-ci).
 - TeamCity:
     - [Octopus download](https://download.octopusdeploy.com/octopus-teamcity/Octopus.TeamCity.zip).
