@@ -166,7 +166,7 @@ If you run into issues with this step, check our [troubleshooting guide](https:/
 
 ## A Few Words About Build Server Plugins and Octo.exe
 
-If you check our [API](https://octopus.com/docs/octopus-rest-api) and [build server](/docs/packaging-applications/build-server) documentation, you'll notice that our team built a few plugins for some of the most popular build servers out there. These plugins extend the functionality of your build server, by adding some custom steps to do things with Octopus, such as triggering deployments and pushing packages. The below list has links to each plugin's documentation, along with the list of steps that each plugin provides.
+If you check our [API](https://octopus.com/docs/octopus-rest-api) and [build server](/docs/packaging-applications/build-servers) documentation, you'll notice that our team built a few plugins for some of the most popular build servers out there. These plugins extend the functionality of your build server, by adding some custom steps to do things with Octopus, such as triggering deployments and pushing packages. The below list has links to each plugin's documentation, along with the list of steps that each plugin provides.
 
 - **[VSTS/TFS](https://octopus.com/docs/packaging-applications/build-servers/tfs-azure-devops)**
   - Create Octopus Release
