@@ -3,12 +3,14 @@ title: "Building a dynamic worker army with Terraform and AWS autoscaling groups
 description: How to create dynamic worker infrastructure using Terraform and AWS autoscaling groups.
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage:
-metaImage:
-published: 2021-01-15
+bannerImage: dynamic-workers.png
+metaImage: dynamic-workers.png
+published: 2020-02-17
 tags:
  - DevOps
 ---
+
+![Building a dynamic worker army with Terraform and AWS autoscaling groups](dynamic-workers.png)
 
 The advent of Infrastructure as Code (IaC) has been a tremendous leap forward, especially within the cloud space.  The ability to programmatically define how infrastructure should look has led to environmental consistency and more predictable application behavior.
 
