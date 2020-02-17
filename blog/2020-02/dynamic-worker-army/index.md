@@ -19,13 +19,13 @@ Cloud providers have embraced Infrastructure as Code, providing customized IaC i
 In this post, I show you how to dynamically create workers for Octopus Deploy using Terraform and AWS autoscaling. 
 
 :::hint
-
-Workers enable you to shift deployment work onto other machines running in pools. This can greatly reduce the work performed on your Octopus server, freeing it to more readily execute and orchestrate more deployments and make the UI & API much more responsive. Worker pools can improve scalability by enabling dedicated pools of machines that can be utilized by multiple projects and teams. Examples of this include utilizing workers with database deployments, deployments to cloud infrastructure like Azure, AWS and Kubernetes (K8s) etc.
-
+Workers in Octopus enable you to shift deployment work onto other machines running in pools. This can greatly reduce the work performed on your Octopus server, freeing it to execute more deployments more readily. Worker pools can improve scalability by enabling dedicated pools of machines that can be utilized by multiple projects and teams. Examples of this include utilizing workers with database deployments, deployments to cloud infrastructure like Azure, AWS and Kubernetes (K8s) etc.
 :::
 
 ## What is AWS autoscaling?
-Auto-Scaling is the ability to spin up or tear down resources based on specified criteria.  A common use-case for auto-scaling is an eCommerce web site.  As demand increases, more servers are created to handle the load.  When load subsides, the additional resources can be de-provisioned automatically.  This allows eCommerce to keep a minimal amount of servers in operation, and keep the hosting costs down.
+AWS autoscaling is the ability to spin up or tear down resources based on specified criteria.  A common use-case for autoscaling is an eCommerce web site.  As demand increases, more servers are created to handle the load.  When load subsides, the additional resources can be de-provisioned automatically.  This allows eCommerce to keep a minimal amount of servers in operation, and keep the hosting costs down.
+
+In this post, we are using AWS autoscaling to dynamically add more workers to enable teams to execute their deployments as efficiently as possible.
 
 ## Using Terraform to provision our cloud infrastructure
 Using declarative configuration files, Terraform can create new resources, manage existing ones, or destroy ones that are no longer necessary.
@@ -45,7 +45,7 @@ We’ll make use of eight files:
 
 ### autoscaling.tf
 
-This file contains the resource declarations for creating the AWS auto-scaling groups and the launch configurations for our workers.  I’ve created two launch configurations, one for Windows and one for Linux.  Each launch configuration executes a script that automatically installs and configure the Octopus Deploy Tentacle software, then connects it as a worker to our Octopus Deploy server.  To illustrate how scripts can be connected to launch configurations, the Linux launch configuration reads a file (installTentacle.sh) which contains the commands, whereas the Windows launch configuration has the script inline.  For both Windows and Linux, we are configuring Polling Tentacles.
+This file contains the resource declarations for creating the AWS autoscaling groups and the launch configurations for our workers.  I’ve created two launch configurations, one for Windows and one for Linux.  Each launch configuration executes a script that automatically installs and configure the Octopus Deploy Tentacle software, then connects it as a worker to our Octopus Deploy server.  To illustrate how scripts can be connected to launch configurations, the Linux launch configuration reads a file (installTentacle.sh) which contains the commands, whereas the Windows launch configuration has the script inline.  For both Windows and Linux, we are configuring Polling Tentacles.
 
 :::hint
 The .tf files in this demonstration uses Terraform v0.11 syntax.  At the time of this writing, Octopus Deploy does not support use of Terraform v0.12 without explicitly setting the [`Octopus.Action.Terraform.CustomTerraformExecutable`](https://octopus.com/docs/deployment-examples/terraform-deployments/apply-terraform#special-variables) variable.
@@ -495,7 +495,7 @@ resource "aws_route_table_association" "worker-public-3-a" {
 }
 ```
 
-And there you have it!  All of the Terraform scripts necessary to create our AWS Auto-Scaling worker army.  All that’s left is to package these files up into either a .zip or .nupkg using a build server or the Octopus Deploy CLI.  After the package has been created and uploaded to our Octopus server, we can include it in our deployment process.
+And there you have it!  All of the Terraform scripts necessary to create our AWS autoscaling worker army.  All that’s left is to package these files up into either a .zip or .nupkg using a build server or the Octopus Deploy CLI.  After the package has been created and uploaded to our Octopus server, we can include it in our deployment process.
 
 ## Octopus Deploy
 Setting up the Terraform files was by far the hardest part of this entire process.  The steps for creating the deployment within Octopus Deploy are quite short.  For our purposes, we only need two environments, `Spinup` and `Teardown`.
@@ -634,4 +634,4 @@ Linux workers will show up sooner than Windows workers.  If at first, you don’
 ![](octopus-workers.png)
 
 ## Conclusion
-In this post, I walked you through creating some Terraform configuration files that will generate AWS Auto-scaling groups to dynamically create Octopus Deploy worker infrastructure scaling based on demand.
+In this post, I walked you through creating some Terraform configuration files that will generate AWS autoscaling groups to dynamically create Octopus Deploy worker infrastructure scaling based on demand.
