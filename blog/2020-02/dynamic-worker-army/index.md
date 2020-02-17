@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: dynamic-workers.png
 metaImage: dynamic-workers.png
-published: 2020-02-18
+published: 2020-02-17
 tags:
  - DevOps
 ---
@@ -131,7 +131,7 @@ resource "aws_autoscaling_group" "dynamic-windows-worker-autoscaling" {
 }
 ```
 ### autoscalingpolicy.tf
-This file contains the policy and trigger definitions to both scale up and down our EC2 instances:
+This file contains the policy and trigger definitions to both scale up and scale down our EC2 instances:
 
 ```terraform
 # scale up alarm
@@ -495,7 +495,7 @@ resource "aws_route_table_association" "worker-public-3-a" {
 }
 ```
 
-And there you have it!  All of the Terraform scripts necessary to create our AWS autoscaling worker army.  All that’s left is to package these files up into either a .zip or .nupkg using a build server or the Octopus Deploy CLI.  After the package has been created and uploaded to our Octopus server, we can include it in our deployment process.
+And there you have it!  All of the Terraform scripts necessary to create our AWS autoscaling worker army.  All that’s left is to package these files up into either a .zip or .nupkg using a build server or the Octopus CLI.  After the package has been created and uploaded to our Octopus server, we can include it in our deployment process.
 
 ## Octopus Deploy
 Setting up the Terraform files was by far the hardest part of this entire process.  The steps for creating the deployment within Octopus Deploy are quite short.  For our purposes, we only need two environments, `Spinup` and `Teardown`.
@@ -565,7 +565,7 @@ The Terraform scripts we created above had Octostache variables that need to be 
 #### Steps
 Our deployment process will consist of two steps; a Terraform Apply step, and a Terraform Destroy step.
 
-##### Apply Terraform template
+##### Terraform Apply template
 
 Click {{ Process > ADD STEP }}:
 
@@ -595,7 +595,7 @@ Under Conditions, have this step only execute in the `Spinup` environment:
 
 That’s it for the Apply a Terraform template step.
 
-##### Destroy Terraform resources
+##### Terraform Destroy template
 To help conserve costs, we can tear down the resources we’ve created when we know they will not be used, such as the end of the work day.  In this demonstration, we’ve chosen to do this as part of our deployment, however, we could easily implement this as a scheduled [Runbook](https://www.octopus.com/docs/operations-runbooks/).
 
 Click **ADD STEP**, choose the Terraform category, then choose Destroy Terraform resources:
