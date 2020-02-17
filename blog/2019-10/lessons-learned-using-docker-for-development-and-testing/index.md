@@ -22,7 +22,7 @@ I’m a .NET developer at heart.  I love using Visual Studio.  The Docker functi
 
 I wanted to take a step back and learn how Docker actually works, especially on Windows, and I happen to have a perfect scenario to do that.  I demo a lot of CI/CD pipelines, either at conferences or one-to-one with a customer.  I’m not speaking at conferences or doing demos all day every day though, but running a CI/CD pipeline all the time consumes resources.  Could I run a CI/CD pipeline in Docker?
 
-My CI/CD pipeline uses GitHub for source control, TeamCity as the build server, Octopus Deploy as the deployment server (BIG surprise, I know), with SQL Server as the database backend.  As I am typing this, at its core, a CI/CD pipeline is not very different from applications I’ve worked on in the past.  You could swap out all the CI/CD components with an Angular app hosted in NGINX, an ASP.NET Web API hosted in IIS, or a Windows Service for scheduling with SQL Server as the database.  
+My CI/CD pipeline uses GitHub for source control, TeamCity as the build server, Octopus Deploy as the deployment server (BIG surprise, I know), with SQL Server as the database backend.  As I am typing this, at its core, a CI/CD pipeline is not very different from applications I’ve worked on in the past.  You could swap out all the CI/CD components with an Angular app hosted in [NGINX](https://nginx.com), an ASP.NET Web API hosted in IIS, or a Windows Service for scheduling with SQL Server as the database.  
 
 By learning how to host a CI/CD pipeline in Docker, I also learned how to host pretty much any other application in Docker.
 
