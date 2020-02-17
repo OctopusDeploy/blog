@@ -2,10 +2,10 @@
 title: "Building a dynamic worker army with Terraform and AWS autoscaling groups"
 description: How to create dynamic worker infrastructure using Terraform and AWS autoscaling groups.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 bannerImage: dynamic-workers.png
 metaImage: dynamic-workers.png
-published: 2020-02-17
+published: 2020-02-18
 tags:
  - DevOps
 ---
@@ -14,14 +14,20 @@ tags:
 
 The advent of Infrastructure as Code (IaC) has been a tremendous leap forward, especially within the cloud space.  The ability to programmatically define how infrastructure should look has led to environmental consistency and more predictable application behavior.
 
-Cloud providers have embraced IaC, providing customized IaC implementations to provision and configure resources on their offerings.  Unfortunately, this means you have to learn multiple tools to work with the different providers; for example, Amazon Web Services (AWS) CloudFormation or Microsoft Azure Resource Manager (ARM) templates. HashiCorp created Terraform to solve this problem, a single tool to work with multiple providers.  
+Cloud providers have embraced Infrastructure as Code, providing customized IaC implementations to provision and configure resources on their offerings.  Unfortunately, this means you have to learn multiple tools to work with the different providers; for example, Amazon Web Services (AWS) CloudFormation or Microsoft Azure Resource Manager (ARM) templates. HashiCorp created Terraform to solve this problem, a single tool to work with multiple providers.  
 
-In this post, I show you how to dynamically create workers for Octopus Deploy using Terraform and AWS Auto-Scaling.
+In this post, I show you how to dynamically create workers for Octopus Deploy using Terraform and AWS autoscaling. 
 
-## Auto-Scaling
+:::hint
+
+Workers enable you to shift deployment work onto other machines running in pools. This can greatly reduce the work performed on your Octopus server, freeing it to more readily execute and orchestrate more deployments and make the UI & API much more responsive. Worker pools can improve scalability by enabling dedicated pools of machines that can be utilized by multiple projects and teams. Examples of this include utilizing workers with database deployments, deployments to cloud infrastructure like Azure, AWS and Kubernetes (K8s) etc.
+
+:::
+
+## What is AWS autoscaling?
 Auto-Scaling is the ability to spin up or tear down resources based on specified criteria.  A common use-case for auto-scaling is an eCommerce web site.  As demand increases, more servers are created to handle the load.  When load subsides, the additional resources can be de-provisioned automatically.  This allows eCommerce to keep a minimal amount of servers in operation, and keep the hosting costs down.
 
-## Terraform
+## Using Terraform to provision our cloud infrastructure
 Using declarative configuration files, Terraform can create new resources, manage existing ones, or destroy ones that are no longer necessary.
 
 With Terraform, we have the ability to define all of our resources within a single file, or logically separate them.  For this post, we’ll separate our files so they’re easy to work with.  
@@ -628,4 +634,4 @@ Linux workers will show up sooner than Windows workers.  If at first, you don’
 ![](octopus-workers.png)
 
 ## Conclusion
-In this post, I walked you through creating some Terraform files that will create an AWS Auto-scaling group that will dynamically create Octopus Deploy worker infrastructure that will scale up and down based on demand.
+In this post, I walked you through creating some Terraform configuration files that will generate AWS Auto-scaling groups to dynamically create Octopus Deploy worker infrastructure scaling based on demand.
