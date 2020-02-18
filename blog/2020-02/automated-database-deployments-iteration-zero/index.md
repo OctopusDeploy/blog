@@ -31,7 +31,7 @@ With the state-based, or model-driven, database deployment approach, the desired
 
 The database desired state is stored as files in source control. Depending on the tool you use, the files with the desired state could be a series of create scripts, an XML file, or something completely different.  The important thing to know is the tool will be responsible for updating and maintaining those files.
 
-#### State based pros
+#### State-based pros
 
 The tooling for the state based approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
 
