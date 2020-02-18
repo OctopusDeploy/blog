@@ -67,7 +67,7 @@ Finally, a lot of developers are not expert SQL developers.  They use the SQL Se
 
 The right approach is very subjective.
 
-The state based approach works best when any of the following apply:
+The state-based approach works best when any of the following apply:
 
 - You’re in the early stages of a project with lots of churn on the database.
 - There are multiple people/teams changing the database.
