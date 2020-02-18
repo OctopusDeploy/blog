@@ -10,7 +10,7 @@ tags:
 - Product
 ---
 
-![](octopus-cloud-regions.png)
+![Octopus Cloud - new Western Europe region](octopus-cloud-regions.png)
 
 `tl;dr` Octopus Cloud is now available in the following regions:
 
