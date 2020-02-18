@@ -80,7 +80,7 @@ The migration scripts approach works best when:
 
 - Everyone who is making the changes is disciplined enough to always follow the process.
 - The people making the changes have the experience to make complex database changes.
-- You keep bumping into restrictions imposed by the state based approach.
+- You keep bumping into restrictions imposed by the state-based approach.
 - Everyone wants the most possible control over the process.
 
 Don’t be surprised if you initially start with the state based approach, and after a few years, decide to move to the change-driven approach.  When you pick a vendor, RedGate, Microsoft, etc., be sure they offer a software suite that allows for either approach.
