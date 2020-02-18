@@ -1,9 +1,9 @@
 ---
-title: Automated database deployments iteration zero
-description: Automated database deployments iteration zero
+title: Database deployment automation iteration zero
+description: This post introduces how to get started with database deployment automation. It can be challenging to introduce automated database deployments as there are many approaches and it can involve multiple teams but there is a path forward.
 author: bob.walker@octopus.com
-visibility: public
-published: 2018-06-19
+visibility: private
+published: 2020-02-19
 metaImage: metaimage-automate-database.png
 bannerImage: blogimage-automate-database.png
 tags:
@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-Hopefully, after reading [Why consider database deployment automation?](/blog/2020-02/why-consider-database-deployment-automation/index.md) you’re ready to dive into automated database deployments. Depending on your company, automating database deployments could be a large change, and it could cause friction.  Friction is the enemy of change; the higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  
+Hopefully, after reading [Why consider database deployment automation?](/blog/2020-02/why-consider-database-deployment-automation/index.md) you’re ready to dive into database deployment automation. Depending on your company, automating your database deployments could be a large change, and it could cause friction.  Friction is the enemy of change; the higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  
 
 I demonstrate the principles with Microsoft SQL Server, but those same principles also apply to your database technology of choice.
 
@@ -19,27 +19,27 @@ This post discusses the following:
 
 !toc
 
-## Deployment approaches
+## Database deployment automation approaches
 
 Deploying databases can be very complex, and there are multiple approaches. Octopus Deploy integrates with multiple third-party tools and approaches, but this flexibility means there’s a lot to choose from, and as you evaluate third-party tools you’ll find they approach deployments in one of two ways, and each approach has its pros and cons.
 
-### #1 Model-driven approach
+### #1 State based database deployment approach
 
-With the model-driven approach, the desired state of the database is defined, and the state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
+With the state based, or model-driven, database deployment approach, the desired state of the database is defined, and the state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
 
 ![](model-driven-approach.png)
 
 The database desired state is stored as files in source control. Depending on the tool you use, the files with the desired state could be a series of create scripts, an XML file, or something completely different.  The important thing to know is the tool will be responsible for updating and maintaining those files.
 
-#### Model-driven pros
+#### State based pros
 
-The tooling for the model-driven approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
+The tooling for the state based approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
 
-All the file system interaction happens behind the scenes.  The tool keeps track of all the changes, and this allows you to focus on making the database changes and testing them.  After you’ve tested those changes, you use the tool to update the files in source control.  
+All the file system interaction happens behind the scenes.  The tool keeps track of all the changes, and this allows you to focus on making the database changes and testing them.  After you’ve tested those changes, you use the tool to update the files in source control. 
 
 Finally, some of the tools allow you to mark a table as _static data_, and the data itself is checked into source control.  During deployments, the tool will check the data in the destination table, and if the destination table is missing data or the data is incorrect, the delta script will include data change T-SQL statements.
 
-#### Model-driven cons
+#### State based cons
 A unique delta script is generated during deployment per environment.  This is because a change could have been applied to one environment (dev) but not a higher environment (pre-production or production).  That makes the tooling much more complex, and every once in a while, the tool will generate a delta script where an unexpected change is included, especially if permissions are not set correctly.
 
 The tooling will want to control everything about the database, from the tables to the schemas to the users.  You must configure the tool to ignore certain parts of the database.
@@ -48,16 +48,16 @@ As smart as the tooling is, it has a difficult time handling more complex change
 
 This lack of control can be a burden at times.  You might end up creating a custom process that works alongside the tool.  For example, the tool might not support post-deployment scripts, and in order to get that, you have to create a post-deploy folder that can be packaged and sent to Octopus.  You would then have to update your process in Octopus to look for the folder and run any scripts it finds.  It works, but now you are responsible for maintaining that process.
 
-### #2 Change-driven approach
-A change-driven approach is where all the necessary delta scripts are handwritten.  This is also known as migrations.  Those scripts are checked into source control.  During the deployment, the tool will look to see which change scripts have not been run on the destination database and run them in a specific order.  
+### #2 Database migration scripts approach
+A database migration scripts approach is where all the necessary delta scripts are handwritten.  This is also known as change driven or script based.  Those scripts are checked into source control.  During the deployment, the tool will look to see which migration scripts have not been run on the destination database and run them in a specific order.  
 
 ![](change-driven-approach.png)
 
-#### Change-driven pros
-With the change-driven approach, you have complete control over all the scripts.  When deploying a change, you know exactly what script is going to run.  Complex changes are much easier to deal with; you just need to write the script and save it to source control.  Some migration frameworks allow you to write code to do migrations to make it easier to implement more complex changes.  In addition, it is much easier to exclude items from deployments.  Just don’t include the script for items you want to exclude.
+#### Migration scripts pros
+With the migration scripts approach, you have complete control over all the scripts.  When deploying a change, you know exactly what script is going to run.  Complex changes are much easier to deal with; you just need to write the script and save it to source control.  Some migration frameworks allow you to write code to do migrations to make it easier to implement more complex changes.  In addition, it is much easier to exclude items from deployments.  Just don’t include the script for items you want to exclude.
 
-#### Change-driven cons
-The model-driven approach ensures the entire destination database matches the desired state.  Not so with the change-driven approach.  A new table could be added to the destination database outside of the process.  Everyone who has permissions to change the database has to be on board and using the process because one or two rogue developers could cause havoc.  
+#### Migration scripts cons
+The state based approach ensures the entire destination database matches the desired state.  Not so with the script based approach.  A new table could be added to the destination database outside of the process.  Everyone who has permissions to change the database has to be on board and using the process because one or two rogue developers could cause havoc.  
 
 It is much harder to see the history of a specific object like a table or a stored procedure.  Instead of going to a single file and viewing the history, you must do a search to find all the files where the object was changed.  Depending on the number of table changes, it could be easy to miss a key change.
 
@@ -65,9 +65,9 @@ Finally, a lot of developers are not expert SQL developers.  They use the SQL Se
 
 ### Picking an approach
 
-The right approach is very subjective.  
+The right approach is very subjective.
 
-The model-driven approach works best when any of the following apply:
+The state based approach works best when any of the following apply:
 
 - You’re in the early stages of a project with lots of churn on the database.
 - There are multiple people/teams changing the database.
@@ -76,14 +76,14 @@ The model-driven approach works best when any of the following apply:
 - You want to force developers to follow the process automatically (if a change is made to a destination database and it is not checked in it will get deleted; that only needs to happen once for somebody to learn).
 - The majority of the developers who will be making the changes lack the experience at making complex T-SQL statements.
 
-The change-driven approach works best when:
+The migration scripts approach works best when:
 
 - Everyone who is making the changes is disciplined enough to always follow the process.
 - The people making the changes have the experience to make complex database changes.
-- You keep bumping into restrictions imposed by the model-driven approach.
+- You keep bumping into restrictions imposed by the state based approach.
 - Everyone wants the most possible control over the process.
 
-Don’t be surprised if you initially start with the model-driven approach, and after a few years, decide to move to the change-driven approach.  When you pick a vendor, RedGate, Microsoft, etc., be sure they offer a software suite that allows for either approach.
+Don’t be surprised if you initially start with the state based approach, and after a few years, decide to move to the change-driven approach.  When you pick a vendor, RedGate, Microsoft, etc., be sure they offer a software suite that allows for either approach.
 
 ## Moving to dedicated databases
 
