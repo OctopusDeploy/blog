@@ -33,7 +33,7 @@ The database desired state is stored as files in source control. Depending on th
 
 #### State-based pros
 
-The tooling for the state based approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
+The tooling for the state-based approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
 
 All the file system interaction happens behind the scenes.  The tool keeps track of all the changes, and this allows you to focus on making the database changes and testing them.  After you’ve tested those changes, you use the tool to update the files in source control. 
 
