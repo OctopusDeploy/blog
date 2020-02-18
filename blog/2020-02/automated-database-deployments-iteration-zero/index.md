@@ -57,7 +57,7 @@ A database migration scripts approach is where all the necessary delta scripts a
 With the migration scripts approach, you have complete control over all the scripts.  When deploying a change, you know exactly what script is going to run.  Complex changes are much easier to deal with; you just need to write the script and save it to source control.  Some migration frameworks allow you to write code to do migrations to make it easier to implement more complex changes.  In addition, it is much easier to exclude items from deployments.  Just don’t include the script for items you want to exclude.
 
 #### Migration scripts cons
-The state based approach ensures the entire destination database matches the desired state.  Not so with the script based approach.  A new table could be added to the destination database outside of the process.  Everyone who has permissions to change the database has to be on board and using the process because one or two rogue developers could cause havoc.  
+The state-based approach ensures the entire destination database matches the desired state.  Not so with the script based approach.  A new table could be added to the destination database outside of the process.  Everyone who has permissions to change the database has to be on board and using the process because one or two rogue developers could cause havoc.  
 
 It is much harder to see the history of a specific object like a table or a stored procedure.  Instead of going to a single file and viewing the history, you must do a search to find all the files where the object was changed.  Depending on the number of table changes, it could be easy to miss a key change.
 
