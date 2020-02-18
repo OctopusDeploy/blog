@@ -1,6 +1,6 @@
 ---
-title: Database deployment automation iteration zero
-description: This post introduces how to get started with database deployment automation. It can be challenging to introduce automated database deployments as there are many approaches and it can involve multiple teams but there is a path forward.
+title: Database deployment automation approaches
+description: This post talks about how to get started with database deployment automation. It can be challenging to introduce database deployment automation as there are many approaches and it can involve multiple teams but there is a solution and a path forward.
 author: bob.walker@octopus.com
 visibility: private
 published: 2020-02-19
@@ -118,6 +118,7 @@ During the deployment, it created the artifacts automatically:
 The artifacts help build that trust by not allowing an approval process, but it also provides an audit history.  In three months, I could come back to this deployment and view what changed on the database.
 
 ### Permissions
+
 When implementing automated database deployments, a common question I hear is, “how can we prevent someone from inserting a script to give themselves sysadmin privileges?”  Using artifacts is a good start, but it doesn’t completely solve the problem.  If the DBA, or the person doing the approval, is swamped, they could easily miss that specific SQL statement in the artifact.  The best way to prevent that from happening is to restrict the permission on the account doing the deployment.  [Our documentation](https://octopus.com/docs/deployment-examples/sql-server-databases#SQLServerdatabases-Permissions) provides several examples, from the least restrictive to the most restrictive.  Keep in mind, those are recommendations.  I encourage talking to your team to determine what you are comfortable with.
 
 ## Where to install the Tentacle
@@ -140,10 +141,10 @@ My recommendation for rolling this out is:
 
 ---
 
-Posts in the automated database deployments series:
+Posts in the database deployment automation series:
 
 - [Automated database deployment series kick-off](blog/2020-02/why-consider-database-deployment-automation/index.md)
-- **Iteration Zero**
+- **Database deployment automation approaches**
 - [Automated database deployments using state-based Redgate SQL change automation](blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md)
 - [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
 - [Deploy to Oracle Database using Octopus Deploy and Redgate](/blog/2018-10/oracle-database-using-redgate/index.md)
