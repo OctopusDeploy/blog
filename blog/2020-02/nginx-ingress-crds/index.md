@@ -2,13 +2,15 @@
 title: A look at the new NGINX VirtualServer and VirtualServerRoute resources
 description: See the features of the new custom resource definitions introduced with the NGINX v1.5 ingress controller.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-02-19
+metaImage: nginx-ingress-crds.png
+bannerImage: nginx-ingress-crds.png
 tags:
  - DevOps
 ---
+
+![NGINX VirtualServer and VirtualServerRoute resources](nginx-ingress-crds.png)
 
 Kubernetes `Ingress` resources provide a way of configuring incoming HTTP traffic and make it easy to expose multiple services through a single public IP address.
 
