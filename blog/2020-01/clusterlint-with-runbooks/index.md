@@ -8,6 +8,7 @@ metaImage: k8s-clusterlint-runbook.png
 bannerImage: k8s-clusterlint-runbook.png
 tags:
  - DevOps
+ - Runbooks
 ---
 
 ![Kuberentes DevOps Runbook example with clusterlint](k8s-clusterlint-runbook.png)
@@ -19,7 +20,7 @@ Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a ser
 - [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
 - **Linting your Kubernetes cluster with Clusterlint and runbooks**
 
---- 
+---
 
 *Kubernetes made the simple things hard and the hard things possible.* This is an apt statement. You only need to look at the number of best practice guides available for Kubernetes and the surrounding ecosystem to understand that running even a single pod *properly* is a daunting task.
 

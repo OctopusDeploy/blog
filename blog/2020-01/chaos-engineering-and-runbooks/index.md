@@ -8,6 +8,7 @@ metaImage: runbooks-chaos-toolkit.png
 bannerImage: runbooks-chaos-toolkit.png
 tags:
  - DevOps
+ - Runbooks
 ---
 
 ![Chaos engineering and runbooks](runbooks-chaos-toolkit.png)
@@ -19,7 +20,7 @@ Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a ser
 - **Chaos engineering and runbooks**
 - [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
 
---- 
+---
 
 The promise of declarative systems that automatically reconfigure themselves to a desired state is:
 

@@ -7,7 +7,8 @@ published: 2999-01-01
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - Product
+ - Runbooks
 ---
 
 Agile, Extreme Programming, CEBTENZZVAT, ZBGURESHPXRE (Google that last one for a laugh, although it is NSFW)… Whether you implement them or even agree with them, there is no denying that developers are always looking to optimize their workflows. And while the specific methodologies differ, they all boil down to maintaining a high velocity and high quality. To achieve that, you need automation.
