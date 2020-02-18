@@ -94,7 +94,7 @@ Using the ideal process, identify two or three critical features the tooling mus
 
 Here are some questions to help tease out the requirements:
 
-1. [State-Based database development (i.e. model-driven)](https://octopus.com/blog/automated-database-deployments-iteration-zero#model-driven-approach) vs [Migration-Based database development (i.e. change-driven or migration scripts)](https://octopus.com/blog/automated-database-deployments-iteration-zero#change-driven-approach)?
+1. [State-Based database development (i.e. model-driven)](https://octopus.com/blog/database-deployment-automation-approaches#state-based-database-deployment-approach) vs [Migration-Based database development (i.e. change-driven or migration scripts)](https://octopus.com/blog/database-deployment-automation-approaches#database-migration-scripts-approach)?
 2. What is the common tool used to make database changes?  For SQL Server that is typically SQL Server Management Studio (SSMS) or Visual Studio?
 3. How are database changes detected and saved to source control?
 4. Who will make the majority of the changes?  DBAs? Developers? Database Developers?
