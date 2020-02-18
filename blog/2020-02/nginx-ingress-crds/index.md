@@ -20,7 +20,7 @@ Until recently, the solution was to define these additional settings via annotat
 
 In this post, we’ll explore some of the new functionality provided by the `VirtualServer` and `VirtualServerRoute` CRDs.
 
-## The sample cluster
+## The sample Kubernetes cluster
 
 For this blog, I used the Kubernetes distribution bundled with Docker Desktop:
 
@@ -46,7 +46,7 @@ cd kubernetes-ingress/deployments/helm-chart
 helm install nginx-release .
 ```
 
-## A basic VirtualServer
+## A basic NGINX VirtualServer
 
 We’ll start with a basic `VirtualServer` resource to expose the proxy.
 
