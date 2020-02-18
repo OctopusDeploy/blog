@@ -13,7 +13,7 @@ tags:
 Collecting and storing data is often the main functions of web applications.  The collected data needs to be analyzed and shown in graphical format to help make decisions.  This usually takes the form of a report.  In this part of my series, I will demonstrate how to include SQL Server Reporting Services (SSRS) reports using Octopus Deploy.
 
 ## Build the project
-As of Visual Studio 2017, MSBuild can build .rtpproj files.  Projects that are created in older versions of Visual Studio will need to configure the build agents similar to my [SSIS post](/blog/2020-02/deploying-ssis/inde.md) in order to build the project.
+As of Visual Studio 2017, MSBuild can build .rtpproj files.  Projects that are created in older versions of Visual Studio will need to configure the build agents similar to my [SSIS post](/blog/2020-02/deploying-ssis/index.md) in order to build the project.
 
 ### Add the build task
 To build an SSRS project, simply add any MSBuild type task to your build definition.  For my build definition, I chose a Visual Studio build task, which invokes MSBuild:
