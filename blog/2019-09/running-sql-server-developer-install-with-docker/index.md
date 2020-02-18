@@ -13,7 +13,7 @@ tags:
 
 ![SQL Server database in a Docker container on a desert island with a Docker container ship in the background](sql_docker_container_2019.png)
 
-Running SQL Server on a development machine is a [key part in automating database deployments](https://octopus.com/blog/automated-database-deployments-iteration-zero#moving-to-dedicated-databases).  Typically, running SQL Server locally is accomplished by [installing SQL Server Developer edition](https://octopus.com/blog/automate-sql-server-install).  The downside to doing that is the SQL Server Windows Service needs to run all the time, which consumes resources, the installer adds a bunch of extra applications, and the developer is responsible for upgrading it.  
+Running SQL Server on a development machine is a [key part in automating database deployments](https://octopus.com/blog/database-deployment-automation-approaches#moving-to-dedicated-databases).  Typically, running SQL Server locally is accomplished by [installing SQL Server Developer edition](https://octopus.com/blog/automate-sql-server-install).  The downside to doing that is the SQL Server Windows Service needs to run all the time, which consumes resources, the installer adds a bunch of extra applications, and the developer is responsible for upgrading it.  
 
 Is it possible to get the best of both worlds?  Run SQL Server locally, but only when it is needed, and make it easy to upgrade?  For quite some time, SQL Server has been a Docker image, which looks like it can solve these headaches.  The real question is, how hard is it to set up?  In this article, I aim to answer that question and help you get SQL Server running in a Docker container.
 
