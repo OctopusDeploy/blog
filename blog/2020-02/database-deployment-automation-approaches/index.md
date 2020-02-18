@@ -2,8 +2,8 @@
 title: Database deployment automation approaches
 description: This post talks about how to get started with database deployment automation. It can be challenging to introduce database deployment automation as there are many approaches and it can involve multiple teams but there is a solution and a path forward.
 author: bob.walker@octopus.com
-visibility: private
-published: 2020-02-19
+visibility: public
+published: 2020-02-18
 metaImage: metaimage-automate-database.png
 bannerImage: blogimage-automate-database.png
 tags:
