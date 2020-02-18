@@ -25,21 +25,21 @@ Deploying databases can be very complex, and there are multiple approaches. Octo
 
 ### #1 State based database deployment approach
 
-With the state based, or model-driven, database deployment approach, the desired state of the database is defined, and the state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
+With the state-based, or model-driven, database deployment approach, the desired state of the database is defined, and the state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
 
 ![](model-driven-approach.png)
 
 The database desired state is stored as files in source control. Depending on the tool you use, the files with the desired state could be a series of create scripts, an XML file, or something completely different.  The important thing to know is the tool will be responsible for updating and maintaining those files.
 
-#### State based pros
+#### State-based pros
 
-The tooling for the state based approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
+The tooling for the state-based approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
 
 All the file system interaction happens behind the scenes.  The tool keeps track of all the changes, and this allows you to focus on making the database changes and testing them.  After you’ve tested those changes, you use the tool to update the files in source control. 
 
 Finally, some of the tools allow you to mark a table as _static data_, and the data itself is checked into source control.  During deployments, the tool will check the data in the destination table, and if the destination table is missing data or the data is incorrect, the delta script will include data change T-SQL statements.
 
-#### State based cons
+#### State-based cons
 A unique delta script is generated during deployment per environment.  This is because a change could have been applied to one environment (dev) but not a higher environment (pre-production or production).  That makes the tooling much more complex, and every once in a while, the tool will generate a delta script where an unexpected change is included, especially if permissions are not set correctly.
 
 The tooling will want to control everything about the database, from the tables to the schemas to the users.  You must configure the tool to ignore certain parts of the database.
@@ -57,7 +57,7 @@ A database migration scripts approach is where all the necessary delta scripts a
 With the migration scripts approach, you have complete control over all the scripts.  When deploying a change, you know exactly what script is going to run.  Complex changes are much easier to deal with; you just need to write the script and save it to source control.  Some migration frameworks allow you to write code to do migrations to make it easier to implement more complex changes.  In addition, it is much easier to exclude items from deployments.  Just don’t include the script for items you want to exclude.
 
 #### Migration scripts cons
-The state based approach ensures the entire destination database matches the desired state.  Not so with the script based approach.  A new table could be added to the destination database outside of the process.  Everyone who has permissions to change the database has to be on board and using the process because one or two rogue developers could cause havoc.  
+The state-based approach ensures the entire destination database matches the desired state.  Not so with the script based approach.  A new table could be added to the destination database outside of the process.  Everyone who has permissions to change the database has to be on board and using the process because one or two rogue developers could cause havoc.  
 
 It is much harder to see the history of a specific object like a table or a stored procedure.  Instead of going to a single file and viewing the history, you must do a search to find all the files where the object was changed.  Depending on the number of table changes, it could be easy to miss a key change.
 
@@ -67,7 +67,7 @@ Finally, a lot of developers are not expert SQL developers.  They use the SQL Se
 
 The right approach is very subjective.
 
-The state based approach works best when any of the following apply:
+The state-based approach works best when any of the following apply:
 
 - You’re in the early stages of a project with lots of churn on the database.
 - There are multiple people/teams changing the database.
@@ -80,10 +80,10 @@ The migration scripts approach works best when:
 
 - Everyone who is making the changes is disciplined enough to always follow the process.
 - The people making the changes have the experience to make complex database changes.
-- You keep bumping into restrictions imposed by the state based approach.
+- You keep bumping into restrictions imposed by the state-based approach.
 - Everyone wants the most possible control over the process.
 
-Don’t be surprised if you initially start with the state based approach, and after a few years, decide to move to the change-driven approach.  When you pick a vendor, RedGate, Microsoft, etc., be sure they offer a software suite that allows for either approach.
+Don’t be surprised if you initially start with the state-based approach, and after a few years, decide to move to the change-driven approach.  When you pick a vendor, RedGate, Microsoft, etc., be sure they offer a software suite that allows for either approach.
 
 ## Moving to dedicated databases
 
