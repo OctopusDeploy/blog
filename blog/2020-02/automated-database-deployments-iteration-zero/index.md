@@ -25,7 +25,7 @@ Deploying databases can be very complex, and there are multiple approaches. Octo
 
 ### #1 State based database deployment approach
 
-With the state based, or model-driven, database deployment approach, the desired state of the database is defined, and the state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
+With the state-based, or model-driven, database deployment approach, the desired state of the database is defined, and the state is saved into source control.  During the deployment, the tool compares the desired state with the deployment target and generates a delta script.  This process will be done for each environment.
 
 ![](model-driven-approach.png)
 
