@@ -8,6 +8,7 @@ metaImage: first-look-jenkins-x.png
 bannerImage: first-look-jenkins-x.png
 tags:
  - DevOps
+ - Jenkins
 ---
 
 ![Jenkins X first look](first-look-jenkins-x.png)

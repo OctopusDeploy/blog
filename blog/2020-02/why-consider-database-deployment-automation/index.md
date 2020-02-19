@@ -11,6 +11,8 @@ tags:
  - Database Deployments
 ---
 
+![Why consider database deployment automation?](blogimage-database-kickoff.png)
+
 This is the first post in a series about database deployment automation.
 
 For me, the database is the most nerve-racking part of any deployment.  Deploying code is far less stressful.  If something isn’t right, the code can be rolled back. By the time it reaches production, there should be zero surprises if it’s the same code that was tested in dev, QA, and pre-production.
@@ -63,7 +65,7 @@ This post is the first in a series where I walk you through the process of setti
 Posts in the database deployment automation series:
 
 - **Why consider database deployment automation?**
-- [Iteration Zero](/blog/2018-06/automated-database-deployments-iteration-zero.md)
+- [Database deployment automation approaches](/blog/2020-02/database-deployment-automation-approaches/index.md)
 - [Automated database deployments using state-based Redgate SQL change automation](blog/2020-02/automated-database-deployments-using-state-based-redgate-sql/index.md)
 - [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
 - [Deploy to Oracle Database using Octopus Deploy and Redgate](/blog/2018-10/oracle-database-using-redgate/index.md)

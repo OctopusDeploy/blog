@@ -8,6 +8,8 @@ visibility: public
 published: 2019-06-28
 tags:
  - Engineering
+ - PowerShell
+ - Variables
 ---
 
 ## Introduction
@@ -55,19 +57,19 @@ Function Get-EnvironmentVariablesFromSSISDB
 
     # Create a connection to the server
     $sqlConnectionString = "Data Source=$SqlServerName;Initial Catalog=master;"
-    
+
     # Check authentication
     if ($UseIntegratedAuthentication)
     {
         # Add integrated
         $sqlConnectionString += "Integrated Security=SSPI;"
     }
-    else 
+    else
     {
         # ass username password
         $sqlConnectionString += "User ID=$SqlUserName; Password=$SqlPassword"    
     }
-    
+
     $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $sqlConnectionString
 
     # create integration services object
@@ -81,7 +83,7 @@ Function Get-EnvironmentVariablesFromSSISDB
         $Environment = Get-Environment -Folder $Folder -EnvironmentName $EnvironmentName
 
         # return environment variables
-        return $Environment.Variables 
+        return $Environment.Variables
     }
     finally
     {
@@ -104,7 +106,7 @@ Function Get-Folder
         Write-Error "Folder not found."
         throw
     }
-    
+
     # return the folde reference
     return $Folder
 }
@@ -147,7 +149,7 @@ Function Get-Catalog
         Write-Error  "Catalog $CataLogName does not exist or the Tentacle account does not have access to it."
 
         # throw error
-        throw 
+        throw
     }
 
     # return the catalog
@@ -221,7 +223,7 @@ try
         {
             # Display message
             Write-Output "Adding $($variable.Name) to Octopus Deploy project $($octopusProject.Name)"
-            
+
             # Create new variable hash table
             $newVariable = @{
                 #Id = "$(New-Guid)"
@@ -240,7 +242,7 @@ try
         }
     }
 
-    # Update the project 
+    # Update the project
     Update-ProjectVariables -ProjectVariables $octopusProjectVariables -ApiKey $APIKey -OctopusServerUrl $OctopusServerUrl
 }
 catch

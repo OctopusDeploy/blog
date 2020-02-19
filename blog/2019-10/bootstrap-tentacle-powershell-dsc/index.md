@@ -8,6 +8,7 @@ bannerImage: bootstrapping_tentacle_installation_dsc.png
 metaImage: bootstrapping_tentacle_installation_dsc.png
 tags:
  - DevOps
+ - PowerShell
 ---
 
 ![Tentacles rising from the ocean to install software on a server](bootstrapping_tentacle_installation_dsc.png)

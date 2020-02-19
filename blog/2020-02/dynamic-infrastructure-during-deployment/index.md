@@ -8,6 +8,7 @@ metaImage: octopus-dynamic-targets.png
 published: 2020-02-10
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![Deploying to dynamically provisioned infrastructure](octopus-dynamic-targets.png)
@@ -22,21 +23,21 @@ Let’s say we have an application that uses Kubernetes on Azure. We use an Azur
 
 We dynamically create a resource group, a Kubernetes cluster, then start deploying to it.
 
-In order to add the Kubernetes cluster, we first need to add a Post Deployment Script to the Create K8 cluster step.  Edit the step and click on the **CONFIGURE FEATURES** button
+In order to add the Kubernetes cluster, we first need to add a post deployment script to the Create K8 cluster step.  Edit the step and click on the **CONFIGURE FEATURES** button:
 
 ![](octopus-project-k8s-step-configure-features.png)
 
-Select Custom Deployment Scripts
+Select Custom Deployment Scripts:
 
 ![](octopus-project-k8s-step-configure-features-scripts.png)
 
-In the case of K8s, Octopus Deploy has created a helper cmdlet called [New-OctopusKubernetesTarget](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure/kubernetes-target).  For this article, I'll be using a script that can add any type of target.
+In the case of K8s, Octopus Deploy has created a helper cmdlet called [New-OctopusKubernetesTarget](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure/kubernetes-target).  For this article, I use a script that can add any type of target.
 
-Expand the **Custom Deployment Scripts** section and enter the following into the Post-Deployment Script window.  This script will first check to see if it already exists, if not, create the payload for the API call to add it.
+Expand the **Custom Deployment Scripts** section and enter the following into the **Post-Deployment Script** window.  This script will first check to see if it already exists, and if not, create the payload for the API call to add it:
 
 ```powershell
 # Get current clustername
-$kubernetesCluster = (Invoke-RestMethod -Method Get -Uri "$($OctopusParameters['Octopus.Web.BaseUrl'])/api/Spaces-1/machines/all" -Headers @{"X-Octopus-ApiKey"="$($OctopusParameters['Global.Octopus.ApiKey'])"}) | Where-Object {$_.Name -eq $OctopusParameters['Project.Azure.Kubernetes.ClusterName']} 
+$kubernetesCluster = (Invoke-RestMethod -Method Get -Uri "$($OctopusParameters['Octopus.Web.BaseUrl'])/api/Spaces-1/machines/all" -Headers @{"X-Octopus-ApiKey"="$($OctopusParameters['Global.Octopus.ApiKey'])"}) | Where-Object {$_.Name -eq $OctopusParameters['Project.Azure.Kubernetes.ClusterName']}
 
 # Check for null
 if ($null -eq $kubernetesCluster)

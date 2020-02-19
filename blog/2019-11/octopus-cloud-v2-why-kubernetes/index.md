@@ -8,6 +8,8 @@ metaImage: octopus-cloud-why-kubernetes.png
 bannerImage: octopus-cloud-why-kubernetes.png
 tags:
  - Engineering
+ - Octopus Cloud
+ - Kubernetes
 ---
 
 ![Why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud](octopus-cloud-why-kubernetes.png)
@@ -28,7 +30,7 @@ Octopus Cloud launched in July 2018 as an MVP to test customer demand, and we ga
 - A pricing model where the revenue per customer didn’t come close to covering the AWS hosting costs.
 - A non-optimized architecture that allocated a dedicated VM for each customer.
 
-Octopus had always been designed to be hosted on the user’s own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_ approach, which in this case, was hosting each customer on a dedicated virtual machine.  This was a resounding success, and it removed many unknowns, leaving us with two clear problems to focus on... 
+Octopus had always been designed to be hosted on the user’s own hardware, not as a multi-tenant co-hosted solution. So when architecting Octopus Cloud v1 there were many different paths available.  In accordance with the finest of engineering traditions, we started with the _Simplest Thing That Could Possibly Work_ approach, which in this case, was hosting each customer on a dedicated virtual machine.  This was a resounding success, and it removed many unknowns, leaving us with two clear problems to focus on...
 
 - **Reduce costs:** Especially for low-use or dormant instances
 - **Increase performance:** Improve provisioning times, and provide more options for highly utilized instances

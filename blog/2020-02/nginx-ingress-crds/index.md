@@ -2,13 +2,16 @@
 title: A look at the new NGINX VirtualServer and VirtualServerRoute resources
 description: See the features of the new custom resource definitions introduced with the NGINX v1.5 ingress controller.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-02-19
+metaImage: nginx-ingress-crds.png
+bannerImage: nginx-ingress-crds.png
 tags:
  - DevOps
+ - Kubernetes
 ---
+
+![NGINX VirtualServer and VirtualServerRoute resources](nginx-ingress-crds.png)
 
 Kubernetes `Ingress` resources provide a way of configuring incoming HTTP traffic and make it easy to expose multiple services through a single public IP address.
 
@@ -18,7 +21,7 @@ Until recently, the solution was to define these additional settings via annotat
 
 In this post, we’ll explore some of the new functionality provided by the `VirtualServer` and `VirtualServerRoute` CRDs.
 
-## The sample cluster
+## The sample Kubernetes cluster
 
 For this blog, I used the Kubernetes distribution bundled with Docker Desktop:
 
@@ -44,7 +47,7 @@ cd kubernetes-ingress/deployments/helm-chart
 helm install nginx-release .
 ```
 
-## A basic VirtualServer
+## A basic NGINX VirtualServer
 
 We’ll start with a basic `VirtualServer` resource to expose the proxy.
 

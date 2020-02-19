@@ -24,7 +24,7 @@ Because the PaC logic is limited to building and testing code, the PaC process i
 
 The PaC workflow is a natural fit when it’s used as an extension of the build and test cycle. The same people are responsible for PaC code as the rest of the codebase, the PaC file lives and dies with each commit, and infrastructure created by the PaC logic is short-lived.
 
-## Challenges extending a Pipline as Code file for deployments
+## Challenges extending a Pipeline as Code file for deployments
 
 Naturally, there’s an inclination to extend Pipeline as Code beyond building and testing into deployments. At first glance, this appears to be the inevitable evolution of PaC, but there are good reasons not to have one pipeline for your entire CI/CD workflow.
 

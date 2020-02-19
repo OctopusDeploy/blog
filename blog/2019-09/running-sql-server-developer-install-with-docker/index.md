@@ -9,11 +9,12 @@ bannerImage: sql_docker_container_2019.png
 tags:
  - Engineering
  - Database Deployments
+ - Docker
 ---
 
 ![SQL Server database in a Docker container on a desert island with a Docker container ship in the background](sql_docker_container_2019.png)
 
-Running SQL Server on a development machine is a [key part in automating database deployments](https://octopus.com/blog/automated-database-deployments-iteration-zero#moving-to-dedicated-databases).  Typically, running SQL Server locally is accomplished by [installing SQL Server Developer edition](https://octopus.com/blog/automate-sql-server-install).  The downside to doing that is the SQL Server Windows Service needs to run all the time, which consumes resources, the installer adds a bunch of extra applications, and the developer is responsible for upgrading it.  
+Running SQL Server on a development machine is a [key part in automating database deployments](https://octopus.com/blog/database-deployment-automation-approaches#moving-to-dedicated-databases).  Typically, running SQL Server locally is accomplished by [installing SQL Server Developer edition](https://octopus.com/blog/automate-sql-server-install).  The downside to doing that is the SQL Server Windows Service needs to run all the time, which consumes resources, the installer adds a bunch of extra applications, and the developer is responsible for upgrading it.  
 
 Is it possible to get the best of both worlds?  Run SQL Server locally, but only when it is needed, and make it easy to upgrade?  For quite some time, SQL Server has been a Docker image, which looks like it can solve these headaches.  The real question is, how hard is it to set up?  In this article, I aim to answer that question and help you get SQL Server running in a Docker container.
 
@@ -136,16 +137,16 @@ All the database create commands need to specify `C:\SQLData\` as the directory 
 ```SQL
 CREATE DATABASE [OctopusDeploy]
  CONTAINMENT = NONE
- ON  PRIMARY 
+ ON  PRIMARY
 ( NAME = N'OctopusDeploy', FILENAME = N'C:\SQLData\OctopusDeploy.mdf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
- LOG ON 
+ LOG ON
 ( NAME = N'OctopusDeploy_log', FILENAME = N'C:\SQLData\OctopusDeploy_log.ldf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
 GO
 CREATE DATABASE [TeamCity]
  CONTAINMENT = NONE
- ON  PRIMARY 
+ ON  PRIMARY
 ( NAME = N'TeamCity', FILENAME = N'C:\SQLData\TeamCity.mdf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
- LOG ON 
+ LOG ON
 ( NAME = N'TeamCity_log', FILENAME = N'C:\SQLData\TeamCity_log.ldf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
 GO
 ```
@@ -205,7 +206,7 @@ And I get the same results.  I prefer to use this because it is easier to read a
 
 ![](docker-compose-ssms-sucess.png)
 
-## Conclusion 
+## Conclusion
 
 Getting SQL Server running in Docker turned out to be a lot easier than I thought it would be.  I was expecting hours upon hours of work, but in the end, I had something up and running within an hour.  To be fair, that didn’t include research into how Docker works.  My hope is this article gave you enough direction for you to take the dive yourself into Docker and realize it is not so big and scary.  And maybe, just maybe, you’ll use Docker to host SQL Server on your development machine instead of installing SQL Server Developer.
 
