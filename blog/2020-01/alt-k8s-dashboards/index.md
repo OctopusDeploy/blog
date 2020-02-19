@@ -8,6 +8,7 @@ metaImage:
 bannerImage:
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 In the beginning there was *the* [Kubernetes Dashboard](https://github.com/kubernetes/dashboard). This dashboard is the default option for anyone looking to monitor a Kubernetes cluster, but over the years a number of alternatives have been developed that are worth looking into.

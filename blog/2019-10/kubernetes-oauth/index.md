@@ -8,6 +8,7 @@ metaImage: kubernetes-oauth.png
 bannerImage: kubernetes-oauth.png
 tags:
  - Engineering
+ - Kubernetes
 ---
 
 ![Kubernetes OAuth illustration showing a locked treasure chest representing Kubernetes](kubernetes-oauth.png)

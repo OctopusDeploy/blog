@@ -8,6 +8,7 @@ metaImage: installing_minikube_on_windows.png
 bannerImage: installing_minikube_on_windows.png
 tags:
  - Engineering
+ - Kubernetes
 ---
 
 ![Octopus driving a Kubernetes speedboat](installing_minikube_on_windows.png)

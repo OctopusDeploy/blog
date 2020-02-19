@@ -8,6 +8,7 @@ metaImage: rolling-deployments.png
 bannerImage: rolling-deployments.png
 tags:
  - DevOps
+ - Deployment Patterns
 ---
 
 ![Rolling Deployments](rolling-deployments.png)

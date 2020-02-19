@@ -8,6 +8,7 @@ metaImage: blogimage-servicemesh.png
 bannerImage: blogimage-servicemesh.png
 tags:
  - Engineering
+ - Kubernetes
 ---
 
 ![Illustration showing a service mesh](blogimage-servicemesh.png)
