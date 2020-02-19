@@ -37,7 +37,7 @@ Searching for these keywords in the Octopus dashboard returns the runbook projec
 
 The first step in the runbook inspects the current state of the system to determine if it is degraded.
 
-For our example runbook, we’ll use the ****un an Azure PowerShell script** step to make an HTTP request to the website and inspect the response code. The result of the HTTP call is saved in the Octopus variable `TestResult`.
+For our example runbook, we’ll use the **Run an Azure PowerShell script** step to make an HTTP request to the website and inspect the response code. The result of the HTTP call is saved in the Octopus variable `TestResult`.
 
 The script below tests the HTTP response code:
 
