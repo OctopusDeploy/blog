@@ -8,6 +8,7 @@ metaImage: kubernetes-deployments-strategies.png
 bannerImage: kubernetes-deployments-strategies.png
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![Kubernetes deployment strategies](kubernetes-deployments-strategies.png)

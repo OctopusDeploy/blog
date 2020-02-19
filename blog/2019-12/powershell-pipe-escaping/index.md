@@ -8,6 +8,7 @@ metaImage: powershell-escape-pipe-character.png
 bannerImage: powershell-escape-pipe-character.png
 tags:
  - Octopus
+ - PowerShell
 ---
 
 ![Escaping the pipe character in PowerShell commands](powershell-escape-pipe-character.png)

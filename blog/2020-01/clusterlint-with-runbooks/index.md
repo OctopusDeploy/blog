@@ -9,6 +9,7 @@ bannerImage: k8s-clusterlint-runbook.png
 tags:
  - DevOps
  - Runbooks
+ - Kubernetes
 ---
 
 ![Kuberentes DevOps Runbook example with clusterlint](k8s-clusterlint-runbook.png)

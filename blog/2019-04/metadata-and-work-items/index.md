@@ -4,10 +4,12 @@ description: A look at the new custom metadata capabilities in Octopus.
 author: shannon.lewis@octopus.com
 visibility: public
 published: 2019-04-08
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - Product
+ - Continuous Integration
+ - Jira
 ---
 
 In this post, we're excited to announce some new features in Octopus Deploy 2019.4 that are focused on tightening the feedback loop in your CI/CD pipeline.  These features strengthen the integration between the build servers and Octopus by passing more information about the build down the line.

@@ -8,6 +8,7 @@ metaImage: octopus-dynamic-targets.png
 published: 2020-02-10
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![Deploying to dynamically provisioned infrastructure](octopus-dynamic-targets.png)

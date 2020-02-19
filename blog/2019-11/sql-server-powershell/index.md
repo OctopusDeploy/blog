@@ -8,6 +8,7 @@ metaImage: sql-server-powershell-examples.png
 published: 2019-11-26
 tags:
  - DevOps
+ - PowerShell
 ---
 
 ![SQL Server and PowerShell: Practical Examples](sql-server-powershell-examples.png)

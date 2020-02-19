@@ -8,6 +8,7 @@ metaImage: blogimage-verifyvariables.png
 published: 2019-08-15
 tags:
  - Engineering
+ - Variables
 ---
 
 ![Illustration showing Octopus variables being scanned](blogimage-verifyvariables.png)
@@ -32,7 +33,7 @@ Function Get-AppSettings
 
     if (![string]::IsNullOrEmpty($jsonObject) -and ($jsonObject.GetType().Name -eq "PSCustomObject"))
     {
-        
+
         # Get number of properties
         $properties = $jsonObject | Get-Member -MemberType Properties | Select-Object -ExpandProperty Name
 
@@ -106,7 +107,7 @@ foreach ($otherFile in $otherAppSettingsFiles)
     $otherSettings = Get-AppSettings -jsonObject $otherSettingsFile -parentNamespace $null -settingsToIgnore $settingsToIgnore
 
     # Compare the properties to see if they are identical
-    $results = Compare-Object -ReferenceObject $appSettings -DifferenceObject $otherSettings 
+    $results = Compare-Object -ReferenceObject $appSettings -DifferenceObject $otherSettings
 
     # Check to see if something was returned
     if ($null -ne $results)

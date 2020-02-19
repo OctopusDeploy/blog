@@ -8,6 +8,7 @@ metaImage: kubernetes-for-the-uninitiated.png
 published: 2020-01-13
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![Beyond Hello World - Kubernetes for the uninitiated](kubernetes-for-the-uninitiated.png)

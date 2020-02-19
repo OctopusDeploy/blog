@@ -8,6 +8,7 @@ metaImage: img_can_github_replace_ci_server.png
 bannerImage: img_can_github_replace_ci_server.png
 tags:
  - DevOps
+ - Continuous Integration
 ---
 
 ![Illustration showing GitHub CI processes with versions](img_can_github_replace_ci_server.png)

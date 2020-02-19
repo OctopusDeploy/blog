@@ -8,6 +8,7 @@ metaImage: eksctl-kubernetes-clusters.png
 bannerImage: eksctl-kubernetes-clusters.png
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![Illustration showing an EKS Kubernetes cluster](eksctl-kubernetes-clusters.png)

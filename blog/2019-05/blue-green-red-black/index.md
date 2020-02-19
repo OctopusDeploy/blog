@@ -8,6 +8,7 @@ metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
  - DevOps
+ - Deployment Patterns
 ---
 
 When deploying new versions of a centralized application like a web service, there is a strategy you can use to direct production traffic to the new version only after it has been successfully deployed and optionally tested. This strategy goes by the name blue/green or red/black, with each color representing a copy of the target environment. Traffic is routed to one color or the other (or potentially both in a canary deployment or during A/B testing, but that's a story for another time). Having two environments running side by side hosting different versions of an application means traffic can be switched over, and back again if an issue is found, with little to no downtime.
