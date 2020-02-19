@@ -10,6 +10,7 @@ tags:
  - Engineering
  - Database Deployments
 ---
+
 One of the most exciting aspects of database deployments is the number of tools released in the last ten years.  Looking at my [previous posts](https://octopus.com/blog/tag/Database%20Deployments) on this topic, I’ve shown a clear bias toward Redgate’s tooling, and while I do have a bit of a bias toward their tools, I’m a [friend of Redgate](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) for a reason.  
 
 I’m going to switch gears a bit and focus on a different tool for this post, [DbUp](https://dbup.readthedocs.io/en/latest/).  DbUp is a free, open-source tool, which we use here at Octopus Deploy for our database deployments.  Anytime you install or upgrade Octopus Deploy, DbUp is the one who runs the scripts to update your database.  Our founder, Paul Stovell, wrote a [blog post back](https://octopus.com/blog/howto/deploy-a-sql-database) in 2012 on how to use DbUp to deploy to a SQL Server.  For the most part, that blog post still holds up today.  Except for the old images.  Want to see what Octopus Deploy looked like years ago?  Check out that post.  
@@ -67,7 +68,7 @@ You bundle up those scripts and tell DbUp to run them.  It compares that list ag
 
 That works great...when deploying to a development or test environment.  Many companies I talk to prefer their DBAs approve scripts before going to production.  Maybe a staging or pre-production environment as well.  This approval process is essential, especially at the start.  At that time the trust in the process is low.  
 
-### HTML Report
+### HTML report
 
 Migration scripts are a double-edged sword, just like memory management in C++.  You have total control, which gives you much power.  However, it is also easy to mess up.  It all depends on the type of change being done and the SQL skills of the writer.  The trust of the DBAs will be very low when inexperienced C# developers are writing these migration scripts.  Especially if you are starting down the automated database deployment path.  
 
@@ -151,11 +152,11 @@ With these new features, we are going to put together a .NET Core DbUp console a
 
 All the code below be found on [GitHub](https://github.com/OctopusSamples/DbUpSample).
 
-**Please Note:** I chose .NET Core over .NET Framework because it could be built and run anywhere.  DbUp is a .NET Standard library.  DbUp will work just as great in a .NET Framework application.  
+**Please note**: I chose .NET Core over .NET Framework because it could be built and run anywhere.  DbUp is a .NET Standard library.  DbUp will work just as great in a .NET Framework application.  
 
 Let’s fire up our IDE of choice and create a .NET Core console application.
 
-**Please Note:** I am using JetBrain’s Rider to build this console application.  I prefer it over Visual Studio.
+**Please note**: I am using JetBrain’s Rider to build this console application.  I prefer it over Visual Studio.
 
 ### Scaffolding
 
@@ -171,7 +172,7 @@ The console application needs some scripts to deploy.  I’m going to add three 
 
 ![](rider-createfolderswithsamplescripts.png)
 
-**Please Note:** It is highly recommended you add a prefix such as 001, 002, etc. to the start of your script file name.  DbUp runs the scripts in alphabetical order.  That prefix will help ensure scripts are run in the right order.
+**Please note**: It is highly recommended you add a prefix such as 001, 002, etc. to the start of your script file name.  DbUp runs the scripts in alphabetical order.  That prefix will help ensure scripts are run in the right order.
 
 By default, .NET will not include those scripts files when the console application is built.  We want to include those script files as embedded resources.  Thankfully we can easily add a reference to those files by including this code in the `.csproj` file:
 
@@ -208,7 +209,7 @@ static void Main(string[] args)
 
 DbUp uses a fluent API.  We need to tell it about our folders, the type of script each folder is, and the order we want to run scripts from that folder in.
 
-**Please Note**: If you use the Scripts Embedded In Assembly option with a "StartsWith" search you will need to supply the full NameSpace on your search.
+**Please note**: If you use the Scripts Embedded In Assembly option with a "StartsWith" search you will need to supply the full NameSpace on your search.
 
 ```C
 var upgradeEngineBuilder = DeployChanges.To
@@ -392,7 +393,7 @@ When the modal window appears, choose the package to extract:
 
 Now we can add a script to handle the deployment.  Running .NET Core console apps is a little different than running .NET Framework Console apps.
 
-**Please Note:** It all depends on the various switches you set when building and publishing the application.  You could create a self-contained console application (.exe) with all the necessary .dlls.  Doing that does increase the size of the package.  Alternatively, you could set it to create a .dll only with references to all the external dependencies.  In the example package, I opted to create a self-contained package, but exclude the .exe in the zip file.  This way you don’t have to worry about running a restore:
+**Please note:** It all depends on the various switches you set when building and publishing the application.  You could create a self-contained console application (.exe) with all the necessary .dlls.  Doing that does increase the size of the package.  Alternatively, you could set it to create a .dll only with references to all the external dependencies.  In the example package, I opted to create a self-contained package, but exclude the .exe in the zip file.  This way you don’t have to worry about running a restore:
 
 ```PS
 # How you reference the extracted path
@@ -480,7 +481,7 @@ To start, we need to create a dedicated worker pool for each environment.
 
 Next, we need to create cloud region deployment targets.  Cloud region is a bit of misnomer.  It is a fancy way of saying “grouped deployment targets.”
 
-**Please Note:** Cloud Region deployment targets do NOT count against your license.
+**Please note**: Cloud Region deployment targets do NOT count against your license.
 
 You will create a cloud region for each environment.  I created a new role called `DbWorker` for these cloud regions.  I wanted a way to differentiate these new deployment targets:
 
@@ -505,3 +506,16 @@ When a new release is deployed to testing the `Test Database Worker Region` is p
 ## Conclusion
 
 Recent modifications made to DbUp help create a robust deployment pipeline for databases.  Now DBAs (and others) can review changes via Octopus Deploy before they are deployed.  Having the ability to review the changes should help build trust in the process and help speed up the adoption.
+
+---
+
+Posts in the automated database deployments series:
+
+- [Automated database deployment series kick-off](/blog/2018-06/automated-database-deployments-series-kick-off.md)
+- [Iteration Zero](/blog/2018-06/automated-database-deployments-iteration-zero.md)
+- [Automated database deployments using state-based Redgate SQL change automation](blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md)
+- [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
+- [Deploy to Oracle Database using Octopus Deploy and Redgate](/blog/2018-10/oracle-database-using-redgate/index.md)
+-  [Add post deployment scripts to Oracle database deployments using Octopus Deploy, Jenkins, and Redgate](/blog/2018-11/oracle-database-using-redgate-part-2/index.md)
+- **Using DbUp and workers to automate database deployments**
+- [Automatic approvals in your automated database deployment process](/blog/2019-03/autoapprove-database-deployments/index.md)
