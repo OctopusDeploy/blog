@@ -2,7 +2,7 @@
 title: Creating a Kubernetes Operator with Kotlin
 description: Learn what Kubernetes Operators are, and see an example Kotlin Operator
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-02-24
 metaImage: java-octopus.png
 bannerImage: java-octopus.png
