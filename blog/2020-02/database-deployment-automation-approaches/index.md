@@ -35,7 +35,7 @@ The database desired state is stored as files in source control. Depending on th
 
 The tooling for the state-based approach often integrates with your IDE.  For example, Redgate’s tooling integrates with SQL Server Management Studio, and Microsoft’s SSDT tooling integrates with Visual Studio.  The changes to the schema are made using the IDE, and then the plug-in for the IDE takes over.  It runs a comparison to determine the difference between the change and what is currently in source control.  Then it makes the change to the necessary script on the file system.
 
-All the file system interaction happens behind the scenes.  The tool keeps track of all the changes, and this allows you to focus on making the database changes and testing them.  After you’ve tested those changes, you use the tool to update the files in source control. 
+All the file system interaction happens behind the scenes.  The tool keeps track of all the changes, and this allows you to focus on making the database changes and testing them.  After you’ve tested those changes, you use the tool to update the files in source control.
 
 Finally, some of the tools allow you to mark a table as _static data_, and the data itself is checked into source control.  During deployments, the tool will check the data in the destination table, and if the destination table is missing data or the data is incorrect, the delta script will include data change T-SQL statements.
 
@@ -141,13 +141,4 @@ My recommendation for rolling this out is:
 
 ---
 
-Posts in the database deployment automation series:
-
-- [Automated database deployment series kick-off](blog/2020-02/why-consider-database-deployment-automation/index.md)
-- **Database deployment automation approaches**
-- [Automated database deployments using state-based Redgate SQL change automation](blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md)
-- [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
-- [Deploy to Oracle Database using Octopus Deploy and Redgate](/blog/2018-10/oracle-database-using-redgate/index.md)
--  [Add post deployment scripts to Oracle database deployments using Octopus Deploy, Jenkins, and Redgate](/blog/2018-11/oracle-database-using-redgate-part-2/index.md)
-- [Using DbUp and workers to automate database deployments](/blog/2019-02/dbup-database-deployments/index.md)
-- [Automatic approvals in your automated database deployment process](/blog/2019-03/autoapprove-database-deployments/index.md)
+!include <database-deployment-automation-posts>
