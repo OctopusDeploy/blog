@@ -3,13 +3,15 @@ title: Creating a Kubernetes Operator with Kotlin
 description: Learn what Kubernetes Operators are, and see an example Kotlin Operator
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+published: 2020-02-24
+metaImage: java-octopus.png
+bannerImage: java-octopus.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![Creating a Kubernetes Operator with Kotlin](java-octopus.png)
 
 Most environments will initially treat their Kubernetes cluster as a tool to orchestrate containers and configure traffic between them. Kubernetes supports this use case very well by providing declarative descriptions of the desired container state and their connections.
 
