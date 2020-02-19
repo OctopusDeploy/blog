@@ -8,6 +8,7 @@ metaImage: exploring-istio.png
 bannerImage: exploring-istio.png
 tags:
  - Engineering
+ - Kubernetes
 ---
 
 ![An Octopus exploring the Istio service mesh for Kubernetes](exploring-istio.png)

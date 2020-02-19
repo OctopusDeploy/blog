@@ -8,13 +8,14 @@ metaImage: octopus-cloud-free.png
 published: 2020-02-24
 tags:
 - Company
+- Octopus Cloud
 ---
 
 ![Octopus Cloud and Server are free for small teams](octopus-cloud-free.png)
 
 Octopus Deploy has always been a tool for developers, built by developers. At the time of Octopus v1 there was a lack of good tooling to help developers deploy their programs to Windows and IIS, a frustration felt by Paul Stovell, our CEO and founder. As a result, Octopus Deploy was created not as a tool to be sold to developers, but as something that really solved their unique problems.
 
-Fast forward 10 years and that idea is still our north star - Octopus should be a thing that is bought, not sold. We want people to use Octopus because it’s the best tool in its class; because it makes their lives easier, and solves their problems. We often come back to the question “what would we want, if we were the customer?” (and we are the customer, because we use Octopus internally for pretty much everything). 
+Fast forward 10 years and that idea is still our north star - Octopus should be a thing that is bought, not sold. We want people to use Octopus because it’s the best tool in its class; because it makes their lives easier, and solves their problems. We often come back to the question “what would we want, if we were the customer?” (and we are the customer, because we use Octopus internally for pretty much everything).
 
 ## Away with trials
 
@@ -37,6 +38,6 @@ Absolutely! When you log in to your Octopus Account you will be able to generate
 
 ## Conclusion
 
-Having our deployments and runbooks automated gives us a great sense of consistency and confidence. We hope that by making Octopus free for anyone to use we can share some of that confidence, and all focus on building great software. 
+Having our deployments and runbooks automated gives us a great sense of consistency and confidence. We hope that by making Octopus free for anyone to use we can share some of that confidence, and all focus on building great software.
 
 Cheers to that 🍻

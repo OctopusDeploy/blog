@@ -9,6 +9,7 @@ bannerImage: sql_docker_container_2019.png
 tags:
  - Engineering
  - Database Deployments
+ - Docker
 ---
 
 ![SQL Server database in a Docker container on a desert island with a Docker container ship in the background](sql_docker_container_2019.png)
@@ -136,16 +137,16 @@ All the database create commands need to specify `C:\SQLData\` as the directory 
 ```SQL
 CREATE DATABASE [OctopusDeploy]
  CONTAINMENT = NONE
- ON  PRIMARY 
+ ON  PRIMARY
 ( NAME = N'OctopusDeploy', FILENAME = N'C:\SQLData\OctopusDeploy.mdf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
- LOG ON 
+ LOG ON
 ( NAME = N'OctopusDeploy_log', FILENAME = N'C:\SQLData\OctopusDeploy_log.ldf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
 GO
 CREATE DATABASE [TeamCity]
  CONTAINMENT = NONE
- ON  PRIMARY 
+ ON  PRIMARY
 ( NAME = N'TeamCity', FILENAME = N'C:\SQLData\TeamCity.mdf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
- LOG ON 
+ LOG ON
 ( NAME = N'TeamCity_log', FILENAME = N'C:\SQLData\TeamCity_log.ldf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
 GO
 ```
@@ -205,7 +206,7 @@ And I get the same results.  I prefer to use this because it is easier to read a
 
 ![](docker-compose-ssms-sucess.png)
 
-## Conclusion 
+## Conclusion
 
 Getting SQL Server running in Docker turned out to be a lot easier than I thought it would be.  I was expecting hours upon hours of work, but in the end, I had something up and running within an hour.  To be fair, that didn’t include research into how Docker works.  My hope is this article gave you enough direction for you to take the dive yourself into Docker and realize it is not so big and scary.  And maybe, just maybe, you’ll use Docker to host SQL Server on your development machine instead of installing SQL Server Developer.
 

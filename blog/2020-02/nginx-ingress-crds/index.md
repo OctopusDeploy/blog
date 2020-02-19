@@ -8,6 +8,7 @@ metaImage: nginx-ingress-crds.png
 bannerImage: nginx-ingress-crds.png
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![NGINX VirtualServer and VirtualServerRoute resources](nginx-ingress-crds.png)

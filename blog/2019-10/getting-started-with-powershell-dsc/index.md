@@ -8,6 +8,7 @@ metaImage: getting-started-powershell-dsc.png
 published: 2019-10-21
 tags:
  - DevOps
+ - PowerShell
 ---
 
 ![Octopus learning how to configure a server with PowerShell DSC](getting-started-powershell-dsc.png)

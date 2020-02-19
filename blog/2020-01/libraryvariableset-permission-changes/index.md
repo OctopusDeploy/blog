@@ -8,6 +8,7 @@ metaImage: metaimage-team-permissions.png
 bannerImage: blogimage-team-permissions.png
 tags:
  - Product
+ - Variables
 ---
 
 [Library variable sets](https://octopus.com/docs/deployment-process/variables/library-variable-sets) in Octopus are a much loved and useful feature, they make it possible to define variables for use with multiple projects.

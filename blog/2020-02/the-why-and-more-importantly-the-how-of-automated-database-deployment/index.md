@@ -7,6 +7,7 @@ metaImage: redgate-database-deployments.png
 bannerImage: redgate-database-deployments.png
 tags:
  - DevOps
+ - Database Deployments
 ---
 
 ![Why and how your should automate your database deployments](redgate-logo.png)

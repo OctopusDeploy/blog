@@ -8,6 +8,7 @@ metaImage: kubernetes-in-docker.png
 bannerImage: kubernetes-in-docker.png
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![Kubernetes in Docker (KIND)](kubernetes-in-docker.png)

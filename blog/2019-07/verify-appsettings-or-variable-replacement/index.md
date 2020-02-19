@@ -8,6 +8,7 @@ metaImage: blogimage-verifyvariables.png
 published: 2019-07-22
 tags:
  - Engineering
+ - Variables
 ---
 
 ## Introduction
@@ -91,7 +92,7 @@ foreach($appSetting in $configManager.AppSettings.Settings)
 This version of the code will ignore any settings defined in the `$settingsToIgnore` array.  This way you ignore everything you don't care about, but catch anything new that might have been added.
 
 ## Substitute Variables in Files
-Another common pain point when dealing with variables is the Substitute Variables in Files feature.  When using the Substitute Variables in Files feature, Octopus Deploy will only replace variable placeholders in files if it has a matching variable in the collection. If there wasn't a matching variable in the collection for a placeholder in a file, Octopus Deploy does not warn you.  As you can imagine, this can be quite problematic. 
+Another common pain point when dealing with variables is the Substitute Variables in Files feature.  When using the Substitute Variables in Files feature, Octopus Deploy will only replace variable placeholders in files if it has a matching variable in the collection. If there wasn't a matching variable in the collection for a placeholder in a file, Octopus Deploy does not warn you.  As you can imagine, this can be quite problematic.
 
 Variable replacement occurs during the Deployment phase, so we're unable to use the Pre-deployment component in this case.  The good news is that the Deployment custom script executes just after Pre-deployment but before the step processes so we can still fail the deployment before the Deploy to IIS step swaps to the newly created folder (note, if you're using Custom Installation Directory, this may not work as expected).  Just like before, we'll expand the Custom Deployment Scripts section of the Deploy to IIS step and paste the following code in the Deployment script window:
 
@@ -99,13 +100,13 @@ Variable replacement occurs during the Deployment phase, so we're unable to use 
 function CheckSubstitutions($file)
 {
     Write-Output "Verifying file $file"
-   
+
     # Check to make sure file exists
     if ((Test-Path -Path "$file" -PathType leaf) -eq $true)
     {       
         # Read file
         $stringData = Get-Content -Path "$file" -Raw
-        
+
         # Find placeholders
         $placeholders = [regex]::Matches($stringData, "(#{.*?})")
 
@@ -149,7 +150,7 @@ foreach ($file in $fileList)
             CheckSubstitutions($childFile)
         }
     }
-    else 
+    else
     {
         CheckSubstitutions($($basePath + $file))
     }

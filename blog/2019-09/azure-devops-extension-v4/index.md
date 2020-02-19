@@ -8,13 +8,14 @@ metaImage: blogimage-azureintegration.png
 bannerImage: blogimage-azureintegration.png
 tags:
  - Product
+ - Azure
 ---
 
 ![Illustration showing Azure DevOps and Octopus Deploy work great together](blogimage-azureintegration.png)
 
 Octopus complements the Azure DevOps suite of services and we recently shipped an update to our [Octopus Deploy integration for Azure DevOps](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks) to make the integration even better. It’s very common for teams to use Azure Pipelines to build their apps and use Octopus to deploy them. This approach takes advantage of the strengths of both tools and together, they enable teams to get better end-to-end visibility into their software pipelines from idea to production.
 
-This release brings our Azure DevOps extension to parity with our TeamCity and Bamboo plugins. We’ve added support for our build information and work item tracking, and this opens up some fantastic new scenarios: 
+This release brings our Azure DevOps extension to parity with our TeamCity and Bamboo plugins. We’ve added support for our build information and work item tracking, and this opens up some fantastic new scenarios:
 
 * **[See release details including new features and fixes](/blog/2019-09/azure-devops-extension-v4/index.md#see-release-details-including-new-features-and-fixes)**. Our work item tracking enables you to see which features, bug fixes, and updates an Octopus release contains.
 * **[See what’s new in production](/blog/2019-09/azure-devops-extension-v4/index.md#see-whats-new-in-production)**. Octopus can intelligently calculate what has changed since your last deployment. This functionality gives you the power to see ‘What’s New’ in production or any other environment.
@@ -36,7 +37,7 @@ NOTE: Octopus also supports [GitHub issues](https://octopus.com/docs/deployment-
 
 ![Octopus deployment with Azure DevOps work items](octopus-deployment-azure-devops-work-items.png "width=600")
 
-Figuring out what has changed since you last deployed to an environment can sometimes be a bit of guesswork. This is no longer the case as Octopus can intelligently determine which work items have changed since your last deployment. This feature gives you the power to see ‘What’s New’ in production or any other environment, and it rolls up the release notes and all relevant changes. 
+Figuring out what has changed since you last deployed to an environment can sometimes be a bit of guesswork. This is no longer the case as Octopus can intelligently determine which work items have changed since your last deployment. This feature gives you the power to see ‘What’s New’ in production or any other environment, and it rolls up the release notes and all relevant changes.
 
 This is useful to see at a glance what has changed during deployments and very handy when working on large projects and seeing the changes other teams are contributing.
 
@@ -52,7 +53,7 @@ Reading release notes in Octopus is handy but sharing them via email, Slack, or 
 
 ![Configure your Octopus Space in an Azure Pipelines build process](azure-devops-spaces-support.png "width=600")
 
-Our updated extension includes full support to retrieve all the [spaces](https://octopus.com/spaces) from your Octopus server, so it’s now easy to select the one for your team. 
+Our updated extension includes full support to retrieve all the [spaces](https://octopus.com/spaces) from your Octopus server, so it’s now easy to select the one for your team.
 
 ## How to install or update your Azure DevOps extension
 
