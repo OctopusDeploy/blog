@@ -8,6 +8,7 @@ metaImage: write-powershell-dsc-module.png
 published: 2019-10-23
 tags:
  - DevOps
+ - PowerShell
 ---
 
 ![Octopus learning how to write a custom PowerShell DSC Module](write-powershell-dsc-module.png)

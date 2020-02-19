@@ -8,6 +8,7 @@ metaImage: bootstrapping_netcore_dev_on_linux.png
 bannerImage: bootstrapping_netcore_dev_on_linux.png
 tags:
  - Engineering
+ - Linux
 ---
 
 ![Bootstrap a .NET Core development environment for Linux](bootstrapping_netcore_dev_on_linux.png)

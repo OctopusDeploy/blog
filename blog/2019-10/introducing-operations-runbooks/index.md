@@ -8,6 +8,7 @@ metaImage: operations-runbooks.png
 published: 2019-10-16
 tags:
  - Product
+ - Runbooks
 ---
 
 ![Illustration showing books running (i.e., Runbooks) through a server room](operations-runbooks.png)

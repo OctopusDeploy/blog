@@ -9,6 +9,7 @@ bannerImage: sql_server_docker_linux_container.png
 tags:
  - Engineering
  - Database Deployments
+ - Linux
 ---
 
 ![SQL Server database in a Linux-based Docker container on an iceberg with a Docker container ship in the background](sql_server_docker_linux_container.png)
@@ -18,7 +19,7 @@ My [previous article](/blog/2019-09/running-sql-server-developer-install-with-do
 - Much less overhead.
 - More features available.
 - More images are available.
-- More examples of containers in use. 
+- More examples of containers in use.
 
 SQL Server can run on Linux based containers.  In this article, I will go through what is necessary to get SQL Server up and running in a Linux-based container.
 
@@ -42,7 +43,7 @@ I want to store the databases in the folder `C:\DockerLinux\Volumes\SQLServer` f
 
 ## Configuring the SQL Server Developer container
 
-Just like before, I want to use this for actual development work. In the last article, I created a Docker Compose file to kick off the SQL Server. Rather than starting there, I want to do the same process as before. Methodically get SQL Server up and running in a Linux container. Taking a systematic approach will make it easier to troubleshoot when I hit that eventual brick wall. 
+Just like before, I want to use this for actual development work. In the last article, I created a Docker Compose file to kick off the SQL Server. Rather than starting there, I want to do the same process as before. Methodically get SQL Server up and running in a Linux container. Taking a systematic approach will make it easier to troubleshoot when I hit that eventual brick wall.
 
 1. Get the container up and running with no extra configuration.
 2. Connect to it via SSMS.
@@ -60,7 +61,7 @@ The Windows-based image for SQL Server took a long time to download. Not so with
 
 ![](download-sql-server-docker-image.png)
 
-The [documentation provided](https://hub.docker.com/_/microsoft-mssql-server) for the Linux-based container for SQL Server makes it easy to get the container up and running. Please make a note of the `--name` parameter being sent in. That parameter will make it easier later when we need to figure out how to connect to it. Along with naming the instance, I will set the port to the default SQL Server port, `1433`. 
+The [documentation provided](https://hub.docker.com/_/microsoft-mssql-server) for the Linux-based container for SQL Server makes it easy to get the container up and running. Please make a note of the `--name` parameter being sent in. That parameter will make it easier later when we need to figure out how to connect to it. Along with naming the instance, I will set the port to the default SQL Server port, `1433`.
 
 :::warning
 The environment variable names are case-sensitive, and sa_password will not work, it has to be SA_PASSWORD.
@@ -132,7 +133,7 @@ services:
  image: mcr.microsoft.com/mssql/server
  environment:
  - ACCEPT_EULA=Y
- - SA_PASSWORD=Password_01 
+ - SA_PASSWORD=Password_01
  ports:
  - '1433:1433'
  volumes:
@@ -154,6 +155,6 @@ If you don’t want to see the real-time logs, add the `-d` switch to `docker-co
 
 When I started writing this article, I thought I’d have to learn quite a bit about Linux. I mentally prepared myself for a few days of frustration as I learned some of the nuances of Linux. Imagine my surprise when all I needed to do was change to Linux containers, pull a different image, and change the path on the host. I spent more time writing this article than getting the container up and running. This is one of the few times where the learning curve was a lot lower than I expected.
 
-Now I have a choice when I need to run SQL Server locally. I can run it as a Windows Service, a Windows-based container, or a Linux-based container. It’s awesome to have a choice like that. 
+Now I have a choice when I need to run SQL Server locally. I can run it as a Windows Service, a Windows-based container, or a Linux-based container. It’s awesome to have a choice like that.
 
 Until next time, Happy Deployments!

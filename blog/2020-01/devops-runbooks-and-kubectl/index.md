@@ -8,6 +8,7 @@ metaImage: k8s-devops-runbook.png
 bannerImage: k8s-devops-runbook.png
 tags:
  - DevOps
+ - Runbooks
 ---
 
 ![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)

@@ -11,7 +11,7 @@ tags:
 ---
 
 <div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Depoloy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
+<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
 </div>
 
 Octopus Deploy has a large collection of useful steps (both included and community provided) that can be used to deploy packages to a variety of different destinations and via different methods.

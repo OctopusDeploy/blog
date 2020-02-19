@@ -8,6 +8,7 @@ metaImage: azure-script-extension.png
 bannerImage: azure-script-extension.png
 tags:
  - DevOps
+ - Azure
 ---
 
 ![Azure custom script extensions](azure-script-extension.png)

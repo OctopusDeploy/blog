@@ -8,6 +8,7 @@ metaImage: deploy-java-and-mysql.png
 published: 2020-01-22
 tags:
  - DevOps
+ - Java
 ---
 
 ![Deploying a Java web app with a MySQL backend with Octopus Deploy](deploy-java-and-mysql.png)

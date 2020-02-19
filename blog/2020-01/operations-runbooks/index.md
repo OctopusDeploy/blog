@@ -7,7 +7,8 @@ bannerImage: blogimage-runbookslaunch.png
 metaImage: blogimage-runbookslaunch.png
 published: 2020-01-27
 tags:
-- Product
+- DevOps
+- Runbooks
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Uc5TFqswJkM" frameborder="0" allowfullscreen></iframe>
