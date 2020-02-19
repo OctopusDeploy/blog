@@ -62,13 +62,4 @@ This post is the first in a series where I walk you through the process of setti
 
 ---
 
-Posts in the database deployment automation series:
-
-- **Why consider database deployment automation?**
-- [Database deployment automation approaches](/blog/2020-02/database-deployment-automation-approaches/index.md)
-- [Automated database deployments using state-based Redgate SQL change automation](blog/2020-02/automated-database-deployments-using-state-based-redgate-sql/index.md)
-- [Using ad-hoc scripts in your automated database deployment pipeline](/blog/2018-08/automated-database-deployments-adhoc-scripts.md)
-- [Deploy to Oracle Database using Octopus Deploy and Redgate](/blog/2018-10/oracle-database-using-redgate/index.md)
--  [Add post deployment scripts to Oracle database deployments using Octopus Deploy, Jenkins, and Redgate](/blog/2018-11/oracle-database-using-redgate-part-2/index.md)
-- [Using DbUp and workers to automate database deployments](/blog/2019-02/dbup-database-deployments/index.md)
-- [Automatic approvals in your automated database deployment process](/blog/2019-03/autoapprove-database-deployments/index.md)
+!include <database-deployment-automation-posts>
