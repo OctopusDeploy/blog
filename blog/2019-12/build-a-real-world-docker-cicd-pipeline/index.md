@@ -8,6 +8,7 @@ metaImage: docker-in-a-ci-cd-pipeline.png
 published: 2019-12-11
 tags:
  - DevOps
+ - Docker
 ---
 
 ![Build a real-world CI/CD Docker pipeline](docker-in-a-ci-cd-pipeline.png)

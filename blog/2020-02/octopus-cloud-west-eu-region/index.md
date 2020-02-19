@@ -8,9 +8,10 @@ metaImage: octopus-cloud-regions.png
 published: 2020-02-05
 tags:
 - Product
+- Octopus Cloud
 ---
 
-![](octopus-cloud-regions.png)
+![Octopus Cloud - new Western Europe region](octopus-cloud-regions.png)
 
 `tl;dr` Octopus Cloud is now available in the following regions:
 
@@ -25,7 +26,7 @@ In 2019, we [rearchitected](/blog/2019-10/octopus-cloud-1.0-reflections/index.md
 
 ## Migrating existing customers
 
-We're happy to migrate any existing customers to this new region. If you have a preference for where your instance is hosted, please contact us and we'll work with you to move to the new region. 
+We're happy to migrate any existing customers to this new region. If you have a preference for where your instance is hosted, please contact us and we'll work with you to move to the new region.
 
 ## Conclusion
 

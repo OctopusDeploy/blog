@@ -8,6 +8,7 @@ metaImage:
 bannerImage:
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 Most environments will initially treat their Kubernetes cluster as a tool to orchestrate containers and configure traffic between them. Kubernetes supports this use case very well by providing declarative descriptions of the desired container state and their connections.

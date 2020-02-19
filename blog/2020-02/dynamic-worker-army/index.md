@@ -8,6 +8,8 @@ metaImage: dynamic-workers.png
 published: 2020-02-17
 tags:
  - DevOps
+ - Workers
+ - Kubernetes
 ---
 
 ![Building a dynamic worker army with Terraform and AWS autoscaling groups](dynamic-workers.png)
@@ -16,7 +18,7 @@ The advent of Infrastructure as Code (IaC) has been a tremendous leap forward, e
 
 Cloud providers have embraced Infrastructure as Code, providing customized IaC implementations to provision and configure resources on their offerings.  Unfortunately, this means you have to learn multiple tools to work with the different providers; for example, Amazon Web Services (AWS) CloudFormation or Microsoft Azure Resource Manager (ARM) templates. HashiCorp created Terraform to solve this problem, a single tool to work with multiple providers.  
 
-In this post, I show you how to dynamically create workers for Octopus Deploy using Terraform and AWS autoscaling. 
+In this post, I show you how to dynamically create workers for Octopus Deploy using Terraform and AWS autoscaling.
 
 :::hint
 Workers in Octopus enable you to shift deployment work onto other machines running in pools. This can greatly reduce the work performed on your Octopus server, freeing it to execute more deployments more readily. Worker pools can improve scalability by enabling dedicated pools of machines that can be utilized by multiple projects and teams. Examples of this include utilizing workers with database deployments, deployments to cloud infrastructure like Azure, AWS and Kubernetes (K8s) etc.

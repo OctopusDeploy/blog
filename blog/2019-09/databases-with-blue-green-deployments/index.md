@@ -1,5 +1,5 @@
 ---
-title: Automated blue/green database deployments 
+title: Automated blue/green database deployments
 description: Learn some techniques for automating database deployments when using a blue/green deployment strategy.
 author: bob.walker@octopus.com
 visibility: public
@@ -7,8 +7,9 @@ metaImage: img-blog-database-deployments-blue-green.png
 bannerImage: img-blog-database-deployments-blue-green.png
 published: 2019-09-16
 tags:
- - Database Deployments
  - DevOps
+ - Database Deployments
+ - Deployment Patterns
 ---
 
 ![Illustration showing two database (one green and one blue) on a seesaw](img-blog-database-deployments-blue-green.png)
@@ -27,7 +28,7 @@ Blue-green deployments have two identical production environments, one is labele
 
 ![Blue/Green Deployments](blue-green-deployments.png)
 
-There are several advantages to this approach.  Rollbacks are just a matter of switching from `Blue` to `Green` or `Green` to `Blue`.  When switchovers occur, they are seamless because the code has already been running, and there is no need to wait for it to compile or warm-up.  Changes are verified in production without any customers hitting the code, which reduces the risk in the deployments.  If something doesn’t work, you don’t make the switch, and you can try again. 
+There are several advantages to this approach.  Rollbacks are just a matter of switching from `Blue` to `Green` or `Green` to `Blue`.  When switchovers occur, they are seamless because the code has already been running, and there is no need to wait for it to compile or warm-up.  Changes are verified in production without any customers hitting the code, which reduces the risk in the deployments.  If something doesn’t work, you don’t make the switch, and you can try again.
 
 It’s important to note that not all applications can take advantage of blue/green deployments.  It’s a combination of architecture, how stateful the app is, and the technology being used.  The more stateless and decoupled the application, the better the chance the blue/green deployment strategy is suitable. For instance, a .NET Core Web API with an Angular front-end is better suited for blue/green deployments than an ASP.NET WebForms application that requires sticky sessions from the load balancer and doesn't have a business logic or data layer.
 
@@ -38,7 +39,7 @@ This post covers a complex scenario using a [Single Page Application](https://en
 - In the UI, the fields `First Name` and `Last Name` are being combined into a single field called `Full Name`. Not all cultures use first and last names.
 - A new column called `CustomerFullName` will be added to the customer table.
 - The pre-existing `CustomerFirstName` and `CustomerLastName` columns are also on the customer table.  
-- `CustomerFullName` will be populated by combining `CustomerFirstName` and `CustomerLastName` when `CustomerFullName` is `Null`. 
+- `CustomerFullName` will be populated by combining `CustomerFirstName` and `CustomerLastName` when `CustomerFullName` is `Null`.
 - If data exists in `CustomerFirstName` and `CustomerLastName` and an API request is sent with only `CustomerFullName` then do not set those columns to `Null`.  In addition, do not try to split up `CustomerFullName` as that is very difficult and error-prone.
 
 Admittedly, this scenario is relatively complex.  Most database changes don’t combine two columns into one and try to backfill a new column, but if this scenario can be solved, the majority of other scenarios can too.  We’ll walk through each change, the questions to consider, recommendations for how to solve them, and a lot of different changes that must be completed for successful blue/green deployments.
@@ -69,7 +70,7 @@ A very simplified deployment process for that change could look like this:
 
 To accomplish the same changes with blue/green deployments requires a lot more planning.  Without blue/green deployments, the only worry is that someone might use the application before everything is deployed and verified.  If the user gets an error indicating a column is missing, no worries, they shouldn’t be in the system at that point anyway.  That is not the case with blue/green deployments.  Users will be in the application; they will be running on the `Green` servers, which means data is going to be manipulated and queried.  
 
-Here are some of the scenarios to consider when doing the same change with blue/green deployments: 
+Here are some of the scenarios to consider when doing the same change with blue/green deployments:
 
 - The application and database changes will be deployed to `Blue`, including the new column `CustomerFullName`.  Does the application use any stored procedures?  Specifically, around inserting/updating data into the customer table?  The code running on `Green` won’t know about any new parameters added to those stored procedures.
 - When the changes are deployed to `Blue`, there will be no data in the `CustomerFullName` column.  When should that column be backfilled?  Using the same backfill script created for a downtime deployment?  
@@ -100,7 +101,7 @@ This section walks through recommendations for table changes, stored procedure, 
 
 You should make non-destructive database changes when doing blue/green deployments.  In our scenario, that means making the `CustomerFullName` nullable when it is added.  Making a column non-nullable without a default value would be a destructive change.  Insert statements on `Green` would stop working because it doesn’t know about that new column.  That doesn’t mean the column should be made non-nullable with a default value; even an empty string.  Remember, a default value is a business rule.
 
-The other problem is that it takes quite a bit of time for most database servers (i.e., SQL Server or Oracle) to add a non-nullable column.  When a non-nullable column is added, the table definition is updated along with every record.  When a nullable column is added, only the table definition is updated.  If you must have a default value, then the script should add a column as nullable, update all the records, and then set the column to non-nullable. That script can be tuned to run surprisingly fast. 
+The other problem is that it takes quite a bit of time for most database servers (i.e., SQL Server or Oracle) to add a non-nullable column.  When a non-nullable column is added, the table definition is updated along with every record.  When a nullable column is added, only the table definition is updated.  If you must have a default value, then the script should add a column as nullable, update all the records, and then set the column to non-nullable. That script can be tuned to run surprisingly fast.
 
 Some other examples of destructive database changes include reusing an existing column or renaming an existing column.  With blue/green deployments that will fail because the code in `Green` will throw errors or show inaccurate data.   
 
@@ -145,7 +146,7 @@ Select CustomerFirstName,
 from dbo.Customer
 ```
 
-Create or update stored procedures is slightly different.  `Green` will be active while `Blue` is being verified.  `Green` has no concept of `CustomerFullName` which means it will call stored procedures without including that new column.  When `Blue` goes active, it will no longer be sending in `CustomerFirstName` and `CustomerLastName` fields to the stored procedures.  The stored procedures need to handle calls from either `Blue` or `Green`: 
+Create or update stored procedures is slightly different.  `Green` will be active while `Blue` is being verified.  `Green` has no concept of `CustomerFullName` which means it will call stored procedures without including that new column.  When `Blue` goes active, it will no longer be sending in `CustomerFirstName` and `CustomerLastName` fields to the stored procedures.  The stored procedures need to handle calls from either `Blue` or `Green`:
 
 ```SQL
 ALTER procedure [dbo].[usp_UpdateCustomer] (
@@ -194,7 +195,7 @@ I realize moving business logic out of the database is quite a change.  If you d
 
 As stated in the database changes section, business rules and business logic should exist in the code.  The scenario defined a couple of business rules which need to be placed into the code.  
 
-- `CustomerFullName` will be populated by combining `CustomerFirstName` and `CustomerLastName` when `CustomerFullName` is `Null`. 
+- `CustomerFullName` will be populated by combining `CustomerFirstName` and `CustomerLastName` when `CustomerFullName` is `Null`.
 - If data exists in `CustomerFirstName` and `CustomerLastName` and an API request is sent with only `CustomerFullName` then do not set those columns to `Null`.  In addition, do not try to split up `CustomerFullName` as that is very difficult and error-prone.
 
 The next section walks through the techniques for how to put those rules into code using C# as the example language.  
@@ -210,14 +211,14 @@ IsNull(CustomerFullName, CustomerFirstName + ' ' + CustomerLastName) as Customer
 One alternative option is to put that formatting rule in the model representing the customer table:
 
 ```C#
-public class CustomerModel 
+public class CustomerModel
 {
     private string _fullName;
 
     public int CustomerId {get; set;}
     public string FirstName {get; set;}
     public string LastName {get; set;}
-    public string FullName 
+    public string FullName
     {
         get
         {
@@ -248,7 +249,7 @@ public class CustomerModel
 }
 ```
 
-That works fine if the same model is used by all layers, the UI, business, and database.  That takes a great deal of discipline as the models and the database have to be a one-to-one match, and that often isn’t the case. 
+That works fine if the same model is used by all layers, the UI, business, and database.  That takes a great deal of discipline as the models and the database have to be a one-to-one match, and that often isn’t the case.
 
 Here’s an alternative to putting all the logic in the model:
 
@@ -276,12 +277,12 @@ public static class CustomerNameFormatter
         {
             return customer.FullName;
         }
-        
+
         return $"{customer.FirstName} {customer.LastName}";        
     }
 }
 
-public class CustomerFacade 
+public class CustomerFacade
 {
     private ICustomerDataAdapter _customerDataAdapter;
 
@@ -327,12 +328,12 @@ public static class CustomerNameFormatter
         {
             return customer.FullName;
         }
-        
+
         return $"{customer.FirstName} {customer.LastName}";        
     }
 }
 
-public class CustomerFacade 
+public class CustomerFacade
 {
     private ICustomerDataAdapter _customerDataAdapter;
 
@@ -379,7 +380,7 @@ public Interface ICustomerDataAdapter
     ICustomer GetCustomerById(int customerId);
 }
 
-public class CustomerFacade 
+public class CustomerFacade
 {
     private ICustomerDataAdapter _customerDataAdapter;
 
@@ -398,7 +399,7 @@ public class CustomerFacade
         _customerDataAdapter.UpdateCustomer(customer);
     }
 }
-``` 
+```
 
 ## Backfill the new column with data
 
@@ -416,7 +417,7 @@ You also have to consider:
 - What if users are updating the same record as the script and a deadlock occurs; is it okay if the script wins the deadlock, instead of the user update?
 - Depending on when the script runs, it may need to have guard clauses in place to prevent an accidental update.
 
-Also, most database deployment tools, Redgate, DBUp, RoundhousE, and SSDT don’t have a mechanism for running specific SQL scripts multiple times.  Without that built-in functionality, a hack needs to be put in place to support it. 
+Also, most database deployment tools, Redgate, DBUp, RoundhousE, and SSDT don’t have a mechanism for running specific SQL scripts multiple times.  Without that built-in functionality, a hack needs to be put in place to support it.
 
 The code has the formatting rules in place.  It has the necessary logic to handle a variety of scenarios.  It should hopefully have unit tests covering it.  This is what is verified by QA.  The backfill script should be written in PowerShell or Bash and invoke the API instead of updating the database directly.  It can query the database to find a list of customers and then use that list of customers to hit the API.  Logic can be added to the script to minimize the risk of both the script and user updating a record at the same time.  Maybe the user tied to a customer has a timezone preference, the script is run each hour via an automated process and only updates records when the user’s timezone is between 2 a.m. and 3 a.m.  
 
@@ -433,9 +434,9 @@ $sqlConnection.ConnectionString = $connectionString
 
 $command = $sqlConnection.CreateCommand()
 $command.CommandType = [System.Data.CommandType]'Text'
-$command.CommandText = "Select CustomerId 
-        from Customer 
-        where IsNull(CustomerFullName, '') = '' 
+$command.CommandText = "Select CustomerId
+        from Customer
+        where IsNull(CustomerFullName, '') = ''
             and (IsNull(CustomerFirstName, '') <> '' or IsNull(CustomerLastName, '') <>'')"            
 
 $sqlConnection.Open()
@@ -449,7 +450,7 @@ $sqlConnection.Close()
 $customerTable = $dataSet.Tables[0]
 
 foreach($customerRow in $customerTable)
-{ 
+{
     $customerId = $customerRow["CustomerId"]
 
     Write-Host "Getting customer $customerId"
@@ -498,7 +499,7 @@ This post covered a very complex scenario, the combination of two columns into o
 - **Renaming a table**: Don’t rename.  Follow the steps above to add a new column and delete the old columns.
 - **Moving a column to another table**: Very similar to adding a new column and removing the old column.  The only difference is where the column was added.
 - **Deleting a table**: Very similar to deleting a column.  Hopefully, that table isn’t used anymore, and all the data has been migrated to other tables.
-- **Adding a new view/stored procedure**: Very similar to adding a new column.  The updated code will use the new view/stored procedure; the old code will not use the view/stored procedure. 
+- **Adding a new view/stored procedure**: Very similar to adding a new column.  The updated code will use the new view/stored procedure; the old code will not use the view/stored procedure.
 - **Updating an existing view/stored procedure**: As long as columns aren’t removed from a view, this should be fine.  If columns are removed, then the process to delete columns from above should be followed.
 - **Removing a view/stored procedure**: Very similar process to removing columns.  Except there won’t be data, just references in code and potentially other stored procedures.
 

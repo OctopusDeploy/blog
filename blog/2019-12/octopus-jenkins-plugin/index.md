@@ -8,6 +8,7 @@ metaImage: jenkins-plugin.png
 bannerImage: jenkins-plugin.png
 tags:
  - Product
+ - Jenkins
 ---
 
 ![Octopus Deploy Jenkins plugin](jenkins-plugin.png)

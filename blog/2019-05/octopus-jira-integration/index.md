@@ -8,6 +8,7 @@ metaImage: blog_jira_atlassian_2019-02.png
 bannerImage: blog_jira_atlassian_2019-02.png
 tags:
  - Product
+ - Jira
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7wWLM0rzVQ4" frameborder="0" allowfullscreen></iframe>

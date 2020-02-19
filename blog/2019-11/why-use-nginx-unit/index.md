@@ -8,6 +8,7 @@ metaImage: nginx-unit.png
 bannerImage: nginx-unit.png
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![NGINX Unit web server](nginx-unit.png)
