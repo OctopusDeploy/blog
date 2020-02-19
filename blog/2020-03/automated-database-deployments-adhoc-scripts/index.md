@@ -255,13 +255,4 @@ Until next time, happy deployments!
 
 ---
 
-Posts in the automated database deployments series:
-
-- [Why consider database deployment automation](/blog/2020-02/why-consider-database-deployment-automation/index.md)
-- [Iteration Zero](/blog/2018-06/automated-database-deployments-iteration-zero.md)
-- [Automated database deployments using state-based Redgate SQL change automation](blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md)
-- **Using ad-hoc scripts in your automated database deployment pipeline**
-- [Deploy to Oracle Database using Octopus Deploy and Redgate](/blog/2018-10/oracle-database-using-redgate/index.md)
--  [Add post deployment scripts to Oracle database deployments using Octopus Deploy, Jenkins, and Redgate](/blog/2018-11/oracle-database-using-redgate-part-2/index.md)
-- [Using DbUp and workers to automate database deployments](/blog/2019-02/dbup-database-deployments/index.md)
-- [Automatic approvals in your automated database deployment process](/blog/2019-03/autoapprove-database-deployments/index.md)
+!include <database-deployment-automation-posts>
