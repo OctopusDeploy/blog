@@ -11,6 +11,8 @@ tags:
  - Database Deployments
 ---
 
+![Why consider database deployment automation?](blogimage-database-kickoff.png)
+
 This is the first post in a series about database deployment automation.
 
 For me, the database is the most nerve-racking part of any deployment.  Deploying code is far less stressful.  If something isn’t right, the code can be rolled back. By the time it reaches production, there should be zero surprises if it’s the same code that was tested in dev, QA, and pre-production.
