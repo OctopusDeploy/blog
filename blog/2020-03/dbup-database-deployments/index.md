@@ -11,23 +11,23 @@ tags:
  - Database Deployments
 ---
 
-One of the most exciting aspects of database deployments is the number of tools released in the last ten years.  Looking at my [previous posts](https://octopus.com/blog/tag/Database%20Deployments) on this topic, you can see I have a clear bias toward Redgate’s tooling, but I’m a [friend of Redgate](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) for a reason.  
+One of the most exciting aspects of database deployments in the last ten years is the number of tools that have been released.  Looking at my [previous posts](https://octopus.com/blog/tag/Database%20Deployments) on this topic, you can see I have a clear bias toward Redgate’s tooling, but I’m a [friend of Redgate](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) for a reason.  
 
-In this post, I’m going to use [DbUp](https://dbup.readthedocs.io/en/latest/).  DbUp is a free, open-source tool, which we use here at Octopus Deploy for our database deployments.  Anytime you install or upgrade Octopus Deploy, DbUp runs the scripts to update your database.  Our founder, Paul Stovell, wrote a [blog post](https://octopus.com/blog/howto/deploy-a-sql-database) back in 2012 on how to use DbUp to deploy to an SQL Server.  For the most part, that blog post still holds up today.
+In this post, I use [DbUp](https://dbup.readthedocs.io/en/latest/).  DbUp is a free, open-source tool, which we use here at Octopus Deploy for our database deployments.  Anytime you install or upgrade Octopus Deploy, DbUp runs the scripts to update your database.  Our founder, Paul Stovell, wrote a [blog post](https://octopus.com/blog/howto/deploy-a-sql-database) back in 2012 on how to use DbUp to deploy to an SQL Server.  For the most part, that blog post still holds up today.
 
-This post, is an update to that old post.  A lot of new features have been added to DbUp as well as Octopus Deploy, and I’m going to walk through some of those features and create a process to use it for database deployments.  It even includes a review step for a DBA to approve.
+This post is an update to that old post.  A lot of new features have been added to DbUp as well as Octopus Deploy, and I’m going to walk through some of those features and create a process to use it for database deployments.  It even includes a review step for a DBA to approve.
 
 !toc
 
 ## Changes to DbUp
 
-At its core, DbUp is a script runner.  Each change made to the database is done via a script:
+At its core, DbUp is a script runner.  Changes made to the database are done via a script:
 
 - Script001_AddTableA.sql
 - Script002_AddColumnTestToTableA.sql
 - Script003_AddColumnTestAgainToTableA.sql
 
-DbUp runs through a console application you write yourself.  You control which options to use, and you don’t need a lot of code:
+DbUp runs through a console application you write yourself, so you control which options to use, and you don’t need a lot of code:
 
 ```C
 static int Main(string[] args)
@@ -62,15 +62,15 @@ static int Main(string[] args)
 }
 ```
 
-You bundle those scripts and tell DbUp to run them.  It compares that list against a list stored in the destination database.  Any scripts not in that destination’s database list will be run.  The scripts are executed in alphabetical order.  The results of each script is displayed on the console.  Very simple to implement and understand.  
+You bundle those scripts and tell DbUp to run them.  It compares that list against a list stored in the destination database.  Any scripts not in that destination’s database list will be run.  The scripts are executed in alphabetical order, and the results of each script are displayed on the console.  Very simple to implement and understand.  
 
 ![](dbup-output.png)
 
-That works great when deploying to a development or test environment.  Many companies I talk to prefer their DBAs to approve scripts before going to production.  Maybe a staging or pre-production environment as well.  This approval process is essential, especially at the start.
+That works great when you’re deploying to a development or test environment.  Many companies I talk to prefer their DBAs to approve scripts before going to production.  Maybe a staging or pre-production environment as well.  This approval process is essential, especially when you first start deploying databases.
 
 ### HTML report
 
-Migration scripts are a double-edged sword, just like memory management in C++.  You have total control, which gives you great power.  However, it is also easy to mess up.  It all depends on the type of change being done and the SQL skills of the writer.  The trust of the DBAs will be low when inexperienced C# developers are writing these migration scripts.  Especially if you are just starting down the automated database deployment path.  
+Migration scripts are a double-edged sword, just like memory management in C++.  You have total control, which gives you great power. However, it’s also easy to mess up.  It all depends on the type of change being done and the SQL skills of the writer.  The DBA's trust in the process will be low when inexperienced C# developers are writing these migration scripts.
 
 Recently the functionality was added to DbUp to generate an HTML report.  It is an extension method where you give it the path of the report you want to generate.  That means this section goes from:
 
@@ -110,13 +110,13 @@ else
 }
 ```
 
-That code will generate a report containing all the scripts that are going to be run.
+That code will generate a report containing all the scripts that will be run.
 
 ![](db-htmlreport.png)
 
 ### Always run script and script grouping
 
-By default, DbUp will run a script once, and the majority of the time that is fine.  There are times when it would be nice to always run a script or set of scripts.  An example is a post-deployment script to refresh all the views.  Alternatively, a script to rebuild all the indexes and regenerate stats.  You don’t want to write a new script for each deployment.
+By default, DbUp will run a script once, and the majority of the time that’s fine, but there are times when it would be nice to always run a script or set of scripts.  An example is a post-deployment script to refresh all the views.  Alternatively, a script to rebuild all the indexes and regenerate stats.  You don’t want to write a new script for each deployment.
 
 Another feature recently added to DbUp is the ability to mark a group of scripts as `AlwaysRun` and provide a run group:
 
@@ -148,11 +148,11 @@ else
 
 ## Create the DbUp console application
 
-With these new features, we are going to put together a .NET Core DbUp console application to deploy to SQL Server.  Then we will put together a process in Octopus Deploy for it to run that console application.  
+With these new features, we are going to put together a .NET Core DbUp console application to deploy to SQL Server.  Then we will put together a process in Octopus Deploy to run that console application.  
 
-All the code below be found on [GitHub](https://github.com/OctopusSamples/DbUpSample).
+All the code below can be found in the [GitHub repo](https://github.com/OctopusSamples/DbUpSample).
 
-I chose .NET Core over .NET Framework because it could be built and run anywhere.  DbUp is a .NET Standard library.  DbUp will work just as great in a .NET Framework application.  
+I chose .NET Core over .NET Framework because it could be built and run anywhere.  DbUp is a .NET Standard library.  DbUp will work just as well in a .NET Framework application.  
 
 Let’s fire up our IDE of choice and create a .NET Core console application. I am using JetBrain’s Rider to build this console application.  I prefer it over Visual Studio.
 
@@ -170,9 +170,9 @@ The console application needs some scripts to deploy.  I’m going to add three 
 
 ![](rider-createfolderswithsamplescripts.png)
 
-I recommend you add a prefix, such as 001, 002, etc., to the start of your script file name.  DbUp runs the scripts in alphabetical order.  That prefix will help ensure scripts are run in the correct order.
+I recommend you add a prefix, such as 001, 002, etc., to the start of your script file name.  DbUp runs the scripts in alphabetical order, and that prefix helps ensure the scripts are run in the correct order.
 
-By default, .NET will not include those scripts files when the console application is built.  We want to include those script files as embedded resources.  Thankfully we can easily add a reference to those files by including this code in the `.csproj` file:
+By default, .NET will not include those scripts files when the console application is built, and we want to include those script files as embedded resources.  Thankfully, we can easily add a reference to those files by including this code in the `.csproj` file:
 
 ```XML
     <ItemGroup>
@@ -183,18 +183,18 @@ By default, .NET will not include those scripts files when the console applicati
 
 ```
 
-The entire file would then look like:
+The entire file looks like this:
 
 ![](rider-sampleprojectcsprojfile.png)
 
 ### Program.cs file
 
-The final step to get this application going is to add in the necessary code in the `Program.cs` to call DbUp.  The application will accept parameters from the command-line.  Octopus Deploy will be configured to send in those parameters.  The parameters we will create in this walkthrough are:
+The final step to get this application going is to add in the necessary code in the `Program.cs` to call DbUp.  The application accepts parameters from the command-line, and Octopus Deploy will be configured to send in the following parameters:
 
-- **ConnectionString**: No need to explain this one.  For this demo, we are sending this as a parameter instead of storing it in the config file.  You can use the config file and Octopus Deploy’s variable replacement in your code.  It’s up to you.
-- **PreviewReportPath**: The full path to save the preview report.  The full path parameter is optional.  When it is sent in we generate a preview HTML report for Octopus Deploy to turn into an artifact.  When it is not sent in the code will do the actual deployment.
+- **ConnectionString**: For this demo, we are sending this as a parameter instead of storing it in the config file.
+- **PreviewReportPath**: The full path to save the preview report.  The full path parameter is optional.  When it is sent in we generate a preview HTML report for Octopus Deploy to turn into an artifact.  When it is not sent in, the code will do the actual deployment.
 
-Let’s start by pulling the connection string from the command line argument:
+Let’s start by pulling the connection string from the command-line argument:
 
 ```C
 static void Main(string[] args)
@@ -260,7 +260,7 @@ else
 }
 ```
 
-When we put it all together it looks like this:
+When we put it all together, it looks like this:
 
 ```C
 using System;
@@ -336,7 +336,7 @@ Running the console application with the report parameter enabled generates the 
 
 Creating the scaffolding and writing the code for the program.cs file should only need to be done once.  With what we’ve set up, all you need to do is add files to the `PreDeployment`, `PostDeployment`, and `Deployment` folders.  
 
-There’s a temptation to delete old files.  DbUp doesn’t like it when you do that.  The idea behind DbUp is that it provides a history of all your database changes.  When you want to create a new database, for example, on a new developer’s machine, you just need to run this command-line application.  It will go through and run all the scripts to get the database up and running.  Deleting a file might end up removing a key sequence, such as creating a table, adding a critical column, or moving columns from one table to another.  There isn’t much of a performance hit having those extra files around.  DbUp will see they have run and exclude them from the run list.
+With this kind of setup, there’s a temptation to delete old files, but DbUp doesn’t like it when you do that.  The idea behind DbUp is that it provides a history of all your database changes.  When you want to create a new database on a new developer’s machine, for example, you just need to run this command-line application.  It will go through and run all the scripts to get the database up and running.  Deleting a file might end up removing a key sequence, such as creating a table, adding a critical column, or moving columns from one table to another.  There isn’t much of a performance hit to having those extra files around.  DbUp will see they have run and exclude them from the run list.
 
 You could move the older files into a new folder and add a new command-line argument to pick up those files.  
 
@@ -346,40 +346,40 @@ I’m going to assume you know how to build a .NET Core application and package 
 
 - Run the `dotnet publish` command on the project (don’t forget the output path).
 - Run `octo pack` to package the output path (or use the Octopus Deploy build server plugin).
-- Push the package to Octopus Deploy using `octo push` command (or use the Octopus Deploy build server plugin).
+- Push the package to Octopus Deploy using the `octo push` command (or use the Octopus Deploy build server plugin).
 
-To make your life easier, for this demo I have included version 1.0.0.1 of the sample application as a zip file in GitHub repo.  You can find that file in the root directory of the repo.  A quick upload and we now have a package ready to deploy:
+To make your life easier, for this demo, I have included version 1.0.0.1 of the sample application as a zip file in the root directory of the GitHub repo.  Upload the package to the Octopus built-in repository:
 
 ![](octopusdeploy-uploadedpackage.png)
 
 I subscribe to the theory that an Octopus Deploy project should be responsible for bootstrapping itself.  For database deployments, this means making sure the database exists before deployment and creating the necessary SQL Server users.
 
-Before getting to the process, we need to define some variables.  Because this is a demo for a blog post, I use the same database server for all environments:
+Before getting to the process, we need to define some variables.  Because this is a demo for a blog post, I'm using the same database server for all environments:
 
 ![](octopusdeploy-demovariables.png)
 
-To create the database and user, the process will use the community step templates I created for earlier blog posts.  Please see [the documentation](https://octopus.com/docs/deployment-process/steps/community-step-templates#adding-community-step-templates) on how to download and install those community step templates on your Octopus Server.
+To create the database and user, the process will use the community step templates I created for earlier blog posts.  Please see [the documentation](https://octopus.com/docs/deployment-process/steps/community-step-templates#adding-community-step-templates) for how to download and install those community step templates on your Octopus Server.
 
-Adding in the first step presents us with a decision.  Where to run the step.  Should it run on a target or a worker?  For right now, I am going to run this on a worker in the **Database Worker Pool** I picked using a single worker pool because I am using SQL Authentication.  I don’t have to worry about integrated security and unique service accounts per environment.  If I was using integrated security with unique service accounts per environment with this process, there are some additional setup to be done.  I will cover that later in the post.  For now, I want to make this as simple as possible:
+I'm running the first step on a worker in the **Database Worker Pool**. I picked using a single worker pool because I am using SQL Authentication.  I don’t have to worry about integrated security and unique service accounts per environment.  If I was using integrated security with unique service accounts per environment with this process, there is some additional setup to be done, but I will cover that later in the post.  For now, I want to make this as simple as possible:
 
 ![](octopusdeploy-createdatabasestep.png)
 
-We first want to put the scaffolding in place and create the database, the user, and assign the user database.  
+First, we want to put the scaffolding in place and create the database, the user, and assign the user database:
 
 ![](octopusdeploy-initialdatabasedeployscaffolding.png)
 
 The next set of steps will deploy the database changes from DbUp.  If you recall [my previous Redgate article](https://octopus.com/blog/automated-database-deployments-redgate-sql-change-automation-state-based), this was done in four steps:
 
-1. Download the Package
-2. Run Redgate Create Database Release
-3. DBA Approve Deployment
-4. Run Redgate Deploy Database Release
+1. Download the Package.
+2. Run Redgate Create Database Release.
+3. DBA Approve Deployment.
+4. Run Redgate Deploy Database Release.
 
-I have a couple of problems with that process.  Namely, the download package step is designed to extract the package and leave it on the Tentacle.  By default, it will leave it there forever.  Unless [retention policies](https://octopus.com/docs/administration/retention-policies) are configured.  My problem with that is after the deployment is complete there is no need to keep that extracted package on the tentacle.  The SQL scripts have been run, and now they are just taking up space.  Also, that process has steps 2 and 4 referencing step 1.  It feels like a lot of extra work.
+I have a couple of problems with that process.  Namely, the download package step is designed to extract the package and leave it on the Tentacle.  By default, it will leave it there forever unless [retention policies](https://octopus.com/docs/administration/retention-policies) are configured.  After the deployment is complete, there’s no need to keep that extracted package on the Tentacle.  The SQL scripts have been run, and now they are just taking up space.  Also, that process has steps 2 and 4 referencing step 1.  It feels like a lot of extra work.
 
-If you are using Octopus Deploy 2018.8 or higher the good news is we can now reference packages from the **Run a Script** step.  The package will be downloaded and extracted.  Once the step is complete, it will delete the extracted package.  Aside from cleaning up unneeded content, using package references in the **Run a Script** step lends itself nicely to running the deployment on workers.  Workers assume each step is isolated from one another, this way a different worker can do the work per step.
+If you are using Octopus Deploy 2018.8 or higher, the good news is we can now reference packages from the **Run a Script** step.  The package will be downloaded and extracted, and after the step has completed, it will delete the extracted package.  Aside from cleaning up unneeded content, using package references in the **Run a Script** step lends itself nicely to running the deployment on workers, which assumes each step is isolated. This also means different workers can do the work per step.
 
-The first step in the deployment piece of this process will generate the HTML report and upload it as an artifact to Octopus Deploy.  Let’s start by adding a package reference to the step by clicking on the **Add** button:
+The first step in the deployment piece of this process generates the HTML report and uploads it as an artifact to Octopus Deploy. Add a package reference to the step by clicking the **Add** button:
 
 ![](octopusdeploy-addpackagereference.png)
 
@@ -389,7 +389,7 @@ When the modal window appears, choose the package to extract:
 
 Now we can add a script to handle the deployment.  Running .NET Core console apps is a little different than running .NET Framework Console apps.
 
-It all depends on the various switches you set when building and publishing the application.  You could create a self-contained console application (.exe) with all the necessary .dlls, but doing that does increase the size of the package.  Alternatively, you could set it to create a .dll only with references to all the external dependencies.  In the example package, I opted to create a self-contained package, but exclude the .exe in the zip file.  This way you don’t have to worry about running a restore:
+It all depends on the switches you set when building and publishing the application.  You could create a self-contained console application (.exe) with all the necessary .dlls, but doing so increases the size of the package.  Alternatively, you could set it to create a .dll only, with references to all the external dependencies.  In the example package, I created a self-contained package, but I exclude the .exe in the zip file.  This way, you don’t have to worry about running a restore:
 
 ```PS
 # How you reference the extracted path
@@ -410,7 +410,7 @@ dotnet $dllToRun --ConnectionString="$connectionString" --PreviewReportPath="$re
 New-OctopusArtifact -Path "$generatedReport"
 ```
 
-The entire step will look like this when you are done:
+The entire step looks like this when you are done:
 
 ![](octopusdeploy-createdeltareport.png)
 
@@ -453,7 +453,7 @@ That is successful:
 
 ![](octopusdeploy-scriptconsolesuccess.png)
 
-Let’s try that release again.  Hindsight being what it is I could’ve told it to retry the release, but I decided to create a new one:
+Let’s try that release again.  Hindsight being what it is, I could’ve told it to retry the release, but I decided to create a new one:
 
 ![](octopusdeploy-anotherrelease.png)
 
@@ -467,7 +467,7 @@ If we take a look at the database, we see the items were created as expected:
 
 ## Integrated security and workers
 
-In this demo, I used SQL Authentication.  However, many of you are using integrated security.  For an additional layer of security, each environment has its own Active Directory service account.  That makes complete sense.  I recommend that approach.  
+In this demo, I used SQL Authentication.  However, many of you are using integrated security.  For an additional layer of security, each environment has its own Active Directory service account.  That makes complete sense, and I recommend that approach.  
 
 How can you accomplish this with the current generation of workers?  It is not as straight-forward as it should be (something we are hoping to address in workers v2).  I’ll walk you through the necessary steps to set it up.
 
@@ -475,15 +475,13 @@ To start, we need to create a dedicated worker pool for each environment.
 
 ![](octopusdeploy-environmentspecificworkerpools.png)
 
-Next, we need to create cloud region deployment targets.  Cloud region is a bit of misnomer.  It is a fancy way of saying “grouped deployment targets.”
+Next, we need to create cloud region deployment targets.  
 
-**Please note**: Cloud Region deployment targets do NOT count against your license.
-
-You will create a cloud region for each environment.  I created a new role called `DbWorker` for these cloud regions because I want a way to differentiate these new deployment targets:
+You need to create a cloud region for each environment.  I created a new role called `DbWorker` for these cloud regions because I want a way to differentiate these new deployment targets:
 
 ![](octopusdeploy-createcloudregion.png)
 
-When I am done, I ended up with four new cloud regions:
+When I am done, I have four new cloud regions:
 
 ![](octopusdeploy-environmentcloudregions.png)
 
