@@ -3,12 +3,14 @@ title: "Manually pushing build information to Octopus"
 description: "This post describes how to manually push build information to Octopus so you can see your commits and issues/work items along side your deployments."
 author: shawn.sesna@octopus.com
 visibility: private
-bannerImage: 
-metaImage: 
+bannerImage: octopus-build-information.png
+metaImage: octopus-build-information.png
 published: 2020-02-26
 tags:
 - Product
 ---
+
+![Manually pushing build information to Octopus](octopus-build-information.png)
 
 Octopus Deploy has done a fantastic job of integrating with popular build servers such as Azure DevOps, Jenkins, and TeamCity.  The available plugins allow for packaging artifacts, pushing the artifacts to Octopus, creating releases, and even initiating deployments!  Along with these great features is the ability to include release notes and commit information with the build, referred to as `build information`.  While this is cool, what about the other build technologies where there aren't plugins available such as CircleCI (rumor has it that there is an Orb in development) or where there isn't even a build server such as using GitHub as a feed?  There's an API for that!  Since Octopus Deploy is written API-first, we are able to utilize the API to programatically submit build information!
 
