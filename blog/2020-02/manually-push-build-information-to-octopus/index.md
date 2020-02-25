@@ -8,6 +8,7 @@ metaImage: octopus-build-information.png
 published: 2020-02-26
 tags:
 - Product
+- Continuous Integration
 ---
 
 ![Manually push build information to Octopus](octopus-build-information.png)
