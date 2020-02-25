@@ -58,7 +58,7 @@ This is the machine you will use to make the schema changes and check them into 
 
 ### Build server/Continuous Integration tool
 
-Both Octopus Deploy and Redgate have plug-ins for the major continous integration tools/build servers:
+Both Octopus Deploy and Redgate have plug-ins for the major build servers/continuous integration tools:
 
 - Jenkins:
     - [Octopus download](https://plugins.jenkins.io/octopusdeploy). 
