@@ -15,7 +15,7 @@ tags:
 
 My previous blog posts discussed why [you should consider automated database deployments](blog/2020-02/why-consider-database-deployment-automation/index.md) and [tips for getting started](blog/2020-02/database-deployment-automation-approaches/index.md).
 
-This article walks through setting up an database deployment automation pipeline using the [state-based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate’s SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool because it is easy to set up, integrates with SSMS, and I already had a demo setup.  I’m also [biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate’s tooling.
+This article walks through setting up a database deployment automation pipeline using the [state-based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate’s SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool because it is easy to set up, integrates with SSMS, and I already had a demo setup.  I’m also [biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate’s tooling.
 
 By the end of this article, you will have a working proof of concept you can demo.
 
