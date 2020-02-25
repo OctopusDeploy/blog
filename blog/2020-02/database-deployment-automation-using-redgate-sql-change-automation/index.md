@@ -88,7 +88,7 @@ Workers enable you to move deployment work onto other machines running in pools 
 See [our documentation](https://octopus.com/docs/infrastructure/workers) for more information.
 :::
 
-For security purposes, I recommend running the Tentacle/Worker as a specific user account.  This way you can make use of integrated security.  Here is [some documentation](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) on how to configure that.  Keep in mind that only works if you are using Active Directory.  If you are not using that, you can still use this process; you just need to use SQL Users instead.
+For security purposes, I recommend running the Tentacle/Worker as a specific user account.  This way you can make use of integrated security. You can configure [Active Directory](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) or use SQL Users instead.
 
 For the jump box, you need to install the following items:
 - SQL Change Automation PowerShell 3.0.
