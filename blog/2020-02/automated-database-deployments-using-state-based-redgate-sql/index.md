@@ -1,15 +1,17 @@
 ---
-title: Automated database deployments using state-based Redgate SQL Change Automation
+title: Database deployment automation using state-based Redgate SQL Change Automation
 description: Setting up automated database deployments with state-based Redgate SQL change automation.
 author: bob.walker@octopus.com
-visibility: public
-published: 2018-07-20
+visibility: private
+published: 2020-02-25
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![Database deployment automation using state-based Redgate SQL Change Automation](blogimage-redgate-database.png)
 
 My previous blog posts discussed why [you should consider automated database deployments](https://octopus.com/blog/automated-database-deployments-series-kick-off) and [tips for getting started](https://octopus.com/blog/automated-database-deployments-iteration-zero).
 
