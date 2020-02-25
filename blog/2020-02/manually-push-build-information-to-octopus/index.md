@@ -2,7 +2,7 @@
 title: "Manually pushing build information to Octopus"
 description: "This post describes how to manually push build information to Octopus so you can see your commits and issues/work items along side your deployments."
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 bannerImage: octopus-build-information.png
 metaImage: octopus-build-information.png
 published: 2020-02-26
