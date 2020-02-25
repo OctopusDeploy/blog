@@ -1,5 +1,5 @@
 ---
-title: "Manually pushing build information to Octopus"
+title: "Manually push build information to Octopus"
 description: "This post describes how to manually push build information to Octopus so you can see your commits and issues/work items alongside your deployments."
 author: shawn.sesna@octopus.com
 visibility: public
@@ -10,15 +10,15 @@ tags:
 - Product
 ---
 
-![Manually pushing build information to Octopus](octopus-build-information.png)
+![Manually push build information to Octopus](octopus-build-information.png)
 
-Octopus Deploy integrates with popular build servers such as Azure DevOps, Jenkins, and TeamCity, and the available plugins make it easy to package artifacts and push those artifacts to Octopus, create releases, and initiate deployments.  You can also include release notes and commit information with the build, referred to as `build information`. 
+Octopus Deploy integrates with popular build servers such as Azure DevOps, Jenkins, and TeamCity, and the available plugins make it easy to package artifacts and push those artifacts to Octopus, create releases, and initiate deployments.  You can also include release notes and commit information with the build, referred to as `build information`.
 
-Unfortunately, there aren't plugins for every type of build technology, but because Octopus is built API-first, we can use the API to submit build information programmatically.
+Unfortunately, there aren’t plugins for every type of build technology, but because Octopus is built API-first, we can use the API to submit build information programmatically.
 
 ## GitHub
 
-Let's use GitHub as an example of using the API to submit build information when there isn't a build server in the mix.  My [`xCertificatePermission`](https://github.com/twerthi/xCertificatePermission) repo has a release created with a version of 1.0.0.  Since there wasn't a build server involved in creating this release, there isn't a plugin for me to use to push the build information from GitHub to Octopus Deploy for this release.
+Let’s use GitHub as an example of using the API to submit build information when there isn’t a build server in the mix.  My [`xCertificatePermission`](https://github.com/twerthi/xCertificatePermission) repo has a release created with a version of 1.0.0.  Since there wasn’t a build server involved in creating this release, there isn’t a plugin for me to use to push the build information from GitHub to Octopus Deploy for this release.
 
 ### Use the API
 
@@ -68,20 +68,20 @@ As previously mentioned, Octopus Deploy is written API-first, so I can use the `
 Unfortunately, both of these resources do not paint a complete picture as to how to set up the payload for the API call.
 
 ### Example JSON
-What's missing from the examples is the `OctopusBuildInformation` hash table that encapsulates some of the other properties for the payload.  For my `xCertificatePermission` example, here's what the payload looks like:
+What’s missing from the examples is the `OctopusBuildInformation` hash table that encapsulates some of the other properties for the payload.  For my `xCertificatePermission` example, here’s what the payload looks like:
 
 ```PS
-$jsonBody = @{ 
+$jsonBody = @{
     PackageId = "twerthi/xCertificatePermission"
     Version = "1.0.0"
-    OctopusBuildInformation = 
+    OctopusBuildInformation =
         @{
             BuildEnvironment = "Jenkins"
             VcsCommitNumber = "2350881a389517288b31432d469c5c4199a1fba9"
             VcsType = "Git"
             VcsRoot = "https://github.com/twerthi/xCertificatePermission.git"
         }
-    
+
 
    } | ConvertTo-Json -Depth 10
 ```
