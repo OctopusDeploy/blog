@@ -2,7 +2,7 @@
 title: Database deployment automation using state-based Redgate SQL Change Automation
 description: Setting up automated database deployments with state-based Redgate SQL change automation.
 author: bob.walker@octopus.com
-visibility: private
+visibility: public
 published: 2020-02-25
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
@@ -13,9 +13,9 @@ tags:
 
 ![Database deployment automation using state-based Redgate SQL Change Automation](blogimage-redgate-database.png)
 
-My previous blog posts discussed why [you should consider automated database deployments](https://octopus.com/blog/automated-database-deployments-series-kick-off) and [tips for getting started](https://octopus.com/blog/automated-database-deployments-iteration-zero).
+My previous blog posts discussed why [you should consider automated database deployments](blog/2020-02/why-consider-database-deployment-automation/index.md) and [tips for getting started](blog/2020-02/database-deployment-automation-approaches/index.md).
 
-This article walks through setting up an automated database deployment pipeline using the [state-based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate’s SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool because it is easy to set up, integrates with SSMS, and I already had a demo setup.  I’m also [biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate’s tooling.
+This article walks through setting up a database deployment automation pipeline using the [state-based approach](https://www.red-gate.com/products/sql-development/sql-change-automation/approaches) for [Redgate’s SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/).  I picked this tool because it is easy to set up, integrates with SSMS, and I already had a demo setup.  I’m also [biased](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) towards Redgate’s tooling.
 
 By the end of this article, you will have a working proof of concept you can demo.
 
@@ -27,13 +27,13 @@ For this demo, you need a running SQL Server instance, an Octopus Deploy instanc
 
 ## Required tools
 
-You will need the following tools. The examples given use TeamCity and VSTS/TFS, but even if you’re using a different tool, the core concepts and UI for all the CI tools are very similar.  
+You will need the following tools. The examples given use TeamCity and VSTS/TFS, but even if you’re using a different tool, the core concepts and UI for all the CI tools are very similar.
 
 - Octopus Deploy:
     - [Free license for Octopus Cloud or Octopus Server](https://octopus.com/free)
 - Redgate SQL Tool-belt
     - [14-day free trial](https://www.red-gate.com/dynamic/products/sql-development/sql-toolbelt/download).  
-- CI Tool (pick one):
+- Build Server/Continuous Integration (CI) tool (pick one):
     - [Jenkins](https://jenkins.io/download).
     - [TeamCity](https://www.jetbrains.com/teamcity/download/).
     - [TFS](https://visualstudio.microsoft.com/tfs/).
@@ -49,22 +49,22 @@ You will need the following tools. The examples given use TeamCity and VSTS/TFS,
 
 If you run into issues installing any of these tools, please go to the vendor’s website for help.  If you need any help installing Octopus Deploy, please start with our [docs](https://octopus.com/docs/installation) or contact [support](mailto:support@octopus.com).
 
-### Developer machine
+### Developer workstation
 
 This is the machine you will use to make the schema changes and check them into source control.  When you install Redgate’s SQL Tool-belt, you will be prompt to install quite a bit of software.  You only need to install the following:
 - SQL Source Control.
 - SQL Prompt (it isn’t required, but it makes things much easier).
 - SSMS Integration Pack.
 
-### Build server
+### Build server/Continuous Integration tool
 
-Both Octopus Deploy and Redgate have plug-ins for the major build servers:
+Both Octopus Deploy and Redgate have plug-ins for the major build servers/continuous integration tools:
 
 - Jenkins:
-    - [Octopus download](https://download.octopusdeploy.com/octopus-tools/4.37.0/OctopusTools.4.37.0.zip). Please note, you can have Jenkins interact with Octopus by using octo.exe.  You can read more about that in our [documentation](https://octopus.com/docs/packaging-applications/build-servers/jenkins).
+    - [Octopus download](https://plugins.jenkins.io/octopusdeploy). 
     - [Redgate download](https://plugins.jenkins.io/redgate-sql-ci).
 - TeamCity:
-    - [Octopus download](https://download.octopusdeploy.com/octopus-teamcity/Octopus.TeamCity.zip).
+    - [Octopus download](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration).
     - [Redgate download](https://www.red-gate.com/dlmas/TeamCity-download).
 - VSTS/TFS:
     - [Octopus download](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks).
@@ -73,8 +73,22 @@ Both Octopus Deploy and Redgate have plug-ins for the major build servers:
     - [Octopus download](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview).
     - [Redgate download](https://marketplace.atlassian.com/apps/1213347/redgate-dlm-automation-for-bamboo?hosting=server&tab=overview).
 
-### Deployment target
-Installing an Octopus Tentacle on SQL Server is a big no-no.  The [documentation](https://octopus.com/docs/deployment-examples/sql-server-databases#SQLServerdatabases-Tentacles) goes into further details why.  Instead, we will install the Tentacle on a jump box that sits between Octopus Deploy and SQL Server.  For security purposes, I recommend running the Tentacle as a specific user account.  This way you can make use of integrated security.  Here is [some documentation](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) on how to configure that.  Keep in mind that only works if you are using Active Directory.  If you are not using that, you can still use this process; you just need to use SQL Users instead.
+### Deployment target or database worker
+Installing an Octopus Tentacle on SQL Server is a big no-no.  Our [documentation](https://octopus.com/docs/deployment-examples/sql-server-databases#SQLServerdatabases-Tentacles) goes into further details why.  
+
+The preferred solution is to configure a jump box that sits between Octopus Deploy and SQL Server. Octopus supports two options for this:
+* Deployment target
+* Database worker
+
+In this post, I'll add a deployment target but I wanted to mention workers as another good option. They're particularly useful for teams doing a lot of database deployments.
+
+:::hint
+Workers enable you to move deployment work onto other machines running in pools and database deployments are a common usecase for this. You can create a pool of dedicated workers that can be utilized for database deployments by multiple projects and teams. 
+
+See [our documentation](https://octopus.com/docs/infrastructure/workers) for more information.
+:::
+
+For security purposes, I recommend running the Tentacle/Worker as a specific user account.  This way you can make use of integrated security. You can configure [Active Directory](https://octopus.com/docs/infrastructure/windows-targets/running-tentacle-under-a-specific-user-account) or use SQL Users instead.
 
 For the jump box, you need to install the following items:
 - SQL Change Automation PowerShell 3.0.
@@ -210,7 +224,7 @@ The final step is creating and deploying the release. Provide the name of the pr
 
 ![](teamcity-create-database-release.png)
 
-## The CI/CD pipeline in action
+## See the CI/CD pipeline in action
 Now it’s time to see all of this in action.  For this demo, I create a new database, *RandomQuotes_BlogPost_Dev*:
 
 ![](octopus-first-database-release-variables.png)
@@ -239,9 +253,9 @@ Going back to SSMS and we can now see the database and the tables have been crea
 
 ![](database-successful-deployment-ssms.png)
 
-## Changing the schema
+## Changing the database schema
 
-That works with an existing project, but let’s make a small change and test the process. There is a bit more setup involved with this:
+That works with an existing project, but let’s make a small database schema change and test the process. There is a bit more setup involved with this:
 
 1. Clone your forked repo to your local machine.
 2. Open up SSMS and create a random quotes database on your local machine or dev.
@@ -263,11 +277,11 @@ Now we can commit that change to source control:
 
 ![](ssms-sample-commit.png)
 
-Assuming the CI/CD build is set to fire on commit, you should see that new sproc appear in dev.
+Assuming the CI/CD pipeline is set to fire on commit, you should see that new sproc appear in dev.
 
 ## Conclusion
 
-Automating database deployments does require a bit of prep-work, but the payoff is well worth the effort.  The auditing alone is worth it.  With this tool, I can now see who made a change, when a change was made, and when that change went into production.  In the past, that was kept in another location with a 50/50 shot of it being updated.
+Database deployment automation does require a bit of prep-work, but the payoff is well worth the effort.  The auditing alone is worth it.  With this tool, I can now see who made a change, when a change was made, and when that change went into production.  In the past, that was kept in another location with a 50/50 shot of it being updated.
 
 As you start on this journey, my recommendation is to add the manual verification step to all environments until trust has been established.  This will ensure you don’t accidentally check in a change that blows away half the team’s database changes.  
 
