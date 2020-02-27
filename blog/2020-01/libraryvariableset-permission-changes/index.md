@@ -96,11 +96,7 @@ You can also run this [LinqPad](https://www.linqpad.net/) [script in our API rep
 
 ### How will this migration work?
 
-If you are familiar with Octopus data migrations, this one is a little different because it needs to operate while Octopus is running.
-
-To achieve this, it will run as a task in every space you have configured. This task will report what changes it made so it can be reviewed and acted on if need be.
-
-![Example LVS Migration Task](blogimage-lvs-migration-task.png)
+This migration will take place during the Octopus server start up. If you would like to see what has changed, please review the [server log file](https://octopus.com/docs/support/log-files).
 
 
 ## Breaking Change
