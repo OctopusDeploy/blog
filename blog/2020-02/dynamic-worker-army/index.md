@@ -598,7 +598,7 @@ Under Conditions, have this step only execute in the `Spinup` environment:
 That’s it for the Apply a Terraform template step.
 
 ##### Terraform Destroy template
-To help conserve costs, we can tear down the resources we’ve created when we know they will not be used, such as the end of the work day.  In this demonstration, we’ve chosen to do this as part of our deployment, however, we could easily implement this as a scheduled [Runbook](https://www.octopus.com/docs/operations-runbooks/).
+To help conserve costs, we can tear down the resources we’ve created when we know they will not be used, such as the end of the work day.  In this demonstration, we’ve chosen to do this as part of our deployment, however, we could easily implement this as a scheduled [runbook](https://www.octopus.com/docs/operations-runbooks/).
 
 Click **ADD STEP**, choose the Terraform category, then choose Destroy Terraform resources:
 

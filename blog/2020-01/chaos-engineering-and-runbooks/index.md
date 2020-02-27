@@ -36,7 +36,7 @@ Proving that a system can tolerate the failure of individual components is the e
 
 Until recently, running any kind of automated process in Octopus meant creating a deployment. It was possible to hack the idea of a deployment to implement management tasks, but it was awkward.
 
-With runbooks, Octopus now has first-class support for running management tasks in parallel to deployments. Runbooks have access to all the existing environments, variables, targets, steps, security, auditing, and reporting, but without being tied to the concept of a deployment or a lifecycle.
+With Octopus Runbooks, Octopus now has first-class support for running management tasks in parallel to deployments. Runbooks have access to all the existing environments, variables, targets, steps, security, auditing, and reporting, but without being tied to the concept of a deployment or a lifecycle.
 
 This makes runbooks ideal for running tools like the Chaos Engineering Toolkit. In this post, we’ll create a very simple chaos experiment as a runbook, and call out the advantages runbooks provide for this kind of task.
 
@@ -146,4 +146,4 @@ In the screenshot below, the chaos experiment is being run every ten minutes to 
 
 I was pleasantly surprised at how easy it was to get Chaos Toolkit up and running in Octopus. With a Kubernetes deployment already defined, scripting another tool against the existing targets and environments took very little effort.
 
-Beyond the initial ability to simply execute a tool, Octopus runbook automation provides cross-cutting functionality like logging, audits, security, user management, reporting, and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.
+Beyond the initial ability to simply execute a tool, Octopus Runbook automation provides cross-cutting functionality like logging, audits, security, user management, reporting, and dashboards out of the box as an established and proven foundation to scale processes like chaos engineering within an organization.
