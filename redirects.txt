@@ -2,3 +2,4 @@ from-file-path -> to-file-path   #DO NOT DELETE THIS LINE
 blog/2018-06/automated-database-deployments-series-kick-off.md -> blog/2020-02/why-consider-database-deployment-automation/index.md
 blog/2018-06/automated-database-deployments-iteration-zero.md -> blog/2020-02/database-deployment-automation-approaches/index.md
 blog/2018-07/automated-database-deployments-redgate-sql-change-automation-state-based.md -> blog/2020-02/database-deployment-automation-using-redgate-sql-change-automation/index.md
+blog/2018-08/automated-database-deployments-adhoc-scripts.md -> blog/2020-03/database-deployment-automation-adhoc-scripts/index.md
