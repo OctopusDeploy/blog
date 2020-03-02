@@ -3,7 +3,7 @@ title: Using ad-hoc scripts in your database deployment automation pipeline
 description: Using ad-hoc scripts in your database deployment automation pipeline.
 author: bob.walker@octopus.com
 visibility: public
-published: 2020-03-03
+published: 2020-03-04
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
