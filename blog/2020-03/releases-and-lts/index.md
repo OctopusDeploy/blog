@@ -20,6 +20,8 @@ We are confident that this will result in clearer messaging, even more stable re
 These changes take effect immediately. The 2020.1 release is currently being rolled-out to Octopus cloud instances, and will be made available for download very soon.
 This release will receive patches (`2020.1.1`, `2020.1.2`, etc) for the next 6 months. The next feature release (`2020.2`) will begin roll-out to cloud instances in April, and will be available for download in early May. 
 
+![Lifecycle of coming releases](release-gantt.png "width=500")
+
 The points above are the key messages to take from this post. But for those interested, we'll also provide a little historical context and hopefully a window into our thinking.    
 
 The way a software company makes new releases available is fundamental to the customer relationship. At Octopus, our delivery process has evolved, and while each decision was the rational one at the time, we weren't satisfied with the current state. 
