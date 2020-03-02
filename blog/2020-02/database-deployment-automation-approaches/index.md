@@ -11,6 +11,8 @@ tags:
  - Database Deployments
 ---
 
+![Database deployment automation approaches](blogimage-automate-database.png)
+
 Hopefully, after reading [Why consider database deployment automation?](/blog/2020-02/why-consider-database-deployment-automation/index.md) you’re ready to dive into database deployment automation. Depending on your company, automating your database deployments could be a large change, and it could cause friction.  Friction is the enemy of change; the higher the friction, the slower the adoption.  The goal of this post is to help remove that friction.  
 
 I demonstrate the principles with Microsoft SQL Server, but those same principles also apply to your database technology of choice.

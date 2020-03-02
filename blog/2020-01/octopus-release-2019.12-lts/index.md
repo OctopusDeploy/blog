@@ -36,7 +36,7 @@ Keep reading to learn about what’s in this release and any breaking changes.
 
 Our runbook platform was built to help teams automate routine maintenance and emergency operations tasks like infrastructure provisioning, database management, and website failover and restoration. 
 
-This LTS release includes support for operations runbooks, which includes:
+This LTS release includes support for Operations Runbooks, which includes:
 
 * A familiar configuration process for anyone who has configured a deployment process.
 * The ability to execute runbooks directly against infrastructure on-demand or on a schedule (nightly, weekdays, once a month, etc.) as per your team’s needs. 

@@ -2,14 +2,16 @@
 title: Alternative Kubernetes Dashboards
 description: A look at some alternative Kubernetes dashboards
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-03-02
+metaImage: alternate-kubernetes-dashboards.png
+bannerImage: alternate-kubernetes-dashboards.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![Alternative Kubernetes Dashboards](alternate-kubernetes-dashboards.png)
 
 In the beginning there was *the* [Kubernetes Dashboard](https://github.com/kubernetes/dashboard). This dashboard is the default option for anyone looking to monitor a Kubernetes cluster, but over the years a number of alternatives have been developed that are worth looking into.
 
