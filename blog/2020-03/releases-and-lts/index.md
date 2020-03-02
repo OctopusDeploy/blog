@@ -36,9 +36,10 @@ Perhaps the biggest downside of shipping self-hosted software is that if a relea
 For this reason, we are going to **roll-out new releases to cloud instances first**.  This allows us to manage the rate of the roll-out (deploying to a small number of instances initially), and to stabilize the release quickly.  Once we are confident in the stability of the release, we will deploy to all cloud instances and make it available for self-hosted customers to download. 
 
 We believe this will be an improvement for everyone.    
-Self-hosted users will be able to install the latest release with greater confidence, and not have to choose between features and stability.    
-Cloud users will get access to new features faster.  Previously we would announce new features when they became available for download.  At this point these features were not available on cloud instances, and we couldn't even say exactly when they would receive them.  From now on, when we announce a new feature it will be available to all Octopus customers.   
-And any issues that do happen to slip through our testing should impact a smaller number of customers for a shorter duration.
+
+- Self-hosted users will be able to install the latest release with greater confidence, and not have to choose between features and stability.    
+- Cloud users will get access to new features faster.  Previously we would announce new features when they became available for download.  At this point these features were not available on cloud instances, and we couldn't even say exactly when they would receive them.  From now on, when we announce a new feature it will be available to all Octopus customers.   
+- Any issues that do happen to slip through our testing should impact a smaller number of customers for a shorter duration.
 
 If you have any questions or concerns about these changes, please reach out to us at support@octopus.com
 
