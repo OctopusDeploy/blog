@@ -27,14 +27,14 @@ If you have never used vagrant before then it is easiest to think of it as a com
 
 ```
 vagrant init octopusdeploy/jenkins-java-k8s
-vagrant up –provider=virtualbox
+vagrant up --provider=virtualbox
 ```
 
 Or these two commands for Hyper-V users:
 
 ```
 vagrant init octopusdeploy/jenkins-java-k8s
-vagrant up –provider=hyperv
+vagrant up --provider=hyperv
 ```
 
 You can find the full range of virtual machines from the [Octopus TestDrive page](https://octopus.com/testdrive).
