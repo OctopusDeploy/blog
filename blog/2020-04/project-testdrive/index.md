@@ -17,7 +17,7 @@ If you have ever stared down the barrel of a proof-of-concept project and wonder
 
 However, it is incredibly satisfying reaching a point where you can see a deployment roll from a build initiated in a CI server to its destination via Octopus, because with that baseline functionality changes are quickly and iterative implemented.
 
-One of our goals at Octopus is to help customers reach that ah-hah! moment faster and with less frustration. To that end we have a project to publish several virtual machines to Vagrant Cloud that capture a variety of self-contained CI/CD workflows utilizing free and open source platforms like Jenkins, Docker, Kubernetes, Tomcat and NGINX. We’ve called this project [TestDrive](https://octopus.com/testdrive).
+One of our goals at Octopus is to help customers reach that *ah-hah!* moment faster and with less frustration. To that end we have a project to publish several virtual machines to Vagrant Cloud that capture a variety of self-contained CI/CD workflows utilizing free and open source platforms like Jenkins, Docker, Kubernetes, Tomcat and NGINX. We’ve called this project [TestDrive](https://octopus.com/testdrive).
 
 ## Getting the VMs
 
