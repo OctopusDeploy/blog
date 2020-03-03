@@ -3,10 +3,14 @@ title: Octopus releases and Long Term Support (LTS)
 description: We're iterating on the way we deliver releases of Octopus Deploy 
 author: michael.richardson@octopus.com 
 visibility: private
-published: 2020-03-12
+published: 2020-03-04
+metaImage: blogimage-ltsrelease.png
+bannerImage: blogimage-ltsrelease.png
 tags:
  - Product
 ---
+
+![Octopus releases and Long Term Support](blogimage-ltsrelease.png)
 
 We're iterating on the way we deliver releases of Octopus Deploy.  The highlights are: 
 
