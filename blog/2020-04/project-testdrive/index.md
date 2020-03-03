@@ -13,7 +13,7 @@ tags:
 
 Starting a new IT project is a daunting prospect. It often feels like you need to have a deep understanding of half a dozen tools and platforms, any one of which is sufficiently complex that you could build an entire career around it, let alone integrating them together in any meaningful way.
 
-If you have ever stared down the barrel of a proof-of-concept project and wondered where to even begin, you are not alone. I’ve heard more than one resigned sigh around the office from fellow developers (and myself) tasked with debugging a Kubernetes, NGINX, Wildfly or Tomcat deployment, and we work in an environment where such deployments are commonplace.
+If you have ever stared down the barrel of a proof-of-concept project and wondered where to even begin, you are not alone. I’ve heard more than one resigned sigh around the office from fellow developers (and myself) tasked with debugging a Kubernetes, NGINX, WildFly or Tomcat deployment, and we work in an environment where such deployments are commonplace.
 
 However, it is incredibly satisfying reaching a point where you can see a deployment roll from a build initiated in a CI server to its destination via Octopus, because with that baseline functionality changes are quickly and iterative implemented.
 
@@ -47,4 +47,4 @@ You now have a complete CI/CD pipeline to experiment with. By taking advantage o
 
 ## Conclusion
 
-If you have ever been curious as to what Octopus can do for you, or want to explore Octopus as part of a complete CI/CD pipeline, the TestDrive VMs are a quick and secure way to experiment with Octopus, Jenkins and other platforms like Kubernetes, NGINX, Tomcat and Wildfly.
+If you have ever been curious as to what Octopus can do for you, or want to explore Octopus as part of a complete CI/CD pipeline, the TestDrive VMs are a quick and secure way to experiment with Octopus, Jenkins and other platforms like Kubernetes, NGINX, Tomcat and WildFly.
