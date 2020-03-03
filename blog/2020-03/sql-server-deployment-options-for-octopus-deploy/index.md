@@ -5,7 +5,7 @@ author: Alex Yates
 visibility: private
 published: 3020-01-01
 metaImage: 
-bannerImage: DatabaseStepTemplateUsageData.JPG
+bannerImage: DatabaseStepTemplateUsageData.jpg
 tags:
  - Product
  - Database Deployments
@@ -38,7 +38,7 @@ It generally pays to use a popular tool. Widely used tools are typically better 
 
 To determine the most widely used tools, I started by examining the relative popularity of various [Octopus Deploy community step templates](https://library.octopus.com/listing), based on some feature usage data kindly provided by the team at Octopus:
 
-![Feature usage data in order of popularity descending: SSDT, Redgate, EF Migrations, Flyway, ApexSQL](DatabaseStepTemplateUsageData.JPG "width=500")
+![Feature usage data in order of popularity descending: SSDT, Redgate, EF Migrations, Flyway, ApexSQL](DatabaseStepTemplateUsageData.jpg "width=500")
 
 This data has limitations. It is entirely possible that people have triggered their database deployment tools through a PowerShell step for example, without using the step template from the library. There are also popular tools, like DbUp, that do not have step templates. That said, the relative popularity of the step templates above matches my real word experience.
 
@@ -165,6 +165,6 @@ None of the tools are perfect. They all have their challenges, but they also all
 
 Which tool is the best suited for your environment? Well, it depends. But here is a decision tree from one of [DLM Consultants’ 2-day Database DevOps training classes](http://dlmconsultants.com/dlm-workshops/) to prompt some discussion amongst your team:
 
-![A decision tree for SQL Server estates](DecisionTree.JPG "width=500")
+![A decision tree for SQL Server estates](DecisionTree.jpg "width=500")
 
 Have you had any positive or negative experiences using any of the tools above? Have you tried any other tools? If so, drop a comment below. I’d love to hear your thoughts.
