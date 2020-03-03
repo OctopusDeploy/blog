@@ -13,7 +13,7 @@ tags:
 
 ![Octopus worker deploying an ad-hoc SQL script illustration](blogimage-sqlscript.png)
 
-Automating database deployments provides a quantum leap in continuous delivery.  I cannot believe the number of problems solved by automating database deployments. Whether it’s adding a new table, modifying a stored procedure or creating an index. Whatever it is, I no longer have to determine the delta between environments.
+Automating database deployments provides a quantum leap in continuous delivery.  I cannot believe the number of problems solved by automating database deployments.  Whether it’s adding a new table, modifying a stored procedure or creating an index. Whatever it is, I no longer have to determine the delta between environments.
 
 Despite all the advantages, one common scenario keeps coming up; running ad-hoc queries on the database server.  The most common use case I’ve seen fixing data. Typically, the data gets in a strange state when a user does something unexpected.  In some cases, the root issue won’t be fixed (it doesn’t happen often enough), or the issue won’t be fixed for another week or so, but the data needs fixing right now.  
 
