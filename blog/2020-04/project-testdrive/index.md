@@ -41,7 +41,7 @@ You can find the full range of virtual machines from the [Octopus TestDrive page
 
 Once the virtual machine has booted you are logged into the Ubuntu desktop. Shortcuts to the installed applications have been added to the dock on the left. The screenshot below shows what the various icons open in the Kubernetes VM:
 
-!()[ubuntu-desktop.png "width=500"]
+![](ubuntu-desktop.png "width=500")
 
 You now have a complete CI/CD pipeline to experiment with. By taking advantage of your hypervisor’s snapshot functionality, you can ensure that you can quickly roll back any changes, making this virtual machine the ideal environment to explore Octopus.
 
