@@ -15,9 +15,9 @@ Starting a new IT project is a daunting prospect. It often feels like you need t
 
 If you have ever stared down the barrel of a proof-of-concept project and wondered where to even begin, you are not alone. I’ve heard more than one resigned sigh around the office from fellow developers (and myself) tasked with debugging a Kubernetes, NGINX, WildFly or Tomcat deployment, and we work in an environment where such deployments are commonplace.
 
-However, it is incredibly satisfying reaching a point where you can see a deployment roll from a build initiated in a CI server to its destination via Octopus, because with that baseline functionality changes are quickly and iterative implemented.
+However, it is incredibly satisfying reaching a point where you can see a deployment roll from a build initiated in a CI server to its destination via Octopus, because from that baseline functionality changes are quickly and iterative implemented.
 
-One of our goals at Octopus is to help customers reach that *ah-hah!* moment faster and with less frustration. To that end we have a project to publish several virtual machines to Vagrant Cloud that capture a variety of self-contained CI/CD workflows utilizing free and open source platforms like Jenkins, Docker, Kubernetes, Tomcat and NGINX. We’ve called this project [TestDrive](https://octopus.com/testdrive).
+One of our goals at Octopus is to help customers reach that *ah-hah!* moment faster and with less frustration. To that end we have a project to publish several virtual machines to [Vagrant Cloud](https://app.vagrantup.com/octopusdeploy) that capture a variety of self-contained CI/CD workflows utilizing free and open source platforms like Jenkins, Docker, Kubernetes, Tomcat and NGINX. We’ve called this project [TestDrive](https://octopus.com/testdrive).
 
 ## Getting the VMs
 
