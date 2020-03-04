@@ -129,7 +129,7 @@ Certainly, ORMs are popular in the .NET community, but approach with caution. An
 
 It’s a Java application, which might seem a little odd for a SQL Server deployment tool, but that’s because, unlike the other tools in this blog post, from the start Flyway was designed to be cross-platform. Flyway users could be running MySQL, Postgres, Oracle or any of the other of the twenty or so RDBMSs that Flyway supports. This makes it a popular choice for shops that support multiple relational databases.
 
-Using it is relatively simple compared to most similar tools: download, update the config file with your connection string, and drop your scripts into the SQL directory. Then open the command prompt, and enter `flyway migrate`.
+Using it is relatively simple compared to most similar tools: download, update the config file with your connection string, and drop your scripts into the `flyway-[version]/sql` directory. Then open the command prompt, and enter `flyway migrate`.
 
 That said, it does not have a comparison engine built in. That means it can’t generate your deployment scripts for you. You’ll need to create them by hand or with another database comparison tool.
 
