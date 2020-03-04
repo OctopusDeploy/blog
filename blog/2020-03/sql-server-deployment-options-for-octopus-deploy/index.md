@@ -131,7 +131,7 @@ It’s a Java application, which might seem a little odd for a SQL Server deploy
 
 Using it is relatively simple compared to most similar tools: download, update the config file with your connection string, and drop your scripts into the `flyway-[version]/sql` directory. Then open the command prompt, and enter `flyway migrate`.
 
-That said, it does not have a comparison engine built in. That means it can’t generate your deployment scripts for you. You’ll need to create them by hand or with another database comparison tool.
+That said, it does not have a comparison engine built-in. That means it can’t generate your deployment scripts for you. You’ll need to create them by hand or use a database comparison tool.
 
 Flyway is the Marie Kondo of database migration tools.
 
