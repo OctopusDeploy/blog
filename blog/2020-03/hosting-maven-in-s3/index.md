@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-Package repositories are a central piece of infrastructure in any CI/CD pipeline. Repeatable deployments require properly versioned artifacts shared between tools using standard APIs.
+Package repositories are a central requirements in any CI/CD pipeline, as repeatable deployments require properly versioned artifacts shared between tools using standard APIs.
 
 Although Maven is synonymous with Java, a Maven repository provides a very flexible solution for almost any kind of artifact. The repository will typically store JAR and WAR files, but can just as easily store ZIP or TAR.GZ files.
 
 Maven repositories are somewhat unique in that they have no server side service or API, but instead are made up of static files that are parsed by the client. This means a Maven repository can be hosted by almost any file system including HTTP, FTP, WebDAV or SVN.
 
-Maven exposes its file handling through an abstract interface called [Maven Wagon](https://maven.apache.org/wagon/). For this blog post we'll use a third party library called [S3StorageWagon](https://github.com/gkatzioura/CloudStorageMaven/tree/master/S3StorageWagon) to upload files to a Maven repository in AWS S3.
+Maven exposes this file handling through an abstract interface called [Maven Wagon](https://maven.apache.org/wagon/). For this blog post we'll use a third party library called [S3StorageWagon](https://github.com/gkatzioura/CloudStorageMaven/tree/master/S3StorageWagon) to upload files to a Maven repository in AWS S3.
 
 ## Compiling the code
 
@@ -30,9 +30,9 @@ mvn "-Dmaven.javadoc.skip=true" "-DskipTests" package dependency:copy-dependenci
 
 Inside the `CloudStorageMaven\S3StorageWagon\target` directory you'll find the file `s3-storage-wagon-2.3.jar`. Copy this to `${maven.home}/lib`.
 
-We also need a number of additional dependencies copied alongside the `s3-storage-wagon-2.3.jar`. The `dependency:copy-dependencies` goal appended to the build command placed all the dependencies into the `CloudStorageMaven\S3StorageWagon\dependencies` directory.
+We also need a number of additional dependencies copied alongside the `s3-storage-wagon-2.3.jar` file. The `dependency:copy-dependencies` goal appended to the build command placed all the dependencies into the `CloudStorageMaven/S3StorageWagon/dependencies` directory.
 
-In a perfect world we could just copy all the JAR files from `CloudStorageMaven\S3StorageWagon\dependencies` into `${maven.home}/lib`, but it turns out that doing so introduces some conflicts. Through a process of trail and error I found these JAR files need to be copied:
+In a perfect world we could just copy all the JAR files from `CloudStorageMaven/S3StorageWagon/dependencies` into `${maven.home}/lib`, but it turns out that doing so introduces some conflicts. Through a process of trail and error I found these JAR files need to be copied:
 
 * cloud-storage-core-2.3.jar
 * aws-java-sdk-core-1.11.595.jar
@@ -91,13 +91,13 @@ The next step is to define the repository in the Maven `settings.xml` file. This
 
 These are the important settings:
 
-* The URL defined as `<url>s3://octopus-maven-repo/snapshot</url>` has the `s3` protocol, which means the S3 wagon library is used for any transfers.
+* The URL defined as `<url>s3://octopus-maven-repo/snapshot</url>` includes the `s3` protocol, which means the S3 wagon library is used for any transfers.
 * The AWS credentials defined as `<username>AWS ACCESS KEY</username>` and `<password>AWS SECRET KEY</password>` are the IAM credentials of a user that has access to the S3 bucket. This user is created in later steps.
-* Defining the repository as public with the value `<publicRepository>true</publicRepository>` means anyone can download artifacts from the repo.
+* Defining the repository as public with the value `<publicRepository>true</publicRepository>` means anyone can download artifacts from the repo via HTTP.
 
 ## Creating the S3 bucket and user
 
-We need to create an S3 bucket called `octopus-maven-repo`, and create a user that can save files in it. The following IAM policy grants a IAM user full access to the `octopus-maven-repo` bucket:
+We need to create an S3 bucket called `octopus-maven-repo`, and create a user that can access files in it. The following IAM policy grants an IAM user full access to the `octopus-maven-repo` bucket:
 
 ```
 {
@@ -145,7 +145,7 @@ The resulting file is then saved in S3 as a versioned artifact:
 
 ![](s3.png "width=500")
 
-## Consuming the feed in OctopusArtifact
+## Consuming the feed in Octopus
 
 The nice thing about using S3 as a Maven repository is that clients can access it via HTTP. Because we configured our repository
 to be public, Maven clients (like Octopus) can access artifacts via the HTTP URL https://octopus-maven-repo.s3.amazonaws.com/snapshot.
