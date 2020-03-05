@@ -5,7 +5,7 @@ author: Alex Yates
 visibility: private
 published: 3020-01-01
 metaImage: 
-bannerImage: DatabaseStepTemplateUsageData.jpg
+bannerImage: database-step-template-usage-data.jpg
 tags:
  - Product
  - Database Deployments
