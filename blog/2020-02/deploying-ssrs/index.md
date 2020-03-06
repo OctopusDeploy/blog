@@ -96,6 +96,8 @@ If the username and password are for a domain account, you need to create an add
 - **Service Username (optional)**:  Username of the account to use when deploying.
 - **Service Password (optional)**:  Password for the user to use when deploying.
 - **Clear the report folder**: Check this box if you want to delete reports from the target folder prior to deployment.
+- **Use package folder structure**: Check this box if you want the step to follow the folder structure included in the package.  This setting ignores `Report folder`, `Report data source folder`, and `DataSet folder` settings.
+- **Root folder**: Used specifically with the `Use package folder structure` option, specifies where on the SSRS folder is the root for this project.
 
 ![](octopus-project-ssrs-step-complete.png)
 
