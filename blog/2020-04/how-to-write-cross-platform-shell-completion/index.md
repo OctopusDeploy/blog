@@ -15,7 +15,7 @@ Why should my command line experience be any different? I can't remember the exa
 
 The good news is that for a small up front investment, you can tune your command line experience to give these kinds of hints and automatically complete phrases and options for you.
 
-For example, `zsh` and `oh-my-zsh` make it really easy to find and install [completion plugins for many popular tools](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins). One of my absolute favorite plugins is zsh-autosuggester` which keeps track of your shell history to provide completion on entire statements.
+For example, `zsh` and `oh-my-zsh` make it really easy to find and install [completion plugins for many popular tools](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins). One of my absolute favorite plugins is `zsh-autosuggester` which keeps track of your shell history to provide completion on entire statements.
 
 ![animation of zsh-autosuggester completing an AWS CLI invocation](zsh-auto.gif)
 
