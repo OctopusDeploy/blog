@@ -46,7 +46,7 @@ publish
 
 They implemented this so that it can be used to provide the shell completion builtins the data they need to do their work. [As per their documentation](https://github.com/dotnet/cli/blob/master/Documentation/general/tab-completion.md?WT.mc_id=-blog-scottha#how-to-enable-it), in order for this to work you then need to go and edit your profile and sprinkle in some functions to hook it all up.
 
-### Compctl scripting
+### Using shell built-in completion commands
 
 Imagine we have a CLI called `acme` which has a subcommand called `suggest` that simply takes a search argument and spits out the suggestions. To hook this into `zsh` we would insert the following script into our profile `~/.zshrc`:
 
