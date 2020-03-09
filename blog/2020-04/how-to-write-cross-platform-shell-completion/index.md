@@ -36,7 +36,7 @@ Some example of these builtin commands are [compctl](https://linux.die.net/man/1
 For example, the `dotnet` CLI provides a little known subcommand called `complete` which allows you to type something like `dotnet command lis`. What is returned is a list of possible matches against the different options and subcommands that are available in dotnet: 
 
 ```bash
-$ dotnet command lis
+$ dotnet complete lis
 
 --list-runtimes
 --list-sdks
