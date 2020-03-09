@@ -1,15 +1,16 @@
-
 ---
 title: Introducing project TestDrive
 description: We are proud to announce the release of several VMs for customers to test CI/CD workflows with Jenkins, Octopus, and a variety of other platforms.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+published: 2020-03-09
+metaImage: octopus-testdrive.png
+bannerImage: octopus-testdrive.png
 tags:
  - Octopus
 ---
+
+![Introducing project TestDrive](octopus-testdrive.png)
 
 Starting a new IT project is a daunting prospect. It often feels like you need a deep understanding of half a dozen tools and platforms, any one of which is sufficiently complex that you could build an entire career around it, let alone integrating them together in any meaningful way.
 
