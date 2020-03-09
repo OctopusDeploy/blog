@@ -2,7 +2,7 @@
 title: Runbooks best practices
 description: This post provides a step by step template you can use to generate high quality runbooks in Octopus
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-03-09
 metaImage: runbooks-best-practices.png
 bannerImage: runbooks-best-practices.png

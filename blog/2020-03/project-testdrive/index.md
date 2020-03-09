@@ -2,12 +2,12 @@
 title: Introducing project TestDrive
 description: We are proud to announce the release of several VMs for customers to test CI/CD workflows with Jenkins, Octopus, and a variety of other platforms.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-03-09
 metaImage: octopus-testdrive.png
 bannerImage: octopus-testdrive.png
 tags:
- - Octopus
+ - Product
 ---
 
 ![Introducing project TestDrive](octopus-testdrive.png)
