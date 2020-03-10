@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-Declarative pipelines are a popular feature in Jenkins allowing build processes to be committed alongside the code being built. Jenkinsfiles are essentially code following the Groovy syntax. However, for developers used to relying on a local compile to ensure their code is valid, it can be frustrating to have to wait for Jenkins to attempt to execute their Jenkinsfile before finding syntax errors.
+Declarative pipelines are a popular feature in Jenkins allowing build processes to be committed alongside the code being built. Jenkinsfiles are essentially Groovy syntax, however, for developers used to relying on a local compile to ensure their code is valid, it can be frustrating to have to wait for Jenkins to attempt to execute their Jenkinsfile before finding syntax errors.
 
-Jenkins provides a solution by providing the ability to verify a Jenkinsfile before it is executed. This can be performed [manually from the command line](https://jenkins.io/doc/book/pipeline/development/#linter), but IDE plugins provide a more integrated experience.
+Jenkins provides a solution by providing the ability to verify a Jenkinsfile before it is executed. This can be performed [manually from the command line](https://jenkins.io/doc/book/pipeline/development/#linter), or with IDE plugins to provide a more integrated experience.
 
 In this blog post we'll look at the Jenkinsfile linting tools available in the Atom editor.
 
@@ -24,7 +24,7 @@ It is important to note here that we are not talking about SSH access to the OS 
 
 ![](jenkins-ssh.png "width=500")
 
-The next step is to add the public key for a user to allow them to authenticate via SSH. The key is created with the command:
+The next step is to add a user's public key to allow them to authenticate via SSH. The key is created with the command:
 
 ```
 ssh-keygen -t rsa -C "your_email@example.com"
@@ -52,7 +52,9 @@ The linter-ui-default package will ask to install a number of dependencies. Allo
 
 ![](linter.png "width=500")
 
-The linter package requires some configuration to allow it to make network connections to Jenkins. We'll make use of the `SSH then CLI` connection option:
+The linter package requires additional configuration to allow it to make network connections to Jenkins.
+
+We'll make use of the `SSH then CLI` connection option:
 
 ![](linter-options-1.png "width=500")
 
