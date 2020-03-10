@@ -34,12 +34,13 @@ Octopus includes support to detect if your OS is running dark mode and can switc
 
 Octopus aims to have world-class support for multiple platforms including Windows machines, Linux machines and popular cloud services. This release includes two changes to make Octopus feel more at home on Linux and macOS.
 
-
 ### Octopus CLI available via HomeBrew, APT and YUM 
 
-![]()TODO Screenshot (Grab the one from what's new)
+![](octopus-cli-xplat.png)
 
+The Octopus CLI, formerly known as `octo.exe`, has always been available via [Chocolately](https://chocolatey.org/packages/OctopusTools) which made it easy to install on Windows workstations. This same ease of installation is now available for macOS and Linux via HomeBrew, APT and YUM.
 
+[Try it](https://octopus.com/downloads/octopuscli)
 
 ### Azure and AWS deployments work on Windows and Linux machines
 
