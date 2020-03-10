@@ -91,7 +91,7 @@ microk8s.kubectl apply -f helloworldtaskrun.yml
 
 The canonical example of a Tekton build pipeline is to compile and push a Docker image, and Tekton supports this use case nicely. To demonstrate this functionality we'll build our sample application called RandomQuotes, which is available from [GitHub](https://github.com/OctopusSamples/RandomQuotes-Java).
 
-We start the pipeline with a pipeline resource. Pipeline resources provide a decoupled method of defining inputs into the build process.
+We start the pipeline with a pipeline resource. Pipeline resources provide a decoupled method of defining inputs for the build process.
 
 The first input we need is the Git repository that holds our code. Pipeline resources have a number of known types, and here we define a `git` Pipeline resource specifying the URL and branch holding our code:
 
@@ -109,7 +109,7 @@ spec:
       value: https://github.com/OctopusSamples/RandomQuotes-Java.git
 ```
 
-Next we need to define the Docker registry holding our compiled image. This is where the MicroK8S registry addon is useful, as it exposes a Docker registry at http://registry.container-registry.svc.cluster.local:5000.
+Next we define the Docker registry holding our compiled image. This is where the MicroK8S registry addon is useful, as it exposes a Docker registry at http://registry.container-registry.svc.cluster.local:5000.
 
 Here is the pipeline resource of type `image` defining the Docker image we'll create as `registry.container-registry.svc.cluster.local:5000/randomquotes`:
 
@@ -195,7 +195,7 @@ outputs:
       type: image
 ```
 
-Two additional inputs parameters are defined that define paths used for the Docker build process:
+Two additional input parameters are defined that define paths used for the Docker build process:
 
 ```YAML
 spec:
@@ -287,7 +287,7 @@ The idea of a headless build server is an intriguing one.
 
 By composing builds with Docker images, Tekton removes the overhead of maintaining a suite of specialized build agents. Every tool and language provides a supported Docker image these days, making it easier to keep up with the new normal of 6 month release cycles for major language versions.
 
-Kubernetes is also a natural platform to serve the elastic and short lived requirements of software builds. Why have 10 specialized agents sitting idle when you have 5 nodes scheduling builds between them?
+Kubernetes is also a natural platform to serve the elastic and short lived requirements of software builds. Why have 10 specialized agents sitting idle when you can have 5 nodes scheduling builds between them?
 
 However, I suspect Tekton itself is too low level for most engineering teams. The `tkn` CLI tool will be familiar to anyone who has used `kubectl` before, but it is difficult to understand the overall state of your builds from the terminal. Not to mention creating builds with `kubectl create -f taskrun.yml`  gets old quickly.
 
