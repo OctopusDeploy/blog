@@ -2,14 +2,16 @@
 title: Runbooks best practices
 description: This post provides a step by step template you can use to generate high quality runbooks in Octopus
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-03-09
+metaImage: runbooks-best-practices.png
+bannerImage: runbooks-best-practices.png
 tags:
  - Product
  - Runbooks
 ---
+
+![Runbooks best practices](runbooks-best-practices.png)
 
 Waterfall, Agile, or Extreme Programming. Whether you implement them or even agree with them, there is no denying that developers are always looking to optimize their workflows. And while the specific methodologies differ, they all boil down to maintaining a high velocity and high quality. To achieve that, you need automation.
 

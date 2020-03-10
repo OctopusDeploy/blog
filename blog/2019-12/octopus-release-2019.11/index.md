@@ -1,6 +1,6 @@
 ---
 title: "Octopus Deploy 2019.11: Operations Runbooks RTW"
-description: Octopus 2019.11 introduces our runbooks platform for automating operations tasks with support for scheduling, permissions, parameterized runs and more.
+description: Octopus 2019.11 introduces our Runbooks platform for automating operations tasks with support for scheduling, permissions, parameterized runs and more.
 author: rob.pearson@octopus.com
 visibility: public
 published: 2019-12-18
@@ -14,7 +14,7 @@ tags:
 
 **Octopus Deploy 2019.11** is now available, this release introduces our Operations Runbooks feature and other numerous small improvements driven by customer feedback. 
 
-We shipped [early access to Runbooks](/blog/2019-10/octopus-release-2019.10/index.md) in Octopus 2019.10 and we wrote about [why teams should care about them](/blog/2019-10/introducing-operations-runbooks/index.md). We’re excited to share that runbooks has reached release to web (RTW) status. This means we’ve removed the early access feature toggle and we’re proud to ship a complete solution to help teams automate their operations tasks.
+We shipped [early access to Runbooks](/blog/2019-10/octopus-release-2019.10/index.md) in Octopus 2019.10 and we wrote about [why teams should care about them](/blog/2019-10/introducing-operations-runbooks/index.md). We’re excited to share that Runbooks has reached release to web (RTW) status. This means we’ve removed the early access feature toggle and we’re proud to ship a complete solution to help teams automate their operations tasks.
 
 <h2>In this post</h2>
 
@@ -24,9 +24,9 @@ We shipped [early access to Runbooks](/blog/2019-10/octopus-release-2019.10/inde
 
 ![Operations Runbooks in an Octopus Project](operations-runbooks.gif "width=800")
 
-Our first-class runbook platform automates routine maintenance and emergency operations tasks, including infrastructure provisioning, database management, and website failover and restoration.
+Our first-class Operations Runbook platform automates routine maintenance and emergency operations tasks, including infrastructure provisioning, database management, and website failover and restoration.
 
-Our runbooks feature is now ready for production and includes the following:
+Our Operations Runbooks feature is now ready for production and includes the following:
 
 * A familiar configuration process for anyone who has configured a deployment process.
 * The ability to execute runbooks directly against infrastructure on-demand or on a schedule (nightly, weekdays, once a month, etc.) as per your team’s needs.
