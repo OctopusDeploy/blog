@@ -202,11 +202,13 @@ Which means elsewhere in the page you can link to it with this:
 
 ## Images
 
-Images can be added using the following markdown syntax
+Image filenames must in all lowercase.
+
+Images can be added using the following markdown syntax:
 
     ![Alt text](/docs/images/img.jpg "Optional title")
 
-With the minimal syntax being
+With the minimal syntax being:
 
     ![](/docs/images/img.jpg)
 
