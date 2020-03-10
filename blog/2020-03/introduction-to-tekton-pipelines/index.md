@@ -24,6 +24,12 @@ For this post I'm using [MicroK8S](https://microk8s.io/) to provide the Kubernet
 microk8s.enable registry
 ```
 
+We'll also need to enable DNS lookups from within the MicroK8S cluster. This is done by enabling the DNS addon:
+
+```
+microk8s.enable dns
+```
+
 ## Installing Tekton Pipelines
 
 Installation of Tekton Pipelines is simple, with a single `kubectl` (or `microk8s.kubectl` in our case) command:
@@ -256,3 +262,43 @@ spec:
         resourceRef:
           name: randomquotes-image
 ```
+
+## Interacting with builds
+
+Tekton itself does not provide any kind of dashboard or GUI for interacting with jobs. However there is a [CLI tool](https://github.com/tektoncd/cli) for managing Tekton jobs.
+
+The Tekton CLI tool assumes `kubectl` is configured, but MicroK8S maintains a separate tool called `microk8s.kubectl`. The easiest way to configure `kubectl` is with the following command which copies the MicroK8S configuration file to the standard location for `kubectl`:
+
+```
+sudo microk8s.kubectl config view --raw > $HOME/.kube/config
+```
+
+At this point we can get the status of the task with the command:
+
+```
+tkn taskrun logs build-docker-image-from-git-source-task-run
+```
+
+![](tekton-logs.png "width=500")
+
+## Is Tekton for you?
+
+The idea of a headless build server is an intriguing one.
+
+By composing builds with Docker images, Tekton removes the overhead of maintaining a suite of specialized build agents. Every tool and language provides a supported Docker image these days, making it easier to keep up with the new normal of 6 month release cycles for major language versions.
+
+Kubernetes is also a natural platform to serve the elastic and short lived requirements of software builds. Why have 10 specialized agents sitting idle when you have 5 nodes scheduling builds between them?
+
+However, I suspect Tekton itself is too low level for most engineering teams. The `tkn` CLI tool will be familiar to anyone who has used `kubectl` before, but it is difficult to understand the overall state of your builds from the terminal. Not to mention creating builds with `kubectl create -f taskrun.yml`  gets old quickly.
+
+There is a [dashboard](https://github.com/tektoncd/dashboard) available, but it is a bare bones user interface compared to existing CI tools.
+
+![](dashboard.png "width=500")
+
+That said, Tekton is a powerful foundation on which to build developer facing tools. [Jenkins X](https://jenkins-x.io/) and [Openshift Pipelines](https://www.openshift.com/learn/topics/pipelines) are two such platforms that leverage Tekton under the hood.
+
+## Conclusion
+
+Kubernetes solves many of the requirements for running applications like authentication, authorization, CLI tooling, resource management, health checks and more. The fact that a Kubernetes cluster can host a fully functional CI server with a single command is testament to just how flexible Kubernetes is.
+
+With projects like [Jenkins X](https://jenkins-x.io/) and [Openshift Pipelines](https://www.openshift.com/learn/topics/pipelines), Tekton is at the start of a journey into mainstream development workflows. But as a standalone project, Tekton is a little too close to the metal to be something most development teams could use, if only because few people would have the experience to support it.
