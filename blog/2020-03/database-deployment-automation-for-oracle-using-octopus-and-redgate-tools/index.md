@@ -3,13 +3,15 @@ title: Database deployment automation using Octopus and Redgate Deployment Suite
 description: Octopus Deploy supports many database tools.  Follow along as we get a CI/CD pipeline built to deploy a database change to an Oracle Database
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-10-16
+published: 2020-03-10
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![Database deployment automation using Octopus and Redgate Deployment Suite for Oracle](blogimage-redgate-database.png)
 
 Prior to joining Octopus Deploy, I worked on a .NET application with Oracle as its database for about three years.  I started working there a couple of years before Octopus Deploy version 1.0 was released.  Those were tough deployments.  Everything was manual, we could only deploy on Saturday mornings at 2.am, and the deployments took anywhere from two to four hours.
 
@@ -25,7 +27,7 @@ If you wish to follow along, you need to download and install the following tool
 
 - [Oracle 12g Personal Edition](https://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html)
 - [TeamCity](https://www.jetbrains.com/teamcity/download/)
-- [Redgate Oracle Toolset](https://www.red-gate.com/dynamic/products/oracle-development/deployment-suite-for-oracle/download)
+- [Redgate Deployment Suite for Oracle](https://www.red-gate.com/dynamic/products/oracle-development/deployment-suite-for-oracle/download)
 - [Octopus Deploy](https://octopus.com/downloads)
 
 In order to download anything from Oracle, you have to create an account. I opted for personal edition because, just like SQL Server Developer Edition, it is fully-featured but limited in what you can do with the license, and I’m only using it for this demo.  
