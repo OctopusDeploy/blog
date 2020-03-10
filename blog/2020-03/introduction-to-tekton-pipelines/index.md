@@ -67,7 +67,7 @@ The task resource is created in the Kubernetes cluster with the command:
 microk8s.kubectl apply -f helloworldtask.yml
 ```
 
-A task describes how work is to be done, but creating the task resource does not result in any action being taken. A taskrun resource references the task, and the creation of a taskrun resource triggers Tekton to execute the steps in the referenced task.
+A task describes how work is to be done, but creating the task resource does not result in any action being taken. A task run resource references the task, and the creation of a task run resource triggers Tekton to execute the steps in the referenced task.
 
 The YAML below shows our `helloworldtaskrun.yml` file:
 
@@ -81,7 +81,7 @@ spec:
     name: echo-hello-world
 ```
 
-The taskrun resource is created in the Kubernetes cluster with the command:
+The task run resource is created in the Kubernetes cluster with the command:
 
 ```
 microk8s.kubectl apply -f helloworldtaskrun.yml
@@ -91,9 +91,9 @@ microk8s.kubectl apply -f helloworldtaskrun.yml
 
 The canonical example of a Tekton build pipeline is to compile and push a Docker image, and Tekton supports this use case nicely. To demonstrate this functionality we'll build our sample application called RandomQuotes, which is available from [GitHub](https://github.com/OctopusSamples/RandomQuotes-Java).
 
-We start the pipeline with a PipelineResource. PipelineResources provide a decoupled method of defining inputs into the build process.
+We start the pipeline with a pipeline resource. Pipeline resources provide a decoupled method of defining inputs into the build process.
 
-The first input we need is the Git repository that holds our code. PipelineResources have a number of known types, and here we define a `git` PipelineResource specifying the URL and branch holding our code:
+The first input we need is the Git repository that holds our code. Pipeline resources have a number of known types, and here we define a `git` Pipeline resource specifying the URL and branch holding our code:
 
 ```YAML
 apiVersion: tekton.dev/v1alpha1
@@ -111,7 +111,7 @@ spec:
 
 Next we need to define the Docker registry holding our compiled image. This is where the MicroK8S registry addon is useful, as it exposes a Docker registry at http://registry.container-registry.svc.cluster.local:5000.
 
-Here is the PipelineResource of type `image` defining the Docker image we'll create as `registry.container-registry.svc.cluster.local:5000/randomquotes`:
+Here is the pipeline resource of type `image` defining the Docker image we'll create as `registry.container-registry.svc.cluster.local:5000/randomquotes`:
 
 ```YAML
 apiVersion: tekton.dev/v1alpha1
@@ -125,7 +125,7 @@ spec:
       value: registry.container-registry.svc.cluster.local:5000/randomquotes
 ```
 
-With the input source code and destination Docker image defined, we now create a Task to create the Docker image and push it to the repository.
+With the input source code and destination Docker image defined, we now create a task to create the Docker image and push it to the repository.
 
 Traditionally, building Docker images is performed by the Docker client directly on the host operating system. However, in Kubernetes everything is run inside Docker, which leads to the question: how do you run Docker inside Docker?
 
@@ -234,7 +234,7 @@ spec:
         - --context=$(inputs.params.pathToContext)
 ```
 
-Finally a TaskRun is used to bind the Task and PipelineResources together. This resource maps the Task `docker-source` input to the `randomquotes-git` PipelineResource and the `builtImage` output to the `randomquotes-image` PipelineResource.
+Finally a task run is used to bind the task and pipeline resources together. This resource maps the task `docker-source` input to the `randomquotes-git` pipeline resource and the `builtImage` output to the `randomquotes-image` pipeline resource.
 
 Creating this resource then triggers the build to take place:
 
