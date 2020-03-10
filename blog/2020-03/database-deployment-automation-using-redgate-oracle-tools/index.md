@@ -1,5 +1,5 @@
 ---
-title: Deploy to Oracle Database using Octopus Deploy and Redgate
+title: Database deployment automation using Octopus and Redgate Deployment Suite for Oracle
 description: Octopus Deploy supports many database tools.  Follow along as we get a CI/CD pipeline built to deploy a database change to an Oracle Database
 author: bob.walker@octopus.com
 visibility: public
