@@ -149,7 +149,7 @@ Flyway is the Marie Kondo of database migration tools.
 
 **Worst thing:** Java, no bells and whistles.
 
-##DbUp
+## DbUp
 
 **Type:** Migration-based
 
