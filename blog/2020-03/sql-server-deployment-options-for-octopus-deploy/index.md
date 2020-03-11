@@ -1,5 +1,5 @@
 ---
-title: SQL Server Deployment Options for Octopus Deploy
+title: SQL Server deployment options for Octopus Deploy
 description: A brief summary of the most popular SQL Server deployment tools used with Octopus Deploy
 author: alex.yates@dlmconsultants.com
 visibility: public
@@ -174,7 +174,7 @@ Have you had any positive or negative experiences using any of the tools above? 
 
 ---
 
-This is a guest post from Alex Yates from DLM Consultants. Alex has been helping organizations to apply DevOps principles to relational database development and deployment since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for Redgate, later for DLM Consultants, Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
+This is a guest post from Alex Yates of DLM Consultants. Alex has been helping organizations apply DevOps principles to relational database development and deployment since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for Redgate, later for DLM Consultants, Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
 
 A keen community member, he co-organizes Data Relay, is the founder of www.SpeakingMentors.com and has been recognized as a Microsoft Data Platform MVP since 2017.
 
