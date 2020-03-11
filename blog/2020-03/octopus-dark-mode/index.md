@@ -27,18 +27,24 @@ One of the things that sets Octopus Deploy apart from it's competitors is having
 
 ## Visual tour
 
-### Seamless toggle
+![](darkmode-toggle.gif "width=500")
 
-### Automatic Detection from OS
+Toggling dark mode on/off should be pretty seamless from the profile menu.
 
-### Code Editor
+![](darkmode-auto-detect.gif "width=500")
 
-### Diff Tool
+If your OS has dark mode, Octopus will automatically detect this and set your theme.
 
-# Accessibility and the future (i.e. if we have a high contrast mode or we’re planning to make it more accessible etc)
+![](darkmode-code-editor.gif "width=500")
 
-Developing a Dark Theme was a good opportunity for us to review how we approach Accessibility (a11y) at Octopus. We want Octopus to be a world class product and we think a world class product should cater for a11y. While developing the dark theme we started adding improvements. Although care was taken to make sure most colors meet AA standards, this isn't an accessibility theme.
+The Code editor in Octopus has been updated to look stunning in dark mode whether you use PowerShell, Bash, Python, F# or C#.
+
+![](darkmode-diff-tool.png "width=500")
+
+Diff Tool
+
+Developing a Dark Theme was a good opportunity for us to review how we approach Design at Octopus. We want Octopus to be a world class product and we think a world class product should be beautifully designed. While developing the dark theme we started adding improvements to cater to accessibility (a11y). Although care was taken to make sure most colors meet AA standards, this isn't an accessibility theme.
 
 # Conclusion
 
-We hope you love Dark Mode and if you have any feedback you'd like to give us please fill in the feedback form [typeform link]!
+We hope you love Dark Mode and if you have any feedback you'd like to give us please fill in the [feedback form](https://octopusdeploy.typeform.com/to/jVl7gN)!
