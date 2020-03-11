@@ -42,7 +42,7 @@ The bottom line is that while Microsoft has never officially said running intera
 
 The concept of a headless browser was popularized by PhantomJS. This allowed automated tests to be run in noninteractive environments.
 
-Since then both Chrome/Chromium and Firefox have added support for headless modes. With headless support in mainstream browsers, PhantomJS became redundant and is [no longer maintained](https://groups.google.com/forum/#!topic/phantomjs/9aI5d-LDuNE).
+Since then Chrome/Chromium and Firefox have added support for headless modes. With headless support in mainstream browsers, PhantomJS became redundant and is [no longer maintained](https://groups.google.com/forum/#!topic/phantomjs/9aI5d-LDuNE).
 
 Still, there are a good number of browsers like Internet Explorer and Edge do not (and probably never will) support headless mode. Nor does headless mode provide a solution for testing desktop application user interfaces, nor capturing screen recordings. So what options are available when you need a "real" desktop for tests?
 
