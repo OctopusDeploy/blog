@@ -1,16 +1,19 @@
 ---
-title: SQL Server Deployment Options for Octopus Deploy
+title: SQL Server deployment options for Octopus Deploy
 description: A brief summary of the most popular SQL Server deployment tools used with Octopus Deploy
-author: Alex Yates
-visibility: private
-published: 3020-01-01
-metaImage: 
-bannerImage: database-step-template-usage-data.jpg
+author: alex.yates@dlmconsultants.com
+visibility: public
+published: 2020-03-11
+metaImage: sql-server-database-deployment-automation-options.png
+bannerImage: sql-server-database-deployment-automation-options.png
 tags:
  - Product
  - Database Deployments
 
 ---
+
+![SQL Server Deployment Options for Octopus Deploy](sql-server-database-deployment-automation-options.png)
+
 
 If you have a SQL Server database and you use Octopus Deploy, you have several options with regards to database source control and deployment tooling. This blog post provides a basic overview of the most widely used tools to help you decide which option will best suit your team.
 
@@ -139,7 +142,7 @@ Flyway is the Marie Kondo of database migration tools.
 
 **Worst thing:** Java, no bells and whistles.
 
-##DbUp
+## DbUp
 
 **Type:** Migration-based
 
@@ -168,3 +171,12 @@ Which tool is the best suited for your environment? Well, it depends. But here i
 ![A decision tree for SQL Server estates](decision-tree.jpg "width=500")
 
 Have you had any positive or negative experiences using any of the tools above? Have you tried any other tools? If so, drop a comment below. I’d love to hear your thoughts.
+
+---
+
+This is a guest post from Alex Yates of DLM Consultants. Alex has been helping organizations apply DevOps principles to relational database development and deployment since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for Redgate, later for DLM Consultants, Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
+
+A keen community member, he co-organizes Data Relay, is the founder of www.SpeakingMentors.com and has been recognized as a Microsoft Data Platform MVP since 2017.
+
+[Learn more](http://dlmconsultants.com)
+
