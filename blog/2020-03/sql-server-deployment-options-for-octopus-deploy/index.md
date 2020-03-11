@@ -2,8 +2,8 @@
 title: SQL Server Deployment Options for Octopus Deploy
 description: A brief summary of the most popular SQL Server deployment tools used with Octopus Deploy
 author: alex.yates@dlmconsultants.com
-visibility: private
-published: 2020-03-12
+visibility: public
+published: 2020-03-11
 metaImage: sql-server-database-deployment-automation-options.png
 bannerImage: sql-server-database-deployment-automation-options.png
 tags:
