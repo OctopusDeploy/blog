@@ -41,10 +41,10 @@ The Code editor in Octopus has been updated to look stunning in dark mode whethe
 
 ![](darkmode-diff-tool.png "width=500")
 
-Diff Tool
+The Diff tool has been updated to look striking on the dark theme.
 
 Developing a Dark Theme was a good opportunity for us to review how we approach Design at Octopus. We want Octopus to be a world class product and we think a world class product should be beautifully designed. While developing the dark theme we started adding improvements to cater to accessibility (a11y). Although care was taken to make sure most colors meet AA standards, this isn't an accessibility theme.
 
 # Conclusion
 
-We hope you love Dark Mode and if you have any feedback you'd like to give us please fill in the [feedback form](https://octopusdeploy.typeform.com/to/jVl7gN)!
+Through Dark Mode we would like to bring Octopus into a new world, one where you can deploy day and night without straining your eyes! We hope you love Dark Mode and if you have any feedback you'd like to give us please fill in the [feedback form](https://octopusdeploy.typeform.com/to/jVl7gN)!
