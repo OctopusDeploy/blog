@@ -18,12 +18,20 @@ Intro - BLUF
 
 ## Top 3 Lessons Learned
 
-### 1.
+### 1. Platform specific differeneces. 
 
-### 2. 
+Context. 
 
-### 3. 
+Problem. 
+
+Solution.
+
+Examples. 
+
+### 2. Learning how to debug .NET Core on Linux and Docker
+
+### 3. Something something.
 
 ## Conclusion
 
-TODO
+Recap BLUF.
