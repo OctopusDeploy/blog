@@ -89,7 +89,7 @@ microk8s.kubectl apply -f helloworldtaskrun.yml
 
 ## Building a Docker image
 
-The canonical example of a Tekton build pipeline is to compile and push a Docker image, and Tekton supports this use case nicely. To demonstrate this functionality we'll build our sample application called RandomQuotes, which is available from [GitHub](https://github.com/OctopusSamples/RandomQuotes-Java).
+To move beyond this hello world example, we'll look at the canonical use case of a Tekton build pipeline which is to compile and push a Docker image. To demonstrate this functionality we'll build our sample application called RandomQuotes, which is available from [GitHub](https://github.com/OctopusSamples/RandomQuotes-Java).
 
 We start the pipeline with a pipeline resource. Pipeline resources provide a decoupled method of defining inputs for the build process.
 
