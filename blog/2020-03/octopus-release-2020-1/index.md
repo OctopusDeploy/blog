@@ -3,8 +3,8 @@ title: "Octopus 2020.1: Dark Mode and Better Linux Support"
 description: "Octopus 2020.1: Dark Mode and Better Linux Support ... TODO"
 author: rob.pearson@octopus.com
 visibility: private
-bannerImage: 
-metaImage: 
+bannerImage: release-2020.1.png
+metaImage: release-2020.1.png
 published: 2020-03-16
 tags:
 - Product
@@ -36,7 +36,7 @@ Octopus aims to have world-class support for multiple platforms including Window
 
 ### Octopus CLI available via HomeBrew, APT and YUM 
 
-![](octopus-cli-xplat.png)
+![command prompt or terminal graphic](octopus-cli-xplat.png)
 
 The Octopus CLI, formerly known as `octo.exe`, is a handy and powerful tool that enables teams to interact with Octopus from the command line. It's now available to install quickly and easily via the following platforms and package repostitories. 
 
@@ -51,7 +51,7 @@ The new additions are HomeBrew, APT and YUM so teams using macOS and Linux can t
 
 ### AWS and Azure deployments work on Windows and Linux machines
 
-TODO: Screenshot
+![AWS step templates in Octopus](aws-step-templates.png)
 
 Octopus includes numerous popular step templates to deploy to AWS and Azure cloud infrastructure. These steps can now be executed seamlessly on Windows and Linux targets/workers. Further, our Kubernetes steps can now authenticate with AWS and Azure accounts in Octopus on both Windows and Linux targets/workers as well. 
 
@@ -64,7 +64,7 @@ Learn more:
 
 ## Worker Pools can be scoped by environment or tenants
 
-TODO: Screenshot
+![Worker pool variables in Octopus](worker-pool-variables.png)
 
 Workers enable teams to move deployment work onto other machines running in pools. You can create a pool of dedicated workers that can be utilized for specific deployment work by multiple projects and teams. Common examples are database deployments or deployments to cloud services.
 
