@@ -36,7 +36,7 @@ Octopus aims to have world-class support for multiple platforms including Window
 
 ### Octopus CLI available via HomeBrew, APT and YUM 
 
-![command prompt or terminal graphic](octopus-cli-xplat.png)
+![command prompt or terminal graphic](octopus-cli-xplat.png "width=500")
 
 The Octopus CLI, formerly known as `octo.exe`, is a handy and powerful tool that enables teams to interact with Octopus from the command line. It's now available to install quickly and easily via the following platforms and package repostitories. 
 
@@ -51,7 +51,7 @@ The new additions are HomeBrew, APT and YUM so teams using macOS and Linux can t
 
 ### AWS and Azure deployments work on Windows and Linux machines
 
-![AWS step templates in Octopus](aws-step-templates.png)
+![AWS step templates in Octopus](aws-step-templates.png "width=500")
 
 Octopus includes numerous popular step templates to deploy to AWS and Azure cloud infrastructure. These steps can now be executed seamlessly on Windows and Linux targets/workers. Further, our Kubernetes steps can now authenticate with AWS and Azure accounts in Octopus on both Windows and Linux targets/workers as well. 
 
@@ -64,7 +64,7 @@ Learn more:
 
 ## Worker Pools can be scoped by environment or tenants
 
-![Worker pool variables in Octopus](worker-pool-variables.png)
+![Worker pool variables in Octopus](worker-pool-variables.png "width=500")
 
 Workers enable teams to move deployment work onto other machines running in pools. You can create a pool of dedicated workers that can be utilized for specific deployment work by multiple projects and teams. Common examples are database deployments or deployments to cloud services.
 
