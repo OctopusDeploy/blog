@@ -49,24 +49,18 @@ The new additions are HomeBrew, APT and YUM so teams using macOS and Linux can t
 
 [Check it out](https://octopus.com/downloads/octopuscli)
 
-### Azure and AWS deployments work on Windows and Linux machines
+### AWS and Azure deployments work on Windows and Linux machines
 
 TODO: Screenshot
 
-Octopus includes numerous popular step templates to deploy to Azure and AWS cloud infrastructure. These steps can now be executed on Windows and Linux deployment targets or workers 
+Octopus includes numerous popular step templates to deploy to AWS and Azure cloud infrastructure. These steps can now be executed seamlessly on Windows and Linux targets/workers. Further, our Kubernetes steps can now authenticate with AWS and Azure accounts in Octopus on both Windows and Linux targets/workers as well. 
 
-One final note. 
-
-Seamless Kubernetes authentication with Azure and AWS Accounts
+This is a small but significant improvement to ensure teams can execute their cloud deployments and runbooks on the the platform of their choice.
 
 Learn more: 
 * [Azure deployments](https://octopus.com/docs/deployment-examples/azure-deployments)
 * [AWS deployments](https://octopus.com/docs/deployment-examples/aws-deployments)
-* [Kubernetes](https://)
-
-Our Kubernetes deployment step templates now support Azure and AWS accounts. It is now possible to take advantage of your AWS and Azure accounts created in our infrastructure area 
-
-[Learn more](https://octopus.com/docs/infrastructure/deployment-targets/azure)
+* [Kubernetes](https://octopus.com/docs/deployment-examples/kubernetes-deployments)
 
 ## Worker Pools can be scoped by environment or tenants
 
@@ -82,10 +76,7 @@ This was a popular customer request and we're please to ship this update.
 
 ## Breaking Changes
 
-This release contains the following breaking changes:
-
-* one 
-* two 
+The only breaking change in this release is that we're raising the minimum requiremetns for running Octopus Server to Windows Server 2012 R2 and SQL Server 2017. This change was [announced](https://octopus.com/blog/raising-minimum-requirements-for-octopus-server) in November 2019.
 
 ## Upgrading
 
@@ -95,10 +86,10 @@ As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/admi
 
 ## What's coming in Octopus 2020.2?
 
-Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming next. We're about to start working on some incredible new features including deep git integration unlocking pipeline as code.
+Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming next. We're about to start work on some incredible new features including deep git integration unlocking pipeline as code.
 
 ## Conclusion
 
-Octopus 2020.1 includes Dark Mode, cross platform Azure and AWS step templates, Octopus CLI on HomeBrew, APT and YUM package repositories, and new worker pool variables. This is a great start to the year and we're working hard to keep delivering updates.
+Octopus 2020.1 includes Dark Mode, cross platform Azure and AWS step templates, Octopus CLI on HomeBrew, APT and YUM package repositories, and new worker pool variables. This is a great start to the year and we're working hard to keep shipping a great product.
 
 Feel free to leave us a comment, and let us know what you think! Happy deployments!
