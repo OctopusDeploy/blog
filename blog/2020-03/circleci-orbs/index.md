@@ -10,7 +10,7 @@ tags:
  - DevOps
 ---
 
-A growing trend among continuous integration and delivery platforms the abilitity to define pipelines as code, usually with YAML. One of the leaders in this area is CircleCI. In this post, we will look at a CircleCI configuration including how to use and author CircleCI `orbs`. An orb is a reusable chunk of YAML that can be used across your CircleCI pipelines. Instead of copying and pasting the same code across multiple files, you can reference the functionality from the orb and keep your pipeline DRY.
+A growing trend among continuous integration and delivery platforms is the ability to define pipelines as code, usually with YAML. One of the leaders in this area is CircleCI. In this post, we will look at a CircleCI configuration, including how to use and author CircleCI `orbs`. An orb is a reusable chunk of YAML that can be used across your CircleCI pipelines. Instead of copying and pasting the same code across multiple files, you can reference the functionality from the orb and keep your pipeline DRY.
 
 ## What is CircleCI
 
@@ -119,7 +119,7 @@ workflows:
 
 ## Reusable YAML and CircleCI Orbs
 
-Let's say that we have multiple projects that use Cake to build and the steps are pretty much the same. Wouldn't it be great for each project to be able to use a common process without defining the same YAML in each configuration?
+Let's say that we have multiple projects that use Cake to build, and the steps are pretty much the same. Wouldn't it be great for each project to be able to use a standard process without defining the same YAML in each configuration?
 
 That's where orbs come in! Orbs define reusable executors (the environment your job will run in), commands that can be used in jobs, and jobs that can be used in workflows.
 
@@ -127,7 +127,7 @@ That's where orbs come in! Orbs define reusable executors (the environment your 
 
 To use an orb, you'll import it with an `orbs` section in your configuration. In the section below, we've added the Slack orb by giving it the name `slack` and mapping it to the orb `circleci/slack@3.4.2`. `circleci` is the namespace that contains the orb. `slack` is the name of the orb. `3.4.2` is the version of the orb that we want to use.
 
-In our `build` job, we've added a new step `- slack\notify`. This is using the `notify` command from that orb. You can view the source of the command [here](https://circleci.com/orbs/registry/orb/circleci/slack#commands-notify). That's quite a bit of YAML that we didn't need to include in our configuration.
+In our `build` job, we've added a new step `- slack\notify`. This step is the `notify` command from that orb. You can view the source of the command [here](https://circleci.com/orbs/registry/orb/circleci/slack#commands-notify). That's quite a bit of YAML that we didn't need to include in our configuration.
 
 ```yaml
 version: 2.1
@@ -239,7 +239,7 @@ workflows:
 
 Now our workflow will use the `build` job from the Cake orb we defined in our configuration.
 
-## Publishing an Orb
+### Publishing an Orb
 
 To use this orb in multiple projects, we'll need to publish it. To do that, we'll need to install and configure the [CircleCI CLI](https://circleci.com/docs/2.0/orb-author-cli/#install-the-cli-for-the-first-time).
 
@@ -255,7 +255,7 @@ Then we create the orb in our namespace.
 circleci orb create octopus-samples/cake # replace with your values
 ```
 
-Now to get that inline orb published to CircleCI. We need to move our orb definition from our configuration into it's own yml file. We'll name it orb.yml.
+Now to get that inline orb published to CircleCI. We need to move our orb definition from our configuration into its own yml file. We'll name it orb.yml.
 
 ```yaml
 version: 2.1
@@ -426,6 +426,6 @@ Since our calls to octo/pack will follow the same format with different values f
 
 ## Conclusion
 
-CircleCI Orbs are a way to create reusuable commands or jobs for your YAML based pipelines. You can publish orbs to CircleCI to share across projects or with other organizations. You can also use inline orbs to aid in development or to cut down the noise in your own configurations.
+CircleCI Orbs are a way to create reusable commands or jobs for your YAML based pipelines. You can publish orbs to CircleCI to share across projects or with other organizations. You can also use inline orbs to aid in development or to cut down the noise in your own configurations.
 
 Check out [CircleCI Orbs](https://circleci.com/orbs/) for more information and the [experimental Octo CLI orb](https://circleci.com/orbs/registry/orb/octopus-samples/octo-exp) for details on how you can use CircleCI and Octopus together.
