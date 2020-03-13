@@ -10,15 +10,13 @@ tags:
  - DevOps
 ---
 
-YAML based build pipelines are increasing in popularity. They enable committing your build configuration into source control alongside your application code. This has many benefits such as using the same review process for your pipelines as you do for code, being able to view change history and revert to a previous version, etc.
-
-When working with YAML pipelines, you might need to use the same snippet of YAML multiple times in one pipeline or to share a snippet across multiple pipelines or projects. CircleCI solves this problem with an offering called orbs.
+A growing trend among continuous integration and delivery platforms the abilitity to define pipelines as code, usually with YAML. One of the leaders in this area is CircleCI. In this post, we will look at a CircleCI configuration including how to use and author CircleCI `orbs`. An orb is a reusable chunk of YAML that can be used across your CircleCI pipelines. Instead of copying and pasting the same code across multiple files, you can reference the functionality from the orb and keep your pipeline DRY.
 
 ## What is CircleCI
 
 CircleCI is a continuous integration platform that uses YAML based configurations to execute jobs on Docker containers or virtual machines. These jobs can be woven together into one or more workflows that will execute when you commit your code to source control.
 
-Here is an example CircleCI job.
+Below is an example CircleCI job named `build`.
 
 ```yaml
 jobs:
@@ -26,7 +24,7 @@ jobs:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.1.607-stretch
     environment:
-      PACKAGEVERSION: 1.3.<< pipeline.number >>
+      PACKAGE_VERSION: 1.3.<< pipeline.number >>
     steps:
       - checkout
       - run:
@@ -38,22 +36,66 @@ jobs:
           name: Build
           command: |
             export PATH="$PATH:$HOME/.dotnet/tools"
-            dotnet cake build.cake --target="Publish" --packageVersion="$PACKAGEVERSION"
+            dotnet cake build.cake --target="Publish" --packageVersion="$PACKAGE_VERSION"
       - persist_to_workspace:
           root: publish
           paths:
-            - OctopusSamples.OctoPetShop.Database
-            - OctopusSamples.OctoPetShop.Infrastructure
-            - OctopusSamples.OctoPetShop.ProductService
-            - OctopusSamples.OctoPetShop.ShoppingCartService
-            - OctopusSamples.OctoPetShop.Web
+            - "*"
 ```
 
-We define what docker image we want to execute our job on - `mcr.microsoft.com/dotnet/core/sdk:2.1.607-stretch`. Then we define an environment variable representing the package version we want to use during this job. It is based on the number of the pipeline that is currently running. Finally, we define our steps.
+Let's break this down piece by piece.
 
-This job will checkout our source code, install Cake on the container, use Cake to build our application, and then persist the published packages to a CircleCI workspace where they can be used by subsequent jobs in the workflow.
+First, we define which docker image to execute our job on.
 
-And here is an example workflow that uses this job.
+```yaml
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.1.607-stretch
+```
+
+We define an environment variable for our package version that includes the CircleCI pipeline number.
+
+```yaml
+    environment:
+      PACKAGE_VERSION: 1.3.<< pipeline.number >>
+```
+
+We define our steps. The first step checks out our source code.
+
+```yaml
+    steps:
+      - checkout
+```
+
+The second step installs Cake on the container executing the job.
+
+```yaml
+      - run:
+          name: Install Cake
+          command: |
+            export PATH="$PATH:$HOME/.dotnet/tools"
+            dotnet tool install -g Cake.Tool --version 0.35.0
+```
+
+The third step invokes cake to build our project.
+
+```yaml
+      - run:
+          name: Build
+          command: |
+            export PATH="$PATH:$HOME/.dotnet/tools"
+            dotnet cake build.cake --target="Publish" --packageVersion="$PACKAGE_VERSION"
+```
+
+The last step persists our published applications in the `publish` folder to a CircleCI workspace. Workspaces are used to share assets across multiple jobs.
+
+```yaml
+      - persist_to_workspace:
+          root: publish
+          paths:
+            - "*"
+```
+
+Let's take a look at a workflow that uses this job. When defining the workflow's jobs, we can set a job to depend on one or more other jobs. We've created a workflow named `build` that will run the jobs `build`, `package`, `push`, `create-release`, and `deploy-release` in that order.
 
 ```yaml
 workflows:
@@ -74,8 +116,6 @@ workflows:
           requires:
             - create-release
 ```
-
-When defining the workflow's jobs, we can set one job to require one or more other jobs to complete. Doing this, we've created a workflow named `build` that will run the jobs `build`, `package`, `push`, `create-release`, and `deploy-release` in that order.
 
 ## Reusable YAML and CircleCI Orbs
 
@@ -201,7 +241,7 @@ Now our workflow will use the `build` job from the Cake orb we defined in our co
 
 ## Publishing an Orb
 
-For our team (and others) to use this orb, we'll need to publish it. To do that, we'll need to install and configure the [CircleCI CLI](https://circleci.com/docs/2.0/orb-author-cli/#install-the-cli-for-the-first-time).
+To use this orb in multiple projects, we'll need to publish it. To do that, we'll need to install and configure the [CircleCI CLI](https://circleci.com/docs/2.0/orb-author-cli/#install-the-cli-for-the-first-time).
 
 Once that's done, we'll create a namespace for our organization.
 
@@ -276,7 +316,7 @@ orbs:
 
 ## Experimental Octo CLI Orb
 
-And speaking of published orbs, if you're using CircleCI and Octopus together, take a peek at our [experimental Octopus CLI orb](https://circleci.com/orbs/registry/orb/octopus-samples/octo-exp). With this orb, you can use a subset of commands from the Octo CLI to manage your packages, releases, and deployments.
+Speaking of published orbs, if you're using CircleCI and Octopus together, take a peek at our [experimental Octopus CLI orb](https://circleci.com/orbs/registry/orb/octopus-samples/octo-exp). With this orb, you can use a subset of commands from the Octo CLI to manage your packages, releases, and deployments.
 
 ```yaml
 orbs:
