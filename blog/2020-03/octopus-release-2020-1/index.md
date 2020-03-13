@@ -81,7 +81,7 @@ This update was a popular customer request, and we're pleased to ship it.
 This release includes two breaking changes. 
 
 1. **[Octopus Server minimum requirements](https://octopus.com/blog/raising-minimum-requirements-for-octopus-server)** - We are raising the minimum requirements for running Octopus Server to Windows Server 2012 R2 and SQL Server 2017.
-2. **[Library variable set permission changes](https://octopus.com/blog/libraryvariableset-permission-changes)** - There is a breaking change to library variable set permissions as the behaviour of LibraryVariableSetView and LibraryVariableSetEdit is now different. 
+2. **[Library variable set permission changes](https://octopus.com/blog/libraryvariableset-permission-changes)** - You can now scope variables stored inside library variable sets to environments and tenants, giving you fine-grain access control and more consistent permissions.
 
 ## Upgrading
 
