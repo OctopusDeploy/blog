@@ -45,7 +45,8 @@ Once installed, just dot source or restart your shell and you can complete all t
 ![animation of octo CLI using zsh tab completion](octo-complete.gif)
 
 ## How does tab completion work?
-`powershell`, `bash` and `zsh` alike, as well as many other shell environments provide 'built in' commands to accept suggestions from an external source - like a file, or another application. This means that you can [write them for any command line tool](https://www.cyberciti.biz/faq/add-bash-auto-completion-in-ubuntu-linux). These builtins all work in roughly the same way:
+
+At a high level most of your favorite shells provide 'built in' commands to accept suggestions from an external source - like a file, or another application. This means that you can [write them for any command line tool](https://www.cyberciti.biz/faq/add-bash-auto-completion-in-ubuntu-linux). These built-ins all work in roughly the same way:
 
 1. Register a command to invoke when the tab key is encountered
 2. Process the text input prior to the tab key
@@ -53,73 +54,86 @@ Once installed, just dot source or restart your shell and you can complete all t
 4. If there are multiple suggestions, display the choices to the user. Some shells even allow the user to choose one!
 5. If there is a single suggestion, use that
 
-Some example of these builtin commands are [compctl](https://linux.die.net/man/1/zshcompctl) (zsh), [complete and compgen](https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html) (bash), [Register-ArgumentCompleter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-argumentcompleter?view=powershell-7) (powershell & pwsh).
+Systemd has builtin completion support for `bash` and `zsh` but not for `pwsh`. So, lets make it happen! A small example is that the sub-command `systemctl status` takes a single service by name and shows you its status. 
 
-For example, the `dotnet` CLI provides a little known subcommand called `complete` which allows you to type something like `dotnet command lis`. What is returned is a list of possible matches against the different options and subcommands that are available in dotnet: 
+In `zsh` & `bash` I get tab completion over the possible services to show, so let's implement a similar thing in `pwsh`.
 
-```bash
-$ dotnet complete lis
-
---list-runtimes
---list-sdks
-list
-publish
-```
-
-They implemented this so that it can be used to provide the shell completion builtins the data they need to do their work. [As per their documentation](https://github.com/dotnet/cli/blob/master/Documentation/general/tab-completion.md?WT.mc_id=-blog-scottha#how-to-enable-it), in order for this to work you then need to go and edit your profile and sprinkle in some functions to hook it all up.
-
-### Using shell built-in completion commands
-
-Imagine we have a CLI called `acme` which has a subcommand called `suggest` that simply takes a search argument and spits out the suggestions. To hook this into `zsh` we would insert the following script into our profile `~/.zshrc`:
-
-```bash
-# ~/.zshrc
-
-_acme_zsh_complete() 
-{
-  local completions=("$(acme suggest "$words")")
-
-  reply=( "${(ps:\n:)completions}" )
-}
-
-compctl -K _acme_zsh_complete acme
-```
-
-The last line sets up a registration: when the command `acme` is used prior to a `tab` key hit, then execute the function called `_acme_zsh_complete` which is declared on the lines above.
-
-```bash
-compctl -K _acme_zsh_complete acme
-```
-
-The `_acme_zsh_complete` function handles passing the words used prior to the `tab` key to the `acme suggest` subcommand and capturing its newline delimited output into a local variable. This is then rendered as a space delimited string to a variable called `reply`. 
-
-```bash
-  local completions=("$(acme suggest "$words")")
-
-  reply=( "${(ps:\n:)completions}" )
-```
-
-> That last line there is really tricky. In zsh we can modify the formatting of parameters using `Parameter Expansion Flags` (see: http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion). In short, its using a couple of flags to turn a newline delimited string into an array which is then rendered out as a space delimited list.
-
-`compctl` knows about the variables `$words` and `$reply` and it uses the latter to render the list of suggestions to the user while they are still typing.
-
-The Powershell equivalent would work in a similar way. It might look something like this:
+We can get `pwsh` to use this list whenever the `tab` key is hit to provide hints to us with the following script:
 
 ```powershell
+# Register our script block against usages of systemctl
+Register-ArgumentCompleter -Native -CommandName systemctl -ScriptBlock {
+  # Declare the expected parameters for this feature
+  param($wordToComplete, $commandAst, $cursorPosition)
 
-# when `acme foo[tab] happens: run this script block
-Register-ArgumentCompleter -Native -CommandName acme -ScriptBlock {
+  # Split the incoming words into an array
+  $words = $commandAst.ToString() -split ' '
+
+  # The first word is our sub-command
+  $subCommand = $words[0]
+
+  # The last word is our search term
+  $searchTerm = $words[-1]
+
+    # if the status sub-command was chosen
+    if ( $words -eq 'status' ) {
+
+      # Find all enabled unit file names
+      $services = systemctl list-unit-files | grep enabled | cut -d' ' -f1
+
+      # Find some suggestions based on our search term
+      $suggestions = $services | select-string $searchTerm 
+
+      # Provide parameter name suggestions to pwsh
+      $suggestions | % {
+        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterName', $_)
+      }
+    }
+}
+```
+
+If we write this to `$PROFILE` and then 'dot source' it with `. $PROFILE` you'll see that you can now get completion over any enabled services.
+
+![demonstrating tab completion in pwsh for systemctl status](systemctl-pwsh.png)
+
+## What does Octopus CLI do to make this easy?
+
+The above example requires me to do work up front to handle suggestions. What if `systemctl` itself, having the best knowledge of its sub-commands, provide those completions instead? This is what tools like `dotnet`, `nuke` and `octo` do: they provide a subcommand of their own to handle the suggestions side of things. You can try this out with the latest version of Octopus CLI:
+
+```powershell
+octo complete list
+
+# returns subcommands starting with 'list'
+list-deployments
+list-environments
+list-latestdeployments
+list-machines
+list-projects
+list-releases
+list-tenants
+list-workerpools
+list-workers
+```
+
+This makes the registrations above much simpler. Now, they can look more like this:
+
+```powershell
+Register-ArgumentCompleter -Native -CommandName octo -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
-    acme suggest $commandAst.ToString() | % {
+
+    $parms = $commandAst.ToString().Split(' ') | select -skip 1
+
+    # throw everything at `octo complete` and let it figure things out
+    octo complete $parms | % {
         [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterName', $_)
     }
 }
 ```
 
-Again, the registration knows to look for `acme` invocations and when the `tab` key is hit, the script block is executed. Its job is to take the output of our `acme suggest` command and transform it into something that `pwsh` can understand. In this case, that is a `CompletionResult` object.
-
 ## Wrapping up
 
-Shell completion is a great time saver, and with some up front effort you can either use other people's autocompletion scripts via shell plugins, or by writing them yourself. Octopus CLI is now able to help you hook this up really quickly in your favorite shell. Enjoy!
+Shell completion is a great time saver, and you can write support for it in your own tools, or build support for existing ones.
 
+Tell us how you're using Octopus CLI in the comments! What tools do you wish were easier to use at the command line?
 
+Octopus CLI is now able to help you hook this up really quickly in your favorite shell. Enjoy!
