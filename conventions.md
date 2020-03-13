@@ -55,19 +55,6 @@ So a file existing at `/docs/myfolder/index.md` will have a URL of `https://octo
 Links to other documentation pages should be relative and contain the `.md` extension.
 The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimmed when they are finally rendered.
 
-## "In this section" area
-
-Index pages (`index.md`) automatically have a "In this section" section added to them (bottom of the content).
-If the page does not need this section, you can opt out by adding the following metadata to the yaml:
-```yaml
-hideInThisSection: true
-```
-
-The rendering of "In this section" section [contains a header](_shared/in-this-section.md), if you need to omit this header:
-```yaml
-hideInThisSectionHeader: true
-```
-
 ## Markdown
 
 The site is rendered using [markdig](https://github.com/lunet-io/markdig), Markdig supports [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) as well as some extra syntax.
