@@ -18,7 +18,7 @@ We're proud to ship Octopus 2020.1, our first release of the year, with some gre
 
 * [Dark Mode 😎](blog/2020-03/octopus-release-2020-1/index.md#dark-mode) is cool and it's easier on your eyes.
 * [Octopus and Octopus CLI are more at home on Linux and macOS](blog/2020-03/octopus-release-2020-1/index.md#octopus-and-octopus-cli-are-now-more-at-home-on-linux-and-macos): AWS and Azure built-in steps are cross-platform, and you can now install and use the Octopus CLI via HomeBrew, Yum, and APT.
-* [Worker pools can now be scoped to environments or tenant tags](blog/2020-03/octopus-release-2020-1/index.md#scope-worker-pools-by-environment-or-tenant-tags): New worker pool variables unlock the ability to have dedicated worker pools for different environments or tenant tags.
+* [Environment and tenant specific worker pools](blog/2020-03/octopus-release-2020-1/index.md#environment-and-tenant-specific-worker-pools): New worker pool variables unlock the ability to have dedicated worker pools for different environments or tenant tags.
 
 This release is the [first of six in 2020](/blog/2020-03/releases-and-lts/index.md), and we're excited to share it with the world. Keep reading to learn more about the updates.
 
@@ -62,7 +62,7 @@ Learn more:
 * [AWS deployments](https://octopus.com/docs/deployment-examples/aws-deployments)
 * [Kubernetes](https://octopus.com/docs/deployment-examples/kubernetes-deployments)
 
-## Scope worker pools by environment or tenant tags
+## Environment and tenant specific worker pools
 
 ![Worker pool variables in Octopus](worker-pool-variables.png "width=500")
 
