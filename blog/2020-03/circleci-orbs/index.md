@@ -140,7 +140,7 @@ jobs:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.1.607-stretch
     environment:
-      PACKAGEVERSION: 1.3.<< pipeline.number >>
+      PACKAGE_VERSION: 1.3.<< pipeline.number >>
     steps:
       - checkout
       - run:
@@ -152,7 +152,7 @@ jobs:
           name: Build
           command: |
             export PATH="$PATH:$HOME/.dotnet/tools"
-            dotnet cake build.cake --target="Publish" --packageVersion="$PACKAGEVERSION"
+            dotnet cake build.cake --target="Publish" --packageVersion="$PACKAGE_VERSION"
       - persist_to_workspace:
           root: publish
           paths:
@@ -162,7 +162,7 @@ jobs:
             - OctopusSamples.OctoPetShop.ShoppingCartService
             - OctopusSamples.OctoPetShop.Web
       - slack/notify:
-          message: Build ${PACKAGEVERSION} succeeded
+          message: Build ${PACKAGE_VERSION} succeeded
 ```
 
 So let's create an orb for our Cake steps.
@@ -186,7 +186,7 @@ orbs:
             default: "0.35.0"
             type: string
           package_version:
-            default: "$PACKAGEVERSION"
+            default: "$PACKAGE_VERSION"
             type: string
           publish_path:
             default: "publish"
@@ -275,7 +275,7 @@ jobs:
         default: "0.35.0"
         type: string
       package_version:
-        default: "$PACKAGEVERSION"
+        default: "$PACKAGE_VERSION"
         type: string
       publish_path:
         default: "publish"
@@ -327,14 +327,14 @@ jobs:
     docker:
       - image: ubuntu:18.04
     environment:
-      PACKAGEVERSION: 1.3.<< pipeline.number >>
+      PACKAGE_VERSION: 1.3.<< pipeline.number >>
     steps:
       - octo/install-tools
       - attach_workspace:
           at: publish
       - octo/pack:
           id: "OctopusSamples.OctoPetShop.Database"
-          version: "$PACKAGEVERSION"
+          version: "$PACKAGE_VERSION"
           base_path: "publish/OctopusSamples.OctoPetShop.Database"
           out_folder: "package"
       - persist_to_workspace:
@@ -345,19 +345,19 @@ jobs:
     docker:
       - image: ubuntu:18.04
     environment:
-      PACKAGEVERSION: 1.3.<< pipeline.number >>
+      PACKAGE_VERSION: 1.3.<< pipeline.number >>
     steps:
       - octo/install-tools
       - attach_workspace:
           at: package
       - octo/push:
-          package: "package/OctopusSamples.OctoPetShop.Database.${PACKAGEVERSION}.zip"
+          package: "package/OctopusSamples.OctoPetShop.Database.${PACKAGE_VERSION}.zip"
           server: "$OCTOPUS_SERVER"
           api_key: "$OCTOPUS_API_KEY"
           debug: true
       - octo/build-information:
           package_id: "OctopusSamples.OctoPetShop.Database"
-          version: "$PACKAGEVERSION"
+          version: "$PACKAGE_VERSION"
           server: "$OCTOPUS_SERVER"
           api_key: "$OCTOPUS_API_KEY"
           debug: true
@@ -365,14 +365,14 @@ jobs:
     docker:
       - image: ubuntu:18.04
     environment:
-      PACKAGEVERSION: 1.3.<< pipeline.number >>
+      PACKAGE_VERSION: 1.3.<< pipeline.number >>
     steps:
       - octo/install-tools
       - octo/create-release:
           project: "Octo Pet Shop"
           server: "$OCTOPUS_SERVER"
           api_key: "$OCTOPUS_API_KEY"
-          release_number: $PACKAGEVERSION
+          release_number: $PACKAGE_VERSION
 ```
 
 As a bonus, we can continue using an inline orb to reduce our duplication even more. Let's make a wrapper around `octo-exp\pack`.
@@ -392,7 +392,7 @@ orbs:
         steps:
           - octo/pack:
               id: "<< parameters.id >>"
-              version: $PACKAGEVERSION
+              version: $PACKAGE_VERSION
               base_path: "publish/<< parameters.id >>"
               out_folder: "package"
 
@@ -401,7 +401,7 @@ jobs:
     docker:
       - image: ubuntu:18.04
     environment:
-      PACKAGEVERSION: 1.3.<< pipeline.number >>
+      PACKAGE_VERSION: 1.3.<< pipeline.number >>
     steps:
       - octo/install-tools
       - attach_workspace:
@@ -428,4 +428,4 @@ Since our calls to octo/pack will follow the same format with different values f
 
 CircleCI Orbs are a way to create reusuable commands or jobs for your YAML based pipelines. You can publish orbs to CircleCI to share across projects or with other organizations. You can also use inline orbs to aid in development or to cut down the noise in your own configurations.
 
-Check out [CircleCI Orbs] for more information and the [experimental Octo CLI orb](https://circleci.com/orbs/registry/orb/octopus-samples/octo-exp) for details on how you can use CircleCI and Octopus together.
+Check out [CircleCI Orbs](https://circleci.com/orbs/) for more information and the [experimental Octo CLI orb](https://circleci.com/orbs/registry/orb/octopus-samples/octo-exp) for details on how you can use CircleCI and Octopus together.
