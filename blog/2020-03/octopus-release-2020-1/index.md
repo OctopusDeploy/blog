@@ -57,6 +57,8 @@ Octopus includes numerous popular step templates to deploy to AWS and Azure clou
 
 This improvement is small but significant to ensure teams can execute their cloud deployments and runbooks on their platform of choice.
 
+Note: Azure Web Apps, Cloud Services and Service Fabric steps are still Windows only.
+
 Learn more:
 * [Azure deployments](https://octopus.com/docs/deployment-examples/azure-deployments)
 * [AWS deployments](https://octopus.com/docs/deployment-examples/aws-deployments)
@@ -76,7 +78,10 @@ This update was a popular customer request, and we're pleased to ship it.
 
 ## Breaking changes
 
-The only breaking change in this release is that we're raising the minimum requirements for running Octopus Server to Windows Server 2012 R2 and SQL Server 2017. This change was [announced](https://octopus.com/blog/raising-minimum-requirements-for-octopus-server) in November 2019.
+This release includes two breaking changes. 
+
+1. **[Octopus Server minimum requirements](https://octopus.com/blog/raising-minimum-requirements-for-octopus-server)** - We are raising the minimum requirements for running Octopus Server to Windows Server 2012 R2 and SQL Server 2017.
+2. **[Library variable set permission changes](https://octopus.com/blog/libraryvariableset-permission-changes)** - There is a breaking change to library variable set permissions as the behaviour of LibraryVariableSetView and LibraryVariableSetEdit is now different. 
 
 ## Upgrading
 
