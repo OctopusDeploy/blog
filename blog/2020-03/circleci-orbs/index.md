@@ -320,7 +320,7 @@ Speaking of published orbs, if you're using CircleCI and Octopus together, take 
 
 ```yaml
 orbs:
-  octo: octopus-samples/octo-exp@0.0.2
+  octo: octopus-samples/octo-exp@0.0.5
 
 jobs:
   package:
@@ -380,10 +380,10 @@ As a bonus, we can continue using an inline orb to reduce our duplication even m
 ```yaml
 orbs:
   cake: octopus-samples/cake@0.0.1
-  octo: octopus-samples/octo-exp@0.0.2
+  octo: octopus-samples/octo-exp@0.0.5
   octopetshop:
     orbs:
-      octo: octopus-samples/octo-exp@0.0.2
+      octo: octopus-samples/octo-exp@0.0.5
     commands:
       pack:
         parameters:
@@ -398,8 +398,8 @@ orbs:
 
 jobs:
   package:
-    docker:
-      - image: ubuntu:18.04
+    executor:
+      - name: octo/default
     environment:
       PACKAGE_VERSION: 1.3.<< pipeline.number >>
     steps:
