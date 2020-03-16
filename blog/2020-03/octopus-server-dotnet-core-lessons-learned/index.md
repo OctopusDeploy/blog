@@ -100,7 +100,9 @@ We considered a number of options but after going through this [ASP.NET Core iss
 
 Another thing we needed to learn as we progressed through the .NET Core port is that we needed to test and debug problems. We have unit tests and an extensive suite of end-to-end (E2E) tests but we still needed to debug problems that we couldn't figure out. This proved to be an interesting topic that we thought we'd share our experience.
 
-## How to debug Octopus Server on WSL (and Docker containers)
+Historically, Octopus has been developed on Windows but this is changing. Our team now has developers building Octopus on Windows, Linux and macOS. 
+
+**How to debug Octopus Server on WSL (and Docker containers)**
 
 I found it easier to run all Octopus Server setup as non `sudo`, unfortunately there is an area that Octopus Server writes and reads that you need to explicitly add permissions to. We write to `/etc/octopus` this is where we add the instances config files and masterkey, this is the equivalent of `c:\Octopus` in Windows but in Linux OS `/etc` is a root privileged folder, so we need to manually `sudo chown -R $USER /etc/octopus`. We will make this part of the installation script one day!
 
