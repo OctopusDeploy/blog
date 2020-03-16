@@ -155,7 +155,9 @@ Docker is self-contained thus it's a a very supportable platform.
 
 ## Conclusion
 
-We ported Octopus Server to .NET Core 3.1 to unlock the ability to run on Linux, Docker Containers and Kuberentes. This change was made to reduce costs and increase performance of our Octopus Cloud SaaS product and it's been a great success. It wasn't a simple journey and we shared our top three lessons learned. 
+We ported Octopus Server to .NET Core 3.1 to unlock the ability to run on Linux, Docker Containers and Kuberentes. This change was made to reduce costs and increase performance of our Octopus Cloud SaaS product and it's been a great success. 
+
+It wasn't a simple journey but we learned on the journey.
 1. Platform specific differences
 2. Learning how to debug .NET Core on Linux and Docker
 3. Shipping self-contained packages
