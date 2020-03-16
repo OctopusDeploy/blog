@@ -50,6 +50,7 @@ In the future, we will be publishing both Windows and Linux contains to run Octo
 
 Porting Octopus Server to .NET Core has brough a number of benefits. 
 
+* Modern framework and tooling. 
 * Cross platform support for Windows and Linux.
 * Access to the mature ecosystem for running Linux containers in Kubernetes.
 * Choice and flexibility: our customers can chose to run Octopus on Windows, Linux or via Octopus Cloud.
@@ -59,30 +60,31 @@ This also brings a richer development environment as our engineering teams have 
 
 ## Top 3 Lessons Learned
 
-We have learned a ton while going through this process however we have three major lessons learned.
+We learned a lot going through this process however we have three major lessons learned.
 
 ### 1. Platform specific differences
 
-The first and foremost lesson we learned is there are platform specific differences in the implementations of .NET Core on Windows and Linux. Most of the issues were small differences or problems and the vast majority had easy work arounds. That said, we did find a few problems that are worth sharing.
+The first and foremost lesson we learned is there are platform specific differences in the implementations of .NET Core on Windows and Linux. Most of the issues were small differences or problems and the vast majority had easy work arounds. That said, we did find a few larger problems that are worth sharing.
+
+The takeaway from this process is that each time will encounter their own unique set of problems and some may be easier to solve than others.
 
 **Configuration settings and the windows registry**
 
-Octopus Server started out as a Windows service running on Windows Servers and it followed the Windows convention by storing configuration settings in the Windows registry. This is fine on Windows but Linux has very different conventions and so we had to move all settings to be stored on the filesystem or in the Octopus database. 
-
-**Multiple Active Result Sets**
-
-The most significant problem we faced was poor database performance due to different handling of database queries on Windows and Linux. Octopus uses Microsoft SQL Server for its 
-
- This GitHub issue linked above shares the details and a simple code sample to reproduce the problem 
+The most immediate change we had to make to support both Windows and Linux platforms was to remove any Windows specific code. Octopus Server started out as a Windows product and it followed the platform conventions and storing some configuration settings in the Windows registry. This is fine on Windows but Linux is very different.
 
 Solution: 
 
-* MARS - Turn off support. Rely 
-We open two connections and pick the one that suits. 
+We had to shift everything stored in the registry to the file system or Octopus database. This is a simple task but it took time and testing to get right.
 
-5 areas that still have MARS. 
+**Multiple Active Result Sets**
 
-Still workin with microsoft to resolve but we don't have a concrete timeline. 
+The most significant problem we encountered was extremely poor database performance due to different handling of database queries on Windows and Linux. Octopus uses Microsoft SQL Server as its datastore and we discovered a [significant problem](https://github.com/dotnet/SqlClient/issues/422) in the .NET Core SQL client library on Linux. If we have the `MultipleActiveResultSets` setting set to True, the result is exceptions and database timeouts which is problematic. The GitHub issue linked above shares the full details and a simple code sample to reproduce the problem. 
+
+Solution: 
+
+Our solution in the short term is to disable the `MultipleActiveResultSets` setting and use it very sparingly. In general, we open two connections to our database, one with this setting enabled and one with it disabled. We primarily use the disabled connect except for specific instances where we need it to be true. 
+
+We have been working with Microsoft to help provide information to resolve the issue and we hope to see a proper fix in the future. 
 
 **Windows and Active Directory authentication**
 
@@ -96,7 +98,7 @@ Routing - Run two websites listening on the same URL and port and handles things
 
 ### 2. Learning how to debug .NET Core on Linux and Docker
 
-Another thing we needed to learn as we ported and then started development 
+Another thing we needed to learn as we progressed through the port is that we needed to debug problems from time to time. We have unit tests and an extensive suite of end-to-end (E2E) tests but we still needed to debug problems that we couldn't figure out. This proved to be an interesting topic that we thought we'd share.
 
 ## How to debug Octopus Server on WSL (and Docker containers)
 
@@ -132,7 +134,7 @@ In Linux we also found that we obviously cannot use integrated security when con
 
 ## So now to debug Octopus on Linux
 
-I found Visual Studio 2019 and Rider quite not there yet, even though they do support attaching to processes via SSH. The tool I settle on (at least for now) is [Visual Studio Code](https://code.visualstudio.com/) with the [Remote Development extension](https://aka.ms/vscode-remote/download/extension). This extension is still in Preview but it works really well.
+I found Visual Studio 2020 and Rider quite not there yet, even though they do support attaching to processes via SSH. The tool I settle on (at least for now) is [Visual Studio Code](https://code.visualstudio.com/) with the [Remote Development extension](https://aka.ms/vscode-remote/download/extension). This extension is still in Preview but it works really well.
 
 So with this Remote Development extension I can start debugging, running and code edit in VSCode running in WSL (or a Docker container), all I have to do is point it to my Windows folder that contains Octopus Server code, and pretty much just F5 from there. It is that simple!
 
