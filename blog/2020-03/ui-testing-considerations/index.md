@@ -2,13 +2,15 @@
 title: Considerations for browser UI testing
 description: A look at some of the limitations and workaround for performing browser-based UI testing
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-03-16
+metaImage: running-tests.png
+bannerImage: running-tests.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Considerations for browser UI testing](running-tests.png)
 
 End to end testing by simulating user interaction through a web browser has become increasingly commonplace. WebDriver is now an [open W3 standard](https://www.w3.org/TR/webdriver/), and all major web browsers provide a WebDriver interface. Recent projects like [Cypress](https://www.cypress.io/), have implemented their own method of interacting with browsers specifically for the purpose of writing tests. With such a range of well supported and mature testing platforms, it has never been easier to write browser-based tests.
 
