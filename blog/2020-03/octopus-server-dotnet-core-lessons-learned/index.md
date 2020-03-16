@@ -86,10 +86,15 @@ Our solution in the short term is to disable the `MultipleActiveResultSets` sett
 
 We have been working with Microsoft to help provide information to resolve the issue and we hope to see a proper fix in the future. 
 
-**Windows and Active Directory authentication**
+**Authentication providers**
 
-* Ask shannon about perf w/ something on Auth/Azure Linux - Active Directory 
-Windows auth on Linux. We needed granular control over auth providers not just all or nothing. 
+Another thing we enountered was a need to host the Octopus Server web host differently on each platform. We use `HttpSys` on Windows and _Kestrel_ on Linux and this produced challenges for our authentication. Octopus needs to support multiple authentication schemes including cookies based authentication, and the ability for users to log in/out and have multiple authentication providers enabled at once.
+
+The core issue we hit was that HttpSys supports integrated authentication (i.e. Windows authentication) but it's a binary on/off for every endpoint in the host. This is inflexible and it's a change from our non .NET Core code-base. The end result of this is that a user could logged in automatically and then they could never log out. 
+
+Solution: 
+
+We considered a number of options but after going through this [ASP.NET Core issue](https://github.com/dotnet/aspnetcore/issues/5888), we decided to follow the advice there and use two hosts. One standard web host and and a second one to look/behave like a virtual directory off the main API site's root, i.e. `/integrate-challenge`, and is therefore consistent with the location in earlier versions of Octopus Server. The host only has that one route and it initiates the challenge, using a 401 response, when the user isn't already authenticated.
 
 Solution: 
 
