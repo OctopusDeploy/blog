@@ -96,11 +96,6 @@ Solution:
 
 We considered a number of options but after going through this [ASP.NET Core issue](https://github.com/dotnet/aspnetcore/issues/5888), we decided to follow the advice there and use two hosts. One standard web host and and a second one to look/behave like a virtual directory off the main API site's root, i.e. `/integrate-challenge`, and is therefore consistent with the location in earlier versions of Octopus Server. The host only has that one route and it initiates the challenge, using a 401 response, when the user isn't already authenticated.
 
-Solution: 
-
-* Windows auth on Linux.
-Routing - Run two websites listening on the same URL and port and handles things nicely. - Found on the Internet. 
-
 ### 2. Learning how to debug .NET Core on Linux and Docker
 
 Another thing we needed to learn as we progressed through the port is that we needed to debug problems from time to time. We have unit tests and an extensive suite of end-to-end (E2E) tests but we still needed to debug problems that we couldn't figure out. This proved to be an interesting topic that we thought we'd share.
