@@ -22,7 +22,7 @@ Before we dive into using Windows for interactive testing, it is worth understan
 
 If you have ever configured a Windows service, you may have noticed the `Allow service to interact with the desktop` option:
 
-![](interactive-service.png "width=300")
+![](interactive-service.png "width=250")
 
 Back with Windows XP, this option allowed a Windows service to draw on the desktop of the first logged in user, who was assigned session 0. This wasn’t ideal from a security point of view, leading to exploits like the [Shatter attack](https://en.wikipedia.org/wiki/Shatter_attack).
 
