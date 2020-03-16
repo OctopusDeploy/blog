@@ -19,7 +19,7 @@ Why should my command-line experience be any different from Visual Studio? I can
 
 The good news is that for a small upfront investment, you can tune your command-line experience to give these kinds of hints and automatically complete phrases and options for you, and CLI creators can make changes to their products to make things even easier.
 
-The result of my frustration was some additional features in our CLI to support and configure tab completion in popular shells.
+The result of my frustration is some additional features in our CLI to support and configure tab completion in popular shells.
 
 If you grab the latest version of Octopus CLI, you can install the required scripts into popular shells too:
 
@@ -98,7 +98,7 @@ If we write this to `$PROFILE` and then 'dot source' it with `. $PROFILE` you'll
 
 ## What does Octopus CLI do to make this easy?
 
-The above example requires me to do work up front to handle suggestions. What if `systemctl` itself, having the best knowledge of its sub-commands, provide those completions instead? This is what tools like `dotnet`, `nuke`, and `octo` do; they provide a subcommand of their own to handle the suggestions side of things. You can try this out with the latest version of Octopus CLI:
+The above example requires me to do work up front to handle suggestions. What if `systemctl` itself, having the best knowledge of its sub-commands, provided those completions instead? This is what tools like `dotnet`, `nuke`, and `octo` do; they provide a subcommand of their own to handle the suggestions side of things. You can try this out with the latest version of Octopus CLI:
 
 ```powershell
 octo complete list
