@@ -1,5 +1,5 @@
 ---
-title: Command line life - tab completion for the Octopus CLI
+title: Command line tab completion for Octopus CLI
 description: Enable tab completion for the Octopus CLI today! We'll also dive into how shell completion works in some popular shell environments.
 author: jim.burger@octopus.com
 visibility: private
@@ -9,19 +9,19 @@ tags:
  - DevOps
 ---
 
-As a developer, I like my IDE and text editors to provide me with useful hints while I'm doing a lot of typing. This not only speeds me up when I know what I'm trying to do, it also speeds me up _when I'm learning_ how to use a tool or framework feature. Thinking back, I probably owe the speed at which I picked up C# programming to features like Intellisense.
+As a developer, I like my IDE and text editors to provide useful hints when I'm doing a lot of typing. This not only speeds me up when I know what I'm trying to do, it also speeds me up _when I'm learning_ how to use a tool or framework feature. Thinking back, I probably owe the speed at which I picked up C# programming to features like IntelliSense.
 
 I was recently a bit frustrated with our own [Octopus CLI](https://octopus.com/downloads/octopuscli) because I was having to flip between my shell and a browser to check what flags I needed to pass.
 
-Why should my command line experience be any different to visual studio? I can't remember the exact CLI invocations at the best of times, let alone when I'm under pressure to fix something!
+Why should my command-line experience be any different to Visual Studio? I can't remember the exact CLI invocations at the best of times, let alone when I'm under pressure to fix something!
 
 ## Shell completion to the rescue
 
-The good news is that for a small up front investment, you can tune your command line experience to give these kinds of hints and automatically complete phrases and options for you, and CLI creators can make changes to their products to make things even easier.
+The good news is that for a small up front investment, you can tune your command-line experience to give these kinds of hints and automatically complete phrases and options for you, and CLI creators can make changes to their products to make things even easier.
 
-The result of my frustration was some additional features in our CLI to support & configure tab completion in popular shells.
+The result of my frustration was some additional features in our CLI to support and configure tab completion in popular shells.
 
-If you grab the latest version, you can install the required scripts into popular shells too.
+If you grab the latest version of Octopus CLI, you can install the required scripts into popular shells too:
 
 ```powershell
 # install into your ~/.zshrc
@@ -40,23 +40,23 @@ octo install-autocomplete --shell powershell
 octo install-autocomplete --shell bash --dryRun
 ```
 
-Once installed, just dot source or restart your shell and you can complete all the things! Here it is in action...
+Once installed, just dot source or restart your shell and you can complete all the things! Here it is in action:
 
-![animation of octo CLI using zsh tab completion](octo-complete.gif)
+![animation of octo CLI using Zsh tab completion](octo-complete.gif)
 
 ## How does tab completion work?
 
-At a high level most of your favorite shells provide 'built in' commands to accept suggestions from an external source - like a file, or another application. This means that you can [write them for any command line tool](https://www.cyberciti.biz/faq/add-bash-auto-completion-in-ubuntu-linux). These built-ins all work in roughly the same way:
+At a high level most of your favorite shells provide _built-in_ commands to accept suggestions from an external source, like a file, or another application. This means you can [write them for any command-line tool](https://www.cyberciti.biz/faq/add-bash-auto-completion-in-ubuntu-linux). These built-ins all work in roughly the same way:
 
-1. Register a command to invoke when the tab key is encountered
-2. Process the text input prior to the tab key
-3. Read in suggestions from a source (list, other command)
+1. Register a command to invoke when the tab key is encountered.
+2. Process the text input prior to the tab key.
+3. Read in suggestions from a source (list, other command).
 4. If there are multiple suggestions, display the choices to the user. Some shells even allow the user to choose one!
-5. If there is a single suggestion, use that
+5. If there is a single suggestion, use that.
 
-Systemd has builtin completion support for `bash` and `zsh` but not for `pwsh`. So, lets make it happen! A small example is that the sub-command `systemctl status` takes a single service by name and shows you its status. 
+Systemd has built-in completion support for `bash` and `zsh` but not for `pwsh`. So, lets make it happen! A small example is the sub-command `systemctl status` which takes a single service by name and shows you its status. 
 
-In `zsh` & `bash` I get tab completion over the possible services to show, so let's implement a similar thing in `pwsh`.
+In `zsh` and `bash`, I get tab completion over the possible services to show, so let's implement a similar thing in `pwsh`.
 
 We can get `pwsh` to use this list whenever the `tab` key is hit to provide hints to us with the following script:
 
@@ -92,13 +92,13 @@ Register-ArgumentCompleter -Native -CommandName systemctl -ScriptBlock {
 }
 ```
 
-If we write this to `$PROFILE` and then 'dot source' it with `. $PROFILE` you'll see that you can now get completion over any enabled services.
+If we write this to `$PROFILE` and then 'dot source' it with `. $PROFILE` you'll see you can now get completion over any enabled services.
 
 ![demonstrating tab completion in pwsh for systemctl status](systemctl-pwsh.png)
 
 ## What does Octopus CLI do to make this easy?
 
-The above example requires me to do work up front to handle suggestions. What if `systemctl` itself, having the best knowledge of its sub-commands, provide those completions instead? This is what tools like `dotnet`, `nuke` and `octo` do: they provide a subcommand of their own to handle the suggestions side of things. You can try this out with the latest version of Octopus CLI:
+The above example requires me to do work up front to handle suggestions. What if `systemctl` itself, having the best knowledge of its sub-commands, provide those completions instead? This is what tools like `dotnet`, `nuke`, and `octo` do; they provide a subcommand of their own to handle the suggestions side of things. You can try this out with the latest version of Octopus CLI:
 
 ```powershell
 octo complete list
