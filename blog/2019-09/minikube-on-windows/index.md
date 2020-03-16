@@ -23,7 +23,9 @@ Minikube requires an external HyperV switch to operate, and you may find that yo
 
 To view the list of switches, open the `HyperV Manager` and select `Virtual Switch Manager...` from the list of actions:
 
-![](hyperv-actions-01.png "The HyperV actions menu width=300")
+![](hyperv-actions-01.png "width=300")
+
+*The HyperV actions menu.*
 
 In the screenshot below, you can see there are no existing external switches, so we need to create one by selecting the `External` option and clicking the `Create Virtual Switch` button:
 
