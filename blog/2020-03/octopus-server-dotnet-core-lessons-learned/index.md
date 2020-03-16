@@ -63,7 +63,7 @@ We have learned a ton while going through this process however we have three maj
 
 ### 1. Platform specific differences
 
-We encountered a number of large and small platform specific differences during the porting process. Most of the issues were small differences or problems and the vast majority had easy work arounds. That said, we did find a few problems that are worth sharing.
+The first and foremost lesson we learned is there are platform specific differences in the implementations of .NET Core on Windows and Linux. Most of the issues were small differences or problems and the vast majority had easy work arounds. That said, we did find a few problems that are worth sharing.
 
 **Configuration settings and the windows registry**
 
@@ -71,16 +71,11 @@ Octopus Server started out as a Windows service running on Windows Servers and i
 
 **Multiple Active Result Sets**
 
-The most significant problem we faced was poor database performance due to different handling of database queries on Windows and Linux. This GitHub issue linked above shares the details and a simple code sample to reproduce the problem 
+The most significant problem we faced was poor database performance due to different handling of database queries on Windows and Linux. Octopus uses Microsoft SQL Server for its 
 
-We have hit one mojor problem 
+ This GitHub issue linked above shares the details and a simple code sample to reproduce the problem 
 
-* MARS <- SQL server - performance problems on *nix
-
-* Ask shannon about perf w/ something on Auth/Azure Linux - Active Directory 
-Windows auth on Linux. We needed granular control over auth providers not just all or nothing. 
-
-Solution.
+Solution: 
 
 * MARS - Turn off support. Rely 
 We open two connections and pick the one that suits. 
@@ -89,12 +84,19 @@ We open two connections and pick the one that suits.
 
 Still workin with microsoft to resolve but we don't have a concrete timeline. 
 
+**Windows and Active Directory authentication**
+
+* Ask shannon about perf w/ something on Auth/Azure Linux - Active Directory 
+Windows auth on Linux. We needed granular control over auth providers not just all or nothing. 
+
+Solution: 
+
 * Windows auth on Linux.
 Routing - Run two websites listening on the same URL and port and handles things nicely. - Found on the Internet. 
 
-Examples. 
-
 ### 2. Learning how to debug .NET Core on Linux and Docker
+
+Another thing we needed to learn as we ported and then started development 
 
 ## How to debug Octopus Server on WSL (and Docker containers)
 
@@ -135,6 +137,8 @@ I found Visual Studio 2019 and Rider quite not there yet, even though they do su
 So with this Remote Development extension I can start debugging, running and code edit in VSCode running in WSL (or a Docker container), all I have to do is point it to my Windows folder that contains Octopus Server code, and pretty much just F5 from there. It is that simple!
 
 ### 3. Shipping self-contained packages
+
+Octopus 
 
 Talk about supporting deploying self-contained packages
 
