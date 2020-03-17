@@ -76,7 +76,7 @@ Solution:
 
 We had to shift everything stored in the registry to the file system or Octopus database. This is a simple task but it took time and testing to get right.
 
-**Multiple Active Result Sets**
+**Database performance problems**
 
 The most significant problem we encountered was extremely poor database performance due to different handling of database queries on Windows and Linux. Octopus uses Microsoft SQL Server as its datastore and we discovered a [significant problem](https://github.com/dotnet/SqlClient/issues/422) in the .NET Core SQL client library on Linux. If we have the `MultipleActiveResultSets` setting set to True, the result is exceptions and database timeouts which is problematic. The GitHub issue linked above shares the full details and a simple code sample to reproduce the problem. 
 
@@ -96,17 +96,17 @@ Solution:
 
 We considered a number of options but after going through this [ASP.NET Core issue](https://github.com/dotnet/aspnetcore/issues/5888), we decided to follow the advice there and use two hosts. One standard web host and and a second one to look/behave like a virtual directory off the main API site's root, i.e. `/integrate-challenge`, and is therefore consistent with the location in earlier versions of Octopus Server. The host only has that one route and it initiates the challenge, using a 401 response, when the user isn't already authenticated.
 
-### 2. Learning how to debug .NET Core on Linux and Docker
+### 2. Tips and tricks for writing code and debugging .NET Core on Linux and Docker
 
-Another thing we needed to learn as we progressed through the .NET Core port is that we needed to test and debug problems. We have unit tests and an extensive suite of end-to-end (E2E) tests but we still needed to debug problems that we couldn't figure out. This proved to be an interesting topic that we thought we'd share our experience.
+Another thing we learn as we progressed through the .NET Core port is how to code, test and debug problems with Windows and the Windows Subsystem for Linux (WSL), Linux and Docker. Historically, our team developed on Windows but this has evolved to individuals coding on their platform of choice. We now have developers doing their day-to-day coding on Windows, Linux and macOS. This means we have learned a number of lessons working with Windows and the Windows Subsystem for Linux (WSL), Linux and Docker.
 
-Historically, Octopus has been developed on Windows but this is changing. Our team now has developers building Octopus on Windows, Linux and macOS. 
+**Running as non-root or non-admin**
 
-**How to debug Octopus Server on WSL (and Docker containers)**
+We found it much easier to run all build and test Octopus Server on Linux as non-root or non-`sudo` to limit permission-based errors and problems. That said, we encoutered a problem with this as Octopus writes it's instance config files and masterkey to `/etc/octopus`. `/etc/octopus` is the equivalent of `c:\Octopus` directory on Windows however `/etc` is a root privileged folder in Linux. So we manually override this for development purposes with `sudo chown -R $USER /etc/octopus`. This is a bit quick and dirty but it does the job. 
 
-I found it easier to run all Octopus Server setup as non `sudo`, unfortunately there is an area that Octopus Server writes and reads that you need to explicitly add permissions to. We write to `/etc/octopus` this is where we add the instances config files and masterkey, this is the equivalent of `c:\Octopus` in Windows but in Linux OS `/etc` is a root privileged folder, so we need to manually `sudo chown -R $USER /etc/octopus`. We will make this part of the installation script one day!
+***Certificate management**
 
-Like any good software we have quite a few tests and as part of our integration testing we test the usage of  [Polling Tentacles over WebSockets](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/polling-tentacles-web-sockets) and that requires us to listen on https. So as part of the setup for this test we have to add some self signed certificates to the trusted store, so we use the following script:
+Our end to end (E2E) test suite runs a range of tests that run against Octopus Server listening over HTTPS (i.e. port 443). This requires us to convert and import some self-signed certificates into the local certificate store on in `/etc/` on a Linux box. To solve this problem we wrote the following script.
 
 ```bash
 #!/bin/bash
@@ -132,13 +132,23 @@ done
 update-ca-certificates
 ```
 
-In Linux we also found that we obviously cannot use integrated security when connecting to Sql Server but the one that has given us more grief is connection pooling, for some reason we found our testing a lot more reliable when we explicitly turn **pooling off**.
+**Connecting to the SQL Server Database**
 
-## So now to debug Octopus on Linux
+Octopus uses Microsoft SQL Server as it's database and teams generally connect to it via integrated Windows authentication on Windows Servers. Obviously, this no longer works. Our solution here was to switch to user name/password based authentication. 
 
-I found Visual Studio 2020 and Rider quite not there yet, even though they do support attaching to processes via SSH. The tool I settle on (at least for now) is [Visual Studio Code](https://code.visualstudio.com/) with the [Remote Development extension](https://aka.ms/vscode-remote/download/extension). This extension is still in Preview but it works really well.
+Another interesting tip, is that we found our suite of end-to-end (E2E) tests runs much faster and more reliable with **database connection pooling turned off**. We haven't gotten to the bottom of this yet but it's likely a platform specific problem related to the database performance issue mentioned above.
 
-So with this Remote Development extension I can start debugging, running and code edit in VSCode running in WSL (or a Docker container), all I have to do is point it to my Windows folder that contains Octopus Server code, and pretty much just F5 from there. It is that simple!
+**Debug Octopus Server on Linux with Visual Studio Code**
+
+Our team writes code with a variety of tools including the following among others.
+
+* [Visual Studio](https://visualstudio.microsoft.com/vs/)
+* [JetBrains Rider](https://www.jetbrains.com/rider/)
+* [Visual Studio Code](https://code.visualstudio.com)
+
+Currently, the most popular is [Visual Studio Code](https://code.visualstudio.com/) with the [Remote Development extension](https://aka.ms/vscode-remote/download/extension). This extension is still in Preview but it works very well.
+
+With Visual Studio Code and the Remote Development extension, we can start run applications, debug them as well as edit code in Linux (or a Docker container), all I have to do is point it to my Windows folder that contains Octopus Server code, and pretty much just F5 from there. It is that simple!
 
 ### 3. Shipping self-contained packages
 
