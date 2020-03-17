@@ -13,7 +13,7 @@ tags:
 
 ![Runbooks examples for operations tasks](blogimage-runbookslaunch.png)
 
-The focus of this post is all about examples in an SEO focused way. We want to be own runbook serach terms.
+The focus of this post is all about examples in an SEO focused way. We want to be own runbook search terms.
 
 ---
 
@@ -67,9 +67,9 @@ I'd like to highlight some runbook examples and I'll add new ones over time. Add
 
 TODO: Screenshot
 
-Most developers who work on the Microsoft stack have experience sporatic web application or Windows service problems like memory leaks or unexplained performance issues. The problems are commonly resolve by recycling the IIS web server app pool or restarting a windows service. While this doesn't address the underlying issue, it does quicly resolve problems and enable customers to continue to use the applications they support.
+Most developers who work on the Microsoft stack have experience sporadic web application or Windows service problems like memory leaks or unexplained performance issues. The problems are commonly resolve by recycling the IIS web server app pool or restarting a windows service. While this doesn't address the underlying issue, it does quickly resolve problems and enable customers to continue to use the applications they support.
 
-In Octopus, this is a very straighforward runbook with a single Script step that executes the following PowerShell script.
+In Octopus, this is a very straightforward runbook with a single Script step that executes the following PowerShell script.
 
 ```powershell
 # Example 1: Restart IIS app pool
