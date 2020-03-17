@@ -3,13 +3,15 @@ title: Add post-deployment scripts to Oracle database deployments using Octopus 
 description: In Part 2 of this series of deploying to Oracle databases we will expand on the existing process to include post-deployment scripts and swap out TeamCity with Jenkins.
 author: bob.walker@octopus.com
 visibility: public
-published: 2018-11-12
+published: 2020-03-17
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![Add post-deployment scripts to Oracle database deployments using Octopus Deploy, Jenkins, and Redgate](blogimage-redgate-database.png)
 
 In my previous post, [Deploy to Oracle Database using Octopus Deploy and Redgate](https://octopus.com/blog/oracle-database-using-redgate), I walked through setting up a CI/CD pipeline to deploy to Oracle with TeamCity as the build server, Octopus Deploy as the deployment server and Redgate handling all the heavy lifting.  This post builds on the concepts in that previous post.
 
