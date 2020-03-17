@@ -3,14 +3,14 @@ title: "Lessons learned porting Octopus Server to .NET Core 3.1"
 description: "We ported Octopus Server to .NET Core 3.1 to unlock the ability to run on Linux, Docker Containers and Kubernetes. We made this change to reduce costs and increase performance of our Octopus Cloud SaaS product, and it's been a great success. "
 author: rob.pearson@octopus.com
 visibility: public
-bannerImage: eskimo-octopus-linux-land
-metaImage: eskimo-octopus-linux-land
+bannerImage: eskimo-octopus-linux-land.png
+metaImage: eskimo-octopus-linux-land.png
 published: 2020-03-19
 tags:
 - Engineering
 ---
 
-![Lessons learned porting Octopus Server to .NET Core 3.1](eskimo-octopus-linux-land)
+![Lessons learned porting Octopus Server to .NET Core 3.1](eskimo-octopus-linux-land.png)
 
 With the release of Octopus 2020.1, Octopus Server is now running on .NET Core v3.1 unlocking the ability to run on Linux, Docker Containers and Kubernetes. This was a significant effort, and in this post, we'll share why we ported Octopus Server to .NET Core, the benefits of the change and our top three lessons learned.
 
