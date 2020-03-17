@@ -152,14 +152,13 @@ With Visual Studio Code and the Remote Development extension, we can start run a
 
 ### 3. Shipping self-contained packages
 
-Porting Octopus to .NET Core has allowed us to ship self-contained packages which brings multiple benefits. We can now keep our developer toolset current enabling us to continue to innovate instaed of fighting older languages and platforms. Octopus is now easier to install and maintain on Windows and Linux as it has a far smaller dependency footprint. It allows us to support modern platforms to stay relevant instead of being held back by legacy support. That said, we still have a broad range of support for the platforms our customers require.
+Porting Octopus to .NET Core has allowed us to ship [self-contained packages](https://www.hanselman.com/blog/MakingATinyNETCore30EntirelySelfcontainedSingleExecutable.aspx) which brings multiple benefits.
 
-Pros:
-* Reduced installation footprint. We're shipping a single self-contained executable so we no longer require .NET Core to be installed on target servers.
-* Easier to develop and support. Our self-hosted and 
+**Reduced installation footprint** Shipping a single self-contained executable means we no longer require .NET Core to be installed on the Octopus Deploy server. The result is reduced installation requirements and makes Octopus easier to get started. This is is a big win.
+**Improved supportability** In a nutshell, fewer dependencies makes Octopus easier to install and support. There are fewer components and fewer things that can be accidentally changed. Shipping Docker container images for [Windows] and Linux (coming soon) eliminates further dependencies as even more of the dependencies are baked in othe containers. 
+**Modern software and tooling** Using modern tools and frameworks enables our team to continue to innovate and ship software quickly with useful features for our customers. 
 
-Cons: 
-* Dropping support for older operation systems including Windows Server 2008-2012 and some Linux distros.
+Unfortunately, this also has some tradeoffs as moving to .NET Core 3.1 required us to dropping support for older operation systems including Windows Server 2008-2012 and some Linux distros. Supporting older servers and browsers drains our time and attention, making it harder for us to innovate and move the Octopus ecosystem forward. 
 
 ## Conclusion
 
