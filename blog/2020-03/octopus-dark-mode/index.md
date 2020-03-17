@@ -1,9 +1,9 @@
 ---
 title: Introducing dark mode
-description: 2020.1 introduces a dark theme for Octopus Deploy
+description: Octopus 2020.1 introduces a dark theme to Octopus Deploy.
 author: kartik.gupta@octopus.com
 visibility: public
-published: 2020-03-17
+published: 2020-03-19
 metaImage: octopus-darkmode.png
 bannerImage: octopus-darkmode.png
 tags:
