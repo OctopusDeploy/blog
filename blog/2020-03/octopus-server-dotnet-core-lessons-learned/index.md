@@ -12,55 +12,23 @@ tags:
 
 ![Lessons learned porting Octopus Server to .NET Core 3.1](eskimo-octopus-linux-land.png)
 
-With the release of Octopus 2020.1, Octopus Server is now running on .NET Core v3.1 unlocking the ability to run on Linux, Docker Containers and Kubernetes. This was a significant effort, and in this post, we'll share why we ported Octopus Server to .NET Core, the benefits of the change and our top three lessons learned.
+With the release of Octopus 2020.1, Octopus Server now runs on .NET Core v3.1, which means it can be installed on Linux, Docker Containers, and Kubernetes. This was a significant effort, we already shared our [Reflections on the launch of Octopus Cloud 1.0](/blog/2019-10/octopus-cloud-1.0-reflections/index.md) and [why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud](/blog/2019-11/octopus-cloud-v2-why-kubernetes/index.md), in this post, we'll share why we ported Octopus Server to .NET Core, the benefits of the change and our top three lessons learned.
 
 !toc
 
-## Why
+## Benefits
 
-`tl;dr` We ported Octopus Server to .NET Core so it could run on the Linux platform, Docker containers and Kubernetes to reduce costs and increase the performance of our Octopus Cloud SaaS product.
+Porting Octopus Server to .NET Core has brought many benefits:
 
----
-
-In July 2018, we launched Octopus Cloud, our hosted version of Octopus, for customers who prefer to use an online version of Octopus without having to worry about the infrastructure to run it. This first release of Octopus Cloud runs on Amazon Web Services, and each customer has an instance that executes in a dedicated virtual machine. Rather than rebuild our entire product as a multi-tenant SaaS product, we decided the simplest minimum viable product (MVP) was to run each customer instance in their own VM. This structure allowed us to bring the product to market quickly, and it provided an isolated, secure, and stable solution for our customers. We've [written about the journey](/blog/2019-10/octopus-cloud-1.0-reflections/index.md), if you're interested in learning more. That said, this approach was quite expensive to run, it had numerous components that we had to support, and we regularly hit AWS services limits. We are proud of bringing this to market, but it was clear we needed to iterate.
-
-In 2019, we kicked off the effort to maintain the positive aspects of our first iteration, but also tackle the big problems.
-
-- **Reduce costs:** Especially for low-use or dormant instances.
-- **Increase performance:** Improve provisioning times and provide more options for highly utilized instances.
-
-We [evaluated numerous options](/blog/2019-11/octopus-cloud-v2-why-kubernetes/index.md) including the following. 
-
-1. Single multi-tenant server
-2. Windows process per customer
-3. Azure App Services
-4. Kubernetes
-
-In the end, we decided **Octopus would be built against .NET Core, run on Linux, be containerized, and orchestrated by Kubernetes.**
-
-> We decided the effort to port Octopus to .NET Core was effort we _wanted to spend_. 
-
-> We could roll our own orchestration solution, but Kubernetes was built for the problem we were trying to solve. We’ve always preached using Octopus rather than trying to roll your own deployment automation, so you can spend the time saved on making your core software better.  This was a chance to heed our own advice.
-
-> It was also an exciting chance to drink our own champagne again. We could take advantage of the Kubernetes support we’d built into Octopus at a large scale.
-
-This launched in late 2019, and our customers have been deploying and executing runbooks on this platform ever since. This entire journey has been a learning experience, and we're continuing to iterate and improve. 
-
-In the future, we will be publishing both Windows and Linux contains to run Octopus on-prem fully supported.
-
-### Benefits
-
-Porting Octopus Server to .NET Core has brought many benefits. 
-
-* Modern development environment, framework and tooling. 
+* Modern development environment, framework, and tooling. 
 * Cross-platform support for Windows and Linux.
 * Access to the mature ecosystem for running Linux containers in Kubernetes.
-* Choice and flexibility: our customers can choose to run Octopus on Windows, Linux or via Octopus Cloud.
-* Octopus Cloud has gained improved performance and reduced operating costs
+* Choice and flexibility: our customers can choose to run Octopus on Windows, Linux, or via Octopus Cloud.
+* Octopus Cloud has gained improved performance and reduced operating costs.
 
 This also brings a more productive development environment as our engineering teams have the choice to develop on Windows or Linux. 
 
-## Top 3 Lessons Learned
+## Top three lessons learned
 
 We learned a lot going through this process; however, we have three major lessons learned.
 
