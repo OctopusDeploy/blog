@@ -1,11 +1,11 @@
 ---
 title: "Octopus 2020.1: Dark mode and better Linux support"
-description: "Octopus 2020.1: Dark mode and better Linux support ... TODO"
+description: "Octopus 2020.1 includes dark mode support, AWS and Azure built-in steps are now cross-platform, the Octopus CLI is now available via HomeBrew, Yum, and APT and enviroment specific worker pools."
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: release-2020.1.png
 metaImage: release-2020.1.png
-published: 2020-03-16
+published: 2020-03-19
 tags:
 - Product
 ---
@@ -24,7 +24,7 @@ This release is the [first of six in 2020](/blog/2020-03/releases-and-lts/index.
 
 ## Dark mode
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZMM8BowrUjQ" frameborder="0" allowfullscreen></iframe>
 
 Developers and operations folks love dark mode, and I'm thrilled to share that Octopus now supports dark mode. It's a cool feature, but it also easier on eyes, helps reduce eye strain, and looks fantastic. 😎
 
