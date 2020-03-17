@@ -152,24 +152,14 @@ With Visual Studio Code and the Remote Development extension, we can start run a
 
 ### 3. Shipping self-contained packages
 
-Octopus 
+Porting Octopus to .NET Core has allowed us to ship self-contained packages which brings multiple benefits. We can now keep our developer toolset current enabling us to continue to innovate instaed of fighting older languages and platforms. Octopus is now easier to install and maintain on Windows and Linux as it has a far smaller dependency footprint. It allows us to support modern platforms to stay relevant instead of being held back by legacy support. That said, we still have a broad range of support for the platforms our customers require.
 
-Talk about supporting deploying self-contained packages
+Pros:
+* Reduced installation footprint. We're shipping a single self-contained executable so we no longer require .NET Core to be installed on target servers.
+* Easier to develop and support. Our self-hosted and 
 
-Context
-
-Why? 
-
-Benefits.
-
-Caveats - tradeoff - drop support for older systems. Better for staying modern and innovating etc. Link to other blog post. 
-Competitor started today, they wouldn't support old operation systems. 
-
-(stay relevant)
-
-Business decision to move forward. 
-
-Docker is self-contained thus it's a a very supportable platform.
+Cons: 
+* Dropping support for older operation systems including Windows Server 2008-2012 and some Linux distros.
 
 ## Conclusion
 
