@@ -20,7 +20,16 @@ We're proud to ship Octopus 2020.1, our first release of the year, with some gre
 * [Octopus and Octopus CLI are more at home on Linux and macOS](blog/2020-03/octopus-release-2020-1/index.md#octopus-and-octopus-cli-are-now-more-at-home-on-linux-and-macos): AWS and Azure built-in steps are cross-platform, and you can now install and use the Octopus CLI via Homebrew, Yum, and APT.
 * [Environment and tenant specific worker pools](blog/2020-03/octopus-release-2020-1/index.md#environment-and-tenant-specific-worker-pools): New worker pool variables unlock the ability to have dedicated worker pools for different environments or tenant tags.
 
-This release is the [first of six in 2020](/blog/2020-03/releases-and-lts/index.md), and we're excited to share it with the world. Keep reading to learn more about the updates.
+This release is the [first of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes 6 months of long term support. The following table shows our current releases with long term support. 
+
+| Release               | Long term support           |
+| --------------------- | --------------------------- |
+| Octopus 2020.1        | Yes                         |
+| Octopus 2019.12       | Yes                         |
+| Octopus 2019.9        | Yes                         |
+| Octopus 2019.6        | Expired                     |
+
+Keep reading to learn more about the updates.
 
 ## Dark mode
 
