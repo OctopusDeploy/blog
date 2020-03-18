@@ -3,11 +3,19 @@ title: Introducing dark mode
 description: Octopus 2020.1 introduces a dark theme to Octopus Deploy.
 author: kartik.gupta@octopus.com
 visibility: public
-published: 2020-03-19
+published: 2020-03-18
 metaImage: octopus-darkmode.png
 bannerImage: octopus-darkmode.png
 tags:
  - Product
+---
+
+Octopus 2020.1 is now available. This post is part of a series:
+
+- [Octopus 2020.1: Dark mode and better Linux support](/blog/2020-03/octopus-release-2020-1/index.md)
+- **Introducing dark mode**
+- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon
+
 ---
 
 ![Introducing dark mode](octopus-darkmode.png)

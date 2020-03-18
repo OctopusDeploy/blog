@@ -5,12 +5,18 @@ author: rob.pearson@octopus.com
 visibility: public
 bannerImage: release-2020.1.png
 metaImage: release-2020.1.png
-published: 2020-03-19
+published: 2020-03-18
 tags:
 - Product
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xJqjn4s2VCI" frameborder="0" allowfullscreen></iframe>
+
+Octopus 2020.1 is now available. This post is part of a series:
+
+- **Octopus 2020.1: Dark mode and better Linux support**
+- [Introducing dark mode](/blog/2020-03/octopus-dark-mode/index.md)
+- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon
 
 ---
 
