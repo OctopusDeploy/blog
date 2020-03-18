@@ -1,6 +1,6 @@
 ---
 title: "Octopus 2020.1: Dark mode and better Linux support"
-description: "Octopus 2020.1 includes dark mode support, AWS and Azure built-in steps are now cross-platform, the Octopus CLI is now available via HomeBrew, Yum, and APT and enviroment specific worker pools."
+description: "Octopus 2020.1 includes dark mode support, AWS and Azure built-in steps are now cross-platform, the Octopus CLI is now available via Homebrew, Yum, and APT and enviroment specific worker pools."
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: release-2020.1.png
@@ -17,7 +17,7 @@ tags:
 We're proud to ship Octopus 2020.1, our first release of the year, with some great updates and benefits.
 
 * [Dark Mode 😎](blog/2020-03/octopus-release-2020-1/index.md#dark-mode) is cool and it's easier on your eyes.
-* [Octopus and Octopus CLI are more at home on Linux and macOS](blog/2020-03/octopus-release-2020-1/index.md#octopus-and-octopus-cli-are-now-more-at-home-on-linux-and-macos): AWS and Azure built-in steps are cross-platform, and you can now install and use the Octopus CLI via HomeBrew, Yum, and APT.
+* [Octopus and Octopus CLI are more at home on Linux and macOS](blog/2020-03/octopus-release-2020-1/index.md#octopus-and-octopus-cli-are-now-more-at-home-on-linux-and-macos): AWS and Azure built-in steps are cross-platform, and you can now install and use the Octopus CLI via Homebrew, Yum, and APT.
 * [Environment and tenant specific worker pools](blog/2020-03/octopus-release-2020-1/index.md#environment-and-tenant-specific-worker-pools): New worker pool variables unlock the ability to have dedicated worker pools for different environments or tenant tags.
 
 This release is the [first of six in 2020](/blog/2020-03/releases-and-lts/index.md), and we're excited to share it with the world. Keep reading to learn more about the updates.
@@ -34,18 +34,19 @@ Octopus includes support to detect if your OS is running dark mode and can switc
 
 Octopus aims to have world-class support for multiple platforms, including Windows machines, Linux machines, and popular cloud services. This release includes two changes to make Octopus feel more at home on Linux and macOS.
 
-### Octopus CLI available via HomeBrew, APT, and YUM
+### Octopus CLI available via Homebrew, APT, and YUM
 
 ![command prompt or terminal graphic](octopus-cli-xplat.png "width=500")
 
 The Octopus CLI, formerly known as `octo.exe`, is a handy and powerful tool that enables teams to interact with Octopus from the command line. It's now available to install quickly and easily via the following platforms and package repositories:
 
 * Chocolatey
-* HomeBrew
+* Homebrew
 * APT
 * YUM
+* Docker
 
-The new additions are HomeBrew, APT, and YUM so that teams using macOS and Linux can take advantage of this in a more natural way.
+The new additions are Homebrew, APT, and YUM so that teams using macOS and Linux can take advantage of this in a more natural way.
 
 [Check it out](https://octopus.com/downloads/octopuscli)
 
@@ -95,6 +96,6 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming
 
 ## Conclusion
 
-Octopus 2020.1 includes dark mode, cross-platform Azure and AWS step templates, Octopus CLI on HomeBrew, APT, and YUM package repositories, and new worker pool variables. This release is an excellent start to the year, and we're working hard to keep shipping a great product.
+Octopus 2020.1 includes dark mode, cross-platform Azure and AWS step templates, Octopus CLI on Homebrew, APT, and YUM package repositories, and new worker pool variables. This release is an excellent start to the year, and we're working hard to keep shipping a great product.
 
 Feel free to leave us a comment, and let us know what you think! Happy deployments!
