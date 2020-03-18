@@ -84,6 +84,8 @@ This release includes two breaking changes.
 1. **[Octopus Server minimum requirements](https://octopus.com/blog/raising-minimum-requirements-for-octopus-server)** - We are raising the minimum requirements for running Octopus Server to Windows Server 2012 R2 and SQL Server 2017.
 2. **[Library variable set permission changes](https://octopus.com/blog/libraryvariableset-permission-changes)** - You can now scope variables stored inside library variable sets to environments and tenants, giving you fine-grain access control and more consistent permissions.
 
+It's also important to note that Octopus Server has been ported to .NET Core 3.1, thus it longer requires the .NET Framework to be installed.
+
 ## Upgrading
 
 Octopus Cloud users are already running this release, and self-hosted Octopus customers can [download](https://octopus.com/downloads/2020.1.0) the latest release now.  
