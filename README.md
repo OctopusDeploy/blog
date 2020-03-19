@@ -1,6 +1,13 @@
 This repository contains the [Octopus.com/blog](https://octopus.com/blog/) posts.
 
-Read the following pages to learn about the [markdown syntax](conventions.md) we use on the blog, read the [writing tips](tips.md) to get a sense of the style and tone we're aiming for, and grab a [template](templates/readme.md) to get started.
+Authors must sign the [Contribution License Agreement (CLA)](https://cla-assistant.io/OctopusDeploy/docs) before we can accept your contribution.
+
+See the [Octopus style guide](https://github.com/OctopusDeploy/OctoStyle) for the following information:
+- [Using markdown](https://github.com/OctopusDeploy/OctoStyle/blob/master/markdown.md)
+- [Writing tips](tips.md) 
+- [Blog template](https://github.com/OctopusDeploy/OctoStyle/blob/master/blog-templates/readme.md)
+
+# How to submit a blog post 
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
