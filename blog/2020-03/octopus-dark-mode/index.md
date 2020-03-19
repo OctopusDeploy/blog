@@ -18,7 +18,7 @@ Octopus 2020.1 is now available. This post is part of a series:
 
 ---
 
-![Introducing dark mode](octopus-darkmode.png)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZMM8BowrUjQ" frameborder="0" allowfullscreen></iframe>
 
 Octopus 2020.1 takes Octopus over to the dark side, and in this post, we look at why we added dark mode, how it looks, how we implemented it, and some lessons learned along the way.
 
