@@ -1,6 +1,6 @@
 ---
-title: Booting Tomcat in Docker with the Manager app
-description: Learn how to boot a standard Tomcat Docker image with the Manager app exposed and ready to accept deployments
+title: Booting Tomcat in Docker with the manager app
+description: Learn how to boot a standard Tomcat Docker image with the manager app exposed and ready to accept deployments
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -10,13 +10,14 @@ tags:
  - Octopus
 ---
 
-When testing Java deployments with Tomcat, the official Tomcat Docker image provides a convenient way to get a server up and running. However there are a few tricks to getting the Manager application loaded and accessible.
+When testing Java deployments with Tomcat, the official Tomcat Docker image provides a convenient way to get a server up and running. However, there are a few tricks to getting the manager application loaded and 
+accessible.
 
-In this blog post we'll look at how to boot a Tomcat Docker image ready to accept new deployments.
+In this blog post, we look at how to boot a Tomcat Docker image ready to accept new deployments.
 
-## Defining a user
+## Define a user
 
-First we need to define a Tomcat user that has access to the manager application. This user is defined in a file called `tomcat-users.xml`, and will be assigned both the `manager-gui` and `manager-script` roles, which grant access to the manager HTML interface as well as the API:
+First we need to define a Tomcat user that has access to the manager application. This user is defined in a file called `tomcat-users.xml` and will be assigned both the `manager-gui` and `manager-script` roles, which grant access to the manager HTML interface as well as the API:
 
 ```xml
 <tomcat-users>
@@ -26,9 +27,9 @@ First we need to define a Tomcat user that has access to the manager application
 </tomcat-users>
 ```
 
-## Exposing the manager
+## Expose the manager
 
-By default the manager application will only accept traffic from `localhost`. Keep in mind that from the context of a Docker image, `localhost` means the containers loopback interface, not that of the host. With port forwarding enabled, traffic to an exposed port enters the Docker container via the container's external interface, and will be blocked by default. Here we have a copy of the manager applications `context.xml` file with the network filtering disabled:
+By default, the manager application will only accept traffic from `localhost`. Keep in mind that from the context of a Docker image, `localhost` means the container's loop-back interface, not that of the host. With port forwarding enabled, traffic to an exposed port enters the Docker container via the container's external interface, and will be blocked by default. Here we have a copy of the manager applications `context.xml` file with the network filtering disabled:
 
 ```xml
 <Context antiResourceLocking="false" privileged="true" >
@@ -42,7 +43,7 @@ By default the manager application will only accept traffic from `localhost`. Ke
 
 [This blog post](https://pythonspeed.com/articles/docker-connection-refused/) provides some more detail about Docker networking with forwarded ports.
 
-## Running the container
+## Run the container
 
 The final hurdle to jump is the fact that the Tomcat Docker image does not load any applications by default. The default applications, such as the manager application, are saved in a directory called `/usr/local/tomcat/webapps.dist`. We need to move this directory to `/usr/local/tomcat/webapps`. This is achieved by overriding the command used when launching the container.
 
@@ -59,7 +60,7 @@ docker run \
   /bin/bash -c "mv /usr/local/tomcat/webapps /usr/local/tomcat/webapps2; mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps; catalina.sh run"
 ```
 
-## Accessing the manager application
+## Access the manager application
 
 To open the manager application, open the URL http://localhost:8080/manager/html. Enter `tomcat` for the username, and `s3cret` for the password:
 
@@ -67,6 +68,6 @@ To open the manager application, open the URL http://localhost:8080/manager/html
 
 ## Conclusion
 
-The Tomcat image maintainers have chosen to not enable the default applications as a [security precaution](https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html#Default_web_applications), but with a two custom configuration files and overriding the Docker command it is possible to boot Tomcat with a fully functional manager application.
+The Tomcat image maintainers have chosen not to enable the default applications as a [security precaution](https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html#Default_web_applications), but with two custom configuration files and overriding the Docker command it is possible to boot Tomcat with a fully functional manager application.
 
 In this post we provided example configuration files and the Docker command to restore the default applications before running Tomcat.
