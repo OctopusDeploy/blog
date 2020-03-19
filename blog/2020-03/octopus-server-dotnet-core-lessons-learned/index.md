@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 bannerImage: eskimo-octopus-linux-land.png
 metaImage: eskimo-octopus-linux-land.png
-published: 2020-03-19
+published: 2020-03-20
 tags:
 - Engineering
 ---
