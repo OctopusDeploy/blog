@@ -17,7 +17,7 @@ In this blog post, we look at how to boot a Tomcat Docker image ready to accept 
 
 ## Define a user
 
-First we need to define a Tomcat user that has access to the manager application. This user is defined in a file called `tomcat-users.xml` and will be assigned both the `manager-gui` and `manager-script` roles, which grant access to the manager HTML interface as well as the API:
+First, we need to define a Tomcat user that has access to the manager application. This user is defined in a file called `tomcat-users.xml` and will be assigned both the `manager-gui` and `manager-script` roles, which grant access to the manager HTML interface as well as the API:
 
 ```xml
 <tomcat-users>
@@ -29,7 +29,7 @@ First we need to define a Tomcat user that has access to the manager application
 
 ## Expose the manager
 
-By default, the manager application will only accept traffic from `localhost`. Keep in mind that from the context of a Docker image, `localhost` means the container's loop-back interface, not that of the host. With port forwarding enabled, traffic to an exposed port enters the Docker container via the container's external interface, and will be blocked by default. Here we have a copy of the manager applications `context.xml` file with the network filtering disabled:
+By default, the manager application will only accept traffic from `localhost`. Keep in mind that from the context of a Docker image, `localhost` means the container's loopback interface, not that of the host. With port forwarding enabled, traffic to an exposed port enters the Docker container via the container's external interface and will be blocked by default. Here we have a copy of the manager applications `context.xml` file with the network filtering disabled:
 
 ```xml
 <Context antiResourceLocking="false" privileged="true" >
