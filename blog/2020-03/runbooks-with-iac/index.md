@@ -2,8 +2,8 @@
 title: Using Infrastructure as Code with Octopus Runbooks 
 description: This post will discuss how to leverage Octopus Runbook with Infrastructure as Code
 author: bob.walker
-visibility: public
-published: 2020-03-31
+visibility: private
+published: 2020-04-30
 metaImage: 
 bannerImage: 
 tags:
