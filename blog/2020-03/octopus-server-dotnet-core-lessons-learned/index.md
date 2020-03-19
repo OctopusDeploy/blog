@@ -70,7 +70,9 @@ As we progressed through the .NET Core port, we also learned how to code, test, 
 
 **Running as non-root or non-admin**
 
-We found it much easier to run all builds and test Octopus Server on Linux as non-root or non-sudo to limit permission-based errors and problems. That said, we encountered a problem with this because Octopus writes its instance config files and the Master Key to `/etc/octopus`. `/etc/octopus` is the equivalent of the `c:\Octopus` directory on Windows, however, `/etc` is a root privileged folder in Linux. We manually override this for development purposes with `sudo chown -R $USER /etc/octopus`. This is a bit quick and dirty, but it does the job. 
+We found it much easier to run all builds and test Octopus Server on Linux as non-root or non-sudo to limit permission-based errors and problems. That said, we sometimes need to run commands as root using `sudo` and then afterwards fix up the ownership of files that were created during those commands with `chown`, like `sudo chown -R $user:$user ~/Octopus/MyInstance`. This is a bit quick and dirty, but it does the job. 
+
+We are planning to change this in future, such that octopus runs as a user that is a member of a group, and during installation we configure the group owner of `/etc/octopus` to be that group. 
 
 **Certificate management**
 
@@ -122,7 +124,7 @@ With Visual Studio Code and the Remote Development extension, we can run applica
 
 Porting Octopus to .NET Core has allowed us to ship [self-contained packages](https://www.hanselman.com/blog/MakingATinyNETCore30EntirelySelfcontainedSingleExecutable.aspx) which brings multiple benefits.
 
-- **Reduced installation footprint**: Shipping a single self-contained executable means we no longer require .NET Core to be installed on the Octopus Server. The result is reduced installation requirements that make Octopus easier to install. This is is a big win.
+- **Fewer dependencies**: Shipping a single self-contained executable means we no longer require .NET Core to be installed on the Octopus Server. The result is reduced installation requirements that make Octopus easier to install. This is is a big win.
 - **Improved supportability**: In a nutshell, fewer dependencies make Octopus easier to install and support. There are fewer components and fewer things that can be accidentally changed. Shipping Docker container images for [Windows](https://hub.docker.com/r/octopusdeploy/octopusdeploy) and Linux (coming soon) eliminates further dependencies as even more of the dependencies are built into the containers. 
 - **Modern software and tooling**: Using modern tools and frameworks enables our team to continue to innovate and ship software quickly with useful features for our customers. 
 
