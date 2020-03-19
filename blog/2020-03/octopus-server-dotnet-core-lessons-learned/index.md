@@ -58,7 +58,9 @@ We have been working with Microsoft to help provide information to resolve the i
 
 We also encountered the need to host the Octopus Server web host differently on each platform. We use `HttpSys` on Windows and _Kestrel_ on Linux, and this made our authentication challenging. Octopus needs to support multiple authentication schemes, including cookies-based authentication, and the ability for users to log in and out and have multiple authentication providers enabled at once.
 
-The core issue we hit was that HttpSys supports integrated authentication (i.e., Windows authentication), but its a binary on/off for every endpoint in the host. This is inflexible, and it's a change from our non-.NET Core code-base. Users could log in automatically, but they could never log out. 
+The core issue we hit was that `HttpSys` supports integrated authentication (i.e., Windows authentication), but its a binary on/off for every endpoint in the host. This is inflexible, and it's a change from our non-.NET Core code-base. Users could log in automatically, but they could never log out. 
+
+Note: We don't use Kestrel on Windows is because it doesn't support virtual directories and we have customers that share the same port with other services. So to ensure we maintain backwards compatibility, we decided to use `HttpSys` for Windows only.
 
 **Solution**: 
 
