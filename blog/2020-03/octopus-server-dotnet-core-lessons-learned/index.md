@@ -14,8 +14,6 @@ tags:
 
 With the release of Octopus 2020.1, Octopus Server now runs on .NET Core 3.1, which means it can be installed on Linux, Docker Containers, and Kubernetes. This was a significant effort, we already shared our [reflections on the launch of Octopus Cloud 1.0](/blog/2019-10/octopus-cloud-1.0-reflections/index.md) and [why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud 2.0](/blog/2019-11/octopus-cloud-v2-why-kubernetes/index.md), in this post, we share the benefits of the change and our top three lessons learned.
 
-!toc
-
 ## Benefits
 
 Before we share the lessons learned, here are the benefits of porting Octopus Server to .NET Core:
