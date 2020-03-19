@@ -112,4 +112,4 @@ Feel free to leave us a comment, and let us know what you think! Happy deploymen
 ## Related posts
 
 - [Introducing dark mode](/blog/2020-03/octopus-dark-mode/index.md)
-- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon
+- [Lessons learned porting Octopus Server to .NET Core 3.1](/blog/2020-03/octopus-server-dotnet-core-lessons-learned/index.md)

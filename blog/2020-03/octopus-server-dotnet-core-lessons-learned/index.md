@@ -56,9 +56,9 @@ We have been working with Microsoft to help provide information to resolve the i
 
 We also encountered the need to host the Octopus Server web host differently on each platform. We use `HttpSys` on Windows and _Kestrel_ on Linux, and this made our authentication challenging. Octopus needs to support multiple authentication schemes, including cookies-based authentication, and the ability for users to log in and out and have multiple authentication providers enabled at once.
 
-The core issue we hit was that `HttpSys` supports integrated authentication (i.e., Windows authentication), but its a binary on/off for every endpoint in the host. This is inflexible, and it's a change from our non-.NET Core code-base. Users could log in automatically, but they could never log out. 
+The core issue we hit was that `HttpSys` supports integrated authentication (i.e., Windows authentication), but its a binary on/off setting for every endpoint in the host. This is inflexible, and it's a change from our non-.NET Core code-base. Users could log in automatically, but they could never log out. 
 
-Note: We don't use Kestrel on Windows is because it doesn't support virtual directories and we have customers that share the same port with other services. So to ensure we maintain backwards compatibility, we decided to use `HttpSys` for Windows only.
+Note: We don't use Kestrel on Windows because it doesn't support virtual directories and we have customers that share the same port with other services. So to ensure we maintain backwards compatibility, we decided to use `HttpSys` for Windows only.
 
 **Solution**: 
 
@@ -66,7 +66,7 @@ We considered several options, but after going through this [ASP.NET Core issue]
 
 ### 2. Tips and tricks for writing code and debugging .NET Core on Linux and Docker
 
-As we progressed through the .NET Core port, we also learned how to code, test, and debug problems with Windows and the Windows Subsystem for Linux (WSL), Linux, and Docker. Historically, our team all developed on Windows, but this has evolved into individuals coding on Windows, Linux, and macOS, and as a result, we've learned several lessons:
+As we progressed through the .NET Core port, we also learned how to code, test, and debug problems with Windows, Windows Subsystem for Linux (WSL), Linux, and Docker. Historically, our team all developed on Windows, but this has evolved into individuals coding on Windows, Linux, and macOS, and as a result, we've learned several lessons:
 
 **Running as non-root or non-admin**
 
@@ -106,7 +106,7 @@ update-ca-certificates
 
 Octopus uses Microsoft SQL Server as its database, and teams generally connect to it via integrated Windows authentication on Windows Servers. This no longer works. Our solution here was to switch to user name and password-based authentication. 
 
-Further, we found our suite of end-to-end (E2E) tests runs much faster and more reliable with **database connection pooling turned off**. We haven't gotten to the bottom of this yet, but it's likely a platform-specific problem related to the database performance issue mentioned above.
+Further, we found our suite of end-to-end (E2E) tests runs much faster and more reliable with database connection pooling turned off. We haven't gotten to the bottom of this yet, but it's likely a platform-specific problem related to the database performance issue mentioned above.
 
 **Debug Octopus Server on Linux with Visual Studio Code**
 
@@ -124,11 +124,11 @@ With Visual Studio Code and the Remote Development extension, we can run applica
 
 Porting Octopus to .NET Core has allowed us to ship [self-contained packages](https://www.hanselman.com/blog/MakingATinyNETCore30EntirelySelfcontainedSingleExecutable.aspx) which brings multiple benefits.
 
-- **Fewer dependencies**: Shipping a single self-contained executable means we no longer require .NET Core to be installed on the Octopus Server. The result is reduced installation requirements that make Octopus easier to install. This is is a big win.
+- **Fewer dependencies**: Shipping a single self-contained executable means we no longer require .NET Core to be installed on the Octopus server. The result is reduced installation requirements that make Octopus easier to install. This is is a big win.
 - **Improved supportability**: In a nutshell, fewer dependencies make Octopus easier to install and support. There are fewer components and fewer things that can be accidentally changed. Shipping Docker container images for [Windows](https://hub.docker.com/r/octopusdeploy/octopusdeploy) and Linux (coming soon) eliminates further dependencies as even more of the dependencies are built into the containers. 
 - **Modern software and tooling**: Using modern tools and frameworks enables our team to continue to innovate and ship software quickly with useful features for our customers. 
 
-Unfortunately, this also has some tradeoffs as moving to .NET Core 3.1 required us to drop support for older operating systems, including Windows Server 2008-2012 and some Linux distros. Supporting older servers and browsers drains our time and attention, making it harder for us to innovate and move the Octopus ecosystem forward. 
+Unfortunately, this also has some tradeoffs as moving to .NET Core 3.1 required us to [drop support](/blog/2019-11/raising-minimum-requirements-for-octopus-server/index.md) for older operating systems, including Windows Server 2008-2012 and some Linux distros. Supporting older servers and browsers drains our time and attention, making it harder for us to innovate and move the Octopus ecosystem forward. 
 
 ## Conclusion
 
@@ -140,3 +140,7 @@ It wasn't a simple journey, but we learned a lot on the way.
 2. Learning how to debug .NET Core on Linux and Docker.
 3. Shipping self-contained packages.
 
+## Related posts
+
+- [Octopus 2020.1: Dark mode and better Linux support](/blog/2020-03/octopus-release-2020-1/index.md)
+- [Introducing dark mode](/blog/2020-03/octopus-dark-mode/index.md)

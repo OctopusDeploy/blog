@@ -61,4 +61,4 @@ Through dark mode, we would like to bring Octopus into a new world, one where yo
 ## Related posts
 
 - [Octopus 2020.1: Dark mode and better Linux support](/blog/2020-03/octopus-release-2020-1/index.md)
-- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon
+- [Lessons learned porting Octopus Server to .NET Core 3.1](/blog/2020-03/octopus-server-dotnet-core-lessons-learned/index.md)
