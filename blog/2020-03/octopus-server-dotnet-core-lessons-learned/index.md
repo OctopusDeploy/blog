@@ -46,9 +46,9 @@ We shifted everything stored in the registry to the file system or the Octopus d
 
 The most significant problem we encountered was abysmal database performance due to the different way of handling database queries on Windows and Linux. Octopus uses Microsoft SQL Server as its data store, and we discovered a [significant problem](https://github.com/dotnet/SqlClient/issues/422) in the .NET Core SQL client library on Linux. If we have the `MultipleActiveResultSets` setting set to `True` we get exceptions and database timeouts. The GitHub issue linked above shares the full details and a simple code sample to reproduce the problem. 
 
-**Solution**: 
+Solution: 
 
-Our short-term solution was to disable the `MultipleActiveResultSets` setting and use it very sparingly. In general, we open two connections to our database, one with this setting enabled and one with it disabled. We primarily use the disabled connection only for instances where we need it to be true. 
+Our short-term solution was to disable the `MultipleActiveResultSets` setting and use it very sparingly. In general, we open two connections to our database, one with this setting enabled and one with it disabled. We primarily use the disabled connection and only use the enabled one when it is required.
 
 We have been working with Microsoft to help provide information to resolve the issue, and we hope to see a proper fix in the future. 
 
