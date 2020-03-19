@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 bannerImage: eskimo-octopus-linux-land.png
 metaImage: eskimo-octopus-linux-land.png
-published: 2020-03-20
+published: 2020-03-19
 tags:
 - Engineering
 ---
@@ -22,7 +22,7 @@ Before we share the lessons learned, here are the benefits of porting Octopus Se
 * Cross-platform support for Windows and Linux.
 * Access to the mature ecosystem for running Linux containers in Kubernetes.
 * Choice and flexibility: Our customers can choose to run Octopus on Windows or Linux, or they can use Octopus Cloud.
-* Octopus Cloud has gained improved performance and reduced operating costs.
+* Octopus Cloud has gained improved performance and reduced operating costs. See the links above for concrete numbers.
 
 This also makes our development environment more productive as our engineering teams now have the choice to develop on Windows or Linux. 
 
@@ -30,7 +30,7 @@ This also makes our development environment more productive as our engineering t
 
 We learned a lot going through this process; however, there are three major lessons we learned.
 
-### 1. Platform specific differences
+### 1. Know and plan for differences between Windows and Linux
 
 There are platform-specific differences in the implementations of .NET Core on Windows and Linux. Most of the issues were small and had easy workarounds, but we did find a few significant problems that are worth sharing.
 
@@ -64,7 +64,7 @@ Note: We don't use Kestrel on Windows because it doesn't support virtual directo
 
 We considered several options, but after going through this [ASP.NET Core issue](https://github.com/dotnet/aspnetcore/issues/5888), we decided to follow the advice there and use two hosts. One standard web host and a second one to look/behave like a virtual directory off the main API site's root, i.e., `/integrate-challenge`, and is therefore consistent with the location in earlier versions of Octopus Server. The host only has that one route, and it initiates the login challenge using a 401 response when the user isn't already authenticated.
 
-### 2. Tips and tricks for writing code and debugging .NET Core on Linux and Docker
+### 2. Sharpen your debugging skills for Linux and Docker
 
 As we progressed through the .NET Core port, we also learned how to code, test, and debug problems with Windows, Windows Subsystem for Linux (WSL), Linux, and Docker. Historically, our team all developed on Windows, but this has evolved into individuals coding on Windows, Linux, and macOS, and as a result, we've learned several lessons:
 
@@ -120,7 +120,7 @@ Currently, the most popular is [Visual Studio Code](https://code.visualstudio.co
 
 With Visual Studio Code and the Remote Development extension, we can run applications, test, and debug them as well as edit code in Linux (or a Docker container).  Simply point VS Code at the folder that contains the Octopus Server code, and then it's pretty much just F5 from there. It's that simple!
 
-### 3. Shipping self-contained packages
+### 3. Simplify with self-contained packages
 
 Porting Octopus to .NET Core has allowed us to ship [self-contained packages](https://www.hanselman.com/blog/MakingATinyNETCore30EntirelySelfcontainedSingleExecutable.aspx) which brings multiple benefits.
 
