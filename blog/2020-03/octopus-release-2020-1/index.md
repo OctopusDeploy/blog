@@ -12,14 +12,6 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xJqjn4s2VCI" frameborder="0" allowfullscreen></iframe>
 
-Octopus 2020.1 is now available. This post is part of a series:
-
-- **Octopus 2020.1: Dark mode and better Linux support**
-- [Introducing dark mode](/blog/2020-03/octopus-dark-mode/index.md)
-- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon
-
----
-
 We're proud to ship Octopus 2020.1, our first release of the year, with some great updates and benefits.
 
 * [Dark Mode 😎](blog/2020-03/octopus-release-2020-1/index.md#dark-mode) is cool and it's easier on your eyes.
@@ -116,3 +108,8 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming
 Octopus 2020.1 includes dark mode, cross-platform Azure and AWS step templates, Octopus CLI on Homebrew, APT, and YUM package repositories, and new worker pool variables. This release is an excellent start to the year, and we're working hard to keep shipping a great product.
 
 Feel free to leave us a comment, and let us know what you think! Happy deployments!
+
+## Related posts
+
+- [Introducing dark mode](/blog/2020-03/octopus-dark-mode/index.md)
+- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon

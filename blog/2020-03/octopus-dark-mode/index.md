@@ -10,14 +10,6 @@ tags:
  - Product
 ---
 
-Octopus 2020.1 is now available. This post is part of a series:
-
-- [Octopus 2020.1: Dark mode and better Linux support](/blog/2020-03/octopus-release-2020-1/index.md)
-- **Introducing dark mode**
-- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon
-
----
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZMM8BowrUjQ" frameborder="0" allowfullscreen></iframe>
 
 Octopus 2020.1 takes Octopus over to the dark side, and in this post, we look at why we added dark mode, how it looks, how we implemented it, and some lessons learned along the way.
@@ -65,3 +57,8 @@ We did run into issues with IE11, which is the only browser that doesn’t suppo
 ## Conclusion
 
 Through dark mode, we would like to bring Octopus into a new world, one where you can deploy day and night without straining your eyes! We hope you love dark mode, and if you have any feedback, please fill in the [feedback form](https://octopusdeploy.typeform.com/to/jVl7gN)!
+
+## Related posts
+
+- [Octopus 2020.1: Dark mode and better Linux support](/blog/2020-03/octopus-release-2020-1/index.md)
+- Lessons learned porting Octopus Server to .NET Core 3.1 - Coming soon
