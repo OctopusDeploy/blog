@@ -12,7 +12,7 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xJqjn4s2VCI" frameborder="0" allowfullscreen></iframe>
 
-We're proud to ship Octopus 2020.1, our first release of the year, with some great updates and benefits.
+We will soon be shipping Octopus 2020.1, our first release of the year, with some great updates and benefits.
 
 * [Dark Mode 😎](blog/2020-03/octopus-release-2020-1/index.md#dark-mode) is cool and it's easier on your eyes.
 * [Octopus and Octopus CLI are more at home on Linux and macOS](blog/2020-03/octopus-release-2020-1/index.md#octopus-and-octopus-cli-are-now-more-at-home-on-linux-and-macos): AWS and Azure built-in steps are cross-platform, and you can now install and use the Octopus CLI via Homebrew, Yum, and APT.
@@ -106,6 +106,8 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming
 ## Conclusion
 
 Octopus 2020.1 includes dark mode, cross-platform Azure and AWS step templates, Octopus CLI on Homebrew, APT, and YUM package repositories, and new worker pool variables. This release is an excellent start to the year, and we're working hard to keep shipping a great product.
+
+Octopus 2020.1 will be available to download shortly.
 
 Feel free to leave us a comment, and let us know what you think! Happy deployments!
 
