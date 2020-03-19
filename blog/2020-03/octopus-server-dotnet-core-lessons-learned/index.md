@@ -34,7 +34,7 @@ We learned a lot going through this process; however, there are three major less
 
 There are platform-specific differences in the implementations of .NET Core on Windows and Linux. Most of the issues were small and had easy workarounds, but we did find a few significant problems that are worth sharing.
 
-#### Configuration settings and the Windows registry
+**Configuration settings and the Windows registry**
 
 To support both Windows and Linux platforms, we had to remove any Windows-specific code. Octopus Server started as a Windows product, and it followed the platform conventions and stored some configuration settings in the Windows registry, which is a problem for Linux.
 
@@ -42,7 +42,7 @@ To support both Windows and Linux platforms, we had to remove any Windows-specif
 
 We shifted everything stored in the registry to the file system or the Octopus database. This was a simple task, but it took time and testing to get it right.
 
-#### Database performance problems
+**Database performance problems**
 
 The most significant problem we encountered was abysmal database performance due to the different way of handling database queries on Windows and Linux. Octopus uses Microsoft SQL Server as its data store, and we discovered a [significant problem](https://github.com/dotnet/SqlClient/issues/422) in the .NET Core SQL client library on Linux. If we have the `MultipleActiveResultSets` setting set to `True` we get exceptions and database timeouts. The GitHub issue linked above shares the full details and a simple code sample to reproduce the problem. 
 
@@ -52,7 +52,7 @@ Our short-term solution was to disable the `MultipleActiveResultSets` setting an
 
 We have been working with Microsoft to help provide information to resolve the issue, and we hope to see a proper fix in the future. 
 
-#### Authentication providers
+**Authentication providers**
 
 We also encountered the need to host the Octopus Server web host differently on each platform. We use `HttpSys` on Windows and _Kestrel_ on Linux, and this made our authentication challenging. Octopus needs to support multiple authentication schemes, including cookies-based authentication, and the ability for users to log in and out and have multiple authentication providers enabled at once.
 
