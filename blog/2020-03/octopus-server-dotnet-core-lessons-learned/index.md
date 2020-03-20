@@ -136,9 +136,9 @@ We ported Octopus Server to .NET Core 3.1 so that the server can run on Linux, D
 
 It wasn't a simple journey, but we learned a lot on the way.
 
-1. Platform-specific differences.
-2. Learning how to debug .NET Core on Linux and Docker.
-3. Shipping self-contained packages.
+1. Know and plan for differences between Windows and Linux
+2. Sharpen your debugging skills for Linux and Docker
+3. Simplify with self-contained packages
 
 ## Related posts
 
