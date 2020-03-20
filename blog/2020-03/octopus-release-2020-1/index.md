@@ -12,6 +12,10 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xJqjn4s2VCI" frameborder="0" allowfullscreen></iframe>
 
+**We’ve pulled Octopus 2020.1.x due to a couple of nasty bugs. We’re actively working on them, and we’ll publish the updated release as soon as we’re confident it won’t cause problems.**
+
+---
+
 We're proud to ship Octopus 2020.1, our first release of the year, with some great updates and benefits.
 
 * [Dark Mode 😎](blog/2020-03/octopus-release-2020-1/index.md#dark-mode) is cool and it's easier on your eyes.
