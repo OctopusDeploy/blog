@@ -124,7 +124,7 @@ With Visual Studio Code and the Remote Development extension, we can run applica
 
 Porting Octopus to .NET Core has allowed us to ship [self-contained packages](https://www.hanselman.com/blog/MakingATinyNETCore30EntirelySelfcontainedSingleExecutable.aspx) which brings multiple benefits.
 
-- **Fewer dependencies**: Shipping a single self-contained executable means we no longer require .NET Core to be installed on the Octopus server. The result is reduced installation requirements that make Octopus easier to install. This is is a big win.
+- **Fewer dependencies**: Shipping a single self-contained executable means we no longer require .NET Core to be installed on the Octopus server. The result is reduced installation requirements that make Octopus easier to install. This is a big win.
 - **Improved supportability**: In a nutshell, fewer dependencies make Octopus easier to install and support. There are fewer components and fewer things that can be accidentally changed. Shipping Docker container images for [Windows](https://hub.docker.com/r/octopusdeploy/octopusdeploy) and Linux (coming soon) eliminates further dependencies as even more of the dependencies are built into the containers. 
 - **Modern software and tooling**: Using modern tools and frameworks enables our team to continue to innovate and ship software quickly with useful features for our customers. 
 
