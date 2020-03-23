@@ -2,12 +2,15 @@
 title: Command-line tab completion for Octopus CLI
 description: Enable tab completion for the Octopus CLI today! We'll also dive into how shell completion works in some popular shell environments.
 author: jim.burger@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-03-24
+metaImage: octopus-cli-tab-completion.png
+bannerImage: octopus-cli-tab-completion.png
 tags:
- - Octopus
- - DevOps
+ - Engineering
 ---
+
+![Command-line tab completion for Octopus CLI](octopus-cli-tab-completion.png)
 
 As a developer, I like my IDE and text editors to provide useful hints when I'm doing a lot of typing. This not only speeds me up when I know what I'm trying to do, but it also speeds me up _when I'm learning_ how to use a tool or framework feature. Thinking back, I probably owe the speed at which I picked up C# programming to features like IntelliSense.
 
