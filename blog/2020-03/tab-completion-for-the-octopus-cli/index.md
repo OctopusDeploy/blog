@@ -97,8 +97,6 @@ Register-ArgumentCompleter -Native -CommandName systemctl -ScriptBlock {
 
 If we write this to `$PROFILE` and then 'dot source' it with `. $PROFILE` you'll see you can now get completion over any enabled services.
 
-![demonstrating tab completion in pwsh for systemctl status](systemctl-pwsh.png)
-
 ## What does Octopus CLI do to make this easy?
 
 The above example requires me to do work up front to handle suggestions. What if `systemctl` itself, having the best knowledge of its sub-commands, provided those completions instead? This is what tools like `dotnet`, `nuke`, and `octo` do; they provide a subcommand of their own to handle the suggestions side of things. You can try this out with the latest version of Octopus CLI:
