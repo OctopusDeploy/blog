@@ -172,5 +172,5 @@ If we took the approach of storing Octopus configuration as XML or JSON files in
 We're at a point in the year where we need to make a decision one way or the other. If we go the Git sync approach, the user experience is likely to impact most of the new features we're building, so we'll probably start working on that first. On the other hand, if we take the declarative Octopus Client approach I've outlined here, it's something we can easily ship and improve over the next few months without slowing anything else down. 
 
 My question to you is: **does this declarative C# approach work for you?** Or is there something else you would need from version controlled Octopus configuration? 
-
+ 
 !include <test>
