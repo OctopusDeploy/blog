@@ -368,7 +368,7 @@ First, we want to put the scaffolding in place and create the database, the user
 
 ![](octopusdeploy-initialdatabasedeployscaffolding.png)
 
-The next set of steps will deploy the database changes from DbUp.  If you recall [my previous Redgate article](https://octopus.com/blog/automated-database-deployments-redgate-sql-change-automation-state-based), this was done in four steps:
+The next set of steps will deploy the database changes from DbUp.  If you recall [my previous Redgate articles](/blog/2020-02/database-deployment-automation-using-redgate-sql-change-automation/index.md) this was done in four steps:
 
 1. Download the Package.
 2. Run Redgate Create Database Release.

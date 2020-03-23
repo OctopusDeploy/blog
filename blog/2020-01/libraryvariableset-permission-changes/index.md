@@ -33,7 +33,7 @@ But making changes to permissions has always been a challenge. Octopus cannot se
 
 ## Improving variable set access
 
-With the introduction of this change (in an upcoming version of Octopus) you will be able to grant granular access to what users can view and edit in library variable sets, independent of the environments they can view. This change delivers a good step forward to increase the capability of library variable sets.
+With the introduction of this change in Octopus Server version 2020.1.2, you will be able to grant granular access to what users can view and edit in library variable sets, independent of the environments they can view. This change delivers a good step forward to increase the capability of library variable sets.
 
 The decoupling of `LibraryVariableSetView` and `LibraryVariableSetEdit` from `EnvironmentView` gives these permissions the capabilities similar to `VariableView` and `VariableEdit` (they’re all grown up now).
 
@@ -73,7 +73,7 @@ Here are some example scenarios to work out if this will impact you.
 
 We will migrate user access in these cases:
 
-  1. You have defined a `Custom User Role` and it contains `LibraryVariableSetView` or `LibraryVariableSetEdit`, you have used this role to define the permissions for a set of users, and no other roles are granting those users access. In this scenario, prior to this upcoming change, `LibraryVariableSetView` did not work as expected, because the users lacked `EnvironmentView`.
+  1. You have defined a `Custom User Role` and it contains `LibraryVariableSetView` or `LibraryVariableSetEdit`, you have used this role to define the permissions for a set of users, and no other roles are granting those users access. In this scenario, prior to this  change in Octopus Server 2020.1.2, `LibraryVariableSetView` did not work as expected, because the users lacked `EnvironmentView`.
   2. You are using a User Role that has `LibraryVariableSetView` or `LibraryVariableSetEdit` with different scoping to what the user is scoped to on the `EnvironmentView` permission. In this scenario, we must apply the same scoping they currently have on `EnvironmentView` to `LibraryVariableSetView` and `LibraryVariableSetEdit`.
 
 #### Not Affected Examples
@@ -96,11 +96,7 @@ You can also run this [LinqPad](https://www.linqpad.net/) [script in our API rep
 
 ### How will this migration work?
 
-If you are familiar with Octopus data migrations, this one is a little different because it needs to operate while Octopus is running.
-
-To achieve this, it will run as a task in every space you have configured. This task will report what changes it made so it can be reviewed and acted on if need be.
-
-![Example LVS Migration Task](blogimage-lvs-migration-task.png)
+This migration will take place during the Octopus server start up. If you would like to see what has changed, please review the [server log file](https://octopus.com/docs/support/log-files).
 
 
 ## Breaking Change

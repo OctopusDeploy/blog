@@ -69,7 +69,7 @@ Step templates are a popular way for teams to create reusable steps for use acro
 
 ## Introducing Runbooks for Operations teams
 
-![Octopus operations runbooks](runbook-details.png  "width=600")
+![Octopus Operations Runbooks](runbook-details.png  "width=600")
 
 This release also includes early access to our new Operations Runbooks feature. Until now, Octopus has been a deployment automation tool, enabling teams to deploy new releases of their software, but once the software is deployed, there are many other processes that teams need to automate. These can include file cleanup, nightly backups, disaster recovery, and other scripts and manual processes. With Runbooks, teams can use Octopus to automate everything involved in keeping modern software running in production.
 
