@@ -3,7 +3,7 @@ title: Command-line tab completion for Octopus CLI
 description: Enable tab completion for the Octopus CLI today! We'll also dive into how shell completion works in some popular shell environments.
 author: jim.burger@octopus.com
 visibility: public
-published: 2020-03-24
+published: 2020-03-23
 metaImage: octopus-cli-tab-completion.png
 bannerImage: octopus-cli-tab-completion.png
 tags:
