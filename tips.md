@@ -1,5 +1,5 @@
 # Writing Tips
-
+ 
 The Octopus blog is one of the ways we talk to our customers and help future customers discover Octopus. We do this by publishing posts that resonate with our users (and potential users) on topics of interest to them that intersect with the problems Octopus solves.
 
 This page provides some tips for writing for the Octopus blog. Nothing on this page is absolute, it's not a style guide, and it will continue to grow over time.
