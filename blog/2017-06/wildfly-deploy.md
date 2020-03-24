@@ -11,7 +11,7 @@ tags:
 ---
 
 <div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Depoloy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
+<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
 </div>
 
 At Octopus we have started a project to investigate how to better support Java developers.  In a previous blog post I talked about how to [deploy a WAR file to Tomcat using Octopus Deploy](https://octopus.com/blog/octopus-tomcat).  Tomcat is easily the most popular Java application server in production today (with stats from [Plumbr](https://plumbr.eu/blog/java/most-popular-java-application-servers-2017-edition) and [Rebel Labs](https://zeroturnaround.com/rebellabs/java-tools-and-technologies-landscape-for-2014/8/) putting Tomcat at over 50% market share).  The next most popular application server is JBoss/Wildfly, and in this post I'll show you how to deploy a WAR file to WildFly 11 (currently in Alpha).

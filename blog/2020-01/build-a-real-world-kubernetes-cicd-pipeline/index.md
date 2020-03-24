@@ -8,6 +8,7 @@ metaImage: build-a-real-world-kubernetes-cicd-pipeline.png
 published: 2020-01-15
 tags:
  - DevOps
+ - Kubernetes
 ---
 
 ![Beyond Hello World - Build a real-world Kubernetes CI/CD pipeline](build-a-real-world-kubernetes-cicd-pipeline.png)

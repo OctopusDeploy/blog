@@ -8,6 +8,7 @@ metaImage: containerize-a-real-world-application.png
 published: 2019-12-09
 tags:
  - DevOps
+ - Docker
 ---
 
 ![Containerize a real-world web application](containerize-a-real-world-application.png)

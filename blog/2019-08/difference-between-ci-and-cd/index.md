@@ -8,6 +8,7 @@ metaImage: img_comparecicd_2019.png
 bannerImage: img_comparecicd_2019.png
 tags:
  - DevOps
+ - Continuous Integration
 ---
 
 ![Illustration of two deep sea masks representing CI and CD](img_comparecicd_2019.png)

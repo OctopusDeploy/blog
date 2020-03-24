@@ -1,27 +1,28 @@
 ---
-title: "Operations runbooks: Putting the Ops in DevOps"
-description: Operations runbooks put the Ops in DevOps and automate routine maintenance and emergency operations (incident response) tasks.
+title: "Operations Runbooks: Putting the Ops in DevOps"
+description: Operations Runbooks put the Ops in DevOps and automate routine maintenance and emergency operations (incident response) tasks.
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-runbookslaunch.png
 metaImage: blogimage-runbookslaunch.png
 published: 2020-01-27
 tags:
-- Product
+- DevOps
+- Runbooks
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Uc5TFqswJkM" frameborder="0" allowfullscreen></iframe>
 
-Operations runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
 
-- **Operations runbooks overview**
+- **Operations Runbooks overview**
 - [DevOps, runbooks and kubectl](/blog/2020-01/devops-runbooks-and-kubectl/index.md)
 - [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
 - [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
 
 ---
 
-We recently shipped Operations runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations (incident response) tasks, such as:
+We recently shipped Operations Runbooks for [Octopus Cloud](https://octopus.com/cloud) and [self-hosted](https://octopus.com/downloads) customers running Octopus 2019.11.0 or newer. Runbooks are the Ops in DevOps and automate routine maintenance and emergency operations (incident response) tasks, such as:
 
 - Infrastructure provisioning
 - Database management
@@ -43,7 +44,7 @@ Teams use runbooks for two core reasons:
 1. Routine operations tasks, like database administration and service maintenance.
 2. Emergencies and incident response like website failovers and unplanned infrastructure outages.
 
-![Runbooks, runbook automation and runbook automation platforms](runbook-comic.png)
+![Runbooks, runbook automation, and runbook automation platforms](runbook-comic.png)
 
 Runbook automation is a way to improve on traditional runbook documentation by automating the steps to execute operations procedures and resolve incidents. This combination of runbook documentation and runbook automation brings many benefits:
 
@@ -53,12 +54,12 @@ Runbook automation is a way to improve on traditional runbook documentation by a
 
 ## Why use Octopus for runbook automation?
 
-It’s already possible to document and script operations processes, so why use Octopus operations runbooks?
+It’s already possible to document and script operations processes, so why use Octopus Operations Runbooks?
 
 * **Runbooks and deployment processes sit side-by-side.** Runbooks in Octopus are designed to automate operations tasks, and they can share configuration settings, secrets, step templates, scripts, and more. Runbooks are lightweight automated processes that are executed against your infrastructure without going through a deployment lifecycle (i.e., dev, test, production).
 * **Octopus is already aware of your infrastructure.** Runbooks leverage the infrastructure that your applications are deployed to, so there’s nothing new to configure, reducing the friction to getting started running operations processes.
 * **Security, permissions, and auditing.** Runbooks are managed and executed by Octopus, giving you a complete audit trail that can be reviewed in retrospectives, making it easy to see what happened, when and why, and if anything needs to be changed. Octopus enables teams to control who can execute which runbooks in what environments with advanced security and permissions.
-* **Better emergency management and reduced incident resolution time.** With runbooks in Octopus, no local tooling is required, no additional permissions are needed, and you have a detailed audit log of everything. On-call team members can quickly execute runbooks without worrying about dependencies or infrastructure.
+* **Better emergency management and reduced incident resolution time.** With Octopus Runbooks, no local tooling is required, no additional permissions are needed, and you have a detailed audit log of everything. On-call team members can quickly execute runbooks without worrying about dependencies or infrastructure.
 * **Discoverability and visibility.** Octopus creates a central location for teams to manage, control, audit, schedule, and execute runbooks. You can see when a runbook was last executed, you can see the changes to the runbook, and you can run the same runbook against different environments. Team members can easily find a runbook, and click a big green button to run it. Everyone can see the output from the last run and whether it succeeded or not.
 * **World-class scheduling and execution.** Execute runbooks on-demand or schedule them at any frequency.
 
@@ -99,4 +100,4 @@ This project could be consider a runbook template as it could be cloned for diff
 
 ## Conclusion
 
-Operations runbooks has shipped, and it helps teams keep their applications running smoothly. Runbooks in Octopus brings many benefits from its history of release management and deployment automation. They help teams automate operations tasks like routine maintenance and recover when things go wrong.
+Operations Runbooks has shipped, and it helps teams keep their applications running smoothly. Runbooks in Octopus brings many benefits from its history of release management and deployment automation. They help teams automate operations tasks like routine maintenance and recover when things go wrong.

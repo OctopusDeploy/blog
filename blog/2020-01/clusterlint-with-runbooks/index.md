@@ -8,6 +8,8 @@ metaImage: k8s-clusterlint-runbook.png
 bannerImage: k8s-clusterlint-runbook.png
 tags:
  - DevOps
+ - Runbooks
+ - Kubernetes
 ---
 
 ![Kuberentes DevOps Runbook example with clusterlint](k8s-clusterlint-runbook.png)
@@ -19,7 +21,7 @@ Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a ser
 - [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
 - **Linting your Kubernetes cluster with Clusterlint and runbooks**
 
---- 
+---
 
 *Kubernetes made the simple things hard and the hard things possible.* This is an apt statement. You only need to look at the number of best practice guides available for Kubernetes and the surrounding ecosystem to understand that running even a single pod *properly* is a daunting task.
 
@@ -35,7 +37,7 @@ However, I would caution against baking linting into a deployment process too ea
 
 A better solution is to implement linting outside of the deployment workflow, at least initially. This provides the ability to generate a focused lint ruleset with the most value, and identify issues with configuration that no-one is likely to touch and would be missed by checks only run against active deployments.
 
-So how do you implement a workflow that sits outside of a deployment using Octopus? Until recently, every automated process in Octopus was considered to be a deployment. Now, with the introduction of runbooks, Octopus has first-class support for running management and maintenance tasks without a deployment.
+So how do you implement a workflow that sits outside of a deployment using Octopus? Until recently, every automated process in Octopus was considered to be a deployment. Now, with the introduction of Operations Runbooks, Octopus has first-class support for running management and maintenance tasks without a deployment.
 
 ## A linting runbook example
 

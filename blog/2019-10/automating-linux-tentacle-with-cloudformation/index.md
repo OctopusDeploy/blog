@@ -8,6 +8,7 @@ metaImage: blogimage-tentacleaws.png
 published: 2019-10-14
 tags:
  - DevOps
+ - Linux
 ---
 
 ![Tentacles rising from the ocean to install software on a Linux server with AWS Cloudformation](blogimage-tentacleaws.png)
@@ -45,13 +46,13 @@ serverUrl="https://YourOctopusServer" # Url to our Octopus server
 serverCommsPort=10943 # Port to use for the Polling Tentacle
 apiKey="API-XXXXXXXXXXXXXXXXXXXXXXXXXXX" # API key that has permission to add machines
 name=$HOSTNAME # Name of the Linux machine
-environment="Dev" 
+environment="Dev"
 role="AWS-MyApplication"
 configFilePath="/etc/octopus/default/tentacle-default.config" # Location on disk to store the configuration
 applicationPath="/home/Octopus/Applications/" # Location where deployed applications will be installed to
 
 # Create a new Tentacle instance
-/opt/octopus/tentacle/Tentacle create-instance --config "$configFilePath" --instance "$name"
+/opt/octopus/tentacle/Tentacle create-instance --config "$configFilePath"
 
 # Create a new self-signed certificate for secure communication with Octopus server
 /opt/octopus/tentacle/Tentacle new-certificate --if-blank
@@ -72,44 +73,12 @@ echo "Registering the Tentacle $name with server $serverUrl in environment $envi
 /opt/octopus/tentacle/Tentacle register-with --server "$serverUrl" --apiKey "$apiKey" --name "$name" --env "$environment" --env "TearDown" --role "$role" --role "OctoPetShop-Web" --role "OctoPetShop-ProductService" --role "OctoPetShop-ShoppingCartService" --comms-style "TentacleActive" --server-comms-port $serverCommsPort
 ```
 
-### Create the Unit file
-
-At this point, Tentacle for Linux will only start from the command line.  We need to create a Unit file so Tentacle for Linux will start automatically and keep running:
-
-```bash
-# Use cat to write the service file
-cat >> /opt/octopus/tentacle/tentacle.service <<EOL
-[Unit]
-Description=Octopus Tentacle
-After=network.target
-
-[Service]
-Type=simple
-User=root
-WorkingDirectory=/etc/octopus/Tentacle/
-ExecStart=/opt/octopus/tentacle/Tentacle run --instance $name --noninteractive
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-
-EOL
-```
-
-### Configure the Tentacle to run as a Linux service
+### Install and configure the Tentacle to run as a Linux service
 
 Next we configure Tentacle to start when the OS starts:
 
 ```bash
-# Copy the unit file
-sudo cp /opt/octopus/tentacle/tentacle.service /etc/systemd/system/tentacle.service
-
-# Assign permissions to the new file
-sudo chmod 644 /etc/systemd/system/tentacle.service
-
-# Start tentacle and enable it for automatically starting when Linux does
-sudo systemctl start tentacle
-sudo systemctl enable tentacle
+sudo /opt/octopus/tentacle/Tentacle service --install --start
 ```
 
 ### Install .NET Core
@@ -149,7 +118,7 @@ Resources:
       KeyName: !Ref KeyName
       ImageId: ami-06f2f779464715dc5
       UserData:
-        Fn::Base64: 
+        Fn::Base64:
           !Sub |
             #!/bin/bash -xe
             serverUrl="https://YourOctopusServer"
@@ -166,37 +135,17 @@ Resources:
             sudo apt-get update
             sudo apt-get install tentacle
 
-            /opt/octopus/tentacle/Tentacle create-instance --config "$configFilePath" --instance "$name"
+            /opt/octopus/tentacle/Tentacle create-instance --config "$configFilePath"
             /opt/octopus/tentacle/Tentacle new-certificate --if-blank
             /opt/octopus/tentacle/Tentacle configure --noListen True --reset-trust --app "$applicationPath"
             echo "Registering the Tentacle $name with server $serverUrl in environment $environment with role $role"
             /opt/octopus/tentacle/Tentacle register-with --server "$serverUrl" --apiKey "$apiKey" --name "$name" --env "$environment" --env "TearDown" --role "$role" --role "OctoPetShop-Web" --role "OctoPetShop-ProductService" --role "OctoPetShop-ShoppingCartService" --comms-style "TentacleActive" --server-comms-port $serverCommsPort
-            
-            cat >> /opt/octopus/tentacle/tentacle.service <<EOL
-            [Unit]
-            Description=Octopus Tentacle
-            After=network.target
 
-            [Service]
-            Type=simple
-            User=root
-            WorkingDirectory=/etc/octopus/Tentacle/
-            ExecStart=/opt/octopus/tentacle/Tentacle run --instance $name --noninteractive
-            Restart=always
+            sudo /opt/octopus/tentacle/Tentacle service --install --start
 
-            [Install]
-            WantedBy=multi-user.target
-
-            EOL
-            
-            sudo cp /opt/octopus/tentacle/tentacle.service /etc/systemd/system/tentacle.service
-            sudo chmod 644 /etc/systemd/system/tentacle.service
-            sudo systemctl start tentacle
-            sudo systemctl enable tentacle
-            
             wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
             sudo dpkg -i packages-microsoft-prod.deb
-            
+
             sudo add-apt-repository universe
             sudo apt-get install apt-transport-https --assume-yes
             sudo apt-get update
@@ -209,6 +158,6 @@ We can take this automation even further and use a [Project Trigger](https://oct
 
 ![](octopetshop-project-trigger.png)
 
-## Conclusion 
+## Conclusion
 
 Now, anytime this CloudFormation template is used to create a new EC2 instance, it will automatically download, install and configure the Tentacle for Linux, attach the Tentacle to your Octopus server, set up the Tentacle as a Linux service, and install .NET Core making our new instance ready to host the `OctoPetShop` application.

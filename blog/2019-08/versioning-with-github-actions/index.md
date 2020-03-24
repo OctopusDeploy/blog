@@ -8,6 +8,7 @@ metaImage: blogimg_versioning_githubactions.png
 bannerImage: blogimg_versioning_githubactions.png
 tags:
  - DevOps
+ - Continuous Integration
 ---
 
 ![Illustration showing GitHub CI processes with versions](blogimg_versioning_githubactions.png)

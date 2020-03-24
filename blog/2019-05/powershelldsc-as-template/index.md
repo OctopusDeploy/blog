@@ -8,6 +8,7 @@ bannerImage: img_powershell_dsc.png
 metaImage: img_powershell_dsc.png
 tags:
  - Engineering
+ - PowerShell
 ---
 
 PowerShell DSC is a fantastic technology to have in your tool-belt for managing Windows-based servers. This post is part of a series:

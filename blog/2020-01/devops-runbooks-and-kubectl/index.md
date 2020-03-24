@@ -1,6 +1,6 @@
 ---
-title: DevOps, runbooks and kubectl
-description: The top reasons to use runbooks to manage your Kubernetes cluster.
+title: DevOps, runbooks, and kubectl
+description: The top reasons to use Octopus Runbooks to manage your Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-01-28
@@ -8,13 +8,14 @@ metaImage: k8s-devops-runbook.png
 bannerImage: k8s-devops-runbook.png
 tags:
  - DevOps
+ - Runbooks
 ---
 
 ![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
 
-Operations runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
 
-- [Operations runbooks overview](/blog/2020-01/operations-runbooks/index.md)
+- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
 - **DevOps, runbooks and kubectl**
 - [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
 - [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
@@ -23,7 +24,7 @@ Operations runbooks in Octopus put the Ops in DevOps. This post is part of a ser
 
 It is safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something more than a few of us agree with.
 
-Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
+Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new Operations Runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
 
 In this blog post, we’ll look at a simple runbook and highlight the advantages of creating reusable runbooks over manual scripting and ad-hoc debugging.
 

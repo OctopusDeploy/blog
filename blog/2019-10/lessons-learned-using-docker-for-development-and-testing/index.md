@@ -7,7 +7,8 @@ published: 2019-10-28
 metaImage: docker_development_testing.png
 bannerImage: docker_development_testing.png
 tags:
- - Engineering 
+ - Engineering
+ - Docker
 ---
 
 ![Illustration showing a book of docker lessons learned for development and testing](docker_development_testing.png)
@@ -22,7 +23,7 @@ I’m a .NET developer at heart.  I love using Visual Studio.  The Docker functi
 
 I wanted to take a step back and learn how Docker actually works, especially on Windows, and I happen to have a perfect scenario to do that.  I demo a lot of CI/CD pipelines, either at conferences or one-to-one with a customer.  I’m not speaking at conferences or doing demos all day every day though, but running a CI/CD pipeline all the time consumes resources.  Could I run a CI/CD pipeline in Docker?
 
-My CI/CD pipeline uses GitHub for source control, TeamCity as the build server, Octopus Deploy as the deployment server (BIG surprise, I know), with SQL Server as the database backend.  As I am typing this, at its core, a CI/CD pipeline is not very different from applications I’ve worked on in the past.  You could swap out all the CI/CD components with an Angular app hosted in NGINX, an ASP.NET Web API hosted in IIS, or a Windows Service for scheduling with SQL Server as the database.  
+My CI/CD pipeline uses GitHub for source control, TeamCity as the build server, Octopus Deploy as the deployment server (BIG surprise, I know), with SQL Server as the database backend.  As I am typing this, at its core, a CI/CD pipeline is not very different from applications I’ve worked on in the past.  You could swap out all the CI/CD components with an Angular app hosted in [NGINX](https://nginx.com), an ASP.NET Web API hosted in IIS, or a Windows Service for scheduling with SQL Server as the database.  
 
 By learning how to host a CI/CD pipeline in Docker, I also learned how to host pretty much any other application in Docker.
 
@@ -108,7 +109,7 @@ In addition, Windows-based images consume a lot more disk space.  Here are the L
 
 Compare that to Windows-based images.  The SQL Server image, `microsoft/mssql-server-windows-developer` when including all the dependencies, is 10x the size.
 
-![](windows-docker-images.png) 
+![](windows-docker-images.png)
 
 ## Lesson #3: Containers are closer to headless VMs than read-only images
 
@@ -127,12 +128,12 @@ Server=SQLServer,1433;Initial Catalog=OctopusDeploy;Persist Security Info=False;
 It did not work for .NET connection strings.  Octopus Deploy is a .NET Framework application, and it could not find SQL Server by the container name on the same Docker network.  It only worked when the connection string used an IP address for the server.  However, the IP address changes each time `docker-compose up` is run. I solved that problem by creating a new network in the Docker Compose file:
 
 ```YAML
-networks: 
+networks:
   cicd_net:
     ipam:
       driver: default
       config:
-        - subnet: 172.28.0.0/16 
+        - subnet: 172.28.0.0/16
 ```
 
 Using that network, I then hardcoded the IP address of each container:
@@ -149,7 +150,7 @@ Using that network, I then hardcoded the IP address of each container:
    volumes:
      - c:\Docker\Volumes\SQLServer\Databases:c:\SQLData
      - c:\Docker\Volumes\SQLServer\Backups:c:\Backups
-   networks: 
+   networks:
     cicd_net:
       ipv4_address: 172.28.1.1   
 ```
@@ -176,7 +177,7 @@ services:
    volumes:
      - c:\Docker\Volumes\SQLServer\Databases:c:\SQLData
      - c:\Docker\Volumes\SQLServer\Backups:c:\Backups
-   networks: 
+   networks:
     cicd_net:
       ipv4_address: 172.28.1.1   
   OctopusDeploy:
@@ -196,7 +197,7 @@ services:
      - c:\Docker\Volumes\Octopus\Server\TaskLogs:c:\TaskLogs
    links:
      - SQLServer
-   networks: 
+   networks:
     cicd_net:
       ipv4_address: 172.28.1.2  
   OctopusDeploy_Worker01:
@@ -216,10 +217,10 @@ services:
      - c:\Docker\Volumes\SQLServer\Backups:c:\Backups     
    links:
      - OctopusDeploy
-   networks: 
+   networks:
     cicd_net:
       ipv4_address: 172.28.1.3
-networks: 
+networks:
   cicd_net:
     ipam:
       driver: default
