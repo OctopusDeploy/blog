@@ -11,6 +11,8 @@ tags:
 
 ---
 
+!include <octopus-cli>
+
 ![Build Server and Octopus Integration Introduction](blogimage-integration101.png)
 
 In my three years providing support to our customers at Octopus, *"Integrating Octopus with build servers"* is probably the subject I answered the most questions about. In this blog post, I'm going to give you a few tips on how to approach this task if you are starting from scratch, regardless of the build server technology you are using.
@@ -81,7 +83,7 @@ Depending on whether you are using [one of our plugins](#a-few-words-about-build
 | :----------: | :-----------------------: | :--------------------------------------: | ---------------------------------------- |
 |     Yes      |            Yes            | Use the step with the word "Pack" on its name provided by the plugin | Use the step with the words "Push package" on its name provided by the plugin |
 |     Yes      |            No             | Use the step with the word "Pack" on its name provided by the plugin | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) |
-|      No      |            Yes            | Use [Nuget.exe pack](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-pack) | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) or [Octo.exe push](https://octopus.com/docs/api-and-integration/octo.exe-command-line/pushing-packages) |
+|      No      |            Yes            | Use [Nuget.exe pack](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-pack) | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) or [Octo.exe push](https://octopus.com/docs/octopus-rest-api/octopus-cli/pushing-packages) |
 
 :::hint
 If you are using TeamCity, the step `Octopus Deploy: Push Package` will *pack* and *push* in one step
@@ -98,7 +100,7 @@ The only key recommendation here is that you version the package with the same v
 ### Stage 2 - The Deployment
 
 :::success
-**Goal:** By the end of this stage you should be able to create a release in Octopus and trigger a successful deployment of your application from the command line using [Octo.exe](https://octopus.com/docs/api-and-integration).
+**Goal:** By the end of this stage you should be able to create a release in Octopus and trigger a successful deployment of your application from the command line using [Octo.exe](https://octopus.com/docs/octopus-rest-api/octopus-cli).
 :::
 
 #### 2.1 - Upload a Test Package to Your Repository
@@ -119,9 +121,9 @@ So sit back and trigger as many deployments as you need :)
 
 In the previous step, you learned how to create a release and trigger a deployment from the Web Portal. The goal of this step is that you learn to do the same thing, but using `Octo.exe`.
 
-If you don't know about this CLI tool, here's the TL;DR, it's a command line application that talks to the [Octopus API](https://octopus.com/docs/api-and-integration/api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/api-and-integration/octo.exe-command-line).
+If you don't know about this CLI tool, here's the TL;DR, it's a command line application that talks to the [Octopus API](https://octopus.com/docs/octopus-rest-api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/octopus-rest-api/octopus-cli).
 
-The command you should be paying attention to is [create-release](https://octopus.com/docs/api-and-integration/octo.exe-command-line/creating-releases). A few tips about this command:
+The command you should be paying attention to is [create-release](https://octopus.com/docs/octopus-rest-api/octopus-cli/creating-releases). A few tips about this command:
 
 - If you use the `--deployTo` parameter, it will not only create the release but also deploy it to an environment. It basically combines the commands `create-release` and `deploy-release`.
 - Use `--progress` to see the deployment log in the console as it executes. Otherwise, the command will only create a task in Octopus, and you'll be forced to go to the Web Portal to see how the deployment went.
@@ -159,25 +161,25 @@ If you are using a raw `Octo.exe` call, the equivalent of this feature is the `-
 :::
 
 :::warning
-If you run into issues with this step, check our [troubleshooting guide](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers) to get some ideas on how to fix it or to learn how to properly ask for help in our forums.
+If you run into issues with this step, check our [troubleshooting guide](https://octopus.com/docs/packaging-application/build-servers/troubleshooting-integrations-with-build-servers) to get some ideas on how to fix it or to learn how to properly ask for help in our forums.
 :::
 
 ## A Few Words About Build Server Plugins and Octo.exe
 
-If you check our [API and Integration documentation](https://octopus.com/docs/api-and-integration), you'll notice that our team built a few plugins for some of the most popular build servers out there. These plugins extend the functionality of your build server, by adding some custom steps to do things with Octopus, such as triggering deployments and pushing packages. The below list has links to each plugin's documentation, along with the list of steps that each plugin provides.
+If you check our [API](https://octopus.com/docs/octopus-rest-api) and [build server](https://octopus.com/docs/packaging-applications/build-servers) documentation, you'll notice that our team built a few plugins for some of the most popular build servers out there. These plugins extend the functionality of your build server, by adding some custom steps to do things with Octopus, such as triggering deployments and pushing packages. The below list has links to each plugin's documentation, along with the list of steps that each plugin provides.
 
-- **[VSTS/TFS](https://octopus.com/docs/api-and-integration/tfs-vsts)**
+- **[VSTS/TFS](https://octopus.com/docs/packaging-applications/build-servers/tfs-azure-devops)**
   - Create Octopus Release
   - Deploy Octopus Release
   - Promote Octopus Release
   - Package Application
   - Push Package to Octopus
-- **[TeamCity](https://octopus.com/docs/api-and-integration/teamcity)**
+- **[TeamCity](https://octopus.com/docs/packaging-applications/build-servers/teamcity)**
   - Create Release
   - Deploy Release
   - Promote Release
   - Push Package (also packs)
-- **[Bamboo](https://octopus.com/docs/api-and-integration/bamboo)**
+- **[Bamboo](https://octopus.com/docs/packaging-applications/build-servers/bamboo)**
   - Create Release
   - Deploy Release
   - Pack Package
@@ -190,7 +192,7 @@ Behind the scenes, these steps are really just UI wrappers around `Octo.exe`. So
 
 And that's it! I really hope this guide helps you integrate Octopus into your CI pipeline in a more organized fashion.
 
-Please keep in mind that this guide makes a lot of assumptions, and is mostly targeted to really basic CI pipelines. If you feel like the steps described here won't fit your process, [reach out in our support forum](https://octopus.com/docs/api-and-integration/troubleshooting-integrations-with-build-servers#Octopus-Steps-Ask-for-help) and we'll give you a hand with it.
+Please keep in mind that this guide makes a lot of assumptions, and is mostly targeted to really basic CI pipelines. If you feel like the steps described here won't fit your process, [reach out in our support forum](https://octopus.com/docs/packaging-applications/build-servers/troubleshooting-integrations-with-build-servers#Octopus-Steps-Ask-for-help) and we'll give you a hand with it.
 
 ## Learn more
 
