@@ -60,7 +60,7 @@ This “WAR in a ZIP” package allows us to have the WAR file managed by Octopu
 I will mention later.
  
 To package up the WAR file, use the 
-[Octopus Deploy CLI tool](https://octopus.com/docs/api-and-integration/octo.exe-command-line). The CLI tool is a 
+[Octopus Deploy CLI tool](https://octopus.com/docs/octopus-rest-api/octopus-cli). The CLI tool is a 
 [.NET Core](https://github.com/dotnet/core) application that exposes a number of common operations that can be performed 
 in Octopus Deploy, along with some handy features like creating ZIP archives with the correct naming conventions.
  
@@ -75,7 +75,7 @@ required for various Linux distributions.
  
 To create the package, run the command:
 ```
-Octo pack --id=Demo --version=1.0.0 --basePath=target --include=*.war --format=zip
+octo pack --id=Demo --version=1.0.0 --basePath=target --include=*.war --format=zip
 ```
  
 This will create the file `Demo.1.0.0.zip` which contains the WAR file.
@@ -85,9 +85,9 @@ Using the CLI tool is not required for creating the ZIP file. Any ZIP tool will 
 :::
 
 ## Pushing the Package
-To push the package, use the [push command](https://octopus.com/docs/api-and-integration/octo.exe-command-line/pushing-packages):
+To push the package, use the [push command](https://octopus.com/docs/octopus-rest-api/octopus-cli/push):
 ```
-Octo push --package Demo.1.0.0.zip --server http://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
+octo push --package Demo.1.0.0.zip --server http://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
 ```
 
 You can find information on API keys at [How to create an API key](https://octopus.com/docs/how-to/how-to-create-an-api-key).
