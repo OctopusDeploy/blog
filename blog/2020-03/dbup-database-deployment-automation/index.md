@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-![Using DbUp and Octopus workers for database deployment automation](metaimage-sqlscript.png)
+![Using DbUp and Octopus workers for database deployment automation](blogimage-sqlscript.png)
 
 One of the most exciting aspects of database deployments in the last ten years is the number of tools that have been released.  Looking at my [previous posts](https://octopus.com/blog/tag/Database%20Deployments) on this topic, you can see I have a clear bias toward Redgate’s tooling, but I’m a [friend of Redgate](https://www.red-gate.com/hub/events/friends-of-rg/friend/BobWalker) for a reason.  
 
