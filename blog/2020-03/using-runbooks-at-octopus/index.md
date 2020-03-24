@@ -1,6 +1,6 @@
 ---
 title: How we use Operations Runbooks for Octopus.com
-description: 
+description: How we're using runbooks at Octopus to make anybody on the team can restore Octopus.com if it ever goes down
 author: Octopus
 visibility: private
 published: 3020-01-01
