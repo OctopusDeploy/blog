@@ -73,8 +73,11 @@ Well, Pipes are all about **re-use**. They allow you to repeat the same action i
 
 ## Creating a Bitbucket pipe
 
- How to create a pipe is well [documented](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on Atlassian's website. Rather than repeating their instructions, I'll focus on some of the key steps I took. I created this pipe using my Octopus work laptop running [Ubuntu 18.04.4](http://releases.ubuntu.com/18.04.4/)
-
+ Creating a pipe can be quite involved. Thankfully, there is a step-by-step [guide](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on Atlassian's website.
+ 
+:::warning
+I created this pipe using my Octopus work laptop running [Ubuntu 18.04.4](http://releases.ubuntu.com/18.04.4/). If you are using another platform, you may need to tweak the commands used.
+:::
 
 ### Choosing a candidate for a pipe
 
@@ -111,7 +114,7 @@ You will be asked some questions to answer - this is all to help fill in the met
 
 ![Bitbucket pipe generator - complete](pipe-generator-complete.png)
 
-Once you have all of the files, you'll likely want to edit the following ones to suit your pipe:
+Once you have all of the files, you'll likely want to edit the following ones to suit your pipe requirements:
 
  - [bitbucket-pipelines.yml](#creating-the-pipe-pipeline)
  - [Dockerfile](#creating-the-pipe-Dockerfile)
