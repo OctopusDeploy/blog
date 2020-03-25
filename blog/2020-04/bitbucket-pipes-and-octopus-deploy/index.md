@@ -52,13 +52,13 @@ where:
 
 There are 2 ways you can refer to a pipe in a step within a pipeline:
 
-1. Refer to the docker image directly:
-```
+1. Refer to the Docker image directly:
+```yaml
 pipe: docker://<Docker_Account_Name>/<Image_Name>:<tag>
 ```
 
 2. Refer to a pipe repository hosted on Bitbucket:
-```
+```yaml
 pipe: <Bitbucket_account>/<Bitbucket_repo>:<tag>
 ```
 
@@ -134,7 +134,7 @@ This is a really great way to see how other authors have structured their pipes.
 
 When creating a **Complete** pipe, Atlassian requires you to create a `pipe.yml` file. This document contains metadata about your pipe. It includes things like:
  - A friendly name of the pipe.
- - The docker image for your pipe in the format: `account/repo:tag`.
+ - The Dockerhub image for your pipe in the format: `account/repo:tag`.
  - A list of pipe variables where you can specify default values.
  - The Bitbucket repository where the pipe source code lives.
  - Details of the maintainer of the pipe.
@@ -153,8 +153,9 @@ tags:
     - deployment
 ```
 
+### Creating the pipe script
 
-### Creating the pipe bash script
+The main part of your pipe is the script or binary which will run when it's executed within a container. It will include all of the logic needed to execute the pipe task. You can choose any language you are familiar with. When I created our [skeleton](#create-pipe-skeleton) of our pipe earlier, I chose to use [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)). 
 
 The pipe I chose using the generator was a `bash` one. This created a `pipe/pipe.sh` file for me. 
 
