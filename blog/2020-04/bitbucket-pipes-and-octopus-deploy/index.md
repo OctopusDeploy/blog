@@ -166,16 +166,129 @@ There are some great bash resources online:
  - Bash tips and tricks - [Bash one-liners](http://www.bashoneliners.com/)
 :::
 
+**TL;DR**
+
+If you want to see the complete pipe script, skip straight to the [end](#complete-pipe-script) or view the [source code](https://bitbucket.org/octopusdeploy/pack/src/master/pipe/pipe.sh). If not, read on!
+
 The general structure to a pipe script file tends to follow this convention:
 
 ![pipe script flow](bitbucket-pipe-script-flow.png)
 
-#### Pipe variables
-For the `pack` command there are 4 main mandatory parameters I wanted to handle:
-1.
-1.
-1.
-1.
+#### Mandatory Pipe variables
+
+For the `pack` command there are 5 parameters I wanted the pipe to handle:
+
+1. The `--id` of the package to create.
+1. The `--format` for the package; e.g. `NuPkg` or `Zip`.
+1. The `--version` for the package (SemVer).
+1. The `--basePath` to specify the root folder containing files and folders to pack.
+1. The `--outFolder` to specify the folder where the generated package would be written.
+
+To cater for each of these, I mapped each one to a Bitbucket pipeline [variable](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html).
+
+I also followed the validation of variables, shown in the Atlassian [demo-pipe-bash](https://bitbucket.org/atlassian/demo-pipe-bash/src/master/pipe/pipe.sh) script:
+
+```bash
+NAME=${NAME:?'NAME variable missing.'}
+```
+This simply checks for a `$NAME` variable value, and errors with a message when not present.
+
+Therefore, for the 5 variables I created, my variable validation looked like this:
+
+```bash
+# mandatory parameters
+ID=${ID:?'ID variable missing.'}
+FORMAT=${FORMAT:?'FORMAT variable missing.'} 
+VERSION=${VERSION:?'VERSION variable missing.'}
+SOURCE_PATH=${SOURCE_PATH:?'SOURCE_PATH variable missing.'}
+OUTPUT_PATH=${OUTPUT_PATH:?'OUTPUT_PATH variable missing.'}
+```
+
+#### Optional pipe variables
+
+Next up were some optional variables consumers of the pipe could choose to supply if they wished:
+
+I included an `EXTRA_ARGS` array variable to include multiple additional arguments for the `pack` command. You can specify this variable using a special Bitbucket Array type in your pipeline:
+
+```yaml
+variables:
+  EXTRA_ARGS: ['--description', 'text containing spaces', '--verbose']
+```
+
+Lastly, I included a boolean `DEBUG` variable to include additional debugging information. You would specify this like:
+
+```yaml
+variables:
+  DEBUG: 'true'
+```
+
+:::hint
+**Tip:** To learn about more Advanced pipe writing techniques, please see Atlassian's [documentation](https://confluence.atlassian.com/bitbucket/advanced-techniques-for-writing-pipes-969511009.html).
+:::
+#### Complete pipe script
+
+Here is the finished `pipe.sh` file:
+
+```bash
+#!/usr/bin/env bash
+
+# Creates a package (.nupkg or .zip) from files on disk, without needing a .nuspec or .csproj
+#
+# Required globals:
+#   ID
+#   FORMAT
+#   VERSION
+#   SOURCE_PATH
+#   OUTPUT_PATH
+#
+# Optional globals:
+#   EXTRA_ARGS
+#   DEBUG
+
+source "$(dirname "$0")/common.sh"
+
+# mandatory parameters
+ID=${ID:?'ID variable missing.'}
+FORMAT=${FORMAT:?'FORMAT variable missing.'} 
+VERSION=${VERSION:?'VERSION variable missing.'}
+SOURCE_PATH=${SOURCE_PATH:?'SOURCE_PATH variable missing.'}
+OUTPUT_PATH=${OUTPUT_PATH:?'OUTPUT_PATH variable missing.'}
+
+FORMAT=$(echo "$FORMAT" | tr '[:upper:]' '[:lower:]')
+
+# Default parameters
+EXTRA_ARGS_COUNT=${EXTRA_ARGS_COUNT:="0"}
+DEBUG=${DEBUG:="false"}
+
+enable_debug
+
+if [ "${EXTRA_ARGS_COUNT}" -eq 0 ]; then
+  # Flatten array of extra args
+  debug "Setting EXTRA_ARGS to empty array"
+  EXTRA_ARGS=
+fi
+
+debug "Flattening EXTRA_ARGS"
+init_array_var 'EXTRA_ARGS'
+
+debug ID: "${ID}"
+debug FORMAT: "${FORMAT}"
+debug VERSION: "${VERSION}"
+debug SOURCE_PATH: "${SOURCE_PATH}"
+debug OUTPUT_PATH: "${OUTPUT_PATH}"
+debug EXTRA_ARGS_COUNT: "${EXTRA_ARGS_COUNT}"
+debug EXTRA_ARGS: "${EXTRA_ARGS}"
+
+run octo pack --id "$ID" --version "$VERSION" --format "$FORMAT" --basePath "$SOURCE_PATH" --outFolder "$OUTPUT_PATH" "${EXTRA_ARGS[@]}"
+
+if [ "${status}" -eq 0 ]; then
+  OCTO_PACK_FILENAME="$ID.$VERSION.$FORMAT"
+  success "Packaging successful. Created package $OUTPUT_PATH/$OCTO_PACK_FILENAME."
+
+else
+  fail "Packaging failed."
+fi
+```
 
 ### Creating the pipe Dockerfile
 
@@ -185,6 +298,7 @@ For the `pack` command there are 4 main mandatory parameters I wanted to handle:
 When you have completed your pipe, In order to have the pipe automatically build and deploy new versions of it's container to Docker when you make changes, it's not surprising that you can use Bitbucket pipelines to do just that!
 
 ### Creating the pipe README
+
 
 ## Testing the pipe
 
@@ -204,8 +318,7 @@ When you have completed your pipe, In order to have the pipe automatically build
 Once I'd got to grips with writing bash, creating my first Bitbucket pipe was pretty straight forward. I can definitely see the advantages of creating a pipe in Bitbucket. That being said, it's important to point out that your pipe shouldnt try to do too much. It's tempting to try to cram as much as you can into a pipe. By doing this you end up fighting against the single biggest advantage that pipes offer; re-use.
 
 ## Learn more
- - Pipe authoring - [Advanced techniques for pipe writing](https://confluence.atlassian.com/bitbucket/advanced-techniques-for-writing-pipes-969511009.html)
- - Take a peek at our first *experimental* pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
+  - Take a peek at our first *experimental* pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
  - View the sample `bitbucket-pipelines.yml` for [RandomQuotes-Js](https://bitbucket.org/octopussamples/randomquotes-js/src/master/bitbucket-pipelines.yml)
  - Take a look at the Octopus [sample](https://samples.octopus.app/app#/Spaces-104/projects/randomquotes-js) project.
  - Guides - [Octopus CI/CD pipeline Guides](https://octopus.com/docs/guides)
