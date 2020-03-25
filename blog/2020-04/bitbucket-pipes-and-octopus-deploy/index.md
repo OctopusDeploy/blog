@@ -14,14 +14,14 @@ tags:
 
 When I first started at Octopus Deploy, I never really knew much about [Bitbucket](https://bitbucket.org/product). I naively assumed it was just Atlassian's version of Source control. As I found out recently, it's much more than that, and offers (amongst other things) a cloud-based continuous integration solution - [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines). 
 
-We've written previously about Bitbucket pipelines and how they can help streamline your continous delivery process through the use of [containers](https://confluence.atlassian.com/bitbucket/use-docker-images-as-build-environments-792298897.html). I'd recommend having a read of the posts if you aren't familiar with Bitbucket pipelines:
+We've written previously about Bitbucket pipelines and how they can help streamline your continous delivery process through the use of [containers](https://confluence.atlassian.com/bitbucket/use-docker-images-as-build-environments-792298897.html). If you aren't familiar with Bitbucket pipelines, I'd recommend having a read of the posts:
 
  - How to guide - [Setting up a CI/CD pipeline with Bitbucket and Octopus](https://octopus.com/blog/continuous-delivery-bitbucket-pipelines)
  - Container redux - [Using the Octopus CLI containers in your pipeline](https://octopus.com/blog/bitbucket-pipelines-redux)
  
  As part of the Customer Success team, we get to talk to our customers and understand how they are using Octopus. Over time, that experience has taught us that when someone has a particular problem to solve, having a concrete sample to show is helpful for everyone. 
  
- In this post, I'll describe my journey to do just that, with the next evolution in Bitbucket pipelines - [Pipes](https://bitbucket.org/product/features/pipelines/integrations), where I create a pipe for an [Octopus CLI](https://g.octopushq.com/OctopusCLI) command and integrate this into a Bitbucket pipeline for a Sample node.js application, and finally deploying it using Octopus.
+ In this post, I'll describe my journey to do just that, with the next evolution in Bitbucket pipelines; [Pipes](https://bitbucket.org/product/features/pipelines/integrations). I create a pipe for an [Octopus CLI](https://g.octopushq.com/OctopusCLI) command and integrate this into a Bitbucket pipeline for our Sample node.js application - [RandomQuotes-Js](https://bitbucket.org/octopussamples/randomquotes-js), and finally deploying it using Octopus.
 
 <h2>In this post</h2>
 
@@ -98,7 +98,7 @@ For further information on creating a new Git repository, please see the Atlassi
 
 ### Create pipe skeleton
 
-Atlassian provides a complete pipe generator using [Yeoman](http://yeoman.io/). Once you have all the pre-requisites (`nodejs` and `npm`) installed, from a terminal window you can run the generator using the `yo` command:
+Atlassian provides a method to generate a skeleton of a pipe repository using [Yeoman](http://yeoman.io/). Once you have all the pre-requisites (`nodejs` and `npm`) installed, from a terminal window you can run the generator using the `yo` command:
 
 ```bash
 yo bitbucket-pipe
@@ -111,9 +111,22 @@ You will be asked some questions to answer - this is all to help fill in the met
 
 ![Bitbucket pipe generator - complete](pipe-generator-complete.png)
 
-### Writing the main pipe script
+Once you have the files, you'll likely want to edit the following files to suit your pipe:
 
-The generator will get you quite far, but the next thing we need to do is create the main script that will run when you execute your file.
+ - `bitbucket-pipelines.yml`
+ - `Dockerfile`
+ - `LICENSE.txt`
+ - `pipe.yml`
+ - `pipe/pipe.sh`
+ - `README.md`
+ - `test/test.bats`
+ 
+Next up, I'll discuss each of these in some more detail.
+
+### Creating the pipe - bitbucket-pipelines.yml
+### Creating the pipe bash script
+
+The generator will get you quite far, but the next thing we need to do is create the main script that will run when the pipe is executed in the Bitbucket pipeline.
 
 :::hint
 **Tip: ** Check other repositories to see how they have written their pipe!
@@ -125,6 +138,8 @@ This is a really great way to see how other authors have structured their pipes.
 :::
 
 ## Testing the pipe
+
+ - BATS
 
 ## Publishing the pipe
 
