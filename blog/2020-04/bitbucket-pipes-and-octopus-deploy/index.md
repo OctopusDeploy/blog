@@ -111,22 +111,14 @@ You will be asked some questions to answer - this is all to help fill in the met
 
 ![Bitbucket pipe generator - complete](pipe-generator-complete.png)
 
-Once you have the files, you'll likely want to edit the following files to suit your pipe:
+Once you have all of the files, you'll likely want to edit the following ones to suit your pipe:
 
- - `bitbucket-pipelines.yml`
- - `Dockerfile`
- - `LICENSE.txt`
- - `pipe.yml`
- - `pipe/pipe.sh`
- - `README.md`
- - `test/test.bats`
- 
-Next up, I'll discuss each of these in some more detail.
-
-### Creating the pipe - bitbucket-pipelines.yml
-### Creating the pipe bash script
-
-The generator will get you quite far, but the next thing we need to do is create the main script that will run when the pipe is executed in the Bitbucket pipeline.
+ - [bitbucket-pipelines.yml](#creating-the-pipe-pipeline)
+ - [Dockerfile](#creating-the-pipe-Dockerfile)
+ - [LICENSE.txt](#creating-the-pipe-LICENSE)
+ - [pipe.yml](#creating-the-pipe-definition)
+ - [pipe/pipe.sh](#creating-the-pipe-bash-script)
+ - [README.md](#creating-the-pipe-readme)
 
 :::hint
 **Tip: ** Check other repositories to see how they have written their pipe!
@@ -134,8 +126,20 @@ The generator will get you quite far, but the next thing we need to do is create
 One of the great things about every Bitbucket pipe is that the code is public, so you can browse it. For example you can view the source code for the `bitbucket-upload-file` pipe on [Bitbucket](https://bitbucket.org/atlassian/bitbucket-upload-file/).
 
 This is a really great way to see how other authors have structured their pipes.
-
 :::
+
+### Creating the pipe pipeline
+
+### Creating the pipe Dockerfile
+
+### Creating the pipe LICENSE
+
+### Creating the pipe bash script
+
+The pipe I chose using the generator was a `bash` one. This created a `pipe/pipe.sh` file for me. 
+
+### Creating the pipe README
+
 
 ## Testing the pipe
 
