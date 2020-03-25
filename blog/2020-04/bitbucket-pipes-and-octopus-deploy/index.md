@@ -215,6 +215,8 @@ variables:
   EXTRA_ARGS: ['--description', 'text containing spaces', '--verbose']
 ```
 
+The Array type is really useful, as it allows an easy way to supply any other arguments to the pipe. In my case, this allowed consumers of the `pack` pipe the ability to provide any of the additional argument options.
+
 Lastly, I included a boolean `DEBUG` variable to include additional debugging information. You would specify this like:
 
 ```yaml
