@@ -114,35 +114,58 @@ You will be asked some questions to answer - this is all to help fill in the met
 
 ![Bitbucket pipe generator - complete](pipe-generator-complete.png)
 
-Once you have all of the files, you'll likely want to edit the following ones to suit your pipe requirements:
+As I did, you'll likely want to edit the following ones to suit your pipe requirements:
 
- - [bitbucket-pipelines.yml](#creating-the-pipe-pipeline)
- - [Dockerfile](#creating-the-pipe-Dockerfile)
- - [LICENSE.txt](#creating-the-pipe-LICENSE)
- - [pipe.yml](#creating-the-pipe-definition)
+ - [pipe.yml](#creating-the-pipes-metadata)
  - [pipe/pipe.sh](#creating-the-pipe-bash-script)
+ - [Dockerfile](#creating-the-pipe-Dockerfile)
+ - [bitbucket-pipelines.yml](#creating-the-pipes-own-pipeline)
  - [README.md](#creating-the-pipe-readme)
 
 :::hint
-**Tip: ** Check other repositories to see how they have written their pipe!
+**Tip:** Check other repositories to see how they have written their pipe!
 
 One of the great things about every Bitbucket pipe is that the code is public, so you can browse it. For example you can view the source code for the `bitbucket-upload-file` pipe on [Bitbucket](https://bitbucket.org/atlassian/bitbucket-upload-file/).
 
 This is a really great way to see how other authors have structured their pipes.
 :::
 
-### Creating the pipe pipeline
+### Creating the pipe's metadata
 
-### Creating the pipe Dockerfile
+When creating a **Complete** pipe, Atlassian requires you to create a `pipe.yml` file. This document contains metadata about your pipe. It includes things like:
+ - A friendly name of the pipe.
+ - The docker image for your pipe in the format: `account/repo:tag`.
+ - A list of pipe variables where you can specify default values.
+ - The Bitbucket repository where the pipe source code lives.
+ - Details of the maintainer of the pipe.
 
-### Creating the pipe LICENSE
+If you chose one of the **Advanced** pipes using the pipe generator, then the `pipe.yml` file will be created for you with all of the relevant information already supplied. Here is the contents of my auto-generated [pipe.yml](https://bitbucket.org/octopusdeploy/pack/src/master/pipe.yml) file:
+
+```yaml
+name: Octo Pack
+image: octopipes/pack:0.0.0
+description: Creates a package (.nupkg or .zip) from files on disk, without needing a .nuspec or .csproj
+repository: https://bitbucket.org/octopusdeploy/pack
+maintainer: support@octopus.com
+tags:
+    - octopus
+    - package
+    - deployment
+```
+
 
 ### Creating the pipe bash script
 
 The pipe I chose using the generator was a `bash` one. This created a `pipe/pipe.sh` file for me. 
 
-### Creating the pipe README
+### Creating the pipe Dockerfile
 
+
+### Creating the pipe's own pipeline
+
+When you have completed your pipe, In order to have the pipe automatically build and deploy new versions of it's container to Docker when you make changes, it's not surprising that you can use Bitbucket pipelines to do just that!
+
+### Creating the pipe README
 
 ## Testing the pipe
 
