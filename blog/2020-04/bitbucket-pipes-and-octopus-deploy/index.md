@@ -139,7 +139,7 @@ When creating a **Complete** pipe, Atlassian requires you to create a `pipe.yml`
  - The Bitbucket repository where the pipe source code lives.
  - Details of the maintainer of the pipe.
 
-If you chose one of the **Advanced** pipes using the pipe generator, then the `pipe.yml` file will be created for you with all of the relevant information already supplied. Here is the contents of my auto-generated [pipe.yml](https://bitbucket.org/octopusdeploy/pack/src/master/pipe.yml) file:
+If you chose one of the **Advanced** pipes using the pipe generator, then the `pipe.yml` file will be created for you with all of the relevant information already supplied. Here are the contents of my auto-generated [pipe.yml](https://bitbucket.org/octopusdeploy/pack/src/master/pipe.yml) file:
 
 ```yaml
 name: Octo Pack
@@ -166,10 +166,16 @@ There are some great bash resources online:
  - Bash tips and tricks - [Bash one-liners](http://www.bashoneliners.com/)
 :::
 
-The general structure to a pipe file tends to follow this convention:
+The general structure to a pipe script file tends to follow this convention:
 
-1. 
-1. 
+![pipe script flow](bitbucket-pipe-script-flow.png)
+
+#### Pipe variables
+For the `pack` command there are 4 main mandatory parameters I wanted to handle:
+1.
+1.
+1.
+1.
 
 ### Creating the pipe Dockerfile
 
