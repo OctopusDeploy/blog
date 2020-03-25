@@ -76,7 +76,7 @@ Well, Pipes are all about **re-use**. They allow you to repeat the same action i
  Creating a pipe can be quite involved. Thankfully, there is a step-by-step [guide](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on Atlassian's website.
  
 :::warning
-I created this pipe using my Octopus work laptop running [Ubuntu 18.04.4](http://releases.ubuntu.com/18.04.4/). If you are using another platform, you may need to tweak the commands used.
+I created this pipe on an Ubuntu machine using a bash terminal. If you are using another platform, you may need to tweak the commands used here.
 :::
 
 ### Choosing a candidate for a pipe
@@ -117,7 +117,7 @@ You will be asked some questions to answer - this is all to help fill in the met
 As I did, you'll likely want to edit the following ones to suit your pipe requirements:
 
  - [pipe.yml](#creating-the-pipes-metadata)
- - [pipe/pipe.sh](#creating-the-pipe-bash-script)
+ - [pipe/pipe.sh](#creating-the-pipe-script)
  - [Dockerfile](#creating-the-pipe-Dockerfile)
  - [bitbucket-pipelines.yml](#creating-the-pipes-own-pipeline)
  - [README.md](#creating-the-pipe-readme)
@@ -155,9 +155,21 @@ tags:
 
 ### Creating the pipe script
 
-The main part of your pipe is the script or binary which will run when it's executed within a container. It will include all of the logic needed to execute the pipe task. You can choose any language you are familiar with. When I created our [skeleton](#create-pipe-skeleton) of our pipe earlier, I chose to use [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)). 
+The main part of your pipe is the script or binary which will run when it's executed within a container. It will include all of the logic needed to execute the pipe task. You can choose any language you are familiar with. When I created our [skeleton](#create-pipe-skeleton) of our pipe earlier, I chose to use [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), and a sample `pipe/pipe.sh` file was created for me to finish.
 
-The pipe I chose using the generator was a `bash` one. This created a `pipe/pipe.sh` file for me. 
+Now I should point out that bash is not *usually* my first choice when faced with a programming challenge. With that being said, I've recently switched my work laptop to [Ubuntu 18.04.4](http://releases.ubuntu.com/18.04.4/) so I felt comfortable writing a pipe with it. 
+
+:::hint
+There are some great bash resources online:
+ - GNU Manual - [Bash Reference Guide](https://www.gnu.org/software/bash/manual/bash.html)
+ - Bash scripting - [A cheatsheet](https://devhints.io/bash)
+ - Bash tips and tricks - [Bash one-liners](http://www.bashoneliners.com/)
+:::
+
+The general structure to a pipe file tends to follow this convention:
+
+1. 
+1. 
 
 ### Creating the pipe Dockerfile
 
@@ -170,7 +182,7 @@ When you have completed your pipe, In order to have the pipe automatically build
 
 ## Testing the pipe
 
- - BATS
+ - [BATS](https://www.systutorials.com/docs/linux/man/1-bats/)
 
 ## Publishing the pipe
 
