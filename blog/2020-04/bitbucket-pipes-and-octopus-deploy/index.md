@@ -136,7 +136,7 @@ This is a really great way to see how other authors have structured their pipes.
 
 When creating a **Complete** pipe, Atlassian requires you to create a `pipe.yml` file. This document contains metadata about your pipe. It includes things like:
  - A friendly name of the pipe.
- - The Dockerhub image for your pipe in the format: `account/repo:tag`.
+ - The Docker Hub image for your pipe in the format: `account/repo:tag`.
  - A list of pipe variables where you can specify default values.
 
 If you chose one of the **Advanced** pipes using the pipe generator, then the `pipe.yml` file will be created for you with all of the relevant information already supplied. Here are the contents of my auto-generated [pipe.yml](https://bitbucket.org/octopusdeploy/pack/src/master/pipe.yml) file:
@@ -348,7 +348,36 @@ The Dockerfile takes the `octopusdeploy/octo` as it's base, and then adds `bash`
 
 ### Creating the pipe's own pipeline
 
-When you have completed your pipe, In order to have the pipe automatically build and deploy new versions of it's container to Docker when you make changes, it's not surprising that you can use Bitbucket pipelines to do just that!
+When you have completed your pipe, you could deploy your docker image manually to Docker Hub. However, it's also possible to get Bitbucket pipelines to do the heavy lifting for you automatically when you push changes to your Bitbucket repository with your own `bitbucket-pipelines.yml` file.
+
+Just like with the previous files, running the pipe generator will give you a file already.
+
+For the `pack` pipe, I only modified the push step:
+
+```yaml
+
+push: &push
+  step:
+    name: Push and Tag
+    image: python:3.7
+    script:
+    - pip install semversioner==0.7.0
+    - chmod a+x ./ci-scripts/*.sh
+    - ./ci-scripts/bump-version.sh
+    - ./ci-scripts/docker-release.sh octopipes/$BITBUCKET_REPO_SLUG
+    - ./ci-scripts/git-push.sh
+    services:
+    - docker
+```
+
+The step installs [semversioner](https://pypi.org/project/semversioner/), which is a python tool to help automatically generate release notes and version your pipe according to [SemVer](https://semver.org/). After this, it increments the version of the pipe, creates a new Docker image and pushes it to Docker Hub. Finally it tags the new version, and pushes that back to the Bitbucket repository. 
+
+You can view the complete `bitbucket-pipelines.yml` file for the `pack` pipe on [Bitbucket](https://bitbucket.org/octopusdeploy/pack/src/master/bitbucket-pipelines.yml).
+
+:::hint
+**No double docker push:** 
+The `push` step doesn't trigger two Docker images to be pushed to Docker Hub when the step is doing it's own commit and push back to the Bitbucket repository. The reason for this is that Bitbucket pipelines support the option to skip a pipeline run if `[skip ci]` or `[ci skip]` is included anywhere in the commit message.
+:::
 
 ### Creating the pipe README
 
@@ -358,7 +387,9 @@ You might be thinking *why* spend time creating a `README` file. Well Atlassian 
 
 If you want users to be successful when using your pipe, the better the `README` is, the higher the liklihood is of your users doing just that.
 
-One of the more important parts of it will be the **YAML Definition** This tells users what to add to their `bitbucket-pipeline.yml` file. Here's what the `pack` one looks like:
+One of the more important parts of it will be the **YAML Definition**. This tells users what to add to their `bitbucket-pipeline.yml` file. 
+
+Here's what the `pack` one looks like:
 
 ```yaml
 script:
@@ -397,7 +428,6 @@ sudo docker run \
 The resultant output shows the successful packaging of the `randomquotes-js.1.0.0.0.zip` file:
 
 ![docker run octopipes pack](docker-run-octopipes-pack.png)
-
 
 ## Testing the pipe
 
