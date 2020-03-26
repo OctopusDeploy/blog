@@ -431,7 +431,91 @@ The resultant output shows the successful packaging of the `randomquotes-js.1.0.
 
 ## Testing the pipe
 
- - [BATS](https://www.systutorials.com/docs/linux/man/1-bats/)
+To make sure your pipe does what you expect it to, it's a good idea to write tests for it. Following Atlassian's lead, I also opted to use [BATS](https://www.systutorials.com/docs/linux/man/1-bats/) (Bash Automated Testing System).
+
+Just like a lot of testing frameworks, a test file (which typically ends in `.bats`) contains the following constructs:
+ - A `setup()` method to set up any required variables or shared resources for your tests.
+ - A number of individual `@test` declarations - these are your test cases.
+ - A `teardown` method to clean up any resources used.
+
+Here is what my [test.bats](https://bitbucket.org/octopusdeploy/pack/src/master/test/test.bats) file looks like:
+
+```bash
+#!/usr/bin/env bats
+
+setup() {
+  DOCKER_IMAGE=${DOCKER_IMAGE:="test/pack"}
+
+  echo "Building image..."
+  run docker build -t ${DOCKER_IMAGE}:test .
+
+  # generated
+  RANDOM_NUMBER=$RANDOM
+
+  # locals
+  ID="MyCompany.MyApp"
+  FORMAT="zip"
+  VERSION="1.0.0.0"
+  SOURCE_PATH="test/code"
+  OUTPUT_PATH="test/out"
+
+  echo "$FORMAT" 
+
+  EXPECTED_FILE="$ID.$VERSION.$FORMAT"
+
+  # Create test output dir
+  rm -rf test/out
+  mkdir test/out/extract -p
+  
+  echo "Create file with random content"
+  echo $RANDOM_NUMBER > test/code/test-content.txt
+}
+
+teardown() {
+  echo "Cleaning up files"
+  chmod -R a+rwx test/out/
+  rm -rf test/out
+}
+
+@test "Create Zip package using Octo pack command" {
+    
+    echo "Run test"
+    run docker run \
+        -e ID="${ID}" \
+        -e FORMAT="${FORMAT}" \
+        -e VERSION="${VERSION}" \
+        -e SOURCE_PATH="${SOURCE_PATH}" \
+        -e OUTPUT_PATH="${OUTPUT_PATH}" \
+        -e DEBUG="false" \
+        -v $(pwd):$(pwd) \
+        -w $(pwd) \
+        ${DOCKER_IMAGE}:test
+
+    echo "Status: $status"
+    echo "Output: $output"
+    [ "$status" -eq 0 ]
+
+    # Verify
+    unzip "test/out/$EXPECTED_FILE" -d test/out/extract
+    run cat "test/out/extract/test-content.txt"
+    echo "Output: $output"
+    [[ "${status}" -eq 0 ]]
+    [[ "${output}" == *"$RANDOM_NUMBER"* ]]
+
+}
+```
+
+In my `test.bats` file, in the `setup` I build a local docker image of the pipe called `test/pack`. Next it creates a file with a random number for its contents. 
+
+My `test` then executes `docker run` (like I did earlier in my local testing) and verifies that the container ran to completion, and finally extracts the files from the package, and checks that the content matches the random number I generated in the `setup`.
+
+The tests run as part of my automated CI/CD pipeline configured in my `bitbucket-pipeline.yml`. You can also run the tests locally if you have `bats` installed.
+
+Here is the output from a test run of my `test.bats` file:
+
+![bats test run output](bats-test-output.png)
+
+And that's all there is to it when it comes to testing your pipe!
 
 ## Publishing the pipe
 
