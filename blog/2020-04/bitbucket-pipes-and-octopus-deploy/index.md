@@ -73,10 +73,12 @@ Well, Pipes are all about **re-use**. They allow you to repeat the same action i
 
 ## Creating a Bitbucket pipe
 
- Creating a pipe can be quite involved. Thankfully, there is a step-by-step [guide](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on Atlassian's website.
- 
+ A pipe consists of a bunch of files which make up your Docker image. The pipe I created has it's image based on the pre-existing [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) image. The finished pipe has also been published as [octopipes/pack](https://hub.docker.com/r/octopipes/pack/) on Docker Hub.
+
+ Firstly, a quick word of warning, creating a pipe can be quite involved. Thankfully, Atlassian provides a step-by-step [guide](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on their website. 
+  
 :::warning
-I created this pipe on an Ubuntu machine using a bash terminal. If you are using another platform, you may need to tweak the commands used here.
+I created this pipe on an Ubuntu machine using a bash terminal. If you are using a different platform, you may need to tweak the commands used here.
 :::
 
 ### Choosing a candidate for a pipe
@@ -136,8 +138,6 @@ When creating a **Complete** pipe, Atlassian requires you to create a `pipe.yml`
  - A friendly name of the pipe.
  - The Dockerhub image for your pipe in the format: `account/repo:tag`.
  - A list of pipe variables where you can specify default values.
- - The Bitbucket repository where the pipe source code lives.
- - Details of the maintainer of the pipe.
 
 If you chose one of the **Advanced** pipes using the pipe generator, then the `pipe.yml` file will be created for you with all of the relevant information already supplied. Here are the contents of my auto-generated [pipe.yml](https://bitbucket.org/octopusdeploy/pack/src/master/pipe.yml) file:
 
@@ -191,7 +191,7 @@ I also followed the validation of variables, shown in the Atlassian [demo-pipe-b
 ```bash
 NAME=${NAME:?'NAME variable missing.'}
 ```
-This simply checks for a `$NAME` variable value, and errors with a message when not present.
+This simply checks for a `$NAME` variable value, and errors with a message when the variable isn't present.
 
 Therefore, for the 5 variables I created, my variable validation looked like this:
 
@@ -208,25 +208,31 @@ OUTPUT_PATH=${OUTPUT_PATH:?'OUTPUT_PATH variable missing.'}
 
 Next up were some optional variables consumers of the pipe could choose to supply if they wished:
 
-I included an `EXTRA_ARGS` array variable to include multiple additional arguments for the `pack` command. You can specify this variable using a special Bitbucket Array type in your pipeline:
+I included an `EXTRA_ARGS` array variable to include multiple additional arguments for the `pack` command. You can specify this variable by using a special Bitbucket Array type in your pipeline:
 
 ```yaml
 variables:
   EXTRA_ARGS: ['--description', 'text containing spaces', '--verbose']
 ```
 
-The Array type is really useful, as it allows an easy way to supply any other arguments to the pipe. In my case, this allowed consumers of the `pack` pipe the ability to provide any of the additional argument options.
+The Array type is really useful, as it allows an easy way to supply any other arguments to the pipe. In my case, this allowed consumers of the `pack` pipe the ability to provide any of the additional argument options that I hadn't explicitly handled.
 
-Lastly, I included a boolean `DEBUG` variable to include additional debugging information. You would specify this like:
+Lastly, I included a boolean `DEBUG` variable to include additional debugging information. You would specify it's value in your pipe like this:
+
+:::hint
+**Advanced Pipe Writing Techniques:** To learn about more the Array type and how its values are passed to the Docker container, please see Atlassian's [documentation](https://confluence.atlassian.com/bitbucket/advanced-techniques-for-writing-pipes-969511009.html).
+:::
 
 ```yaml
 variables:
   DEBUG: 'true'
 ```
 
-:::hint
-**Tip:** To learn about more Advanced pipe writing techniques, please see Atlassian's [documentation](https://confluence.atlassian.com/bitbucket/advanced-techniques-for-writing-pipes-969511009.html).
-:::
+#### Running Octo Pack
+
+The main part of the script is the 
+
+
 #### Complete pipe script
 
 Here is the finished `pipe.sh` file:
