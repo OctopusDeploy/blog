@@ -406,7 +406,7 @@ script:
 
 You can view the `README` for the `octopipes/pack` in full [here](https://bitbucket.org/octopusdeploy/pack/src/master/README.md).
 
-## Running the pipe locally
+## Running the pipe
 
 Since the pipe is just a Docker image, once you have built the image - you can execute the pipe using `docker run`, passing in any required parameters as Environment variables. 
 
@@ -519,10 +519,29 @@ And that's all there is to it when it comes to testing your pipe!
 
 ## Publishing the pipe
 
- - Dockerfile
- - bitbucket-pipelines.yml
+Once you are happy your pipe is working, you can either publish your Docker image directly by running `docker push`.
+
+If you are have an automated [pipeline](#creating-the-pipes-own-pipeline) set up like we did earlier, then you can make use of `semversioner` to create a changeset:
+
+```bash
+semversioner add-change --type patch --description "Initial Docker release"
+```
+
+Once you have committed your changes, push them to Bitbucket and your pipeline should handle the rest. It will also automatically update the version number in:
+
+ - the `CHANGELOG.md` file
+ - the `README.md` file
+ - the metadata `pipe.yml`
+
+You can see an example of the `pack` Bitbucket pipeline running the `0.4.0` release here:
+
+![bitbucket pipe pipeline result](bitbucket-pipe-pipeline-result.png)
 
 ## Integrating the pipe into a pipeline
+
+If you've got this far, you'll have your pipe published to Docker Hub. But how do you use that in another repository's pipeline?
+
+
 
 ## Integrating the pipeline with Octopus
 
