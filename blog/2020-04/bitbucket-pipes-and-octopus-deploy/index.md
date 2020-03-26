@@ -539,20 +539,115 @@ You can see an example of the `pack` Bitbucket pipeline running the `0.4.0` rele
 
 ## Integrating the pipe into a pipeline
 
-If you've got this far, you'll have your pipe published to Docker Hub. But how do you use that in another repository's pipeline?
+If you've got this far, you'll have your pipe published to Docker Hub. But how do you use that pipe in another repository's pipeline?
+
+To find out, I imported one of our existing node.js samples `RandomQuotes-JS`, which is hosted on [GitHub](https://github.com/OctopusSamples/RandomQuotes-js) into a new Bitbucket Repository with the same [name](https://bitbucket.org/octopussamples/randomquotes-js/).
+
+### Utilising the pipe
+
+Next, I created a `bitbucket-pipelines.yml` file and set up my pipeline. Firstly, after the build and testing step, I created a package step like this:
+
+```yaml
+- step:
+    name: Pack for Octopus
+    script:
+      - export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
+      - pipe: octopusdeploy/pack:0.4.0
+        variables:
+          ID: ${BITBUCKET_REPO_SLUG}
+          FORMAT: 'Zip'
+          VERSION: ${VERSION}
+          SOURCE_PATH: '.'
+          OUTPUT_PATH: './out'
+          DEBUG: 'false'
+    artifacts:
+      - out/*.zip
+```
+
+The step looks similar to my examples shown in the pipe's `README` file. I've added a line just before the `pipe` instruction to set a variable:
+
+```yaml
+- export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
+```
+
+The `export` command tells Bitbucket to create the `VERSION` variable and allow it to be used in the pipe.
+
+I also make use of Bitbucket [artifacts](https://confluence.atlassian.com/bitbucket/using-artifacts-in-steps-935389074.html), where I specify a globbing pattern to choose any zip files present in the `out` folder:
+
+```yaml
+artifacts:
+    - out/*.zip
+```
+
+This will allow the package created by the pipe to be used by any future steps in the pipeline.
+
+### Pushing the Package to Octopus
+
+Lastly, I created a step to push the package (created by the pipe) to Octopus to complete my CI/CD pipeline. 
+
+This step makes use of a feature in Bitbucket which allows you to specify a container image, which can be different to the default image used elsewhere in the pipeline. In this case I chose the `octopusdeploy/octo:latest` Docker image. 
+
+This means I am able to simply run the `octo push` command, and specify the package I created in the previous `Pack for Octopus` step like so:
+
+```yaml
+octo push --package ./out/$BITBUCKET_REPO_SLUG.$VERSION.zip  --server $OCTOPUS_SERVER --space $OCTOPUS_SPACE --apiKey $OCTOPUS_APIKEY
+```
+You can see the minimum yaml required to achieve the push to Octopus below:
+
+```yaml
+- step:
+    name: Push to Octopus
+    image: octopusdeploy/octo:latest
+    script:
+      - export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
+      - octo push --package ./out/$BITBUCKET_REPO_SLUG.$VERSION.zip  --server $OCTOPUS_SERVER --space $OCTOPUS_SPACE --apiKey $OCTOPUS_APIKEY 
+```
+
+### Push Build Information to Octopus
+
+Having the [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information) within Octopus would really round off this whole Bitbucket CI/CD story. 
+
+For me, one of the best things about Octopus is that it's built [API-first](https://octopus.com/docs/octopus-concepts/rest-api). So pushing build information to Octopus is pretty straight-forward, and I was able to create a [bash script](https://bitbucket.org/octopussamples/randomquotes-js/src/master/create-build-info.sh) to do just that.
+
+:::hint
+**Tip:**
+To find out more about how to manually push build information to Octopus using the API, my colleague Shawn wrote an excellent [piece](https://octopus.com/blog/manually-push-build-information-to-octopus) on doing just that.
+:::
+
+To add to our previous `Push to Octopus` step, we can plug that script in to push build information as well, so the complete step looks like this:
+
+```yaml
+- step:
+    name: Push to Octopus
+    image: octopusdeploy/octo:latest
+    script:
+      - apk update && apk upgrade && apk add --no-cache git curl jq
+      - export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
+      - octo push --package ./out/$BITBUCKET_REPO_SLUG.$VERSION.zip  --server $OCTOPUS_SERVER --space $OCTOPUS_SPACE --apiKey $OCTOPUS_APIKEY 
+      - /bin/sh create-build-info.sh $BITBUCKET_REPO_OWNER $BITBUCKET_REPO_SLUG $BITBUCKET_BUILD_NUMBER $BITBUCKET_COMMIT $BITBUCKET_BRANCH $BITBUCKET_GIT_HTTP_ORIGIN
+      - octo build-information --package-id $BITBUCKET_REPO_SLUG --version $VERSION --file=octopus.buildinfo --server $OCTOPUS_SERVER --space $OCTOPUS_SPACE --apiKey $OCTOPUS_APIKEY 
+```
+
+The `create-build-info.sh` script creates a json payload output file called `octopus.buildinfo` and then we use that in the `build-information` command to push commit information.
+
+Once the commits have been pushed to Octopus, you can see them in the Packages section of the Library:
+
+![randomquotes-js buildinfor](randomquotes-js-buildinfo.png)
 
 
+You can view the complete `bitbucket-pipelines.yml` file on [Bitbucket](https://bitbucket.org/octopussamples/randomquotes-js/src/master/bitbucket-pipelines.yml).
 
-## Integrating the pipeline with Octopus
+:::success
+**Sample Octopus project**
+You can view the RandomQuotes-JS Octopus project setup in our [samples](https://samples.octopus.app/app#/Spaces-104/projects/randomquotes-js/) instance.
+:::
 
 ## Conclusion
 
 Once I'd got to grips with writing bash, creating my first Bitbucket pipe was pretty straight forward. I can definitely see the advantages of creating a pipe in Bitbucket. That being said, it's important to point out that your pipe shouldnt try to do too much. It's tempting to try to cram as much as you can into a pipe. By doing this you end up fighting against the single biggest advantage that pipes offer; re-use.
 
 ## Learn more
-  - Take a peek at our first *experimental* pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
- - View the sample `bitbucket-pipelines.yml` for [RandomQuotes-Js](https://bitbucket.org/octopussamples/randomquotes-js/src/master/bitbucket-pipelines.yml)
- - Take a look at the Octopus [sample](https://samples.octopus.app/app#/Spaces-104/projects/randomquotes-js) project.
+ - Take a peek at the *experimental* pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
  - Guides - [Octopus CI/CD pipeline Guides](https://octopus.com/docs/guides)
 
 Feel free to leave a comment, and let us know what you think about Bitbucket pipes, pipelines or container-based build chains!
