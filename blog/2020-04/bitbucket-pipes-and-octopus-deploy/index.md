@@ -581,9 +581,13 @@ artifacts:
 
 This will allow the package created by the pipe to be used by any future steps in the pipeline.
 
-### Pushing the Package to Octopus
+## Integrating the pipeline with Octopus
 
-Lastly, I created a step to push the package (created by the pipe) to Octopus to complete my CI/CD pipeline. 
+Once I had created a package, I wanted to complete the Bitbucket pipeline by integrating Bitbucket with Octopus; specifically I wanted to push both the package I created and the commit information to Octopus.
+
+### Push package to Octopus
+
+After the first step I created earlier, I added another step to push the package to the Octopus [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository).
 
 This step makes use of a feature in Bitbucket which allows you to specify a container image, which can be different to the default image used elsewhere in the pipeline. In this case I chose the `octopusdeploy/octo:latest` Docker image. 
 
@@ -605,7 +609,7 @@ You can see the minimum yaml required to achieve the push to Octopus below:
 
 ### Push Build Information to Octopus
 
-Having the [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information) within Octopus would really round off this whole Bitbucket CI/CD story. 
+To round off the integration, I wanted to have the [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information) available within Octopus.
 
 For me, one of the best things about Octopus is that it's built [API-first](https://octopus.com/docs/octopus-concepts/rest-api). So pushing build information to Octopus is pretty straight-forward, and I was able to create a [bash script](https://bitbucket.org/octopussamples/randomquotes-js/src/master/create-build-info.sh) to do just that.
 
