@@ -242,7 +242,7 @@ To package up the files in the Bitbucket pipeline, in our script all we need to 
 run octo pack --id "$ID" --version "$VERSION" --format "$FORMAT" --basePath "$SOURCE_PATH" --outFolder "$OUTPUT_PATH" "${EXTRA_ARGS[@]}"
 ```
 
-Lastly, we check if the command was successful. If it was we display a success message and set a variable with the resultant packaged filename. If not we display an error message and halt execution.
+Lastly, we check if the command was successful. If it was, we display a success message and set a variable with the resultant packaged filename. If not we display an error message and halt execution.
 
 :::hint
 The `run` command is a helper function specified in a separate `common.sh` file. It looks like this:
@@ -351,6 +351,29 @@ The Dockerfile takes the `octopusdeploy/octo` as it's base, and then adds `bash`
 When you have completed your pipe, In order to have the pipe automatically build and deploy new versions of it's container to Docker when you make changes, it's not surprising that you can use Bitbucket pipelines to do just that!
 
 ### Creating the pipe README
+
+You might be thinking *why* spend time creating a `README` file. Well Atlassian themselves recommend it, stating:
+
+> Your readme is how your users know how to use your pipe. We can display this in Bitbucket, so it needs to be written with markdown, in a specific format.
+
+If you want users to be successful when using your pipe, the better the `README` is, the higher the liklihood is of your users doing just that.
+
+One of the more important parts of it will be the **YAML Definition** This tells users what to add to their `bitbucket-pipeline.yml` file. Here's what the `pack` one looks like:
+
+```yaml
+script:
+  - pipe: octopipes/pack:0.4.0
+    variables:
+      ID: "<string>"
+      FORMAT: "<string>"
+      VERSION: "<string>"
+      SOURCE_PATH: "<string>"
+      OUTPUT_PATH: "<string>"
+      # EXTRA_ARGS: "['<string>','<string>' ..]" # Optional
+      # DEBUG: "<boolean>" # Optional
+```
+
+You can view the `README` for the `octopipes/pack` in full [here](https://bitbucket.org/octopusdeploy/pack/src/master/README.md).
 
 ## Running the pipe locally
 
