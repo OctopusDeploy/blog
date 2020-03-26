@@ -230,12 +230,40 @@ variables:
 
 #### Running Octo Pack
 
-The main part of the script is the 
+The `pack` pipe's sole purpose is to package up a set of files, so it will come as no surprise the next part is to do just that. 
 
+To achieve it, we make use of our reference to the [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) Docker image which I am using as a base for our pipe Docker image.
+
+By using this, we have access to the full [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli/) in our pipe.
+
+To package up the files in the Bitbucket pipeline, in our script all we need to do is run the `pack` command, passing in our variables:
+
+```bash
+run octo pack --id "$ID" --version "$VERSION" --format "$FORMAT" --basePath "$SOURCE_PATH" --outFolder "$OUTPUT_PATH" "${EXTRA_ARGS[@]}"
+```
+
+Lastly, we check if the command was successful. If it was we display a success message and set a variable with the resultant packaged filename. If not we display an error message and halt execution.
+
+:::hint
+The `run` command is a helper function specified in a separate `common.sh` file. It looks like this:
+
+```bash
+run() {
+  output_file="/var/tmp/pipe-$(date +%s)-$RANDOM"
+
+  echo "$@"
+  set +e
+  "$@" | tee "$output_file"
+  status=$?
+  set -e
+}
+```
+The function wraps the call to the supplied command; in this case `octo pack`, logs the output to a temporary file and captures the exit status.
+:::
 
 #### Complete pipe script
 
-Here is the finished `pipe.sh` file:
+And that's all there is to our script. Here is the finished `pipe.sh` file:
 
 ```bash
 #!/usr/bin/env bash
@@ -299,6 +327,24 @@ fi
 ```
 
 ### Creating the pipe Dockerfile
+
+Now we have our main script to run, we need to create our image using a Dockerfile.
+If you ran the pipe generator, then you will already have a file that you need to edit to suit your pipe.
+
+For the `pack` pipe, the Dockerfile looks like this:
+
+```docker
+FROM octopusdeploy/octo:7.1.3
+
+RUN apk add --update --no-cache bash
+
+COPY pipe /
+RUN chmod a+x /*.sh
+
+ENTRYPOINT ["/pipe.sh"]
+```
+
+The Dockerfile takes the `octopusdeploy/octo` as it's base, and then adds `bash` to the image. It then copies the contents of the `pipe` folder and sets permissions for all users to be able to execute the `.sh` files present. Lastly it sets the `ENTRYPOINT` for the container to our [pipe.sh](#complete-pipe-script) file we created earlier.
 
 
 ### Creating the pipe's own pipeline
