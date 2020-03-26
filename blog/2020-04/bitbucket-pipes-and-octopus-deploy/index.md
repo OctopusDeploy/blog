@@ -346,12 +346,34 @@ ENTRYPOINT ["/pipe.sh"]
 
 The Dockerfile takes the `octopusdeploy/octo` as it's base, and then adds `bash` to the image. It then copies the contents of the `pipe` folder and sets permissions for all users to be able to execute the `.sh` files present. Lastly it sets the `ENTRYPOINT` for the container to our [pipe.sh](#complete-pipe-script) file we created earlier.
 
-
 ### Creating the pipe's own pipeline
 
 When you have completed your pipe, In order to have the pipe automatically build and deploy new versions of it's container to Docker when you make changes, it's not surprising that you can use Bitbucket pipelines to do just that!
 
 ### Creating the pipe README
+
+## Running the pipe locally
+
+Since the pipe is just a Docker image, once you have built the image - you can execute the pipe using `docker run`, passing in any required parameters as Environment variables. 
+
+Here's what the command looks like to run the `pack` pipe to package up the `source` directory from our `RandomQuotes-JS` application:
+
+```bash
+sudo docker run \
+   -e ID="randomquotes-js" \
+   -e FORMAT="Zip" \
+   -e VERSION="1.0.0.0" \
+   -e SOURCE_PATH="source" \
+   -e OUTPUT_PATH="./out" \
+   -e DEBUG="false" \
+   -v $(pwd):$(pwd) \
+   -w $(pwd) \
+ octopipes/pack:0.4.0
+```
+
+The resultant output shows the successful packaging of the `randomquotes-js.1.0.0.0.zip` file:
+
+![docker run octopipes pack](docker-run-octopipes-pack.png)
 
 
 ## Testing the pipe
