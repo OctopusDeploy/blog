@@ -249,7 +249,7 @@ Anyone can submit an ad-hoc script, but only DBAs should be allowed to edit this
 
 The DBAs will be assigned the role of `Runbook producer` for the new project.  That grants the ability to edit and execute runbooks in that specific project.
 
-![](adhoc_dba_permissions)
+![](adhoc_dba_permissions.png)
 
 Meanwhile, developers will be assigned the role of `Runbook consumer` for the new project.  That grants the ability to execute runbooks only.
 
