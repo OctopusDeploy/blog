@@ -9,6 +9,7 @@ tags:
  - DevOps
 ---
 
+
 The following post is an account of the different issues I (we?) encountered while implementing automated database deployments.
 
 ## Tightly coupled databases
@@ -23,7 +24,7 @@ Some time later I was evaluating different automated database deployment methods
 ## Redgate SQL Source Control and three part naming convention
 My organization settled on using [Redgate SQL Source Control](https://www.red-gate.com/products/sql-development/sql-source-control/) as the chosen method for maintaining database schema.  It had been practice for quite some time that when writing views or stored procedures, references to database objects would always use the three part naming convention, database.schema.object.  For Redgate SQL Source Control, this caused an issue.  When specifying the database in the object reference, it thought it was an external database call and didn't take it into account when determining the build order of objects.  This sometimes caused views to attempt to be built before the underlying table existed.
 
-## Not giving constraints names
+## Constraints without names
 Microsoft SQL Server can be fairly forgiving, sometimes to it's own detrament.  One issue that we ran into was not giving a default constraint a name.  The following is valid SQL syntax for creating a table with a default constraint:
 
 ```
