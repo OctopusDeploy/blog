@@ -1,6 +1,6 @@
 ---
 title: Lessons learned while implementing database deployments
-description: Exploring the pitfalls you may encounter when deploying database changes
+description: Exploring the pitfalls you may encounter when implementing database deployments
 visibility: private
 published: 2999-01-01
 metaImage:
@@ -9,23 +9,22 @@ tags:
  - DevOps
 ---
 
-
-The following post is an account of the different issues I (we?) encountered while implementing automated database deployments.
+Implementing database deployments in an organization can be a daunting task.  In this post, I share some of my experiences when implementing database deployments at my previous job, showing some things to watch out for.
 
 ## Tightly coupled databases
-It happens and most of us have seen it, two different systems accessing each others database.  They need information from each other and the quickest way to get it is to reach in and grab it.  While it may start off with a single table or view, as each system grows, the coupling gets tighter and tighter.  With this coupling, comes a multitude of problems.
+It happens and most of us have seen it, two different systems accessing each other's database.  They need information from each other and the quickest and easiest way to get it is to reach in and grab it.  While it may start with a single table or view, as each system grows, the coupling gets tighter and tighter.  With this coupling, comes a multitude of problems.
 
-### Breaking changes
-At my last job, I can recall an emergency meeting following the deployment of an application (we'll refer to as A) which caused a different application (this one we'll call B) to start failing.  Tempers were high and fingers from both teams were firmly pointed at the other.  At the time, my role was Configuration Manager and in charge of deployments, so I was facilitating the meeting.  What had happened was the deployment introduced changes to the database schema of A which was causing B to fail.  The most troubling part about the situation was that A had no idea that B was pulling data, so naturally A didn't understand why B was so angry.  My first suggestion was for A to create an API or service for B to use.  Everyone agreed that was the correct approach but since B was down, the implemented solution was a view from A that supplied the data to B in the expected format.  The API or service was never developed.
+### Database dependencies
+I can recall an emergency meeting following the deployment of an application (we'll refer to as A) which caused a different application (this one we'll call B) to start failing.  Tempers were high and fingers from both teams were firmly pointed at the other.  My role was Configuration Manager and I was in charge of deployments, so I was facilitating the meeting.  What had happened was the deployment introduced changes to the database schema of A which was causing B to fail.  The most troubling part about the situation was that A had no idea that B was pulling data, so naturally, A didn't understand why B was so worked up.  
 
 ### Circular dependencies
-Some time later I was evaluating different automated database deployment methods.  I created a SQL Server Database Project for Database A.  As it turned out, database A was grabbing data from another database, we'll call it C.  This external dependency required me to create another SQL Server Database Project for database C so that database A project could use it as a reference for compiling a DACPAC.  After creating and compiling the Databaes Project for database C, I once again attempted to compile Database Project A and encountered another dependency, database A was now reaching into database B and would not compile without a reference to a compiled database B.  With a heavy sigh, I created a Database Project for database B.  After resolving a dependency on database C, I encountered a compilation error that database B needed a reference to a compiled database A.
+While evaluating Microsoft SQL Server DACPAC as an automated database deployment method, I ran into a circular dependency problem.  The Microsoft SQL Server Database project that I created would not compile without having a DACPAC reference to another database that it was joining against.  When I attempted to compile the project for the second database, it failed.  The second project had a dependency on the first project and would not compile its DACPAC reference.  
 
-## Redgate SQL Source Control and three part naming convention
-My organization settled on using [Redgate SQL Source Control](https://www.red-gate.com/products/sql-development/sql-source-control/) as the chosen method for maintaining database schema.  It had been practice for quite some time that when writing views or stored procedures, references to database objects would always use the three part naming convention, database.schema.object.  For Redgate SQL Source Control, this caused an issue.  When specifying the database in the object reference, it thought it was an external database call and didn't take it into account when determining the build order of objects.  This sometimes caused views to attempt to be built before the underlying table existed.
+## Redgate SQL Source Control and three-part naming convention
+My organization settled on using [Redgate SQL Source Control](https://www.red-gate.com/products/sql-development/sql-source-control/) as the chosen method for maintaining database schema.  The standard at the time was to always write joins using a three-part naming convention, database.schema.object.  For Redgate SQL Source Control, this caused an issue.  When specifying the database in the object reference, it thought it was an external database call and didn't take it into account when determining the build order of objects.  This sometimes caused views to attempt to be built before the underlying table existed.  
 
 ## Constraints without names
-Microsoft SQL Server can be fairly forgiving, sometimes to it's own detrament.  One issue that we ran into was not giving a default constraint a name.  The following is valid SQL syntax for creating a table with a default constraint:
+Microsoft SQL Server can be fairly forgiving, sometimes to its detriment.  One issue that we ran into was not giving a default constraint a name.  The following is valid SQL syntax for creating a table with a default constraint:
 
 ```
 CREATE TABLE Persons
@@ -38,13 +37,16 @@ CREATE TABLE Persons
 )
 ```
 
-In this instance, Microsoft SQL Server will "help" you and give the constraint a GUID based name.
+In this instance, Microsoft SQL Server will "help" you and give the constraint a generated name.
 
-[INSERT SCREENSHOT HERE]
+![](ssms-constraint-name.png)
 
-The issue that this presents is when using state-based (aka model-based) deployment methods, the "scratch" database created from the scripts folder uses the same script.  The resulting table will be created successfully, however, the table's constraint name will be a completely different GUID.  When the post deployment check to ensure the target database is in the desired state executes, the deployment fails because the constraints don't have the same name.
+State-based (aka model-based) deployments create a "scratch" database from the scripts folder.  When the post-deployment check to ensure the target database is in the desired state executes, the deployment fails because the constraints don't have the same name.
 
 ## Mixing deployment technologies
-At my previous organization, we used Redgate SQL Source Control for schema changes and DBUp for data changes.  Mixing technologies in such a way came with a unique issue.
+We used Redgate SQL Source Control for schema changes and DBUp for data changes.  Most, if not all,  of the migrations-based deployment technologies ([DBup](https://dbup.readthedocs.io/en/latest/), [Flyway](https://flywaydb.org), and [RoundhousE](https://github.com/chucknorris/roundhouse)) create a table in the target database to keep track of which scripts have already been executed so they're not run again.  State-based methods will delete any object not present in the state.  We had failed to take this into account and Redgate SQL Source Control kept deleting the `schemaversions` table that DBUp created to keep track of previously run scripts.  This was causing scripts that were meant to one-time to be executed with every deployment.
 
-All of the migrations-based deployment technologies ([DBup](https://dbup.readthedocs.io/en/latest/), [Flyway](https://flywaydb.org), and [RoundhousE](https://github.com/chucknorris/roundhouse)) create a table in the target database to keep track of which scripts have already been executed so they're not run again.  This table is the issue we ran into.  The state-based approach to database deployments makes the target database look like the desired state.  During the deployment process, if the state-based approach finds objects that do not exist in the desired state, those objects are assumed as not needed and are deleted.  This is what happened to the `schemaversions` table that DBUp created.  Each time we ran a deployment, the Redgate step ran first and deleted the schemaversions table.  Then, DBUp ran. It detected the schemaversions was missing, assumed it was the first time it's ever been run, recreated schemaversions and ran all scripts.  Once we made the Redate SQL Source control project aware of schemaversions, things ran as desired.
+## Bugs in the software
+State-based deployment software is incredibly powerful and equally as complex.  I'm quite impressed with how the technology can generate scripts in the correct order to transform the database to the desired state.  Just like other software, there are always those edge cases that don't quite work right.
+
+One such edge case was an application being deployed was changing a column to not be an identity column.  This usually would have been fine, but this same table was also configured for static data maintenance.  Redgate SQL Source Control was successfully generating the correct script to alter the table, however, because of the static data maintenance, it was including `IDENTITY INSERT ON` when populating the table.  Since the identity column had been removed, the statement failed.  It has since been fixed, but the bug did cause some issues trying to get the release out.
