@@ -27,7 +27,7 @@ Using the tooling provided by the cloud providers has its advantages.  Typically
 
 The downside to using the provided tooling is the risk of lock-in.  The terminology for AWS Cloudformation doesn't translate over to Azure ARM Templates.  This is where third party tooling such as [Hashcorp's Terraform](https://www.terraform.io/) is useful.  They provide a common framework to be used across all cloud providers.  
 
-## Infrastructure as Code before Runbooks
+## Infrastructure as Code before runbooks
 
 Before runbooks, my Infrastructure as Code process was a normal deployment process.  I wasn't ever "deploying" anything. Instead, I was running some scripts against a cloud provider.  My goal with my process was simple, a single project to tear up and down my infrastructure.  This led to some quirks.
 
@@ -44,7 +44,7 @@ My deployment process was a bit complex.  It had steps which were either:
 
 You will notice in my lifecycle `Test` and `Production` are optional.  This brings me to my next quirk.  Configuring IaC for the first time, be it AWS CloudFormation, Azure ARM Templates, GCP Deployment Manager, or Hashicorp's Terraform, has a lot trial and error.  Typically I get the infrastructure created after one or two tries.  It is everything after which causes headaches.  A VM is created, but the bootstrap script missed something.  Properly testing the fix requires tearing down and spinning up the infrastructure.  Sometimes the error happened in `Test` and other times `Production`.  I needed a way to get to `Teardown` if the deployment actually failed.  Hence, `Test` and `Production` are optional.
 
-## AWS Region Specific Settings
+## AWS region specific settings
 
 For this article, I am going to be using AWS CloudFormation to spin up a Ubuntu VM, install a tentacle on that VM, and register that tentacle with Octopus Deploy.  In choosing AWS, I stumbled upon another quirk.  Each region is segregated.  For the most part, resources cannot be shared between regions.  This includes:
 
