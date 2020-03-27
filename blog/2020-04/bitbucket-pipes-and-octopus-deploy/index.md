@@ -611,11 +611,11 @@ You can see the minimum yaml required to achieve the push to Octopus below:
 
 To round off the integration, I wanted to have the [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information) available within Octopus.
 
-For me, one of the best things about Octopus is that it's built [API-first](https://octopus.com/docs/octopus-concepts/rest-api). So pushing build information to Octopus is pretty easy. Once you know the json format, I was able to create a [bash script](https://bitbucket.org/octopussamples/randomquotes-js/src/master/create-build-info.sh) to do just that.
+For me, one of the best things about Octopus is that it's built [API-first](https://octopus.com/docs/octopus-concepts/rest-api). This allows us to build a first class CLI on top of it. So pushing build information turned out to be pretty easy. Once you know the format of the json payload, I was able to create a [bash script](https://bitbucket.org/octopussamples/randomquotes-js/src/master/create-build-info.sh) to do just that using the [build-information](https://octopus.com/docs/octopus-rest-api/octopus-cli/build-information) command.
 
 :::hint
-**Tip:**
-To find out more about how to manually push build information to Octopus using the API, my colleague Shawn wrote an excellent [piece](https://octopus.com/blog/manually-push-build-information-to-octopus) on how to achieve that.
+**Tip: Build Information payload**
+To help demystify some of the complexities of the Build Information payload, I followed my colleague Shawn's excellent [piece](https://octopus.com/blog/manually-push-build-information-to-octopus) on it's structure.
 :::
 
 To add to our previous `Push to Octopus` step, we can plug that script in to push build information as well, so the complete step looks like this:
