@@ -45,7 +45,7 @@ We will ship one more LTS release of Octopus Server in January 2020, with the ve
 Staying up to date helps on both sides of this relationship:
 
 - We can give you the best kind of support when you run modern Octopus Server. We can turn around issues with less overhead, and upgrading is less risky when you apply incremental upgrades.
-- You benefit from everything we’ve done since you last upgraded, including delightful new features like the streamlined process editor and operations runbooks. Take a look at [what’s new](https://octopus.com/whatsnew). Also, [take a look at our dynamic roadmap](https://octopus.com/roadmap) to see what we are planning to ship very soon.
+- You benefit from everything we’ve done since you last upgraded, including delightful new features like the streamlined process editor and Operations Runbooks. Take a look at [what’s new](https://octopus.com/whatsnew). Also, [take a look at our dynamic roadmap](https://octopus.com/roadmap) to see what we are planning to ship very soon.
 - We are proactive when it comes to security and trust. Keeping your Octopus Server up to date is the foundation of [a secure and trustworthy installation](https://octopus.com/docs/administration/security/hardening-octopus). Without wanting to be alarmist, here is a list of [reasons to upgrade from a security perspective](https://www.cvedetails.com/vulnerability-list/vendor_id-16785/product_id-39115/Octopus-Octopus-Deploy.html).
 
 ## Question: Why will Windows Server 2012 R2 be the minimum operating system?
