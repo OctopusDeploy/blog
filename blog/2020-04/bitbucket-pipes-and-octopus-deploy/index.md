@@ -329,7 +329,7 @@ fi
 ### Creating the Pipe Dockerfile
 
 Now we have our main script to run, we need to create our image using a Dockerfile.
-If you ran the Pipe generator, then you will already have a file that you need to edit to suit your Pipe.
+If you ran the Pipe generator, then you will already have the Dockerfile ready to edit to to suit your Pipe.
 
 For the `pack` Pipe, the Dockerfile looks like this:
 
@@ -348,11 +348,9 @@ The Dockerfile takes the `octopusdeploy/octo` as it's base, and then adds `bash`
 
 ### Creating the Pipe's own pipeline
 
-When you have completed your Pipe, you could deploy your docker image manually to Docker Hub. However, it's also possible to get Bitbucket pipelines to do the heavy lifting for you automatically when you push changes to your Bitbucket repository with your own `bitbucket-pipelines.yml` file.
+When you have completed your Pipe, you could deploy your Docker image manually to Docker Hub. However, it's also possible to get Bitbucket pipelines to do the heavy lifting for you automatically when you push changes to your Bitbucket repository with your own `bitbucket-pipelines.yml` file.
 
-As we saw earlier, running the Pipe generator will create a file for you.
-
-For the `pack` Pipe, I only modified the push step:
+For the `pack` Pipe, in the auto-generated file, I only modified the push step:
 
 ```yaml
 
@@ -375,7 +373,7 @@ The step installs [semversioner](https://pypi.org/project/semversioner/), which 
 You can view the complete `bitbucket-pipelines.yml` file for the `pack` Pipe on [Bitbucket](https://bitbucket.org/octopusdeploy/pack/src/master/bitbucket-pipelines.yml).
 
 :::hint
-**No double docker push:** 
+**No double Docker push:** 
 The `push` step doesn't trigger two Docker images to be pushed to Docker Hub when the step is doing it's own commit and push back to the Bitbucket repository. The reason for this is that Bitbucket pipelines support the option to skip a pipeline run if `[skip ci]` or `[ci skip]` is included anywhere in the commit message.
 :::
 
@@ -655,4 +653,4 @@ Once I'd got to grips with writing Bash, creating my first Bitbucket Pipe was pr
  - Take a peek at the *experimental* Pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
  - Guides - [Octopus CI/CD pipeline Guides](https://octopus.com/docs/guides)
 
-Feel free to leave a comment, and let us know what you think about Bitbucket pipes, pipelines or container-based build chains!
+Feel free to leave a comment, and let us know what you think about Bitbucket Pipes, Pipelines or container-based build chains!
