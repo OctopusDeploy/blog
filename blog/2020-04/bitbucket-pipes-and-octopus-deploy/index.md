@@ -73,9 +73,9 @@ Well, Pipes are all about **re-use**. They allow you to repeat the same action i
 
 ## Creating a Bitbucket Pipe
 
- A Pipe consists of a bunch of files which make up a Docker image. The Pipe I created has it's image based on the pre-existing [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) image. The finished Pipe has been published as [octopipes/pack](https://hub.docker.com/r/octopipes/pack/) on Docker Hub.
+A Pipe consists of a bunch of files which make up a Docker image. The Pipe I created has it's image based on the pre-existing [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) image. The finished Pipe has been published as [octopipes/pack](https://hub.docker.com/r/octopipes/pack/) on Docker Hub.
 
- Firstly, a quick word of warning, creating a Pipe can be quite involved. Thankfully though, Atlassian provides a step-by-step [guide](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on their website. 
+At first, creating a Pipe might seem quite daunting. Helpfully though, Atlassian provide a step-by-step [guide](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on their website. 
   
 :::warning
 I created this Pipe on an Ubuntu machine using a Bash terminal. If you are using a different platform, you may need to tweak the commands used here.
