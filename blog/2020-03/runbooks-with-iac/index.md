@@ -1,11 +1,11 @@
 ---
-title: Using Infrastructure as Code with Operations Runbooks 
+title: Using Infrastructure as Code with Operations Runbooks
 description: This post discusses how to leverage Operations Runbooks with Infrastructure as Code
 author: bob.walker
 visibility: private
 published: 2020-03-31
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - Product
  - Runbooks
@@ -15,7 +15,7 @@ In preparation for the [2020.1 release webinar](https://www.youtube.com/watch?v=
 
 !toc
 
-## Brief intro to Infrastructure as Code 
+## Brief intro to Infrastructure as Code
 
 Infrastructure as Code is a way of modeling the desired infrastructure in a file, typically written in YAML, JSON, or Hashcorp Language (HCL).  Cloud providers have mechanisms that ingest that file and provisions your requested infrastructure, but each provider has its own infrastructure definitions:
 
@@ -31,7 +31,7 @@ The downside to using the provided tooling is the risk of lock-in.  The terminol
 
 Before runbooks, my Infrastructure as Code process was a normal deployment process, even though I wasn't *deploying* anything, but instead, running scripts against a cloud provider.  My goal for my process was simple; have a single project to tear up and down my infrastructure.  
 
-This approach led to some quirks. The first being, I had to create a lifecycle because I was using a deployment process, and deployment processes have lifecycles.  For example, I have two environments, `Test` and `Production`, but I needed the ability to tear everything down.  I didn't want to tear down `Test` when I deployed to `Production`, but I also wanted to be able to tear down `Production`, which led to my second quirk: I needed another environment called `Teardown`.
+This approach led to some quirks. The first being, I had to create a lifecycle because I was using a deployment process, and deployment processes have lifecycles. In this example, I have two environments, `Test` and `Production`.  However, I needed an environment to tear every thing down.  Which led to my second quirk.  I needed another environment called `Teardown`.
 
 ![](octopus_lifecycle_before_runbooks.png)
 
@@ -86,7 +86,7 @@ I created a variable set called `AWS`, that I populated with variables I need fo
 
 ### Option 2. Leverage variable set variable templates
 
-I chose option 1 because it is easier to create screenshots for and demo to new users.  I've found most people *get it* when they see the above screenshot.  It's also useful for showing the differences in each AWS region.  However, you have to duplicate the tenant names as tenant tags.  
+I chose option 1 because it makes it easier to create screenshots and demo to new users. I've found most people *get it* when they see the above screenshot.  It's also useful for showing the differences in each AWS region.  However, you have to duplicate the tenant names as tenant tags.  
 
 Another option is to leverage the variable set variable templates.  In variable sets, there is a `Variable Templates` tab.  First, add a variable template:
 
@@ -104,7 +104,7 @@ If I were setting up Octopus Deploy in an enterprise setting, I'd use this optio
 
 ## Porting the deployment process to runbooks
 
-I quickly learned I shouldn't do a straight port from a deployment process to runbooks.  I needed to rethink how I thought about configured my IaC process.  As stated earlier, I wanted a single process to spin up and down my infrastructure.  My *Infrastructure as Code* project's process reflected that goal.  However, that single project goal caused me to make some suboptimal configurations.  
+I quickly learned I shouldn't do a straight port from a deployment process to runbooks.  I needed to rethink how I thought about configuring my IaC process.  As stated earlier, I wanted a single process to spin up and down my infrastructure.  My *Infrastructure as Code* project's process reflected that goal.  However, that single project goal caused me to make some suboptimal configurations.  
 
 Those suboptimal configurations were:
 
@@ -113,13 +113,13 @@ Those suboptimal configurations were:
 - That `Teardown` environment required me to write scripts to tear down `Test` and `Production` at the same time.  
 - Because I needed to tear down everything at the same time, my variable scoping was more complex.
 
-Let's take a moment to discuss the variable scoping as it does an excellent job of shining a light on multiple problems with my process.  In `Test` and `Production`, the variable template for the VM name followed this format `[Application Name]-[Component]-[Environnment Abbreviation]`.  For example, `todo-web-t` for the web server for the To-Do application.  The `Teardown` variable didn't include the environment abbreviation.  It was just `[Application Name]-[Component]`.  The `Teardown` process needed to de-register VMs for all environments.  That de-register script found and removed all targets that started with `[Application Name]-[Component]`.  That is a simple example; adding regions gets more complicated.  It took quite a bit of time to come up with a variable template that didn't result in accidentally deleting the wrong target. 
+Let's take a moment to discuss the variable scoping as it does an excellent job of shining a light on multiple problems with my process.  In `Test` and `Production`, the variable template for the VM name followed this format `[Application Name]-[Component]-[Environnment Abbreviation]`.  For example, `todo-web-t` for the web server for the To-Do application.  The `Teardown` variable didn't include the environment abbreviation.  It was just `[Application Name]-[Component]`.  The `Teardown` process needed to de-register VMs for all environments.  That de-register script found and removed all targets that started with `[Application Name]-[Component]`.  That is a simple example; adding regions gets more complicated.  It took quite a bit of time to come up with a variable template that didn't result in accidentally deleting the wrong target.
 
 ![](octopus_complex_scoping_variable_names.png)
 
 ### Split the process
 
-The first change I made was to split my IaC process into two runbooks.  One runbook spun up the infrastructure, and the other deleted the infrastructure.  
+The first change I made was to split my IaC process into two runbooks.  One runbook spun up the infrastructure, and the other deleted it.  
 
 ![](octopus_runbook_list.png)
 
@@ -179,7 +179,7 @@ There is no built-in step for one runbooks to start another runbook, so I wrote 
 
 ![](octopus_runbook_which_calls_runbook.png)
 
-I have two scheduled triggers, one to spin everything up, and another to tear everything down.  You'll notice the teardown trigger runs every day while the spin up only runs on the weekends.  That is in case any infrastructure is spun up on the weekends:
+I have two scheduled triggers, one to spin everything up, and another to tear everything down.  You'll notice the teardown trigger runs every day while the spin up only runs on the weekends.  That is just in case any infrastructure is spun up on the weekends:
 
 ![](octopus_runbooks_scheduled_trigger.png)
 
@@ -189,4 +189,4 @@ There are a few changes to go from spinning up infrastructure using a deployment
 
 My absolute favorite part about runbooks is not having to create a release for each run.  To get my CloudFormation template and bootstrap script right, I had to do a lot of runs before landing on something which worked.  Not having to do the release dance was very nice.
 
-This sample is available on our [samples instance](https://samples.octopus.app/app#/Spaces-102/projects/to-do-linux/operations/runbooks) for you to poke around in.  You will need to sign in as a guest.  Don't worry about breaking anything; guest users have read-only permissions.
+This sample is available on our [samples instance](https://samples.octopus.app/app#/Spaces-102/projects/to-do-linux/operations/runbooks) for you to play around with.  You will need to sign in as a guest.  Don't worry about breaking anything; guest users have read-only permissions.
