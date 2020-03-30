@@ -391,7 +391,7 @@ Here's what the `pack` one looks like:
 
 ```yaml
 script:
-  - pipe: octopipes/pack:0.4.0
+  - pipe: octopipes/pack:0.5.1
     variables:
       ID: "<string>"
       FORMAT: "<string>"
@@ -420,7 +420,7 @@ sudo docker run \
    -e DEBUG="false" \
    -v $(pwd):$(pwd) \
    -w $(pwd) \
- octopipes/pack:0.4.0
+ octopipes/pack:0.5.1
 ```
 
 The resultant output shows the successful packaging of the `randomquotes-js.1.0.0.0.zip` file:
@@ -531,7 +531,7 @@ Once you have committed your changeset, push them to Bitbucket and your pipeline
  - the `README.md` file
  - the metadata `pipe.yml`
 
-You can see an example of the `pack` Bitbucket pipeline running the `0.4.0` release here:
+You can see an example of the `pack` Bitbucket pipeline running the `0.5.1` release here:
 
 ![bitbucket pipe pipeline result](bitbucket-pipe-pipeline-result.png)
 
@@ -550,7 +550,7 @@ Next, I created a `bitbucket-pipelines.yml` file and set up my pipeline. After t
     name: Pack for Octopus
     script:
       - export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
-      - pipe: octopusdeploy/pack:0.4.0
+      - pipe: octopusdeploy/pack:0.5.1
         variables:
           ID: ${BITBUCKET_REPO_SLUG}
           FORMAT: 'Zip'
@@ -587,7 +587,7 @@ Once I had created a package, I wanted to complete the Bitbucket pipeline by int
 
 After the packaging step I'd created earlier, I added another step to push the package to the Octopus [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository).
 
-This step makes use of a feature in Bitbucket which allows you to specify a container image, which can be different to the default image used elsewhere in the pipeline. In this case I chose the `octopusdeploy/octo:latest` Docker image. 
+This step makes use of a feature in Bitbucket which allows you to specify a container image, which can be different to the default image used elsewhere in the pipeline. In this case I chose the `octopusdeploy/octo:7.1.3` Docker image. 
 
 This means I am able to run the `octo push` command, and specify the package I created in the previous `Pack for Octopus` step like so:
 
@@ -599,7 +599,7 @@ You can see the minimum yaml required to achieve the push to Octopus below:
 ```yaml
 - step:
     name: Push to Octopus
-    image: octopusdeploy/octo:latest
+    image: octopusdeploy/octo:7.1.3
     script:
       - export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
       - octo push --package ./out/$BITBUCKET_REPO_SLUG.$VERSION.zip  --server $OCTOPUS_SERVER --space $OCTOPUS_SPACE --apiKey $OCTOPUS_APIKEY 
@@ -621,7 +621,7 @@ To add to our previous `Push to Octopus` step, we can plug that script in to pus
 ```yaml
 - step:
     name: Push to Octopus
-    image: octopusdeploy/octo:latest
+    image: octopusdeploy/octo:7.1.3
     script:
       - apk update && apk upgrade && apk add --no-cache git curl jq
       - export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
