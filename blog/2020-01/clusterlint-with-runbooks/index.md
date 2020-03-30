@@ -37,7 +37,7 @@ However, I would caution against baking linting into a deployment process too ea
 
 A better solution is to implement linting outside of the deployment workflow, at least initially. This provides the ability to generate a focused lint ruleset with the most value, and identify issues with configuration that no-one is likely to touch and would be missed by checks only run against active deployments.
 
-So how do you implement a workflow that sits outside of a deployment using Octopus? Until recently, every automated process in Octopus was considered to be a deployment. Now, with the introduction of runbooks, Octopus has first-class support for running management and maintenance tasks without a deployment.
+So how do you implement a workflow that sits outside of a deployment using Octopus? Until recently, every automated process in Octopus was considered to be a deployment. Now, with the introduction of Operations Runbooks, Octopus has first-class support for running management and maintenance tasks without a deployment.
 
 ## A linting runbook example
 

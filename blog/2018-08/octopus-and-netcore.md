@@ -12,6 +12,8 @@ tags:
 
 ![Octopus Packaging .NET Core banner](blogimage-package-netcore.png)
 
+!include <octopus-cli>
+
 Over the past few months, we’ve had a number of questions and requests for better support around building and packaging .NET Core applications. We’ve had support for that for quite a while, but what has been interesting is the number of requests for supporting building .NET Core applications on .NET Core. What does that mean exactly? It means supporting building .NET Core applications on machines that only have .NET Core, and not the full .NET framework.  Think Linux or Mac OS machines.
 
 If that’s a space you’re working in or looking to move into we’ve got some exciting news. Along with all of the other exciting things included in [2018.7](https://octopus.com/blog/octopus-release-2018.7), we’ve updated `octo.exe` so you can now access it as a .NET command-line extension.
@@ -20,7 +22,7 @@ If that’s a space you’re working in or looking to move into we’ve got some
 
 For some time now, `octo.exe` has been cross-platform, with support for running on both .NET Framework and .NET Core. However, it’s been awkward executing `octo.exe` while doing a build on a .NET Core only platform.
 
-Enter the `dotnet octo` global tool. It does everything [`octo.exe`](https://octopus.com/docs/api-and-integration/octo.exe-command-line) does, but it can be called using `dotnet octo <command>`. This provides a convenient way to get `octo.exe` onto any machine that has the latest dotnet SDK version available.
+Enter the `dotnet octo` global tool. It does everything [`octo.exe`](https://octopus.com/docs/octopus-rest-api/octopus-cli) does, but it can be called using `dotnet octo <command>`. This provides a convenient way to get `octo.exe` onto any machine that has the latest dotnet SDK version available.
 
 To work the magic, summon `octo.exe` onto your build machine using the following:
 ```bash

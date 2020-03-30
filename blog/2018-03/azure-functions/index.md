@@ -73,7 +73,7 @@ Unfortunately, due to the output of Azure Function projects, the standard [`Octo
 
 ![folder](folder.png "width=500")
 
-Luckily, since Octopus will happily deploy anything that has been packaged into a zip, we can leverage a different Octopus command-line tool called [`octo.exe`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe).
+Luckily, since Octopus will happily deploy anything that has been packaged into a zip, we can leverage a different Octopus command-line tool called [Octopus CLI](https://octopus.com/docs/packaging-applications/creating-packages/octopus-cli).
 Using your standard build tool (or even locally for testing purposes), ensure that the current working directory set is the to the project directory and call:
 
 ```shell
