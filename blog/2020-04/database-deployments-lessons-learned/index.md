@@ -59,3 +59,6 @@ We used Redgate SQL Source Control for schema changes and DBUp for data changes.
 State-based deployment software is incredibly powerful and equally as complex.  I'm quite impressed with how the technology can generate scripts in the correct order to transform the database to the desired state.  Just like other software, there are always those edge cases that don't quite work right.
 
 One such edge case of an application being deployed was changing a column to not be an identity column.  This would usually be fine, but this same table was also configured for static data maintenance.  Redgate SQL Source Control successfully generated the correct script to alter the table, however, because of the static data maintenance, it was including `IDENTITY INSERT ON` when populating the table.  Since the identity column had been removed, the statement failed.  It has since been fixed, but the bug did cause some issues trying to get the release out.
+
+## Conclusion
+Along with daunting, database deployment issues can be quite troublesome to debug.  It is my hope that by providing these tips it will save you hours if not days worth of investigation and troubleshooting.
