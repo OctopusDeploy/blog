@@ -8,7 +8,7 @@ bannerImage:
 tags:
  - DevOps
 ---
-
+ 
 Implementing database deployments in an organization can be a daunting task.  In this post, I share some of my experiences when implementing database deployments at my previous job, showing some things to watch out for.
 
 ## Tightly coupled databases
