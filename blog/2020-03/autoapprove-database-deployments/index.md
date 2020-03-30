@@ -3,7 +3,7 @@ title: Automatic approvals for your database deployment automation
 description: In this post, we will examine some techniques on how to auto approve database changes to stop overwhelming your DBAs.
 author: bob.walker@octopus.com
 visibility: public
-published: 2019-03-21
+published: 2020-03-30
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
