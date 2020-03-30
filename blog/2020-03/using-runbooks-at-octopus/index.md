@@ -4,8 +4,8 @@ description: How we're using runbooks at Octopus so that anybody on the team can
 author: Octopus
 visibility: private
 published: 3020-01-01
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
+metaImage: 
+bannerImage: 
 tags:
   - DevOps
   - Runbooks
