@@ -6,3 +6,4 @@ blog/2018-08/automated-database-deployments-adhoc-scripts.md -> blog/2020-03/dat
 blog/2018-10/oracle-database-using-redgate/index.md -> blog/2020-03/database-deployment-automation-for-oracle-using-octopus-and-redgate-tools/index.md
 blog/2018-11/oracle-database-using-redgate-part-2/index.md -> blog/2020-03/database-deployment-automation-for-oracle-using-octopus-jenkins-redgate/index.md
 blog/2019-02/dbup-database-deployments/index.md -> blog/2020-03/dbup-database-deployment-automation/index.md
+blog/2019-03/autoapprove-database-deployments/index.md -> blog/2020-03/autoapprove-database-deployments/index.md
