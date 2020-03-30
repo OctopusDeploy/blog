@@ -408,14 +408,14 @@ You can view the `README` for the `octopipes/pack` in full [here](https://bitbuc
 
 Since the Pipe is just a Docker image, once you have built the image - you can execute the Pipe using `docker run`, passing in any required parameters as Environment variables. 
 
-Here's what the command looks like to run the `pack` Pipe to package up the `source` directory from our `RandomQuotes-JS` application:
+Here's what the command looks like to run the `pack` Pipe to package up the root directory from our `RandomQuotes-JS` application:
 
 ```bash
 sudo docker run \
    -e ID="randomquotes-js" \
    -e FORMAT="Zip" \
    -e VERSION="1.0.0.0" \
-   -e SOURCE_PATH="source" \
+   -e SOURCE_PATH="." \
    -e OUTPUT_PATH="./out" \
    -e DEBUG="false" \
    -v $(pwd):$(pwd) \
