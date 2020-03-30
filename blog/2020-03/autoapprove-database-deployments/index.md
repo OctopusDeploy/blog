@@ -51,7 +51,7 @@ When I started this process, I forgot about pre-deployment and post-deployment s
 
 This leads to an interesting decision.  When checking for no changes, what exactly should it be looking for?  You will notice the full name of the file is included in the report.  For example, `DbUpSample.BeforeDeploymentScripts.001_CreateSampleSchemaIfNotExists.sql` and `DbUpSample.PostDeploymentScripts.001_RefreshViews.sql.`  That leads to a couple of options.  I can modify the code to exclude PreDeployment and PostDeployment scripts.  Or, I can write my check for changes to look for files that match. `DbUpSample.DeploymentScripts.*.sql.`  Personally, I like the idea of including all the scripts for a DBA to review, not just the deployment scripts.  In my experience, complete visibility builds trust in the deployment process.  Hiding scripts, or not including them, is a good way to destroy that trust.  That being said, that is my personal preference, and it is up to you and your DBAs to choose how to accomplish this.
 
-### Updated database deployment process
+### Updated database deployment automation process
 
 As I stated earlier, I want this to be a PowerShell script that will leverage output variables.  I added that script to the process to run right after the upgrade report is generated:
 
