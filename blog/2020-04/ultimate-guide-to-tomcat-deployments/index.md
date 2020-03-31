@@ -446,7 +446,7 @@ vrrp_instance loadbalancer1 {
     advert_int 1
     authentication {
         auth_type PASS
-        auth_pass h1pCCY9SbfSR
+        auth_pass passwordgoeshere
     }
     # Replace unicast_src_ip and unicast_peer with your load balancer IP addresses
     unicast_src_ip 10.0.0.20
