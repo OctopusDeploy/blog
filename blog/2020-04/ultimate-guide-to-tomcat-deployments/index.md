@@ -225,10 +225,10 @@ Here is a copy of the `/etc/tomcat9/context.xml` file with the `Manager`, `Store
 
 #### Installing the packages
 
-We need to install the Apache web server and the mod_jk plugin:
+We need to install the Apache web server, the mod_jk plugin, and the keepalived service:
 
 ```
-apt-get install apache2 libapache2-mod-jk
+apt-get install apache2 libapache2-mod-jk keepalived
 ```
 
 #### Configuring the load balancer
@@ -295,6 +295,161 @@ In order for Apache to accept traffic we need to define a `VirtualHost`, which w
   JkMount /* loadbalancer
 </VirtualHost>
 ```
+
+#### Configuring Keepalived
+
+We have two load balancers to ensure that one can be taken offline for maintenance at any given time. Keepalived is the service that we use to assign a virtual IP address to one of the load balancer services, which Keepalived refers to as the master.
+
+Keepalived is configure via the file `/etc/keepalived/keepalived.conf`.
+
+We start by naming the load balancer instance. The first load balancer is called `loadbalancer1`:
+
+```
+vrrp_instance loadbalancer1 {
+```
+
+The `state` MASTER designates the active server:
+
+```
+state MASTER
+```
+
+The `interface` parameter assigns the physical interface name to this particular virtual IP instance.
+
+::hint
+You can find the interface name by running `ifconfig`.
+::
+
+```
+interface ens5
+```
+
+`virtual_router_id` is a numerical identifier for the Virtual Router instance. It must be the same on all LVS Router systems participating in this Virtual Router. It is used to differentiate multiple instances of keepalived running on the same network interface:
+
+```
+virtual_router_id 101
+```
+
+The `priority` specifies the order in which the assigned interface takes over in a failover; the higher the number, the higher the priority. This priority value must be within the range of 0 to 255, and the Load Balancing server configured as state `MASTER` should have a priority value set to a higher number than the priority value of the server configured as state `BACKUP`.
+
+```
+priority 101
+```
+
+`advert_int` defines how often to send out VRRP advertisements:
+
+```
+advert_int 1
+```
+
+The `authentication` block specifies the authentication type (`auth_type`) and password (`auth_pass`) used to authenticate servers for failover synchronization. `PASS` specifies password authentication.
+
+```
+authentication {
+    auth_type PASS
+    auth_pass passwordgoeshere
+}
+```
+
+`unicast_src_ip` is the IP address of this load balancer:
+
+```
+unicast_src_ip 10.0.0.20
+```
+
+`unicast_peer` lists the IP address of other load balancers. Since we have have two load balancers total, there is only 1 other load balancer to list here:
+
+```
+unicast_peer {
+  10.0.0.21
+}
+```
+
+`virtual_ipaddress` defines the virtual, or floating, IP address that keepalived assigns to the master node:
+
+```
+virtual_ipaddress {
+    10.0.0.30
+}
+```
+
+Here is a complete copy of the `/etc/keepalived/keepalived.conf` file for the first load balancer:
+
+```
+vrrp_instance loadbalancer1 {
+    state MASTER
+    interface ens5
+    virtual_router_id 101
+    priority 101
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass h1pCCY9SbfSR
+    }
+    # Replace unicast_src_ip and unicast_peer with your load balancer IP addresses
+    unicast_src_ip 10.0.0.20
+    unicast_peer {
+      10.0.0.21
+    }
+    virtual_ipaddress {
+        10.0.0.30
+    }
+}
+```
+
+Here is a complete copy of the `/etc/keepalived/keepalived.conf` file for the second load balancer.
+
+Note that the name has been set to `loadbalancer2`, the `priority` is lower at `100`, and the `unicast_src_ip` and `unicast_peer` IP addresses have been flipped:
+
+```
+vrrp_instance loadbalancer2 {
+    state MASTER
+    interface ens5
+    virtual_router_id 101
+    priority 100
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass passwordgoeshere
+    }
+    # Replace unicast_src_ip and unicast_peer with your load balancer IP addresses
+    unicast_src_ip 10.0.0.20
+    unicast_peer {
+      10.0.0.21
+    }
+    virtual_ipaddress {
+        10.0.0.30
+    }
+}
+```
+
+Restart the `keepalived` service on both load balancers with the command:
+
+```
+systemctl restart keepalived
+```
+
+On the first load balancer, runn the command `ip addr`. This will show the virtual IP address assigned to the interface that keepalived was configured to manage:
+
+```
+$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc mq state UP group default qlen 1000
+    link/ether 0e:2b:f9:2a:fa:a7 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.0.21/24 brd 10.0.0.255 scope global dynamic ens5
+       valid_lft 3238sec preferred_lft 3238sec
+    inet 10.0.0.30/32 scope global ens5
+       valid_lft forever preferred_lft forever
+    inet6 fe80::c2b:f9ff:fe2a:faa7/64 scope link
+       valid_lft forever preferred_lft forever
+```
+
+If the first load balancer was shutdown, the second load balancer would assume the virtual IP address.
 
 ## Feature branch deployments
 
