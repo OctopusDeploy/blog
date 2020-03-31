@@ -554,6 +554,10 @@ Once the Tentacle is installed we configure an instance with the command:
 
 The installation gives you a choice between polling or listening tentacles. Which option you choose often depends on your network restrictions. Polling tentacles require that the VM hosting the tentacle be able to reach the Octopus server, while listening tentacles require that the Octopus server be able to reach the VM. The choice of communication style depends on whether the Octopus server or VMs have fixed IP addresses and the correct ports opened in the firewall. Either option is a valid choice though and does not impact the deployment process.
 
+Here is a screenshot of the **Dev** environment with tentacles for the Tomcat and Load Balancer instances. The Tomcat instances have a role of **tomcat**, and the load balancer instances have a role of **loadbalancer**:
+
+![](targets.png "width=500")
+
 ### Creating the external feed
 
 The Random Quotes sample application has been pushed to Maven Central as a WAR file. This means we can deploy the application directly from a Maven feed.
@@ -568,7 +572,45 @@ Test the feed by searching for `com.octopus:randomquotes`. Here we can see that 
 
 ### Creating the deployment process
 
+#### The Tomcat deployment
 
+Our deployment process started with deploying the application to each Tomcat instance using the **Deploy to Tomcat via Manager** step. We'll call this step **Random Quotes** and run it on the **tomcat** targets:
+
+![](tomcat_step_1.png "width=500")
+
+We will deploy the **com.octopus:randomquotes** package from the Maven feed we setup earlier:
+
+![](tomcat_step_2.png "width=500")
+
+Because the tentacle is located on the VM that hosts Tomcat, the location of the Manager API is **http://localhost:8080/manager**. We then supply the manager credentials, which were the details entered into the **tomcat-users.xml** file when we configured Tomcat:
+
+![](tomcat_step_3.png "width=500")
+
+The context path makes up the path in the URL that the deployed application is accessible on. Here we expose the application on the path **/randomquotes**:
+
+![](tomcat_step_4.png "width=500")
+
+In order to support zero downtime deployments, we want to take advantage of the parallel deployments feature in Tomcat. Parallel deployments are enabled by versioning each application when it is deployed.
+
+This version number uses string comparisons to determine the latest version. Typical versioning schemes (like SemVer) use a *major.minor.patch* format, like *1.23.4*, to identify versions. For a lot of cases, these traditional versioning schemes can be compared as strings to determine their order.
+
+However, padding can introduce issues. For example, the version *1.23.40* is lower than *01.23.41*, but a direct string comparison returns the opposite result.
+
+For this reason we use the time of the deployment as the Tomcat version. The variable **#{ | NowDate "yyMMddHHmmss"}** returns the current time from the year to the second, which is guaranteed to produce the correct ordering for deployments when compared as a string.
+
+![](tomcat_step_5.png "width=500")
+
+#### Smoke testing the deployment
+
+To verify that our deployment was successful, we will issue a HTTP request and check the response code. To do this we'll use a community step template called **HTTP - Test URL (Bash)**.
+
+As before, this step will run on the Tomcat instances:
+
+![](http_step_1.png "width=500")
+
+The step will attempt to open the **index.html** page from the newly deployed application, expecting a HTTP response code of **200**:
+
+![](http_step_2.png "width=500")
 
 ## Feature branch deployments
 
