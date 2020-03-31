@@ -221,6 +221,68 @@ Here is a copy of the `/etc/tomcat9/context.xml` file with the `Manager`, `Store
 </Context>
 ```
 
+### Configuring the PostgreSQL database
+
+#### Installing the packages
+
+We need to initialize the PostgreSQL database with a new database, schema and table. To do this, we'll use the `psql` command line tool, which is installed with:
+
+```
+apt-get install postgresql-client
+```
+
+#### Adding the database, schema and table
+
+If you look at the `connectionURL` attribute from the `/etc/tomcat9/context.xml` file defined above you will see that we are saving session information into:
+
+* The database called `tomcat`.
+* The schema called `session`.
+* A table called `tomcat_sessions`.
+
+To create these resources in the PostgreSQL server, we run a number of SQL commands.
+
+First, save the following text into a file called `createdb.sql`. This command creates the database if it does not exist (see [this StackOverflow](https://stackoverflow.com/a/18389184/157605) post for more information on this syntax):
+
+```
+SELECT 'CREATE DATABASE tomcat' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'tomcat')\gexec
+```
+
+Then execute the SQL with the following command, replacing `postgresserver` with the hostname of your PostgreSQL server:
+
+```
+cat createdb.sql | /usr/bin/psql -a -U postgres -h postgresserver
+```
+
+Next we create the schema and table. Save the following text to a file called `createschema.sql`. Note that the columns of the `tomcat_sessions` table match the attributes of the `Store` element in the `/etc/tomcat9/context.xml` file:
+
+```
+CREATE SCHEMA IF NOT EXISTS session;
+
+CREATE TABLE IF NOT EXISTS session.tomcat_sessions
+(
+  session_id character varying(100) NOT NULL,
+  valid_session character(1) NOT NULL,
+  max_inactive integer NOT NULL,
+  last_access bigint NOT NULL,
+  app_name character varying(255),
+  session_data bytea,
+  CONSTRAINT tomcat_sessions_pkey PRIMARY KEY (session_id)
+);
+
+CREATE INDEX IF NOT EXISTS app_name_index
+  ON session.tomcat_sessions
+  USING btree
+  (app_name);
+```
+
+Then execute the SQL with the following command, replacing `postgresserver` with the hostname of your PostgreSQL server:
+
+```
+psql -a -d tomcat -U postgres -h postgresserver -f /root/createschema.sql
+```
+
+We now have a table in PostgreSQL ready to save the Tomcat sessions.
+
 ### Configuring the Apache web server
 
 #### Installing the packages
