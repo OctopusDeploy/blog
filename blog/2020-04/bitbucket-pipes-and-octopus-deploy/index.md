@@ -570,7 +570,7 @@ The step looks similar to my examples shown in the Pipe's `README` file. I've ad
 
 The `export` command tells Bitbucket to create the `VERSION` variable and allow it to be used in the Pipe.
 
-I also make use of Bitbucket [artifacts](https://confluence.atlassian.com/bitbucket/using-artifacts-in-steps-935389074.html), where I specify a globbing pattern to choose any zip files present in the `out` folder:
+I also make use of Bitbucket [artifacts](https://confluence.atlassian.com/bitbucket/using-artifacts-in-steps-935389074.html), where I specify a glob pattern to choose any zip files present in the `out` folder:
 
 ```yaml
 artifacts:
