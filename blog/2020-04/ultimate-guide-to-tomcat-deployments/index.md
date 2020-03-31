@@ -82,7 +82,7 @@ Keepalived is a Linux service run across multiple instances and picks a single m
 In summary, our HA load balancing solution:
 
 * Implements Apache with the mod_jk plugin to direct traffic to the Tomcat instances.
-* Implements Keepalived to ensure one load balancer has a floating IP address assigned to it.
+* Implements Keepalived to ensure one load balancer has a virtual IP address assigned to it.
 
 ## The network diagram
 
@@ -90,4 +90,29 @@ Here is the diagram of the network that we will be creating:
 
 ![](network_diagram.png "width=500")
 
-## Implementing zero downtime deployments
+## Implementing zero downtime deployments and rollbacks
+
+A goal of continuous delivery is to always be in a state where you can deploy (even if you choose not to). This means moving away from deployment schedules that require people to be awake at midnight to perform a deployment when your customers are asleep.
+
+Zero downtime deployments require reaching a point where deployments can be done at any time without disruption. In our example infrastructure, there are two points that we need to consider in order to achieve zero downtime deployments:
+
+* The ability for customers to use the existing version of the application to complete their session even after a newer version of the application has been deployed.
+* Forwards and backwards compatibility of any database changes.
+
+Ensuring database changes are backwards and forwards compatible requires some design work and discipline when pushing new application versions. Fortunately there are tools available, including Flyway and Liquidbase, that provide a way to roll out database changes with the applications themselves, taking care of versioning the changes and wrapping any migrations in the required transactions. We'll see Flyway implemented in a sample application later in the post.
+
+As long as the shared database remains compatible between the current and the new version of the application, Tomcat provides a feature called parallel deployments that allows clients to continue to access the previous version of the application until their session expires, while new sessions are created against the new version of the application. Parallel deployments therefor allow a new version of the application to be deployed without disrupting any existing clients. Once sessions on the old version of the application have expired, Tomcat automatically removes the old version of the application.
+
+Ensuring database changes are compatible between the current and new version of the application means we can easily roll back the application deployment. Redeploying the previous version of the application provides a quick fallback in case the new version introduced any errors.
+
+In summary, our zero downtime deployments solution:
+
+* Relies on database changes being forwards and backwards compatible (at least between the new and current versions of the application).
+* Utilizes parallel deployments to allow existing sessions to complete uninterrupted.
+* Provides application rollback by reverting to the previously installed application version.
+
+## Feature branch deployments
+
+## Certificate management
+
+## Smoke testing
