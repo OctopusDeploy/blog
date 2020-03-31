@@ -84,4 +84,10 @@ In summary, our HA load balancing solution:
 * Implements Apache with the mod_jk plugin to direct traffic to the Tomcat instances.
 * Implements Keepalived to ensure one load balancer has a floating IP address assigned to it.
 
+## The network diagram
+
+Here is the diagram of the network that we will be creating:
+
+![](network_diagram.png "width=500")
+
 ## Implementing zero downtime deployments
