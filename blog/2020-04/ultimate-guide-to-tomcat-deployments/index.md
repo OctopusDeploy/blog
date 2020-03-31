@@ -115,9 +115,9 @@ In summary, our zero downtime deployments solution:
 
 The example infrastructure is deployed to Ubuntu 18.04 virtual machines. Most of the instructions will be distribution agnostic, although some of the package names and file locations may change.
 
-## Configuring Tomcat
+### Configuring Tomcat
 
-### Installing the packages
+#### Installing the packages
 
 We start by installing Tomcat and the Manager application:
 
@@ -125,7 +125,7 @@ We start by installing Tomcat and the Manager application:
 apt-get install tomcat tomcat-admin
 ```
 
-### Adding the AJP connector
+#### Adding the AJP connector
 
 Communication between the Apache web server and Tomcat is performed with a AJP connector. AJP is an optimized binary HTTP protocol that the mod_jk plugin for Apache and Tomcat both understand. The connector is added to the `Service` element in the `/etc/tomcat9/server.xml` file:
 
@@ -139,7 +139,7 @@ Communication between the Apache web server and Tomcat is performed with a AJP c
 </Server>
 ```
 
-### Defining the Tomcat instance names
+#### Defining the Tomcat instance names
 
 Each Tomcat instance needs a unique name added to the `Engine` element the `/etc/tomcat9/server.xml` file. The default `Engine` element looks like this:
 
@@ -159,7 +159,7 @@ The second Tomcat instance is called `worker2`:
 <Engine defaultHost="localhost" name="Catalina" jvmRoute="worker2">
 ```
 
-### Adding a manager user
+#### Adding a manager user
 
 Octopus performs deployments to Tomcat via the manager application. This is what we installed with the `tomcat-admin` package earlier.
 
@@ -180,11 +180,11 @@ Here is a copy of the `/etc/tomcat9/tomcat-users.xml` file with the `tomcat` use
 </tomcat-users>
 ```
 
-### Adding the PostgreSQL JDBC driver jar
+#### Adding the PostgreSQL JDBC driver jar
 
 Each Tomcat instance will communicate with a PostgreSQL database to persist session data. In order for Tomcat to communicate with a PostgreSQL database we need to install the PostgreSQL JDBC driver JAR file. This is done by saving the file https://jdbc.postgresql.org/download/postgresql-42.2.11.jar as `/var/lib/tomcat9/lib/postgresql-42.2.11.jar`.
 
-### Enabling session replication
+#### Enabling session replication
 
 To enable session persistence to a database we add a new `Manager` definition in the file `/etc/tomcat9/context.xml`. This manager uses the `org.apache.catalina.session.PersistentManager` to save the session details to a database defined in the nested `Store` element.
 
@@ -219,6 +219,81 @@ Here is a copy of the `/etc/tomcat9/context.xml` file with the `Manager`, `Store
   <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
   <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
 </Context>
+```
+
+### Configuring the Apache web server
+
+#### Installing the packages
+
+We need to install the Apache web server and the mod_jk plugin:
+
+```
+apt-get install apache2 libapache2-mod-jk
+```
+
+#### Configuring the load balancer
+
+The mod_jk plugin is configured via the file `/etc/libapache2-mod-jk/workers.properties`. In this file we define a number of workers that traffic can be directed to. The fields in this file are documented [here](https://tomcat.apache.org/connectors-doc/reference/workers.html).
+
+We start by defining a worker called `loadbalancer` that will recieve all of the traffic:
+
+```
+worker.list=loadbalancer
+```
+
+We then define the two Tomcat instances that were created earlier. Make sure to replace `worker1_ip` and `worker2_ip` with the IP addresses of the matching Tomcat instances.
+
+Note that the name of the workers defined here as `worker1` and `worker2` match the value of the `jvmRoute` attribute in the `Engine` element in the `/etc/tomcat9/server.xml` file. These names must match, as they are used by mod_jk to implement sticky sessions:
+
+```
+worker.worker1.type=ajp13
+worker.worker1.host=worker1_ip
+worker.worker1.port=8009
+
+worker.worker2.type=ajp13
+worker.worker2.host=worker2_ip
+worker.worker2.port=8009
+```
+
+Finally we define the `loadbalancer` worker as a load balancer that directs traffic to the `worker1` and `worker2` workers, with sticky sessions enabled:
+
+```
+worker.loadbalancer.type=lb
+worker.loadbalancer.balance_workers=worker1,worker2
+worker.loadbalancer.sticky_session=1
+```
+
+Here is a complete copy of the `/etc/libapache2-mod-jk/workers.properties` file:
+
+```
+# All traffic is directed to the load balancer
+worker.list=loadbalancer
+
+# Set properties for workers (ajp13)
+worker.worker1.type=ajp13
+worker.worker1.host=worker1_ip
+worker.worker1.port=8009
+
+worker.worker2.type=ajp13
+worker.worker2.host=worker2_ip
+worker.worker2.port=8009
+
+# Load-balancing behaviour
+worker.loadbalancer.type=lb
+worker.loadbalancer.balance_workers=worker1,worker2
+worker.loadbalancer.sticky_session=1
+```
+
+#### Adding a Apache VirtualHost
+
+In order for Apache to accept traffic we need to define a `VirtualHost`, which we'll create the the file `/etc/apache2/sites-enabled/000-default.conf`. This virtual host will accept HTTP traffic on port 80, defines some log files, and uses the `JkMount` directive to forward traffic to the worker called `loadbalancer`:
+
+```xml
+<VirtualHost *:80>
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  JkMount /* loadbalancer
+</VirtualHost>
 ```
 
 ## Feature branch deployments
