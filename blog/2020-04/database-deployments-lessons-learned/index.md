@@ -17,7 +17,7 @@ It happens, and most of us have seen it, two different systems accessing each ot
 
 ### Database dependencies
 
-I can recall an emergency meeting following the deployment of an application (let's call it A) which caused a different application (we'll call this one B) to start failing.  Tempers were high, and fingers from both teams were firmly pointed at each other.  
+I can recall an emergency meeting following the deployment of an application (let's call it application A) which caused a different application (we'll call this one application B) to start failing.  Tempers were high, and fingers from both teams were firmly pointed at each other.  
 
 As the configuration manager, I was in charge of deployments, so I was facilitating the meeting. The latest deployment had introduced changes to the database schema of A, which cause B to fail. The most troubling part of the situation was that A had no idea that B was pulling data, so naturally, A didn't understand why B was so worked up.  
 
@@ -52,7 +52,7 @@ State-based (also known as model-based) deployments create a *scratch* database 
 
 ## Mixing deployment technologies
 
-We used Redgate SQL Source Control for schema changes and DbUp for data changes.  Most, if not all, of the migrations-based deployment technologies ([DBup](https://dbup.readthedocs.io/en/latest/), [Flyway](https://flywaydb.org), and [RoundhousE](https://github.com/chucknorris/roundhouse)) create a table in the target database to keep track of which scripts have already been executed so that they're not run again.  State-based methods will delete any object not present in the state.  We failed to take this into account, and Redgate SQL Source Control kept deleting the `schemaversions` table that DbUp created to keep track of previously run scripts. This caused scripts that were intended to be executed one-time to run with every deployment.
+We used Redgate SQL Source Control for schema changes and DbUp for data changes.  Most, if not all, of the migrations-based deployment technologies ([DBup](https://dbup.readthedocs.io/en/latest/), [Flyway](https://flywaydb.org), and [RoundhousE](https://github.com/chucknorris/roundhouse)) create a table in the target database to keep track of which scripts have already been executed so that they're not run again.  State-based methods will delete any object not present in the state.  We failed to take this into account, and Redgate SQL Source Control kept deleting the `schemaversions` table that DbUp created to keep track of previously run scripts. This caused scripts that were intended to be executed once to run with every deployment.
 
 ## Bugs in the software
 
@@ -62,4 +62,4 @@ One example of this involved changing a column so that it was not an identity co
 
 ## Conclusion
 
-Along with being daunting, database deployment issues can be quite troublesome to debug.  It is my hope that by providing these tips will save you hours if not days worth of investigation and troubleshooting.
+Along with being daunting, database deployment issues can be quite troublesome to debug.  It is my hope that these tips will save you hours if not days worth of investigation and troubleshooting.
