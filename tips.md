@@ -58,7 +58,7 @@ Writing is hard, and we all have different voices, but we want the experience of
 
     > Select option A from the User Preferences screen after you've logged into the portal.
 
-    The above example presents the information in the opposite order the user needs it. Option A is the ultimate goal and so perhaps the most important thing, but the sentence should be changed to guide the user through the process they need to follow without having to read the sentence backward:
+    The above example presents the information in the opposite order than the order the user needs it. Option A is the ultimate goal and so perhaps the most important thing, but the sentence should be changed to guide the user through the process they need to follow without having to read the sentence backward:
 
     > After you've logged into the portal, click the User Preferences tab, and select option A.
 
@@ -86,11 +86,11 @@ If you'd like to use screenshots or other images, here are a couple of tips to k
 
 1. Don't over rely on screenshots.
 
-    Screenshots can help guide readers to the right place in the UI or reassure them that they're on the right track, but on their own, they often lack context and readers can be left wondering what exactly they're supposed to be looking. When you include screenshots make sure you provide enough context that the user understands what exactly the screenshot demonstrates.
+    Screenshots can help guide readers to the right place in the UI or reassure them that they're on the right track, but on their own, they often lack context and readers can be left wondering what exactly they're supposed to be looking at. When you include screenshots make sure you provide enough context that the user understands what exactly the screenshot demonstrates.
 
 1. Consider if a screenshot is the right tool for the job.
 
-    Screenshots are easy to capture, code blocks can be a lot more work, however, it's good to consider what will be most helpful to the reader. If they's a chance your reader will want to copy commands from a screenshot, it's more helpful to copy the commands into a code block.
+    Screenshots are easy to capture, whereas code blocks can be a lot more work, however, it's good to consider what will be most helpful to the reader. If they's a chance your reader will want to copy commands from a screenshot, it's more helpful to copy the commands into a code block.
 
 1. Check the rights on images you source online.
 
