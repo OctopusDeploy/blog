@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Continuous integration and delivery (CI/CD) is a common goal for DevOps teams to implement to reduce the cost and increase the agility of software teams. But the CI/CD pipeline is far more than simply testing, compiling and deploying applications. A robust CI/CD pipeline needs to address a number of concerns such as:
+Continuous integration and delivery (CI/CD) is a common goal for DevOps teams to cost and increase the agility of software teams. But the CI/CD pipeline is far more than simply testing, compiling and deploying applications. A robust CI/CD pipeline needs to address a number of concerns such as:
 
 * High availability (HA)
 * Multiple environments
@@ -110,6 +110,116 @@ In summary, our zero downtime deployments solution:
 * Relies on database changes being forwards and backwards compatible (at least between the new and current versions of the application).
 * Utilizes parallel deployments to allow existing sessions to complete uninterrupted.
 * Provides application rollback by reverting to the previously installed application version.
+
+## Building the infrastructure
+
+The example infrastructure is deployed to Ubuntu 18.04 virtual machines. Most of the instructions will be distribution agnostic, although some of the package names and file locations may change.
+
+## Configuring Tomcat
+
+### Installing the packages
+
+We start by installing Tomcat and the Manager application:
+
+```
+apt-get install tomcat tomcat-admin
+```
+
+### Adding the AJP connector
+
+Communication between the Apache web server and Tomcat is performed with a AJP connector. AJP is an optimized binary HTTP protocol that the mod_jk plugin for Apache and Tomcat both understand. The connector is added to the `Service` element in the `/etc/tomcat9/server.xml` file:
+
+```xml
+<Server>
+  <!-- ... -->
+  <Service name="Catalina">
+    <!-- ... -->
+    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443"></Connector>
+  </Service>
+</Server>
+```
+
+### Defining the Tomcat instance names
+
+Each Tomcat instance needs a unique name added to the `Engine` element the `/etc/tomcat9/server.xml` file. The default `Engine` element looks like this:
+
+```xml
+<Engine name="Catalina" defaultHost="localhost">
+```
+
+The name of the Tomcat instance is defined in the `jvmRoute` attribute. We'll call the first Tomcat instance `worker1`:
+
+```xml
+<Engine defaultHost="localhost" name="Catalina" jvmRoute="worker1">
+```
+
+The second Tomcat instance is called `worker2`:
+
+```xml
+<Engine defaultHost="localhost" name="Catalina" jvmRoute="worker2">
+```
+
+### Adding a manager user
+
+Octopus performs deployments to Tomcat via the manager application. This is what we installed with the `tomcat-admin` package earlier.
+
+In order to authenticate with the Manager application, a new user needs to be defined in the `/etc/tomcat9/tomcat-users.xml` file. We'll call this user `tomcat` with the password of `Password01!`, and it will belong to the `manager-script` and `manager-gui` roles.
+
+The `manager-script` role grants access to the Manager API, while the `manager-gui` role grants access to the Manager web console.
+
+Here is a copy of the `/etc/tomcat9/tomcat-users.xml` file with the `tomcat` user defined:
+
+```xml
+<tomcat-users xmlns="http://tomcat.apache.org/xml"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
+              version="1.0">
+  <role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <user username="tomcat" password="Password01!" roles="manager-script,manager-gui"/>
+</tomcat-users>
+```
+
+### Adding the PostgreSQL JDBC driver jar
+
+Each Tomcat instance will communicate with a PostgreSQL database to persist session data. In order for Tomcat to communicate with a PostgreSQL database we need to install the PostgreSQL JDBC driver JAR file. This is done by saving the file https://jdbc.postgresql.org/download/postgresql-42.2.11.jar as `/var/lib/tomcat9/lib/postgresql-42.2.11.jar`.
+
+### Enabling session replication
+
+To enable session persistence to a database we add a new `Manager` definition in the file `/etc/tomcat9/context.xml`. This manager uses the `org.apache.catalina.session.PersistentManager` to save the session details to a database defined in the nested `Store` element.
+
+The `Store` element in turn defines the database that the session information will be persisted to.
+
+We also need to add a `Valve` loading the `org.apache.catalina.ha.session.JvmRouteBinderValve` class. This valve is important when a client is redirected from a Tomcat instance that is no longer available to another Tomcat instance in the cluster. We'll see this valve in action later on once we have a sample application deployed.
+
+Here is a copy of the `/etc/tomcat9/context.xml` file with the `Manager`, `Store` and `Valve` elements defined:
+
+```xml
+<Context>
+  <Manager
+    className="org.apache.catalina.session.PersistentManager"
+    processExpiresFrequency="3"
+    maxIdleBackup="1" >
+      <Store
+        className="org.apache.catalina.session.JDBCStore"
+        driverName="org.postgresql.Driver"
+        connectionURL="jdbc:postgresql://postgresserver:5432/tomcat?currentSchema=session"
+        connectionName="postgres"
+        connectionPassword="passwordgoeshere"
+        sessionAppCol="app_name"
+        sessionDataCol="session_data"
+        sessionIdCol="session_id"
+        sessionLastAccessedCol="last_access"
+        sessionMaxInactiveCol="max_inactive"
+        sessionTable="session.tomcat_sessions"
+        sessionValidCol="valid_session" />
+  </Manager>
+  <Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+  <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+  <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+</Context>
+```
 
 ## Feature branch deployments
 
