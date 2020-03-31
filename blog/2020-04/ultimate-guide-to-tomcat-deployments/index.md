@@ -513,6 +513,63 @@ $ ip addr
 
 If the first load balancer was shutdown, the second load balancer would assume the virtual IP address, and the second Apache web server would act as the load balancer.
 
+## Building the deployment pipeline
+
+Our deployment pipeline will involve deploying the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application. This is a simple stateful Spring Boot application utilizing Flyway to manage database migrations.
+
+When you click the **Refresh** button, a new quote is loaded from the database, and a counter is incremented in the session and displayed as the **Quote count** field on the page. The application version is shown in the **Version** field.
+
+We can use the **Quote count** and **Version** information to verify that existing sessions are preserved as new deployments are performed or Tomcat instances are taken offline.
+
+![](random_quotes.png "width=500")
+
+### Getting an Octopus instance
+
+If you do not already have Octopus installed, the easiest way to get an Octopus instance is to [sign up for a cloud account](https://octopus.com/start/cloud). These instances are free for up to 10 targets.
+
+### Creating the environments
+
+We'll create two environments for this example: **Dev** and **Prod**. This means we will configure 8 targets in total: 4 load balancers and 4 Tomcat instances.
+
+Here is a screenshot of the environments in Octopus:
+
+![](environments.png "width=500")
+
+### Deploying the tentacle
+
+We will install a tentacle on each of our virtual machines to allow us to perform updates and system maintenance tasks. The instructions for installing the Tentacle software is found on the [Octopus download page](https://octopus.com/downloads/tentacle#linux). As this example is using Ubuntu as the base OS, we install the Tentacle with the commands:
+
+```
+apt-key adv --fetch-keys https://apt.octopus.com/public.key
+add-apt-repository "deb https://apt.octopus.com/ stretch main"
+apt-get update
+apt-get install tentacle
+```
+
+Once the Tentacle is installed we configure an instance with the command:
+
+```
+/opt/octopus/tentacle/configure-tentacle.sh
+```
+
+The installation gives you a choice between polling or listening tentacles. Which option you choose often depends on your network restrictions. Polling tentacles require that the VM hosting the tentacle be able to reach the Octopus server, while listening tentacles require that the Octopus server be able to reach the VM. The choice of communication style depends on whether the Octopus server or VMs have fixed IP addresses and the correct ports opened in the firewall. Either option is a valid choice though and does not impact the deployment process.
+
+### Creating the external feed
+
+The Random Quotes sample application has been pushed to Maven Central as a WAR file. This means we can deploy the application directly from a Maven feed.
+
+Create a new Maven feed pointing to https://repo.maven.apache.org/maven2/. A screenshot of this feed is shown below:
+
+![](maven_feed.png "width=500")
+
+Test the feed by searching for `com.octopus:randomquotes`. Here we can see that our application is found in the repository:
+
+![](test_feed.png "width=500")
+
+### Creating the deployment process
+
+
+
 ## Feature branch deployments
 
 ## Certificate management
