@@ -612,8 +612,16 @@ The step will attempt to open the **index.html** page from the newly deployed ap
 
 ![](http_step_2.png "width=500")
 
+#### Performing the initial deployment
+
+Let's go ahead and perform the initial deployment. For this deployment we'll specifically select a previous version of the Random Quotes application. Version **0.1.6.1** in this case is our second last artifact version:
+
+![](deployment_step_1.png "width=500")
+
+Octopus then proceeds to download the WAR file from the Maven repo, push it to the Tomcat instances and deploy it to Tomcat via the manager. Once complete, the smoke test runs to ensure that the application can be opened successfully:
+
+![](deployment_result.png "width=500")
+
 ## Feature branch deployments
 
 ## Certificate management
-
-## Smoke testing
