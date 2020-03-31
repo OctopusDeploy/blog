@@ -399,11 +399,11 @@ vrrp_instance loadbalancer1 {
 
 Here is a complete copy of the `/etc/keepalived/keepalived.conf` file for the second load balancer.
 
-Note that the name has been set to `loadbalancer2`, the `priority` is lower at `100`, and the `unicast_src_ip` and `unicast_peer` IP addresses have been flipped:
+Note that the name has been set to `loadbalancer2`, the `state` has been set to `BACKUP`, the `priority` is lower at `100`, and the `unicast_src_ip` and `unicast_peer` IP addresses have been flipped:
 
 ```
 vrrp_instance loadbalancer2 {
-    state MASTER
+    state BACKUP
     interface ens5
     virtual_router_id 101
     priority 100
@@ -429,7 +429,7 @@ Restart the `keepalived` service on both load balancers with the command:
 systemctl restart keepalived
 ```
 
-On the first load balancer, runn the command `ip addr`. This will show the virtual IP address assigned to the interface that keepalived was configured to manage:
+On the first load balancer, runn the command `ip addr`. This will show the virtual IP address assigned to the interface that keepalived was configured to manage with the output `inet 10.0.0.30/32 scope global ens5`:
 
 ```
 $ ip addr
@@ -449,7 +449,7 @@ $ ip addr
        valid_lft forever preferred_lft forever
 ```
 
-If the first load balancer was shutdown, the second load balancer would assume the virtual IP address.
+If the first load balancer was shutdown, the second load balancer would assume the virtual IP address, and the second Apache web server would act as the load balancer.
 
 ## Feature branch deployments
 
