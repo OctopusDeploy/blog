@@ -836,6 +836,16 @@ When a feature branch is appended to a Maven version, it is considered a qualife
 
 This means Maven considers version **1.2.1-myfeature** is to be a later release than **1.2.1**, when clearly that is not the intention of a feature branch. You can verify this behavior with the following test in a project hosted on [GitHub](https://github.com/mcasperson/MavenVersionTest/blob/master/src/test/java/org/apache/maven/artifact/versioning/VersionTest.java#L122).
 
+However, thanks to the ability of channels in Octopus, we can ensure that both SemVer prerelease and Maven qualifiers are processed to produce the ordering of artifacts that we expect.
+
+Here is the default channel for our application deployment. Note the regular expression **^$** for the **Pre-release tag** field. This regular expression only matches empty strings, meaning the default channel will only ever deploy artifacts with no prerelease or qualifer.
+
+![](default_channel.png "width=500")
+
+Next we have the feature branch channel, which defines a regular expression of **.+** for the **Pre-release tag** field. This regular expression only non-empty strings, meaning the feature branch channel will only deploy artifacts with a prerelease or qualifier.
+
+![](feature_branch_channel.png "width=500")
+
 ## Certificate management
 
 To finish configuring our infrastructure we will enable HTTPS access via our load balancers. This requires editing the Apache web server virtual host configuration to enable SSL and point to the keys and certificates we have obtained for our domain.
