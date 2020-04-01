@@ -818,6 +818,24 @@ With that we have demonstrated zero downtime deployments. Because our database m
 
 ## Feature branch deployments
 
+A common development practice is to complete a feature in a separate SCM branch, known as a feature branch.
+
+A CI server will typically watch for the presence of feature branches and create a deployable artifact from the code committed there.
+
+These feature branch artifacts are then versioned to indicate which branch they were built from. GitVersion is a popular tool for generating versions to match commits and branches in Git, and they offer this example showing [versions created as part of their GitHub flow](https://gitversion.net/docs/git-branching-strategies/githubflow-examples):
+
+![](githubflow_feature_branch.png "width=500")
+
+As you can see from the image above, a commit to a feature branch called **myfeature** generates a version like **1.2.1-myfeature.1+1**. This in turn would produce an artifact with a filename like `myapp.1.2.1-myfeature.1+1.zip`.
+
+Despite the fact that tools like GitVersion generate SemVer version strings, the same format can be used for Maven artifacts. However, there is a catch.
+
+SemVer will order a version with a feature branch lower than a version without any prerelease component. For example, **1.2.1** is considered a higher version number than **1.2.1-myfeature**.
+
+When a feature branch is appended to a Maven version, it is considered a qualifer. Maven allows any qualifiers, but has some special ones like **SNAPSHOT**, **final**, **ga** etc. A complete list can be found in the blog post [Maven versions explained](https://octopus.com/blog/maven-versioning-explained). Maven versions with unrecognized qualifiers (and feature branch names are unrecognized qualifiers) are treated as later releases than unqualified versions.
+
+This means Maven considers version **1.2.1-myfeature** is to be a later release than **1.2.1**, when clearly that is not the intention of a feature branch. You can verify this behavior with the following test in a project hosted on [GitHub](https://github.com/mcasperson/MavenVersionTest/blob/master/src/test/java/org/apache/maven/artifact/versioning/VersionTest.java#L122).
+
 ## Certificate management
 
 To finish configuring our infrastructure we will enable HTTPS access via our load balancers. This requires editing the Apache web server virtual host configuration to enable SSL and point to the keys and certificates we have obtained for our domain.
