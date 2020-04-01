@@ -3,7 +3,7 @@ title: Using Octopus Runbooks to run ad-hoc scripts in your database deployment 
 description: This post shows you how to use Operations Runbooks to run ad-hoc scripts in your database deployment automation pipeline.
 author: bob.walker@octopus.com
 visibility: private
-published: 2020-04-30
+published: 3020-04-30
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
 tags:
