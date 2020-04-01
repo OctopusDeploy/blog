@@ -657,13 +657,15 @@ Let's now shut down the **worker1** Tomcat instance. Once shutdown, we click the
 
 ![](app_3.png "width=500")
 
-There are two things to note in this screenshot:
+There are three things to note in this screenshot:
 
 1. The suffix on the **JSESSIONID** cookie changed from **worker1** to **woker2**.
-2. The **JSESSIONID** cookie session ID stayed the same.
+2. The **JSESSIONID** cookie session ID remained the same.
 3. The **Quote count** increased to 6.
 
-When Tomcat is gracefully shut down, it will write out the contents of any sessions to the database. Then because the **worker1** Tomcat instance was no longer available, the request was directed to the **worker2** Tomcat instance. The **worker2** Tomcat instance loaded the session information from the database and incremented the counter. The **JvmRouteBinderValve** valve rewrote the session cookie to append the location Tomcat instance name to the end, and the response was returned to the browser.
+When Tomcat is gracefully shut down, it will write out the contents of any sessions to the database. Then because the **worker1** Tomcat instance was no longer available, the request was directed to the **worker2** Tomcat instance. The **worker2** Tomcat instance loaded the session information from the database and incremented the counter. The **JvmRouteBinderValve** valve rewrote the session cookie to append the current Tomcat instance name to the end, and the response was returned to the browser.
+
+We can now see that it is important that the worker names in the load balancer **/etc/libapache2-mod-jk/workers.properties** file match the names assigned to the **jvmRoute** in the **/etc/tomcat9/server.xml** file, because matching these names allow sticky sessions to be implemented.
 
 Because the **Quote count** did not reset back to one we know that the session was persisted to the database and replicated to the other Tomcat instances in the cluster. We also know that the request was served by another Tomcat instance because the **JSESSIONID** cookie shows a new worker name.
 
@@ -671,7 +673,7 @@ Even if we brought **worker1** back online, this browser session would continue 
 
 We've now demonstrated that the Tomcat instances support session replication and failover, making them highly available.
 
-To demonstrate failover of the load balancers we only need to restart the current instance designated as the master by keepalived. We can then watch the events on the current backup instance with the command:
+To demonstrate failover of the load balancers we only need to restart the instance designated as the master by keepalived. We can then watch the events on the backup instance with the command:
 
 ```
 journalctl -u keepalived -f
@@ -689,6 +691,14 @@ Having assumed the master role, the load balancer will be assigned the virtual I
 Once the previous master instance restarts it will reassume the master role because it is configured with a higher priority, and the virtual IP address will be assigned back.
 
 The whole process is seamless, and upstream clients never need to be aware that a failover and failback took place.
+
+In summary:
+* The **JSESSIONID** cookie contains the session ID and the name of the Tomcat instance that processed the request.
+* The load balancers implement sticky sessions based on the worker name appended to the **JSESSIONID** cookie.
+* The **JvmRouteBinderValve** valve rewrites the **JSESSIONID** cookie when a Tomcat instance received traffic for a session it was not originally responsible for.
+* Keepalived assigns a virtual IP to the backup load balancer if the master goes offline.
+* The master load balancer reassumes the virtual IP when it comes back online.
+* The infrastructure stack can survive the loss of one Tomcat instance and one load balancer and still maintain availability.
 
 ## Feature branch deployments
 
