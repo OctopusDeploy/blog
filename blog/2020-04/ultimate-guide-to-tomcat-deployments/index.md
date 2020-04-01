@@ -792,7 +792,7 @@ public class Author {
 }
 ```
 
-While this is a trivial example that is easy to implement thanks to the fact that the **AUTHOR** table is not modified by our code, it does demonstrate how database changes can be implemented in a backwards compatible manner. It would be possible to write entire books on the strategies for maintaining backwards compatibility, but for the purposes of this blog post we'll leave this discussion here.
+While this is a trivial example that is easy to implement thanks to the fact that the **AUTHOR** table is read only, it does demonstrate how database changes can be implemented in a backwards compatible manner. It would be possible to write entire books on the strategies for maintaining backwards compatibility, but for the purposes of this blog post we'll leave this discussion here.
 
 Before we perform the next deployment, reopen the existing application and refresh some quotes. This creates a session against the existing *0.1.6.1* version, which we'll use to test our zero downtime deployment strategy.
 
