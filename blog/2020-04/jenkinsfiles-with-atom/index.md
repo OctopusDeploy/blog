@@ -2,13 +2,15 @@
 title: Writing and linting Jenkinsfiles with Atom
 description: Learn how to configure Atom to parse and lint your Jenkinsfiles
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-04-01
+metaImage: jenkins-graphic.png
+bannerImage: jenkins-graphic.png
 tags:
  - Octopus
 ---
+
+![Writing and linting Jenkinsfiles with Atom](jenkins-graphic.png)
 
 Declarative pipelines are a popular feature in Jenkins, allowing build processes to be committed alongside the code being built. Jenkinsfiles are essentially Groovy syntax; however, for developers used to relying on a local compile to ensure their code is valid, it can be frustrating to have to wait for Jenkins to attempt to execute their Jenkinsfile before finding syntax errors.
 
