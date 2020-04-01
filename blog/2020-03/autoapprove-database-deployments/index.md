@@ -11,6 +11,8 @@ tags:
  - Database Deployments
 ---
 
+![Automatic approvals for your database deployment automation](blogimage-sqlscript.png)
+
 In this post, I’ll show you how to set up automatic approvals, so your DBAs don’t have to manually approve every deployment.
 
 Having DBAs approve changes when you first start implementing database deployment automation is an important part of the process as they catch things that could fail in product and would be difficult to rollback, but it also helps them build trust in the process. However, there comes a point when it’s no longer useful to have the DBAs approve every change.
