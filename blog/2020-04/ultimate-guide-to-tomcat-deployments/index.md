@@ -819,3 +819,57 @@ With that we have demonstrated zero downtime deployments. Because our database m
 ## Feature branch deployments
 
 ## Certificate management
+
+To finish configuring our infrastructure we will enable HTTPS access via our load balancers. This requires editing the Apache web server virtual host configuration to enable SSL and point to the keys and certificates we have obtained for our domain.
+
+Before we can enable HTTPS, we first need to enable **mod_ssl** with the command:
+
+```
+a2enmod ssl
+```
+
+If you recall from earlier in the post we created a the file `/etc/apache2/sites-enabled/000-default.conf` with the following contents:
+
+```xml
+<VirtualHost *:80>
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  JkMount /* loadbalancer
+</VirtualHost>
+```
+
+We want to modify this file to look like this:
+
+```xml
+<VirtualHost *:443>
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  JkMount /* loadbalancer
+  SSLEngine on
+  SSLCertificateFile /etc/apache2/ssl/octopus_tech.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/private/octopus_tech.key
+  SSLCertificateChainFile /etc/apache2/ssl/octopus_tech_bundle.pem
+</VirtualHost>
+```
+
+```bash
+mkdir /etc/apache2/ssl
+mkdir /etc/apache2/ssl/private
+get_octopusvariable "Certificate.CertificatePem" > /etc/apache2/ssl/octopus_tech.crt
+get_octopusvariable "Certificate.PrivateKeyPem" > /etc/apache2/ssl/private/octopus_tech.key
+get_octopusvariable "Certificate.ChainPem" > /etc/apache2/ssl/octopus_tech_bundle.pem
+
+{
+cat << EOF
+<VirtualHost *:443>
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  JkMount /* loadbalancer
+  SSLEngine on
+  SSLCertificateFile /etc/apache2/ssl/octopus_tech.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/private/octopus_tech.key
+  SSLCertificateChainFile /etc/apache2/ssl/octopus_tech_bundle.pem
+</VirtualHost>
+EOF
+} > /etc/apache2/sites-enabled/000-default.conf
+```
