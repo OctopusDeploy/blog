@@ -1,4 +1,4 @@
-structure---
+---
 title: The ultimate guide to Tomcat deployments
 description: In this blog post we'll create a secure, highly available, load balanced Tomcat cluster with zero downtime deployments
 author: matthew.casperson@octopus.com
