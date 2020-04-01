@@ -1,4 +1,4 @@
----
+structure---
 title: The ultimate guide to Tomcat deployments
 description: In this blog post we'll create a secure, highly available, load balanced Tomcat cluster with zero downtime deployments
 author: matthew.casperson@octopus.com
@@ -699,6 +699,122 @@ In summary:
 * Keepalived assigns a virtual IP to the backup load balancer if the master goes offline.
 * The master load balancer reassumes the virtual IP when it comes back online.
 * The infrastructure stack can survive the loss of one Tomcat instance and one load balancer and still maintain availability.
+
+## Zero downtime deployments
+
+We have now successfully deployed version *0.1.6.1* of our web application to Tomcat. This version of the application uses a very simple table structure to hold the names of those accredited with the quotes, placing both the first name and last name into a single column called **AUTHOR**.
+
+This table structure was originally created by a Flyway database script with the following SQL:
+
+```sql
+create table AUTHOR
+(
+	ID INT auto_increment,
+	AUTHOR VARCHAR(64) not null
+);
+```
+
+The next version of our application will split the names into a **FIRSTNAME** and **LASTNAME** column. We add these columns with a new Flyway script that contains the following SQL:
+
+```sql
+ALTER TABLE AUTHOR
+ADD FIRSTNAME varchar(64);
+
+ALTER TABLE AUTHOR
+ADD LASTNAME varchar(64);
+```
+
+At this point we have to consider how these changes can be made in a backwards compatible way. A cornerstone of the zero downtime deployment strategy requires that a shared database support both the current version of the application and the new version. Unfortunately there is no silver bullet to provide this compatibility, and it is up to us as developers to ensure that our changes don't break any existing sessions.
+
+In this scenario we must keep the old **AUTHOR** column, and duplicate the data it held into the new **FIRSTNAME** and **LASTNAME** columns:
+
+```sql
+UPDATE AUTHOR SET FIRSTNAME = 'Rob', LASTNAME = 'Siltanen' WHERE ID = 1;
+UPDATE AUTHOR SET FIRSTNAME = 'Albert', LASTNAME = 'Einstein' WHERE ID = 2;
+UPDATE AUTHOR SET FIRSTNAME = 'Charles', LASTNAME = 'Eames' WHERE ID = 3;
+UPDATE AUTHOR SET FIRSTNAME = 'Henry', LASTNAME = 'Ford' WHERE ID = 4;
+UPDATE AUTHOR SET FIRSTNAME = 'Antoine', LASTNAME = 'de Saint-Exupery' WHERE ID = 5;
+UPDATE AUTHOR SET FIRSTNAME = 'Salvador', LASTNAME = 'Dali' WHERE ID = 6;
+UPDATE AUTHOR SET FIRSTNAME = 'M.C.', LASTNAME = 'Escher' WHERE ID = 7;
+UPDATE AUTHOR SET FIRSTNAME = 'Paul', LASTNAME = 'Rand' WHERE ID = 8;
+UPDATE AUTHOR SET FIRSTNAME = 'Elon', LASTNAME = 'Musk' WHERE ID = 9;
+UPDATE AUTHOR SET FIRSTNAME = 'Jessica', LASTNAME = 'Hische' WHERE ID = 10;
+UPDATE AUTHOR SET FIRSTNAME = 'Paul', LASTNAME = 'Rand' WHERE ID = 11;
+UPDATE AUTHOR SET FIRSTNAME = 'Mark', LASTNAME = 'Weiser' WHERE ID = 12;
+UPDATE AUTHOR SET FIRSTNAME = 'Pablo', LASTNAME = 'Picasso' WHERE ID = 13;
+UPDATE AUTHOR SET FIRSTNAME = 'Charles', LASTNAME = 'Mingus' WHERE ID = 14;
+```
+
+In addition the new JPA entity class needs to ignore old **AUTHOR** column (through the **@Transient** annotation). The **getAuthor()** method then returns the combined values of the **getFirstName()** and **getLastName()** methods:
+
+```Java
+@Entity
+public class Author {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "FIRSTNAME")
+    private String firstName;
+    @Column(name = "LASTNAME")
+    private String lastName;
+
+    @OneToMany(
+            mappedBy = "author",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Quote> quotes = new ArrayList<>();
+
+    protected Author() {
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    @Transient
+    public String getAuthor() {
+        return getFirstName() + " " + getLastName();
+    }
+
+    public List<Quote> getQuotes() {
+        return quotes;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+}
+```
+
+While this is a trivial example that is easy to implement thanks to the fact that the **AUTHOR** table is not modified by our code, it does demonstrate how database changes can be implemented in a backwards compatible manner. It would be possible to write entire books on the strategies for maintaining backwards compatibility, but for the purposes of this blog post we'll leave this discussion here.
+
+Before we perform the next deployment, reopen the existing application and refresh some quotes. This creates a session against the existing *0.1.6.1* version, which we'll use to test our zero downtime deployment strategy.
+
+With our migration scripts written in a backwards compatible manner, we can deploy the new version of our application. For convenience this new version has been pushed to Maven Central as version *0.1.7*:
+
+![](deployment_two.png "width=500")
+
+Once the deployment completes, open up the manager application at http://tomcatip:8080/manager/html. Note that while you could access the manager through the load balancer, you do not get to choose which Tomcat instance you will be managing as the load balancer will pick a Tomcat instance for you. This means it is better to connect to the Tomcat instance directly, bypassing the load balancer:
+
+![](manager_one.png "width=500")
+
+There are two things to notice in this screenshot:
+1. We have two applications under the path **/randomquotes**, each with a unique version.
+2. The application with the earlier version has a session associated with it. This was the session we created by accessing version *0.1.6.1* before version *0.1.7* was deployed.
+
+If we go back to the browser where we opened version *0.1.6.1* of the application, we can continue to refresh the quotes. The counter increases as we expect, and the version number displayed in the footer remains at version *0.1.6.1*.
+
+If we reopen the application in a private browsing window, we can be guaranteed that we won't be reusing an old session cookie, and we are directed to version *0.1.7* of the application:
+
+![](private_window.png "width=500")
+
+With that we have demonstrated zero downtime deployments. Because our database migrations were designed to be backwards compatible, version *0.1.6.1* and version *0.1.7* of our application can run side by side using Tomcat parallel deployments. Best of all, sessions for old deployments can still be transferred between Tomcat instances, so we retain high availability along with the parallel deployments.
 
 ## Feature branch deployments
 
