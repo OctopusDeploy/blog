@@ -1077,6 +1077,8 @@ To summarize, in this post we:
 * Configured Apache web servers acting as load balancers with the mod_jk plugin.
 * Implemented high availability amongst the load balancers with keepalived.
 * Performed zero downtime deployments with Tomcat's parallel deployment feature and Flyway performing backwards compatible database migrations.
+* Smoke tested the deployments with community steps in Octopus.
 * Implemented feature branch deployments, taking into account the limitations of the Maven versioning strategy with Octopus channels.
 * Looked at how applications can be rolled back or pulled from service.
 * Added HTTPS certificates to Apache.
+* Repeated the process for multiple environments.
