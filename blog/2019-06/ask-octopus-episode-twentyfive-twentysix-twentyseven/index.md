@@ -26,7 +26,7 @@ Here are the questions with direct links to the individual videos:
 You can find more information on topics discussed in our docs:
 
 - [Log Files](https://octopus.com/docs/support/log-files)
-- [TeamCity Integration](https://octopus.com/docs/api-and-integration/teamcity)
+- [TeamCity Integration](https://octopus.com/docs/packaging-applications/build-servers/teamcity)
 - [Turbocharging TeamCity with Octopus Deploy webinar](https://blog.jetbrains.com/teamcity/2019/05/webinar-recording-turbocharging-teamcity-with-octopus-deploy/)
 
 Subscribe to our [YouTube channel](https://www.youtube.com/channel/UCURDSDCwx9ZiCMcLdc8d6Uw?sub_confirmation=1) and follow the [playlist](https://www.youtube.com/playlist?list=PLAGskdGvlaw3-cd9rPiwhwfUo7kDGnOBh) to catch new episodes when they are released.

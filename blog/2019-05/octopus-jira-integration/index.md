@@ -55,7 +55,7 @@ Reading release notes in Octopus is useful but sharing them via email, slack, or
 
 ## Connect Octopus Deploy and Jira Software
 
-If you’re team is already using Jira Software and Octopus Deploy, I highly recommend downloading our plugin and trying it out. Read our [docs](https://octopus.com/docs/api-and-integration/metadata/jira) about how to connect the two applications and get started.
+If you’re team is already using Jira Software and Octopus Deploy, I highly recommend downloading our plugin and trying it out. Read our [docs](https://octopus.com/docs/managing-releases/issue-tracking/jira) about how to connect the two applications and get started.
 
 [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira)
 

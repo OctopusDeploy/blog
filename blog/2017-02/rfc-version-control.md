@@ -78,7 +78,7 @@ Granted, certain AWS services like CloudFormation do use declarative JSON approa
 
 ### You can do this in Octopus already
 
-Octopus already has a [comprehensive REST API](https://octopus.com/docs/api-and-integration/octopus-rest-api) that you can use to do anything that you can do in the Octopus UI. And we have a .NET client library, [Octopus.Client](https://octopus.com/docs/api-and-integration/octopus.client), that you can use work with the API easily from C#. 
+Octopus already has a [comprehensive REST API](https://octopus.com/docs/octopus-rest-api) that you can use to do anything that you can do in the Octopus UI. And we have a .NET client library, [Octopus.Client](https://octopus.com/docs/octopus-rest-api/octopus.client), that you can use work with the API easily from C#. 
 
 For example, if you wanted to version control your step templates, right now, you could:
 

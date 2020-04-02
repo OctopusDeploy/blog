@@ -114,7 +114,7 @@ communication that we will use to deploy the WAR file.
  
 ![SSH Connection](deployment-target-screenshot.png)
  
-Octopus uses a component called [Calamari](https://octopus.com/docs/api-and-integration/calamari) as the engine to execute deployments on deployment targets.
+Octopus uses a component called [Calamari](https://octopus.com/docs/octopus-rest-api/calamari) as the engine to execute deployments on deployment targets.
 Calamari currently requires [Mono](http://www.mono-project.com/) as a dependency to provide a .NET environment to operate on Linux. 
 You will need to install Mono onto the Tomcat server to allow the Calamari to run.  In the future, this will be simplified to use .NET Core without needing an additional dependency.
  
@@ -179,7 +179,7 @@ At this point Tomcat now has the WAR file extracted into the `webapps` directory
 deployed by Tomcat and run.
  
 We’re currently working on add-ons for CI servers like Bamboo that will automate the process of packing, pushing and 
-releasing deployments, and there is already a plugin for [TeamCity](https://octopus.com/docs/api-and-integration/teamcity).
+releasing deployments, and there is already a plugin for [TeamCity](https://octopus.com/docs/packaging-applications/build-servers/teamcity).
  
 In future we are looking at ways to bring features like Configuration transforms to Java packages, which will mean that 
 environment specific configuration like database connection strings will be applied to JAR, WAR and EAR files as they 

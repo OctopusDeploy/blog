@@ -58,7 +58,7 @@ But, before we get into the examples, let's look at how the whole Workers setup 
 
 Workers are Listening Tentacles, Polling Tentacles or SSH machines.  The setup is the same as for tentacle or SSH Deployment Targets.  Workers even use the same Tentacle and Calamari binaries as Deployment Targets.
 
-For example, here I'm using the Tentacle Manager to [set up a Tentacle](https://octopus.com/docs/infrastructure/windows-targets), but you can also [script the setup](https://octopus.com/docs/infrastructure/windows-targets/automating-tentacle-installation), and even do the full [worker registration](https://octopus.com/docs/api-and-integration/tentacle.exe-command-line/register-with) from the command line.
+For example, here I'm using the Tentacle Manager to [set up a Tentacle](https://octopus.com/docs/infrastructure/windows-targets), but you can also [script the setup](https://octopus.com/docs/infrastructure/windows-targets/automating-tentacle-installation), and even do the full [worker registration](https://octopus.com/docs/octopus-rest-api/tentacle.exe-command-line/register-with) from the command line.
 
 ![Tentacle Manager](workers-tentacle-setup.png "width=500")
 
