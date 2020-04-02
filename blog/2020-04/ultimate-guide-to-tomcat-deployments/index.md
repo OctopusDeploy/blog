@@ -816,6 +816,32 @@ If we reopen the application in a private browsing window, we can be guaranteed 
 
 With that we have demonstrated zero downtime deployments. Because our database migrations were designed to be backwards compatible, version *0.1.6.1* and version *0.1.7* of our application can run side by side using Tomcat parallel deployments. Best of all, sessions for old deployments can still be transferred between Tomcat instances, so we retain high availability along with the parallel deployments.
 
+## Rollback strategies
+
+As long as database compatibility has been maintained between the last and current version of the application (versions `0.1.6.1` and `0.1.7` in this example), rolling back is as simple as creating a new deployment with the previous version of the application.
+
+Because the Tomcat version is a timestamp calculated at deployment time, deploying version `0.1.6.1` of the application again results in it processing any new traffic as it has a later version.
+
+Note though that any existing sessions for version `0.1.7` will be left to naturally expire thanks to the Tomcat's parallel deployments. If this version has to be taken offline (for example if there is a critical issue and it can not be left in service), we can use the **Start/stop App in Tomcat** step to stop an deployed application.
+
+We'll create a runbook to run this step, as it is a maintenance tasks that may need to be applied to any environment to pull a bad release.
+
+We start by adding a prompted variable that will be populated with the Tomcat version timestamp corrosponding to the deployment we want to shutdown:
+
+![](tomcat_version.png "width=500")
+
+The runbook is then configured with the **Start/stop App in Tomcat** step. The **Deployment version** is set to the value of the prompted variable:
+
+![](tomcat_stop.png "width=500")
+
+When the runbook is run, we are prompted for the timestamp version of the application to stop:
+
+![](stop_app_runbook_1.png "width=500")
+
+After the runbook has completed we can verify that the application was stopped by opening the manager console. In the screenshot below you can see version **200401140129** is not running. This version no longer responds to requests, and all future requests will then be directed to the latest version of the application:
+
+![](stopped_application.png "width=500")
+
 ## Feature branch deployments
 
 A common development practice is to complete a feature in a separate SCM branch, known as a feature branch.
@@ -892,6 +918,8 @@ The regular expression without named groups is:
 ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
 ```
 ::
+
+
 
 ## Certificate management
 
@@ -1030,3 +1058,25 @@ systemctl restart apache2
 Once the runbook has completed, we can verify the application is exposed via HTTPS:
 
 ![](firefox.png "width=500")
+
+## Scaling up to multiple environments
+
+The infrastructure we have created thus far can now be used as a template for other testing or production environments. Nothing we have presented here is environment specific, meaning all the processes and infrastructure can be scaled out to as many environments as needed.
+
+ By associating the Tentacles assigned to the new Tomcat and load balancer instanced to additional environments in Octopus, we gain the ability to push deployments through to production:
+
+![](multiple_environments.png "width=500")
+
+## Conclusion
+
+If you have reached this point then congratulations! Setting up a highly available Tomcat cluster with zero downtime deployments, feature branches, rollback and HTTPS is not for the feint of heart. It is still up to the end user to combine multiple technologies available to achieve this result, but I hope that the instructions layed out in this blog post expose some of the magic that goes into real world Java deployments.
+
+To summarize, in this post we:
+
+* Configured Tomcat session replication with a PostgreSQL database and sessin cookie rewriting with the `JvmRouteBinderValve` valve.
+* Configured Apache web servers acting as load balancers with the mod_jk plugin.
+* Implemented high availability amongst the load balancers with keepalived.
+* Performed zero downtime deployments with Tomcat's parallel deployment feature and Flyway performing backwards compatible database migrations.
+* Implemented feature branch deployments, taking into account the limitations of the Maven versioning strategy with Octopus channels.
+* Looked at how applications can be rolled back or pulled from service.
+* Added HTTPS certificates to Apache.
