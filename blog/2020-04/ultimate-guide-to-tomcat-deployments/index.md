@@ -830,19 +830,19 @@ As you can see from the image above, a commit to a feature branch called **myfea
 
 Despite the fact that tools like GitVersion generate SemVer version strings, the same format can be used for Maven artifacts. However, there is a catch.
 
-SemVer will order a version with a feature branch lower than a version without any prerelease component. For example, **1.2.1** is considered a higher version number than **1.2.1-myfeature**.
+SemVer will order a version with a feature branch lower than a version without any prerelease component. For example, **1.2.1** is considered a higher version number than **1.2.1-myfeature**. This is the expected ordering as a feature branch will eventually be merged back into the master branch.
 
-When a feature branch is appended to a Maven version, it is considered a qualifer. Maven allows any qualifiers, but has some special ones like **SNAPSHOT**, **final**, **ga** etc. A complete list can be found in the blog post [Maven versions explained](https://octopus.com/blog/maven-versioning-explained). Maven versions with unrecognized qualifiers (and feature branch names are unrecognized qualifiers) are treated as later releases than unqualified versions.
+When a feature branch is appended to a Maven version, it is considered a qualifer. Maven allows any qualifiers, but recognizes some special ones like **SNAPSHOT**, **final**, **ga** etc. A complete list can be found in the blog post [Maven versions explained](https://octopus.com/blog/maven-versioning-explained). Maven versions with unrecognized qualifiers (and feature branch names are unrecognized qualifiers) are treated as later releases than unqualified versions.
 
 This means Maven considers version **1.2.1-myfeature** is to be a later release than **1.2.1**, when clearly that is not the intention of a feature branch. You can verify this behavior with the following test in a project hosted on [GitHub](https://github.com/mcasperson/MavenVersionTest/blob/master/src/test/java/org/apache/maven/artifact/versioning/VersionTest.java#L122).
 
-However, thanks to the ability of channels in Octopus, we can ensure that both SemVer prerelease and Maven qualifiers are processed to produce the ordering of artifacts that we expect.
+However, thanks to the functionality of channels in Octopus, we can ensure that both SemVer prerelease and Maven qualifiers are filtered to result in expected ordering of artifacts.
 
-Here is the default channel for our application deployment. Note the regular expression **^$** for the **Pre-release tag** field. This regular expression only matches empty strings, meaning the default channel will only ever deploy artifacts with no prerelease or qualifer.
+Here is the default channel for our application deployment. Note the regular expression **^$** for the **Pre-release tag** field. This regular expression only matches empty strings, meaning the default channel will only ever deploy artifacts with no prerelease or qualifer:
 
 ![](default_channel.png "width=500")
 
-Next we have the feature branch channel, which defines a regular expression of **.+** for the **Pre-release tag** field. This regular expression only non-empty strings, meaning the feature branch channel will only deploy artifacts with a prerelease or qualifier.
+Next we have the feature branch channel, which defines a regular expression of **.+** for the **Pre-release tag** field. This regular expression only matches non-empty strings, meaning the feature branch channel will only deploy artifacts with a prerelease or qualifier:
 
 ![](feature_branch_channel.png "width=500")
 
