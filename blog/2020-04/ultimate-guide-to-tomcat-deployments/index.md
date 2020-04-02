@@ -601,11 +601,11 @@ We will deploy the **com.octopus:randomquotes** package from the Maven feed we s
 
 ![](tomcat_step_2.png "width=500")
 
-Because the tentacle is located on the VM that hosts Tomcat, the location of the Manager API is **http://localhost:8080/manager**. We then supply the manager credentials, which were the details entered into the **tomcat-users.xml** file when we configured Tomcat:
+Because the tentacle is located on the VM that hosts Tomcat, the location of the Manager API is **http://localhost:8080/manager**. We then supply the manager credentials, which were the details entered into the `tomcat-users.xml` file when we configured Tomcat:
 
 ![](tomcat_step_3.png "width=500")
 
-The context path makes up the path in the URL that the deployed application is accessible on. Here we expose the application on the path **/randomquotes**:
+The context path makes up the path in the URL that the deployed application is accessible on. Here we expose the application on the path `/randomquotes`:
 
 ![](tomcat_step_4.png "width=500")
 
@@ -621,7 +621,7 @@ As before, this step will run on the Tomcat instances:
 
 ![](http_step_1.png "width=500")
 
-The step will attempt to open the **index.html** page from the newly deployed application, expecting a HTTP response code of **200**:
+The step will attempt to open the `index.html` page from the newly deployed application, expecting a HTTP response code of **200**:
 
 ![](http_step_2.png "width=500")
 
@@ -669,7 +669,7 @@ There are three things to note in this screenshot:
 
 When Tomcat is gracefully shut down, it will write out the contents of any sessions to the database. Then because the **worker1** Tomcat instance was no longer available, the request was directed to the **worker2** Tomcat instance. The **worker2** Tomcat instance loaded the session information from the database and incremented the counter. The **JvmRouteBinderValve** valve rewrote the session cookie to append the current Tomcat instance name to the end, and the response was returned to the browser.
 
-We can now see that it is important that the worker names in the load balancer **/etc/libapache2-mod-jk/workers.properties** file match the names assigned to the **jvmRoute** in the **/etc/tomcat9/server.xml** file, because matching these names allow sticky sessions to be implemented.
+We can now see that it is important that the worker names in the load balancer `/etc/libapache2-mod-jk/workers.properties` file match the names assigned to the **jvmRoute** in the `/etc/tomcat9/server.xml` file, because matching these names allow sticky sessions to be implemented.
 
 Because the **Quote count** did not reset back to one we know that the session was persisted to the database and replicated to the other Tomcat instances in the cluster. We also know that the request was served by another Tomcat instance because the **JSESSIONID** cookie shows a new worker name.
 
@@ -699,14 +699,14 @@ The whole process is seamless, and upstream clients never need to be aware that 
 In summary:
 * The **JSESSIONID** cookie contains the session ID and the name of the Tomcat instance that processed the request.
 * The load balancers implement sticky sessions based on the worker name appended to the **JSESSIONID** cookie.
-* The **JvmRouteBinderValve** valve rewrites the **JSESSIONID** cookie when a Tomcat instance received traffic for a session it was not originally responsible for.
+* The `JvmRouteBinderValve` valve rewrites the **JSESSIONID** cookie when a Tomcat instance received traffic for a session it was not originally responsible for.
 * Keepalived assigns a virtual IP to the backup load balancer if the master goes offline.
 * The master load balancer reassumes the virtual IP when it comes back online.
 * The infrastructure stack can survive the loss of one Tomcat instance and one load balancer and still maintain availability.
 
 ## Zero downtime deployments
 
-We have now successfully deployed version *0.1.6.1* of our web application to Tomcat. This version of the application uses a very simple table structure to hold the names of those accredited with the quotes, placing both the first name and last name into a single column called **AUTHOR**.
+We have now successfully deployed version *0.1.6.1* of our web application to Tomcat. This version of the application uses a very simple table structure to hold the names of those accredited with the quotes, placing both the first name and last name into a single column called `AUTHOR`.
 
 This table structure was originally created by a Flyway database script with the following SQL:
 
@@ -718,7 +718,7 @@ create table AUTHOR
 );
 ```
 
-The next version of our application will split the names into a **FIRSTNAME** and **LASTNAME** column. We add these columns with a new Flyway script that contains the following SQL:
+The next version of our application will split the names into a `FIRSTNAME` and `LASTNAME` column. We add these columns with a new Flyway script that contains the following SQL:
 
 ```sql
 ALTER TABLE AUTHOR
@@ -730,7 +730,7 @@ ADD LASTNAME varchar(64);
 
 At this point we have to consider how these changes can be made in a backwards compatible way. A cornerstone of the zero downtime deployment strategy requires that a shared database support both the current version of the application and the new version. Unfortunately there is no silver bullet to provide this compatibility, and it is up to us as developers to ensure that our changes don't break any existing sessions.
 
-In this scenario we must keep the old **AUTHOR** column, and duplicate the data it held into the new **FIRSTNAME** and **LASTNAME** columns:
+In this scenario we must keep the old `AUTHOR` column, and duplicate the data it held into the new `FIRSTNAME` and `LASTNAME` columns:
 
 ```sql
 UPDATE AUTHOR SET FIRSTNAME = 'Rob', LASTNAME = 'Siltanen' WHERE ID = 1;
@@ -749,7 +749,7 @@ UPDATE AUTHOR SET FIRSTNAME = 'Pablo', LASTNAME = 'Picasso' WHERE ID = 13;
 UPDATE AUTHOR SET FIRSTNAME = 'Charles', LASTNAME = 'Mingus' WHERE ID = 14;
 ```
 
-In addition the new JPA entity class needs to ignore old **AUTHOR** column (through the **@Transient** annotation). The **getAuthor()** method then returns the combined values of the **getFirstName()** and **getLastName()** methods:
+In addition the new JPA entity class needs to ignore old `AUTHOR` column (through the `@Transient` annotation). The `getAuthor()` method then returns the combined values of the `getFirstName()` and `getLastName()` methods:
 
 ```Java
 @Entity
@@ -796,7 +796,7 @@ public class Author {
 }
 ```
 
-While this is a trivial example that is easy to implement thanks to the fact that the **AUTHOR** table is read only, it does demonstrate how database changes can be implemented in a backwards compatible manner. It would be possible to write entire books on the strategies for maintaining backwards compatibility, but for the purposes of this blog post we'll leave this discussion here.
+While this is a trivial example that is easy to implement thanks to the fact that the `AUTHOR` table is read only, it does demonstrate how database changes can be implemented in a backwards compatible manner. It would be possible to write entire books on the strategies for maintaining backwards compatibility, but for the purposes of this blog post we'll leave this discussion here.
 
 Before we perform the next deployment, reopen the existing application and refresh some quotes. This creates a session against the existing *0.1.6.1* version, which we'll use to test our zero downtime deployment strategy.
 
@@ -809,7 +809,7 @@ Once the deployment completes, open up the manager application at http://tomcati
 ![](manager_one.png "width=500")
 
 There are two things to notice in this screenshot:
-1. We have two applications under the path **/randomquotes**, each with a unique version.
+1. We have two applications under the path `/randomquotes`, each with a unique version.
 2. The application with the earlier version has a session associated with it. This was the session we created by accessing version *0.1.6.1* before version *0.1.7* was deployed.
 
 If we go back to the browser where we opened version *0.1.6.1* of the application, we can continue to refresh the quotes. The counter increases as we expect, and the version number displayed in the footer remains at version *0.1.6.1*.
