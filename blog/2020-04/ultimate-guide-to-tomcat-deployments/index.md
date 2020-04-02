@@ -970,9 +970,9 @@ Then create some directories to hold the certificate, certificate chain and priv
 
 The contents of the certificate variable are then saved as files into the directories above. Certificates are special variables that expose the individual components that make up a certificate with [expanded properties](https://octopus.com/docs/projects/variables/certificate-variables#expanded-properties). We need to access three properties:
 
-* Certificate.CertificatePem, which is the public certificate
-* Certificate.PrivateKeyPem, which is the private key
-* Certificate.ChainPem, which is the certificate chain
+* `Certificate.CertificatePem`, which is the public certificate
+* `Certificate.PrivateKeyPem`, which is the private key
+* `Certificate.ChainPem`, which is the certificate chain
 
 We print the contents of these variables into three files:
 
