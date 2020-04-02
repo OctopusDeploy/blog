@@ -113,13 +113,13 @@ In summary, our zero downtime deployments solution:
 
 * Relies on database changes being forwards and backwards compatible (at least between the new and current versions of the application).
 * Utilizes parallel deployments to allow existing sessions to complete uninterrupted.
-* Provides application rollback by reverting to the previously installed application version.
+* Provides application rollbacks by reverting to the previously installed application version.
 
 ## Building the infrastructure
 
-The example infrastructure is deployed to Ubuntu 18.04 virtual machines. Most of the instructions will be distribution agnostic, although some of the package names and file locations may change.
+The example infrastructure shown here is deployed to Ubuntu 18.04 virtual machines. Most of the instructions will be distribution agnostic, although some of the package names and file locations may change.
 
-### Configuring Tomcat
+### Configuringt the Tomcat instances
 
 #### Installing the packages
 
@@ -145,7 +145,7 @@ Communication between the Apache web server and Tomcat is performed with a AJP c
 
 #### Defining the Tomcat instance names
 
-Each Tomcat instance needs a unique name added to the `Engine` element the `/etc/tomcat9/server.xml` file. The default `Engine` element looks like this:
+Each Tomcat instance needs a unique name added to the `Engine` element in the `/etc/tomcat9/server.xml` file. The default `Engine` element looks like this:
 
 ```xml
 <Engine name="Catalina" defaultHost="localhost">
@@ -229,7 +229,7 @@ Here is a copy of the `/etc/tomcat9/context.xml` file with the `Manager`, `Store
 
 #### Installing the packages
 
-We need to initialize the PostgreSQL database with a new database, schema and table. To do this, we'll use the `psql` command line tool, which is installed with:
+We need to initialize PostgreSQL with a new database, schema and table. To do this, we'll use the `psql` command line tool, which is installed with:
 
 ```
 apt-get install postgresql-client
@@ -287,7 +287,7 @@ psql -a -d tomcat -U postgres -h postgresserver -f /root/createschema.sql
 
 We now have a table in PostgreSQL ready to save the Tomcat sessions.
 
-### Configuring the Apache web server
+### Configuring the load balancers
 
 #### Installing the packages
 
@@ -301,7 +301,7 @@ apt-get install apache2 libapache2-mod-jk keepalived
 
 The mod_jk plugin is configured via the file `/etc/libapache2-mod-jk/workers.properties`. In this file we define a number of workers that traffic can be directed to. The fields in this file are documented [here](https://tomcat.apache.org/connectors-doc/reference/workers.html).
 
-We start by defining a worker called `loadbalancer` that will recieve all of the traffic:
+We start by defining that a worker called `loadbalancer` will recieve all of the traffic:
 
 ```
 worker.list=loadbalancer
@@ -352,7 +352,7 @@ worker.loadbalancer.sticky_session=1
 
 #### Adding a Apache VirtualHost
 
-In order for Apache to accept traffic we need to define a `VirtualHost`, which we'll create the the file `/etc/apache2/sites-enabled/000-default.conf`. This virtual host will accept HTTP traffic on port 80, defines some log files, and uses the `JkMount` directive to forward traffic to the worker called `loadbalancer`:
+In order for Apache to accept traffic we need to define a `VirtualHost`, which we'll create in the file `/etc/apache2/sites-enabled/000-default.conf`. This virtual host will accept HTTP traffic on port 80, defines some log files, and uses the `JkMount` directive to forward traffic to the worker called `loadbalancer`:
 
 ```xml
 <VirtualHost *:80>
@@ -362,11 +362,11 @@ In order for Apache to accept traffic we need to define a `VirtualHost`, which w
 </VirtualHost>
 ```
 
-#### Configuring Keepalived
+#### Configuring keepalived
 
-We have two load balancers to ensure that one can be taken offline for maintenance at any given time. Keepalived is the service that we use to assign a virtual IP address to one of the load balancer services, which Keepalived refers to as the master.
+We have two load balancers to ensure that one can be taken offline for maintenance at any given time. Keepalived is the service that we use to assign a virtual IP address to one of the load balancer services, which keepalived refers to as the master.
 
-Keepalived is configure via the file `/etc/keepalived/keepalived.conf`.
+Keepalived is configure via the `/etc/keepalived/keepalived.conf` file.
 
 We start by naming the load balancer instance. The first load balancer is called `loadbalancer1`:
 
@@ -380,7 +380,7 @@ The `state` MASTER designates the active server:
 state MASTER
 ```
 
-The `interface` parameter assigns the physical interface name to this particular virtual IP instance.
+The `interface` parameter assigns the physical interface name to this particular virtual IP instance:
 
 ::hint
 You can find the interface name by running `ifconfig`.
@@ -396,7 +396,7 @@ interface ens5
 virtual_router_id 101
 ```
 
-The `priority` specifies the order in which the assigned interface takes over in a failover; the higher the number, the higher the priority. This priority value must be within the range of 0 to 255, and the Load Balancing server configured as state `MASTER` should have a priority value set to a higher number than the priority value of the server configured as state `BACKUP`.
+The `priority` specifies the order in which the assigned interface takes over in a failover; the higher the number, the higher the priority. This priority value must be within the range of 0 to 255, and the Load Balancing server configured as state `MASTER` should have a priority value set to a higher number than the priority value of the server configured as state `BACKUP`:
 
 ```
 priority 101
@@ -423,7 +423,7 @@ authentication {
 unicast_src_ip 10.0.0.20
 ```
 
-`unicast_peer` lists the IP address of other load balancers. Since we have have two load balancers total, there is only 1 other load balancer to list here:
+`unicast_peer` lists the IP addresses of other load balancers. Since we have have two load balancers total, there is only 1 other load balancer to list here:
 
 ```
 unicast_peer {
@@ -479,9 +479,9 @@ vrrp_instance loadbalancer2 {
         auth_pass passwordgoeshere
     }
     # Replace unicast_src_ip and unicast_peer with your load balancer IP addresses
-    unicast_src_ip 10.0.0.20
+    unicast_src_ip 10.0.0.21
     unicast_peer {
-      10.0.0.21
+      10.0.0.20
     }
     virtual_ipaddress {
         10.0.0.30
@@ -495,7 +495,7 @@ Restart the `keepalived` service on both load balancers with the command:
 systemctl restart keepalived
 ```
 
-On the first load balancer, runn the command `ip addr`. This will show the virtual IP address assigned to the interface that keepalived was configured to manage with the output `inet 10.0.0.30/32 scope global ens5`:
+On the first load balancer, run the command `ip addr`. This will show the virtual IP address assigned to the interface that keepalived was configured to manage with the output `inet 10.0.0.30/32 scope global ens5`:
 
 ```
 $ ip addr
