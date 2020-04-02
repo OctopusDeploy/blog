@@ -846,6 +846,53 @@ Next we have the feature branch channel, which defines a regular expression of *
 
 ![](feature_branch_channel.png "width=500")
 
+Here is the list of versions that Octopus allows a release to be created with using the default channel. Notice that the only version displayed has no qualifier, which we take to mean as being the master release:
+
+![](default_channel_deployment.png "width=500")
+
+Here is the list of versions that Octopus allows a release to be created with using the feature branch channel. All the versions here have a qualifer embedding the feature branch name:
+
+![](feature_branch_channel_deployment.png "width=500")
+
+The end result of these channels is that versions like **1.2.1-myfeature** will never be compared to versions like **1.2.1**, which removes the ambiguity with feature branch version numbers being considered later releases.
+
+The final step is to deploy these feature branch packages to unqiue contexts so they can be accessed side by side on a single Tomcat instance. To do this we modify the **Context path** to:
+
+```
+/randomquotes#{Octopus.Action.Package.PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}
+```
+
+The regular expression above works like this on the version `1.2.1-myfeature.1+1`:
+
+* `^([0-9\.]+)` groups all digits and periods at the start of the version as group 1, which matches `1.2.1`.
+* `((?:-[A-Za-z0-9]+)?)` groups the leading dash and any subsequent alphanumeric characters (if any) as group 2, which matches `-myfeature`.
+* `(.*)$` groups any subsequent characters (if any) as group 3, which matches `.1+1`.
+
+The result of this variable filter is that the complete prerelease or qualifier will be replaced by just the second group from the regular expression. This results in the following context path:
+
+* Version `1.2.1-myfeature.1+1` generates a context path of `/randomquotes-myfeature`.
+* Version `1.2.1` generates a context path of `/randomquotes`.
+
+Here is a screenshot of the Tomcat deployment step with the new context path applied:
+
+![](context_path.png "width=500")
+
+::hint
+The SemVer project provides a more robust regular expression [here](https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string) that reliably captures the groups in a SemVer version. 
+
+The regular expression with named capture groups is:
+
+```
+^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)(?:-(?P<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?P<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+```
+
+The regular expression without named groups is:
+
+```
+^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+```
+::
+
 ## Certificate management
 
 To finish configuring our infrastructure we will enable HTTPS access via our load balancers. This requires editing the Apache web server virtual host configuration to enable SSL and point to the keys and certificates we have obtained for our domain.
