@@ -24,7 +24,7 @@ Here are the questions with direct links to where they start in the video:
 You can find more information on topics discussed today in our docs:
 
 - [Service Accounts](https://octopus.com/docs/administration/managing-users-and-teams/service-accounts)
-- [Octopus REST API](https://octopus.com/docs/api-and-integration/api)
+- [Octopus REST API](https://octopus.com/docs/octopus-rest-api)
 - [Automatic Deployment Triggers](https://octopus.com/docs/deployment-process/project-triggers/automatic-deployment-triggers)
 
 Subscribe to our [YouTube channel](https://www.youtube.com/channel/UCURDSDCwx9ZiCMcLdc8d6Uw?sub_confirmation=1) and follow the [playlist](https://www.youtube.com/playlist?list=PLAGskdGvlaw3-cd9rPiwhwfUo7kDGnOBh) to catch new episodes when they are released.

@@ -63,7 +63,7 @@ Today, this is often tackled via a few approaches:
 
 - [Isolated Octopus Servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers): placing an Octopus Server in each zone.
 - [Offline-Drop deployment targets](https://octopus.com/docs/deployment-targets/offline-package-drop): to deploy your release to machines that can't communicate with an Octopus Server.
-- The [Octopus Migrator utility](https://octopus.com/docs/api-and-integration/octopus.migrator.exe-command-line): to migrate entities between Octopus Servers.
+- The [Octopus Migrator utility](https://octopus.com/docs/octopus-rest-api/octopus.migrator.exe-command-line): to migrate entities between Octopus Servers.
 
 These all work; there are many customers using them every day. But they all have downsides:
 

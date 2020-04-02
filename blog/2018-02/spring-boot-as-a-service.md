@@ -307,7 +307,7 @@ The `AccountID` variable of `sshkeypair-ec2user` was found by taking the last el
 
 Note that the `AWS Account` variable is set to the `AWS Account` that was created earlier. This variable is used by the Octopus steps, and not by the CloudFormation template directly.
 
-You can get more information on creating Octopus API keys from the [documentation](https://octopus.com/docs/api-and-integration/api/how-to-create-an-api-key).
+You can get more information on creating Octopus API keys from the [documentation](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
 ![Project Variables](project-variables-linux.png "width=500")
 
