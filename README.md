@@ -4,10 +4,10 @@ This repository contains the [Octopus.com/blog](https://octopus.com/blog/) posts
 
 Authors must sign the [Contribution License Agreement (CLA)](https://cla-assistant.io/OctopusDeploy/docs) before we can accept your contribution.
 
-See the [Octopus style guide](https://github.com/OctopusDeploy/OctoStyle) for the following information:
+See the [Octopus style guide](https://octopusdeploy.github.io/OctoStyle/) for the following information:
 
 - [Markdown quick reference](https://octopusdeploy.github.io/OctoStyle/markdown)
-- [Writing tips](tips.md) 
+- [Writing tips](https://octopusdeploy.github.io/OctoStyle/tips.md) 
 - [Blog template](templates/readme.md)
 
 # How to submit a blog post 
