@@ -10,6 +10,20 @@ See the [Octopus style guide](https://octopusdeploy.github.io/OctoStyle/) for th
 - [Writing tips for the blog](https://octopusdeploy.github.io/OctoStyle/writing-tips-for-the-blog) 
 - [Blog template](templates/readme.md)
 
+## Snippets
+
+The blog includes snippets from the [snippets repo](https://github.com/OctopusDeploy/snippets). For more information see [Octopus snippets](https://octopusdeploy.github.io/OctoStyle/octopus-snippets).
+
+If the latest snippets do not appear in the output, use the following to update the snippets:
+
+```
+cd blog/blog/snippets/
+git fetch
+git merge
+```
+
+And merge the blog repo.
+
 # How to submit a blog post 
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
