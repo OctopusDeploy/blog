@@ -925,7 +925,7 @@ The regular expression without named groups is:
 
 
 
-## Certificate management
+## Public certificate management
 
 To finish configuring our infrastructure we will enable HTTPS access via our load balancers. This requires editing the Apache web server virtual host configuration to enable SSL and point to the keys and certificates we have obtained for our domain.
 
@@ -1062,6 +1062,42 @@ systemctl restart apache2
 Once the runbook has completed, we can verify the application is exposed via HTTPS:
 
 ![](firefox.png "width=500")
+
+## Internal certificate management
+
+As we've seen it is useful to connect directly to the Tomcat instances when using the manager console. This connection transfers credentials though, and so should be done across a secure connection. To support this we'll configure Tomcat with self signed certificates.
+
+### Creating self signed certificates
+
+Because our Tomcat instances are not exposed via a hostname, [we don't have the option of getting a certificate for them](https://cabforum.org/internal-names/). To enable HTTPS then we need to create self signed certificates, which can be done with openssl:
+
+```
+openssl genrsa 2048 > private.pem
+openssl req -x509 -new -key private.pem -out public.pem -days 3650
+openssl pkcs12 -export -in public.pem -inkey private.pem -out mycert.pfx
+```
+
+### Adding the certificate to Tomcat
+
+The certificate is configured in Tomcat using the **Deploy a certificate to Tomcat** step. 
+
+The **Tomcat CATALINA_HOME path** is set to `/usr/share/tomcat9` and the **Tomcat CATALINA_BASE path** is set to `/var/lib/tomcat9`.
+
+![](tomcat_paths.png "width=500")
+
+We reference a certificate variable for the **Select certificate variable** field. The default value of **Catalina** is fine for the **Tomcat service name**.
+
+We have a few choices for how the certificate is handled by Tomcat. Generally speaking the **Blocking IO**, and **Non-Blocking IO**, **Non-Blocking IO 2** and **Apache Portable Runtime** options have in increasing level of performance. The **Apache Portable Runtime** is an additional library that Tomcat can take advantage of, and it is provided by the tomcat packages we installed with `apt-get`, so it makes sense to use that option.
+
+![](tomcat_certs.png "width=500")
+
+To allow Tomcat to use the new configuration, we need to restart the service with a script step using the command:
+
+```
+systemctl restart tomcat9
+```
+
+We can now load the manager console from https://tomcatip:8443/manager/html.
 
 ## Scaling up to multiple environments
 
