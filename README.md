@@ -6,7 +6,7 @@ Authors must sign the [Contribution License Agreement (CLA)](https://cla-assista
 
 See the [Octopus style guide](https://github.com/OctopusDeploy/OctoStyle) for the following information:
 
-- [Markdown quick reference](https://github.com/OctopusDeploy/OctoStyle/markdown.md)
+- [Markdown quick reference](https://octopusdeploy.github.io/OctoStyle/markdown)
 - [Writing tips](tips.md) 
 - [Blog template](templates/readme.md)
 
