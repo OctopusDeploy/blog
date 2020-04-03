@@ -1087,9 +1087,9 @@ The **Tomcat CATALINA_HOME path** is set to `/usr/share/tomcat9` and the **Tomca
 
 We reference a certificate variable for the **Select certificate variable** field. The default value of **Catalina** is fine for the **Tomcat service name**.
 
-We have a few choices for how the certificate is handled by Tomcat. Generally speaking the **Blocking IO**, and **Non-Blocking IO**, **Non-Blocking IO 2** and **Apache Portable Runtime** options have in increasing level of performance. The **Apache Portable Runtime** is an additional library that Tomcat can take advantage of, and it is provided by the tomcat packages we installed with `apt-get`, so it makes sense to use that option.
+We have a few choices for how the certificate is handled by Tomcat. Generally speaking the **Blocking IO**, and **Non-Blocking IO**, **Non-Blocking IO 2** and **Apache Portable Runtime** options have in increasing level of performance. The **Apache Portable Runtime** is an additional library that Tomcat can take advantage of, and it is provided by the Tomcat packages we installed with `apt-get`, so it makes sense to use that option.
 
-![](tomcat_certs.png "width=500")
+![](tomcat_cert.png "width=500")
 
 To allow Tomcat to use the new configuration, we need to restart the service with a script step using the command:
 
