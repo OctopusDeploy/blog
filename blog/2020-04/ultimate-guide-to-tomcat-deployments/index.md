@@ -521,7 +521,7 @@ If the first load balancer was shutdown, the second load balancer would assume t
 
 Our deployment pipeline will involve deploying the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application. This is a simple stateful Spring Boot application utilizing Flyway to manage database migrations.
 
-When you click the **Refresh** button, a new quote is loaded from the database, and a counter is incremented in the session and displayed as the **Quote count** field on the page. The application version is shown in the **Version** field.
+When you click the **Refresh** button, a new quote is loaded from the database, a counter is incremented in the session, and the counter is displayed as the **Quote count** field on the page. The application version is shown in the **Version** field.
 
 We can use the **Quote count** and **Version** information to verify that existing sessions are preserved as new deployments are performed or Tomcat instances are taken offline.
 
@@ -541,7 +541,7 @@ Here is a screenshot of the environments in Octopus:
 
 ### Deploying the tentacle
 
-We will install a tentacle on each of our virtual machines to allow us to perform updates and system maintenance tasks. The instructions for installing the Tentacle software is found on the [Octopus download page](https://octopus.com/downloads/tentacle#linux). As this example is using Ubuntu as the base OS, we install the Tentacle with the commands:
+We will install a tentacle on each of our virtual machines to allow us to perform deployments, updates, and system maintenance tasks. The instructions for installing the Tentacle software is found on the [Octopus download page](https://octopus.com/downloads/tentacle#linux). As this example is using Ubuntu as the base OS, we install the Tentacle with the commands:
 
 ```
 apt-key adv --fetch-keys https://apt.octopus.com/public.key
@@ -556,7 +556,7 @@ Once the Tentacle is installed we configure an instance with the command:
 /opt/octopus/tentacle/configure-tentacle.sh
 ```
 
-The installation gives you a choice between polling or listening tentacles. Which option you choose often depends on your network restrictions. Polling tentacles require that the VM hosting the tentacle be able to reach the Octopus server, while listening tentacles require that the Octopus server be able to reach the VM. The choice of communication style depends on whether the Octopus server or VMs have fixed IP addresses and the correct ports opened in the firewall. Either option is a valid choice though and does not impact the deployment process.
+The installation gives you a choice between [polling or listening tentacles](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication). Which option you choose often depends on your network restrictions. Polling tentacles require that the VM hosting the tentacle be able to reach the Octopus server, while listening tentacles require that the Octopus server be able to reach the VM. The choice of communication style depends on whether the Octopus server or VMs have fixed IP addresses and the correct ports opened in the firewall. Either option is a valid choice though and does not impact the deployment process.
 
 Here is a screenshot of the **Dev** environment with tentacles for the Tomcat and Load Balancer instances. The Tomcat instances have a role of **tomcat**, and the load balancer instances have a role of **loadbalancer**:
 
@@ -564,13 +564,13 @@ Here is a screenshot of the **Dev** environment with tentacles for the Tomcat an
 
 ### Creating the external feed
 
-The Random Quotes sample application has been pushed to Maven Central as a WAR file. This means we can deploy the application directly from a Maven feed.
+The Random Quotes sample application has been pushed to [Maven Central as a WAR file](https://repo.maven.apache.org/maven2/com/octopus/randomquotes/). This means we can deploy the application directly from a Maven feed.
 
 Create a new Maven feed pointing to https://repo.maven.apache.org/maven2/. A screenshot of this feed is shown below:
 
 ![](maven_feed.png "width=500")
 
-Test the feed by searching for `com.octopus:randomquotes`. Here we can see that our application is found in the repository:
+Test the feed by searching for **com.octopus:randomquotes**. Here we can see that our application is found in the repository:
 
 ![](test_feed.png "width=500")
 
@@ -578,7 +578,7 @@ Test the feed by searching for `com.octopus:randomquotes`. Here we can see that 
 
 #### Generate a timestamp
 
-In order to support zero downtime deployments, we want to take advantage of the parallel deployments feature in Tomcat. Parallel deployments are enabled by versioning each application when it is deployed.
+In order to support zero downtime deployments, we want to take advantage of the [parallel deployments](https://tomcat.apache.org/tomcat-9.0-doc/config/context.html#Parallel_deployment) feature in Tomcat. Parallel deployments are enabled by versioning each application when it is deployed.
 
 This version number uses string comparisons to determine the latest version. Typical versioning schemes (like SemVer) use a *major.minor.patch* format, like *1.23.4*, to identify versions. For a lot of cases, these traditional versioning schemes can be compared as strings to determine their order.
 
@@ -593,7 +593,7 @@ Set-OctopusVariable -name "TimeStamp" -value $timestamp
 
 #### The Tomcat deployment
 
-Our deployment process started with deploying the application to each Tomcat instance using the **Deploy to Tomcat via Manager** step. We'll call this step **Random Quotes** and run it on the **tomcat** targets:
+Our deployment process starts with deploying the application to each Tomcat instance using the **Deploy to Tomcat via Manager** step. We'll call this step **Random Quotes** and run it on the **tomcat** targets:
 
 ![](tomcat_step_1.png "width=500")
 
@@ -605,7 +605,7 @@ Because the tentacle is located on the VM that hosts Tomcat, the location of the
 
 ![](tomcat_step_3.png "width=500")
 
-The context path makes up the path in the URL that the deployed application is accessible on. Here we expose the application on the path `/randomquotes`:
+The context path makes up the path in the URL that the deployed application is accessible on. Here we expose the application on the path **/randomquotes**:
 
 ![](tomcat_step_4.png "width=500")
 
@@ -631,7 +631,7 @@ Let's go ahead and perform the initial deployment. For this deployment we'll spe
 
 ![](deployment_step_1.png "width=500")
 
-Octopus then proceeds to download the WAR file from the Maven repo, push it to the Tomcat instances and deploy it to Tomcat via the manager. Once complete, the smoke test runs to ensure that the application can be opened successfully:
+Octopus then proceeds to download the WAR file from the Maven repository, push it to the Tomcat instances and deploy it to Tomcat via the manager. Once complete, the smoke test runs to ensure that the application can be opened successfully:
 
 ![](deployment_result.png "width=500")
 
@@ -663,7 +663,7 @@ Let's now shut down the **worker1** Tomcat instance. Once shutdown, we click the
 
 There are three things to note in this screenshot:
 
-1. The suffix on the **JSESSIONID** cookie changed from **worker1** to **woker2**.
+1. The suffix on the **JSESSIONID** cookie changed from **worker1** to **worker2**.
 2. The **JSESSIONID** cookie session ID remained the same.
 3. The **Quote count** increased to 6.
 
@@ -671,7 +671,7 @@ When Tomcat is gracefully shut down, it will write out the contents of any sessi
 
 We can now see that it is important that the worker names in the load balancer `/etc/libapache2-mod-jk/workers.properties` file match the names assigned to the **jvmRoute** in the `/etc/tomcat9/server.xml` file, because matching these names allow sticky sessions to be implemented.
 
-Because the **Quote count** did not reset back to one we know that the session was persisted to the database and replicated to the other Tomcat instances in the cluster. We also know that the request was served by another Tomcat instance because the **JSESSIONID** cookie shows a new worker name.
+Because the **Quote count** did not reset back to 1, we know that the session was persisted to the database and replicated to the other Tomcat instances in the cluster. We also know that the request was served by another Tomcat instance because the **JSESSIONID** cookie shows a new worker name.
 
 Even if we brought **worker1** back online, this browser session would continue to be handled by **worker2** because the load balancers implement sticky sessions by inspecting the **JSESSIONID** cookie. This also means that the load balancers don't need to share state, as they only require the cookie value to direct traffic.
 
@@ -694,7 +694,7 @@ Having assumed the master role, the load balancer will be assigned the virtual I
 
 Once the previous master instance restarts it will reassume the master role because it is configured with a higher priority, and the virtual IP address will be assigned back.
 
-The whole process is seamless, and upstream clients never need to be aware that a failover and failback took place.
+The whole process is seamless, and upstream clients never need to be aware that a failover and failback took place. So we have demonstrated that the load balancers can failover, making them highly available.
 
 In summary:
 * The **JSESSIONID** cookie contains the session ID and the name of the Tomcat instance that processed the request.
