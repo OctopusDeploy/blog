@@ -100,9 +100,9 @@ On the tenant variable screen, you'll see a `Common Templates` tab.  That variab
 
 ![](octopus_tenants_common_variables.png)
 
-:warning
+:::warning
 The tenant must be connected to a project that is connected to the variable set.  
-:
+:::
 
 If I were setting up Octopus Deploy in an enterprise setting, I'd use this option.
 
