@@ -2,20 +2,24 @@
 title: Using Infrastructure as Code with Operations Runbooks
 description: This post discusses how to leverage Operations Runbooks with Infrastructure as Code
 author: bob.walker
-visibility: private
-published: 2020-03-31
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-04-07
+metaImage: runbooks-iac.png
+bannerImage: runbooks-iac.png
 tags:
  - Product
  - Runbooks
 ---
 
-In preparation for the [2020.1 release webinar](https://www.youtube.com/watch?v=M5ejzd8KdbQ&feature=youtu.be), I needed to spin up and down the infrastructure for my demos.  Before runbooks, I had a separate *Infrastructure as Code* project to handle this.  I didn't want to do that again, and Operations Runbooks was built with this scenario in mind.  The webinar prep allowed me to port my process over to a runbook, and it gave me an opportunity to adjust how I approach Infrastructure as Code in Octopus Deploy. This post walks through some of the lessons I learned in porting an existing Infrastructure as Code process into the new runbooks feature in Octopus Deploy.
+![Using Infrastructure as Code with Operations Runbooks](runbooks-iac.png)
+
+Infrastructure as Code (IaC) is a modern approach to declarative infrastructure configuration. In this post, I share some lessons learned about how Runbooks can help you manage infrastructure setup and teardown in a clean and straightforward way.
+
+In preparation for the [Octopus 2020.1 release webinar](https://www.youtube.com/watch?v=M5ejzd8KdbQ&feature=youtu.be), I needed to spin up and down the infrastructure for my demos.  Before runbooks, I had a separate *Infrastructure as Code* project to handle this.  I didn't want to do that again, and Operations Runbooks was built with this scenario in mind.  The webinar prep allowed me to port my process over to a runbook, and it gave me an opportunity to adjust how I approach Infrastructure as Code in Octopus Deploy. 
 
 !toc
 
-## Brief intro to Infrastructure as Code
+## What is Infrastructure as Code?
 
 Infrastructure as Code is a way of modeling the desired infrastructure in a file, typically written in YAML, JSON, or Hashcorp Language (HCL).  Cloud providers have mechanisms that ingest that file and provisions your requested infrastructure, but each provider has its own infrastructure definitions:
 
