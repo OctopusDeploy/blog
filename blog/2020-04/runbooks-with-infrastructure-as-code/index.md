@@ -1,7 +1,7 @@
 ---
 title: Using Infrastructure as Code with Operations Runbooks
 description: This post discusses how to leverage Operations Runbooks with Infrastructure as Code
-author: bob.walker
+author: bob.walker@octopus.com
 visibility: public
 published: 2020-04-06
 metaImage: runbooks-iac.png
