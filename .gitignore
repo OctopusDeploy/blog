@@ -8,3 +8,4 @@ _site/
 .vs/*
 */.vs/*
 .atom/*
+.git/*
