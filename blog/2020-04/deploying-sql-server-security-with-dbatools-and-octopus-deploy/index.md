@@ -52,7 +52,9 @@ First things first, a couple of disclaimers. This is still a work in progress. A
 The first thing you’ll want to do is run GetSecurity.ps1:
 
 `> git clone https://github.com/Alex-Yates/DeploySqlServerSecurity.git`
+
 `> cd .\DeploySqlServerSecurity`
+
 `> .\GetSecurity -SqlInstance DevSql01 -Database MyDatabase -Environment Dev -OutputDir “C:\MyDatabase_security”`
 
 This will export all your users and role members to your chosen output directory.
