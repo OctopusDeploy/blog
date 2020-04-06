@@ -17,7 +17,7 @@ In a previous post, I wrote [how to run ad-hoc SQL scripts in the database deplo
 
 !toc
 
-## Why ad-hoc SQL scripts
+## Why we need ad-hoc SQL scripts
 
 In that previous article, I went into detail about why we need ad-hoc SQL scripts in an automated database deployment pipeline.  Below is a quick summary to bring you up to speed.
 
@@ -57,7 +57,7 @@ With runbooks, I can tweak that requirement a bit:
 
 All right, the requirements are updated; it is now time to re-work the process:
 
-1. A user initiates a runbook run and enters the database name and a SQL script into [prompted variables](https://octopus.com/docs/projects/variables/prompted-variables).
+1. A user initiates a runbook run and enters the database name and an SQL script into [prompted variables](https://octopus.com/docs/projects/variables/prompted-variables).
 2. A confirmation message is sent to the submitter.
 3. A script is run that evaluates the submitted script.  It looks for schema change commands, uses a transaction to run and rollback the script, and checks the number of changed rows.  The [output variable](https://octopus.com/docs/projects/variables/output-variables) `DBA Approval Required` is set to `False` if all conditions are met, otherwise it is set to `True`.
 4. The submitter is sent the results of the auto-approval.
@@ -218,8 +218,8 @@ catch
 
 Now it’s time to test the process.  I want to do two tests:
 
-1. A SQL script with data and schema changes. I’d expect the manual intervention to be triggered.
-2. A SQL script with only data changes.  No manual intervention.
+1. An SQL script with data and schema changes. I’d expect the manual intervention to be triggered.
+2. An SQL script with only data changes.  No manual intervention.
 
 ### SQL script with data and schema changes
 
