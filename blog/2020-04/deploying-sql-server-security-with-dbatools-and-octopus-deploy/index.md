@@ -55,7 +55,7 @@ The first thing you’ll want to do is run GetSecurity.ps1:
 
 `> cd .\DeploySqlServerSecurity`
 
-`> .\GetSecurity -SqlInstance DevSql01 -Database MyDatabase -Environment Dev -OutputDir “C:\MyDatabase_security”`
+`\DeploySqlServerSecurity> .\GetSecurity -SqlInstance DevSql01 -Database MyDatabase -Environment Dev -OutputDir “C:\MyDatabase_security”`
 
 This will export all your users and role members to your chosen output directory.
 
@@ -67,7 +67,7 @@ The data is stored in JSON files. (Apologies XML fans. I’m planning to add XML
 
 Now you can run GetSecurity.ps1 a second time, this time by pointing it at the Test database:
 
-`> .\GetSecurity -SqlInstance TestSql01 -Database MyDatabase -Environment Test -OutputDir “C:\MyDatabase_security”`
+`\DeploySqlServerSecurity> .\GetSecurity -SqlInstance TestSql01 -Database MyDatabase -Environment Test -OutputDir “C:\MyDatabase_security”`
 
 You’ll get a single users.json file which specifies which environment each user should be deployed to. You’ll also get a separate rolemembers_$Environment.json file for each environment. The role members files define which users should be added to which role in specific environments:
 
@@ -77,7 +77,7 @@ You can now edit these files as you choose. For example, you can add users, or c
 
 By default, it won’t delete anything, but it will warn you if any unexpected users or role members exist on the target database. However, if you use the `-DeleteAdditional` switch it will drop anything on the target database that doesn’t exist in the source files. In this case, I’ve created an mostly empty database, containing only the required roles, and deployed all my “Dev” security to it.
 
-`> .\DeploySecurity -SqlInstance localhost -Database EmptyDb -Environment Dev -SourceDir “C:\MyDatabase_security”`
+`\DeploySqlServerSecurity> .\DeploySecurity -SqlInstance localhost -Database EmptyDb -Environment Dev -SourceDir “C:\MyDatabase_security”`
 
 ![The output of deploying the "Dev" security model to an empty database with only the required roles pre-installed.](DeployLogs.png "width=500")
  
