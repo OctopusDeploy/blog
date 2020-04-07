@@ -55,19 +55,6 @@ So a file existing at `/docs/myfolder/index.md` will have a URL of `https://octo
 Links to other documentation pages should be relative and contain the `.md` extension.
 The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimmed when they are finally rendered.
 
-## "In this section" area
-
-Index pages (`index.md`) automatically have a "In this section" section added to them (bottom of the content).
-If the page does not need this section, you can opt out by adding the following metadata to the yaml:
-```yaml
-hideInThisSection: true
-```
-
-The rendering of "In this section" section [contains a header](_shared/in-this-section.md), if you need to omit this header:
-```yaml
-hideInThisSectionHeader: true
-```
-
 ## Markdown
 
 The site is rendered using [markdig](https://github.com/lunet-io/markdig), Markdig supports [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) as well as some extra syntax.
@@ -202,11 +189,13 @@ Which means elsewhere in the page you can link to it with this:
 
 ## Images
 
-Images can be added using the following markdown syntax
+Image filenames must in all lowercase.
+
+Images can be added using the following markdown syntax:
 
     ![Alt text](/docs/images/img.jpg "Optional title")
 
-With the minimal syntax being
+With the minimal syntax being:
 
     ![](/docs/images/img.jpg)
 
@@ -245,29 +234,3 @@ Just go to http://htmlarrows.com/symbols/
 
 * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
-# Examples
-
-The following is a template you can use for your introductory blog post.
-
-```
----
-title: "Introducing Your Name"
-visibility: public
-description: "The blog post description, which is displayed under the blog title in the list of posts at https://octopus.com/blog"
-tags:
- - Company
----
-<div style="float: right; margin: 30px; margin-top: 0">
-<img alt="Profile Pic" src="https://i.octopus.com/site/team/your-avatar.jpg" height="140" width="140" />
-</div>
-
-Add some paragraphs describing yourself to the world. Remember to change:
-
-* Your name in the title
-* Change the description to something like "A brief introduction of your name"
-* The URL in the image above, which is usually going to have been uploaded when 
-  [Team page](https://octopus.com/company/team) was updated
-
-When you are done and merged, check the build in [TeamCity](https://build.octopushq.com/viewType.html?buildTypeId=Octofront_Blog) 
-to make sure that your changes compiled successfully.
-```

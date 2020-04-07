@@ -445,7 +445,7 @@ git archive -o AnsibleInfrastructure.1.0.0.0.zip HEAD
 This package can then be pushed to Octopus using the CLI tool.
 
 ```
-Octo.exe push --package AnsibleInfrastructure.1.0.0.0.zip --apiKey API-YOURAPIKEYGOESHERE --server https://octopus.hostname
+octo push --package AnsibleInfrastructure.1.0.0.0.zip --apiKey API-YOURAPIKEYGOESHERE --server https://octopus.hostname
 ```
 
 ## Adding the Ansible Worker

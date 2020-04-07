@@ -24,7 +24,7 @@ While this month's release is a bit smaller than usual (we've been busy beaverin
 
 ## SSH Targets sans Mono 
 
-Octopus Deploy supports deploying to Linux and macOS via [SSH Targets](https://octopus.com/docs/deployment-targets/ssh-targets). Because [Calamari](https://octopus.com/docs/api-and-integration/calamari) (the Octopus deployment executable) is built with .NET, [Mono](http://www.mono-project.com/) was a pre-requisite on SSH Target servers.
+Octopus Deploy supports deploying to Linux and macOS via [SSH Targets](https://octopus.com/docs/deployment-targets/ssh-targets). Because [Calamari](https://octopus.com/docs/octopus-rest-api/calamari) (the Octopus deployment executable) is built with .NET, [Mono](http://www.mono-project.com/) was a pre-requisite on SSH Target servers.
 
 As of Octopus 3.16, Mono is no longer required!
 

@@ -1,0 +1,3 @@
+[submodule "blog/snippets"]
+	path = blog/snippets
+	url = https://github.com/OctopusDeploy/snippets

@@ -26,7 +26,7 @@ We've been testing Octopus Cloud since Feb 2018, and an early-access period for 
 
 ### Can I import my existing deployment data from my self-hosted (on-premises) Octopus server into an Octopus Cloud instance?
 
-We have plans to release migration tooling to help you seamlessly transition your existing self-hosted projects and configuration to a new cloud instance. However, in the early stages of release any projects will need to be set up from scratch, or [imported using `octo.exe`](https://octopus.com/docs/api-and-integration/octo.exe-command-line/import).
+We have plans to release migration tooling to help you seamlessly transition your existing self-hosted projects and configuration to a new cloud instance. However, in the early stages of release any projects will need to be set up from scratch, or [imported using `octo`](https://octopus.com/docs/octopus-rest-api/octopus-cli/import).
 
 ### I live somewhere that isn't near any of the available cloud regions: can I have my Octopus Cloud instance hosted nearer to my location?
 

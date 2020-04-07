@@ -73,7 +73,7 @@ Unfortunately, due to the output of Azure Function projects, the standard [`Octo
 
 ![folder](folder.png "width=500")
 
-Luckily, since Octopus will happily deploy anything that has been packaged into a zip, we can leverage a different Octopus command-line tool called [`octo.exe`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe).
+Luckily, since Octopus will happily deploy anything that has been packaged into a zip, we can leverage a different Octopus command-line tool called [Octopus CLI](https://octopus.com/docs/packaging-applications/creating-packages/octopus-cli).
 Using your standard build tool (or even locally for testing purposes), ensure that the current working directory set is the to the project directory and call:
 
 ```shell
@@ -83,7 +83,7 @@ octo pack --id=AcmeFunctions --format=zip --outFolder=./dist --version=9.14.159-
 octo push --server=http://myoctopusserver.acme.com --apiKey=API-ABC123IS4XQUUOG9TWDXXX --package=dist/AcmeFunctions.9.14.159-pi.zip
 ```
 
-Substitute the relevant values for your Octopus Server, API key, and version information. Alternatively, you can package and push the contents of the project as a zip using one of our plugins for [TeamCity](https://octopus.com/docs/api-and-integration/teamcity), [VSTS](https://octopus.com/docs/api-and-integration/tfs-vsts), [Bamboo](https://octopus.com/docs/api-and-integration/bamboo), or the soon-to-be-available [AppVeyor](https://www.appveyor.com).
+Substitute the relevant values for your Octopus Server, API key, and version information. Alternatively, you can package and push the contents of the project as a zip using one of our plugins for [TeamCity](https://octopus.com/docs/packaging-applications/build-servers/teamcity), [VSTS](https://octopus.com/docs/packaging-applications/build-servers/tfs-vsts), [Bamboo](https://octopus.com/docs/packaging-applications/build-servers/bamboo), or the soon-to-be-available [AppVeyor](https://www.appveyor.com).
 
 ## Create the Azure Function
 

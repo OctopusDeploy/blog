@@ -55,14 +55,14 @@ Reading release notes in Octopus is useful but sharing them via email, slack, or
 
 ## Connect Octopus Deploy and Jira Software
 
-If you’re team is already using Jira Software and Octopus Deploy, I highly recommend downloading our plugin and trying it out. Read our [docs](https://octopus.com/docs/api-and-integration/metadata/jira) about how to connect the two applications and get started.
+If you’re team is already using Jira Software and Octopus Deploy, I highly recommend downloading our plugin and trying it out. Read our [docs](https://octopus.com/docs/managing-releases/issue-tracking/jira) about how to connect the two applications and get started.
 
 [Octopus Deploy plugin for Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira)
 
 I also recommend installing one of our build server plugins so you can take full advantage of the features above.
 
 * [Atlassian Bamboo plugin](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on)
-* [Jenkins plugin](https://plugins.jenkins.io/octopusdeploy) - _Full support for Jira issues is coming soon!_
+* [Jenkins plugin](https://plugins.jenkins.io/octopusdeploy)
 * [Jetbrains TeamCity plugin](https://plugins.jetbrains.com/plugin/9038-octopus-deploy-integration)
 * [Microsoft Azure DevOps extension](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks)
 

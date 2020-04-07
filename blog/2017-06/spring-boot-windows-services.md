@@ -67,16 +67,16 @@ Here we run the `SpringBootStopper.jar` application passing in the same JMX port
 
 ## Packing up the service
 
-To package these files up for Octopus Deploy, use the [CLI tool](https://octopus.com/docs/packaging-applications/nuget-packages/using-octo.exe).
+To package these files up for Octopus Deploy, use the [CLI tool](https://octopus.com/docs/packaging-applications/creating-packages/using-octopack).
 
 ```
-Octo.exe pack --format=zip --id=SpringBootWindowsService --version=1.0.0
+octo pack --format=zip --id=SpringBootWindowsService --version=1.0.0
 ```
 
 This will produce a file called `SpringBootWindowsService.1.0.0.zip`, which you can then push to the Octopus server with the command:
 
 ```
-Octo.exe push --server=http://my.octopus.server --apiKey=API-xxxxxxxxxxxxx --package=SpringBootWindowsService.1.0.0.zip
+octo push --server=http://my.octopus.server --apiKey=API-xxxxxxxxxxxxx --package=SpringBootWindowsService.1.0.0.zip
 ```
 
 ## Deploying the service

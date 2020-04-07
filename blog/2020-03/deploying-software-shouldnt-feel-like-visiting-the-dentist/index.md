@@ -1,8 +1,9 @@
 ---
 title: Deploying software shouldn't feel like visiting the dentist
 description: Reasons you should deploy early and often.
-visibility: private
-published: 2999-01-01
+author: info@red-gate.com
+visibility: public
+published: 2020-03-25
 metaImage:
 bannerImage:
 tags:

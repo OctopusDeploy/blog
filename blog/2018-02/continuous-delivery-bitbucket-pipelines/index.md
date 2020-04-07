@@ -10,6 +10,8 @@ tags:
  - DevOps
 ---
 
+!include <octopus-cli>
+
 ![Bitbucket pipelinse and Octopus Deploy](blogimage-bitbucket.png)
 
 Last week, my PowerShell-loving colleague [Jason Brown](https://octopus.com/blog/introducing-jason-brown) wrote a [fantastic piece](https://octopus.com/blog/continuous-delivery-powershell-octopus-takofukku) about using Octopus and [TakoFukku](https://github.com/stopthatastronaut/takofukku) to set up a continuous delivery pipeline for PowerShell modules.  In my evening hours, I've been tinkering with Bitbucket Pipelines to automate a few personal projects, so I thought I'd write a companion piece around setting up a continuous delivery pipeline for .NET core projects.
@@ -90,7 +92,7 @@ Now that you've happily got a basic pipelines build running, it's time to extend
 
 #### Octopus API Key
 
-First, we need to create an API key for our Octopus login so that Pipelines can use the Octopus API to push our code packages across. [This article](https://octopus.com/docs/api-and-integration/api/how-to-create-an-api-key) will walk you through creating an API key; make sure you save it somewhere you can retrieve later.
+First, we need to create an API key for our Octopus login so that Pipelines can use the Octopus API to push our code packages across. [This article](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key) will walk you through creating an API key; make sure you save it somewhere you can retrieve later.
 
 #### Pipelines Sensitive Variables
 
