@@ -9,7 +9,6 @@ bannerImage:
 tags:
  - Product
  - Database Deployments
-
 ---
 
 Last month [I wrote about your SQL Server deployment tooling options](https://octopus.com/blog/sql-server-deployment-options-for-octopus-deploy). This month I’m going to discuss the often painful and poorly supported challenge of managing database security.
@@ -32,7 +31,7 @@ Generally, you want some sort of environment-aware post-deploy process that will
 
 Octopus Deploy has some cool features to help you manage environment specific config. For example, [we could create a #{SecurityModel} variable](https://octopus.com/docs/projects/variables) and set it to “DEV” or “PROD” etc in each environment we deploy to. We could then use this variable to select whether we want to deploy the “DEV” or “PROD” users to a given environment. For example, in the screenshot below, I deploy the “DEV” security model to both the “DEV” and “TEST” environments, but I used a different “PROD” security model for production.
 
-![Example variable set to configure which security models should be deployed to each environment.](OctopusVars.png "width=500")
+![Example variable set to configure which security models should be deployed to each environment.](octopus-vars.png "width=500")
  
 Some tools, like [SSDT](https://docs.microsoft.com/en-us/sql/ssdt/how-to-specify-predeployment-or-postdeployment-scripts?view=sql-server-ver15) and the [Redgate tools](https://documentation.red-gate.com/soc6/common-tasks/working-with-pre-post-deployment-scripts), have built-in support for "Post-Deployment Scripts". As part of my research I looked in some detail at [a project by Peter Schott](http://schottsql.blogspot.com/2013/05/ssdt-setting-different-permissions-per.html), who himself was building on Jamie Thompson’s earlier work. (Thanks Peter, your work really helped me!)
 
@@ -63,7 +62,7 @@ Unlike Peter, I’m assuming you are practicing RBAC, so I’m not including rol
 
 The data is stored in JSON files. (Apologies XML fans. I’m planning to add XML support soon.) My hope is that these are easy to understand and maintain:
  
-![Source files after running GetSecurity.ps1 the first time for the "Dev" environment.](GetSecurity1.png "width=300")
+![Source files after running GetSecurity.ps1 the first time for the "Dev" environment.](get-security1.png "width=300")
 
 Now you can run GetSecurity.ps1 a second time, this time by pointing it at the Test database:
 
@@ -71,7 +70,7 @@ Now you can run GetSecurity.ps1 a second time, this time by pointing it at the T
 
 You’ll get a single users.json file which specifies which environment each user should be deployed to. You’ll also get a separate rolemembers_$Environment.json file for each environment. The role members files define which users should be added to which role in specific environments:
 
-![Source files after running GetSecurity.ps1 a second time, this time for the "Test" environment.](GetSecurity2.png "width=500")
+![Source files after running GetSecurity.ps1 a second time, this time for the "Test" environment.](get-security2.png "width=500")
  
 You can now edit these files as you choose. For example, you can add users, or change which users are members of which role. When you are ready you can deploy the users using DeploySecurity.ps1. This script will perform a bunch of tests on your source code and ensure the appropriate roles and logins etc exist and then it will deploy your users and ensure all users are added to the appropriate roles.
 
@@ -79,13 +78,13 @@ By default, it won’t delete anything, but it will warn you if any unexpected u
 
 `\DeploySqlServerSecurity> .\DeploySecurity -SqlInstance localhost -Database EmptyDb -Environment Dev -SourceDir “C:\MyDatabase_security”`
 
-![The output of deploying the "Dev" security model to an empty database with only the required roles pre-installed.](DeployLogs.png "width=500")
+![The output of deploying the "Dev" security model to an empty database with only the required roles pre-installed.](deploy-logs.png "width=500")
  
 Now you’ll want to set up a build process to pack all your source files, along with the deployment scripts, into a NuGet or zip file and pass them to Octopus Deploy. You might like to run TestSecurity.ps1 as part of a build process to check you haven’t mashed the keyboard when editing the source files or missed any Logins.
 
 Then, in your Octopus Project, after your regular database deployment has completed, you’ll want to run a standard Octopus Deploy PowerShell step, passing through the appropriate environment variable to ensure the correct security configuration is deployed to the target database.
 
-![An example Octopus Deploy project which deploys a NuGet package, then deploys an SSDT dacpac, and finally deploys the environment specific users and role members.](OctopusProject.png "width=500")
+![An example Octopus Deploy project which deploys a NuGet package, then deploys an SSDT dacpac, and finally deploys the environment specific users and role members.](octopus-project.png "width=500")
  
 ## What’s next?
 
