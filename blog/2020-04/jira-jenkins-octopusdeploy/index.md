@@ -42,36 +42,59 @@ Along with those build tasks, you will also have the following Post Build tasks
 - Octopus Deploy: Deploy Release
 
 :::hint
-The Jenkins plugin differs from those of Azure DevOps, TeamCity, and Bamboo in that Create Release and Deploy Release are only available as Post build actions.  Jenkins only allows one of each type of Post build action type meaning you cannot have more than one Create Release action per build.  
+The Jenkins plugin differs from Azure DevOps, TeamCity, and Bamboo in that Create Release and Deploy Release are only available as Post build actions.  Jenkins only allows one of each type of Post build action type meaning you cannot have more than one Create Release action per build definition.  
 :::
 
-#### Package Application
-The package application build task will archive all the files and folders into either a NuGet package or a Zip file from a given base folder.  The resulting archive will be placed in the specified output folder with the package name and version number as teh file name.
+### Example build
+For this post, I'm building the PetClinic application which is a Java application using MySQL as a backend.  To start, we'll select a New Item from the Jenkins menu
 
-![](jenkins-build-octopus-package.png)
+![](jenkins-new-item.png)
 
-#### Push packages
-The push packages step will upload the specified packages to the built-in Octopus Deploy Nuget Feed for the desired Space.
+Give your project a name and slect `Maven project`
 
-![](jenkins-build-octopus-push.png)
+![](jenkins-maven-project.png)
 
-#### Push build information
-This task will push the following information
-- Build URL: A link to the build which produced the package.
-- Commits: Details of the source commits related to the build.
-- Issues: Issue references parsed from the commit messages.
+Once you click `OK` you will be brought to the configuration screen for your build definition.
 
-![](jenkins-build-octopus-build-info.png)
+:::hint
+I've configured my build to create a unique version number based on some parameters.  This version number will be stamped on the artifacts of the build that are later pushed to Octopus Deploy.  I've installed a couple of Jenkins plugins to make this work
+- Build Name and Description Setter
+- Date Parameter Plugin
+:::
 
-#### Create Release
-The Create Release task will create a new release in your Octopus Deploy project.  This task also includes the ability to deploy to an environment, however, the specified environment must be one that can be deployed to according to the lifecycle rules.
+Under the `General Tab`, check the box `This project is parameterized`.
 
-![](jenkins-build-octopus-create-release.png)
+![](jenkins-build-general.png)
 
-#### Deploy Release
-The Deploy Release step will deploy the specified release version to the specified environment.  The environment must be allowed to deployed to according to lifecycle rules.
+The required parameters of our build are (all `String` parameters):
+- DatabaseName: #{Project.MySql.Database.Name}
+- DatabaseServerName: #{Project.MySql.Database.Server.Name}
+- DatabaseUserName: #{Project.MySql.Database.User.Name}
+- DatabaseUserPassword: #{Project.MySql.Database.User.Password}
 
-![](jenkins-build-octopus-deploy-release.png)
+Optional parameters are (these are used to construct the version number, ie: 1.0.2098.101603):
+- Major (String): 1
+- Minor (String): 0
+- Year (Date):
+  - Date Format: yy
+  - Default Value: LocalDate.now();
+- DayOfYear (Date):
+  - Date Format: D
+  - Default Value: LocalDate.now();
+- Time (Date):
+  - Date Format: HHmmss
+  - LocalDate.now();
+
+![](jenkins-build-parameters.png)
+
+With our parameters defined, let's hook the build into source control.  I'll be using the PetClinic public Bitbucket repo for this build:
+https://twerthi@bitbucket.org/octopussamples/petclinic.git
+
+![](jenkins-build-source-control.png)
+
+Under the `Build Environment` tab, check the box `Set Build Name`.  This feature allows us to configure the build name to be the version number that we've configured with our parmaters (if you used the optional ones).  Set the `Build Name` to `${MAJOR}.${MINOR}.${YEAR}${DAYOFYEAR}.${TIME}
+
+
 
 ## Jira Integration
 Jira is a popular software package used to track issues within software projects.  Jira is able to keep track of logged bugs, tasks, and epic items that are associated with your project.
