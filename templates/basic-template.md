@@ -20,7 +20,7 @@ The body of the post is where you share your hypothesis, how-to, or story.
 
 Use three ### to include H3 headings.
 
-Use **Bold** text for UI labels, use single back-tics for `paramaters` and `filepaths`, and three back-tics for code blocks:
+Use **Bold** text for UI labels, use single back-tics for `parameters` and `filepaths`, and three back-tics for code blocks:
 
 ```
 Write-Host "Hello, World!"
