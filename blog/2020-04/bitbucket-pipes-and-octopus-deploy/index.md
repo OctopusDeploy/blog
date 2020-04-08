@@ -117,10 +117,10 @@ You are prompted with some questions to help fill in the metadata and other usef
 At a minimum, you need to edit the following files to suit your Pipe requirements:
 
  - [pipe.yml](#creating-the-pipes-metadata)
- - [pipe/pipe.sh](#creating-the-pipe-script)
+ - [pipe/pipe.sh](#create-the-pipe-script)
  - [Dockerfile](#creating-the-pipe-Dockerfile)
- - [bitbucket-pipelines.yml](#creating-the-pipes-own-pipeline)
- - [README.md](#creating-the-pipe-readme)
+ - [bitbucket-pipelines.yml](#create-the-pipes-own-pipeline)
+ - [README.md](#create-the-pipe-readme)
 
 :::hint
 **Tip:** Check other repositories to see how they have written their Pipe!
@@ -153,7 +153,7 @@ tags:
 
 ### Create the Pipe script
 
-The main part of your Pipe is the script or binary that will run when it's executed within a container. It will include all of the logic needed to execute the Pipe task. You can choose any language you are familiar with. When I created the [skeleton](#create-pipe-skeleton) of our Pipe earlier, I used [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), and a sample `pipe/pipe.sh` file was created for me to finish.
+The main part of your Pipe is the script or binary that will run when it's executed within a container. It will include all of the logic needed to execute the Pipe task. You can choose any language you are familiar with. When I created the [skeleton](#create-the-pipe-skeleton) of our Pipe earlier, I used [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), and a sample `pipe/pipe.sh` file was created for me to finish.
 
 **TL;DR**
 
@@ -506,7 +506,7 @@ And that's all there is to testing your Pipe!
 
 When you are happy your Pipe is working, you can publish your Docker image directly by running `docker push`.
 
-If you have set up an automated [pipeline](#creating-the-pipes-own-pipeline) like we did earlier, then you can make use of `semversioner` to create a changeset:
+If you have set up an automated [pipeline](#create-the-pipes-own-pipeline) like we did earlier, then you can make use of `semversioner` to create a changeset:
 
 ```bash
 semversioner add-change --type patch --description "Initial Docker release"
