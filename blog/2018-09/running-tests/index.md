@@ -177,7 +177,7 @@ Notice that we have loaded the Octopus client library with the code `[Reflection
 
 ![Additional package](additional-package.png "width=500")
 
-The `$ServerUrl` and `$ApiKey` variables are defined in the project. You can find more information on generating API keys from the [documentation](https://octopus.com/docs/api-and-integration/api/how-to-create-an-api-key).
+The `$ServerUrl` and `$ApiKey` variables are defined in the project. You can find more information on generating API keys from the [documentation](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
 ![Variables](variables.png "width=500")
 

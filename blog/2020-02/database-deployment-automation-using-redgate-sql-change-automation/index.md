@@ -196,7 +196,7 @@ Here is the full value, if you’d like to copy it:
     $(Build.Repository.Localpath)\RandomQuotes-SQLChangeAutomation.1.0.$(Build.BuildNumber).nupkg
 ```
 
-The Octopus Deploy server must be configured in VSTS/TFS.  You can see how to do that in our [documentation](https://octopus.com/docs/api-and-integration/tfs-vsts/using-octopus-extension).
+The Octopus Deploy server must be configured in VSTS/TFS.  You can see how to do that in our [documentation](https://octopus.com/docs/packaging-applications/build-servers/tfs-azure-devops/using-octopus-extension).
 
 The last step is to create a release and deploy it to dev.  After connecting VSTS/TFS with Octopus Deploy, you can read all the project names.  You can also configure this step to deploy the release to dev.  Clicking the **Show Deployment Progress** will stop the build and force it to wait for Octopus to complete:
 

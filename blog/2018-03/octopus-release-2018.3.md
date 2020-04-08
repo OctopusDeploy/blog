@@ -64,7 +64,7 @@ That’s it for this month. Feel free leave us a comment and let us know what yo
 
 The following table lists the versions of libraries and extensions that can be used with this release of Octopus.
 
-Bamboo users must update the Octopus CLI tool that is executed by the Bamboo plugin. See the [documentation](https://octopus.com/docs/api-and-integration/bamboo) for more details.
+Bamboo users must update the Octopus CLI tool that is executed by the Bamboo plugin. See the [documentation](https://octopus.com/docs/packaging-applications/build-servers/bamboo) for more details.
 
 Library Name | Version
 --- | ---

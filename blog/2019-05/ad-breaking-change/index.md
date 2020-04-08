@@ -32,7 +32,7 @@ If you do share email accounts between non-administrative and administrator acco
 
 If you previously had used the same email address in the past on both users, then you will now be able to have separated accounts that won't be matched and merged based on email address. 
 
-If you're reading this after the fact and you've accidentally locked yourself out of Octopus after a proof of oncept upgrade, we have a way to gain access to an admin account in our [docs](https://octopus.com/docs/api-and-integration/octopus.server.exe-command-line/admin). This will grant you access to your Octopus instance but if you get stuck then get in touch with [Support](mailto:Support@Octopus.com). 
+If you're reading this after the fact and you've accidentally locked yourself out of Octopus after a proof of oncept upgrade, we have a way to gain access to an admin account in our [docs](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin). This will grant you access to your Octopus instance but if you get stuck then get in touch with [Support](mailto:Support@Octopus.com). 
 
 ## Conclusion
 

@@ -97,7 +97,7 @@ With the staging version of our application available we can inspect and test it
 
 Notice how the transformation has been applied changing the colour of the navbar, while the port and other variables have been updated based on the environment being deployed to.
 
-For more information about this new feature, be sure to read our [docs](https://octopus.com/docs/api-and-integration/app-veyor)
+For more information about this new feature, be sure to read our [docs](https://octopus.com/docs/packaging-applications/build-servers/app-veyor)
 
 ## AppVeyor + Octopus = Deploy Any Time
 

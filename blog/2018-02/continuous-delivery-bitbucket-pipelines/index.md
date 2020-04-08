@@ -92,7 +92,7 @@ Now that you've happily got a basic pipelines build running, it's time to extend
 
 #### Octopus API Key
 
-First, we need to create an API key for our Octopus login so that Pipelines can use the Octopus API to push our code packages across. [This article](https://octopus.com/docs/api-and-integration/api/how-to-create-an-api-key) will walk you through creating an API key; make sure you save it somewhere you can retrieve later.
+First, we need to create an API key for our Octopus login so that Pipelines can use the Octopus API to push our code packages across. [This article](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key) will walk you through creating an API key; make sure you save it somewhere you can retrieve later.
 
 #### Pipelines Sensitive Variables
 

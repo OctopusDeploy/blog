@@ -14,7 +14,7 @@ One of the questions asked in the email was:
 
 As our readers are probably aware, the variables available during a deployment can be contributed through various places throughout Octopus; through Project variables, tenant variables, Library variables or even the targets themselves. But what about if you want to make use of variables in your deployment from _outside_ Octopus itself?
 
-The first reaction might be to just encourage the use of the [API](https://octopus.com/docs/api-and-integration/api) to run a process externally that keeps Octopus variables in sync with the external source. But that feels like something that would lead to the perfect example of yak shaving. Can't we do better?
+The first reaction might be to just encourage the use of the [API](https://octopus.com/docs/octopus-rest-api/) to run a process externally that keeps Octopus variables in sync with the external source. But that feels like something that would lead to the perfect example of yak shaving. Can't we do better?
 
 ## Variables from Outside
 
