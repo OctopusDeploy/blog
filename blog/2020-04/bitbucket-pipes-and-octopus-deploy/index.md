@@ -159,30 +159,31 @@ The main part of your Pipe is the script or binary that will run when it's execu
 
 If you want to see the complete Pipe script, skip straight to the [end](#complete-pipe-script) or view the [source code](https://bitbucket.org/octopusdeploy/pack/src/master/pipe/pipe.sh). If not, read on!
 
-The general structure to a Pipe script file tends to follow this convention:
+The general structure of a Pipe script file follows this convention:
 
 ![pipe script flow](bitbucket-pipe-script-flow.png)
 
 #### Mandatory Pipe variables
 
-For the `pack` command there are 5 parameters I wanted the Pipe to handle:
+For the `pack` command there are 5 parameters I want the Pipe to handle:
 
 1. The `--id` of the package to create.
-1. The `--format` for the package; e.g. `NuPkg` or `Zip`.
+1. The `--format` for the package, e.g. `NuPkg` or `Zip`.
 1. The `--version` for the package (SemVer).
 1. The `--basePath` to specify the root folder containing files and folders to pack.
-1. The `--outFolder` to specify the folder where the generated package would be written.
+1. The `--outFolder` to specify the folder where the generated package will be written.
 
-To cater for each of these, I mapped each one to a Bitbucket pipeline [variable](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html).
+To cater for each of these, I mapped each one to a Bitbucket Pipeline [variable](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html).
 
-I also followed the validation of variables, shown in the Atlassian [demo-pipe-bash](https://bitbucket.org/atlassian/demo-pipe-bash/src/master/pipe/pipe.sh) script:
+I also followed the validation of variables, as shown in the Atlassian [demo-pipe-bash](https://bitbucket.org/atlassian/demo-pipe-bash/src/master/pipe/pipe.sh) script:
 
 ```bash
 NAME=${NAME:?'NAME variable missing.'}
 ```
-This simply checks for a `$NAME` variable value, and errors with a message when the variable isn't present.
 
-Therefore, for the 5 variables I created, my variable validation looked like this:
+This checks for a `$NAME` variable value and errors with a message when the variable isn't present.
+
+For the five variables I created, my variable validation looks like this:
 
 ```bash
 # mandatory parameters
@@ -195,43 +196,41 @@ OUTPUT_PATH=${OUTPUT_PATH:?'OUTPUT_PATH variable missing.'}
 
 #### Optional Pipe variables
 
-Next up were some optional variables consumers of the Pipe could choose to supply if they wished:
+Next up were some optional variables consumers of the Pipe could choose to supply if they wish:
 
-I included an `EXTRA_ARGS` array variable to include multiple additional arguments for the `pack` command. You can specify this variable by using a special Bitbucket Array type in your pipeline:
+I included an `EXTRA_ARGS` array variable to include multiple additional arguments for the `pack` command. You can specify this variable by using a special Bitbucket array type in your pipeline:
 
 ```yaml
 variables:
   EXTRA_ARGS: ['--description', 'text containing spaces', '--verbose']
 ```
 
-The Array type is really useful, as it allows an easy way to supply any other arguments to the Pipe. In my case, this allowed consumers of the `pack` Pipe the ability to provide any of the additional argument options that I hadn't explicitly handled.
+The array type is really useful, as it provides an easy way to supply any other arguments to the Pipe. In my case, this allows consumers of the `pack` Pipe the ability to provide any of the additional argument options that I haven't explicitly handled.
 
 :::hint
-**Advanced Pipe Writing Techniques:** To learn about more the Array type and how its values are passed to the Docker container, please see Atlassian's [documentation](https://confluence.atlassian.com/bitbucket/advanced-techniques-for-writing-pipes-969511009.html).
+**Advanced Pipe writing techniques:** 
+
+To learn about more the array type and how its values are passed to the Docker container, please see Atlassian's [documentation](https://confluence.atlassian.com/bitbucket/advanced-techniques-for-writing-pipes-969511009.html).
 :::
 
-Lastly, I included a boolean `DEBUG` variable to include additional debugging information. You would specify it's value in your Pipe like this:
+Lastly, I included a boolean `DEBUG` variable to include additional debugging information. You specify its value in your Pipe like this:
 
 ```yaml
 variables:
   DEBUG: 'true'
 ```
 
-#### Running Octo Pack
+#### Run the Pack Pipe
 
-The `pack` Pipe's sole purpose is to package up a set of files, so it will come as no surprise the next part is to do just that. 
+The `pack` Pipe's sole purpose is to package a set of files, and to achieve that, we make use of our reference to the [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) Docker image I used as a base for our Pipe Docker image. This gives us access to the full [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli/) in our Pipe.
 
-To achieve it, we make use of our reference to the [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) Docker image which I am using as a base for our Pipe Docker image.
-
-By using this, we have access to the full [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli/) in our Pipe.
-
-To package up the files in the Bitbucket pipeline, in our script all we need to do is run the `pack` command, passing in our variables:
+To package the files in the Bitbucket Pipeline, our script needs to run the `pack` command and pass in our variables:
 
 ```bash
 run octo pack --id "$ID" --version "$VERSION" --format "$FORMAT" --basePath "$SOURCE_PATH" --outFolder "$OUTPUT_PATH" "${EXTRA_ARGS[@]}"
 ```
 
-Lastly, we check if the command was successful. If it was, we display a success message and set a variable with the resultant packaged filename. If not, we display an error message and halt execution.
+Lastly, we check if the command was successful. If it was, we display a success message and set a variable with the filename of the package that was created. If not, we display an error message and halt execution.
 
 :::hint
 The `run` command is a helper function specified in a separate `common.sh` file. It looks like this:
@@ -247,7 +246,7 @@ run() {
   set -e
 }
 ```
-The function wraps the call to the supplied command, in this case `octo pack`, logs the output to a temporary file and captures the exit status.
+The function wraps the call to the supplied command, in this case `octo pack`, logs the output to a temporary file, and captures the exit status.
 :::
 
 #### Complete Pipe script
@@ -317,8 +316,7 @@ fi
 
 ### Creating the Pipe Dockerfile
 
-Now we have our main script to run, we need to create our image using a Dockerfile.
-If you ran the Pipe generator, then you will already have the Dockerfile ready to edit to to suit your Pipe.
+Now that we have our main script to run, we need to create our image using a Dockerfile. If you ran the Pipe generator, you already have the Dockerfile ready to edit to suit your Pipe.
 
 For the `pack` Pipe, the Dockerfile looks like this:
 
@@ -333,11 +331,11 @@ RUN chmod a+x /*.sh
 ENTRYPOINT ["/pipe.sh"]
 ```
 
-The Dockerfile takes the `octopusdeploy/octo` as it's base, and then adds `bash` to the image. It then copies the contents of the `pipe` folder and sets permissions for all users to be able to execute the `.sh` files present. Lastly it sets the `ENTRYPOINT` for the container to our [pipe.sh](#complete-pipe-script) file we created earlier.
+The Dockerfile takes the `octopusdeploy/octo` as its base, and then adds `bash` to the image. It then copies the contents of the `pipe` folder and grants permissions for all users to execute the `.sh` files present. Lastly, it sets the `ENTRYPOINT` for the container to the [pipe.sh](#complete-pipe-script) file we created earlier.
 
-### Creating the Pipe's own pipeline
+### Create the Pipe's own pipeline
 
-When you have completed your Pipe, you could deploy your Docker image manually to Docker Hub. However, it's also possible to get Bitbucket pipelines to do the heavy lifting for you automatically when you push changes to your Bitbucket repository with your own `bitbucket-pipelines.yml` file.
+When you've completed your Pipe, you could deploy your Docker image manually to Docker Hub. However, it's also possible to get Bitbucket Pipelines to do the heavy lifting for you automatically when you push changes to your Bitbucket repository with your own `bitbucket-pipelines.yml` file.
 
 For the `pack` Pipe, in the auto-generated file, I only modified the push step:
 
@@ -357,24 +355,24 @@ push: &push
     - docker
 ```
 
-The step installs [semversioner](https://pypi.org/project/semversioner/), which is a python tool to help automatically generate release notes and version your Pipe according to [SemVer](https://semver.org/). After this, it increments the version of the Pipe, creates a new Docker image and pushes it to Docker Hub. Finally it tags the new version, and pushes that back to the Bitbucket repository. 
+The step installs [semversioner](https://pypi.org/project/semversioner/), which is a python tool to help automatically generate release notes and version your Pipe according to [SemVer](https://semver.org/). After this, it increments the version of the Pipe, creates a new Docker image and pushes it to Docker Hub. Finally, it tags the new version and pushes that back to the Bitbucket repository. 
 
 You can view the complete `bitbucket-pipelines.yml` file for the `pack` Pipe on [Bitbucket](https://bitbucket.org/octopusdeploy/pack/src/master/bitbucket-pipelines.yml).
 
 :::hint
 **No double Docker push:** 
-The `push` step doesn't trigger two Docker images to be pushed to Docker Hub when the step is doing it's own commit and push back to the Bitbucket repository. The reason for this is that Bitbucket pipelines support the option to skip a pipeline run if `[skip ci]` or `[ci skip]` is included anywhere in the commit message.
+The `push` step doesn't trigger two Docker images to be pushed to Docker Hub when the step is doing its own commit and push back to the Bitbucket repository. The reason for this is that Bitbucket Pipelines support the option to skip a Pipeline run if `[skip ci]` or `[ci skip]` is included anywhere in the commit message.
 :::
 
-### Creating the Pipe README
+### Create the Pipe README
 
-You might be thinking, "why spend time creating a readme file?". Well Atlassian themselves recommend it, stating:
+You might be thinking, "Why spend time creating a readme file?" Well, Atlassian themselves recommend it:
 
 > Your readme is how your users know how to use your pipe. We can display this in Bitbucket, so it needs to be written with markdown, in a specific format.
 
-If you want users to be successful when using your Pipe, the better the `README` is, the higher the likelihood is of your users doing just that.
+Including an informative `README` increasing the chances of your users being successful with your Pipe.
 
-One of the more important parts of it will be the **YAML Definition**. This tells users what to add to their `bitbucket-pipeline.yml` file. 
+One of the more important parts of the `README` is the **YAML Definition**. This tells users what to add to their `bitbucket-pipeline.yml` file. 
 
 Here's what the `pack` one looks like:
 
@@ -393,11 +391,11 @@ script:
 
 You can view the `README` for the `octopipes/pack` in full [here](https://bitbucket.org/octopusdeploy/pack/src/master/README.md).
 
-## Running the Pipe
+## Run the Pipe
 
-Since the Pipe is just a Docker image, once you have built the image - you can execute the Pipe using `docker run`, passing in any required parameters as Environment variables. 
+Since the Pipe is just a Docker image, after you have built the image, you can execute the Pipe using `docker run`, passing in any required parameters as environment variables. 
 
-Here's what the command looks like to run the `pack` Pipe to package up the root directory from our `RandomQuotes-JS` application:
+Here's what the command looks like to run the `pack` Pipe to package the root directory from our `RandomQuotes-JS` application:
 
 ```bash
 sudo docker run \
@@ -412,20 +410,20 @@ sudo docker run \
  octopipes/pack:0.6.0
 ```
 
-The resultant output shows the successful packaging of the `randomquotes-js.1.0.0.0.zip` file:
+The output shows the successful packaging of the `randomquotes-js.1.0.0.0.zip` file:
 
 ![docker run octopipes pack](docker-run-octopipes-pack.png)
 
-## Testing the Pipe
+## Test the Pipe
 
-To make sure your Pipe does what you expect it to, it's a good idea to write tests for it. Following Atlassian's lead, I also opted to use [BATS](https://www.systutorials.com/docs/linux/man/1-bats/) (Bash Automated Testing System).
+To make sure your Pipe does what you expect it to, it's a good idea to write tests for it. Following Atlassian's lead, I opted to use [BATS](https://www.systutorials.com/docs/linux/man/1-bats/) (Bash Automated Testing System).
 
 Just like a lot of testing frameworks, a test file (which typically ends in `.bats`) contains the following constructs:
  - A `setup()` method to set up any required variables or shared resources for your tests.
- - A number of individual `@test` declarations - these are your test cases.
- - A `teardown` method to clean up any resources used.
+ - A number of individual `@test` declarations; these are your test cases.
+ - A `teardown` method to remove any resources you used.
 
-Here is what my [test.bats](https://bitbucket.org/octopusdeploy/pack/src/master/test/test.bats) file looks like:
+Here is my [test.bats](https://bitbucket.org/octopusdeploy/pack/src/master/test/test.bats) file:
 
 ```bash
 #!/usr/bin/env bats
@@ -492,9 +490,9 @@ teardown() {
 }
 ```
 
-In my `test.bats` file, in the `setup` I build a local docker image of the Pipe called `test/pack`. Next it creates a file with a random number for its contents. 
+In my `test.bats` file, the `setup` builds a local Docker image of the Pipe called `test/pack`. Next, it creates a file with a random number for its contents. 
 
-My `test` then executes `docker run` (like I did earlier in my local testing) and verifies that the container ran to completion, and finally extracts the files from the package, and checks that the content matches the random number I generated in the `setup`.
+My `test` then executes `docker run` (just as I did in my local test) and verifies the container ran to completion, and finally extracts the files from the package and checks the content matches the random number I generated in the `setup`.
 
 The tests run as part of my automated CI/CD pipeline configured in my `bitbucket-pipeline.yml`. You can also run the tests locally if you have `bats` installed.
 
@@ -502,11 +500,11 @@ Here is the output from a test run of my `test.bats` file:
 
 ![bats test run output](bats-test-output.png)
 
-And that's all there is to it when it comes to testing your Pipe!
+And that's all there is to testing your Pipe!
 
-## Publishing the Pipe
+## Publish the Pipe
 
-Once you are happy your Pipe is working, you can publish your Docker image directly by running `docker push`.
+When you are happy your Pipe is working, you can publish your Docker image directly by running `docker push`.
 
 If you have set up an automated [pipeline](#creating-the-pipes-own-pipeline) like we did earlier, then you can make use of `semversioner` to create a changeset:
 
@@ -514,7 +512,7 @@ If you have set up an automated [pipeline](#creating-the-pipes-own-pipeline) lik
 semversioner add-change --type patch --description "Initial Docker release"
 ```
 
-Once you have committed your changeset, push them to Bitbucket and your pipeline should handle the rest. It will also automatically update the version number in:
+After you have committed your changeset, push them to Bitbucket and your pipeline should handle the rest. It will also automatically update the version number in:
 
  - the `CHANGELOG.md` file
  - the `README.md` file
@@ -522,17 +520,17 @@ Once you have committed your changeset, push them to Bitbucket and your pipeline
 
 You can see an example of the `pack` Bitbucket pipeline creating the `0.5.1` release here:
 
-![bitbucket pipe pipeline result](bitbucket-pipe-pipeline-result.png)
+![Bitbucket pipe pipeline result](bitbucket-pipe-pipeline-result.png)
 
-## Integrating the Pipe into a pipeline
+## Integrating the Pipe into a Pipeline
 
-If you've got this far, you'll have your Pipe published to Docker Hub. But how do you integrate that Pipe in another repository's pipeline?
+If you've got this far, you have your Pipe published to Docker Hub, but how do you integrate that Pipe in another repository's Pipeline?
 
-To find out, I imported one of our existing node.js samples `RandomQuotes-JS`, which is hosted on [GitHub](https://github.com/OctopusSamples/RandomQuotes-js) into a new Bitbucket Repository with the same [name](https://bitbucket.org/octopussamples/randomquotes-js/).
+To find out, I imported one of our existing node.js samples `RandomQuotes-JS`, which is hosted on [GitHub](https://github.com/OctopusSamples/RandomQuotes-js), into a new Bitbucket repository with the same [name](https://bitbucket.org/octopussamples/randomquotes-js/).
 
-### Using the Pipe
+### Use the Pipe
 
-Next, I created a `bitbucket-pipelines.yml` file and set up my pipeline. After the build and testing step, I inserted a package step like this:
+Next, I created a `bitbucket-pipelines.yml` file and set up my Pipeline. After the build and testing step, I inserted a package step like this:
 
 ```yaml
 - step:
@@ -551,13 +549,13 @@ Next, I created a `bitbucket-pipelines.yml` file and set up my pipeline. After t
       - out/*.zip
 ```
 
-The step looks similar to my examples shown in the Pipe's `README` file. I've added a line just before the `pipe` instruction to set a variable:
+The step looks similar to the examples in the Pipe's `README` file. I've added a line just before the `pipe` instruction to set a variable:
 
 ```yaml
 - export VERSION=1.0.0.$BITBUCKET_BUILD_NUMBER
 ```
 
-The `export` command tells Bitbucket to create the `VERSION` variable and allow it to be used in the Pipe.
+The `export` command tells Bitbucket to create the `VERSION` variable and use it in the Pipe.
 
 I also make use of Bitbucket [artifacts](https://confluence.atlassian.com/bitbucket/using-artifacts-in-steps-935389074.html), where I specify a glob pattern to choose any zip files present in the `out` folder:
 
@@ -566,23 +564,24 @@ artifacts:
     - out/*.zip
 ```
 
-This will allow the package created by the Pipe to be used by any future steps in the pipeline.
+This allows the package created by the Pipe to be used by future steps in the Pipeline.
 
-## Integrating the pipeline with Octopus
+## Integrate the Pipeline with Octopus
 
-Once I had created a package, I wanted to complete the Bitbucket pipeline by integrating Bitbucket with Octopus; specifically I wanted to push the package I'd created and the related commit information to Octopus.
+After I have created a package, I want to complete the Bitbucket Pipeline by integrating Bitbucket with Octopus; specifically, I want to push the package I created and the related commit information to Octopus.
 
 ### Push package to Octopus
 
 After the packaging step I'd created earlier, I added another step to push the package to the Octopus [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository).
 
-This step makes use of a feature in Bitbucket which allows you to specify a container image, which can be different to the default image used elsewhere in the pipeline. In this case I chose the `octopusdeploy/octo:7.3.2` Docker image. 
+This step makes use of a feature in Bitbucket that allows you to specify a container image, which can be different to the default image used elsewhere in the Pipeline. In this case, I chose the `octopusdeploy/octo:7.3.2` Docker image. 
 
-This means I am able to run the `octo push` command, and specify the package I created in the previous `Pack for Octopus` step like so:
+This means I can run the `octo push` command and specify the package I created in the previous `Pack for Octopus` step like so:
 
 ```yaml
 octo push --package ./out/$BITBUCKET_REPO_SLUG.$VERSION.zip  --server $OCTOPUS_SERVER --space $OCTOPUS_SPACE --apiKey $OCTOPUS_APIKEY
 ```
+
 You can see the minimum YAML required to achieve the push to Octopus below:
 
 ```yaml
@@ -596,16 +595,16 @@ You can see the minimum YAML required to achieve the push to Octopus below:
 
 ### Push build information to Octopus
 
-To round off the integration, I wanted to have the [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information) available within Octopus.
+To round off the integration, I want to have the [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information) available within Octopus.
 
-For me, one of the best things about Octopus is that it's built [API-first](https://octopus.com/docs/octopus-concepts/rest-api). This allows us to build a first class CLI on top of it. So pushing build information turned out to be pretty easy. Once you know the format of the json payload, I was able to create a [Bash script](https://bitbucket.org/octopussamples/randomquotes-js/src/master/create-build-info.sh) to do just that using the [build-information](https://octopus.com/docs/octopus-rest-api/octopus-cli/build-information) command.
+For me, one of the best things about Octopus is that it's built [API-first](https://octopus.com/docs/octopus-concepts/rest-api). This allows us to build a first class CLI on top of it. Pushing build information turned out to be pretty easy. Once I knew the format of the JSON payload, I created a [Bash script](https://bitbucket.org/octopussamples/randomquotes-js/src/master/create-build-info.sh) to do just that using the [build-information](https://octopus.com/docs/octopus-rest-api/octopus-cli/build-information) command.
 
 :::hint
-**Tip: Build Information payload**
-To help demystify some of the complexities of the Build Information payload, I followed my colleague Shawn's excellent [piece](https://octopus.com/blog/manually-push-build-information-to-octopus) on it's structure.
+**Tip: Build information payload**
+To help demystify some of the complexities of the build information payload, I followed my colleague Shawn's excellent [piece](https://octopus.com/blog/manually-push-build-information-to-octopus) on its structure.
 :::
 
-To add to our previous `Push to Octopus` step, we can plug that script in to push build information as well, so the complete step looks like this:
+To add to our previous `Push to Octopus` step, we can plug that script in to push build information as well. The complete step looks like this:
 
 ```yaml
 - step:
@@ -619,9 +618,9 @@ To add to our previous `Push to Octopus` step, we can plug that script in to pus
       - octo build-information --package-id $BITBUCKET_REPO_SLUG --version $VERSION --file=octopus.buildinfo --server $OCTOPUS_SERVER --space $OCTOPUS_SPACE --apiKey $OCTOPUS_APIKEY 
 ```
 
-The `create-build-info.sh` script creates a json payload output file called `octopus.buildinfo` and then we use that in the `build-information` command to push commit information.
+The `create-build-info.sh` script creates a JSON payload output file called `octopus.buildinfo`, and then we use that in the `build-information` command to push commit information.
 
-Once the commits have been pushed to Octopus, you can see them in the Packages section of the Library:
+After the commits have been pushed to Octopus, you can see them in the Packages section of the Library:
 
 ![randomquotes-js buildinfor](randomquotes-js-buildinfo.png)
 
@@ -636,10 +635,10 @@ You can view the RandomQuotes-JS Octopus project setup in our [samples](https://
 
 ## Conclusion
 
-Once I'd got to grips with writing Bash, creating my first Bitbucket Pipe was pretty straightforward. I can definitely see the advantages of creating a Pipe in Bitbucket. That being said, it's important to point out that your Pipe shouldn't try to do too much. It's tempting to try to cram as much as you can into a Pipe. By doing this you end up fighting against the single biggest advantage that pipes offer; re-use. Integrating a Bitbucket pipeline with Octopus is a breeze with the Octopus CLI, and for anything more complex, you always have the API at your disposal too.
+Creating my first Bitbucket Pipe was pretty straightforward. I can definitely see the advantages of creating a Pipe in Bitbucket. That said, it's important to point out that your Pipe shouldn't try to do too much. It's tempting to cram as much as you can into a Pipe. By doing this you end up fighting against the single biggest advantage that Pipes offer; re-use. Integrating a Bitbucket Pipeline with Octopus is a breeze with the Octopus CLI, and for anything more complex, you always have the API at your disposal.
 
 ## Learn more
  - Take a peek at the *experimental* Pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
- - Guides - [Octopus CI/CD pipeline Guides](https://octopus.com/docs/guides)
+ - Guides: [Octopus CI/CD pipeline guides](https://octopus.com/docs/guides)
 
 Feel free to leave a comment, and let us know what you think about Bitbucket Pipes, Pipelines, or container-based build chains!
