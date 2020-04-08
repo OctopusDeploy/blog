@@ -55,7 +55,6 @@ In this post, I use Azure DevOps to perform the build.
 Fill in the build task details:
 
 ![](ado-ssis-task.png)
-![](ado-ssis-task2.png)
 
 #### Packaging the artifact
 After the SSIS project has been built, it will produce an .ispac file, which contains the necessary components for deployment.  .ispac isn’t a standard archive like .zip or .nupkg, so you need an additional step that packages it into a supported format.  For ADO, TeamCity, and Jenkins, Octopus Deploy has plugins or extensions that contains steps that do this:
