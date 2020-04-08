@@ -1,6 +1,6 @@
 ---
 title: CI/CD feedback process
-description: DevOps Nirvana - Integrating Jira, Jenkins, and Octopus Deploy
+description: DevOps Nerdvana - Integrating Jira, Jenkins, and Octopus Deploy
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2022-04-13
@@ -100,7 +100,7 @@ Under the `General Tab`, check the box `This project is parameterized`.
 
 The required parameters of our build are (all `String` parameters):
 - DatabaseName: #{Project.MySql.Database.Name}
-- DatabaseServerName: #{Project.MySql.Database.Server.Name}
+- DatabaseServerName: #{MySql.Database.Server.Name}
 - DatabaseUserName: #{Project.MySql.Database.User.Name}
 - DatabaseUserPassword: #{Project.MySql.Database.User.Password}
 
@@ -282,6 +282,52 @@ The `Jira Username` is your email address and the `Jira Password` is your API ke
 
 Be sure to click Test to make sure the credentials are valid
 
+### Environment mapping
+As part of the integration with Jira, you have the ability to map Octopus Deploy Environments to Jira Environment Types.  To do this, click on the `Infrastructure` tab
+
+![](octopus-deploy-infrastructure.png)
+
+Click on `Environments`
+
+![](octopus-deploy-environments.png)
+
+Edit the environment by clicking on the `elipses` for that envrionment and click `Edit`
+
+![](octopus-deploy-environment-edit.png)
+
+Use the drop-down in the Jira Environment Type section to associate the Octopus Deploy environmen to the Jire Environmen type
+
+![](octopus-deploy-environment-jira-type.png)
+
+Repeat this process for any other environments that you want mapped.
+
+## Octopus Deploy project automatic release note creation
+One of my colleagues showed me a neat trick for automation release note creation.  From within your Octopus project, click on Settings
+
+![](octopus-deploy-project-settings.png)
+
+Enter the following for the Release Notes Template
+
+```
+#{each package in Octopus.Release.Package}
+- #{package.PackageId} #{package.Version}
+#{each workItem in package.WorkItems}
+    - [#{workItem.Id}](#{workItem.LinkUrl}) - #{workItem.Description}
+#{/each}
+#{/each}
+```
+
+Optionally you can enter the following for the Deployment Changes Template
+
+```
+#{each release in Octopus.Deployment.Changes}
+**Release #{release.Version}**
+#{release.ReleaseNotes}
+#{/each}
+```
+
+![](octopus-deploy-project-template.png)
+
 ## The feedback loop
 With our integrations complete, it's time to see all of this working together!
 
@@ -299,3 +345,63 @@ Take note of the ID that is created for the issue, we'll need this later.  For t
 ![](jira-issue-id.png)
 
 ### Create some commits
+Commits show up in Octopus Deploy as Release Notes so you can see what's being deployed.  In addition, if you reference a Jira issue within the commit message, the commit will be logged to the issue within Jira.  When a deployment occurs, Octopus will update Jira as to the status.
+
+Apply some commits to your repo, for this post I'll be adding the following:
+- Updated pom.xml to use SSL version of https://repo.spring.io/milestone repo
+- PET-3 - Updated datasource bean properties to prevent database connection timeouts
+- Added bin folder to Flyway project to include built-in version of JRE
+
+![](bitbucket-commit-messages.png)
+
+### Build the project
+With the commits done, we can build the project. The Push Build Information step in our build definition will contain our commit messages.  Let's pop over to Jenkins and queue a build.
+
+Click on `Build with Parameters`
+
+![](jenkins-build-with-parameters.png)
+
+Click `Build`
+
+![](jenkins-build-with-parameters-build.png)
+![](jenkins-build-building.png)
+
+
+### Review Build Information in Octopus Deploy
+When the build is complete, the information should now be in Octopus Deploy.  Click on `Library`
+
+![](octopus-deploy-library.png)
+
+Click `Build Information`
+
+![](octopus-deploy-build-information.png)
+
+Click on the `Highest version` link to view the Commits and Work Items (clicking on the package name also works, but there's an extra click in that you have to select the version afterwards).
+
+![](octopus-deploy-build-information-highest.png)
+
+Here we can see that the build came from a Jenkins build server, we can see the three commits that we did as well as the associated Work Item (PET-3).  Clicking on thet PET-3 link takes us to our Jira Issue.  As you can see, a few other commits came along for the ride :)
+
+![](octopus-deploy-build-information-details.png)
+
+### Deploy the release
+So far this integration is looking pretty sweet!  Deploying a release makes it even sweeter in that it will update Jira with the status!  Let's get a deployment to Development underway.  This post assumes you already know how to create a project, so we'll skip the project creation and deployment process steps
+
+From within your Octopus Deploy project, click `CREATE RELEASE`.
+
+![](octopus-deploy-project-create-release.png)
+
+After you click Save on the next screen, it will show the Release details.  On this screen we can see our Release notes and associated Build Information
+
+![](octopus-deploy-project-release.png)
+
+When the release begins deploying, we can see it sent information to Jira
+
+![](octopus-deploy-release-deployment.png)
+
+In Jira, we can see that the issue is currently being deployed to Development!
+
+![](jira-release-deploying.png)
+
+## Conclusion
+Jenkins, Jira, and Octopus Depoloy are all powerful DevOps tools.  When you integrate the three together, you get a powerful DevOps solution that provides continuious feedback bo developers, operations, and business alike!
