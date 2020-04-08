@@ -153,16 +153,7 @@ tags:
 
 ### Create the Pipe script
 
-The main part of your Pipe is the script or binary which will run when it's executed within a container. It will include all of the logic needed to execute the Pipe task. You can choose any language you are familiar with. When I created our [skeleton](#create-pipe-skeleton) of our Pipe earlier, I chose to use [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), and a sample `pipe/pipe.sh` file was created for me to finish.
-
-Now I should point out that Bash is not *usually* my first choice when faced with a programming challenge. With that being said, I've recently switched my work laptop to [Ubuntu 18.04.4](http://releases.ubuntu.com/18.04.4/) so I felt comfortable writing a Pipe with it. 
-
-:::hint
-If you aren't familiar with Bash, there are some great resources online:
- - GNU Manual - [Bash Reference Guide](https://www.gnu.org/software/bash/manual/bash.html)
- - Bash scripting - [A cheatsheet](https://devhints.io/bash)
- - Bash tips and tricks - [Bash one-liners](http://www.bashoneliners.com/)
-:::
+The main part of your Pipe is the script or binary that will run when it's executed within a container. It will include all of the logic needed to execute the Pipe task. You can choose any language you are familiar with. When I created the [skeleton](#create-pipe-skeleton) of our Pipe earlier, I used [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), and a sample `pipe/pipe.sh` file was created for me to finish.
 
 **TL;DR**
 
