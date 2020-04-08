@@ -12,9 +12,9 @@ tags:
 
 ![Bitbucket Pipelines](bitbucket-cd.png)
 
-Atlassian's [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) is a lightweight cloud continuous integration server that uses pre-configured Docker containers allowing you to define your infrastructure as code. [Pipes](https://bitbucket.org/product/features/pipelines/integrations) let you add configuration to your pipelines and are particularly useful for third party tools. 
+Atlassian's [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) is a lightweight cloud continuous integration server that uses pre-configured Docker containers, allowing you to define your infrastructure as code. [Pipes](https://bitbucket.org/product/features/pipelines/integrations) let you add configuration to your Pipelines and are particularly useful for third party tools. 
 
-In this post, I use Bitbucket Pipelines: Pipes to create a Pipe for an [Octopus CLI](https://g.octopushq.com/OctopusCLI) command, use it in a Bitbucket Pipeline for our sample node.js application, [RandomQuotes-Js](https://bitbucket.org/octopussamples/randomquotes-js), and finally, integrate the Pipeline with Octopus.
+In this post, I create a Pipe for an [Octopus CLI](https://g.octopushq.com/OctopusCLI) command, use it in a Bitbucket Pipeline for our sample node.js application [RandomQuotes-Js](https://bitbucket.org/octopussamples/randomquotes-js), and finally, integrate the Pipeline with Octopus.
 
 <h2>In this post</h2>
 
@@ -26,20 +26,28 @@ Atlassian [says](https://confluence.atlassian.com/bitbucket/learn-about-pipes-97
 
 > Pipes provide a simple way to configure a pipeline. They are especially powerful when you want to work with third-party tools. Just paste the pipe into the YAML file, supply a few key pieces of information, and the rest is done for you. You can add as many pipes as you like to your steps, so the possibilities are endless!
 
-Pipes build on the core concept of pipelines, containers. A Pipe makes use of a script that lives inside of a [Docker](https://www.docker.com/) container. It typically has the commands that you'd have written in your pipeline YAML file before you used a Pipe.
+Pipes build on the core concept of Pipelines, containers. A Pipe makes use of a script that lives inside of a [Docker](https://www.docker.com/) container, and it typically has the commands you'd write in your pipeline YAML file before you used a Pipe.
 
-### Example Pipe usage
+## Example Pipe usage
 
-This is what the Atlassian [bitbucket-upload-file](https://bitbucket.org/product/features/pipelines/integrations?p=atlassian/bitbucket-upload-file) Pipe would look like in your pipeline YAML file:
+This is what the Atlassian [bitbucket-upload-file](https://bitbucket.org/product/features/pipelines/integrations?p=atlassian/bitbucket-upload-file) Pipe looks like in your Pipeline YAML file:
 
-![Bitbucket upload file pipe](bitbucket-upload-file-pipe.png)
+```yaml
+- pipe: atlassian/bitbucket-upload-file:0.1.3
+  variables:
+    BITBUCKET_USERNAME: '<string>'
+    BITBUCKET_APP_PASSWORD: '<string>'
+    FILENAME: '<string>'
+    # ACCOUNT: '<string>' # Optional
+    # REPOSITORY: '<string>' # Optional
+    # DEBUG: '<boolean>' # Optional
+```
 
-Where: 
  - `atlassian/bitbucket-upload-file:0.1.3` is the name of the Docker [image](https://hub.docker.com/r/bitbucketpipelines/bitbucket-upload-file) containing the Pipe to run.
- - `BITBUCKET_USERNAME` is an example of a variable that you would to provide a value for the Pipe to use when executing inside of the container.
+ - `BITBUCKET_USERNAME` is an example of a variable you need to provide that has the value for the Pipe to use when executing inside of the container.
 
- :::hint
-**Referring to a Pipe in a pipeline step:** 
+
+### Refer to a Pipe in a Pipeline step
 
 There are two ways you can refer to a Pipe in a step within a pipeline:
 
@@ -54,35 +62,34 @@ pipe: <Bitbucket_account>/<Bitbucket_repo>:<tag>
 ```
 
 This method looks for the location of the Docker image from the `pipe.yml` file within the referenced `<Bitbucket_account>/<Bitbucket_repo>` Pipe repository.
- :::
 
-### Why are they useful?
+## Why are Pipes useful?
 
-So why go to the trouble of writing a Pipe at all? 
+Why go to the trouble of writing a Pipe at all? 
 
-Well, Pipes are all about **re-use**. They allow you to repeat the same action in multiple steps of your pipeline.  By centralizing the core of your action into a Pipe, you end up with a simpler pipeline configuration. Another key feature of a Pipe versus directly scripting in your pipeline is the ability to include dependencies that your main pipeline doesn't require.
+Pipes are all about *re-use*. They allow you to repeat the same action in multiple steps of your Pipeline.  By centralizing the core of your action into a Pipe, you end up with a simpler Pipeline configuration. Another key feature of a Pipe versus directly scripting in your Pipeline is the ability to include dependencies that your main Pipeline doesn't require.
 
 ## Creating a Bitbucket Pipe
 
-A Pipe consists of a bunch of files which make up a Docker image. The Pipe I created has it's image based on the pre-existing [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) image. The finished Pipe has been published as [octopipes/pack](https://hub.docker.com/r/octopipes/pack/) on Docker Hub.
+A Pipe consists of a bunch of files that make up a Docker image. The Pipe I created has its image based on the pre-existing [octopusdeploy/octo](https://hub.docker.com/r/octopusdeploy/octo) image. The finished Pipe has been published as [octopipes/pack](https://hub.docker.com/r/octopipes/pack/) on Docker Hub.
 
 At first, creating a Pipe might seem quite daunting. Helpfully though, Atlassian provide a step-by-step [guide](https://confluence.atlassian.com/bitbucket/how-to-write-a-pipe-for-bitbucket-pipelines-966051288.html) on their website. 
   
 :::warning
-I created this Pipe on an Ubuntu machine using a Bash terminal. If you are using a different platform, you may need to tweak the commands used here.
+I created this Pipe on an Ubuntu machine using a Bash terminal. If you are using a different platform, you may need to tweak the commands you use.
 :::
 
-### Choosing a candidate for a Pipe
+## Choosing a candidate for a Pipe
 
-I've often heard people say that naming something is the hardest thing when it comes to Software, and the same was true for choosing a command to wrap up in a Pipe. However in most CI/CD pipelines, once you have built and run any tests on your code, you probably want to package up your applications. So it felt pretty natural to choose the Octopus CLI [pack](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack) command to create a Pipe for.
+I've often heard people say that naming something is the hardest thing when it comes to software, and the same is true for choosing a command to wrap in a Pipe. However, in most CI/CD pipelines, after you have built and run any tests on your code, you probably want to package your applications. So it felt natural to choose the Octopus CLI [pack](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack) command to create a Pipe for.
 
-The added bonus was that the `pack` command only has a few required parameters, and the optional ones could be tackled with some pipeline magic (more on that [later](#optional-pipe-variables)).
+The added bonus was that the `pack` command only has a few required parameters, and the optional ones can be tackled with some pipeline magic (more on that [later](#optional-pipe-variables)).
 
 There are two types of Pipe that you can author:
  - Simple
  - Complete
 
-I opted for a **Complete** Pipe so that I could publish it and make use of it in other repositories.
+I opted for a **Complete** Pipe so that I can publish it and make use of it in other repositories.
  
 ### Creating the Pipe repository
 
@@ -94,20 +101,20 @@ For further information on creating a new Git repository, please see the Atlassi
 
 ### Create the Pipe skeleton
 
-Atlassian provides a method to generate a skeleton of a Pipe repository using [Yeoman](http://yeoman.io/). Once you have all the pre-requisites (`nodejs` and `npm`) installed, you can run the generator using the `yo` command from a terminal window:
+Atlassian provides a method to generate a skeleton of a Pipe repository using [Yeoman](http://yeoman.io/). When you have all the pre-requisites (`nodejs` and `npm`) installed, you can run the generator using the `yo` command from a terminal:
 
 ```bash
 yo bitbucket-pipe
 ```
-This will prompt you to select which Pipe you want to create. I chose the **New Advanced Pipe (Bash)** option.
+This prompts you to select the Pipe you want to create. I chose **New Advanced Pipe (Bash)**.
 
 ![Bitbucket pipe generator -welcome](pipe-generator-welcome.png)
 
-You will be prompted with some questions to help fill in the metadata and other useful information for consumers of the Pipe. Once complete, it will generate the required files you need to get started:
+You are prompted with some questions to help fill in the metadata and other useful information for consumers of the Pipe. Once complete, it will generate the required files you need to get started:
 
 ![Bitbucket pipe generator - complete](pipe-generator-complete.png)
 
-As a minimum, you'll likely want to edit the following files to suit your Pipe requirements:
+At a minimum, you need to edit the following files to suit your Pipe requirements:
 
  - [pipe.yml](#creating-the-pipes-metadata)
  - [pipe/pipe.sh](#creating-the-pipe-script)
@@ -118,19 +125,19 @@ As a minimum, you'll likely want to edit the following files to suit your Pipe r
 :::hint
 **Tip:** Check other repositories to see how they have written their Pipe!
 
-One of the great things about every Bitbucket Pipe is that the code is public, so you can browse it. For example you can view the source code for the `bitbucket-upload-file` Pipe on [Bitbucket](https://bitbucket.org/atlassian/bitbucket-upload-file/).
+One of the great things about every Bitbucket Pipe is that the code is public, so you can browse it. For example, you can view the source code for the `bitbucket-upload-file` Pipe on [Bitbucket](https://bitbucket.org/atlassian/bitbucket-upload-file/).
 
 This is a really great way to see how other authors have structured their Pipe.
 :::
 
 ### Creating the Pipe's metadata
 
-When creating a **Complete** Pipe, Atlassian requires you to create a `pipe.yml` file. This document contains metadata about your Pipe. It includes things like:
+When you create a **Complete** Pipe, Atlassian requires you to create a `pipe.yml` file. This document contains metadata about your Pipe and includes things like:
  - A friendly name of the Pipe.
  - The Docker Hub image for your Pipe in the format: `account/repo:tag`.
  - A list of Pipe variables where you can specify default values.
 
-If you chose one of the **Advanced** pipes using the Pipe generator, then the `pipe.yml` file will be created for you with all of the relevant information already supplied. Here are the contents of my auto-generated [pipe.yml](https://bitbucket.org/octopusdeploy/pack/src/master/pipe.yml) file:
+If you chose one of the *Advanced* Pipes using the Pipe generator, the `pipe.yml` file will be created for you with all of the relevant information already added. Here are the contents of my auto-generated [pipe.yml](https://bitbucket.org/octopusdeploy/pack/src/master/pipe.yml) file:
 
 ```yaml
 name: Octo Pack
@@ -144,7 +151,7 @@ tags:
     - deployment
 ```
 
-### Creating the Pipe script
+### Create the Pipe script
 
 The main part of your Pipe is the script or binary which will run when it's executed within a container. It will include all of the logic needed to execute the Pipe task. You can choose any language you are familiar with. When I created our [skeleton](#create-pipe-skeleton) of our Pipe earlier, I chose to use [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), and a sample `pipe/pipe.sh` file was created for me to finish.
 
