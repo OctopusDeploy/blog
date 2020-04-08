@@ -635,7 +635,7 @@ You can view the RandomQuotes-JS Octopus project setup in our [samples](https://
 
 ## Conclusion
 
-Creating my first Bitbucket Pipe was pretty straightforward. I can definitely see the advantages of creating a Pipe in Bitbucket. That said, it's important to point out that your Pipe shouldn't try to do too much. It's tempting to cram as much as you can into a Pipe. By doing this you end up fighting against the single biggest advantage that Pipes offer; re-use. Integrating a Bitbucket Pipeline with Octopus is a breeze with the Octopus CLI, and for anything more complex, you always have the API at your disposal.
+Creating my first Bitbucket Pipe was pretty straightforward. I can definitely see the advantages of creating a Pipe in Bitbucket. That said, I found that when making changes to the pipe, the feedback cycle took a while to get right. My advice is to write only the minimum functionality you require, and then build on that over time. Integrating a Bitbucket Pipeline with Octopus is a breeze with the Octopus CLI, and for anything more complex, you always have the API at your disposal.
 
 ## Learn more
  - Take a peek at the *experimental* Pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
