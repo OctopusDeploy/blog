@@ -1,5 +1,5 @@
 ---
-title: Deploying SQL Server Reporting Services reports (SSRS) with Octopus
+title: Deploying SQL Server Reporting Services (SSRS) reports with Octopus
 description: How to deploy SQL Server Reporting Services reports with Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -8,14 +8,22 @@ metaImage: deploying-ssrs.png
 published: 2020-04-15
 tags:
  - DevOps
+ - Database Deployments
 ---
 
-![](deploying-ssrs.png)
+![Deploying SSRS with Octopus Deploy](deploying-ssrs.png)
+
+When you think of automating application deployments, what usually comes to mind is automating the deployment web code, containers, and or database.  In this series, I’ll demonstrate how to automate supporting components such as SQL Server Integration Services (SSIS) packages and SQL Server Reporting Services (SSRS) reports.
+
+- [Deploying SQL Server Integration Services (SSIS) packages with Octopus](/blog/2020-04/deploying-ssis/index.md)
+- **Deploying SQL Server Reporting Services (SSRS) reports with Octopus**
+
+---
 
 Collecting and storing data is often the main functions of web applications.  The collected data needs to be analyzed and shown in graphical format to help make decisions.  This usually takes the form of a report.  SQL Server Reporting Services (SSRS) is Microsofts reporting solution.  SSRS is a web-based application that can use a number of different data sources to populate reports for users.  In this part of my series, I will demonstrate how to deploy SSRS reports using Octopus Deploy.
 
 ## Build the project
-As of Visual Studio (VS) 2017, MSBuild can build .rtpproj files.  Projects that are created in older versions of Visual Studio will need to configure the build agents similar to my [SSIS post](/blog/2020-02/deploying-ssis/index.md) in order to build the project using Visual Studion itslef (devenv.exe).  This post utilizes Azure DevOps as the build platform, however any build server that can use MSBuild will be able to do this (for VS 2017+).
+As of Visual Studio (VS) 2017, MSBuild can build .rtpproj files.  Projects that are created in older versions of Visual Studio will need to configure the build agents similar to my [SSIS post](/blog/2020-04/deploying-ssis/index.md) in order to build the project using Visual Studion itslef (devenv.exe).  This post utilizes Azure DevOps as the build platform, however any build server that can use MSBuild will be able to do this (for VS 2017+).
 
 ### Add the build task
 To build an SSRS project, simply add any MSBuild type task to your build definition.  For my build definition, I chose a Visual Studio build task, which invokes MSBuild:
