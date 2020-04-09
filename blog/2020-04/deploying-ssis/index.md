@@ -15,6 +15,11 @@ tags:
 
 When you think of automating application deployments, what usually comes to mind is automating the deployment web code, containers, and or database.  In this series, I’ll demonstrate how to automate supporting components such as SQL Server Integration Services (SSIS) packages and SQL Server Reporting Services (SSRS) reports.
 
+- **Deploying SQL Server Integration Services (SSIS) packages with Octopus**
+- [Deploying SQL Server Reporting Services (SSRS) reports with Octopus](/blog/deploying-ssrs/index.md)
+
+---
+
 Extract Transform and Load (ETL) processes are typically deployed by a database administrator (DBA) or an integrations specialist.  In lower-level environments, it’s not unusual to allow developers to deploy directly to the SSIS server, but when it comes to higher-level, such as production, they‘re usually done manually.  The DBAs sometimes have scripts they can run to deploy, but it’s usually not included in the same tooling as automated application deployments.  With Octopus Deploy, it’s possible to add your ETL deployments to your deployment stack.
 
 ## Building the SSIS package

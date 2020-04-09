@@ -11,7 +11,14 @@ tags:
  - Database Deployments
 ---
 
-![](deploying-ssrs.png)
+![Deploying SSRS with Octopus Deploy](deploying-ssrs.png)
+
+When you think of automating application deployments, what usually comes to mind is automating the deployment web code, containers, and or database.  In this series, I’ll demonstrate how to automate supporting components such as SQL Server Integration Services (SSIS) packages and SQL Server Reporting Services (SSRS) reports.
+
+- [Deploying SQL Server Integration Services (SSIS) packages with Octopus](/blog/deploying-ssis/index.md)
+- **Deploying SQL Server Reporting Services (SSRS) reports with Octopus**
+
+---
 
 Collecting and storing data is often the main functions of web applications.  The collected data needs to be analyzed and shown in graphical format to help make decisions.  This usually takes the form of a report.  SQL Server Reporting Services (SSRS) is Microsofts reporting solution.  SSRS is a web-based application that can use a number of different data sources to populate reports for users.  In this part of my series, I will demonstrate how to deploy SSRS reports using Octopus Deploy.
 
