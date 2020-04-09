@@ -1,14 +1,17 @@
 ---
-title: "Deploying SSIS with Octopus Deploy"
+title: "Deploying SQL Server Integration Services (SSIS) with Octopus Deploy"
 description: How to deploy SQL Server Integration Services packages
 author: shawn.sesna@octopus.com
-visibility: private
-bannerImage:
-metaImage:
-published: 2021-01-15
+visibility: public
+bannerImage: deploying-ssis.png
+metaImage: deploying-ssis.png
+published: 2020-04-14
 tags:
  - DevOps
+ - Database Deployments
 ---
+
+![Deploying SSIS with Octopus Deploy](deploying-ssis.png)
 
 When you think of automating application deployments, what usually comes to mind is automating the deployment web code, containers, and or database.  In this series, I’ll demonstrate how to automate supporting components such as SQL Server Integration Services (SSIS) packages and SQL Server Reporting Services (SSRS) reports.
 
