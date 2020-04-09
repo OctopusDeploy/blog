@@ -16,7 +16,7 @@ tags:
 When you think of automating application deployments, what usually comes to mind is automating the deployment web code, containers, and or database.  In this series, I’ll demonstrate how to automate supporting components such as SQL Server Integration Services (SSIS) packages and SQL Server Reporting Services (SSRS) reports.
 
 - **Deploying SQL Server Integration Services (SSIS) packages with Octopus**
-- [Deploying SQL Server Reporting Services (SSRS) reports with Octopus](/blog/deploying-ssrs/index.md)
+- [Deploying SQL Server Reporting Services (SSRS) reports with Octopus](/blog/2020-04/deploying-ssrs/index.md)
 
 ---
 
