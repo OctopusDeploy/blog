@@ -1,6 +1,6 @@
 ---
-title: "Deploying SQL Server Integration Services (SSIS) with Octopus Deploy"
-description: How to deploy SQL Server Integration Services packages
+title: Deploying SQL Server Integration Services (SSIS) packages with Octopus
+description: How to deploy SQL Server Integration Services packages with Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: deploying-ssis.png

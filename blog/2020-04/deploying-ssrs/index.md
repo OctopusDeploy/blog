@@ -1,5 +1,5 @@
 ---
-title: Deploying SQL Server Reporting Services reports (SSRS) with Octopus
+title: Deploying SQL Server Reporting Services (SSRS) reports with Octopus
 description: How to deploy SQL Server Reporting Services reports with Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -8,6 +8,7 @@ metaImage: deploying-ssrs.png
 published: 2020-04-15
 tags:
  - DevOps
+ - Database Deployments
 ---
 
 ![](deploying-ssrs.png)
