@@ -1,14 +1,16 @@
 ---
-title: "Beyond application deployment"
-description: How to deploy SQL Server Reporting Services reports
+title: Deploying SQL Server Reporting Services reports (SSRS) with Octopus
+description: How to deploy SQL Server Reporting Services reports with Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private
-bannerImage:
-metaImage:
-published: 2021-01-15
+visibility: public
+bannerImage: deploying-ssrs.png
+metaImage: deploying-ssrs.png
+published: 2020-04-15
 tags:
  - DevOps
 ---
+
+![](deploying-ssrs.png)
 
 Collecting and storing data is often the main functions of web applications.  The collected data needs to be analyzed and shown in graphical format to help make decisions.  This usually takes the form of a report.  SQL Server Reporting Services (SSRS) is Microsofts reporting solution.  SSRS is a web-based application that can use a number of different data sources to populate reports for users.  In this part of my series, I will demonstrate how to deploy SSRS reports using Octopus Deploy.
 
