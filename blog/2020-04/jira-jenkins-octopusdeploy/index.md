@@ -1,14 +1,17 @@
 ---
-title: CI/CD feedback process
-description: DevOps Nerdvana - Integrating Jira, Jenkins, and Octopus Deploy
+title: End-to-end visibility across your CI/CD pipeline with Jira and Octopus Deploy
+description: DevOps Nerdvana - Integrating Jira, Jenkins, and Octopus Deploy to get clear tracability across your CI/CD pipeline.
 author: shawn.sesna@octopus.com
 visibility: private
-published: 2022-04-13
-metaImage: 
-bannerImage: 
+published: 2020-04-20
+metaImage: jira-octopus.png
+bannerImage: jira-octopus.png
 tags:
  - DevOps
+ - Jira
 ---
+
+![End-to-end visibility across your CI/CD pipeline with Jira and Octopus Deploy](jira-octopus.png)
 
 DevOps adoption has dramatically increased in recent years as people recognize the benefits it offers.  Integration of Continuous Integration (CI) solutions with Continuous Delivery (CD) solutions are now commonplace, though few provide any input to the continuous feedback loop of DevOps.  In this post, I will show you how to integrate Jenkins, Octopus Deploy, and Jira to provide a solution that will hook into the continuous feedback loop.
 
