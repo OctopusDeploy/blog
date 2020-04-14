@@ -2,8 +2,8 @@
 title: "Bitbucket Pipelines: Pipes and integrating with Octopus Deploy"
 description: What are Bitbucket Pipes, and how can you integrate them into your Bitbucket Pipeline with Octopus Deploy?
 author: mark.harrison@octopus.com
-visibility: private
-published: 3020-04-13
+visibility: public
+published: 2020-04-21
 metaImage: bitbucket-cd.png
 bannerImage: bitbucket-cd.png
 tags:
