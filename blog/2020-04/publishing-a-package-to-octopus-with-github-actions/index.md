@@ -11,7 +11,7 @@ tags:
 
 I recently set aside some time to write my first GitHub Action. I used my personal blog as my test case. It is a static site that is built with Wyam and hosted in Firebase.
 
-[TL;DR](#full-script) down to the bottom for the full script.
+[TL;DR](#full-script): skip down to the bottom for the full script.
 
 ## What are GitHub Actions?
 
@@ -25,26 +25,26 @@ The workflow contains one or more jobs that run on Docker containers. Jobs conta
 
 The high-level set of steps that I need to perform are:
 
-* Check out the code
-* Generate the site
-* Package the site
-* Push that package to my Octopus instance
+* Check out the code.
+* Generate the site.
+* Package the site.
+* Push that package to my Octopus instance.
 
 Some of these steps require other steps to run first. I'll need steps to install .NET Core, Wyam, and the Octopus CLI. I also need a step to calculate a version for my site package.
 
 ## Workflow creation
 
-Creating a new workflow was pretty intuitive. I went to the `Actions` tab of my repository and clicked the `New workflow` button.
+Creating a new workflow was pretty intuitive. I went to the **Actions** tab of my repository and clicked the **New workflow** button.
 
-There are some starter workflows that you can choose. I chose to skip those with the `Set up a workflow yourself` button.
+There are some starter workflows that you can choose. I skipped those and went with the **Set up a workflow yourself** option.
 
 GitHub launched me into an editor for a new YAML file in the `.github/workflows/` folder of my repository.
 
-Here are the changes that I made to that file.
+Here are the changes I made to that file.
 
 ### Name and trigger
 
-I kept the default name of `CI` and the trigger for pushes to the `master` branch.
+I kept the default name `CI` and the trigger for pushes to the `master` branch:
 
 ```yml
 name: CI
@@ -56,7 +56,7 @@ on:
 
 ### Generate job
 
-I renamed the default job from `build` to `generate` and kept the image that it runs on set to `ubuntu-latest`.
+I renamed the default job from `build` to `generate` and accepted the image it runs on: `ubuntu-latest`:
 
 ```yml
 jobs:
@@ -66,9 +66,9 @@ jobs:
 
 ### Checkout step
 
-Below is the most minimal step you can add to a job. In this one line, I'm defining a step that checks out my repository to the Ubuntu container hosting the job.
+Below is the most minimal step you can add to a job. In this one line, I defined a step that checks out my repository to the Ubuntu container hosting the job.
 
-Reusing steps is a key feature of Actions and many other YAML based pipelines. I'm using version 2 of the `checkout` step provided by the GitHub Actions team. You can also author actions and use third party actions in your workflows.
+Reusing steps is a key feature of Actions and many other YAML based pipelines. I use version 2 of the `checkout` step provided by the GitHub Actions team. You can also author actions and use third party actions in your workflows:
 
 ```yml
 steps:
@@ -79,18 +79,18 @@ steps:
 
 Actions provide [workflow commands](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions) that you can use in your steps with a special string format passed to `echo`.
 
-This step is named `Set version` and creates a package version based on the current date and the current run number of the workflow. The package version is saved as `$PACKAGE_VERSION` using the `set-env` command. `$PACKAGE_VERSION` is now available in the steps that create and publish the package.
+This step is called **Set version** and creates a package version based on the current date and the current run number of the workflow. The package version is saved as `$PACKAGE_VERSION` using the `set-env` command. `$PACKAGE_VERSION` is now available in the steps that create and publish the package:
 
 ```yml
     - name: Set version
       run: echo "::set-env name=PACKAGE_VERSION::$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER"
 ```
 
-### Generating the site
+### Generate the site
 
 To generate my static site, I need to install .NET Core, the Wyam tool, and call Wyam against my source.
 
-I'm using another built-in action `actions/setup-dotnet@v1` to install .NET Core on the container. This step accepts a parameter for the .NET version to install.
+I use another built-in action `actions/setup-dotnet@v1` to install .NET Core on the container. This step accepts a parameter for the .NET version to install:
 
 ```yml
     - name: Setup .NET Core
@@ -99,23 +99,23 @@ I'm using another built-in action `actions/setup-dotnet@v1` to install .NET Core
         dotnet-version: 2.1.802
 ```
 
-With .NET installed, I can call the CLI to install the Wyam tool onto the container.
+With .NET installed, I can call the CLI to install the Wyam tool onto the container:
 
 ```yml
     - name: Install Wyam
       run: dotnet tool install --tool-path . wyam.tool
 ```
 
-Finally, the `Generate site` step calls Wyam to generate the site.
+Finally, the `Generate site` step calls Wyam to generate the site:
 
 ```yml
     - name: Generate site
       run: ./wyam build -r blog -t Stellar src
 ```
 
-### Packing and publishing the site
+### Package and publish the site
 
-I need the Octopus CLI to package and publish the site. I hopped over to the [Octopus CLI download page](https://octopus.com/downloads/octopuscli#linux) and copied the script for installing it on Ubuntu.
+I need the Octopus CLI to package and publish the site. I hopped over to the [Octopus CLI download page](https://octopus.com/downloads/octopuscli#linux) and copied the script for installing it on Ubuntu:
 
 ```yml
     - name: Install Octopus CLI
@@ -126,7 +126,7 @@ I need the Octopus CLI to package and publish the site. I hopped over to the [Oc
         sudo apt update && sudo apt install octopuscli
 ```
 
-I copy the necessary files into a directory representing the package. Then I call the `octo pack` command to create a Zip package with the version set to `$PACKAGE_VERSION`.
+I copy the necessary files into a directory representing the package. Then I call the `octo pack` command to create a Zip package with the version set to `$PACKAGE_VERSION`:
 
 ```yml
     - name: Package blog.rousseau.dev
@@ -146,18 +146,18 @@ Saving "blog.rousseau.dev.2020.04.08.21.zip" to "./packages"...
 Adding files from "./packages/blog.rousseau.dev" matching pattern "**"
 ```
 
-With the package created, I call the `octo push` command to upload the package to my Octopus instance. My server URL and API key are configured as secrets in my repository to keep them safe and secure.
+With the package created, I call the `octo push` command to upload the package to my Octopus instance. My server URL and API key are configured as secrets in my repository to keep them safe and secure:
 
 ```yml
     - name: Push blog.rousseau.dev to Octopus
       run: octo push --package="./packages/blog.rousseau.dev.$PACKAGE_VERSION.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_KEY }}"
 ```
 
-On the topic of API keys, I _highly_ recommend setting up a [Service Account](https://octopus.com/docs/administration/managing-users-and-teams/service-accounts) when integrating another application with Octopus. There's a built-in `Build server` role that you can use for CI service accounts.
+On the topic of API keys, I _highly_ recommend setting up a [service account](https://octopus.com/docs/administration/managing-users-and-teams/service-accounts) when integrating another application with Octopus. There's a built-in `Build server` role that you can use for CI service accounts.
 
-You can see in the results below that the request is authenticating as `GitHub (a service account)` instead of my user account.
+The results below show the request is authenticating as `GitHub (a service account)` instead of my user account.
 
-The package that was created in the package step was successfully pushed to Octopus. Now I can deploy my site to Firebase - but that is a post for another time.
+The package that was created in the package step was successfully pushed to Octopus. Now I can deploy my site to Firebase (but that is a post for another time):
 
 ```
 Detected automation environment: "NoneOrUnknown"
@@ -225,4 +225,4 @@ jobs:
 
 ## Conclusion
 
-GitHub Actions are an excellent way to add continuous integration and delivery directly to your projects hosted there. When combined with the Octopus CLI, you've got a powerful onramp to repeatable, reliable deployments.
+GitHub Actions are an excellent way to add continuous integration and delivery directly to your projects hosted on GitHub. When combined with the Octopus CLI, you've got a powerful onramp to repeatable, reliable deployments.
