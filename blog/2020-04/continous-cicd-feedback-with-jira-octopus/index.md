@@ -2,7 +2,7 @@
 title: End-to-end visibility across your CI/CD pipeline with Jira and Octopus Deploy
 description: DevOps Nerdvana - Integrating Jira, Jenkins, and Octopus Deploy to get clear tracability across your CI/CD pipeline.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2020-04-20
 metaImage: jira-octopus.png
 bannerImage: jira-octopus.png
