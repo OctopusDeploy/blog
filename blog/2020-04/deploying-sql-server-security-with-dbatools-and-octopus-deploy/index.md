@@ -2,14 +2,16 @@
 title: Deploying SQL Server Security with dbatools and Octopus Deploy
 description: A discussion about the challenge of managing SQL Server users and roles, and a script that uses dbatools to version control and deploy them.
 author: Alex Yates
-visibility: private
-published: 3020-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-04-16
+metaImage: sql-server-security-with-dbatools.png
+bannerImage: sql-server-security-with-dbatools.png
 tags:
  - Product
  - Database Deployments
 ---
+
+![Deploying SQL Server Security with dbatools and Octopus Deploy](sql-server-security-with-dbatools.png)
 
 Last month, I wrote about your [SQL Server deployment tooling options](https://octopus.com/blog/sql-server-deployment-options-for-octopus-deploy). This month, I’m going to discuss the often painful and poorly supported challenge of managing database security.
 
