@@ -44,7 +44,7 @@ Along with those build tasks, you will also have the following Post Build tasks
 The Jenkins plugin differs from Azure DevOps, TeamCity, and Bamboo in that Create Release and Deploy Release are only available as Post build actions.  Jenkins only allows one of each type of Post build action type, meaning you cannot have more than one Create Release action per build definition.  
 :::
 
-#### Configure Octopus Deploy Server connection
+### Configure Octopus Deploy Server connection
 A number of the Octopus Deploy steps require a connection to be configured.  To configure a connection, click **Manage Jenkins**, then **Configure System**:
 
 ![](jenkins-manage-configure-system.png)
@@ -57,7 +57,7 @@ Add your Octopus Server details and click **Save**:
 
 ![](jenkins-manage-add-octopus-connection-data.png)
 
-#### Octopus Deploy CLI
+### Octopus Deploy CLI
 
 The Octopus Deploy plugin contains all of the commands necessary to perform the actions, but it still relies on the [Octopus Deploy CLI](https://octopus.com/downloads) being present on the build agent.  Once you've downloaded the CLI and extracted it to a folder, we'll need to configure Jenkins so that it knows it's there.
 
@@ -74,11 +74,11 @@ Fill in where the CLI is located and give the tool a name:
 ![](jenkins-manage-octopus-cli-path.png)
 
 
-### Example build
+## Example build
 
 For this post, I'm building the PetClinic application which is a Java application using MySQL as a backend.  
 
-#### Build setup
+### Build setup
 To start, select a **New Item** from the Jenkins menu:
 
 ![](jenkins-new-item.png)
@@ -129,7 +129,7 @@ Under the **Build Environment** tab, check the box **Set Build Name**.  This fea
 
 ![](jenkins-build-build-name.png)
 
-#### Build steps
+### Build steps
 Since we chose a Maven build, Jenkins creates the build step for us.  All we need to do is fill in the Goals and options:
 ```
 clean package -Dproject.versionNumber=${BUILD_DISPLAY_NAME} -DdatabaseServerName=${DatabaseServerName} -DdatabaseName=${DatabaseName} -DskipTests -DdatabaseUserName=${DatabaseUserName} -DdatabaseUserPassword=${DatabaseUserPassword}
@@ -144,7 +144,7 @@ Breakdown of the command:
 
 This step builds a .war file with the name petclinic.web.Version.war.  The package ID in this case is `petclinic.web`.
 
-#### Post steps
+### Post steps
 The remainder of our steps will be in the Post steps section of our build definition.  Here is where we're going to package up the Flyway project for the MySQL database backend, push the packages and build information to Octopus Deploy, then create our Release.
 
 In the Post Steps tab, click **Add post-build step** and select **Octopus: package application**
@@ -190,7 +190,7 @@ Fill in the following details
 
 ![](jenkins-build-buildinfo.png)
 
-#### Build definition complete
+### Build definition complete
 In this build definition, we've integrated Jenkins with Octopus Deploy.  Not only that, we've configured the Jenkins build to retrieve the release notes from Bitbucket so they'll appear in Octopus Deploy!  Let's head over to Jira and get that integration configured.
 
 ## Jira integration with Octopus Deploy
