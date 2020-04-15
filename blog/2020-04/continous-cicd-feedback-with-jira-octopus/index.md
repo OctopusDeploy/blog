@@ -1,5 +1,5 @@
 ---
-title: End-to-end visibility across your CI/CD pipeline with Jira and Octopus Deploy
+title: Track Jira issues across your CI/CD pipeline 
 description: Integrating Jira, Jenkins, and Octopus Deploy to get clear traceability across your CI/CD pipeline.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -13,26 +13,21 @@ tags:
 
 ![End-to-end visibility across your CI/CD pipeline with Jira and Octopus Deploy](jira-octopus.png)
 
-DevOps adoption has dramatically increased in recent years as people recognize the benefits it offers.  Integration of Continuous Integration (CI) solutions with Continuous Delivery (CD) solutions are now commonplace, though few provide any input to the continuous feedback loop of DevOps.  In this post, I will show you how to integrate Jenkins, Octopus Deploy, and Jira to provide a solution that will hook into the continuous feedback loop.
+DevOps adoption has dramatically increased in recent years as people recognize the benefits it offers.  Integration of Continuous Integration (CI) solutions with Continuous Delivery (CD) solutions are now commonplace, though few provide any input to the continuous feedback loop of DevOps.  In this post, I show you how to integrate Jenkins, Octopus Deploy, and Jira to provide a solution that makes the most of the continuous feedback loop.
 
-## Jenkins Octopus Deploy plugin
-An Octopus Deploy plugin for Jenkins has existed for a number of years, however, this plugin was developed by the Jenkins community and not by Octopus Deploy.  In 2019, Octopus Deploy officially took over development and maintenance of the Jenkins plugin, implementing the same features that are available on other build platforms.
+## Install the Jenkins Octopus Deploy plugin
 
-:::hint
-Prior to Octopus Deploy taking ownership of the plugin, there was a security issue where passwords were stored in plain text.  This is no longer the case and the warning that Jenkins would display has since been removed.
-:::
+Octopus Deploy provides a plugin for Jenkins that implements the same features available on other build platforms.
 
-### Install the Octopus Deploy plugin
-
-Installing of the Octopus Deploy plugin is no different than installing any other plugin for Jenkins.  From the landing page in Jenkins, click Manage Jenkins:
+Installing of the Octopus Deploy plugin is no different than installing any other plugin for Jenkins.  From the landing page in Jenkins, click **Manage Jenkins**:
 
 ![](jenkins-managejenkins.png)
 
-From here, click on Manage Plugins:
+From here, click **Manage Plugins**:
 
 ![](jenkins-manage-plugins.png)
 
-Click on the **Available** tab, then filter by `Octo`.  Tick the box next to Octopus Deploy and then choose either **Install without restart** or **Download now and install after restart**.
+Click the **Available** tab, then filter by `Octo`.  Tick the box next to Octopus Deploy and then choose either **Install without restart** or **Download now and install after restart**.
 
 ![](jenkins-manage-add-plugin.png)
 
@@ -50,7 +45,7 @@ The Jenkins plugin differs from Azure DevOps, TeamCity, and Bamboo in that Creat
 :::
 
 #### Configure Octopus Deploy Server connection
-A number of the Octopus Deploy steps require a connection to be configured.  To configure a connection, click on **Manage Jenkins**, then **Configure System**:
+A number of the Octopus Deploy steps require a connection to be configured.  To configure a connection, click **Manage Jenkins**, then **Configure System**:
 
 ![](jenkins-manage-configure-system.png)
 
@@ -126,7 +121,7 @@ Optional parameters are (these are used to construct the version number, ie: 1.0
 ![](jenkins-build-parameters.png)
 
 With our parameters defined, let's hook the build into source control.  I'll be using the PetClinic public Bitbucket repo for this build:
-https://twerthi@bitbucket.org/octopussamples/petclinic.git.  Click on or scroll to **Source Code Management**.  Choose Git and enter the URL to the repo.
+https://twerthi@bitbucket.org/octopussamples/petclinic.git.  Click **Source Code Management**, choose Git, and enter the URL to the repo.
 
 ![](jenkins-build-source-control.png)
 
@@ -152,7 +147,7 @@ This step builds a .war file with the name petclinic.web.Version.war.  The packa
 #### Post steps
 The remainder of our steps will be in the Post steps section of our build definition.  Here is where we're going to package up the Flyway project for the MySQL database backend, push the packages and build information to Octopus Deploy, then create our Release.
 
-In the Post Steps tab, click on Add post-build step and select **Octopus: package application**
+In the Post Steps tab, click **Add post-build step** and select **Octopus: package application**
 
 ![](jenkins-build-post-add-package.png)
 
@@ -181,7 +176,7 @@ In the **Octopus Deploy: package application** step for Flyway we defined above,
 
 ![](jenkins-build-push-packages.png)
 
-That takes are of pushing the packages, let's push some build information!  Just like before, click on **Add post-build step** and choose **Octopus Deploy: Push build information**.  This step is where release notes from Jira would show up.
+That takes are of pushing the packages, let's push some build information!  Just like before, click **Add post-build step** and choose **Octopus Deploy: Push build information**.  This step is where release notes from Jira would show up.
 
 ![](jenkins-build-post-add-build-info.png)
 
@@ -237,7 +232,7 @@ Before moving forward, let's bring up Octopus Deploy and get to the right screen
 
 ![](octopus-deploy-configuration.png)
 
-Next, click on **Settings**:
+Next, click **Settings**:
 
 ![](octopus-deploy-configuration-settings.png)
 
@@ -293,7 +288,7 @@ As part of the integration with Jira, you have the ability to map Octopus Deploy
 
 ![](octopus-deploy-infrastructure.png)
 
-Click on **Environments**:
+click **Environments**:
 
 ![](octopus-deploy-environments.png)
 
@@ -308,7 +303,7 @@ Use the drop-down in the Jira Environment Type section to associate the Octopus 
 Repeat this process for any other environments that you want mapped.
 
 ## Octopus Deploy project automatic release note creation
-One of my colleagues showed me a neat trick for automation release note creation.  From within your Octopus project, click on Settings
+One of my colleagues showed me a neat trick for automation release note creation.  From within your Octopus project, click **Settings**:
 
 ![](octopus-deploy-project-settings.png)
 
@@ -338,7 +333,7 @@ Optionally you can enter the following for the Deployment Changes Template:
 With our integrations complete, it's time to see all of this working together!
 
 ### Create an issue in Jira Software
-Let's create an issue in Jira, click on the **+** on the left hand side:
+Let's create an issue in Jira, click the **+** on the left hand side:
 
 ![](jira-add-issue.png)
 
@@ -382,7 +377,7 @@ Click **Build Information**:
 
 ![](octopus-deploy-build-information.png)
 
-Click on the **Highest version** link to view the commits and work items (clicking on the package name also works, but there's an extra click in that you have to select the version afterwards).
+click the **Highest version** link to view the commits and work items (clicking on the package name also works, but there's an extra click in that you have to select the version afterwards).
 
 ![](octopus-deploy-build-information-highest.png)
 
