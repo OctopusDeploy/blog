@@ -11,7 +11,7 @@ tags:
  - Jira
 ---
 
-![End-to-end visibility across your CI/CD pipeline with Jira and Octopus Deploy](jira-octopus.png)
+![Track Jira issues across your CI/CD pipeline](jira-octopus.png)
 
 DevOps adoption has dramatically increased in recent years as people recognize the benefits it offers.  Integration of Continuous Integration (CI) solutions with Continuous Delivery (CD) solutions are now commonplace, though few provide any input to the continuous feedback loop of DevOps.  In this post, I show you how to integrate Jenkins, Octopus Deploy, and Jira to provide a solution that makes the most of the continuous feedback loop.
 
@@ -19,60 +19,37 @@ DevOps adoption has dramatically increased in recent years as people recognize t
 
 Octopus Deploy provides a plugin for Jenkins that implements the same features available on other build platforms.
 
-Installing of the Octopus Deploy plugin is no different than installing any other plugin for Jenkins.  From the landing page in Jenkins, click **Manage Jenkins**:
+Installing of the Octopus Deploy plugin is the same as installing any other plugin for Jenkins.  When you open Jenkins, from the landing page, click **Manage Jenkins**, and then **Manage Plugins**:
 
-![](jenkins-managejenkins.png)
+![The Jenkins UI](jenkins-manage-plugins.png "width=500")
 
-From here, click **Manage Plugins**:
+Click the **Available** tab, then filter by `Octo`.  Tick the box next to Octopus Deploy and choose either **Install without restart** or **Download now and install after restart**.
 
-![](jenkins-manage-plugins.png)
-
-Click the **Available** tab, then filter by `Octo`.  Tick the box next to Octopus Deploy and then choose either **Install without restart** or **Download now and install after restart**.
-
-![](jenkins-manage-add-plugin.png)
-
-Once the plugin has been installed, you will have access to the following build tasks
+After the plugin has been installed, you will have access to the following build tasks:
 - Octopus Deploy: Package application
 - Octopus Deploy: Push packages
 - Octopus Deploy: Push build information
 
-Along with those build tasks, you will also have the following Post Build tasks
+In addition to the build tasks, you will also have the following post build tasks:
 - Octopus Deploy: Create Release
 - Octopus Deploy: Deploy Release
 
 :::hint
-The Jenkins plugin differs from Azure DevOps, TeamCity, and Bamboo in that Create Release and Deploy Release are only available as Post build actions.  Jenkins only allows one of each type of Post build action type, meaning you cannot have more than one Create Release action per build definition.  
+The Jenkins plugin differs from Azure DevOps, TeamCity, and Bamboo in that *create release* and *deploy release* are only available as post build actions.  Jenkins only allows one of each type of post build action type, meaning you cannot have more than one *create release* action per build definition.  
 :::
 
-### Configure Octopus Deploy Server connection
-A number of the Octopus Deploy steps require a connection to be configured.  To configure a connection, click **Manage Jenkins**, then **Configure System**:
+### Configure the Octopus Server connection
+A number of the Octopus Deploy steps require a connection to be configured.  To configure a connection, click **Manage Jenkins**, then **Configure System**, then scroll down to the **Octopus Deploy Plugin**, and click **Add Octopus Deploy Server**:
 
-![](jenkins-manage-configure-system.png)
+![A screenshot of the Jenkins UI](jenkins-manage-add-octopus-connection.png "width=500")
 
-Scroll down to the **Octopus Deploy Plugin** and click **Add Octopus Deploy Server**:
-
-![](jenkins-manage-add-octopus-connection.png)
-
-Add your Octopus Server details and click **Save**:
-
-![](jenkins-manage-add-octopus-connection-data.png)
+Add your Octopus Server details and click **Save**.
 
 ### Octopus Deploy CLI
 
-The Octopus Deploy plugin contains all of the commands necessary to perform the actions, but it still relies on the [Octopus Deploy CLI](https://octopus.com/downloads) being present on the build agent.  Once you've downloaded the CLI and extracted it to a folder, we'll need to configure Jenkins so that it knows it's there.
+The Octopus Deploy plugin contains all of the commands necessary to perform the actions, but it still relies on the [Octopus Deploy CLI](https://octopus.com/downloads) being present on the build agent. Downloaded the Octopus CLI and extracted it to a folder, then configure Jenkins so that it knows it's there.
 
-Click **Manage Jenkins**, then **Global Tool Configuration**:
-
-![](jenkins-manage-global-tool.png)
-
-Scroll to the **Octopus Deploy CLI** section and click **Add Octopus Tool**:
-
-![](jenkins-manage-octopus-cli.png)
-
-Fill in where the CLI is located and give the tool a name:
-
-![](jenkins-manage-octopus-cli-path.png)
-
+Click **Manage Jenkins**, then **Global Tool Configuration**. Scroll to the **Octopus Deploy CLI** section and click **Add Octopus Tool**. Add a name for the tool and the path to the Octopus CLI, for instance, `c:\octopuscli\octo.exe`.
 
 ## Example build
 
