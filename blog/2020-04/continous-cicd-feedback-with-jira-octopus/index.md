@@ -403,6 +403,6 @@ When the release begins deploying, we can see it sent information to Jira:
 In Jira, we can see that the issue is currently being deployed to development!
 
 ![](jira-release-deploying.png)
-
+ 
 ## Conclusion
 Jenkins, Jira, and Octopus Deploy are all powerful DevOps tools.  When you integrate the three together, you get a powerful DevOps solution that provides continuous feedback to developers, operations, and business teams alike.
