@@ -53,21 +53,17 @@ Click **Manage Jenkins**, then **Global Tool Configuration**. Scroll to the **Oc
 
 ## Example build
 
-For this post, I'm building the PetClinic application which is a Java application using MySQL as a backend.  
+For this post, I'm building the PetClinic application which is a Java application that uses MySQL as a backend.  
 
 ### Build setup
 To start, select a **New Item** from the Jenkins menu:
 
-![](jenkins-new-item.png)
+![The Jenkins menu](jenkins-new-item.png "width=400")
 
-Give your project a name and select **Maven project**:
-
-![](jenkins-maven-project.png)
-
-Once you click **OK** you will be brought to the configuration screen for your build definition.
+Give your project a name and select **Maven project**. Click **OK** and you will see the configuration screen for your build definition.
 
 :::hint
-I've configured my build to create a unique version number based on some parameters.  This version number will be stamped on the artifacts of the build that are later pushed to Octopus Deploy.  I've installed a couple of Jenkins plugins to make this work
+I configured my build to create a unique version number based on some parameters.  This version number will be stamped on the artifacts of the build that are later pushed to Octopus Deploy.  I've installed a couple of Jenkins plugins to make this work:
 - Build Name and Description Setter
 - Date Parameter Plugin
 :::
