@@ -13,7 +13,7 @@ tags:
 
 ![Track Jira issues across your CI/CD pipeline](jira-octopus.png)
 
-DevOps adoption has dramatically increased in recent years as people recognize the benefits it offers. Many solutions offer Continuous Integration (CI) and Continuous Delivery (CD) integrated together, we've previously discussed the [differences between CI and CD](blog/2019-08/differences-between-ci-cd/index.md), but these solutions rarely make the most of the continuous feedback loop that is critical in DevOps. In this post, I show you how to integrate Jenkins, Octopus Deploy, and Jira to provide a solution that makes it easy to track issues across your CI/CD pipeline.
+DevOps adoption has dramatically increased in recent years as people recognize the benefits it offers. Many solutions offer Continuous Integration (CI) and Continuous Delivery (CD) integrated together, we've previously discussed the [differences between CI and CD](blog/2019-08/difference-between-ci-cd/index.md), but these solutions rarely make the most of the continuous feedback loop that is critical in DevOps. In this post, I show you how to integrate Jenkins, Octopus Deploy, and Jira to provide a solution that makes it easy to track issues across your CI/CD pipeline.
 
 ## Install the Jenkins Octopus Deploy plugin
 
