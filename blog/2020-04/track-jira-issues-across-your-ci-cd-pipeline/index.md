@@ -47,7 +47,7 @@ Add your Octopus Server details and click **Save**.
 
 ### Octopus Deploy CLI
 
-The Octopus Deploy plugin contains all of the commands necessary to perform the actions, but it still relies on the [Octopus Deploy CLI](https://octopus.com/downloads) being present on the build agent. Download the Octopus CLI and extract it to a folder, then configure Jenkins to know it’s there.
+The Octopus Deploy plugin contains all of the commands necessary to perform the actions, but it still relies on the [Octopus Deploy CLI](https://octopus.com/downloads/octopuscli) being present on the build agent. Download the Octopus CLI and extract it to a folder, then configure Jenkins to know it’s there.
 
 Click **Manage Jenkins**, then **Global Tool Configuration**. Scroll to the **Octopus Deploy CLI** section and click **Add Octopus Tool**. Add a name for the tool and the path to the Octopus CLI, for instance, `c:\octopuscli\octo.exe`.
 
@@ -196,7 +196,7 @@ Be sure to click Test to make sure the credentials are valid.
 
 ### Environment mapping
 
-As part of the integration with Jira, you have the ability to map Octopus Deploy environments to Jira environment types.  To do this, click the **Infrastructure** tab, then **Environments**, and click the ellipses for that environment and **Edit**:
+As part of the integration with Jira, you need to map Octopus Deploy environments to Jira environment types.  This is required so Jira can understand Octopus environments and track issue progress. Note that the Jira environment types are a fixed list that cannot be edited. To do this, click the **Infrastructure** tab, then **Environments**, and click the ellipses for that environment and **Edit**:
 
 ![](octopus-deploy-environment-edit.png)
 
@@ -242,7 +242,7 @@ Fill in the form for the issue, and click **Create**.
 Take note of the ID that is created for the issue, as you need this later.  For this post, it’s `PET-3`.
 
 ### Commit to the repo
-Commits show up in Octopus Deploy as release notes so you can see what’s being deployed.  In addition, if you reference a Jira issue within the commit message, the commit will be logged to the issue within Jira.  When a deployment occurs, Octopus will update Jira with the status.
+Commits show up in Octopus Deploy as release notes so you can see what’s being deployed.  In addition, if you reference a Jira issue within the commit message, the commit will be associated with the issue within Jira.  When a deployment occurs, Octopus will update Jira with the status.
 
 Add some commits to your repo; for this post I added the following:
 - Updated pom.xml to use SSL version of https://repo.spring.io/milestone repo
