@@ -35,7 +35,7 @@ In addition to the build tasks, you will also have the following post build task
 - Octopus Deploy: Deploy Release
 
 :::hint
-The Jenkins plugin differs from Azure DevOps, TeamCity, and Bamboo in that *create release* and *deploy release* are only available as post build actions.  Jenkins only allows one of each type of post build action type, meaning you cannot have more than one *create release* action per build definition.  
+The Jenkins plugin differs from Azure DevOps, TeamCity, and Bamboo in that *create release* and *deploy release* are only available as post build actions.  Jenkins only allows one of each post build action type, meaning you cannot have more than one *create release* action per build definition.  
 :::
 
 ### Configure the Octopus Server connection
@@ -53,7 +53,7 @@ Click **Manage Jenkins**, then **Global Tool Configuration**. Scroll to the **Oc
 
 ## Example build
 
-For this post, I’m building the PetClinic application, which is a Java application that uses MySQL as a backend.  
+For this post, I build the PetClinic application, which is a Java application that uses MySQL as a backend.  
 
 ### Build setup
 To start, select a **New Item** from the Jenkins menu:
@@ -114,7 +114,7 @@ This step builds a .war file with the name `petclinic.web.Version.war`.  The pac
 
 The remainder of our steps are in the post steps section of our build definition.  This is where we package the Flyway project for the MySQL database backend, push the packages and build information to Octopus Deploy, then create our release.
 
-In the **Post Steps** tab, click **Add post-build step**, select **Octopus: package application**, and entered the details for the task:
+In the **Post Steps** tab, click **Add post-build step**, select **Octopus: package application**, and enter the details for the task:
 
  - Package ID: `petclinic.mysql.flyway`
  - Version number: `${BUILD_DISPLAY_NAME}` This is the version number we configured through parameters and set via the set build name option above.
@@ -123,7 +123,7 @@ In the **Post Steps** tab, click **Add post-build step**, select **Octopus: pack
  - Package include paths:  Nothing here for this project.
  - Package output folder: `${WORKSPACE}`
 
- Next we define the push step.  Click the **Post Steps** tab, click the **Add post-build step** drop-down menu, and chose **Octopus Deploy: push packages**:
+ Next we define the push step.  Click the **Post Steps** tab, click the **Add post-build step** drop-down menu, and choose **Octopus Deploy: push packages**:
 
  ![The Jenkins Post Steps screen](jenkins-build-post-add-push.png)
 
@@ -138,7 +138,7 @@ In the **Octopus Deploy: package application** step we defined for Flyway above,
 
 That takes care of pushing the packages. Next, we’ll push some build information.  Click **Add post-build step** and choose **Octopus Deploy: Push build information**.  This step is where release notes from Jira show up.
 
-Fill in the following details
+Fill in the following details:
 - Octopus Server: Server connection defined earlier.
 - Space: The space where you pushed the packages.
 - Package IDs:
@@ -166,7 +166,7 @@ After you see the message that the app has been successfully installed, click **
 
 ### Configure Jira and Octopus Deploy integration
 
-On this screen, we need to move between Octopus Deploy and Jira.  
+In this section, we need to move between Octopus Deploy and Jira.  
 
 Before moving forward, let’s bring up Octopus Deploy and get to the right screen to complete this integration.  From within Octopus Deploy, click **Configuration**, then **Settings**, and **Jira Issue Tracker**.
 
@@ -186,7 +186,7 @@ Now, let’s go back to Octopus Deploy and test the connection works by clicking
 
 At this point, we’re done in Jira, but we have a couple more things to do in Octopus Deploy.  First, let’s enable the integration in Octopus Deploy by clicking the **Is enabled** checkbox.
 
-To configure the release notes, scroll down and enter a Jira Username and password.
+To configure the release notes, scroll down and enter a Jira username and password.
 
 :::hint
 The `Jira Username` is your email address, and the `Jira Password` is your API key.
