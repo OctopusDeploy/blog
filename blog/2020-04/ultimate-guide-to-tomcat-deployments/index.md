@@ -827,7 +827,7 @@ As long as database compatibility has been maintained between the last and curre
 
 Because the Tomcat version is a timestamp calculated at deployment time, deploying version `0.1.6.1` of the application again results in it processing any new traffic as it has a later version.
 
-Note though that any existing sessions for version `0.1.7` will be left to naturally expire thanks to the Tomcat's parallel deployments. If this version has to be taken offline (for example if there is a critical issue and it can not be left in service), we can use the **Start/stop App in Tomcat** step to stop an deployed application.
+Note though that any existing sessions for version `0.1.7`, will be left to naturally expire thanks to the Tomcat's parallel deployments. If this version has to be taken offline (for example, if there is a critical issue and it can not be left in service), we can use the **Start/stop App in Tomcat** step to stop an deployed application.
 
 We'll create a runbook to run this step, as it is a maintenance tasks that may need to be applied to any environment to pull a bad release.
 
@@ -843,13 +843,13 @@ When the runbook is run, we are prompted for the timestamp version of the applic
 
 ![](stop_app_runbook_1.png "width=500")
 
-After the runbook has completed we can verify that the application was stopped by opening the manager console. In the screenshot below you can see version **200401140129** is not running. This version no longer responds to requests, and all future requests will then be directed to the latest version of the application:
+After the runbook has completed, we can verify the application was stopped by opening the Manager console. In the screenshot below, you can see version **200401140129** is not running. This version no longer responds to requests, and all future requests will then be directed to the latest version of the application:
 
 ![](stopped_application.png "width=500")
 
 ## Feature branch deployments
 
-A common development practice is to complete a feature in a separate SCM branch, known as a feature branch.
+A common development practice is completing a feature in a separate SCM branch, known as a feature branch.
 
 A CI server will typically watch for the presence of feature branches and create a deployable artifact from the code committed there.
 
@@ -857,31 +857,31 @@ These feature branch artifacts are then versioned to indicate which branch they 
 
 ![](githubflow_feature_branch.png "width=500")
 
-As you can see from the image above, a commit to a feature branch called **myfeature** generates a version like **1.2.1-myfeature.1+1**. This in turn would produce an artifact with a filename like `myapp.1.2.1-myfeature.1+1.zip`.
+As you can see from the image above, a commit to a feature branch called **myfeature** generates a version like **1.2.1-myfeature.1+1**. This in turn produces an artifact with a filename like `myapp.1.2.1-myfeature.1+1.zip`.
 
 Despite the fact that tools like GitVersion generate SemVer version strings, the same format can be used for Maven artifacts. However, there is a catch.
 
 SemVer will order a version with a feature branch lower than a version without any pre-release component. For example, **1.2.1** is considered a higher version number than **1.2.1-myfeature**. This is the expected ordering as a feature branch will eventually be merged back into the master branch.
 
-When a feature branch is appended to a Maven version, it is considered a qualifier. Maven allows any qualifiers, but recognizes some special ones like **SNAPSHOT**, **final**, **ga** etc. A complete list can be found in the blog post [Maven versions explained](https://octopus.com/blog/maven-versioning-explained). Maven versions with unrecognized qualifiers (and feature branch names are unrecognized qualifiers) are treated as later releases than unqualified versions.
+When a feature branch is appended to a Maven version, it is considered a qualifier. Maven allows any qualifiers, but recognizes some special ones like **SNAPSHOT**, **final**, **ga**, etc. A complete list can be found in the blog post [Maven versions explained](https://octopus.com/blog/maven-versioning-explained). Maven versions with unrecognized qualifiers (and feature branch names are unrecognized qualifiers) are treated as later releases than unqualified versions.
 
 This means Maven considers version **1.2.1-myfeature** is to be a later release than **1.2.1**, when clearly that is not the intention of a feature branch. You can verify this behavior with the following test in a project hosted on [GitHub](https://github.com/mcasperson/MavenVersionTest/blob/master/src/test/java/org/apache/maven/artifact/versioning/VersionTest.java#L122).
 
-However, thanks to the functionality of channels in Octopus, we can ensure that both SemVer pre-release and Maven qualifiers are filtered to result in expected ordering of artifacts.
+However, thanks to the functionality of channels in Octopus, we can ensure that both SemVer pre-release and Maven qualifiers are filtered in the expected way.
 
-Here is the default channel for our application deployment. Note the regular expression **^$** for the **Pre-release tag** field. This regular expression only matches empty strings, meaning the default channel will only ever deploy artifacts with no pre-release or qualifier:
+Here is the default channel for our application deployment. Note, the regular expression **^$** for the **Pre-release tag** field. This regular expression only matches empty strings, meaning the default channel will only ever deploy artifacts with no pre-release or qualifier string:
 
 ![](default_channel.png "width=500")
 
-Next we have the feature branch channel, which defines a regular expression of **.+** for the **Pre-release tag** field. This regular expression only matches non-empty strings, meaning the feature branch channel will only deploy artifacts with a pre-release or qualifier:
+Next, we have the feature branch channel, which defines a regular expression of **.+** for the **Pre-release tag** field. This regular expression only matches non-empty strings, meaning the feature branch channel will only deploy artifacts with a pre-release or qualifier string:
 
 ![](feature_branch_channel.png "width=500")
 
-Here is the list of versions that Octopus allows a release to be created with using the default channel. Notice that the only version displayed has no qualifier, which we take to mean as being the master release:
+Here is the list of versions that Octopus allows a release to be created from when using the default channel. Notice, the only version displayed has no qualifier, which we take to mean it is the master release:
 
 ![](default_channel_deployment.png "width=500")
 
-Here is the list of versions that Octopus allows a release to be created with using the feature branch channel. All the versions here have a qualifier embedding the feature branch name:
+Here is the list of versions that Octopus allows a release to be created from using the feature branch channel. All of these versions have a qualifier embedding the feature branch name:
 
 ![](feature_branch_channel_deployment.png "width=500")
 
@@ -893,13 +893,13 @@ The final step is to deploy these feature branch packages to unique contexts so 
 /randomquotes#{Octopus.Action.Package.PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}
 ```
 
-The regular expression above works like this on the version `1.2.1-myfeature.1+1`:
+Using the regular expression above, on the version `1.2.1-myfeature.1+1` will d the following:
 
 * `^([0-9\.]+)` groups all digits and periods at the start of the version as group 1, which matches `1.2.1`.
 * `((?:-[A-Za-z0-9]+)?)` groups the leading dash and any subsequent alphanumeric characters (if any) as group 2, which matches `-myfeature`.
 * `(.*)$` groups any subsequent characters (if any) as group 3, which matches `.1+1`.
 
-The result of this variable filter is that the complete pre-release or qualifier will be replaced by just the second group from the regular expression. This results in the following context path:
+This variable filter will result in the complete pre-release or qualifier strings being replaced by just the second group from the regular expression. This results in the following context path:
 
 * Version `1.2.1-myfeature.1+1` generates a context path of `/randomquotes-myfeature`.
 * Version `1.2.1` generates a context path of `/randomquotes`.
@@ -909,7 +909,7 @@ Here is a screenshot of the Tomcat deployment step with the new context path app
 ![](context_path.png "width=500")
 
 :::hint
-The SemVer project provides a more robust regular expression [here](https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string) that reliably captures the groups in a SemVer version. 
+The SemVer project provides a more [robust regular expression](https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string) that reliably captures the groups in a SemVer version. 
 
 The regular expression with named capture groups is:
 
@@ -926,21 +926,21 @@ The regular expression without named groups is:
 
 ## Public certificate management
 
-To finish configuring our infrastructure we will enable HTTPS access via our load balancers. This requires editing the Apache web server virtual host configuration to enable SSL and point to the keys and certificates we have obtained for our domain.
+To finish configuring our infrastructure we will enable HTTPS access via our load balancers. We can edit the Apache web server virtual host configuration to enable SSL and point to the keys and certificates we have obtained for our domain.
 
 ### Obtain a certificate
 
-For this post I have obtained a Let's Encrypt certificate, generated through our DNS provider. The exact process for generating HTTPS certificates is not something we'll look at here; you can refer to you DNS or certificate provider for specific instructions.
+For this post, I have obtained a Let's Encrypt certificate, generated through our DNS provider. The exact process for generating HTTPS certificates is not something we'll look at here, but you can refer to your DNS or certificate provider for specific instructions.
 
-In the screenshot below you can see the various options available for downloading the certificate. Note that while instructions and downloads are provided for Apache, we are downloading the PFX file provided under the instructions for IIS. PFX files contain the public certificate, private key and certificate chain in a single file. We need this single file to upload the certificate to Octopus. Here we download the PFX file for the `octopus.tech` domain:
+In the screenshot below, you can see the various options available for downloading the certificate. Note, while instructions and downloads are provided for Apache, we are downloading the PFX file provided under the instructions for IIS. PFX files contain the public certificate, private key, and certificate chain in a single file. We need this single file to upload the certificate to Octopus. Here we download the PFX file for the `octopus.tech` domain:
 
 ![](dns_1.png "width=500")
 
 ### Create the certificate in Octopus
 
-Deploying certificates is an ongoing operation. In particular certificates provided by Let's Encrypt expire every 3 months, and so need to be frequently refreshed.
+Deploying certificates is an ongoing operation. In particular, certificates provided by Let's Encrypt expire every three months, and so need to be frequently refreshed.
 
-This makes deploying certificates a great use case for runbooks. Unlike a regular deployment, runbooks aren't required to be progressed through environments and don't require the notion of creating a deployment. We'll create a runbook to deploy the certificate to the Apache load balancers.
+This makes deploying certificates a great use case for runbooks. Unlike a regular deployment, runbooks don't need to progress through environments and you don't need to create a deployment. We'll create a runbook to deploy the certificate to the Apache load balancers.
 
 First though we need to upload the PFX certificate that was generated by the DNS provider. In the screenshot below you can see the Let's Encrypt certificate uploaded to the Octopus certificate store:
 
@@ -960,7 +960,7 @@ The first step in the script is to enable **mod_ssl** with the command:
 a2enmod ssl
 ```
 
-Then create some directories to hold the certificate, certificate chain and private key:
+Then create some directories to hold the certificate, certificate chain, and private key:
 
 ```bash
 [ ! -d "/etc/apache2/ssl" ] && mkdir /etc/apache2/ssl
@@ -969,9 +969,9 @@ Then create some directories to hold the certificate, certificate chain and priv
 
 The contents of the certificate variable are then saved as files into the directories above. Certificates are special variables that expose the individual components that make up a certificate with [expanded properties](https://octopus.com/docs/projects/variables/certificate-variables#expanded-properties). We need to access three properties:
 
-* `Certificate.CertificatePem`, which is the public certificate
-* `Certificate.PrivateKeyPem`, which is the private key
-* `Certificate.ChainPem`, which is the certificate chain
+* `Certificate.CertificatePem`, which is the public certificate.
+* `Certificate.PrivateKeyPem`, which is the private key.
+* `Certificate.ChainPem`, which is the certificate chain.
 
 We print the contents of these variables into three files:
 
@@ -981,7 +981,7 @@ get_octopusvariable "Certificate.PrivateKeyPem" > /etc/apache2/ssl/private/octop
 get_octopusvariable "Certificate.ChainPem" > /etc/apache2/ssl/octopus_tech_bundle.pem
 ```
 
-If you recall from earlier in the post we created a the file `/etc/apache2/sites-enabled/000-default.conf` with the following contents:
+If you recall, earlier in the post we created the file `/etc/apache2/sites-enabled/000-default.conf` with the following contents:
 
 ```xml
 <VirtualHost *:80>
@@ -991,7 +991,7 @@ If you recall from earlier in the post we created a the file `/etc/apache2/sites
 </VirtualHost>
 ```
 
-We want to modify this file to look like this:
+We want to modify this file, like so:
 
 ```xml
 <VirtualHost *:443>
@@ -1023,7 +1023,7 @@ EOF
 } > /etc/apache2/sites-enabled/000-default.conf
 ```
 
-The final step is to restart the `apache2` service to reload the changes:
+The final step is to restart the `apache2` service to load the changes:
 
 ```bash
 systemctl restart apache2
@@ -1064,11 +1064,11 @@ After the runbook has completed, we can verify the application is exposed via HT
 
 ## Internal certificate management
 
-As we've seen it is useful to connect directly to the Tomcat instances when using the manager console. This connection transfers credentials though, and so should be done across a secure connection. To support this we'll configure Tomcat with self signed certificates.
+As we've seen, it is useful to connect directly to the Tomcat instances when using the Manager console. This connection transfers credentials and should be done across a secure connection. To support this we'll configure Tomcat with self-signed certificates.
 
-### Create self signed certificates
+### Create self-signed certificates
 
-Because our Tomcat instances are not exposed via a hostname, [we don't have the option of getting a certificate for them](https://cabforum.org/internal-names/). To enable HTTPS then we need to create self signed certificates, which can be done with OpenSSL:
+Because our Tomcat instances are not exposed via a hostname, [we don't have the option of getting a certificate for them](https://cabforum.org/internal-names/). To enable HTTPS we need to create self-signed certificates, which can be done with OpenSSL:
 
 ```
 openssl genrsa 2048 > private.pem
@@ -1086,7 +1086,7 @@ The **Tomcat CATALINA_HOME path** is set to `/usr/share/tomcat9` and the **Tomca
 
 We reference a certificate variable for the **Select certificate variable** field. The default value of **Catalina** is fine for the **Tomcat service name**.
 
-We have a few choices for how the certificate is handled by Tomcat. Generally speaking the **Blocking IO**, and **Non-Blocking IO**, **Non-Blocking IO 2** and **Apache Portable Runtime** options have in increasing level of performance. The **Apache Portable Runtime** is an additional library that Tomcat can take advantage of, and it is provided by the Tomcat packages we installed with `apt-get`, so it makes sense to use that option.
+We have a few choices for how the certificate is handled by Tomcat. Generally speaking the **Blocking IO**, **Non-Blocking IO**, **Non-Blocking IO 2**, and **Apache Portable Runtime** options have an increasing level of performance. The **Apache Portable Runtime** is an additional library that Tomcat can take advantage of, and it is provided by the Tomcat packages we installed with `apt-get`, so it makes sense to use that option.
 
 ![](tomcat_cert.png "width=500")
 
@@ -1096,7 +1096,7 @@ To allow Tomcat to use the new configuration, we need to restart the service wit
 systemctl restart tomcat9
 ```
 
-We can now load the manager console from https://tomcatip:8443/manager/html.
+We can now load the manager console from `https://tomcatip:8443/manager/html`.
 
 ## Scale up to multiple environments
 
@@ -1108,14 +1108,14 @@ The infrastructure we have created thus far can now be used as a template for ot
 
 ## Conclusion
 
-If you have reached this point then congratulations! Setting up a highly available Tomcat cluster with zero downtime deployments, feature branches, rollback and HTTPS is not for the feint of heart. It is still up to the end user to combine multiple technologies available to achieve this result, but I hope that the instructions laid out in this blog post expose some of the magic that goes into real world Java deployments.
+If you have reached this point, congratulations! Setting up a highly available Tomcat cluster with zero downtime deployments, feature branches, rollback, and HTTPS is not for the fainthearted. It is still up to the end user to combine multiple technologies to achieve this result, but I hope the instructions laid out in this blog post expose some of the magic that goes into real world Java deployments.
 
 To summarize, in this post we:
 
 * Configured Tomcat session replication with a PostgreSQL database and session cookie rewriting with the `JvmRouteBinderValve` valve.
 * Configured Apache web servers acting as load balancers with the mod_jk plugin.
-* Implemented high availability amongst the load balancers with keepalived.
-* Performed zero downtime deployments with Tomcat's parallel deployment feature and Flyway performing backwards compatible database migrations.
+* Implemented high availability amongst the load balancers with Keepalived.
+* Performed zero downtime deployments with Tomcat's parallel deployment feature and Flyway performing backward compatible database migrations.
 * Smoke tested the deployments with community steps in Octopus.
 * Implemented feature branch deployments, taking into account the limitations of the Maven versioning strategy with Octopus channels.
 * Looked at how applications can be rolled back or pulled from service.
