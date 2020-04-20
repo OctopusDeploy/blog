@@ -1,6 +1,6 @@
 ---
 title: The ultimate guide to Tomcat deployments
-description: In this blog post we'll create a secure, highly available, load balanced Tomcat cluster with zero downtime deployments
+description: In this post we create a secure, highly available, load balanced Tomcat cluster with zero downtime deployments.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -23,7 +23,7 @@ Continuous integration and delivery (CI/CD) is a common goal for DevOps teams to
 * Smoke testing
 * Rollback strategies
 
-How these goals are implemented depends on the type of software being deployed. In this post, I look at how to create the continuous delivery (or deployment) half of the CI/CD pipeline by deploying Java applications to Tomcat. I then build a supporting infrastructure stack that includes the Apache web server for load balancing, PostgreSQL for the database, Keepalived for highly available load balancers, and Octopus for orchestrating the deployments.
+How these goals are implemented depends on the type of software being deployed. In this post, I look at how to create the continuous delivery (or deployment) half of the CI/CD pipeline by deploying Java applications to Tomcat. I then build a supporting infrastructure stack that includes the Apache web server for load balancing, PostgreSQL for the database, Keepalived for highly available load balancers, and with Octopus for orchestrating the deployments.
 
 ## A note on the PostgreSQL server
 
@@ -35,7 +35,7 @@ The instructions in this post can be followed with a single PostgreSQL instance,
 
 When talking about HA, it is important to understand exactly which components of a platform need to be managed to address the unavailability of an individual Tomcat instance, for example, when an instance is unavailable due to routine maintenance or a hardware failure.
 
-For the purpose of this post, I create infrastructure that allows a traditional stateful Java servlet application to continue operating when an individual Tomcat server is no longer available. In practical terms, this means the application session state will persist and be distributed to other Tomcat instances in the cluster when the server that originally hosted the session is no longer available.
+For the purpose of this post, I created infrastructure that allows a traditional stateful Java servlet application to continue operating when an individual Tomcat server is no longer available. In practical terms, this means the application session state will persist and be distributed to other Tomcat instances in the cluster when the server that originally hosted the session is no longer available.
 
 As a brief recap, Java servlet applications can save data against a `HttpSession` instance, which is then available across requests. In the (naïve, as it does not deal with race conditions) example below, we have a simple counter variable that is incremented with each request to the page. This demonstrates how information can be persisted across individual requests made by a web browser:
 
@@ -59,7 +59,7 @@ Tomcat offers three solutions to enable session replication:
 
 Because our infrastructure stack already assumes a highly available database, I'll implement option two. This is arguably the simplest solution for us, as we do not have to implement any special networking, and we can reuse an existing database. However, this solution does introduce a delay between when the session state is modified and when it is persisted to the database. This delay introduces a window during which data may be lost in the case of hardware or network failure. Scheduled maintenance tasks are supported though, as any session data will be written to the database when Tomcat is shutdown, allowing us to patch the operating system or update Tomcat itself safely.
 
-We noted the example code above is naïve as it doesn't deal with the fact that the session cache is not thread safe. Even this simple example is subject to race conditions that may result in the page count being incorrect. The solution to this problem is to use the traditional thread locks and synchronization features available in Java, but these features are only valid within a single JVM. This means we must ensure that client requests are always directed to a single Tomcat instance, which in turn means that only one Tomcat instance contains the single, authoritative copy of the session state, which can then ensure consistency via thread locks and synchronization. This is achieved with sticky sessions.
+We noted the example code above is naïve as it doesn't deal with the fact the session cache is not thread safe. Even this simple example is subject to race conditions that may result in the page count being incorrect. The solution to this problem is to use the traditional thread locks and synchronization features available in Java, but these features are only valid within a single JVM. This means we must ensure that client requests are always directed to a single Tomcat instance, which in turn means that only one Tomcat instance contains the single, authoritative copy of the session state, which can then ensure consistency via thread locks and synchronization. This is achieved with sticky sessions.
 
 Sticky sessions provide a way for client requests to be inspected by a load balancer and then directed to one web server in a cluster. By default, in a Java servlet application a client is identified by a `JSESSIONID` cookie that is sent by the web browser and inspected by the load balancer to identify the Tomcat instance that holds the session, and then by the Tomcat server to associate a request with an existing session.
 
@@ -72,9 +72,9 @@ In summary, our HA Tomcat solution:
 
 ## Keepalived for HA load balancers
 
-To ensure that network requests are distributed amongst multiple Tomcat instances and not directed to an offline instance, we need to implement a load balancing solution. These load balancers sit in front of the Tomcat instances and direct network requests to those instances that are available.
+To ensure that network requests are distributed among multiple Tomcat instances and not directed to an offline instance, we need to implement a load balancing solution. These load balancers sit in front of the Tomcat instances and direct network requests to those instances that are available.
 
-Many load balancing solutions exist that can perform this role, but for this post we use the Apache web server with the mod_jk plugin. Apache will provide the networking functionality, while mod_jk will distribute traffic to multiple Tomcat instances, implementing sticky sessions to direct a client to the same backend server for each request.
+Many load balancing solutions exist that can perform this role, but for this post, we use the Apache web server with the mod_jk plugin. Apache will provide the networking functionality, while mod_jk will distribute traffic to multiple Tomcat instances, implementing sticky sessions to direct a client to the same backend server for each request.
 
 In order to maintain high availability, we need at least two load balancers. But how do we split a single incoming network connection across two load balancers in a reliable manner? This is where Keepalived comes in.
 
@@ -102,7 +102,7 @@ Zero downtime deployments require reaching a point where deployments can be done
 
 Ensuring database changes are backward and forward compatible requires some design work and discipline when pushing new application versions. Fortunately, there are tools available, including [Flyway](https://flywaydb.org/) and [Liquidbase](https://www.liquibase.org/), that provide a way to roll out database changes with the applications themselves, taking care of versioning the changes and wrapping any migrations in the required transactions. We'll see Flyway implemented in a sample application later in the post.
 
-As long as the shared database remains compatible between the current and the new version of the application, Tomcat provides a feature called [parallel deployments](https://tomcat.apache.org/tomcat-9.0-doc/config/context.html#Parallel_deployment) that allows clients to continue to access the previous version of the application until their session expires, while new sessions are created against the new version of the application. Parallel deployments therefor allow a new version of the application to be deployed without disrupting any existing clients.
+As long as the shared database remains compatible between the current and the new version of the application, Tomcat provides a feature called [parallel deployments](https://tomcat.apache.org/tomcat-9.0-doc/config/context.html#Parallel_deployment) that allows clients to continue to access the previous version of the application until their session expires, while new sessions are created against the new version of the application. Parallel deployments allow a new version of the application to be deployed without disrupting any existing clients.
 
 :::hint
 Tomcat has the ability to automatically clean up old versions that no longer have any sessions. We will not enable this feature though, as it may prevent a session for an old version from being migrated to another Tomcat instance.
@@ -187,15 +187,15 @@ Here is a copy of the `/etc/tomcat9/tomcat-users.xml` file with the `tomcat` use
 
 #### Add the PostgreSQL JDBC driver jar
 
-Each Tomcat instance will communicate with a PostgreSQL database to persist session data. In order for Tomcat to communicate with a PostgreSQL database, we need to install the PostgreSQL JDBC driver JAR file. This is done by saving the file https://jdbc.postgresql.org/download/postgresql-42.2.11.jar as `/var/lib/tomcat9/lib/postgresql-42.2.11.jar`.
+Each Tomcat instance will communicate with a PostgreSQL database to persist session data. In order for Tomcat to communicate with a PostgreSQL database, we need to install the PostgreSQL JDBC driver JAR file. This is done by saving the file `https://jdbc.postgresql.org/download/postgresql-42.2.11.jar` as /var/lib/tomcat9/lib/postgresql-42.2.11.jar`.
 
-#### Enable session replication
+#### Enable session replicationl
 
 To enable session persistence to a database we add a new `Manager` definition in the file `/etc/tomcat9/context.xml`. This manager uses the `org.apache.catalina.session.PersistentManager` to save the session details to a database defined in the nested `Store` element.
 
 The `Store` element in turn defines the database that the session information will be persisted to.
 
-We also need to add a `Valve` loading the `org.apache.catalina.ha.session.JvmRouteBinderValve` class. This valve is important when a client is redirected from a Tomcat instance that is no longer available to another Tomcat instance in the cluster. We'll see this valve in action later on after we have deployed our sample application.
+We also need to add a `Valve` loading the `org.apache.catalina.ha.session.JvmRouteBinderValve` class. This valve is important when a client is redirected from a Tomcat instance that is no longer available to another Tomcat instance in the cluster. We'll see this valve in action after we deploy our sample application.
 
 Here is a copy of the `/etc/tomcat9/context.xml` file with the `Manager`, `Store`, and `Valve` elements defined:
 
@@ -230,7 +230,7 @@ Here is a copy of the `/etc/tomcat9/context.xml` file with the `Manager`, `Store
 
 #### Install the packages
 
-We need to initialize PostgreSQL with a new database, schema, and table. To do this, we use the `psql` command line tool, which is installed with:
+We need to initialize PostgreSQL with a new database, schema, and table. To do this, we use the `psql` command-line tool, which is installed with:
 
 ```
 apt-get install postgresql-client
@@ -238,7 +238,7 @@ apt-get install postgresql-client
 
 #### Add the database, schema and table
 
-If you look at the `connectionURL` attribute from the `/etc/tomcat9/context.xml` file defined above you will see that we are saving session information into:
+If you look at the `connectionURL` attribute from the `/etc/tomcat9/context.xml` file defined above, you will see we are saving session information into:
 
 * The database called `tomcat`.
 * The schema called `session`.
@@ -246,7 +246,7 @@ If you look at the `connectionURL` attribute from the `/etc/tomcat9/context.xml`
 
 To create these resources in the PostgreSQL server, we run a number of SQL commands.
 
-First, save the following text into a file called `createdb.sql`. This command creates the database if it does not exist (see [this StackOverflow](https://stackoverflow.com/a/18389184/157605) post for more information on this syntax):
+First, save the following text into a file called `createdb.sql`. This command creates the database if it does not exist (see [this StackOverflow](https://stackoverflow.com/a/18389184/157605) post for more information about the syntax):
 
 ```
 SELECT 'CREATE DATABASE tomcat' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'tomcat')\gexec
@@ -300,7 +300,7 @@ apt-get install apache2 libapache2-mod-jk keepalived
 
 #### Configure the load balancer
 
-The mod_jk plugin is configured via the file `/etc/libapache2-mod-jk/workers.properties`. In this file we define a number of workers that traffic can be directed to. The fields in this file are documented [here](https://tomcat.apache.org/connectors-doc/reference/workers.html).
+The mod_jk plugin is configured via the file `/etc/libapache2-mod-jk/workers.properties`. In this file, we define a number of workers that traffic can be directed to. The fields in this file are documented [here](https://tomcat.apache.org/connectors-doc/reference/workers.html).
 
 We start by defining a worker called `loadbalancer` that will receive all of the traffic:
 
@@ -310,7 +310,7 @@ worker.list=loadbalancer
 
 We then define the two Tomcat instances that were created earlier. Make sure to replace `worker1_ip` and `worker2_ip` with the IP addresses of the matching Tomcat instances.
 
-Note that the name of the workers defined here as `worker1` and `worker2` match the value of the `jvmRoute` attribute in the `Engine` element in the `/etc/tomcat9/server.xml` file. These names must match, as they are used by mod_jk to implement sticky sessions:
+Note, the name of the workers defined here as `worker1` and `worker2` match the value of the `jvmRoute` attribute in the `Engine` element in the `/etc/tomcat9/server.xml` file. These names must match, as they are used by mod_jk to implement sticky sessions:
 
 ```
 worker.worker1.type=ajp13
@@ -322,7 +322,7 @@ worker.worker2.host=worker2_ip
 worker.worker2.port=8009
 ```
 
-Finally we define the `loadbalancer` worker as a load balancer that directs traffic to the `worker1` and `worker2` workers with sticky sessions enabled:
+Finally, we define the `loadbalancer` worker as a load balancer that directs traffic to the `worker1` and `worker2` workers with sticky sessions enabled:
 
 ```
 worker.loadbalancer.type=lb
@@ -351,7 +351,7 @@ worker.loadbalancer.balance_workers=worker1,worker2
 worker.loadbalancer.sticky_session=1
 ```
 
-#### Add a Apache VirtualHost
+#### Add an Apache VirtualHost
 
 In order for Apache to accept traffic we need to define a `VirtualHost`, which we create in the file `/etc/apache2/sites-enabled/000-default.conf`. This virtual host will accept HTTP traffic on port 80, define some log files, and use the `JkMount` directive to forward traffic to the worker called `loadbalancer`:
 
@@ -540,7 +540,7 @@ Here is a screenshot of the environments in Octopus:
 
 ![](environments.png "width=500")
 
-### Deploy the tentacle
+### Deploy the Tentacle
 
 We will install a Tentacle on each of our virtual machines to allow us to perform deployments, updates, and system maintenance tasks. The instructions for installing the Tentacle software is found on the [Octopus download page](https://octopus.com/downloads/tentacle#linux). As this example is using Ubuntu as the base OS, we install the Tentacle with the commands:
 
@@ -557,7 +557,7 @@ After the Tentacle is installed we configure an instance with the command:
 /opt/octopus/tentacle/configure-tentacle.sh
 ```
 
-The installation gives you a choice between [polling or listening Tentacles](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication). Which option you choose often depends on your network restrictions. Polling Tentacles require the VM hosting the Tentacle can reach the Octopus Server, while listening Tentacles require the Octopus Server can reach the VM. The choice of communication style depends on whether the Octopus Server or VMs have fixed IP addresses and the correct ports opened in the firewall. Either option is a valid choice though and does not impact the deployment process.
+The installation gives you a choice between [polling or listening Tentacles](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication). Which option you choose often depends on your network restrictions. Polling Tentacles require the VM hosting the Tentacle can reach the Octopus Server, while listening Tentacles require the Octopus Server can reach the VM. The choice of communication style depends on whether the Octopus Server or VMs have fixed IP addresses and the correct ports are opened in the firewall. Either option is a valid choice though and does not impact the deployment process.
 
 Here is a screenshot of the **Dev** environment with Tentacles for the Tomcat and Load Balancer instances. The Tomcat instances have a role of **tomcat**, and the load balancer instances have a role of **loadbalancer**:
 
@@ -567,7 +567,7 @@ Here is a screenshot of the **Dev** environment with Tentacles for the Tomcat an
 
 The Random Quotes sample application has been pushed to [Maven Central as a WAR file](https://repo.maven.apache.org/maven2/com/octopus/randomquotes/). This means we can deploy the application directly from a Maven feed.
 
-Create a new Maven feed pointing to https://repo.maven.apache.org/maven2/. A screenshot of this feed is shown below:
+Create a new Maven feed pointing to `https://repo.maven.apache.org/maven2/`. A screenshot of this feed is shown below:
 
 ![](maven_feed.png "width=500")
 
@@ -585,7 +585,7 @@ This version number uses string comparisons to determine the latest version. Typ
 
 However, padding can introduce issues. For example, the version *1.23.40* is lower than *01.23.41*, but a direct string comparison returns the opposite result.
 
-For this reason we use the time of the deployment as the Tomcat version. Because the version needs to be consistent across targets, we start with a script step that generates a timestamp and saves it to an output variable with the code:
+For this reason, we use the time of the deployment as the Tomcat version. Because the version needs to be consistent across targets, we start with a script step that generates a timestamp and saves it to an output variable with the code:
 
 ```PowerShell
 $timestamp = Get-Date -Format "yyMMddHHmmss"
@@ -598,7 +598,7 @@ Our deployment process starts with deploying the application to each Tomcat inst
 
 ![](tomcat_step_1.png "width=500")
 
-We will deploy the **com.octopus:randomquotes** package from the Maven feed we setup earlier:
+We deploy the **com.octopus:randomquotes** package from the Maven feed we setup earlier:
 
 ![](tomcat_step_2.png "width=500")
 
@@ -616,7 +616,7 @@ The deployment version is set to the timestamp that was generated by the previou
 
 #### Smoke test the deployment
 
-To verify that our deployment was successful, we will issue a HTTP request and check the response code. To do this we'll use a community step template called **HTTP - Test URL (Bash)**.
+To verify that our deployment was successful, we issue an HTTP request and check the response code. To do this we use a community step template called **HTTP - Test URL (Bash)**.
 
 As before, this step will run on the Tomcat instances:
 
@@ -632,7 +632,7 @@ Let's go ahead and perform the initial deployment. For this deployment we'll spe
 
 ![](deployment_step_1.png "width=500")
 
-Octopus then proceeds to download the WAR file from the Maven repository, push it to the Tomcat instances and deploy it to Tomcat via the Manager. Once complete, the smoke test runs to ensure the application can be opened successfully:
+Octopus then proceeds to download the WAR file from the Maven repository, push it to the Tomcat instances and deploy it to Tomcat via the Manager. When complete, the smoke test runs to ensure the application can be opened successfully:
 
 ![](deployment_result.png "width=500")
 
@@ -641,7 +641,7 @@ Octopus then proceeds to download the WAR file from the Maven repository, push i
 With the deployment done we can access it via the load balancer.
 
 :::hint
-In the previous configuration examples we had a floating IP address of 10.0.0.30, but for these screenshots I have used Keepalived to assign a public IP address to the load balancers.
+In the previous configuration examples, we had a floating IP address of 10.0.0.30, but for these screenshots I used Keepalived to assign a public IP address to the load balancers.
 :::
 
 Here is a screenshot of the application opened with the Chrome developer tools:
@@ -652,13 +652,13 @@ There are three things to note in this screenshot:
 
 1. The **JSESSIONID** cookie is set with a random session ID and the name of the Tomcat instance that responded to the request. In this example, the Tomcat instance whose **jvmRoute** was set to **worker1** responded to the request.
 2. We have opened version 0.1.6.1 of the application.
-3. The **Quote count** is set to 1, but will increase as we hit the **Refresh** button.
+3. The **Quote count** is set to 1, but this will increase as we hit the **Refresh** button.
 
 Let's increase the **Quote count** by clicking the **Refresh** button. This value is saved on the Tomcat server in the session associated with the **JSESSIONID** cookie:
 
 ![](app_2.png "width=500")
 
-Let's now shut down the **worker1** Tomcat instance. Once shutdown, we click the **Refresh** button again:
+Let's now shut down the **worker1** Tomcat instance. After shutdown, we click the **Refresh** button again:
 
 ![](app_3.png "width=500")
 
@@ -693,7 +693,7 @@ Apr 01 03:15:01 ip-10-0-0-21 Keepalived_vrrp[32485]: VRRP_Instance(loadbalancer2
 
 Having assumed the master role, the load balancer will be assigned the virtual IP address, and distribute traffic as the previous master did.
 
-Once the previous master instance restarts it will re-assume the master role because it is configured with a higher priority, and the virtual IP address will be assigned back.
+After the previous master instance restarts it will re-assume the master role because it is configured with a higher priority, and the virtual IP address will be assigned back.
 
 The whole process is seamless, and upstream clients never need to be aware that a failover and failback took place. So we have demonstrated that the load balancers can failover, making them highly available.
 
@@ -729,9 +729,9 @@ ALTER TABLE AUTHOR
 ADD LASTNAME varchar(64);
 ```
 
-At this point we have to consider how these changes can be made in a backward compatible way. A cornerstone of the zero downtime deployment strategy requires that a shared database support both the current version of the application and the new version. Unfortunately, there is no silver bullet to provide this compatibility, and it is up to us as developers to ensure that our changes don't break any existing sessions.
+At this point, we have to consider how these changes can be made in a backward compatible way. A cornerstone of the zero downtime deployment strategy requires that a shared database support both the current version of the application and the new version. Unfortunately, there is no silver bullet to provide this compatibility, and it is up to us as developers to ensure that our changes don't break any existing sessions.
 
-In this scenario we must keep the old `AUTHOR` column, and duplicate the data it held into the new `FIRSTNAME` and `LASTNAME` columns:
+In this scenario, we must keep the old `AUTHOR` column and duplicate the data it held into the new `FIRSTNAME` and `LASTNAME` columns:
 
 ```sql
 UPDATE AUTHOR SET FIRSTNAME = 'Rob', LASTNAME = 'Siltanen' WHERE ID = 1;
@@ -805,7 +805,7 @@ With our migration scripts written in a backward compatible manner, we can deplo
 
 ![](deployment_two.png "width=500")
 
-After the deployment completes, open the Manager application at http://tomcatip:8080/manager/html. Note, that while you could access the manager through the load balancer, you do not get to choose which Tomcat instance you will be managing as the load balancer picks a Tomcat instance for you. This means it is better to connect to the Tomcat instance directly, bypassing the load balancer:
+After the deployment completes, open the Manager application at `http://tomcatip:8080/manager/html`. Note, that while you could access the Manager through the load balancer, you do not get to choose which Tomcat instance you will be managing as the load balancer picks a Tomcat instance for you. This means it is better to connect to the Tomcat instance directly, bypassing the load balancer:
 
 ![](manager_one.png "width=500")
 
@@ -819,7 +819,7 @@ If we reopen the application in a private browsing window, we can be guaranteed 
 
 ![](private_window.png "width=500")
 
-With that we have demonstrated zero downtime deployments. Because our database migrations were designed to be backwards compatible, version *0.1.6.1* and version *0.1.7* of our application can run side by side using Tomcat parallel deployments. Best of all, sessions for old deployments can still be transferred between Tomcat instances, so we retain high availability along with the parallel deployments.
+With that we have demonstrated zero downtime deployments. Because our database migrations were designed to be backward compatible, version *0.1.6.1* and version *0.1.7* of our application can run side by side using Tomcat parallel deployments. Best of all, sessions for old deployments can still be transferred between Tomcat instances, so we retain high availability along with the parallel deployments.
 
 ## Rollback strategies
 
@@ -827,7 +827,7 @@ As long as database compatibility has been maintained between the last and curre
 
 Because the Tomcat version is a timestamp calculated at deployment time, deploying version `0.1.6.1` of the application again results in it processing any new traffic as it has a later version.
 
-Note though that any existing sessions for version `0.1.7`, will be left to naturally expire thanks to the Tomcat's parallel deployments. If this version has to be taken offline (for example, if there is a critical issue and it can not be left in service), we can use the **Start/stop App in Tomcat** step to stop an deployed application.
+Note though, any existing sessions for version `0.1.7`, will be left to naturally expire thanks to the Tomcat's parallel deployments. If this version has to be taken offline (for example, if there is a critical issue and it can not be left in service), we can use the **Start/stop App in Tomcat** step to stop a deployed application.
 
 We'll create a runbook to run this step, as it is a maintenance tasks that may need to be applied to any environment to pull a bad release.
 
@@ -893,7 +893,7 @@ The final step is to deploy these feature branch packages to unique contexts so 
 /randomquotes#{Octopus.Action.Package.PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}
 ```
 
-Using the regular expression above, on the version `1.2.1-myfeature.1+1` will d the following:
+Using the regular expression above on the version `1.2.1-myfeature.1+1` will do the following:
 
 * `^([0-9\.]+)` groups all digits and periods at the start of the version as group 1, which matches `1.2.1`.
 * `((?:-[A-Za-z0-9]+)?)` groups the leading dash and any subsequent alphanumeric characters (if any) as group 2, which matches `-myfeature`.
@@ -942,7 +942,7 @@ Deploying certificates is an ongoing operation. In particular, certificates prov
 
 This makes deploying certificates a great use case for runbooks. Unlike a regular deployment, runbooks don't need to progress through environments and you don't need to create a deployment. We'll create a runbook to deploy the certificate to the Apache load balancers.
 
-First though we need to upload the PFX certificate that was generated by the DNS provider. In the screenshot below you can see the Let's Encrypt certificate uploaded to the Octopus certificate store:
+First though, we need to upload the PFX certificate that was generated by the DNS provider. In the screenshot below you can see the Let's Encrypt certificate uploaded to the Octopus certificate store:
 
 ![](certificate.png "width=500")
 
@@ -1102,7 +1102,7 @@ We can now load the manager console from `https://tomcatip:8443/manager/html`.
 
 The infrastructure we have created thus far can now be used as a template for other testing or production environments. Nothing we have presented here is environment specific, meaning all the processes and infrastructure can be scaled out to as many environments as needed.
 
- By associating the Tentacles assigned to the new Tomcat and load balancer instanced to additional environments in Octopus, we gain the ability to push deployments through to production:
+By associating the Tentacles assigned to the new Tomcat and load balancer instanced to additional environments in Octopus, we gain the ability to push deployments through to production:
 
 ![](multiple_environments.png "width=500")
 
