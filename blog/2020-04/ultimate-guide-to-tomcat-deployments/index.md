@@ -1,6 +1,6 @@
 ---
 title: The ultimate guide to Tomcat deployments
-description: In this post, we create a secure, highly available, load-balanced Tomcat cluster with zero downtime deployments.
+description: Learn how to create a secure, highly available, load-balanced Tomcat cluster with zero downtime deployments.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -47,7 +47,7 @@ public String index(final HttpSession httpSession) {
 }
 ```
 
-The session state is held in memory on an individual server. By default, if that server is no longer available, the session data is also lost. For a trivial example like a page count, this is not important, but it is not uncommon for more critical functionality to rely on the session state. For example, a shopping card may hold the list of items for purchase in session state, and losing that information may result in a lost sale.
+The session state is held in memory on an individual server. By default, if that server is no longer available, the session data is also lost. For a trivial example like a page count, this is not important, but it is not uncommon for more critical functionality to rely on the session state. For example, a shopping cart may hold the list of items for purchase in session state, and losing that information may result in a lost sale.
 
 To maintain high availability, the session state needs to be duplicated so it can be shared if a server goes offline.
 
@@ -55,7 +55,7 @@ Tomcat offers three solutions to enable session replication:
 
 1. Using session persistence and saving the session to a shared file system (PersistenceManager + FileStore).
 2. Using session persistence and saving the session to a shared database (PersistenceManager + JDBCStore).
-3. Using in-memory-replication, and using the SimpleTcpCluster that ships with Tomcat (lib/catalina-tribes.jar + lib/catalina-ha.jar).
+3. Using in-memory-replication, and using the SimpleTcpCluster that ships with Tomcat (`lib/catalina-tribes.jar` + `lib/catalina-ha.jar`).
 
 Because our infrastructure stack already assumes a highly available database, I’ll implement option two. This is arguably the simplest solution for us, as we do not have to implement any special networking, and we can reuse an existing database. However, this solution does introduce a delay between when the session state is modified and when it is persisted to the database. This delay introduces a window during which data may be lost in the case of hardware or network failure. Scheduled maintenance tasks are supported though, as any session data will be written to the database when Tomcat is shutdown, allowing us to patch the operating system or update Tomcat itself safely.
 
@@ -170,7 +170,7 @@ Octopus performs deployments to Tomcat via the Manager application. This is what
 
 In order to authenticate with the Manager application, a new user needs to be defined in the `/etc/tomcat9/tomcat-users.xml` file. I’ll call this user `tomcat` with the password `Password01!`, and it will belong to the `manager-script` and `manager-gui` roles.
 
-The `manager-script` role grants access to the Manager API, while the `manager-gui` role grants access to the Manager web console.
+The `manager-script` role grants access to the Manager API, and the `manager-gui` role grants access to the Manager web console.
 
 Here is a copy of the `/etc/tomcat9/tomcat-users.xml` file with the `tomcat` user defined:
 
@@ -189,7 +189,7 @@ Here is a copy of the `/etc/tomcat9/tomcat-users.xml` file with the `tomcat` use
 
 Each Tomcat instance will communicate with a PostgreSQL database to persist session data. In order for Tomcat to communicate with a PostgreSQL database, we need to install the PostgreSQL JDBC driver JAR file. This is done by saving the file `https://jdbc.postgresql.org/download/postgresql-42.2.11.jar` as `/var/lib/tomcat9/lib/postgresql-42.2.11.jar`.
 
-#### Enable session replicationl
+#### Enable session replication
 
 To enable session persistence to a database, we add a new `Manager` definition in the file `/etc/tomcat9/context.xml`. This manager uses the `org.apache.catalina.session.PersistentManager` to save the session details to a database defined in the nested `Store` element.
 
@@ -424,7 +424,7 @@ authentication {
 unicast_src_ip 10.0.0.20
 ```
 
-`unicast_peer` lists the IP addresses of other load balancers. Since we have have two load balancers total, there is only one other load balancer to list here:
+`unicast_peer` lists the IP addresses of other load balancers. Since we have two load balancers total, there is only one other load balancer to list here:
 
 ```
 unicast_peer {
@@ -535,10 +535,6 @@ If you do not already have Octopus installed, the easiest way to get an Octopus 
 ### Create the environments
 
 We’ll create two environments for this example: **Dev** and **Prod**. This means we will configure eight targets in total: four load balancers and four Tomcat instances.
-
-Here is a screenshot of the environments in Octopus:
-
-![](environments.png "width=500")
 
 ### Deploy the Tentacle
 
@@ -707,7 +703,7 @@ In summary:
 
 ## Zero downtime deployments
 
-We have now successfully deployed version *0.1.6.1* of our web application to Tomcat. This version of the application uses a very simple table structure to hold the names of those accredited with the quotes, placing both the first name and last name into a single column called `AUTHOR`.
+We have now successfully deployed version *0.1.6.1* of our web application to Tomcat. This version of the application uses a very simple table structure to hold the names of those credited with the quotes, placing both the first name and last name into a single column called `AUTHOR`.
 
 This table structure was originally created by a Flyway database script with the following SQL:
 
@@ -750,7 +746,7 @@ UPDATE AUTHOR SET FIRSTNAME = 'Pablo', LASTNAME = 'Picasso' WHERE ID = 13;
 UPDATE AUTHOR SET FIRSTNAME = 'Charles', LASTNAME = 'Mingus' WHERE ID = 14;
 ```
 
-In addition, the new JPA entity class needs to ignore old `AUTHOR` column (through the `@Transient` annotation). The `getAuthor()` method then returns the combined values of the `getFirstName()` and `getLastName()` methods:
+In addition, the new JPA entity class needs to ignore the old `AUTHOR` column (through the `@Transient` annotation). The `getAuthor()` method then returns the combined values of the `getFirstName()` and `getLastName()` methods:
 
 ```Java
 @Entity
@@ -797,7 +793,7 @@ public class Author {
 }
 ```
 
-While this is a trivial example that is easy to implement thanks to the fact the `AUTHOR` table is read-only, it does demonstrate how database changes can be implemented in a backward compatible manner. It would be possible to write entire books on the strategies for maintaining backward compatibility, but for the purposes of this post, we’ll leave this discussion here.
+While this is a trivial example that is easy to implement thanks to the fact the `AUTHOR` table is read-only, it demonstrates how database changes can be implemented in a backward compatible manner. It would be possible to write entire books on the strategies for maintaining backward compatibility, but for the purposes of this post, we’ll leave this discussion here.
 
 Before we perform the next deployment, reopen the existing application and refresh some quotes. This creates a session against the existing *0.1.6.1* version, which we’ll use to test our zero downtime deployment strategy.
 
@@ -825,7 +821,7 @@ With that, we have demonstrated zero downtime deployments. Because our database 
 
 As long as database compatibility has been maintained between the last and current version of the application (versions `0.1.6.1` and `0.1.7` in this example), rolling back is as simple as creating a new deployment with the previous version of the application.
 
-Because the Tomcat version is a timestamp calculated at deployment time, deploying version `0.1.6.1` of the application again results in it processing any new traffic as it has a later version.
+Because the Tomcat version has a timestamp calculated at deployment time, deploying version `0.1.6.1` of the application again results in it processing any new traffic as it has a later version.
 
 Note, any existing sessions for version `0.1.7`, will be left to naturally expire thanks to the Tomcat’s parallel deployments. If this version has to be taken offline (for example, if there is a critical issue and it can not be left in service), we can use the **Start/stop App in Tomcat** step to stop a deployed application.
 
@@ -877,7 +873,7 @@ Next, we have the feature branch channel, which defines a regular expression of 
 
 ![](feature_branch_channel.png "width=500")
 
-Here is the list of versions that Octopus allows a release to be created from when using the default channel. Notice, the only version displayed has no qualifier, which we take to mean it is the master release:
+Here is the list of versions that Octopus allows a release to be created from in the default channel. Notice, the only version displayed has no qualifier, which we take to mean it is the master release:
 
 ![](default_channel_deployment.png "width=500")
 
