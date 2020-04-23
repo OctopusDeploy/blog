@@ -108,10 +108,16 @@ The initial fields in the email form are fairly straight forward.  The subject a
 
 ![](notification-subject-and-body.png)
 
-The subject is getting cut off in the screenshot.  The subject is:
+Retyping what is in a screenshot is not fun.  Below is the text for the subject and body.
 
 ```
+Subject:
 Pending approval for #{Octopus.Project.Name} #{Octopus.Release.Number} to #{Octopus.Environment.Name}
+
+Body:
+Please approve the release #{Octopus.Project.Name} #{Octopus.Release.Number} to #{Octopus.Environment.Name} here:
+
+#{Octopus.Web.DeploymentLink}
 ```
 
 The failure notification is a bit different.  The priority of the email needs to change from normal to high, and the run condition should be configured only to run the step on failure.
