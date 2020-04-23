@@ -4,14 +4,14 @@ description: Learn techniques to build trust in your automated database deployme
 author: bob.walker@octopus.com
 visibility: public
 published: 2099-01-01
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - Engineering
  - Database Deployments
 ---
 
-When I started automating database deployments, I was afraid the tooling would drop a column or table when it shouldn't.  I couldn't help but always wonder, did I have everything configured correctly?  The core problem is I didn't include the necessary steps to build trust in my database deployment process.  In this blog post, I walk through some techniques and configurations I used to help build that trust.
+When I started automating database deployments, I was afraid the tooling would drop a column or table when it shouldn’t.  I couldn’t help but always wonder, did I have everything configured correctly?  The core problem is I didn’t include the necessary steps to build trust in my database deployment process.  In this blog post, I walk through some techniques and configurations I used to help build that trust.
 
 !toc
 
@@ -40,7 +40,7 @@ In this article, I create an automated database deployment process from scratch.
 
 ## Bare bones deployment process
 
-If we had total trust in the process, we would only need the deployment step.  Let's start there.
+If we had total trust in the process, we would only need the deployment step.  Let’s start there.
 
 :::highlight
 This article uses [DbUp](https://dbup.github.io/), a cross-platform database deployment tool to handle the database deployments.  The core concepts of this article apply for any database deployment tool to any database server.
@@ -48,7 +48,7 @@ This article uses [DbUp](https://dbup.github.io/), a cross-platform database dep
 
 ![](deployment-process-start.png)
 
-Right now, this process will take the scripts in the package and run them on the database.  It'd be nice to know what those scripts are.  Let's add a step to generate a delta script or report.
+Right now, this process will take the scripts in the package and run them on the database.  It’d be nice to know what those scripts are.  Let’s add a step to generate a delta script or report.
 
 ![](adding-delta-report.png)
 
@@ -59,7 +59,7 @@ New-OctopusArtifact -Path "$generatedReport" -Name "$environmentName.UpgradeRepo
 ```
 
 :::highlight
-The method for creating a delta report will vary based on your database deployment tooling.  Please consult the tooling's documentation to find out how.  In some cases, our [docs](https://octopus.com/docs/deployment-examples/database-deployments) have examples that you can leverage. 
+The method for creating a delta report will vary based on your database deployment tooling.  Please consult the tooling’s documentation to find out how.  In some cases, our [docs](https://octopus.com/docs/deployment-examples/database-deployments) have examples that you can leverage.
 :::
 
 During a deployment, that artifact will appear in two places on the screen.  
@@ -76,13 +76,13 @@ The deployment screen also shows who started the deployment and when it was star
 
 Now we are getting somewhere; we have a delta report which will be kept as long as the release exists for anyone (including auditors) to download and review.
 
-## Approvals 
+## Approvals
 
-But what if the delta report shows a script with a command like `drop table` or `drop column`? Is that okay?  Maybe, maybe not.  It doesn't make sense to reject the script outright.  It makes more sense to pause the deployment, review the scripts, and if something doesn't look right, find the person who created the script and discuss it with them.  To do that, we can add a manual intervention.  
+But what if the delta report shows a script with a command like `drop table` or `drop column`? Is that okay?  Maybe, maybe not.  It doesn’t make sense to reject the script outright.  It makes more sense to pause the deployment, review the scripts, and if something doesn’t look right, find the person who created the script and discuss it with them.  To do that, we can add a manual intervention.  
 
-An interesting thought comes up when creating a manual intervention.  A team must be selected.  I know what you're thinking.  "The team should be DBAs!"  This step is going to run for all environments.  When _should_ a DBA review changes?  They are busy keeping the database servers up and running.  Having to review _every_ delta script for _every_ deployment would be a full-time job.  
+An interesting thought comes up when creating a manual intervention.  A team must be selected.  I know what you’re thinking.  “The team should be DBAs!”  This step is going to run for all environments.  When _should_ a DBA review changes?  They are busy keeping the database servers up and running.  Having to review _every_ delta script for _every_ deployment would be a full-time job.  
 
-Putting two teams, developers and DBAs won't work, because that means a developer **OR** a DBA could approve the deployment.  That’s acceptable for the `Development` and `Test` environments but not `Production`.
+Putting two teams, developers and DBAs won’t work, because that means a developer **OR** a DBA could approve the deployment.  That’s acceptable for the `Development` and `Test` environments but not `Production`.
 
 ![](creating-manual-intervention.png)
 
@@ -104,11 +104,11 @@ In my experience, the ability to pause and review the delta script before it run
 
 ## Notifications
 
-Chances are DBAs are not watching Octopus Deploy all day, every day.  They need to be notified about the approvals they are responsible for.  But what should they do after they approve a deployment?  Watch it finish?  That could take quite a while.  That doesn't seem like a productive use of their time.  And if the deployment is successful, they probably don't need to do anything else.  A failed `Production` deployment is a pretty big deal; they should be notified.
+Chances are DBAs are not watching Octopus Deploy all day, every day.  They need to be notified about the approvals they are responsible for.  But what should they do after they approve a deployment?  Watch it finish?  That could take quite a while.  That doesn’t seem like a productive use of their time.  And if the deployment is successful, they probably don’t need to do anything else.  A failed `Production` deployment is a pretty big deal; they should be notified.
 
 For this example, I include the email notifications directly in the process.  You can also leverage the [subscription](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) feature in Octopus Deploy.
 
-The initial fields in the email form are fairly straight forward.  The subject and body are what caused me to pause.  The DBAs might be getting dozens of these emails a day.  It should be very easy for them to approve the deployment, so the subject line should include details about the deployment.  If something doesn't look right, they can forward you the email and provide their feedback.  The body should include a deep link for the approver to click on.
+The initial fields in the email form are fairly straight forward.  The subject and body are what caused me to pause.  The DBAs might be getting dozens of these emails a day.  It should be very easy for them to approve the deployment, so the subject line should include details about the deployment.  If something doesn’t look right, they can forward you the email and provide their feedback.  The body should include a deep link for the approver to click on.
 
 ![](notification-subject-and-body.png)
 
@@ -130,7 +130,7 @@ Finally, the team responsible for the application should always be notified of t
 
 ![](deployment-process-with-notifications.png)
 
-Now we have notifications going out to key people.  Typically, key people are also busy people; don't be surprised if you need to dial in the notifications to keep the signal to noise ratio down.
+Now we have notifications going out to key people.  Typically, key people are also busy people; don’t be surprised if you need to dial in the notifications to keep the signal to noise ratio down.
 
 ## Helping the approvers
 
@@ -173,12 +173,12 @@ foreach ($artifact in $artifactResponse.Items)
         Write-Host "Pulling the content from $artifactContentUrl"
         $fileContent += Invoke-RestMethod $artifactContentUrl -Headers $header
         Write-Host "Finished downloading the file $fileName"
-        
+
         $sqlFileToCheck = @{
             FileName = $fileName;
             Content = $fileContent;
         }
-        
+
         $fileListToCheck += $sqlFileToCheck                
     }    
 }
@@ -186,7 +186,7 @@ foreach ($artifact in $artifactResponse.Items)
 if ($fileListToCheck.Length -le 0)
 {
     Write-Highlight "No sql files were found"
-    
+
     Exit 0
 }
 
@@ -198,13 +198,13 @@ foreach ($sqlFile in $fileListToCheck)
     {
         Write-Host "Checking $($sqlFile.FileName) for command $command"
         $foundCommand = $sqlFile.Content -match "$command"
-    
+
         if ($foundCommand)
         {
             Write-Highlight "$($sqlFile.FileName) has the command '$command'"            
         }
     }
-} 
+}
 ```
 
 When certain commands are found, the script will leverage the `Write-Highlight` [logging command](https://octopus.com/docs/deployment-examples/custom-scripts/logging-messages-in-scripts) provided by Octopus Deploy.  The message will appear in the deployment log.  
@@ -215,7 +215,7 @@ Seeing those messages should hopefully make it a little easier on the approver.
 
 ## Handling errors and failures
 
-Errors and failures will happen.  A number of them occur because of something out of the control of Octopus Deploy, for instance, a network failure, an SQL Server restart, incorrect permissions, and missing accounts are amongst the most common.  Once the issue is fixed, it would be much better just to try the failed step again and prevent unnecessary rework.  If a DBA already approved a script, they don't need to approve it again.  
+Errors and failures will happen.  A number of them occur because of something out of the control of Octopus Deploy, for instance, a network failure, an SQL Server restart, incorrect permissions, and missing accounts are amongst the most common.  Once the issue is fixed, it would be much better just to try the failed step again and prevent unnecessary rework.  If a DBA already approved a script, they don’t need to approve it again.  
 
 Outside failures is the scenario [guided failure mode](https://octopus.com/docs/managing-releases/guided-failures) was designed for.  It can be enabled at the per project or per environment level.  For this example, it is enabled at the project level.
 
@@ -229,14 +229,14 @@ With this small change, we have given the users the chance to handle failure gra
 
 ## Separation of concerns
 
-Separation of concerns is a common practice.  The person who made the code change shouldn't be the person who approved it or deployed it to `Production`.  Note, developers should be able to deploy to `Development` and `Test`, and in Octopus Deploy, it is possible to configure the teams to support this.
+Separation of concerns is a common practice.  The person who made the code change shouldn’t be the person who approved it or deployed it to `Production`.  Note, developers should be able to deploy to `Development` and `Test`, and in Octopus Deploy, it is possible to configure the teams to support this.
 
 There are five roles that help achieve this in Octopus Deploy.
 
 - **Deployment Creator**: People assigned to this role can kick off deployments.  In this example, DBAs will be assigned this role for `Production`.
 - **Project Contributor**: People assigned to this role can edit the project, but there cannot create or deploy releases.  In this example, developers will be assigned this role for `Production`.
 - **Project Deployer**: People assigned to this role can do everything a project contributor can do, including deploying a release.  In this example, developers will be assigned this role for the lower environments.
-- **Project Viewer**: People assigned to this role have a read-only view of the project.  Perfect for QA, Business Owners, and other people who don't have permission to change a process but still want to see the status.
+- **Project Viewer**: People assigned to this role have a read-only view of the project.  Perfect for QA, Business Owners, and other people who don’t have permission to change a process but still want to see the status.
 
 ![](built-in-user-roles.png)
 
@@ -244,15 +244,15 @@ The developer team user roles will be:
 
 ![](developer-team-permissions.png)
 
-The DBA's permissions will be:
+The DBA’s permissions will be:
 
 ![](dba-permissions.png)
 
-## Adjusting the DBAs' role in the process
+## Adjusting the DBAs’ role in the process
 
-With those permissions, the DBAs' role in this process is still a bit odd.  They are the ones who trigger a deployment to `Production`.  Should they also have to manually approve the deployment as well?  At first blush, it makes sense.  They should approve a `Production` release.  
+With those permissions, the DBAs’ role in this process is still a bit odd.  They are the ones who trigger a deployment to `Production`.  Should they also have to manually approve the deployment as well?  At first blush, it makes sense.  They should approve a `Production` release.  
 
-Here is the real question: how often has a development team changed something during a `Production` deployment because a DBA found something they didn't like?  
+Here is the real question: how often has a development team changed something during a `Production` deployment because a DBA found something they didn’t like?  
 
 The answer is probably never.  When an outage window has been communicated to users and customers, the `Production` deployment is too late for a DBA to voice their concerns.  Unless the DBA can say with 100% certainty a problem is going to happen; the production deployment will proceed.
 
@@ -260,17 +260,17 @@ A `Production` deployment is too late for a DBA to be involved.  A much better a
 
 ![](earlier-dba-approval.png)
 
-When the DBA creates the `Production` deployment, they can also review the delta report generated during the `Staging` deployment.  The added bonus is the DBA can now schedule the deployment, and they don't have to be online.
+When the DBA creates the `Production` deployment, they can also review the delta report generated during the `Staging` deployment.  The added bonus is the DBA can now schedule the deployment, and they don’t have to be online.
 
 ![](scheduled-deployment.png)
 
-That being said, don't expect the DBA to schedule deployment and not be online when you start out.  It will take quite a number of deployments before they trust the team, trust the process, and trust themselves to understand the tool.
+That being said, don’t expect the DBA to schedule deployment and not be online when you start out.  It will take quite a number of deployments before they trust the team, trust the process, and trust themselves to understand the tool.
 
 ## Future iterations
 
 All the manual approvals and notifications will create noise.  When starting out, that noise is good.  The team is still learning the tooling.  Eventually, the team will become comfortable with the tooling, and the manual approvals and notifications will annoy and eventually hinder the team.  
 
-It isn't wise to remove those notifications and approvals.  Something damaging could slip through the pull request process.  The process has a step that automatically finds potential problems, `Check SQL Artifacts for Schema Change Commands`.  That script can be modified to set [output variables](https://octopus.com/docs/projects/variables/output-variables).  If a potentially damaging command is found, then the deployment must go through the approval process:
+It isn’t wise to remove those notifications and approvals.  Something damaging could slip through the pull request process.  The process has a step that automatically finds potential problems, `Check SQL Artifacts for Schema Change Commands`.  That script can be modified to set [output variables](https://octopus.com/docs/projects/variables/output-variables).  If a potentially damaging command is found, then the deployment must go through the approval process:
 
 ```PowerShell
 $ApprovalRequired = $false
@@ -282,14 +282,14 @@ foreach ($sqlFile in $fileListToCheck)
     {
         Write-Host "Checking $($sqlFile.FileName) for command $command"
         $foundCommand = $sqlFile.Content -match "$command"
-    
+
         if ($foundCommand)
         {
             Write-Highlight "$($sqlFile.FileName) has the command '$command'"
             $ApprovalRequired = $true
         }
     }
-} 
+}
 
 if ($approvalRequired -eq $false)
 {
@@ -317,7 +317,7 @@ In the notification and manual intervention steps, the variable run condition ca
 
 ## Preventing bad actors
 
-One flaw in this process is it assumes developers don't go into the deployment process and disable or delete the manual intervention steps.  Trust, but verify is our recommended approach.  
+One flaw in this process is it assumes developers don’t go into the deployment process and disable or delete the manual intervention steps.  Trust, but verify is our recommended approach.  
 
 For starters, we are working on a process as code that integrates with Git.  If it integrates with Git, it can then go through a pull request process.  
 
@@ -341,9 +341,9 @@ The process created in this article helps achieve that goal by doing the followi
 6. Developers have permissions to deploy to `Development`, `Test`, and `Staging`, but DBAs must approve the deployment to `Staging`.
 7. DBAs approve and review changes for both `Staging` and `Production` during a `Staging` deployment.  This gives them much more time to review the changes and raise any concerns prior to a `Production` push.  
 
-I implemented something similar while working at previous companies.  It was much better than the previous process, which was an email saying, "please run these SQL scripts."  I felt confident about the database changes going out, and eventually, the DBAs did too.  It got the point where they would say "I'll schedule it for 7 PM, I won't be online, but if anything goes wrong it'll page me, and I'll hop on."    
+I implemented something similar while working at previous companies.  It was much better than the previous process, which was an email saying, “Please run these SQL scripts.” I felt confident about the database changes going out, and eventually, the DBAs did too.  It got the point where they would say “I’ll schedule it for 7 PM, I won’t be online, but if anything goes wrong it’ll page me, and I’ll hop on.”    
 
-I am not naive enough to believe this will solve all the potential trust concerns.  The process isn't perfect; for example, it doesn't integrate with a Production Change Request system, and it doesn't integrate with issue trackers.  While important, I felt those items muddied the waters for this article.  My goal for this article was to provide tips and techniques for you to feel confident in starting your own POC or Pilot for automated database deployments.  
+I am not naive enough to believe this will solve all the potential trust concerns.  The process isn’t perfect; for example, it doesn’t integrate with a Production Change Request system, and it doesn’t integrate with issue trackers.  While important, I felt those items muddied the waters for this article.  My goal for this article was to provide tips and techniques for you to feel confident in starting your own POC or Pilot for automated database deployments.  
 
 The deployment process from this article can be found on our [samples instance](https://samples.octopus.app/app#/Spaces-106/projects/dbup-sql-server/deployments).  
 
