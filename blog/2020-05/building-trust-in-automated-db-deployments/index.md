@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-When I started automating database deployments, I was afraid the tooling would drop a column or table when it shouldn’t.  I couldn’t help but always wonder, did I have everything configured correctly?  The core problem is I didn’t include the necessary steps to build trust in my database deployment process.  In this blog post, I walk through some techniques and configurations I used to help build that trust.
+When I started automating database deployments, I was afraid the tooling would drop a column or table when it shouldn’t.  I couldn’t help but always wonder, did I have everything configured correctly?  The core problem is I didn’t include the necessary steps to build trust in my database deployment process.  In this blog post, I walk through some techniques and configurations I used to help build that trust so I can automate my database deployments with confidence.
 
 !toc
 
@@ -42,7 +42,7 @@ In this article, I create an automated database deployment process from scratch.
 
 If we had total trust in the process, we would only need the deployment step.  Let’s start there.
 
-:::highlight
+:::success
 This article uses [DbUp](https://dbup.github.io/), a cross-platform database deployment tool to handle the database deployments.  The core concepts of this article apply for any database deployment tool to any database server.
 :::
 
@@ -52,13 +52,13 @@ Right now, this process will take the scripts in the package and run them on the
 
 ![](adding-delta-report.png)
 
-The `Create Delta Report` step has this line at the end of the script, which uploads the script to Octopus Deploy as an artifact.
+The `Create Delta Report` step has this line at the end of the script, which uploads the script to Octopus Deploy as an artifact:
 
 ```PowerShell
 New-OctopusArtifact -Path "$generatedReport" -Name "$environmentName.UpgradeReport.html"
 ```
 
-:::highlight
+:::success
 The method for creating a delta report will vary based on your database deployment tooling.  Please consult the tooling’s documentation to find out how.  In some cases, our [docs](https://octopus.com/docs/deployment-examples/database-deployments) have examples that you can leverage.
 :::
 
@@ -68,11 +68,7 @@ During a deployment, that artifact will appear in two places on the screen.
 
 Clicking on either of them will download the artifact.  
 
-![](downloaded-artifact.png)
-
 The deployment screen also shows who started the deployment and when it was started.  Both this audit log and the artifact will be kept until the end of time unless you have configured [retention policies](https://octopus.com/docs/administration/retention-policies), in which case, they will only be kept until the deployment is deleted by the retention policy.
-
-![](audit-deployment-log.png)
 
 Now we are getting somewhere; we have a delta report which will be kept as long as the release exists for anyone (including auditors) to download and review.
 
@@ -88,7 +84,7 @@ Putting two teams, developers and DBAs, won’t work because that means a develo
 
 In this example, it makes sense for DBAs to approve the delta script for `Staging` and `Production`.  Meanwhile, the developers can approve the delta script for `Development` and `Test`.
 
-:::highlight
+:::success
 I like to add the Octopus Managers team to all manual interventions.  This way, they can take responsibility in the event of an emergency if all the DBAs are unavailable.
 :::
 
@@ -122,7 +118,7 @@ The failure notification is a bit different.  The priority of the email needs to
 
 ![](failure-notification.png)
 
-:::highlight
+:::success
 This example uses email notifications, but you can also leverage other tools such as Slack, Teams, VictorOps, and more.
 :::
 
