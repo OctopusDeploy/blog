@@ -1,6 +1,6 @@
 ---
 title: Building trust in an automated database deployment process
-description: Learn techniques to build trust in your automated database deployment process, and gain confidence in every part of the process.
+description: Learn techniques to build trust in your automated database deployment process and gain confidence in every part of the process.
 author: bob.walker@octopus.com
 visibility: public
 published: 2099-01-01
@@ -82,14 +82,14 @@ But what if the delta report shows a script with a command like `drop table` or 
 
 An interesting thought comes up when creating a manual intervention.  A team must be selected.  I know what you’re thinking.  “The team should be DBAs!”  This step is going to run for all environments.  When _should_ a DBA review changes?  They are busy keeping the database servers up and running.  Having to review _every_ delta script for _every_ deployment would be a full-time job.  
 
-Putting two teams, developers and DBAs won’t work, because that means a developer **OR** a DBA could approve the deployment.  That’s acceptable for the `Development` and `Test` environments but not `Production`.
+Putting two teams, developers and DBAs, won’t work because that means a developer **OR** a DBA could approve the deployment.  That’s acceptable for the `Development` and `Test` environments but not `Production`:
 
 ![](creating-manual-intervention.png)
 
 In this example, it makes sense for DBAs to approve the delta script for `Staging` and `Production`.  Meanwhile, the developers can approve the delta script for `Development` and `Test`.
 
 :::highlight
-I like to add the Octopus Managers team to all manual interventions.  This way, they can take responsibility in the event of an emergency and all the DBAs are unavailable.
+I like to add the Octopus Managers team to all manual interventions.  This way, they can take responsibility in the event of an emergency if all the DBAs are unavailable.
 :::
 
 ![](dba-approve-delta-script.png)
@@ -136,7 +136,7 @@ Now we have notifications going out to key people.  Typically, key people are al
 
 As time goes on, the number of deployments the DBAs have to approve will exponentially grow.  It is the nature of automation.  When teams feel comfortable with the tooling and trust the process, they will naturally do more deployments.  
 
-More deployments are a double-edged sword; the downside is there’s less time available to review database changes.  A DBA or developer could miss a schema change that causes significant damage, but this process should help them.  Thankfully, Octopus Deploy is an API first application, and using the API, it is possible to download the delta report or SQL artifacts to find any potentially damaging statements:  
+More deployments are a double-edged sword; the downside is there’s less time available to review database changes.  A DBA or developer could miss a schema change that causes significant damage, but this process should help them.  Thankfully, Octopus Deploy is an API first application, using the API it possible to download the delta report or SQL artifacts to find any potentially damaging statements:  
 
 ```PowerShell
 $CommandsToLookFor = "Drop Table,Drop Column,Alter Table,Create Table,Create View"
@@ -215,9 +215,9 @@ Seeing those messages should hopefully make it a little easier on the approver.
 
 ## Handling errors and failures
 
-Errors and failures will happen.  A number of them occur because of something out of the control of Octopus Deploy, for instance, a network failure, an SQL Server restart, incorrect permissions, and missing accounts are amongst the most common.  Once the issue is fixed, it would be much better just to try the failed step again and prevent unnecessary rework.  If a DBA already approved a script, they don’t need to approve it again.  
+Errors and failures will happen.  A number of them occur because of something out of the control of Octopus Deploy, for instance, a network failure, an SQL Server restart, incorrect permissions, and missing accounts are amongst the most common.  After the issue is fixed, it would be much better just to try the failed step again and prevent unnecessary rework.  If a DBA already approved a script, they don’t need to approve it again.  
 
-Outside failures is the scenario [guided failure mode](https://octopus.com/docs/managing-releases/guided-failures) was designed for.  It can be enabled at the per project or per environment level.  For this example, it is enabled at the project level.
+[Guided failures](https://octopus.com/docs/managing-releases/guided-failures) was designed for scenarios like this.  Guided failures can be enabled per project or per environment.  For this example, it is enabled at the project level:
 
 ![](use-guided-failure-mode.png)
 
@@ -254,7 +254,7 @@ With those permissions, the DBAs’ role in this process is still a bit odd.  Th
 
 Here is the real question: how often has a development team changed something during a `Production` deployment because a DBA found something they didn’t like?  
 
-The answer is probably never.  When an outage window has been communicated to users and customers, the `Production` deployment is too late for a DBA to voice their concerns.  Unless the DBA can say with 100% certainty a problem is going to happen; the production deployment will proceed.
+The answer is probably never.  When an outage window has been communicated to users and customers, the `Production` deployment is too late for a DBA to voice their concerns.  Unless the DBA can say with 100% certainty a problem is going to happen, the production deployment will proceed.
 
 A `Production` deployment is too late for a DBA to be involved.  A much better approach is for a delta script for `Production` to be created during the `Staging` deployment.  That way, the DBA can approve both of them at the same time.  
 
@@ -319,7 +319,7 @@ In the notification and manual intervention steps, the variable run condition ca
 
 One flaw in this process is it assumes developers don’t go into the deployment process and disable or delete the manual intervention steps.  Trust, but verify is our recommended approach.  
 
-For starters, we are working on a process as code that integrates with Git.  If it integrates with Git, it can then go through a pull request process.  
+For starters, we are working on a *process as code* that integrates with Git.  If it integrates with Git, it can then go through a pull request process.  
 
 [This video](https://www.youtube.com/watch?v=i4qYdsYyu9s&list=PLAGskdGvlaw3-cd9rPiwhwfUo7kDGnOBh&index=19&t=0s) also outlines a process to automatically audit your projects.
 
