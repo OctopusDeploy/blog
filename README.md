@@ -6,14 +6,14 @@ Authors must sign the [Contribution License Agreement (CLA)](https://cla-assista
 
 The repo includes [templates](templates/readme.md) to help you get started.
 
-See the [Octopus style guide](https://octopusdeploy.github.io/OctoStyle/) for the following information:
+See the [Octopus style guide](https://style.octopus.com) for the following information:
 
-- [Markdown quick reference](https://octopusdeploy.github.io/OctoStyle/markdown)
-- [Writing tips for the blog](https://octopusdeploy.github.io/OctoStyle/writing-tips-for-the-blog) 
+- [Markdown quick reference](https://style.octopus.com/markdown)
+- [Writing tips for the blog](https://style.octopus.com/writing-tips-for-the-blog) 
 
 ## Snippets
 
-The blog includes snippets from the [snippets repo](https://github.com/OctopusDeploy/snippets). For more information see [Octopus snippets](https://octopusdeploy.github.io/OctoStyle/octopus-snippets).
+The blog includes snippets from the [snippets repo](https://github.com/OctopusDeploy/snippets). For more information see [Octopus snippets](https://style.octopus.com/octopus-snippets).
 
 If the latest snippets do not appear in the output, use the following to update the snippets:
 
