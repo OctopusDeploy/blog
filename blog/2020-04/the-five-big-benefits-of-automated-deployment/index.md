@@ -1,8 +1,9 @@
 ---
 title: The big 5 benefits of automated deployment
 description: A guest post that explores the benefits of automated deployments.
-visibility: private
-published: 2999-01-01
+author: info@red-gate.com
+visibility: public
+published: 2020-04-28
 metaImage:
 bannerImage:
 tags:
