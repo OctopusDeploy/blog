@@ -1,13 +1,15 @@
 ---
 title: Publishing a package to Octopus with GitHub Actions
 description: A post showing how to create a GitHub Action that pushes a package to Octopus.
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-04-27
+metaImage: github-actions-publish.png
+bannerImage: github-actions-publish.png
 tags:
  - DevOps
 ---
+
+![Publishing a package to Octopus with GitHub Actions](github-actions-publish.png)
 
 I recently set aside some time to write my first GitHub Action. I used my personal blog as my test case. It is a static site that is built with Wyam and hosted in Firebase.
 
