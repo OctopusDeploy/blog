@@ -8,6 +8,7 @@ metaImage: octopus-circle-ci-orb.png
 bannerImage: octopus-circle-ci-orb.png
 tags:
  - DevOps
+ - CircleCI
 ---
 
 ![Reusable YAML with CircleCI orbs](octopus-circle-ci-orb.png)
