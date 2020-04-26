@@ -3,12 +3,14 @@ title: Reusable YAML with CircleCI orbs
 description: An overview of using and creating CircleCI Orbs.
 author: ryan.rousseau@octopus.com
 visibility: private
-published: 2023-03-30
-metaImage: 
-bannerImage:
+published: 2020-04-29
+metaImage: octopus-circle-ci-orb.png
+bannerImage: octopus-circle-ci-orb.png
 tags:
  - DevOps
 ---
+
+![Reusable YAML with CircleCI orbs](octopus-circle-ci-orb.png)
 
 A growing trend among continuous integration and continuous delivery platforms is providing the ability to define pipelines as code, usually with YAML. One of the leaders in this area is CircleCI. In this post, we will look at a CircleCI configuration, including how to use and author CircleCI `orbs`. An orb is a reusable chunk of YAML that can be used across your CircleCI pipelines. Instead of copying and pasting the same code across multiple files, you can reference the functionality from the orb and keep your pipeline DRY.
 
