@@ -1,10 +1,10 @@
 ---
 title: Reusable YAML with CircleCI orbs
-description: An overview of using and creating CircleCI Orbs
+description: An overview of using and creating CircleCI Orbs.
 author: ryan.rousseau@octopus.com
 visibility: private
 published: 2023-03-30
-metaImage:
+metaImage: 
 bannerImage:
 tags:
  - DevOps
