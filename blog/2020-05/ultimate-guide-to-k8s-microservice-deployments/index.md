@@ -209,7 +209,23 @@ The additional load balancer service can be deployed with the **Deploy Kubernete
 
 ## High Availability
 
-Replica count and pod anti affinity
+Since Kubernetes takes care of provisioning pods in the cluster and has built in support for tracking the health of pods and nodes, we gain a reasonable degree of high availability out of the box. In addition we can often lean on cloud providers to monitor node health, recreate failed nodes, and physically provision nodes across availability zones to reduce the impact of an outage.
+
+However the default settings for the deployments we imported need some tweaking to make them more resilient.
+
+First, we need to increase the deployment replica count, which determines how many pods a deployment will create. The default value is 1, meaning a failure of any single pod will result in a microservice being unavailable. Increasing this value means our application can survive the loss of a single pod. In the screenshot below you can see I have increase the replica count to 2 for the ad service:
+
+![](replicas.png "width=500")
+
+Having two pods is a good start, but if both those pods have been created on a single node we still have a single point of failure. To address this we'll use a feature in Kubernetes called pod anti-affinity. This allows us to instruct Kubernetes to prefer that certain pods be deployed on seperate nodes.
+
+In the screenshot below you can see that I have created an preffered anti-affinity rule that instructs Kubernetes to attempt to place pods with the label `app` and value `adservice` (this is one label this deployment assigns to pods) on separate nodes. 
+
+The topology key is the name of a label assigned to nodes that defines the topological group that the node belongs to. In more complex deployments the topology key would be used to indicate details like physical regions nodes were placed in or networking considerations. However in this example we select a label that uniquly idenfities each node called `alpha.eksctl.io/instance-id`, effectivly creating topologies that contain only one node.
+
+The end result is that Kubernetes will try to place pods belonging to the same deployment on different nodes, meaning our cluster is more likely to survive a node going down:
+
+![](anti-affinity.png "width=500")
 
 ## Zero downtime deployments
 
