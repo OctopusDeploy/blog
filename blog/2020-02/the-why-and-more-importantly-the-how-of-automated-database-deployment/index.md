@@ -2,6 +2,7 @@
 title: The why and more importantly the how of automated database deployment
 description: Why and how your should automate your database deployments
 visibility: public
+author: info@red-gate.com
 published: 2020-02-12
 metaImage: redgate-database-deployments.png
 bannerImage: redgate-database-deployments.png
