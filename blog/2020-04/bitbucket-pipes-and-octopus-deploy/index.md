@@ -12,12 +12,6 @@ tags:
 
 ![Bitbucket Pipelines](bitbucket-cd.png)
 
-Watch our recent webinar to learn how to integrate your Atlassian Cloud Pipeline with Octopus Deploy. We cover a lot of the concepts from this post so check it out:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yPjooXDJUA0" frameborder="0" allowfullscreen></iframe>
-
----
-
 Atlassian’s [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) is a lightweight cloud continuous integration server that uses pre-configured Docker containers, allowing you to define your infrastructure as code. [Pipes](https://bitbucket.org/product/features/pipelines/integrations) let you add configuration to your Pipelines and are particularly useful for third-party tools.
 
 In this post, I create an experimental Pipe for an [Octopus CLI](https://g.octopushq.com/OctopusCLI) command, use it in a Bitbucket Pipeline for our sample node.js application [RandomQuotes-Js](https://bitbucket.org/octopussamples/randomquotes-js), and finally, integrate the Pipeline with Octopus.
@@ -646,5 +640,9 @@ Creating my first Bitbucket Pipe was pretty straightforward. I can definitely se
 ## Learn more
  - Take a peek at the *experimental* Pipe - [pack](https://bitbucket.org/octopusdeploy/pack/src/master/README.md)
  - Guides: [Octopus CI/CD pipeline guides](https://octopus.com/docs/guides)
+
+Watch our recent webinar to learn how to integrate your Atlassian Cloud Pipeline with Octopus Deploy. We cover a lot of the concepts from this post so check it out:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yPjooXDJUA0" frameborder="0" allowfullscreen></iframe>
 
 Feel free to leave a comment, and let us know what you think about Bitbucket Pipes, Pipelines, or container-based build chains!
