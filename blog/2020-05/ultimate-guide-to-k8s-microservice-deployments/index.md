@@ -223,13 +223,23 @@ In the screenshot below you can see that I have created an preffered anti-affini
 
 The topology key is the name of a label assigned to nodes that defines the topological group that the node belongs to. In more complex deployments the topology key would be used to indicate details like physical regions nodes were placed in or networking considerations. However in this example we select a label that uniquly idenfities each node called `alpha.eksctl.io/instance-id`, effectivly creating topologies that contain only one node.
 
-The end result is that Kubernetes will try to place pods belonging to the same deployment on different nodes, meaning our cluster is more likely to survive a node going down:
+The end result is that Kubernetes will try to place pods belonging to the same deployment on different nodes, meaning our cluster is more likely to survive the loss of a single node:
 
 ![](anti-affinity.png "width=500")
 
 ## Zero downtime deployments
 
-Rolling deployments or blue/green deployments
+Deployment resources in Kubernetes offer two built in strategies for deploying updates.
+
+The first and default strategies is the recreate strategies. This strategy first deletes any existing pods before deploying new ones. The recreate strategy removes the need for two pod versions to coexist, which can be important in situations like when incompatible database changes have been incorporated into the new version. However it does introduce downtime from when the old pods are shut down to when the new pods are fully operational.
+
+The second strategy is the rolling update stragey. This strategy incrementally replaces old pods with new ones, and can be configured in such as way as to ensure there are always healthy pods available during the update to serve traffic. The rolling update strategy means that both old and new pods run side by side for a short period, so careful attention must be made to ensure clients and datastores can also support both pod versions. The beenfit of this approach is that there is no downtime as some pods are availble to process any requests.
+
+Octopus introduces a third deployment strategy called blue/green. The blue/green strategy is implemented by creating a distinct new deployment resource, which is to say a new deployment resource with a unique name, with each deployment. If a configmap or secret was defined as part of the **Deploy Kubernetes containers** step, distinct new instances of those resources are created as well. Once the new deployment has succeeded and all health checks have passed, the service is updated to switch traffic from the old deployment to the new one. This allows for a complete cutover from the old deployment to the new one with no downtime, and ensures that traffic is only sent to the old or new pods, but not both at the same time.
+
+Selecting either the rolling or blue/green deployment strategies means we can deploy microservices with zero downtime:
+
+![](rolling-update.png "width=500")
 
 ## HTTPS and certificate management
 
