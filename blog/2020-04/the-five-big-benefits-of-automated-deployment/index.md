@@ -1,14 +1,16 @@
 ---
 title: The big 5 benefits of automated deployment
 description: A guest post that explores the benefits of automated deployments.
-author: info@red-gate.com
 visibility: public
+author: info@red-gate.com
 published: 2020-04-28
-metaImage:
-bannerImage:
+metaImage: redgate-database-deployments.png
+bannerImage: redgate-database-deployments.png
 tags:
  - DevOps
 ---
+
+![Why and how your should automate your database deployments](redgate-logo.png)
 
 *“Every software development team should have a fully automated deployment process.”*
 
