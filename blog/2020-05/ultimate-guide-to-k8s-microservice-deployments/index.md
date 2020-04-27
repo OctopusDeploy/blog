@@ -17,8 +17,6 @@ Combining these development practices with Kubernetes to create a Continuous int
 * High availability (HA)
 * Multiple environments
 * Zero downtime deployments
-* Database migrations
-* Load balancers
 * HTTPS and certificate management
 * Feature branch deployments
 * Smoke testing
@@ -208,3 +206,31 @@ Most of these microservices are deployed with the same deployment and service pa
 The additional load balancer service can be deployed with the **Deploy Kubernetes service resource** step. This stand alone step has the same **EDIT YAML** button found in the **Deploy Kubernetes containers** step, and so the `frontend-external` service YAML can be imported directly:
 
 ![](frontend-service-yaml.png "width=500")
+
+## High Availability
+
+Replica count and pod anti affinity
+
+## Zero downtime deployments
+
+Rolling deployments or blue/green deployments
+
+## HTTPS and certificate management
+
+https://istio.io/docs/tasks/traffic-management/ingress/secure-ingress-sds/
+
+## Feature branch deployments
+
+grpc metadata headers and istio routing
+
+## Smoke testing
+
+HTTP test community step library
+
+## Rollback strategies
+
+Deployment rollback or deploy previous Octopus version
+
+## Multiple environments
+
+Different namespaces or different clusters
