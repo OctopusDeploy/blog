@@ -58,7 +58,7 @@ Each step in a deployment process can override the namespace, so it is possible 
 
 :::hint
 The Octopus server or workers that execute the steps must have `kubectl` and the AWS `aws-iam-authenticator` executable available on the path. See the [documentation](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target#add-a-kubernetes-target) for more details.
-:::hint
+:::
 
 ## Installing Istio
 
