@@ -526,7 +526,7 @@ The Uber blog post offers a tantalizing glimpse at how this idea of deploying fe
 
 Kubernetes provides builtin support for checking the state of a pod before it is marked healthy and put into service. The readiness probe will ensure that a pod is healthy and ready to receive traffic when the pod is first created, while the liveness probe continually verifies the health of a pod during its lifetime.
 
-The microserices we have deployed from the sample application include these checks. The YAML shown below is a snippet that shows the readiness and liveness checks that are applied (with small variations) to the internal gRPC microservices:
+The microservices we have deployed from the sample application include these checks. The YAML shown below is a snippet that shows the readiness and liveness checks that are applied (with small variations) to the internal gRPC microservices:
 
 ```yaml
 readinessProbe:
@@ -539,7 +539,7 @@ livenessProbe:
     command: ["/bin/grpc_health_probe", "-addr=:8080"]
 ```
 
-The `grpc_health_probe` is an executable created specifically to verify the health of a an application exposing gRPC services. This project can be found on [GitHub](https://github.com/grpc-ecosystem/grpc-health-probe).
+`grpc_health_probe` is an executable created specifically to verify the health of a an application exposing gRPC services. This project can be found on [GitHub](https://github.com/grpc-ecosystem/grpc-health-probe).
 
 Since the frontend is exposed via HTTP, it uses different checks that take advantage of Kubernetes ability to verify pods with specially formatted HTTP requests. It is interesting to note that these checks make use of the session id to identify test requests in much the same way we did to route traffic to feature branches:
 
@@ -583,8 +583,25 @@ However, this rollback process has some limitations:
 
 A deployment process in Octopus is designed to capture all of the steps required to deploy an application at a given version.  By redeploying an old release, we can ensure that all the resources and configuration that represent a deployable release are accounted for.
 
-Note that special consideration has to paid to microservices that persist data, as rolling back to a previous release will not inherently ensure that any persisted data can be consumed by the previous
+Note that special consideration has to paid to microservices that persist data, as rolling back to a previous release will not inherently ensure that any persisted data is compatible with the previous code.
 
 ## Multiple environments
 
-Different namespaces or different clusters
+The [CNCF 2019 survey](https://www.cncf.io/wp-content/uploads/2020/03/CNCF_Survey_Report.pdf) highlights two main approaches to separating teams in Kubernetes: separate namespaces and separate clusters:
+
+![](k8s-separation.png " width=500")
+
+Kubernetes provides out of the box support for resource limits (cpu, memory and ephemeral disk space), firewall isolation via network policies, and RBAC authorization that can limit access to Kubernetes resources based on namespace. 
+
+Istio can be used to implement network rate limits, although it is [not quite as easy as it could be](https://github.com/istio/istio/issues/22068).
+
+However, namespaces are not completely isolated from one another. For example, custom resource definitions [can not be scoped to a namespace](https://github.com/kubernetes/kubernetes/issues/65551).
+
+What this means is that Kubernetes supports a soft multitenancy where namespaces are mostly, but not completely, isolated from each other. Hard multitenancy, where namespaces can be used to isolate untrusted neighbors, is a [topic of active discussion](https://blog.jessfraz.com/post/hard-multi-tenancy-in-kubernetes/), but not available today.
+
+This likely means you may have multiple test environments sharing one Kubernetes cluster, with a separate production cluster.
+
+The good news is that whether your environments are implemented via namespaces or clusters is largely abstracted away by the Octopus Kubernetes targets.
+
+As we saw at the beginning of this post, a Kubernetes target in Octopus captures both the default namespace, a user account, and the cluster API URL. The combination of these three items represents the security boundary in which deployments are performed.
+
