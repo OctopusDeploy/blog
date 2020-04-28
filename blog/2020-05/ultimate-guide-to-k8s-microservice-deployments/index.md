@@ -241,13 +241,92 @@ Selecting either the rolling or blue/green deployment strategies means we can de
 
 ![](rolling-update.png "width=500")
 
+:::hint
+True zero downtime deployments that result in no requests being lost during an update require some additional work. The blog post (Zero-Downtime Rolling Updates With Kubernetes)[https://blog.sebastian-daschner.com/entries/zero-downtime-updates-kubernetes] provides some tips on how to minimize network distruption during updates.
+:::
+
 ## HTTPS and certificate management
 
 https://istio.io/docs/tasks/traffic-management/ingress/secure-ingress-sds/
 
 ## Feature branch deployments
 
-grpc metadata headers and istio routing
+With a monolithic application, feature branch deployments are usualy straight forward; the entire application is built, bundled and deployed as a single artifact, and maybe backed by a database.
+
+It is a much different scenario with microservices. An individual microservice may only function in a meaningful way when all of it's upstream and downstream dependencies are available to process a request.
+
+The blog post [Why We Leverage Multi-tenancy in Uber’s Microservice Architecture](https://eng.uber.com/multitenancy-microservice-architecture/) discusses two methods for performing integration testing for a microservice architecure: parallel testing, and testing in production.
+
+The blog post goes into some detail about the implementation of these two strategies, but in summary:
+
+* Parallel testing involves testing microservices in a shared staging environment configured like, but isolated from, the production environment.
+* Testing in production involves deploying the microservice under test into production, isolating it with security policies, and directing a distinct subset of traffic to it.
+
+The blog post goes on to advocate for testing in production, citing these limitations of parallel testing:
+
+* Additional hardware cost
+* Synchronization issues (or drift between the staging and production environments)
+* Unreliable testing
+* Inaccurate capacity testing
+
+Few development teams will have embraced microservices to quite the extent that Uber has, and so I suspect for most deploying microservice feature branches will involve a solution somewhere between Uber's descriptions of parallel testing and testing in production. Specifically, here we'll look at how a microservice feature branch can be deployed alongside an existing version in a staging environment and have a subset of traffic directed to it.
+
+Before we being, we need to briefly recap what a service mesh is, and how we can leverage the Istio service mesh to direct traffic independantly of the microservices.
+
+### What is a service mesh?
+
+Before the days of service meshes, networking functionality was much like an old telephone switchboard. Applications were like individuals placing a telephone call; they knew who they needed to communicate with, and reverse proxies like NGINX would function as the switchboard operator to connect the two parties. This infrastructure works so long as all parties in this transaction are well know and the ways in which they communiate are relatively unchanging.
+
+Microservices then represent the rise of mobile phones. There are signifnantly more devices to be connected together, roaming across the network in unpredictable ways, with each individual device often requiring its own unique configuration.
+
+Service meshes were designed to accomodate the increasingly intricate and dynamic requirements of large numbers of services communicating with each other. In a service mesh, each service takes responsibility for defining how it will accept requests; what common networking functionality like retries, circut breaking, redirects and rewrites it needs; avoids a central "switchboard" that all traffic must pass through; and mostly does this without the individual applications needing to be aware of how their network requests are being processed.
+
+Service meshes are rich platforms that offer a great deal of functionality, but for the purposes of deploying a microservice feature branch, we are most interesting in the ability to inspect and route network traffic.
+
+### What traffic are we routing?
+
+Below is the architecture diagram showing the various microservices that make up the Hipster Shop, and how they communicate:
+
+![](architecture-diagram.png "width=500")
+
+What you will notice from this diagram is that public traffic from the Internet enters the application via the frontend. This traffic is plain HTTP.
+
+The communicate between the microservices is then performed with [gRPC](https://grpc.io/), which is:  
+
+> A high-performance, open source universal RPC framework
+
+Importantly, under the hood gRPC uses HTTP2. So to route traffic to a microservice feature branch deployment, we will need to inspect and route HTTP traffic.
+
+### Routing HTTP traffic
+
+The Istio [HTTPMatchRequest](https://istio.io/docs/reference/config/networking/virtual-service/#HTTPMatchRequest) defines the properties of a request that can be used to match HTTP traffic. The properties are reasonably comprehensive including URI, scheme, method, headers, query parameters, port and more.
+
+In order to route a subset of traffic to a feature branch deployment, we need to be able to propogate additional information as part of the HTTP request in a way that does not interfeer with the data contained in the request. The scheme (i.e. HTTP or HTTPS), method (GET, PUT, POST etc), port, query params (the part of the URI after a question mark) and the URI itself all contain information that is very specfic to the request being made, and modifying these is not an option. This leaves the headers, which are key value pairs often modified to support request tracing, proxying and other metadata.
+
+Looking at the network traffic submitted by the browser when interacting with the Hipster Shop frontend, we can see that the `Cookie` header likely contains a useful value we can inspect to make routing decisions. The application has persisted a cookie with a GUID identifying the browser session, which as it turns out is the process this sample application implements to identify users. Obviously a real world example would have an authentication process to identify users, but for our purposes a randomly generated GUID will do just fine.
+
+![](network-traffic.png "width=500")
+
+Armed with a HTTP header we can inspect and route, the next step is to deploy a feature branch.
+
+### Creating a feature branch Docker image
+
+Hipster Shop has been written in a variety of languages, and the frontend component is written in Go. We'll make a small change to the [header template](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/src/frontend/templates/header.html) to include the text **MyFeature**, making it clear that this code represents our feature branch.
+
+We'll build a Docker image from this branch and publish it as `octopussamples/microservicedemo-frontend:0.1.4-myfeature`. Note that the tag of `0.1.4-myfeature` is a SemVer string, which allows this image to be used as part of an Octopus deployment.
+
+In the Octopus project that deploys the frontend application, we define two channels. 
+
+The **Default** channel has a version rule that requires SemVer prerelease tags to be empty with a regular expression of `^$`. This rule ensures this channel only matches versions (or Docker tags in our case) like `0.1.4`.
+
+The **Feature Branch** channel has a version rule that requires SemVer prerelease tags to *not* be empty with a regular expression of `.+`. This channel will match versions like `0.1.4-myfeature`.
+
+We then add a variable to the deployment called `FeatureBranch` with the value of `#{Octopus.Action.Package[server].PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}`. This variables takes the version of the Docker image called `server`, captures the prerelease and leading dash in a regular expression as group 2, and then prints only group 2. If there is no prerelease, the variable resolves to an empty string.
+
+![](project-variables.png "width=500")
+
+![](featurebranch-deployment.png "width=500")
+![](featurebranch-service.png "width=500")
 
 ## Smoke testing
 
