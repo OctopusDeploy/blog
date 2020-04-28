@@ -422,7 +422,13 @@ func (fe *frontendServer) getAd(ctx context.Context, userID string, ctxKeys []st
 }
 ```
 
-The `userID` parameter has to be added to the `chooseAd()` method, and eventually we reach the top level methods of `homeHandler()` and `productHandler()` which pass the value of `userID` as `sessionID(r)`, where `r` is the HTTP request object. If none of that made any sense, don't worry. Just know that the gRPC call from frontend to ad service now includes the metadata key value pair with key `userid` and the value set to the session id GUID we saw in the browser `Cookie` header.
+The [metadata package](https://godoc.org/google.golang.org/grpc/metadata) is imported with:
+
+```go
+metadata "google.golang.org/grpc/metadata"
+```
+
+Note that the function chain that calls the `getAd()` function must also be updated to pass the new parameter, and at the top level the user id is found by calling `sessionID(r)`, where `r` is the HTTP request object.
 
 We can now create a virtual service to route requests made from the frontend application to the ad service based on the `userid` HTTP header, which is how the gRPC metadata key value pairs are exposed:
 
@@ -447,6 +453,58 @@ spec:
         host: adservice
 ```
 
+Manually editing the virtual service can be tedious though. As more branches are deployed or more test users are configured, we'll need a more automated solution for editing the virtual service.
+
+Below is a Powershell script that reads the current virtual service, adds or replaces the redirection rules for a given user, and saves the changes back in Kubernetes. This code can be saved as a runbook (as traffic switching is a process that happens independently of a deployment), and the variables `SessionId` and `Service` can be prompted before each run:
+
+```powershell
+# Get the current virtual service
+$virtService = kubectl get virtualservice adservice -o json | ConvertFrom-JSON
+
+# Clean up the generated metadata properties, as we do not want to send these back
+$virtService.metadata = $virtService.metadata | 
+	Select-Object * -ExcludeProperty uid, selfLink, resourceVersion, generation, creationTimestamp, annotations
+
+# Get the routes not associated with the new session id
+$otherMatch = $virtService.spec.http | 
+    ? {$_.match.headers.userid.exact -ne "#{SessionId}"}
+
+# Create a new route for the session
+$thisMatch = @(
+  @{
+      match = @(
+      	@{
+      		headers = @{
+      			userid = @{
+      				exact = "#{SessionId}"
+    			}
+            }
+        }
+    )
+  		route = @(
+    		@{
+      			destination = @{
+      				host = "#{Service}"
+    			}
+    		}
+        )
+    }
+)
+
+# Append the other routes
+$thisMatch += $otherMatch
+# Apply the new route collection
+$virtService.spec.http = $thisMatch
+# Save the virtual service to disk
+$virtService | ConvertTo-JSON -Depth 100 | Set-Content -Path vs.json
+# Print the contents of the file
+Get-Content vs.json
+# Send the new virtual service back to Kubernetes
+kubectl apply -f vs.json
+```
+
+A more robust solution could involve writing a custom Kubernetes operator to keep the virtual service resource in sync with an external data source defining test traffic. This post won't go into the details of operators, but you can find more information from the post [Creating a Kubernetes Operator with Kotlin](https://octopus.com/blog/operators-with-kotlin).
+
 ### Deploying an internal feature branch
 
 Just like we did with the frontend application, a branch of the ad service has been created and pushed as `octopussamples/microservicedemo-adservice:0.1.4-myfeature`. The ad service project in Octopus gained the new `FeatureBranch` variable set to `#{Octopus.Action.Package[server].PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}`, and the name of the deployment and service was changed to `adservice#{FeatureBranch}`.
@@ -458,19 +516,74 @@ The feature branch itself was updated to append the string `MyFeature` to the ad
 
 ### Summary
 
-In order to deploy a feature branch in a microservice environment for integration testing, it is useful to test specific requests without interfering with other teams. By exposing routable information in HTTP headers and gRPC metadata (which in turn are exposed as HTTP headers) we were able to configure Istio to route traffic for specific traffic to feature branch deployments, while all other traffic flows through the regular mainline microservice deployments.
+In order to deploy a feature branch in a microservice environment for integration testing, it is useful to test specific requests without interfering with other traffic. By exposing routable information in HTTP headers and gRPC metadata (which in turn are exposed as HTTP headers) Istio is able to route specific traffic to feature branch deployments, while all other traffic flows through the regular mainline microservice deployments.
 
 This may be enough to deploy microservice feature branches in a test environment. If your feature branch happens to malfunction and save invalid data in the test database, it is inconvenient but won't cause a production outage. Likewise placing invalid messages on a message queue may break the test environment, but your production environment is isolated.
 
-The Uber blog post offers a tantalizing glimpse at how this idea of deploying feature branches can be extended to perform testing in production. However, be aware that the post is clear that tenancy information needs to be propagated with all requests, saved with all data at rest, and ideally test data is isolated in separate databases and message queues. In addition, security policies need to be put into place to ensure test microservices don't run amok and interact with services they shouldn't. This blog post won't cover these additional requirements, but the ability to deploy and interact with microservice feature branches is a good foundation.
+The Uber blog post offers a tantalizing glimpse at how this idea of deploying feature branches can be extended to perform testing in production. However, be aware that the post is clear that tenancy information must be propagated with all requests, saved with all data at rest, and optionally test data is isolated in separate databases and message queues. In addition, security policies need to be put into place to ensure test microservices don't run amok and interact with services they shouldn't. This blog post won't cover these additional requirements, but the ability to deploy and interact with microservice feature branches is a good foundation.
 
 ## Smoke testing
 
-HTTP test community step library
+Kubernetes provides builtin support for checking the state of a pod before it is marked healthy and put into service. The readiness probe will ensure that a pod is healthy and ready to receive traffic when the pod is first created, while the liveness probe continually verifies the health of a pod during its lifetime.
+
+The microserices we have deployed from the sample application include these checks. The YAML shown below is a snippet that shows the readiness and liveness checks that are applied (with small variations) to the internal gRPC microservices:
+
+```yaml
+readinessProbe:
+    periodSeconds: 5
+    exec:
+    command: ["/bin/grpc_health_probe", "-addr=:8080"]
+livenessProbe:
+    periodSeconds: 5
+    exec:
+    command: ["/bin/grpc_health_probe", "-addr=:8080"]
+```
+
+The `grpc_health_probe` is an executable created specifically to verify the health of a an application exposing gRPC services. This project can be found on [GitHub](https://github.com/grpc-ecosystem/grpc-health-probe).
+
+Since the frontend is exposed via HTTP, it uses different checks that take advantage of Kubernetes ability to verify pods with specially formatted HTTP requests. It is interesting to note that these checks make use of the session id to identify test requests in much the same way we did to route traffic to feature branches:
+
+```yaml
+readinessProbe:
+initialDelaySeconds: 10
+httpGet:
+    path: "/_healthz"
+    port: 8080
+    httpHeaders:
+    - name: "Cookie"
+    value: "shop_session-id=x-readiness-probe"
+livenessProbe:
+initialDelaySeconds: 10
+httpGet:
+    path: "/_healthz"
+    port: 8080
+    httpHeaders:
+    - name: "Cookie"
+    value: "shop_session-id=x-liveness-probe"
+```
+
+If the readiness probe fails during a deployment, the deployment will not consider itself to be healthy. We can fail the Octopus deployment if the readiness checks fail by selecting the **Wait for the deployment to succeed** option, which will wait for the Kubernetes deployment to succeed before successfully completing the step:
+
+![](wait-for-deployment.png "width=500")
+*Waiting for the deployment to succeed ensure all readiness checks passed before successfully completing the step.*
 
 ## Rollback strategies
 
-Deployment rollback or deploy previous Octopus version
+Kubernetes supports native rollbacks of [deployment resources](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment) with a command like:
+
+```
+kubectl rollout undo deployment.v1.apps/yourdeployment
+```
+
+However, this rollback process has some limitations:
+
+* It only rolls back the deployment, and does not take into account any resources the deployment depends on like secrets, configmaps etc.
+* It does not work for blue/green deployments, as this process creates entirely new deployment resources that have no configuration history to roll back to.
+* The Octopus dashboard will not accurately reflect the state of the system.
+
+A deployment process in Octopus is designed to capture all of the steps required to deploy an application at a given version.  By redeploying an old release, we can ensure that all the resources and configuration that represent a deployable release are accounted for.
+
+Note that special consideration has to paid to microservices that persist data, as rolling back to a previous release will not inherently ensure that any persisted data can be consumed by the previous
 
 ## Multiple environments
 
