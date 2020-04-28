@@ -1,6 +1,7 @@
 ---
 title: Publishing a package to Octopus with GitHub Actions
 description: A post showing how to create a GitHub Action that pushes a package to Octopus.
+author: ryan.rousseau@octopus.com
 visibility: public
 published: 2020-04-27
 metaImage: github-actions-publish.png
