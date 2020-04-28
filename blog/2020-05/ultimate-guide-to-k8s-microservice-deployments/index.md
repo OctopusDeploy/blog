@@ -404,7 +404,7 @@ func (fe *frontendServer) getAd(ctx context.Context, userID string, ctxKeys []st
 
 The `userID` parameter has to be added to the `chooseAd()` method, and eventually we reach the top level methods of `homeHandler()` and `productHandler()` which pass the value of `userID` as `sessionID(r)`, where `r` is the HTTP request object. If none of that made any sense, don't worry. Just know that the gRPC call from frontend to ad service now includes the metadata key value pair with key `userid` and the value set to the session id GUID we saw in the browser `Cookie` header.
 
-We can now create a virtual service to route requests made from the frontend application to the ad service based on the `userid` HTTP header:
+We can now create a virtual service to route requests made from the frontend application to the ad service based on the `userid` HTTP header, which is how the gRPC metadata key value pairs are exposed:
 
 ```yaml
 apiVersion: networking.istio.io/v1beta1
@@ -435,6 +435,14 @@ The feature branch itself was updated to append the string `MyFeature` to the ad
 
 ![](feature-branch-adservice.png "width=500")
 *Istio routed internal gRPC requests to the ad service feature branch based on the userid header.*
+
+### Summary
+
+In order to deploy a feature branch in a microservice environment for intergation testing, it is useful to test specific requests without interfeering with other teams. By exposing routable information in HTTP headers and gRPC metadata (which in turn are exposed as HTTP headers) we were able to configure Istio to route traffic for specific traffic to feature branch deployments, while all other traffic flows through the regular mainline microservice deployments.
+
+This may be enough to deploy microservice feature branches in a test environment. If your feature branch happens to malfunction and save invalid data in the test database, it is inconvenient but won't cause a production outage. Likewise placing invalid messages on a message queue may break the test environment, but your production environment is isolated.
+
+The Uber blog post offers a tantalising glimpse at how this idea of deploying feature branches can be extended to perform testing in production. However, be aware that the post is clear that tenancy information needs to be propgated with all requests, saved with all data at rest, and ideally test data is isolated in seperate databases and message queues. In addition, security policies need to be put into place to ensure test microservices don't run amok and interact with services they shouldn't. This blog post won't cover these additional requirements, but the ability to deploy and interact with microservice feature branches is a good foundation.
 
 ## Smoke testing
 
