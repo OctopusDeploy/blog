@@ -68,10 +68,11 @@ Add a **Run a kubectl CLI Script** step to a runbook, and reference the `istioct
 
 ![](istioctl-package.png "width=500")
 
-In the script body, execute `istioctl` as shown below to install Istio into the EKS cluster. You can find more information on these commands from the [Istio documentation](https://istio.io/docs/setup/install/istioctl/):
+In the script body, execute `istioctl` as shown below to install Istio into the EKS cluster. You can find more information on these commands from the [Istio documentation](https://istio.io/docs/setup/install/istioctl/). Then add the `istio-injection` label to the namespace that holds our application to enable [automatic Istio sidecar injection](https://istio.io/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection):
 
 ```
 istioctl/istioctl manifest apply --skip-confirmation
+kubectl label namespace dev istio-injection=enabled
 ```
 
 :::hint
@@ -315,6 +316,8 @@ Hipster Shop has been written in a variety of languages, and the frontend compon
 
 We'll build a Docker image from this branch and publish it as `octopussamples/microservicedemo-frontend:0.1.4-myfeature`. Note that the tag of `0.1.4-myfeature` is a SemVer string, which allows this image to be used as part of an Octopus deployment.
 
+### Deploying the feature branch
+
 In the Octopus project that deploys the frontend application, we define two channels. 
 
 The **Default** channel has a version rule that requires SemVer prerelease tags to be empty with a regular expression of `^$`. This rule ensures this channel only matches versions (or Docker tags in our case) like `0.1.4`.
@@ -325,8 +328,18 @@ We then add a variable to the deployment called `FeatureBranch` with the value o
 
 ![](project-variables.png "width=500")
 
+This variable is then appended to the deployment name, the deployment labels, and the service name. Changing the name of the deployment and service ensure we are creating new resources with the name of `frontend-MyFeature` alongside the existing resources called `frontend`:
+
 ![](featurebranch-deployment.png "width=500")
+*The summary text shows the name of the deployment and the labels*
+
 ![](featurebranch-service.png "width=500")
+*The summary text shows the name of the service*
+
+### Eposing the frontend via Istio
+
+To this point we have not deployed any Istio resources. The 
+
 
 ## Smoke testing
 
