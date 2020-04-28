@@ -316,7 +316,7 @@ Hipster Shop has been written in a variety of languages, and the frontend compon
 
 We'll build a Docker image from this branch and publish it as `octopussamples/microservicedemo-frontend:0.1.4-myfeature`. Note that the tag of `0.1.4-myfeature` is a SemVer string, which allows this image to be used as part of an Octopus deployment.
 
-### Deploying the feature branch
+### Deploying the first feature branch
 
 In the Octopus project that deploys the frontend application, we define two channels. 
 
@@ -338,8 +338,103 @@ This variable is then appended to the deployment name, the deployment labels, an
 
 ### Eposing the frontend via Istio
 
-To this point we have not deployed any Istio resources. The 
+To this point we have not deployed any Istio resources. The `istio-injection` label on the namespace containing our application means that the pods created by our deployments include the Istio sidecar ready to intercept and route traffic, but it is plain old Kubernetes services that are exposing our pods to one another.
 
+In order to start using Istio to route our internal traffic, we need to create a virtual service:
+
+```YAML
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata: 
+  name: frontend
+spec:
+  gateways:
+  - istio-system/default-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - headers:
+        Cookie:
+          exact: shop_session-id=4f9e715d-fe56-4a1e-964b-b00b607e7695
+    route:
+    - destination:
+        host: frontend-myfeature
+  - route:
+    - destination:
+        host: frontend
+```
+
+There are a few important parts to this virtual service:
+
+* The `gateway` is set to `istio-system/ingressgateway`, which is a gateway created when Istio was installed. This gateway in turn accepts traffic from a load balancer service also created in the `istio-system`, which means to access our application and have traffic routed by this virtual service, we need to access the application via the public hostname of the Istio load balancer service.\
+* TODO: maybe show how to query these load balancers
+* The first item under the `http` property specifies that incoming traffic whose `Cookie` header matches the specified value is to be directed to the `frontend-myfeature` service.
+* Any other traffic is sent to the `frontend` service.
+
+With these rules in place we can reopen the application, and our request is redirected to the feature branch, as indicated by the header:
+
+![](feature-branch-web.png "width=500")
+*Istio inspected the Cookie header and directed the request to the feature branch.*
+
+This redirection is only half of the challenge though. We've successfully inspected a HTTP header already added by the application and directed web traffic to the feature branch of the public facing frontend application. But what about redirecting internal gRPC calls?
+
+### gRPC routing
+
+Just like regular HTTP requests, gRPC requests can also expose HTTP headers that are used for routing. Any metadata associated with a gRPC request is exposed as a HTTP header, and can then be inspected by Istio.
+
+The frontend application makes a gRPC request to many other microservices, including the ad service. To enable feature branch deployments of ad service, we need to propogate the "user id" (really just the session id, but we treat the two values as the same thing) with the gRPC request from the frontend to the ad service.
+
+To do this we add a property called `userID` to the `getAd()` method, create a new context called `metactx` to expose the user id via the `userid` metadata field, and make the gRPC request with the context `metactx`:
+
+```go
+func (fe *frontendServer) getAd(ctx context.Context, userID string, ctxKeys []string) ([]*pb.Ad, error) {
+	ctx, cancel := context.WithTimeout(ctx, time.Millisecond*100)
+	defer cancel()
+
+	// This is where we add the metadata, which in turn is exposed as HTTP headers
+	metactx := metadata.AppendToOutgoingContext(ctx, "userid", userID)
+
+	resp, err := pb.NewAdServiceClient(fe.adSvcConn).GetAds(metactx, &pb.AdRequest{
+		ContextKeys: ctxKeys,
+	})
+	return resp.GetAds(), errors.Wrap(err, "failed to get ads")
+}
+```
+
+The `userID` parameter has to be added to the `chooseAd()` method, and eventually we reach the top level methods of `homeHandler()` and `productHandler()` which pass the value of `userID` as `sessionID(r)`, where `r` is the HTTP request object. If none of that made any sense, don't worry. Just know that the gRPC call from frontend to ad service now includes the metadata key value pair with key `userid` and the value set to the session id GUID we saw in the browser `Cookie` header.
+
+We can now create a virtual service to route requests made from the frontend application to the ad service based on the `userid` HTTP header:
+
+```yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: adservice
+spec:
+  hosts:
+  - adservice
+  http:
+  - match:
+    - headers:
+        userid:
+          exact: 4f9e715d-fe56-4a1e-964b-b00b607e7695
+    route:
+    - destination:
+        host: adservice-myfeature
+  - route:
+    - destination:
+        host: adservice
+```
+
+### Deploying an internal feature branch
+
+Just like we did with the frontend application, a branch of the ad service has been created and pushed as `octopussamples/microservicedemo-adservice:0.1.4-myfeature`. The ad service project in Octopus gained the new `FeatureBranch` variable set to `#{Octopus.Action.Package[server].PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}`, and the name of the deployment and service was changed to `adservice#{FeatureBranch}`.
+
+The feature branch itself was updated to append the string `MyFeature` to the ads served by the service to allow us to see when the feature branch deployment is called. Once the virtual service has been deployed, we open the web application again and see that the ads we are served do indeed include the string `MyFeature`:
+
+![](feature-branch-adservice.png "width=500")
+*Istio routed internal gRPC requests to the ad service feature branch based on the userid header.*
 
 ## Smoke testing
 
