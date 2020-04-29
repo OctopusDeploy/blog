@@ -30,8 +30,6 @@ For this blog post we'll be deploying our microservice application to a Kubernet
 
 The easiest way to get started with EKS is with the [ekscli tool](https://eksctl.io/). This CLI tool abstracts away most of the details associated with creating and managing an EKS cluster, providing sensible defaults to get you up and running quickly.
 
-TODO: Use the community library step to build the cluster.
-
 ## Creating the AWS account
 
 Octopus has native support for authenticating to EKS clusters via an AWS account. This account is defined under {{ Infrastructure, Accounts }}.
