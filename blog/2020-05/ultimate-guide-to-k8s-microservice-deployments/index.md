@@ -729,6 +729,30 @@ metadata:
   name: dev-deployer
   namespace: dev
 ---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev-namespace
+rules:
+- apiGroups: [""]
+  resources: ["namespaces"]
+  resourceNames: ["dev"]
+  verbs: ["*"]  
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev-namespace-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+  name: dev-deployer
+  apiGroup: ""
+  namespace: dev
+roleRef:
+  kind: ClusterRole
+  name: dev-namespace
+  apiGroup: ""
+---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -745,7 +769,7 @@ metadata:
   name: dev-deployer-binding
   namespace: dev
 subjects:
-- kind: User
+- kind: ServiceAccount
   name: dev-deployer
   apiGroup: ""
 roleRef:
