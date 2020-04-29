@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Microservices have emerged as a popular development practice for teams looking to release complex systems quickly and reliably. Kubernetes provides a natural platform for microservices as it handles much of the orchestration requirements imposed by deploying many instances of many individual microservices. On top we have service mesh technologies which lift common networking concerns from the application layer into the infrastructure, making it easy to route, secure, log and test network traffic.
+Microservices have emerged as a popular development practice for teams looking to release complex systems quickly and reliably. Kubernetes provides a natural platform for microservices as it handles much of the orchestration requirements imposed by deploying many instances of many individual microservices. On top we have service mesh technologies which lift common networking concerns from the application layer into the infrastructure layer, making it easy to route, secure, log and test network traffic.
 
 Combining these development practices with Kubernetes to create a Continuous integration and delivery (CI/CD) pipeline does require some work however, as a robust CI/CD pipeline must address a number of concerns such as:
 
@@ -26,7 +26,7 @@ In this blog post I look at how to create the continuous delivery (or deployment
 
 ## Create an EKS cluster
 
-For this blog post we'll be deploying our microservice to a Kubernetes cluster hosted by Amazon EKS. However, we don't rely on any special functionality provided by EKS, so any Kubernetes cluster can be used to follow this post.
+For this blog post we'll be deploying our microservice application to a Kubernetes cluster hosted by Amazon EKS. However, we don't rely on any special functionality provided by EKS, so any Kubernetes cluster can be used to follow this post.
 
 The easiest way to get started with EKS is with the [ekscli tool](https://eksctl.io/). This CLI tool abstracts away most of the details associated with creating and managing an EKS cluster, providing sensible defaults to get you up and running quickly.
 
@@ -53,7 +53,7 @@ Under the **Kubernetes Details** section add the URL to the EKS cluster, and eit
 The default namespace that this target operates in is defined in the **Kubernetes namespace** field.
 
 :::hint
-Each step in a deployment process can override the namespace, so it is possible to leave this field blank and reuse one target across multiple namespaces.
+Each step in a deployment process can override the namespace, so it is possible to leave this field blank and reuse one target across multiple namespaces. However, when sharing multiple environments within a single cluster, it is best to set the default namespace.
 :::
 
 ![](k8s-target-details.png "width=500")
@@ -722,7 +722,7 @@ Kubernetes targets are then scoped to environments, and the deployment process i
 
 For even more separation between the targets, we could create service accounts scoped to namespaces for each target. The YAML below shows an example of a service account, role and role binding that grant access to only the `dev` namespace:
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
