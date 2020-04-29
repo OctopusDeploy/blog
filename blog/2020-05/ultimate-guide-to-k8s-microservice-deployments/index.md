@@ -290,16 +290,16 @@ True zero downtime deployments that result in no requests being lost during an u
 
 ## Feature branch deployments
 
-With a monolithic application, feature branch deployments are usually straight forward; the entire application is built, bundled and deployed as a single artifact, and maybe backed by a database.
+With a monolithic application, feature branch deployments are usually straight forward; the entire application is built, bundled and deployed as a single artifact, and maybe backed by a specific instance of a database.
 
 It is a much different scenario with microservices. An individual microservice may only function in a meaningful way when all of it's upstream and downstream dependencies are available to process a request.
 
-The blog post [Why We Leverage Multi-tenancy in Uber’s Microservice Architecture](https://eng.uber.com/multitenancy-microservice-architecture/) discusses two methods for performing integration testing for a microservice architecture: parallel testing, and testing in production.
+The blog post [Why We Leverage Multi-tenancy in Uber’s Microservice Architecture](https://eng.uber.com/multitenancy-microservice-architecture/) discusses two methods for performing integration testing in a microservice architecture: parallel testing, and testing in production.
 
 The blog post goes into some detail about the implementation of these two strategies, but in summary:
 
 * Parallel testing involves testing microservices in a shared staging environment configured like, but isolated from, the production environment.
-* Testing in production involves deploying the microservice under test into production, isolating it with security policies, and directing a distinct subset of traffic to it.
+* Testing in production involves deploying the microservice under test into production, isolating it with security policies, categorizing all resulting data at rest as test or production data, and directing a distinct subset of traffic to the test microservice.
 
 The blog post goes on to advocate for testing in production, citing these limitations of parallel testing:
 
@@ -310,17 +310,19 @@ The blog post goes on to advocate for testing in production, citing these limita
 
 Few development teams will have embraced microservices to quite the extent that Uber has, and so I suspect for most deploying microservice feature branches will involve a solution somewhere between Uber's descriptions of parallel testing and testing in production. Specifically, here we'll look at how a microservice feature branch can be deployed alongside an existing version in a staging environment and have a subset of traffic directed to it.
 
-Before we being, we need to briefly recap what a service mesh is, and how we can leverage the Istio service mesh to direct traffic independantly of the microservices.
+Deploying feature branches to a staging environment removes the risk of interfering with production services by taking advantage of hardware and network isolation, which in turn removes the need to enforce this separation in the production environment. It also removes the need to partition or identify test and production data, as all data created in the staging environment is test data.
+
+Before we begin, we need to briefly recap what a service mesh is, and how we can leverage the Istio service mesh to direct traffic independently of the microservices.
 
 ### What is a service mesh?
 
-Before the days of service meshes, networking functionality was much like an old telephone switchboard. Applications were like individuals placing a telephone call; they knew who they needed to communicate with, and reverse proxies like NGINX would function as the switchboard operator to connect the two parties. This infrastructure works so long as all parties in this transaction are well know and the ways in which they communicate are relatively unchanging.
+Before the days of service meshes, networking functionality was much like an old telephone switchboard. Applications are analogous to individuals placing a telephone call; they know who they needed to communicate with, and reverse proxies like NGINX would function as the switchboard operator to connect the two parties. This infrastructure works so long as all parties in this transaction are well known and the ways in which they communicate are relatively static and unspecialized.
 
-Microservices then represent the rise of mobile phones. There are significantly more devices to be connected together, roaming across the network in unpredictable ways, with each individual device often requiring its own unique configuration.
+Microservices are then analogous to the rise of mobile phones. There are significantly more devices to be connected together, roaming across the network in unpredictable ways, with each individual device often requiring its own unique configuration.
 
-Service meshes were designed to accommodate the increasingly intricate and dynamic requirements of large numbers of services communicating with each other. In a service mesh, each service takes responsibility for defining how it will accept requests; what common networking functionality like retries, circuit breaking, redirects and rewrites it needs; avoids a central "switchboard" that all traffic must pass through; and mostly does this without the individual applications needing to be aware of how their network requests are being processed.
+Service meshes were designed to accommodate the increasingly intricate and dynamic requirements of large numbers of services communicating with each other. In a service mesh, each service takes responsibility for defining how it will accept requests; what common networking functionality like retries, circuit breaking, redirects and rewrites it needs; avoids a central "switchboard" that all traffic must pass through; and does this mostly without the individual applications needing to be aware of how their network requests are being processed.
 
-Service meshes are rich platforms that offer a great deal of functionality, but for the purposes of deploying a microservice feature branch, we are most interesting in the ability to inspect and route network traffic.
+Service meshes are rich platforms that offer a great deal of functionality, but for the purposes of deploying a microservice feature branch, we are most interested in the ability to inspect and route network traffic.
 
 ### What traffic are we routing?
 
@@ -332,7 +334,7 @@ Below is the architecture diagram showing the various microservices that make up
 
 What you will notice from this diagram is that public traffic from the Internet enters the application via the frontend. This traffic is plain HTTP.
 
-The communicate between the microservices is then performed with [gRPC](https://grpc.io/), which is:  
+Communication between the microservices is then performed with [gRPC](https://grpc.io/), which is:  
 
 > A high-performance, open source universal RPC framework
 
@@ -342,9 +344,9 @@ Importantly, under the hood gRPC uses HTTP2. So to route traffic to a microservi
 
 The Istio [HTTPMatchRequest](https://istio.io/docs/reference/config/networking/virtual-service/#HTTPMatchRequest) defines the properties of a request that can be used to match HTTP traffic. The properties are reasonably comprehensive including URI, scheme, method, headers, query parameters, port and more.
 
-In order to route a subset of traffic to a feature branch deployment, we need to be able to propogate additional information as part of the HTTP request in a way that does not interfeer with the data contained in the request. The scheme (i.e. HTTP or HTTPS), method (GET, PUT, POST etc), port, query params (the part of the URI after a question mark) and the URI itself all contain information that is very specfic to the request being made, and modifying these is not an option. This leaves the headers, which are key value pairs often modified to support request tracing, proxying and other metadata.
+In order to route a subset of traffic to a feature branch deployment, we need to be able to propogate additional information as part of the HTTP request in a way that does not interfeer with the data contained in the request. The scheme (i.e. HTTP or HTTPS), method (GET, PUT, POST etc), port, query paramaters (the part of the URI after a question mark) and the URI itself all contain information that is very specific to the request being made, and modifying these is not an option. This leaves the headers, which are key value pairs often modified to support request tracing, proxying and other metadata.
 
-Looking at the network traffic submitted by the browser when interacting with the Hipster Shop frontend, we can see that the `Cookie` header likely contains a useful value we can inspect to make routing decisions. The application has persisted a cookie with a GUID identifying the browser session, which as it turns out is the process this sample application implements to identify users. Obviously a real world example would have an authentication process to identify users, but for our purposes a randomly generated GUID will do just fine.
+Looking at the network traffic submitted by the browser when interacting with the Hipster Shop frontend, we can see that the `Cookie` header likely contains a useful value we can inspect to make routing decisions. The application has persisted a cookie with a GUID identifying the browser session, which as it turns out is the method this sample application implements to identify users. Obviously a real world example interact with an authentication service to identify users, but for our purposes a randomly generated GUID will do just fine.
 
 ![](network-traffic.png "width=500")
 
@@ -360,19 +362,19 @@ We'll build a Docker image from this branch and publish it as `octopussamples/mi
 
 ### Deploying the first feature branch
 
-In the Octopus project that deploys the frontend application, we define two channels.
+ We define two channels in the Octopus project that deploys the frontend application.
 
 The **Default** channel has a version rule that requires SemVer prerelease tags to be empty with a regular expression of `^$`. This rule ensures this channel only matches versions (or Docker tags in our case) like `0.1.4`.
 
-The **Feature Branch** channel has a version rule that requires SemVer prerelease tags to *not* be empty with a regular expression of `.+`. This channel will match versions like `0.1.4-myfeature`.
+The **Feature Branch** channel has a version rule that requires SemVer prerelease tags to *not* be empty, with a regular expression of `.+`. This channel will match versions like `0.1.4-myfeature`.
 
-We then add a variable to the deployment called `FeatureBranch` with the value of `#{Octopus.Action.Package[server].PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}`. This variables takes the version of the Docker image called `server`, captures the prerelease and leading dash in a regular expression as group 2, and then prints only group 2. If there is no prerelease, the variable resolves to an empty string.
+We then add a variable to the deployment called `FeatureBranch` with the value of `#{Octopus.Action.Package[server].PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}`. This variable takes the version of the Docker image called `server`, captures the prerelease and leading dash in a regular expression as group 2, and then prints only group 2. If there is no prerelease, the variable resolves to an empty string.
 
 ![](project-variables.png "width=500")
 
 *The variable used to extract the SemVer prerelease.*
 
-This variable is then appended to the deployment name, the deployment labels, and the service name. Changing the name of the deployment and service ensure we are creating new resources with the name of `frontend-MyFeature` alongside the existing resources called `frontend`:
+This variable is then appended to the deployment name, the deployment labels, and the service name. Changing the name of the deployment and service ensures that a feature branch deployment creates new resources with the name like `frontend-myfeature` alongside the existing resources called `frontend`:
 
 ![](featurebranch-deployment.png "width=500")
 
@@ -384,7 +386,7 @@ This variable is then appended to the deployment name, the deployment labels, an
 
 ### Eposing the frontend via Istio
 
-To this point we have not deployed any Istio resources. The `istio-injection` label on the namespace containing our application means that the pods created by our deployments include the Istio sidecar ready to intercept and route traffic, but it is plain old Kubernetes services that are exposing our pods to one another.
+To this point we have not deployed any Istio resources. The `istio-injection` label on the namespace containing our application means that the pods created by our deployments include the Istio sidecar, ready to intercept and route traffic, but it is plain old Kubernetes services that are exposing our pods to one another.
 
 In order to start using Istio to route our internal traffic, we need to create a virtual service:
 
@@ -413,8 +415,7 @@ spec:
 
 There are a few important parts to this virtual service:
 
-* The `gateway` is set to `istio-system/ingressgateway`, which is a gateway created when Istio was installed. This gateway in turn accepts traffic from a load balancer service also created in the `istio-system`, which means to access our application and have traffic routed by this virtual service, we need to access the application via the public hostname of the Istio load balancer service.\
-* TODO: maybe show how to query these load balancers
+* The `gateway` is set to `istio-system/ingressgateway`, which is a gateway created when Istio was installed. This gateway in turn accepts traffic from a load balancer service also created in the `istio-system` namespace, which means to access our application and have traffic routed by this virtual service, we need to access the application via the public hostname of the Istio load balancer service.
 * The first item under the `http` property specifies that incoming traffic whose `Cookie` header matches the specified value is to be directed to the `frontend-myfeature` service.
 * Any other traffic is sent to the `frontend` service.
 
@@ -428,11 +429,11 @@ This redirection is only half of the challenge though. We've successfully inspec
 
 ### gRPC routing
 
-Just like regular HTTP requests, gRPC requests can also expose HTTP headers that are used for routing. Any metadata associated with a gRPC request is exposed as a HTTP header, and can then be inspected by Istio.
+Just like regular HTTP requests, gRPC requests can also expose HTTP headers that are used for routing. Any [metadata](https://grpc.io/docs/guides/concepts/#metadata) associated with a gRPC request is exposed as a HTTP header, and can then be inspected by Istio.
 
-The frontend application makes a gRPC request to many other microservices, including the ad service. To enable feature branch deployments of ad service, we need to propagate the "user id" (really just the session id, but we treat the two values as the same thing) with the gRPC request from the frontend to the ad service.
+The frontend application makes gRPC requests to many other microservices, including the ad service. To enable feature branch deployments of ad service, we need to propagate the "user id" (really just the session id, but we treat the two values as the same thing) with the gRPC request from the frontend to the ad service.
 
-To do this we add a property called `userID` to the `getAd()` method, create a new context called `metactx` to expose the user id via the `userid` metadata field, and make the gRPC request with the context `metactx`:
+To do this we add a property called `userID` to the `getAd()` method, create a new context called `metactx` to expose the user id via the `userid` metadata property, and make the gRPC request with the context `metactx`:
 
 ```go
 func (fe *frontendServer) getAd(ctx context.Context, userID string, ctxKeys []string) ([]*pb.Ad, error) {
@@ -455,7 +456,9 @@ The [metadata package](https://godoc.org/google.golang.org/grpc/metadata) is imp
 metadata "google.golang.org/grpc/metadata"
 ```
 
+:::hint
 Note that the function chain that calls the `getAd()` function must also be updated to pass the new parameter, and at the top level the user id is found by calling `sessionID(r)`, where `r` is the HTTP request object.
+:::
 
 We can now create a virtual service to route requests made from the frontend application to the ad service based on the `userid` HTTP header, which is how the gRPC metadata key value pairs are exposed:
 
@@ -499,23 +502,23 @@ $otherMatch = $virtService.spec.http |
 # Create a new route for the session
 $thisMatch = @(
   @{
-      match = @(
-      	@{
-      		headers = @{
-      			userid = @{
-      				exact = "#{SessionId}"
-    			}
-            }
+    match = @(
+      @{
+        headers = @{
+          userid = @{
+            exact = "#{SessionId}"
+          }
         }
+      }
     )
-  		route = @(
-    		@{
-      			destination = @{
-      				host = "#{Service}"
-    			}
-    		}
-        )
-    }
+		route = @(
+      @{
+        destination = @{
+          host = "#{Service}"
+        }
+      }
+    )
+  }
 )
 
 # Append the other routes
