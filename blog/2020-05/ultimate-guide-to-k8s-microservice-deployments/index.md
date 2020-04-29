@@ -4,8 +4,8 @@ description: Learn how to deploy microservices into a Kubernetes cluster with Oc
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - Octopus
 ---
@@ -228,7 +228,7 @@ And with that we have created an Octopus project to deploy `emailservice`, one o
 * `redis-cart`
 * `adservice`
 
-Most of these microservices are deployed with the same deployment and service pairing that we have seen for the `emailservice`. The exceptions are `loadgenerator`, which has no service, and `frontend`, which includes an additional load balancer service that exposes the microservice to public traffic. 
+Most of these microservices are deployed with the same deployment and service pairing that we have seen for the `emailservice`. The exceptions are `loadgenerator`, which has no service, and `frontend`, which includes an additional load balancer service that exposes the microservice to public traffic.
 
 The additional load balancer service can be deployed with the **Deploy Kubernetes service resource** step. This stand alone step has the same **EDIT YAML** button found in the **Deploy Kubernetes containers** step, and so the `frontend-external` service YAML can be imported directly:
 
@@ -250,7 +250,7 @@ First, we need to increase the deployment replica count, which determines how ma
 
 Having two pods is a good start, but if both those pods have been created on a single node we still have a single point of failure. To address this we'll use a feature in Kubernetes called pod anti-affinity. This allows us to instruct Kubernetes to prefer that certain pods be deployed on separate nodes.
 
-In the screenshot below you can see that I have created an preferred anti-affinity rule that instructs Kubernetes to attempt to place pods with the label `app` and value `adservice` (this is one label this deployment assigns to pods) on separate nodes. 
+In the screenshot below you can see that I have created an preferred anti-affinity rule that instructs Kubernetes to attempt to place pods with the label `app` and value `adservice` (this is one label this deployment assigns to pods) on separate nodes.
 
 The topology key is the name of a label assigned to nodes that defines the topological group that the node belongs to. In more complex deployments the topology key would be used to indicate details like physical regions nodes were placed in or networking considerations. However in this example we select a label that uniquely identities each node called `alpha.eksctl.io/instance-id`, effectively creating topologies that contain only one node.
 
@@ -283,6 +283,33 @@ True zero downtime deployments that result in no requests being lost during an u
 ## HTTPS and certificate management
 
 https://istio.io/docs/tasks/traffic-management/ingress/secure-ingress-sds/
+
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: https-gateway
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: octopus.tech
+    hosts:
+    - "*"
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+```
 
 ## Feature branch deployments
 
@@ -356,7 +383,7 @@ We'll build a Docker image from this branch and publish it as `octopussamples/mi
 
 ### Deploying the first feature branch
 
-In the Octopus project that deploys the frontend application, we define two channels. 
+In the Octopus project that deploys the frontend application, we define two channels.
 
 The **Default** channel has a version rule that requires SemVer prerelease tags to be empty with a regular expression of `^$`. This rule ensures this channel only matches versions (or Docker tags in our case) like `0.1.4`.
 
@@ -387,7 +414,7 @@ In order to start using Istio to route our internal traffic, we need to create a
 ```YAML
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
-metadata: 
+metadata:
   name: frontend
 spec:
   gateways:
@@ -485,11 +512,11 @@ Below is a Powershell script that reads the current virtual service, adds or rep
 $virtService = kubectl get virtualservice adservice -o json | ConvertFrom-JSON
 
 # Clean up the generated metadata properties, as we do not want to send these back
-$virtService.metadata = $virtService.metadata | 
+$virtService.metadata = $virtService.metadata |
 	Select-Object * -ExcludeProperty uid, selfLink, resourceVersion, generation, creationTimestamp, annotations
 
 # Get the routes not associated with the new session id
-$otherMatch = $virtService.spec.http | 
+$otherMatch = $virtService.spec.http |
     ? {$_.match.headers.userid.exact -ne "#{SessionId}"}
 
 # Create a new route for the session
@@ -618,7 +645,7 @@ The [CNCF 2019 survey](https://www.cncf.io/wp-content/uploads/2020/03/CNCF_Surve
 
 *A chart showing team separation strategies from the 2019 CNCF survey.*
 
-Kubernetes provides out of the box support for resource limits (cpu, memory and ephemeral disk space), firewall isolation via network policies, and RBAC authorization that can limit access to Kubernetes resources based on namespace. 
+Kubernetes provides out of the box support for resource limits (cpu, memory and ephemeral disk space), firewall isolation via network policies, and RBAC authorization that can limit access to Kubernetes resources based on namespace.
 
 Istio can be used to implement network rate limits, although it is [not quite as easy as it could be](https://github.com/istio/istio/issues/22068).
 
