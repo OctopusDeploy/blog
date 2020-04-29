@@ -22,7 +22,7 @@ Combining these development practices with Kubernetes to create a Continuous int
 * Smoke testing
 * Rollback strategies
 
-In this blog post I look at how to create the continuous delivery (or deployment) half of the CI/CD pipeline by deploying a sample microservice application created by Google called [Hipster Shop](https://github.com/GoogleCloudPlatform/microservices-demo) to an Amazon EKS Kubernetes cluster, configure the Istio service mesh to handle network routing, and dive into HTTP and gRPC networking to route tenanted network traffic through the cluster to test feature branches.
+In this blog post I look at how to create the continuous delivery (or deployment) half of the CI/CD pipeline by deploying a sample microservice application created by Google called [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo) to an Amazon EKS Kubernetes cluster, configure the Istio service mesh to handle network routing, and dive into HTTP and gRPC networking to route tenanted network traffic through the cluster to test feature branches.
 
 ## Create an EKS cluster
 
@@ -99,11 +99,11 @@ The Docker images that make up our microservice application will be hosted in Do
 
 ## Deploying the microservices
 
-The Hipster Shop sample application provides a [Kubernetes YAML file](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml) defining all the deployments and services needed to run the application.
+The Online Boutique sample application provides a [Kubernetes YAML file](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml) defining all the deployments and services needed to run the application.
 
 Each of the individual services will be deployed as a separate project in Octopus. One of the advantages of microservices is that each service has an independent lifecycle, allowing it to be tested and deployed independent of any other service. Creating individual Octopus projects for each microservice allows us to create and deploy releases for just that service.
 
-The first microservice mentioned in the YAML file is called `emailservice`, which we'll deploy in a project called `01. Hipster Shop - Email service`. This microservice has two Kubernetes resources: a deployment, and a service. The YAML for these two resources is shown below:
+The first microservice mentioned in the YAML file is called `emailservice`, which we'll deploy in a project called `01. Online Boutique - Email service`. This microservice has two Kubernetes resources: a deployment, and a service. The YAML for these two resources is shown below:
 
 ```YAML
 apiVersion: apps/v1
@@ -164,7 +164,7 @@ spec:
 
 This pairing of a deployment and a service resource is a pattern we'll find over and over in the YAML file. The deployments are used to deploy and manage the containers that implement the microservice, while the service resource exposes these containers to the other microservices, and for the front end application also exposing the microservice to end users.
 
-The pattern of combining common Kubernetes resources is exposed in Octopus via the **Deploy Kubernetes containers** step. This opinionated step provides a rich user interface around Kubernetes deployments, services, ingresses, secrets and configmaps, making this step a natural choice to deploy our Hipster Shop microservices.
+The pattern of combining common Kubernetes resources is exposed in Octopus via the **Deploy Kubernetes containers** step. This opinionated step provides a rich user interface around Kubernetes deployments, services, ingresses, secrets and configmaps, making this step a natural choice to deploy our Online Boutique microservices.
 
 Historically, a downside to using the **Deploy Kubernetes containers** step has been the time it took to translate the properties in an existing YAML file into the user interface. Each setting had to be copied in manually, which was a significant undertaking.
 
@@ -187,7 +187,7 @@ Any property from the supplied YAML matching a field exposed by the form is impo
 *The resulting container definition from the imported YAML.*
 
 :::hint
-Not every possible deployment property is recognized by the **Deploy Kubernetes containers** step, and unrecognized properties are ignored during import. The `Deploy raw Kubernetes YAML` step provides a way to deploy generic YAML to a Kubernetes cluster. However, all properties used by the microservices that make up the Hipster Shop sample application are exposed by the **Deploy Kubernetes containers** step.
+Not every possible deployment property is recognized by the **Deploy Kubernetes containers** step, and unrecognized properties are ignored during import. The `Deploy raw Kubernetes YAML` step provides a way to deploy generic YAML to a Kubernetes cluster. However, all properties used by the microservices that make up the Online Boutique sample application are exposed by the **Deploy Kubernetes containers** step.
 :::
 
 We'll then import the service YAML into the **Service** section of the step:
@@ -216,7 +216,7 @@ The final step is to reference the containers we have built and uploaded to Dock
 
 *Updating the Docker image.*
 
-And with that we have created an Octopus project to deploy `emailservice`, one of the eleven microservices that make up the Hipster Shop sample application. The other microservices are called:
+And with that we have created an Octopus project to deploy `emailservice`, one of the eleven microservices that make up the Online Boutique sample application. The other microservices are called:
 
 * `checkoutservice`
 * `recommendationservice`
@@ -324,7 +324,7 @@ Service meshes are rich platforms that offer a great deal of functionality, but 
 
 ### What traffic are we routing?
 
-Below is the architecture diagram showing the various microservices that make up the Hipster Shop, and how they communicate:
+Below is the architecture diagram showing the various microservices that make up the Online Boutique, and how they communicate:
 
 ![](architecture-diagram.png "width=500")
 
@@ -344,7 +344,7 @@ The Istio [HTTPMatchRequest](https://istio.io/docs/reference/config/networking/v
 
 In order to route a subset of traffic to a feature branch deployment, we need to be able to propogate additional information as part of the HTTP request in a way that does not interfeer with the data contained in the request. The scheme (i.e. HTTP or HTTPS), method (GET, PUT, POST etc), port, query paramaters (the part of the URI after a question mark) and the URI itself all contain information that is very specific to the request being made, and modifying these is not an option. This leaves the headers, which are key value pairs often modified to support request tracing, proxying and other metadata.
 
-Looking at the network traffic submitted by the browser when interacting with the Hipster Shop frontend, we can see that the `Cookie` header likely contains a useful value we can inspect to make routing decisions. The application has persisted a cookie with a GUID identifying the browser session, which as it turns out is the method this sample application implements to identify users. Obviously a real world example interact with an authentication service to identify users, but for our purposes a randomly generated GUID will do just fine.
+Looking at the network traffic submitted by the browser when interacting with the Online Boutique frontend, we can see that the `Cookie` header likely contains a useful value we can inspect to make routing decisions. The application has persisted a cookie with a GUID identifying the browser session, which as it turns out is the method this sample application implements to identify users. Obviously a real world example interact with an authentication service to identify users, but for our purposes a randomly generated GUID will do just fine.
 
 ![](network-traffic.png "width=500")
 
@@ -354,7 +354,7 @@ Armed with a HTTP header we can inspect and route, the next step is to deploy a 
 
 ### Creating a feature branch Docker image
 
-Hipster Shop has been written in a variety of languages, and the frontend component is written in Go. We'll make a small change to the [header template](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/src/frontend/templates/header.html) to include the text **MyFeature**, making it clear that this code represents our feature branch.
+Online Boutique has been written in a variety of languages, and the frontend component is written in Go. We'll make a small change to the [header template](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/src/frontend/templates/header.html) to include the text **MyFeature**, making it clear that this code represents our feature branch.
 
 We'll build a Docker image from this branch and publish it as `octopussamples/microservicedemo-frontend:0.1.4-myfeature`. Note that the tag of `0.1.4-myfeature` is a SemVer string, which allows this image to be used as part of an Octopus deployment.
 
