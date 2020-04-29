@@ -732,7 +732,7 @@ metadata:
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  namespace: dev-development
+  namespace: dev
   name: dev-deployer-role
 rules:
 - apiGroups: ["*"]
@@ -743,7 +743,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: dev-deployer-binding
-  namespace: dev-development
+  namespace: dev
 subjects:
 - kind: User
   name: dev-deployer
@@ -757,10 +757,10 @@ roleRef:
 Creating a service account results in a secret being created. This secret holds a base64 encoded token which we can access with the command:
 
 ```
-kubectl get secret $(kubectl get serviceaccount dev-deployer -o jsonpath="{.secrets[0].name}" --namespace=dev-development) -o jsonpath="{.data.token}" --namespace=dev
+kubectl get secret $(kubectl get serviceaccount dev-deployer -o jsonpath="{.secrets[0].name}" --namespace=dev) -o jsonpath="{.data.token}" --namespace=dev
 ```
 
-This token is then saved as a Token account in Octopus:
+This value is then decoded and saved as a Token account in Octopus:
 
 ![](token.png "width=500")
 
