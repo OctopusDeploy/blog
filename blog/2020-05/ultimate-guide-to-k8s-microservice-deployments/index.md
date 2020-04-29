@@ -714,8 +714,64 @@ The good news is that whether your environments are implemented via namespaces o
 
 As we saw at the beginning of this post, a Kubernetes target in Octopus captures both the default namespace, a user account, and the cluster API URL. The combination of these three fields represents the security boundary in which deployments are performed.
 
-Kubernetes targets are then scoped to environments, and the deployment process is scoped to the target role, decoupling a deployment process from the underlying cluster or namespace.
+Kubernetes targets are then scoped to environments, and the deployment process is scoped to the target role, decoupling a deployment process from the underlying cluster or namespace. In the screenshot below you can see a second Kubernetes target scoped to the `Test` environment and defaulting to the `test` namespace:
+
+![](test-target.png "width=500")
+
+*A target defaulting to the test namespace, scoped to the Test environment.*
+
+For even more separation between the targets, we could create service accounts scoped to namespaces for each target. The YAML below shows an example of a service account, role and role binding that grant access to only the `dev` namespace:
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dev-deployer
+  namespace: dev
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: dev-development
+  name: dev-deployer-role
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev-deployer-binding
+  namespace: dev-development
+subjects:
+- kind: User
+  name: dev-deployer
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: dev-deployer-role
+  apiGroup: ""
+```
+
+Creating a service account results in a secret being created. This secret holds a base64 encoded token which we can access with the command:
+
+```
+kubectl get secret $(kubectl get serviceaccount dev-deployer -o jsonpath="{.secrets[0].name}" --namespace=dev-development) -o jsonpath="{.data.token}" --namespace=dev
+```
+
+This token is then saved as a Token account in Octopus:
+
+![](token.png "width=500")
+
+*The service account token saved in Octopus.*
+
+The token account can then be used by the Kubernetes target:
+
+![](target-with-token.png "width=500")
+
+*The token used by the Kubernetes target.*
 
 ## Conclusion
 
-If you have made it this far then congratulations! Configuring microservice deployments with high availability, multiple environments, zero downtime deployments, HTTP access, feature branch deployments, smoke testing and rollbacks is not a trivial task, but with this guide you will have a solid starting point on which to build world class deployments in Kubernetes.
+If you have made it this far then congratulations! Configuring microservice deployments with high availability, multiple environments, zero downtime deployments, HTTPS access, feature branch deployments, smoke testing and rollbacks is not a trivial task, but with this guide you will have a solid starting point on which to build world class deployments in Kubernetes.
