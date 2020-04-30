@@ -10,13 +10,13 @@ tags:
  - DevOps
 ---
 
-The WildFly CLI is a powerful administration tool, exposing both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this blog post, we’ll take a high level look at how to use the CLI.
+The WildFly CLI is a powerful administration tool that exposes both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this post, I take a high level look at how to use the CLI.
 
 ## Logging in
 
 Download WildFly 11, extract it, and run `bin/standalone.sh` or `bin\standalone.bat`. This will start WildFly with the default configuration, which is to bind the management interface to localhost on port 9990.
 
-Then in another console run `bin/jboss-cli.sh` or `bin\jboss-cli.bat` with the `--connect` argument. You will be logged into the CLI.
+In another console run `bin/jboss-cli.sh` or `bin\jboss-cli.bat` with the `--connect` argument. You will be logged into the CLI:
 
 ```
 $ ./jboss-cli.sh --connect
@@ -28,9 +28,9 @@ WARNING: All illegal access operations will be denied in a future release
 [standalone@localhost:9990 /]
 ```
 
-From the example output above we can see three important things have happened.
+From the example output above, we can see three important things have happened.
 
-First, Java 9 has reported some *Illegal reflective access* warnings. This sounds dire, but is because of some intentional changes introduced with the Java 9 module system (known as [Jigsaw](http://www.baeldung.com/project-jigsaw-java-modularity)). I expect that over time these warnings will be resolved, but for now they can be ignored.
+First, Java 9 has reported some *Illegal reflective access* warnings. This sounds dire, but it's because of some intentional changes introduced with the Java 9 module system (known as [Jigsaw](http://www.baeldung.com/project-jigsaw-java-modularity)). I expect that over time these warnings will be resolved, but for now they can be ignored.
 
 Second, we have connected to the default host (localhost) and port (9990) using the default protocol (remote+http). These could be specified manually with the `--controller` option:
 
@@ -46,9 +46,9 @@ Older versions of WildFly exposed a native management port on `9999` by default,
 
 Third, we managed to log in without supplying any credentials. This is courtesy of a feature called [silent authentication](https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/how_to_configure_server_security/#silent_authentication).
 
-Silent authentication relies on access to the `standalone/tmp/auth` or `domain/tmp/auth` directory. The idea is that if a user has access to this directory, they probably have access to create new users, and so silent authentication will give you access.
+Silent authentication relies on access to the `standalone/tmp/auth` or `domain/tmp/auth` directory. The idea is that if a user has access to this directory, they probably have access to create new users, and so silent authentication gives you access.
 
-If you deny write access to the `auth` directory, silent authentication will fail and you will be prompted for credentials.
+If you deny write access to the `auth` directory, silent authentication will fail, and you will be prompted for credentials.
 
 :::hint
 See [Configuring Admin Users](https://octopus.com/blog/installing-wildfly-from-scratch#configuring-admin-users) for details on creating an admin user that can be used to log into the CLI.
@@ -116,7 +116,7 @@ The `quit` command will exit the CLI.
 
 ## Tab completion
 
-These commands also have a number of options. The easiest way to see these options is to use tab complete. Here we have typed `ls ` (the space on the end is important) and pressed tab to see what additional options are available.
+These commands also have a number of options. The easiest way to see these options is to use tab complete. Here I typed `ls ` (the space on the end is important) and pressed tab to see what additional options are available:
 
 ```
 [standalone@localhost:9990 subsystem=undertow] ls
@@ -393,7 +393,7 @@ It can then be run using the `--file` command line option:
 ```
 
 :::hint
-In this test script we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
+In this test script, we have connected to the WildFly instance from inside the script with the `connect` command instead of passing the `--connect` command line option.
 :::
 
 To disable the `Press any key to continue ...` prompt when you run the `jboss-cli.bat` file in Windows, set the `NOPAUSE` environment variable to `true`:
@@ -426,7 +426,7 @@ You can run the same commands in an interactive mode as well:
 {"outcome" => "success"}
 ```
 
-The try/catch/finally flow control works much the same as in Java. The following will attempt to add a data source, and will remove and add the data source if there was an exception. Finally the data source is enabled:
+The try/catch/finally flow control works much the same as in Java. The following will attempt to add a data source and will remove and add the data source if there was an exception. Finally, the data source is enabled:
 
 ```
 try
@@ -465,4 +465,4 @@ The CLI has a GUI mode which provides a file browser like interface for navigati
 
 In this post, we took a high level look at how the CLI works and what you can do with it. You can find more resources on the [JBoss Wiki](https://developer.jboss.org/wiki/CommandLineInterface) which goes into more detail and provides examples of administrative tasks.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, try the free started edition of [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
