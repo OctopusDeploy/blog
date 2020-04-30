@@ -1,6 +1,6 @@
 ---
 title: Maven versions explained
-description: There is more than meets the eye when it comes to Maven versions.
+description: There is more than meets the eye when it comes to Maven versions. Learn how Maven treats different version strings.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2017-11-05
