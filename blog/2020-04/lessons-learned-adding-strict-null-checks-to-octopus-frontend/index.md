@@ -11,13 +11,13 @@ tags:
   - TypeScript
 ---
 
-Introduction
+## Introduction
 
 ## Why
 
-Nulls are often said to be the billion dollar mistake. They often creep up when you least expect them and in some pretty interesting ways. The problem isn't in the representation of null itself, it's more that we specifically
+Nulls are often said to be the billion dollar mistake. They often creep up when you least expect them and in some pretty interesting ways. The problem isn't in the representation of null itself, it's more that more often than not we
 forget to deal with the `null` case. It's for this reason that some languages completely shy away from the concept of null and choose to represent the concept in a type safe way using the `Option` monad. Functional programming
-isn't always an easy sell and in some cases we may still have legacy code bases. This is where `strictNullChecks` compiler flag that typescript provides helps. This single switch allows typescript to treat `null` and `undefined`
+isn't always an easy sell and in some cases we may still have legacy code bases. This is where `strictNullChecks` compiler flag swoops in and saves the day. This single switch allows typescript to treat `null` and `undefined`
 as separate types which forces those cases to be handled.
 
 ## Possible Options
@@ -77,22 +77,217 @@ We also knew that we would be putting in more effort in the long run to address 
 
 ## Lessons learned
 
-As part of our conversion process, we didn't just leave things as they were after applying non-null assertions everywhere. We also wanted to take a feature area and convert it to be strict null compliant. We felt that we
-wanted to get a better understanding of the types of changes we would need to make and determine whether there are any patterns that we could apply to make our lives easier. We wanted to share some of these learnings with
-others in case you find it useful.
+As part of our conversion process, we didn't leave things as they were after applying non-null assertions everywhere. We also wanted to take one feature area of our fontend and convert it to be strict null compliant. We felt that we
+needed to get a better understanding of the sorts of changes we would need to make as well as patterns to apply in order to make our lives easier. What follows are some of the lessons we learned in the process:
 
-### Union of types can be mutually exclusive
+### Intersection of types can be mutually exclusive
 
-Typescript with strict nulls will treat treat `null` and `undefined` as different types and it may be surprising at first.
+As previously mentioned, Typescript with strict nulls enabled will treat `null` and `undefined` as different types and will apply stricter checks on intersections of types. An example of this would be using an intersection between a `Record` and another type
+which contain optional properties for keys. Take the following as an example:
 
----> Indexing into types can get tricky with undefined in the mix
----> Strict nulls also means stricter checks in functions (Ref is a good example)
----> Types are more strict, so we had to separate creation of new resources from existing resources since in our case the shapes were different i.e. links in existing resources vs not having to provide it when creating new
----> More effectively use types such as unions in order to be able to narrow types
+```
+type RouteArgs = Record<string, string>;
+type AllArgs = { ids?: string [] };
+type SomeArgs = RouteArgs & AllArgs;
+const args: SomeArgs = { ids: undefined }; //invalid
+```
+
+This sort of thing would have worked before enabling strict nulls, but afterwards you would be greeted with a message stating that the property ids is not compatible with the index signature and not assignable to `undefined`. This makes complete sense if you look
+at the signature for `Record`:
+
+```
+type Record<K extends keyof any, T> = {
+    [P in K]: T;
+};
+```
+
+This means we can't provide `undefined` as a key for `Record` since keyof `undefined` evaluating to the bottom type `never`. This also means that the intersection between the types don't make sense leading to the optional prop being dropped and as a result typescript
+screaming at you. It's worth noting that typescript is getting more strict regarding this sort of thing with [typescript 3.9](https://devblogs.microsoft.com/typescript/announcing-typescript-3-9-rc/#breaking-changes).
+
+### Indexing into types can get tricky with undefined in the mix
+
+Imagine you have a React component with some deeply nested state and you want some type safety around mutating a small slice of it, while avoiding the the urge to install a new dependency such as immer. Let's call this method setChildState for argument's sake. A contrived
+example of it's usage could possibly look like the following:
+
+```
+    type Address = {
+        details: string;
+        postcode: string;
+    };
+
+    type Person = {
+        name: string;
+        surname: string;
+        address: Address;
+    };
+
+    type State = {
+        person: Person;
+    };
+
+    class MyComponent extends React.Component<{}, State>{
+        constructor(props: Props){
+            super(props);
+            this.state = {
+                //..state
+            }
+        }
+        setChildState<KeyOfState extends keyof State, Child extends State[KeyOfState], KeyOfChild extends keyof Child, GrandChild extends Child[KeyOfChild], KeyOfGrandChild extends keyof GrandChild>(
+            first: KeyOfState,
+            second: KeyOfChild,
+            state: Pick<GrandChild, KeyOfGrandChild>,
+            callback?: () => void
+        ) {
+            this.setState(
+                prev => ({
+                    [first]: {
+                        ...prev[first],
+                        [second]: {
+                            ...(prev[first] as Child)[second],
+                            ...state,
+                        },
+                    },
+                }),
+                callback
+            );
+        }
+
+        changeAddress(address: Address) {
+            this.setChildState("person", "address", address);
+        }
+
+        render() {
+            return (
+                <div>
+                    <button
+                    onClick={() =>
+                        this.changeAddress({ postcode: "555", details: "Nowhere" })
+                    }
+                    >
+                    Change Address
+                    </button>
+                </div>
+            );
+        }
+    }
+
+```
+
+Unfortunately that doesn't work too well once you enable strict nulls and you have a null/undefined down the chain. Feel free to try this yourself using [this example](https://codesandbox.io/s/confident-bush-oudj5?file=/src/App.tsx). Making
+the `person` optional in `State` will break things and with good reason. If the property is optional then you may be spreading an `undefined` object, which leaves the state in some obscure state i.e. only part of the object would be defined. You would effectively
+be lying about what is defiend and what is not defined at that point. Of course if you don't care, you can strategically sprinkle `NonNullable` throughout the signature, however you may be better off keeping `null` and `undefined` out of the picture entirely by passing
+the value in via props instead. We will see an example of this a bit later.
+
+### Strict nulls also mean stricter typing around functions
+
+Typescript allows you to enable other strict flags such as `strictFunctionTypes` which enable stricter bivariant checks. You may find it surprising to note however, that when enabling only `strictNullChecks` that some stricter checks may be applied to functions unrelated
+to `null` and `undefined`. React `refs` are a good example of this. You may previously tried to use some base type such as `HTMLElement` for your refs like so:
+
+```
+export default function App() {
+  const myRef = React.useRef<HTMLElement | undefined>();
+
+  return (
+    <div ref={myRef} className="App"></div>
+  );
+}
+```
+
+Typescript will allow you to assign directly to the base type, however it won't be quite as lenient for functions, therefore you may need to narrow the type:
+
+```
+export default function App() {
+  const myRef = React.useRef<HTMLDivElement | undefined>();
+//Okay
+  return (
+    <div ref={myRef} className="App"></div>
+  );
+}
+```
+
+Presto, type errors go away and the compiler is as happy as Larry. Whoever that may be.
+
+### Let's talk about resource differences
+
+Remember how we mentioned how strict nulls treat `null` and `undefined` as different types? Well in case that hasn't been mentioned enough already, it does. In our particular case it also meant that we had to vary the interfaces for new and existing resources slightly. This is
+because creating a resource may require less properties to be specified. Of course, typescript doesn't know that and it's just trying to be helpful. Let's take the following resource as an example:
+
+```
+interface TenantLinks {
+    Self: string;
+    Variables: string;
+    Web: string;
+    Logo: string;
+}
+
+export interface TenantResource {
+    Id: string;
+    Name: string;
+    TenantTags: string[];
+    ProjectEnvironments: { [projectId: string]: string[] };
+    ClonedFromTenantId: string | null;
+    Description: string | null;
+    SpaceId: string;
+    Links: LinksCollection<TenantLinks>;
+}
+```
+
+After enabling strict nulls, whenever creating a resource for the first time, we would need to specify the links, the Id, ClonedFromTenantId as well as the space id even though none of those make sense for a new resource. This is because the associated links is provided
+by the server, we auto generate the id, automatically infer the space id and the ClonedFromTenantId is populated by the server when a tenant is cloned. We chose to extract the shared properties for these resources into a separate interface and changing properties as needed.
+This ends up looking something like this:
+
+```
+interface TenantLinks {
+    Self: string;
+    Variables: string;
+    Web: string;
+    Logo: string;
+}
+
+interface TenantResourceShared {
+    TenantTags: string[];
+    ProjectEnvironments: { [projectId: string]: string[] };
+    Name: string;
+}
+
+export interface TenantResource extends TenantResourceShared {
+    Id: string;
+    SpaceId: string;
+    ClonedFromTenantId: string | null;
+    Description: string | null;
+    Links: LinksCollection<TenantLinks>;
+}
+
+export interface NewTenantResource extends TenantResourceShared {
+    Description?: string;
+}
+
+```
+
+With this change, our repositories accept the `NewResource` while always returning the full resource to use. Likewise any `fetch` operations would return the full resource.
+
+### Use typing to your advantage
+
+More effectively use types such as unions in order to be able to narrow types
+
+### Narrow types and check once
+
 ---> Rules of thumb, try and check for a type or null only once. Narrowing types is your best friend (introduce the general pattern, then an example of how we applied it)
+
+### Sane defaults
+
 ---> Sane defaults can help quite a bit
+
+### Use the most restrictive types you can
+
 ---> Try and work with the most restrictive type you can in most scenarios
+
+### Optional params, null or undefined
 
 ## Conclusion
 
-(start with strict nulls is much easier than enabling it later)
+Starting with the most strict rules you can with typescript is definitely the best option if you are starting a new project. If you weren't considering it, please do. Your future self will thank you. If you aren't so lucky and you a large existing code base,
+it may require some serious focused effort to get there. None of the options available seems to be perfect so it's best to choose the option that best suites your particular scenario, however the effort seems well worth it. We will most definitely continue
+on this journey and would love to hear from others regarding patterns used to deal with strict nulls and or gotchas to be aware of that have not been mentioned in this post.
+
+Until next time, happy deployments!
