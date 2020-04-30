@@ -265,25 +265,23 @@ export interface NewTenantResource extends TenantResourceShared {
 
 With this change, our repositories accept the `NewResource` while always returning the full resource to use. Likewise any `fetch` operations would return the full resource.
 
-### Use typing to your advantage
+### Narrow once and as soon as possible
 
-Since typescript has some pretty solid object oriented features, it's easy to jump in if you have a background in c# or java. It all feels so familiar. Warm. Fuzzy.
-It's also pretty easy to stop there and ignore all the other amazing things that typescript can bring to the table such as discriminated unions and type intersections. You may be asking what this has to do with with strict nulls?
-As it turns out, you may be able to avoid the use of `null` or `undefined` entirely by using more meaningful types to represent these cases and by using discriminated unions while narrowing types.
+How you create types to represent things can be quite subjective. You can create classes and inherit and discriminate based on the cosntructor using instanceof. You can also create objects and discriminate
+via properties similar to redux actions. Discriminated unions however, have the advantage in that they don't necessarily have the exact same shape. In both cases, we need to narrow types
+order to determine what to do. The same applies to primitives where `null` and `undefined` is included as part of the set of types for example `string | null | undefined`. We therefore followed a simple rule
+to avoid adding optional chaining and/or null checks all over the place. In order to achieve this, we narrow a type as much as possible before attempting to work with it.
 
-```
-const
-
-
-```
-
-This also leads into a basic rule of thumb that we have been following. Only ever check for a particular type once. This usually translates into narrowing the type first before passing it somewhere else.
+The above is a simple rule to follow and reduces complexity significantly. This feels obvious, but the reason is because it reduces the number of permutations you need to deal with. The wider the type, the more
+cases you have to work with and the more chance you have of getting it wrong. It's therefore best to narrow to the most restrictive type possible as soon as possible. As an example, we prefer `string` over `string | null`
+while for more complex objects and class hierarchies, we prefer something more concrete where possible.
 
 ### Loading Data
 
 Loading data in `componentDidMount` or in a hook is a pretty common thing to do when using react. The problem is that you may not have the data available for the first render which necessitates marking the data as optional.
 One solution is to pass the data in via props and only render the component when you know you have the data available. This pattern became so commonplace that we created a component that specifically loads our data
-and injects it via props. This ends up looking something like the following simplified example, which may look somewhat familiar if you worked with graphql and the apollo client before (if you squint hard enough):
+and injects it via props, which coincedentally also follows our rule of narrowing once and as soon as possible. This ends up looking something like the following simplified exampl. This may look somewhat familiar if you
+worked with graphql apollo client before if you squint hard enough:
 
 ```
 const Loader = DataLoader<PersonResource>();
@@ -316,12 +314,6 @@ You may find that it's possible to use a default case for some types instead of 
 
 This isn't always possible, especially where arrays are involved or when code is specifically looking for `null` or `undefined`, so it's worth checking first.
 
-### Use the most restrictive types you can
-
-We have already touches on this to some extent, but it's worth reiterating. The wider the type, the more cases you need to handle. We have found by making components accept the most
-restrictive props that they possibly can to function significantly reduces the complexity as you simply don't need to deal with all kinds of permutations that would never eventuate.
-In practice, this means preferring a `string` over `string | null`. This also applies to more complex types where you would choose the most concrete possible type by narrowing it first.
-
 ### Optional params, null or undefined
 
 If `null` and `undefined` are treated as different types and we have the means to specify optional props, then how do we decide whether we should be using type signatures like
@@ -333,7 +325,8 @@ optional argument to cascade far and wide by defaulting it instead if at all pos
 ## Conclusion
 
 Starting with the most strict rules you can with typescript is definitely the best option if you are starting a new project. If you weren't considering it, please do. Your future self will thank you. If you aren't so lucky and you a large existing code base,
-it may require some serious focused effort to get there. None of the options available seems to be perfect so it's best to choose the option that best suites your particular scenario, however the effort seems well worth it. We will most definitely continue
-on this journey and would love to hear from others regarding patterns used to deal with strict nulls and or gotchas to be aware of that have not been mentioned in this post.
+it may require some serious focused effort to get there. None of the options available seems to be perfect so it's best to choose the option that best suites your particular scenario, however the effort seems well worth it. We covered some of the things we
+learned while converting a particular area in Octopus to be strict nulls compliant. The list is in no means exhaustive and we expect to learn more as we continue with our journey of converting the remaining areas. We would love to hear from you
+regarding patterns you may have used to deal with strict nulls and whether you there are other gotchas and learnings which we have not covered in this post.
 
 Until next time, happy deployments!
