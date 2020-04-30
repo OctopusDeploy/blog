@@ -13,12 +13,11 @@ tags:
 
 ## Introduction
 
-## Why
-
 Nulls are often said to be the billion dollar mistake. They often creep up when you least expect them and in some pretty interesting ways. The problem isn't in the representation of null itself, it's more that more often than not we
 forget to deal with the `null` case. It's for this reason that some languages completely shy away from the concept of null and choose to represent the concept in a type safe way using the `Option` monad. Functional programming
 isn't always an easy sell and in some cases we may still have legacy code bases. This is where `strictNullChecks` compiler flag swoops in and saves the day. This single switch allows typescript to treat `null` and `undefined`
-as separate types which forces those cases to be handled.
+as separate types which forces those cases to be handled. This massively reduces bugs surrounding `null` and `undefined` and also eliminates a lot of complexity when narrowing types appropriately. It also removes the need to
+write tests for certain cases and provides much faster feedback to boot. If that's got your attention, then let's look at some strategies for enabling strict nulls in an existing code base.
 
 ## Possible Options
 
@@ -268,21 +267,68 @@ With this change, our repositories accept the `NewResource` while always returni
 
 ### Use typing to your advantage
 
-More effectively use types such as unions in order to be able to narrow types
+Since typescript has some pretty solid object oriented features, it's easy to jump in if you have a background in c# or java. It all feels so familiar. Warm. Fuzzy.
+It's also pretty easy to stop there and ignore all the other amazing things that typescript can bring to the table such as discriminated unions and type intersections. You may be asking what this has to do with with strict nulls?
+As it turns out, you may be able to avoid the use of `null` or `undefined` entirely by using more meaningful types to represent these cases and by using discriminated unions while narrowing types.
 
-### Narrow types and check once
+```
+const
 
----> Rules of thumb, try and check for a type or null only once. Narrowing types is your best friend (introduce the general pattern, then an example of how we applied it)
 
-### Sane defaults
+```
 
----> Sane defaults can help quite a bit
+This also leads into a basic rule of thumb that we have been following. Only ever check for a particular type once. This usually translates into narrowing the type first before passing it somewhere else.
+
+### Loading Data
+
+Loading data in `componentDidMount` or in a hook is a pretty common thing to do when using react. The problem is that you may not have the data available for the first render which necessitates marking the data as optional.
+One solution is to pass the data in via props and only render the component when you know you have the data available. This pattern became so commonplace that we created a component that specifically loads our data
+and injects it via props. This ends up looking something like the following simplified example, which may look somewhat familiar if you worked with graphql and the apollo client before (if you squint hard enough):
+
+```
+const Loader = DataLoader<PersonResource>();
+
+export const ExamplePage = () => {
+  return (
+    <Loader
+      load={async () => {
+        return await getPerson("Person-1");
+      }}
+      renderWhenLoaded={data => {
+        return <PersonLayout initialData={data} />;
+      }}
+      renderAlternate={p => <div>Loading</div>}
+    />
+  );
+};
+```
+
+### Defaults
+
+You may find that it's possible to use a default case for some types instead of modifying existing types to be optional, `undefined` or `null`. As an example you could:
+
+- Default numbers to `0`
+- Default strings to `""`
+- Default arrays to `[]`
+- Default boolean to `false`
+- Default objects with all optional properties to `{}`
+- Default objects defined as `{ [key: string]: T }` to `{}`
+
+This isn't always possible, especially where arrays are involved or when code is specifically looking for `null` or `undefined`, so it's worth checking first.
 
 ### Use the most restrictive types you can
 
----> Try and work with the most restrictive type you can in most scenarios
+We have already touches on this to some extent, but it's worth reiterating. The wider the type, the more cases you need to handle. We have found by making components accept the most
+restrictive props that they possibly can to function significantly reduces the complexity as you simply don't need to deal with all kinds of permutations that would never eventuate.
+In practice, this means preferring a `string` over `string | null`. This also applies to more complex types where you would choose the most concrete possible type by narrowing it first.
 
 ### Optional params, null or undefined
+
+If `null` and `undefined` are treated as different types and we have the means to specify optional props, then how do we decide whether we should be using type signatures like
+`{ name: string | undefined }`, `{name: string | null }`, `{ name?: string }` or even `{ name: string | null | undefined }`? This most likely comes down to intent and whether
+you want consumers to be forced to think about what they are providing. We therfore tend to avoid optional props and tend towards adding `null` to the type for this reason.
+In our experience, optional props when abused can result in some subtle bugs and are much harder to find incorrect usages. It's also usually a good idea, to prevent an
+optional argument to cascade far and wide by defaulting it instead if at all possible.
 
 ## Conclusion
 
