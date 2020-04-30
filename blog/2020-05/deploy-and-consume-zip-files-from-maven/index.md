@@ -1,5 +1,5 @@
 ---
-title: Deploying and consuming ZIP files from Maven
+title: Deploy and consume ZIP files from Maven
 description: Learn how to deploy ZIP files to Maven and consume them in an Octopus project.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -10,7 +10,7 @@ tags:
  - Engineering
 ---
 
-Maven is a versatile artifact repository that extends beyond traditional Java packages, like JARs and WARs, to provide the ability to host generic ZIP archives.  In this blog post, we’ll take a look at how generic archives can be published to a Maven repository, and how they can then be consumed in an Octopus project.
+Maven is a versatile artifact repository that extends beyond traditional Java packages, like JARs and WARs, to provide the ability to host generic ZIP archives.  In this blog post, I take a look at how generic archives can be published to a Maven repository, and how to consume them in an Octopus project.
 
 ## Repository configuration
 
@@ -35,7 +35,7 @@ The example below defines the default credentials for a Nexus Maven repository:
 
 ## Create a package
 
-Next, we need to create the package that will be uploaded. In this example, we’ll create a standard ZIP archive called `package.zip` holding the file `test.txt`:
+Next, we need to create the package that will be uploaded. In this example, I create a standard ZIP archive called `package.zip` that holds the file `test.txt`:
 
 ```
 zip package.zip test.txt
@@ -43,7 +43,7 @@ zip package.zip test.txt
 
 ## Upload the package
 
-To upload the package we’ll use the Maven `deploy:deploy-file` goal. Maven can be download from [here](https://maven.apache.org/download.cgi).
+To upload the package I use the Maven `deploy:deploy-file` goal. Download [Maven](https://maven.apache.org/download.cgi).
 
 :::hint
 The `repositoryId` system property in this command needs to match the `<id>` element in the `settings.xml` file.
@@ -72,7 +72,7 @@ We can then test the repository by searching for the artifact `org.example:packa
 
 ## Transfer the package
 
-Now that we can access the Maven feed, we’ll use the `Transfer a package` step to download the artifact onto a target machine. Again we reference the Maven artifact with `org.example:package`:
+Now that we can access the Maven feed, I use the **Transfer a package** step to download the artifact onto a target machine. Again we reference the Maven artifact with `org.example:package`:
 
 ![Transfer a package](maven-transfer-package-step.png "width=500")
 
