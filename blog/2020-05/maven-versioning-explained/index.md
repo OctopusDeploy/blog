@@ -10,7 +10,7 @@ tags:
  - Engineering
 ---
 
-Version strings are usually easy to understand, but Maven has a number of rules and edge cases that are not immediately obvious. In this blog post, we’ll take a look at how Maven version strings work.
+Version strings are usually easy to understand, but Maven has a number of rules and edge cases that are not immediately obvious. In this post, I take a look at how Maven version strings work.
 
 ## The source of truth
 
@@ -20,7 +20,7 @@ By writing some tests against this class, we can explore how Maven versions work
 
 ## A sorted list of versions
 
-We’ll start with a test that takes an array of `ComparableVersion` objects, clones the array, sorts it, and compares it back to the original list. The fact that the test passes proves that the original list is in order from the earliest to the latest version:
+Let’s start with a test that takes an array of `ComparableVersion` objects, clones the array, sorts it, and compares it back to the original list. The fact that the test passes proves the original list is in order from the earliest to the latest version:
 
 ```java
 private static final ComparableVersion[] VERSIONS = new ComparableVersion[]{
@@ -56,11 +56,11 @@ public void ensureArrayInOrder() {
 
 This list reveals some curious facts about how Maven versions compare to each other.
 
-Qualifiers like `alpha`, `beta`, `milestone` (or their shorthand equivalents of `a`, `b` and `mc`), `rc`, `sp`, `ga`, and `final` have special meaning. Separators like periods and dashes can be used interchangeably, or not used at all in some cases. And versions strings that don’t follow any particular format at all are still valid and comparable.
+Qualifiers like `alpha`, `beta`, `milestone` (or their shorthand equivalents of `a`, `b`, and `mc`), `rc`, `sp`, `ga`, and `final` have special meanings. Separators like periods and dashes can be used interchangeably, or not used at all in some cases. And versions strings that don’t follow any particular format at all are still valid and comparable.
 
 ## Maven version components
 
-While the `ComparableVersion` class is the source of truth for how versions compare to each other, it does not parse versions in a particularly useful data structures. For that, we have a second class from the [build helper](http://www.mojohaus.org/build-helper-maven-plugin/parse-version-mojo.html) plugin called [VersionInformation](https://github.com/mojohaus/build-helper-maven-plugin/blob/master/src/main/java/org/codehaus/mojo/buildhelper/versioning/VersionInformation.java).
+While the `ComparableVersion` class is the source of truth for how versions compare to each other, it does not parse versions in a particularly useful data structure. For that, we have a second class from the [build helper](http://www.mojohaus.org/build-helper-maven-plugin/parse-version-mojo.html) plugin called [VersionInformation](https://github.com/mojohaus/build-helper-maven-plugin/blob/master/src/main/java/org/codehaus/mojo/buildhelper/versioning/VersionInformation.java).
 
 `VersionInformation` breaks down Maven version strings into 5 parts:
 
@@ -76,7 +76,7 @@ The Qualifier can hold any value, although some qualifiers do have special meani
 
 ## Qualifiers and Aliases
 
-Maven recognises a number of special qualifiers, shown here in order of precedence:
+Maven recognizes a number of special qualifiers, shown here in order of precedence:
 
 * alpha or a
 * beta or b
@@ -88,7 +88,7 @@ Maven recognises a number of special qualifiers, shown here in order of preceden
 
 We saw in the list of sorted versions that these qualifiers do indeed result in Maven versions being sorted into the same order as the bullet point list.
 
-Versions with unrecognised qualifiers are treated as later releases than an unqualified version, and unrecognised qualifiers are compared as case insensitive strings.
+Versions with unrecognized qualifiers are treated as later releases than an unqualified version, and unrecognized qualifiers are compared as case insensitive strings.
 
 Some of the qualifiers have shorthand aliases. This test shows how various qualifiers result in equal Maven version:
 
@@ -108,7 +108,7 @@ public void testDifferentFinalReleases() {
 }
 ```
 
-Note that the shorthand aliases must have a number after them, while their complete equivalents do not. If you look closely at the list of sorted versions introduced at the start of this post, you will see that versions `1.0-alpha` and `1.0a1-SNAPSHOT` are two of the earliest versions, while `1.0-a` is towards the end of the list.
+Note that the shorthand aliases must have a number after them, while their complete equivalents do not. If you look closely at the list of sorted versions introduced at the start of this post, you will see that versions `1.0-alpha` and `1.0a1-SNAPSHOT` are two of the earliest versions, while `1.0-a` is toward the end of the list.
 
 All qualifiers are case insensitive, as this test demonstrates:
 
@@ -127,7 +127,7 @@ public void testCase() {
 }
 ```
 
-Where version stings can not be parsed as major.minor.patch.build and the qualifier is not recognised, the entire string is considered to be a qualifier. These qualifiers are then compared as case insensitive strings:
+Where version stings can not be parsed as major.minor.patch.build and the qualifier is not recognized, the entire string is considered a qualifier. These qualifiers are then compared as case insensitive strings:
 
 ```java
 @Test
@@ -182,7 +182,7 @@ public void testDashAndPeriod() {
 
 ## Long versions
 
-While the `VersionInformation` class only recognizes the major.minor.patch.build format, the `ComparableVersion` class recognises any number of digits:
+While the `VersionInformation` class only recognizes the major.minor.patch.build format, the `ComparableVersion` class recognizes any number of digits:
 
 ```java
 @Test
@@ -312,4 +312,4 @@ public class VersionTest {
 }
 ```
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, sign up for a starter license for [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
