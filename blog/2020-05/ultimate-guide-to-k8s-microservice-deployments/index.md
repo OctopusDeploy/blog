@@ -1,6 +1,6 @@
 ---
 title: The ultimate guide to Kubernetes microservice deployments
-description: Learn how to deploy microservices into a Kubernetes cluster with Octopus
+description: Learn how to deploy microservices into a Kubernetes cluster with Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-Microservices have emerged as a popular development practice for teams looking to release complex systems quickly and reliably. Kubernetes provides a natural platform for microservices as it handles much of the orchestration requirements imposed by deploying many instances of many individual microservices. On top we have service mesh technologies which lift common networking concerns from the application layer into the infrastructure layer, making it easy to route, secure, log and test network traffic.
+Microservices have emerged as a popular development practice for teams looking to release complex systems quickly and reliably. Kubernetes provides a natural platform for microservices as it handles much of the orchestration requirements imposed by deploying many instances of many individual microservices. On top, we have service mesh technologies which lift common networking concerns from the application layer into the infrastructure layer, making it easy to route, secure, log, and test network traffic.
 
-Combining these development practices with Kubernetes to create a Continuous integration and delivery (CI/CD) pipeline does require some work however, as a robust CI/CD pipeline must address a number of concerns such as:
+Combining these development practices with Kubernetes to create a continuous integration and continuous delivery (CI/CD) pipeline does require some work, as a robust CI/CD pipeline must address a number of concerns such as:
 
 * High availability (HA)
 * Multiple environments
@@ -22,19 +22,19 @@ Combining these development practices with Kubernetes to create a Continuous int
 * Smoke testing
 * Rollback strategies
 
-In this blog post I look at how to create the continuous delivery (or deployment) half of the CI/CD pipeline by deploying a sample microservice application created by Google called [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo) to an Amazon EKS Kubernetes cluster, configure the Istio service mesh to handle network routing, and dive into HTTP and gRPC networking to route tenanted network traffic through the cluster to test feature branches.
+In this post, I look at how to create the continuous delivery (or deployment) half of the CI/CD pipeline by deploying a sample microservice application created by Google called [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo) to an Amazon EKS Kubernetes cluster, configure the Istio service mesh to handle network routing, and dive into HTTP and gRPC networking to route tenanted network traffic through the cluster to test feature branches.
 
 ## Create an EKS cluster
 
-For this blog post we'll be deploying our microservice application to a Kubernetes cluster hosted by Amazon EKS. However, we don't rely on any special functionality provided by EKS, so any Kubernetes cluster can be used to follow this post.
+For this post, I deploy the microservice application to a Kubernetes cluster hosted by Amazon EKS. However, I don't rely on any special functionality provided by EKS, so any Kubernetes cluster can be used to follow the process.
 
-The easiest way to get started with EKS is with the [ekscli tool](https://eksctl.io/). This CLI tool abstracts away most of the details associated with creating and managing an EKS cluster, providing sensible defaults to get you up and running quickly.
+The easiest way to get started with EKS is with the [ekscli tool](https://eksctl.io/). This CLI tool abstracts away most of the details associated with creating and managing an EKS cluster and provides sensible defaults to get you up and running quickly.
 
-## Creating the AWS account
+## Create the AWS account
 
 Octopus has native support for authenticating to EKS clusters via an AWS account. This account is defined under {{ Infrastructure, Accounts }}.
 
-![](aws-account.png "width=500")
+![An AWS account](aws-account.png "width=500")
 
 *An AWS account*
 
@@ -42,7 +42,7 @@ Octopus has native support for authenticating to EKS clusters via an AWS account
 
 Kubernetes targets are created under  {{ Infrastructure, Deployment Targets }}. Select the **AWS Account** option in the **Authentication** section, and add the name of the EKS cluster.
 
-![](k8s-target-auth.png "width=500")
+![A Kubernetes target authenticating against the AWS account](k8s-target-auth.png "width=500")
 
 *A Kubernetes target authenticating against the AWS account.*
 
@@ -54,7 +54,7 @@ The default namespace that this target operates in is defined in the **Kubernete
 Each step in a deployment process can override the namespace, so it is possible to leave this field blank and reuse one target across multiple namespaces. However, when sharing multiple environments within a single cluster, it is best to set the default namespace.
 :::
 
-![](k8s-target-details.png "width=500")
+![The EKS cluster details](k8s-target-details.png "width=500")
 
 *The EKS cluster details.*
 
@@ -62,7 +62,7 @@ Each step in a deployment process can override the namespace, so it is possible 
 The Octopus server or workers that execute the steps must have `kubectl` and the AWS `aws-iam-authenticator` executable available on the path. See the [documentation](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target#add-a-kubernetes-target) for more details.
 :::
 
-## Installing Istio
+## Install Istio
 
 Istio provides many installation options, but I find the `istioctl` tool to be the easiest.
 
@@ -70,7 +70,7 @@ Download a copy of `istioctl` from [GitHub](https://github.com/istio/istio/relea
 
 Add a **Run a kubectl CLI Script** step to a runbook, and reference the `istioctl` package:
 
-![](istioctl-package.png "width=500")
+![An additional package referencing the Istio CLI tools](istioctl-package.png "width=500")
 
 *An additional package referencing the Istio CLI tools.*
 
@@ -85,19 +85,19 @@ kubectl label namespace dev istio-injection=enabled
 You must use the `--skip-confirmation` argument to prevent `istioctl` waiting forever for input that can not be provided when the tool is run through Octopus.
 :::
 
-![](install-istio.png "width=500")
+![The script to install Istio and enable automatic sidecar injection in a namespace](install-istio.png "width=500")
 
 *The script to install Istio and enable automatic sidecar injection in a namespace.*
 
-## Creating a Docker feed
+## Create a Docker feed
 
 The Docker images that make up our microservice application will be hosted in DockerHub. While Google provides images from their own Google Container Registry, the images do not have SemVer compatible tags, which Octopus requires to sort images during release creation. We'll also be creating some feature branch images to deploy to the cluster, and so need a public repository we can publish to. In the screenshot below you can see a new Docker feed created under {{Library, External Feeds}}:
 
-![](docker-feed.png "width=500")
+![The Dockerhub Docker feed](docker-feed.png "width=500")
 
 *The Dockerhub Docker feed.*
 
-## Deploying the microservices
+## Deploy the microservices
 
 The Online Boutique sample application provides a [Kubernetes YAML file](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml) defining all the deployments and services needed to run the application.
 
@@ -170,19 +170,19 @@ Historically, a downside to using the **Deploy Kubernetes containers** step has 
 
 A recent feature added in Octopus 2020.2.4 is the ability to directly edit the YAML generated by this step. Clicking the **EDIT YAML** button for each Kubernetes resource allows YAML to be copied into the step directly in one operation:
 
-![](edit-yaml.png "width=500")
+![The EDIT YAML button imports and exports YAML](edit-yaml.png "width=500")
 
 *The EDIT YAML button imports and exports YAML.*
 
 In the screenshot below you can see that I have pasted the YAML that makes up the `emailservice` deployment resource:
 
-![](raw-yaml.png "width=500")
+![Importing YAML from the microservice project](raw-yaml.png "width=500")
 
 *Importing YAML from the microservice project.*
 
 Any property from the supplied YAML matching a field exposed by the form is imported. In the screenshot below you can see the `server` container has been imported complete with environment settings, health checks, resource limits and ports:
 
-![](emailservice-container.png "width=500")
+![The resulting container definition from the imported YAML](emailservice-container.png "width=500")
 
 *The resulting container definition from the imported YAML.*
 
@@ -192,11 +192,11 @@ Not every possible deployment property is recognized by the **Deploy Kubernetes 
 
 We'll then import the service YAML into the **Service** section of the step:
 
-![](service-yaml-import.png "width=500")
+![The service section EDIT YAML button](service-yaml-import.png "width=500")
 
 *The service section EDIT YAML button.*
 
-![](service-yaml.png "width=500")
+![Importing a service resource defined in YAML](service-yaml.png "width=500")
 
 *Importing a service resource defined in YAML.*
 
@@ -206,13 +206,13 @@ Services direct traffic to pods that match the labels defined under the `selecto
 
 Our microservices won't be deploying ingress, secret or configmap resources, so we can remove these features from the step by clicking the **CONFIGURE FEATURES** button, and unselecting the unused features:
 
-![](configure-features.png "width=500")
+![Configuring features to remove those that are unused](configure-features.png "width=500")
 
 *Configuring features to remove those that are unused.*
 
 The final step is to reference the containers we have built and uploaded to Docker Hub. The import process referenced the container `microservices-demo/emailservice` that was defined in the deployment YAML. We need to change this to `octopussamples/microservicedemo-emailservice` to reference the container that has been uploaded by the [OctopusSamples](https://hub.docker.com/u/octopussamples) Docker Hub user:
 
-![](new-container.png "width=500")
+![Updating the Docker image](new-container.png "width=500")
 
 *Updating the Docker image.*
 
@@ -234,7 +234,7 @@ Most of these microservices are deployed with the same deployment and service pa
 
 The additional load balancer service can be deployed with the **Deploy Kubernetes service resource** step. This stand alone step has the same **EDIT YAML** button found in the **Deploy Kubernetes containers** step, and so the `frontend-external` service YAML can be imported directly:
 
-![](frontend-service-yaml.png "width=500")
+![Importing a standalone service YAML definition](frontend-service-yaml.png "width=500")
 
 *Importing a standalone service YAML definition.*
 
@@ -250,7 +250,7 @@ However, the default settings for the deployments we imported need some tweaking
 
 First, we need to increase the deployment replica count, which determines how many pods a deployment will create. The default value is 1, meaning a failure of any single pod will result in a microservice being unavailable. Increasing this value means our application can survive the loss of a single pod. In the screenshot below you can see I have increase the replica count to 2 for the ad service:
 
-![](replicas.png "width=500")
+![Increasing the pod replica count](replicas.png "width=500")
 
 *Increasing the pod replica count.*
 
@@ -262,7 +262,7 @@ The topology key is the name of a label assigned to nodes that defines the topol
 
 The end result is that Kubernetes will try to place pods belonging to the same deployment on different nodes, meaning our cluster is more likely to survive the loss of a single node without disruption:
 
-![](anti-affinity.png "width=500")
+![Defining pod anti-affinity](anti-affinity.png "width=500")
 
 *Defining pod anti-affinity.*
 
@@ -278,7 +278,7 @@ Octopus introduces a third deployment strategy called blue/green. The blue/green
 
 Selecting either the rolling or blue/green deployment strategies means we can deploy microservices with zero downtime:
 
-![](rolling-update.png "width=500")
+![Enabling a rolling update](rolling-update.png "width=500")
 
 *Enabling a rolling update.*
 
@@ -326,7 +326,7 @@ Service meshes are rich platforms that offer a great deal of functionality, but 
 
 Below is the architecture diagram showing the various microservices that make up the Online Boutique, and how they communicate:
 
-![](architecture-diagram.png "width=500")
+![The microservice application architecture](architecture-diagram.png "width=500")
 
 *The microservice application architecture.*
 
@@ -346,19 +346,19 @@ In order to route a subset of traffic to a feature branch deployment, we need to
 
 Looking at the network traffic submitted by the browser when interacting with the Online Boutique frontend, we can see that the `Cookie` header likely contains a useful value we can inspect to make routing decisions. The application has persisted a cookie with a GUID identifying the browser session, which as it turns out is the method this sample application implements to identify users. Obviously a real world example interact with an authentication service to identify users, but for our purposes a randomly generated GUID will do just fine.
 
-![](network-traffic.png "width=500")
+![Capturing network traffic from a browser](network-traffic.png "width=500")
 
 *Capturing network traffic from a browser.*
 
 Armed with a HTTP header we can inspect and route, the next step is to deploy a feature branch.
 
-### Creating a feature branch Docker image
+### Create a feature branch Docker image
 
 Online Boutique has been written in a variety of languages, and the frontend component is written in Go. We'll make a small change to the [header template](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/src/frontend/templates/header.html) to include the text **MyFeature**, making it clear that this code represents our feature branch.
 
 We'll build a Docker image from this branch and publish it as `octopussamples/microservicedemo-frontend:0.1.4-myfeature`. Note that the tag of `0.1.4-myfeature` is a SemVer string, which allows this image to be used as part of an Octopus deployment.
 
-### Deploying the first feature branch
+### Deploy the first feature branch
 
  We define two channels in the Octopus project that deploys the frontend application.
 
@@ -368,13 +368,13 @@ The **Feature Branch** channel has a version rule that requires SemVer prereleas
 
 We then add a variable to the deployment called `FeatureBranch` with the value of `#{Octopus.Action.Package[server].PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}`. This variable takes the version of the Docker image called `server`, captures the prerelease and leading dash in a regular expression as group 2, and then prints only group 2. If there is no prerelease, the variable resolves to an empty string.
 
-![](project-variables.png "width=500")
+![The variable used to extract the SemVer prerelease](project-variables.png "width=500")
 
 *The variable used to extract the SemVer prerelease.*
 
 This variable is then appended to the deployment name, the deployment labels, and the service name. Changing the name of the deployment and service ensures that a feature branch deployment creates new resources with the name like `frontend-myfeature` alongside the existing resources called `frontend`:
 
-![](featurebranch-deployment.png "width=500")
+![The summary text shows the name of the deployment and the labels](featurebranch-deployment.png "width=500")
 
 *The summary text shows the name of the deployment and the labels*
 
@@ -382,7 +382,7 @@ This variable is then appended to the deployment name, the deployment labels, an
 
 *The summary text shows the name of the service*
 
-### Eposing the frontend via Istio
+### Expose the frontend via Istio
 
 To this point we have not deployed any Istio resources. The `istio-injection` label on the namespace containing our application means that the pods created by our deployments include the Istio sidecar, ready to intercept and route traffic, but it is plain old Kubernetes services that are exposing our pods to one another.
 
@@ -419,7 +419,7 @@ There are a few important parts to this virtual service:
 
 With these rules in place we can reopen the application, and our request is redirected to the feature branch, as indicated by the header:
 
-![](feature-branch-web.png "width=500")
+![Istio inspected the Cookie header and directed the request to the feature branch](feature-branch-web.png "width=500")
 
 *Istio inspected the Cookie header and directed the request to the feature branch.*
 
@@ -533,13 +533,13 @@ kubectl apply -f vs.json
 
 A more robust solution could involve writing a custom Kubernetes operator to keep the virtual service resource in sync with an external data source defining test traffic. This post won't go into the details of operators, but you can find more information from the post [Creating a Kubernetes Operator with Kotlin](https://octopus.com/blog/operators-with-kotlin).
 
-### Deploying an internal feature branch
+### Deploy an internal feature branch
 
 Just like we did with the frontend application, a branch of the ad service has been created and pushed as `octopussamples/microservicedemo-adservice:0.1.4-myfeature`. The ad service project in Octopus gained the new `FeatureBranch` variable set to `#{Octopus.Action.Package[server].PackageVersion | Replace "^([0-9\.]+)((?:-[A-Za-z0-9]+)?)(.*)$" "$2"}`, and the name of the deployment and service was changed to `adservice#{FeatureBranch}`.
 
 The feature branch itself was updated to append the string `MyFeature` to the ads served by the service to allow us to see when the feature branch deployment is called. Once the virtual service has been deployed, we open the web application again and see that the ads we are served do indeed include the string `MyFeature`:
 
-![](feature-branch-adservice.png "width=500")
+![Istio routed internal gRPC requests to the ad service feature branch based on the userid header](feature-branch-adservice.png "width=500")
 
 *Istio routed internal gRPC requests to the ad service feature branch based on the userid header.*
 
@@ -565,25 +565,25 @@ istioctl\istioctl manifest generate `
 kubectl apply -f istio-ingressgateway.yaml
 ```
 
-![](enable-sds.png "width=500")
+![Enabling the agent with istioctl](enable-sds.png "width=500")
 
 *Enabling the agent with istioctl.*
 
 The next step is to save the contents of a HTTPS certificate and private key as a secret. For this blog post I have used a certificate generated by Let's Encrypt through my DNS provider dnsimple, and downloaded the PFX certificate package. This package is made available under the instructions for deploying a certificate to IIS, but the PFX file itself is generic. We use the PFX file because it is self contained and easily uploaded to Octopus.
 
-![](https-certificate.png "width=500")
+![The Let's Encrypt certificate generated by the DNS provider](https-certificate.png "width=500")
 
 *The Let's Encrypt certificate generated by the DNS provider.*
 
 The PFX file is uploaded as a new certificate under {{Library, Certificates}}:
 
-![](certificate.png "width=500")
+![The Let's Encrypt certificate uploaded to Octopus](certificate.png "width=500")
 
 *The Let's Encrypt certificate uploaded to Octopus.*
 
 To import the certificate into Kubernetes we need to create a secret. We start by referencing the certificate in a variable called `Certificate`:
 
-![](cert-variable.png "width=500")
+![The certificate referenced as a variable](cert-variable.png "width=500")
 
 *The certificate referenced as a variable.*
 
@@ -633,7 +633,7 @@ spec:
 
 With this change in place we can access the website via HTTPS and HTTP:
 
-![](secure-access.png "width=500")
+![Accessing the web site via HTTPS](secure-access.png "width=500")
 
 *Accessing the web site via HTTPS.*
 
@@ -679,7 +679,7 @@ livenessProbe:
 
 If the readiness probe fails during a deployment, the deployment will not consider itself to be healthy. We can fail the Octopus deployment if the readiness checks fail by selecting the **Wait for the deployment to succeed** option, which will wait for the Kubernetes deployment to succeed before successfully completing the step:
 
-![](wait-for-deployment.png "width=500")
+![Waiting for the deployment to succeed ensure all readiness checks passed before successfully completing the step](wait-for-deployment.png "width=500")
 
 *Waiting for the deployment to succeed ensure all readiness checks passed before successfully completing the step.*
 
@@ -705,7 +705,7 @@ Note that special consideration has to paid to microservices that persist data, 
 
 The [CNCF 2019 survey](https://www.cncf.io/wp-content/uploads/2020/03/CNCF_Survey_Report.pdf) highlights two main approaches to separating teams in Kubernetes: separate namespaces and separate clusters:
 
-![](k8s-separation.png " width=500")
+![A chart showing team separation strategies from the 2019 CNCF survey](k8s-separation.png " width=500")
 
 *A chart showing team separation strategies from the 2019 CNCF survey.*
 
@@ -725,7 +725,7 @@ As we saw at the beginning of this post, a Kubernetes target in Octopus captures
 
 Kubernetes targets are then scoped to environments, and the deployment process is scoped to the target role, decoupling a deployment process from the underlying cluster or namespace. In the screenshot below you can see a second Kubernetes target scoped to the `Test` environment and defaulting to the `test` namespace:
 
-![](test-target.png "width=500")
+![A target defaulting to the test namespace, scoped to the Test environment](test-target.png "width=500")
 
 *A target defaulting to the test namespace, scoped to the Test environment.*
 
@@ -771,13 +771,13 @@ kubectl get secret $(kubectl get serviceaccount dev-deployer -o jsonpath="{.secr
 
 This value is then decoded and saved as a Token account in Octopus:
 
-![](token.png "width=500")
+![The service account token saved in Octopus](token.png "width=500")
 
 *The service account token saved in Octopus.*
 
 The token account can then be used by the Kubernetes target:
 
-![](target-with-token.png "width=500")
+![The token used by the Kubernetes target](target-with-token.png "width=500")
 
 *The token used by the Kubernetes target.*
 
