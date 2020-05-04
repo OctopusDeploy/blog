@@ -4,14 +4,14 @@ description: Learn how to create a secure, highly available, load-balanced Tomca
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-05-04
-metaImage: blogimage-tomcatcontainer
-bannerImage: blogimage-tomcatcontainer
+metaImage: blogimage-tomcatcontainer.png
+bannerImage: blogimage-tomcatcontainer.png
 tags:
  - DevOps
  - Java
 ---
 
-![The ultimate guide to Tomcat deployments](blogimage-tomcatcontainer)
+![The ultimate guide to Tomcat deployments](blogimage-tomcatcontainer.png)
 
 Continuous integration and delivery (CI/CD) is a common goal for DevOps teams to reduce costs and increase the agility of software teams. But the CI/CD pipeline is far more than simply testing, compiling, and deploying applications. A robust CI/CD pipeline addresses a number of concerns such as:
 
