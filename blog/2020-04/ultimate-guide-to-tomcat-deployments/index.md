@@ -2,14 +2,16 @@
 title: The ultimate guide to Tomcat deployments
 description: Learn how to create a secure, highly available, load-balanced Tomcat cluster with zero downtime deployments.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-05-04
+metaImage: blogimage-tomcatcontainer
+bannerImage: blogimage-tomcatcontainer
 tags:
- - Octopus
  - DevOps
+ - Java
 ---
+
+![The ultimate guide to Tomcat deployments](blogimage-tomcatcontainer)
 
 Continuous integration and delivery (CI/CD) is a common goal for DevOps teams to reduce costs and increase the agility of software teams. But the CI/CD pipeline is far more than simply testing, compiling, and deploying applications. A robust CI/CD pipeline addresses a number of concerns such as:
 
