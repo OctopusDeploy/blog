@@ -23,7 +23,7 @@ With this, you can run more of the commands from the [Octopus CLI](https://octop
 
 ## Pipe YAML Definition
 
-The base definition of the Pipe includes the reference to its repository hosted on Bitbucket. It has also been published as [octopipes/octo](https://hub.docker.com/r/octopipes/octo/) on Docker Hub. It has one required `CLI_COMMAND` variable. This is the CLI command to run. 
+The base definition of the Pipe includes the reference to its repository hosted on [Bitbucket](https://bitbucket.org/octopusdeploy/octo/). It has also been published as [octopipes/octo](https://hub.docker.com/r/octopipes/octo/) on Docker Hub. It has one required `CLI_COMMAND` variable. This is the CLI command to run. 
 
 To use the Pipe in your `bitbucket-pipelines.yml` file, add the following YAML snippet to the script section:
 
@@ -55,9 +55,9 @@ Next, we'll explore what the Pipeline steps look like for each of the commands -
 
 ### Pack
 
-The `pack` command allows you to create [packages](https://octopus.com/docs/packaging-applications) (either zip or nupkg) from files on disk, without the need for a `.nuspec` or `csproj` file.
+The `pack` command allows you to create [packages](https://octopus.com/docs/packaging-applications) (either zip or nupkg) from files on disk, without the need for a `.nuspec` or `.csproj` file.
 
-To create a package, use a step like this:
+To create a package, define a step like this:
 
 ```yaml
 - step:
@@ -80,7 +80,7 @@ This packages up the `flyway` folder and creates a zip file named `petclinic.mys
 
 The `push` command enables you to push packages (.zip, .nupkg, .war etc) to the Octopus [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository)
 
-It also supports pushing multiple packages at once. To perform a multi-package push, use a step like this:
+It also supports pushing multiple packages at once. To perform a multi-package `push`, define a step like this:
 
 ```yaml
 - step:
@@ -99,11 +99,11 @@ This pushes both the `petclinic.mysql.flyway.1.0.0.0.zip` and the `petclinic.web
 
 ### Build information
 
-The `build-information` command helps you to pass information about your build (number, URL, commits) to Octopus. This information can be seen within Octopus, and can also be used in both [release notes](https://octopus.com/docs/managing-releases/release-notes) and [deployment notes](https://octopus.com/docs/managing-releases/deployment-notes).
+The `build-information` command helps you to pass information about your build (number, URL, commits) to Octopus. This information can be viewed within Octopus, and can also be used in both [release notes](https://octopus.com/docs/managing-releases/release-notes) and [deployment notes](https://octopus.com/docs/managing-releases/deployment-notes).
 
 If you have already created a build-information file, you can supply this to the command using the `FILE` variable. If the variable isn't provided, the Pipe will generate its own build information file and send it to Octopus.
 
-To push an auto-generated build info file, use a step like this:
+To push an auto-generated build info file, define a step like this:
 
 ```yaml
 - step:
