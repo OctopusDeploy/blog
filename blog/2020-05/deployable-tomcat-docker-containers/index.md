@@ -2,13 +2,16 @@
 title: Booting Tomcat in Docker with the manager app
 description: Learn how to boot a standard Tomcat Docker image with the manager app exposed and ready to accept deployments
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-05-06
+metaImage: tomcat-docker.png
+bannerImage: tomcat-docker.png
 tags:
- - Octopus
+ - DevOps
+ - Java
 ---
+
+![Booting Tomcat in Docker with the manager app](tomcat-docker.png)
 
 When testing Java deployments with Tomcat, the official Tomcat Docker image provides a convenient way to get a server up and running. However, there are a few tricks to getting the manager application loaded and 
 accessible.
