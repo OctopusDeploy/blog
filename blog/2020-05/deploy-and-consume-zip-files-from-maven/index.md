@@ -14,7 +14,7 @@ tags:
 
 Maven is a versatile artifact repository that extends beyond traditional Java packages, like JARs and WARs, to provide the ability to host generic ZIP archives.  In this blog post, I take a look at how generic archives can be published to a Maven repository, and how to consume them in an Octopus project.
 
-## Repository configuration
+## Maven Repository configuration
 
 The first step is to configure the Maven repository in the `~/.m2/settings.xml` file. This file contains settings such as the Maven repository credentials.
 
@@ -62,7 +62,7 @@ mvn deploy:deploy-file \
   -Durl=http://nexus-host:8081/repository/maven-releases
 ```
 
-## Create the external feed
+## Create an external Maven feed
 
 To consume the new artifact in Octopus, we need to add the Nexus server as an external Maven feed. This is done under {{Library>External Feeds}}:
 
