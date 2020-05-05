@@ -1,6 +1,6 @@
 ---
 title: "Octopus Pipe for Bitbucket: octo"
-description: An overview of the new experimental Bitbucket Pipe for Octopus, octo.
+description: Learn how to integrate Octopus and BitBucket with our new experimental BitBucket Pipe called octo.
 author: mark.harrison@octopus.com
 visibility: private
 published: 2020-05-30
