@@ -7,7 +7,8 @@ published: 2020-05-05
 metaImage: blogimage-mavenzip.png
 bannerImage: blogimage-mavenzip.png
 tags:
- - Engineering
+ - DevOps
+ - Java
 ---
 
 ![Deploy and consume ZIP files from Maven](blogimage-mavenzip.png)
