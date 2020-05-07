@@ -12,7 +12,7 @@ tags:
 
 Microservices have emerged as a popular development practice for teams who want to release complex systems quickly and reliably. Kubernetes is a natural platform for microservices as it can handle the orchestration required to deploy many instances of many individual microservices. Additionally, there are service mesh technologies that lift common networking concerns from the application layer into the infrastructure layer, making it easy to route, secure, log, and test network traffic.
 
-Using microservices, Kubernetes, and service mesh technologies to create a continuous integration and continuous delivery (CI/CD) pipeline requires some work as a robust CI/CD pipeline must address a number of concerns such as:
+Using microservices, Kubernetes, and service mesh technologies to create a continuous integration and continuous delivery (CI/CD) pipeline requires some work as a robust CI/CD pipeline must address a number of concerns:
 
 * High availability (HA)
 * Multiple environments
@@ -26,9 +26,9 @@ In this post, I look at how to create the continuous delivery (or deployment) ha
 
 ## Create an EKS cluster
 
-For this post, I deploy the microservice application to a Kubernetes cluster hosted by Amazon EKS. However, I don't rely on any special functionality provided by EKS, so any Kubernetes cluster can be used to follow the process.
+Even though I deploy the microservice application to a Kubernetes cluster hosted by Amazon EKS, I don't rely on any special functionality provided by EKS, so any Kubernetes cluster can be used to follow the process.
 
-The easiest way to get started with EKS is with the [ekscli tool](https://eksctl.io/). This CLI tool abstracts away most of the details associated with creating and managing an EKS cluster and provides sensible defaults to get you up and running quickly.
+The easiest way to get started with EKS is with the [ekscli tool](https://eksctl.io/). This CLI tool abstracts away most of the details associated with creating and managing an EKS cluster and provides sensible defaults to get you started quickly.
 
 ## Create the AWS account
 
@@ -40,15 +40,15 @@ Octopus has native support for authenticating to EKS clusters via an AWS account
 
 ## Create the Kubernetes target
 
-Kubernetes targets are created under  {{ Infrastructure, Deployment Targets }}. Select the **AWS Account** option in the **Authentication** section, and add the name of the EKS cluster.
+Kubernetes targets are created in Octopus by navigating to {{ Infrastructure, Deployment Targets }}. Select the **AWS Account** option in the **Authentication** section, and add the name of the EKS cluster.
 
 ![A Kubernetes target authenticating against the AWS account](k8s-target-auth.png "width=500")
 
 *A Kubernetes target authenticating against the AWS account.*
 
-Under the **Kubernetes Details** section add the URL to the EKS cluster, and either select the cluster certificate or check the **Skip TLS verification** option.
+In the **Kubernetes Details** section, add the URL to the EKS cluster, and either select the cluster certificate or check the **Skip TLS verification** option.
 
-The default namespace that this target operates in is defined in the **Kubernetes namespace** field.
+The default namespace this target operates in is defined in the **Kubernetes namespace** field.
 
 :::hint
 Each step in a deployment process can override the namespace, so it is possible to leave this field blank and reuse one target across multiple namespaces. However, when sharing multiple environments within a single cluster, it is best to set the default namespace.
@@ -66,7 +66,7 @@ The Octopus server or workers that execute the steps must have `kubectl` and the
 
 Istio provides many installation options, but I find the `istioctl` tool to be the easiest.
 
-Download a copy of `istioctl` from [GitHub](https://github.com/istio/istio/releases). The filename will be something like `istioctl-1.5.2-win.zip`, which we rename to `istioctl.1.5.2.zip` and then upload into Octopus. Placing the executable in the Octopus built in feed means we can use it from a script step.
+Download a copy of `istioctl` from [GitHub](https://github.com/istio/istio/releases). The filename will be something like `istioctl-1.5.2-win.zip`, which we rename to `istioctl.1.5.2.zip` and then upload into Octopus. Placing the executable in the Octopus built in feed makes it available to use from a script step.
 
 Add a **Run a kubectl CLI Script** step to a runbook, and reference the `istioctl` package:
 
@@ -91,19 +91,19 @@ You must use the `--skip-confirmation` argument to prevent `istioctl` waiting fo
 
 ## Create a Docker feed
 
-The Docker images that make up our microservice application will be hosted in DockerHub. While Google provides images from their own Google Container Registry, the images do not have SemVer compatible tags, which Octopus requires to sort images during release creation. We'll also be creating some feature branch images to deploy to the cluster, and so need a public repository we can publish to. In the screenshot below you can see a new Docker feed created under {{Library, External Feeds}}:
+The Docker images that make up our microservice application will be hosted in Docker Hub. Google does provide images from their own Google Container Registry, but the images do not have SemVer compatible tags which Octopus requires to sort images during release creation. We'll also create some feature branch images to deploy to the cluster, and so need a public repository we can publish to. In the screenshot below you can see a new Docker feed created under {{Library, External Feeds}}:
 
-![The Dockerhub Docker feed](docker-feed.png "width=500")
+![The Docker Hub Docker feed](docker-feed.png "width=500")
 
-*The Dockerhub Docker feed.*
+*The Docker Hub Docker feed.*
 
 ## Deploy the microservices
 
-The Online Boutique sample application provides a [Kubernetes YAML file](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml) defining all the deployments and services needed to run the application.
+The Online Boutique sample application provides a [Kubernetes YAML file](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml) that defines all the deployments and services that are needed to run the application.
 
 Each of the individual services will be deployed as a separate project in Octopus. One of the advantages of microservices is that each service has an independent lifecycle, allowing it to be tested and deployed independent of any other service. Creating individual Octopus projects for each microservice allows us to create and deploy releases for just that service.
 
-The first microservice mentioned in the YAML file is called `emailservice`, which we'll deploy in a project called `01. Online Boutique - Email service`. This microservice has two Kubernetes resources: a deployment, and a service. The YAML for these two resources is shown below:
+The first microservice mentioned in the YAML file is called `emailservice`. We'll deploy `emailservice` in a project called `01. Online Boutique - Email service`. This microservice has two Kubernetes resources: a deployment, and a service. The YAML for these two resources is shown below:
 
 ```YAML
 apiVersion: apps/v1
@@ -162,25 +162,25 @@ spec:
     targetPort: 8080
 ```
 
-This pairing of a deployment and a service resource is a pattern we'll find over and over in the YAML file. The deployments are used to deploy and manage the containers that implement the microservice, while the service resource exposes these containers to the other microservices, and for the front end application also exposing the microservice to end users.
+This pairing of a deployment and a service resource is a pattern we'll find over and over in the YAML file. The deployments are used to deploy and manage the containers that implement the microservice. The service resource exposes these containers to the other microservices and to the front end application that exposes the microservice to end users.
 
-The pattern of combining common Kubernetes resources is exposed in Octopus via the **Deploy Kubernetes containers** step. This opinionated step provides a rich user interface around Kubernetes deployments, services, ingresses, secrets and configmaps, making this step a natural choice to deploy our Online Boutique microservices.
+The pattern of combining common Kubernetes resources is exposed in Octopus via the **Deploy Kubernetes containers** step. This opinionated step provides a rich user interface for Kubernetes deployments, services, ingresses, secrets, and configmaps, making this step a natural choice to deploy our Online Boutique microservices.
 
-Historically, a downside to using the **Deploy Kubernetes containers** step has been the time it took to translate the properties in an existing YAML file into the user interface. Each setting had to be copied in manually, which was a significant undertaking.
+Historically, a downside to using the **Deploy Kubernetes containers** step was the time it took to translate the properties in an existing YAML file into the user interface. Each setting had to be manually copied in, which was a significant undertaking.
 
-A recent feature added in Octopus 2020.2.4 is the ability to directly edit the YAML generated by this step. Clicking the **EDIT YAML** button for each Kubernetes resource allows YAML to be copied into the step directly in one operation:
+A recent feature added in Octopus 2020.2.4 lets you directly edit the YAML generated by this step. Clicking the **EDIT YAML** button for each Kubernetes resource copies the YAML into the step in one operation:
 
 ![The EDIT YAML button imports and exports YAML](edit-yaml.png "width=500")
 
 *The EDIT YAML button imports and exports YAML.*
 
-In the screenshot below you can see that I have pasted the YAML that makes up the `emailservice` deployment resource:
+In the screenshot below, you can see I pasted in the YAML that makes up the `emailservice` deployment resource:
 
 ![Importing YAML from the microservice project](raw-yaml.png "width=500")
 
 *Importing YAML from the microservice project.*
 
-Any property from the supplied YAML matching a field exposed by the form is imported. In the screenshot below you can see the `server` container has been imported complete with environment settings, health checks, resource limits and ports:
+Any property from the supplied YAML that matches a field exposed by the form is imported. In the screenshot below, you can see the `server` container has been imported complete with environment settings, health checks, resource limits, and ports:
 
 ![The resulting container definition from the imported YAML](emailservice-container.png "width=500")
 
@@ -190,7 +190,7 @@ Any property from the supplied YAML matching a field exposed by the form is impo
 Not every possible deployment property is recognized by the **Deploy Kubernetes containers** step, and unrecognized properties are ignored during import. The `Deploy raw Kubernetes YAML` step provides a way to deploy generic YAML to a Kubernetes cluster. However, all properties used by the microservices that make up the Online Boutique sample application are exposed by the **Deploy Kubernetes containers** step.
 :::
 
-We'll then import the service YAML into the **Service** section of the step:
+Next, I'll import the service YAML into the **Service** section of the step:
 
 ![The service section EDIT YAML button](service-yaml-import.png "width=500")
 
@@ -201,10 +201,10 @@ We'll then import the service YAML into the **Service** section of the step:
 *Importing a service resource defined in YAML.*
 
 :::hint
-Services direct traffic to pods that match the labels defined under the `selector` property. The **Deploy Kubernetes containers** step ignores the `selector` property in the imported service YAML, and instead assumes that the pods in the deployment are all to be exposed by the service. Coupling the deployment and service in this way is one of the opinions enforced by the **Deploy Kubernetes containers** step.
+Services direct traffic to pods that match the labels defined under the `selector` property. The **Deploy Kubernetes containers** step ignores the `selector` property in the imported service YAML, and instead, assumes that the pods in the deployment are all to be exposed by the service. Coupling the deployment and service in this way is one of the opinions enforced by the **Deploy Kubernetes containers** step.
 :::
 
-Our microservices won't be deploying ingress, secret or configmap resources, so we can remove these features from the step by clicking the **CONFIGURE FEATURES** button, and unselecting the unused features:
+Our microservices won't deploy ingress, secret or configmap resources, so we can remove these features from the step by clicking the **CONFIGURE FEATURES** button, and remove the check for the unused features:
 
 ![Configuring features to remove those that are unused](configure-features.png "width=500")
 
@@ -230,7 +230,7 @@ And with that we have created an Octopus project to deploy `emailservice`, one o
 * `redis-cart`
 * `adservice`
 
-Most of these microservices are deployed with the same deployment and service pairing that we have seen for the `emailservice`. The exceptions are `loadgenerator`, which has no service, and `frontend`, which includes an additional load balancer service that exposes the microservice to public traffic.
+Most of these microservices are deployed with the same deployment and service pairing that we saw for the `emailservice`. The exceptions are `loadgenerator`, which has no service, and `frontend`, which includes an additional load balancer service that exposes the microservice to public traffic.
 
 The additional load balancer service can be deployed with the **Deploy Kubernetes service resource** step. This stand alone step has the same **EDIT YAML** button found in the **Deploy Kubernetes containers** step, and so the `frontend-external` service YAML can be imported directly:
 
@@ -239,26 +239,26 @@ The additional load balancer service can be deployed with the **Deploy Kubernete
 *Importing a standalone service YAML definition.*
 
 :::hint
-Unlike the **Deploy Kubernetes containers** step, the standalone **Deploy Kubernetes service resource** step is not coupled to a deployment, and so imports and exposes label selectors to define the pods that traffic is sent to.
+Unlike the **Deploy Kubernetes containers** step, the standalone **Deploy Kubernetes service resource** step is not coupled to a deployment, and so it imports and exposes label selectors to define the pods that traffic is sent to.
 :::
 
-## High Availability
+## High availability
 
 Since Kubernetes takes care of provisioning pods in the cluster and has built in support for tracking the health of pods and nodes, we gain a reasonable degree of high availability out of the box. In addition, we can often lean on cloud providers to monitor node health, recreate failed nodes, and physically provision nodes across availability zones to reduce the impact of an outage.
 
 However, the default settings for the deployments we imported need some tweaking to make them more resilient.
 
-First, we need to increase the deployment replica count, which determines how many pods a deployment will create. The default value is 1, meaning a failure of any single pod will result in a microservice being unavailable. Increasing this value means our application can survive the loss of a single pod. In the screenshot below you can see I have increase the replica count to 2 for the ad service:
+First, we need to increase the deployment replica count, which determines how many pods a deployment will create. The default value is 1, meaning a failure of any single pod will result in a microservice being unavailable. Increasing this value means our application can survive the loss of a single pod. In the screenshot below, you can see I have increased the replica count to 2 for the ad service:
 
 ![Increasing the pod replica count](replicas.png "width=500")
 
 *Increasing the pod replica count.*
 
-Having two pods is a good start, but if both those pods have been created on a single node we still have a single point of failure. To address this we'll use a feature in Kubernetes called pod anti-affinity. This allows us to instruct Kubernetes to prefer that certain pods be deployed on separate nodes.
+Having two pods is a good start, but if both those pods have been created on a single node we still have a single point of failure. To address this we use a feature in Kubernetes called pod anti-affinity. This allows us to instruct Kubernetes to prefer that certain pods be deployed on separate nodes.
 
-In the screenshot below you can see that I have created a preferred anti-affinity rule that instructs Kubernetes to attempt to place pods with the label `app` and value `adservice` (this is one label this deployment assigns to pods) on separate nodes.
+In the screenshot below you can see I have created a preferred anti-affinity rule that instructs Kubernetes to attempt to place pods with the label `app` and value `adservice` (this is one label this deployment assigns to pods) on separate nodes.
 
-The topology key is the name of a label assigned to nodes that defines the topological group that the node belongs to. In more complex deployments the topology key would be used to indicate details like the physical region a node was placed in or networking considerations. However in this example we select a label that uniquely identities each node called `alpha.eksctl.io/instance-id`, effectively creating topologies that contain only one node.
+The topology key is the name of a label assigned to nodes that defines the topological group the node belongs to. In more complex deployments the topology key would be used to indicate details like the physical region a node was placed in or networking considerations. However, in this example we select a label that uniquely identities each node called `alpha.eksctl.io/instance-id`, effectively creating topologies that contain only one node.
 
 The end result is that Kubernetes will try to place pods belonging to the same deployment on different nodes, meaning our cluster is more likely to survive the loss of a single node without disruption:
 
@@ -270,11 +270,11 @@ The end result is that Kubernetes will try to place pods belonging to the same d
 
 Deployment resources in Kubernetes offer two built in strategies for deploying updates.
 
-The first is the recreate strategy. This strategy first deletes any existing pods before deploying new ones. The recreate strategy removes the need for two pod versions to coexist, which can be important in situations such as when incompatible database changes have been incorporated into the new version. However it does introduce downtime from when the old pods are shut down to when the new pods are fully operational.
+The first is the recreate strategy. This strategy first deletes any existing pods before deploying new ones. The recreate strategy removes the need for two pod versions to coexist, which can be important in situations such as when incompatible database changes have been incorporated into the new version. However, it does introduce downtime when the old pods are shut down until the new pods are fully operational.
 
-The second, and default, strategy is the rolling update strategy. This strategy incrementally replaces old pods with new ones, and can be configured in such a way as to ensure there are always healthy pods available during the update to serve traffic. The rolling update strategy means that both old and new pods run side by side for a short period, so careful attention must be made to ensure clients and datastores can also support both pod versions. The benefit of this approach is that there is no downtime as some pods are available to process any requests.
+The second, and default, strategy is the rolling update strategy. This strategy incrementally replaces old pods with new ones and can be configured in such a way as to ensure there are always healthy pods available during the update to serve traffic. The rolling update strategy means both old and new pods run side by side for a short period, so careful attention must be made to ensure clients and datastores can also support both pod versions. The benefit of this approach is that there is no downtime as some pods remain available to process any requests.
 
-Octopus introduces a third deployment strategy called blue/green. The blue/green strategy is implemented by creating a distinct new deployment resource, which is to say a new deployment resource with a unique name, with each deployment. If a configmap or secret was defined as part of the **Deploy Kubernetes containers** step, distinct new instances of those resources are created as well. Once the new deployment has succeeded and all health checks have passed, the service is updated to switch traffic from the old deployment to the new one. This allows for a complete cutover from the old deployment to the new one with no downtime, and ensures that traffic is only sent to the old or new pods, but not both at the same time.
+Octopus introduces a third deployment strategy called blue/green. The blue/green strategy is implemented by creating a distinct new deployment resource, which is to say a new deployment resource with a unique name, with each deployment. If a configmap or secret was defined as part of the **Deploy Kubernetes containers** step, distinct new instances of those resources are created as well. After the new deployment has succeeded and all health checks have passed, the service is updated to switch traffic from the old deployment to the new one. This allows for a complete cutover with no downtime and ensures that traffic is only sent to the old pod or the new pods.
 
 Selecting either the rolling or blue/green deployment strategies means we can deploy microservices with zero downtime:
 
@@ -283,14 +283,14 @@ Selecting either the rolling or blue/green deployment strategies means we can de
 *Enabling a rolling update.*
 
 :::hint
-True zero downtime deployments that result in no requests being lost during an update require some additional work. The blog post [Zero-Downtime Rolling Updates With Kubernetes](https://blog.sebastian-daschner.com/entries/zero-downtime-updates-kubernetes) provides some tips on how to minimize network disruption during updates.
+True zero downtime deployments that result in no requests being lost during an update require some additional work. The blog post [Zero-Downtime Rolling Updates With Kubernetes](https://blog.sebastian-daschner.com/entries/zero-downtime-updates-kubernetes) provides some tips to minimize network disruption during updates.
 :::
 
 ## Feature branch deployments
 
 With a monolithic application, feature branch deployments are usually straight forward; the entire application is built, bundled and deployed as a single artifact, and maybe backed by a specific instance of a database.
 
-It is a much different scenario with microservices. An individual microservice may only function in a meaningful way when all of it's upstream and downstream dependencies are available to process a request.
+Microservices is a very different scenario. An individual microservice may only function in a meaningful way when all of its upstream and downstream dependencies are available to process a request.
 
 The blog post [Why We Leverage Multi-tenancy in Uber’s Microservice Architecture](https://eng.uber.com/multitenancy-microservice-architecture/) discusses two methods for performing integration testing in a microservice architecture: parallel testing, and testing in production.
 
@@ -306,7 +306,7 @@ The blog post goes on to advocate for testing in production, citing these limita
 * Unreliable testing
 * Inaccurate capacity testing
 
-Few development teams will have embraced microservices to quite the extent that Uber has, and so I suspect for most deploying microservice feature branches will involve a solution somewhere between Uber's descriptions of parallel testing and testing in production. Specifically, here we'll look at how a microservice feature branch can be deployed alongside an existing version in a staging environment and have a subset of traffic directed to it.
+Few development teams will have embraced microservices to quite the extent Uber has, and so I suspect for most teams, deploying microservice feature branches will involve a solution somewhere between Uber's descriptions of parallel testing and testing in production. Specifically, here we'll look at how a microservice feature branch can be deployed alongside an existing version in a staging environment and have a subset of traffic directed to it.
 
 Deploying feature branches to a staging environment removes the risk of interfering with production services by taking advantage of hardware and network isolation, which in turn removes the need to enforce this separation in the production environment. It also removes the need to partition or identify test and production data, as all data created in the staging environment is test data.
 
