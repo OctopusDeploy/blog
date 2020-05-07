@@ -16,7 +16,7 @@ tags:
 
 That’s according to pretty much everyone I meet at conferences and events. It’s not even a debate. It’s a declaration.
 
-In actual fact there are only a small number of software development teams who have a ‘one-click’, totally hands-off approach. In [Redgate’s 2020 State of Database DevOps Report](https://www.red-gate.com/solutions/database-devops/report-2020-2), for example, only 16% of respondents reported they had a fully automated process in place. For everyone else, it’s either a partially manual deployment process or an entirely manual process.
+In actual fact there are only a small number of software development teams who have a 'one-click', totally hands-off approach. In [Redgate's 2020 State of Database DevOps Report](https://www.red-gate.com/solutions/database-devops/report-2020-2), for example, only 16% of respondents reported they had a fully automated process in place. For everyone else, it' either a partially manual deployment process or an entirely manual process.
 
 Why aren’t you doing it?
 
