@@ -92,10 +92,14 @@ dbaclone is a free alternative to Redgate SQL Clone and it works in broadly the 
 For simplicity, for the rest of this blog post I’m going to use SQL Clone instead of dbaclone, but if you want to try dbaclone instead you should find the general patterns and practices advocated here will work for you too. You’ll just need to write your own PowerShell scripts instead of using the SQL Clone step templates, that you’ll read about below. (And when you do, why not be a good citizen and publish your step templates to the public Octopus Deploy Library so others can benefit. If you do, let me know and I’ll drop you a mention here. 😊)
 
 There’s a detailed explanation of how SQL Clone works on the Redgate documentation site which I encourage you to read if you invest in either SQL Clone or dbaclone (which works the same way).
+
+![SQL Clone architecture diagram, by Redgate](sql_clone_architecture.jpg)
  
 The short version is that SQL Clone reads a source database or backup file, that can be anywhere up to 64TB, and restores it into a Virtual Hard Disk (VHD) on a file share which your developers should have read access to. That process is slow and the VHD needs to be big enough to hold the full database.
 
 Once you have your VHD, it’s lightning fast and requires next to zero diskspace to create a “Differencing VHD” (or “diff file”), which is effectively a fancy redirect back to the source VHD. However, it has one important difference. Any changes you make to the database are stored in the local diff file, not the source VHD on the fileshare. This means each developer can write to the database without effecting the source image or any other developers. They effectively have their own mini sandbox, which we call a “clone”. 
+
+![Developers with their clones, by Redgate](sql_clone_clones.png)
  
 Since it’s so easy to respawn a clone, even if the source database is enormous, it doesn’t matter if the developer breaks anything. They simply kill it and pull down a new clone, a bit like a local git repo. It only takes a few seconds and barely takes up any space on disk. This is a safe place for development, testing, troubleshooting or experimenting.
 
@@ -128,6 +132,8 @@ This post now assumes that you already have Octopus Deploy and SQL Clone install
 This post also assumes that you have already created an image.
 
 If you haven’t done this yet, you can try it with any database you like. However, if possible, I recommend using the public StackOverflow database for your first proof of concept since it’s easy to get hold of, large enough to see the benefit of the cloning technology but small enough to avoid significant challenges. In a real-world set-up, I would use a recent production backup as the source for my image.
+
+![A database image in the SQL Clone UI](sql_clone_create_image.png)
  
 If your source database contains sensitive data that should not exist in the development or test domains, you should consider running a SQL script or Redgate masking set as part of the imaging process to ensure that the image is appropriately anonymised. I will not be covering masking in this blog post since it’s a big topic in it’s own right and the StackOverflow database only contains public data.
 
@@ -137,6 +143,8 @@ If you have not yet produced an image with SQL Clone, follow these instructions:
 - Creating a SQL Clone Image (required)
 
 Once you’ve created your image, it’s a good idea to create a clone for your image using the SQL Clone UI before starting your runbook. 
+
+![A database clone in the SQL Clone UI](sql_clone_create_clone.png)
  
 This is a good idea for a few reasons:
 
@@ -156,6 +164,8 @@ This post assumes that you already have a working knowledge of Octopus Deploy en
 
 Configure a deployment target that has a network connection and can authenticate against SQL Clone. Give this target the role “sqlclone” and add the target to one or more environments (e.g. dev/test).
  
+![Adding the sqlclone role to Octopus Deployment Targets](octopus_targets.png)
+
 If you’d like to test the connectivity in advance, try running the Connect-SqlClone PowerShell cmdlet manually from the VM your tentacle is running on (documentation). Try running the command as the user that your Octopus tentacle runs as. If you have any issues connecting check your network, firewall and SQL Clone credentials.
 
 Alternatively, simply push on to the next step. You’ll find out soon enough if you have any connectivity issues.
@@ -166,17 +176,25 @@ If you already have a project to deploy your database, we’ll add your runbook 
 
 Now you can create a runbook in your project. Select “Runbooks” from the menu on the left and then click the green “ADD RUNBOOK” button in the top right corner.
  
+![Creating the runbook](octopus_add_runbook.png)
+
 Give the runbook a name and a suitable description:
+
+![Giving the runbook a description](octopus_runbook_description.png)
  
 Next, we need to define our runbook process. A process is a list of automated steps that Octopus will execute on an Octopus tentacle to complete the task at hand. (Similar to a process for a regular deployment.)
 
 Click “DEFINE YOUR RUNBOOK PROCESS” and then “ADD STEP”. You will be presented with a bunch of off-the-shelf steps that you can add to your runbook process. Type “redgate sql clone” into the search bar and tap enter. You should find a bunch of SQL Clone step templates from the Octopus Deploy Community Step Template Library. (I created these last year for one of my customers. :-P) 
+
+![Adding a step to the runbook](octopus_add_step.png)
  
 Hover over the “Redgate – SQL Clone, Create Clone” step template and you should either see a green button that says “ADD” or “INSTALL AND ADD”, depending on whether or not the step template is already installed on your Octopus Deploy Server. Click the green button.
 
 (If you want to inspect the code before installing, you can do so here. All four SQL Clone step templates are mostly copy/paste jobs from the example PowerShell snippets on the Redgate documentation pages.)
 
 In the Step Editor, enter “sqlclone” for “On Targets in Roles”:
+
+![Adding a the sqlclone role to the step](octopus_target_roles.png)
  
 For the SQL Clone parameters, you probably want to try to use variables to simplify the config. In my case I’m using Windows Auth to authenticate against SQL Clone so I left the “SQL Clone User” and “SQL Clone Password” fields blank.
 I’ve not used a “SQL Clone Template” (documentation). However, these might be useful for tasks such as:
@@ -189,25 +207,41 @@ Remember, the template is executed against the clone, not the image, so it will 
 Generally, your clones will probably want to use the production database name. However, in some cases that can cause issues. For example, if you want to create multiple clones on the same instance you’ll need to give them different names. You wouldn’t want to accidentally replace any pre-existing dev/test databases. For this reason, I’ve used special variables for “SQL Server” and “Clone Name”.
 
 Here’s my config:
+
+![Adding parameters to the step template](octopus_step_parameters.png)
  
 Note that if your developers are working on their own instances, they will want to set the “SQL Server” variable at run time. Similarly, if your developers are all going to be building their clones on a shared dev/test instance, or if they are likely to want to use multiple clones at the same time, (for example because they are working on a couple of tasks concurrently or they want to compare a few different solutions to a problem), they might want to select a custom “Clone Name” at run time.
 
 For that reason, you’ll shortly set the #{ServerInstanceForClone} and #{DatabaseNameForClone} variables to be settable at runtime. But before you do, you must set your step “Conditions”. I only want to run this in dev or test, so I’ve specified accordingly:
+
+![Setting the conditions for the step](octopus_step_conditions.png)
  
 Review all your step config and click the green “SAVE” button in the top right corner.
+
 Your process is now complete. However, before we can run it we need to go back and set your variables. Select “Variables” from the menu on the left and provide values for each of the variables we used above. Here are mine:
  
+![Setting the variables used by the step](octopus_variables.png)
+
 Since I was adding this runbook to an existing project, I already had the #{DatabaseName} and #{ServerInstance} variables, but I needed to add the #{SqlCloneUrl}, #{DatabaseNameForClone} and #{ServerInstanceForClone} variables. For the latter two, as I was typing the value I clicked the “OPEN EDITOR” option:
+
+![Opening the editor to make the variable settable at runtime](octopus_variables_open_editor.png)
  
 From the full editor, I can select the “Prompt for value” checkbox. This will ensure the values are settable at runtime.
+
+![Making the variable settable at runtime](octopus_variables_prompt.png)
  
 ### Running your runbook:
 
 Once you’ve set all your variables, you are ready to run your runbook.
+
 From your project, select “Runbooks” from the menu on the left-hand side, and then click the “RUN” button next to your runbook.
- 
+
+![Running the runbook](octopus_runbooks.png)
+
 Provide the desired environment and prompted variables. With luck, you’ll see green:
   
+![Success!](octopus_run_runbook.png)
+
 It’s now super easy for your team to provision their own 64TB development and test databases on demand on a commodity laptop or a cheap VM.
 
 ### Extensions:
@@ -218,10 +252,14 @@ Once you’ve created your runbook for creating clones, two further runbooks spr
 1. You probably want a runbook to create a new SQL Clone image and to purge old images. (Check out the Create Image and Delete Image step templates.)
 
 Here’s my completed list:
+
+![More runbooks](octopus_runbooks_extended.png)
  
 What’s more, you probably want to set the “Refresh SQL Clone Image” runbook to run on a schedule (documentation) to ensure clones are always using relatively up to date data. Note that while creating clones should be lightning fast, the image creation tends to take longer. That means it’s typically an overnight/weekend job. 
 
 You should agree the cadence for the image refresh with your dev/test teams. This is important as they will need to re-provision their clones after each refresh. It might be convenient for them to run the image refresh at the end of each week or dev sprint so that they can start each new week/sprint with a fresh clone.
+
+![A runbook that's scheduled to run every week](octopus_triggers.png)
  
 This enforces various good practices, such as ensuring all code is committed to source control reasonably frequently and that dev/test databases remain reasonably consistent. Also, each time a developer deploys their latest dev or test source code to a new clone you are effectively practicing your production deployment, so you’ll find that deployment issues tend to be caught much earlier - “on my machine”.
 
