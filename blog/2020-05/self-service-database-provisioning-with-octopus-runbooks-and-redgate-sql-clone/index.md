@@ -23,7 +23,7 @@ Needless to say, this blog post got a bit long. To break it down I’ve followed
 
 - [**Why?:** This is important](blog/2020-05/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone\index.md#why) 
 - [**How?:** Introducing the tech](blog/2020-05/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone\index.md#how) 
-- [**Walkthrough:** Using Octopus Runbooks and SQL Clone to provision development and test databases]](blog/2020-05/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone\index.md#what) 
+- [**Walkthrough:** Using Octopus Runbooks and SQL Clone to provision development and test databases](blog/2020-05/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone\index.md#what) 
 
 ## Why?: This is important {#why}
 
