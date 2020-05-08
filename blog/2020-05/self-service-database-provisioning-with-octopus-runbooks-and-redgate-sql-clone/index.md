@@ -19,7 +19,7 @@ I wanted to write about self-service database environment creation.
 
 It’s a crucial part of any development process, with an enormous impact on productivity, quality and security. It’s also a fascinating technical challenge, often combining infrastructure-as-code, test data management, automation and interesting data virtualization techniques. And since theory is largely hypothetical unless it’s turned into practice, I wanted to include a step-by-step walkthrough so that you, dear reader, could create your own proof of concept.
 
-Needless to say, this blog post got a bit long. To break it down I’ve followed Simon Sinek’s Why? How? What? concept to split it into shorter, bitesize sections. I encourage you to start at whichever part interests you the most:
+Needless to say, this blog post got a bit long. To break it down I’ve followed Simon Sinek’s *Why? How? What?* concept to split it into shorter, bitesize sections. I encourage you to start at whichever part interests you the most:
 
 - **Why?:** This is important 
 - **How?:** Introducing the tech
