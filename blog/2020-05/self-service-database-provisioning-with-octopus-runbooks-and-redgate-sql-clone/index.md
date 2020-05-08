@@ -19,7 +19,7 @@ I wanted to write about self-service database environment creation.
 
 It’s a crucial part of any development process, with an enormous impact on productivity, quality and security. It’s also a fascinating technical challenge, often combining infrastructure-as-code, test data management, automation and interesting data virtualization techniques. And since theory is largely hypothetical unless it’s turned into practice, I wanted to include a step-by-step walkthrough so that you, dear reader, could create your own proof of concept.
 
-Needless to say, this blog post got a bit long. To break it down I’ve followed Simon Sinek’s *Why? How? What?* concept to split it into shorter, bitesize sections. I encourage you to start at whichever part interests you the most:
+Needless to say, this blog post got a bit long. To break it down I’ve followed [Simon Sinek’s *Why? How? What?*](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) concept to split it into shorter, bitesize sections. I encourage you to start at whichever part interests you the most:
 
 - **Why?:** This is important 
 - **How?:** Introducing the tech
@@ -27,7 +27,7 @@ Needless to say, this blog post got a bit long. To break it down I’ve followed
 
 ## Why?: This is important
 
-In 2018 Nicole Forsgren, Gene Kim and Jez Humble gave us Accelerate. The book clearly articulates four key metrics which are demonstrated to predict both superior IT performance and positive business outcomes (including profitability, market share and productivity) in any organization. Those metrics are:
+In 2018 Nicole Forsgren, Gene Kim and Jez Humble gave us [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339). The book clearly articulates four key metrics which are demonstrated to predict both superior IT performance and positive business outcomes (including profitability, market share and productivity) in any organization. Those metrics are:
 
 - Deployment frequency
 - Lead time
@@ -38,7 +38,7 @@ The authors clearly explain how, by focussing on these metrics, businesses inver
 
 To improve lead time, it is necessary to understand all the work required to get a task from the backlog into production. There is always a bottleneck or constraint somewhere in the process that creates delays, crippling lead time and resulting in significantly larger amounts of work in progress (WIP), bigger and more complicated releases, and more frequent disasters.
 
-In Beyond the Phoenix Project, Gene Kim remarks that:
+In [Beyond the Phoenix Project](https://www.audible.co.uk/pd/Beyond-the-Phoenix-Project-Audiobook/B07B7CH7FQ?source_code=M2M30DFT1BkSH11221601A7&&ipRedirectOverride=true), Gene Kim remarks that:
 
 *“What I find so amazing, is that as an organization goes from code deployment lead times that are measured in months, maybe even in quarters, down to minutes, the constraint moves in some pretty predictable ways.”*
 
@@ -64,11 +64,11 @@ What’s more, by making significant progress against Accelerate’s first 2 (sp
 
 However, self-service provisioning of disposable databases so often feels like the hardest problem to solve - especially if you have large and/or sensitive data to consider. At the same time, it’s possibly your best opportunity to significantly improve both the performance of your IT team and, consequently, your business outcomes.
 
-This blog post aims to introduce you to some of the tech that might help. I finish with a walkthrough to set up a proof of concept solution using Octopus Deploy and Redgate SQL Clone, both of which come with a free trial.
+This blog post aims to introduce you to some of the tech that might help. I finish with a walkthrough to set up a proof of concept solution using Octopus Deploy and [Redgate SQL Clone](https://www.red-gate.com/products/dba/sql-clone/), both of which come with a free trial.
 
 ## How?: Introducing the tech
 
-In January Rob published a great overview of operations runbooks.
+In January [Rob published a great overview of operations runbooks](https://octopus.com/blog/operations-runbooks).
 
 Octopus runbooks are a way to organise, audit and share the scripts and processes for performing regular operations tasks. They aid efficiency, knowledge sharing and reduce errors. They offer a great platform on which to schedule tasks or to enable users to trigger them on demand, without needing personal access to the associated servers, scripts or other artifacts.
 
@@ -80,18 +80,18 @@ Runbooks by themselves, however, don’t have any database smarts. It’s up to 
 
 For example, one might start by using a production backup for the source image and for the runbook to restore that backup to the developer’s workstation. This immediately throws up a couple of challenges:
 
-- Data protection: Restoring sensitive production data indiscriminately around your dev and test estates, and potentially on developer workstations, is the sort of bad practice that data breaches are made of.
-- Diskspace: If your production database is any larger than about 100GB you will either be tempted to use a shared dev/test instance (don’t do this, see above) or you’ll need to rent/buy a lot of infrastructure to host all these dev/test databases. That potentially has a big up-front cost as well as a painful administrative overhead. You’ll also waste a lot of time and bandwidth copying all those 1s and 0s all over the place.
+- **Data protection:** Restoring sensitive production data indiscriminately around your dev and test estates, and potentially on developer workstations, is the sort of bad practice that data breaches are made of.
+- **Diskspace:** If your production database is any larger than about 100GB you will either be tempted to use a shared dev/test instance (don’t do this, see above) or you’ll need to rent/buy a lot of infrastructure to host all these dev/test databases. That potentially has a big up-front cost as well as a painful administrative overhead. You’ll also waste a lot of time and bandwidth copying all those 1s and 0s all over the place.
 
-Enter database masking and cloning tools like dbaclone (open source) and Redgate SQL Provision (third party).
+Enter database masking and cloning tools like [dbaclone](https://github.com/sqlcollaborative/dbaclone) (open source) and [Redgate SQL Provision](https://www.red-gate.com/products/dba/sql-provision/) (third party).
 
-Redgate SQL Provision has two components: Data Masker for SQL Server (to solve the data protection problem) and SQL Clone (to solve the diskspace problem).
+Redgate SQL Provision has two components: [Data Masker for SQL Server](https://www.red-gate.com/products/dba/data-masker/) (to solve the data protection problem) and [SQL Clone](https://www.red-gate.com/products/dba/sql-clone/) (to solve the diskspace problem).
 
-dbaclone is a free alternative to Redgate SQL Clone and it works in broadly the same way. However, it lacks various significant features including the user friendly UI, the fine-grained user permissions and (at the time of writing) there isn’t an Octopus Deploy step template for it. It doesn’t include any data masking functionality, but is designed to be used in collaboration with dbatools, which does.
+dbaclone is a free alternative to Redgate SQL Clone and it works in broadly the same way. However, it lacks various significant features including the user friendly UI, the fine-grained user permissions and (at the time of writing) there isn’t an Octopus Deploy step template for it. It doesn’t include any data masking functionality, but is designed to be used in collaboration with [dbatools](https://dbatools.io/), [which does](https://docs.dbatools.io/#Invoke-DbaDbDataMasking).
 
-For simplicity, for the rest of this blog post I’m going to use SQL Clone instead of dbaclone, but if you want to try dbaclone instead you should find the general patterns and practices advocated here will work for you too. You’ll just need to write your own PowerShell scripts instead of using the SQL Clone step templates, that you’ll read about below. (And when you do, why not be a good citizen and publish your step templates to the public Octopus Deploy Library so others can benefit. If you do, let me know and I’ll drop you a mention here. 😊)
+For simplicity, for the rest of this blog post I’m going to use SQL Clone instead of dbaclone, but if you want to try dbaclone instead you should find the general patterns and practices advocated here will work for you too. You’ll just need to write your own PowerShell scripts instead of using the SQL Clone step templates, that you’ll read about below. (And when you do, why not be a good citizen and publish your step templates to the public [Octopus Deploy Library](https://library.octopus.com/listing) so others can benefit. If you do, let me know and I’ll drop you a mention here. 😊)
 
-There’s a detailed explanation of how SQL Clone works on the Redgate documentation site which I encourage you to read if you invest in either SQL Clone or dbaclone (which works the same way).
+There’s [a detailed explanation of how SQL Clone works](https://documentation.red-gate.com/clone/getting-started/how-sql-clone-works) on the Redgate documentation site which I encourage you to read if you invest in either SQL Clone or dbaclone (which works the same way).
 
 ![SQL Clone architecture diagram, by Redgate](sql_clone_architecture.jpg)
  
@@ -109,9 +109,9 @@ The catch is that if the developer starts rebuilding big tables, the changes wil
 
 This means that the data masking process needs to run either before or during the creation of your source image and not on the clone itself. This also has the benefit of being a much more reliable and manageable foundation for any serious data governance since the sensitive data never needs to leave the production environment.
 
-This blog post is already very long, so I’m not going to discuss data masking here. It’s a big enough topic to deserve it’s own blog post – so here’s one I made earlier. For more information about Data Masking with SQL Provision, check out the Redgate University.
+This blog post is already very long, so I’m not going to discuss data masking here. It’s a big enough topic to deserve it’s own blog post – so [here’s one I made earlier](https://www.red-gate.com/blog/audit-and-compliance/traditional-database-security-doesnt-protect-data). For more information about Data Masking with SQL Provision, check out the [Redgate University](https://www.red-gate.com/hub/university/courses/sql-provision/sql-provision/introduction-to-sql-clone/creating-clones).
 
-You also want to ensure that the clone is located physically close to the source image. As a thought exercise, let’s image (now hear me out) that for whatever reason your company decided to ask all your developers to work from home for an extended period of time. You might want to consider whether it would be wiser for developers to use centrally located infrastructure for hosting their development sandboxes, rather than relying on a flaky VPN and your developers’ unreliable home Wi-Fi to handle the connection between the VHD and the “diff file”. Chris Unwin talks in more detail about that here.)    
+You also want to ensure that the clone is located physically close to the source image. As a thought exercise, let’s image (now hear me out) that for whatever reason your company decided to ask all your developers to work from home for an extended period of time. You might want to consider whether it would be wiser for developers to use centrally located infrastructure for hosting their development sandboxes, rather than relying on a flaky VPN and your developers’ unreliable home Wi-Fi to handle the connection between the VHD and the “diff file”. [Chris Unwin talks in more detail about that here](https://chrisunwin.home.blog/2020/04/16/cloning-from-home-a-consideration/).)    
 
 To summarise, Octopus Runbooks and SQL Provision are a perfect match for managing this dev/test database provisioning process for various reasons:
 
@@ -124,14 +124,14 @@ To summarise, Octopus Runbooks and SQL Provision are a perfect match for managin
 
 This post now assumes that you already have Octopus Deploy and SQL Clone installed. If you haven’t, follow these instructions before continuing:
 
-- Installing Redgate SQL Clone
-- Installing Octopus Deploy
+- [Installing Redgate SQL Clone](https://documentation.red-gate.com/clone4/sql-clone-installation-architecture)
+- [Installing Octopus Deploy](https://octopus.com/docs/installation)
 
 ### Prep work in SQL Clone
 
 This post also assumes that you have already created an image.
 
-If you haven’t done this yet, you can try it with any database you like. However, if possible, I recommend using the public StackOverflow database for your first proof of concept since it’s easy to get hold of, large enough to see the benefit of the cloning technology but small enough to avoid significant challenges. In a real-world set-up, I would use a recent production backup as the source for my image.
+If you haven’t done this yet, you can try it with any database you like. However, if possible, I recommend using [the public StackOverflow database](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) for your first proof of concept since it’s easy to get hold of, large enough to see the benefit of the cloning technology but small enough to avoid significant challenges. In a real-world set-up, I would use a recent production backup as the source for my image.
 
 ![A database image in the SQL Clone UI](sql_clone_create_image.png)
  
@@ -139,8 +139,8 @@ If your source database contains sensitive data that should not exist in the dev
 
 If you have not yet produced an image with SQL Clone, follow these instructions:
 
-- Creating a Masking Set with Redgate Data Masker (optional)
-- Creating a SQL Clone Image (required)
+- [Creating a Masking Set with Redgate Data Masker (optional)](https://www.red-gate.com/hub/university/courses/sql-provision/sql-provision/data-masker-user-interface/creating-saving-masking-set)
+- [Creating a SQL Clone Image (required)](https://www.red-gate.com/hub/university/courses/sql-provision/sql-provision/introduction-to-sql-clone/creating-images)
 
 Once you’ve created your image, it’s a good idea to create a clone for your image using the SQL Clone UI before starting your runbook. 
 
@@ -154,25 +154,25 @@ This is a good idea for a few reasons:
 
 You can create your first clone using the UI by following these instructions:
 
-- Creating your first clone using the SQL Clone UI
+- [Creating your first clone using the SQL Clone UI](https://www.red-gate.com/hub/university/courses/sql-provision/sql-provision/introduction-to-sql-clone/creating-clones)
 
 Once you know you can create a clone from your image using SQL Clone, you are in a good position to try and automate it using Octopus Deploy.
 
 ### Prep work in Octopus Deploy
 
-This post assumes that you already have a working knowledge of Octopus Deploy environments, tentacles and deployment targets (documentation).
+This post assumes that you already have a working knowledge of Octopus Deploy environments, tentacles and deployment targets ([documentation](https://octopus.com/docs/infrastructure)).
 
 Configure a deployment target that has a network connection and can authenticate against SQL Clone. Give this target the role “sqlclone” and add the target to one or more environments (e.g. dev/test).
  
 ![Adding the sqlclone role to Octopus Deployment Targets](octopus_targets.png)
 
-If you’d like to test the connectivity in advance, try running the Connect-SqlClone PowerShell cmdlet manually from the VM your tentacle is running on (documentation). Try running the command as the user that your Octopus tentacle runs as. If you have any issues connecting check your network, firewall and SQL Clone credentials.
+If you’d like to test the connectivity in advance, try running the Connect-SqlClone PowerShell cmdlet manually from the VM your tentacle is running on ([documentation](https://documentation.red-gate.com/clone/automation/powershell-cmdlet-reference/connect-sqlclone)). Try running the command as the user that your Octopus tentacle runs as. If you have any issues connecting check your network, firewall and SQL Clone credentials.
 
 Alternatively, simply push on to the next step. You’ll find out soon enough if you have any connectivity issues.
 
 ### Creating the runbook
 
-If you already have a project to deploy your database, we’ll add your runbook there. If not, create a project for your database in Octopus Deploy (instructions).
+If you already have a project to deploy your database, we’ll add your runbook there. If not, create a project for your database in Octopus Deploy ([instructions](https://octopus.com/docs/projects)).
 
 Now you can create a runbook in your project. Select “Runbooks” from the menu on the left and then click the green “ADD RUNBOOK” button in the top right corner.
  
@@ -184,20 +184,21 @@ Give the runbook a name and a suitable description:
  
 Next, we need to define our runbook process. A process is a list of automated steps that Octopus will execute on an Octopus tentacle to complete the task at hand. (Similar to a process for a regular deployment.)
 
-Click “DEFINE YOUR RUNBOOK PROCESS” and then “ADD STEP”. You will be presented with a bunch of off-the-shelf steps that you can add to your runbook process. Type “redgate sql clone” into the search bar and tap enter. You should find a bunch of SQL Clone step templates from the Octopus Deploy Community Step Template Library. (I created these last year for one of my customers. :-P) 
+Click “DEFINE YOUR RUNBOOK PROCESS” and then “ADD STEP”. You will be presented with a bunch of off-the-shelf steps that you can add to your runbook process. Type “redgate sql clone” into the search bar and tap enter. You should find a bunch of SQL Clone step templates from the [Octopus Deploy Community Step Template Library](https://library.octopus.com/listing). (I created these last year for one of my customers. :-P) 
 
 ![Adding a step to the runbook](octopus_add_step.png)
  
 Hover over the “Redgate – SQL Clone, Create Clone” step template and you should either see a green button that says “ADD” or “INSTALL AND ADD”, depending on whether or not the step template is already installed on your Octopus Deploy Server. Click the green button.
 
-(If you want to inspect the code before installing, you can do so here. All four SQL Clone step templates are mostly copy/paste jobs from the example PowerShell snippets on the Redgate documentation pages.)
+([If you want to inspect the code before installing, you can do so here](https://library.octopus.com/step-templates/96d88bbf-2e0a-4630-b4b6-bd179effedd7/actiontemplate-redgate-sql-clone,-create-clone). All four SQL Clone step templates are mostly copy/paste jobs from the example PowerShell snippets on [the Redgate documentation pages](https://documentation.red-gate.com/clone4/automation/powershell-worked-examples).)
 
 In the Step Editor, enter “sqlclone” for “On Targets in Roles”:
 
 ![Adding a the sqlclone role to the step](octopus_target_roles.png)
  
 For the SQL Clone parameters, you probably want to try to use variables to simplify the config. In my case I’m using Windows Auth to authenticate against SQL Clone so I left the “SQL Clone User” and “SQL Clone Password” fields blank.
-I’ve not used a “SQL Clone Template” (documentation). However, these might be useful for tasks such as:
+
+I’ve not used a “SQL Clone Template” ([documentation](https://documentation.red-gate.com/clone/modifications-during-provisioning/clone-modifications)). However, these might be useful for tasks such as:
 
 - inserting some dev/test friendly test cases into some of my tables
 - modify the database security depending on whether this is being run in the dev or the test environment – especially if the image only includes the production database users and role members etc
@@ -248,14 +249,14 @@ It’s now super easy for your team to provision their own 64TB development and 
 
 Once you’ve created your runbook for creating clones, two further runbooks spring to mind.
 
-1. You probably want a similar runbook to delete clones. (Check out the Delete Clone step template.)
-1. You probably want a runbook to create a new SQL Clone image and to purge old images. (Check out the Create Image and Delete Image step templates.)
+1. You probably want a similar runbook to delete clones. (Check out the [Delete Clone step template](https://library.octopus.com/step-templates/b13ba90b-3e67-4175-aad4-9531783c4c11/actiontemplate-redgate-sql-clone,-delete-clone).)
+1. You probably want a runbook to create a new SQL Clone image and to purge old images. (Check out the [Create Image](https://library.octopus.com/step-templates/4ff62eff-f615-453e-9a14-ca7bf67cb586/actiontemplate-redgate-sql-clone,-create-image) and [Delete Image](https://library.octopus.com/step-templates/5ba6d0f2-04f1-4b52-adbf-9cf23b12ee58/actiontemplate-redgate-sql-clone,-delete-image) step templates.)
 
 Here’s my completed list:
 
 ![More runbooks](octopus_runbooks_extended.png)
  
-What’s more, you probably want to set the “Refresh SQL Clone Image” runbook to run on a schedule (documentation) to ensure clones are always using relatively up to date data. Note that while creating clones should be lightning fast, the image creation tends to take longer. That means it’s typically an overnight/weekend job. 
+What’s more, you probably want to set the “Refresh SQL Clone Image” runbook to run on a schedule ([documentation](https://octopus.com/docs/projects/project-triggers/scheduled-runbook-trigger)) to ensure clones are always using relatively up to date data. Note that while creating clones should be lightning fast, the image creation tends to take longer. That means it’s typically an overnight/weekend job. 
 
 You should agree the cadence for the image refresh with your dev/test teams. This is important as they will need to re-provision their clones after each refresh. It might be convenient for them to run the image refresh at the end of each week or dev sprint so that they can start each new week/sprint with a fresh clone.
 
@@ -269,8 +270,8 @@ And all those databases/clones need to live on a SQL Instance, which needs to li
 
 It would be a great idea to either extend these runbooks, or combine them with other runbooks so that you can effectively respawn your entire dev, test and production environments at the click of a button. If that interests you, here’s some further reading: 
 
-- Using Infrastructure as Code with Operations Runbooks
-- Automating SQL Server Developer installation
+- [Using Infrastructure as Code with Operations Runbooks](https://octopus.com/blog/runbooks-with-infrastructure-as-code)
+- [Automating SQL Server Developer installation](https://octopus.com/blog/automate-sql-server-install)
 
 If you’ve made it this far, I hope you’ve been inspired to action.
 
@@ -280,7 +281,7 @@ And stay safe.
 
 ### If you have any issues following this walkthrough
 
-Since I created the SQL Clone step templates, I’m keen for you to tell me if you have any problems with them or any ideas for enhancements. Please email me using the contact details for DLM Consultants.
+Since I created the SQL Clone step templates, I’m keen for you to tell me if you have any problems with them or any ideas for enhancements. Please email me using the contact details for [DLM Consultants](http://dlmconsultants.com/).
 
 If you want any advice about DevOps and Data, we offer consulting, coaching and mentoring services. Alternatively, both Redgate and Octopus have great documentation, community forums and tech support teams.
 
