@@ -21,11 +21,11 @@ It’s a crucial part of any development process, with an enormous impact on pro
 
 Needless to say, this blog post got a bit long. To break it down I’ve followed [Simon Sinek’s *Why? How? What?*](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) concept to split it into shorter, bitesize sections. I encourage you to start at whichever part interests you the most:
 
-- **Why?:** This is important 
-- **How?:** Introducing the tech
-- **Walkthrough:** Using Octopus Runbooks and SQL Clone to provision development and test databases
+- [**Why?:** This is important](blog/2020-05/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone\index.md#why) 
+- [**How?:** Introducing the tech](blog/2020-05/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone\index.md#how) 
+- [**Walkthrough:** Using Octopus Runbooks and SQL Clone to provision development and test databases]](blog/2020-05/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone\index.md#what) 
 
-## Why?: This is important
+## Why?: This is important {#why}
 
 In 2018 Nicole Forsgren, Gene Kim and Jez Humble gave us [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339). The book clearly articulates four key metrics which are demonstrated to predict both superior IT performance and positive business outcomes (including profitability, market share and productivity) in any organization. Those metrics are:
 
@@ -66,7 +66,7 @@ However, self-service provisioning of disposable databases so often feels like t
 
 This blog post aims to introduce you to some of the tech that might help. I finish with a walkthrough to set up a proof of concept solution using Octopus Deploy and [Redgate SQL Clone](https://www.red-gate.com/products/dba/sql-clone/), both of which come with a free trial.
 
-## How?: Introducing the tech
+## How?: Introducing the tech {#how}
 
 In January [Rob published a great overview of operations runbooks](https://octopus.com/blog/operations-runbooks).
 
@@ -120,7 +120,7 @@ To summarise, Octopus Runbooks and SQL Provision are a perfect match for managin
 - **Self-service:** Dev and test folks can instantly access the databases and data they need to do their work without hand-offs, delays or interruptions.
 - **Breaking the constraint:** At the time of writing, Octopus Deploy and Redgate SQL Provision are the best of class tools to help you to solve the self-service database provisioning problem and break the most common first constraint (environment creation) that results in poor lead times and fuels the core chronic conflict.
 
-## Walkthrough: Using Octopus Runbooks and SQL Clone to provision development and test databases
+## Walkthrough: Using Octopus Runbooks and SQL Clone to provision development and test databases {#what}
 
 This post now assumes that you already have Octopus Deploy and SQL Clone installed. If you haven’t, follow these instructions before continuing:
 
