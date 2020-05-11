@@ -268,7 +268,7 @@ This enforces various good practices, such as ensuring all code is committed to 
 
 Of course, this entire blog has been based on a single database for simplicity. In a real world scenario, you might have multiple databases, often with cross-database dependencies (ouch). The beauty of combining SQL Clone and Runbooks is that your runbook could provision all the required databases, so you know you are never missing a dependency.
 
-And all those databases/clones need to live on an SQL Instance, which needs to live on a VM or container somewhere. And those VMs and containers need to live on some infrastructure either with your cloud provider or on your own bare metal.
+And all those databases/clones need to live on a SQL Instance, which needs to live on a VM or container somewhere. And those VMs and containers need to live on some infrastructure either with your cloud provider or on your own bare metal.
 
 It would be a great idea to either extend these runbooks, or combine them with other runbooks so that you can effectively respawn your entire dev, test, and production environments at the click of a button. If that interests you, here’s some further reading: 
 
