@@ -2,13 +2,15 @@
 title: A first look at Tekton Pipelines
 description: This blog explores Tekton Pipelines and discusses how they fit into the CI/CD ecosystem
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-05-11
+metaImage: tekton-pipelines.png
+bannerImage: tekton-pipelines.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![A first look at Tekton Pipelines](tekton-pipelines.png)
 
 Kubernetes is quickly evolving from a Docker orchestration platform to a general purpose cloud operating system. With [operators](https://octopus.com/blog/operators-with-kotlin) Kubernetes gains the ability to natively manage high-level concepts and business processes, meaning you are no longer managing the building blocks of Pods, Services, and Deployments, but instead, describing the things those building blocks can create like web servers, databases, continuous deployments, certificate management, and more.
 
