@@ -18,7 +18,7 @@ When deployed to a Kubernetes cluster, Tekton Pipelines expose the ability to de
 
 In this post, we’ll take a look at a simple build pipeline running on MicroK8S.
 
-## Preparing the test cluster
+## Preparing the test Kubernetes cluster
 
 For this post, I’m using [MicroK8S](https://microk8s.io/) to provide the Kubernetes cluster. MicroK8S is useful here because it offers a selection of [official add-ons](https://microk8s.io/docs/addons), one of which is a Docker image registry. Since our pipeline builds a Docker image, we need somewhere to host it, and the MicroK8S registry add-on gives us that functionality with a single command:
 
