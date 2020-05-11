@@ -4,14 +4,16 @@ description: A discussion about database provisioning for dev and test, includin
 author: Alex Yates
 visibility: public
 published: 2020-05-13
-metaImage: octopus_add_runbook_square.png
-bannerImage: octopus_run_runbook.png
+metaImage: runbooks-selfservice.png
+bannerImage: runbooks-selfservice.png
 tags:
  - Product
  - Runbooks
  - DevOps
  - Database Deployments
 ---
+
+![Self-service database provisioning with Octopus Runbooks and Redgate SQL Clone](runbooks-selfservice.png)
 
 ## Tl;dr
 
