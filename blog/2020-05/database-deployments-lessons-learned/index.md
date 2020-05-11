@@ -1,13 +1,16 @@
 ---
 title: Lessons learned implementing database deployments
 description: Exploring the pitfalls of implementing database deployments
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+author: shawn.sesna@octopus.com
+visibility: public
+published: 2020-05-13
+metaImage: database-deployments.png
+bannerImage: database-deployments.png
 tags:
  - DevOps
 ---
+
+![Lessons learned implementing database deployments](database-deployments.png)
 
 Implementing database deployments in an organization can be a daunting task.  In this post, I share some of my experiences from a previous role and some things to watch out for with database deployments.
 
