@@ -41,7 +41,7 @@ The Pipe also provides an *optional* array variable called `EXTRA_ARGS` that you
 
 ### Pipe variable definitions
 
-Variables in Bitbucket Pipelines and Pipes are configured as [Environment variables](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html). As the `octo` Pipe contains a number of commands, the specific variables that are required depends on which command you are using. See the [README](https://bitbucket.org/octopusdeploy/octo/src/master/README.md#markdown-header-variables) for further details of the variables that are required for each command.
+Variables in Bitbucket Pipelines and Pipes are configured as [Environment variables](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html). As the `octo` Pipe contains a number of commands, the specific variables that are required depend on which command you are using. See the [README](https://bitbucket.org/octopusdeploy/octo/src/master/README.md#markdown-header-variables) for further details of the variables that are required for each command.
 
 ## Supported commands
 
@@ -127,7 +127,7 @@ This creates build information, associates it with version `1.0.0.0` of the `pet
 
 The `create-release` command allows you to create a release in Octopus. You specify the project to create the release for using the `PROJECT` variable.
 
-Optionally, you can also deploy the release to one or more environments. To achieve this you should use the global `EXTRA_ARGS` array variable, and provide the appropriate options. For example:
+Optionally, you can also deploy the release to one or more environments. To achieve this, you should use the global `EXTRA_ARGS` array variable and provide the appropriate options. For example:
 
 `EXTRA_ARGS: ['--deployTo', 'Development', '--guidedFailure', 'True']`
 
