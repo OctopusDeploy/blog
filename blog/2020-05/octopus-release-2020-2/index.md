@@ -81,9 +81,7 @@ Run conditions allow you to custom each step in your deployment process to provi
 
 // TODO: Add screenshot
 
-It is now possible to add run conditions to rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs.
-
-Run conditions 
+It is now possible to add run conditions to rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs. For example, you could check to see if x is required during a deployment, and if so, run it appropriately for each machine in rolling deployment to a web farm.
 
 [Learn more](https://octopus.com/docs/deployment-process/conditions)
 
