@@ -15,7 +15,7 @@ tags:
 We're proud to ship Octopus 2020.2, our second release of the year, with some great updates and benefits.
 
 * [Execution containers for Workers](blog/2020-05/octopus-release-2020-2/index.md#execution-containers-for-workers) enables you to execute deployment work in isolation without the need to manage dependencies and containers.
-* [Rolling deployment run conditions](blog/2020-05/octopus-release-2020-2/index.md#rolling-deployment-run-conditions) adds support for run conditions to child steps within a rolling deployment.
+* [Better run conditions](blog/2020-05/octopus-release-2020-2/index.md#better-run-conditions) adds deployment process improvements including rolling deployment and machine level variable conditions.
 * [Improved code editor with fast variable lookups](blog/2020-05/octopus-release-2020-2/index.md#improved-code-editor-with-fast-variable-lookups) unlocks the ability to quickly add Octopus variables into your custom scripts without touching the mouse.
 
 This release is the [second of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes 6 months of long term support. The following table shows our current releases with long term support. 
@@ -73,13 +73,23 @@ docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDock
 
 [Learn more](https://octopus.com/docs/deployment-process/execution-containers-for-workers)
 
-## Rolling deployment run conditions
+## Better run conditions
+
+Run conditions allow you to custom each step in your deployment process to provide greater control over the step's execution. This release adds support for rolling deployment and machine level run conditions.
+
+### Rolling deployment run conditions
 
 // TODO: Add screenshot
 
 It is now possible to add run conditions to rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs.
 
+Run conditions 
+
 [Learn more](https://octopus.com/docs/deployment-process/conditions)
+
+### Machine Level variable expression
+
+
 
 ## Improved code editor with fast variable lookups
 
