@@ -47,7 +47,23 @@ Previously, you would need to ensure the servers in your worker pools (including
 * **Isolated and fast execution of deployment work.** Octopus is using [Docker](https://docker.com) to execute your scripts or other deployment work in the context of a container. This is fast and efficient isolated execution.
 * **Simplified dependency management with pre-built [Octopus tooling container images](https://hub.docker.com/r/octopusdeploy/worker-tools)**. There is now far less friction required to ensure you're using the right versions of the tooling that you need for your deployments. 
 
-Our pre-built images include cross platform support for Windows 2019 and Ubuntu 18.04 and you can select the `latest` image tag or a specific version based on major, minor or specific patch verisons. 
+Our pre-built images include cross platform support for Windows 2019 and Ubuntu 18.04 and you can select the `latest` image tag or a specific version based on major, minor or specific patch verisons. We are launching with the following tools installed. 
+
+* Powershell Core
+* .NET Core SDK (3.1 LTS)
+* Java SDK
+* Azure CLI
+* Az Powershell Core Modules
+* AWS CLI
+* Node.js
+* kubectl
+* Helm 3
+* Terraform
+* Python
+* Azure Function Core Tools
+* Google Cloud CLI
+* ScriptCS (Window-only)
+* F# (Windows-only)
 
 It's also possible to build your own container images with your team's exact requirements. For example, you can build a customize image with a specific version of kubectl with the following command.
 
@@ -61,7 +77,7 @@ docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDock
 
 // TODO: Add screenshot
 
-It is now possible to add run conditions to rolling deployments. This adds great flexibility and 
+It is now possible to add run conditions to rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs.
 
 [Learn more](https://octopus.com/docs/deployment-process/conditions)
 
