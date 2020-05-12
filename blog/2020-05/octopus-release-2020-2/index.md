@@ -32,19 +32,34 @@ Keep reading to learn more about the updates.
 
 ## Execution containers for Workers
 
-TODO: Add screenshot
+// TODO: Add screenshot
 
-Workers were introduced in Octopus 2018.x and they help teams move deployment work off the Octopus Server and onto other machines running in worker pools. Common Worker scenarios include database deployments and cloud deployments where by you can create a pool of workers for that specific purpose. 
+Workers were introduced in Octopus 2018.7 and they help teams move deployment work off the Octopus Server and onto other machines running in worker pools. Common scenarios for Workers include database deployments and cloud deployments where by you can create a pool of workers for that specific purpose. Worker pools can also be scoped to environments to suit your needs.
 
-In this release, we're adding support to execute deployment work in isolated containers on Workers that are bootstrapped with common deployment tooling. Octopus is also shipping a collection of [official Docker container images] with the latest tools so make it easy to get started and you can start using them straight away. 
+In this release, we're adding support to execute deployment work in isolated containers on Workers and we're shipping a collection of official container images bootstrapped with common deployment tooling. 
 
+// TODO: Describe the pain and why we built this feature. Then talk about the benefits.
 
+Previously, you would need to ensure the servers in your worker pools (including the built-in worker pool) have the necessary tools required for your deployments and you needed to maintain the OS and tool versions. This could also be problematic if different teams required different versions of specific tools which don't install side by side. This is further complicated by the fact that Octopus bundles some tooling to simplify deployments but this is also a challenge to keep up to date. 
+
+**Execution containers for Workers** solve these problems and more.
+
+* **Isolated and fast execution of deployment work.** Octopus is using [Docker](https://docker.com) to execute your scripts or other deployment work in the context of a container. This is fast and efficient isolated execution.
+* **Simplified dependency management with pre-built [Octopus tooling container images](https://hub.docker.com/r/octopusdeploy/worker-tools)**. There is now far less friction required to ensure you're using the right versions of the tooling that you need for your deployments. 
+
+Our pre-built images include cross platform support for Windows 2019 and Ubuntu 18.04 and you can select the `latest` image tag or a specific version based on major, minor or specific patch verisons. 
+
+It's also possible to build your own container images with your team's exact requirements. For example, you can build a customize image with a specific version of kubectl with the following command.
+
+```
+docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDockerFile
+```
 
 [Learn more](https://octopus.com/docs/deployment-process/execution-containers-for-workers)
 
 ## Rolling deployment run conditions
 
-TODO: Add screenshot
+// TODO: Add screenshot
 
 It is now possible to add run conditions to rolling deployments. This adds great flexibility and 
 
@@ -56,7 +71,7 @@ TODO
 
 ## Other customer requested improvements
 
-TODO
+
 
 ## Breaking changes
 
