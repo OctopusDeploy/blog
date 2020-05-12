@@ -77,25 +77,27 @@ docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDock
 
 Run conditions allow you to custom each step in your deployment process to provide greater control over the step's execution. This release adds support for rolling deployment and machine level run conditions.
 
-### Rolling deployment run conditions
+### Rolling deployment variable run conditions
 
 // TODO: Add screenshot
 
-It is now possible to add run conditions to rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs. For example, you could check to see if x is required during a deployment, and if so, run it appropriately for each machine in rolling deployment to a web farm.
+It is now possible to add variable run conditions to child steps in rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs. For example, you could check to see if a web service updated in a previous step is running (i.e. a a sanity test), and if so, run it re-add it back to a web farm.
 
 [Learn more](https://octopus.com/docs/deployment-process/conditions)
 
-### Machine Level variable expression
+### Machine-level variable run conditions
 
+// TODO: Add screenshot
 
+Another new addition to variable run conditions is added support for machine-level variables. The rolling deployment example above highlights this improvement as well. In such a deployment, if you check to see if a recently updated web service updated is running (i.e. a a sanity test) and set a variable to indicate the result, this is a machine-level variable that can then be resolved in a run condition in a future step within the same rolling deployment.
+
+[Learn more](https://octopus.com/docs/deployment-process/conditions#machine-level-variable-expressions)
 
 ## Improved code editor with fast variable lookups
 
-TODO
+// TODO: Add GIF
 
-## Other customer requested improvements
-
-
+We've also added a handy shortcut to be able to insert variables quickly without needing to click the variable lookup button. Press `Control` + `Space` on your keyboard to get a quick variable lookup menu with fuzzy search support. Select the appropriate variable using the arrow keys and then press `Enter`. This simply update is very handy once you get used to it. Try it today.
 
 ## Breaking changes
 
