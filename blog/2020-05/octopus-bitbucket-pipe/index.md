@@ -1,6 +1,6 @@
 ---
-title: "Octopus Pipe for Bitbucket: octo"
-description: Learn how to integrate Octopus and BitBucket with our new experimental BitBucket Pipe called octo.
+title: "Octopus Pipe for Bitbucket: octopus-cli"
+description: Learn how to integrate Octopus and BitBucket with our new experimental BitBucket Pipe called octopus-cli.
 author: mark.harrison@octopus.com
 visibility: private
 published: 2020-05-30
@@ -14,7 +14,7 @@ tags:
 
 In a previous post, I wrote [how to create a Bitbucket Pipe and integrate it with Octopus Deploy](blog/2020-04/bitbucket-pipes-and-octopus-deploy/index.md). If you’re starting out with Pipes for the first time, it’s worth a read.
 
-In this post, I’ll give you an overview of the new experimental Bitbucket Pipe for Octopus - [octo](https://bitbucket.org/octopusdeploy/octo/).
+In this post, I’ll give you an overview of the new experimental Bitbucket Pipe for Octopus - [octopus-cli](https://bitbucket.org/octopusdeploy/octopus-cli/).
 If you’re interested in trying the experimental pipe, you can use it to run commands from the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli/), allowing you to further integrate your Atlassian [Bitbucket Pipeline](https://bitbucket.org/product/features/pipelines) with Octopus to manage your packages, releases, and deployments.
 
 <h2>In this post</h2>
@@ -23,14 +23,14 @@ If you’re interested in trying the experimental pipe, you can use it to run co
 
 ## Pipe YAML Definition
 
-The base definition of the Pipe includes the reference to its repository hosted on [Bitbucket](https://bitbucket.org/octopusdeploy/octo/). It has also been published as [octopipes/octo](https://hub.docker.com/r/octopipes/octo/) on Docker Hub.
+The base definition of the Pipe includes the reference to its repository hosted on [Bitbucket](https://bitbucket.org/octopusdeploy/octopus-cli/). It has also been published as [octopipes/octopus-cli](https://hub.docker.com/r/octopipes/octopus-cli/) on Docker Hub.
 
 It has one required `CLI_COMMAND` variable. This is the CLI command to run.
 
 To use the Pipe in your `bitbucket-pipelines.yml` file, add the following YAML snippet to the script section:
 
 ```yaml
-- pipe: octopusdeploy/octo:0.11.0
+- pipe: octopusdeploy/octopus-cli:0.12.0
   variables:
     CLI_COMMAND: "<string>"
     # EXTRA_ARGS: ['<string>','<string>' ..] # Optional
@@ -41,11 +41,11 @@ The Pipe also provides an *optional* array variable called `EXTRA_ARGS` that you
 
 ### Pipe variable definitions
 
-Variables in Bitbucket Pipelines and Pipes are configured as [Environment variables](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html). As the `octo` Pipe contains a number of commands, the specific variables that are required depend on which command you are using. See the [README](https://bitbucket.org/octopusdeploy/octo/src/master/README.md#markdown-header-variables) for further details of the variables that are required for each command.
+Variables in Bitbucket Pipelines and Pipes are configured as [Environment variables](https://confluence.atlassian.com/bitbucket/variables-in-pipelines-794502608.html). As the `octopus-cli` Pipe contains a number of commands, the specific variables that are required depend on which command you are using. See the [README](https://bitbucket.org/octopusdeploy/octopus-cli/src/master/README.md#markdown-header-variables) for further details of the variables that are required for each command.
 
 ## Supported commands
 
-The `octo` Pipe was written with the most commonly used CLI commands in mind, and it’s actually built on top of the [Octopus CLI Docker image](https://hub.docker.com/r/octopusdeploy/octo/). This includes the ability to:
+The `octopus-cli` Pipe was written with the most commonly used CLI commands in mind, and it’s actually built on top of the [Octopus CLI Docker image](https://hub.docker.com/r/octopusdeploy/octo/). This includes the ability to:
 
  - Package your files or build artifacts using [pack](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack).
  - Send packages to the Octopus built-in repository using [push](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack).
@@ -65,7 +65,7 @@ To create a package, define a step like this:
 - step:
     name: octo pack mysql-flyway
     script:
-      - pipe: octopusdeploy/octo:0.11.0
+      - pipe: octopusdeploy/octopus-cli:0.12.0
         variables:
           CLI_COMMAND: 'pack'
           ID: 'petclinic.mysql.flyway'
@@ -88,7 +88,7 @@ It also supports pushing multiple packages at the same time. To perform a multi-
 - step:
     name: octo push
     script:
-      - pipe: octopusdeploy/octo:0.11.0
+      - pipe: octopusdeploy/octopus-cli:0.12.0
         variables:
           CLI_COMMAND: 'push'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -111,7 +111,7 @@ To push an auto-generated build info file, define a step like this:
 - step:
     name: octo build-information
     script:
-      - pipe: octopusdeploy/octo:0.11.0
+      - pipe: octopusdeploy/octopus-cli:0.12.0
         variables:
           CLI_COMMAND: 'build-information'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -137,7 +137,7 @@ To create a release, and let Octopus choose the version to use, create a step li
 - step:
     name: octo create-release
     script:
-      - pipe: octopusdeploy/octo:0.11.0
+      - pipe: octopusdeploy/octopus-cli:0.12.0
         variables:
           CLI_COMMAND: 'create-release'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -160,7 +160,7 @@ To deploy the `latest` release to `Development` for a project, create a step lik
 - step:
     name: octo deploy-release
     script:
-      - pipe: octopusdeploy/octo:0.11.0
+      - pipe: octopusdeploy/octopus-cli:0.12.0
         variables:
           CLI_COMMAND: 'deploy-release'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -192,7 +192,7 @@ pipelines:
       - step:
           name: octo pack mysql-flyway
           script:
-            - pipe: octopusdeploy/octo:0.11.0
+            - pipe: octopusdeploy/octopus-cli:0.12.0
               variables:
                 CLI_COMMAND: 'pack'
                 ID: 'petclinic.mysql.flyway'
@@ -205,7 +205,7 @@ pipelines:
       - step:
           name: octo push
           script:
-            - pipe: octopusdeploy/octo:0.11.0
+            - pipe: octopusdeploy/octopus-cli:0.12.0
               variables:
                 CLI_COMMAND: 'push'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -215,7 +215,7 @@ pipelines:
       - step:
           name: octo build-information
           script:
-            - pipe: octopusdeploy/octo:0.11.0
+            - pipe: octopusdeploy/octopus-cli:0.12.0
               variables:
                 CLI_COMMAND: 'build-information'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -226,7 +226,7 @@ pipelines:
       - step:
           name: octo create-release
           script:
-            - pipe: octopusdeploy/octo:0.11.0
+            - pipe: octopusdeploy/octopus-cli:0.12.0
               variables:
                 CLI_COMMAND: 'create-release'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -236,7 +236,7 @@ pipelines:
       - step:
           name: octo deploy-release
           script:
-            - pipe: octopusdeploy/octo:0.11.0
+            - pipe: octopusdeploy/octopus-cli:0.12.0
               variables:
                 CLI_COMMAND: 'deploy-release'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -257,4 +257,4 @@ You can see the PetClinic Octopus project in our [samples](https://samples.octop
 
 ## Conclusion
 
-Using a Bitbucket Pipe really helps to simplify the configuration in your Bitbucket Pipeline, and as an author helps to promote re-use of your actions. Check out [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines/integrations) for more information and the [experimental Octopus Pipe](https://bitbucket.org/octopusdeploy/octo/src/master/README.md) for more details on how you can use Bitbucket and Octopus together.
+Using a Bitbucket Pipe really helps to simplify the configuration in your Bitbucket Pipeline, and as an author helps to promote re-use of your actions. Check out [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines/integrations) for more information and the [experimental Octopus Pipe](https://bitbucket.org/octopusdeploy/octopus-cli/src/master/README.md) for more details on how you can use Bitbucket and Octopus together.
