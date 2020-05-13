@@ -72,13 +72,19 @@ docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDock
 
 [Learn more](https://octopus.com/docs/deployment-process/execution-containers-for-workers)
 
-## Jira Service Desk integration
+## Integrated change management with Jira Service Desk
 
-// TODO: Add screenshot
+![Jira Service Desk integration](jira-service-desk.png)
 
-You can now automatically create change requests with Jira Service Desk. This release includes 
+With Octopus 2020.2, we're shipping our initial support for integrated chanage management with Jira Service Desk Cloud. It is now possible to automatically create change requests during a deployment with our new Jira Service Desk Change Request step. 
 
-* [Jira Service Desk integration](blog/2020-05/octopus-release-2020-2/index.md#jira-service-desk-integration) allows team teams to automatically create change requests during their deployment.
+This integration leverages our [Octopus Deploy for Jira plugin](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira) and requires the [ITSM early access](https://support.atlassian.com/jira-service-desk-cloud/docs/set-up-an-itsm-project/). See [Atlassian's documentation](https://support.atlassian.com/jira-service-desk-cloud/docs/set-up-change-management-for-your-service-desk/) for more information on how to configure Octopus Deploy integration within within your ITSM project.
+
+This release is the first part of a larger change management story so I recommend registering for updates on our [public roadmap](https://octopus.com/roadmap#change-management) to stay up to date with this feature.
+
+Note: The Octopus Deploy plugin is only compatible with Jira Cloud and Jira Service Desk Cloud, as the APIs we depend on are only available in Jira Cloud. When those APIs become available in Jira Server this extension will work there too.
+
+[Learn more](https://octopus.com/jira)
 
 ## Better run conditions
 
