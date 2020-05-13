@@ -41,7 +41,7 @@ Slices of Octopus Server. Carving out the technology specific things.
 - Web UI will be split out.
 - Octopus Server will split out server side technology specific processing into separate sashimi projects/components.
 - The Octopus will be a core coordination engine without any core specific technology bits.
-- Goal: Carving these things off will simplify building technology specific support indepedent of Octopus (i.e. less development overhead). Remove the mental weight of undersatnding all the touches points within Octopus Server. Outocme is faster integration with less headaches. i.e. We could introduce pulumi support following the patterns created by terraform in a very short period of time vs. 
+- Goal: Carving these things off will simplify building technology specific support indepedent of Octopus (i.e. less development overhead). Remove the mental weight of understanding all the touches points within Octopus Server. Outocme is faster integration with less headaches. i.e. We could introduce pulumi support following the patterns created by terraform in a very short period of time vs. 
 
 This also unlocks the ability for us to get third parties to add support within Octopus as well as us outsourcing development for specific tasks if required.
 
