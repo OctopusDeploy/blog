@@ -15,9 +15,9 @@ tags:
 We're pleased to ship Octopus 2020.2, our second release of the year, with some great updates and benefits.
 
 * [Execution containers for Workers (EAP)](blog/2020-05/octopus-release-2020-2/index.md#execution-containers-for-workers) enables you to execute deployment work in isolation without the need to manage dependencies and containers.
-* [Jira Service Desk integration](blog/2020-05/octopus-release-2020-2/index.md#jira-service-desk-integration) allows team teams to automatically create change requests during their deployment.
+* [Integrated change management with Jira Service Desk](blog/2020-05/octopus-release-2020-2/index.md#integrated-change-management-with-jira-service-desk) allows team teams to automatically create change requests during their deployment.
 * [Better run conditions](blog/2020-05/octopus-release-2020-2/index.md#better-run-conditions) adds deployment process improvements including rolling deployment and machine level variable conditions.
-* [Improved code editor with fast variable lookups](blog/2020-05/octopus-release-2020-2/index.md#improved-code-editor-with-fast-variable-lookups) unlocks the ability to quickly add Octopus variables into your custom scripts without touching the mouse.
+* [Fast variable lookups with our improved code editor](blog/2020-05/octopus-release-2020-2/index.md#fast-variable-lookups-in-our-updated-code-editor) unlocks the ability to quickly add Octopus variables into your custom scripts without touching the mouse.
 
 This release is the [second of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes 6 months of long term support. The following table shows our current releases with long term support. 
 
@@ -104,9 +104,9 @@ Another new addition to variable run conditions is added support for machine-lev
 
 [Learn more](https://octopus.com/docs/deployment-process/conditions#machine-level-variable-expressions)
 
-## Improved code editor with fast variable lookups
+## Fast variable lookups in our updated code editor
 
-// TODO: Add GIF
+![Improved code editor with fast variable lookups](variable-lookup.png)
 
 We've also added a handy shortcut to be able to insert variables quickly without needing to click the variable lookup button. Press `Control` + `Space` on your keyboard to get a quick variable lookup menu with fuzzy search support. Select the appropriate variable using the arrow keys and then press `Enter`. This simply update is very handy once you get used to it. Try it today.
 
