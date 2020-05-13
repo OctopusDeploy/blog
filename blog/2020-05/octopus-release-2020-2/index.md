@@ -33,7 +33,7 @@ Keep reading to learn more about the updates.
 
 ## Execution containers for Workers
 
-// TODO: Add screenshot
+![Execution containers for Workers example](exec-containers-for-workers.png)
 
 Workers were introduced in Octopus 2018.7 and they help teams move deployment work off the Octopus Server and onto other machines running in worker pools. Common scenarios for Workers include database deployments and cloud deployments where by you can create a pool of workers for that specific purpose. Worker pools can also be scoped to environments to suit your needs.
 
@@ -74,7 +74,7 @@ docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDock
 
 ## Integrated change management with Jira Service Desk
 
-![Jira Service Desk integration](jira-service-desk.png)
+![Create Jira Service Desk change requests in your deployments](jira-service-desk-change-request.png)
 
 With Octopus 2020.2, we're shipping our initial support for integrated chanage management with Jira Service Desk Cloud. It is now possible to automatically create change requests during a deployment with our new Jira Service Desk Change Request step. 
 
@@ -88,7 +88,7 @@ Note: The Octopus Deploy plugin is only compatible with Jira Cloud and Jira Serv
 
 ## Better run conditions
 
-// TODO: Screenshot
+![Better run conditions](run-conditions.png)
 
 Run conditions allow you to custom each step in your deployment process to provide greater control over the step's execution. This release adds support for rolling deployment and machine level run conditions.
 
