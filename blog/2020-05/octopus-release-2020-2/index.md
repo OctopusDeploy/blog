@@ -112,9 +112,7 @@ We've also added a handy shortcut to be able to insert variables quickly without
 
 ## Breaking changes
 
-This release includes x breaking changes.
-
-
+Octopus 2020.1 introduced [updated minimum requirements](https://octopus.com/blog/raising-minimum-requirements-for-octopus-server) for running Octopus Server to Windows Server 2012 R2 and SQL Server 2017. This release is now enforcing the SQL Server minimum requirements.
 
 ## Upgrading
 
