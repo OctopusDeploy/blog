@@ -122,15 +122,15 @@ As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/admi
 
 ## What's coming in Octopus 2020.3?
 
-Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming next. We're about to start work on some incredible new features, including deep git integration, unlocking pipeline as code.
+Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming next and register for updates. We're getting stuck into our configuration as code featureset and it's looking good. 
 
 ## Conclusion
 
-TODO: Write conclusion
+Octopus 2020.2 is here and it brings some nice improvements. Execution containers for Workers and integrated change management with Jira Service Desk are the first steps of these features which simplify deployments and release management.
 
 Feel free to leave us a comment, and let us know what you think! Happy deployments!
 
 ## Related posts
 
-- Related blog post 1
-- Related blog post 2
+- [Refactoring Octopus: Modularity, calamari and sashimi](/blog/2020-05/refactoring-octopus-modularity/index.md)
+- [Refactoring Octopus: Strict null checks](/blog/2020-05/refactoring-octopus-strict-null-checks/index.md)
