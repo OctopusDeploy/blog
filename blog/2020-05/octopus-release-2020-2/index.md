@@ -12,9 +12,9 @@ tags:
 
 ![Octopus 2020.2: Execution containers for Workers](release-2020.2.png)
 
-We're proud to ship Octopus 2020.2, our second release of the year, with some great updates and benefits.
+We're pleased to ship Octopus 2020.2, our second release of the year, with some great updates and benefits.
 
-* [Execution containers for Workers](blog/2020-05/octopus-release-2020-2/index.md#execution-containers-for-workers) enables you to execute deployment work in isolation without the need to manage dependencies and containers.
+* [Execution containers for Workers (EAP)](blog/2020-05/octopus-release-2020-2/index.md#execution-containers-for-workers) enables you to execute deployment work in isolation without the need to manage dependencies and containers.
 * [Better run conditions](blog/2020-05/octopus-release-2020-2/index.md#better-run-conditions) adds deployment process improvements including rolling deployment and machine level variable conditions.
 * [Improved code editor with fast variable lookups](blog/2020-05/octopus-release-2020-2/index.md#improved-code-editor-with-fast-variable-lookups) unlocks the ability to quickly add Octopus variables into your custom scripts without touching the mouse.
 
@@ -37,8 +37,6 @@ Keep reading to learn more about the updates.
 Workers were introduced in Octopus 2018.7 and they help teams move deployment work off the Octopus Server and onto other machines running in worker pools. Common scenarios for Workers include database deployments and cloud deployments where by you can create a pool of workers for that specific purpose. Worker pools can also be scoped to environments to suit your needs.
 
 In this release, we're adding support to execute deployment work in isolated containers on Workers and we're shipping a collection of official container images bootstrapped with common deployment tooling. 
-
-// TODO: Describe the pain and why we built this feature. Then talk about the benefits.
 
 Previously, you would need to ensure the servers in your worker pools (including the built-in worker pool) have the necessary tools required for your deployments and you needed to maintain the OS and tool versions. This could also be problematic if different teams required different versions of specific tools which don't install side by side. This is further complicated by the fact that Octopus bundles some tooling to simplify deployments but this is also a challenge to keep up to date. 
 
