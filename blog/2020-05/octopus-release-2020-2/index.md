@@ -15,6 +15,7 @@ tags:
 We're pleased to ship Octopus 2020.2, our second release of the year, with some great updates and benefits.
 
 * [Execution containers for Workers (EAP)](blog/2020-05/octopus-release-2020-2/index.md#execution-containers-for-workers) enables you to execute deployment work in isolation without the need to manage dependencies and containers.
+* [Jira Service Desk integration](blog/2020-05/octopus-release-2020-2/index.md#jira-service-desk-integration) allows team teams to automatically create change requests during their deployment.
 * [Better run conditions](blog/2020-05/octopus-release-2020-2/index.md#better-run-conditions) adds deployment process improvements including rolling deployment and machine level variable conditions.
 * [Improved code editor with fast variable lookups](blog/2020-05/octopus-release-2020-2/index.md#improved-code-editor-with-fast-variable-lookups) unlocks the ability to quickly add Octopus variables into your custom scripts without touching the mouse.
 
@@ -71,21 +72,27 @@ docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDock
 
 [Learn more](https://octopus.com/docs/deployment-process/execution-containers-for-workers)
 
+## Jira Service Desk integration
+
+// TODO: Add screenshot
+
+You can now automatically create change requests with Jira Service Desk. This release includes 
+
+* [Jira Service Desk integration](blog/2020-05/octopus-release-2020-2/index.md#jira-service-desk-integration) allows team teams to automatically create change requests during their deployment.
+
 ## Better run conditions
+
+// TODO: Screenshot
 
 Run conditions allow you to custom each step in your deployment process to provide greater control over the step's execution. This release adds support for rolling deployment and machine level run conditions.
 
 ### Rolling deployment variable run conditions
-
-// TODO: Add screenshot
 
 It is now possible to add variable run conditions to child steps in rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs. For example, you could check to see if a web service updated in a previous step is running (i.e. a a sanity test), and if so, run it re-add it back to a web farm.
 
 [Learn more](https://octopus.com/docs/deployment-process/conditions)
 
 ### Machine-level variable run conditions
-
-// TODO: Add screenshot
 
 Another new addition to variable run conditions is added support for machine-level variables. The rolling deployment example above highlights this improvement as well. In such a deployment, if you check to see if a recently updated web service updated is running (i.e. a a sanity test) and set a variable to indicate the result, this is a machine-level variable that can then be resolved in a run condition in a future step within the same rolling deployment.
 
