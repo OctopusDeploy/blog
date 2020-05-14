@@ -252,7 +252,7 @@ You can view the complete PetClinic `bitbucket-pipelines.yml` file on [Bitbucket
 
 :::success
 **Sample Octopus project**
-You can see the PetClinic Octopus project in our [samples](https://samples.octopus.app/app#/Spaces-85/projects/petclinic/) instance.
+You can see the PetClinic Octopus project in our [samples](https://g.octopushq.com/TargetWildflySamplePetClinic) instance.
 :::
 
 ## Conclusion
