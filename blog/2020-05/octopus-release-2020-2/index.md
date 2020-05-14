@@ -33,13 +33,15 @@ Keep reading to learn more about the updates.
 
 ## Execution containers for Workers
 
-![Execution containers for Workers example](exec-containers-for-workers.png)
+![Execution containers for Workers example](exec-containers-for-workers-02.png)
 
 Workers were introduced in Octopus 2018.7 and they help teams move deployment work off the Octopus Server and onto other machines running in worker pools. Common scenarios for Workers include database deployments and cloud deployments where by you can create a pool of workers for that specific purpose. Worker pools can also be scoped to environments to suit your needs.
 
 In this release, we're adding support to execute deployment work in isolated containers on Workers, and we're shipping a collection of official container images bootstrapped with standard deployment tooling. 
 
 Previously, you would need to ensure the machines in your worker pools (including the built-in worker pool) have the necessary tools required for your deployments, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don't install side by side. Also, Octopus bundles some tools, and it's a challenge to keep them up to date as well. 
+
+![Execution containers for Workers diagram](exec-containers-for-workers-02.png)
 
 **Execution containers for Workers** solve these problems and more.
 
