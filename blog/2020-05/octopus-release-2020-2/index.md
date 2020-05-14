@@ -12,10 +12,10 @@ tags:
 
 ![Octopus 2020.2: Execution containers for Workers](release-2020.2.png)
 
-We're pleased to ship Octopus 2020.2, our second release of the year, with some great updates and benefits.
+We're pleased to ship Octopus 2020.2, our second release of the year, with some helpful updates and benefits.
 
 * [Execution containers for Workers (EAP)](blog/2020-05/octopus-release-2020-2/index.md#execution-containers-for-workers) enables you to execute deployment work in isolation without the need to manage dependencies and containers.
-* [Integrated change management with Jira Service Desk](blog/2020-05/octopus-release-2020-2/index.md#integrated-change-management-with-jira-service-desk) allows team teams to automatically create change requests during their deployment.
+* [Integrated change management with Jira Service Desk](blog/2020-05/octopus-release-2020-2/index.md#integrated-change-management-with-jira-service-desk) allows teams to create change requests during their deployment automatically.
 * [Better run conditions](blog/2020-05/octopus-release-2020-2/index.md#better-run-conditions) adds deployment process improvements including rolling deployment and machine level variable conditions.
 * [Fast variable lookups with our improved code editor](blog/2020-05/octopus-release-2020-2/index.md#fast-variable-lookups-in-our-updated-code-editor) unlocks the ability to quickly add Octopus variables into your custom scripts without touching the mouse.
 
@@ -37,16 +37,16 @@ Keep reading to learn more about the updates.
 
 Workers were introduced in Octopus 2018.7 and they help teams move deployment work off the Octopus Server and onto other machines running in worker pools. Common scenarios for Workers include database deployments and cloud deployments where by you can create a pool of workers for that specific purpose. Worker pools can also be scoped to environments to suit your needs.
 
-In this release, we're adding support to execute deployment work in isolated containers on Workers and we're shipping a collection of official container images bootstrapped with common deployment tooling. 
+In this release, we're adding support to execute deployment work in isolated containers on Workers, and we're shipping a collection of official container images bootstrapped with standard deployment tooling. 
 
-Previously, you would need to ensure the servers in your worker pools (including the built-in worker pool) have the necessary tools required for your deployments and you needed to maintain the OS and tool versions. This could also be problematic if different teams required different versions of specific tools which don't install side by side. This is further complicated by the fact that Octopus bundles some tooling to simplify deployments but this is also a challenge to keep up to date. 
+Previously, you would need to ensure the machines in your worker pools (including the built-in worker pool) have the necessary tools required for your deployments, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don't install side by side. Also, Octopus bundles some tools, and it's a challenge to keep them up to date as well. 
 
 **Execution containers for Workers** solve these problems and more.
 
-* **Isolated and fast execution of deployment work.** Octopus is using [Docker](https://docker.com) to execute your scripts or other deployment work in the context of a container. This is fast and efficient isolated execution.
+* **Isolated and fast execution of deployment work.** Octopus is using [Docker](https://docker.com) to execute your scripts or other deployment work in the context of a container. This method provides fast and efficient execution in complete isolation.
 * **Simplified dependency management with pre-built [Octopus tooling container images](https://hub.docker.com/r/octopusdeploy/worker-tools)**. There is now far less friction required to ensure you're using the right versions of the tooling that you need for your deployments. 
 
-Our pre-built images include cross platform support for Windows 2019 and Ubuntu 18.04 and you can select the `latest` image tag or a specific version based on major, minor or specific patch verisons. We are launching with the following tools installed. 
+Our pre-built images include cross-platform support for Windows 2019 and Ubuntu 18.04, and you can select the `latest` image tag or a specific version based on major, minor or specific patch versions. We are launching images with the following tools pre-installed. 
 
 * Powershell Core
 * .NET Core SDK (3.1 LTS)
@@ -64,7 +64,7 @@ Our pre-built images include cross platform support for Windows 2019 and Ubuntu 
 * ScriptCS (Window-only)
 * F# (Windows-only)
 
-It's also possible to build your own container images with your team's exact requirements. For example, you can build a customize image with a specific version of kubectl with the following command.
+It's also possible to build container images with your team's exact requirements. For example, you can build a customized image with a specific version of kubectl with the following command.
 
 ```
 docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDockerFile
@@ -76,13 +76,13 @@ docker build -t my-company/worker-tools --build-arg Kubectl_Version=X.Y.Z MyDock
 
 ![Create Jira Service Desk change requests in your deployments](jira-service-desk-change-request.png)
 
-With Octopus 2020.2, we're shipping our initial support for integrated chanage management with Jira Service Desk Cloud. It is now possible to automatically create change requests during a deployment with our new Jira Service Desk Change Request step. 
+With Octopus 2020.2, we're shipping our initial support for integrated change management with Jira Service Desk Cloud. It is now possible to automatically create change requests during a deployment with our new Jira Service Desk Change Request step. 
 
-This integration leverages our [Octopus Deploy for Jira plugin](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira) and requires the [ITSM early access](https://support.atlassian.com/jira-service-desk-cloud/docs/set-up-an-itsm-project/). See [Atlassian's documentation](https://support.atlassian.com/jira-service-desk-cloud/docs/set-up-change-management-for-your-service-desk/) for more information on how to configure Octopus Deploy integration within within your ITSM project.
+This integration leverages our [Octopus Deploy for Jira plugin](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira) and requires the [ITSM early access](https://support.atlassian.com/jira-service-desk-cloud/docs/set-up-an-itsm-project/). See [Atlassian's documentation](https://support.atlassian.com/jira-service-desk-cloud/docs/set-up-change-management-for-your-service-desk/) for more information on how to configure Octopus Deploy integration within your ITSM project.
 
-This release is the first part of a larger change management story so I recommend registering for updates on our [public roadmap](https://octopus.com/roadmap#change-management) to stay up to date with this feature.
+This release is the first part of a more significant change management feature-set, so I recommend registering for updates on our [public roadmap](https://octopus.com/roadmap#change-management) to stay up to date with this feature.
 
-Note: The Octopus Deploy plugin is only compatible with Jira Cloud and Jira Service Desk Cloud, as the APIs we depend on are only available in Jira Cloud. When those APIs become available in Jira Server this extension will work there too.
+Note: The Octopus Deploy plugin is only compatible with Jira Cloud and Jira Service Desk Cloud, as the APIs we depend on are only available in Jira Cloud. When those APIs become available in Jira Server, this extension will work there too.
 
 [Learn more](https://octopus.com/jira)
 
@@ -94,13 +94,15 @@ Run conditions allow you to custom each step in your deployment process to provi
 
 ### Rolling deployment variable run conditions
 
-It is now possible to add variable run conditions to child steps in rolling deployments. This adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs. For example, you could check to see if a web service updated in a previous step is running (i.e. a a sanity test), and if so, run it re-add it back to a web farm.
+It is now possible to add variable run conditions to child steps in rolling deployments. This update adds greater flexibility to rolling deployments and allows you to customize the deployment process based on your specific needs. 
+
+For example, if you are deploying a web service update to a web farm in a rolling deployment, you could sanity test the service after the update step and set the service status to an output variable. In a follow-up step, you can add it back to the web farm if the service status is positive with a variable run condition. Previously, this was not possible.
 
 [Learn more](https://octopus.com/docs/deployment-process/conditions)
 
 ### Machine-level variable run conditions
 
-Another new addition to variable run conditions is added support for machine-level variables. The rolling deployment example above highlights this improvement as well. In such a deployment, if you check to see if a recently updated web service updated is running (i.e. a a sanity test) and set a variable to indicate the result, this is a machine-level variable that can then be resolved in a run condition in a future step within the same rolling deployment.
+Another new addition to variable run conditions is support for machine-level variables. The rolling deployment example above highlights this improvement as well. In this example, the service status output variable is a machine-level variable as it is specific to a single machine. Machine level variables can be set and resolved in standard (linear) or rolling deployments. 
 
 [Learn more](https://octopus.com/docs/deployment-process/conditions#machine-level-variable-expressions)
 
@@ -108,7 +110,11 @@ Another new addition to variable run conditions is added support for machine-lev
 
 ![Improved code editor with fast variable lookups](variable-lookup.png)
 
-We've also added a handy shortcut to be able to insert variables quickly without needing to click the variable lookup button. Press `Control` + `Space` on your keyboard to get a quick variable lookup menu with fuzzy search support. Select the appropriate variable using the arrow keys and then press `Enter`. This simply update is very handy once you get used to it. Try it today.
+We've also added a handy shortcut to be able to insert variables quickly without needing to click the variable lookup button. 
+
+Type `Control` + `Space` to get a quick variable lookup menu with fuzzy search support. Select the appropriate variable using the arrow keys and then press `Enter`. This simple update is quite useful once you get used to it. 
+
+Try it today!
 
 ## Breaking changes
 
@@ -122,11 +128,11 @@ As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/admi
 
 ## What's coming in Octopus 2020.3?
 
-Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming next and register for updates. We're getting stuck into our configuration as code featureset and it's looking good. 
+Check out our [public roadmap](https://octopus.com/roadmap) to see what's coming next and register for updates. We're getting stuck into our configuration as code feature set, and it's looking good. 
 
 ## Conclusion
 
-Octopus 2020.2 is here and it brings some nice improvements. Execution containers for Workers and integrated change management with Jira Service Desk are the first steps of these features which simplify deployments and release management.
+Octopus 2020.2 is here, and it brings some nice improvements. Execution containers for Workers and integrated change management with Jira Service Desk are the first steps of these feature sets that simplify deployments and release management.
 
 Feel free to leave us a comment, and let us know what you think! Happy deployments!
 
