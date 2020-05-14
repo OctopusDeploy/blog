@@ -691,7 +691,7 @@ And that’s all there is to it! Check out our [docs](https://octopus.com/docs/d
 
 :::success
 **Sample Octopus project**
-You can view this Octopus project setup in our [samples](https://samples.octopus.app/app#/Spaces-45/projects/azure-webapp-rolling-deploy/deployments) instance.
+You can view this Octopus project setup in our [samples](https://g.octopushq.com/PatternRollingSampleAzureWebApp) instance.
 :::
 
 ## A word on databases
