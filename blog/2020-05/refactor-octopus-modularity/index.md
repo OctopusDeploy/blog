@@ -30,47 +30,39 @@ Then in Octopus 3.0, we introduced Calamari which we called little slices of Oct
 
 Over the years, this has worked well and helped our customers execute tens of millions of deployments however it has introduced some challenges. If we want to add a new integration for a new technology, there is deep knoweldge required for numerous touch points across the Octopus code based from the front end, some server side code as well as Calamari updates. WHile this works it slows us down and it's friction for us to add new integrations. We knew we needed a change and we've been planning it for a while. 
 
-// TODO: Graphic w/ Terraform Calamari, AWS Calamari, Azure Calamri, IIS Calamari etc.
+## Introducing Calamari Flavours
 
-Our first step was to start splitting up Calamari as we originally intended. Split it into little slices with their own separate projects and distinct entry point. Each slice is totally independent and can be upgraded indenpendently and customised as per the project's needs. Examples of the slices are:
+Our first step was to start splitting up Calamari as we originally intended. Split it into little slices with their own separate projects and distinct entry point. We still have our core Calamari for common deployment work like script execution but we're introducing additional "flavours" like Terraform Calamari, AWS Calamari, Azure Calamari etc. It's interesting to note that with each flavour, it brings support for specific platforms like Windows, macOS, Linux and ARM.
 
-
-
-This alone brings advantes 
-Advantages:
-- Totally independant. Customise each project based on its needs.
-- We could separate an older legacy technology like Azure Cloud Services and leave it while we upgrade other projects to take advantage of the latest updates and innovations.
-- Each flavour comes different platforms.
+This approach brings a number of advantages:
+* Each slice is totally independent and can be upgraded independently and customised as per the project's needs.
+* Allows us to separate older technologies like Azure Cloud Services and keep them separate and stable while we focus on other priorities. 
 
 ## Introducing Sashimi
 
-Slices of Octopus Server. Carving out the technology specific things. 
+This leads us to introducing Sashimi which we are calling little slices of Octopus Server. Whereas Calamari flavours are little slices of our deployment execution engine, Sashimi is little slices of Octopus Server. We are taking a knife to Octopus and carving out the technology specific things. This enables us to split out the web UI and server side logic into separate self-contained components.
 
-- Web UI will be split out.
-- Octopus Server will split out server side technology specific processing into separate sashimi projects/components.
-- The Octopus will be a core coordination engine without any core specific technology bits.
-- Goal: Carving these things off will simplify building technology specific support indepedent of Octopus (i.e. less development overhead). Remove the mental weight of understanding all the touches points within Octopus Server. Outocme is faster integration with less headaches. i.e. We could introduce pulumi support following the patterns created by terraform in a very short period of time vs. 
+This is a huge step forward as this allows us to make the Octopus Server (both front-end and web services) a world-class coordination engine without any specific knowledge or hooks to technology specific steps. For example, we can have support for Azure, AWS or Terraform without the server having any specific knowledge or references of these technologies.
 
-This also unlocks the ability for us to get third parties to add support within Octopus as well as us outsourcing development for specific tasks if required.
+Our goal for this work is to simplify the development to add support for new technologies and services. In other words, developers on our team can write code to add support in isolation from Octopus, grok it and test it in isolation. This removes the mental weight of understanding all the touches points within Octopus Server. The outcome is faster integration with less headaches. i.e. We could introduce Pulumi support following the patterns created by Terraform in a very short period of time. This also opens up the possibility for third parties to add support for their technologies within Octopus.
 
-## Sashimi Structure
+### Sashimi components and one big problem
 
-Built as nuget packages.
-- Zipped UI files that get injected.
-- Server Side logic DLL 
-- Any third party DLLs (depdencies) to make the server side core work.
-- Also packaged is the calamari components. The standalone executables. (Server doesn't referecne them directly).
+We're building Sashimi slices as NuGet packages. Each Sashimi package contains: 
 
-10 Flavours. 3 platforms each. 40MB each. == Giant Octopus. 1.2 GIG and we're only going to add more flavours. 
+- Zipped UI files that are injected into the main user interface.
+- Server-side processing components 
+- Any third party libraries or components (dependencies)
+- Calamari components i.e. The standalone executables for each platform. 
 
----
+One important thing to note is that this is bundling a lot of files and this can add up to a lot of storage. For example, if we had 10 Calamari Flavours and 3 platforms each. This is 30 calamari components (self contained executables) which are 40 MB each. The end result of this is that we were facing 1.2 GB of additional data per Octopus release. Obviously, this approach wasn't ideal. 
 
-This isn't a good idea. 
+### Sashimi and calamari consolidation
 
-## Consolidated calamari platform at Build Time.
-
-We compare all of these packages and pull out the common bits into a zip file. This way, we get great consolidation and compression and the core calamari zip file is only 150 meg. If we need a specific calamari, we recostitute it on the server and redeploy it ot the target.
+To solve this storage problem, we needed to come up with a thoughtful solution. The way we overcome it is that crafted a build time process to consolidate the Calamari components and extract all common files and executables into a separate ZIP file which can the be compressed further. The common component is only 150 MB and the rest of the files are negligable. We also build an index at this stage and then we use this at runtime we can reconsistute the the appropriate components within Octopus Server and then the appropriate Calamari is transferred to the deployment tareet.
 
 ## Conclusion
 
-Summarise the benefits. The change should be transparent to the customer too.
+With Calamari and Sashimi, we are realising our goal of little slices of Octopus and true modularity. This brings a ton of benefits but the most prominent is a simpler code base and less friction to integrate with new techologies. We're still in the middle of this transition but it's already proving it's value. None of these ideas are new but we're pleased to prioritise it and actually make it happen. 
+
+This is a refactoring at it's best. We're improving the design of our code base and it should be transparent to our customers. 
