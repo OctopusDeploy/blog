@@ -1,6 +1,6 @@
 ---
 title: Database Deployments with Redgate SQL Change Automation, GitHub Actions, and Octopus Deploy
-description: This post shows you how to use Github Actions to build a Redgate SQL Change Automation Package and push it to Octopus Deploy for deployments.
+description: Learn how to use GitHub Actions to build a Redgate SQL Change Automation Package and push it to Octopus Deploy for deployments.
 author: bob.walker@octopus.com
 visibility: public
 published: 2020-12-31
@@ -11,21 +11,23 @@ tags:
  - Database Deployments
 ---
 
-I have been prepping for an webinar on database deployments.  I have my sample application ready to go.  I have my deployment server ready to go (no doubt which one that should be).  What build server should I use?  The build server is a small part of the webinar.  I didn't feel like spinning up an entire project in Azure DevOps or standing up a sample Jenkins instance.  I then read Ryan's [recent post](https://octopus.com/blog/publishing-a-package-to-octopus-with-github-actions) on [GitHub Actions](https://github.com/features/actions).  I decided to give that a shot.  I had several additional challenges:
+In this post, I show you how to use GitHub Actions to build a Redgate SQL Change Automation Package and push it to Octopus Deploy for deployments.
+
+I've been prepping for a webinar on database deployments. My sample application is ready to go, and I have my deployment server ready (no doubt which one that should be), but which build server should I use?  The build server is only a small part of the webinar, and I don't feel like spinning up an entire project in Azure DevOps or standing up a sample Jenkins instance. Ryan recently wrote about [publishing a package to Octopus with GitHub Actions](https://octopus.com/blog/publishing-a-package-to-octopus-with-github-actions), so I decided to give that a shot. This approach led to several additional challenges:
 
 - Install Redgate's SQL Change Automation to build the database package.  
 - Redgate's SQL Change Automation can only be run on Windows (it requires the .NET Framework).
 - Building a Redgate SQL Change Automation package involves creating a temporary database to ensure the proposed changes are syntactically correct.
-- I still need to install the Octo CLI, but Windows doesn't have a package manager built-in.  
-- I think there is a easier way to define a version number.
+- I still need to install the Octopus CLI, but Windows doesn't have a package manager built-in.  
+- I think there is an easier way to define version numbers.
 
-I was able to overcome all of those challenges thanks to [GitHub Action's excellent documentation](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions), some examples, and a little trial and error.  Read more to see how I overcame those challenges.
+I overcome all of those challenges thanks to [GitHub Action's excellent documentation](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions), some examples, and a little trial and error.  Read on to see how I did it.
 
 !toc
 
 ## Getting started
 
-I opted to create a GitHub action workflow file from scratch.  The first decision, outside of the name, was what is it going to monitor for.  The monitoring possibilities are [quite staggering](https://help.github.com/en/actions/reference/events-that-trigger-workflows#webhook-events).  This is my first action, I wanted to start simple then go complex.  A GitHub Action which monitors for changes to the master branch.
+I opted to create a GitHub Action workflow file from scratch. The first decision, after the name, was what to monitor.  The monitoring possibilities are [quite staggering](https://help.github.com/en/actions/reference/events-that-trigger-workflows#webhook-events).  This is my first action, and I wanted to start simple before going complex.  A GitHub Action which monitors for changes to the master branch looks like this:
 
 ```YAML
 name: Package Database
@@ -38,7 +40,7 @@ on:
 
 ## Configuring to run on Windows
 
-After defining the trigger, it is now time to define the job and the individual steps.  In looking at previous samples the runs on was configured to run on Ubuntu.
+After defining the trigger, it is time to define the job and the individual steps. The samples I looked at, were configured to `run on` Ubuntu:
 
 ```YAML
 jobs:
@@ -47,13 +49,13 @@ jobs:
     runs-on: ubuntu-latest
 ```
 
-Redgate SQL Change Automation needs to run on Windows.  I wasn't keen on standing up my own server, which GitHub calls runners, for this to work.  Thankfully that wasn't the case.  In looking at the documentation for [GitHub Actions](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on), a GitHub Action can run on:
+Redgate SQL Change Automation needs to run on Windows.  I wasn't keen on standing up my own server, which GitHub calls runners, for this to work, but thankfully I didn't need to.  In looking at the documentation for [GitHub Actions](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on), a GitHub Action can run on:
 
 - Windows
 - Ubuntu
 - MacOS
 
-A deeper dive into [the documentation on hosted runners](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) provides a bit more insight.  Follow enough links and you will end up on a page listing out the [software installed on the provided runners](https://help.github.com/en/actions/reference/software-installed-on-github-hosted-runners).
+A deeper dive into [the documentation on hosted runners](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners) provides a bit more insight.  Follow enough links, and you will end up on a page that lists the [software installed on the provided runners](https://help.github.com/en/actions/reference/software-installed-on-github-hosted-runners).
 
 At the very top of the [installed software](https://github.com/actions/virtual-environments/blob/master/images/win/Windows2019-Readme.md) on the Windows runner is my favorite Windows Package Manager, Chocolatey.
 
@@ -76,7 +78,7 @@ jobs:
     runs-on: windows-latest
 ```
 
-## Installing the Octo CLI
+## Installing the Octopus CLI
 
 Most of the GitHub Action examples I found used bash scripts.  Redgate's SQL Change Automation uses PowerShell cmdlets.  The good news is [I had a choice](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsrun).  My options were:
 
@@ -87,7 +89,7 @@ Most of the GitHub Action examples I found used bash scripts.  Redgate's SQL Cha
 - PowerShell (Windows)
 - Batch or cmd (Windows)
 
-This meant I could use chocolatey to install the [Octopus Tools](https://chocolatey.org/packages/OctopusTools) package, which contains the Octo CLI.
+This meant I could use Chocolatey to install the [Octopus Tools](https://chocolatey.org/packages/OctopusTools) package, which contains the Octopus CLI:
 
 ```YAML
 name: Package Database
@@ -113,9 +115,9 @@ jobs:
 
 ## Installing Redgate SQL Change Automation
 
-That's all well and good, but what about SQL Change Automation?  Well for quite some time, SQL Change Automation has been a PowerShell module.  PowerShell modules are a bit unique, you can install them to a central static location, or to a specified folder.  I was unsure of the best practice/recommendation for this.  What I did was install the SQL Change Automation Package into a subfolder off the working directory.  
+That's all well and good, but what about SQL Change Automation?  Well, for quite some time, SQL Change Automation has been a PowerShell module.  PowerShell modules are a bit unique; you can install them to a central static location, or to a specified folder.  I was unsure of the best practice/recommendation for this, so I installed the SQL Change Automation Package into a sub-folder off the working directory.  
 
-If I changed the name of that subfolder I didn't want to have to update multiple places.  I opted to use the [environment variable](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#env) feature of GitHub actions to set a static value for a folder name.  I added a step to create that folder followed by a step which installs the PowerShell modules to that new folder.
+I used the [environment variable](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#env) feature of GitHub actions to set a static value for the sub-folder name so that I wouldn't have to change it in multiple places if I ever rename the sub-folder.  I added a step to create that folder followed by a step which installs the PowerShell modules to the new folder:
 
 ```YAML
 name: Package Database
@@ -159,18 +161,18 @@ jobs:
 
 ## Building the Redgate SQL Change Automation Package
 
-Building Redgate SQL Change Automation Package involves a lot of little decisions.
+Building Redgate SQL Change Automation Package involves a lot of little decisions:
 
-- Output Folder -> Where the package is going to be saved to.
-- Package Name -> The name of the package for the application.
-- Version Number -> The version number of the package, which should be auto-incrementing for Octopus Deploy.
-- Temporary Database -> Redgate SQL Change Automation will create a temporary database and attempt to run all the scripts stored in source control.  It does this to ensure the database is syntactically correct.
+- **Output Folder**: Where the package is going to be saved to.
+- **Package Name**: The name of the package for the application.
+- **Version Number**: The version number of the package, which should be auto-incrementing for Octopus Deploy.
+- **Temporary Database**: Redgate SQL Change Automation will create a temporary database and attempt to run all the scripts stored in source control.  It does this to ensure the database is syntactically correct.
 
-For this section I won't show the entire YAML file (it would be quite long), rather a subset of it to highlight the important points.
+For this section, I won't show the entire YAML file (it will be quite long), but rather a section of it to highlight the important points.
 
 ### Output Folder
 
-I did the same thing I did with the modules folder, I set an environment variable and created a new output directory based on that.
+I used another environment variable here and created a new output directory based on that:
 
 ```YAML
 name: Package Database
@@ -200,7 +202,7 @@ jobs:
 
 ### Package Name
 
-The build process should be the one which defines the name of the package.  I also don't expect the package name to change.  So I set an environment variable.
+The build process should be the one that defines the name of the package, and I don't expect the package name to change, so I set an environment variable for the package name:
 
 ```YAML
 name: Package Database
@@ -218,19 +220,19 @@ env:
 
 ### Version Number
 
-I follow these rules of thumb for setting a version number.
+I follow these rules of thumb for setting a version number:
 
-- Define once for entire application
+- Define once for the entire application
 - Consistent across applications
 - Easy to maintain and update
 
-I personally believe setting the version number should be done outside the GitHub Action, or any build server.  By putting it in a GitHub action it means only a developer can change it.  It is too hidden.  That being said, most of the time a developer is the only who changes it.  
+I personally believe setting the version number should be done outside the GitHub Action or any build server.  By putting it in a GitHub Action, it means only a developer can change it.  It's too hidden.  That being said, most of the time, a developer is the only one who does change it.  
 
-I think the GitHub action should have the necessary logic in it to calculate the version number.  You could have it look at the branch name.  Or, in my case, pull the version prefix from a file in source control.  GitHub Actions provide a number of [pre-defined environment variables](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables).  The one I am interested in is GITHUB_RUN_NUMBER as that is always incrementing.  
+I think the GitHub Action should have the necessary logic in it to calculate the version number.  You could have it look at the branch name.  Or, in my case, pull the version prefix from a file in source control.  GitHub Actions provide a number of [pre-defined environment variables](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables).  The one I am interested in is GITHUB_RUN_NUMBER as that is always incrementing.  
 
 ![](version-prefix-file.png)
 
-GitHub Actions now has the ability to set environment variables which can be used by other steps in the workflow.  The syntax is a bit...interesting.
+GitHub Actions now has the ability to set environment variables that can be used by other steps in the workflow.  The syntax is a bit...interesting:
 
 ```
 echo "::set-env name=[VARIABLE NAME]::[VARIABLE VALUE]
@@ -271,22 +273,22 @@ jobs:
 
 ### Temporary database
 
-This one stumped me for more time than I cared to admit.  I went down the road of setting up an Azure SQL Server with a permanent "build" database to use.  Unlike traditional SQL Servers, Azure SQL Server does not offer the ability to create a database using the `Create Database` T-SQL Command.  You have to use the [Portal, an ARM Template](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal), TerraForm or the Azure CLI.  Basically everything but T-SQL.  But my default settings for Azure SQL Server were a bit too strict.  
+This one stumped me for longer than I cared to admit.  I went down the road of setting up an Azure SQL Server with a permanent _build_ database to use.  Unlike traditional SQL Servers, Azure SQL Server does not offer the ability to create a database using the `Create Database` T-SQL Command.  You have to use the [Portal, an ARM Template](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal), TerraForm, or the Azure CLI.  Basically, everything but T-SQL.  But my default settings for Azure SQL Server were a bit too strict.  
 
-The [documentation for the build database package cmdlet](https://documentation.red-gate.com/sca/reference/powershell-cmdlets/new-databasebuildartifact) said it uses LocalDB as the default database.  On a whim I did a quick find on the installed app list.  Lo and behold, localdb is part of the pre-installed apps.
+The [documentation for the build database package cmdlet](https://documentation.red-gate.com/sca/reference/powershell-cmdlets/new-databasebuildartifact) said it uses LocalDB as the default database.  On a whim, I did a quick find on the installed app list.  Lo and behold, `localdb` is part of the pre-installed apps:
 
 ![](installed-apps-github-action-runner-localdb.png)
 
-## Sensitive variables and invoking the Octo CLI
+## Sensitive variables and invoking the Octopus CLI
 
-You can store sensitive variables GitHub Actions using the secrets functionality.  This can be accessed by going to the repository in the GitHub UI, clicking on Settings -> Secrets.
+You can store sensitive variables for GitHub Actions using the secrets functionality.  This can be accessed by going to the repository in the GitHub UI, clicking on {{Settings , Secrets}}:
 
 ![](github-actions-secrets.png)
 
-A few observations on GitHub Secrets.  
+A few observations about GitHub Secrets.  
 
-- A secret can only be written once.  If you need to update a secret you will need to delete the secret then recreate them.
-- GitHub Actions will do it's dardnest to prevent you from writing a secret to a log.  
+- A secret can only be written once.  If you need to update a secret, you have to delete the secret, then recreate it.
+- GitHub Actions will do it's darnedest to prevent you from writing a secret to a log.  
 - Accessing Secrets on a PowerShell step is not as straight-forward as bash.
 
 I tripped over that last bullet point.  What the syntax ends up looking like is:
@@ -304,7 +306,7 @@ I tripped over that last bullet point.  What the syntax ends up looking like is:
 
 ## Putting it all together
 
-I have all the bits and pieces needed to build the Redgate SQL Change Automation package, push it to Octopus Deploy, and create a release.  
+I have all the bits and pieces needed to build the Redgate SQL Change Automation package, push it to Octopus Deploy, and create a release:
 
 ```YAML
 name: Package Database
@@ -392,15 +394,15 @@ jobs:
 
 ## Why Handover to Octopus Deploy?
 
-DBAs are a picky bunch.  I worked with a DBA who told me repeatably "All I want is something that is stupid simple."  In the next breath he said "I also want to make sure developers aren't throwing crap over the wall at the DBAs, we need to know what changes are being deployed to Production.  If something doesn't look right I need to stop it from going out."  Finally he told me, "I don't want any surprises when we deploy to Production.  I'm tired of this wild-west stuff where you give me a script you wrote just hours ago."
+DBAs are a picky bunch.  I worked with a DBA who told me repeatably, "All I want is something that is stupid simple."  In the next breath, he said, "I also want to make sure developers aren't throwing crap over the wall at the DBAs. We need to know what changes are being deployed to Production.  If something doesn't look right, I need to stop it from going out."  Finally, he told me, "I don't want any surprises when we deploy to Production.  I'm tired of this wild-west stuff where you give me a script you wrote just hours ago."
 
-I believe in using the right tool for the job.  In a pinch, I could use a Maglite to hammer a nail.  But a Maglite is not a hammer.  The same holds true for shop tools, dev tools or CI/CD tools.  I could probably cobble something together to meet those requirements using GitHub Actions, but that what it wasn't designed for.  With Octopus Deploy I get all those requirements out of the box.  
+I believe in using the right tool for the job.  In a pinch, I could use a Maglite to hammer a nail.  But a Maglite is not a hammer.  The same holds true for shop tools, dev tools, or CI/CD tools.  I could probably cobble something together to meet those requirements using GitHub Actions, but that's not what it was designed for.  With Octopus Deploy, I get all those requirements out of the box.  
 
-I look at GitHub actions like any CI tool. What it does, it does well.  But don't try to force it to be something it is not.  
+I look at GitHub Actions like any CI tool. What it does, it does well.  But don't try to force it to be something it isn't.  
 
 ## Conclusion
 
-All in all I am very impressed with how well put together GitHub Actions is.  I was able to put the entire GitHub Action together using their documentation, some examples, and a little trial and error in a few hours.  I have since extended this action to handle feature branches and other logic.  But that is for a future post.
+All in all, I am very impressed with how well put together GitHub Actions is.  I was able to put the entire GitHub Action together using their documentation, some examples, and a little trial and error in a few hours.  I have since extended this action to handle feature branches and other logic.  But that is for a future post.
 
 Until next time, Happy Deployments!
 
