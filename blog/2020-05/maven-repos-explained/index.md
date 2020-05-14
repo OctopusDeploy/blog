@@ -98,6 +98,6 @@ Note that only SNAPSHOT versions contain this second `maven-metadata.xml` file. 
 
 Because they are just static files, Maven repositories are relatively simple to interact with. Web browsers and tools like Curl can download artifacts directly if you know how the URLs are constructed.
 
-SNAPSHOT versions can be a little tricker as the file names include unique timestamps that must be read from a `maven-metadata.xml` file.
+SNAPSHOT versions can be a little trickier as the file names include unique timestamps that must be read from a `maven-metadata.xml` file.
 
 Using the Maven command line tool `mvn` avoids these issues and allows you to download files knowing only the group ID, artifact ID and versions, and optionally the classifier and packaging type.
