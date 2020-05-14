@@ -41,7 +41,7 @@ In this release, we're adding support to execute deployment work in isolated con
 
 Previously, you would need to ensure the machines in your worker pools (including the built-in worker pool) have the necessary tools required for your deployments, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don't install side by side. Also, Octopus bundles some tools, and it's a challenge to keep them up to date as well. 
 
-![Execution containers for Workers diagram](exec-containers-for-workers-02.png)
+![Execution containers for Workers diagram](exec-containers-for-workers-01.png)
 
 **Execution containers for Workers** solve these problems and more.
 
