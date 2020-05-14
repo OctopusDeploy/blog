@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Maven provides many features for Java developers. As a build tool, Maven provides a well supported project format and a huge selection of build tools to create almost any kind of Java (or JVM) application imaginable. Other build tools like Gradle also exist in this space, though Maven is still popular.
+Maven provides many features for Java developers. As a build tool, Maven provides a well supported project format and a huge selection of build tool plugins to create almost any kind of Java (or JVM) application imaginable. Other build tools like Gradle also exist in this space, though Maven is still popular.
 
 Maven also defines a standard package repository that is almost universally used by Java developers. A Maven repository is fairly simple, as it is implemented using static files. There is no API and no server beyond something like a HTTP server to host the files. This makes it easy to inspect the contents of a Maven repository and access the files it contains.
 
@@ -18,9 +18,9 @@ In this blog post we'll look at how files are hosted in a Maven repository and l
 
 ## Maven central vs Maven search portals
 
-Maven central is a free and publicly available repository of open source code libraries and applications. There are many mirrors of Maven central, but the main repository can be found at https://repo1.maven.org/maven2/.
+Maven central is a free and publicly available repository of open source libraries and applications. There are many mirrors of Maven central, but the main repository can be found at https://repo1.maven.org/maven2/.
 
-As we noted in the introduction, Maven repositories are nothing more than static files saved in a structured hierarchy. You can open https://repo1.maven.org/maven2/ in a web browser and navigate the directory structure yourself with no additional tools.
+As we noted in the introduction, Maven repositories are nothing more than static files saved in a specifically formatted hierarchy. You can open https://repo1.maven.org/maven2/ in a web browser and navigate the directory structure yourself with no additional tools.
 
 However, it is convenient to be able to quickly search these repositories. To facilitate this, sites like https://search.maven.org/ maintain an index of the artifacts in a repository and expose them via searches.
 
@@ -28,7 +28,7 @@ It is important to be aware that unlike other artifact repositories that expose 
 
 ## Browsing the Maven repository
 
-Maven artifacts are identified by a group ID, and artifact ID and a version. These three points are often combined into a coordinate called a GAV (Group, Artifact and Version).
+Maven artifacts are identified by a group ID, an artifact ID and a version. These three points are often combined into a coordinate called a GAV (Group, Artifact and Version).
 
 Octopus has published a sample Java application with a group ID of `com.octopus`, and an artifact ID of `randomquotes`.
 
@@ -36,27 +36,29 @@ Octopus has published a sample Java application with a group ID of `com.octopus`
 Group IDs are commonly a reverse DNS name. However, this is just a convention, and not a requirement.
 :::
 
-The group and artifact IDs are used to build the directory structure that holds the Maven artifacts. If you open https://repo1.maven.org/maven2/com/octopus/randomquotes/, you will find a number of subdirectories that contain r4eleases and metadata files that describe them.
+The group and artifact IDs are used to build the directory structure that holds the Maven artifacts. If you open https://repo1.maven.org/maven2/com/octopus/randomquotes/, you will find a number of subdirectories that contain releases and metadata files that describe them.
 
-The file at https://repo1.maven.org/maven2/com/octopus/randomquotes/maven-metadata.xml is created by the tool used to publish the Maven artifacts. It lists various details on the artifacts that have been published, like version number and the dates when the artifact was last updated.
+The file at https://repo1.maven.org/maven2/com/octopus/randomquotes/maven-metadata.xml is created when a Maven artifact is published. It lists various details on the artifacts that have been published, like version number and the dates when the artifact was last updated.
 
 ## Maven artifact files
 
 Browsing to a specific Maven artifact version like https://repo1.maven.org/maven2/com/octopus/randomquotes/0.1.7/ shows the files that make up a release.
 
+Again we find some differences here between Maven and other package repositories, specifically that a given version of a Maven artifact can contain a number of individual files. In the screenshot below you can see this Maven artifact has files containing the JavaDocs, application source code and the application itself as a WAR file:
+
 ![](maven-artifact-files.png "width=500")
 
-Again we find some differences here between Maven and other package repositories, specifically that a specific version of a Maven artifact can contain a number of individual files. In the screenshot below you can see this Maven artifact has files containing the JavaDocs, application source code and the application itself as a WAR file.
+*The files that make up a Maven release.*
 
-Maven supports this through the use of classifiers, which are embedded in the artifact file names. For example, the file `randomquotes-0.1.7-javadoc.jar` shares the GAV of `com.octopus:randomquotes:0.1.7` with the other files in this directory, but is distinguished by a classifier or `javadoc`. Likewise the file `randomquotes-0.1.7-sources.jar` has the classifier of `sources`.
+Maven supports this through the use of classifiers, which are embedded in the artifact file names. For example, the file `randomquotes-0.1.7-javadoc.jar` shares the GAV of `com.octopus:randomquotes:0.1.7` with the other files in this directory, but is distinguished by a classifier of `javadoc`. Likewise the file `randomquotes-0.1.7-sources.jar` has the classifier of `sources`.
 
-The file `randomquotes-0.1.7.war` has no classifier, and would typically be considered the default artifact, and is most likely the artifact that you would deploy or consume as a dependency in your own code.
+The file `randomquotes-0.1.7.war` has no classifier, and would typically be considered the default artifact, and is most likely the artifact that you would deploy or consume as a dependency in your own project.
 
 Maven also supports multiple files of different types. For example, we may have a file called `randomquotes-0.1.7.zip` in the same directory. The file extension is referred to as the packaging.
 
 ## Downloading Maven files
 
-While we can happily use a web browser or tools like Curl to download Maven artifacts, this does require us to know exactly how to build up the URLs. We can use the Maven CLI tool to download files based on their GAV, classifier and packaging, and let it create the URLs for us.
+While we can happily use a web browser or tools like Curl to download Maven artifacts, this does require us to know exactly how to build up the URLs. We can use the Maven CLI tool to download files based on their GAV, classifier and packaging, and let it deal with finding the correct files.
 
 The command below will attempt to download the default JAR package to the local `/tmp` directory:
 
@@ -78,13 +80,15 @@ mvn org.apache.maven.plugins:maven-dependency-plugin:2.8:copy -DrepoUrl=http://c
 
 These commands highlight how Maven defaults to downloading unclassified JAR files, but can specifically download a package of a certain type and classifier if required.
 
-## Snapshot versions
+## SHAPSHOT versions
 
 Maven has the notion of a SNAPSHOT version. SNAPSHOT artifact versions are typically used during development to continually republish the same version over and over.
 
 In the screenshot below you can see the files from a Maven repository hosted in AWS S3 for the artifact `org.example:template:0.0.1-SNAPSHOT`. There are multiple ZIP files with names like `template-0.0.1-20200305.005209-1.zip` and `template-0.0.1-20200514.001815-2.zip`. Each of these files represent a SNAPSHOT version pushed to the repository:
 
 ![](snapshots.png "width=500")
+
+*The files that make up a SNAPSHOT release.*
 
 End users don't normally need to worry about downloading a specific SNAPSHOT version. Maven clients will inspect the file at https://octopus-maven-repo.s3.amazonaws.com/snapshot/org/example/template/0.0.1-SNAPSHOT/maven-metadata.xml, read the time when each file was updated, and download the latest one automatically.
 
