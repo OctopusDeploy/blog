@@ -72,7 +72,7 @@ docker run --interactive --detach  `
 The Tentacle can be configured in polling or listening mode and again, check out [our docs](https://octopus.com/docs/installation/octopus-in-container/octopus-tentacle-container) for further details on the available settings.
 
 ## No SQL? No Worries
-"But Rob!" I hear you saying, "I don't have an SQL Server hanging about to run Octopus against." Well, that's fine because we can make use of [Docker Compose](https://docs.docker.com/compose/overview/) to spin up an SQL database container alongside our Octopus Server. (_Caution: There are [many opinions](http://patrobinson.github.io/2016/11/07/thou-shalt-not-run-a-database-inside-a-container/) around running a database inside a container for production purposes. We tend to agree. These next examples are probably best left for testing and experimentation._)
+"But Rob!" I hear you saying, "I don't have a SQL Server hanging about to run Octopus against." Well, that's fine because we can make use of [Docker Compose](https://docs.docker.com/compose/overview/) to spin up a SQL database container alongside our Octopus Server. (_Caution: There are [many opinions](http://patrobinson.github.io/2016/11/07/thou-shalt-not-run-a-database-inside-a-container/) around running a database inside a container for production purposes. We tend to agree. These next examples are probably best left for testing and experimentation._)
 
 Using the following `docker-compose.yml` file:
 

@@ -46,7 +46,7 @@ My reason for using Octopus Deploy (aside, from the fact I work here) is because
 For the purposes of this blog post. here are the use cases:
 
 - As a developer, I need to run an ad-hoc query to add an index to see if that resolves a performance issue.  If it does, then add that index into the database definition and push it through all environments.
-- As a DBA, I need to run an ad-hoc query to create an SQL Login.
+- As a DBA, I need to run an ad-hoc query to create a SQL Login.
 - As a support engineer, I need to run an ad-hoc query to grant select rights to a developer.
 - As a business analyst, I need to clean up a data issue for a user.
 

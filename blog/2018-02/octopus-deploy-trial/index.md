@@ -13,7 +13,7 @@ Octopus offers a no obligation 30 day free trial to give you a chance to evaluat
 
 ## Downloads
 
-Next, you'll need to download the Octopus Server MSI, Octopus Tentacle MSI, and an SQL Server Database:
+Next, you'll need to download the Octopus Server MSI, Octopus Tentacle MSI, and a SQL Server Database:
 
 * [Octopus Deploy Server](https://octopus.com/downloads).
 * [Octopus Tentacle installer](https://octopus.com/downloads).
@@ -31,7 +31,7 @@ We’ll let Octopus configure the database in the next step.
 
 ## Install Octopus
 
-Start the Octopus Server installer, accept the license and the defaults. When the installer is done, click finish to launch the Octopus Manager and click **Get Started...**. 
+Start the Octopus Server installer, accept the license and the defaults. When the installer is done, click finish to launch the Octopus Manager and click **Get Started...**.
 
 ![Octopus Manager](octopus-manager.png "width=500")
 
@@ -41,7 +41,7 @@ When you get to the **Database** screen, click the dropdown next to **Server Nam
 
 For instance, **OctopusDB** and click **Next**.
 
-Accept the default ports for the web portal. Add a username, email, and password to the authentication screen. You’ll use these to log into the web portal. 
+Accept the default ports for the web portal. Add a username, email, and password to the authentication screen. You’ll use these to log into the web portal.
 
 ![Successful Installation](successful-installation.png "width=500")
 
@@ -61,7 +61,7 @@ Octopus organizes the machines (whether you’re deploying to physical servers o
 3. Copy the thumbprint, the long alphanumeric string further down the screen. Paste this somewhere you can access it. You'll need it soon.
 4. Add a hostname. I'm using Localhost.
 
-Next, we'll need some infrastructure to deploy to. We're going to configure a tentacle on the same machine as the **Octopus Server**. Tentacles are a lightweight deployment agent service that runs as a Windows service. You install them on the machines you plan to deploy software to. 
+Next, we'll need some infrastructure to deploy to. We're going to configure a tentacle on the same machine as the **Octopus Server**. Tentacles are a lightweight deployment agent service that runs as a Windows service. You install them on the machines you plan to deploy software to.
 
 Start the Octopus Tentacle installer. Accept the license and the defaults. Click **Finish** to launch the **Tentacle Manager**. Click **Get Started** and accept the default storage options.
 
@@ -82,4 +82,4 @@ And you’re good to go.
 
 This gives you a working instance of Octopus, albeit, in a configuration that lets you evaluate the look and feel of Octopus and peek under the hood, but not a configuration that many people will use to deploy real world software.
 
-Depending on what you want to deploy you could check out the [documentation](https://octopus.com/docs/getting-started) to learn about [packaging](https://octopus.com/docs/packaging-applications) and [deploying](https://octopus.com/docs/deploying-applications) your apps, watch our videos, or browse through the blog. 
+Depending on what you want to deploy you could check out the [documentation](https://octopus.com/docs/getting-started) to learn about [packaging](https://octopus.com/docs/packaging-applications) and [deploying](https://octopus.com/docs/deploying-applications) your apps, watch our videos, or browse through the blog.
