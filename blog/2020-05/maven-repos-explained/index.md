@@ -24,7 +24,7 @@ As we noted in the introduction, Maven repositories are nothing more than static
 
 However, it is convenient to be able to quickly search these repositories. To facilitate this, sites like https://search.maven.org/ maintain an index of the artifacts in a repository and expose them via searches.
 
-It is important to be aware that unlike other artifact repositories that expose APIs with search functionality, a Maven repository is a separate entity from any search service. A site like https://search.maven.org/ is not a Maven repository and is not used by Maven clients; it only provides a convenient interface in which to search a Maven repository.
+It is important to be aware that unlike other artifact repositories that expose APIs with search functionality, a Maven repository is a separate entity from any search service. A site like https://search.maven.org/ is not a Maven repository and is not used by Maven clients; it only provides a convenient interface through which to search a Maven repository.
 
 ## Browsing the Maven repository
 
@@ -43,6 +43,8 @@ The file at https://repo1.maven.org/maven2/com/octopus/randomquotes/maven-metada
 ## Maven artifact files
 
 Browsing to a specific Maven artifact version like https://repo1.maven.org/maven2/com/octopus/randomquotes/0.1.7/ shows the files that make up a release.
+
+![](maven-artifact-files.png "width=500")
 
 Again we find some differences here between Maven and other package repositories, specifically that a specific version of a Maven artifact can contain a number of individual files. In the screenshot below you can see this Maven artifact has files containing the JavaDocs, application source code and the application itself as a WAR file.
 
@@ -86,7 +88,7 @@ In the screenshot below you can see the files from a Maven repository hosted in 
 
 End users don't normally need to worry about downloading a specific SNAPSHOT version. Maven clients will inspect the file at https://octopus-maven-repo.s3.amazonaws.com/snapshot/org/example/template/0.0.1-SNAPSHOT/maven-metadata.xml, read the time when each file was updated, and download the latest one automatically.
 
-Note that only SNAPSHOT versions contain this second `maven-metadata.xml` file. Non-SNAPSHOT versions are expected to only be published once and remain unchanged, so the files that make up non-SNAPSHOT releases can be determined from the GAV, packaging type and classifier.
+Note that only SNAPSHOT versions contain this second `maven-metadata.xml` file. Non-SNAPSHOT versions are expected to only be published once and remain unchanged, so the files that make up non-SNAPSHOT releases can be determined from the GAV, packaging type and classifier, removing the need for this second `maven-metadata.xml` file.
 
 ## Conclusion
 
