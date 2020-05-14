@@ -1,5 +1,5 @@
 ---
-title: "Refactoring Octopus: Introducing Modularity"
+title: "Refactoring Octopus: Modularity, Calamari and Sasahimi"
 description: Learn more about how our engineering team refactored the Octopus code base to introduce modularity, reduce complexity and eat some sashimi.
 author: rob.pearson@octopus.com
 visibility: private
@@ -10,25 +10,33 @@ tags:
  - Engineering
 ---
 
-// TODO: Add Article Graphic
-
-BLUF
+// TODO: Add blog post graphic
 
 ## Why Refactor Octopus Deploy
 
-History lesson. Introduction to deployment logic. Tentacle first. If we updated Octopus, Tentacle had to be updated too. Thye were tightly coupled.
+We shipped Octopus Deploy 1.0 nearly 8 years ago and the product has grown tremendously in popularity as well as feature set. As a part of this journey, the code base has undergone some big changes including huge overhauls and rewrites. In this blog series, we will share some of the problems this growth has brough and how we're refactoring the code base to make simplify it and make it easier to change.
 
-Then we introduced Calamari. Little slices of Ocotpus. Calamari was owned by Octopus Server and pushed down to Tentacle. So whenever you upgraded Octopus, you could run the latest code for your step. Nice improvement.
+In this article, I talk about how we're introducing modularity to make it easier to integration with external services and tools.
 
-We ended up with two slices. Standard Calamari and Calamari Cloud. It's a big monolith built one or two ways. It didn't come out as intended.
+## Octopus, Tentacle and Calamari! 
 
-What we started with Modularity 
-We split this up into little slices. 
+![Octopus and Tentacle diagram](octopus-and-tentacle.png)
+
+It's time for walk down memory lane for a brief history lesson. Octopus has long made it easy to ship web sites and services but the logic that powered the deployment execution has moved around over the years. 
+
+In the Octopus 1.x and 2.x timeframe, the logic to execute deployments lived in Tentacle. The Octopus Server did the main coordination and the actualy deployments were executed directly within our Tentacle agent running on deployment targets. If we shipped a new version of Octopus or an update to deployment execution, we had to ship a new version of Tentacle. They were tightly coupled and needed to be in sync.
+
+Then in Octopus 3.0, we introduced Calamari which we called little slices of Octopus. This new component was a standalone deployment execution engine and we envisioned we'd created multiple indepedent calamari slices for different purposes and technologies. We also introduced SSH deployment targets and Tentacle mirror'd its role in that it became a simple pipe used to communicate with the Octopus Server and transfer deployment data. As time passed, Calamari grew to be a bit of a monolith and we only really had two slices: Standard Calamari and Calamari Cloud.
+
+Over the years, this has worked well and helped our customers execute tens of millions of deployments however it has introduced some challenges. If we want to add a new integration for a new technology, there is deep knoweldge required for numerous touch points across the Octopus code based from the front end, some server side code as well as Calamari updates. WHile this works it slows us down and it's friction for us to add new integrations. We knew we needed a change and we've been planning it for a while. 
 
 // TODO: Graphic w/ Terraform Calamari, AWS Calamari, Azure Calamri, IIS Calamari etc.
 
-Each calamari is it's own separate project w/ distinct entry points. Totally independent and can be upgraded indenpendently/customised per project.
+Our first step was to start splitting up Calamari as we originally intended. Split it into little slices with their own separate projects and distinct entry point. Each slice is totally independent and can be upgraded indenpendently and customised as per the project's needs. Examples of the slices are:
 
+
+
+This alone brings advantes 
 Advantages:
 - Totally independant. Customise each project based on its needs.
 - We could separate an older legacy technology like Azure Cloud Services and leave it while we upgrade other projects to take advantage of the latest updates and innovations.
