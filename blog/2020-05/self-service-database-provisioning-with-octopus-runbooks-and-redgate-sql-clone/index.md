@@ -1,15 +1,14 @@
 ---
 title: Self-service database provisioning with Octopus Runbooks and Redgate SQL Clone
 description: A discussion about database provisioning for dev and test, including a walk-through of Redgate SQL Clone and Octopus Runbooks
-author: Alex Yates
+author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-05-13
+published: 2020-05-18
 metaImage: runbooks-selfservice.png
 bannerImage: runbooks-selfservice.png
 tags:
- - Product
- - Runbooks
  - DevOps
+ - Runbooks
  - Database Deployments
 ---
 
