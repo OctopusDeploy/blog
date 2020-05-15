@@ -37,4 +37,8 @@ It is worth noting that when configuring a deployment action to execute inside a
 
 As Octopus continues to support deploying many types of applications (.NET, Java, NodeJS, etc) to many platforms (Windows, Linux, PaaS) in many clouds (self-hosted, AWS, Azure, etc), we hope this will provide a generic way to tame deployment tooling dependencies.
 
+Execution containers are available as an Early Access Preview in Octopus 2020.2.  
+
+![Action Container Feature Flag](feature-flag.png "width=500")
+
 Happy Deployments!
