@@ -2,13 +2,16 @@
 title: Hosting a Maven repo in Amazon S3
 description: Learn how to host a fully functional Maven repository in Amazon S3
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-05-20
+metaImage: maven-repo-s3.png
+bannerImage: maven-repo-s3.png
 tags:
- - Octopus
+ - DevOps
+ - Java
 ---
+
+![Hosting a Maven repo in Amazon S3](maven-repo-s3.png)
 
 Package repositories are a central requirement in any CI/CD pipeline, as repeatable deployments require properly versioned artifacts shared between tools using standard APIs.
 
