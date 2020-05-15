@@ -12,7 +12,7 @@ tags:
 
 Modern deployments depend on tools. For example: AWS, Azure, and Google command-lines, Terraform, kubectl, Helm, Java, NodeJS, .NET, etcetera, etcetera, _etcetera_.         
 
-Octopus has historically taken an inconsistent approach to these. Some are bundled with the Octopus Server and pushed to deployment targets. Examples of these are the Azure CLI, AWS CLI, and Terraform. In other cases Octopus assumes the dependencies are pre-installed on the targets, e.g. kubectl, Helm, Java. Neither approach is all rainbows.
+Octopus has historically taken an inconsistent approach to these. Some are bundled with the Octopus Server and pushed to deployment targets (on Windows). Examples of these are the Azure CLI, AWS CLI, and Terraform. In other cases Octopus assumes the dependencies are pre-installed on the targets, e.g. kubectl, Helm, Java. Neither approach is all rainbows.
 
 The bundled dependencies have a number of drawbacks.  They are always out of date, and users often require the latest versions of tools. They can't be updated independently of the Octopus Server. There is no way to pin the versions of the bundled dependencies, so if the tool's publisher introduce breaking changes we find ourselves unable to update them without potentially causing users' deployment processes to fail (this is currently an issue with Terraform).   
 
@@ -31,7 +31,7 @@ Octopus 2020.2 introduces the ability to run a deployment action inside a contai
 
 This will be available on any step which executes on a worker (or on the Octopus Server, for self-hosted instances).
 
-We have also published some images to a repository on DockerHub ([octopusdeploy/worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools)), which contain many of the most common deployment tools, and we will regularly update these with the latest versions of the contained tools.  And if your deployment process requires tools that aren't in the octopusdeploy/worker-tools images, or you prefer a smaller image, then you can certainly use your own. 
+We have also published some images to a repository on DockerHub ([octopusdeploy/worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools)), which contain many of the most [common deployment tools](https://github.com/OctopusDeploy/WorkerTools/blob/master/ubuntu.18.04/Dockerfile), and we will regularly publish updates with the latest versions of the contained tools.  And if your deployment process requires tools that aren't in the octopusdeploy/worker-tools images, or you prefer a smaller image, then you can certainly use your own.
 
 It is worth noting that when configuring a deployment action to execute inside a container, the specified image is treated differently to the packages being deployed.  The action image includes the tag, which is configured when editing the deployment process, unlike deployed packages which have their versions selected when creating the release.  This is significant, as it allows the maintainers of the deployment process to control when the image is updated, and anyone creating a release of the project doesn't require any knowledge of these images.
 
@@ -41,4 +41,4 @@ Execution containers are available as an Early Access Preview in Octopus 2020.2.
 
 ![Action Container Feature Flag](feature-flag.png "width=500")
 
-Happy Deployments!
+Happy (containerized) Deployments!
