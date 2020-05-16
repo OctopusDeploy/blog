@@ -261,4 +261,4 @@ As you can see, the step template executes, downloads, and imports the third-par
 
 
 ## Conclusion
-A limiting factor in Octopus Deploy adoption amongst those in the world of Linux was the limited selection of templates that could be executed.  With PowerShell core, the selection of templates that can execute on Linux machines is opened exponentially.
+A limiting factor in Octopus Deploy adoption amongst those in the world of Linux was the limited selection of templates that could be used.  With PowerShell core, the selection of templates that can execute on Linux machines is opened exponentially.
