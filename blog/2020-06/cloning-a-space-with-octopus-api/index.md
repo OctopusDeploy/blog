@@ -439,7 +439,7 @@ The process on my source instance has step 3, which doesn't appear in the destin
 
 The process after the sync runs, which follows those rules, now looks like the following.  The new step 3 from the source was added in the appropriate location, then the new step found only on the destination was added after.
 
-![](destination-deployment-process-after-sync)
+![](destination-deployment-process-after-sync.png)
 
 ## Expanding the use cases
 
