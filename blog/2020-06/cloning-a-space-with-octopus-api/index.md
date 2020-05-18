@@ -2,7 +2,7 @@
 title: Cloning a space using the Octopus API
 description: With the Octopus API it is possible to clone almost everything needed in a space.
 author: bob.walker@octopus.com
-visibility: public
+visibility: private
 published: 2020-12-31
 metaImage: 
 bannerImage: 
