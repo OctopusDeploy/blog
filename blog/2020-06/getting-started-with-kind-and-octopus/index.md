@@ -60,6 +60,8 @@ The `config` file created by kind embeds a cluster certificate which is used to 
 
 The Bash and Powershell scripts below extract the data, decode it, and combine the client key and certificate into a single PFX file. The end result of these scripts are two files: cluster.crt and client.pfx:
 
+Here is the Bash script:
+
 ```bash
 kubectl config view --raw -o json | jq -r ".users[] | select(.name==\"$1\") | .user[\"client-certificate-data\"]" | base64 -d > client.crt
 kubectl config view --raw -o json | jq -r ".users[] | select(.name==\"$1\") | .user[\"client-key-data\"]" | base64 -d > client.key
@@ -68,6 +70,8 @@ openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx -passout
 rm client.crt
 rm client.key
 ```
+
+Here is the Powershell script:
 
 ```powershell
 param($username)
@@ -106,3 +110,23 @@ We also need a local environment:
 The final step is to create the Kubernetes target. This target uses the certificate **Kind User** for authentication, **Kind Cluster Certificate** for the server certificate authority, and https://127.0.0.1:55827 for the cluster URL. This URL comes from the `clusters[].clusters.server` field in the Kubernetes `config` file:
 
 ![](k8starget.png "width=500")
+
+## A word on workers
+
+Because the Kubernetes URL references `localhost`, we either need to run Octopus on our local development PC, or install a worker on our local PC, which essentially allows a remote Octopus instance to tunnel into our local PC.
+
+In the screenshots below you can see some of the steps from the Tentacle manager which configure a worker:
+
+![](worker1.png "width=500")
+
+![](worker2.png "width=500")
+
+![](worker3.png "width=500")
+
+Here we can see the new worker assigned to the **Default Worker Pool**:
+
+![](worker-instance.png "width=500")
+
+With the worker in place, the Kubernetes target on the remote Octopus server can now access our local Kubernetes cluster:
+
+![](health-check.png "width=500")
