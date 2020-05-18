@@ -30,7 +30,7 @@ Tentacle and Calamari in this approach worked very well, and they have helped ou
 
 ## Introducing Calamari flavors
 
-Our first step was to start splitting up Calamari as we originally intended. Split it into little slices with separate projects and distinct entry points. We still have our core Calamari for standard deployment work like script execution, but we're introducing additional "flavors" like Terraform Calamari, AWS Calamari, Azure Calamari, etc. It's interesting to note that each flavor brings support for specific platforms like Windows, macOS, Linux, and ARM.
+Our first step was to start splitting up Calamari as we originally intended, into pieces we are calling "flavors". The split is along step categories (e.g. AWS, Terraform, K8, etc). Each of these is a separate executable, which allows us to vary the platforms we target for each flavor (e.g. Windows, macOS, Linux, and ARM) as well as the runtime (e.g. .NET Core 3.1). This clean separation will allow us to more quickly iterate on a particular technology without needing to bring all the rest along for the ride.
 
 Calamari flavors bring several advantages:
 * Each slice is independent and can be upgraded independently and customized as per the project's needs.
