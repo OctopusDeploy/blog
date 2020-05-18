@@ -33,9 +33,9 @@ This will be available on any step which executes on a worker (or on the Octopus
 
 We have also published some images to a repository on DockerHub ([octopusdeploy/worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools)), which contain many of the most [common deployment tools](https://github.com/OctopusDeploy/WorkerTools/blob/master/ubuntu.18.04/Dockerfile), and we will regularly publish updates with the latest versions of the contained tools.  And if your deployment process requires tools that aren't in the octopusdeploy/worker-tools images, or you prefer a smaller image, then you can certainly use your own.
 
-It is worth noting that when configuring a deployment action to execute inside a container, the specified image is treated differently to the packages being deployed.  The action image includes the tag, which is configured when editing the deployment process, unlike deployed packages which have their versions selected when creating the release.  This is significant, as it allows the maintainers of the deployment process to control when the image is updated, and anyone creating a release of the project doesn't require any knowledge of these images.
+It is worth noting that when configuring a deployment action to execute inside a container, the specified image is treated differently to the packages being deployed.  The action image is fully specified in the deployment process (including the tag), unlike deployed packages which have their versions selected when creating the release.  This is significant, as it allows the maintainers of the deployment process to control when the image is updated, and anyone creating a release of the project doesn't require any knowledge of these images.
 
-As Octopus continues to support deploying many types of applications (.NET, Java, NodeJS, etc) to many platforms (Windows, Linux, PaaS) in many clouds (self-hosted, AWS, Azure, etc), we hope this will provide a generic way to tame deployment tooling dependencies.
+As Octopus continues to support deploying many types of applications (.NET, Java, NodeJS, etc) to many platforms (Windows, Linux, PaaS) in many clouds (self-hosted, AWS, Azure, etc), we hope this will prove to be a powerful weapon in taming deployment tooling dependencies.
 
 Execution containers are available as an Early Access Preview in Octopus 2020.2.  
 
