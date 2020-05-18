@@ -38,7 +38,7 @@ Calamari flavors bring several advantages:
 
 ## Introducing Sashimi
 
-With Calamari flavors conceptualized, this leads us to our next major refactoring or new concept. Introducing Sashimi, which we are calling little slices of Octopus Server. Whereas Calamari flavors are little slices of our deployment execution engine, Sashimi is little slices of Octopus Server. We are taking a knife to Octopus and carving out the technology-specific things. This change enables us to split out the web UI and server-side logic into separate self-contained components.
+With the rethink of Calamari, we have moved onto slicing up the Server into pieces we are calling Sashimi. Similar to Calamari, these slices will fall along deployment step technology lines. The slices will eventually contain the UI and server side parts of the step, deployment target and accounts. 
 
 This is a huge step forward as this allows us to make the Octopus Server (both front-end and web services) a world-class coordination engine without any specific knowledge or hooks for technology-specific steps. For example, we can have support for Azure, AWS, or Terraform without the server having any specific knowledge or references of these technologies.
 
