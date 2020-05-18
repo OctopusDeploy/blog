@@ -57,7 +57,7 @@ This approach introduced an interesting problem that held us back previously. Si
 
 ### Sashimi and calamari consolidation
 
-To solve this file size problem, we needed to come up with a thoughtful solution. Our solution is to use a build-time process to consolidate the Calamari components and extract all common files and executables into a separate ZIP file, which we can compress further. The common component is only 150 MB, and the rest of the files are negligible. We also build an index at build-time, which we use at runtime so we can reconstitute the appropriate components within Octopus Server. Octopus then transfers the required Calamari flavor to the deployment target.
+To solve this problem, we took a page out of the [Windows Imaging Format](https://en.wikipedia.org/wiki/Windows_Imaging_Format) file format and used the [Singe-instance storage](https://en.wikipedia.org/wiki/Single-instance_storage) technique. At build time we look at all the Calamari packages and hash each individual file. We then only store the unique files in the resulting archive, which is only about 150MB in size, regardless of how may flavors of Calamari there are. At runtime we use the included index file to reconstitute the original Calamari executable archives.
 
 ## Conclusion
 
