@@ -14,7 +14,7 @@ Modern deployments depend on tools. For example: AWS, Azure, and Google command-
 
 Octopus has historically taken an inconsistent approach to these. Some are bundled with the Octopus Server and pushed to deployment targets (on Windows). Examples of these are the Azure CLI, AWS CLI, and Terraform. In other cases Octopus assumes the dependencies are pre-installed on the targets, e.g. kubectl, Helm, Java. Neither approach is all rainbows.
 
-The bundled dependencies have a number of drawbacks.  They are always out of date, and users often require the latest versions of tools. They can't be updated independently of the Octopus Server. There is no way to pin the versions of the bundled dependencies, so if the tool's publisher introduce breaking changes we find ourselves unable to update them without potentially causing users' deployment processes to fail (this is currently an issue with Terraform).   
+The bundled dependencies have a number of drawbacks.  They are always out of date, and users often require the latest versions of tools. They can't be updated independently of the Octopus Server. There is no way to pin the versions of the bundled dependencies, so if the tool's publisher introduces breaking changes we find ourselves unable to update them without potentially causing users' deployment processes to fail (this is currently an issue with Terraform).   
 
 But by _not_ bundling dependencies, we are pushing our pain onto our users. Spinning up a new machine to use as an Octopus worker is a chore if you have to then install dozens of dependencies. And managing the relationship between various projects' deployment processes and workers is not obvious.  
 
