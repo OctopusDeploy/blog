@@ -1,5 +1,5 @@
 ---
-title: "Refactoring Octopus: Modularity, Calamari and Sasahimi"
+title: "Refactoring Octopus: Modularity, Calamari and Sashimi"
 description: Learn more about how our engineering team refactored the Octopus code base to introduce modularity, reduce complexity and eat some sashimi.
 author: rob.pearson@octopus.com
 visibility: private
@@ -46,7 +46,7 @@ Our goal for this work is to simplify the development to add support for new tec
 
 ### Sashimi components and one big problem
 
-Each Sashimi slices is contained within a [NuGet package](https://nuget.org), and it contains: 
+Each Sashimi slices is contained within a NuGet package (i.e. `.nupkg`), and it contains: 
 
 - Zipped UI files that we inject into the main user interface.
 - Server-side processing components.
