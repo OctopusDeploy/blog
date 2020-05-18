@@ -53,7 +53,7 @@ Each Sashimi slices is contained within a NuGet package (i.e. `.nupkg`), and it 
 - Any third party libraries or components (dependencies).
 - Standalone calamari executables for each platform. 
 
-This approach introduced an interesting problem that we didn't expect. Each Sashimi slice bundle's numerous files, and this can add up to a lot of storage. For example, if we had 10 Calamari flavors for 3 platforms each, this produces 30 calamari components at 40 MB each. The result of this is that we were facing 1.2 GB of additional data per Octopus release. This approach wasn't ideal. 
+This approach introduced an interesting problem that held us back previously. Since each of the Calamari executables contain the full .NET Core runtime, the size of the Octopus Server installer would increase significantly. For example, if we had 10 Calamari flavors for 3 platforms each, this produces 30 calamari components at 40 MB each compressed. That's an additional 1.2 GB added to the installer download. This approach wasn't ideal. 
 
 ### Sashimi and calamari consolidation
 
