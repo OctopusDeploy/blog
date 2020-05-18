@@ -53,3 +53,56 @@ kind-control-plane   Ready    master   101s   v1.18.2
 ```
 
 We now have a local Kubernetes cluster ready for testing.
+
+## Extracting the certificates
+
+The `config` file created by kind embeds a cluster certificate which is used to secure API traffic and a client key and certificate used to identify the Kubernetes user. We need to extract these values into files that can be imported into Octopus.
+
+The Bash and Powershell scripts below extract the data, decode it, and combine the client key and certificate into a single PFX file. The end result of these scripts are two files: cluster.crt and client.pfx:
+
+```bash
+kubectl config view --raw -o json | jq -r ".users[] | select(.name==\"$1\") | .user[\"client-certificate-data\"]" | base64 -d > client.crt
+kubectl config view --raw -o json | jq -r ".users[] | select(.name==\"$1\") | .user[\"client-key-data\"]" | base64 -d > client.key
+kubectl config view --raw -o json | jq -r ".clusters[] | select(.name==\"$1\") | .cluster[\"certificate-authority-data\"]" | base64 -d > cluster.crt
+openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx -passout pass:
+rm client.crt
+rm client.key
+```
+
+```powershell
+param($username)
+
+kubectl config view --raw -o json |
+  ConvertFrom-JSON |
+  Select-Object -ExpandProperty users |
+  ? {$_.name -eq $username} |
+  % {
+  	[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($_.user.'client-certificate-data')) | Out-File -Encoding "ASCII" client.crt
+  	[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($_.user.'client-key-data')) | Out-File -Encoding "ASCII" client.key
+    & "C:\Program Files\OpenSSL-Win64\bin\openssl" pkcs12 -export -in client.crt -inkey client.key -out client.pfx -passout pass:
+    rm client.crt
+    rm client.key
+  }
+  
+  kubectl config view --raw -o json |
+  ConvertFrom-JSON |
+  Select-Object -ExpandProperty clusters |
+  ? {$_.name -eq $username} |
+  % {
+  	[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($_.cluster.'certificate-authority-data')) | Out-File -Encoding "ASCII" cluster.crt
+  }
+```
+
+## Creating the Octopus Kubernetes target
+
+The files `cluster.crt` and `client.pfx` are uploaded to the Octopus certificate store. Here I have called these certificates **Kind User** and **Kind Cluster Certificate**:
+
+![](certificates.png "width=500")
+
+We also need a local environment:
+
+![](environments.png "width=500")
+
+The final step is to create the Kubernetes target. This target uses the certificate **Kind User** for authentication, **Kind Cluster Certificate** for the server certificate authority, and https://127.0.0.1:55827 for the cluster URL. This URL comes from the `clusters[].clusters.server` field in the Kubernetes `config` file:
+
+![](k8starget.png "width=500")
