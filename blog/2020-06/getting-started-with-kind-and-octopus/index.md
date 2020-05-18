@@ -71,7 +71,7 @@ rm client.crt
 rm client.key
 ```
 
-Here is the Powershell script:
+Here is the Powershell script, where the `openssl` executable was downloaded from [here](https://slproweb.com/products/Win32OpenSSL.html):
 
 ```powershell
 param($username)
@@ -130,3 +130,14 @@ Here we can see the new worker assigned to the **Default Worker Pool**:
 With the worker in place, the Kubernetes target on the remote Octopus server can now access our local Kubernetes cluster:
 
 ![](health-check.png "width=500")
+
+## Conclusion
+
+We have now successfully created a local Kubernetes cluster with kind, extracted the certificates from the Kubernetes configuration file, imported the certificates into Octopus, and created a Kubernetes target in Octopus that connects to our local cluster via a worker.
+
+From here we can learn how to use Octopus to deploy Kubernetes resources. The blog posts below show you how to:
+
+* Deploy your first container to Kubernetes via Octopus.
+* Import an existing Kubernetes YAML file into Octopus.
+* Deploy a Helm chart via Octopus.
+* Perform custom Kubernetes scripting in Octopus.
