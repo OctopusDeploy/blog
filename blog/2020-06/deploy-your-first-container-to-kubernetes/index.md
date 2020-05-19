@@ -63,8 +63,8 @@ Once pushed, the image can be [viewed on Docker Hub](https://hub.docker.com/r/mc
 
 All packages referenced by Octopus during deployment are sourced from feeds. In order to use our new Docker image in a Kubernetes deployment, we need to configure Docker Hub as a Docker feed via the URL https://index.docker.io:
 
-![](dockerhub-feed "width=500")
+![](dockerhub-feed.png "width=500")
 
 We can then search for our new image:
 
-![](search-results.png "width=500")
+![](search-result.png "width=500")
