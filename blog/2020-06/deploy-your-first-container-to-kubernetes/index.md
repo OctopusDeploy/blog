@@ -68,3 +68,20 @@ All packages referenced by Octopus during deployment are sourced from feeds. In 
 We can then search for our new image:
 
 ![](search-result.png "width=500")
+
+## Deploying the image
+
+Octopus ships with a number of steps that support Kubernetes deployments. Broadly speaking they fall into three categories:
+
+* Opinionated, UI centric steps for Deployments, Services, Ingresses, Secrets and ConfigMaps.
+* Deployment of raw YAML.
+* Deployment of Helm charts.
+* Custom scripting against `kubectl`.
+
+Because this is our first deployment into a Kubernetes cluster, the opinionated steps will get us up and running quickly without having to know the details of Kubernetes YAML. So we'll add a **Deploy Kubernetes containers** step to our Octopus project:
+
+![](kubernetes-cointainer.png "width=500")
+
+This step combines a Kubernetes deployment resources with an optional service, ingress, secret and configmap. These resources are typically deployed together as a single, tightly coupled unit when deploying an application in Kubernetes. However, in our case, we won't be deploying an ingress, secret or configmap, so these features can be disabled to simplify the step UI:
+
+![](features.png "width=500")
