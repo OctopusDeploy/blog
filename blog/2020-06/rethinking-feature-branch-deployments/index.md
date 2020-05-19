@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-I transitioned to Git in 2013.  Since that time, I have been doing feature branch testing all wrong.  The problem was I've worked in places with the same static environments, `Dev` -> `Test` -> `Staging` -> `Production`.  Each environment had one instance of my application.  It reflected what was in the `master` branch.  The only way for QA to test a new feature was to merge code into `master`.  I should've been standing up a sandbox for the feature branch for QA to test.  The `Dev` -> `Test` -> `Staging` -> `Production` lifecycle represented my pre-git life.  In this article, I will walk through how I've adjusted my thinking to better leverage git.
+I transitioned to Git in 2013.  Since that time, I have been doing feature branch testing all wrong.  The problem was I worked in places with the same static environments, **{{Dev, Test, Staging, Production}}**.  Each environment had one instance of my application, and they all reflected what was in the `master` branch.  The only way for QA to test a new feature was to merge code into `master`.  I should have been standing up a sandbox for the feature branch for QA to test.  The **{{Dev, Test, Staging, Production}}** lifecycle represented my pre-Git life.  In this article, I will walk through how I've adjusted my thinking to better leverage Git.
 
 !toc
 
@@ -19,8 +19,8 @@ I transitioned to Git in 2013.  Since that time, I have been doing feature branc
 
 I have been busy configuring an application to demo feature branches.  I started two lifecycles along with corresponding channels.  These lifecycles represented the same process I have been using since I started as a developer back in 2004.
 
-- Default: `Dev` -> `Test` -> `Staging` -> `Production`
-- Feature Branch: `Dev` -> `Test`
+- Default: **{{Dev, Test, Staging, Production}}**
+- Feature Branch: **{{Dev, Test}}**
 
 The intended development workflow is:
 1. All feature branches go to the `Dev` environment, and if that was successful, then `Test`, for QA / Business Owners to verify the work.  New infrastructure is spun up for that feature branch only.  The branch name is stored in the pre-release tag.
@@ -63,7 +63,7 @@ Those 20-25 deployments are actually 4-5 deployments per feature.  Some deployme
 
 We had a whiteboard in our team area, indicating if it was okay to merge into master.
 
-This also made it very difficult to deploy hotfixes.  We had to create a separate channel to bypass `Dev` and `Test` and go straight to `Staging`.  
+This also made it very difficult to deploy hot-fixes.  We had to create a separate channel to bypass `Dev` and `Test` and go straight to `Staging`.  
 
 ### Very few apps are completely isolated
 
@@ -92,12 +92,12 @@ Most places I worked the `Dev` environment was rarely used.  It didn't have very
 
 The lifecycles will be:
 
-- Default: `Staging` -> `Production`
+- Default: **{{Staging, Production}}**
 - Feature Branch: `Test`
 
 Unfinished code will no longer be merged into master.  This will make scheduling a release much easier.  What is in master has been signed off by QA and any Business or Product Owners.  You could merge Feature A into master on Monday, deploy on Tuesday, then merge Feature B into master on Wednesday and deploy on Friday.  Each deployment will be much smaller, as well.
 
-The same holds true for bug fixes.  They would be treated as feature branches.  When a bugfix branch is checked in, new infrastructure will be stood up to verify the fix actually fixes the issue.  Once it is ready to go, it is merged into master and pushed up to `Staging`.  
+The same holds true for bug fixes.  They would be treated as feature branches.  When a bug-fix branch is checked in, new infrastructure will be stood up to verify the fix actually fixes the issue.  Once it is ready to go, it is merged into master and pushed up to `Staging`.  
 
 If you are using Gitflow, you could configure the build server to kick off releases to `Staging` when a change is checked into a release branch.  
 
@@ -125,13 +125,13 @@ I am working on a follow-up post to this article that will walk through a full-o
 
 In general, the solution will use the following features within Octopus Deploy.
 
-- [Runbooks](https://octopus.com/runbooks) -> This will be used to spin up and tear down the sandbox for a feature branch.
-- [Channels](https://octopus.com/docs/deployment-process/channels) -> Channels allow for different lifecycles in a deployment process.
-- [Prompted Variables](https://octopus.com/docs/projects/variables/prompted-variables) -> Allows specific settings (database name, urls, external references, etc.) to be overwritten when using a feature branch.
+- [Runbooks](https://octopus.com/runbooks): This will be used to spin up and tear down the sandbox for a feature branch.
+- [Channels](https://octopus.com/docs/deployment-process/channels): Channels allow for different lifecycles in a deployment process.
+- [Prompted Variables](https://octopus.com/docs/projects/variables/prompted-variables): Allows specific settings (database name, URLs, external references, etc.) to be overwritten when using a feature branch.
 
 ## Conclusion
 
-You'll often see the phrases "branches" and "trunks" when reading about git workflows.  The idea of being a branch is short-lived, after a while, it either merges back to a trunk or pruned.  The trunk is long-living, it is what branches are, um, branched off of.
+You'll often see the phrases "branches" and "trunks" when reading about Git workflows.  The idea of being a branch is short-lived, after a while, it either merges back to a trunk or pruned.  The trunk is long-living, it is what branches are, um, branched off of.
 
 This article proposed treating your testing environments like branches and the staging/production environments like a trunk.  It is a mind-shift.  And it is much easier to talk about this rather than actually doing it.  As I said in the previous section, in my next post, I will provide a guide on configuring CI/CD pipeline using this new workflow.  It will include both the build server and Octopus Deploy.
 
