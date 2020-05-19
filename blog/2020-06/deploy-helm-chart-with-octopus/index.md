@@ -12,11 +12,11 @@ tags:
 
 Helm has emerged as the defacto Kubernetes package manager. It offers rich templates, a powerful CLI tool, centralized repositories for sharing charts, and the recently released Helm 3 addresses the security concerns that overshadowed previous Helm versions.
 
-Octopus provides native support for deploying Helm charts, and in this blog post we'll look at how to manage Helm deployments in Octopus.
+Octopus provides native support for deploying Helm charts, and in this blog post we'll look at how to manage Helm deployments in Octopus to a Kubernetes cluster created in a [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md).
 
 ## The sample chart
 
-In the blog post [Deploy your first container to Kubernetes via Octopus](/blog/2020-06/deploy-your-first-container-to-octopus/index.md) we ran through the process of creating a Docker image and pushing it to Docker Hub. The end result was the image [mcasperson/mywebapp](https://hub.docker.com/r/mcasperson/mywebapp), which we will reuse in our Helm chart.
+In the blog post [Deploy your first container to Kubernetes via Octopus](/blog/2020-06/deploy-your-first-container-to-octopus/index.md) we ran through the process of creating a Docker image and pushing it to Docker Hub. The end result was the image [mcasperson/mywebapp](https://hub.docker.com/r/mcasperson/mywebapp). We will reuse this Docker image our Helm chart.
 
 The example Helm chart can be found on [GitHub](https://github.com/OctopusSamples/SampleHelmChart). This chart creates a Kubernetes deployment and service to expose the web application embedded in our Docker image.
 
@@ -31,7 +31,24 @@ The resulting chart has a filename of `SampleHelmChart-0.1.0.tgz`. Typically thi
 
 ![](chart-feed.png "width=500")
 
-However, starting with version 2020.3.0, Octopus offers the ability to upload Helm charts directly to the built-in feed. This removes the need to configure a separate chart repository. The only requirement to upload a chart to the built in feed is that the package version be embedded in the filename after a period, meaning we need to rename the chart file to `SampleHelmChart.0.1.0.tgz` before it is uploaded:
+However, starting with version 2020.3.0, Octopus offers the ability to upload Helm charts directly to the built-in feed. This removes the need to configure a separate chart repository. The only requirement to upload a chart to the built-in feed is that the package version be appended to the filename after a period, meaning we need to rename the chart file from `SampleHelmChart-0.1.0.tgz` to `SampleHelmChart.0.1.0.tgz` before it is uploaded:
 
 ![](upload-chart.png "width=500")
 
+## Deploying the chart
+
+To deploy the Helm chart we'll use the **Upgrade a Helm chart** step:
+
+![](helm-step.png "width=500")
+
+We then reference the package that was uploaded to the built-in feed, and define a name for the Helm release:
+
+![](helm-step-populated.png "width=500")
+
+And that is it. With just a few simple steps we have deployed our first Helm chart to Kubernetes.
+
+## Conclusion
+
+By hosting Helm charts in the built-in feed and consuming them with the native Helm step, Octopus makes it trivial to share and deploy Helm charts to Kubernetes. 
+
+Octopus can also access external Helm chart repositories if you already have one deployed or wish to take advantage of the [public repositories](https://github.com/helm/charts) available. Any mature Kubernetes infrastructure will inevitably include a range of external services like ingress controllers, dashboards, monitoring solutions and other Kubernetes operators. These third party applications will typically be distributed as Helm charts, and so accessing external Helm feeds allows Octopus to manage their deployment just like an internally managed application.
