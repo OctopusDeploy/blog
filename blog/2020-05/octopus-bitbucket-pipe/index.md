@@ -30,7 +30,7 @@ It has one required `CLI_COMMAND` variable. This is the CLI command to run.
 To use the Pipe in your `bitbucket-pipelines.yml` file, add the following YAML snippet to the script section:
 
 ```yaml
-- pipe: octopusdeploy/octopus-cli-run:0.12.0
+- pipe: octopusdeploy/octopus-cli-run:0.13.0
   variables:
     CLI_COMMAND: "<string>"
     # EXTRA_ARGS: ['<string>','<string>' ..] # Optional
@@ -65,7 +65,7 @@ To create a package, define a step like this:
 - step:
     name: octo pack mysql-flyway
     script:
-      - pipe: octopusdeploy/octopus-cli-run:0.12.0
+      - pipe: octopusdeploy/octopus-cli-run:0.13.0
         variables:
           CLI_COMMAND: 'pack'
           ID: 'petclinic.mysql.flyway'
@@ -88,7 +88,7 @@ It also supports pushing multiple packages at the same time. To perform a multi-
 - step:
     name: octo push
     script:
-      - pipe: octopusdeploy/octopus-cli-run:0.12.0
+      - pipe: octopusdeploy/octopus-cli-run:0.13.0
         variables:
           CLI_COMMAND: 'push'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -111,7 +111,7 @@ To push an auto-generated build info file, define a step like this:
 - step:
     name: octo build-information
     script:
-      - pipe: octopusdeploy/octopus-cli-run:0.12.0
+      - pipe: octopusdeploy/octopus-cli-run:0.13.0
         variables:
           CLI_COMMAND: 'build-information'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -137,7 +137,7 @@ To create a release, and let Octopus choose the version to use, create a step li
 - step:
     name: octo create-release
     script:
-      - pipe: octopusdeploy/octopus-cli-run:0.12.0
+      - pipe: octopusdeploy/octopus-cli-run:0.13.0
         variables:
           CLI_COMMAND: 'create-release'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -160,7 +160,7 @@ To deploy the `latest` release to `Development` for a project, create a step lik
 - step:
     name: octo deploy-release
     script:
-      - pipe: octopusdeploy/octopus-cli-run:0.12.0
+      - pipe: octopusdeploy/octopus-cli-run:0.13.0
         variables:
           CLI_COMMAND: 'deploy-release'
           OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -192,7 +192,7 @@ pipelines:
       - step:
           name: octo pack mysql-flyway
           script:
-            - pipe: octopusdeploy/octopus-cli-run:0.12.0
+            - pipe: octopusdeploy/octopus-cli-run:0.13.0
               variables:
                 CLI_COMMAND: 'pack'
                 ID: 'petclinic.mysql.flyway'
@@ -205,7 +205,7 @@ pipelines:
       - step:
           name: octo push
           script:
-            - pipe: octopusdeploy/octopus-cli-run:0.12.0
+            - pipe: octopusdeploy/octopus-cli-run:0.13.0
               variables:
                 CLI_COMMAND: 'push'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -215,7 +215,7 @@ pipelines:
       - step:
           name: octo build-information
           script:
-            - pipe: octopusdeploy/octopus-cli-run:0.12.0
+            - pipe: octopusdeploy/octopus-cli-run:0.13.0
               variables:
                 CLI_COMMAND: 'build-information'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -226,7 +226,7 @@ pipelines:
       - step:
           name: octo create-release
           script:
-            - pipe: octopusdeploy/octopus-cli-run:0.12.0
+            - pipe: octopusdeploy/octopus-cli-run:0.13.0
               variables:
                 CLI_COMMAND: 'create-release'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
@@ -236,7 +236,7 @@ pipelines:
       - step:
           name: octo deploy-release
           script:
-            - pipe: octopusdeploy/octopus-cli-run:0.12.0
+            - pipe: octopusdeploy/octopus-cli-run:0.13.0
               variables:
                 CLI_COMMAND: 'deploy-release'
                 OCTOPUS_SERVER: $OCTOPUS_SERVER
