@@ -80,7 +80,7 @@ We can overwrite these values with the deployment YAML from our example above:
 
 ![](deployment-paste-yaml.png "width=500")
 
-The deployment properties and container definitions are then populated in the form:
+The deployment properties and container definitions are then populated in the form. Notice that the image version (or tag) has been removed, as this is expected to be selected when a deployment is created:
 
 ![](populated-deployment.png "width=500")
 
@@ -92,4 +92,36 @@ Once the details are saved, the service is populate with the service properties 
 
 ![](service-pasted-yaml.png "width=500")
 
+One thing to notice is that the service labels were not imported, as they are no exposed by the step. One of the opinions of this steps is that all resources (which is the deployment and service in our case) share the labels defined on the deployment. The service and deployment are linked up at deployment time through additional labels automatically added by Octopus, freeing us from maintaining selector labels on the service:
+
 ![](populated-service.png "width=500")
+
+## Exporting the YAML
+
+In the previous section we used the **Edit YAML** section to import our existing YAML. This in turn populated the step with the details from our existing resource definitions.
+
+Now that the step is populated, the **Edit YAML** section can be used as a way to export the YAML. Clicking the **Edit YAML** button in either the deployment or service section will expose the details in the form as a standard YAML resource. It is worth noting that the exported YAML is not exactly the same as what was pasted in previously. Some default labels called `octopusexport` have been added to the deployment and the pod specification to link the two together:
+
+![](deployment-export.png "width=500")
+
+Likewise the service YAML also includes some default labels to link the service to the pods:
+
+![](service-export.png "width=500")
+
+But apart from some small changes to how the resources reference each other, the generated YAML retains all the important details from the originally imported YAML. This makes it easy to copy the Kubernetes YAML definitions in and out of the opinionated Octopus steps, or simply edit the YAML in place if you find that easier than editing values via the UI.
+
+## Limitations of YAML Importing
+
+It is important to note that the step will only import YAML values it recognizes. If your deployment YAML includes an unrecognized field, it is simply ignored. This functionality does not provide a way to have unrecognized values merged with those exposed by the UI.
+
+If you have such unrecognized values, you can take advantage of the **Deploy raw Kubernetes YAML** step, which will deploy YAML as is to Kubernetes, performing only variable replacements based on the [Octopus variable syntax](https://octopus.com/docs/projects/variables/variable-substitutions).
+
+However, if you find that you have run into the limitations of the opinionated step, copying and pasting the YAML it generates is an easy way to move to the raw YAML step.
+
+## Conclusion
+
+It is common to find Kubernetes resources like deployments combined with services, ingresses, secrets and configmaps. Octopus captures this combination of resources with the **Deploy Kubernetes containers** step.
+
+If you already have existing Kubernetes YAML, the **Deploy Kubernetes containers** step allows you to quickly populate its values by copying and pasting the YAML into the **Edit YAML** section.
+
+The **Deploy Kubernetes containers** step does not (and will never) expose every possible value available for the underlying Kubernetes resources, and if you find yourself outgrowing this opinionated step, the **Edit YAML** section provides a quick way to extract the YAML produced by the step for use in generic steps like **Deploy raw Kubernetes YAML**.
