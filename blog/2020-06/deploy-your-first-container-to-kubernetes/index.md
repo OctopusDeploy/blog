@@ -85,3 +85,55 @@ Because this is our first deployment into a Kubernetes cluster, the opinionated 
 This step combines a Kubernetes deployment resources with an optional service, ingress, secret and configmap. These resources are typically deployed together as a single, tightly coupled unit when deploying an application in Kubernetes. However, in our case, we won't be deploying an ingress, secret or configmap, so these features can be disabled to simplify the step UI:
 
 ![](features.png "width=500")
+
+The step exposes a large number of options, but there are only two that we need to pay attention to for this example.
+
+The first is the definition of the container, and the second service ports. These have been highlighted in the screenshot below:
+
+![](deployment.png "width=500")
+
+The container definition references the image we pushed to DOcker Hub earlier:
+
+![](container.png "width=500")
+
+It also exposes TCP port 80 with a Kubernetes port called **web**:
+
+![](port.png "width=500")
+
+The service port then exposes port 80 on the container as port 80 on the service:
+
+![](service-port.png "width=500")
+
+And that is all we need to configure top get our image deployed to Kubernetes. When we deploy this project, Octopus will perform some logic behind the scenes to create the Kubernetes deployment and services resources, and link the two together. Linking these resources saves us from some manual work that would otherwise be required to get a deployment exposed by a service.
+
+One thing to notice when creating the Octopus deployment is that we select the Docker image version (which if you recall was the tag we assigned to the image when it was built) at deploy time. Selecting image versions at deployment time, and by default selecting the latest image, is one of the advantages of using Octopus to manage Kubernetes deployments. Typically new versions of your Docker images will not require any changes to the Kubernetes resources that reference them, so pushing new versions of you code to Kubernetes can be performed simply by creating a new Octopus deployment and referencing the new Docker image:
+
+![](create-deployment.png "width=500")
+
+Once the deployment has completed, we can verify that Kubernetes contains the deployment resource with the command `kubectl get deployments`:
+
+```
+$ kubectl get deployments
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+randomquotes   1/1     1            1           20m
+```
+
+We then verify that deployment created some pods with the command `kubectl get pods`:
+
+```
+$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS   AGE
+randomquotes-65cbb7c849-5vvnw   1/1     Running   0          30s
+```
+
+We then verify the service was created with the command `kubectl get service randomquotes`:
+
+```
+$ kubectl get service randomquotes
+NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+randomquotes   ClusterIP   10.99.245.202   <none>        80/TCP    19m
+```
+
+To access the service from our local PC, we need to use `kubectl` to proxy a local port to the service port, which we do with the command `kubectl port-forward svc/randomquotes 8081:80`. We can then open our application on http://localhost:8081:
+
+![](local-web-app.png "width=500")
