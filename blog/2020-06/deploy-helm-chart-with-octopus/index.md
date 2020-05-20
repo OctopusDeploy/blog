@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-Helm has emerged as the defacto Kubernetes package manager. It offers rich templates, a powerful CLI tool, centralized repositories for sharing charts, and the recently released Helm 3 addresses the security concerns that overshadowed previous Helm versions.
+Helm has emerged as the defacto Kubernetes package manager. It offers rich templates, a powerful CLI tool, centralized repositories for sharing charts, and the recently released Helm 3 addresses security concerns that overshadowed previous Helm versions.
 
 Octopus provides native support for deploying Helm charts, and in this blog post we'll look at how to manage Helm deployments in Octopus to a Kubernetes cluster created in a [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md).
 
 ## The sample chart
 
-In the blog post [Deploy your first container to Kubernetes via Octopus](/blog/2020-06/deploy-your-first-container-to-kubernetes/index.md) we ran through the process of creating a Docker image and pushing it to Docker Hub. The end result was the image [mcasperson/mywebapp](https://hub.docker.com/r/mcasperson/mywebapp). We will reuse this Docker image our Helm chart.
+In the blog post [Deploy your first container to Kubernetes via Octopus](/blog/2020-06/deploy-your-first-container-to-kubernetes/index.md) we ran through the process of creating a Docker image and pushing it to Docker Hub. The end result was the image [mcasperson/mywebapp](https://hub.docker.com/r/mcasperson/mywebapp). We will reuse this Docker image from our Helm chart.
 
 The example Helm chart can be found on [GitHub](https://github.com/OctopusSamples/SampleHelmChart). This chart creates a Kubernetes deployment and service to expose the web application embedded in our Docker image.
 
