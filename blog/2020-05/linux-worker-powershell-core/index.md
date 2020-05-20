@@ -16,7 +16,7 @@ Octopus Deploy started as a tool for deploying .NET applications.  As such, the 
 *There are some exceptions to this such as Windows-specific templates (Windows services, IIS, etc...)
 
 ## Creating the ARM template
-The first thing I'll need for this is a Linux machine to work with.  For grins and giggles, I decided to use a Ubuntu Linux VM in Azure spun up from a Runbook.  
+The first thing I'll need for this is a Linux machine to work with.  For grins and giggles, I decided to use an Ubuntu Linux VM in Azure spun up from a Runbook.  
 
 ### Azure Resource Manager (ARM) Template
 Creating a VM in Azure is dead easy using ARM templates.  Microsoft did a fantastic job of making the generation of an ARM template quick and easy.  Simply go through the process of defining how you want your VM configured and export the template at the end!  It's that simple!
@@ -73,7 +73,7 @@ Using the Custom Script Extension, you can supply a Uri to a file (such as a [Gi
 - CustomData parameter (this post uses this method):
 The CustomData Parameter allows us to include the script as a string and pass it in as a parameter.  When provisioning Windows VMs, this value can be a string.  For Linux, this value must first be Base64 encoded, which can easily be done within a Run a script task
 
-For this example I want my new VM to do the following
+For this example I want my init script to do the following
 - Install Linux Tentacle
 - Install PowerShell Core
 - Configure Tentacle and register itself of to my cloud instance
@@ -130,7 +130,7 @@ sudo /opt/octopus/tentacle/Tentacle register-worker --server "$serverUrl" --apiK
 sudo /opt/octopus/tentacle/Tentacle service --install --start
 ```
 
-With our script set up, we need to convert it to a Base64 string, then set it to an ouput variable so it can be used in the ARM template.  Here's the whole thing put together in a Run a Script step named `Convert cloud init script`
+With our script set up, we need to convert it to a Base64 string, then assign it to an ouput variable so it can be used in the ARM template.  Here's the whole thing put together in a Run a Script step named `Convert cloud init script`
 
 ```PS
 # Define cloud init script
@@ -252,13 +252,26 @@ When done, your Runbook should look something like this,
 
 ![](octopus-project-create-vm-runbook.png)
 
-## Executing a PowerShell step template
-Now comes the fun part!  In this example, I'm using the [MariaDB - Create Database If Not Exists](https://library.octopus.com/step-templates/2bdfe600-e205-43f9-b174-67ee5d36bf5b/actiontemplate-mariadb-create-database-if-not-exists) step template.  As the name implies, it connects to a MariaDB server and creates a database.  Not only is this step template written completely in PowerShell, it also makes use of a third-party PowerShell module called [SimplySql](https://www.powershellgallery.com/packages/SimplySql/1.6.2).  During execution, if the template detects that SimplySql is not installed, it downloads it to a temporary folder and uses Import-Module so that it's included for the deployment!
+## Executing a PowerShell step template on Linux with PowerShell Core
+Now comes the fun part!  In this example, I'm using the [MariaDB - Create Database If Not Exists](https://library.octopus.com/step-templates/2bdfe600-e205-43f9-b174-67ee5d36bf5b/actiontemplate-mariadb-create-database-if-not-exists) step template.  As the name implies, it connects to a MariaDB server and creates a database if it doesn't exist.  Not only is this step template written completely in PowerShell, it also makes use of a third-party PowerShell module called [SimplySql](https://www.powershellgallery.com/packages/SimplySql/1.6.2).  During execution, if the template detects that SimplySql is not installed, it downloads it to a temporary folder and uses Import-Module so that it's included for the deployment!
 
+![](octopus-mariadb-step-template.png)
 
+When included in a deployment we can see that the Linux worker uses PowerShell Core to execute the step!
 
-As you can see, the step template executes, downloads, and imports the third-party PowerShell module flawlessly!
+![](octopus-mariadb-step-template-deployment.png)
+
+Here's the log output of the step
+```
+PowerShell module SimplySql is not installed, downloading temporary copy ... 
+May 19th 2020 18:34:24Info
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Installing package 'SimplySql'                                                     Downloaded 0.00 MB out of 6.53 MB.                                              [                                                                    ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Downloaded 1.97 MB out of 6.53 MB.                                              [oooooooooooooo                                                      ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Downloaded 3.94 MB out of 6.53 MB.                                              [oooooooooooooooooooooooooooo                                        ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Downloaded 6.53 MB out of 6.53 MB.                                              [ooooooooooooooooooooooooooooooooooooooooooooooo                     ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Copying unzipped package to '/tmp/953889146/SimplySql.1.6.2'                    [ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo       ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Process Package Manifest                                                        [oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo    ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Finish installing package 'SimplySql'                                           [oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Importing module SimplySql ... 
+May 19th 2020 18:34:25Info
+Database d_petclinic_dbup already exists. 
+```
+
+As you can see, the step template detects the SimplySql module is not installed, downloads SimplySql, and imports it!  It then connects to the MariaDB server and finds that the database already exists all with PowerShell!
 
 
 ## Conclusion
-A limiting factor in Octopus Deploy adoption amongst those in the world of Linux was the limited selection of templates that could be used.  With PowerShell core, the selection of templates that can execute on Linux machines is opened exponentially.
+A contributing factor in Octopus Deploy adoption amongst those in the world of Linux was the limited selection of templates that could be used.  With PowerShell core, the selection of templates that can execute on Linux machines is opened exponentially.
