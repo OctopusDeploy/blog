@@ -56,21 +56,20 @@ This process is not inherent to Kubernetes though. For example, in the deploymen
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: randomquotes
+  name: mydeployment
   labels:
-    app: randomquotes
+    app: mydeployment
 spec:
   selector:
     matchLabels:
-      octopusexport: OctopusExport
+      app: mydeployment
   replicas: 1
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: randomquotes
-        octopusexport: OctopusExport
+        app: mydeployment
     spec:
       containers:
         - name: randomquotes
@@ -82,4 +81,49 @@ spec:
 
 Even if we did not supply the tag and used an image reference of `mcasperson/mywebapp`, the tag of `latest` is assumed, so we still effectively have a hard coded reference to a single Docker image.
 
-To allow the YAML above to be deployed with different versions of a Docker image, we could use a tool like Helm to define the image tag via a template.
+To allow the YAML above to be deployed with different versions of a Docker image, we could use a tool like Helm to define the image tag via a template. But someone still has to know the version of the Docker image and supply it to Helm.
+
+Octopus offers another option. By referencing a Docker image as an additional package, and setting it to not be acquired, Octopus will prompt for a version of the image to be selected during deployment and then expose the version as a variable at run time. Here is the Docker image referenced as an additional package:
+
+![](additional-package.png "width=500")
+
+The package version is then selected during deployment:
+
+![](select-version.png "width=500")
+
+Finally, we scan through the variables printed in the logs to find the one that references our Docker image. You can see in the screenshot below that the variables called `Octopus.Action.Package[mywebapp].Image` is the complete Docker image name, and `Octopus.Action.Package[mywebapp].PackageVersion` is just the version:
+
+![](image-variables.png "width=500")
+
+We can use these variables in our script. The example script below writes a YAML file to disk, and then uses `kubectl` to apply it. The image property is defined as `image: #{Octopus.Action.Package[mywebapp].Image}`, which will be updated with each deployment to reflect the selected Docker image:
+
+```Powershell
+Set-Content -Path deployment.yml -Value @"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  labels:
+    app: mydeployment
+spec:
+  selector:
+    matchLabels:
+      app: mydeployment
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: mydeployment
+    spec:
+      containers:
+        - name: randomquotes
+          image: #{Octopus.Action.Package[mywebapp].Image}
+          ports:
+            - name: web
+              containerPort: 80
+"@
+
+kubectl apply -f deployment.yml
+```
