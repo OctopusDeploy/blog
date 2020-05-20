@@ -82,13 +82,13 @@ Because this is our first deployment into a Kubernetes cluster, the opinionated 
 
 ![](kubernetes-cointainer.png "width=500")
 
-This step combines a Kubernetes deployment resources with an optional service, ingress, secret and configmap. These resources are typically deployed together as a single, tightly coupled unit when deploying an application in Kubernetes. However, in our case, we won't be deploying an ingress, secret or configmap, so these features can be disabled to simplify the step UI:
+This step combines a Kubernetes deployment resource with an optional service, ingress, secret and configmap. These resources are typically deployed together as a single, tightly coupled unit when deploying an application in Kubernetes. However, in our case, we won't be deploying an ingress, secret or configmap, so these features can be disabled to simplify the step UI:
 
 ![](features.png "width=500")
 
 The step exposes a large number of options, but there are only two that we need to pay attention to for this example.
 
-The first is the definition of the container, and the second service ports. These have been highlighted in the screenshot below:
+The first is the definition of the container, and the are the second service ports. These have been highlighted in the screenshot below:
 
 ![](deployment.png "width=500")
 
@@ -104,13 +104,13 @@ The service port then exposes port 80 on the container as port 80 on the service
 
 ![](service-port.png "width=500")
 
-And that is all we need to configure to get our image deployed to Kubernetes. When we deploy this project, Octopus will perform some logic behind the scenes to create the Kubernetes deployment and services resources, and link the two together. Linking these resources saves us from some manual work that would otherwise be required to get a deployment exposed by a service.
+And that is all we need to configure in order to deploy our image to Kubernetes. When we deploy this project, Octopus will perform some logic behind the scenes to create the Kubernetes deployment and services resources, and link the two together. Linking these resources saves us from some manual work that would otherwise be required to expose a deployment with a service.
 
-One thing to notice when creating the Octopus deployment is that we select the Docker image version (which if you recall was the tag we assigned to the image when it was built) at deploy time. Selecting image versions at deployment time, and by default selecting the latest image, is one of the advantages of using Octopus to manage Kubernetes deployments. Typically new versions of your Docker images will not require any changes to the Kubernetes resources that reference them, so pushing new versions of you code to Kubernetes can be performed simply by creating a new Octopus deployment and referencing the new Docker image:
+One thing to notice when creating the Octopus deployment is that we select the Docker image version (which if you recall was the tag we assigned to the image when it was built) at deploy time. Selecting image versions at deployment time, and by default selecting the latest version, is one of the advantages of using Octopus to manage Kubernetes deployments. Typically new versions of your Docker images will not require any changes to the Kubernetes resources that reference them, so pushing new versions of your code to Kubernetes can be performed simply by creating a new Octopus deployment and referencing the new Docker image:
 
 ![](create-deployment.png "width=500")
 
-Once the deployment has completed, we can verify that Kubernetes contains the deployment resource with the command `kubectl get deployments`:
+Once the deployment is completed, we can verify that Kubernetes contains the deployment resource with the command `kubectl get deployments`:
 
 ```
 $ kubectl get deployments
@@ -118,7 +118,7 @@ NAME           READY   UP-TO-DATE   AVAILABLE   AGE
 randomquotes   1/1     1            1           20m
 ```
 
-We then verify that deployment created some pods with the command `kubectl get pods`:
+We then verify that the deployment created pods with the command `kubectl get pods`:
 
 ```
 $ kubectl get pods
