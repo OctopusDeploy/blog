@@ -1,5 +1,5 @@
 ---
-title: Action Containers 
+title: Execution Containers for Workers 
 description: Octopus 2020.2 adds the ability to execute deployment actions inside a container 
 author: michael.richardson@octopus.com
 visibility: private
@@ -24,7 +24,7 @@ Containers allow [bundling dependencies](https://twitter.com/b0rk/status/1237464
 
 It's no coincidence that CI tools have converged on using containers as execution environments for building software.  The same power can be leveraged for deployments. 
 
-Octopus 2020.2 introduces the ability to run a deployment action inside a container:
+Octopus 2020.2 introduces the ability to [run a deployment action inside a container](https://octopus.com/docs/deployment-process/execution-containers-for-workers):
 
 ![Action Container Image User Interface](action-container-image-ui.png "width=500")
 
