@@ -4,14 +4,14 @@ description: Feature branches should be tested prior to merging into master.  Al
 author: bob.walker@octopus.com
 visibility: public
 published: 2020-12-31
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
- - Engineering 
+ - Engineering
  - Database Deployments
 ---
 
-I transitioned to Git in 2013.  Since that time, I have been doing feature branch testing all wrong.  The problem was, I worked in places with the same static environments, **{{Dev, Test, Staging, Production}}**.  Each environment had one instance of my application, and they all reflected what was in the `master` branch.  The only way for QA to test a new feature was to merge code into `master`.  I should have been standing up a sandbox for the feature branch for QA to test.  The **{{Dev, Test, Staging, Production}}** lifecycle represented my pre-Git life.  In this article, I will walk through how I've adjusted my thinking to better leverage Git.
+I transitioned to Git in 2013.  Since that time, I have been doing feature branch testing all wrong.  The problem was, I worked in places with the same static environments, **{{Dev, Test, Staging, Production}}**.  Each environment had one instance of my application, and they all reflected what was in the `master` branch.  The only way for QA to test a new feature was to merge code into `master`.  I should have been standing up a sandbox for the feature branch for QA to test.  The **{{Dev, Test, Staging, Production}}** lifecycle represented my pre-Git life.  In this article, I will walk through how I’ve adjusted my thinking to better leverage Git.
 
 !toc
 
@@ -29,25 +29,25 @@ The intended development workflow is:
 4. The release will be pushed to `Staging` and reverified.
 5. Assuming everything looks good, that release will be promoted to `Production`.
 
-As I got deeper into setting up the example for this post, the same question kept popping into my head.
+As I got deeper into setting up the example for this post, the same question kept popping into my head:
 
 > Why would I re-deploy to dev and test after merging to master?  Why do those environments have static resources, such as databases, websites, and file storage?
 
 ## Static vs. dynamic environments
 
-A static environment is an environment where application-specific resources (databases, file storage, etc.) have to be static.  Spinning up and using new resources requires a lot of coordination and communication to avoid an outage or downtime.  Any sort of downtime which affects non-IT Staff (external users, business users, etc.) is considered a BIG DEAL.  The time between deployments to these environments is measured in days, not minutes.
+A static environment is an environment where application-specific resources (databases, file storage, etc.) have to be static.  Spinning up and using new resources requires a lot of coordination and communication to avoid an outage or downtime.  Any sort of downtime which affects non-IT staff (external users, business users, etc.) is considered a BIG DEAL.  The time between deployments to these environments is measured in days, not minutes.
 
-Most applications deployed via Octopus Deploy use RDMS databases such as SQL Server, Oracle, PostgreSQL, and MySQL.  The `Production` instance of the database has to be static.  It isn't feasible to create a new copy of a `Production` database for each deployment.  As cool as it would be, the time and resource (disk space, CPU usage, RAM usage) cost would be too high.  One application deployment to `Production` a week is considered fast.  Typically, it is once a fortnight to once every eight weeks.
+Most applications deployed via Octopus Deploy use RDMS databases such as SQL Server, Oracle, PostgreSQL, and MySQL.  The `Production` instance of the database has to be static.  It isn’t feasible to create a new copy of a `Production` database for each deployment.  As cool as it would be, the time and resource (disk space, CPU usage, RAM usage) cost would be too high.  One application deployment to `Production` a week is considered fast.  Typically, it is once a fortnight to once every eight weeks.
 
 Based on those reasons, `Production` is a static environment.  
 
-It is common for companies to have a "Production-Like" environment to run final tests before going to `Production`.  These environments have names like `Staging`, `Pre-Prod`, `Integration`, or `UAT`.  For the purposes of this article, I will use `Staging` to represent those environments.  
+It is common for companies to have a *Production-like* environment to run final tests before going to `Production`.  These environments have names like `Staging`, `Pre-Prod`, `Integration`, or `UAT`.  For the purposes of this article, I will use `Staging` to represent those environments.  
 
-`Staging` is as _Production-Like_ as possible.  This includes making websites publicly available to external users to test out upcoming features.  Even if it is not publicly available, non-IT staff may access it to try out new features prior to going to `Production`.  `Staging` is deployed to more often than `Production`, perhaps once or maybe even twice a day.
+`Staging` is as _Production-like_ as possible.  This includes making websites publicly available to external users to test upcoming features.  Even if it is not publicly available, non-IT staff may access it to try out new features prior to going to `Production`.  `Staging` is deployed to more often than `Production`, perhaps once or maybe even twice a day.
 
 Based on the static environment criteria, `Staging` is a static environment as well.
 
-A dynamic environment is an environment where application-specific resources are in flux.  Resources can be spun up and down as needed.  Or if there is a bug in the authentication pipeline.  Or if a person is doing a deployment, and it hasn't finished yet.  Downtime, while annoying, is tolerated and limited to IT Staff. Deployments occur multiple times a day.
+A dynamic environment is an environment where application-specific resources are in flux.  Resources can be spun up and down as needed.  Or if there is a bug in the authentication pipeline.  Or if a person is doing a deployment, and it hasn’t finished yet.  Downtime, while annoying, is tolerated and limited to IT Staff. Deployments occur multiple times a day.
 
 `Test` is very much a dynamic environment.  
 
@@ -57,37 +57,37 @@ When I think of `Dev` and `Test` environments, I think of one word: *churn*.
 
 ### Test environments are rarely stable
 
-I've worked on projects where at the height of crunch time, we did 20-25 deployments to `Test` in a 10-hour span.  That is a deployment every 24-30 minutes.  And during the same time period we were doing 1.5x as many deployments to `Dev`.  That is because we had a single `Dev` instance and a single `Test` instance of the application.  When it was time for QA to test new features, we merged our changes into master to get it deployed to `Test`.  Believe it or not, we weren't perfect on the first try.  
+I’ve worked on projects where at the height of crunch time, we did 20-25 deployments to `Test` in a 10-hour period.  That is a deployment every 24-30 minutes, and during the same time we were doing 1.5x as many deployments to `Dev`.  That’s because we had a single `Dev` instance and a single `Test` instance of the application.  When it was time for QA to test new features, we merged our changes into master to get it deployed to `Test`.  Believe it or not, we weren’t perfect on the first try.  
 
-Those 20-25 deployments are actually 4-5 deployments per feature.  Some deployments were because of bugs, while some were the result of an incorrect merge conflict resolution.  The problem was features were half-done before being  merged into master. It was rare when more than 1 feature was finished on the same day.  Planning when to release code was a bit of a nightmare.  Prior to a scheduled release, we would _freeze_ feature work and spend several days _bug bashing_.  A freeze meant no new features could be merged into master.
+Those 20-25 deployments are actually 4-5 deployments per feature.  Some deployments were due to bugs, while some were the result of an incorrect merge conflict resolution. Features were only half-done before being merged into master, and it was rare when more than one feature was finished on the same day.  Planning when to release code was a bit of a nightmare.  Prior to a scheduled release, we would _freeze_ feature work and spend several days _bug bashing_.  A freeze meant no new features could be merged into master.
 
-We had a whiteboard in our team area, that told us if it was okay to merge into master.
+We had a whiteboard in our team area that told us if it was okay to merge into master.
 
 This also made it very difficult to deploy hot-fixes.  We had to create a separate channel to bypass `Dev` and `Test` and go straight to `Staging`.  
 
 ### Very few apps are completely isolated
 
-With the advent of SOA and Microservices, applications are no longer these big massive (isolated) monoliths.  Before, each application would have its own logging, authentication, configuration, and notification modules.  That's okay when you have one application.  The cost of maintaining those duplicate modules grows when you add two or more applications into the mix.  Thankfully, companies wised up to the duplicate effort, and now they have a single logging server or a single authentication service, and so on.
+With the advent of SOA and Microservices, applications are no longer these big massive (isolated) monoliths.  Before, each application would have its own logging, authentication, configuration, and notification modules.  That’s okay when you have one application, but the cost of maintaining those duplicate modules grows when you add two or more applications into the mix.  Thankfully, companies wised up to the duplicate effort, and now they have a single logging server or a single authentication service, and so on.
 
-This leads me to my next point.  Applications, it seems more than ever, are dependent on other applications to function properly.  Services my application is dependent on are being changed at the same time.  If a dependent service goes down due to a bug, my application goes into a degraded state. Certain functionality is limited until that dependent service is back up.
+This leads me to my next point, applications, it seems more than ever, are dependent on other applications to function properly.  Services my application is dependent on are being changed at the same time.  If a dependent service goes down due to a bug, my application goes into a degraded state, and certain functionality is limited until that dependent service is back up.
 
-We do this because we point our applications to the services in the same environment.  It makes sense when every environment is static.  My app is in `Test`, a dependent service is in `Test`.  The URL of that service never changes, I should point my application to that.
+We do this because we point our applications to the services in the same environment.  It makes sense when every environment is static.  My app is in `Test`, a dependent service is in `Test`.  The URL of that service never changes; I should point my application to that.
 
 ### What is the point of the dev environment?
 
-Most places I worked the `Dev` environment was rarely used.  It didn't have very much data to test with.  It was almost always down, and no one really used it.  It was just there.  Some teams ran automated tests against it, but the results were typically ignored because the data was so out of date.  If a deployment failed, we would band-aid a solution so it could get to the `Test` environment so QA could continue working.  
+Most places I worked the `Dev` environment was rarely used.  It didn’t have very much data to test with.  It was almost always down, and no one really used it.  It was just there.  Some teams ran automated tests against it, but the results were typically ignored because the data was so out of date.  If a deployment failed, we would band-aid a solution so it could get to the `Test` environment so QA could continue working.  
 
 `Dev` was always a rubber stamp environment.  
 
 ## Re-thinking environments for feature branch deployments
 
-`Production` and `Staging` aren't going anywhere.  Nor should they.  `Dev` and `Test` need to be completely re-thought.
+`Production` and `Staging` aren’t going anywhere, nor should they, but `Dev` and `Test` need to be completely re-thought.
 
 - Combine `Dev` and `Test` into one environment: `Test`.
 - When a new feature branch is checked in, new infrastructure for that feature branch is spun-up in `Test`.  
 - Subsequent check-ins for that feature branch will go to that infrastructure.
 - By default, all applications in `Test` use the `Staging` instance of their dependent applications.  This can be overwritten to point to `Test` when work on 1 to N applications is tightly coupled.
-- When the feature branch is merged into master, the testing infrastructure is torn down.  The deployment pushes code to `Staging`.
+- When the feature branch is merged into master, the testing infrastructure is torn down, and the deployment pushes code to `Staging`.
 - After final verification and sign-off, the code is pushed to `Production`.
 
 The lifecycles will be:
@@ -95,15 +95,15 @@ The lifecycles will be:
 - Default: **{{Staging, Production}}**
 - Feature Branch: `Test`
 
-Unfinished code will no longer be merged into master.  This will make scheduling a release much easier.  What is in master has been signed off by QA and any Business or Product Owners.  You could merge Feature A into master on Monday, deploy on Tuesday, then merge Feature B into master on Wednesday and deploy on Friday.  Each deployment will be much smaller as well.
+Unfinished code will no longer be merged into master.  This will make scheduling a release much easier.  What is in master has been signed off by QA and any Business or Product Owners.  You could merge Feature A into master on Monday, deploy on Tuesday, then merge Feature B into master on Wednesday and deploy on Friday.  Each deployment will be much smaller, as well.
 
-The same holds true for bug fixes.  They would be treated as feature branches.  When a bug-fix branch is checked in, new infrastructure is stood up to verify the fix actually fixes the issue.  When it is ready to go, it is merged into master and pushed up to `Staging`.  
+The same holds true for bug fixes.  They will be treated as feature branches.  When a bug-fix branch is checked in, new infrastructure is stood up to verify the fix actually fixes the issue.  When it is ready to go, it is merged into master and pushed up to `Staging`.  
 
 If you are using Gitflow, you could configure the build server to kick off releases to `Staging` when a change is checked into a release branch.  
 
 ## External Services
 
-In this configuration, the `Staging` environment matches `Production` as close as possible.  Which means it should be stable.  The only time `Staging` is different than `Production` is prior to a `Production` deployment.
+In this configuration, the `Staging` environment matches `Production` as closely as possible, which means it should be stable.  The only time `Staging` varies from `Production` is prior to a `Production` deployment.
 
 As a rule of thumb, all the services in `Test` which are dependent on external services should point to `Staging`.  There are cases where multiple applications are being changed for release, and the changes are all tightly coupled together.  In that specific instance, the applications would point to specific feature branch services on `Test`.  Essentially, it is a sandbox of sandboxes.
 
@@ -113,15 +113,15 @@ This is a question you have to answer.
 
 > When you spin up a sandbox, will you spin up new infrastructure or re-use existing infrastructure?  
 
-Spinning up new infrastructure has the benefit of making it much easier to tear down when finished.  Especially if you are using AWS, Azure, or GCP.  
+Spinning up new infrastructure has the benefit of making it much easier to tear down when finished.  Especially, if you are using AWS, Azure, or GCP.  
 
-However, new infrastructure has a cost associated with it, whether it is running on the cloud or self-hosted.  For the cloud, the cost is very much real in what you are billed each day.  For self-hosted, there is a time concern and resource utilization.  For example, does the SAN have enough space for another virtual disk or are there enough v-CPUs available in the hypervisors?  In general, most servers in `Test` are not being fully utilized.  Even when QA is testing, if you look at a resource monitor, the CPU usage is probably under 20%.  Most web servers, database servers, and app servers allow you to host multiple applications, websites, or databases.  
+However, new infrastructure has a cost associated with it, whether it is running on the cloud or self-hosted.  For the cloud, the cost is very much real in what you are billed each day.  For self-hosted, there is a time concern and resource utilization.  For example, does the SAN have enough space for another virtual disk, or are there enough v-CPUs available in the hypervisors?  In general, most servers in `Test` are not being fully utilized.  Even when QA is testing, if you look at a resource monitor, the CPU usage is probably under 20%.  Most web servers, database servers, and app servers allow you to host multiple applications, websites, or databases.  
 
-There isn't a right or wrong answer to this.  It's a case of do what is best for you, your sanity, and your company.
+There isn’t a right or wrong answer to this.  It’s a case of doing what is best for you, your sanity, and your company.
 
 ## Feature branch databases and testing data
 
-It's easy to spin up a new empty database.  The tricky part is populating that empty database with data.  In most places I've worked `Staging` was a sanitized copy of `Production` or `Staging` was populated with lots of test data.  In either case, spinning up a new sandbox should restore a copy of the `Staging` database.  That is much easier said than done.  That is where I would start at least.  
+It’s easy to spin up a new empty database.  The tricky part is populating that empty database with data.  In most places I’ve worked, `Staging` was a sanitized copy of `Production` or `Staging` was populated with lots of test data.  In either case, spinning up a new sandbox should restore a copy of the `Staging` database.  That is much easier said than done, but that’s where I would start.
 
 ## Leveraging Octopus Deploy
 
@@ -135,8 +135,8 @@ In general, the solution will use the following features within Octopus Deploy:
 
 ## Conclusion
 
-You'll often see the phrases _branches_ and _trunks_ when reading about Git workflows.  The idea of being a branch is short-lived, after a while, it either merges back to a trunk or it's pruned.  The trunk is long-living, it is what branches are, um, branched off of.
+You’ll often see the phrases _branches_ and _trunks_ when reading about Git workflows.  The idea of a branch is that it’s short-lived, after a while, it either merges back to a trunk, or it’s pruned.  The trunk is long-living, it is what branches are, um, branched from.
 
-This article proposed treating your testing environments like branches and the staging/production environments like a trunk.  It is a mind-shift, and it is much easier to talk about this than actually doing it.  As I said in the previous section, in my next post, I will provide a guide on configuring CI/CD pipeline using this new workflow.  It will include both the build server and Octopus Deploy.
+This article proposed treating your testing environments like branches and the staging/production environments like a trunk.  It is a mind-shift, and it is much easier to talk about than actually doing it.  As I said in the previous section, in my next post, I will provide a guide for configuring CI/CD pipeline using this new workflow.  It will include both the build server and Octopus Deploy.
 
 Until next time, Happy Deployments!
