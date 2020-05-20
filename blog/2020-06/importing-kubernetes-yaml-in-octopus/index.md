@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-If you have been using Kubernetes for some time outside of Octopus, you likely have existing YAML resource definitions. Migrating this YAML into Octopus is easy thanks to a new feature introduced in Octopus 2020.2, giving you the best of both world with the ability to import, export and edit raw YAML while having your Kubernetes resources managed in an opinionated way by Octopus.
+If you have been using Kubernetes for some time outside of Octopus, you likely have existing YAML resource definitions. Migrating this YAML into Octopus is easy thanks to a new feature introduced in Octopus 2020.2, giving you the best of both worlds with the ability to import, export and edit raw YAML while having your Kubernetes resources managed in an opinionated way by Octopus.
 
-In this blog post we'll learn how to migrate existing YAML definition into an Octopus deployment.
+In this blog post we'll learn how to migrate an existing YAML definition into an Octopus deployment.
 
 ## The sample yaml
 
-Below is a YAML file defining a deployment resource and a service to expose the web application the Docker image contains:
+Below is YAML defining a deployment resource and a service to expose the web application the Docker image contains:
 
 ```yaml
 apiVersion: apps/v1
@@ -88,11 +88,11 @@ We can then repeat the process for the service, which has it's own **Edit YAML**
 
 ![](service-edit-yaml.png "width=500")
 
-Once the details are saved, the service is populate with the service properties and ports:
+Once the details are saved, the service is populated with the service properties and ports:
 
 ![](service-pasted-yaml.png "width=500")
 
-One thing to notice is that the service labels were not imported, as they are no exposed by the step. One of the opinions of this steps is that all resources (which is the deployment and service in our case) share the labels defined on the deployment. The service and deployment are linked up at deployment time through additional labels automatically added by Octopus, freeing us from maintaining selector labels on the service:
+One thing to notice is that the service labels were not imported, as they are not exposed by the step. One of the opinions of this steps is that all resources (which is the deployment and service in our case) share the labels defined on the deployment. The service and deployment are linked up at deployment time through additional labels automatically added by Octopus, freeing us from maintaining selector labels on the service:
 
 ![](populated-service.png "width=500")
 
