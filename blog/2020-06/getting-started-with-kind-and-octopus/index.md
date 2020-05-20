@@ -137,7 +137,7 @@ We have now successfully created a local Kubernetes cluster with kind, extracted
 
 From here we can learn how to use Octopus to deploy Kubernetes resources. The blog posts below show you how to:
 
-* Deploy your first container to Kubernetes via Octopus.
-* Import an existing Kubernetes YAML file into Octopus.
-* Deploy a Helm chart via Octopus.
-* Perform custom Kubernetes scripting in Octopus.
+* [Deploy your first container to Kubernetes via Octopus](/blog/2020-06/deploy-your-first-container-to-kubernetes/index.md).
+* [Import an existing Kubernetes YAML file into Octopus](/blog/2020-06/importing-kubernetes-yaml-in-octopus/index.md).
+* [Deploy a Helm chart via Octopus](/blog/2020-06/deploy-helm-chart-with-octopus/index.md).
+* [Perform custom Kubernetes scripting in Octopus](/blog/2020-06/custom-kubectl-scripting-in-octopus/index.md).
