@@ -207,4 +207,4 @@ As expected, all these tools are available for our script to use:
 
 By exposing a wealth of variables, allowing Docker images to be selected at deployment time, and providing a wide range of tooling through the [worker tool Docker images](https://hub.docker.com/r/octopusdeploy/worker-tools), it is possible to script complex deployments and management tasks against Kubernetes from Octopus.
 
-This post looked at some useful debugging techniques in Octopus, and provided example scripts that take advantage of package variables and worker tools Docker images to highlight some of the possibilities of using Octopus to automate Kubernetes clusters.
+This post looked at some useful debugging techniques in Octopus, and provided example scripts that take advantage of package variables and the worker tools Docker images to highlight some of the possibilities of using Octopus to automate Kubernetes clusters.
