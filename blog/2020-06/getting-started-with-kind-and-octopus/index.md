@@ -56,9 +56,9 @@ We now have a local Kubernetes cluster ready for testing.
 
 ## Extracting the certificates
 
-The `config` file created by kind embeds a cluster certificate which is used to secure API traffic and a client key and certificate used to identify the Kubernetes user. We need to extract these values into files that can be imported into Octopus.
+The `config` file created by kind embeds a cluster certificate used to secure API traffic, and a client key and certificate used to identify the Kubernetes user. We need to extract these values into files that can be imported into Octopus.
 
-The Bash and Powershell scripts below extract the data, decode it, and combine the client key and certificate into a single PFX file. The end result of these scripts are two files: cluster.crt and client.pfx:
+The Bash and Powershell scripts below extract the data, decode it, and combine the client key and certificate into a single PFX file. The end result of these scripts are two files: `cluster.crt` and `client.pfx`:
 
 Here is the Bash script:
 
@@ -113,7 +113,7 @@ The final step is to create the Kubernetes target. This target uses the certific
 
 ## A word on workers
 
-Because the Kubernetes URL references `localhost`, we either need to run Octopus on our local development PC, or install a worker on our local PC, which essentially allows a remote Octopus instance to tunnel into our local PC.
+Because the Kubernetes URL references `127.0.0.1` (or `localhost`), we either need to run Octopus on our local development PC or install a worker on our local PC, which allows a remote Octopus instance to tunnel into our local PC.
 
 In the screenshots below you can see some of the steps from the Tentacle manager which configure a worker:
 
