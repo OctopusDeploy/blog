@@ -138,4 +138,63 @@ It should come as no surprise that the images provided by Octopus include a good
 
 ![](worker-tools.png "width=500")
 
-`KIND_EXPERIMENTAL_DOCKER_NETWORK` set to `bridge`.
+However, because we are using a Kubernetes cluster hosted in Docker with kind, we have to do some configuration to ensure the Docker container that runs our Octopus steps can access the cluster.
+
+First we need to ensure that the Kubernetes cluster is running on the default Docker network called `bridge`. Since [version 0.8.0](https://github.com/kubernetes-sigs/kind/releases/tag/v0.8.0), kind will create the Kubernetes cluster in a special network called `kind`, which would isolate the cluster from the container running our deployment. To resolve this set the `KIND_EXPERIMENTAL_DOCKER_NETWORK` environment variable to `bridge` to force kind to use the default network. You may need to delete the existing cluster with `kind cluster delete`. Then recreate it with the instructions from the [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md), remembering to extract the certificates and reupload them in Octopus as they will have changed.
+
+We also need to point our Kubernetes target to a new IP address and port. The command `docker container ls` shows us the kind container hosting the Kubernetes control plane:
+
+```
+$ docker container ls
+CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS                       NAMES
+ebb9eb784a55        kindest/node:v1.18.2   "/usr/local/bin/entr…"   6 minutes ago       Up 6 minutes        127.0.0.1:59747->6443/tcp   kind-control-plane
+```
+
+From this we can see that port `6443` is the internal port that exposes the Kubernetes API.
+
+We then inspect the container to see the IP address of the container with the command `docker container inspect kind-control-plane`. Below is a truncated copy of the output from this command:
+
+```
+$ docker container inspect kind-control-plane
+[
+    {
+        // ... removed the container details for brevity
+        "NetworkSettings": {
+            // ... removed networking details for brevity
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "29f0f93df185df5ecae63abcca94c7a1bdd24a13bc8cd0158b2534199a08b95e",
+                    "EndpointID": "0dc06d6e58a17e169d1c58a4ddaec179252d7b3e79695c40eba52af3ae8b921a",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+```
+
+From this we can see the `bridge` network was used, meaning the `KIND_EXPERIMENTAL_DOCKER_NETWORK` environment variable worked as expected. We then see that the `IPAddress` property is set to `172.17.0.2`. This means the URL for our Kubernetes cluster is `https://172.17.0.2:6443`:
+
+![](internal-cluster.png "width=500")
+
+Now that we have configured the correct networking for two sibling Docker containers to talk to each other, we can verify that the worker-tools image is exposing the tooling we expect by running the script:
+
+```powershell
+istioctl version
+linkerd version
+helm version
+```
+
+As expected, all these tools are available for our script to use:
+
+![](script-result.png "width=500")
