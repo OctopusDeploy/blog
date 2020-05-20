@@ -130,10 +130,12 @@ kubectl apply -f deployment.yml
 
 ## Running in a container image
 
-One of the challenges with a tool like Octopus is there sheer number of platforms it integrates with, and the tooling that Octopus leverages to do so. The initial solution to this problem was to package tools with Octopus itself, but over time the different tool versions, different operatings systems and constant introduction of new tools made this approach unmaintainable.
+One of the challenges with a tool like Octopus is there sheer number of platforms it integrates with, and the tooling that Octopus leverages to do so. The initial solution to this problem was to package tools with Octopus itself, but over time the different tool versions, different operating systems and constant introduction of new tools made this approach unmaintainable.
 
-The solution to this problem was the introduction of [worker tool Docker images](https://hub.docker.com/r/octopusdeploy/worker-tools) that deployment processes could be executed inside of. These Docker images contain a selection of common open source tools, and can be versioned and published independantly of Octopus itself.
+The solution to this problem was the introduction of [worker tool Docker images](https://hub.docker.com/r/octopusdeploy/worker-tools) that deployment processes could be executed inside of. These Docker images contain a selection of common open source tools, and can be versioned and published independently of Octopus itself.
 
 It should come as no surprise that the images provided by Octopus include a good selection of Kubernetes tooling, including `kubectl`, `istioctl`, `linkerd` and `helm`.
 
 ![](worker-tools.png "width=500")
+
+`KIND_EXPERIMENTAL_DOCKER_NETWORK` set to `bridge`.
