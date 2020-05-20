@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-When getting started with Kubernetes, the sheer number of tools and options available can present a significant hurdle to be jumped before it is possible to deploy even the most simple example application. Unlike most other platforms, Kubernetes does not provide a standard package that you can download and install onto your local development PC. The community has filled this void with many different options like [Minikube](https://github.com/kubernetes/minikube), [MicroK8s](https://microk8s.io/), [k3s](https://k3s.io/), and [Docker Desktop with Kubernetes](https://www.docker.com/blog/docker-windows-desktop-now-kubernetes/). 
+When getting started with Kubernetes, the sheer number of tools and options available can present a significant hurdle to be jumped before deploying even the most simple example application. Unlike most other platforms, Kubernetes does not provide a standard package that you can download and install onto your local development PC. The community has filled this void with many different options like [Minikube](https://github.com/kubernetes/minikube), [MicroK8s](https://microk8s.io/), [k3s](https://k3s.io/), and [Docker Desktop with Kubernetes](https://www.docker.com/blog/docker-windows-desktop-now-kubernetes/). 
 
-For this blog post we'll look at [kind](https://kind.sigs.k8s.io/). Although any of the perviously mentioned solutions are excellent choices, I prefer kind because it works seamlessly across all major operating systems and plays nicely in [WSL2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about), which makes it easy for Windows developers jumping between Windows and Linux.
+For this blog post we'll look at [kind](https://kind.sigs.k8s.io/). Although any of the previously mentioned solutions are excellent choices, I prefer kind because it works seamlessly across all major operating systems and plays nicely in [WSL2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about), which makes it easy for Windows developers jumping between Windows and Linux.
 
 ## Installing kind
 
