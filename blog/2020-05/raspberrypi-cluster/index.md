@@ -10,7 +10,7 @@ tags:
  - 
 ---
 
-Like everyone else, we were told to stay home as this Covid-19 crisis unfolds.  Seeing as how I was going to be stuck at home, I figured I'd do something constructive with my time ... along with a fair amount of gaming ;)  I'd always wanted to create a cluster, but my other half didn't like the idea of having yet even more computers around the house (we're already at ~2:1 ratio of computers to people).  I'd read about people having great success with running the new Raspberry Pi 4 in a cluster with Docker Swarm, so I figured I'd give it a go!  Here are some of my experiences.
+Like everyone else, we were told to stay home as this Covid-19 crisis unfolds.  Seeing as how I was going to be stuck at home, I figured I'd do something constructive with my time ... along with a fair amount of gaming ;)  I'd always wanted to create a cluster, but my other half didn't like the idea of having yet even more computers around the house (we're already at ~2:1 ratio of computers to people).  I'd read about people having great success with running the new Raspberry Pi 4 in a cluster with Docker Swarm.  Since the Raspberry Pi is tiny and consumes very little power, the Better half agreed, albeit reluctantly (love you, sweetie!)  Here are some of my experiences.
 
 ## Parts
 No article about projects such as this would be complete without a parts list :)
@@ -52,6 +52,78 @@ In some cases you can use a work-around and tell Docker not to resolve the image
 - `docker stack deploy --name <somename> --compose-file <somefile> --resolve-image never`
 
 ### Stacks!
-Stacks are the Docker Swarm way of using docker-compose, in fact it uses a compose file as one of its arguments.  Just like docker-compose, you can define multiple containers within a single file.  By default, a stack deployment will create a network for the stack so they can all talk to each other.
+Stacks are the Docker Swarm way of using docker-compose, in fact it uses a compose file as one of its arguments.  Just like docker-compose, you can define multiple containers within a single file.  By default, a stack deployment will create a network for the stack so they can all talk to each other.  This makes it easy to refer one container to another just by name.  For example, if you created a container that needs a database container, you could simply refer to it by name!  For example, below us a compose file for running [Home Assistant](https://www.home-assistant.io/) on my docker swarm.  This stack consistes of an MQTT service container, a Home assistant container, and a MySQL database server container.  For reasons I'll go into later, I configured Home Assistant to use a MySQL back-end for the Recorder
+
+```
+version: "3.3"
+
+services:
+
+  mqtt:
+    image: eclipse-mosquitto
+    networks:
+      - hass
+    ports:
+      - 1883:1883
+    volumes:
+      - /mnt/clusterpi/mqtt/db:/db
+      - /etc/localtime:/etc/localtime:ro
+
+  home-assistant:
+    image: homeassistant/home-assistant
+    networks:
+      - hass
+    ports:
+      - 8123:8123
+    volumes:
+      - /mnt/clusterpi/home-assistant:/config
+      - /etc/localtime:/etc/localtime:ro
+
+  mysqldb:
+    image: hypriot/rpi-mysql
+    networks:
+      - hass
+    ports:
+      - 3350:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "MySuperSecretPassword"
+      MYSQL_DATABASE: "homeassistant"
+      MYSQL_USER: "hassio"
+      MYSQL_PASSWORD: "AnotherSuperSecretPassword"
+    volumes:
+      - /mnt/clusterpi/mysql:/var/lib/mysql
+
+networks:
+  hass:
+```
+
+In the `configuration.yaml` file, you can see where I created the connection to the mysqldb container
+
+```
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+recorder:
+  db_url: mysql://root:MySuperSecretPassword@mysqldb/homeassistant?charset=utf8
+```
+
+### One of us!
+When working with a docker swarm, all of the members of the swarm act as one.  Looking at the graphic above, we can see that all of the containers are distrubted amongts the members of the swarm.  However, when connecting to a container via an exposed port, it's not necessary to reference the node in which is currently hosting the container.  For example, the graphic above shows the members of the cluster with the unimaginative names clusterpi-1 through 5.  We can see that clusterpi-1 hosts the container named `viz` (which is the web page of the graphic, `visualizer`)  The `viz` container port is mapped to the host port of 80, so I can access the `visualizer` web page via http://clusterpi-1.  I can also access `visualizer` via http://clusterpi-4, even though clusterpi-4 is not the current host of the container.  Go cluster!  Just like a single system, any port that has been mapped cannot be used by another container, meaning the mysql_dev container is the only thing that can be mapped to 3306, all of the other mysql containers (unless they're replicas of mysql_dev) have to use a different port.
 
 ### Persistent storage woes
+One of the first lessons you learn when playing with containers is that when the container is destroyed, so is all of the data.  In order to prevent this, you need to configure the container to map what it would usually store internally to a place external to the container in what is known as a volume.  Creating volumes on a docker host is fairly easy, however, there's no gauruntee that a container will be run by the same host each time (okay, technically you could do it with constraints), persistent storage on a swarm needs to be in a location that is available to all of the nodes.
+
+Creating volume mappings are not particularly difficult ... unless you're mixing Windows and Linux.  
