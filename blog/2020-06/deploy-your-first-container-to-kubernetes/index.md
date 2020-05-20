@@ -167,7 +167,7 @@ This runbook can now be run by anyone granted access via the Octopus UI, address
 
 ![](get-deployments-log.png "width=500")
 
-Let's now add a second step to query the pods. Notice here that the **Resource Names** has been set to **randomquotes\***. This is a convenience added by the **Kubernetes - Inspect Resources** step that allows Kubernetes resources to be matched by wildcards, which is not available from `kubectl` natively. It is especially handy with pods created by deployments, because Kubernetes assigns suffixes to these pod names:
+Let's now add a second step to query the pods. Notice here that the **Resource Names** has been set to **randomquotes\***. This is a convenience added by the **Kubernetes - Inspect Resources** step that allows Kubernetes resources to be matched by wildcards, which is not available from `kubectl` natively. It is especially handy with pods created by deployments, because Kubernetes assigns random suffixes to these pod names:
 
 ![](get-pods.png "width=500")
 
