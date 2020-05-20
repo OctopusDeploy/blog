@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-The previous blogs in this services have all focused on how to use the opinionated steps in Octopus to perform Kubernetes deployments. But there are times when you need to jump into a script. Maybe you want to take advantage of a custom scripting tool like [istioctl ](https://istio.io/docs/ops/diagnostic-tools/istioctl/) or use some advanced or uncommon properties exposed by Kubernetes resources. For these situations, Octopus allows you to write custom scripts against kubectl.
+The previous blogs in this series have all focused on how to use the opinionated steps in Octopus to perform Kubernetes deployments. But there are times when you need to jump into a script. Maybe you want to take advantage of a custom scripting tool like [istioctl ](https://istio.io/docs/ops/diagnostic-tools/istioctl/) or use some advanced or uncommon properties exposed by Kubernetes resources. For these situations, Octopus allows you to write custom scripts against kubectl.
 
 In this post we'll look at some of the tricks you can take advantage of to create flexible and reuseable scripts running against your Kubernetes cluster.
 
@@ -36,9 +36,9 @@ Here is a screenshot of the result:
 
 From the output we can see that the Kubernetes configuration file has been saved to `C:\Octopus\Master K8S Worker\Work\20200520001931-474360-35\kubectl-octo.yml`, which is a temporary directory created to hold the working files required by the step. We can also see how the configuration file has been constructed with the details saved in the Kubernetes target.
 
-## Using variables
+## Using variables in scripts
 
-Our script has access to all the variables available when the step runs. The easiest way to see the variables that are available is to set the Octopus variable `OctopusPrintVariables` or `OctopusPrintEvaluatedVariables` to `True`:
+Our script has access to all the variables available when the step runs. The easiest way to see the variables that are available is to set the [Octopus variable](https://octopus.com/docs/support/how-to-turn-on-variable-logging-and-export-the-task-log) `OctopusPrintVariables` or `OctopusPrintEvaluatedVariables` to `True`:
 
 ![](debug-variables.png "width=500")
 
@@ -91,7 +91,7 @@ The package version is then selected during deployment:
 
 ![](select-version.png "width=500")
 
-Finally, we scan through the variables printed in the logs to find the one that references our Docker image. You can see in the screenshot below that the variables called `Octopus.Action.Package[mywebapp].Image` is the complete Docker image name, and `Octopus.Action.Package[mywebapp].PackageVersion` is just the version:
+Finally, we scan through the variables printed in the logs to find the one that references our Docker image. You can see in the screenshot below that the variables called `Octopus.Action.Package[mywebapp].Image` is the complete Docker image name, and `Octopus.Action.Package[mywebapp].PackageVersion` is the version:
 
 ![](image-variables.png "width=500")
 
@@ -130,17 +130,21 @@ kubectl apply -f deployment.yml
 
 ## Running in a container image
 
-One of the challenges with a tool like Octopus is there sheer number of platforms it integrates with, and the tooling that Octopus leverages to do so. The initial solution to this problem was to package tools with Octopus itself, but over time the different tool versions, different operating systems and constant introduction of new tools made this approach unmaintainable.
+One of the challenges with a tool like Octopus is the sheer number of platforms it integrates with, and the tooling that Octopus leverages to do so. The initial solution to this problem was to package tools with Octopus itself, but over time the different tool versions, different operating systems and constant introduction of new tools made this approach unmaintainable.
 
 The solution to this problem was the introduction of [worker tool Docker images](https://hub.docker.com/r/octopusdeploy/worker-tools) that deployment processes could be executed inside of. These Docker images contain a selection of common open source tools, and can be versioned and published independently of Octopus itself.
 
 It should come as no surprise that the images provided by Octopus include a good selection of Kubernetes tooling, including `kubectl`, `istioctl`, `linkerd` and `helm`.
 
+In the screenshot below the script step has been configured to run inside of a worker tool Docker image:
+
 ![](worker-tools.png "width=500")
 
 However, because we are using a Kubernetes cluster hosted in Docker with kind, we have to do some configuration to ensure the Docker container that runs our Octopus steps can access the cluster.
 
-First we need to ensure that the Kubernetes cluster is running on the default Docker network called `bridge`. Since [version 0.8.0](https://github.com/kubernetes-sigs/kind/releases/tag/v0.8.0), kind will create the Kubernetes cluster in a special network called `kind`, which would isolate the cluster from the container running our deployment. To resolve this set the `KIND_EXPERIMENTAL_DOCKER_NETWORK` environment variable to `bridge` to force kind to use the default network. You may need to delete the existing cluster with `kind cluster delete`. Then recreate it with the instructions from the [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md), remembering to extract the certificates and reupload them in Octopus as they will have changed.
+First we need to ensure that the Kubernetes cluster control plane is running on the default Docker network called `bridge`. Since [version 0.8.0](https://github.com/kubernetes-sigs/kind/releases/tag/v0.8.0), kind will create the Kubernetes cluster in a special network called `kind`, which would isolate the cluster control plane from the container running our deployment. To resolve this set the `KIND_EXPERIMENTAL_DOCKER_NETWORK` environment variable to `bridge` to force kind to use the default network.
+
+You may need to delete the existing cluster with `kind cluster delete`. Then recreate it with the instructions from the [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md), remembering to extract the certificates and reupload them in Octopus as they will have changed.
 
 We also need to point our Kubernetes target to a new IP address and port. The command `docker container ls` shows us the kind container hosting the Kubernetes control plane:
 
@@ -152,7 +156,7 @@ ebb9eb784a55        kindest/node:v1.18.2   "/usr/local/bin/entr…"   6 minutes 
 
 From this we can see that port `6443` is the internal port that exposes the Kubernetes API.
 
-We then inspect the container to see the IP address of the container with the command `docker container inspect kind-control-plane`. Below is a truncated copy of the output from this command:
+We then get the IP address of the container with the command `docker container inspect kind-control-plane`. Below is a truncated copy of the output from this command:
 
 ```
 $ docker container inspect kind-control-plane
