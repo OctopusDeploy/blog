@@ -134,4 +134,6 @@ One of the challenges with a tool like Octopus is there sheer number of platform
 
 The solution to this problem was the introduction of [worker tool Docker images](https://hub.docker.com/r/octopusdeploy/worker-tools) that deployment processes could be executed inside of. These Docker images contain a selection of common open source tools, and can be versioned and published independantly of Octopus itself.
 
-It should come as no surprise that the images provided by Octopus include a good selection of Kubernetes tooling.
+It should come as no surprise that the images provided by Octopus include a good selection of Kubernetes tooling, including `kubectl`, `istioctl`, `linkerd` and `helm`.
+
+![](worker-tools.png "width=500")
