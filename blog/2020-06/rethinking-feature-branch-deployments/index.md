@@ -11,9 +11,31 @@ tags:
  - Database Deployments
 ---
 
-I transitioned to Git in 2013.  Since that time, I have been doing feature branch testing all wrong.  The problem was, I worked in places with the same static environments, **{{Dev, Test, Staging, Production}}**.  Each environment had one instance of my application, and they all reflected what was in the `master` branch.  The only way for QA to test a new feature was to merge code into `master`.  I should have been standing up a sandbox for the feature branch for QA to test.  The **{{Dev, Test, Staging, Production}}** lifecycle represented my pre-Git life.  In this article, I will walk through how I’ve adjusted my thinking to better leverage Git.
+I transitioned to Git in 2013.  Since that time, I have been doing feature branch testing all wrong.  The problem was, I worked in places with the same static environments, **{{Dev, Test, Staging, Production}}**.  Each environment had one instance of my application, and they all reflected what was in the `master` branch.  The only way for QA to test a new feature was to merge code into `master`.  In a perfect world I would stood up a sandbox for the feature branch for QA to test.  The **{{Dev, Test, Staging, Production}}** lifecycle represented my pre-Git life.  In this article, I will walk through how I’ve adjusted my thinking to better leverage Git.
 
 !toc
+
+## Feature branches and feature flags
+
+This article is going to discuss the [feature branches workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow).  This article can also be used for those following the [Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). There is an alternative to this approach, [feature flags](https://www.martinfowler.com/articles/feature-toggles.html).  Before diving into the rest of the article, I want to spend a bit of time discussing the differences between feature branches and feature flags.  
+
+As I mentioned before, I started using Git back in 2013.  At that time I was working on a loan origination system for a bank.  When someone came in for a loan, the loan officer would enter in their details into the loan origination system my team was responsible for.  At any given point there are 100s of users at the bank using the software.  They all had different ideas on how it should work, and they'd submit a variety of feature requests, bug reports and other misc information.  Loan origination systems are complex.  What seems like a "simple feature" requires significant testing.
+
+Imagine a feature request came in which stated "for loans with two or more people, show the lowest credit score found for each person in the last six months rather than the showing current credit score."  There are a lot of implementation questions and details needing to be worked out to implement that feature.  The developers would create a new branch called `feature/lowest-credit-score` and start their implementation.  Eventually, the developers would reach a point in which they felt "good" about the change and they would be ready for feedback from QA and the Business Owner of the feature.  How does one get feedback for that? 
+
+There are two main problems we ran into:
+1. The code is not ready for **Production**.  The only branch being used for deployments is `master`.  Once it is merged into `master` it could end up in **Production** if someone is not careful.
+2. QA has several automated tests that verify the old business rules, which is show the current score.
+
+Typically I have seen two approaches to solve this problem.
+1. Create a feature flag called `LowestCreditScore`.  When the feature flag is set to `True` it will use the new logic.  When that flag is set to `False` it will use the old logic.
+2. Spin up a new instance of the application, also called creating a sandbox, in a **Test** or **QA** environment to get feedback and a place for QA to update their tests.  
+
+There are pros can cons to either approach.  Feature flags have a nasty way of imbedding themselves everywhere in the code and they introduce complexity.  Each if/then statement in the code requires additional unit tests.  But feature flags allow you to deploy code with the new feature turned off.  You can turn on the feature when you are ready.  Or, you can turn on the feature for a set of people to get their feedback.  
+
+Creating a sandbox requires additional resources, such as CPU, disk space, and RAM.  If sandboxes aren't cleaned up, it is easy to reach the point of resource exhaustion.  There are only so many websites which can be created in a web server and so many databases created in a database server.  But they allow someone to get feedback and for QA to verify without merging unfinished code into `master`.  
+
+What's nice, is these options are not mutually exclusive.  You can have both, or you can have neither.  In my experience, having a separate sandbox for testing and feedback on a new feature (or hotfix) would've prevented a lot of headaches.  In this example, I would've recommended both approaches.  I can foresee a lot of back and forth.  And this change could have ramifications on how loans are approved.  If the ramifications are negative in **Production**, being able to turn off the change quickly is extremely beneficial.
 
 ## Deployment lifecycles
 
@@ -37,7 +59,7 @@ As I got deeper into setting up the example for this post, the same question kep
 
 A static environment is an environment where application-specific resources (databases, file storage, etc.) have to be static.  Spinning up and using new resources requires a lot of coordination and communication to avoid an outage or downtime.  Any sort of downtime which affects non-IT staff (external users, business users, etc.) is considered a BIG DEAL.  The time between deployments to these environments is measured in days, not minutes.
 
-Most applications deployed via Octopus Deploy use RDMS databases such as SQL Server, Oracle, PostgreSQL, and MySQL.  The `Production` instance of the database has to be static.  It isn’t feasible to create a new copy of a `Production` database for each deployment.  As cool as it would be, the time and resource (disk space, CPU usage, RAM usage) cost would be too high.  One application deployment to `Production` a week is considered fast.  Typically, it is once a fortnight to once every eight weeks.
+Most applications deployed via Octopus Deploy use RDMS databases such as SQL Server, Oracle, PostgreSQL, and MySQL.  The `Production` instance of the database has to be static.  It isn’t feasible to create a new copy of a `Production` database for each deployment.  As cool as it would be, the time and resource (disk space, CPU usage, RAM usage) cost would be too high.  One application deployment to `Production` a week is considered fast.  Typically, it is once a fortnight to once a quarter.
 
 Based on those reasons, `Production` is a static environment.  
 
@@ -87,7 +109,7 @@ Most places I worked the `Dev` environment was rarely used.  It didn’t have ve
 - When a new feature branch is checked in, new infrastructure for that feature branch is spun-up in `Test`.  
 - Subsequent check-ins for that feature branch will go to that infrastructure.
 - By default, all applications in `Test` use the `Staging` instance of their dependent applications.  This can be overwritten to point to `Test` when work on 1 to N applications is tightly coupled.
-- When the feature branch is merged into master, the testing infrastructure is torn down, and the deployment pushes code to `Staging`.
+- When the feature branch is merged into master, a deployment is kicked off which tears the testing infrastructure is torn down and then it automatically deploys the merged code to `Staging`.
 - After final verification and sign-off, the code is pushed to `Production`.
 
 The lifecycles will be:
@@ -97,15 +119,55 @@ The lifecycles will be:
 
 Unfinished code will no longer be merged into master.  This will make scheduling a release much easier.  What is in master has been signed off by QA and any Business or Product Owners.  You could merge Feature A into master on Monday, deploy on Tuesday, then merge Feature B into master on Wednesday and deploy on Friday.  Each deployment will be much smaller, as well.
 
-The same holds true for bug fixes.  They will be treated as feature branches.  When a bug-fix branch is checked in, new infrastructure is stood up to verify the fix actually fixes the issue.  When it is ready to go, it is merged into master and pushed up to `Staging`.  
+The same holds true for bug fixes.  They will be treated as feature branches.  When a hot-fix branch is checked in, new infrastructure is stood up to verify the fix actually fixes the issue.  When it is ready to go, it is merged into master and pushed up to `Staging`.  
 
-If you are using Gitflow, you could configure the build server to kick off releases to `Staging` when a change is checked into a release branch.  
+If you are using Gitflow, you could configure the build server to kick off releases to `Staging` when a change is checked into a release branch. 
 
-## External Services
+### Merge conflicts and pulling in latest changes
+
+Each feature branch will have its own sandbox to test changes in.  A feature can take one day to finish, or it could take one month to finish.  There are many advantages to having separate sandbox to test changes in, but it is up to the developers to keep their feature branch up to date by regularly pulling in changes from the `master` branch.  It gets exponentially harder to merge the latest changes in `master` into a feature branch as time goes on.  One feature my team worked on took four weeks before it was ready for QA to test.  The developers waited to merge master into their branch until the very end; it took over three days to resolve all the merge conflicts.  
+
+Ideally, the number of changes being merged into `master` should decrease with this new workflow.  Remember, before changes being merged into `master` were half complete.  They were ready for testing, but I rarely saw a change make it past the test stage without at least one modification.  Instead of merging changes 20-25 times a day into `master`, it would drop down to three to four a week.  
+
+Merge conflicts will happen.  Developers need to talk to one another and let everyone know what area of the code they are working in.  The Product Owners or Business Analysts should work with developers to ensure they aren't sending in feature requests which all touch the same code.  This new workflow will help ensure **Production** ready code is merged into master, not help organize developers better. 
+
+### External Services and databases
 
 In this configuration, the `Staging` environment matches `Production` as closely as possible, which means it should be stable.  The only time `Staging` varies from `Production` is prior to a `Production` deployment.
 
-As a rule of thumb, all the services in `Test` which are dependent on external services should point to `Staging`.  There are cases where multiple applications are being changed for release, and the changes are all tightly coupled together.  In that specific instance, the applications would point to specific feature branch services on `Test`.  Essentially, it is a sandbox of sandboxes.
+As a rule of thumb, all the services in `Test` which are dependent on external, or downstream, services should point to `Staging`.  I realize this is much easier said than done.  
+
+![](dependent-services.png)
+
+Applications often store unique identifiers they get from external services.  In the old workflow, because `Staging` and `Test` were isolated from one another, they would have different identifiers.  The good news is those identifiers are typically stored in a database.  This brings me to my next point, the database.  A new sandbox without data to test with is useless.  That data needs to come from somewhere.  Rather than copying the same `Test` database, I'd recommend restoring a recent backup of the `Staging` database(s) when creating the feature branch sandboxes. 
+
+### Tightly coupled changes across multiple applications
+
+It is common for a large project to involve multiple applications, with the changes being tightly coupled together.  In this specific case, a sandbox of sandboxes will be created. 
+
+![](dependent-service-multiple-apps-feature-branches.png)
+
+Without a doubt, this scenario will makes things significantly trickier.  Spinning up a sandbox for your specific application's feature branch is relatively easy as you have control over that application.  Other teams will have a different cadence.  You might get your sandbox stood up before the other team get theirs stood up.  While you're waiting for the other team your sandbox needs to work, so you'll point to `Staging`.  As all the dependent sandboxes come online you'll need to update your configuration entries to point to them in `Test`.
+
+![](your-app-multiple-feature-branches-one-dependent-service.png)
+
+The easy way out is to say "don't tightly couple application changes like that."  From an release standpoint, it is much harder to deploy this project, as applications have to be deployed in a specific order.  Delays will compound themselves.  You'll hear, "my app can't be modified until [Team X]'s service is modified."  While decoupling is the end goal, in practice, tightly coupled application changes happen.
+
+With dependent services, you have two things to worry about.
+
+1. The URL of the service
+2. The data contract of the service
+
+The URL will need to be modified to point to the feature branch sandbox in `Test`.  There are multiple ways to accomplish this:
+
+- [Configuration Transforms](https://octopus.com/docs/deployment-process/configuration-features/configuration-transforms#Configurationfiles-Wildcard) - you create a configuration transform which points to that specific service in `Test` in your feature branch.  Once the dependent service has been promoted to `Staging` that configuration transform is deleted.
+- New configuration value - add a new config value which points to the URL of the service in `Test`.  Once the dependent service has been promoted to `Staging` that new config value is deleted.  The downside of this option is it also requires a code change.
+- [Leverage multi-tenancy](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments) where feature branches are deployed to specific tenants.  The service URLs are stored as tenant variables.  [Uber did a great write-up](https://eng.uber.com/multitenancy-microservice-architecture/) on how they leveraged multi-tenancy.
+- Leverage load balancers or URLs to dynamic route traffic - I don't have as much experience as doing this, but I have heard of people being successful in doing this.  
+
+The data contract is the other concern, even with JSON and Restful services.  Something as simple as adding a property to a JSON object will have ramifications.  That is not to mention new end points, new objects, or changed properties.  There are books upon books written on this subject.  What I found works the best is to analyze the change being made.  If it is a new property, write the code assuming that new property will be null.  If it is new endpoints or objects, look at feature flags.  That way the app can be deployed independently of the downstream service.
+
+A separate sandbox makes testing and verification of the project easier.  But it will involve a lot more prep work.
 
 ## New infrastructure vs. re-using existing infrastructure
 
@@ -118,10 +180,6 @@ Spinning up new infrastructure has the benefit of making it much easier to tear 
 However, new infrastructure has a cost associated with it, whether it is running on the cloud or self-hosted.  For the cloud, the cost is very much real in what you are billed each day.  For self-hosted, there is a time concern and resource utilization.  For example, does the SAN have enough space for another virtual disk, or are there enough v-CPUs available in the hypervisors?  In general, most servers in `Test` are not being fully utilized.  Even when QA is testing, if you look at a resource monitor, the CPU usage is probably under 20%.  Most web servers, database servers, and app servers allow you to host multiple applications, websites, or databases.  
 
 There isn’t a right or wrong answer to this.  It’s a case of doing what is best for you, your sanity, and your company.
-
-## Feature branch databases and testing data
-
-It’s easy to spin up a new empty database.  The tricky part is populating that empty database with data.  In most places I’ve worked, `Staging` was a sanitized copy of `Production` or `Staging` was populated with lots of test data.  In either case, spinning up a new sandbox should restore a copy of the `Staging` database.  That is much easier said than done, but that’s where I would start.
 
 ## Leveraging Octopus Deploy
 
