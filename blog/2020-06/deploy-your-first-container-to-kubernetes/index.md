@@ -16,7 +16,7 @@ In the [previous post](/blog/2020-06/getting-started-with-kind-and-octopus/index
 
 ## Create and push the Docker image
 
-Octopus uses a feed to access Docker images from a Docker repository. Many tools exist that let you to host your own Docker repository, but when you’re first getting started, the public repository [Docker Hub](https://hub.docker.com/) is by far the easiest option.
+Octopus uses a feed to access Docker images from a Docker repository. Many tools exist that let you host your own Docker repository, but when you’re first getting started, the public repository [Docker Hub](https://hub.docker.com/) is by far the easiest option.
 
 Create a new account if you do not already have one, and then log into Docker Hub with the command `docker login`:
 
@@ -108,7 +108,7 @@ The service port then exposes port 80 on the container as port 80 on the service
 
 That is all we need to configure to deploy our image to Kubernetes. When we deploy this project, Octopus will perform some logic behind the scenes to create the Kubernetes deployment and services resources, and link the two together. Linking these resources saves us from some manual work that would otherwise be required to expose a deployment with a service.
 
-One thing to notice when creating the Octopus deployment is that we select the Docker image version (which if you recall was the tag we assigned to the image when it was built) at deploy time. Selecting image versions at deployment time, and by default selecting the latest version, is one of the advantages of using Octopus to manage Kubernetes deployments. Typically, new versions of your Docker images will not require any changes to the Kubernetes resources that reference them, so pushing new versions of your code to Kubernetes can be performed simply by creating a new Octopus deployment and referencing the new Docker image:
+One thing to notice when creating the Octopus deployment is that we select the Docker image version (which, if you recall, was the tag we assigned to the image when it was built) at deploy time. Selecting image versions at deployment time, and by default selecting the latest version is one of the advantages of using Octopus to manage Kubernetes deployments. Typically, new versions of your Docker images will not require any changes to the Kubernetes resources that reference them, so pushing new versions of your code to Kubernetes can be performed simply by creating a new Octopus deployment and referencing the new Docker image:
 
 ![](create-deployment.png "width=500")
 
@@ -142,7 +142,7 @@ To access the service from our local PC, we need to use `kubectl` to proxy a loc
 
 ## Inspect the cluster via Octopus
 
-Running `kubectl` locally is great for seasoned Kubernetes administrators and is often required when creating new deployments to debug and verify that things work as expected. It does have some disadvantages though:
+Running `kubectl` locally is great for seasoned Kubernetes administrators and is often required when creating new deployments to debug and verify that things work as expected. It does have some disadvantages, though:
 
 * It requires `kubectl` to be installed locally and configured with administrator credentials.
 * Local `kubectl` configurations need to be manually updated if credentials change.
@@ -177,16 +177,16 @@ Finally we get the services:
 
 ![](get-services.png "width=500")
 
-With this we have created a runbook that can be run by support staff as a first step in diagnosing any issues with the cluster, with the generated artifacts providing a useful collection of logs that can be reviewed at a later date or passed onto higher levels of support.
+With this, we have created a runbook that can be run by support staff as a first step in diagnosing any issues with the cluster, with the generated artifacts providing a useful collection of logs that can be reviewed at a later date or passed onto higher levels of support.
 
 ## Conclusion
 
-In this post we compiled and pushed a new Docker image to Docker Hub, added Docker Hub as a feed in Octopus, and then deployed the image as a Kubernetes deployment exposed by a service to the test cluster we created with Kind in a [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md).
+In this post, we compiled and pushed a new Docker image to Docker Hub, added Docker Hub as a feed in Octopus, and then deployed the image as a Kubernetes deployment exposed by a service to the test cluster we created with Kind in a [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md).
 
-It has been said that *Kubernetes makes simple things hard, and hard things possible*. It can seem like there are many moving parts to even a simple Kubernetes deployment, but if you have reached this point you have implemented a solid foundation on which to build more complex and production ready infrastructure with Kubernetes. In fact, even with this simple example, you have created:
+It has been said that *Kubernetes makes simple things hard, and hard things possible*. It can seem like there are many moving parts to even a simple Kubernetes deployment, but if you have reached this point, you have implemented a solid foundation on which to build more complex and production ready infrastructure with Kubernetes. In fact, even with this simple example, you have created:
 
 * Repeatable deployments that can be initiated by anyone through the Octopus Web Portal with no local tooling or Kubernetes expertise required.
-* Audited deployments thanks to the built in capabilities in Octopus.
+* Audited deployments thanks to the built-in capabilities in Octopus.
 * A continuous delivery pipeline ready to be triggered from a CI system through the [many available plugins](https://octopus.com/docs/packaging-applications/build-servers).
 * The foundation for multi-environment deployments - see [this guide](https://i.octopus.com/books/kubernetes-book.pdf) for more details.
 * Some initial runbooks to aid support staff who are responsible for the cluster.
