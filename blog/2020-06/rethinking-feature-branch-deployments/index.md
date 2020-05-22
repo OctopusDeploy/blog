@@ -19,12 +19,12 @@ I transitioned to Git in 2013.  Since that time, I have been doing feature branc
 
 This article discusses the [feature branches workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow), but this article can also be used for those following the [Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). There is an alternative to this approach, [feature flags](https://www.martinfowler.com/articles/feature-toggles.html).  Before diving into the rest of the article, I want to discuss the differences between feature branches and feature flags.  
 
-As I mentioned before, I started using Git back in 2013.  At that time, I worked on a loan origination system for a bank.  When someone came in for a loan, the loan officer would enter in their details into the loan origination system my team was responsible for.  At any given point there were hundreds of users at the bank using the software.  They all had different ideas about how it should work, and they'd submit a variety of feature requests, bug reports, and other miscellaneous information.  Loan origination systems are complex.  What seems like a _simple feature_ requires significant testing.
+As I mentioned before, I started using Git back in 2013.  At that time, I worked on a loan origination system for a bank.  When someone came in for a loan, the loan officer would enter in their details into the loan origination system my team was responsible for.  At any given point there were hundreds of users at the bank using the software.  They all had different ideas about how it should work, and they’d submit a variety of feature requests, bug reports, and other miscellaneous information.  Loan origination systems are complex.  What seems like a _simple feature_ requires significant testing.
 
-Imagine a feature request came in which stated "for loans with two or more people, show the lowest credit score found for each person in the last six months rather than the showing current credit score."  There are a lot of implementation questions and details that need to be worked out to implement that feature.  The developers would create a new branch called `feature/lowest-credit-score` and start their implementation.  Eventually, the developers would reach a point in which they felt _good_ about the change and were ready for feedback from QA and the Business Owner of the feature.  How should they get feedback for that? 
+Imagine a feature request came in which stated “for loans with two or more people, show the lowest credit score found for each person in the last six months rather than the showing current credit score.”  There are a lot of implementation questions and details that need to be worked out to implement that feature.  The developers would create a new branch called `feature/lowest-credit-score` and start their implementation.  Eventually, the developers would reach a point in which they felt _good_ about the change and were ready for feedback from QA and the Business Owner of the feature.  How should they get feedback for that?
 
 There are two main problems we ran into:
-1. The code is not ready for **Production**.  The only branch being used for deployments is `master`.  After it is merged into `master` it could end up in **Production** if someone isn't careful.
+1. The code is not ready for **Production**.  The only branch being used for deployments is `master`.  After it is merged into `master` it could end up in **Production** if someone isn’t careful.
 2. QA has several automated tests that verify the old business rules that show the current credit score.
 
 Typically, I have seen two approaches to solve this problem:
@@ -33,9 +33,9 @@ Typically, I have seen two approaches to solve this problem:
 
 There are pros can cons to either approach.  Feature flags have a nasty way of embedding themselves everywhere in the code, and they introduce complexity.  Each if/then statement in the code requires additional unit tests.  But feature flags allow you to deploy code with the new feature turned off.  You can turn on the feature when you are ready.  Or, you can turn on the feature for a set of people to get their feedback.  
 
-Creating a sandbox requires additional resources, such as CPU, disk space, and RAM.  If sandboxes aren't cleaned up, it is easy to reach the point of resource exhaustion.  There are only so many websites that can be created in a web server and only so many databases can be created in a database server.  But they allow someone to get feedback and for QA to verify without merging unfinished code into `master`.  
+Creating a sandbox requires additional resources, such as CPU, disk space, and RAM.  If sandboxes aren’t cleaned up, it is easy to reach the point of resource exhaustion.  There are only so many websites that can be created in a web server and only so many databases can be created in a database server.  But they allow someone to get feedback and for QA to verify without merging unfinished code into `master`.  
 
-What's nice, is these options are not mutually exclusive.  You can have both, or you can have neither.  In my experience, having a separate sandbox for testing and feedback on a new feature (or hot-fix) would've prevented a lot of headaches.  In this example, I would've recommended both approaches.  I can foresee a lot of back and forth, and this change could have ramifications on how loans are approved.  If the ramifications are negative in **Production**, being able to turn off the change quickly is extremely beneficial.
+What’s nice, is these options are not mutually exclusive.  You can have both, or you can have neither.  In my experience, having a separate sandbox for testing and feedback on a new feature (or hot-fix) would’ve prevented a lot of headaches.  In this example, I would’ve recommended both approaches.  I can foresee a lot of back and forth, and this change could have ramifications on how loans are approved.  If the ramifications are negative in **Production**, being able to turn off the change quickly is extremely beneficial.
 
 ## Deployment lifecycles
 
@@ -121,17 +121,17 @@ Unfinished code will no longer be merged into master.  This will make scheduling
 
 The same holds true for bug fixes.  They will be treated as feature branches.  When a hot-fix branch is checked in, new infrastructure is stood up to verify the fix actually fixes the issue.  When it is ready to go, it is merged into master and pushed up to `Staging`.  
 
-If you are using Gitflow, you could configure the build server to kick off releases to `Staging` when a change is checked into a release branch. 
+If you are using Gitflow, you could configure the build server to kick off releases to `Staging` when a change is checked into a release branch.
 
 ### Merge conflicts and pulling in latest changes
 
 Each feature branch will have its own sandbox to test changes in.  A feature can take one day or one month to finish.  There are many advantages to having separate sandboxes to test changes in, but it is up to the developers to keep their feature branch up to date by regularly pulling in changes from the `master` branch.  It gets exponentially harder to merge the latest changes in `master` into a feature branch as time goes on.  One feature my team worked on took four weeks before it was ready for QA to test.  The developers waited to merge master into their branch until the very end; it took four days to resolve all the merge conflicts.  
 
-I'm not saying you need to stop what you're doing and merge from `master` every hour.  I recommend setting up a regular cadence, once a day, once every couple of days, just have something.  The earlier you start, the fewer headaches you'll encounter.  Unless someone does a massive refactor of the code.  That merge won't be fun, no matter how quickly you start.
+I’m not saying you need to stop what you’re doing and merge from `master` every hour.  I recommend setting up a regular cadence, once a day, once every couple of days, just have something.  The earlier you start, the fewer headaches you’ll encounter.  Unless someone does a massive refactor of the code.  That merge won’t be fun, no matter how quickly you start.
 
 Ideally, the number of changes being merged into `master` will decrease with this new workflow.  Remember, before changes being merged into `master` were half complete.  They were ready for testing, but I rarely saw a change make it past the test stage without at least one modification.  Instead of merging changes 20-25 times a day into `master`, it would drop down to three or four a week.  
 
-Merge conflicts will happen.  Developers need to talk to one another and let everyone know what area of the code they are working in.  The Product Owners or Business Analysts should work with developers to ensure they aren't sending in feature requests which all touch the same code.  This new workflow will help ensure **Production** ready code is merged into master, not help better organize developers. 
+Merge conflicts will happen.  Developers need to talk to one another and let everyone know what area of the code they are working in.  The Product Owners or Business Analysts should work with developers to ensure they aren’t sending in feature requests which all touch the same code.  This new workflow will help ensure **Production** ready code is merged into master, not help better organize developers.
 
 ### External Services and databases
 
@@ -141,7 +141,7 @@ As a rule of thumb, all the services in `Test` that are dependent on external, o
 
 ![](dependent-services.png)
 
-Applications often store unique identifiers they get from external services.  In the old workflow, because `Staging` and `Test` were isolated from one another, they would have different identifiers.  The good news is those identifiers are typically stored in a database.  This brings me to my next point, the database.  A new sandbox without data to test with is useless.  That data needs to come from somewhere.  Rather than copying the same `Test` database, I recommend restoring a recent backup of the `Staging` database(s) when you create the feature branch sandboxes. 
+Applications often store unique identifiers they get from external services.  In the old workflow, because `Staging` and `Test` were isolated from one another, they would have different identifiers.  The good news is those identifiers are typically stored in a database.  This brings me to my next point, the database.  A new sandbox without data to test with is useless.  That data needs to come from somewhere.  Rather than copying the same `Test` database, I recommend restoring a recent backup of the `Staging` database(s) when you create the feature branch sandboxes.
 
 ### Tightly coupled changes across multiple applications
 
@@ -149,11 +149,11 @@ It is common for a large project to involve multiple applications, with the chan
 
 ![](dependent-service-multiple-apps-feature-branches.png)
 
-Without a doubt, this scenario will makes things significantly trickier.  Spinning up a sandbox for your specific application's feature branch is relatively easy as you have control over that application.  Other teams will have a different cadence.  You might get your sandbox stood up before the other team's is ready.  While you're waiting for the other team, your sandbox needs to work, so you'll point to `Staging`.  As all the dependent sandboxes come online, you'll need to update your configuration entries to point to them in `Test`.
+Without a doubt, this scenario will makes things significantly trickier.  Spinning up a sandbox for your specific application’s feature branch is relatively easy as you have control over that application.  Other teams will have a different cadence.  You might get your sandbox stood up before the other team’s is ready.  While you’re waiting for the other team, your sandbox needs to work, so you’ll point to `Staging`.  As all the dependent sandboxes come online, you’ll need to update your configuration entries to point to them in `Test`.
 
 ![](your-app-multiple-feature-branches-one-dependent-service.png)
 
-The easy way out is to say, "Don't tightly couple application changes like that."  From a release standpoint, it is much harder to deploy this project, as applications have to be deployed in a specific order.  Delays will compound themselves, and you'll hear, "My app can't be modified until [Team X]'s service is modified."  While decoupling is the end goal, in practice, tightly coupled application changes happen.
+The easy way out is to say, “Don’t tightly couple application changes like that.”  From a release standpoint, it is much harder to deploy this project, as applications have to be deployed in a specific order.  Delays will compound themselves, and you’ll hear, “My app can’t be modified until [Team X]‘s service is modified.”  While decoupling is the end goal, in practice, tightly coupled application changes happen.
 
 With dependent services, you have two things to worry about:
 
@@ -165,7 +165,7 @@ The URL needs to be modified to point to the feature branch sandbox in `Test`.  
 - [Configuration Transforms](https://octopus.com/docs/deployment-process/configuration-features/configuration-transforms#Configurationfiles-Wildcard) - you create a configuration transform which points to that specific service in `Test` in your feature branch.  After the dependent service has been promoted to `Staging` that configuration transform is deleted.
 - New configuration value - add a new config value which points to the URL of the service in `Test`.  After the dependent service has been promoted to `Staging` that new config value is deleted.  The downside of this option is it also requires a code change.
 - [Leverage multi-tenancy](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments) where feature branches are deployed to specific tenants.  The service URLs are stored as tenant variables.  [Uber did a great write-up](https://eng.uber.com/multitenancy-microservice-architecture/) on how they leveraged multi-tenancy.
-- Leverage load balancers or URLs to dynamically route traffic - I don't have as much experience doing this, but I have heard of people being successful with this approach.
+- Leverage load balancers or URLs to dynamically route traffic - I don’t have as much experience doing this, but I have heard of people being successful with this approach.
 
 The data contract is the other concern, even with JSON and RESTful services.  Something as simple as adding a property to a JSON object will have ramifications.  That is not to mention new endpoints, new objects, or changed properties.  There are books upon books written on this subject.  What I found works best, is to analyze the change being made, and if it is a new property, write the code assuming that new property will be null.  If it is new endpoints or objects, look at feature flags.  That way the app can be deployed independently of the downstream service.
 
