@@ -17,7 +17,7 @@ For this blog post, we'll look at [Kind](https://kind.sigs.k8s.io/). Although an
 
 ## Install Kind
 
-Kind creates a Kubernetes cluster as Docker containers. It can be a little mind bending to think of a Docker container implementing the Kubernetes platform which in turn orchestrates more Docker containers, but in practice, the process of setting up a Kind Kubernetes cluster is quick and easy.
+Kind creates a Kubernetes cluster as Docker containers. It can be a little mind-bending to think of a Docker container implementing the Kubernetes platform, which in turn orchestrates more Docker containers, but in practice, the process of setting up a Kind Kubernetes cluster is quick and easy.
 
 After you have [installed Docker](https://docs.docker.com/get-docker/), install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and the [Kind executable](https://kind.sigs.k8s.io/docs/user/quick-start/). Both kubectl and Kind are self-contained executables, meaning they only need to be downloaded and saved in a directory on your PATH.
 
