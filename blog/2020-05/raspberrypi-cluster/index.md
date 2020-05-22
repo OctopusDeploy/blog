@@ -10,7 +10,7 @@ tags:
  - 
 ---
 
-Like everyone else, we were told to stay home as this Covid-19 crisis unfolds.  Seeing as how I was going to be stuck at home, I figured I'd do something constructive with my time ... along with a fair amount of gaming ;)  I'd always wanted to create a cluster, but my other half didn't like the idea of having yet even more computers around the house (we're already over ~2:1 ratio of computers to people and there's four of us).  I'd read about people having great success running the new Raspberry Pi 4 in a cluster with Docker Swarm.  Since the Raspberry Pi is tiny and consumes very little power, the Better half agreed, albeit reluctantly (love you, sweetie!)  Here are some of my experiences.
+Like everyone else, we were told to stay home as this Covid-19 crisis unfolds.  Seeing as how I was going to be stuck at home, I figured I'd do something constructive with my time ... along with a fair amount of gaming ;)  Resources were starting to get thin on my Hypervisor so I thought I'd turn to Docker to replace full VMs with containers.  I'd always been interested in cluster computing, but never had a good reason to create a cluster.  I'd read about people having great success running the new Raspberry Pi 4 in a cluster with Docker Swarm, so I thought this could be a two-birds-one-stone scenario.  Here are some of my experiences.
 
 ## Parts
 No article about projects such as this would be complete without a parts list :)
