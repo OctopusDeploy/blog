@@ -8,6 +8,7 @@ metaImage:
 bannerImage: 
 tags:
  - Octopus
+ - Kubernetes
 ---
 
 Helm has emerged as the defacto Kubernetes package manager. It offers rich templates, a powerful CLI tool, centralized repositories for sharing charts, and the recently released Helm 3 addresses security concerns that overshadowed previous Helm versions.

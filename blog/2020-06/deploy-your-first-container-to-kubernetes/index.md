@@ -8,6 +8,7 @@ metaImage:
 bannerImage: 
 tags:
  - Octopus
+ - Kubernetes
 ---
 
 In the [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md) we saw how to create a local test Kubernetes cluster with kind and configure it in Octopus. In this blog post we learn how to deploy and expose a single Docker container to the local Kubernetes cluster using the steps in Octopus.
