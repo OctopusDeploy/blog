@@ -2,8 +2,8 @@
 title: "Octopus Pipe for Bitbucket: octopus-cli-run"
 description: Learn how to integrate Octopus and BitBucket with our new experimental BitBucket Pipe called octopus-cli-run.
 author: mark.harrison@octopus.com
-visibility: private
-published: 2020-05-30
+visibility: public
+published: 2020-05-27
 metaImage: bitbucket-cd.png
 bannerImage: bitbucket-cd.png
 tags:
