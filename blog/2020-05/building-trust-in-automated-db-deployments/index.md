@@ -3,13 +3,15 @@ title: Building trust in an automated database deployment process
 description: Learn techniques to build trust in your automated database deployment process and gain confidence in every part of the process.
 author: bob.walker@octopus.com
 visibility: public
-published: 2099-01-01
-metaImage:
-bannerImage:
+published: 2020-05-25
+metaImage: database-deployments.png
+bannerImage: database-deployments.png
 tags:
- - Engineering
+ - DevOps
  - Database Deployments
 ---
+
+![Building trust in an automated database deployment process](database-deployments.png)
 
 When I started automating database deployments, I was afraid the tooling would drop a column or table when it shouldn’t.  I couldn’t help but always wonder, did I have everything configured correctly?  The core problem is I didn’t include the necessary steps to build trust in my database deployment process.  In this blog post, I walk through some techniques and configurations I used to help build that trust so I can automate my database deployments with confidence.
 
