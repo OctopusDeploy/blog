@@ -2,13 +2,15 @@
 title: Execution Containers for Workers
 description: Octopus 2020.2 adds the ability to execute deployment actions inside a container
 author: michael.richardson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-06-01
+metaImage: execution-workers.png
+bannerImage: execution-workers.png
 tags:
  - Product
 ---
+
+![Execution Containers for Workers](execution-workers.png)
 
 Modern deployments depend on tools. For example, AWS, Azure, and Google command-lines, Terraform, kubectl, Helm, Java, NodeJS, .NET, etcetera, etcetera, _etcetera_.         
 
