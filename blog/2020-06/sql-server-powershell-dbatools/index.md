@@ -12,6 +12,8 @@ tags:
  - Database Deployments
 ---
 
+![SQL Server and PowerShell made easier with dbatools: Practical Examples](sql-server-powershell-examples.png)
+
 ## Get to the point!
 - [Why PowerShell?](#why-ps)
 - [Why dbatools?](#why-dba)
