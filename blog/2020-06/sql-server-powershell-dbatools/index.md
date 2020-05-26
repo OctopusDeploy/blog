@@ -1,0 +1,150 @@
+---
+title: SQL Server and PowerShell made easier with dbatools: Practical Examples
+description: A comparison between the SqlServer and dbatools PowerShell modules
+author: alex.yates@dlmconsultants.com
+visibility: public
+published: 2020-06-18
+metaImage: 
+bannerImage: 
+tags:
+ - DevOps
+ - PowerShell
+ - Database Deployments
+---
+
+## Get to the point!
+- [Why PowerShell?](#why-ps)
+- [Why dbatools?](#why-dba)
+- [Basic examples](#basic):
+    - [Installing the dbatools PowerShell module](#install)
+    - [Test connectivity to SQL Server](#connect)
+    - [Create SQL Server login](#login)
+    - [Create SQL Server database and assign an owner](#db)
+    - [Run a SQL script](#script)
+- [More powerful examples](#power):
+    - [Migrating a SQL Instance](#migrate)
+    - [Remove database safely](#remove)
+    - [More best-practice stuff](#more)
+- [Conclusion](#conc)
+- [Call to action](#cta)
+
+## Why PowerShell? {#why-ps}
+
+Our data continues to grow exponentially with respect to scale and complexity. The DevOps and SRE movements are redefining expectations about resilience and responsiveness. The cost of data breaches, data loss or delays in reporting are increasing dramatically.
+
+Forty five years ago, The Mythical Man Month taught us that the answer to meeting exponentially increasing demand is not simply to increase our headcount. Productivity will not scale in the same way.
+
+Those of us who are responsible for curating this data need to scale our abilities to architect, deliver and secure our data at scale to meet the demand upon our services. Frankly, if our skillset only extends to using the wizards in the SQL Server Management Studio (SSMS), we will not be able to keep up.
+
+It is essential that we embrace automation. 
+
+If your data is in SQL Server databases, that means it is essential to learn PowerShell. If PowerShell isn’t already a key part of your toolbox, it will be soon. If you aren’t already comfortable using Powershell as your primary interface with SQL Server, and you would like to stay employable, it’s time for a little R&D.
+
+## Why dbatools? (#why-dba)
+
+A few months ago James wrote this excellent post about using the SqlServer PowerShell module. He correctly states that “Microsoft recommends using the SqlServer module for interacting with SQL Server from PowerShell”. He’s not wrong. Microsoft do say that. But I don’t. In my opinion dbatools should be your default PowerShell module for any SQL Server work.
+
+dbatools is a community-driven, open source PowerShell module for managing SQL Server. It was started by Chrissy LeMaire but has since been extended, under Chrissy’s inspiring mentorship, by nearly 200 contributors. It continues to grow organically at a rapid pace, including commands that real end users need. At the time of writing, it comes with over 500 cmdlets – that’s approximately 5x more than you get in the SqlServer module.
+
+And it’s not just quantity, it’s quality too. Relative to the SqlServer module, dbatools is also surprisingly easy to use. That’s both because the commands are much simpler, and also because there is a huge community of folks who are passionate about supporting each other and a lot of them chill out in the public SQL Server Community Slack workspace all day long. If you have any questions or if you get stuck, you will normally get a response there within minutes. You’ll struggle to find any official support team for any vendor that can beat that.
+
+## Basic Examples (#basic)
+
+In this post I’m going to start by showing you the dbatools equivalents of all of James’ examples to demonstrate the relative simplicity and maintainability of using dbatools. Then I’m going to talk about some of the significantly more powerful capabilities that dbatools will give you over and above what the SqlServer module provides.
+
+Just like James, all my scripts are in a public git repo. If you have any suggestions about how to improve on them, I’d love to review your pull request. :-P
+
+### Installing the dbatools PowerShell module (#install)
+
+First James installed the SqlServer module. For dbatools, the process is the same:
+
+<script src="http://gist-it.appspot.com/https://github.com/Alex-Yates/dbatools-powershell-examples/blob/master/InstallUpdateDbatools.ps1"></script>
+
+### Test connectivity to SQL Server (#connect)
+
+Next, we want to test that we can connect to our SQL Instance.
+
+We can test this at an Instance level by using the Test-DbaConnection cmdlet or we can test at a database level with the Get-DbaDatabase cmdlet. As with (all/most?) of the dbatools cmdlets, the cmdlet attempts to catch any exceptions for us to avoid “sea of red” stack traces, but if we want to enable the exceptions and handle them ourselves we can use the ```-EnableException``` parameter.
+
+<script src="http://gist-it.appspot.com/https://github.com/Alex-Yates/dbatools-powershell-examples/blob/master/TestConnection.ps1"></script>
+
+Personally, I find the code above much easier to understand and work with than James’ example which uses the SqlServer module.
+
+<script src="http://gist-it.appspot.com/https://github.com/OctopusSamples/sql-server-powershell-examples/blob/master/TestConnection.ps1"></script>
+
+### Create SQL Server login {#login}
+
+Next James created a SQL Server login. The equivalent cmdlet in dbatools, New-DbaLogin, is very similar.
+
+<script src="http://gist-it.appspot.com/https://github.com/Alex-Yates/dbatools-powershell-examples/blob/master/CreateLogin.ps1"></script>
+
+### Create SQL Server database and assign an owner {#db}
+
+Creating databases using the SqlServer module is surprisingly hard. James needed to either revert to running a custom SQL script or using SQL Server Management Objects (SMOs) to “do the heavy lifting”. Either of these solutions seem annoyingly complicated to me.
+
+Then James went on to change the database owner, once again by creating a pair of SMOs. As James correctly explains, this is the officially recommended route by Microsoft. However, once again dbatools makes the code much simpler to read and maintain.
+
+In the script below I’ve used the New-DbaDatabase and Restore-DbaDatabase cmdlets to demonstrate how to either create a new database or to restore a new database with a single command. Then I combined the Get-DbaDatabase and Set-DbaDbOwner cmdlets to change the database owner for the new database.  
+
+<script src="https://github.com/Alex-Yates/dbatools-powershell-examples/blob/master/CreateDB.ps1"></script>
+
+### Run a SQL script {#script}
+
+James finished by demonstrating how to use the SqlServer cmdlet Invoke-Sqlcmd to execute either some in-line SQL or a separate .sql script. This code seems simple enough, and the dbatools equivalent, Invoke-DbaQuery looks and feels pretty similar. However, the dbatools equivalent is designed to be more convenient to use in a pipeline and to behave more consistently with other dbatools functions.
+
+<script src="http://gist-it.appspot.com/https://github.com/Alex-Yates/dbatools-powershell-examples/blob/master/RunSQLCommands.ps1"></script>
+
+## More Powerful Examples {#power}
+
+As stated above, dbatools contains hundreds of commands so it’s impossible to cover them all in this post. Up until now I’ve focussed on some of the simpler commands for handling basic operations. The real power, however, comes with some of the larger cmdlets that build on the simpler cmdlets to enable us to deliver best practice implementations of larger and more complicated tasks.
+
+### Migrating a SQL Instance {#migrate}
+
+The Start-DbaMigration cmdlet was perhaps the first headline feature of dbatools. It’s a wrapper for many of the “Copy” cmdlets (e.g. Copy-DbaDatabase, Copy-DbaAgentJob, Copy-DbaLinkedServer etc) which allows us to migrate _**ALL**_ SQL Server objects, including databases, agent jobs, linked servers and a long list of other object types, from one instance to another.
+
+Trying to do that using SSMS GUI wizards or even plain T-SQL scripting is a world of pain. To do it with the SqlServer module isn’t a lot easier. However, with dbatools we can kick off that job as quickly as you can open a PowerShell window and type:
+
+```ps
+Start-DbaMigration -Source sql01 -Destination sql02 -DetachAttach
+```
+
+Sounds a bit unbelievable right? Here are a couple of videos with more info. This one is 50 seconds long. This one, by Chrissy herself, is 50 minutes long.
+
+### Remove database safely {#remove}
+
+Beardy-man, Rob Sewell, is one of dbatools biggest contributors. His first contribution was Remove-DbaDatabaseSafely. Inspired by Grant Fritchey’s three-minute backup rant, he codified Grant’s 7 steps for reliable backups so that with a single command you can safely backup and remove a database with confidence. 
+
+```ps
+Remove-DbaDatabaseSafely -SqlInstance localhost -Database MyDatabase -BackupFolder 'C:\Backups\Old databases - DO NOT DELETE'
+```
+
+You can read more here.
+
+### More best-practice stuff {#more}
+
+The two examples above demonstrate how using dbatools helps you to simultaneously work more efficiently and to standardise better practices. As I mentioned, dbatools has over 500 commands and it’s growing. To give you a flavour of some of the other best-practice stuff that dbatools allows you to complete with a simple command, check out these blog posts:
+
+1.	new best practice commands now available
+2.	another batch of new commands now available
+
+Now those blog posts aren’t particularly new, but I hope they pique your interest. It’s over to you now to get you hands dirty and practice using these commands.
+
+## Conclusion {conc}
+
+I’m not saying the DBA role is dead. If anything, our data concerns are getting bigger and more complicated. Database administration is no longer a capability that can be outsourced to a highly specialised department and abstracted away from daily development work. We desperately need folks who understand how to look after the data and we need them to be intimately involved in the design and development of our data structures. DBAs need to join the rest of the engineering team. 
+
+DBAs are busy folks and hiring more of them isn’t a practical solution. If the DBAs we have are going to find the time to get involved much earlier in the development cycle, while simultaneously supporting bigger and more complicated data estates, it is essential that they embrace automation to efficiently and reliably do more administration work in less time. The DBAs who can do this well will be in high demand. There will be fewer opportunities for those that can’t.
+
+Fundamentally, DBAs need to be making efforts to spend less time using SSMS wizards and more time working with PowerShell scripts and source control. Database administration is not dead – but it is evolving.
+
+And the best and fastest growing PowerShell module to support SQL Server folks (at the time of writing) is dbatools.
+
+## Call to action {cta}
+
+Since 500 cmdlets can be pretty daunting, you might not know where to start. Here are a few suggestions.
+
+1.	Check out Chrissy and Rob’s “Learn dbatools in a month of lunches”. At the time of writing it’s still a work in progress but the first 8 chapters are already available. It’s not a bad place to start. 
+2.	Start with what you need. Next time you have a database task that you need to complete, ask yourself if it’s the sort of thing you could script out, test and stick in source control. Once you’ve scripted it out, if it’s a regular task, you could create an Octopus Runbook for it. Then, if you ever need to repeat it or complete a similar task, you’ve got a template ready to go.
+3.	Join the SQL Community. There are a bunch of us hanging out on Slack. We are an overbearingly friendly bunch and we love to help make things go. (And if you spot an opportunity to improve dbatools, submit a pull request!)
+
+Join us. We’d love to meet you! 😊
