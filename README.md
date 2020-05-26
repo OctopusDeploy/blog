@@ -4,25 +4,12 @@ This repository contains the [Octopus.com/blog](https://octopus.com/blog/) posts
 
 Authors must sign the [Contribution License Agreement (CLA)](https://cla-assistant.io/OctopusDeploy/docs) before we can accept your contribution.
 
-See the [Octopus style guide](https://octopusdeploy.github.io/OctoStyle/) for the following information:
+The repo includes [templates](templates/readme.md) to help you get started.
 
-- [Markdown quick reference](https://octopusdeploy.github.io/OctoStyle/markdown)
-- [Writing tips for the blog](https://octopusdeploy.github.io/OctoStyle/writing-tips-for-the-blog) 
-- [Blog template](templates/readme.md)
+See the [Octopus style guide](https://style.octopus.com) for the following information:
 
-## Snippets
-
-The blog includes snippets from the [snippets repo](https://github.com/OctopusDeploy/snippets). For more information see [Octopus snippets](https://octopusdeploy.github.io/OctoStyle/octopus-snippets).
-
-If the latest snippets do not appear in the output, use the following to update the snippets:
-
-```
-cd blog/blog/snippets/
-git fetch
-git merge
-```
-
-And merge the blog repo.
+- [Markdown quick reference](https://style.octopus.com/markdown)
+- [Writing tips for the blog](https://style.octopus.com/writing-tips-for-the-blog) 
 
 # How to submit a blog post 
 
