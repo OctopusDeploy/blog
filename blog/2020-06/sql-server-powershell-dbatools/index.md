@@ -1,5 +1,5 @@
 ---
-title: SQL Server and PowerShell made easier with dbatools: Practical Examples
+title: "SQL Server and PowerShell made easier with dbatools: Practical Examples"
 description: A comparison between the SqlServer and dbatools PowerShell modules
 author: alex.yates@dlmconsultants.com
 visibility: public
