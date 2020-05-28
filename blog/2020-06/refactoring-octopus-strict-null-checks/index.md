@@ -2,14 +2,16 @@
 title: "Refactoring Octopus: Adding strict null checks to the Octopus front-end"
 description: Learn from some of the lessons we learned adding strict null checks to the Octopus front-end codebase
 author: rob.pearson@octopus.com
-visibility: private
-published: 3020-04-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-06-10
+metaImage: refactoring-octopus.png
+bannerImage: refactoring-octopus.png
 tags:
   - Engineering
   - TypeScript
 ---
+
+![Refactoring Octopus: Adding strict null checks to the Octopus front-end](refactoring-octopus.png)
 
 Nulls are often said to be the billion-dollar mistake. They creep up when you least expect them, and in some pretty interesting ways. The problem isn’t in the representation of null itself, it’s more that we often forget to deal with the `null` case. It’s for this reason that some languages completely shy away from the concept of null and choose to represent the concept in a type-safe way using the `Option` monad. Functional programming isn’t always an easy sell, and in some cases, we may still have legacy codebases. This is where `strictNullChecks` compiler flag swoops in and saves the day. This single switch allows typescript to treat `null` and `undefined` as separate types which forces those cases to be handled. This reduces bugs surrounding `null` and `undefined` and eliminates a lot of complexity when narrowing types appropriately. It also removes the need to write tests for certain cases and provides much faster feedback. If that’s got your attention, let’s look at some strategies for enabling strict nulls in an existing codebase.
 

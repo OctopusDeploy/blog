@@ -2,15 +2,15 @@
 title: "Refactoring Octopus: Modularity, Calamari, and Sashimi"
 description: Learn how our engineering team re-factored the Octopus codebase to introduce modularity, reduce complexity, and eat some sashimi.
 author: rob.pearson@octopus.com
-visibility: private
-published: 2020-05-27
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-06-09
+metaImage: refactoring-octopus.png
+bannerImage: refactoring-octopus.png
 tags:
  - Engineering
 ---
 
-// TODO: Add blog post graphic
+![Refactoring Octopus: Modularity, Calamari, and Sashimi](refactoring-octopus.png)
 
 In 2012, we shipped Octopus Deploy 1.0, and nearly eight years later, the product continues to grow in popularity and capability. As a part of this journey, the codebase has undergone some significant changes, including major overhauls and rewrites. This post is the first in a new blog series, where we will share some of the problems we’ve encountered as part of this growth, and how we’re refactoring the Octopus codebase to simplify it and make it easier to change.
 
