@@ -3,13 +3,15 @@ title: Database Deployments with Redgate SQL Change Automation, GitHub Actions, 
 description: Learn how to use GitHub Actions to build a Redgate SQL Change Automation Package and push it to Octopus Deploy for deployments.
 author: bob.walker@octopus.com
 visibility: public
-published: 2020-12-31
-metaImage: 
-bannerImage: 
+published: 2020-06-02
+metaImage: github-actions.png
+bannerImage: github-actions.png
 tags:
  - Engineering
  - Database Deployments
 ---
+
+![Database Deployments with Redgate SQL Change Automation, GitHub Actions, and Octopus Deploy](github-actions.png)
 
 In this post, I show you how to use GitHub Actions to build a Redgate SQL Change Automation Package and push it to Octopus Deploy for deployments.
 
