@@ -2,10 +2,10 @@
 title: "Octopus 2020.2: Execution containers for workers"
 description: "Octopus 2020.2 includes execution containers for workers, better rolling deployments, and code editor improvements."
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: release-2020.2.png
 metaImage: release-2020.2.png
-published: 2022-05-25
+published: 2020-06-01
 tags:
 - Product
 ---
