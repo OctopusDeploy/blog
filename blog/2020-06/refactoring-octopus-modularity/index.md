@@ -18,7 +18,7 @@ In this post, I explain how we’re introducing modularity to reduce the complex
 
 ## Octopus, Tentacle, and Calamari
 
-![Octopus and Tentacle diagram](octopus-and-tentacle.png)
+<!-- ![Octopus and Tentacle diagram](octopus-and-tentacle.png) -->
 
 Octopus has always made it easy to ship web sites and services, but the programming logic that powers deployment execution has moved around over the years.
 
