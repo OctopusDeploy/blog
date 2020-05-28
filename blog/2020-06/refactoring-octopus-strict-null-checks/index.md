@@ -1,5 +1,5 @@
 ---
-title: Refactoring Octopus: Adding strict null checks to the Octopus front-end
+title: "Refactoring Octopus: Adding strict null checks to the Octopus front-end"
 description: Learn from some of the lessons we learned adding strict null checks to the Octopus front-end codebase
 author: rob.pearson@octopus.com
 visibility: private
