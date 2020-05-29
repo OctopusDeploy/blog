@@ -14,7 +14,7 @@ tags:
 
 We’re pleased to ship Octopus 2020.2, our second release of the year. These are the helpful updates and benefits included in this release:
 
-* [Execution containers for workers (EAP)](blog/2020-06/octopus-release-2020-2/index.md#execution-containers-for-workers) let you execute deployment work in isolation without the need to manage dependencies and containers.
+* [Execution containers for workers (Early Access)](blog/2020-06/octopus-release-2020-2/index.md#execution-containers-for-workers) let you execute deployment work in isolation without the need to manage dependencies and containers.
 * [Integrated change management with Jira Service Desk](blog/2020-06/octopus-release-2020-2/index.md#integrated-change-management-with-jira-service-desk) lets teams create change requests during their deployment automatically.
 * [Better run conditions](blog/2020-06/octopus-release-2020-2/index.md#better-run-conditions) adds deployment process improvements, including rolling deployment and machine level variable conditions.
 * [Fast variable lookups with our improved code editor](blog/2020-06/octopus-release-2020-2/index.md#fast-variable-lookups-in-our-updated-code-editor) unlocks the ability to quickly add Octopus variables into your custom scripts without touching the mouse.
