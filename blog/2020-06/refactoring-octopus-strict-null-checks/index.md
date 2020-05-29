@@ -1,7 +1,7 @@
 ---
 title: "Refactoring Octopus: Adding strict null checks to the Octopus front-end"
 description: Learn from some of the lessons we learned adding strict null checks to the Octopus front-end codebase
-author: rob.pearson@octopus.com
+author: shaun.marx@octopus.com
 visibility: public
 published: 2020-06-10
 metaImage: refactoring-octopus.png
@@ -291,6 +291,6 @@ In our experience, optional props, when abused, can result in some subtle bugs a
 
 ## Conclusion
 
-Starting with the most strict rules you can with typescript is definitely the best option if you are starting a new project. If you weren’t considering it, please do. Your future self will thank you. If you aren’t so lucky and you have a large existing codebase, it may require some serious, focused effort to get there. None of the options available seems to be perfect, so it’s best to choose the option that best suits your particular scenario, however, the effort seems well worth it. We covered some of the things we learned while converting a particular area in Octopus to be strict nulls compliant. The list is in no means exhaustive, and we expect to learn more as we continue with our journey of converting the remaining areas. We’d love to hear from you regarding patterns you’ve used to deal with strict nulls and whether there are other gotchas and learnings which we have not covered in this post.
+Starting with the most strict typescript compiler rules available when starting a new project is definitely the best option. If you weren’t considering it, please do. Your future self will thank you. If you aren’t so lucky and you have a large existing codebase, it may require some serious, focused effort to get there. None of the options available seems to be perfect, so it’s best to choose the option that best suits your particular scenario, however, the effort seems well worth it. We covered some of the things we learned while converting a particular area in Octopus to be strict nulls compliant. The list is in no means exhaustive, and we expect to learn more as we continue with our journey of converting the remaining areas. We’d love to hear from you regarding patterns you’ve used to deal with strict nulls and whether there are other gotchas and learnings which we have not covered in this post.
 
 Until next time, happy deployments!
