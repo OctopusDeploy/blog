@@ -184,7 +184,7 @@ Presto, type errors go away, and the compiler is happy.
 
 ### Let’s talk about resource differences
 
-Remember how we mentioned that strict nulls treat `null` and `undefined` as different types? In our particular case, it also meant that we had to slightly vary the interfaces for new and existing resources. This is because creating a resource may require fewer properties are specified. Of course, typescript doesn’t know that, and it’s just trying to be helpful. Let’s take the following resource as an example:
+Remember how we mentioned that strict nulls treat `null` and `undefined` as different types? In our particular case, it also meant that we had to slightly vary the interfaces for new and existing resources. This is because creating a resource may require fewer properties than specified. Of course, typescript doesn’t know that, and it’s just trying to be helpful. Let’s take the following resource as an example:
 
 ```
 interface TenantLinks {
