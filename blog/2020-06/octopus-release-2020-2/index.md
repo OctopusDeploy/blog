@@ -142,4 +142,4 @@ Feel free to leave us a comment, and let us know what you think! Happy deploymen
 
 - [Execution Containers for Workers](/blog/2020-06/execution-containers/index.md)
 - [Refactoring Octopus: Modularity, Calamari and Sashimi](/blog/2020-06/refactoring-octopus-modularity/index.md)
-- [Refactoring Octopus: Strict null checks](/blog/2020-06/refactoring-octopus-strict-null-checks/index.md)
+- [Refactoring Octopus: Adding strict null checks to the Octopus front-end](/blog/2020-06/refactoring-octopus-strict-null-checks/index.md)
