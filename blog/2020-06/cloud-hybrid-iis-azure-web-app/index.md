@@ -47,7 +47,15 @@ The two VMs are configured for our on-premise installations of IIS for Developme
 Switching back to the Project, we can see from the Overview tab that the application has been successfully deployed to Development all the way to Production, all with a single process!
 
 
-** Insert screen shot ... when you get a successful run ***
+![](octopus-projects-octopetshop-deployed.png)
+
+As the saying goes, a picture is worth a thousand words, here's the task summary when deploying to a VM
+
+![](octopus-projects-octopetshop-step4-iis.png)
+
+Here's the same step deploying to an Azure Web App
+
+![](octopus-projects-octopetshop-step4-azure.png)
 
 ## Conclusion
 In this post I demonstrated how you are able to use an existing on-premise deployment process for IIS applications to deploy to Azure Web Apps.  It is my hope that this little known fact can save you from having to re-work your deployment process to fit the cloud strategic goals.
