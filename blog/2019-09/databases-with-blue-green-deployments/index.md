@@ -403,7 +403,7 @@ public class CustomerFacade
 
 ## Backfill the new column with data
 
-Most backfill scripts I’ve seen are nothing more than an SQL script to update the underlying data.  This means the formatting logic will exist in both the code and the backfill script.  It is very easy to update the code to update to the formatting rule but forget to update the backfill script.  I've had that happen to me.  Trust me, it makes for a bad day.
+Most backfill scripts I’ve seen are nothing more than a SQL script to update the underlying data.  This means the formatting logic will exist in both the code and the backfill script.  It is very easy to update the code to update to the formatting rule but forget to update the backfill script.  I've had that happen to me.  Trust me, it makes for a bad day.
 
 In addition, with blue/green deployments, you have to decide when to run the script:
 

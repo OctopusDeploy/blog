@@ -1,19 +1,22 @@
 ---
 title: The big 5 benefits of automated deployment
 description: A guest post that explores the benefits of automated deployments.
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+author: info@red-gate.com
+published: 2020-04-28
+metaImage: redgate-database-deployments.png
+bannerImage: redgate-database-deployments.png
 tags:
  - DevOps
 ---
+
+![Why and how your should automate your database deployments](redgate-logo.png)
 
 *“Every software development team should have a fully automated deployment process.”*
 
 That’s according to pretty much everyone I meet at conferences and events. It’s not even a debate. It’s a declaration.
 
-In actual fact there are only a small percentage of software development teams who have a ‘one-click’, totally hands-off, fully automated deployment process. Many teams have a partially manual deployment process and most have an entirely manual process.
+In actual fact there are only a small number of software development teams who have a 'one-click', totally hands-off approach. In [Redgate's 2020 State of Database DevOps Report](https://www.red-gate.com/solutions/database-devops/report-2020-2), for example, only 16% of respondents reported they had a fully automated process in place. For everyone else, it' either a partially manual deployment process or an entirely manual process.
 
 Why aren’t you doing it?
 
