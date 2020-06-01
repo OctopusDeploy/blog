@@ -14,20 +14,8 @@ tags:
 ![SQL Server and PowerShell made easier with dbatools: Practical Examples](sql-server-powershell-examples.png)
 
 ## Get to the point!
-- [Why PowerShell?](#why-ps)
-- [Why dbatools?](#why-dba)
-- [Basic examples](#basic):
-    - [Installing the dbatools PowerShell module](#install)
-    - [Test connectivity to SQL Server](#connect)
-    - [Create SQL Server login](#login)
-    - [Create SQL Server database and assign an owner](#db)
-    - [Run a SQL script](#script)
-- [More powerful examples](#power):
-    - [Migrating a SQL instance](#migrate)
-    - [Remove database safely](#remove)
-    - [More best-practice stuff](#more)
-- [Conclusion](#conc)
-- [Call to action](#cta)
+
+!toc
 
 ## Why PowerShell? {#why-ps}
 
