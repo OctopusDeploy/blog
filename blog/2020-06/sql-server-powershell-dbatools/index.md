@@ -25,13 +25,13 @@ Forty-five years ago, [The Mythical Man Month](https://en.wikipedia.org/wiki/The
 
 Those of us responsible for curating this data need to scale our abilities to architect, deliver, and secure our data at scale to meet the demand upon our services. Frankly, if our skill set only extends to using the wizards in the SQL Server Management Studio (SSMS), we will not be able to keep up.
 
-It is essential that we embrace automation. 
+It is essential that we embrace automation.
 
 If your data is in SQL Server databases, that means it is essential to learn PowerShell. If PowerShell isn’t already a key part of your toolbox, it will be soon. If you aren’t already comfortable using PowerShell as your primary interface with SQL Server, and you would like to stay employable, it’s time for a little R&D.
 
 ## Why dbatools? (#why-dba)
 
-A few months ago, James wrote [this excellent post about using the SqlServer PowerShell module](https://octopus.com/blog/sql-server-powershell#installing-the-sql-server-powershell-module). He correctly states that “Microsoft recommends using the SqlServer module for interacting with SQL Server from PowerShell.” He’s not wrong. Microsoft do say that. But I don’t. In my opinion, [dbatools](https://dbatools.io/) should be your default PowerShell module for any SQL Server work.
+A few months ago, James wrote [this excellent post about using the SqlServer PowerShell module](https://octopus.com/blog/sql-server-powershell#installing-the-sql-server-powershell-module). He correctly states that “Microsoft recommends using the SqlServer module for interacting with SQL Server from PowerShell”. He’s not wrong. Microsoft do say that. But I don’t. In my opinion, [dbatools](https://dbatools.io/) should be your default PowerShell module for any SQL Server work.
 
 dbatools is a community-driven, open source PowerShell module for managing SQL Server. It was started by [Chrissy LeMaire](https://twitter.com/cl) but has since been extended, under Chrissy’s inspiring mentorship, by (at the time of writing) [189 contributors](https://github.com/sqlcollaborative/dbatools/graphs/contributors). It continues to grow organically, including commands that real end users need. At the time of writing, it comes with [over 500 cmdlets](https://dbatools.io/commands/), that’s approximately 5x more than you get in the SqlServer module.
 
@@ -69,7 +69,7 @@ Next, James created a SQL Server login. The equivalent cmdlet in dbatools, [New-
 
 ### Create SQL Server database and assign an owner {#db}
 
-Creating databases using the SqlServer module is surprisingly hard. James had to either revert to running a custom SQL script or using SQL Server Management Objects (SMOs) to *do the heavy lifting*. Both of these solutions seem annoyingly complicated to me.
+Creating databases using the SqlServer module is surprisingly hard. James had to either revert to running a custom SQL script or using SQL Server Management Objects (SMOs) to “do the heavy lifting”. Both of these solutions seem annoyingly complicated to me.
 
 Next, James changed the database owner, once again by creating a pair of SMOs. As James correctly explains, this is the officially recommended route by Microsoft. However, dbatools makes the code much simpler to read and maintain.
 
@@ -113,14 +113,14 @@ Remove-DbaDatabaseSafely -SqlInstance localhost -Database MyDatabase -BackupFold
 
 The two examples above demonstrate how using dbatools helps you to simultaneously work more efficiently and to standardize better practices. As I mentioned, dbatools has over 500 commands, and it’s growing. To give you a flavor of some of the other best-practice stuff that dbatools allows you to complete with a simple command, check out these blog posts:
 
-1.	[New best practice commands now available](https://dbatools.io/new-best-practices-commands-now-available/)
-2.	[Another batch of new commands now available](https://dbatools.io/new-batch-of-commands/)
+1.	[new best practice commands now available](https://dbatools.io/new-best-practices-commands-now-available/)
+2.	[another batch of new commands now available](https://dbatools.io/new-batch-of-commands/)
 
 Those blog posts aren’t particularly new, but I hope they pique your interest. It’s over to you now to get your hands dirty and practice using these commands.
 
 ## Conclusion {#conc}
 
-I’m not saying the DBA role is dead. If anything, our data concerns are getting bigger and more complicated. Database administration is no longer a capability that can be outsourced to a highly specialized department and abstracted away from daily development work. We desperately need folks who understand how to look after the data, and we need them to be intimately involved in the design and development of our data structures. DBAs need to join the rest of the engineering team. 
+I’m not saying the DBA role is dead. If anything, our data concerns are getting bigger and more complicated. Database administration is no longer a capability that can be outsourced to a highly specialized department and abstracted away from daily development work. We desperately need folks who understand how to look after the data, and we need them to be intimately involved in the design and development of our data structures. DBAs need to join the rest of the engineering team.
 
 DBAs are busy folks, and hiring more of them isn’t a practical solution. If the DBAs we have are going to find the time to get involved much earlier in the development cycle, while simultaneously supporting bigger and more complicated data estates, it is essential that they embrace automation to efficiently and reliably do more administration work in less time. The DBAs who can do this well will be in high demand. There will be fewer opportunities for those who can’t.
 
@@ -132,7 +132,7 @@ And the best and fastest growing PowerShell module to support SQL Server folks (
 
 Since 500 cmdlets can be pretty daunting, you might not know where to start. Here are a few suggestions:
 
-1.	Check out Chrissy and Rob’s “[Learn dbatools in a month of lunches](https://www.manning.com/books/learn-dbatools-in-a-month-of-lunches)”. At the time of writing, it’s still a work in progress, but the first eight chapters are already available. It’s not a bad place to start. 
+1.	Check out Chrissy and Rob’s “[Learn dbatools in a month of lunches](https://www.manning.com/books/learn-dbatools-in-a-month-of-lunches)”. At the time of writing, it’s still a work in progress, but the first eight chapters are already available. It’s not a bad place to start.
 2.	Start with what you need. Next time you have a database task that you need to complete, ask yourself if it’s the sort of thing you could script out, test, and stick in source control. After you’ve scripted it out, if it’s a regular task, you could create an [Octopus Runbook](https://octopus.com/docs/operations-runbooks) for it. Then, if you ever need to repeat it or complete a similar task, you’ve got a template ready to go.
 3.	Join the SQL Community. There are a bunch of us [hanging out on Slack](https://dbatools.io/dbatools-is-now-on-the-sql-server-communitys-slack/). We are an overbearingly friendly bunch, and we love to help make things go. (And if you spot an opportunity to improve dbatools, [submit a pull request](https://github.com/sqlcollaborative/dbatools/blob/master/contributing.md)!)
 
