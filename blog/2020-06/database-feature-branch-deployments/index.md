@@ -30,7 +30,7 @@ The following changes should be made to solve those issues:
 2. Each feature branch should be given a separate sandbox in **Test**.
 3. After a feature branch has been tested and verified by QA, it should be merged into master.
 4. The deployments for master start in **Staging** and never goes through **Test**.
-5. ** Test** becomes a dynamic environment, with resources being added and removed as needed.  **Staging** and **Production** are static and are stable.
+5. ** Test** becomes a dynamic environment, with resources being added and removed as needed.  **Staging** and **Production** are static and stable.
 
 The underlying goal is code shouldn’t be merged to `master` until it is ready to go to **Production**.  
 
@@ -44,7 +44,7 @@ Naturally, there are a lot of questions when looking at those changes.
 - How often should that backup be made?  
 - Finally, when does that sandbox get torn down?
 
-Those questions are only around the creation of the feature branch sandboxes in **Test**! There are a few other questions I typically encounter.  A lot of these questions are focused on building trust in the database deployment process.  
+Those questions are only about the creation of the feature branch sandboxes in **Test**! There are a few other questions I typically encounter.  A lot of these questions are focused on building trust in the database deployment process.  
 
 - When should the DBAs get involved?  **Production** is too late, and when the feature branch is created in ** Test** is too early.
 - Who should trigger the deployment to **Production**?
@@ -59,12 +59,12 @@ For my process, I made the following decisions:
 4. Backup and then delete the feature branch database when it is merged into master.
 5. The **Staging** deployment will also generate a delta report for **Production**.  This way, the DBAs approve a release once.
 6. The DBAs will approve all deployments to **Staging**.  
-7. Logic will be in place to ensure DBAs only _have_ to approve certain schema changes; create table, drop table, create view, drop view, alter table, etc., to keep the signal to noise ratio low.
+7. Logic will be in place to ensure DBAs only _have_ to approve certain schema changes; create table, drop table, create view, drop view, alter table, etc. to keep the signal to noise ratio low.
 8. The DBAs will trigger the **Production** deployment.  They can either schedule it or start it right away.
 
 It is critical to involve the DBAs earlier than the **Production** deployment in the development lifecycle.  They are responsible for keeping **Production** running, and asking them to quickly review a change during a **Production** deployment sets them up for failure. That’s how bugs slip through.  DBAs are busy individuals, they can be consulted on potential database changes, but they shouldn’t be asked to approve a database change while a feature is being developed.  The table structure could look vastly different between when a feature starts development and when the feature is finally signed off on by QA.  
 
-Another option is to include DBAs as reviewers on pull requests.  This way, code isn’t merged into `master` that isn’t ready to go to **Production**.  All of this depends on the number of DBAs, the number of teams they have to support, and the number of changes being merged to `master` on a given day.  Asking a team of two DBAs to review all pull requests for twenty teams who merge to `master` an average of once or twice a day is setting the DBAs for failure.  
+Another option is to include DBAs as reviewers on pull requests.  This way, code isn’t merged into `master` that isn’t ready to go to **Production**.  All of this depends on the number of DBAs, the number of teams they have to support, and the number of changes being merged to `master` on a given day.  Asking a team of two DBAs to review all pull requests for twenty teams who merge to `master` an average of once or twice a day is setting the DBAs up for failure.  
 
 ## Octopus Deploy configuration
 
@@ -88,7 +88,7 @@ I am using IaC to spin up and down AWS RDS instances.  The IaC technology I chos
 
 For my example, I used IaC, or Infrastructure as Code, to spin up and down AWS RDS instances.  In the real world, I don’t think this is realistic, especially for **Production** and **Staging** databases.  Even when I am using the IaC functionality in AWS, I like to have some static infrastructure, namely [VPCs](https://aws.amazon.com/vpc/), [security groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html), and [subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html).  While it’s possible to spin them up and down using IaC, it isn’t practical in a real-world scenario.  A lot of companies like to create P2P VPN connections between their data center and AWS.  You’d have to spin that up using IaC, which if you can get that to work, awesome.  I found it was a bit finicky.  
 
-I know I’ll share VPCs, security groups, subnets, etc. across projects, so I like to create multiple variable sets to store different groups of variables.  I never recommend having one massive **Global** variable set.  After a bit of time, it becomes a [junk drawer](https://www.npr.org/sections/theprotojournalist/2014/08/15/337759135/what-your-junk-drawer-reveals-about-you) of variables.  
+I know I’ll share VPCs, security groups, subnets, etc., across projects, so I like to create multiple variable sets to store different groups of variables.  I never recommend having one massive **Global** variable set.  After a bit of time, it becomes a [junk drawer](https://www.npr.org/sections/theprotojournalist/2014/08/15/337759135/what-your-junk-drawer-reveals-about-you) of variables:  
 
 ![](library-variable-sets.png)
 
@@ -123,7 +123,7 @@ I use a number of step templates from the community library.  Below is the list 
 
 ### Runbooks
 
-I have five [runbooks](https://octopus.com/runbooks) in my project to handle the various maintenance tasks for feature branch deployments.  I put all of them in the same project to make it easier for you, the reader, to find them when looking at our [samples instance](https://samples.octopus.app/app#/Spaces-106/projects/redgate-feature-branch-example/operations/runbooks).  With the Run Octopus Deploy Runbook step template I created, the runbooks can exist in any project.  If I were setting this up in the real world, all of these runbooks would be in a separate _feature branch_ project for any process to leverage.
+I have five [runbooks](https://octopus.com/runbooks) in my project to handle the various maintenance tasks for feature branch deployments.  I put all of them in the same project to make it easier for you to find them when looking at our [samples instance](https://samples.octopus.app/app#/Spaces-106/projects/redgate-feature-branch-example/operations/runbooks).  With the Run Octopus Deploy Runbook step template I created, the runbooks can exist in any project.  If I were setting this up in the real world, all of these runbooks would be in a separate _feature branch_ project for any process to leverage.
 
 - [Create AWS Redgate Masked Database Backup](https://samples.octopus.app/app#/Spaces-106/projects/redgate-feature-branch-example/operations/runbooks/Runbooks-365), this creates a masked database backup which will be restored when creating feature branches.
 - [Delete AWS Redgate Feature Branch Database](https://samples.octopus.app/app#/Spaces-106/projects/redgate-feature-branch-example/operations/runbooks/Runbooks-367), this does what it says on the tin, deletes a feature branch database.
@@ -150,21 +150,21 @@ There are a few techniques for masking data, and there are tools you can purchas
 
 #### Delete feature branch database
 
-The delete feature branch runbook required a bit more work than I originally thought.  At first, I was going to just delete the database.  But as I thought about it more, it made more sense to the first backup the database then delete it.  If I ever needed to spin up the database again to fix a bug, I could use that backup.  Adding the backup step made things a bit trickier as I needed to first check to see if the database existed.  The stored procedures provided by AWS to backup a database fail if the database doesn’t exist:
+The delete feature branch runbook required a bit more work than I originally thought.  At first, I was going to just delete the database.  But as I thought about it more, it made more sense to first backup the database then delete it.  If I ever needed to spin up the database again to fix a bug, I could use that backup.  Adding the backup step made things a bit trickier as I needed to first check to see if the database existed.  The stored procedures provided by AWS to backup a database fail if the database doesn’t exist:
 
 ![](delete-feature-branch-database.png)
 
-The `Check for Existing Database` step sets an [output variable](https://octopus.com/docs/projects/variables/output-variables) set to `True` or `False`.  The run conditions on the backup and delete steps use that value in a [run condition](https://octopus.com/docs/deployment-process/conditions#variable-expressions):
+The `Check for Existing Database` step sets an [output variable](https://octopus.com/docs/projects/variables/output-variables) to `True` or `False`.  The run conditions on the backup and delete steps use that value in a [run condition](https://octopus.com/docs/deployment-process/conditions#variable-expressions):
 
 ![](delete-database-run-condition.png)
 
 #### Restore masked database backup for feature branches
 
-The restore masked database backup runbook has a similar `Check for Existing Database` check as the delete step:
+The restore masked database backup runbook also has a `Check for Existing Database` step:
 
 ![](restore-masked-backup-for-feature-branches.png)
 
-Except in this runbook, it has a bit more logic included.  The vast majority of the time, the process should only create a new feature branch database if that database doesn’t yet exist.  However, there are a few use cases where they need to start all over with a fresh database copy.  To help with that, I created a [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables) with a default value of `False`.  When that is set to `True`, a fresh copy of the database will be created:
+This runbook has additional logic included.  The vast majority of the time, the process should only create a new feature branch database if that database doesn’t yet exist.  However, there are a few use cases where they need to start over with a fresh database copy.  To help with that, I created a [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables) with a default value of `False`.  When that is set to `True`, a fresh copy of the database will be created:
 
 ![](prompted-variables.png)
 
@@ -220,12 +220,12 @@ With static environments, the build server process was straight forward:
 
 Now the build server needs to make a few decisions prior to calling Octopus Deploy.  It must know if it is on a feature branch, on the master branch, or if a merge just happened.  The event that triggered the build will alter what information the build server sends to Octopus.  The key differences are:
 
-- Check into `Master`
+- Check into `Master`:
     - If merged pull request, get feature branch name, send that to Octopus Deploy as the _merged branch_ value.
     - Set the destination environment to **Staging**.
     - Set the package version number to a standard version number, such as `2020.2.1.{Build Number}`.
     - Set channel name to "Default".
-- Check into a feature branch
+- Check into a feature branch:
     - Pull the feature branch name and send that to Octopus Deploy as the _feature branch_ value.
     - Set the destination environment to **Test**.
     - Set the package version number to 2020.99.99.{Build Number}-{Feature Branch Name}.
