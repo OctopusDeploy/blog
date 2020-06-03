@@ -24,13 +24,12 @@ Great!  There's something that's already built-in, I just have to modify my exis
 ### Local development, cloud production
 What about the scenario where development is still deployed to IIS locally before ending up on Azure for Production?  Would I have to leave the IIS steps in place but add Deploy an Azure Web App for environments that are on Azure?  That is a fantastic question and not an uncommon scenario, but the answer is no (getting there, bear with me).  Cloud is great, but can sometimes get quite costly when running compute intensive operations such as automated testing suites.  It is often more cost effective to leave those on local hardware.
 
-### So, continue to use Deploy to IIS?
-YES!  Under the hood, Azure Web Apps are really just IIS Sites on Azure cloud architecture.  Since the underlying technology is the same, the step template still works despite the fact it's not specifically written for Azure.  I know it seems wierd, but it's true :)
+So, continue to use Deploy to IIS?  YES!  Under the hood, Azure Web Apps are really just IIS Sites on Azure cloud architecture.  Since the underlying technology is the same, the step template still works despite the fact it's not specifically written for Azure.  I know it seems wierd, but it's true :)
 
-#### Deploying to Azure requires an account, I don't see where to supply that in the Deploy to IIS step
-I'll admit, this tripped me up as well.  The trick is ... there isn't one as the step doesn't need the credentials. At this point, you're probably squinting at the screen in disbelief, but I'm quite serious, you don't need to specify the credentials on the step.  The reason for this is because the credentials are supplied when creating the Azure Web App target, the authentication is happening at the target level and not the step level, which is contrary to the Azure specific step templates.
+#### Supplying an Azure Account to Deploy to IIS step
+Deploying to Azure requires an account, I don't see where to supply that in the Deploy to IIS step.  I'll admit, this tripped me up as well.  The trick is ... there isn't one as the step doesn't need the credentials. At this point, you're probably squinting at the screen in disbelief, but I'm quite serious, you don't need to specify the credentials on the step.  The reason for this is because the credentials are supplied when creating the Azure Web App target, the authentication is happening at the target level and not the step level, which is contrary to the Azure specific step templates.
 
-## Show me, don't tell me!
+## Cloud hybrid deployment example
 Something that I learned while being trained in my current position is that it's one thing to tell somebody it works, it's much more convincing if you an show them.  The Customer Success team has been quite busy setting up a [samples instance](https://samples.octopus.app) with all sorts of examples to showcase the capabilities of Octopus Deploy.  One such sample is the [Target - Hybrid](https://samples.octopus.app/app#/Spaces-342) which contains examples for Cloud Hybrid deployments and scenarios.
 
 ### Octo Pet Shop
