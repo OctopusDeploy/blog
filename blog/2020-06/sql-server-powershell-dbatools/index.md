@@ -13,7 +13,7 @@ tags:
 
 ![SQL Server and PowerShell made easier with dbatools: Practical Examples](sql-server-powershell-examples.png)
 
-## Get to the point!
+<h2>Get to the point!</h2>
 
 !toc
 
@@ -29,7 +29,7 @@ It is essential that we embrace automation.
 
 If your data is in SQL Server databases, that means it is essential to learn PowerShell. If PowerShell isn’t already a key part of your toolbox, it will be soon. If you aren’t already comfortable using PowerShell as your primary interface with SQL Server, and you would like to stay employable, it’s time for a little R&D.
 
-## Why dbatools? (#why-dba)
+## Why dbatools? {#why-dba}
 
 A few months ago, James wrote [this excellent post about using the SqlServer PowerShell module](https://octopus.com/blog/sql-server-powershell#installing-the-sql-server-powershell-module). He correctly states that “Microsoft recommends using the SqlServer module for interacting with SQL Server from PowerShell”. He’s not wrong. Microsoft do say that. But I don’t. In my opinion, [dbatools](https://dbatools.io/) should be your default PowerShell module for any SQL Server work.
 
@@ -37,19 +37,19 @@ dbatools is a community-driven, open source PowerShell module for managing SQL S
 
 And it’s not just quantity; it’s quality too. Relative to the SqlServer module, dbatools is also surprisingly easy to use. That’s both because the commands are much simpler, and also because there is a huge community of folks who are passionate about supporting each other and a lot of them chill out in [the public SQL Server Community Slack workspace](https://dbatools.io/dbatools-is-now-on-the-sql-server-communitys-slack/) all day long. If you have any questions or if you get stuck, you will normally get a response there within minutes. While this is a community thing, you need to respect these folks are helping you out of the goodness of their heart. You’ll struggle to find an official support team for any vendor that can beat that.
 
-## Basic Examples (#basic)
+## Basic Examples {#basic}
 
 In this post, I start by showing you the dbatools equivalents of all of James’ examples to demonstrate the relative simplicity and maintainability of using dbatools. Then I talk about some of the significantly more powerful capabilities that dbatools will give you over and above what the SqlServer module provides.
 
 Just like James, all my scripts are in [a public GitHub repo](https://github.com/Alex-Yates/dbatools-powershell-examples). If you have any suggestions about how to improve on them, I’d love to review your pull request. :-P
 
-### Installing the dbatools PowerShell module (#install)
+### Installing the dbatools PowerShell module {#install}
 
 First James installed the SqlServer module. For dbatools, the process is the same:
 
 <script src="http://gist-it.appspot.com/https://github.com/Alex-Yates/dbatools-powershell-examples/blob/master/InstallUpdateDbatools.ps1"></script>
 
-### Test connectivity to SQL Server (#connect)
+### Test connectivity to SQL Server {#connect}
 
 Next, we need to test that we can connect to our SQL instance.
 
@@ -118,7 +118,7 @@ The two examples above demonstrate how using dbatools helps you to simultaneousl
 
 Those blog posts aren’t particularly new, but I hope they pique your interest. It’s over to you now to get your hands dirty and practice using these commands.
 
-## Conclusion {#conc}
+## Conclusion {#conclusion}
 
 I’m not saying the DBA role is dead. If anything, our data concerns are getting bigger and more complicated. Database administration is no longer a capability that can be outsourced to a highly specialized department and abstracted away from daily development work. We desperately need folks who understand how to look after the data, and we need them to be intimately involved in the design and development of our data structures. DBAs need to join the rest of the engineering team.
 
