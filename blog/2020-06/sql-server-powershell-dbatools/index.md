@@ -3,7 +3,7 @@ title: "SQL Server and PowerShell made easier with dbatools: Practical Examples"
 description: A comparison between the SqlServer and dbatools PowerShell modules
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-06-18
+published: 2020-06-08
 metaImage: sql-server-powershell-examples.png
 bannerImage: sql-server-powershell-examples.png
 tags:
