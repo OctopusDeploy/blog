@@ -2,13 +2,16 @@
 title: Database Feature Branch Deployments
 description: Standing up a sandbox for feature branches is a common scenario.  This article aims to solve that for databases.
 author: bob.walker@octopus.com
-visibility: private
-published: 2020-12-31
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-06-03
+metaImage: database-feature-branch-deployments.png
+bannerImage: database-feature-branch-deployments.png
 tags:
  - Engineering
+ - Database Deployments
 ---
+
+![Database Feature Branch Deployments](database-feature-branch-deployments.png)
 
 In my previous article, [Re-thinking feature branch deployments]( blog/2020-06/rethinking-feature-branch-deployments/index.md), I shared how I’ve adjusted my thinking about feature branch deployments.  It’s one thing to write thought experiments like that article, but it’s another to put that into practice.  In this article, I describe how I set up a database deployment process for feature branches.
 
