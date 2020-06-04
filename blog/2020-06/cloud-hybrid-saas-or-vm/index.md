@@ -1,5 +1,5 @@
 ---
-title: Octopus Deploy in the Cloud, Virtual Machine or SaaS
+title: Comparing self-hosted Octopus in a Cloud VM vs Octopus Cloud
 description: Determine the right Octopus Deploy installation to use in the cloud
 author: lianne.crocker@octopus.com
 visibility: private
@@ -18,7 +18,7 @@ We're going to take a look at the reasons why you might choose one or the other.
 
 :::hint
 
-**Octopus Cloud** refers to the Octopus Cloud [SaaS](https://en.wikipedia.org/wiki/Software_as_a_service) offering from Octopus Deploy and **Octopus Server** to the self-hosted version of Octopus Deploy.  In the context of this post, **Server** resides on a virtual machine in the cloud.
+**Octopus Cloud** refers to the Octopus Cloud [SaaS](https://en.wikipedia.org/wiki/Software_as_a_service) offering from Octopus Deploy and **Octopus Server** to the self-hosted version of Octopus Deploy.  In the context of this post, **Octopus Server** resides on a virtual machine in the cloud.
 
 - [Octopus Cloud](http://g.octopushq.com/OctopusCloudPricing)
 - [Octopus Server](http://g.octopushq.com/ProductDownloadPage)
@@ -42,13 +42,13 @@ Octopus [retention policies](http://g.octopushq.com/RetentionPolicies) have a de
 
 **Server**
 
-    When configuring Octopus Server on a VM, you select the storage that Octopus uses for the [server folders](http://g.octopushq.com/OctopusServerFolders); this means you can set the storage limits that suit you for these folders and configure retention policies accordingly.  
+When configuring Octopus Server on a VM, you select the storage that Octopus uses for the [server folders](http://g.octopushq.com/OctopusServerFolders); this means you can set the storage limits that suit you for these folders and configure retention policies accordingly.  
 
 **Cloud**
 
-    Octopus Cloud provides plenty of storage for most businesses; however, the amount of storage you can use has a [limit](ttp://g.octopushq.com/AcceptableUsage).  Where long term retention is required for regulatory compliance, you may find this a reason to select Octopus Server over Octopus Cloud.  We've added monitoring to the Technical section of the Octopus instance management page to view the details and login to your Octopus Account. Then, on your instance, select {{ Manage,Resource Usage }}, this is updated every 24 hours. 
+Octopus Cloud provides plenty of storage for most businesses; however, the amount of storage you can use has a [limit](ttp://g.octopushq.com/AcceptableUsage).  Where long term retention is required for regulatory compliance, you may find this a reason to select Octopus Server over Octopus Cloud.  We've added monitoring to the Technical section of the Octopus instance management page to view the details and login to your Octopus Account. Then, on your instance, select {{ Manage,Resource Usage }}, this is updated every 24 hours. 
 
-    ![cloud-limits](cloud-limits.png "width=500")
+![cloud-limits](cloud-limits.png "width=500")
 
 :::hint
 
@@ -185,15 +185,15 @@ If desired, multiple providers can be configured concurrently.
 
 ### IP restrictions
 
-**Server**
-
-Using Octopus Server on a VM allows you to configure the IP and DNS to what suits your business' requirements.  You may choose to configure a load balancer to handle traffic to the Octopus web interface; this is especially useful if configuring [HA](#high-availability).
-
 **Cloud**
 
 An Octopus Cloud instance has a range of [static IP addresses](http://g.octopushq.com/CloudStaticIP) shared among customers in the same Azure region, and these can found in the Technical section of the Octopus instance management page:
 
 ![cloud-ips](cloud-ips.png "width=500")
+
+**Server**
+
+Using Octopus Server on a VM allows you to configure the IP and DNS to what suits your business' requirements.  You may choose to configure a load balancer to handle traffic to the Octopus web interface; this is especially useful if configuring [HA](#high-availability).
 
 ### Organize projects and environments
 
@@ -201,7 +201,7 @@ An Octopus Cloud instance has a range of [static IP addresses](http://g.octopush
 
 **Server**
 
-Concurrent licenses are an additional benefit of Octopus Server.  You can use three instances for each license, run one Octopus Deploy service for production usage by your team, and set up extras for dev/test. Or use two separate Octopus Deploy instances to keep production and pre-production deployments isolated.
+Concurrent licenses are an additional benefit of Octopus Server.  You can use three instances for each license, run one Octopus Deploy service for production usage by your team, and set up extras for development or test. Or use two separate Octopus Deploy instances to keep production and pre-production deployments isolated.
 
 ## Networking
 
@@ -257,7 +257,7 @@ These rules should also be applied to any intermediary firewalls.
 
 An alternative to running Octopus Server on a virtual machine is to run it in a container.  In fact, this is how we manage our Octopus Cloud instances.  The [Windows container](http://g.octopushq.com/DockerWindows) for Octopus is fully supported, and the [Linux container](http://g.octopushq.com/DockerLinux) is, at the time of writing, part of our Early Access Program. 
 
-## Roundup
+## Conclusion
 
 This post has hopefully provided clarity to your decision-making process when moving to cloud infrastructure.  Whatever your business requirements, Octopus Deploy makes release management easy and simplifies even the most complex deployments wherever you deploy your software. Runbook automation minimizes outages and gives you control over your infrastructure and applications.  
 
