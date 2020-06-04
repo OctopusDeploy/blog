@@ -1,5 +1,5 @@
 ---
-title: Creating an Octopus Deploy Step Template
+title: Creating an Octopus Deploy step template
 description: Learn how to create a custom step template in Octopus Deploy
 author: ryan.rousseau@octopus.com
 visibility: private
@@ -7,6 +7,7 @@ published: 2999-01-01
 metaImage:
 bannerImage:
 tags:
+ - Product
 ---
 
 ## The Plan
