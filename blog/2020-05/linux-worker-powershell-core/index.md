@@ -43,9 +43,9 @@ Click **Runbooks**, then click **ADD RUNBOOK**:
 
 ![](octopus-project-add-runbook.png)
 
-To get our Linux Worker VM spun up, our runbook will consist of:
+To spin up our Linux Worker VM, our Runbook will consist of:
 - Creating a new Azure Resource Group
-- Converting our Cloud Init Script to a Base64 string (more on this later)
+- Converting our Cloud init script to a Base64 string (more on this later)
 - Running an ARM template
 - Wait for the VM to be available
 - Perform a health check
@@ -72,9 +72,9 @@ if ($createResourceGroup -eq $true){
 }
 ```
 
-#### Convert the Cloud Init script to a Base64 string
+#### Convert the Cloud init script to a Base64 string
 
-ARM templates have two different ways to execute init script:
+ARM templates have two different ways to execute init scripts:
 - [Custom Script Extension](https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows):
   Using the Custom Script Extension, you can supply a URI to a file (such as a [Gist](https://gist.github.com/discover)) that contains the script to include.  The advantage of this method is using source control for the script file.
 - CustomData parameter (this post uses this method):
@@ -226,7 +226,7 @@ while ($connectionTest -eq $false)
 }
 ```
 
-#### Perform health check
+#### Perform a health check
 The final step of our Runbook is to perform a health check on the newly created Worker.  The **Health Check** built-in step template won't work for us in this as it is designed to work against a deployment target and not a Worker.  This step is another **Run a Script** step that calls the Octopus Deploy API to initiate a health check on a Worker:
 
 ```PS
