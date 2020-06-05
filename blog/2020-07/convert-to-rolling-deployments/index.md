@@ -33,18 +33,18 @@ I am going to use [PetClinic](https://github.com/spring-projects/spring-petclini
 I don’t explain how to build the PetClinic application in this post. If you are new to building Java applications, we have a number of [Java Guides](https://octopus.com/docs/guides?application=java) which include step-by-step instructions to setup CI/CD pipelines for various tools.
 :::
 
-For both the sequential and rolling deployment, the PetClinic application and database are hosted in [Google Cloud](https://cloud.google.com/gcp)
+For both the sequential and rolling deployment processes, the PetClinic application and [MySQL](https://www.mysql.com/) database are hosted in [Google Cloud](https://cloud.google.com/gcp). All of the infrastructure including the servers, load balancer and databases are re-created regularly using [Runbooks](https://octopus.com/docs/operations-runbooks)
 
-### A note on some caveats
+### Some caveats
 
- - Database
- - Load balancer sticky sessions
+It’s important to highlight that this post makes a couple of assumptions about the application set-up:
+
+1. The database is already deployed in a highly available configuration. For more information on MySQL high availability, refer to the [documentation](https://dev.mysql.com/doc/mysql-ha-scalability/en/ha-overview.html).
+1. Load balancer sticky sessions
 
 ## Sequential deployment process
 
 ## Converting to a rolling deployment process
-
-### Runbooks?
 
 
 :::success
@@ -53,6 +53,7 @@ You can see the before and after of the project conversion discussed here in our
 
 - [PetClinic project - with no rolling deployments](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy)
 - [PetClinic project - with rolling deployments](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy)
+- [PetClinic Infrastructure Runbooks](https://g.octopushq.com/PatternRollingSamplePetClinicIacRunbooks)
 :::
 
 ## Conclusion
