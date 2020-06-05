@@ -274,15 +274,26 @@ When included in a deployment, we can see that the Linux Worker uses PowerShell 
 
 ![](octopus-mariadb-step-template-deployment.png)
 
-Here's the log output of the step:
+Here's the log output of the step*:
 
 ```
 PowerShell module SimplySql is not installed, downloading temporary copy ... 
+Installing package 'SimplySql'
+Downloaded 0.00 MB out of 6.53 MB.
+[                                                                    ]
+[ooooooooooooooooooooooooooooooooooooooooooooooo                     ]
+[ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo       ]
+[oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo    ]
+Unzipping
+Copying unzipped package to '/tmp/1299908393/SimplySql.1.6.2'
+Installing package 'SimplySql'
+Importing module SimplySql ... 
 
-Installing package 'SimplySql'                                                     Downloaded 0.00 MB out of 6.53 MB.                                              [                                                                    ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Downloaded 1.97 MB out of 6.53 MB.                                              [oooooooooooooo                                                      ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Downloaded 3.94 MB out of 6.53 MB.                                              [oooooooooooooooooooooooooooo                                        ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Downloaded 6.53 MB out of 6.53 MB.                                              [ooooooooooooooooooooooooooooooooooooooooooooooo                     ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Copying unzipped package to '/tmp/953889146/SimplySql.1.6.2'                    [ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo       ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Process Package Manifest                                                        [oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo    ]                                                                                                                                                                       Installing package 'SimplySql'                                                     Finish installing package 'SimplySql'                                           [oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo]                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Importing module SimplySql ... 
+Creating database d_petclinic_dbup ... 
 
-Database d_petclinic_dbup already exists. 
+d_petclinic_dbup created successfully! 
 ```
+*Log has been formatted for readability.  The progress bar rendering in Linux gets a bit messy.
 
 As you can see, the step template detects the SimplySql module is not installed, downloads SimplySql, and imports it.  It then connects to the MariaDB server and finds that the database already exists, and it does it all with PowerShell.
 
