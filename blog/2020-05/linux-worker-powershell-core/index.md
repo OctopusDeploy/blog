@@ -281,21 +281,19 @@ PowerShell module SimplySql is not installed, downloading temporary copy ...
 Installing package 'SimplySql'
 Downloaded 0.00 MB out of 6.53 MB.
 [                                                                    ]
-[ooooooooooooooooooooooooooooooooooooooooooooooo                     ]
-[ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo       ]
-[oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo    ]
-Unzipping
-Copying unzipped package to '/tmp/1299908393/SimplySql.1.6.2'
 Installing package 'SimplySql'
+Unzipping
+[ooooooooooooooooooooooooooooooooooooooooooooooo                     ]
+Installing package 'SimplySql'
+Process Package Manifest
+[oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo    ]
 Importing module SimplySql ... 
 
-Creating database d_petclinic_dbup ... 
-
-d_petclinic_dbup created successfully! 
+Database d_petclinic_dbup already exists. 
 ```
-*Log has been formatted for readability.  The progress bar rendering in Linux gets a bit messy.
+*Log has been formatted for readability.
 
-As you can see, the step template detects the SimplySql module is not installed, downloads SimplySql, and imports it.  It then connects to the MariaDB server and finds that the database already exists, and it does it all with PowerShell.
+As you can see, the step template detects the SimplySql module is not installed, downloads SimplySql, and imports it.  It then connects to the MariaDB server and finds the database already exists, and it does it all with PowerShell.
 
 
 ## Conclusion
