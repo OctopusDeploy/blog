@@ -29,8 +29,15 @@ We're going to take a look at the reasons why you might choose one or the other.
 
 ## Architecture
 
-****  A section giving a brief overview of the architecture?  ***
+Before I get into the details, let's look at the architecture for the two incarnations of Octopus we're discussing. 
 
+**Server**
+
+Octopus Server runs as a Windows Service; this provides access to the [Octopus REST API](https://octopus.com/docs/octopus-rest-api) and [Octopus Web Portal](https://octopus.com/docs/getting-started#the-octopus-web-portal).  It connects to a SQL Server database and uses [file shares](http://g.octopushq.com/MovingOctopusComponents) to store task logs, artifacts, and packages.
+
+**Cloud**
+
+Octopus Cloud uses a Linux container running on [AKS](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes) with the database hosted in Azure SQL.  The file shares use Azure Cloud Storage.
 
 ## Management
 
@@ -114,8 +121,6 @@ The [REST API](http://g.octopushq.com/RestAPI) has a [reporting](http://g.octopu
 Octopus Server also offers the ability to [send logs to a central log tool](https://help.octopus.com/t/how-can-i-configure-octopus-deploy-to-write-logs-to-a-centralized-logger-such-as-seq-splunk-or-papertrail/24551) by adding a log target to the nlog config file. 
 
 ## Database
-
-Octopus uses a SQL Server database.  
 
 **Cloud**
 
