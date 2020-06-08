@@ -22,7 +22,7 @@ Let’s get started!
 
 The first decision I need to make is which of the existing step templates I am going to build on.
 
-I am deploying the contents of a package to Firebase, so **Deploy a Package** looks like a reasonable choice. The **Deploy a Package** step is for deploying the contents of a package to the machine or PaaS target where it will run. 
+I am deploying the contents of a package to Firebase, so **Deploy a Package** looks like a reasonable choice. The **Deploy a Package** step is for deploying the contents of a package to the machine or PaaS target where it will run.
 
 That is not the case for my Firebase deployment.
 
@@ -87,8 +87,6 @@ The rest of the parameters will follow a similar naming convention and will only
 ## Step
 
 With the parameters sorted, I switch to the **Step** tab. My script source will stay set to **Inline source code**. **Script file inside a package** is great if your team has standard scripts stored in a package. It is less suited to a template that you plan to make available to the general public (foreshadowing).
-
-### Changeup
 
 The **Step** tab has the **Inline Source Code** section next. I will skip ahead and create a referenced package because I need it for my script.
 
