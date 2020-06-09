@@ -33,7 +33,7 @@ As you can see from the diagram, the four layers of tests are:
 
 ## Scenario
 
-We have a `/hello/world` microservice running in production that currently returns a JSON field `message` with the value `hello world!` We want to add another response field called `status` with the value `200` when it returns successfully.
+We have a `/hello/world` microservice running in production that currently returns a JSON field `message` with the value `hello world!` We want to add another response field called `status` with the value `200` when it returns successfully:
 
 ```JSON
 {
@@ -101,11 +101,11 @@ One of the great things about Octopus Deploy is that it has a built-in artifact 
 - CD at integration testing.
 - CD at end-to-end testing.
 
-It’s important to have the CD binary validate stage to ensure we not only get the binary where it needed to go, but that it actually executed as intended. In the case, if we had a bad binary (due to corruption or bad code logic, etc.), we could save a lot of time in our pipeline by failing early and getting that feedback back to the developer quickly.
+It’s important to have the CD binary validate stage to ensure we not only get the binary where it needed to go, but that it actually executed as intended. In that case, if we had a bad binary (due to corruption or bad code logic, etc.), we could save a lot of time in our pipeline by failing early and getting that feedback back to the developer quickly.
 
 ## Which tests when?
 
-One of the conflicting aspects of code promotion is trying to ensure code is deployed in every environment the same way while only running the necessary tests to ensure a new deployment works as intended. An example of this would be running a _load test_ in our QA environment but not other environments. Running a load test in every environment would be time consuming, and extend the time to deploy (which is the opposite of the goal we are trying to achieve). In addition, we probably wouldn’t run load tests in production as we don’t want to take unnecessary risks with our service reliability for live services. 
+One of the conflicting aspects of code promotion is trying to ensure code is deployed in every environment the same way while only running the necessary tests to ensure a new deployment works as intended. An example of this would be running a _load test_ in our QA environment but not other environments. Running a load test in every environment would be time consuming and extend the time to deploy (which is the opposite of the goal we are trying to achieve). In addition, we probably wouldn’t run load tests in production as we don’t want to take unnecessary risks with our service reliability for live services. 
 
 This begs the question, which tests need to run, when do they need to run, how to differentiate the test that ran, and in which environments should they run?
 
@@ -116,9 +116,9 @@ Those are excellent questions and can be broken down by framing them into one of
 
 ## What changes can be run through the pre-approved pipeline?
 
-Not every code change needs to be run through hours of regression testing and load testing. In fact, most code changes shouldn’t need to if you follow lean/agile development methodologies. If a change is simple and it isn’t pulling new data from a database or doing any advanced calculations, the change can probably be deployed to production without the full suite of testing as the risk is low and confidence is high.
+Not every code change needs to go through hours of regression testing and load testing. In fact, most code changes shouldn’t need to if you follow lean/agile development methodologies. If a change is simple and it isn’t pulling new data from a database or doing any advanced calculations, the change can probably be deployed to production without the full suite of testing as the risk is low and confidence is high.
 
-All pipeline events should be triggered from source control. To ensure this change will run through the pre-approved CI/CD pipeline, I will create a new GIT branch with a naming convention similar to the following:
+All pipeline events should be triggered from source control. To ensure changes will run through the pre-approved CI/CD pipeline, I will create a new GIT branch with a naming convention similar to the following:
 
 `feature-pa-eado-4287-add_status_response`
 
@@ -128,7 +128,7 @@ All pipeline events should be triggered from source control. To ensure this chan
 - `<number>`: This is for a JIRA ticket from my project.
 - `add_status_response`: This is a quick description of the change.
 
-By default, all changes will run through the complete CI/CD pipeline. This ensures developers put enough thought into their change to determine if it can be “fast-tracked” for deployment into production.
+By default, all changes will run through the complete CI/CD pipeline. This ensures developers put enough thought into their change to determine if it can be _fast-tracked_ for deployment into production.
 
 In a later blog post, we will discuss how non-pre-approved changes will run through our complete CI/CD pipeline.
 
@@ -141,7 +141,7 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
     2. Writes unit tests that satisfies the acceptance criteria.
     3. Writes code that satisfies the unit test.
     4. Validates tests pass successfully locally, `git push` to source control.
-2. Continuous Integration (Jenkins):
+2. Continuous integration (Jenkins):
     1. Pre-build: Code linting/formatting.
     2. Pre-build: Unit tests.
     3. Pre-build: Component tests.
@@ -158,7 +158,7 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
     4. CD at end-to-end testing: Validates frontend making API call returns successful response.
     5. CD post git tag: `dev_success`.
 4. Test environment:
-    1. GIT Tag `dev_success` triggers CD binary deploy: Copies and unzips package to the web server.
+    1. GIT tag `dev_success` triggers CD binary deploy: Copies and unzips package to the web server.
     2. CD binary validate: Validates the web server returns 200 response.
     3. CD at integration testing: Validates 200 response from load balanced URI.
     4. CD at end-to-end testing: Validates frontend making API call returns successful response.
@@ -190,4 +190,4 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
 
 ## Conclusion
 
-Deploying code to production quickly, is the greatest challenge facing modern development teams. Code promotion and deployment is all about having confidence. In order to have that confidence, our CI/CD pipeline must contain the four layers of the testing pyramid. Determining when each layer of the testing pyramid is executed in which deployment environment becomes the next challenge, but defining a pre-approved deployment pipeline for small, low-risk changes is helps balance speed with quality, and using GIT branches and tags to trigger your pre-approved pipeline helps give deployment responsibility to those who know the code best, the developers.
+Deploying code to production quickly, is the greatest challenge facing modern development teams. Code promotion and deployment is all about having confidence. In order to have that confidence, our CI/CD pipeline must contain the four layers of the testing pyramid. Determining when each layer of the testing pyramid is executed in which deployment environment becomes the next challenge, but defining a pre-approved deployment pipeline for small, low-risk changes helps balance speed with quality, and using GIT branches and tags to trigger your pre-approved pipeline helps give deployment responsibility to those who know the code best, the developers.
