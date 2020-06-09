@@ -16,7 +16,7 @@ tags:
 
 In a previous post this year, I wrote about the [benefits of the rolling deployments pattern](/blog/2020-01/ultimate-guide-to-rolling-deployments/index.md) as a way to reduce application downtime when deploying. Designing an application to fit this deployment pattern is arguably much easier when you’re first creating it. But where do you start with an existing application, and how do you take the application and convert it to use the rolling deployments pattern?
 
-In this post, I'll show you how to convert an existing application to use the rolling deployments pattern in Octopus with the help of [Child Steps](https://octopus.com/docs/deployment-patterns/rolling-deployments#Rollingdeployments-Childsteps).
+In this post, I’ll show you how to convert an existing application to use the rolling deployments pattern in Octopus with the help of [Child Steps](https://octopus.com/docs/deployment-patterns/rolling-deployments#Rollingdeployments-Childsteps).
 
 <h2>In this post</h2>
 
@@ -33,9 +33,11 @@ I am going to use [PetClinic](https://github.com/spring-projects/spring-petclini
 I don’t explain how to build the PetClinic application in this post. If you are new to building Java applications, we have a number of [guides](https://octopus.com/docs/guides?application=java) which include step-by-step instructions to setup CI/CD pipelines for various tools.
 :::
 
-For both the sequential and rolling deployment processes, the PetClinic application and [MySQL](https://www.mysql.com/) database are hosted in [Google Cloud](https://cloud.google.com/gcp). All of the infrastructure including the servers, load balancer and databases are re-created regularly using [Runbooks](https://octopus.com/docs/operations-runbooks).
+For both the sequential and rolling deployment processes, the PetClinic application and [MySQL](https://www.mysql.com/) database are hosted in [Google Cloud](https://cloud.google.com/gcp). All of the infrastructure used in these examples, including the servers, load balancer and databases are re-created regularly using [Operations Runbooks](https://octopus.com/docs/operations-runbooks).
 
 ### Some caveats
+
+One of the main goals for this post is to show how you can reduce downtime for an existing application by taking a few small, practical steps.
 
 It’s important to highlight that this post won’t cover every element required for a zero-downtime deployment. It makes some assumptions about the application set-up:
 
@@ -45,7 +47,54 @@ It’s important to highlight that this post won’t cover every element require
 
 ## Sequential deployment process
 
+For deployments where you aren’t concerned about any application downtime, Octopus caters for this perfectly by running steps sequentially by Default, one after the other.
+
+:::hint
+**Start trigger**
+It’s also possible to configure your deployment process to run steps in [parallel](https://octopus.com/docs/deployment-process/conditions#start-trigger). However, care should be taken to avoid a situation where steps run in parallel which depend on one another.
+:::
+
+The existing PetClinic application is modelled using this sequential technique. The deployment process consists of a number of key steps:
+
+- A [Manual intervention](https://octopus.com/docs/deployment-process/steps/manual-intervention-and-approvals) Approval step (for the `Production` Environment only).
+- A Flyway DB migration [community library](https://library.octopus.com/listing/database) step to apply any database changes.
+- A Deploy to [WildFly](https://wildfly.org/) step for the PetClinic web front-end.
+
+In addition, the deployment process includes some Slack steps to notify users of how a deployment is progressing.
+
+The complete deployment process can be seen here:
+
+![Project sequential deployment process](project-sequential-deployment-process.png)
+
+The infrastructure required to support this process (per Environment) consists of:
+- A single [Ubuntu](https://ubuntu.com/) virtual machine hosting the Wildfly application server
+- A MySQL database hosted in a Google [Cloud SQL](https://cloud.google.com/sql/) Service.
+
+After [creating a release](https://octopus.com/docs/managing-releases#creating-a-release) in Octopus, you can see an example of the sequential deployment in action to the `Development` environment:
+
+![Project sequential deployment run](project-sequential-deployment-run.png)
+
+Each step is run one at a time, until the deployment is complete. When the `Deploy PetClinic web app` step is run, the application at this point becomes unavailable to serve requests to users.
+
+:::success
+**Sample Octopus Project**
+You can see the PetClinic project before the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy)
+:::
+
 ## Converting to a rolling deployment process
+
+Now that we have seen the existing sequential deployment process, we first need to decide on what our infrastructure will look like. Clearly, in order to reduce downtime and still serve
+
+:::warning
+Adding the existing servers to a load balancer will also require downtime.
+:::
+
+### Using the Network Load balancer
+
+### Add Child Steps
+
+### Testing the application on each machine
+
 
 
 :::success
