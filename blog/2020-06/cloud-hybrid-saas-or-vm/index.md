@@ -94,7 +94,7 @@ There is a distinct difference between the [Default Worker Pool](http://g.octopu
 
 **Server**
 
-In Octopus Server, the [Default Worker]((http://g.octopushq.com/BuiltinWorker)) is the Octopus Server itself, whereas Octopus Cloud doesn't allow the Server to perform outside operations.  
+In Octopus Server, the [Default Worker](http://g.octopushq.com/BuiltinWorker) is the Octopus Server itself, whereas Octopus Cloud doesn't allow the Server to perform outside operations.  
 
 When using Octopus Server, we recommend using workers where possible to reduce the resource usage on the Octopus server and, as Octopus executes under a privileged account, if we can offload work to another machine, it's wise to do so for added security.
 
