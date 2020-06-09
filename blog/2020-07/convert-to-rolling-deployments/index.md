@@ -47,6 +47,12 @@ It’s important to highlight that this post won’t cover every element require
 
 ## Sequential deployment process
 
+As the existing application is being deployed to, it is taken offline completely. Perhaps unsurprisingly, the infrastructure used to support this (per Environment) therefore consists of:
+- A single [Ubuntu](https://ubuntu.com/) virtual machine hosting the Wildfly application server
+- A MySQL database hosted in a Google [Cloud SQL](https://cloud.google.com/sql/) Service.
+
+![Project sequential infrastructure](sequential-deployment-infrastructure.png)
+
 For deployments where you aren’t concerned about any application downtime, Octopus caters for this perfectly by running steps sequentially by Default, one after the other.
 
 :::hint
@@ -66,10 +72,6 @@ The complete deployment process can be seen here:
 
 ![Project sequential deployment process](project-sequential-deployment-process.png)
 
-The infrastructure required to support this process (per Environment) consists of:
-- A single [Ubuntu](https://ubuntu.com/) virtual machine hosting the Wildfly application server
-- A MySQL database hosted in a Google [Cloud SQL](https://cloud.google.com/sql/) Service.
-
 After [creating a release](https://octopus.com/docs/managing-releases#creating-a-release) in Octopus, you can see an example of the sequential deployment in action to the `Development` environment:
 
 ![Project sequential deployment run](project-sequential-deployment-run.png)
@@ -83,7 +85,7 @@ You can see the PetClinic project before the conversion to a rolling deployment 
 
 ## Converting to a rolling deployment process
 
-Now that we have seen the existing sequential deployment process, we first need to decide on what our infrastructure will look like. Clearly, in order to reduce downtime and still serve
+Now that we have seen the existing sequential deployment process, we first need to decide on what our infrastructure will look like. Clearly, in order to reduce downtime and still serve requests for users, we need to scale up the number of servers we use. We'll also need a load-balancer
 
 :::warning
 Adding the existing servers to a load balancer will also require downtime.
