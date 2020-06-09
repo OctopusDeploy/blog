@@ -24,23 +24,24 @@ In this post, I'll show you how to convert an existing application to use the ro
 
 ## The application
 
-I am going to use [PetClinic](https://github.com/spring-projects/spring-petclinic) as an example and convert this from a process which runs deployment steps sequentially in Octopus, to a rolling deployment process. PetClinic is a sample Spring Boot application written in Java and has 2 main components:
+I am going to use [PetClinic](https://github.com/spring-projects/spring-petclinic) as an example and convert this from a process which runs deployment steps sequentially in Octopus, to a rolling deployment process. PetClinic is a sample Spring Boot application written in Java, that has 2 main components:
 
 - A web front-end
 - A database
 
 :::hint
-I don’t explain how to build the PetClinic application in this post. If you are new to building Java applications, we have a number of [Java Guides](https://octopus.com/docs/guides?application=java) which include step-by-step instructions to setup CI/CD pipelines for various tools.
+I don’t explain how to build the PetClinic application in this post. If you are new to building Java applications, we have a number of [guides](https://octopus.com/docs/guides?application=java) which include step-by-step instructions to setup CI/CD pipelines for various tools.
 :::
 
-For both the sequential and rolling deployment processes, the PetClinic application and [MySQL](https://www.mysql.com/) database are hosted in [Google Cloud](https://cloud.google.com/gcp). All of the infrastructure including the servers, load balancer and databases are re-created regularly using [Runbooks](https://octopus.com/docs/operations-runbooks)
+For both the sequential and rolling deployment processes, the PetClinic application and [MySQL](https://www.mysql.com/) database are hosted in [Google Cloud](https://cloud.google.com/gcp). All of the infrastructure including the servers, load balancer and databases are re-created regularly using [Runbooks](https://octopus.com/docs/operations-runbooks).
 
 ### Some caveats
 
-It’s important to highlight that this post makes a couple of assumptions about the application set-up:
+It’s important to highlight that this post won’t cover every element required for a zero-downtime deployment. It makes some assumptions about the application set-up:
 
 1. The database is already deployed in a highly available configuration. For more information on MySQL high availability, refer to the [documentation](https://dev.mysql.com/doc/mysql-ha-scalability/en/ha-overview.html).
-1. Load balancer sticky sessions
+1. Changes to the database are made in a backward and forward compatible way using [Flyway](https://flywaydb.org/).
+1. Any required session state is persisted for when an individual server is being deployed to.
 
 ## Sequential deployment process
 
