@@ -37,8 +37,6 @@ For both the sequential and rolling deployment processes, the PetClinic applicat
 
 ### Some caveats
 
-One of the main goals for this post is to show how you can reduce downtime for an existing application by taking a few small, practical steps.
-
 It’s important to highlight that this post won’t cover every element required for a zero-downtime deployment. It makes some assumptions about the application set-up:
 
 1. The database is already deployed in a highly available configuration. For more information on MySQL high availability, refer to the [documentation](https://dev.mysql.com/doc/mysql-ha-scalability/en/ha-overview.html).
@@ -47,12 +45,6 @@ It’s important to highlight that this post won’t cover every element require
 
 ## Sequential deployment process
 
-As the existing application is being deployed to, it is taken offline completely. Perhaps unsurprisingly, the infrastructure used to support this (per Environment) therefore consists of:
-- A single [Ubuntu](https://ubuntu.com/) virtual machine hosting the Wildfly application server
-- A MySQL database hosted in a Google [Cloud SQL](https://cloud.google.com/sql/) Service.
-
-![Project sequential infrastructure](sequential-deployment-infrastructure.png)
-
 For deployments where you aren’t concerned about any application downtime, Octopus caters for this perfectly by running steps sequentially by Default, one after the other.
 
 :::hint
@@ -60,7 +52,7 @@ For deployments where you aren’t concerned about any application downtime, Oct
 It’s also possible to configure your deployment process to run steps in [parallel](https://octopus.com/docs/deployment-process/conditions#start-trigger). However, care should be taken to avoid a situation where steps run in parallel which depend on one another.
 :::
 
-The existing PetClinic application is modelled using this sequential technique. The deployment process consists of a number of key steps:
+The existing PetClinic application is modelled using this sequential deployment technique. The deployment process consists of a number of key steps:
 
 - A [Manual intervention](https://octopus.com/docs/deployment-process/steps/manual-intervention-and-approvals) Approval step (for the `Production` Environment only).
 - A Flyway DB migration [community library](https://library.octopus.com/listing/database) step to apply any database changes.
@@ -76,7 +68,16 @@ After [creating a release](https://octopus.com/docs/managing-releases#creating-a
 
 ![Project sequential deployment run](project-sequential-deployment-run.png)
 
-Each step is run one at a time, until the deployment is complete. When the `Deploy PetClinic web app` step is run, the application at this point becomes unavailable to serve requests to users.
+Each step is run one at a time, until the deployment is complete. When the `Deploy PetClinic web app` step is run, the application at this point becomes unavailable to serve requests to users. 
+
+Perhaps unsurprisingly, the infrastructure used in these deployments (per Environment) look like this:
+
+![Project sequential infrastructure](sequential-deployment-infrastructure.png)
+
+It includes:
+
+- A single [Ubuntu](https://ubuntu.com/) virtual machine hosting the Wildfly application server
+- A MySQL database hosted in a Google [Cloud SQL](https://cloud.google.com/sql/) Service.
 
 :::success
 **Sample Octopus Project**
@@ -85,7 +86,21 @@ You can see the PetClinic project before the conversion to a rolling deployment 
 
 ## Converting to a rolling deployment process
 
-Now that we have seen the existing sequential deployment process, we first need to decide on what our infrastructure will look like. Clearly, in order to reduce downtime and still serve requests for users, we need to scale up the number of servers we use. We'll also need a load-balancer
+Now that we have seen the deployment process for the existing application, we first need to decide on what our infrastructure will look like for the rolling deployment process. 
+
+### Scaling up servers
+
+Clearly, in order to reduce downtime and still serve requests for users, we need to scale up the number of servers we use. We’ll also need a load-balancer that we can use to control which servers are available.
+
+In the previous sequential deployment example, we had a single application server per environment. To keep the `Development` environment simple, we’ll keep the infrastructure the same as before. For the `Test` and `Production` environments however, the infrastructure will look like this:
+
+![Project rolling infrastructure](rolling-deployment-infrastructure.png)
+
+This includes a load balancer and two application servers in each Environments.
+
+:::hint
+In this example, the load balancer is shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment.
+:::
 
 :::warning
 Adding the existing servers to a load balancer will also require downtime.
