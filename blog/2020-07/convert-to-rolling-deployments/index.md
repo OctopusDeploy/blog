@@ -96,17 +96,23 @@ In the previous sequential deployment example, we had a single application serve
 
 ![Project rolling infrastructure](rolling-deployment-infrastructure.png)
 
-This includes a load balancer and two application servers in each Environments.
+This includes a load balancer and this time two application servers connecting into the MySQL database as before.
 
 :::hint
-In this example, the load balancer is shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment.
+In this example, the load balancer is actually shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment. 
+- Port `8080` is used for traffic destined for the `Test` environment.
+- Port `80` is used for traffic destined for the `Production` environment
 :::
+
+### Choosing the load balancer
+
+There are many different types of load balancer, but one key goal required for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our application servers from the load balancer as part of the deployment process, which we’ll see a little later in this post. For more information about how to set up the load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
+
+### Direct traffic to the load balancer
 
 :::warning
-Adding the existing servers to a load balancer will also require downtime.
+Adding the existing servers to a load balancer for the first time will also require downtime.
 :::
-
-### Using the Network Load balancer
 
 ### Add Child Steps
 
