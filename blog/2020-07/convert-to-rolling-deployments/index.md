@@ -45,7 +45,7 @@ It’s important to highlight that this post won’t cover every element require
 
 ## Sequential deployment process
 
-For deployments where you aren’t concerned about any application downtime, Octopus caters for this perfectly by running steps sequentially by Default, one after the other.
+For deployments where you aren’t concerned about any application downtime, Octopus caters for this perfectly by running steps sequentially by default, one after the other.
 
 :::hint
 **Start trigger**
