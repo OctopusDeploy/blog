@@ -13,7 +13,7 @@ tags:
 Earlier this year, my colleague Ryan Rousseau wrote a blog post on [publishing a package to Octopus Deploy using GitHub Actions](https://octopus.com/blog/publishing-a-package-to-octopus-with-github-actions).  In this post, I'll take this a step further by publishing a package to a **local** instance of Octopus Deploy with a self-hosted GitHub Actions Runner.
 
 ## GitHub Actions
-GitHub Actions is GitHubs' version of a build server.  Like many other build tools such as BitBucket PipeLines and Azure DevOps, GitHub Actions utilizes Yet Another Markup Language (YAML) to define the build process.  Below is an example of what a GitHub Actions YAML build file looks like.  This builds the [OctoPetShop Sample](https://github.com/OctopusSamples/OctoPetShop) .NET core application, then pushes the packages to our [Samples Octopus Deploy](https://samples.octopus.app/) instance.
+GitHub Actions is GitHubs' version of a build server.  Like many other build tools such as BitBucket PipeLines and Azure DevOps, GitHub Actions utilizes Yet Another Markup Language (YAML) to define the build process called a `workflow`.  Below is an example of what a GitHub Actions workflow YAML file looks like.  This builds the [OctoPetShop Sample](https://github.com/OctopusSamples/OctoPetShop) .NET core application, then pushes the packages to our [Samples Octopus Deploy](https://samples.octopus.app/) instance.
 
 ```
 name: .NET Core 
@@ -89,13 +89,13 @@ jobs:
       run: |
         octo push --package="$GITHUB_WORKSPACE/artifacts/OctoPetShop.ShoppingCartService.$PACKAGE_VERSION.zip" --server="${{ secrets.OCTOPUSSERVERURL }}" --apiKey="${{ secrets.OCTOPUSSERVERAPIKEY }}" --space="${{ secrets.OCTOPUSSERVERSPACE_HYBRID }}"
 ```
-With the GitHub-Hosted runners, this solution works great!  However, when you are using a self-hosted version of Octopus Deploy on your local infrastructure, without the ability to reach into your Octopus server, it falls short.
+With the GitHub-Hosted runners pushing to Octopus Cloud, this solution works great!  However, without poking holes the firewall, GitHub-Hosted runners will not be able to push packages to your on-premise Octopus Deploy server.
 
 ### Local build runners
-While the GitHub-Hosted runners are pre-packaged with a lot of functionality, there are times when you have specific software needs or need the ability to control the version that you are using.  To solve this problem, the folks over at GitHub developed the ability for Actions to have locally hosted runners!  The local runner works in a similar fashion to Octopus Polling tentacles in that they reach out to GitHub Actions instead of GitHub Actions reaching in.  This allows users to run runners on their local infrastructure which would have access to push packages to the local instance of Octopus Deploy!
+While the GitHub-Hosted runners are pre-packaged with a lot of functionality, there are times when you have specific software needs, need the ability to control the version that you are using, or need the runner to have access to on-premise resources such as Octopus Deploy.  To solve this problem, the folks over at GitHub developed the ability for Actions to have locally hosted runners!  The local runner works in a similar fashion to Octopus Polling tentacles in that they reach out to GitHub Actions instead of GitHub Actions reaching in.  
 
 #### Setting up the runner
-Setting up a local runner is incredibly easy, kudos to GitHub for making it so simple.  After you've created a workflow (the build YAML file), make your way over to **Settings** in your GitHub repo
+Setting up a local runner is incredibly easy, kudos to GitHub for making it so simple.  After you've created a workflow (the workflow YAML file), make your way over to **Settings** in your GitHub repo
 
 ![](github-actions-settings.png)
 
@@ -163,8 +163,8 @@ And like that, you have a local runner!
 
 ![](github-actions-local-runner.png)
 
-#### Configuring build to use local runner
-Configuring the build to use a local runner is a one-line change in the YAML.  Taking our YAML from above, we change the line `runs-on` to the tags of our local instance.  The current value of `runs-on` uses a single tag, when you need multiple tags, you have to place them inside an array which is designated by the use of square brackets.  For our new runner, we want it to use tags `self-hosted` and `linux`.  To do this we'll change
+#### Configuring the workflow to use local runner
+Configuring the workflow to use a local runner is a one-line change in the YAML.  Taking our YAML from above, we change the line `runs-on` to the tags of our local instance.  The current value of `runs-on` uses the single tag `ubuntu-latest`.  However, when you need multiple tags, you have to place them inside an array which is designated by the use of square brackets.  For our new runner, we want it to use tags `self-hosted` and `linux`.  To do this we'll change
 
 ```
 runs-on: ubuntu-latest 
@@ -176,10 +176,11 @@ to
 runs-on: [self-hosted, linux]
 ```
 
-With our build configured to use a local runner, we now can push packages to our local instance of Octopus Deploy!  By making the change to the YAML file, it kicked off a build, I can see that my local runner has picked up it up,
+With our workflow configured to use a local runner, we now can push packages to our local instance of Octopus Deploy!  By making the change to the YAML file, it kicked off a build, I can see that my local runner has picked up it up by clicking on `Actions`,
 
 ![](github-actions-build.png)
 
+On my VM, I see the message that it's running the job
 ```
 
 √ Connected to GitHub
