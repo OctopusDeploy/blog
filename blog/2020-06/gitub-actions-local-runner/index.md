@@ -13,7 +13,7 @@ tags:
 Earlier this year, my colleague Ryan Rousseau wrote a blog post on [publishing a package to Octopus Deploy using GitHub Actions](https://octopus.com/blog/publishing-a-package-to-octopus-with-github-actions).  In this post, I'll take this a step further by publishing a package to a local instance of Octopus Deploy using a local GitHub Actions Runner.
 
 ## GitHub Actions
-GitHub Actions is GitHubs version of a build server.  Like many other build tools such as BitBucket PipeLines and Azure DevOps, GitHub Actions utilizes Yet Anohter Markup Language (YAML) to define the build process.  Below is an example of what a GitHub Actions YAML build file looks like.  This builds the [OctoPetShop Sample](https://github.com/OctopusSamples/OctoPetShop) .NET core application, then pushes the packages to our [Samples Octopus Deploy](https://samples.octopus.app/) instance.
+GitHub Actions is GitHubs version of a build server.  Like many other build tools such as BitBucket PipeLines and Azure DevOps, GitHub Actions utilizes Yet Another Markup Language (YAML) to define the build process.  Below is an example of what a GitHub Actions YAML build file looks like.  This builds the [OctoPetShop Sample](https://github.com/OctopusSamples/OctoPetShop) .NET core application, then pushes the packages to our [Samples Octopus Deploy](https://samples.octopus.app/) instance.
 
 ```
 name: .NET Core 
@@ -89,10 +89,10 @@ jobs:
       run: |
         octo push --package="$GITHUB_WORKSPACE/artifacts/OctoPetShop.ShoppingCartService.$PACKAGE_VERSION.zip" --server="${{ secrets.OCTOPUSSERVERURL }}" --apiKey="${{ secrets.OCTOPUSSERVERAPIKEY }}" --space="${{ secrets.OCTOPUSSERVERSPACE_HYBRID }}"
 ```
-With the GitHub-Hosted runners, this solution works great!  However, when your are using a self-hosted version of Octopus Deploy on your local infrastructure without the ability to reach into your Octopus server, it falls short.
+With the GitHub-Hosted runners, this solution works great!  However, when your are using a self-hosted version of Octopus Deploy on your local infrastructure. without the ability to reach into your Octopus server, it falls short.
 
 ### Local build runners
-While the GitHub-Hosted runners are pre-packaged with a lot of functionality, there are times when you have specific software needs and need the ability to control the version that you are using.  To solve this problem, the folks over at GitHub developed the ability for Actions to have locally hosted runners!  The local runner works in a similar fashion to Octopus Polling tentacles in that they reach out to GitHub Actions instead of GitHub Actions reaching in.  This allows users to run runners on their local infrastructure which would have access to push packages to the local instance of Octopus Deploy!
+While the GitHub-Hosted runners are pre-packaged with a lot of functionality, there are times when you have specific software needs or need the ability to control the version that you are using.  To solve this problem, the folks over at GitHub developed the ability for Actions to have locally hosted runners!  The local runner works in a similar fashion to Octopus Polling tentacles in that they reach out to GitHub Actions instead of GitHub Actions reaching in.  This allows users to run runners on their local infrastructure which would have access to push packages to the local instance of Octopus Deploy!
 
 #### Setting up the runner
 Setting up a local runner is incredibly easy, kudos to GitHub for making it so simple.  After you've created a workflow (the build YAML file), make your way over to **Settings** in your GitHub repo
@@ -197,4 +197,4 @@ Popping over to my local Octopus Deploy instance, I find that this has been push
 ![](octopus-library-packages.png)
 
 ## Conclusion
-This blog post demonstrates one method of using a cloud build server to push packages to a on-premise installation of Octopus Deploy by using local build runners or agents.  While this focuses on GitHub Actions, the same idea can be extended to TeamCity, Jenkins, or Azure DevOps.
+This blog post demonstrates one method of using a cloud build server to push packages to an on-premise installation of Octopus Deploy by using local build runners or agents.  While this focuses on GitHub Actions, the same idea can be extended to TeamCity, Jenkins, or Azure DevOps.
