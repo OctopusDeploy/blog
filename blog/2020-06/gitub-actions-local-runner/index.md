@@ -1,6 +1,6 @@
 ---
 title: Publishing a package to a local Octopus with GitHub Actions
-description: Demonstrating how to push a package to a local instance of Ocotpus Deploy with a GitHub Actions Runner
+description: Demonstrating how to push a package to a local instance of Octopus Deploy with a GitHub Actions Runner
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2021-06-27
@@ -10,10 +10,10 @@ tags:
  - DevOps
 ---
 
-Earlier this year, my colleague Ryan Rousseau wrote a blog post on [publishing a package to Octopus Deploy using GitHub Actions](https://octopus.com/blog/publishing-a-package-to-octopus-with-github-actions).  In this post, I'll take this a step further by publishing a package to a local instance of Octopus Deploy using a local GitHub Actions Runner.
+Earlier this year, my colleague Ryan Rousseau wrote a blog post on [publishing a package to Octopus Deploy using GitHub Actions](https://octopus.com/blog/publishing-a-package-to-octopus-with-github-actions).  In this post, I'll take this a step further by publishing a package to a **local** instance of Octopus Deploy with a self-hosted GitHub Actions Runner.
 
 ## GitHub Actions
-GitHub Actions is GitHubs version of a build server.  Like many other build tools such as BitBucket PipeLines and Azure DevOps, GitHub Actions utilizes Yet Another Markup Language (YAML) to define the build process.  Below is an example of what a GitHub Actions YAML build file looks like.  This builds the [OctoPetShop Sample](https://github.com/OctopusSamples/OctoPetShop) .NET core application, then pushes the packages to our [Samples Octopus Deploy](https://samples.octopus.app/) instance.
+GitHub Actions is GitHubs' version of a build server.  Like many other build tools such as BitBucket PipeLines and Azure DevOps, GitHub Actions utilizes Yet Another Markup Language (YAML) to define the build process.  Below is an example of what a GitHub Actions YAML build file looks like.  This builds the [OctoPetShop Sample](https://github.com/OctopusSamples/OctoPetShop) .NET core application, then pushes the packages to our [Samples Octopus Deploy](https://samples.octopus.app/) instance.
 
 ```
 name: .NET Core 
@@ -89,7 +89,7 @@ jobs:
       run: |
         octo push --package="$GITHUB_WORKSPACE/artifacts/OctoPetShop.ShoppingCartService.$PACKAGE_VERSION.zip" --server="${{ secrets.OCTOPUSSERVERURL }}" --apiKey="${{ secrets.OCTOPUSSERVERAPIKEY }}" --space="${{ secrets.OCTOPUSSERVERSPACE_HYBRID }}"
 ```
-With the GitHub-Hosted runners, this solution works great!  However, when your are using a self-hosted version of Octopus Deploy on your local infrastructure. without the ability to reach into your Octopus server, it falls short.
+With the GitHub-Hosted runners, this solution works great!  However, when you are using a self-hosted version of Octopus Deploy on your local infrastructure, without the ability to reach into your Octopus server, it falls short.
 
 ### Local build runners
 While the GitHub-Hosted runners are pre-packaged with a lot of functionality, there are times when you have specific software needs or need the ability to control the version that you are using.  To solve this problem, the folks over at GitHub developed the ability for Actions to have locally hosted runners!  The local runner works in a similar fashion to Octopus Polling tentacles in that they reach out to GitHub Actions instead of GitHub Actions reaching in.  This allows users to run runners on their local infrastructure which would have access to push packages to the local instance of Octopus Deploy!
