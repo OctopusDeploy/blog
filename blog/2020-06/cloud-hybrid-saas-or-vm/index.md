@@ -1,6 +1,6 @@
 ---
-title: Comparing self-hosted Octopus in a Cloud VM vs Octopus Cloud
-description: Determine the right Octopus Deploy installation to use in the cloud
+title: Self-hosted Octopus in a Cloud VM vs Octopus Cloud
+description: Information to consider when deciding on the right Octopus Deploy installation to use in the cloud
 author: lianne.crocker@octopus.com
 visibility: private
 published: 2999-01-01
@@ -12,13 +12,15 @@ tags:
  - DevOps
 ---
 
-When considering moving Octopus to cloud infrastructure, a common question we receive is whether to move to Octopus Server on a virtual machine or to use Octopus Cloud.
+A common question we receive from customers thinking about moving Octopus to cloud infrastructure is:
 
-We're going to take a look at the reasons why you might choose one or the other.  Key considerations will most likely be cost and security, but attention should also be given to how you'll use Octopus.  The information in this post will help you in your deliberations. 
+> Should I move to Octopus Server on a virtual machine or to the hosted Octopus Cloud?
+
+In this post, we take a look at why you might choose one over the other. Cost and security are key considerations, but we'll also consider how you'll use Octopus. 
 
 :::hint
 
-**Octopus Cloud** refers to the Octopus Cloud [SaaS](https://en.wikipedia.org/wiki/Software_as_a_service) offering from Octopus Deploy and **Octopus Server** to the self-hosted version of Octopus Deploy.  In the context of this post, **Octopus Server** resides on a virtual machine in the cloud.
+**Octopus Cloud** refers to the Octopus Cloud [SaaS](https://en.wikipedia.org/wiki/Software_as_a_service) offering from Octopus Deploy and **Octopus Server** refers to the self-hosted version of Octopus Deploy.  In the context of this post, **Octopus Server** resides on a virtual machine in the cloud.
 
 - [Octopus Cloud](http://g.octopushq.com/OctopusCloudPricing)
 - [Octopus Server](http://g.octopushq.com/ProductDownloadPage)
@@ -45,21 +47,23 @@ Opting for Octopus Cloud reduces the number of administration tasks you have to 
 
 ### Retention policies and storage
 
-Octopus [retention policies](http://g.octopushq.com/RetentionPolicies) have a default configuration on all Octopus instances; we recommend reviewing them to suit your requirements. 
+Octopus [retention policies](http://g.octopushq.com/RetentionPolicies) have a default configuration on all Octopus instances, and we recommend reviewing them to suit your requirements. 
 
 **Server**
 
-When configuring Octopus Server on a VM, you select the storage that Octopus uses for the [server folders](http://g.octopushq.com/OctopusServerFolders); this means you can set the storage limits that suit you for these folders and configure retention policies accordingly.  
+When you configure Octopus Server on a VM, you select the storage that Octopus uses for the [server folders](http://g.octopushq.com/OctopusServerFolders). This means you can set the storage limits that suit you for these folders and configure retention policies accordingly.  
 
 **Cloud**
 
-Octopus Cloud provides plenty of storage for most businesses; however, the amount of storage you can use has a [limit](ttp://g.octopushq.com/AcceptableUsage).  Where long term retention is required for regulatory compliance, you may find this a reason to select Octopus Server over Octopus Cloud.  We've added monitoring to the Technical section of the Octopus instance management page to view the details and login to your Octopus Account. Then, on your instance, select {{ Manage,Resource Usage }}, this is updated every 24 hours. 
+Octopus Cloud provides plenty of storage for most businesses, however, the amount of storage you can use has a [limit](ttp://g.octopushq.com/AcceptableUsage).  Where long term retention is required for regulatory compliance, you may find this a reason to select Octopus Server over Octopus Cloud.  
+
+We've added monitoring to the Technical section of the Octopus instance management page. To view the details, login to your Octopus Account, then, on your instance, select {{ Manage,Resource Usage }}. This is updated every 24 hours. 
 
 ![cloud-limits](cloud-limits.png "width=500")
 
 :::hint
 
-Octopus has a built-in package repository available to all instances, in addition to this external repository feeds can be configured to serve your [deployment packages](http://g.octopushq.com/OnboardingPackageRepositoriesLearnMore).  You might choose to use an external feed to aid in [multi-region deployments](#regional-package-feeds) or if your package feed storage requirements are considerable.
+Octopus has a built-in package repository available to all instances, in addition to this, external repository feeds can be configured to serve your [deployment packages](http://g.octopushq.com/OnboardingPackageRepositoriesLearnMore).  You might choose to use an external feed to aid in [multi-region deployments](#regional-package-feeds) or if your package feed storage requirements are considerable.
 
 :::
 
@@ -67,7 +71,7 @@ Octopus has a built-in package repository available to all instances, in additio
 
 **Cloud**
 
-One of the great things about Octopus Cloud is that you don't have to worry about how and when to perform system maintenance and [upgrades](http://g.octopushq.com/OctopusUpgradeDoc), Octopus manage those for you and, additionally, you're able to choose a maintenance window to suit your business and region.
+One of the great things about Octopus Cloud is that you don't have to worry about how and when to perform system maintenance and [upgrades](http://g.octopushq.com/OctopusUpgradeDoc). Octopus manage those for you, and additionally, you can choose a maintenance window to suit your business and region.
 
 Outage window information is in the Technical section of the Octopus instance management page:
 
@@ -76,17 +80,17 @@ Outage window information is in the Technical section of the Octopus instance ma
 
 **Server**
 
-Octopus Server allows you to be even more specific about when you perform your system maintenance and upgrades.  If you implement [high availability](http://g.octopushq.com/HighAvailability) then you can have zero downtime while maintenance is carried out.  Some customers choose to automate maintenance and upgrade tasks by using [runbooks](http://g.octopushq.com/OnboardingRunbooksLearnMore) in [another instance of Octopus](http://g.octopushq.com/UpgradeOctopusWithOctopus), a free Octopus Cloud instance works perfectly here. 
+Octopus Server allows you to be even more specific about when you perform your system maintenance and upgrades.  If you implement [high availability](http://g.octopushq.com/HighAvailability) then you can have zero downtime while maintenance is carried out.  Some customers choose to automate maintenance and upgrade tasks by using [runbooks](http://g.octopushq.com/OnboardingRunbooksLearnMore) in [another instance of Octopus](http://g.octopushq.com/UpgradeOctopusWithOctopus). A free Octopus Cloud instance is suitable for this task. 
 
 ### Managing infrastructure
 
 **Server**
 
-Octopus Server allows you to use infrastructure that fits into your business's operational architecture; any infrastructure management processes and policies in place can be leveraged for your Octopus instance.  It is also your responsibility to ensure that the [infrastructure](http://g.octopushq.com/ManagingInfrastructure) performs well, is maintained and recoverable as well as scaling capabilities.
+With Octopus Server you can use infrastructure that fits into your business's operational architecture, and any infrastructure management processes and policies in place can be used for your Octopus instance.  And because you are hosting your Octopus Server it is your responsibility to ensure the [infrastructure](http://g.octopushq.com/ManagingInfrastructure) performs well, is maintained, and recoverable as well as scaling capabilities.
 
 **Cloud**
 
-Using Octopus Cloud allows you to take a step back from infrastructure management; it's our responsibility to ensure that the infrastructure is robust and scaling according to your usage. 
+Using Octopus Cloud allows you to take a step back from infrastructure management. It's our responsibility to ensure that the infrastructure is robust and scales according to your usage. 
 
 #### Workers
 
@@ -94,13 +98,13 @@ There is a distinct difference between the [Default Worker Pool](http://g.octopu
 
 **Server**
 
-In Octopus Server, the [Default Worker](http://g.octopushq.com/BuiltinWorker) is the Octopus Server itself, whereas Octopus Cloud doesn't allow the Server to perform outside operations.  
+In Octopus Server, the [Default Worker](http://g.octopushq.com/BuiltinWorker) is the Octopus Server itself, whereas Octopus Cloud doesn't allow the server to perform outside operations.  
 
-When using Octopus Server, we recommend using workers where possible to reduce the resource usage on the Octopus server and, as Octopus executes under a privileged account, if we can offload work to another machine, it's wise to do so for added security.
+When you use Octopus Server, we recommend using Workers when possible to reduce the resource usage on the Octopus Server, and as Octopus executes under a privileged account, if you can offload work to another machine in the form of a Worker, it's wise to do so for added security.
 
 **Cloud**
 
-Octopus Cloud leases a [dynamic worker](http://g.octopushq.com/DynamicWorkerPools) machine from a worker pool specific to its region.
+Octopus Cloud leases a [dynamic Worker](http://g.octopushq.com/DynamicWorkerPools) machine from a Worker Pool specific to its region.
 
 ### Backups
 
@@ -114,34 +118,34 @@ When managing your infrastructure as part of an Octopus Server installation, you
 
 ### Monitoring
 
-Octopus [subscriptions](http://g.octopushq.com/Subscriptions) can be used in both Octopus Cloud and Octopus Server to notify of events to watch for changes in Octopus - a change to a specific project process, a user amendment, the addition of a deployment target, the list is long!
+Octopus [subscriptions](http://g.octopushq.com/Subscriptions) can be used in both Octopus Cloud and Octopus Server. You can configure notifications to notify you of changes in Octopus, for instance, a change to a specific project process, a user amendment, the addition of a deployment target, there is a long list.
 
-The [REST API](http://g.octopushq.com/RestAPI) has a [reporting](http://g.octopushq.com/Reporting) endpoint that you can use to create a dashboard, available in both Octopus Cloud and Octopus Server. 
+The [REST API](http://g.octopushq.com/RestAPI) has a [reporting](http://g.octopushq.com/Reporting) endpoint you can use to create a dashboard, available in both Octopus Cloud and Octopus Server. 
 
-Octopus Server also offers the ability to [send logs to a central log tool](https://help.octopus.com/t/how-can-i-configure-octopus-deploy-to-write-logs-to-a-centralized-logger-such-as-seq-splunk-or-papertrail/24551) by adding a log target to the nlog config file. 
+With Octopus Server you can also [send logs to a central log tool](https://help.octopus.com/t/how-can-i-configure-octopus-deploy-to-write-logs-to-a-centralized-logger-such-as-seq-splunk-or-papertrail/24551) by adding a log target to the *nlog config* file. 
 
 ## Database
 
 **Cloud**
 
-The Octopus Cloud database is not accessible to customers, so all interactions with Octopus must be done using the web interface or via the API.  The great thing about this is that the database maintenance, security, and patching is all done by us!
+The Octopus Cloud database is not accessible to customers, so all interactions with Octopus must be done using the web interface or with the API.  The great thing about this is that the database maintenance, security, and patching is all done by us.
 
 
 **Server**
 
-Octopus Server on a cloud VM gives you several options for database hosting.
+Octopus Server on a cloud VM gives you several options for database hosting:
 
-- **VM** - Host SQL Server on a virtual machine.
-- **PaaS** - [Google Cloud SQL](https://cloud.google.com/sql/docs/sqlserver), [Azure SQL](https://azure.microsoft.com/en-gb/services/sql-database/) or [AWS RDS for SQL Server](https://aws.amazon.com/rds/sqlserver/) for example. 
-- **Docker** - Use SQL Server within a [Docker](https://www.docker.com/) container, this could be on a Windows or Linux virtual machine or a cloud container hosting platform.   
+- **VM**: Host SQL Server on a virtual machine.
+- **PaaS**: For example, [Google Cloud SQL](https://cloud.google.com/sql/docs/sqlserver), [Azure SQL](https://azure.microsoft.com/en-gb/services/sql-database/), or [AWS RDS for SQL Server](https://aws.amazon.com/rds/sqlserver/). 
+- **Docker**: Use SQL Server within a [Docker](https://www.docker.com/) container. This could be on a Windows or Linux virtual machine or a cloud container hosting platform.   
 
-The benefit of managing your database offers more the choice of more lenient [retention policies](http://g.octopushq.com/RetentionPolicies), the ability to use a clustered database, and managing your backups.
+The benefit of managing your database gives you the choice of more lenient [retention policies](http://g.octopushq.com/RetentionPolicies), the ability to use a clustered database, and managing your own backups.
 
 ## Security
 
 **Cloud**
 
-With Octopus Cloud, we secure the infrastructure and carry out penetration testing to ensure the security and integrity of the  Octopus instances.  In this case, you are responsible for:
+With Octopus Cloud, we secure the infrastructure and carry out penetration testing to ensure the security and integrity of the Octopus instances.  However, you are still responsible for:
 
 - How you connect Octopus to your infrastructure.
 - How you identify your users and control their activities within Octopus.
@@ -149,7 +153,7 @@ With Octopus Cloud, we secure the infrastructure and carry out penetration testi
 
 **Server**
 
-When using Octopus Server, it is your responsibility to [harden](https://octopus.com/docs/security/hardening-octopus) the Octopus instance infrastructure.  This level of control may be beneficial if there are industry-specific regulations to which you are required to adhere.  In this case, you also taking responsibility for:
+When you use Octopus Server, it is your responsibility to [harden](https://octopus.com/docs/security/hardening-octopus) the Octopus instance infrastructure.  This level of control may be beneficial if there are industry-specific regulations to which you are required to adhere.  In this case, you also taking responsibility for:
 
 - How you harden the underlying server operating system.
 - How you protect the Octopus Server files on the operating system.
@@ -162,15 +166,15 @@ When using Octopus Server, it is your responsibility to [harden](https://octopus
 
 :::hint
 
-When adding deployment targets and worker machines to Octopus Cloud or Octopus Server infrastructure, their security and integrity is your responsibility.
+When adding deployment targets and Worker machines to Octopus Cloud or Octopus Server infrastructure, their security and integrity is your responsibility.
 
 :::
 
-### Authentication Providers
+### Authentication providers
 
 **Cloud**
 
-Octopus Cloud [authentication](http://g.octopushq.com/AuthenticationProviders) uses [Octopus ID](http://g.octopushq.com/AuthOctopusID), allowing you to use the same account that you use to sign in at [octopus.com](https://octopus.com).  Octopus ID supports username and password or can use a Google or Microsoft account.
+Octopus Cloud [authentication](http://g.octopushq.com/AuthenticationProviders) uses [Octopus ID](http://g.octopushq.com/AuthOctopusID), which allows you to use the same account you use to sign in at [octopus.com](https://octopus.com).  Octopus ID supports username and password or can use a Google or Microsoft account.
 
 ![octopus-id](octopus-id.png "width=500")
 
@@ -178,7 +182,7 @@ Octopus ID allows mapping of an Octopus user to a Google or Microsoft account ho
 
 **Server**
 
-Octopus Server has several authentication providers available to use:
+Octopus Server has several authentication providers available:
 
 - username and password
 - [Active Directory](http://g.octopushq.com/AuthAD)
@@ -186,31 +190,31 @@ Octopus Server has several authentication providers available to use:
 - [Google account](http://g.octopushq.com/AuthGoogleApps)
 - [Okta](http://g.octopushq.com/AuthOkta)
 
-If desired, multiple providers can be configured concurrently. 
+Multiple providers can be configured concurrently. 
 
 ### IP restrictions
 
 **Cloud**
 
-An Octopus Cloud instance has a range of [static IP addresses](http://g.octopushq.com/CloudStaticIP) shared among customers in the same Azure region, and these can found in the Technical section of the Octopus instance management page:
+An Octopus Cloud instance has a range of [static IP addresses](http://g.octopushq.com/CloudStaticIP) shared among customers in the same Azure region. These can found in the Technical section of the Octopus instance management page:
 
 ![cloud-ips](cloud-ips.png "width=500")
 
 **Server**
 
-Using Octopus Server on a VM allows you to configure the IP and DNS to what suits your business' requirements.  You may choose to configure a load balancer to handle traffic to the Octopus web interface; this is especially useful if configuring [HA](#high-availability).
+When you use Octopus Server on a VM, you can configure the IP and DNS that suits your business's requirements.  You may choose to configure a load balancer to handle traffic to the Octopus web interface; this is especially useful if you configure [HA](#high-availability).
 
 ### Organize projects and environments
 
-[Spaces](https://octopus.com/spaces) are available with both Octopus Cloud and Octopus Server; these create a hard wall between projects and infrastructure if required.
+[Spaces](https://octopus.com/spaces) are available with both Octopus Cloud and Octopus Server. Spaces create a hard wall between projects and infrastructure so each of your teams only access the projects and infrastructure they need.
 
 **Server**
 
-Concurrent licenses are an additional benefit of Octopus Server.  You can use three instances for each license, run one Octopus Deploy service for production usage by your team, and set up extras for development or test. Or use two separate Octopus Deploy instances to keep production and pre-production deployments isolated.
+Concurrent licenses are an additional benefit of Octopus Server. You can use three instances for each license, which means you can run one Octopus Deploy service for production use and set up extra services for development or test. Or you can use two separate Octopus Deploy instances to keep production and pre-production deployments isolated.
 
 ## Networking
 
-Connecting [Polling Tentacles](http://g.octopushq.com/PollingTentacle) over WebSockets to Octopus Cloud is not currently possible; however, we do have plans to support Polling Tentacles connecting on port 443 soon.
+Connecting [Polling Tentacles](http://g.octopushq.com/PollingTentacle) over WebSockets to Octopus Cloud is not currently possible, however, we do have plans to support Polling Tentacles connecting on port 443 soon.
 
 ### Proxy support
 
@@ -224,39 +228,39 @@ Using Octopus Server on a VM lets you host your Octopus instance in your choice 
 
 **Cloud**
 
-Octopus Cloud also offers you the option of hosting your instance in a region that suits you; we use Microsoft Azure to host Octopus Cloud. At the time of writing, we offer the following regions:
+Octopus Cloud also offers you the option of hosting your instance in a region that suits you. We use Microsoft Azure to host Octopus Cloud, and at the time of writing, we offer the following regions:
 
 - West US 2
 - West Europe
 - Australia East
 
-The region is selected when your first create your Octopus Cloud instance.
+The region is selected when you first create your Octopus Cloud instance.
 
 ![cloud-region](cloud-region.png "width=500")
 
-Should we introduce a new region that would suit your needs better, please get in touch so that we can move your instance to that region. 
+Should we introduce a new region that suits your needs better, please get in touch so we can move your instance to that region. 
 
-### Regional Package feeds
+### Regional package feeds
 
-If you operate in multiple regions and are concerned about network latency issues while transferring large packages during deployments, we'd recommend opting for an external [package feed](http://g.octopushq.com/OnboardingPackageRepositoriesLearnMore) and either replicating it across multiple regions and using DNS aliasing to have the tentacle fetch packages from geographically local package repositories.  Or, an even simpler solution than that is to have two separate but identical package repositories and have the [Feed ID as a variable](http://g.octopushq.com/DynamicPackageFeeds).  Package repositories work in this way for both **Octopus Server** and **Octopus Cloud**. 
+If you operate in multiple regions and are concerned about network latency issues when you transfer large packages during deployments, we recommend opting for an external [package feed](http://g.octopushq.com/OnboardingPackageRepositoriesLearnMore) and either replicating it across multiple regions.  With DNS aliasing you can have the Tentacle fetch packages from geographically local package repositories.  Or you could have two separate but identical package repositories and use a [variable for the Feed ID](http://g.octopushq.com/DynamicPackageFeeds).  Package repositories work in this way for both **Octopus Server** and **Octopus Cloud**. 
 
 ## High Availability
 
-[High Availability](http://g.octopushq.com/HighAvailability) (HA) can be configured for Octopus Server to enable you to run multiple Octopus Servers, distributing load and tasks between them.  
+[High Availability](http://g.octopushq.com/HighAvailability) (HA) can be configured for Octopus Server to run multiple Octopus Servers that distribute the load and tasks between them.  
 
-While Octopus HA is not available for Octopus Cloud, all instances are provisioned as a [Linux container running on AKS](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes) (Azure's managed Kubernetes).  [Kubernetes](https://kubernetes.io/) helps us achieve the resilience and scaling flexibility to make Octopus Cloud robust and performant.
+Octopus HA is not available for Octopus Cloud, but all instances are provisioned as a [Linux container running on AKS](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes) (Azure's managed Kubernetes).  [Kubernetes](https://kubernetes.io/) helps us achieve resilience and scaling flexibility for Octopus Cloud.
 
 ## Other considerations
 
 ### Tentacles
 
-An Octopus tentacle machine can be configured to be either [polling](http://g.octopushq.com/PollingTentacle) or [listening](http://g.octopushq.com/ListeningTentacle).  The type of tentacles you select for your deployments will depend on your business requirements. You should also consider if the configuration of these machines has any impact on the infrastructure chosen for your Octopus instance. 
+An Octopus Tentacle machine can be configured for either the [polling](http://g.octopushq.com/PollingTentacle) or [listening](http://g.octopushq.com/ListeningTentacle) communication modes.  The type of Tentacles you select for your deployments will depend on your business requirements. You should also consider if the configuration of these machines has any impact on the infrastructure chosen for your Octopus instance. 
 
 #### Tentacle firewall rules
 
-A factor when selecting which type of tentacle to use is firewall rules.  A listening tentacle machine must have an inbound firewall rule to allow access via TCP port 10933.  The use of a polling tentacle requires no firewall rules on the tentacle, and the Octopus Server machine must allow access through the firewall inbound on TCP port 10943.  While a listening tentacle uses fewer resources, it may be that the use of a dynamic IP or where the tentacle sits behind a NAT requires a polling tentacle.
+The type of Tentacle you use will depend on your firewall rules. A listening Tentacle must have an inbound firewall rule to allow access via TCP port 10933. A polling Tentacle doesn't require any firewall rules on the Tentacle, but the Octopus Server must allow access through the firewall inbound on TCP port 10943. Listening Tentacles uses fewer resources, but if you use of dynamic IPs or the Tentacle sits behind an NAT, a polling Tentacle will be required.
 
-These rules should also be applied to any intermediary firewalls.
+You will need to apply these rules to any intermediary firewalls.
 
 ### Octopus in a container
 
@@ -264,12 +268,12 @@ An alternative to running Octopus Server on a virtual machine is to run it in a 
 
 ## Conclusion
 
-This post has hopefully provided clarity to your decision-making process when moving to cloud infrastructure.  Whatever your business requirements, Octopus Deploy makes release management easy and simplifies even the most complex deployments wherever you deploy your software. Runbook automation minimizes outages and gives you control over your infrastructure and applications.  
+This post has hopefully provided clarity to your decision-making process about moving to cloud infrastructure.  Whatever your business requirements, Octopus Deploy makes release management easy and simplifies even the most complex deployments wherever you deploy your software. Runbook automation minimizes outages and gives you control over your infrastructure and applications.  
 
-If you have any questions or would like advice on how Octopus can work for you please drop us a line at [advice@octopus.com](mailto:advice@octopus.com)
+If you have any questions or would like advice on how Octopus can work for you, please drop us a line at [advice@octopus.com](mailto:advice@octopus.com)
 
 ## More information
 
-- [An explanation of worker security and scoped worker pools](http://g.octopushq.com/WorkerSecurityScopedWorkerPools)
-- [Execution containers for workers](http://g.octopushq.com/ExecutionContainersForWorkers)
-- [Moving octopus](http://g.octopushq.com/MovingOctopusComponents)
+- [An explanation of Worker security and scoped Worker Pools](http://g.octopushq.com/WorkerSecurityScopedWorkerPools)
+- [Execution containers for Workers](http://g.octopushq.com/ExecutionContainersForWorkers)
+- [Moving Octopus](http://g.octopushq.com/MovingOctopusComponents)
