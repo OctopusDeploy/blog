@@ -81,7 +81,7 @@ It includes:
 
 :::success
 **Sample Octopus Project**
-You can see the PetClinic project before the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy)
+You can see the PetClinic project **before** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy)
 :::
 
 ## Converting to a rolling deployment process
@@ -96,11 +96,11 @@ In the previous sequential deployment example, we had a single virtual machine p
 
 ![Project rolling infrastructure](rolling-deployment-infrastructure.png)
 
-This includes a _shared_ load balancer and this time two application servers connecting into the MySQL database as before.
+This includes a _shared_ load balancer and this time two application servers in each environment connecting into the MySQL database as before.
 
 :::warning
 **gcloud CLI and authorization**
-Most of the commands used when setting up the load-balanced infrastructure in Google make use of the [Google Cloud CLI](https://cloud.google.com/sdk/gcloud). This post assumes that it’s installed and is already authorized. For further information on authorization, please refer to the [documentation](https://cloud.google.com/sdk/docs/authorizing).
+Most of the commands used interacting with Google in this post make use of the [Google Cloud CLI](https://cloud.google.com/sdk/gcloud). To use the `gcloud` CLI you usually need to authorize it. For further information on authorization, please refer to the [documentation](https://cloud.google.com/sdk/docs/authorizing).
 :::
 
 ### Choosing a load balancer
@@ -115,9 +115,17 @@ In this example, the load balancer is shared between both the `Test` and the `Pr
 
 ### Load balancer target pools
 
-With our previous deployment example, users were accessing the PetClinic web front-end directly on a single virtual machine. Here we’ll be using a dedicated target pools for the `Test` and `Production` environments. A [target pool](https://cloud.google.com/load-balancing/docs/target-pools) is the name given to a group of Virtual Machine instances hosted in Google Cloud.
+With our previous deployment example, users were accessing the PetClinic web front-end directly on a single virtual machine. Here we’ll be using dedicated target pools for the `Test` and `Production` environments. A [target pool](https://cloud.google.com/load-balancing/docs/target-pools) is the name given to a group of Virtual Machine instances hosted in Google Cloud. 
 
 ### Add Child Steps to the deployment process
+
+
+![Project rolling deployment run](project-rolling-deployment-run.png)
+
+:::success
+**Sample Octopus Project**
+You can see the PetClinic project **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy)
+:::
 
 ### Testing the application on each machine
 
