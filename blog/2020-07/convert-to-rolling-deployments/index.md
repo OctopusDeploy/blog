@@ -92,11 +92,20 @@ Now that we have seen the deployment process for the existing application, we fi
 
 Clearly, in order to reduce downtime and still serve requests for users, we need to scale up the number of servers we use. We’ll also need a load-balancer that we can use to control which servers are available.
 
-In the previous sequential deployment example, we had a single application server per environment. To keep the `Development` environment simple, we’ll keep the infrastructure the same as before. For the `Test` and `Production` environments however, the infrastructure will look like this:
+In the previous sequential deployment example, we had a single application server per environment. To keep things simple we’ll keep the infrastructure for the `Development` environment the same as before. For the `Test` and `Production` environments however, the infrastructure will look like this:
 
 ![Project rolling infrastructure](rolling-deployment-infrastructure.png)
 
-This includes a shared load balancer and this time two application servers connecting into the MySQL database as before.
+This includes a _shared_ load balancer and this time two application servers connecting into the MySQL database as before.
+
+:::warning
+**gcloud CLI and authorization**
+Most of the commands used when setting up the load-balanced infrastructure in Google make use of the [Google Cloud CLI](https://cloud.google.com/sdk/gcloud). This post assumes that it’s installed and is already authorized. For further information on authorization, please refer to the [documentation](https://cloud.google.com/sdk/docs/authorizing).
+:::
+
+### Choosing a load balancer
+
+There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
 
 :::hint
 In this example, the load balancer is shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment. 
@@ -104,21 +113,35 @@ In this example, the load balancer is shared between both the `Test` and the `Pr
 - Port `80` is used for traffic destined for the `Production` environment
 :::
 
-### Choosing the load balancer
+### Create load balancer target pools
 
-There are many different types of load balancer, but one key goal required for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later in this post. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
+Next we need to configure our load balancer. With our previous deployment example, users were accessing the PetClinic web front-end directly on a single application server. Here we’ll add the two application servers for the `Test` and `Production` environments to a dedicated load balancer target pool. A [target pool](https://cloud.google.com/load-balancing/docs/target-pools) is the name given to a group of Virtual Machine instances hosted in Google Cloud.
 
-### Direct traffic to the load balancer
+Whilst this won’t _immediately_ provide any benefit, it will allow us to be prepared for the switch over where PetClinic is served behind a load balancer.
 
-:::warning
-Adding the existing servers to a load balancer for the first time will also require downtime.
-:::
+#### Create static IP address
 
-### Add Child Steps
+In order for our virtual machines to receive traffic from the load balancer, we need to configure a new static external IP address that users will hit when accessing our new load-balanced infrastructure. We achieve this by running the the following `gcloud` command:
+
+```bash
+gcloud compute addresses create pattern-rolling-petclinic-nlb-ip --region us-central1
+```
+
+#### Add the servers to the load balancer target-pool
+
+
+
+### Add Child Steps to the deployment process
 
 ### Testing the application on each machine
 
+### Deploy to each server
 
+### DNS switch-over
+
+:::warning
+Adding the existing servers to a load balancer for the first time may result in downtime.
+:::
 
 :::success
 **Sample Octopus Projects**
