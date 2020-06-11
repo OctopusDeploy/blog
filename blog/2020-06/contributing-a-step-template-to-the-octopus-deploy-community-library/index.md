@@ -26,11 +26,11 @@ If you have authored a step template, you might consider contributing it to the 
 
 Examples of steps that are a good fit for the library include those that:
 
-* Wrap the details of another application's CLI or API ([Create an event in Datadog](https://library.octopus.com/step-templates/40af3b8d-83b0-499e-99ed-e4b1093a7633/actiontemplate-datadog-create-event), [Create an alert in VictorOps](https://library.octopus.com/step-templates/2ecb9ec9-2c81-4e75-8093-175d2557ca54/actiontemplate-victorops-create-alert), [Update a Rackspace Load Balancer](https://library.octopus.com/step-templates/94aa35a3-0a0c-4c45-8781-98006bda3bcd/actiontemplate-rackspace-update-load-balancer)).
+* Wrap the details of another application’s CLI or API ([Create an event in Datadog](https://library.octopus.com/step-templates/40af3b8d-83b0-499e-99ed-e4b1093a7633/actiontemplate-datadog-create-event), [Create an alert in VictorOps](https://library.octopus.com/step-templates/2ecb9ec9-2c81-4e75-8093-175d2557ca54/actiontemplate-victorops-create-alert), [Update a Rackspace Load Balancer](https://library.octopus.com/step-templates/94aa35a3-0a0c-4c45-8781-98006bda3bcd/actiontemplate-rackspace-update-load-balancer)).
 * Provide a generic, widely used function ([Clean directory](https://library.octopus.com/step-templates/e56aafe2-0d59-453b-9449-d7384914468d/actiontemplate-file-system-clean-directory), [Test URL](https://library.octopus.com/step-templates/17092e2b-7fae-4aae-b8df-bb1c7ec76ff9/actiontemplate-http-test-url-(bash)), [Restart Windows service](https://library.octopus.com/step-templates/d1df734a-c0da-4022-9e70-8e1931b083da/actiontemplate-windows-service-restart).
 * Manipulate Octopus itself ([Delete a target or worker](https://library.octopus.com/step-templates/e4255fcb-fe7d-4d5b-8ec0-0243e5f48a9c/actiontemplate-delete-target-or-worker-registration-from-octopus), [Upgrade Octopus server](https://library.octopus.com/step-templates/4b3a1f09-1827-41bb-88a4-894c6317922b/actiontemplate-upgrade-octopus-server), [Find unreplaced variables](https://library.octopus.com/step-templates/0b753c94-c12b-46f3-bb82-459e27bbe812/actiontemplate-variables-find-unreplaced)).
 
-That is not an exhaustive list. If you have an idea for a step template, and want feedback, open an issue on [GitHub](https://github.com/OctopusDeploy/Library/issues).
+That is not an exhaustive list. If you have an idea for a step template, and you want feedback, open an issue on [GitHub](https://github.com/OctopusDeploy/Library/issues).
 
 There are also [contributing guidelines](https://github.com/OctopusDeploy/Library/blob/master/.github/CONTRIBUTING.md) posted in the repository.
 
@@ -247,7 +247,7 @@ I navigate over to my [fork in GitHub](https://github.com/ryanrousseau/Library).
 
 ![GitHub offers an option to compare and create a pull request](template-fork.png)
 
-I click the button to start the pull request process. GitHub defaults the pull request target to the original repository. That is correct, so I don't change it.
+I click the button to start the pull request process. GitHub defaults the pull request target to the original repository. That is correct, so I don’t change it.
 
 The pull request template includes two sections. The first section is a copy of the guidelines. I verify that my template follows the guidelines. Then I delete the first section per the instructions.
 
