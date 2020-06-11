@@ -4,14 +4,13 @@ description: Raspberry Pi cluster lessons learned
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
- - 
+ -
 ---
 
-I recently decided use Docker to replace the VMs on my hypervisor with containers. In this post, I share some of the lessons I learned running the new Raspberry Pi 4 in a cluster with Docker Swarm.
-
+I recently decided to use Docker to replace the VMs on my hypervisor with containers. In this post, I share some of the lessons I learned running the new Raspberry Pi 4 in a cluster with Docker Swarm.
 
 ## Parts
 
@@ -25,7 +24,7 @@ These are the parts I used for my project:
 - [Short network cables](https://www.amazon.com/gp/product/B0721RFHT8/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1).
 - [Case](https://www.amazon.com/gp/product/B07D5MJ7PQ/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1).
 
-I chose the C4Labs Cloudlet case because it allowed me to access a single Pi without having to disassemble the whole case to get to it like the stackable cases.  The original design of the Cloudlet case has the fans powered by the Pi.  I didn't want to have to worry about disconnecting cables if I needed to remove a Pi, so I went with the following parts to power the fans
+I chose the C4Labs Cloudlet case because it allowed me to access a single Pi without having to disassemble the whole case to get to it like the stackable cases.  The original design of the Cloudlet case has the fans powered by the Pi.  I didn’t want to have to worry about disconnecting cables if I needed to remove a Pi, so I went with the following parts to power the fans:
 
 - [Fan power splitter](https://www.amazon.com/gp/product/B082H6D611/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1).
 - [3/4 pin to USB converter](https://www.amazon.com/gp/product/B07FNKPPT2/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1).
@@ -33,7 +32,7 @@ I chose the C4Labs Cloudlet case because it allowed me to access a single Pi wit
 
 The Cloudlet case has plenty of room for these extra parts.
 
-Lastly, I needed a network switch to connect the Pi devices to, but I had a spare 8-port, so I didn't need to buy another.  The Raspberry Pi 4 comes with a wireless adapter built-in, so you could utilize that as well.
+Lastly, I needed a network switch to connect the Pi devices to, but I had a spare 8-port, so I didn’t need to buy another.  The Raspberry Pi 4 comes with a wireless adapter built-in, so you could utilize that as well.
 
 ## Creating the cluster
 
@@ -41,7 +40,7 @@ There are tons of blog posts out there that show you how to create a cluster of 
 
 ## Operating the Swarm
 
-I have played around with Kubernetes (K8s) and Docker before taking on this project, however, I'd never run a Docker Swarm.  There was some new concepts to learn when running things in Docker Swarm mode versus a stand-alone Docker instance.  For example, where you would normally use a `docker run` statement, you'd create a service within the swarm to run the container using `docker service create`.  After messing around for a while, I had a fully operational Swarm:
+I have played around with Kubernetes (K8s) and Docker before taking on this project. However, I’d never run a Docker Swarm.  There were some new concepts to learn when running things in Docker Swarm mode versus a stand-alone Docker instance.  For example, where you would normally use a `docker run` statement, you’d create a service within the swarm to run the container using `docker service create`.  After messing around for a while, I had a fully operational Swarm:
 
 ![](docker-swarm.png)
 
@@ -56,7 +55,7 @@ In some cases, you can use a work-around and tell Docker not to resolve the imag
 
 ## Lesson 2: Stacks
 
-Stacks are the Docker Swarm way of using docker-compose, in fact, it uses a compose file as one of its arguments.  Just like docker-compose, you can define multiple containers within a single file.  By default, a stack deployment will create a network for the stack so they can all talk to each other.  This makes it easy to refer one container to another just by name.  For example, below is a compose file for running [Home Assistant](https://www.home-assistant.io/) on my docker swarm.  This stack consists of an MQTT service container, a Home Assistant container, and a MySQL database server container.  For reasons I'll go into later, I configured Home Assistant to use a MySQL back-end for the Recorder:
+Stacks are the Docker Swarm way of using docker-compose. In fact, it uses a compose file as one of its arguments.  Just like docker-compose, you can define multiple containers within a single file.  By default, a stack deployment will create a network for the stack so they can all talk to each other.  This makes it easy to refer one container to another just by name.  For example, below is a compose file for running [Home Assistant](https://www.home-assistant.io/) on my docker swarm.  This stack consists of an MQTT service container, a Home Assistant container, and a MySQL database server container.  For reasons I’ll go into later, I configured Home Assistant to use a MySQL back-end for the Recorder:
 
 ```
 version: "3.3"
@@ -128,17 +127,17 @@ recorder:
 
 When working with a docker swarm, all of the members of the swarm act as one.  Looking at the graphic above, we can see that all of the containers are distributed among the members of the swarm.  
 
-When connecting to a container via an exposed port, it's not necessary to reference the node that is currently hosting the container.  We can see that `clusterpi-1` hosts the container named `viz` (which is the web page of the graphic, `visualizer`). The `viz` container port is mapped to the host port 80, so I can access the `visualizer` container web page via http://clusterpi-1.  It can also be accessed via http://clusterpi-4, even though `clusterpi-4` is not the current host of the container.  This also means that any port that has been mapped cannot be used by another container. The `mysql_dev` container is the only thing that can be mapped to 3306, all of the other mysql containers (unless they're replicas of `mysql_dev`) have to use a different port.
+When connecting to a container via an exposed port, it’s not necessary to reference the node that is currently hosting the container.  We can see that `clusterpi-1` hosts the container named `viz` (which is the web page of the graphic, `visualizer`). The `viz` container port is mapped to the host port 80, so I can access the `visualizer` container web page via http://clusterpi-1.  It can also be accessed via http://clusterpi-4, even though `clusterpi-4` is not the current host of the container.  This also means that any port that has been mapped cannot be used by another container. The `mysql_dev` container is the only thing that can be mapped to 3306, all of the other MySQL containers (unless they’re replicas of `mysql_dev`) have to use a different port.
 
 ## Lesson 4: Persistent storage woes
 
-One of the first lessons you learn with containers is that the data does not persist when the container is destroyed. In order to prevent this, you need to configure the container to map what it would usually store internally to an external volume.  Creating volumes on a docker host is fairly easy. You specify a local folder to a contain folder mapping with the `-v` switch: `-v /my/local/folder:/var/lib/data`. However, this presents a problem in a docker swarm as there is no guarantee the same host will run the same container each time it is run (okay, technically you can with constraints, but that defeats the purpose of a swarm).  To solve this, we need something that can be accessed by all the members of a swarm, like a network location.  
+One of the first lessons you learn with containers is that the data does not persist when the container is destroyed. In order to prevent this, you need to configure the container to map what it would usually store internally to an external volume.  Creating volumes on a docker host is fairly easy. You specify a local folder to a contain folder mapping with the `-v` switch: `-v /my/local/folder:/var/lib/data`. However, this presents a problem in a docker swarm as there is no guarantee the same host will run the same container each time it is run (okay, technically, you can with constraints, but that defeats the purpose of a swarm).  To solve this, we need something that can be accessed by all the members of a swarm, like a network location.  
 
 ### Network storage options
 
 There are two ways this can be accomplished; Network File System (NFS) or Common Internet File System (CIFS).
 
-NFS is usually used by Linux/Unix systems and CIFS is what is usually used with Windows systems, though Windows does have an NFS implementation.  In my home environment, I have a Windows server that I use for a file server, so I chose to use CIFS.
+NFS is usually used by Linux/Unix systems, and CIFS is what is usually used with Windows systems, though Windows does have an NFS implementation.  In my home environment, I have a Windows server that I use for a file server, so I chose to use CIFS.
 
 ### Configuring CIFS
 
@@ -150,15 +149,14 @@ The issue of all containers ending up on the Manager node vexed me for a little 
 
 #### Bypass permissions checking
 
-Some containers alter the file system and file system permissions when starting, such as Postgres.  When executing entirely within the container or a local file system mount, this is usually not a problem.  However, when using a Windows share via CIFS, this usually crashed the container, stating the operation wasn't supported.  To bypass this, I found the `noperm` option for CIFS which skips the permissions check and just moves forward.  This allowed me to get passed that issue with Postgres, but I was never able to get a Windows CIFS share to work with the postgres container (but that doesn't mean it's not possible).
+Some containers alter the file system and file system permissions when starting, such as Postgres.  When executing entirely within the container or a local file system mount, this is usually not a problem.  However, when using a Windows share via CIFS, this usually crashed the container, stating the operation wasn’t supported.  To bypass this, I found the `noperm` option for CIFS, which skips the permissions check and just moves forward.  This allowed me to get passed that issue with Postgres, but I was never able to get a Windows CIFS share to work with the Postgres container (but that doesn’t mean it’s not possible).
 
-#### CIFS and SqlLite are NOT friends
+#### CIFS and SqlLite are not friends
 
-Having successfully configured a CIFS share for my HomeAssistant container, I found that it was having a problem with the SqlLite database that it uses by default, it kept reporting the database was locked.  After encountering the same issue with the pgAdmin (postgres management) container, I did a little Googling and found many posts describing the same behavior with almost all of them recommending something other than SqlLite.  This was the reason I included a MySql container for the Recorder service in my HomeAssistant stack deployment.
+Having successfully configured a CIFS share for my HomeAssistant container, I found that it was having a problem with the SqlLite database that it uses by default, it kept reporting the database was locked.  After encountering the same issue with the pgAdmin (Postgres management) container, I did a little Googling and found many posts describing the same behavior, with almost all of them recommending something other than SqlLite.  This was the reason I included a MySql container for the Recorder service in my HomeAssistant stack deployment.
 
 ## Conclusion
 
-This was a fun a really fun project for me and I learned a lot about Docker Swarm.  Creating a Raspberry Pi cluster is great for learning concepts like Docker Swarm and Kubernetes, but there's really not much else it can do.
-
+This was a fun a really fun project for me, and I learned a lot about Docker Swarm.  Creating a Raspberry Pi cluster is great for learning concepts like Docker Swarm and Kubernetes.
 
 ![](raspberrypi-cluster.jpg)
