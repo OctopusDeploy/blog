@@ -12,7 +12,7 @@ tags:
 
 I recently created an Octopus Deploy [step template for the Firebase CLI deploy command](https://octopus.com/blog/creating-an-octopus-deploy-step-template).
 
-In this post, I will introduce the Octopus Community Library. Then I will walk through the process of submitting a new template.
+In this post, I will introduce the Octopus Community Library and walk through the process of submitting a new template.
 
 ## The Octopus Community Library
 
@@ -24,17 +24,17 @@ The steps in the library are contributed by Octopus, other vendors, and Octopus 
 
 If you have authored a step template, you might consider contributing it to the library.
 
-Examples of steps that are a good fit for the library:
+Examples of steps that are a good fit for the library include those that:
 
-* Wrap the details of another application's CLI or API ([Create an event in Datadog](https://library.octopus.com/step-templates/40af3b8d-83b0-499e-99ed-e4b1093a7633/actiontemplate-datadog-create-event), [Create an alert in VictorOps](https://library.octopus.com/step-templates/2ecb9ec9-2c81-4e75-8093-175d2557ca54/actiontemplate-victorops-create-alert), [Update a Rackspace Load Balancer](https://library.octopus.com/step-templates/94aa35a3-0a0c-4c45-8781-98006bda3bcd/actiontemplate-rackspace-update-load-balancer))
-* Provide a generic, widely used function ([Clean directory](https://library.octopus.com/step-templates/e56aafe2-0d59-453b-9449-d7384914468d/actiontemplate-file-system-clean-directory), [Test URL](https://library.octopus.com/step-templates/17092e2b-7fae-4aae-b8df-bb1c7ec76ff9/actiontemplate-http-test-url-(bash)), [Restart Windows service](https://library.octopus.com/step-templates/d1df734a-c0da-4022-9e70-8e1931b083da/actiontemplate-windows-service-restart)
-* Manipulate Octopus itself ([Delete a target or worker](https://library.octopus.com/step-templates/e4255fcb-fe7d-4d5b-8ec0-0243e5f48a9c/actiontemplate-delete-target-or-worker-registration-from-octopus), [Upgrade Octopus server](https://library.octopus.com/step-templates/4b3a1f09-1827-41bb-88a4-894c6317922b/actiontemplate-upgrade-octopus-server), [Find unreplaced variables](https://library.octopus.com/step-templates/0b753c94-c12b-46f3-bb82-459e27bbe812/actiontemplate-variables-find-unreplaced))
+* Wrap the details of another application's CLI or API ([Create an event in Datadog](https://library.octopus.com/step-templates/40af3b8d-83b0-499e-99ed-e4b1093a7633/actiontemplate-datadog-create-event), [Create an alert in VictorOps](https://library.octopus.com/step-templates/2ecb9ec9-2c81-4e75-8093-175d2557ca54/actiontemplate-victorops-create-alert), [Update a Rackspace Load Balancer](https://library.octopus.com/step-templates/94aa35a3-0a0c-4c45-8781-98006bda3bcd/actiontemplate-rackspace-update-load-balancer)).
+* Provide a generic, widely used function ([Clean directory](https://library.octopus.com/step-templates/e56aafe2-0d59-453b-9449-d7384914468d/actiontemplate-file-system-clean-directory), [Test URL](https://library.octopus.com/step-templates/17092e2b-7fae-4aae-b8df-bb1c7ec76ff9/actiontemplate-http-test-url-(bash)), [Restart Windows service](https://library.octopus.com/step-templates/d1df734a-c0da-4022-9e70-8e1931b083da/actiontemplate-windows-service-restart).
+* Manipulate Octopus itself ([Delete a target or worker](https://library.octopus.com/step-templates/e4255fcb-fe7d-4d5b-8ec0-0243e5f48a9c/actiontemplate-delete-target-or-worker-registration-from-octopus), [Upgrade Octopus server](https://library.octopus.com/step-templates/4b3a1f09-1827-41bb-88a4-894c6317922b/actiontemplate-upgrade-octopus-server), [Find unreplaced variables](https://library.octopus.com/step-templates/0b753c94-c12b-46f3-bb82-459e27bbe812/actiontemplate-variables-find-unreplaced)).
 
 That is not an exhaustive list. If you have an idea for a step template, and want feedback, open an issue on [GitHub](https://github.com/OctopusDeploy/Library/issues).
 
 There are also [contributing guidelines](https://github.com/OctopusDeploy/Library/blob/master/.github/CONTRIBUTING.md) posted in the repository.
 
-The guidelines include instructions for submitting the step template. There is also a checklist of common review feedback provided on step templates.
+The guidelines include instructions for submitting the step template, and there is a checklist of common review feedback provided on step templates.
 
 I will follow the submission instructions in this post.
 
@@ -42,7 +42,7 @@ I will follow the submission instructions in this post.
 
 I forked the repository in GitHub so that I have [a copy](https://github.com/ryanrousseau/Library) where I can work.
 
-Then I hop into a terminal window to clone the repository and start a branch. I am usually in the terminal when I interact with Git, but you can do these steps with your preferred Git GUI.
+Then I hop into a terminal window to clone the repository and start a branch. I am usually in the terminal when I interact with Git, but you can also do these steps with your preferred Git GUI.
 
 ```bash
 git clone https://github.com/ryanrousseau/Library.git rr_library
@@ -52,11 +52,11 @@ git checkout -b firebase
 
 With my repository forked and cloned, it is time to export my template.
 
-## Exporting a step template
+## Export a step template
 
 While viewing a step template, you can export it by choosing **Export** from the action menu. The export generates the JSON that goes into the repository.
 
-In some older versions of Octopus, the author needs to update the Id and Version. In newer versions, Octopus sets these for the author.
+In some older versions of Octopus, the author needs to update the ID and Version. In newer versions, Octopus sets these for the author.
 
 The exported JSON of my Firebase Deploy step is:
 
@@ -189,11 +189,11 @@ The exported JSON of my Firebase Deploy step is:
 }
 ```
 
-It is almost ready to commit. I only need to set LastModifiedBy to my GitHub username and the category to "firebase."
+It is almost ready to commit. I only need to set `LastModifiedBy` to my GitHub username and the category to "firebase."
 
 Lucky for me, naming the file going into the repository does not pose a challenge. I save the JSON in `step-templates\firebase-deploy.json`.
 
-## Adding the Firebase category
+## Add the Firebase category
 
 `Firebase - Deploy` is the first step in the library in the `firebase` category. I need to add a logo and update the site to handle the category.
 
@@ -223,15 +223,15 @@ gulp
 node build/server.js
 ```
 
-I navigate to `http://localhost:9000` and search for `firebase`.
+I navigate to `http://localhost:9000` and search for `firebase`:
 
 ![Screenshot of the step found in the library](template-firebase.png)
 
 It looks like everything is working. It is time to create a pull request.
 
-## Committing the changes
+## Commit the changes
 
-I stage and commit my changes to the library. I then push them to my fork of the repository.
+I stage and commit my changes to the library, and then I push them to my fork of the repository:
 
 ```bash
 git add ./gulpfile.babel.js
@@ -241,29 +241,29 @@ git commit -m "Add Firebase - Deploy template"
 git push -u origin firebase
 ```
 
-## Submitting the pull request
+## Submit the pull request
 
-I navigate over to my [fork in GitHub](https://github.com/ryanrousseau/Library). I see that GitHub has picked up the new branch and offers me a *Compare & pull request* button.
+I navigate over to my [fork in GitHub](https://github.com/ryanrousseau/Library). I see that GitHub has picked up the new branch and offers me a **Compare & pull request** button.
 
 ![GitHub offers an option to compare and create a pull request](template-fork.png)
 
-I click the button to start the pull request process. GitHub defaults the pull request target to the original repository. That is correct, so I do not change it.
+I click the button to start the pull request process. GitHub defaults the pull request target to the original repository. That is correct, so I don't change it.
 
 The pull request template includes two sections. The first section is a copy of the guidelines. I verify that my template follows the guidelines. Then I delete the first section per the instructions.
 
 The second section is a checklist of items that need to be completed for step templates. I review the list and check them to confirm my step follows these rules.
 
-I submit the [pull request](https://github.com/OctopusDeploy/Library/pull/929). It will likely be closed by the time this is published. The history of any review comments and changes will be available.
+I submit the [pull request](https://github.com/OctopusDeploy/Library/pull/929). It will likely be closed by the time this post is published, but the history of any review comments and changes will be available.
 
 ## Next steps
 
 There is a Contributor License Agreement to sign before the pull request can be merged. There is also an automated build to make sure that the site builds. The last piece of the puzzle is a review from the Octopus team.
 
-A fellow Octopod will review the changes to make sure that I followed the guidelines and that the step is a valuable addition to the library.
+A fellow Octopod will review the changes to make sure I followed the guidelines and that the step is a valuable addition to the library.
 
 If there are any changes, I will make them and add them to the pull request for another review.
 
-Once the pull request is approved, the reviewer will merge the step into the library. A build and deployment of the library site will start. Within a few minutes, the step will be available for other Octopus users.
+After the pull request is approved, the reviewer will merge the step into the library. A build and deployment of the library site will start. Within a few minutes, the step will be available for other Octopus users.
 
 ## Conclusion
 
