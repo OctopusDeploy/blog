@@ -4,11 +4,12 @@ description: Learn how to deploy microservices into a Kubernetes cluster with Oc
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage:
-bannerImage:
+metaImage: k8-microservice-deployments.png
+bannerImage: k8-microservice-deployments.png
 tags:
  - Octopus
 ---
+![The ultimate guide to Kubernetes microservice deployments](k8-microservice-deployments.png)
 
 Microservices have emerged as a popular development practice for teams who want to release complex systems quickly and reliably. Kubernetes is a natural platform for microservices as it can handle the orchestration required to deploy many instances of many individual microservices. Additionally, there are service mesh technologies that lift common networking concerns from the application layer into the infrastructure layer, making it easy to route, secure, log, and test network traffic.
 
@@ -335,7 +336,7 @@ Below is the architecture diagram showing the various microservices that make up
 
 Notice in this diagram, that public traffic from the Internet enters the application via the front end. This traffic is plain HTTP.
 
-Communication between the microservices is then performed with [gRPC](https://grpc.io/), which is:  
+Communication between the microservices is then performed with [gRPC](https://grpc.io/), which is:
 
 > A high-performance, open source universal RPC framework
 
