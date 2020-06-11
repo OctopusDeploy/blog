@@ -92,7 +92,7 @@ Now that we have seen the deployment process for the existing application, we fi
 
 Clearly, in order to reduce downtime and still serve requests for users, we need to scale up the number of servers we use. We’ll also need a load-balancer that we can use to control which servers are available.
 
-In the previous sequential deployment example, we had a single application server per environment. To keep things simple we’ll keep the infrastructure for the `Development` environment the same as before. For the `Test` and `Production` environments however, the infrastructure will look like this:
+In the previous sequential deployment example, we had a single virtual machine per environment. To keep things simple we’ll keep the infrastructure for the `Development` environment the same as before. For the `Test` and `Production` environments however, the infrastructure will look like this:
 
 ![Project rolling infrastructure](rolling-deployment-infrastructure.png)
 
@@ -105,7 +105,7 @@ Most of the commands used when setting up the load-balanced infrastructure in Go
 
 ### Choosing a load balancer
 
-There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
+There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason and as this example is running from GCP, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
 
 :::hint
 In this example, the load balancer is shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment. 
@@ -113,23 +113,9 @@ In this example, the load balancer is shared between both the `Test` and the `Pr
 - Port `80` is used for traffic destined for the `Production` environment
 :::
 
-### Create load balancer target pools
+### Load balancer target pools
 
-Next we need to configure our load balancer. With our previous deployment example, users were accessing the PetClinic web front-end directly on a single application server. Here we’ll add the two application servers for the `Test` and `Production` environments to a dedicated load balancer target pool. A [target pool](https://cloud.google.com/load-balancing/docs/target-pools) is the name given to a group of Virtual Machine instances hosted in Google Cloud.
-
-Whilst this won’t _immediately_ provide any benefit, it will allow us to be prepared for the switch over where PetClinic is served behind a load balancer.
-
-#### Create static IP address
-
-In order for our virtual machines to receive traffic from the load balancer, we need to configure a new static external IP address that users will hit when accessing our new load-balanced infrastructure. We achieve this by running the the following `gcloud` command:
-
-```bash
-gcloud compute addresses create pattern-rolling-petclinic-nlb-ip --region us-central1
-```
-
-#### Add the servers to the load balancer target-pool
-
-
+With our previous deployment example, users were accessing the PetClinic web front-end directly on a single virtual machine. Here we’ll be using a dedicated target pools for the `Test` and `Production` environments. A [target pool](https://cloud.google.com/load-balancing/docs/target-pools) is the name given to a group of Virtual Machine instances hosted in Google Cloud.
 
 ### Add Child Steps to the deployment process
 
