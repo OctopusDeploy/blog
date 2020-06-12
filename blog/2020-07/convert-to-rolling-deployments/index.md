@@ -170,7 +170,7 @@ In Octopus, adding multiple steps to a rolling deployment process is done with [
 
 ##### Add a new Child Step
 
-To add a Child step, we open the the overflow menu (...) for the existing `Deploy PetClinic web app` step and select **Add child step**:
+To add a Child step, we open the overflow menu (...) for the existing `Deploy PetClinic web app` step and select **Add child step**:
 
 ![Project rolling deployment add new child step](project-rolling-deployment-add-new-child-step.png)
 
