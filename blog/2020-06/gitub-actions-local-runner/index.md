@@ -101,7 +101,7 @@ GitHub-Hosted runners are pre-packaged with a lot of functionality, but there ar
 
 #### Set up the runner
 
-Setting up a local runner is incredibly easy, kudos to GitHub for making it so simple.  After you've created your workflow YAML file, make your way over to the **Settings** in your GitHub repo:
+Setting up a local runner is incredibly easy. Kudos to GitHub for making it so simple.  After you've created your workflow YAML file, make your way over to the **Settings** in your GitHub repo:
 
 ![](github-actions-settings.png)
 
@@ -125,7 +125,7 @@ When you are done, you will have a local runner listening for jobs:
 
 #### Configure the workflow to use a local runner
 
-Configuring the workflow to use a local runner is a one-line change in the YAML.  Taking the YAML from above, we change the line `runs-on` to the tags of our local instance.  The current value of `runs-on` uses the single tag `ubuntu-latest`.  However, when you need multiple tags, you have to place them inside an array which is designated by the use of square brackets.  For our new runner, we want it to use tags `self-hosted` and `linux`.  To do this we'll change:
+Configuring the workflow to use a local runner is a one-line change in the YAML.  Taking the YAML from above, we change the line `runs-on` to the tags of our local instance.  The current value of `runs-on` uses the single tag `ubuntu-latest`.  However, when you need multiple tags, you have to place them inside an array, which is designated by the use of square brackets.  For our new runner, we want it to use tags `self-hosted` and `linux`.  To do this, we'll change:
 
 ```yaml
 runs-on: ubuntu-latest 
@@ -137,7 +137,7 @@ to:
 runs-on: [self-hosted, linux]
 ```
 
-With our workflow configured to use a local runner, we now can push packages to our local instance of Octopus Deploy. By making the change to the YAML file, it kicked off a build, I can see that my local runner has picked up it up by clicking on `Actions`:
+With our workflow configured to use a local runner, we now can push packages to our local instance of Octopus Deploy. By making the change to the YAML file, it kicked off a build, and I can see that my local runner has picked it up by clicking on `Actions`:
 
 ![](github-actions-build.png)
 
