@@ -135,3 +135,5 @@ Of course you can still connect Windows Tentacles to the Linux version of Octopu
 ## Where to go from here
 
 The Linux Docker images have been released as part of our Early Access Program (EAP), so we do expect a few bugs or rough edges, and do not support this version for production deployments. However, if you encounter any issues we'd love to hear about them through our [support channels](https://octopus.com/support) so we can iron out the bugs.
+
+Happy deployments!
