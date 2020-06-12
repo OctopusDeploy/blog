@@ -90,7 +90,7 @@ Now that we have seen the deployment process for the existing application, we fi
 
 ### Scaling up servers
 
-Clearly, in order to reduce downtime and still serve requests for users, we need to scale up the number of servers we use. We’ll also need a load-balancer that we can use to control which servers are available.
+In order to reduce downtime and still serve requests for users, we need to scale up the number of servers we use. We’ll also need a load-balancer that we can use to control which servers are available.
 
 In the previous sequential deployment example, we had a single virtual machine per environment. To keep things simple we’ll keep the infrastructure for the `Development` environment the same as before. For the `Test` and `Production` environments however, the infrastructure will look like this:
 
@@ -100,12 +100,12 @@ This includes a _shared_ load balancer and this time two application servers in 
 
 :::warning
 **gcloud CLI and authorization**
-Most of the commands used interacting with Google in this post make use of the [Google Cloud CLI](https://cloud.google.com/sdk/gcloud). To use the `gcloud` CLI you usually need to authorize it. For further information on authorization, please refer to the [documentation](https://cloud.google.com/sdk/docs/authorizing).
+Most of the commands used interacting with Google in this post make use of the [Google Cloud CLI](https://cloud.google.com/sdk/gcloud). To use the `gcloud` CLI you usually need to authorize it. For further information on gcloud authorization, please refer to the [documentation](https://cloud.google.com/sdk/docs/authorizing).
 :::
 
 ### Choosing a load balancer
 
-There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason and as this example is running from GCP, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
+There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, and as this example is running from GCP, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
 
 :::hint
 In this example, the load balancer is shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment. 
