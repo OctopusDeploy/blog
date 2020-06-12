@@ -55,10 +55,10 @@ It’s also possible to configure your deployment process to run steps in [paral
 The existing PetClinic application is modelled using this sequential deployment technique. The deployment process consists of a number of key steps:
 
 - A [Manual intervention](https://octopus.com/docs/deployment-process/steps/manual-intervention-and-approvals) Approval step (for the `Production` Environment only).
-- A Flyway DB migration [community library](https://library.octopus.com/listing/database) step to apply any database changes.
+- Flyway DB migration [community library](https://library.octopus.com/listing/flyway) steps to display migration state and apply any new database changes.
 - A Deploy to [WildFly](https://wildfly.org/) step for the PetClinic web front-end.
 
-In addition, the deployment process includes some Slack steps to notify users of how a deployment is progressing.
+In addition, the deployment process includes steps that will post messages to a [Slack](https://slack.com/) channel with deployment progression updates.
 
 The complete deployment process can be seen here:
 
