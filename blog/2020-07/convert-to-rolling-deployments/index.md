@@ -105,7 +105,7 @@ Most of the commands used interacting with Google in this post make use of the [
 
 ### Choosing a load balancer
 
-There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, and as this example is running from GCP, we’ll be using a Google [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
+There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, and as this example is running from Google Cloud, we’ll be using a [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
 
 :::hint
 In this example, the load balancer is shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment. 
@@ -156,7 +156,7 @@ To convert the `Deploy PetCinic web app` step to a rolling deployment, we perfor
 
 #### Adding child steps
 
-So we have configured a rolling deployment, but it’s not very intelligent yet. Currently, the process would simply deploy PetClinic to each server one at a time, taking each instance of the application offline as it deploys.
+So we’ve configured a rolling deployment, but it’s not very intelligent yet. Currently, the process would simply deploy PetClinic to each server one at a time, taking each instance of the application offline as it deploys.
 
 So next we need to add new steps to our rolling deployment to safely deploy new versions of the PetClinic application to each virtual machine, whilst still serving traffic to users.
 
@@ -176,31 +176,68 @@ To add a Child step, we open the the overflow menu (...) for the existing `Deplo
 
 From there you are presented with the **Choose Step Template** screen where you can choose the step type you require.
 
-:::hint
-**Reorder Child steps**:
-Once you have added the necessary child steps, you can reorder them 
-:::
-
-Next I’ll briefly walk through the child steps I added using the process described above.
+Next I’ll briefly walk through the new child steps needed for the rolling deployment process.
 
 ##### Retrieve instance name
 
-![Project rolling deployment run](project-rolling-deployment-run.png)
+This [script step](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step) is required so that we can identify the name of the virtual machine hosted in Google Cloud for use when removing and adding to the load balancer. This is achieved by querying Google using the `gcloud compute instances describe` command:
+
+```powershell
+$instanceName=(& gcloud compute instances describe $machineName --project=$projectName --zone=$zone --format="get(name)" --quiet) -join ", "
+```
+
+If a match is found using the machine identified by the Octopus system variable `Octopus.Machine.Name` it sets an [Output variable](https://octopus.com/docs/projects/variables/output-variables) with the name as recorded in Google Cloud:
+
+```powershell
+Set-OctopusVariable -name "InstanceName" -value $instanceName
+```
+
+##### Remove the machine from the load balancer
+
+Once we have the name of the machine we are deploying to, we want to remove it from the load balancer target pool. However, to prevent an attempt to remove the virtual machine from the target pool when it’s not in the pool to start with, we can run the `gcloud compute target-pools describe` command to check if it’s present:
+
+```powershell
+$instances=(& gcloud compute target-pools describe $targetPoolName --format="flattened(instances[])" --region=$region --project=$projectName --quiet)
+```
+
+If the instance is found in the target pool, we run the `gcloud compute target-pools remove-instances` command supplying the instance name by the `--instances` parameter:
+
+```powershell
+$response=(& gcloud compute target-pools remove-instances $targetPoolName --instances=$instanceName --instances-zone=$zone --project=$projectName --quiet)
+```
+
+Once the virtual machine has been removed from the load balancer, we can proceed to deploy the PetClinic application.
+
+##### Adding the machine to the load balancer
+
+TODO: add to target pool
+
+##### Testing the PetClinic application
+
+TODO: Community step template
+
+##### Re-ordering the child steps
+
+Once all of the child steps have been added, you can also reorder them if necessary. In our case we need to move the original `Deploy PetClinic web app` step to the middle so that we don’t deploy the application to the virtual machine *before* its removed from the load balancer.
 
 :::success
 **Sample Octopus Project**
 You can see the complete PetClinic deployment process **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy).
 :::
 
-### Rolling deployment in action
+#### The rolling deployment process
 
-### DNS switch-over
+
+![Project rolling deployment run](project-rolling-deployment-run.png)
+
+### Switch over to new Infrastructure
+
+:::warning
+Switching your DNS over may result in downtime.
+:::
 
 ### Clean-up
 
-:::warning
-Adding the existing servers to a load balancer for the first time may result in downtime.
-:::
 
 :::success
 **Sample Octopus Projects**
