@@ -33,7 +33,7 @@ Let's go over each bullet point to see where the issues started and how they wer
 
 1. Infrastructure wasn't available.
 
-This was a bit difficult, the infrastructure simply wasn't available. Virtualization, as we know it today, was just taking off and cloud technologies were in their infancy. Developers simply had to wait for operations to get the infrastructure ready, and in most cases, it wasn't ops fault. Servers had to be delivered, racked and stacked, configured, and then finally made available. This didn't leave much wiggle room for development to help out. Luckily, that era is far behind us, and we now have platforms like Azure, AWS, and virtualization tools like [ESXi](https://www.vmware.com/products/esxi-and-esx.html).
+This was a bit difficult. The infrastructure simply wasn't available. Virtualization, as we know it today, was just taking off, and cloud technologies were in their infancy. Developers simply had to wait for operations to get the infrastructure ready, and in most cases, it wasn't ops fault. Servers had to be delivered, racked and stacked, configured, and then finally made available. This didn't leave much wiggle room for development to help out. Luckily, that era is far behind us, and we now have platforms like Azure, AWS, and virtualization tools like [ESXi](https://www.vmware.com/products/esxi-and-esx.html).
 
 2. Developers didn't know how to deploy infrastructure.
 
@@ -93,7 +93,7 @@ Terratest is a mock testing framework that is written in Golang. Because it's wr
 
 I personally don't write code in Go, but I was able to get a decent working Terratest test going. There are a ton of examples online, and if you've written in another programming language before, the same rules apply in Go (methods, functions, libraries, variables, etc.). 
 
-Below is a Terratest example that creates a Terraform environment and deletes it afterward, like a standard mock test. The package name is called `test` and it imports two libraries, the Terratest Terraform module, and the `testing` Golang library. The function then initiates and creates (applies) a Terraform environment and destroys it after. `defer` is used to run that section of code at the end:
+Below is a Terratest example that creates a Terraform environment and deletes it afterward, like a standard mock test. The package name is called `test` and it imports two libraries, the Terratest Terraform module and the `testing` Golang library. The function then initiates and creates (applies) a Terraform environment and destroys it after. `defer` is used to run that section of code at the end:
 
 ```go
 package test
@@ -135,7 +135,7 @@ end
 
 ## Terraform Provider Development Program
 
-Using Terraform is one thing, but many developers want to create their own way of working with Terraform. For example, maybe in other programming languages you want to create your own module for work or for the community to use. Terraform gives you the ability to do that with the Terraform Provider Development Program. The program allows vendors to build Terraform providers and when the provider is built, HashiCorp will personally test it, validate it, and put it up on the official Provider site.
+Using Terraform is one thing, but many developers want to create their own way of working with Terraform. For example, maybe in other programming languages you want to create your own module for work or for the community to use. Terraform gives you the ability to do that with the Terraform Provider Development Program. The program allows vendors to build Terraform providers, and when the provider is built, HashiCorp will personally test it, validate it, and put it up on the official Provider site.
 
 If you don't want to go the official route and have the provider tested by Terraform, there are also community-based Terraform providers that are open source and available to the world. It's a great way to not only give back to the community but build your own work of art.
 
@@ -153,11 +153,11 @@ Source: [https://www.terraform.io/docs/providers/index.html](https://www.terrafo
 
 ## Dev and Ops speaking the same language
 
-Now that you've learned some of the key technical aspects of Terraform, let's talk about the cultural aspect. Culture in any organization is the key to success. It doesn't matter how good the code is, how popular the application is, or how awesome the snacks are at the office. If the culture doesn't work, the entire thing crumbles. For an application to get out to the world, it needs a place to be hosted. For operations to host an application, they need an application to host. Essentially, developers and operations need to work together.
+Now that you've learned some of the key technical aspects of Terraform let's talk about the cultural aspect. Culture in any organization is the key to success. It doesn't matter how good the code is, how popular the application is, or how awesome the snacks are at the office. If the culture doesn't work, the entire thing crumbles. For an application to get out to the world, it needs a place to be hosted. For operations to host an application, they need an application to host. Essentially, developers and operations need to work together.
 
 Writing infrastructure as code and software-defined infrastructure gives developers and operations a way to speak the same language. Infrastructure is infrastructure and code is code. Whatever it's creating or hosting is one thing, but the truth remains the same that infrastructure and code exist. To do both properly, a solution like Terraform is the path forward.
 
-Another great thing from a cultural perspective is everyone on the operations and development teams get to learn something new. If the operations team aren't big coders, they get to learn coding and that's another tool on their tool belt. Not only learn, but they get to work with development and ask them questions. That brings the bond closer together. Same rules apply for developers writing infrastructure as code. If they're trying to deploy a virtual machine with code and they don't know certain aspects of the network, they get to sit and work with the operations team.
+Another great thing from a cultural perspective is everyone on the operations and development teams get to learn something new. If the operations team aren't big coders, they get to learn coding, and that's another tool on their tool belt. Not only learn, but they get to work with development and ask them questions. That brings the bond closer together. The same rules apply for developers writing infrastructure as code. If they're trying to deploy a virtual machine with code and they don't know certain aspects of the network, they get to sit and work with the operations team.
 
 ## Conclusion
 
@@ -166,7 +166,7 @@ In this post, I covered:
 - Why Terraform is important for developers from a technical perspective and cultural perspective. 
 - Infrastructure for developers and why it can be used for different stages, including deployment. 
 - HCL is repeatable and how to use the same configuration for any environment. 
-- Testing with Terraform, by implementing unit tests and mock tests. 
+- Testing with Terraform by implementing unit tests and mock tests. 
 - The different Terraform providers that can not only be used but are created by the community, for the community.
 
 For a challenge, try it out! Write some Terraform code to create a container in a cloud platform of choice. Then deploy the application to the container using Octopus Deploy or one of your favorite CICD platforms. 
