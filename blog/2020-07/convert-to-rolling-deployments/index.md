@@ -81,7 +81,7 @@ It includes:
 
 :::success
 **Sample Octopus Project**
-You can see the PetClinic project **before** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy)
+You can see the PetClinic project **before** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy).
 :::
 
 ## Converting to a rolling deployment process
@@ -110,7 +110,7 @@ There are many different types of load balancer, but a key requirement for this 
 :::hint
 In this example, the load balancer is shared between both the `Test` and the `Production` environment. To route traffic to the correct place, a different TCP Port is used at the load balancer to identify the intended environment. 
 - Port `8080` is used for traffic destined for the `Test` environment.
-- Port `80` is used for traffic destined for the `Production` environment
+- Port `80` is used for traffic destined for the `Production` environment.
 :::
 
 ### Load balancer target pools
@@ -122,18 +122,18 @@ Previously, users would access the PetClinic web front-end directly on a single 
 In order to change our deployment process, and keep the ability to deploy PetClinic sequentially, we need to create a new project. One way to achieve this is by [cloning](https://octopus.com/docs/projects#clone-a-project) the existing project.
 
 In the existing project, under *Settings*:
-- Use the overflow menu (...) and select **Clone**
+- Use the overflow menu (...) and select **Clone**.
 
 ![Project clone menu option](project-clone-menu-option.png)
 
-- Give the new project you are cloning from the original project a name, review the settings and once you are satisfied, click **SAVE**
+- Give the new project you are cloning from the original project a name, review the settings and once you are satisfied, click **SAVE**.
 
 ![Project clone menu option](project-clone-add-dialog.png)
 
 
 ### Add Child Steps to the new Project
 
-Next, we start converting the deployment process for the project itself. Not all of the PetClinic deployment process lends itself naturally to the rolling deployments pattern. For the PetClinic application, we’ll focus on the web front-end. 
+Next, we start converting the deployment process for the project itself. Not all of the PetClinic deployment process lends itself naturally to the rolling deployments pattern. For this reason, we’ll focus on the web front-end of PetClinic. 
 
 :::hint
 **Choosing what to convert**
@@ -144,7 +144,7 @@ It’s important to decide for yourself what elements of your project should be 
 
 :::success
 **Sample Octopus Project**
-You can see the PetClinic project **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy)
+You can see the PetClinic project **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy).
 :::
 
 ### Testing the application on each machine
