@@ -96,7 +96,7 @@ In the previous sequential deployment example, we had a single virtual machine p
 
 ![Project rolling infrastructure](rolling-deployment-infrastructure.png)
 
-This includes a _shared_ load balancer and this time two application servers in each environment connecting into the MySQL database as before.
+This includes a *shared* load balancer, and this time two application servers in each environment, connecting into the MySQL database as before.
 
 :::warning
 **gcloud CLI and authorization**
@@ -115,10 +115,30 @@ In this example, the load balancer is shared between both the `Test` and the `Pr
 
 ### Load balancer target pools
 
-With our previous deployment example, users were accessing the PetClinic web front-end directly on a single virtual machine. Here we’ll be using dedicated target pools for the `Test` and `Production` environments. A [target pool](https://cloud.google.com/load-balancing/docs/target-pools) is the name given to a group of Virtual Machine instances hosted in Google Cloud. 
+Previously, users would access the PetClinic web front-end directly on a single virtual machine. Here we’ll be using dedicated target pools for the `Test` and `Production` environments. A [target pool](https://cloud.google.com/load-balancing/docs/target-pools) is the name given to a group of Virtual Machine instances hosted in Google Cloud. 
 
-### Add Child Steps to the deployment process
+### Create a new Project
 
+In order to change our deployment process, and keep the ability to deploy PetClinic sequentially, we need to create a new project. One way to achieve this is by [cloning](https://octopus.com/docs/projects#clone-a-project) the existing project.
+
+In the existing project, under *Settings*:
+- Use the overflow menu (...) and select **Clone**
+
+![Project clone menu option](project-clone-menu-option.png)
+
+- Give the new project you are cloning from the original project a name, review the settings and once you are satisfied, click **SAVE**
+
+![Project clone menu option](project-clone-add-dialog.png)
+
+
+### Add Child Steps to the new Project
+
+Next, we start converting the deployment process for the project itself. Not all of the PetClinic deployment process lends itself naturally to the rolling deployments pattern. For the PetClinic application, we’ll focus on the web front-end. 
+
+:::hint
+**Choosing what to convert**
+It’s important to decide for yourself what elements of your project should be converted to use a rolling deployments pattern. In certain cases, it can actually make things *harder to deploy*.
+:::
 
 ![Project rolling deployment run](project-rolling-deployment-run.png)
 
@@ -129,7 +149,7 @@ You can see the PetClinic project **after** the conversion to a rolling deployme
 
 ### Testing the application on each machine
 
-### Deploy to each server
+### Deploy to each serverss
 
 ### DNS switch-over
 
