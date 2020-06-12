@@ -102,3 +102,21 @@ docker-compose up
 ```
 
 Octopus is then accessible on http://localhost:8080.
+
+## Tips and tricks
+
+If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This supports the Docker-in-Docker feature that is enabled by default in the container, which in turn allows Octopus to make use of [execution containers for workers](https://octopus.com/docs/deployment-process/execution-containers-for-workers).
+
+One of the challenges we faced as Octopus grew was the number, combination and versions of the supporting tooling required to interact with cloud services and platforms like Kubernetes. To address this, deployments and the health checks for targets like Kubernetes can be executed inside a Docker container. Octopus supplies [images for Windows and Linux](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide range of common tools, and end users can create their own images too.
+
+To run these images from the container hosting Octopus, the Docker daemon is run in the background, which requires the `privileged` flag. This allows full access to the execution containers, meaning Linux users have out of the box support to deploy to cloud services and Kubernetes (although Service Fabric still requires a Windows worker for deployments).
+
+:::hint
+To disable Docker-in-Docker, set the `DISABLE_DIND` environment variable to `Y`.
+:::
+
+The end result is that end users no longer need to manage separate workers with tools like `kubectl`, and can instead leverage the provided worker tools images:
+
+![](k8s-health-check.png "width=500")
+
+*Kubernetes health checks require kubectl, which is provided by the worker tools image.*
