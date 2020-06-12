@@ -81,7 +81,7 @@ It includes:
 
 :::success
 **Sample Octopus Project**
-You can see the PetClinic project **before** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy).
+You can see the PetClinic sequential deployment process **before** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy).
 :::
 
 ## Converting to a rolling deployment process
@@ -122,36 +122,81 @@ Previously, users would access the PetClinic web front-end directly on a single 
 In order to change our deployment process, and keep the ability to deploy PetClinic sequentially, we need to create a new project. One way to achieve this is by [cloning](https://octopus.com/docs/projects#clone-a-project) the existing project.
 
 In the existing project, under *Settings*:
-- Use the overflow menu (...) and select **Clone**.
+- Use the overflow menu (...) and select **Clone**:
 
 ![Project clone menu option](project-clone-menu-option.png)
 
-- Give the new project you are cloning from the original project a name, review the settings and once you are satisfied, click **SAVE**.
+- Give the new project you are cloning from the original project a name, review the settings and once you are satisfied, click **SAVE**:
 
 ![Project clone menu option](project-clone-add-dialog.png)
 
 
-### Add Child Steps to the new Project
+### Convert the PetClinic deployment process
 
-Next, we start converting the deployment process for the project itself. Not all of the PetClinic deployment process lends itself naturally to the rolling deployments pattern. For this reason, we’ll focus on the web front-end of PetClinic. 
+Next, we’ll convert the deployment process for the project itself. Not all of the PetClinic deployment process lends itself naturally to the rolling deployments pattern. For this reason, we’ll focus on the web front-end of PetClinic. 
 
 :::hint
 **Choosing what to convert**
-It’s important to decide for yourself what elements of your project should be converted to use a rolling deployments pattern. In certain cases, it can actually make things *harder to deploy*.
+It’s important to decide for yourself what elements of your project’s deployment process should be converted to use a rolling deployments pattern. In certain situations, it could make things *harder to deploy*.
 :::
+
+#### Configuring a rolling deployment
+
+To convert the `Deploy PetCinic web app` step to a rolling deployment, we perform the following actions:
+
+ - Open the step in the deployment process editor, expand the section *On Targets in Roles*, and click **CONFIGURE A ROLLING DEPLOYMENT**:
+
+![PetClinic step configure rolling deployment](petclinic-step-configure-rolling.png)
+
+- In the *Rolling Deployment* option which appears, choose a **Window size**. Here I’ve chosen a Window Size of `1` since we will only deploy to a maximum of two servers per environment:
+
+![PetClinic step configure rolling deployment window size](petclinic-step-configure-rolling-windowsize.png)
+
+- Hit **SAVE** to update the deployment step.
+
+#### Adding child steps
+
+So we have configured a rolling deployment, but it’s not very intelligent yet. Currently, the process would simply deploy PetClinic to each server one at a time, taking each instance of the application offline as it deploys.
+
+So next we need to add new steps to our rolling deployment to safely deploy new versions of the PetClinic application to each virtual machine, whilst still serving traffic to users.
+
+These steps will cover:
+1. Retrieving the virtual machine name.
+1. Removing the virtual machine from the load balancer *before* the PetClinic deployment.
+1. Adding the virtual machine into the load balancer *after* the PetClinic deployment.
+1. Testing the PetClinic web front-end is available.
+
+In Octopus, adding multiple steps to a rolling deployment process is done with [Child steps](https://octopus.com/docs/deployment-patterns/rolling-deployments#Rollingdeployments-Childsteps).
+
+##### Add a new Child Step
+
+To add a Child step, we open the the overflow menu (...) for the existing `Deploy PetClinic web app` step and select **Add child step**:
+
+![Project rolling deployment add new child step](project-rolling-deployment-add-new-child-step.png)
+
+From there you are presented with the **Choose Step Template** screen where you can choose the step type you require.
+
+:::hint
+**Reorder Child steps**:
+Once you have added the necessary child steps, you can reorder them 
+:::
+
+Next I’ll briefly walk through the child steps I added using the process described above.
+
+##### Retrieve instance name
 
 ![Project rolling deployment run](project-rolling-deployment-run.png)
 
 :::success
 **Sample Octopus Project**
-You can see the PetClinic project **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy).
+You can see the complete PetClinic deployment process **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy).
 :::
 
-### Testing the application on each machine
-
-### Deploy to each serverss
+### Rolling deployment in action
 
 ### DNS switch-over
+
+### Clean-up
 
 :::warning
 Adding the existing servers to a load balancer for the first time may result in downtime.
