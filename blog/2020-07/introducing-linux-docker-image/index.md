@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-While Octopus started life as a Windows application, it became clear that migrating to Linux was a cornerstone of our plans to provides a scalable and cost effective hosted solution. After recently completing a migration from the V1 of our hosted platform, all our hosted instances are running Octopus in Linux containers inside Kubernetes, with great results.
+While Octopus started life as a Windows application, it became clear that migrating to Linux was a cornerstone of our plans to provide a scalable and cost effective hosted solution. After recently completing a migration from the V1 of our hosted platform, all our hosted instances are running Octopus in Linux containers inside Kubernetes, with great results.
 
-Today I would like to announce early access the Octopus Server Linux Docker image. Based on the same code that powers our hosted solution, these images allow Linux users to host Octopus natively on their operating system of choice.
+Today I would like to announce early access to the Octopus Server Linux Docker image. Based on the same code that powers our hosted solution, these images allow Linux users to host Octopus natively on their operating system of choice.
 
 ## Getting started
 
