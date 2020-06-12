@@ -110,7 +110,7 @@ Once the images have booted, Octopus is accessible on http://localhost:8080.
 
 ## Tips and tricks
 
-If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This is required to support the [Docker-in-Docker](https://hub.docker.com/_/docker) feature which is enabled by default in the container. Docker-in-Docker allows Octopus to make use of [execution containers for workers](https://octopus.com/docs/deployment-process/execution-containers-for-workers).
+If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This is required to support the [Docker-in-Docker](https://hub.docker.com/_/docker) feature which is enabled by default in the container. Docker-in-Docker allows Octopus to make use of [execution containers for workers](https://octopus.com/blog/execution-containers).
 
 One of the challenges we faced as Octopus grew was the number, combination and versions of the supporting tooling required to interact with cloud services and platforms like Kubernetes. To address this, deployments and the health checks for targets like Kubernetes can be executed inside a Docker container. Octopus supplies [images for Windows and Linux](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide range of common tools, and end users can create their own images too.
 
