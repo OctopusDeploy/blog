@@ -128,7 +128,7 @@ The end result is that end users no longer need to manage separate workers with 
 
 ## Adding deployment targets
 
-In additional to cloud deployments, on-premises deployments are support through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided, or you can download Tentacle as a standalone archive. 
+In additional to cloud deployments, self-hosted deployments are support through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided, or you can download Tentacle as a standalone archive. 
 
 Of course you can still connect Windows Tentacles to the Linux version of Octopus if you need to manage deployments and operations across operating systems.
 
