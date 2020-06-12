@@ -110,7 +110,7 @@ Once the images have booted, Octopus is accessible on http://localhost:8080.
 
 ## Tips and tricks
 
-If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This is required to support the Docker-in-Docker feature which is enabled by default in the container. Docker-in-Docker allows Octopus to make use of [execution containers for workers](https://octopus.com/docs/deployment-process/execution-containers-for-workers).
+If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This is required to support the [Docker-in-Docker](https://hub.docker.com/_/docker) feature which is enabled by default in the container. Docker-in-Docker allows Octopus to make use of [execution containers for workers](https://octopus.com/docs/deployment-process/execution-containers-for-workers).
 
 One of the challenges we faced as Octopus grew was the number, combination and versions of the supporting tooling required to interact with cloud services and platforms like Kubernetes. To address this, deployments and the health checks for targets like Kubernetes can be executed inside a Docker container. Octopus supplies [images for Windows and Linux](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide range of common tools, and end users can create their own images too.
 
@@ -129,6 +129,8 @@ The end result is that end users no longer need to manage separate workers with 
 ## Adding deployment targets
 
 In additional to cloud deployments, on-premises deployments are support through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided, or you can download Tentacle as a standalone archive. 
+
+Of course you can still connect Windows Tentacles to the Linux version of Octopus if you need to manage deployments and operations across operating systems.
 
 ## Where to go from here
 
