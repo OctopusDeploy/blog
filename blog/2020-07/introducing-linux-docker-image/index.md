@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-While Octopus started life as a Windows application, it became clear that migrating to Linux would be a cornerstone of our plans to provides a hosted solution. Today, all our hosted instances are running Octopus in Linux containers inside Kubernetes.
+While Octopus started life as a Windows application, it became clear that migrating to Linux was a cornerstone of our plans to provides a scalable and cost effective hosted solution. After recently completing a migration from the V1 of our hosted platform, all our hosted instances are running Octopus in Linux containers inside Kubernetes, with great results.
 
 Today I would like to announce early access the Octopus Server Linux Docker image. Based on the same code that powers our hosted solution, these images allow Linux users to host Octopus natively on their operating system of choice.
 
@@ -19,6 +19,7 @@ Today I would like to announce early access the Octopus Server Linux Docker imag
 The easiest way to get started is with the following Docker Compose template, which configures Microsoft SQL server and Octopus with a single command.
 
 Here is the `docker-compose.yml` file:
+
 ```yaml
 version: '3'
 services:
@@ -52,7 +53,11 @@ services:
       - db
 ```
 
-Here is the `.env` file, which defines the environment variables used by Docker Compose. Be sure to change the `ACCEPT_EULA` and `ACCEPT_OCTOPUS_EULA` values!
+Here is the `.env` file, which defines the environment variables used by Docker Compose:
+
+:::hint
+Be sure to change the `ACCEPT_EULA` and `ACCEPT_OCTOPUS_EULA` values!
+:::
 
 ```
 # It is highly recommended this value is changed as it's the password used for the database user.
@@ -101,11 +106,11 @@ Create the containers with the command:
 docker-compose up
 ```
 
-Octopus is then accessible on http://localhost:8080.
+Once the images have booted, Octopus is accessible on http://localhost:8080.
 
 ## Tips and tricks
 
-If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This supports the Docker-in-Docker feature that is enabled by default in the container, which in turn allows Octopus to make use of [execution containers for workers](https://octopus.com/docs/deployment-process/execution-containers-for-workers).
+If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This is required to support the Docker-in-Docker feature which is enabled by default in the container. Docker-in-Docker allows Octopus to make use of [execution containers for workers](https://octopus.com/docs/deployment-process/execution-containers-for-workers).
 
 One of the challenges we faced as Octopus grew was the number, combination and versions of the supporting tooling required to interact with cloud services and platforms like Kubernetes. To address this, deployments and the health checks for targets like Kubernetes can be executed inside a Docker container. Octopus supplies [images for Windows and Linux](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide range of common tools, and end users can create their own images too.
 
@@ -120,3 +125,11 @@ The end result is that end users no longer need to manage separate workers with 
 ![](k8s-health-check.png "width=500")
 
 *Kubernetes health checks require kubectl, which is provided by the worker tools image.*
+
+## Adding deployment targets
+
+In additional to cloud deployments, on-premises deployments are support through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided, or you can download Tentacle as a standalone archive. 
+
+## Where to go from here
+
+The Linux Docker images have been released as part of our Early Access Program (EAP), so we do expect a few bugs or rough edges, and do not support this version for production deployments. However, if you encounter any issues we'd love to hear about them through our [support channels](https://octopus.com/support) so we can iron out the bugs.
