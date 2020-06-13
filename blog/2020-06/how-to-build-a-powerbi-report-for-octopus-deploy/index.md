@@ -167,25 +167,25 @@ Now that we have our data, we will be able to view all of the charts we created.
 
 The first page is called 'Deployments'. Here is a screenshot of what it looks like with a sample of the data from my local instance of Octopus Deploy for the last 5 years, and then the next screenshot is a sample of data from my cloud app test.
 
-![Local Instance - Deployments Page](Dashboard04.png)Local Instance - Deployments Page
+![Local Instance - Deployments Page](Dashboard04.png)*Local Instance - Deployments Page*
 
-![Cloud Instance - Deployments Page](Dashboard01.png)Cloud Instance - Deployments Page
+![Cloud Instance - Deployments Page](Dashboard01.png)*Cloud Instance - Deployments Page*
 
 The second page is 'Issues'. Here is a screenshot of my report with all of the charts relating to potential issues.
 
-![Local Instance - Issues Page](Dashboard05.png)Local Instance - Issues Page
+![Local Instance - Issues Page](Dashboard05.png)*Local Instance - Issues Page*
 
-![Cloud Instance - Issues Page](Dashboard02.png)Cloud Instance - Issues Page
+![Cloud Instance - Issues Page](Dashboard02.png)*Cloud Instance - Issues Page*
 
 The third page is called 'Durations' and contains all charts relating to execution duration.
 
-![Local Instance - Durations Page](Dashboard06.png)Local Instance - Durations Page
+![Local Instance - Durations Page](Dashboard06.png)*Local Instance - Durations Page*
 
-![Cloud Instance - Durations Page](Dashboard03.png)Cloud Instance - Durations Page
+![Cloud Instance - Durations Page](Dashboard03.png)*Cloud Instance - Durations Page*
 
 The final page is called 'Runbooks', this is currently only an option on the local instance of Octopus Deploy because there is no 'RunbookHistory' API call on the cloud instance.
 
-![Local Instance - Runbooks Page](Dashboard07.png)Local Instance - Runbooks Page
+![Local Instance - Runbooks Page](Dashboard07.png)*Local Instance - Runbooks Page*
 
 ## ROI
 
