@@ -3,16 +3,16 @@ title: How To Build A PowerBI Report For Octopus Deploy
 description: How to look at Deployment and Runbook History in Octopus Deploy to analyize. 
 author: Jeff@ReviewMyDB.com
 visibility: private
-published: 3020-06-20
+published: 3020-06-13
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 tags:
+  - DevOps
   - Engineering
-  - CI/CD and DevOps
 ---
 
 It recently, it dawned on me that I have been using Octopus Deploy for 5 years now. I do not remember how I first heard about Octopus Deploy, but before I started using Octopus Deploy, I had been automating deployments using RedGate SQL Toolbelt with SQL Compare with a combination of C# and batch files which I wrote to handle deployments.
-
+s
 I had a thought...I wonder if there are any metrics I can gather from the Octopus Deploy database for the past five years and create reports in PowerBI Desktop.
 
 I started thinking about what I could determine, such as how much time and money has automation has saved my company and me. If I could place an actual number on this, perhaps I could help others in their fight for automation where the work for justification. In the past, it has been a challenge trying to convince management that automation was a good thing. The most significant issue I've encountered is the constant human error and weekends away from the family due to long deployment times.
@@ -167,25 +167,25 @@ Now that we have our data, we will be able to view all of the charts we created.
 
 The first page is called 'Deployments'. Here is a screenshot of what it looks like with a sample of the data from my local instance of Octopus Deploy for the last 5 years, and then the next screenshot is a sample of data from my cloud app test.
 
-![Local Instance - Deployments Page](Dashboard04.png)
+![Local Instance - Deployments Page](Dashboard04.png)Local Instance - Deployments Page
 
-![Cloud Instance - Deployments Page](Dashboard01.png)
+![Cloud Instance - Deployments Page](Dashboard01.png)Cloud Instance - Deployments Page
 
 The second page is 'Issues'. Here is a screenshot of my report with all of the charts relating to potential issues.
 
-![Local Instance - Issues Page](Dashboard05.png)
+![Local Instance - Issues Page](Dashboard05.png)Local Instance - Issues Page
 
-![Cloud Instance - Issues Page](Dashboard02.png)
+![Cloud Instance - Issues Page](Dashboard02.png)Cloud Instance - Issues Page
 
 The third page is called 'Durations' and contains all charts relating to execution duration.
 
-![Local Instance - Durations Page](Dashboard06.png)
+![Local Instance - Durations Page](Dashboard06.png)Local Instance - Durations Page
 
-![Cloud Instance - Durations Page](Dashboard03.png)
+![Cloud Instance - Durations Page](Dashboard03.png)Cloud Instance - Durations Page
 
 The final page is called 'Runbooks', this is currently only an option on the local instance of Octopus Deploy because there is no 'RunbookHistory' API call on the cloud instance.
 
-![Local Instance - Runbooks Page](Dashboard07.png)
+![Local Instance - Runbooks Page](Dashboard07.png)Local Instance - Runbooks Page
 
 ## ROI
 
