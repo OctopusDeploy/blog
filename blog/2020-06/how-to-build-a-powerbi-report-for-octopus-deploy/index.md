@@ -36,10 +36,10 @@ Let me summarize each section of the blog before we jump in
 ## Prerequisites
 
 ### PowerBI Desktop - Setup
-If you don't already have PowerBI Desktop installed go to my blog post for detailed instructions on how to install it [link](https://blog.reviewmydb.com/2020/06/how-to-install-powerbi-desktop.html).
+If you don't already have PowerBI Desktop installed go to my blog post for detailed instructions on how to install it [https://blog.reviewmydb.com/2020/06/how-to-install-powerbi-desktop.html](https://blog.reviewmydb.com/2020/06/how-to-install-powerbi-desktop.html).
 
 ### Octopus Deploy - SQL Server
-Learn how to connect to a local instance of Octopus Deploy by going to my blog post [link](https://blog.reviewmydb.com/2020/06/how-to-connect-to-octopus-deploy-local.html).
+Learn how to connect to a local instance of Octopus Deploy by going to my blog post [https://blog.reviewmydb.com/2020/06/how-to-connect-to-octopus-deploy-local.html](https://blog.reviewmydb.com/2020/06/how-to-connect-to-octopus-deploy-local.html).
 
 ## Deployment History Charts
 
@@ -156,10 +156,10 @@ While this may not be 100% accurate, you may want to pull in some data and creat
 
 Now I'm sure you think this might be a decent amount of work to create these reports, and you are correct. But I have a treat for you! I have taken a copy of my PowerBI reports and created a template for both the SQL Server and for the Cloud offerings of Octopus Deploy. I will cover how to set up the connection string and API URL and API key so you can access your data.
 
-Here is the SQL Server template: OctopusDeploySQLServer.pbt ([link](https://tinyurl.com/ycz4awvl))
-Click here for instructions on how to set up this template: [link](https://blog.reviewmydb.com/2020/06/how-to-configure-sql-server-powerbi.html)
+Here is the SQL Server template: OctopusDeploySQLServer.pbt ([https://tinyurl.com/ycz4awvl](https://tinyurl.com/ycz4awvl))
+Click here for instructions on how to set up this template: [https://blog.reviewmydb.com/2020/06/how-to-configure-sql-server-powerbi.html](https://blog.reviewmydb.com/2020/06/how-to-configure-sql-server-powerbi.html)
 
-Here is the Cloud template: OctopusDeployCloud.pbt ([link](https://tinyurl.com/ydz9vjy5)) Click here for instructions on how to set up this template: [link](https://blog.reviewmydb.com/2020/06/how-to-configure-powerbi-template-for.html)
+Here is the Cloud template: OctopusDeployCloud.pbt ([https://tinyurl.com/ydz9vjy5](https://tinyurl.com/ydz9vjy5)) Click here for instructions on how to set up this template: [https://blog.reviewmydb.com/2020/06/how-to-configure-powerbi-template-for.html](https://blog.reviewmydb.com/2020/06/how-to-configure-powerbi-template-for.html)
 
 ## Reports
 
@@ -199,8 +199,8 @@ If we had a person handling the deployments, this would take approximately 1/3rd
 
 If our hourly rate was $80/hr, it would have cost us over $57k each year for 5 years for a total of $285,760.00.
 
-The 'Server' instance of Octopus Deploy with 10 targets is free. 25 targets costs $2,300/year (per their website). They have varying degrees of licenses from 25 to 2,000 to unlimited targets. Click here to see pricing information: [link](https://octopus.com/pricing/overview).
-The 'Cloud' version for up to 10 targets is free for small teams with some storage limitations. Click here to see pricing information: [link](https://octopus.com/pricing/overview).
+The 'Server' instance of Octopus Deploy with 10 targets is free. 25 targets costs $2,300/year (per their website). They have varying degrees of licenses from 25 to 2,000 to unlimited targets. Click here to see pricing information: [https://octopus.com/pricing/overview](https://octopus.com/pricing/overview).
+The 'Cloud' version for up to 10 targets is free for small teams with some storage limitations. Click here to see pricing information: [https://octopus.com/pricing/overview](https://octopus.com/pricing/overview).
 
 Our licenses were purchased a while ago, and we were able to work out a custom deal for a reasonable price.
 
