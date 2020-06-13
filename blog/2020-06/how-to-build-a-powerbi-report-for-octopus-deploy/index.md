@@ -26,12 +26,12 @@ Below is a sneak peek of what I was able to put together, and we will go over ho
 
 
 Let me summarize each section of the blog before we jump in
-1. Prerequisites: This section covers the prerequisites for reporting from Octopus Deploy.
-2. Deployment History Charts: This section covers each of the individual charts for deployments I created.
-3. Runbooks History Charts: This section covers each of the individual runbook history charts I created.
-4. Reports: This section covers the four initial reports and charts I created in the templates I provided.
-5. ROI - Does Octopus Deploy really save me and my company time and money?
-6. Conclusion: Wrap up!
+1. **Prerequisites:** This section covers the prerequisites for reporting from Octopus Deploy.
+2. **Deployment History Charts:** This section covers each of the individual charts for deployments I created.
+3. **Runbooks History Charts:** This section covers each of the individual runbook history charts I created.
+4. **Reports:** This section covers the four initial reports and charts I created in the templates I provided.
+5. **ROI** - Does Octopus Deploy really save me and my company time and money?
+6. **Conclusion:** Wrap up!
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ Learn how to connect to a local instance of Octopus Deploy by going to my blog p
 
 The body of the post is where you share your hypothesis, how-to, or story.
 
-##s# Subheadings
+### Subheadings
 
 Use three ### to include H3 headings.
 
