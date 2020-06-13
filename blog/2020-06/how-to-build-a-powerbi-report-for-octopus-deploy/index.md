@@ -1,6 +1,6 @@
 ---
 title: How To Build A PowerBI Report For Octopus Deploy
-description: How to look at Deployment and Runbook History in Octopus Deploy to analyize. 
+description: How to look at Deployment and Runbook History in Octopus Deploy to analyize and determine your ROI.
 author: Jeff@ReviewMyDB.com
 visibility: private
 published: 3020-06-13
