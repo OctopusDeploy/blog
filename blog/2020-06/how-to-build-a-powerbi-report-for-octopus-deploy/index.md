@@ -33,19 +33,19 @@ Let me summarize each section of the blog before we jump in
 5. ROI - Does Octopus Deploy really save me and my company time and money?
 6. Conclusion: Wrap up!
 
-##Prerequisites
+## Prerequisites
 
-###PowerBI Desktop - Setup
+### PowerBI Desktop - Setup
 If you don't already have PowerBI Desktop installed go to my blog post for detailed instructions on how to install it https://blog.reviewmydb.com/2020/06/how-to-install-powerbi-desktop.html.
 
-###Octopus Deploy - SQL Server
+### Octopus Deploy - SQL Server
 Learn how to connect to a local instance of Octopus Deploy by going to my blog post https://blog.reviewmydb.com/2020/06/how-to-connect-to-octopus-deploy-local.html.
 
-#Deployment History Charts
+# Deployment History Charts
 
 The body of the post is where you share your hypothesis, how-to, or story.
 
-### Subheadings
+##s# Subheadings
 
 Use three ### to include H3 headings.
 
