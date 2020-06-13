@@ -124,7 +124,7 @@ While this may not be 100% accurate, you may want to pull in some data and creat
 ![](report17.png)
 
 ## Runbooks History Charts 
-*Currently unavailable in the cloud API
+*Currently unavailable in the cloud API*
 
 **Frequency of Runbooks by Date** - The chart below shows us the frequency of executions by date. Since we have only recently started using Runbooks, I have drilled down to the day to see how many we have run this month.
 
@@ -161,7 +161,7 @@ Click here for instructions on how to set up this template: [link](https://blog.
 
 Here is the Cloud template: OctopusDeployCloud.pbt ([link](https://tinyurl.com/ydz9vjy5)) Click here for instructions on how to set up this template: [link](https://blog.reviewmydb.com/2020/06/how-to-configure-powerbi-template-for.html)
 
-## sReports
+## Reports
 
 Now that we have our data, we will be able to view all of the charts we created. I have organized the charts into several report 'pages'.
 
