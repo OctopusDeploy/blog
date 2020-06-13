@@ -1,7 +1,7 @@
 ---
 title: How To Build A PowerBI Report For Octopus Deploy
 description: How to look at Deployment and Runbook History in Octopus Deploy to analyize. 
-author: Jeff Tayloor
+author: Jeff Taylor
 visibility: private
 published: 3020-06-20
 metaImage: to-be-added-by-marketing
@@ -19,11 +19,11 @@ I started thinking about what I could determine, such as how much time and money
 
 Another thought I had was to highlight development issues, such as how many times we have to skip releases due to bugs not found in our lower environments or to justify more resources for more testing to management.
 
-
 I love saving time, so the best tool I know of to put together some metrics and display the analysis of data is PowerBI Dashboard.
 
 Below is a sneak peek of what I was able to put together, and we will go over how you can create a connection and pull data from your database. I've also included PowerBI Desktop templates for your Cloud and Local instance to help you get started quickly.
 
+![PowerBI Report For Octopus Deploy](headlinerimage.png)
 
 Let me summarize each section of the blog before we jump in
 1. **Prerequisites:** This section covers the prerequisites for reporting from Octopus Deploy.
