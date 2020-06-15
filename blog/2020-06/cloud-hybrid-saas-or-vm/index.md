@@ -1,16 +1,18 @@
 ---
 title: Self-hosted Octopus in a Cloud VM vs. Octopus Cloud
-description: Information to consider when deciding on the right Octopus Deploy installation to use in the cloud
+description: Information to consider when deciding on the right Octopus Deploy installation to use in the cloud.
 author: lianne.crocker@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-06-16
+metaImage: cloud-hybrid-shift-to-cloud.png
+bannerImage: cloud-hybrid-shift-to-cloud.png
 tags:
  - Octopus
  - Product
  - DevOps
 ---
+
+![Self-hosted Octopus in a Cloud VM vs. Octopus Cloud](cloud-hybrid-shift-to-cloud.png)
 
 A common question we receive from customers thinking about moving Octopus to cloud infrastructure is:
 
