@@ -98,6 +98,8 @@ In the previous sequential deployment example, we had a single virtual machine p
 
 This includes a *shared* load balancer, and this time two application servers in each environment, connecting into the MySQL database as before.
 
+When you have created your new servers, you’ll also want to add them in Octopus as new [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets), and tag them with any appropriate [target roles](https://octopus.com/docs/octopus-concepts/target-roles).
+
 ### Choosing a load balancer
 
 There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, and as this example is running from Google Cloud, we’ll be using a [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
@@ -251,14 +253,17 @@ The complete rolling deployment process is shown here:
 
 ![Project rolling deployment run](project-rolling-deployment-new-child-steps.png)
 
-And that’s it! We’ve successfully converted our deployment process from a sequential one to a rolling deployment.
+You can see an example of a deployment to `Production` using the new rolling deployment process:
+
+**TODO: Change image to reflect new child-step names**
+![Project rolling deployment run](project-rolling-deployment-run.png)
+
+And that’s it! We’ve successfully converted our deployment process from a sequential one to a rolling deployment process.
 
 :::success
 **Sample Octopus Project**
 You can see the complete PetClinic deployment process **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy).
 :::
-
-![Project rolling deployment run](project-rolling-deployment-run.png)
 
 ### Switch over to new Infrastructure
 
