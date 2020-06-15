@@ -55,7 +55,7 @@ It’s also possible to configure your deployment process to run steps in [paral
 The existing PetClinic application is modelled using this sequential deployment technique. The deployment process consists of a number of key steps:
 
 - A [Manual intervention](https://octopus.com/docs/deployment-process/steps/manual-intervention-and-approvals) Approval step (for the `Production` Environment only).
-- Flyway DB migration [community library](https://library.octopus.com/listing/flyway) steps to display migration state and apply any new database changes.
+- Flyway DB migration [community step templates](https://library.octopus.com/listing/flyway) steps to display migration state and apply any new database changes.
 - A Deploy to [WildFly](https://wildfly.org/) step for the PetClinic web front-end.
 
 In addition, the deployment process includes steps that will post messages to a [Slack](https://slack.com/) channel with deployment progression updates.
@@ -218,11 +218,13 @@ We don’t need to add a new child step to deploy the PetClinic application, as 
 
 ##### Testing the PetClinic application
 
-TODO: Community step template
+After the PetClinic front-end has been deployed, we can test if it’s responding to requests by adding a Community [step template](https://g.octopushq.comCommunityContributedStepTemplates) called **HTTP - Test URL** as a child step.
+
+We use a variable of `#{Project.Wildfly.Url}` to test that it returns a HTTP 200 OK response. This will tell us if the application is running. Any other HTTP response will result in a failure.
 
 ##### Adding the machine to the load balancer
 
-After the PetClinic application has been verified as online, we can add it back to the load balancer target pool. We do this by running the gcloud `target-pools add-instances` command supplying the instance name (as before) with the `--instances` parameter:
+Lastly, when the PetClinic application has been verified as online, we can add it back to the load balancer target pool. We do this by running the gcloud `target-pools add-instances` command supplying the instance name (as before) with the `--instances` parameter:
 
 ```powershell
 $instanceName = $OctopusParameters["Octopus.Action[Retrieve machine instance name].Output.InstanceName"]
@@ -232,7 +234,9 @@ $response=(& gcloud compute target-pools add-instances $targetPoolName --instanc
 
 ##### Re-ordering the child steps
 
-Once all of the child steps have been added, you can also reorder them if necessary. In our case we need to move the original `Deploy PetClinic web app` step to the middle so that we don’t deploy the application to the virtual machine *before* its removed from the load balancer.
+Once all of the child steps have been added, you can also reorder them if necessary. In our case we need to move the original `Deploy PetClinic web app` step to the middle so that we don’t deploy the application to the virtual machine *until* it has been removed from the load balancer.
+
+
 
 :::success
 **Sample Octopus Project**
