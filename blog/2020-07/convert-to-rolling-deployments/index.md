@@ -98,11 +98,6 @@ In the previous sequential deployment example, we had a single virtual machine p
 
 This includes a *shared* load balancer, and this time two application servers in each environment, connecting into the MySQL database as before.
 
-:::warning
-**gcloud CLI and authorization**
-Most of the commands used interacting with Google in this post make use of the [Google Cloud CLI](https://cloud.google.com/sdk/gcloud). To use the `gcloud` CLI you usually need to authorize it. For further information on gcloud authorization, please refer to the [documentation](https://cloud.google.com/sdk/docs/authorizing).
-:::
-
 ### Choosing a load balancer
 
 There are many different types of load balancer, but a key requirement for this rolling deployments example is the ability to control which servers are available to serve traffic. For this reason, and as this example is running from Google Cloud, we’ll be using a [Network Load Balancer](https://cloud.google.com/load-balancing/docs/network/). This provides a way to add and remove our servers from the load balancer as part of the deployment process, which we’ll see a little later on. For more information about how to set up a network load balancer, please refer to the [Google documentation](https://cloud.google.com/load-balancing/docs/network/setting-up-network).
@@ -167,6 +162,12 @@ These steps will cover:
 1. Testing the PetClinic web front-end is available.
 
 In Octopus, adding multiple steps to a rolling deployment process is done with [Child steps](https://octopus.com/docs/deployment-patterns/rolling-deployments#Rollingdeployments-Childsteps).
+
+
+:::warning
+**gcloud CLI and authorization**
+Most of the commands used interacting with Google in this next section make use of the [Google Cloud CLI](https://cloud.google.com/sdk/gcloud). To use the `gcloud` CLI you usually need to authorize it. For further information on gcloud authorization, please refer to the [documentation](https://cloud.google.com/sdk/docs/authorizing).
+:::
 
 ##### Add a new Child Step
 
@@ -236,15 +237,26 @@ $response=(& gcloud compute target-pools add-instances $targetPoolName --instanc
 
 Once all of the child steps have been added, you can also reorder them if necessary. In our case we need to move the original `Deploy PetClinic web app` step to the middle so that we don’t deploy the application to the virtual machine *until* it has been removed from the load balancer.
 
+To reorder the child steps:
+- Use the overflow menu (...) and select **Reorder child steps**.
+- Rearrange the steps in the desired order.
+- Click **SAVE** when done.
 
+
+#### The rolling deployment process
+
+Some of the steps in the rolling deployment process aren’t required for the `Development` Environment. This is because in that environment, we’re not using a load balancer. To skip the steps which don’t need to run, we can make use of an Environment [run condition](https://octopus.com/docs/deployment-process/conditions#environments). This will skip the steps used for the load-balanced environments. 
+
+The complete rolling deployment process is shown here: 
+
+![Project rolling deployment run](project-rolling-deployment-new-child-steps.png)
+
+And that’s it! We’ve successfully converted our deployment process from a sequential one to a rolling deployment.
 
 :::success
 **Sample Octopus Project**
 You can see the complete PetClinic deployment process **after** the conversion to a rolling deployment process, in our [samples instance](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy).
 :::
-
-#### The rolling deployment process
-
 
 ![Project rolling deployment run](project-rolling-deployment-run.png)
 
@@ -256,6 +268,7 @@ Switching your DNS over may result in downtime.
 
 ### Clean-up
 
+At this point, you can clean up your old Octopus project by either disabling it, and effectively archiving it, or delete it if you no longer need it for any audit requirements.
 
 :::success
 **Sample Octopus Projects**
