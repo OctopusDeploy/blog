@@ -156,9 +156,9 @@ To convert the `Deploy PetCinic web app` step to a rolling deployment, we perfor
 
 #### Adding child steps
 
-So we’ve configured a rolling deployment, but it’s not very intelligent yet. Currently, the process would simply deploy PetClinic to each server one at a time, taking each instance of the application offline as it deploys.
+So we’ve configured a rolling deployment, but it’s not very intelligent yet. Currently, the process would deploy PetClinic to each server one at a time, taking each instance of the application offline as it deploys.
 
-So next we need to add new steps to our rolling deployment to safely deploy new versions of the PetClinic application to each virtual machine, whilst still serving traffic to users.
+So next we need to add new steps to our rolling deployment to safely deploy new versions of the PetClinic application to each virtual machine, whilst still serving traffic to users on the other server.
 
 These steps will cover:
 1. Retrieving the virtual machine name.
@@ -174,19 +174,21 @@ To add a Child step, we open the overflow menu (...) for the existing `Deploy Pe
 
 ![Project rolling deployment add new child step](project-rolling-deployment-add-new-child-step.png)
 
-From there you are presented with the **Choose Step Template** screen where you can choose the step type you require.
+We are presented with the **Choose Step Template** selector where we choose the required step type.
 
-Next I’ll briefly walk through the new child steps needed for the rolling deployment process.
+Next, I’ll briefly walk through the new child steps needed to complete the rolling deployment process. Some of the script examples have been reduced to the minimum needed to highlight the key parts.
 
 ##### Retrieve instance name
 
-This [script step](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step) is required so that we can identify the name of the virtual machine hosted in Google Cloud for use when removing and adding to the load balancer. This is achieved by querying Google using the `gcloud compute instances describe` command:
+This [script step](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step) is required so that we can identify the name of the virtual machine hosted in Google Cloud for use when removing and adding to the load balancer. This is achieved by querying Google using the gcloud `instances describe` command:
 
 ```powershell
+$machineName = $OctopusParameters["Octopus.Machine.Name"]
+
 $instanceName=(& gcloud compute instances describe $machineName --project=$projectName --zone=$zone --format="get(name)" --quiet) -join ", "
 ```
 
-If a match is found using the machine identified by the Octopus system variable `Octopus.Machine.Name` it sets an [Output variable](https://octopus.com/docs/projects/variables/output-variables) with the name as recorded in Google Cloud:
+If a match is found using the machine identified by the Octopus system variable `Octopus.Machine.Name`, the script sets an [Output variable](https://octopus.com/docs/projects/variables/output-variables) with the name as recorded in Google Cloud:
 
 ```powershell
 Set-OctopusVariable -name "InstanceName" -value $instanceName
@@ -194,27 +196,39 @@ Set-OctopusVariable -name "InstanceName" -value $instanceName
 
 ##### Remove the machine from the load balancer
 
-Once we have the name of the machine we are deploying to, we want to remove it from the load balancer target pool. However, to prevent an attempt to remove the virtual machine from the target pool when it’s not in the pool to start with, we can run the `gcloud compute target-pools describe` command to check if it’s present:
+Once we have the name of the machine we are deploying to, we want to remove it from the load balancer target pool. However, to prevent an attempt to remove the virtual machine from the target pool when it’s not present to start with, we can run the gcloud `target-pools describe` command to check:
 
 ```powershell
 $instances=(& gcloud compute target-pools describe $targetPoolName --format="flattened(instances[])" --region=$region --project=$projectName --quiet)
 ```
 
-If the instance is found in the target pool, we run the `gcloud compute target-pools remove-instances` command supplying the instance name by the `--instances` parameter:
+If the instance is found in the target pool, we run the gcloud `target-pools remove-instances` command supplying the instance name with the `--instances` parameter:
 
 ```powershell
+$instanceName = $OctopusParameters["Octopus.Action[Retrieve machine instance name].Output.InstanceName"]
+
 $response=(& gcloud compute target-pools remove-instances $targetPoolName --instances=$instanceName --instances-zone=$zone --project=$projectName --quiet)
 ```
 
 Once the virtual machine has been removed from the load balancer, we can proceed to deploy the PetClinic application.
 
-##### Adding the machine to the load balancer
-
-TODO: add to target pool
+:::hint
+We don’t need to add a new child step to deploy the PetClinic application, as it already exists. Instead we will place that step in the right place once we have added the necessary child steps.
+:::
 
 ##### Testing the PetClinic application
 
 TODO: Community step template
+
+##### Adding the machine to the load balancer
+
+After the PetClinic application has been verified as online, we can add it back to the load balancer target pool. We do this by running the gcloud `target-pools add-instances` command supplying the instance name (as before) with the `--instances` parameter:
+
+```powershell
+$instanceName = $OctopusParameters["Octopus.Action[Retrieve machine instance name].Output.InstanceName"]
+
+$response=(& gcloud compute target-pools add-instances $targetPoolName --instances=$instanceName --instances-zone=$zone --project=$projectName --quiet)
+```
 
 ##### Re-ordering the child steps
 
