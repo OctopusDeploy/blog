@@ -2,7 +2,7 @@
 title: Maven repositories explained
 description: Learn how Maven repositories are structured and how to access artifacts stored in them.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-06-17
 metaImage: maven-repo.png
 bannerImage: maven-repo.png
