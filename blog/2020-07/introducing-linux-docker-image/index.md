@@ -1,6 +1,6 @@
 ---
 title: Introducing the Octopus Server Linux Docker image
-description: 
+description: Octopus 2020.3 introduces the Octopus Server Linux Docker image
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-While Octopus started life as a Windows application, it became clear that migrating to Linux was a cornerstone of our plans to provide a scalable and cost effective hosted solution. After recently completing a migration from the V1 of our hosted platform, all our hosted instances are running Octopus in Linux containers inside Kubernetes, with great results.
+As part of our efforts to provide a scalable, cost-effective hosted solution for Octopus Cloud, we migrated all of V1 hosted instances, and they are now running Octopus in Linux containers inside Kubernetes, and we're really please with the result.
 
-Today I would like to announce early access to the Octopus Server Linux Docker image. Based on the same code that powers our hosted solution, these images allow Linux users to host Octopus on their operating system of choice.
+Today, I'd like to announce early access to the Octopus Server Linux Docker image. The image is based on the same code that powers our hosted solution. These images allow Linux users to host Octopus on their operating system of choice.
 
 ## Getting started
 
-The easiest way to get started is with the following Docker Compose template, which configures Microsoft SQL server and Octopus with a single command.
+The following Docker Compose template is the easiest way to get started. The template configures Microsoft SQL Server and Octopus with a single command.
 
 Here is the `docker-compose.yml` file:
 
@@ -53,7 +53,7 @@ services:
       - db
 ```
 
-Here is the `.env` file, which defines the environment variables used by Docker Compose:
+The `.env` file defines the environment variables used by Docker Compose:
 
 :::hint
 Be sure to change the `ACCEPT_EULA` and `ACCEPT_OCTOPUS_EULA` values!
@@ -100,40 +100,40 @@ MASTER_KEY=
 ADMIN_API_KEY=
 ```
 
-Create the containers with the command:
+You create the containers with the command:
 
 ```
 docker-compose up
 ```
 
-Once the images have booted, Octopus is accessible on http://localhost:8080.
+After the images have booted, Octopus is accessible on http://localhost:8080.
 
 ## Tips and tricks
 
-If you had a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This is required to support the [Docker-in-Docker](https://hub.docker.com/_/docker) feature which is enabled by default in the container. Docker-in-Docker allows Octopus to make use of [execution containers for workers](https://octopus.com/blog/execution-containers).
+If you have a keen eye, you may have noticed that we launched the Octopus container with the `privileged` flag set to `true`. This is required to support the [Docker-in-Docker](https://hub.docker.com/_/docker) feature which is enabled by default in the container. Docker-in-Docker allows Octopus to make use of [execution containers for Workers](https://octopus.com/blog/execution-containers).
 
-One of the challenges we faced as Octopus grew was the number, combination and versions of the supporting tooling required to interact with cloud services and platforms like Kubernetes. To address this, deployments and the health checks for targets like Kubernetes can be executed inside a Docker container. Octopus supplies [images for Windows and Linux](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide range of common tools, and end users can create their own images too.
+As Octopus as grown, one of the challenges we've face, is the number, combination, and versions of the supporting tooling required to interact with cloud services and platforms like Kubernetes. To address this, deployments and the health checks for targets like Kubernetes can be executed inside a Docker container. Octopus supplies [images for Windows and Linux](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide range of common tools, and end-users can create their own images too.
 
-To run these images from the container hosting Octopus, the Docker daemon is run in the background, which requires the `privileged` flag. This allows full access to the execution containers, meaning Linux users have out of the box support to deploy to cloud services and Kubernetes (although Service Fabric still requires a Windows worker for deployments).
+To run these images from the container hosting Octopus, the Docker daemon is run in the background, which requires the `privileged` flag. This allows full access to the execution containers, meaning Linux users have out of the box support to deploy to cloud services and Kubernetes (although Service Fabric still requires a Windows Worker for deployments).
 
 :::hint
 To disable Docker-in-Docker, set the `DISABLE_DIND` environment variable to `Y`.
 :::
 
-The end result is that end users no longer need to manage separate workers with tools like `kubectl`, and can instead leverage the provided worker tools images:
+This means end-users no longer need to manage separate Workers with tools like `kubectl`, and can instead leverage the provided Worker tools images:
 
 ![](k8s-health-check.png "width=500")
 
-*Kubernetes health checks require kubectl, which is provided by the worker tools image.*
+*Kubernetes health checks require kubectl, which is provided by the Worker tools image.*
 
 ## Adding deployment targets
 
-In additional to cloud deployments, self-hosted deployments are support through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided, or you can download Tentacle as a standalone archive. 
+In addition to cloud deployments, self-hosted deployments are supported through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided, or you can download Tentacle as a standalone archive. 
 
-Of course you can still connect Windows Tentacles to the Linux version of Octopus if you need to manage deployments and operations across operating systems.
+Of course, you can still connect Windows Tentacles to the Linux version of Octopus if you need to manage deployments and operations across operating systems.
 
 ## Where to go from here
 
-The Linux Docker images have been released as part of our Early Access Program (EAP), so we do expect a few bugs or rough edges, and do not support this version for production deployments. However, if you encounter any issues we'd love to hear about them through our [support channels](https://octopus.com/support) so we can iron out the bugs.
+The Linux Docker images have been released as part of our Early Access Program (EAP), so we do expect a few bugs and rough edges, and we do not support this version for production deployments. However, if you encounter any issues we'd love to hear about them through our [support channels](https://octopus.com/support) so we can iron out the bugs.
 
 Happy deployments!
