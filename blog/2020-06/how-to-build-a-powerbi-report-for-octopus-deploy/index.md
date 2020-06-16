@@ -4,8 +4,8 @@ description: How to look at Deployment and Runbook History in Octopus Deploy to 
 author: Jeff@ReviewMyDB.com
 visibility: private
 published: 3020-06-13
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
+metaImage: 
+bannerImage: 
 tags:
   - DevOps
   - Engineering
