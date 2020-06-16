@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-As part of our efforts to provide a scalable, cost-effective hosted solution for Octopus Cloud, we migrated all of V1 hosted instances, and they are now running Octopus in Linux containers inside Kubernetes, and we're really please with the result.
+As part of our efforts to provide a scalable, cost-effective hosted solution for Octopus Cloud, we migrated all of V1 hosted instances to our new V2 infrastructure running Octopus in Linux containers inside Kubernetes, and we're really please with the result.
 
 Today, I'd like to announce early access to the Octopus Server Linux Docker image. The image is based on the same code that powers our hosted solution. These images allow Linux users to host Octopus on their operating system of choice.
 
@@ -126,11 +126,192 @@ This means end-users no longer need to manage separate Workers with tools like `
 
 *Kubernetes health checks require kubectl, which is provided by the Worker tools image.*
 
+## Running Octopus in Kubernetes
+
+As the introduction to this post mentioned, the driving force behind running Octopus on Linux was to allow it to run in Kubernetes, and this option is available now to those wishing to host Octopus in their own Kubernetes clusters.
+
+Since high availability (HA) and Kubernetes go hand in hand, so the solution presented here supports scaling Octopus server instances with multiple HA nodes.
+
+There are a number of aspects to consider when deploying a HA Octopus cluster, including:
+* A HA database.
+* Shared file systems for artifacts, logs and the built-in feed.
+* Load balancers for web traffic.
+* Direct access to each Octopus node for polling tentacles.
+* Startup and upgrade processes that may result in database schema upgrades.
+
+We won't go into the details of deploying a HA SQL database. For the purposes of this blog we'll deploy a single instance of MS SQL Express to the cluster. The YAML below creates a persistent volume claim to store the database files, a service to expose the database internally, and the database itself:
+
+```YAML
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mssql-data
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql
+spec:
+  type: ClusterIP
+  ports:
+    -
+      port: 1433
+      targetPort: 1433
+      protocol: TCP
+  selector:
+    app: mssql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-deployment
+  labels:
+    app: mssql
+spec:
+  selector:
+    matchLabels:
+      app: mssql
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      terminationGracePeriodSeconds: 10
+      volumes:
+        - name: mssqldb
+          persistentVolumeClaim:
+            claimName: mssql-data
+      containers:
+        - name: mssql
+          image: mssql/server
+          ports:
+            - containerPort: 1433
+          env:
+            - name: MSSQL_PID
+              value: Express
+            - name: ACCEPT_EULA
+              value: 'Y'
+            - name: SA_PASSWORD
+              value: Password01!
+          volumeMounts:
+            - name: mssqldb
+              mountPath: /var/opt/mssql
+```
+
+To share common files between the Octopus server instances, we need to have access to three shared volumes that multiple pods can read to and write from simultaneously. These are created via persistent volume claims with an access mode of `ReadWriteMany` to indicate they are shared between multiple pods. The YAML below creates shared persistent volume claims that will host the task logs, the built-in feed and the artifacts:
+
+:::note
+Note that the storage class name of `azurefile` is specific to Azure AKS, and other Kubernetes providers will expose different names for their shared filesystems.
+:::
+
+```YAML
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: repository-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile
+  resources:
+    requests:
+      storage: 1Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: artifacts-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile
+  resources:
+    requests:
+      storage: 1Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: task-logs-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+```YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: octopus-web
+spec:
+  type: LoadBalancer
+  ports:
+    - name: web
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: octopus
+```
+
+```YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: octopus-0
+spec:
+  type: LoadBalancer
+  ports:
+    - name: web
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+    - name: tentacle
+      port: 10943
+      targetPort: 10943
+      protocol: TCP
+  selector:
+    statefulset.kubernetes.io/pod-name: octopus-0
+```
+
+```YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: octopus-1
+spec:
+  type: LoadBalancer
+  ports:
+    - name: web
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+    - name: tentacle
+      port: 10943
+      targetPort: 10943
+      protocol: TCP
+  selector:
+    statefulset.kubernetes.io/pod-name: octopus-1
+```
+
 ## Adding deployment targets
 
 In addition to cloud deployments, self-hosted deployments are supported through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided, or you can download Tentacle as a standalone archive. 
 
-Of course, you can still connect Windows Tentacles to the Linux version of Octopus if you need to manage deployments and operations across operating systems.
+Of course, you can still connect Windows Tentacles to the Linux version of Octopus if you need to manage deployments and operations across operating systems. 
 
 ## Where to go from here
 
