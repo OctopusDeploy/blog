@@ -247,7 +247,7 @@ To reorder the child steps:
 
 #### The rolling deployment process
 
-Some of the steps in the rolling deployment process aren’t required for the `Development` Environment. This is because in that environment, we’re not using a load balancer. To skip the steps which don’t need to run, we can make use of an Environment [run condition](https://octopus.com/docs/deployment-process/conditions#environments). This will skip the steps used for the load-balanced environments. 
+Some of the steps in the rolling deployment process aren’t required for the `Development` Environment. This is because we’re not using a load balancer in that environment. To skip the steps which don’t need to run, we can make use of an Environment [run condition](https://octopus.com/docs/deployment-process/conditions#environments). This will skip the steps applicable to the load-balanced environments when deploying to `Development`.
 
 The complete rolling deployment process is shown here: 
 
@@ -255,7 +255,6 @@ The complete rolling deployment process is shown here:
 
 You can see an example of a deployment to `Production` using the new rolling deployment process:
 
-**TODO: Change image to reflect new child-step names**
 ![Project rolling deployment run](project-rolling-deployment-run.png)
 
 And that’s it! We’ve successfully converted our deployment process from a sequential one to a rolling deployment process.
@@ -267,26 +266,21 @@ You can see the complete PetClinic deployment process **after** the conversion t
 
 ### Switch over to new Infrastructure
 
+In order to utilise our new infrastructure, we need to direct our users to our application via the load balancer. The simplest way to do that is to adjust your DNS records. In the case of PetClinic, I just need to adjust the DNS [A record](https://en.wikipedia.org/wiki/List_of_DNS_record_types) to point to the load balancer, and wait for the DNS changes to update.
+
 :::warning
-Switching your DNS over may result in downtime.
+Changing any DNS records may result in a period of time where users are still connecting directly to the virtual machines. This is usually no more than 24 hours, but will depend on your DNS provider and how long the DNS changes take to propagate.
 :::
 
 ### Clean-up
 
-At this point, you can clean up your old Octopus project by either disabling it, and effectively archiving it, or delete it if you no longer need it for any audit requirements.
-
-:::success
-**Sample Octopus Projects**
-You can see the before and after of the project conversion discussed here in our samples instance.
-
-- [PetClinic project - with no rolling deployments](https://g.octopushq.com/PatternRollingSamplePetClinicNoRollingDeploy)
-- [PetClinic project - with rolling deployments](https://g.octopushq.com/PatternRollingSamplePetClinicRollingDeploy)
-- [PetClinic Infrastructure Runbooks](https://g.octopushq.com/PatternRollingSamplePetClinicIacRunbooks)
-:::
+At this point, you no longer need your old Octopus project. You can clean it up by either disabling it (and effectively archiving it), or delete it if you no longer need it for any audit requirements.
 
 ## Conclusion
 
-TODO
+As you can hopefully see from this post, with a few steps, you can switch from a sequential deployment process in Octopus to one utilising the rolling deployments feature. This allows you to benefit from reduced downtime, safe in the knowledge that your application can remain online to serve requests to your users.
+
+Until next time, Happy Deployments! 
 
 ## Learn more
 - [Octopus Rolling deployments docs](https://octopus.com/docs/deployment-patterns/rolling-deployments)
