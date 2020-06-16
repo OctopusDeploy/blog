@@ -10,9 +10,18 @@ tags:
  -
 ---
 
-I recently decided to use Docker to replace the VMs on my hypervisor with containers. In this post, I share some of the lessons I learned running the new Raspberry Pi 4 in a cluster with Docker Swarm.
+Like many others, I had to stay home through the COVID-19 crisis, so I decided to build a Raspberry PI cluster to explore running applications on it with Docker Swarm. In this post, I share some of the lessons I learned running the new Raspberry Pi 4 in a cluster with Docker Swarm.
 
-## Parts
+## Why
+I'm a developer, and I've been interested in starting a Raspberry PI project for a while. I'm also interested in cluster computing, but never had a good reason to create a cluster. Then I read about people having great success running the new Raspberry Pi 4 in a cluster with Docker Swarm, so I thought it was an opportune time to learn more.
+
+I kicked off this project with several goals:
+
+- Have fun as Raspberry PIs are pretty cool hardware.
+- Shift some computing resources from a home hypervisor server running VMs to the small, power-efficient Raspberry PI cluster running containers.
+- Learn more about Docker Swarm.
+
+## Raspberry Pi Hardware
 
 These are the parts I used for my project:
 
@@ -40,7 +49,7 @@ There are tons of blog posts out there that show you how to create a cluster of 
 
 ## Operating the Swarm
 
-I have played around with Kubernetes (K8s) and Docker before taking on this project. However, I’d never run a Docker Swarm.  There were some new concepts to learn when running things in Docker Swarm mode versus a stand-alone Docker instance.  For example, where you would normally use a `docker run` statement, you’d create a service within the swarm to run the container using `docker service create`.  After messing around for a while, I had a fully operational Swarm:
+Through work, I already had some experience in working with Docker and Kubernetes (K8s), however, I’d never run a Docker Swarm.  There were some new concepts to learn when running things in Docker Swarm mode versus a stand-alone Docker instance.  For example, where you would normally use a `docker run` statement, you’d create a service within the swarm to run the container using `docker service create`.  After messing around for a while, I had a fully operational Swarm:
 
 ![](docker-swarm.png)
 
@@ -55,7 +64,7 @@ In some cases, you can use a work-around and tell Docker not to resolve the imag
 
 ## Lesson 2: Stacks
 
-Stacks are the Docker Swarm way of using docker-compose. In fact, it uses a compose file as one of its arguments.  Just like docker-compose, you can define multiple containers within a single file.  By default, a stack deployment will create a network for the stack so they can all talk to each other.  This makes it easy to refer one container to another just by name.  For example, below is a compose file for running [Home Assistant](https://www.home-assistant.io/) on my docker swarm.  This stack consists of an MQTT service container, a Home Assistant container, and a MySQL database server container.  For reasons I’ll go into later, I configured Home Assistant to use a MySQL back-end for the Recorder:
+Stacks are the Docker Swarm way of using [docker-compose](https://docs.docker.com/compose/). In fact, it uses a compose file as one of its arguments.  Just like docker-compose, you can define multiple containers within a single file.  By default, a [stack deployment](https://docs.docker.com/engine/reference/commandline/stack_deploy/) will create a network for the stack so they can all talk to each other.  This makes it easy to refer one container to another just by name.  For example, below is a compose file for running [Home Assistant](https://www.home-assistant.io/) on my docker swarm.  This stack consists of an MQTT service container, a Home Assistant container, and a MySQL database server container.  For reasons I’ll go into later, I configured Home Assistant to use a MySQL back-end for the Recorder:
 
 ```
 version: "3.3"
@@ -100,7 +109,7 @@ networks:
   hass:
 ```
 
-In the `configuration.yaml` file, you can see where I created the connection to the mysqldb container:
+In the `configuration.yaml` of file of Home Assistant, you can see where I created the connection to the mysqldb container:
 
 ```
 
