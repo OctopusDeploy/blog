@@ -1,6 +1,6 @@
 ---
 title: Infrastructure as code with Terraform for developers
-description:
+description: Learn about infrastructure as code and Terraform for developers.
 author:
 visibility: public
 published: 2021-06-09
