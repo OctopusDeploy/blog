@@ -109,7 +109,7 @@ networks:
   hass:
 ```
 
-In the `configuration.yaml` of file of Home Assistant, you can see where I created the connection to the mysqldb container:
+In the `configuration.yaml` file of Home Assistant, you can see where I created the connection to the mysqldb container:
 
 ```
 
