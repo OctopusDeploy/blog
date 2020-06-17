@@ -1,7 +1,7 @@
 ---
 title: Infrastructure as code with Terraform for developers
 description: Learn about infrastructure as code and Terraform for developers.
-author:
+author: michael.levan@clouddev.engineering
 visibility: public
 published: 2021-06-09
 metaImage:
