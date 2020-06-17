@@ -315,7 +315,7 @@ spec:
 
 Finally, we combine all the resources above into a stateful set that creates the Octopus nodes.
 
-A stateful set provides a mechanism for deploying pods that have fixed names, consistent ordering and an initial deployment process that rolls out one pod at a time ensuring each is healthy before the next is starting (although redeployments need special consideration, which we'll cover later). This functionality works very nicely when deploying Octopus, as we need to ensure that Octopus instances start sequentially so only one instance attempts to apply updates to the database schema.
+A stateful set provides a mechanism for deploying pods that have fixed names, consistent ordering and an initial deployment process that rolls out one pod at a time, ensuring each is healthy before the next is started (although redeployments need special consideration, which we'll cover later). This functionality works very nicely when deploying Octopus, as we need to ensure that Octopus instances start sequentially so only one instance attempts to apply updates to the database schema.
 
 The YAML below creates a stateful set with two pods. These pods will be called `octopus-0` and `octopus-1`, which will also be the value assigned to the `statefulset.kubernetes.io/pod-name` label, which in turn is how we link services exposing individual pods. The pods then mount the shared volumes for artifacts, logs and the built-in feed.
 
