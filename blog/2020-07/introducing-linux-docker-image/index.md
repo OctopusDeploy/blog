@@ -207,7 +207,7 @@ spec:
               mountPath: /var/opt/mssql
 ```
 
-To share common files between the Octopus server instances, we need to have access to three shared volumes that multiple pods can read to and write from simultaneously. These are created via persistent volume claims with an access mode of `ReadWriteMany` to indicate they are shared between multiple pods. The YAML below creates shared persistent volume claims that will host the task logs, the built-in feed and the artifacts:
+To share common files between the Octopus nodes, we need to have access to three shared volumes that multiple pods can read to and write from simultaneously. These are created via persistent volume claims with an access mode of `ReadWriteMany` to indicate they are shared between multiple pods. The YAML below creates shared persistent volume claims that will host the task logs, the built-in feed and the artifacts:
 
 :::note
 Note that the storage class name of `azurefile` is specific to Azure AKS, and other Kubernetes providers will expose different names for their shared filesystems.
@@ -251,7 +251,7 @@ spec:
       storage: 1Gi
 ```
 
-The Octopus web interface is a React single page application (SPA) that can service all backend requests from any Octopus node. This means we can expose all Octopus nodes through a single load balancer for the web interface. Below is the YAML for a load balancer service directing web traffic on port 80 to pods with the label `app:octopus`:
+The Octopus web interface is a React single page application (SPA) that can direct all backend requests to any Octopus node. This means we can expose all Octopus nodes through a single load balancer for the web interface. Below is the YAML for a load balancer service directing web traffic on port 80 to pods with the label `app:octopus`:
 
 ```YAML
 apiVersion: v1
