@@ -118,7 +118,7 @@ Previously, users accessed the PetClinic web front-end directly on a single virt
 
 In order to change our deployment process, and keep the ability to deploy PetClinic sequentially, we need to create a new project. One way to achieve this is by [cloning](https://octopus.com/docs/projects#clone-a-project) the existing project.
 
-In the existing project, under *Settings*, ese the overflow menu (...) and select **Clone**:
+In the existing project, under *Settings*, use the overflow menu (...) and select **Clone**:
 
 ![Project clone menu option](project-clone-menu-option.png)
 
