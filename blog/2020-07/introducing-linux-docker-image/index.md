@@ -130,7 +130,7 @@ This means end-users no longer need to manage separate Workers with tools like `
 
 As the introduction to this post mentioned, the driving force behind running Octopus on Linux was to allow it to run in Kubernetes, and this option is available now to those wishing to host Octopus in their own Kubernetes clusters.
 
-Since high availability (HA) and Kubernetes go hand in hand, so the solution presented here supports scaling Octopus server instances with multiple HA nodes.
+Since high availability (HA) and Kubernetes go hand in hand, the solution presented here supports scaling Octopus server instances with multiple HA nodes.
 
 There are a number of aspects to consider when deploying a HA Octopus cluster, including:
 * A HA database.
