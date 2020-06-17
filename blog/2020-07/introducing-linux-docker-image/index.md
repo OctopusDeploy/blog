@@ -438,7 +438,7 @@ One limitation with stateful sets is how they process updates. For example, if t
 
 The typical solution to this problem is to use a recreate deployment strategy. Unfortunately stateful sets do not support the recreate strategy.
 
-What this means is that the stateful set can not be updated in place, but instead must be deleted and a new version. This new, fresh copy of the stateful set will then start the new pods one by one, allowing the database update to complete as expected.
+What this means is that the stateful set can not be updated in place, but instead must be deleted and then a new version deployed. This new, fresh copy of the stateful set will then start the new pods one by one, allowing the database update to complete as expected.
 
 Once fully deployed, this configuration will have three load balancers, and in turn three public IPs.
 
