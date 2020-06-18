@@ -1,6 +1,6 @@
 ---
 title: Testing Terraform code
-description:
+description: Learn how to test Terraform code.
 author: michael.levan@clouddev.engineering
 visibility: public
 published: 2030-01-01
