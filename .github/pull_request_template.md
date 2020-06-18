@@ -5,7 +5,7 @@ This is a post about...
 # Pre-requisites
 
 - [ ] The draft is complete and this post is ready to be reviewed.
-- [ ] I'm familiar with the writing tips for the blog.
+- [ ] I'm familiar with the [writing tips for the blog](https://style.octopus.com/writing-tips-for-the-blog).
 - [ ] The PR build passes validation, and if it doesn't, I've checked the [common validations errors](https://style.octopus.com/writing-at-octopus-tldr#common-validation-errors) and none of those apply.
 - [ ] The images I've included follow the [rules for working with images](https://style.octopus.com/images#rules-for-screenshots).
 
