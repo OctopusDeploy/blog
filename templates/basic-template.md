@@ -4,8 +4,8 @@ description: A brief summary of the post.
 author: Joan Smith
 visibility: private
 published: 3020-01-01
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
+metaImage: 
+bannerImage: 
 tags:
   - tag
 ---
