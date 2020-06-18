@@ -2,12 +2,13 @@
 title: Publishing a package to a local Octopus with GitHub Actions
 description: Learn how to push a package to a local instance of Octopus Deploy with a GitHub Actions Runner
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2021-06-27
+visibility: public
+published: 2020-06-18
 metaImage: 
 bannerImage: 
 tags:
  - DevOps
+ - Continuous Integration
 ---
 
 Earlier this year, my colleague Ryan Rousseau wrote a blog post about [publishing a package to Octopus Deploy using GitHub Actions](https://octopus.com/blog/publishing-a-package-to-octopus-with-github-actions).  In this post, I'll take that a step further by publishing a package to a *local* instance of Octopus Deploy with a self-hosted GitHub Actions Runner.
