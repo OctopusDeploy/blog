@@ -223,7 +223,6 @@ jobs:
 
     - name: Push blog.rousseau.dev to Octopus
       run: octo push --package="./packages/blog.rousseau.dev.$PACKAGE_VERSION.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_KEY }}"
-
 ```
 
 ## Conclusion

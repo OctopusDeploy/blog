@@ -271,6 +271,8 @@ From within your Octopus Deploy project, click **CREATE RELEASE**, and after you
 
 When the release begins to deploy, it will send information to Jira. In Jira, we can see the issue is currently being deployed to development.
 
+![](jira-release-deploying.png)
+
 ## Conclusion
 Jenkins, Jira, and Octopus Deploy are all powerful DevOps tools.  When you integrate the three together, you get a powerful DevOps solution that provides continuous feedback to developers, operations, and business teams alike.
 
