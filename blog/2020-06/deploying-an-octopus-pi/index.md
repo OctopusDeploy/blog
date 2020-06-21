@@ -5,9 +5,10 @@ author: ben.pearce@octopus.com
 visibility: public
 metaImage: metaimage-raspberrypi.png
 bannerImage: blogimage-raspberrypi.png
-published: 2020-07-21
+published: 2020-06-22
 tags:
  - Engineering
+ - Raspberry Pi
 ---
 ![Octopus enjoying a Raspberry Pi](blogimage-raspberrypi.png)
 
