@@ -1,15 +1,17 @@
 ---
 title: Linux worker for PowerShell templates
-description: Using a Linux worker to run Step Templates written in PowerShell
+description: Using a Linux worker to run Step Templates written in PowerShell.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2021-05-20
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-06-24
+metaImage: powershell-linux.png
+bannerImage: powershell-linux.png
 tags:
- - Product
+ - DevOps
  - Linux
 ---
+
+![Linux worker for PowerShell templates](powershell-linux.png)
 
 Octopus Deploy has over 400 step templates that you can use in your deployments. Many of these templates are written in PowerShell, and with the introduction of the [Linux Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) a handful of step templates that have been converted to Bash versions, however, with PowerShell Core, converting existing templates to Bash isn't necessary.
 
