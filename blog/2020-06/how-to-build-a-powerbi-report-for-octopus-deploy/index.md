@@ -11,7 +11,7 @@ tags:
   - Engineering
 ---
 
-In this post, I share some templates that will help you build a PowerBI report from your Octopus Deploy database that will show you how much time and money automation has saved you and your company. I’ll also show you how to highlight development issues, such as how many times releases have been skipped due to bugs not being found in lower level environments.
+In this post, I share some data I pulled from my Octopus Deploy database for use in a PowerBI report. I use these reports to highlight how much time and money automation has saved my company, and to spot potential development issues that slow down deployments, such as how many times releases have been skipped due to bugs not being found in lower-level environments. At the end of the post, I share some templates to make this process easier for you to replicate.
 
 This should help highlight how much automation can save in time and money, and even justify the need to increase automation and testing resources.
 
