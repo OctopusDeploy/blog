@@ -1,14 +1,17 @@
 ---
-title: My Raspberry Pi cluster project
-description: Raspberry Pi cluster lessons learned
+title: Lessons learned building a Raspberry Pi cluster
+description: Learn how to build and configure a Raspberry Pi cluster for fun and development purposes.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-06-23
+metaImage: raspberry-pi-cluster.png
+bannerImage: raspberry-pi-cluster.png
 tags:
- -
+ - Engineering
+ - Raspberry Pi
 ---
+
+![Lessons learned building a Raspberry Pi cluster](raspberry-pi-cluster.png)
 
 Like many others, I had to stay home through the COVID-19 crisis, so I decided to build a Raspberry PI cluster to explore running applications on it with Docker Swarm. In this post, I share some of the lessons I learned running the new Raspberry Pi 4 in a cluster with Docker Swarm.
 
