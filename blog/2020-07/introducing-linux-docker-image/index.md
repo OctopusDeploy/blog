@@ -352,8 +352,8 @@ spec:
       - name: task-logs-vol
         persistentVolumeClaim:
           claimName: task-logs-claim
-      imagePullSecrets:
-      - name: myregistrykey
+      securityContext:
+          privileged: true
       containers:
       - name: octopus        
         image: octopusdeploy/octopusdeploy:2020.3.0.linux
