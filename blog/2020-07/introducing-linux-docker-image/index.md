@@ -352,11 +352,11 @@ spec:
       - name: task-logs-vol
         persistentVolumeClaim:
           claimName: task-logs-claim
-      securityContext:
-          privileged: true
       containers:
       - name: octopus        
         image: octopusdeploy/octopusdeploy:2020.3.0.linux
+        securityContext:
+          privileged: true
         env:
           - name: ACCEPT_EULA
             # "Y" means accepting the EULA at https://octopus.com/company/legal
