@@ -15,7 +15,7 @@ In this post, I share the analysis of the data I pulled from my Octopus Deploy d
 
 Hopefully, these reports will get you pointed in the right direction to help you highlight how much automation can save in time and money, and even justify the need for automation and testing resources.
 
-This is a preview of what I put together. In this post, we’ll go over how you can create a connection and pull data from your instance of Octopus Deploy. I’ve also included PowerBI Desktop templates for your cloud and local instances to help you get started as quickly as possible.
+This is a preview of what I put together. In this post, we’ll go over how you can create a connection and pull data from your instance of Octopus Deploy. The PowerBI templates I've included cover both your cloud and local instances to help you get started as quickly as possible.
 
 ![PowerBI Report For Octopus Deploy](headlinerimage.png)
 
