@@ -46,16 +46,17 @@ For me, the highlights are:
 
 To create a Farmer Template, we first need to create a .NET Core application. You can do this in your IDE of choice, or if you prefer the command line you can use the `dotnet new` command, passing the template of the type of application you require. 
 
-For a Farmer template, it’s not uncommon to create a `console` application like this:
+For a Farmer template, it’s common to create a console application, and you can achieve that using the `dotnet new console` command: 
 
 ```bash
-dotnet new console -lang "F#" -f "netcoreapp3.1"
+dotnet new console -lang "F#" -f "netcoreapp3.1" -n "SimpleAzureWebApp"
 ```
+This creates a new F# .NET Core 3.1 application with the name **SimpleAzureWebApp**, as we supplied the name with the `-n` parameter.
 
-However, for this example, I’ll create a class library as I will be deploying the template from within [Octopus](#Depoy-the-Template) directly. You do this by passing the `classlib` parameter to the command:
+Next, we need to add Farmer to the project, by running the `add package` command:
 
 ```bash
-dotnet new classlib -lang "F#" -f "netcoreapp3.1" -n "SimpleAzureWebApp"
+dotnet add SimpleAzureWebApp package Farmer
 ```
 
 :::hint
