@@ -13,26 +13,46 @@ tags:
 Managing Kubernetes via the command-line can be cumbersome and tedious, especially when you have multiple clusters to take care of.  To ease this burden, a number of tools have been developed to easily create and manage Kubernetes clusters.  One such product is called [Rancher](http://www.rancher.com).  In this post I'll show you how to add your Kubernetes cluster that is managed by Rancher as a deployment target in Octopus Deploy and deploy to it.
 
 ## Getting started with Rancher
-Rancher is a rather unique application in that it's not actually installed anywhere.  Instead, Rancher runs within a Docker container and can run anywhere that Docker is installed.  This is all that is required to get started, 
+Rancher is a rather unique product in that it's not actually installed anywhere.  Instead, Rancher runs within a Docker container and can run anywhere that Docker is installed.  This is all that is required to get started, 
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
 ```
 
-There are, of course, more advanced installations with High Availability and a range of other options (see https://rancher.com/docs/rancher/v2.x/en/installation/), but for testing it out, that's all that is needed.  Once the container is up and running, connect to it with a browser and set the `admin` password.  That's it!  You're now ready to create a cluster!
+There are, of course, more advanced installations with High Availability and a range of other options (see https://rancher.com/docs/rancher/v2.x/en/installation/), but for testing it out, that's all that is needed.  Once the container is up and running, connect to it with a browser and set the `admin` password.  After setting the password, you're ready to create a cluster.
 
 ## Creating a cluster
 Rancher has made the process of creating a cluster really simple and easy to follow.  Once in the UI, simply click on **Add Cluster**
 
 ![](rancher-add-cluster.png)
 
-The next screen shows you the different options you have when creating a cluster.  Rancher can work with on-premise infrastructure, infrastructure on popular cloud providers, even manage cloud Kubernetes cluster services such as Amazon Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE).  You can even connect Rancher to existing clusters.  For this post, I created three Ubuntu VMs for my cluster so I chose **From existing nodes (Custom)**.
+Rancher can work with:
+- On-premise infrastructure
+- Cloud infrastructure providers
+  - Amazon EC2
+  - Azure
+  - Digital Ocean
+  - Linode
+  - vShere
+- Cloud Kubernetes sercices
+  - Amazon Elastic Kubernetes Service (EKS)
+  - Azure Kubernetes Service (AKS)
+  - Google Kubernetes Engine (GKE)
+
+For this post, I created three Ubuntu VMs for my cluster so I chose **From existing nodes (Custom)**.
 
 ![](rancher-choose-cluster.png)
 
 The next screen asks for the cluster name as well as some other options, I just chose the defaults and clicked **Next**.  
 
-Clusters managed my Rancher need to have nodes that serve three roles, [etcd](https://rancher.com/blog/2019/2019-01-29-what-is-etcd/), [Control Plane](https://kubernetes.io/docs/concepts/), and worker.  The final screen of the creation process presents us with checkboxes with the three options.  Checking or unchecking a box updates the command on the screen to run against the members of the cluster.  It is possible to assign a single node with all three roles, for this post, I chose one role per VM (image shows all three options selected)
+![](rancher-name-cluster.png)
+
+The final screen of the creation process presents us with checkboxes with  three options.  Clusters managed my Rancher need to have nodes that serve three roles:
+- [etcd](https://rancher.com/blog/2019/2019-01-29-what-is-etcd/)
+- [Control Plane](https://kubernetes.io/docs/concepts/)
+- worker.
+
+Checking or unchecking a box updates the command on the screen to run against the members of the cluster.  It is possible to assign a single node with all three roles, for this post, I chose one role per VM (image shows all three options selected)
 
 ![](rancher-node-roles.png)
 
@@ -41,7 +61,7 @@ As you run the commands on each node, the screen will show a pop-up indicating h
 ![](rancher-new-cluster.png)
 
 ## Connecting the cluster to Octopus Deploy
-Connecting to clusters that are managed by Rancher is different than a regular cluster.  Where you would normally use the URL of the cluster API, you instead proxy everything through Rancher itself.
+Not only does Rancher provide a centralized interface to manage Kubernetes clusters, it also provides a centralized means of communication to the clusters.  This means that Octopus Deploy can connect to Rancher instead of having to connect to the clusters it manages individually.
 
 ### Authentication
 Before we can add our Rancher managed cluster, we must first create a means of authenticating to it.  This can be accomplished using the Rancher UI to create a key for access.  Log into Racher, then click on your Profile in the upper right-hand corner and choose **API & Keys**
@@ -119,6 +139,15 @@ This is where we use the URL we found from the `kubeconfig`.  In my case, it was
 Click **SAVE** and you're done!  For verification, you can watch for the initial health check to run.
 
 ## Deploying to the cluster
-Deploying to a cluster that is managed through Rancher is no different than deploying to a non-Rancher managed cluster.  I'll use the same example project from my [Beyond Hello World: Build a real-world Kubernetes CI/CD pipeline](https://octopus.com/blog/build-a-real-world-kubernetes-cicd-pipeline) post, but change the target to the Rancher managed cluster instead.  If you haven't read that post, the project looks like this,
+Deploying to a cluster that is managed through Rancher is no different than deploying to a non-Rancher managed cluster.  I'll use the same example process from my [Beyond Hello World: Build a real-world Kubernetes CI/CD pipeline](https://octopus.com/blog/build-a-real-world-kubernetes-cicd-pipeline) post, but target the Rancher managed cluster instead.  If you haven't read that post, the project looks like this,
 
+![](octopus-project-process.png)
 
+Deploying the Release, we can see it executed against Rancher-dev
+
+![](octopus-project-deployment-complete.png)
+
+And there you have it, we've successfully deployed to a Kubernetes cluster managed by Rancher!
+
+## Conclusion
+In this post I demonstrated how you can integrate Racher with Octopus deploy.  Happy Deployments!
