@@ -1,14 +1,17 @@
 ---
 title: Maven repositories explained
-description: Learn how Maven repositories are structured and how to access artifacts stored in them
+description: Learn how Maven repositories are structured and how to access artifacts stored in them.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-06-17
+metaImage: maven-repo.png
+bannerImage: maven-repo.png
 tags:
- - Octopus
+ - DevOps
+ - Java
 ---
+
+![Maven repositories explained](maven-repo.png)
 
 Maven provides many features for Java developers. As a build tool, Maven provides a well supported project format and a huge selection of build tool plugins to create almost any kind of Java (or JVM) application imaginable. Other build tools like Gradle also exist in this space, though Maven is still popular.
 

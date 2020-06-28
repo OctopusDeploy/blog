@@ -4,8 +4,8 @@ description: A brief summary of the post.
 author: Joan Smith
 visibility: private
 published: 3020-01-01
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
+metaImage: 
+bannerImage: 
 tags:
   - tag
 ---
@@ -26,9 +26,11 @@ Use **Bold** text for UI labels, use single back-tics for `parameters` and `file
 Write-Host "Hello, World!"
 ```
 
-Use the following to include images:
+Use the following (minus the backtics) to include images:
 
+```
 ![Description of the image](/path/to/image.png "width=500")
+```
 
 ## Conclusion
 
