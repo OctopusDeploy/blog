@@ -2,13 +2,17 @@
 title: The ultimate guide to Kubernetes microservice deployments
 description: Learn how to deploy microservices into a Kubernetes cluster with Octopus Deploy.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-06-15
+metaImage: k8-microservice-deploymts.png
+bannerImage: k8-microservice-deploymts.png
 tags:
- - Octopus
+ - DevOps
+ - Kubernetes
+ - Microservices
 ---
+
+![The ultimate guide to Kubernetes microservice deployments](k8-microservice-deploymts.png)
 
 Microservices have emerged as a popular development practice for teams who want to release complex systems quickly and reliably. Kubernetes is a natural platform for microservices as it can handle the orchestration required to deploy many instances of many individual microservices. Additionally, there are service mesh technologies that lift common networking concerns from the application layer into the infrastructure layer, making it easy to route, secure, log, and test network traffic.
 
