@@ -13,7 +13,7 @@ tags:
 
 ![Why and how your should automate your database deployments](redgate-logo.png)
 
-Reliability, traceability, speed: these are the top three motivators for automating the deployment of database changes. Especially when it comes to Production, there is no compromising on the level of scrutiny that may just prevent something disastrous happening in Production.
+Reliability, traceability, speed: these are the top three motivators for automating the deployment of database changes.  Especially when it comes to Production, there is no compromising on the level of scrutiny that may just prevent something disastrous happening in Production.
 
 This need for quality has a strange effect. We talked recently to 30 teams at various stages of automating database deployment, and we were surprised that for many teams the need for quality deployments prevented them automating at first.
 
