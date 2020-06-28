@@ -13,7 +13,7 @@ tags:
 
 ![Refactoring Octopus: Adding strict null checks to the Octopus front-end](refactoring-octopus.png)
 
-Nulls are often said to be the billion-dollar mistake. They creep up when you least expect them, and in some pretty interesting ways. The problem isn’t in the representation of null itself, it’s more that we often forget to deal with the `null` case. It’s for this reason that some languages completely shy away from the concept of null and choose to represent the concept in a type-safe way using the `Option` monad. Functional programming isn’t always an easy sell, and in some cases, we may still have legacy codebases. This is where `strictNullChecks` compiler flag swoops in and saves the day. This single switch allows typescript to treat `null` and `undefined` as separate types which forces those cases to be handled. This reduces bugs surrounding `null` and `undefined` and eliminates a lot of complexity when narrowing types appropriately. It also removes the need to write tests for certain cases and provides much faster feedback. If that’s got your attention, let’s look at some strategies for enabling strict nulls in an existing codebase.
+Nulls are often said to be the billion-dollar mistake. They creep up when you least expect them, and in some pretty interesting ways. The problem isn’t in the representation of null itself, it’s more that we often forget to deal with the `null` case. It’s for this reason that some languages completely shy away from the concept of null and choose to represent the concept in a type-safe way using the `Option` monad. Functional programming isn’t always an easy sell, and in some cases, we may still have legacy codebases. This is where `strictNullChecks` compiler flag swoops in and saves the day. This single switch allows TypeScript to treat `null` and `undefined` as separate types which forces those cases to be handled. This reduces bugs surrounding `null` and `undefined` and eliminates a lot of complexity when narrowing types appropriately. It also removes the need to write tests for certain cases and provides much faster feedback. If that’s got your attention, let’s look at some strategies for enabling strict nulls in an existing codebase.
 
 ## Possible Options
 
@@ -26,7 +26,7 @@ There may be a number of situations where you can convert everything in one pass
 
 ### Segregate our front-end codebase
 
-With all the rage around monorepos and typescript supporting project references, this is rather an attractive option. This would effectively allow us to take segments of our codebase and separate these into separate projects, allowing us to enable strict nulls for each individual segment incrementally. At first glance, this option is extremely attractive, but the tooling around this didn’t feel quite complete yet. There are a number of issues surrounding project reference support in `fork-ts-checker-webpack-plugin`, while project references don’t make much sense for react based libraries at the moment. This is still something we would like to revisit in the future, but it isn’t something we had the appetite for as part of converting to strict nulls.
+With all the rage around monorepos and TypeScript supporting project references, this is rather an attractive option. This would effectively allow us to take segments of our codebase and separate these into separate projects, allowing us to enable strict nulls for each individual segment incrementally. At first glance, this option is extremely attractive, but the tooling around this didn’t feel quite complete yet. There are a number of issues surrounding project reference support in `fork-ts-checker-webpack-plugin`, while project references don’t make much sense for react based libraries at the moment. This is still something we would like to revisit in the future, but it isn’t something we had the appetite for as part of converting to strict nulls.
 
 ### Multiple tsconfigs
 
@@ -38,7 +38,7 @@ With this strategy, you would disable strict nulls for your normal development a
 
 ### The non-null-assertion operator
 
-Typescript has the non-null assertion operator (`!`), which acts as a means to tell typescript that something is not null within a particular scope. This allows typing issues surrounding `null` and `undefined` to be suppressed on a case by case basis, but it requires the suppressions be done for every error when strict nulls is enabled. Enabling linting rules to prevent the operator’s usage and suppressing these on a file by file basis is also beneficial to prevent the spread of the operator. This approach allows you to effectively enable strict nulls at a file level, and the associated work to get there can be predictably estimated.
+TypeScript has the non-null assertion operator (`!`), which acts as a means to tell TypeScript that something is not null within a particular scope. This allows typing issues surrounding `null` and `undefined` to be suppressed on a case by case basis, but it requires the suppressions be done for every error when strict nulls is enabled. Enabling linting rules to prevent the operator’s usage and suppressing these on a file by file basis is also beneficial to prevent the spread of the operator. This approach allows you to effectively enable strict nulls at a file level, and the associated work to get there can be predictably estimated.
 
 We decided to use this as our preferred option because we want to implement strict nulls in a predictable manner with as little risk and as little impact as possible.
 
@@ -65,7 +65,7 @@ As part of our conversion process, we didn’t leave things as they were after a
 
 ### Intersection of types can be mutually exclusive
 
-As previously mentioned, Typescript with strict nulls enabled will treat `null` and `undefined` as different types and will apply stricter checks on intersections of types. An example of this is using an intersection between a `Record` and another type which contain optional properties for keys. Take the following as an example:
+As previously mentioned, TypeScript with strict nulls enabled will treat `null` and `undefined` as different types and will apply stricter checks on intersections of types. An example of this is using an intersection between a `Record` and another type which contain optional properties for keys. Take the following as an example:
 
 ```
 type RouteArgs = Record<string, string>;
@@ -82,7 +82,7 @@ type Record<K extends keyof any, T> = {
 };
 ```
 
-This means we can’t provide `undefined` as a key for `Record` since `keyof` `undefined` evaluating to the bottom type `never`. This also means that the intersection between the types don’t make sense, leading to the optional prop being dropped, and as a result, typescript complaining. It’s worth noting that typescript is getting more strict regarding this sort of thing with [typescript 3.9](https://devblogs.microsoft.com/typescript/announcing-typescript-3-9-rc/#breaking-changes).
+This means we can’t provide `undefined` as a key for `Record` since `keyof` `undefined` evaluating to the bottom type `never`. This also means that the intersection between the types don’t make sense, leading to the optional prop being dropped, and as a result, TypeScript complaining. It’s worth noting that TypeScript is getting more strict regarding this sort of thing with [TypeScript 3.9](https://devblogs.microsoft.com/typescript/announcing-typescript-3-9-rc/#breaking-changes).
 
 ### Indexing into types can get tricky with undefined in the mix
 
@@ -156,7 +156,7 @@ Unfortunately, that doesn’t work very well after you enable strict nulls, and 
 
 ### Strict nulls also mean stricter typing around functions
 
-Typescript lets you enable other strict flags such as `strictFunctionTypes`, which enable stricter bivariant checks. You may find it surprising to note, however, that when enabling only `strictNullChecks` that some stricter checks may be applied to functions unrelated to `null` and `undefined`. React `refs` are a good example of this. You may previously tried to use some base type such as `HTMLElement` for your refs like so:
+TypeScript lets you enable other strict flags such as `strictFunctionTypes`, which enable stricter bivariant checks. You may find it surprising to note, however, that when enabling only `strictNullChecks` that some stricter checks may be applied to functions unrelated to `null` and `undefined`. React `refs` are a good example of this. You may previously tried to use some base type such as `HTMLElement` for your refs like so:
 
 ```
 export default function App() {
@@ -168,7 +168,7 @@ export default function App() {
 }
 ```
 
-Typescript lets you assign directly to the base type, but it won’t be as lenient for functions so you may need to narrow the type:
+TypeScript lets you assign directly to the base type, but it won’t be as lenient for functions so you may need to narrow the type:
 
 ```
 export default function App() {
@@ -184,7 +184,7 @@ Presto, type errors go away, and the compiler is happy.
 
 ### Let’s talk about resource differences
 
-Remember how we mentioned that strict nulls treat `null` and `undefined` as different types? In our particular case, it also meant that we had to slightly vary the interfaces for new and existing resources. This is because creating a resource may require fewer properties than specified. Of course, typescript doesn’t know that, and it’s just trying to be helpful. Let’s take the following resource as an example:
+Remember how we mentioned that strict nulls treat `null` and `undefined` as different types? In our particular case, it also meant that we had to slightly vary the interfaces for new and existing resources. This is because creating a resource may require fewer properties than specified. Of course, TypeScript doesn’t know that, and it’s just trying to be helpful. Let’s take the following resource as an example:
 
 ```
 interface TenantLinks {
@@ -291,6 +291,6 @@ In our experience, optional props, when abused, can result in some subtle bugs a
 
 ## Conclusion
 
-Starting with the most strict typescript compiler rules available when starting a new project is definitely the best option. If you weren’t considering it, please do. Your future self will thank you. If you aren’t so lucky and you have a large existing codebase, it may require some serious, focused effort to get there. None of the options available seems to be perfect, so it’s best to choose the option that best suits your particular scenario, however, the effort seems well worth it. We covered some of the things we learned while converting a particular area in Octopus to be strict nulls compliant. The list is in no means exhaustive, and we expect to learn more as we continue with our journey of converting the remaining areas. We’d love to hear from you regarding patterns you’ve used to deal with strict nulls and whether there are other gotchas and learnings which we have not covered in this post.
+Starting with the most strict TypeScript compiler rules available when starting a new project is definitely the best option. If you weren’t considering it, please do. Your future self will thank you. If you aren’t so lucky and you have a large existing codebase, it may require some serious, focused effort to get there. None of the options available seems to be perfect, so it’s best to choose the option that best suits your particular scenario, however, the effort seems well worth it. We covered some of the things we learned while converting a particular area in Octopus to be strict nulls compliant. The list is in no means exhaustive, and we expect to learn more as we continue with our journey of converting the remaining areas. We’d love to hear from you regarding patterns you’ve used to deal with strict nulls and whether there are other gotchas and learnings which we have not covered in this post.
 
 Until next time, happy deployments!
