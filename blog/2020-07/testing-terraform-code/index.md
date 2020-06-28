@@ -3,12 +3,15 @@ title: Testing Terraform code
 description: Learn how to test Terraform code.
 author: michael.levan@clouddev.engineering
 visibility: public
-published: 2030-01-01
-metaImage: 
-bannerImage: 
+published: 2020-07-06
+metaImage: testing-terraform.png
+bannerImage: testing-terraform.png
 tags:
- - Engineering
+ - DevOps
+ - Terraform
 ---
+
+![Testing Terraform code](testing-terraform.png)
 
 Testing code is one of the more important things a developer can do. In fact, there is a coding practice called Test-Driven Development ([TDD](http://agiledata.org/essays/tdd.html)) that is based around writing tests first and then writing code based on the test. Even if you don't follow test-driven development, it is still extremely important to think about implementing unit tests and mock tests into the code. Without testing, you are essentially deploying code and hoping it will work the way you think it should. Even if the code deploys just fine that one time if the code is changed, you'll have zero ideas about what the outcome will be.
 
