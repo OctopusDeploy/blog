@@ -3,12 +3,15 @@ title: Infrastructure as code with Terraform for developers
 description: Learn about infrastructure as code and Terraform for developers.
 author: michael.levan@clouddev.engineering
 visibility: public
-published: 2021-06-09
-metaImage:
-bannerImage:
+published: 2020-07-01
+metaImage: terraform-for-developers.png
+bannerImage: terraform-for-developers.png
 tags:
- - Engineering
+ - DevOps
+ - Terraform
 ---
+
+![Infrastructure as code with Terraform for developers](terraform-for-developers.png)
 
 When you think of infrastructure as code or software-defined infrastructure, the first thing that typically comes to mind is *DevOps* or *The Infrastructure Team*, but that’s not the case with Terraform. Terraform is written in Hashicorp Configuration Language ([HCL](https://github.com/hashicorp/hcl)), which is a fully functional and immutable based programming language.
 
