@@ -2,8 +2,8 @@
 title: Contributing a step template to the Octopus Deploy Community Library
 description: Learn how to submit a custom step template to the Octopus Deploy Community Library
 author: ryan.rousseau@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-07-08
 metaImage:
 bannerImage:
 tags:
