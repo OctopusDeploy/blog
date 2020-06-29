@@ -260,6 +260,8 @@ Once the package has been uploaded, we can set-up Octopus to run our application
 
 One of the cool things about Octopus is that you get to choose how to deploy your applications. With the introduction of [Operations Runbooks](https://octopus.com/docs/operations-runbooks) last year, that flexibility has been extended even further to operations tasks, for example managing your infrastructure. 
 
+### Create the Runbook
+
 To execute our Farmer Template, we’ll create a Runbook that deploys it to Azure. To do that:
 
  - Create a new Project in Octopus
@@ -275,6 +277,8 @@ To include our package, in the **Referenced Packages** section, click **ADD** an
 ![Add SimpleAzureWebApp Package Reference](script-step-reference-package.png)
 
 Keep all of the defaults and click **OK**.
+
+#### Add the Runbook script
 
 Next we need to add the Inline script which will execute our Farmer Template. We start with adding the Azure credentials needed:
 ```ps
@@ -304,12 +308,31 @@ dotnet SimpleAzureWebApp.dll $appId $secret $tenantId $resourceGroupName $webApp
 In order for this script step to execute, it requires the the .NET Core runtime to be installed on the deployment target or worker where the step is configured to execute.
 :::
 
+#### Add the variables
+
 We also need to add the variables referenced in the script above:
 
 ![Project Variables](project-azure-variables.png)
 
 The `Project.Azure.Account` variable is an [Azure Account variable](https://octopus.com/docs/projects/variables/azure-account-variables), and the rest are Text variables.
 
+### Run the Runbook
+
+If you’ve got this far, then the last part is to bring it all together and run our Runbook in Octopus and deploy the Farmer Template to Azure.
+
+You can see an example runbook run to Development creating the Azure WebApp called `farmer-webapp-dev`:
+
+![Farmer Azure Runbook run](farmer-azure-deployment.png)
+
+Once the runbook has run to completion, you can check your WebApp has been created using the [Azure portal](https://portal.azure.com). Here is the corresponding WebApp that were created in Azure as a result of the runbook run to Development:
+
+![Azure portal farmer webapp](azure-portal-farmer.png)
 ## Conclusion
 
-What’s great about this technique is that you can version control your Farmer Templates so that the code that defines your infrastructure can live alongside the code that runs on it!
+What’s great about this technique of using Farmer to generate and deploy your resources to Azure is that you can version control your Templates so that the code that defines your infrastructure can live alongside the code that runs on it. Plus, no more hassle with manually editing json files, and who doesn’t like that! 
+
+Until next time, Happy Deployments!
+
+## Learn more
+- [Octopus Azure deployment examples](https://octopus.com/docs/deployment-examples/azure-deployments)
+- [Octopus CI/CD guides](https://octopus.com/docs/guides)
