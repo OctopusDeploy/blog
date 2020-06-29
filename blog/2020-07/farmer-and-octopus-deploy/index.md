@@ -64,7 +64,7 @@ Now we have our dependencies, we can go ahead and edit the `Program.fs` file whi
 
 **TL;DR**
 
-If you want to see the complete program, skip straight to the [end](#complete-farmer-template) or view the [source code](https://github.com/OctopusSamples/farmertemplates/src/SimpleAzureWebApp/Program.fs). If not, read on!
+If you want to see the complete program, skip straight to the [end](#complete-farmer-template) or view the [source code](https://github.com/OctopusSamples/farmertemplates/blob/main/src/SimpleAzureWebApp/Program.fs). If not, read on!
 
 ### Template Parameters
 
@@ -297,7 +297,7 @@ Lastly, we get the path of the extracted Farmer Template package using a [packag
 $farmerPackagePath = $OctopusParameters["Octopus.Action.Package[SimpleAzureWebApp].ExtractedPath"]
 Set-Location $farmerPackagePath
 
-dotnet run $appId $secret $tenantId $resourceGroupName $webAppName $webAppSku $webAppLocation
+dotnet SimpleAzureWebApp.dll $appId $secret $tenantId $resourceGroupName $webAppName $webAppSku $webAppLocation
 ```
 ::warning
 **.NET Core runtime pre-requisite**
