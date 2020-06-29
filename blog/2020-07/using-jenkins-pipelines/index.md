@@ -55,3 +55,200 @@ A new Maven tool called **Maven 3** is then created, downloading the latest rele
 ![](maven.png "width=500")
 
 With those settings in place, we are ready to create our first pipeline.
+
+## An example pipeline
+
+Jenkins has two types of pipelines: [scripted](https://www.jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline) and [declarative](https://www.jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline). Declarative pipelines are typically recommended, and this is the format we'll use for our example pipeline.
+
+We'll build a sample application called Random Quotes, which can be found on [GitHub](https://github.com/OctopusSamples/RandomQuotes-Java). The pipeline is defined in a file called [Jenkinsfile](https://github.com/OctopusSamples/RandomQuotes-Java/blob/master/Jenkinsfile). A copy of the Jenkinsfile is shown below:
+
+```groovy
+pipeline {
+    //  parameters here provide the shared values used with each of the Octopus pipeline steps.
+    parameters {
+        // The space ID that we will be working with. The default space is typically Spaces-1.
+        string(defaultValue: 'Spaces-1', description: '', name: 'SpaceId', trim: true)
+        // The Octopus project we will be deploying.
+        string(defaultValue: 'RandomQuotes', description: '', name: 'ProjectName', trim: true)
+        // The environment we will be deploying to.
+        string(defaultValue: 'Dev', description: '', name: 'EnvironmentName', trim: true)
+        // The name of the Octopus instance in Jenkins that we will be working with. This is set in:
+        // Manage Jenkins -> Configure System -> Octopus Deploy Plugin
+        string(defaultValue: 'Octopus', description: '', name: 'ServerId', trim: true)
+    }
+    /*
+        These are the tools we need for this pipeline. They are defined in Manage Jenkins -> Global Tools Configuration.
+    */
+    tools {
+        maven 'Maven 3'
+        jdk 'Java'
+    }
+    agent any
+    stages {
+        /*
+            The OctoCLI tool has been defined with the Custom Tools plugin: https://plugins.jenkins.io/custom-tools-plugin/
+            This is a convenient way to have a tool placed on an agent, especially when using the Jenkins Docker image.
+            This plugin will extract a .tar.gz file (for example https://download.octopusdeploy.com/octopus-tools/7.3.7/OctopusTools.7.3.7.linux-x64.tar.gz)
+            to a directory like /var/jenkins_home/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/OctoCLI/Octo.
+            This directory is then specified as the default location of the Octo CLI in Jenkins under
+            Manage Jenkins -> Global Tools Configuration -> Octopus Deploy CLI.
+        */
+        stage ('Add tools') {
+            steps {
+                sh "echo \"OctoCLI: ${tool('OctoCLI')}\""
+            }
+        }
+        stage('build') {
+            steps {
+                // Update the Maven project version to match the current build
+                sh(script: "mvn versions:set -DnewVersion=1.0.${BUILD_NUMBER}", returnStdout: true)
+                // Package the code
+                sh(script: "mvn package", returnStdout: true)
+            }
+        }
+        stage('deploy') {
+            steps {                
+                octopusPack additionalArgs: '', includePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", outputPath: "${env.WORKSPACE}", overwriteExisting: false, packageFormat: 'zip', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", sourcePath: '', toolId: 'Default', verboseLogging: false
+                octopusPushPackage additionalArgs: '', overwriteMode: 'FailIfExists', packagePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default'
+                /*
+                    Note that the gitUrl param is passed manually from the environment variable populated when this Jenkinsfile is downloaded from Git.
+                    This is from the Jenkins "Global Variable Reference" documentation:
+                    SCM-specific variables such as GIT_COMMIT are not automatically defined as environment variables; rather you can use the return value of the checkout step.
+                    This means if this pipeline checks out its own code, the checkout method is used to return the details of the commit. For example:
+                    stage('Checkout') {
+                        steps {
+                            script {
+                                def checkoutVars = checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
+                                env.GIT_URL = checkoutVars.GIT_URL
+                                env.GIT_COMMIT = checkoutVars.GIT_COMMIT
+                            }
+                            octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}", gitCommit: "${GIT_COMMIT}"
+                        }
+                    }
+                */
+                octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}"
+                octopusCreateRelease additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: true, deploymentTimeout: '', environment: "${EnvironmentName}", jenkinsUrlLinkback: false, project: "${ProjectName}", releaseNotes: false, releaseNotesFile: '', releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false
+                octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "${EnvironmentName}", project: "${ProjectName}", releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
+            }
+        }
+    }
+}
+```
+
+Let's break this file down.
+
+All declarative pipelines start with `pipeline`:
+
+```
+pipeline {
+```
+
+To make our Jenkinsfile generic, we expose all the Octopus specific variables as parameters. The first time Jenkins executes this pipeline, the default values will be used. Running the pipeline then adds these properties to the Jenkins project, meaning you will be prompted for them via the web UI when manually triggering the build a second time:
+
+```
+    //  parameters here provide the shared values used with each of the Octopus pipeline steps.
+    parameters {
+        // The space ID that we will be working with. The default space is typically Spaces-1.
+        string(defaultValue: 'Spaces-1', description: '', name: 'SpaceId', trim: true)
+        // The Octopus project we will be deploying.
+        string(defaultValue: 'RandomQuotes', description: '', name: 'ProjectName', trim: true)
+        // The environment we will be deploying to.
+        string(defaultValue: 'Dev', description: '', name: 'EnvironmentName', trim: true)
+        // The name of the Octopus instance in Jenkins that we will be working with. This is set in:
+        // Manage Jenkins -> Configure System -> Octopus Deploy Plugin
+        string(defaultValue: 'Octopus', description: '', name: 'ServerId', trim: true)
+    }
+```
+
+The Maven and Java tools we configured in the previous section are included in this pipeline through the `tools` section:
+
+```
+    tools {
+        maven 'Maven 3'
+        jdk 'Java'
+    }
+```
+
+This build will run on any agent, which is indicated via the `agent` setting:
+
+```
+    agent any
+```
+
+We then define the stages that the pipeline will move through:
+
+```
+    stages {
+```
+
+The first stage echos the location of the custom tool called **OctoCLI**. Interestingly the custom tools plugin is not defined in the `tools` section. This [Jenkins issue](https://issues.jenkins-ci.org/browse/JENKINS-30680) has details on this limitation. But by calling `tool('OctoCLI')`, the custom tool is installed as part of the pipeline:
+
+```
+        stage ('Add tools') {
+            steps {
+                sh "echo \"OctoCLI: ${tool('OctoCLI')}\""
+            }
+        }
+```
+
+The build stage calls the Maven CLI, which is now on the path thanks to the Maven tool referenced previously, to set the version of the project and package it up:
+
+```
+        stage('build') {
+            steps {
+                // Update the Maven project version to match the current build
+                sh(script: "mvn versions:set -DnewVersion=1.0.${BUILD_NUMBER}", returnStdout: true)
+                // Package the code
+                sh(script: "mvn package", returnStdout: true)
+            }
+        }
+```
+
+The final stage is where the package is deployed with Octopus:
+
+```
+        stage('deploy') {
+            steps {
+```
+
+We start by packing up the JAR file into a ZIP file. This step is redundant in practice, as you can push a JAR file directly to Octopus. Indeed all the Java deployment steps typically expect a JAR file rather than a JAR in a ZIP. But for the purposes of demonstrating the `octopusPack` step, we'll assume that the deployment process does want a JAR in a ZIP:
+
+```
+                octopusPack additionalArgs: '', includePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", outputPath: "${env.WORKSPACE}", overwriteExisting: false, packageFormat: 'zip', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", sourcePath: '', toolId: 'Default', verboseLogging: false
+```
+
+The `octopusPushPackage` step pushes the ZIP file to the Octopus built in feed. Note how we have referenced the parameters defined earlier as `${ServerId}` and `${SpaceId}`:
+
+```
+                octopusPushPackage additionalArgs: '', overwriteMode: 'FailIfExists', packagePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default'
+```
+
+In addition to the application package, we will also push a build information package, which includes GIT commit messages and links. We'll see this information displayed in Octopus later in the post.
+
+```
+                octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}"
+```
+
+:::hint
+One thing to note here is that the `GIT_URL` environment variable is only available if Jenkins is pulling the project containing the Jenkinsfile from GIT. If a pipeline is entered directly into a Jenkins project, you are responsible for checking out the code from GIT with the `checkout` step and creating the `GIT_URL` environment variable from the properties in the returned object:
+
+```
+                script {
+                    def checkoutVars = checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
+                    env.GIT_URL = checkoutVars.GIT_URL
+                    env.GIT_COMMIT = checkoutVars.GIT_COMMIT
+                }
+```
+:::
+
+A release is created in Octopus with the `octopusCreateRelease` step. Again we have referenced parameters like `${EnvironmentName}`, `${ProjectName}`, `${ServerId}` and `${SpaceId}`:
+
+```
+                octopusCreateRelease additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: true, deploymentTimeout: '', environment: "${EnvironmentName}", jenkinsUrlLinkback: false, project: "${ProjectName}", releaseNotes: false, releaseNotesFile: '', releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false
+```
+
+Finally we deploy the release with the `octopusDeployRelease` step:
+
+```
+                octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "${EnvironmentName}", project: "${ProjectName}", releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
+```
