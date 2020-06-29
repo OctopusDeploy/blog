@@ -24,7 +24,7 @@ This plugin works by calling the Octopus CLI. This can be installed separately, 
 
 ![](customtools.png "width=500")
 
-Once the Octopus and Custom Tools plugins have been installed, open the Jenkins Global Tools page and click the **Add Custom tool** button. Give the new tool a name of **OctoCLI**, and supply the [Octo CLI download path](https://octopus.com/downloads/octopuscli#linux) for the **Download URL for binary archive** field, which will be a URL like https://download.octopusdeploy.com/octopus-tools/7.4.0/OctopusTools.7.4.0.linux-x64.tar.gz (visit the [download page](https://octopus.com/downloads/octopuscli#linux) for the latest version):
+Once the Octopus and Custom Tools plugins have been installed, open the Jenkins **Global Tools Configuration** page and click the **Add Custom tool** button. Give the new tool a name of **OctoCLI**, and supply the [Octo CLI download path](https://octopus.com/downloads/octopuscli#linux) for the **Download URL for binary archive** field, which will be a URL like https://download.octopusdeploy.com/octopus-tools/7.4.0/OctopusTools.7.4.0.linux-x64.tar.gz (visit the [download page](https://octopus.com/downloads/octopuscli#linux) for the latest version):
 
 ![](customtool.png "width=500")
 
@@ -41,5 +41,9 @@ To connect to the Octopus server we need to create an API key:
 The Octopus URL and API key is then configured in the Jenkins **Configure System** screen:
 
 ![](octopusdetails.png "width=500")
+
+We have now configured the required settings to support the Octopus plugin. However the sample Java application we will build requires two additional tools: Maven and a JDK. These are configured back in the Jenkins **Global Tools Configuration** page.
+
+
 
 With those settings in place, we are ready to create our first pipeline.
