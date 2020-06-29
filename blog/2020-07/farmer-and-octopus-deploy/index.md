@@ -19,7 +19,7 @@ However, if like me, you’ve ever tried to author an ARM template file, you mig
 
 I’ve used C# as my primary development language since 2012, however its functional counterpart, F# has some useful features which can help out with my ARM template dilemma. One area in particular that F# excels, is its built-in [type-safety](https://fsharpforfunandprofit.com/posts/correctness-type-checking/).
 
-In this post, I’ll demonstrate the type-safety in F# in action by using [Farmer](https://compositionalit.github.io/farmer/) to generate an Azure WebApp ARM template, and then walk through how you can use its (optional) deployment capabilities through Octopus to deploy the WebApp to Azure directly.
+In this post, I’ll demonstrate the type-safety in F# in action by using [Farmer](https://compositionalit.github.io/farmer/) to generate a simple Azure WebApp ARM template, and then walk through how you can use its deployment capabilities through Octopus to deploy different WebApps to Azure directly.
 
 
 <h2>In this post</h2>
@@ -143,24 +143,42 @@ This is where Farmer really excels over crafting your own ARM template by hand. 
 There is a more detailed comparison between Farmer and ARM templates [here](https://compositionalit.github.io/farmer/arm-vs-farmer/).
 :::
 
+### Generate ARM Template
+
+Once you have your Azure resources modelled, Farmer supports different ways to [generate the ARM template](https://compositionalit.github.io/farmer/api-overview/template-generation/). One way is to write it out to a file directly:
+
 ```fs
 printf "Generating ARM template..."
 deployment |> Writer.quickWrite "output"
 printfn "all done! Template written to output.json"
 ```
+You can then take this file and deploy to Azure using whatever method you prefer.
 
-### Deployment of ARM Resources
+#### Deployment to Azure
+
+In addition to generating the ARM template, you can also, optionally, have Farmer execute the deployment to Azure when the application runs.
+
+:::hint
+**Azure CLI required**
+If you use the Integrated deployment to Azure feature, you will need the Azure CLI installed on the machine where you run your application.
+:::
+
+In our example **SimpleAzureWebApp** application, we’ll take advantage of this feature. 
+
+Before we can execute the deployment, we need to authenticate with Azure. Farmer comes with a `Deploy.authenticate` command, and you call it passing in your credentials supplied to the application previously, like this:
 
 ```fs
 Deploy.authenticate azAppId azSecret azTenantId
 |> ignore
 ```
+If there are any errors authenticating, an error will be raised. If the login succeeds, we then need to get Farmer to execute our deployment, using the `Deploy.execute` command:
 
 ```fs
 deployment
 |> Deploy.execute azResourceGroupName Deploy.NoParameters
 |> ignore
 ```
+Just like the authentication, any errors on deployment will be surfaced as an error.
 
 ### Complete Farmer Template
 And that’s all there is to our application. Here is the finished `Program.fs` file:
