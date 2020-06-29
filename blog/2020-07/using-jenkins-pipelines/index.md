@@ -44,6 +44,14 @@ The Octopus URL and API key is then configured in the Jenkins **Configure System
 
 We have now configured the required settings to support the Octopus plugin. However the sample Java application we will build requires two additional tools: Maven and a JDK. These are configured back in the Jenkins **Global Tools Configuration** page.
 
+In days gone past the easiest way to obtain a JDK was to download it from Oracle. These days though the licensing has changed, meaning most developers will work with an OpenJDK build. A number of companies provide OpenJDK builds, and for this example we'll use the one provided by [AdoptOpenJDK](https://adoptopenjdk.net).
 
+We'll configure a JDK tool called **Java** downloading the archive from https://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14.0.1%2B7/OpenJDK14U-jdk_x64_linux_hotspot_14.0.1_7.tar.gz and extracting the subdirectory **jdk-14.0.1+7** (which is just how AdoptOpenJDK packages formats paths in the archive):
+
+![](jdk.png "width=500")
+
+A new Maven tool called **Maven 3** is then created, downloading the latest release:
+
+![](maven.png "width=500")
 
 With those settings in place, we are ready to create our first pipeline.
