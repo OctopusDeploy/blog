@@ -294,3 +294,5 @@ The Blue Ocean interface visualizes pipelines through an intuitive and interacti
 ## Conclusion
 
 Jenkins pipelines are a powerful tool to create and share repeatable application builds. They are useful in their own right, and when combined with Jenkins plugins like [Blue Ocean](https://www.jenkins.io/projects/blueocean/), provide the foundation of a modern build experience. With the new functionality in the Octopus Jenkins plugin, deployments can be managed from Jenkins pipelines with the same combination of steps that were available in freestyle projects.
+
+If you are looking for a way to quickly test Jenkins and Octopus, check out [Project TestDrive](https://octopus.com/testdrive?utm_campaign=nav&utm_content=resources-testdrive), which provides a number of virtual machines through Vagrant with Jenkins and Octopus preinstalled.
