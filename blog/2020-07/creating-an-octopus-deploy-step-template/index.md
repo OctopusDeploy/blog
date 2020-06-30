@@ -4,11 +4,13 @@ description: Learn how to create a custom step template in Octopus Deploy
 author: ryan.rousseau@octopus.com
 visibility: public
 published: 2020-07-07
-metaImage:
-bannerImage:
+metaImage: octopus-step-template.png
+bannerImage: octopus-step-template.png
 tags:
  - Product
 ---
+
+![Creating an Octopus Deploy step template](octopus-step-template.png)
 
 Today, I am going to create a [custom step template](https://octopus.com/docs/deployment-process/steps/custom-step-templates) in Octopus Deploy.
 
