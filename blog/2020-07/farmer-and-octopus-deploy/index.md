@@ -44,7 +44,7 @@ For me, the highlights are:
 
 ## Create the Farmer Template
 
-To create a Farmer Template, we first need to create a .NET Core application. You can do this in your IDE of choice, or if you prefer the command line you can use the `dotnet new` command, passing the template of the type of application you require. 
+To create a Farmer Template, we first need to create a .NET Core application. You can do this in your IDE of choice, or if you prefer the command-line you can use the `dotnet new` command, passing the template of the type of application you require. 
 
 It’s typical to use a console application for a Farmer Template, and you can create one with the `dotnet new console` command: 
 
@@ -98,7 +98,7 @@ let azWebAppName = argv.[4]
 let azWebAppSku = argv.[5]
 let azWebAppLocation = argv.[6]
 ```
-This simply assigns the parameters from the argument collection supplied to the program when it runs, based on their position from the command line.
+This simply assigns the parameters from the argument collection supplied to the program when it runs, based on their position from the command-line.
 
 :::hint
 **Parameter validation:**
@@ -229,7 +229,7 @@ let main argv =
 
 ## Package the Farmer Template
 
-Now we have the application written, the next step is to package it up for use with Octopus. For sake of simplicity in this post, I build and package the application using command line tools, but I’d recommended automating this as part of a full CI/CD pipeline.
+Now we have the application written, the next step is to package it up for use with Octopus. For sake of simplicity in this post, I build and package the application using command-line tools, but I’d recommended automating this as part of a full CI/CD pipeline.
 
 :::hint
 If you are new to building .NET Core applications, we have a number of [guides](https://octopus.com/docs/guides?application=ASP.NET%20Core) that include step-by-step instructions to setup a CI/CD pipeline using various tools.
