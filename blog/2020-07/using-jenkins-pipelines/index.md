@@ -126,7 +126,7 @@ pipeline {
                         }
                     }
                 */
-                octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}"
+                octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}", gitCommit: "${GIT_COMMIT}"
                 octopusCreateRelease additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: true, deploymentTimeout: '', environment: "${EnvironmentName}", jenkinsUrlLinkback: false, project: "${ProjectName}", releaseNotes: false, releaseNotesFile: '', releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false
                 octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "${EnvironmentName}", project: "${ProjectName}", releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
             }
@@ -211,22 +211,22 @@ The final stage is where the package is deployed with Octopus:
             steps {
 ```
 
-We start by packing up the JAR file into a ZIP file. This step is redundant in practice, as you can push a JAR file directly to Octopus. Indeed all the Java deployment steps typically expect a JAR file rather than a JAR in a ZIP. But for the purposes of demonstrating the `octopusPack` step, we'll assume that the deployment process does want a JAR in a ZIP:
+We start by packing up the JAR file into a ZIP file. We won't use the resulting ZIP file as Java deployments typically use JAR or WAR files directly, and nested these files in a second ZIP archive is redundant. But the step is included here as an example of using the `octopusPack` step:
 
 ```
                 octopusPack additionalArgs: '', includePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", outputPath: "${env.WORKSPACE}", overwriteExisting: false, packageFormat: 'zip', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", sourcePath: '', toolId: 'Default', verboseLogging: false
 ```
 
-The `octopusPushPackage` step pushes the ZIP file to the Octopus built in feed. Note how we have referenced the parameters defined earlier as `${ServerId}` and `${SpaceId}`:
+The `octopusPushPackage` step pushes the JAR file to the Octopus built in feed. Note how we have referenced the parameters defined earlier as `${ServerId}` and `${SpaceId}`:
 
 ```
                 octopusPushPackage additionalArgs: '', overwriteMode: 'FailIfExists', packagePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default'
 ```
 
-In addition to the application package, we will also push a build information package, which includes GIT commit messages and links. We'll see this information displayed in Octopus later in the post.
+In addition to the application package, we will also push a build information package using the `octopusPushBuildInformation` step, which includes GIT commit messages and links. We'll see this information displayed in Octopus later in the post.
 
 ```
-                octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}"
+                octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}", gitCommit: "${GIT_COMMIT}"
 ```
 
 :::hint
@@ -251,4 +251,46 @@ Finally we deploy the release with the `octopusDeployRelease` step:
 
 ```
                 octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "${EnvironmentName}", project: "${ProjectName}", releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
+            }
+        }
+    }
+}
 ```
+
+## Creating the Jenkins project
+
+Building a pipeline sourced from a GIT repository is quite easy in Jenkins. Create a new **Pipeline** project, select the option **Pipeline script from SCM**, and set **Repository URL** to https://github.com/OctopusSamples/RandomQuotes-Java.git:
+
+![](jenkinsproject.png "width=500")
+
+You can then trigger a build. Note the first time the build is run, you will not be prompted for any parameters. The parameters are added to the project by the pipeline, and so the pipeline needs to be run once first. After the first run you will have an option to **Build with Parameters**, and a prompt is displayed for the pipeline parameters:
+
+![](parameters.png "width=500")
+
+## Viewing the build information
+
+The pipeline above pushed two packages to Octopus. The first was the JAR file created by Maven. The second, pushed with the call to `octopusPushBuildInformation`, create and pushed a build information package. This package contains metadata about a package, including a link back to the Jenkins build and GIT commit information.
+
+If we look at the JAR package that was pushed to the built-in feed, we see that is has a **Build Information** section noting that the package was built by Jenkins and a link back to the Jenkins build:
+
+![](buildinfo1.png "width=500")
+
+Note though that there was no information about the GIT commits. You will only see information about the commits made between builds, and because nothing changed in the GIT repository between the Jenkins builds, no commits have been documented. To demonstrate the commit history being packaged with the metadata we'll make a commit and rebuild the project in Jenkins. Note now the build information contains links to commits made between Jenkins builds:
+
+![](buildinfo2.png "width=500")
+
+You can find more information on build information in [our documentation](https://octopus.com/docs/packaging-applications/build-servers#viewing-build-information).
+
+## Pipelines in Blue Ocean
+
+[Blue Ocean](https://www.jenkins.io/projects/blueocean/) is a reimagining of the Jenkins build experience. It is installed as a plugin:
+
+![](blueocean.png "width=500")
+
+The Blue Ocean interface visualizes pipelines through an intuitive and interactive user interface. While the old freestyle Jenkins projects can be viewed in Blue Ocean, the experience has been heavily optimized for pipelines:
+
+![](blueoceanpipeline.png "width=500")
+
+## Conclusion
+
+Jenkins pipelines are a powerful tool to create and share repeatable application builds. They are useful in their own right, and when combined with Jenkins plugins like [Blue Ocean](https://www.jenkins.io/projects/blueocean/), provide the foundation of a modern build experience. With the new functionality in the Octopus Jenkins plugin, deployments can be managed from Jenkins pipelines with the same combination of steps that were available in freestyle projects.
