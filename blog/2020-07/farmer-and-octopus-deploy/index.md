@@ -242,7 +242,7 @@ dotnet publish -o output
 ```
 This builds and publishes the console application and places it the binaries in the `output` folder, as specified by the use of the `-o` parameter.
 
-We then need to package the application, and this time we can use the Octopus CLI [pack](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack) command:
+We then need to package the application, and this time we use the Octopus CLI [pack](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack) command:
 
 ```bash
 octo pack --id SimpleAzureWebApp --format Zip --version 1.0.0.0 --basePath output 
@@ -258,7 +258,7 @@ Once the package has been uploaded, we can set-up Octopus to run our application
 
 ## Deploy the Farmer Template
 
-One of the cool things about Octopus is that you get to choose how to deploy your applications. With the introduction of [Operations Runbooks](https://octopus.com/docs/operations-runbooks) last year, that flexibility has been extended even further to operations tasks, for example managing your infrastructure. 
+One of the cool things about Octopus is that you get to choose how to deploy. With the introduction of [Operations Runbooks](https://octopus.com/docs/operations-runbooks) last year, that flexibility has been extended even further to operations tasks, for example managing your infrastructure. 
 
 ### Create the Runbook
 
@@ -329,7 +329,7 @@ Once the runbook has run to completion, you can check your WebApp has been creat
 ![Azure portal farmer webapp](azure-portal-farmer.png)
 ## Conclusion
 
-What’s great about this technique of using Farmer to generate and deploy your resources to Azure is that you can version control your Templates so that the code that defines your infrastructure can live alongside the code that runs on it. Plus, no more hassle with manually editing json files, and who doesn’t like that! 
+The great thing about this technique of using Farmer to generate and deploy your resources to Azure, is that you can version control your Templates. The code that defines your infrastructure can live alongside the code that runs on it. Plus, no more hassle with manually editing json files, and who doesn’t want that! 
 
 Until next time, Happy Deployments!
 
