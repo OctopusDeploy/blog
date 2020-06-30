@@ -229,7 +229,7 @@ let main argv =
 
 ## Package the Farmer Template
 
-Now we have the application written, the next step is to package it up for use with Octopus. For sake of simplicity in this post, I build and package the application using command line tools, but you I’d recommended automating this as part of a full CI/CD pipeline.
+Now we have the application written, the next step is to package it up for use with Octopus. For sake of simplicity in this post, I build and package the application using command line tools, but I’d recommended automating this as part of a full CI/CD pipeline.
 
 :::hint
 If you are new to building .NET Core applications, we have a number of [guides](https://octopus.com/docs/guides?application=ASP.NET%20Core) that include step-by-step instructions to setup a CI/CD pipeline using various tools.
