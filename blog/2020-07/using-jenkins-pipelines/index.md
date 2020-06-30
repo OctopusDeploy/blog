@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-A recent update to the Octopus Jenkins plugin has added support for pipelines, allowing packages to be created, pushed to Octopus, releases to be created and deployed, and metadata like commit messages to be associated with packages.
+A recent update to the Octopus Jenkins plugin has added support for pipelines, allowing packages to be created and pushed to Octopus, releases to be created and deployed, and metadata like commit messages to be associated with packages.
 
 In this post we'll run through the process of creating a simple Jenkins pipeline to deploy a sample Java application.
 
@@ -20,7 +20,7 @@ The Octopus plugin is available through the Jenkins Plugin Manager:
 
 ![](plugin.png "width=500")
 
-This plugin works by calling the Octopus CLI. This can be installed separately, but for this example we'll have Jenkins download and install the CLI through the Custom Tools plugin:
+This plugin works by calling the Octopus CLI. The CLI can be installed separately, but for this example we'll have Jenkins download and install the CLI through the Custom Tools plugin:
 
 ![](customtools.png "width=500")
 
@@ -28,7 +28,7 @@ Once the Octopus and Custom Tools plugins have been installed, open the Jenkins 
 
 ![](customtool.png "width=500")
 
-When we reference a custom tool in a pipeline, Jenkins will download, extract and copy the archive contents ot the tool to a directory like `/var/lib/jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool` (`/var/lib/jenkins` may change from agent to agent depending on the Jenkins home directory). In this example, Jenkins will extract the Octopus CLI executable to `/var/lib/jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/OctoCLI/octo`.
+When we reference a custom tool in a pipeline, Jenkins will download, extract and copy the archive contents to the tool to a directory like `/var/lib/jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool` (`/var/lib/jenkins` may change from agent to agent depending on the Jenkins home directory). In this example, Jenkins will extract the Octopus CLI executable to `/var/lib/jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/OctoCLI/octo`.
 
 Knowing this path in advance we can define the Octopus CLI tool in Jenkins. Under the **Octopus Deploy CLI** section, set the path of the **Default** tool to `/var/lib/jenkins/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/OctoCLI/octo`. The warning can be ignored, as this path will be available once we run our pipeline referencing the custom tool defined previously:
 
@@ -38,15 +38,15 @@ To connect to the Octopus server we need to create an API key:
 
 ![](apikey.png "width=500")
 
-The Octopus URL and API key is then configured in the Jenkins **Configure System** screen:
+The Octopus URL and API key are then configured in the Jenkins **Configure System** screen:
 
 ![](octopusdetails.png "width=500")
 
-We have now configured the required settings to support the Octopus plugin. However the sample Java application we will build requires two additional tools: Maven and a JDK. These are configured back in the Jenkins **Global Tools Configuration** page.
+We have now configured the required settings to support the Octopus plugin. However, the sample Java application we will build requires two additional tools: Maven and a JDK. These are configured back in the Jenkins **Global Tools Configuration** page.
 
 In days gone past the easiest way to obtain a JDK was to download it from Oracle. These days though the licensing has changed, meaning most developers will work with an OpenJDK build. A number of companies provide OpenJDK builds, and for this example we'll use the one provided by [AdoptOpenJDK](https://adoptopenjdk.net).
 
-We'll configure a JDK tool called **Java** downloading the archive from https://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14.0.1%2B7/OpenJDK14U-jdk_x64_linux_hotspot_14.0.1_7.tar.gz and extracting the subdirectory **jdk-14.0.1+7** (which is just how AdoptOpenJDK packages formats paths in the archive):
+We'll configure a JDK tool called **Java** downloading the archive from https://github.com/AdoptOpenJDK/openjdk14-binaries/releases/download/jdk-14.0.1%2B7/OpenJDK14U-jdk_x64_linux_hotspot_14.0.1_7.tar.gz and extracting the subdirectory **jdk-14.0.1+7** (which is just how AdoptOpenJDK packages paths in the archive):
 
 ![](jdk.png "width=500")
 
@@ -175,7 +175,7 @@ This build will run on any agent, which is indicated via the `agent` setting:
     agent any
 ```
 
-We then define the stages that the pipeline will move through:
+We then define the `stages` that the pipeline will move through:
 
 ```
     stages {
@@ -191,7 +191,7 @@ The first stage echos the location of the custom tool called **OctoCLI**. Intere
         }
 ```
 
-The build stage calls the Maven CLI, which is now on the path thanks to the Maven tool referenced previously, to set the version of the project and package it up:
+The build stage calls the Maven CLI, which is now on the `PATH` thanks to the Maven tool referenced previously, to set the version of the project and package it up:
 
 ```
         stage('build') {
@@ -211,26 +211,26 @@ The final stage is where the package is deployed with Octopus:
             steps {
 ```
 
-We start by packing up the JAR file into a ZIP file. We won't use the resulting ZIP file as Java deployments typically use JAR or WAR files directly, and nested these files in a second ZIP archive is redundant. But the step is included here as an example of using the `octopusPack` step:
+We start by packing up the JAR file into a ZIP file. We won't use the resulting ZIP file as Java deployments typically use JAR or WAR files directly, and nesting these files in a second ZIP archive is redundant. But the step is included here as an example of using the `octopusPack` step:
 
 ```
                 octopusPack additionalArgs: '', includePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", outputPath: "${env.WORKSPACE}", overwriteExisting: false, packageFormat: 'zip', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", sourcePath: '', toolId: 'Default', verboseLogging: false
 ```
 
-The `octopusPushPackage` step pushes the JAR file to the Octopus built in feed. Note how we have referenced the parameters defined earlier as `${ServerId}` and `${SpaceId}`:
+The `octopusPushPackage` step pushes the JAR file to the Octopus built-in feed. Note how we have referenced the parameters defined earlier as `${ServerId}` and `${SpaceId}`:
 
 ```
                 octopusPushPackage additionalArgs: '', overwriteMode: 'FailIfExists', packagePaths: "${env.WORKSPACE}/target/randomquotes.1.0.${BUILD_NUMBER}.jar", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default'
 ```
 
-In addition to the application package, we will also push a build information package using the `octopusPushBuildInformation` step, which includes GIT commit messages and links. We'll see this information displayed in Octopus later in the post.
+In addition to the application package, we will also push a metadata package using the `octopusPushBuildInformation` step, which includes GIT commit messages and links. We'll see this information displayed in Octopus later in the post:
 
 ```
                 octopusPushBuildInformation additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'FailIfExists', packageId: 'randomquotes', packageVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', verboseLogging: false, gitUrl: "${GIT_URL}", gitCommit: "${GIT_COMMIT}"
 ```
 
 :::hint
-One thing to note here is that the `GIT_URL` environment variable is only available if Jenkins is pulling the project containing the Jenkinsfile from GIT. If a pipeline is entered directly into a Jenkins project, you are responsible for checking out the code from GIT with the `checkout` step and creating the `GIT_URL` environment variable from the properties in the returned object:
+One thing to note here is that the `GIT_URL` and `GIT_COMMIT` environment variables are only available if Jenkins is pulling the project containing the Jenkinsfile from GIT. If a pipeline is entered directly into a Jenkins project, you are responsible for checking out the code from GIT with the `checkout` step and creating the `GIT_URL` and `GIT_COMMIT` environment variables from the properties in the returned object:
 
 ```
                 script {
