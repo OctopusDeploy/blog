@@ -4,11 +4,13 @@ description: Learn how to submit a custom step template to the Octopus Deploy Co
 author: ryan.rousseau@octopus.com
 visibility: public
 published: 2020-07-08
-metaImage:
-bannerImage:
+metaImage: community-library.png
+bannerImage: community-library.png
 tags:
  - Product
 ---
+
+![Contributing a step template to the Octopus Deploy Community Library](community-library.png)
 
 I recently created an Octopus Deploy [step template for the Firebase CLI deploy command](https://octopus.com/blog/creating-an-octopus-deploy-step-template).
 
