@@ -269,9 +269,9 @@ You can then trigger a build. Note the first time the build is run, you will not
 
 ## Viewing the build information
 
-The pipeline above pushed two packages to Octopus. The first was the JAR file created by Maven. The second, pushed with the call to `octopusPushBuildInformation`, create and pushed a build information package. This package contains metadata about a package, including a link back to the Jenkins build and GIT commit information.
+The pipeline above pushed two packages to Octopus. The first was the JAR file created by Maven. The second, pushed with the call to `octopusPushBuildInformation`, created and pushed a build information package. This package contains metadata about a package, including a link back to the Jenkins build and GIT commit information.
 
-If we look at the JAR package that was pushed to the built-in feed, we see that is has a **Build Information** section noting that the package was built by Jenkins and a link back to the Jenkins build:
+If we look at the JAR package that was pushed to the built-in feed, we see that it has a **Build Information** section noting that the package was built by Jenkins and a link back to the Jenkins build:
 
 ![](buildinfo1.png "width=500")
 
