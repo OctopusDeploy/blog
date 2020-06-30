@@ -157,7 +157,7 @@ You can then take this file and deploy to Azure using your preferred method.
 
 In addition to generating the ARM template, you can also, optionally, have Farmer execute the deployment to Azure when the application runs.
 
-::warning
+:::warning
 **Azure CLI required**
 If you use the Integrated deployment to Azure feature, you will need the Azure CLI installed on the machine where you run your application.
 :::
@@ -303,7 +303,7 @@ Set-Location $farmerPackagePath
 
 dotnet SimpleAzureWebApp.dll $appId $secret $tenantId $resourceGroupName $webAppName $webAppSku $webAppLocation
 ```
-::warning
+:::warning
 **.NET Core runtime pre-requisite**
 In order for this script step to execute, it requires the the .NET Core runtime to be installed on the deployment target or worker where the step is configured to execute.
 :::
