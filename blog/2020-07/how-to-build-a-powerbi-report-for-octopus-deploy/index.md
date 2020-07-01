@@ -4,12 +4,14 @@ description: Learn how to build PowerBI reports for Octopus Deploy that will sho
 author: Jeff@ReviewMyDB.com
 visibility: private
 published: 2020-07-15
-metaImage:
-bannerImage:
+metaImage: octopus-power-bi-report.png
+bannerImage: octopus-power-bi-report.png
 tags:
   - DevOps
   - Reporting
 ---
+
+![How to build a PowerBI report for Octopus Deploy](octopus-power-bi-report.png)
 
 In this post, I share the analysis of the data I pulled from my Octopus Deploy database using PowerBI Desktop. I was able to highlight how much time and money automation has saved my company, and spot potential development issues that slow down deployments, such as how many times releases have been skipped due to bugs not being found in lower-level environments. At the end of this post, I share the templates I created so you don't have to start from scratch.
 
