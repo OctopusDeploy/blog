@@ -58,7 +58,7 @@ There are numerous options for almsot every platform.
 
 As software developers, we've been trained to reuse and avoid duplicating code. This is the one time where we _want_ to duplicate code, since we want the behaviour of our migration script to be "snapshotted in time".
 
-An example is described in the following illustrations. Each script (numbered 001 to 005) is responsible for changing the database state from **A** to **B**. If the script references a constant or class that is in production code, that script will still work as expected.
+An example is described in the following illustrations. Each script (numbered 001 to 005) is responsible for changing the database state from **A** to **B**. If the script references a constant or function (say a function that generates the default value of a new property) that is in production code, that script will still work as expected at the time of writing.
 
 ![It might work now...](UpgradeScript_Now.png "It might work now...")
 
@@ -70,7 +70,7 @@ If the referenced code changes in a few months time (say the constant's value ch
 
 ### 2. Keep it low-tech, don't deserialize
 
-You might be tempted to deserialize the records so that you can work with classes with  Intellisense and/or type safety. In reality, you're exposing yourself to complexities around serialization and type converters. 
+You might be tempted to deserialize the records so that you can work with classes where Intellisense and/or type safety are available. In reality, you're exposing yourself to complexities around serialization and type converters.
 
 The upgrade script will be simpler if you work directly with the text or document model. If the document is `JSON`, work directly with `JObect` or `XElement` for `XML`.
 
