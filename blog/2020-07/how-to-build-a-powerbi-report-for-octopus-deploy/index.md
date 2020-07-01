@@ -158,8 +158,8 @@ These reports are currently only available on an on-premises instance of Octopus
 
 It might seem like a lot of work to create these reports, and it is. But I have a treat for you! I have copied my PowerBI reports and created a template for both the SQL Server and the Cloud instances of Octopus Deploy. Below are links to each template and links to my blog, which covers setting up the connection string, API URL, and API key so that you can access your data.
 
-- [SQL Server template: OctopusDeploySQLServer.pbt](https://tinyurl.com/ycz4awvl) ([Instructions](https://blog.reviewmydb.com/2020/06/how-to-configure-sql-server-powerbi.html)).
-- [The Cloud template: OctopusDeployCloud.pbt](https://tinyurl.com/ydz9vjy5) ([Instructions](https://blog.reviewmydb.com/2020/06/how-to-configure-powerbi-template-for.html).
+- [SQL Server template: OctopusDeploySQLServer.pbt](OctopusDeploySQLServer.pbt) ([Instructions](https://blog.reviewmydb.com/2020/06/how-to-configure-sql-server-powerbi.html)).
+- [The Cloud template: OctopusDeployCloud.pbt](OctopusDeployCloud.pbt) ([Instructions](https://blog.reviewmydb.com/2020/06/how-to-configure-powerbi-template-for.html)).
 
 ## Reports
 
