@@ -13,11 +13,11 @@ tags:
 
 ![How to build a PowerBI report for Octopus Deploy](octopus-power-bi-report.png)
 
-In this post, I share the analysis of the data I pulled from my Octopus Deploy database using PowerBI Desktop. I was able to highlight how much time and money automation has saved my company, and spot potential development issues that slow down deployments, such as how many times releases have been skipped due to bugs not being found in lower-level environments. At the end of this post, I share the templates I created so you don't have to start from scratch.
+I recently performed an analysis of some data I pulled from my Octopus Deploy database using PowerBI Desktop. The reports I created highlight how much time and money automation has saved my company, and the reports helped me spot potential development issues that slow down deployments; such as how many times releases have been skipped due to bugs not being found in lower-level environments. 
 
-Hopefully, these reports will get you pointed in the right direction to help you highlight how much automation can save in time and money, and even justify the need for automation and testing resources.
+At the end of this post, I share the templates I created so you don't have to start from scratch (the templates work with both Octopus Cloud and self-hosted Octopus). Hopefully, they'll point you in the right direction to help you highlight how much time and money automation can save you, and perhaps even justify the need for automation and testing resources.
 
-This is a preview of what I put together. In this post, we’ll go over how you can create a connection and pull data from your instance of Octopus Deploy. The PowerBI templates I've included cover both your cloud and local instances to help you get started as quickly as possible.
+In this post, I preview of what I put together. I also go over how you can create a connection and pull data from your instance of Octopus Deploy. 
 
 ![PowerBI Report For Octopus Deploy](headlinerimage.png "width=500")
 
