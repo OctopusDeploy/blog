@@ -78,3 +78,13 @@ Finally the Jenkins URL is defined:
 Jenkins is now configured and ready for use:
 
 ![](finished.png "width=500")
+
+## Defining the Jenkins project
+
+At a high level, Jenkins provides two types of projects. 
+
+The first format, known as a FreeStyle project, is defined in the Jenkins UI. While it is possible to export and share a FreeStyle project, it is tricky to do as the underlying data format is not designed to be edited by hand.
+
+The second format, known as a pipeline, is essentially a script that is designed to be created and managed much like the code in your applications. The pipeline can be saved alongside your project code in a file called `Jenkinsfile`, which keeps your application code and the build definition in the same place.
+
+We'll create a `Jenkinsfile` for our project to build and publish our Docker image.
