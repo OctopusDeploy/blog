@@ -13,11 +13,11 @@ tags:
 
 ![How to build a PowerBI report for Octopus Deploy](octopus-power-bi-report.png)
 
-I recently performed an analysis of some data I pulled from my Octopus Deploy database using PowerBI Desktop. The reports I created highlight how much time and money automation has saved my company, and the reports helped me spot potential development issues that slow down deployments; such as how many times releases have been skipped due to bugs not being found in lower-level environments. 
+I recently performed an analysis of some data I pulled from my Octopus Deploy database using PowerBI Desktop. The reports I created, highlight how much time and money automation has saved my company, and the reports helped me spot potential development issues that slow down deployments; such as how many times releases have been skipped due to bugs not being found in lower-level environments.
 
-At the end of this post, I share the templates I created so you don't have to start from scratch (the templates work with both Octopus Cloud and self-hosted Octopus). Hopefully, they'll point you in the right direction to help you highlight how much time and money automation can save you, and perhaps even justify the need for automation and testing resources.
+At the end of this post, I share the templates I created so you don’t have to start from scratch (the templates work with both Octopus Cloud and self-hosted Octopus). Hopefully, they’ll point you in the right direction to help you highlight how much time and money automation can save you, and perhaps even justify the need for automation and testing resources.
 
-In this post, I preview of what I put together. I also go over how you can create a connection and pull data from your instance of Octopus Deploy. 
+In this post, I preview what I put together. I also go over how you can create a connection and pull data from your instance of Octopus Deploy.
 
 ![PowerBI Report For Octopus Deploy](headlinerimage.png "width=500")
 
@@ -40,9 +40,9 @@ There are a couple of prerequisites you need to have in place:
 
 ## Deployment history charts {#deployment-history-charts}
 
-Deployment history yields some very interesting patterns and results. From raw deployment counts with different groupings (project, environment etc) deployment execution time to success and failure rates.
+Deployment history yields some very interesting patterns and results. From raw deployment counts with different groupings (project, environment, etc.,), to deployment execution time and success and failure rates.
 
-**Count of Deployments By Date and Project**: This is the first chart I put together, and I was kind of shocked to see how many deployments we had done each year over the last five years. This report breaks down each year and stacks each project. In this chart, you can drill down to see the count of deployments by quarters, month, and day. You can drill down by clicking the _double down arrow_ and then click on the _up arrow_ to go back:
+**Count of Deployments By Date and Project**: This is the first chart I put together, and I was kind of shocked to see how many deployments we’ve done each year over the last five years. This report breaks down each year and stacks the projects. In this chart, you can drill down to see the count of deployments by quarters, month, and day. You drill down by clicking the _double down arrow_ and then click on the _up arrow_ to go back:
 
 ![](report01.png "width=500")
 
@@ -60,9 +60,9 @@ Deployment history yields some very interesting patterns and results. From raw d
 
 ![](report03.png "width=500")
 
-**Total Runtime Hours**: This is a measure that tells us the total time of all the deployments in hours. Duration is stored in seconds so we divide it to arrive at the total number of hours.
+**Total Runtime Hours**: This is a measure that tells us the total time of all the deployments in hours. Duration is stored in seconds so I divided it to arrive at the total number of hours.
 
-**Total Runtime Minutes**: This is a measure that tells us the total time of all the deployments in minutes. Duration is stored in seconds so again, we divide it to arrive at the total number of minutes.
+**Total Runtime Minutes**: This is a measure that tells us the total time of all the deployments in minutes. Duration is stored in seconds so again, I divided it to arrive at the total number of minutes.
 
 **Total Runtime Seconds**: This is a sum of the total duration for all deployments.
 
@@ -80,9 +80,9 @@ Deployment history yields some very interesting patterns and results. From raw d
 
 ![](report07.png "width=500")
 
-**Percentage of Issues by Project and Environment Based on Number of Deployments**: With the chart below, I wanted to show the ratio of deployments, or redeployments, we have done to each environment by project. This may not be an exact representation, but if the percentage of deployments to the lower environments (Dev and QA) are higher, this could be because issues were discovered and the deployments were fixed and then re-deployed. If we had an even percentage of deployments in each environment, it could mean that no bugs/issues were found and the deployment went through to Production.
+**Percentage of Issues by Project and Environment Based on Number of Deployments**: With the chart below, I wanted to show the ratio of deployments, or redeployments, we have done to each environment by project. This may not be an exact representation, but if the percentage of deployments to the lower environments (Dev and QA) are higher, this could mean issues were discovered and the deployments were fixed and then re-deployed. If we had an even percentage of deployments in each environment, it could mean that no bugs/issues were found and the deployment went through to Production.
 
-If you notice in this chart that the _Store Website_ in both QA and Prod almost have the same percentage of deployments. To me, this means that instead of testing and finding issues in QA, the bugs are found in Production. This, to me, means that there is a code quality issue that needs to be addressed.
+If you notice in this chart that the _Store Website_ in both QA and Prod almost have the same percentage of deployments. To me, this means that instead of testing and finding issues in QA, the bugs are found in Production. I think this means there’s a code quality issue that needs to be addressed.
 
 Compare the _Store Website_ to the _Website_, and you can see that the percentage difference is much higher in Dev and then QA compared to Production. I think this means the developers are finding bugs in Dev, and then the ones they miss are caught in QA. Over the past 5 years, we have released 16 major stable versions of the website.
 
@@ -90,7 +90,7 @@ While this may not be 100% accurate, you could pull in some data and create a re
 
 ![](report08.png "width=500")
 
-**Percentage of Planned vs. Actual**: The chart below compares the releases from Development and Production. The goal was to see how many project releases were meant to go to Production, but due to either, code issues or bugs they had to be re-released before making it to Production:
+**Percentage of Planned vs. Actual**: The chart below compares the releases from Development and Production. The goal was to see how many project releases were meant to go to Production, but due to either code issues or bugs they had to be re-released before making it to Production:
 
 ![](report09.png "width=500")
 
@@ -102,16 +102,16 @@ While this may not be 100% accurate, you could pull in some data and create a re
 
 ![](report13.png "width=500")
 
-**Average Days from Dev to Prod by Project**: The chart below shows the average duration in days from the time a release has been deployed to Dev and then the same release deployed to Production:
+**Average Days from Dev to Prod by Project**: The chart below shows the average duration in days from the time a release has been deployed to Dev and to when it is promoted to Production:
 
 ![](report15.png "width=500")
 
 ## Runbooks history charts {#runbooks-history-charts}
 
-Runbooks were introduced in late 2019 and I've recently started using them for some basic operations tasks. These charts summarise runbook execution by date, execution time and success vs failures.
+Runbooks were introduced in late 2019, and I’ve recently started using them for some basic operations tasks. These charts summarize runbook execution by date, execution time, and success vs failures.
 
 :::warning
-These reports are currently only available on an on-premises instance of Octopus Deploy because there is no `RunbookHistory` API call on the cloud instance.
+These reports are currently only available on an on-premises instance of Octopus Deploy because there is no `RunbookHistory` API call on Octopus Cloud instances.
 :::
 
 **Frequency of Runbooks by Date**: The chart below shows the frequency of executions by date. Since we have only recently started using runbooks, I have drilled down to the day to see how many we have run this month:
@@ -126,9 +126,9 @@ These reports are currently only available on an on-premises instance of Octopus
 
 ![](report19.png "width=500")
 
-**Total Runtime Hours**: This is a measure that tells us the total time of all the runbook execution in hours. Duration is stored in seconds so we divide it to arrive at the total number of hours.
+**Total Runtime Hours**: This is a measure that tells us the total time of all the runbook execution in hours. Duration is stored in seconds so I divided it to arrive at the total number of hours.
 
-**Total Runtime Minutes**: This is a measure that tells us the total time of all the runbook execution in minutes. Duration is stored in seconds so we divide it to arrive at the total number of minutes.
+**Total Runtime Minutes**: This is a measure that tells us the total time of all the runbook execution in minutes. Duration is stored in seconds so I divided it to arrive at the total number of minutes.
 
 **Total Runtime Seconds**: This is a sum of the entire duration for all runbook executions.
 
@@ -136,38 +136,36 @@ These reports are currently only available on an on-premises instance of Octopus
 
 ## Reports
 
-It might seem like a lot of work to create these reports, and it is. But I have a treat for you! I have copied my PowerBI reports and created a template for both the SQL Server and the Cloud instances of Octopus Deploy. Below are links to each template and links to my blog, which covers setting up the connection string, API URL, and API key so that you can access your data.
+It might seem like a lot of work to create these reports, and it is. But I have a treat for you! I have copied my PowerBI reports and created a template for both the SQL Server and Octopus Cloud instances. Below are links to each template and links to my blog, which covers setting up the connection string, API URL, and API key so that you can access your data.
 
 - [SQL Server template: OctopusDeploySQLServer.pbt](octopus-deploy-sqlserver-report.pbit) ([Instructions](https://blog.reviewmydb.com/2020/06/how-to-configure-sql-server-powerbi.html)).
 - [The Cloud template: OctopusDeployCloud.pbt](octopus-deploy-reporting-from-cloud-app.pbit) ([Instructions](https://blog.reviewmydb.com/2020/06/how-to-configure-powerbi-template-for.html)).
 
-Now that we have our data, we can view all of the charts we created. I have organized the charts into several report _pages_.
-
-The report contains four pages with a ton of useful information. 
+Now that we have our data, we can view all of the charts we created. I have organized the charts into four pages with a ton of useful information:
 
 1. Deployments
 2. Issues
 3. Durations
 4. Runbooks
 
-This is a preview of the frist page with a sample of the data from my local instance of Octopus Deploy for the last five years. The other pages contain the data that I summarised above as well as additional useful charts.
+This is a preview of the first page with a sample of the data from my local instance of Octopus Deploy for the last five years. The other pages contain the data I summarized above as well as additional useful charts.
 
 ![Local instance: Deployments page](dashboard04.png "width=500")
 *Local instance: Deployments page*
 
 ## ROI
 
-So how much has Octopus Deploy saved my company? Let’s look at the data we have collected.
+So how much has Octopus Deploy saved my company? Let’s look at the data I collected.
 
-Over the past five years, Octopus Deploy has executed 3,572 deployments. Let’s say that on a typical manual deployment, each deployment takes one hour to deploy to multiple servers. In my case, we have at least one website, one API, and two databases. Our other environments have more web servers, which are in web farms, and more APIs.
+Over the past five years, Octopus Deploy has executed 3,572 deployments. Let’s say that on a typical manual deployment, each deployment takes one hour to deploy to multiple servers. In my case, we have at least one website, one API, and two databases. Our other environments have more web servers (which are in web farms) and more APIs.
 
-At a bare minimum, that’s 3,572 hours, and we know for sure it would have taken more time for the larger environments. Manual execution of 3,572 hours, but the Octopus Deploy engines automated execution time tool only 53.5 hours.
+At a bare minimum, that’s 3,572 hours, and we know for sure it would have taken more time for the larger environments. Manual execution of 3,572 hours, but Octopus Deploy’s automated executions took only 53.5 hours.
 
 If we had a person handling the deployments, this would take approximately one-third of their time each month just to perform deployments at about sixty hours out of a typical 168 hour work month.
 
-If our hourly rate was $80 an hour, it would have cost us over $57,000 each year for five years for a total of $285,760.
+If their hourly rate was $80 an hour, it would have cost us over $57,000 each year for five years for a total of $285,760.
 
-Now, if I could convince my company to give me a small bonus out of the $267,360.00 I saved them, that would be awesome.
+Now, if I could convince my company to give me a small bonus out of the $267,360 I saved them, that would be awesome.
 
 ## Conclusion
 
