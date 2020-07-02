@@ -15,9 +15,9 @@ tags:
 
 Having worked with Azure for around a year, it’s clear to see why [ARM templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) are popular. They provide a declarative model to generate entire environments at the touch of a button. 
 
-However, if like me, you’ve ever tried to author an ARM template file, you might have come across one of my biggest gripes with them; they rely on strings, and can be prone to human error. There’s no compiler to help me out when I have a typo in a template (and there have been plenty of those!).
+However, if like me, you’ve ever tried to author an ARM template file, you might have come across one of my biggest gripes with them; they rely on strings and are prone to human error. There’s no compiler to help me out when I have a typo in a template (and there have been plenty of those!).
 
-I’ve used C# as my primary development language since 2012, however since then, its functional counterpart, F# has become increasingly popular. As I found out recently, it has some useful features which can help out with my ARM template dilemma. One area in particular where F# excels, is its built-in [type-safety](https://fsharpforfunandprofit.com/posts/correctness-type-checking/).
+I’ve used C# as my primary development language since 2012, however, since then, its functional counterpart, F# has become increasingly popular. As I found out recently, it has some useful features which can help out with my ARM template dilemma. One area in particular where F# excels, is its built-in [type-safety](https://fsharpforfunandprofit.com/posts/correctness-type-checking/).
 
 In this post, I’ll demonstrate the type-safety in F# in action by using [Farmer](https://compositionalit.github.io/farmer/) to generate a simple Azure WebApp ARM template, and then walk through how you can use its deployment capabilities through Octopus to deploy different WebApps to Azure directly.
 
@@ -36,11 +36,12 @@ To use Farmer, you create a [Farmer Template](https://compositionalit.github.io/
 
 ## Why is Farmer needed?
 
-Rather than repeating whats already there, I’d encourage you to read the [About](https://compositionalit.github.io/farmer/about/) section of the Farmer documentation for more details on the motivations on creating a DSL for ARM templates.
+Rather than repeating whats already there, I’d encourage you to read the [About](https://compositionalit.github.io/farmer/about/) section of the Farmer documentation for more details about the motivations to create a DSL for ARM templates.
 
 For me, the highlights are:
- - It provides a set of types that you can use to create Azure resources with, eliminating the chances of creating an invalid template as they are strongly-typed.
- - It can generate simple ARM templates in a very concise manner, and optionally deploy them.
+
+- It provides a set of types that you can use to create Azure resources, and it eliminates the chances of creating an invalid template as they are strongly-typed.
+- It can generate simple ARM templates in a very concise manner and optionally, deploy them.
 
 ## Create the Farmer Template
 
@@ -54,7 +55,7 @@ dotnet new console -lang "F#" -f "netcoreapp3.1" -n "SimpleAzureWebApp"
 
 This creates a new F# .NET Core 3.1 application with the name **SimpleAzureWebApp**, using the `-n` parameter we supplied.
 
-Next, we need to add Farmer to the project, by running the `add package` command:
+Next, we need to add Farmer to the project by running the `add package` command:
 
 ```bash
 dotnet add package Farmer
@@ -64,28 +65,29 @@ Now we have our dependencies, we can go ahead and edit the `Program.fs` file whi
 
 **TL;DR**
 
-If you want to see the complete program, skip straight to the [end](#complete-farmer-template) or view the [source code](https://github.com/OctopusSamples/farmertemplates/blob/main/src/SimpleAzureWebApp/Program.fs). If not, read on!
+If you want to see the complete program, skip straight to the [end](#complete-farmer-template) or view the [source code](https://github.com/OctopusSamples/farmertemplates/blob/main/src/SimpleAzureWebApp/Program.fs). If you'd like more details, read on!
 
-### Template Parameters
+### Template parameters
 
 To make the Farmer Template flexible, we’ll add some parameters to the application. This will allow us to supply different values and Farmer will create our resources in Azure based on those values.
 
 The first three we need are related to authenticating with Azure. These values can be obtained by creating an [Azure Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals).
 
-- **AppId** - The application identifier used for the Service Principal.
-- **Secret** - The password used for the Service Principal.
-- **TenantId** - The ClientId used for the Service Principal.
+- **AppID**: The application identifier used for the Service Principal.
+- **Secret**: The password used for the Service Principal.
+- **TenantID**: The ClientID used for the Service Principal.
 
 :::warning
 **Securing Credentials:**
-You should store credentials used to login into Azure in a secure location, such as a Password Manager, or your Octopus Deploy instance using, preferably, an [Azure Account](https://octopus.com/docs/infrastructure/deployment-targets/azure#azure-service-principal) or [Sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables). You should also avoid committing them into source control.:::
+Store the credentials you use to login into Azure in a secure location, such as a Password Manager, or your Octopus Deploy instance using, preferably, an [Azure account](https://octopus.com/docs/infrastructure/deployment-targets/azure#azure-service-principal) or [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables). You should also avoid committing them into source control.
+:::
 
 To run the application, we’ll also supply:
 
-- **Resource Group Name** - Which resource group to add the Azure WebApp to.
-- **WebApp Name** - The name to give to the Azure WebApp.
-- **WebApp Sku** - What type of [App Service plan](https://azure.microsoft.com/en-us/pricing/details/app-service/) to use for the WebApp.
-- **WebApp Location** - Which data center location to host the Azure WebApp in.
+- **Resource Group Name**: Which resource group to add the Azure WebApp to.
+- **WebApp Name**: The name to give to the Azure WebApp.
+- **WebApp SKU**: What type of [App Service plan](https://azure.microsoft.com/en-us/pricing/details/app-service/) to use for the WebApp.
+- **WebApp Location**: The data center location where you'd like to host the Azure WebApp.
 
 To add our required parameters, the code looks like this:
 
@@ -98,11 +100,11 @@ let azWebAppName = argv.[4]
 let azWebAppSku = argv.[5]
 let azWebAppLocation = argv.[6]
 ```
-This simply assigns the parameters from the argument collection supplied to the program when it runs, based on their position from the command-line.
+This assigns the parameters from the argument collection supplied to the program when it runs, based on their position from the command-line.
 
 :::hint
 **Parameter validation:**
-I don’t show parameter validation in this example, but you’d want to consider adding it to your Farmer Template to ensure they have acceptable values.
+I don’t show parameter validation in this example, but you may want to consider adding it to your Farmer Template to ensure they have acceptable values.
 :::
 
 ### Define Azure Resources
@@ -116,9 +118,10 @@ let webApp = webApp {
     sku webAppSku
 }
 ```
-Here we assign the WebApp Sku to a variable named `webAppSku`. This is done by a helper function to return a strongly typed `Sku`. Then we create our `webApp` variable using the Farmer [Web App builder](https://compositionalit.github.io/farmer/api-overview/resources/web-app/).
 
-Next, we create our ARM deployment using the Farmer [ARM deployment builder](https://compositionalit.github.io/farmer/api-overview/resources/arm/), which in this example, consists of the location to deploy to, and the Azure WebApp as defined previously:
+Here we assign the WebApp SKU to a variable named `webAppSku`. This is done by a helper function to return a strongly typed `Sku`. Then we create our `webApp` variable using the Farmer [Web App builder](https://compositionalit.github.io/farmer/api-overview/resources/web-app/).
+
+Next, we create our ARM deployment using the Farmer [ARM deployment builder](https://compositionalit.github.io/farmer/api-overview/resources/arm/), which in this example, consists of the location to deploy to, and the Azure WebApp as previously defined:
 
 ```fs
 let deployLocation = Location.FromString(azWebAppLocation)
@@ -136,7 +139,8 @@ Let’s see an example. Suppose I wanted to create our Azure WebApp with a `Sku`
 
 ![Farmer Compiler warning](farmer-sku-invalid.png)
 
-This is because of the compiler knows that the string value `VeryFree` is the wrong type, and instead should be a `Sku` type.
+This is because of the compiler knows the string value `VeryFree` is the wrong type, and instead should be a `Sku` type.
+
 This is where Farmer really excels over crafting your own ARM template by hand. Its use of F# provides you with type safety to ensure you have valid templates from the outset.
 
 :::hint
@@ -146,7 +150,7 @@ There is a more detailed comparison between Farmer and ARM templates [here](http
 
 ### Generate ARM Template
 
-Once you have your Azure resources modelled, Farmer supports different ways to [generate the ARM template](https://compositionalit.github.io/farmer/api-overview/template-generation/). One way is to write it out to a file directly:
+When you have your Azure resources modeled, Farmer supports different ways to [generate the ARM template](https://compositionalit.github.io/farmer/api-overview/template-generation/). One way is to write it out to a file directly:
 
 ```fs
 deployment |> Writer.quickWrite "output"
@@ -159,18 +163,19 @@ In addition to generating the ARM template, you can also, optionally, have Farme
 
 :::warning
 **Azure CLI required**
+
 If you use the Integrated deployment to Azure feature, you will need the Azure CLI installed on the machine where you run your application.
 :::
 
 In our example **SimpleAzureWebApp** application, we’ll take advantage of this feature. 
 
-Before we can execute the deployment, we need to authenticate with Azure. Farmer comes with a `Deploy.authenticate` command, and you call it passing in your credentials supplied to the application previously, like this:
+Before we can execute the deployment, we need to authenticate with Azure. Farmer comes with a `Deploy.authenticate` command, and you call it by passing in the credentials you supplied to the application previously, like this:
 
 ```fs
 Deploy.authenticate azAppId azSecret azTenantId
 |> ignore
 ```
-When the authenticate call finishes, it returns you a list of the Azure subscriptions associated with the Service Principal. In this example these results are piped to the `ignore` function.
+When the authenticate call finishes, it returns a list of the Azure subscriptions associated with the Service Principal. In this example, these results are piped to the `ignore` function.
 
 If there are any errors authenticating with Azure, an error will be raised. If the login succeeds, we then need to get Farmer to execute our deployment, using the `Deploy.execute` command:
 
@@ -179,9 +184,11 @@ deployment
 |> Deploy.execute azResourceGroupName Deploy.NoParameters
 |> ignore
 ```
+
 You can query the results of the ARM deployment, but as with the authenticate call, we ignore them. Similarly, any errors on deployment will be surfaced as an exception. 
 
 ### Complete Farmer Template
+
 And that’s all there is to our application. Here is the finished `Program.fs` file:
 
 ```fsharp
@@ -229,7 +236,7 @@ let main argv =
 
 ## Package the Farmer Template
 
-Now we have the application written, the next step is to package it up for use with Octopus. For sake of simplicity in this post, I build and package the application using command-line tools, but I’d recommended automating this as part of a full CI/CD pipeline.
+Now we have the application written, the next step is to package it for use with Octopus. For sake of simplicity, I build and package the application using command-line tools, but I’d recommended automating this as part of a full CI/CD pipeline.
 
 :::hint
 If you are new to building .NET Core applications, we have a number of [guides](https://octopus.com/docs/guides?application=ASP.NET%20Core) that include step-by-step instructions to setup a CI/CD pipeline using various tools.
@@ -240,37 +247,40 @@ To build the **SimpleAzureWebApp** application, we run a `dotnet publish` comman
 ```bash
 dotnet publish -o output
 ```
-This builds and publishes the console application and places it the binaries in the `output` folder, as specified by the use of the `-o` parameter.
 
-We then need to package the application, and this time we use the Octopus CLI [pack](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack) command:
+This builds and publishes the console application and places the binaries in the `output` folder, as specified by the use of the `-o` parameter.
+
+Next, we need to package the application, and this time we use the Octopus CLI [pack](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack) command:
 
 ```bash
 octo pack --id SimpleAzureWebApp --format Zip --version 1.0.0.0 --basePath output 
 ```
-This will generate a file named `SimpleAzureWebApp.1.0.0.0.zip` which can either be uploaded to the Octopus [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository) or an external [package repository](https://octopus.com/docs/packaging-applications/package-repositories). 
 
-You can push to the Octopus built-in repository using another Octopus CLI command, [push](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack):
+This generates a file named `SimpleAzureWebApp.1.0.0.0.zip` which can either be uploaded to the Octopus [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository) or an external [package repository](https://octopus.com/docs/packaging-applications/package-repositories). 
+
+You can push to the Octopus built-in repository the Octopus CLI command, [push](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack):
 
 ```bash
 octo push --package SimpleAzureWebApp.1.0.0.0.zip --server https://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
 ```
-Once the package has been uploaded, we can set-up Octopus to run our application to deploy to Azure.
+
+After the package has been uploaded, we can set-up Octopus to run our application to deploy to Azure.
 
 ## Deploy the Farmer Template
 
 One of the cool things about Octopus is that you get to choose how to deploy. With the introduction of [Operations Runbooks](https://octopus.com/docs/operations-runbooks) last year, that flexibility has been extended even further to operations tasks, for example managing your infrastructure. 
 
-### Create the Runbook
+### Create the runbook
 
-To execute our Farmer Template, we’ll create a Runbook that deploys it to Azure. To do that:
+To execute our Farmer Template, we’ll create a runbook that deploys it to Azure. To do that:
 
- - Create a new Project in Octopus
- - Go to the Runbook process from the {{Operations>Runbooks}} section. 
- - Click **ADD RUNBOOK**
- - From the Overview, Click **DEFINE YOUR RUNBOOK PROCESS**
- - Click **ADD STEP**
+1. Create a new project in Octopus.
+1. Go to the runbook process from the {{Operations>Runbooks}} section. 
+1. Click **ADD RUNBOOK**.
+1. From the Overview, Click **DEFINE YOUR RUNBOOK PROCESS**.
+1. Click **ADD STEP**.
 
-On the step selection, choose the [Run a script](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step) step and give it a name. By using the script step, we can utilise the [Reference package](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step#referencing-packages) feature to include our package as part of the script execution. 
+On the step selection, choose the [Run a script](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step) step and give it a name. By using the script step, we can use the [Reference package](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step#referencing-packages) feature to include our package as part of the script execution. 
 
 To include our package, in the **Referenced Packages** section, click **ADD** and add the SimpleAzureWebApp package we uploaded earlier:
 
@@ -278,17 +288,19 @@ To include our package, in the **Referenced Packages** section, click **ADD** an
 
 Keep all of the defaults and click **OK**.
 
-#### Add the Runbook script
+#### Add the runbook script
 
-Next we need to add the Inline script which will execute our Farmer Template. We start with adding the Azure credentials needed:
+Next, we need to add the inline script which will execute our Farmer Template. We start by adding the Azure credentials needed:
+
 ```ps
 $appId = $OctopusParameters["Project.Azure.Account.Client"]
 $secret = $OctopusParameters["Project.Azure.Account.Password"]
 $tenantId = $OctopusParameters["Project.Azure.Account.TenantId"]
 ```
-The script references a number of expanded [Azure account variable properties](https://octopus.com/docs/projects/variables/azure-account-variables#azure-account-variable-properties) such as `Client` and `TenantId` from the Project variable named `Project.Azure.Account`. This is handy as we don’t need to specify separate variables for each property.
 
-Once we have the credentials, we want to specify the Azure WebApp parameters, including the Resource Group and WebApp name that will be passed to our SimpleAzureWebApp .NET Core application:
+The script references a number of expanded [Azure account variable properties](https://octopus.com/docs/projects/variables/azure-account-variables#azure-account-variable-properties) such as `Client` and `TenantId` from the project variable named `Project.Azure.Account`. This is handy as we don’t need to specify separate variables for each property.
+
+After we have the credentials, we want to specify the Azure WebApp parameters, including the Resource Group and WebApp name that will be passed to our SimpleAzureWebApp .NET Core application:
 
 ```ps
 $resourceGroupName = $OctopusParameters["Project.Azure.ResourceGroupName"]
@@ -296,15 +308,19 @@ $webAppName = $OctopusParameters["Project.Azure.WebAppName"]
 $webAppSku = $OctopusParameters["Project.Azure.WebAppSku"]
 $webAppLocation = $OctopusParameters["Project.Azure.WebAppLocation"]
 ```
-Lastly, we get the path of the extracted Farmer Template package using a [package variable](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step#accessing-package-references-from-a-custom-script) called `Octopus.Action.Package[SimpleAzureWebApp].ExtractedPath` and then set the working directory to that path, and call the `dotnet run` command passing in all of our parameters:
+
+Lastly, we get the path of the extracted Farmer Template package using a [package variable](https://octopus.com/docs/deployment-examples/custom-scripts/run-a-script-step#accessing-package-references-from-a-custom-script) called `Octopus.Action.Package[SimpleAzureWebApp].ExtractedPath` and then set the working directory to that path and call the `dotnet run` command passing in all of our parameters:
+
 ```ps
 $farmerPackagePath = $OctopusParameters["Octopus.Action.Package[SimpleAzureWebApp].ExtractedPath"]
 Set-Location $farmerPackagePath
 
 dotnet SimpleAzureWebApp.dll $appId $secret $tenantId $resourceGroupName $webAppName $webAppSku $webAppLocation
 ```
+
 :::warning
 **.NET Core runtime pre-requisite**
+
 In order for this script step to execute, it requires the the .NET Core runtime to be installed on the deployment target or worker where the step is configured to execute.
 :::
 
@@ -314,22 +330,22 @@ We also need to add the variables referenced in the script above:
 
 ![Project Variables](project-azure-variables.png)
 
-The `Project.Azure.Account` variable is an [Azure Account variable](https://octopus.com/docs/projects/variables/azure-account-variables), and the rest are Text variables.
+The `Project.Azure.Account` variable is an [Azure account variable](https://octopus.com/docs/projects/variables/azure-account-variables), and the rest are text variables.
 
-### Run the Runbook
+### Run the runbook
 
-If you’ve got this far, then the last part is to bring it all together and run our Runbook in Octopus and deploy the Farmer Template to Azure.
+If you’ve got this far, the last part is to bring it all together and run our runbook in Octopus and deploy the Farmer Template to Azure.
 
-You can see an example runbook run to Development creating the Azure WebApp called `farmer-webapp-dev`:
+You can see an example runbook run to development creating the Azure WebApp called `farmer-webapp-dev`:
 
 ![Farmer Azure Runbook run](farmer-azure-deployment.png)
 
-Once the runbook has run to completion, you can check your WebApp has been created using the [Azure portal](https://portal.azure.com). Here is the corresponding WebApp that were created in Azure as a result of the runbook run to Development:
+After the runbook has run to completion, you can check your WebApp has been created using the [Azure portal](https://portal.azure.com). Here is the corresponding WebApp that were created in Azure as a result of the runbook run to development:
 
-![Azure portal farmer webapp](azure-portal-farmer.png)
+![Azure portal Farmer webapp](azure-portal-farmer.png)
 ## Conclusion
 
-The great thing about this technique of using Farmer to generate and deploy your resources to Azure, is that you can version control your Templates. The code that defines your infrastructure can live alongside the code that runs on it. Plus, no more hassle with manually editing json files, and who doesn’t want that! 
+The great thing about this technique of using Farmer to generate and deploy your resources to Azure, is that you can version control your templates. The code that defines your infrastructure can live alongside the code that runs on it. Plus, no more hassle with manually editing JSON files, and who doesn’t want that! 
 
 Until next time, Happy Deployments!
 
