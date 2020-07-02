@@ -52,4 +52,176 @@ To provide a truly self-contained build and execution environment, we'll migrate
 
 ## Self contained builds and execution with Docker
 
-One of the main features of Docker is it's ability to bundle an entire execution environment in a self contained image, and run that image in an isolated environment. 
+One of the main features of Docker is it's ability to bundle an entire execution environment in a self contained image, and run that image in an isolated environment. What this means for us is we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
+
+A Docker image is defined by the steps listed in a file called `Dockerfile`. The contents of our `Dockerfile` is shown below:
+
+```
+FROM maven:3.6.3-jdk-8 AS build-env
+WORKDIR /app
+
+COPY pom.xml ./
+RUN mvn dependency:go-offline
+RUN mvn spring-javaformat:help
+
+COPY . ./
+RUN mvn spring-javaformat:apply
+RUN mvn package -DfinalName=petclinic
+
+FROM openjdk:8-jre-alpine
+EXPOSE 8080
+WORKDIR /app
+
+COPY --from=build-env /app/target/petclinic.jar ./petclinic.jar
+CMD ["/usr/bin/java", "-jar", "/app/petclinic.jar"]
+```
+
+This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools required to build, but not to run, the application.
+
+We base our build on an existing Docker image provided by the Maven team. This image has the JDK and Maven tools preinstalled:
+
+```
+FROM maven:3.6.3-jdk-8 AS build-env
+```
+
+We then create and move into a directory called `/app`:
+
+```
+WORKDIR /app
+```
+
+The Maven `pom.xml` file is copied into the `/app` directory:
+
+```
+COPY pom.xml ./
+```
+
+We then run the Maven `dependency:go-offline` goal, which downloads most of the libraries and Maven plugins we need to build the application.
+
+Because of the way Docker caches builds, so long as the `pom.xml` files doesn't change, any subsequent rebuilds of this image will reuse the downloads performed by the Maven call. For the Petclinic application, this can save several minutes and many hundreds of megabytes:
+
+```
+RUN mvn dependency:go-offline
+```
+
+Spring includes a source code formatting tool that ensures all the code has a consistent style. We'll call the help function to ensure that Maven downloads the plugin, which means Docker in turn will cache the download. This will save us one more download with subsequent rebuilds of the Docker image:
+
+```
+RUN mvn spring-javaformat:help
+```
+
+We now go ahead and copy the rest of the application source code. Docker detects when the source code being copied has changed and reruns the image building process from this step to capture the changes. However, all the application dependencies have been cached, so the build process from this step will be relatively quick:
+
+```
+COPY . ./
+```
+
+Copying source code from a Windows workstation to a Linux Docker image would normally cause the formatting plugin to complain about line endings. Here we run the formatting plugin to automatically fix any issues with the copied files:
+
+```
+RUN mvn spring-javaformat:apply
+```
+
+We can not build the application with the Maven `package` goal. Note that we have also set the `finalName` variable to `petclinic`. This overrides the default file name of `petclinic.2.3.1.BUILD-SNAPSHOT.jar` to produce a consistent file called `petclinic.jar`:
+
+```
+RUN mvn package -DfinalName=petclinic
+```
+
+Our application is now built, and we move to the next stage of the multistage build to produce the Docker image that we want to distribute. This image is based on the OpenJDK JRE. Note that the JRE can run a compiled application, but does not include the tools required to compile applications itself. This reduces the size of the final image:
+
+```
+FROM openjdk:8-jre-alpine
+```
+
+We expose port 8080, which is the port that our Spring application listens to:
+
+```
+EXPOSE 8080
+```
+
+We create and move into a directory called `/app`:
+
+```
+WORKDIR /app
+```
+
+The JAR file compiled in the previous stage is copied into the current image:
+
+```
+COPY --from=build-env /app/target/petclinic.jar ./petclinic.jar
+```
+
+We then instruct the image to execute the JAR file when it is run:
+
+```
+CMD ["/usr/bin/java", "-jar", "/app/petclinic.jar"]
+```
+
+To build the Docker image, run the command:
+
+```
+docker build . -t petclinic
+```
+
+This will build the Docker image and assign it the tag `petclinic:latest`. Note that `latest` is applied by default if no other tags are specified.
+
+Finally, run the Docker image with the command:
+
+```
+docker run petclinic
+```
+
+As before, the application is available at http://localhost:8080.
+
+We now have a `Dockerfile` that includes all the steps required to build and run our application. This application can now be built from source without any tools besides Docker. We now have a truly self contained build process.
+
+## Distributing Docker images
+
+Docker images can be shared online with a number of Docker registries. The most popular is [DockerHub](https://hub.docker.com/), which provides free accounts for hosting publicly available Docker images.
+
+To share the Petclinic Docker image, we need to sign up for a DockerHub account. My account is called `mcasperson`.
+
+Once you have created an account, sign into DockerHub with the command `docker login`:
+
+```
+docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: mcasperson
+Password:
+Login Succeeded
+```
+
+To share the image it needs to be tagged with your username. In my case, I need to build an image called `mcasperson/petclinic` (where `mcasperson` is my DockerHub username):
+
+```
+docker build . -t mcasperson/petclinic
+```
+
+The build should complete quickly, as no files have changed and all steps are cached from before.
+
+To upload the image, run the following command, replacing `mcasperson` with your DockerHub username:
+
+```
+docker push mcasperson/petclinic
+```
+
+The image is now [shared online](https://hub.docker.com/r/mcasperson/petclinic) for anyone to access.
+
+To run the public image, execute the command:
+
+```
+docker run -p 8080:8080 mcasperson/petclinic
+```
+
+Docker will download the image if it is not available locally, and then run it as we did before. The option `-p 8080:8080` explicitly maps the local port 8080to the container port 8080.
+
+## Conclusion
+
+In this blog post we took a typical Java application and containerized it as a Docker Image. This image was uploaded to a Docker registry making it publicly available.
+
+With these changes we have created a repeatable build and execution process anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
+
+While the build process may be conveniently encapsulated by Docker, there is no guarantee that the the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the code base is something that needs to be shared by a central "source of truth" so everyone knows the state of the application. This is where a Continuous Integration (CI) server comes in. 
+
+In the next blog post we'll configure our application to be built by the popular and open source CI server Jenkins.
