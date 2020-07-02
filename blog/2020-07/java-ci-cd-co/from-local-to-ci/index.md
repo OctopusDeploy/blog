@@ -54,3 +54,16 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 *************************************************************
 *************************************************************
 ```
+
+When you open http://localhost:8081 you will be prompted to enter this password to unlock Jenkins:
+
+![](unlock.png "width=500")
+
+Jenkins will prompt you to either install a list of common plugins or just those that you select. The **Install suggested plugins** option contains most of the plugins we'll need:
+
+![](customize.png "width=500")
+
+It will take a minute or so for the plugins to download:
+
+![](downloading.png "width=500")
+
