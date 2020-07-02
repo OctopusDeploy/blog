@@ -67,3 +67,14 @@ It will take a minute or so for the plugins to download:
 
 ![](downloading.png "width=500")
 
+The Jenkins administrator is configured:
+
+![](admin.png "width=500")
+
+Finally the Jenkins URL is defined:
+
+![](url.png "width=500")
+
+Jenkins is now configured and ready for use:
+
+![](finished.png "width=500")
