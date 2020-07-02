@@ -14,9 +14,9 @@ In the name of quality, many organisations have a Change Advisory Board or Chang
 
 The idea is to provide additional scrutiny in order to catch mistakes, poor code and/or fraudulent changes. It’s a noble goal but, unfortunately, CABs mostly do more harm than good.
 
-This was articulately demonstrated in 2018 by Nicole Forsgren, Gene Kim and Jez Humble in Accelerate. They analysed the data from the 2014 – 2017 State of DevOps Reports and they:
+This was articulately demonstrated in 2018 by Nicole Forsgren, Gene Kim and Jez Humble in [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339). They analysed the data from the 2014 – 2017 State of DevOps Reports and they:
 
-“found that external approvals were negatively correlated with lead time, deployment frequency, and restore time, and had no correlation with change fail rate. In short, approval by an external body (such as a manager or CAB) simply doesn’t work to increase the stability of production systems, measured by the time to restore service and change fail rate. However, it certainly slows things down. It is, in fact, worse than having no change approval process at all.”
+> “found that external approvals were negatively correlated with lead time, deployment frequency, and restore time, and had no correlation with change fail rate. In short, approval by an external body (such as a manager or CAB) simply doesn’t work to increase the stability of production systems, measured by the time to restore service and change fail rate. However, it certainly slows things down. It is, in fact, worse than having no change approval process at all.”
 
 The quotation above contains some loaded terms. Let’s discuss what they mean and why they are significant.
 
@@ -36,7 +36,7 @@ However, CABs often significantly increase both lead times and WIP as updates ar
 
 The frequency with which an organisation deploys is not a hard concept to understand, but it is an important metric with some counter-intuitive consequences.
 
-Every deployment carries some risk, and failed deployments are a horrible business. According to The Visible Ops Handbook, The DevOps Handbook and various Gartner Reports, around 80% of production outages are the result of someone making a change. If an organisation has suffered a series of expensive deployment failures it is natural to want to do them less often and to put in place additional measures to test and validate them.
+Every deployment carries some risk, and failed deployments are a horrible business. According to [The Visible Ops Handbook](https://www.amazon.co.uk/Visible-Ops-Handbook-Implementing-Practical/dp/0975568612/), [The DevOps Handbook](https://www.amazon.co.uk/Devops-Handbook-World-Class-Reliability-Organizations/dp/1942788002/) and various Gartner Reports, around 80% of production outages are the result of someone making a change. If an organisation has suffered a series of expensive deployment failures it is natural to want to do them less often and to put in place additional measures to test and validate them.
 
 CABs are often formed within this context. However, as Chuck Rossi observed while he was working at Facebook, as deployments grow beyond a certain size it’s almost impossible to execute them successfully. If lots of small changes are bundled together into a big deployment, that deployment becomes inherently more complicated, more risky and harder to fix. He concludes that “if we want more changes, we need more deployments”.
 
@@ -52,7 +52,7 @@ Restore time, or Mean Time to Restore (MTTR), is a measure for how quickly a tea
 
 However, historically organisations have paid more attention to Mean Time Between Failure (MTBF). While attitudes are changing, people are still more likely to talk about how often a deployment fails, rather than how quickly failures can be fixed. 
 
-In Database Reliability Engineering Laine Campbell and Charity Majors refer to this a “Resilience vs Robustness”. They explain that when folks design robust systems to never/rarely break, the system becomes brittle. Since failures occur so rarely the team is ill-prepared when they do happen and often the failures are complicated and difficult to understand and fix. In contrast, when teams accept that failures will occur and design a system to cope with failures, they are far more likely to be able to recover quickly. They promote practices such as canary deployment patterns, automated fail-overs, chaos engineering and enabling systems to automatically switch to a scaled down mode. (For example, by gracefully turning off resource intensive features while a service is under heavy load.) By embracing these sorts of resilient practices deployment failures are likely to have significantly less impact.
+In [Database Reliability Engineering](https://www.amazon.co.uk/Databases-at-Scale-Operations-Engineering/dp/1491925949) Laine Campbell and Charity Majors refer to this a “Resilience vs Robustness”. They explain that when folks design robust systems to never/rarely break, the system becomes brittle. Since failures occur so rarely the team is ill-prepared when they do happen and often the failures are complicated and difficult to understand and fix. In contrast, when teams accept that failures will occur and design a system to cope with failures, they are far more likely to be able to recover quickly. They promote practices such as canary deployment patterns, automated fail-overs, chaos engineering and enabling systems to automatically switch to a scaled down mode. (For example, by gracefully turning off resource intensive features while a service is under heavy load.) By embracing these sorts of resilient practices deployment failures are likely to have significantly less impact.
 
 Hence, while it is of course desirable for change failure rates to be low, attempting to remove all risk is a fool’s errand. You could invest your entire IT budget into avoiding failure, but failures would still happen. In the meantime, the overhead of seeking a perfect deployment record will likely cripple delivery times and innovation. As the old saying goes, as long as perfection is impossible or impractical, “perfection is the enemy of good”.
 
@@ -106,7 +106,7 @@ Without making any comments about any specific laws, in my experience most laws 
 
 For example, the ideal code review process described above is ideally suited to using pull requests in source control. This way approvers and their comments are audited, and often various rules can be configured to define the sorts of people who are required to review each change. It becomes impossible to update the main branch in source control without having conducted a code review.
 
-Alternatively you could audit your reviews in your deployment pipeline, such as by using “Manual Intervention” steps in Octopus Deploy. These are fully audited and details about who reviewed the change, when it was reviewed, and any comments are stored in the logs.
+Alternatively you could audit your reviews in your deployment pipeline, such as by using “[Manual Intervention](https://octopus.com/docs/deployment-process/steps/manual-intervention-and-approvals)” steps in Octopus Deploy. These are fully audited and details about who reviewed the change, when it was reviewed, and any comments are stored in the logs.
 
 You might wish to use both source control pull requests and manual review steps in your deployment pipeline for different sorts of reviews, but be careful adding too many manual approval gates since this is likely to increase lead time, WIP and will result in bigger and riskier deployments.
 
@@ -114,20 +114,28 @@ If you are under any doubt about your legal requirements, my advice is to seek p
 
 ## What to do if your organisation is thinking about forming a CAB
 
-•	Ensure that those who are making the decisions understand the counter intuitive nature of the four key metrics above, and that reviews and oversight should not come at the expense of increased lead time, more bureaucracy and bigger deployments.
-•	Embrace the notion of code reviews, but seek more efficient ways to handle the reviews, in small batches, with only the most qualified people.
-•	Ask the most risk-averse people, who best understand the major risks associated with your system for help. Get them on-side by asking them to help you to design automated ways to flag up potential issues within your automated test framework or deployment pipeline. The people who understand the risks best make excellent allies.
-•	Ensure that attention is paid to avoid any painful bureaucracy. For example, a common pain point is the requirement to fill in complicated and poorly designed forms each time someone needs to submit a change for review by the CAB. Be careful to avoid and/or minimise this effort. You want to ensure your team is focussed on creating a market-leading product, rather than filling in long or complicated forms.
-•	Ensure that the CAB has a well-defined scope and that, if possible, low-risk changes are granted a free pass to skip the CAB process. For example, get a commitment that if your change fits the following criteria it can bypass the CAB:
-o	You have kept within your team’s “Error Budget” for the last 30 days (see Site Reliability Engineering, Chapter 3 for further details about error budgets)
-o	All changes are deployed through your automated deployment pipeline
-o	All changes have been peer reviewed by another member of the team
-o	All changes have passed the relevant tests and the codebase maintains at least x% code coverage  
-•	Buy a copy of Accelerate for each of the key decision makers.
+First, remain calm. It's likely that the people making these decisions have the best intentions. They simply don't understand the anti-patterns that CABs are likley to create. You should try to educate them, without steamrolling them. Most people like to learn and to be persuaded, but folks rarely respond well to being beaten into submission.
+
+You could start by teaching them about the counter intuitive nature of the four key metrics above. From here you could explain that you agree that appropriate oversight is important, and that you are simply looking for the most effective and efficient way to deliver that oversight.
+
+You might want to consider embracing the most risk-averse people and those who understand the major risks best. Get them on-side by asking them to help you to design automated ways to flag up potential issues within your automated test framework or deployment pipeline. The people who understand the risks best make excellent allies.
+
+Pay special attention to any form filling or ticketing systems associated with the CAB. These are often poorly designed and either don't give the user the opportunity to provide all the necessary information or they introduce an intolerable overhead for even simple and low-risk changes. When this happens the process will inevitably break down and no-one wins.
+
+Ensure that the CAB has a well-defined scope and that, if possible, low-risk, and possibly even medium-risk changes are granted a free pass to skip the CAB process. This would allow the CAB more time to focus on scrutinising the most risky changes. For example, try to get a commitment that if a change fits the following criteria it can bypass the CAB:
+
+- The dev team has kept within their “Error Budget” for the last 30 days (see [Site Reliability Engineering](https://www.amazon.co.uk/Site-Reliability-Engineering-Betsy-Beyer/dp/149192912X), [Chapter 3](https://landing.google.com/sre/sre-book/chapters/embracing-risk/) for further details about error budgets)
+- All changes are deployed through an automated deployment pipeline
+- All changes have been peer reviewed by another member of the team
+- All changes have passed the relevant tests and the codebase maintains at least x% code coverage  
+
+As well as saving the CAB time, this will incentivise the dev teams to invest in appropriate quality control and test automation in order to avoid going through the CAB.
+
+Finally, it probably wouldn't hurt to buy a copy of [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339) for each of the key decision makers. If they don't want to read it, make a deal with them that you will read a book on their recommendation (and make sure you do!), if they promise to read a book that you recommend. Then agree a time to meet, perhaps over a fancy meal, and discuss both books. You might both learn something and it may prompt a friendly and valuable discussion.
 
 ## What to do if you already have a CAB
 
-Having to dance to the beat of the CAB is hardly ideal. However, upon reading this blog post you should avoid jumping to any knee-jerk reactions. Until you have been able to demonstrate the effectiveness of some other process, the CAB is probably still important for your high-risk changes.
+Having to dance to the beat of the CAB is hardly ideal. However, upon reading this blog post you should avoid jumping to any knee-jerk reactions. Without having invested in any lightweight approval processes, you may well have become reliant on the CAB for your high-risk changes.
 
 Love it or hate it, any changes to your existing processes should be made iteratively and carefully. Developing your deployment process, just like building a piece of software, should be done in small batches to avoid accidentally making a disastrous sweeping change. 
 
@@ -135,12 +143,13 @@ It’s also important to acknowledge human factors. You’ve probably got a bunc
 
 As a first step, talk to the supporters of the CAB about how you can make it more efficient. After all, it’s highly likely that they are as bored of the CAB as you are. They can be pretty tedious meetings and most of the people involved probably see them as a distraction from more important tasks.
 
-Perhaps you could ask them the following questions:
+Perhaps you could ask them a few of the following questions:
 
-•	Are the changes triaged into high risk, medium risk and low risk changes?
-•	What would it take for the CAB to be comfortable to auto-approve the low-risk changes or to allow them to bypass the CAB altogether?
-•	What could you do to downgrade a medium risk change to a low risk change? What sort of validation or testing would be required? Could these tests be automated in order to pre-approve the medium risk changes?
-•	How could any paperwork or forms be simplified and streamlined?
-•	Are all CAB members required to be present to review all changes? Rather than all meeting on a Wednesday, could you run a scaled down version of the CAB with just one or two CAB members for low/medium risk changes each morning at 9am? This would give you more time to scrutinise the high-risk changes in the main meeting on a Wednesday and improve the lead time for low and medium risk changes.
-•	What architectural changes could you make to decouple systems from each other such that the risk of one failure affecting other systems and the necessity to seek the approval of so many people is reduced.
-•	How could you report on the success/failure of any changes that you make to the CAB process to ensure that quality is not negatively affected as a result.
+- Are the changes triaged into high risk, medium risk and low risk changes? What is the difference between a low-risk and a medium-risk change? Is the threshold set at an appropriate level that enables the CAB to focus their attention on the most important issues?
+- What would it take for the CAB to be comfortable to auto-approve the low-risk changes or to allow them to bypass the CAB altogether?
+- What could you do to downgrade a medium risk change to a low risk change? What sort of validation or testing would be required? Could these tests be automated in order to pre-approve the medium risk changes?
+- How could any paperwork or forms be simplified and streamlined?
+- Are all CAB members required to be present to review all changes? For example, rather than all meeting on a Wednesday, could you run a scaled down version of the CAB with just one or two CAB members for low/medium risk changes each morning at 11am? This would give you more time to scrutinise the high-risk changes in the main meeting on a Wednesday and improve the lead time for low and medium risk changes.
+- What architectural changes could you make to decouple systems from each other such that the risk of one failure affecting other systems and the necessity to seek the approval of so many people is reduced.
+- What investments could you make to improve MTTR or otherise de-risk your deployments? If the consequences of failed deployments were reduced significantly, would that enable the CAB to allow low/medium risk changes to flow to production more freely?
+- How could you report on the success/failure of any changes that you make to the CAB process? Are you able to track the four key metrics as you iterate on your CAB processes to ensure that your changes are having a positive affect?
