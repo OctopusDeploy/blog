@@ -29,7 +29,7 @@ docker pull jenkins/jenkins:lts
 We then launch Jenkins with the command:
 
 ```
-docker run -p 8081:8080 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+docker run -p 8081:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 ```
 
 The `-p` argument binds a port from the local workstation to a port exposed by the image. Here we use the argument `-p 8081:8080` to bind local port 8081 to the container port 8080. Note that because our own application also listens to port 8080 by default, we have chosen the next available port of 8081 for Jenkins. It is entirely up to you which local port is mapped to the container port.
