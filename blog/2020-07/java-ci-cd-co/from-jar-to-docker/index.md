@@ -54,6 +54,8 @@ To provide a truly self-contained build and execution environment, we'll migrate
 
 One of the main features of Docker is it's ability to bundle an entire execution environment in a self contained image, and run that image in an isolated environment. What this means for us is we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
 
+A fork of the Petclinic repo has been created in [GitHub](https://github.com/mcasperson/spring-petclinic) with the code below for eacy access.
+
 A Docker image is defined by the steps listed in a file called `Dockerfile`. The contents of our `Dockerfile` is shown below:
 
 ```
