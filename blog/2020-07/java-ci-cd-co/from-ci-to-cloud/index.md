@@ -159,9 +159,9 @@ So the only question now is *how do we access the application?*
 
 ## Querying the cluster
 
-A common pattern that emerges while creating deployment pipelines like this is that we'll frequently find ourself in a position of having to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands to resolve the issue and move on.
+We'll frequently find ourself in a position of having to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands to resolve the issue and move on.
 
-While this works, and indeed is sometimes necessary, executing ad-hoc commands like this ignores the fact that if these commands were necessary to get the initial deployment to succeed, they are likely to also be necessary to necessary to resolve issues with the deployment in future.
+While this works, and indeed is sometimes necessary, executing ad-hoc commands like this ignores the fact that if these commands were necessary to get the initial deployment to succeed, they are likely to also be necessary to resolve issues with the deployment in future.
 
 Finding the hostname of the load balancer we just created is a perfect example. We could get this information any number of ways, either from the AWS console or with a call to kubectl. However, for the benefit of those who will be maintaining this cluster once we are done, we'll instead find this information through another runbook.
 
@@ -181,3 +181,14 @@ Running the runbook will query the cluster with kubectl on our behalf, showing t
 *The service details.*
 
 This process was slightly less convenient that jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful when working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team once we have implemented it.
+
+Now that we know the hostname of our ELB, we can access our publicly hosted application:
+
+![](petcliniclive.png "width=500")
+*Pet clinic live and public.*
+
+## Conclusion
+
+In this post we created a Kubernetes cluster in AWS using the EKS service and deployed our pet clinic application to it via Octopus. We also committed ourselves to debugging the cluster via runbooks, which provides a small but important foundation that we can pass to the team that will eventually be responsible for this cluster once we have moved on.
+
+We are not quite at the point of having implemented continuous deployments, since there is no integration between Jenkins and Octopus. In the next post we'll hook up our pipeline to achieve a complete CI/CD pipeline.
