@@ -180,7 +180,7 @@ Running the runbook will query the cluster with kubectl on our behalf, showing t
 ![](servicedetails.png "width=500")
 *The service details.*
 
-This process was slightly less convenient that jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful when working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team once we have implemented it.
+This process was slightly less convenient that jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful when working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team once we have implemented it. This is especially true when you consider that the next team only need the appropriate access to Octopus, and do not need kubectl or any credentials, which is welcome when your pager goes off at 3 in the morning.
 
 Now that we know the hostname of our ELB, we can access our publicly hosted application:
 
