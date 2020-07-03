@@ -12,7 +12,7 @@ tags:
 
 In the name of quality, many organizations have a Change Advisory Board or Change Approval Board (CAB) who review changes before they are executed against production. They are sometimes set up to comply with some regulation, such as the 2002 Sarbanes-Oxley Act (SOX), and/or to enforce “separation of duties”. Other times CABs are introduced following a series of deployment failures in an effort to improve reliability.
 
-The idea is to provide additional scrutiny to catch mistakes, poor code, and/or fraudulent changes. It’s a noble goal but, unfortunately, CABs mostly do more harm than good.
+The idea is to provide additional scrutiny to catch mistakes, poor code, and fraudulent changes. It’s a noble goal but, unfortunately, CABs mostly do more harm than good.
 
 This was articulately demonstrated in 2018 by Nicole Forsgren, Gene Kim, and Jez Humble in [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339). They analyzed the data from the 2014 – 2017 State of DevOps Reports and they:
 
@@ -48,9 +48,9 @@ Restore time, or Mean Time to Restore (MTTR), is a measure for how quickly a tea
 
 However, historically organizations have paid more attention to Mean Time Between Failure (MTBF). While attitudes are changing, people are still more likely to talk about how often a deployment fails, rather than how quickly failures can be fixed. 
 
-In [Database Reliability Engineering](https://www.amazon.co.uk/Databases-at-Scale-Operations-Engineering/dp/1491925949) Laine Campbell and Charity Majors refer to this as “Resilience vs Robustness”. They explain that when folks design robust systems to never/rarely break, the system becomes brittle. Since failures occur so rarely the team is ill-prepared when failures do happen and often the failures are complicated and difficult to understand and fix. In contrast, when teams accept that failures will occur and design a system to cope with failures, they are far more likely to recover quickly. They promote practices such as canary deployment patterns, automated fail-overs, chaos engineering, and enabling systems to automatically switch to a scaled down mode. (For example, by gracefully turning off resource intensive features while a service is under heavy load.) By embracing these sorts of resilient practices, deployment failures are likely to have significantly less impact.
+In [Database Reliability Engineering](https://www.amazon.co.uk/Databases-at-Scale-Operations-Engineering/dp/1491925949) Laine Campbell and Charity Majors refer to this as “Resilience vs Robustness”. They explain that when folks design robust systems to never/rarely break, the system becomes brittle. Since failures occur so rarely the team is ill-prepared when failures do happen and often the failures are complicated and difficult to understand and fix. In contrast, when teams accept that failures will occur and design a system to cope with failures, they are far more likely to recover quickly. They promote practices such as canary deployment patterns, automated fail-overs, chaos engineering, and enabling systems to automatically switch to a scaled down mode. For example, by gracefully turning off resource intensive features while a service is under heavy load. By embracing these sorts of resilient practices, deployment failures are likely to have significantly less impact.
 
-Hence, while it is of course desirable for change failure rates to be low, attempting to remove all risk is a fool’s errand. You could invest your entire IT budget into avoiding failure, but failures would still happen. In the meantime, the overhead of seeking a perfect deployment record will likely cripple delivery times and innovation. As the old saying goes, as long as perfection is impossible or impractical, “perfection is the enemy of good”.
+Hence, while it is of course desirable for change failure rates to be low, attempting to remove all risk is a fool’s errand. You could invest your entire IT budget in avoiding failure, but failures would still happen. In the meantime, the overhead of seeking a perfect deployment record will likely cripple delivery times and innovation. As the old saying goes, as long as perfection is impossible or impractical, “perfection is the enemy of good”.
 
 In contrast, the organizations that focus on MTTR first, and change failure rate second, will have a far healthier relationship with risk. If failed deployments become less of a problem and your team is able to fix them much more quickly, it becomes less important whether the change failure rate is 1% or 2%. It might as well be 25%, for the organization would probably still outperform an organization with poor MTTR in the eyes of its customers.
 
@@ -66,7 +66,7 @@ Forsgren, Humble, and Kim have demonstrated that speed begets quality, quality b
 
 ## An ideal code review process
 
-Having code reviewed by a knowledgeable expert is undoubtedly an excellent way to simultaneously improve quality and avoid knowledge hoarding. It can also be a great way to promote mentoring, personal development, and/or collaboration with people who have different skills or experience (e.g. DBAs, InfoSec, etc). Code reviews are a wonderful thing and this blog post should not be interpreted as a criticism of this valuable practice.
+Having code reviewed by a knowledgeable expert is undoubtedly an excellent way to simultaneously improve quality and avoid knowledge hoarding. It can also be a great way to promote mentoring, personal development, and collaboration with people who have different skills or experience (e.g. DBAs, InfoSec, etc). Code reviews are a wonderful thing and this blog post should not be interpreted as a criticism of this valuable practice.
 
 The goals of most CABs are undoubtedly positive. It’s their implementation where the problems arise.
 
@@ -94,7 +94,7 @@ Regardless of the initial intentions, CABs generally turn into a theater of secu
 
 ## Separation of duties, regulatory compliance, and fraud
 
-Before we go on, please be clear about the fact that I am not a lawyer and that while I may have mentioned SOX earlier in this post, my advice about technical practices should not be interpreted as legal advice about any specific law. If you have any concerns about any legal matters you should seek professional legal advice. My advice is purely concerning the effectiveness of specific technical practices.
+Before we go on, please be clear about the fact that I am not a lawyer and that while I mentioned SOX earlier in this post, my advice about technical practices should not be interpreted as legal advice about any specific law. If you have any concerns about any legal matters you should seek professional legal advice. My advice is purely concerning the effectiveness of specific technical practices.
 
 As mentioned at the top of this post, CABs often exist because of regulatory requirements, often due to a specific clause concerning “separation of duties”. These regulations generally exist to prevent fraud and they are important.
 
@@ -118,7 +118,7 @@ You could start by teaching them about the counter intuitive nature of the four 
 
 You might want to consider embracing the most risk-averse people and those who understand the major risks best. Get them on-side by asking them to help you to design automated ways to flag up potential issues within your automated test framework or deployment pipeline. The people who best understand the risks often make excellent allies.
 
-Pay special attention to any form filling or ticketing systems associated with the CAB. These are often poorly designed and either don’t give the user the opportunity to provide all the necessary information and/or they introduce an intolerable overhead for even simple and low-risk changes. When this happens the process will inevitably break down and no-one wins.
+Pay special attention to any form filling or ticketing systems associated with the CAB. These are often poorly designed and either don’t give the user the opportunity to provide all the necessary information or they introduce an intolerable overhead for even simple and low-risk changes. When this happens the process will inevitably break down and no-one wins.
 
 Ensure that the CAB has a well-defined scope and that, if possible, low-risk, and possibly even medium-risk changes are granted a free pass to skip the CAB altogether. This will allow the CAB more time to focus on scrutinizing the most risky changes. For example, try to get a commitment that if a change fits the following criteria it can bypass the CAB:
 
