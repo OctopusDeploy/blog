@@ -142,7 +142,8 @@ spec:
   type: LoadBalancer
   ports:
     - name: web
-      port: 8080
+      port: 80
+      targetPort: 8080
       protocol: TCP
 ```
 
