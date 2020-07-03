@@ -17,9 +17,9 @@ Having worked with Azure for around a year, it’s clear to see why [ARM templat
 
 However, if like me, you’ve ever tried to author an ARM template file, you might have come across one of my biggest gripes with them; they rely on strings and are prone to human error. There’s no compiler to help me out when I have a typo in a template (and there have been plenty of those!).
 
-I’ve used C# as my primary development language since 2012, however, since then, its functional counterpart, F# has become increasingly popular. As I found out recently, it has some useful features which can help out with my ARM template dilemma. One area in particular where F# excels, is its built-in [type-safety](https://fsharpforfunandprofit.com/posts/correctness-type-checking/).
+I’ve used C# as my primary development language since 2012, however, since then, its functional counterpart, F# has become increasingly popular. As I found out recently, it has some useful features which can help out with my ARM template dilemma. One area in particular where F# excels is its built-in [type-safety](https://fsharpforfunandprofit.com/posts/correctness-type-checking/).
 
-In this post, I’ll demonstrate the type-safety in F# in action by using [Farmer](https://compositionalit.github.io/farmer/) to generate a simple Azure WebApp ARM template, and then walk through how you can use its deployment capabilities through Octopus to deploy different WebApps to Azure directly.
+In this post, I’ll demonstrate the type-safety in F# in action by using [Farmer](https://compositionalit.github.io/farmer/) to generate a simple Azure WebApp ARM template and then walk through how you can use its deployment capabilities through Octopus to deploy different WebApps to Azure directly.
 
 
 <h2>In this post</h2>
@@ -32,11 +32,11 @@ The authors of Farmer [says](https://compositionalit.github.io/farmer/about/):
 
 > Farmer is an open source, free to use .NET domain-specific-language (DSL) for rapidly generating non-complex Azure Resource Manager (ARM) templates.
 
-To use Farmer, you create a [Farmer Template](https://compositionalit.github.io/farmer/quickstarts/template/). These are .NET Core applications which reference Farmer via a [NuGet package](https://www.nuget.org/packages/Farmer/), and they define your Azure resources that you wish to create.
+To use Farmer, you create a [Farmer Template](https://compositionalit.github.io/farmer/quickstarts/template/). These are .NET Core applications that reference Farmer via a [NuGet package](https://www.nuget.org/packages/Farmer/), and they define your Azure resources that you wish to create.
 
 ## Why is Farmer needed?
 
-Rather than repeating whats already there, I’d encourage you to read the [About](https://compositionalit.github.io/farmer/about/) section of the Farmer documentation for more details about the motivations to create a DSL for ARM templates.
+Rather than repeating what is already there, I’d encourage you to read the [About](https://compositionalit.github.io/farmer/about/) section of the Farmer documentation for more details about the motivations to create a DSL for ARM templates.
 
 For me, the highlights are:
 
@@ -65,7 +65,7 @@ Now we have our dependencies, we can go ahead and edit the `Program.fs` file whi
 
 **TL;DR**
 
-If you want to see the complete program, skip straight to the [end](#complete-farmer-template) or view the [source code](https://github.com/OctopusSamples/farmertemplates/blob/main/src/SimpleAzureWebApp/Program.fs). If you'd like more details, read on!
+If you want to see the complete program, skip straight to the [end](#complete-farmer-template) or view the [source code](https://github.com/OctopusSamples/farmertemplates/blob/main/src/SimpleAzureWebApp/Program.fs). If you’d like more details, read on!
 
 ### Template parameters
 
@@ -79,7 +79,7 @@ The first three we need are related to authenticating with Azure. These values c
 
 :::warning
 **Securing Credentials:**
-Store the credentials you use to login into Azure in a secure location, such as a Password Manager, or your Octopus Deploy instance using, preferably, an [Azure account](https://octopus.com/docs/infrastructure/deployment-targets/azure#azure-service-principal) or [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables). You should also avoid committing them into source control.
+Store the credentials you use to log in to Azure in a secure location, such as a Password Manager, or your Octopus Deploy instance using, preferably, an [Azure account](https://octopus.com/docs/infrastructure/deployment-targets/azure#azure-service-principal) or [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables). You should also avoid committing them into source control.
 :::
 
 To run the application, we’ll also supply:
@@ -87,7 +87,7 @@ To run the application, we’ll also supply:
 - **Resource Group Name**: Which resource group to add the Azure WebApp to.
 - **WebApp Name**: The name to give to the Azure WebApp.
 - **WebApp SKU**: What type of [App Service plan](https://azure.microsoft.com/en-us/pricing/details/app-service/) to use for the WebApp.
-- **WebApp Location**: The data center location where you'd like to host the Azure WebApp.
+- **WebApp Location**: The data center location where you’d like to host the Azure WebApp.
 
 To add our required parameters, the code looks like this:
 
@@ -139,7 +139,7 @@ Let’s see an example. Suppose I wanted to create our Azure WebApp with a `Sku`
 
 ![Farmer Compiler warning](farmer-sku-invalid.png)
 
-This is because of the compiler knows the string value `VeryFree` is the wrong type, and instead should be a `Sku` type.
+This is because the compiler knows the string value `VeryFree` is the wrong type, and instead should be a `Sku` type.
 
 This is where Farmer really excels over crafting your own ARM template by hand. Its use of F# provides you with type safety to ensure you have valid templates from the outset.
 
@@ -321,7 +321,7 @@ dotnet SimpleAzureWebApp.dll $appId $secret $tenantId $resourceGroupName $webApp
 :::warning
 **.NET Core runtime pre-requisite**
 
-In order for this script step to execute, it requires the the .NET Core runtime to be installed on the deployment target or worker where the step is configured to execute.
+In order for this script step to execute, it requires the .NET Core runtime to be installed on the deployment target or worker where the step is configured to execute.
 :::
 
 #### Add the variables
@@ -340,12 +340,12 @@ You can see an example runbook run to development creating the Azure WebApp call
 
 ![Farmer Azure Runbook run](farmer-azure-deployment.png)
 
-After the runbook has run to completion, you can check your WebApp has been created using the [Azure portal](https://portal.azure.com). Here is the corresponding WebApp that were created in Azure as a result of the runbook run to development:
+After the runbook has run to completion, you can check your WebApp has been created using the [Azure portal](https://portal.azure.com). Here is the corresponding WebApp that was created in Azure as a result of the runbook run to development:
 
 ![Azure portal Farmer webapp](azure-portal-farmer.png)
 ## Conclusion
 
-The great thing about this technique of using Farmer to generate and deploy your resources to Azure, is that you can version control your templates. The code that defines your infrastructure can live alongside the code that runs on it. Plus, no more hassle with manually editing JSON files, and who doesn’t want that! 
+The great thing about this technique of using Farmer to generate and deploy your resources to Azure is that you can version control your templates. The code that defines your infrastructure can live alongside the code that runs on it. Plus, no more hassle with manually editing JSON files, and who doesn’t want that! 
 
 Until next time, Happy Deployments!
 
