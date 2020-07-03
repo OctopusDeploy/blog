@@ -107,13 +107,15 @@ The node is now configured in Jenkins, but since there is no node running it is 
 
 ![](disconnectednode.png "width=500")
 
-Clicking the new node provides a screen with details on how to run the agent. Click the **agent** link to download the `agent.jar` file and run the command shown on the screen to connect the agent to Jenkins:
+Clicking the new node provides a screen with details on how to run the agent. Click the **agent.jar** link to download agent file and run the command shown on the screen to connect the agent to Jenkins:
 
 ![](agentdownload.png "width=500")
 
 Once the node is connected, it will be displayed without the error icon:
 
 ![](connectednode.png "width=500")
+
+We now have an agent connected to Jenkins that has the ability to build Docker images.
 
 ## Installing the Docker Pipeline plugin
 
@@ -157,7 +159,7 @@ The first format, known as a FreeStyle project, is defined in the Jenkins UI. Wh
 
 The second format, known as a pipeline, is essentially a script that is designed to be created and managed much like the code in your applications. The pipeline can be saved alongside your project code in a file called `Jenkinsfile`, which keeps your application code and the build definition in the same place.
 
-We'll create a `Jenkinsfile` for our project to build and publish our Docker image.
+We'll create a `Jenkinsfile` for our project to build and publish our Docker image with the following code:
 
 ```
 pipeline {
@@ -184,5 +186,81 @@ pipeline {
         }
     }
 }
+```
+
+Let's break this file down.
+
+All declarative pipelines start with `pipeline`:
 
 ```
+pipeline {
+```
+
+The agent this build is run with is defined in the `agent` section. Here we have configured the build to run on any agent with the label `docker`. This ensures that the build is run on our external node, which has access to the Docker daemon, rather than on the Jenkins server itself, which does not have access to Docker:
+
+```
+    agent {
+        label 'docker'
+    }
+```
+
+The stages that make up a pipeline are contained in a `stages` section:
+
+```
+stages {
+```
+
+The first stage builds the docker image. We make use of the [script](https://www.jenkins.io/doc/book/pipeline/syntax/#script) step to call the Docker Pipeline plugin we installed earlier to build the image. The result of this build is saved in a variable called `dockerImage`. Note the use of the `$BUILD_NUMBER` variable to assign a new version as the image tag with each build. This ensures that each execution of this pipeline will build a new distinct Docker image:
+
+```
+        stage('Building our image') {
+            steps {
+                script {
+                    dockerImage = docker.build "mcasperson/petclinic:$BUILD_NUMBER"
+                }
+            }
+        }
+```
+
+The second stage pushes the newly created image to Docker Hub. The `withRegistry` method takes the Docker registry as the first parameter, or if that is left blank, defaults to Docker Hub. The second parameter is the name of the credential that we created earlier in Jenkins:
+
+```
+        stage('Deploy our image') {
+            steps {
+                script {
+                    // Assume the Docker Hub registry by passing an empty string as the first parameter
+                    docker.withRegistry('' , 'dockerhub') {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+```
+
+This file is [committed alongside our application code](https://github.com/mcasperson/spring-petclinic/blob/main/Jenkinsfile). The next step is to create a Jenkins project to checkout this code and run the pipeline.
+
+## Creating a pipeline project
+
+From the Jenkins dashboard, click the **New Item** link:
+
+![](dashboard.png "width=500")
+
+Enter **Petclinic** as the item name and select the **Pipeline** option:
+
+![](newitem.png "width=500")
+
+Under the **Pipeline** section, select **Pipeline script from SCM**, enter the Git repository URL (https://github.com/mcasperson/spring-petclinic.git in this example), and select the branch to build (**main** in this example). Then click **Save**:
+
+![](itemconfig.png "width=500")
+
+From the project dashboard, click the **Build Now** link to manually run a build:
+
+![](runnow.png "width=500")
+
+Click the build link icon:
+
+![](build.png "width=500")
+
+Click the **Console Output** link to view the build output:
+
+![](console.png "width=500")
