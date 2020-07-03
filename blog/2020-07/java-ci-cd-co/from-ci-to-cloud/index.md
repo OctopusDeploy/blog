@@ -82,6 +82,7 @@ We can then test the feed to ensure that Octopus can find our **Petclinic** imag
 We now have all the configuration in place to deploy to the Kubernetes cluster. We'll use the **Deploy Kubernetes containers** step to configure a Kubernetes deployment resource and expose it through a load balancer service:
 
 ![](deployk8scontainers.png "width=500")
+*The Deploy Kubernetes containers step.*
 
 You can interact with this step in two ways.
 
@@ -90,6 +91,7 @@ The first way is to use the UI to build up the Kubernetes deployment. This is co
 The second way to use the step is to edit the values via the YAML representation that is shown when you click the **EDIT YAML** button:
 
 ![](edityaml.png "width=500")
+*The Edit YAML section.*
 
 We can then edit the deployment resources directly as YAML, which is convenient as copying and pasting exiting YAML populates the step in one operation. By pasting the YAML below into the text box, we create a deployment referencing our Docker image:
 
@@ -124,3 +126,57 @@ spec:
 
 ![](configuredstep.png "width=500")
 *The step is now configured with the YAML properties.*
+
+We want to place our deployments into a seperate namespace for each environment. This is done by setting the **Namespace** field to **petclinic-#{Octopus.Environment.Name | ToLower}**:
+
+![](namespace.png "width=500")
+
+In the same way we configured the deployment, can populate the details of the  with the YAML below. This YAML creates a load balancer service which will result in an Elastic Load Balancer (ELB) being created to expose the deployment. This ELB has a public hostname we can access from our web browser:
+
+```YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic
+spec:
+  type: LoadBalancer
+  ports:
+    - name: web
+      port: 8080
+      protocol: TCP
+```
+
+![](serviceyaml.png "width=500")
+*The service YAML.*
+
+With these settings in place we can deploy to the EKS cluster. The logs will show that the Kubernetes deployment and service resources were successfully created:
+
+![](deployment.png "width=500")
+*Petclinic has been successfully deployed.*
+
+So the only question now is *how do we access the application?*
+
+## Querying the cluster
+
+A common pattern that emerges while creating deployment pipelines like this is that we'll frequently find ourself in a position of having to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands to resolve the issue and move on.
+
+While this works, and indeed is sometimes necessary, executing ad-hoc commands like this ignores the fact that if these commands were necessary to get the initial deployment to succeed, they are likely to also be necessary to necessary to resolve issues with the deployment in future.
+
+Finding the hostname of the load balancer we just created is a perfect example. We could get this information any number of ways, either from the AWS console or with a call to kubectl. However, for the benefit of those who will be maintaining this cluster once we are done, we'll instead find this information through another runbook.
+
+To get the service information create a runbook with the community step template called **Kubernetes - Inspect Resources**:
+
+![](inspectresources.png "width=500")
+*The Kubernetes - Inspect Resources community step template.*
+
+Configure the step to get the service resources from the **petclinic-#{Octopus.Environment.Name | ToLower}** namespace:
+
+![](getservice.png "width=500")
+*Getting the service details.*
+
+Running the runbook will query the cluster with kubectl on our behalf, showing the hostname of the load balancer in the response:
+
+![](servicedetails.png "width=500")
+*The service details.*
+
+This process was slightly less convenient that jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful when working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team once we have implemented it.
