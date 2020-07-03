@@ -264,3 +264,17 @@ Click the build link icon:
 Click the **Console Output** link to view the build output:
 
 ![](console.png "width=500")
+
+Once the build completes, the Docker image is built on the Jenkins node and pushed to [Docker Hub](https://hub.docker.com/r/mcasperson/petclinic/tags) with a tag based on the build number:
+
+![](dockerhubtags.png "width=500")
+
+With this we have successfully configured Jenkins to compile and test the application code, and then build and push the Docker image to Docker Hub.
+
+## Conclusion
+
+Jenkins provides a central platform through which multiple developers can have their code built, tested and distributed. Jenkins maintains a history of the changes and whether they resulted in successful builds, maintains the credentials required to distribute Docker images, and removes the need for individuals to upload what could be potentially large Docker images with each build.
+
+In this post we stepped through the process of running Jenkins as a Docker container, connecting a node to perform the builds, and wrote a Jenkins pipeline to define how Jenkins will build and push the Docker image. The end result of this is a continuous integration system that can automatically build and publish our application, removing the need for individual developers to manually manage this process. We have achieved continuous integration.
+
+The next step is to deploy our newly created Docker images somewhere. To do this we will configure a Kubernetes cluster in AWS.
