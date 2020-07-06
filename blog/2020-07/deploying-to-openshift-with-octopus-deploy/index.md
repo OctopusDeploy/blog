@@ -15,13 +15,13 @@ In a previous post, I wrote about using Octopus Deploy to deploy to Kubernetes (
 
 ## Red Hat OpenShift
 
-Like Rancher, Red Hat OpenShift is a K8s management platform.  However, that is where the similarity ends, the two products are vastly different.  The system requirements for running OpenShift are not unsubstantial.  There is a minimum of three master nodes, each with at least 4 vCPUs and 16 GB of RAM.  Worker nodes require fewer resources: 1 vCPU and 8 GB of RAM.  
+Like Rancher, Red Hat OpenShift is a K8s management platform.  However, that is where the similarity ends, the two products are vastly different.  The system requirements for running OpenShift are not insubstantial.  There is a minimum of three master nodes, each with at least 4 vCPUs and 16 GB of RAM.  Worker nodes require fewer resources: 1 vCPU and 8 GB of RAM.
 
-There is a stripped down version of OpenShift that is designed to run on a laptop for development and trial purposes called CodeReady Containers (CRC).  The CRC version is what I used for this post as my hypervisor didn’t have enough remaining resources to host the full blown version.  While stripped down, the overall functionality is the same.
+There is a stripped down version of OpenShift that is designed to run on a laptop for development and trial purposes called CodeReady Containers (CRC).  The CRC version is what I used for this post as my hypervisor didn’t have enough remaining resources to host the full version of OpenShift. Even though it is a stripped down, CRC still has the same overall functionality.
 
 ### Using CRC
 
-This section shares some lessons I learned when using CRC.  If you’re not planning on using it, skip this section.  
+This section shares some of the lessons I learned using CRC.  If you’re not planning on using it, you can skip this section.
 
 To download CRC, you need a Red Hat account.  
 
@@ -35,11 +35,11 @@ For this post, I use the Windows Hyper-V variant.
 
 #### Hyper-V Virtual Switches
 
-The Windows CRC download is a single .exe file. This file takes care of creating and provisioning the VM to run OpenShift on a laptop.  One thing I discovered when using CRC is that it specifically used the default virtual switch in Hyper-V.  Some time ago, Windows disabled the ability to edit the default virtual switch so it’s permanently stuck using Network Address Translation (NAT).  However, I did manage to find a not well publicized feature of CRC, if you create a virtual switch called `crc`, the provisioning of the VM will use that virtual switch instead.
+The Windows CRC download is a single .exe file. This file takes care of creating and provisioning the VM to run OpenShift on a laptop.  One thing I discovered using CRC is that it specifically uses the default virtual switch in Hyper-V.  Some time ago, Windows disabled the ability to edit the default virtual switch so it’s permanently stuck using Network Address Translation (NAT).  However, I did manage to find a not well publicized feature of CRC, if you create a virtual switch called `crc`, the provisioning of the VM will use that virtual switch instead.
 
 #### CRC changes the DNS server to itself
 
-The folks at Red Hat have tried to make things as easy as possible by having an all encompassing solution so you can learn the OpenShift product.  This includes altering your network settings to change the DNS server to itself so you can resolve the built-in DNS entries.  I’ll admit to not have paid enough attention to the messages as everything was being set up, and then scratching my head for a while trying to figure out why my local DNS entries no longer worked.  After I figured that out, it was easy enough to duplicate the DNS entries local to the laptop so that external machines could interact with the OpenShift cluster.
+The folks at Red Hat have tried to make things as easy as possible by having an all encompassing solution to help you can learn the OpenShift product.  This includes altering your network settings to change the DNS server to itself so you can resolve the built-in DNS entries.  I’ll admit to not paying enough attention to the messages as everything was being set up, and then scratching my head for a while trying to figure out why my local DNS entries no longer worked.  After I figured that out, it was easy enough to duplicate the DNS entries local to the laptop so that external machines could interact with the OpenShift cluster.
 
 ### OpenShift Perspectives
 
@@ -47,18 +47,18 @@ The interface to OpenShift comes with two modes called Perspectives:
 - Administrator
 - Developer
 
-The displayed options change based on which Perspective you are using.  The Administrator Perspective shows options related to operations and management, whereas the Developer Perspective shows only options that developers would be concerned with.  
+The displayed options change based on which Perspective you are using.  The Administrator Perspective shows options related to operations and management, whereas the Developer Perspective shows only options that developers are concerned with.
 
 ### Create a project
 
-OpenShift uses projects to help you organize the resources you need and to keep everything together. A project consists of all your application’s components and can be monitored from the project screen.  To create a project:
+OpenShift uses projects to help you organize the resources you need and keep everything together. A project consists of all your application’s components and can be monitored from the project screen.  To create a project:
 
 1. Ensure you have selected the Administrator Perspective.
 1. Wait for the display to update if you have switched perspectives (if you’re using CRC, this could take several seconds).
 1. From the Administrator Perspective, click the blue **Create Project** button.  
 1. Give your project a name and click **Create**.
 
-#### Create Service Account
+#### Create service account
 
 In order to deploy to OpenShift, we need to provide Octopus Deploy with credentials it can use to connect to OpenShift.  Each OpenShift project has a section where you can define service accounts.  After your project has been created:
 
@@ -66,11 +66,11 @@ In order to deploy to OpenShift, we need to provide Octopus Deploy with credenti
 1. Click **Service Accounts**.
 1. Click **Create Service Account**.
 
-#### Create Role Binding
+#### Create role binding
 
-With the service account created, we need to give it a role so that it can create resources on the cluster.
+With the service account created, we need to give it a role so it can create resources on the cluster.
 
-I had some difficulties getting the correct permissions using the UI, but I found that using the command-line **oc.exe** tool allowed me to give my service account the correct permissions:
+I had some difficulties getting the correct permissions using the UI, but I found using the command-line **oc.exe** tool allowed me to give my service account the correct permissions:
 
 ```
 C:\Users\Shawn.Sesna\.kube>oc.exe policy add-role-to-user cluster-admin -z octopusdeploy
