@@ -81,7 +81,7 @@ pipeline {
 }
 ```
 
-The Kubernetes deployment YAML is also very similar to our previous example, with the addition of three environment variables to configure the database credentials:
+The Kubernetes deployment YAML is also very similar to our previous example, with the addition of two environment variables to configure the database credentials and create an initial database:
 
 ```YAML
 apiVersion: apps/v1
@@ -101,12 +101,10 @@ spec:
             - name: sql
               containerPort: 3306
           env:
-            - name: MYSQL_PASSWORD
-              value: petclinic
-            - name: MYSQL_USER
-              value: petclinic
             - name: MYSQL_ROOT_PASSWORD
               value: Password01!
+            - name: MYSQL_DATABASE
+              value: petclinic
 ```
 
 Because we don't need to access the database publicly, we expose the MySQL instance with a cluster IP service, which allows other pods to access the database, but will not create a public load balancer:
@@ -124,4 +122,37 @@ spec:
       protocol: TCP
 ```
 
-Deploying the resources created by the YAML above results in a MySQL instance that can be accessed from other pods in the cluster 
+Deploying the resources created by the YAML above results in a MySQL instance that can be accessed from other pods in the cluster.
+
+To configure pet clinic to use the MySQL database we need to define four environment variables:
+
+* `MYSQL_URL`, which is the JDBC URL to the MySQL database.
+* `MYSQL_USER`, which is the MySQL user to connect as, set to `root`.
+* `MYSQL_PASS`, which is the MySQL password, set to the password we set in the same value as the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
+* `SPRING_CONFIG_NAME`, which defines the configuration file that Spring will use to configure the application.
+
+```YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: petclinic
+          image: mcasperson/petclinic
+          ports:
+            - name: web
+              containerPort: 8080
+          env:
+            - name: MYSQL_URL
+              value: 'jdbc:mysql://mysql/petclinic'
+            - name: SPRING_CONFIG_NAME
+              value: application-mysql
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASS
+              value: Password01!
+```
