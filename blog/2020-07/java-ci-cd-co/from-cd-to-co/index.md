@@ -81,7 +81,7 @@ pipeline {
 }
 ```
 
-The Kubernetes deployment YAML is also very similar to our previous example:
+The Kubernetes deployment YAML is also very similar to our previous example, with the addition of three environment variables to configure the database credentials:
 
 ```YAML
 apiVersion: apps/v1
@@ -105,6 +105,8 @@ spec:
               value: petclinic
             - name: MYSQL_USER
               value: petclinic
+            - name: MYSQL_ROOT_PASSWORD
+              value: Password01!
 ```
 
 Because we don't need to access the database publicly, we expose the MySQL instance with a cluster IP service, which allows other pods to access the database, but will not create a public load balancer:
