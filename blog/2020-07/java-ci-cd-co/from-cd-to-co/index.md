@@ -81,7 +81,7 @@ pipeline {
 }
 ```
 
-The Kubernetes deployment YAML is also very similar to our previous example, with the addition of two environment variables to configure the database credentials and create an initial database:
+The Kubernetes deployment YAML is also very similar to our previous example, with a new image name and the addition of two environment variables to configure the database credentials and create an initial database:
 
 ```YAML
 apiVersion: apps/v1
@@ -129,7 +129,9 @@ To configure pet clinic to use the MySQL database we need to define four environ
 * `MYSQL_URL`, which is the JDBC URL to the MySQL database.
 * `MYSQL_USER`, which is the MySQL user to connect as, set to `root`.
 * `MYSQL_PASS`, which is the MySQL password, set to the password we set in the same value as the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
-* `SPRING_CONFIG_NAME`, which defines the configuration file that Spring will use to configure the application.
+* `SPRING_PROFILES_ACTIVE`, which defines the profile file that Spring will use to configure the application, set to [mysql](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties).
+
+The YAML for our new pet clinic deployment is shown below:
 
 ```YAML
 apiVersion: apps/v1
@@ -149,8 +151,8 @@ spec:
           env:
             - name: MYSQL_URL
               value: 'jdbc:mysql://mysql/petclinic'
-            - name: SPRING_CONFIG_NAME
-              value: application-mysql
+            - name: SPRING_PROFILES_ACTIVE
+              value: mysql
             - name: MYSQL_USER
               value: root
             - name: MYSQL_PASS
