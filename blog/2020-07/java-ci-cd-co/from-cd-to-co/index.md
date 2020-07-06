@@ -18,19 +18,19 @@ While a traditional CI/CD pipeline ends with a deployment to production, Octopus
 
 Before we can create runbooks for database backups, we first need a database.
 
-In a production setting you would typically use a hosted service like RDS. You get out of the box high availability, backups, maintenance windows, security and more, all of which would require a significant effort to replicate with a local database. However, for the purposes of this blog we'll deploy MySQL to EKS and point our pet clinic application to it. We can then script some common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
+In a production setting you would typically use a hosted service like RDS. RDS provides out of the box high availability, backups, maintenance windows, security and more, all of which would require a significant effort to replicate with a local database. However, for the purposes of this blog we'll deploy MySQL to EKS and point our pet clinic application to it. We can then script some common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
 
 We'll use the official [MySQL](https://hub.docker.com/_/mysql) Docker image, but we also need some additional tools on the image to allow us to transfer a backup to a second location. Since we are using AWS to host our Kubernetes cluster, we'll backup our database to S3. This means we need the AWS CLI included in the MySQL Docker image to transfer a database backup.
 
 Adding new tools to an image is easy. We take the base **mysql** image and run the commands required to install the AWS CLI. So our [Dockerfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Dockerfile) looks like this:
 
-```
+```dockerfile
 FROM mysql
 RUN apt-get update; apt-get install python python-pip -y
 RUN pip install awscli
 ```
 
-We then build this image, push it to Docker Hub, and create and deploy a release in Octopus with the following [Jenkinsfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Jenkinsfile). You will note that this Jenkinsfile is almost an exact copy of the previous one, with some changes to the name of the Docker image and the Octopus project that is deployed:
+We then build this image, push it to Docker Hub, and create and deploy a release in Octopus with the following [Jenkinsfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Jenkinsfile). You will note that this `Jenkinsfile` is almost an exact copy of the previous one, with some changes to the name of the Docker image and the Octopus project that is deployed:
 
 ```groovy
 pipeline {
@@ -81,7 +81,7 @@ pipeline {
 }
 ```
 
-The Kubernetes deployment YAML is also very similar to our previous example, with a new image name and the addition of two environment variables to configure the database credentials and create an initial database:
+The MySQL Kubernetes deployment YAML is also very similar to our previous example, with a new image name and the addition of two environment variables to configure the database credentials and create an initial database:
 
 ```YAML
 apiVersion: apps/v1
@@ -122,14 +122,14 @@ spec:
       protocol: TCP
 ```
 
-Deploying the resources created by the YAML above results in a MySQL instance that can be accessed from other pods in the cluster.
+Deploying the resources created by the YAML above results in a MySQL instance that can be accessed from other pods in the cluster using the hostname `mysql`.
 
-To configure pet clinic to use the MySQL database we need to define four environment variables:
+To configure pet clinic to use the MySQL database we need to define four environment variables. These variables are used to configure the settings in the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file:
 
 * `MYSQL_URL`, which is the JDBC URL to the MySQL database.
 * `MYSQL_USER`, which is the MySQL user to connect as, set to `root`.
 * `MYSQL_PASS`, which is the MySQL password, set to the password we set in the same value as the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
-* `SPRING_PROFILES_ACTIVE`, which defines the profile file that Spring will use to configure the application, set to [mysql](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties).
+* `SPRING_PROFILES_ACTIVE`, which defines the profile file that Spring will use to configure the application, set to mysql to load the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file.
 
 The YAML for our new pet clinic deployment is shown below:
 
