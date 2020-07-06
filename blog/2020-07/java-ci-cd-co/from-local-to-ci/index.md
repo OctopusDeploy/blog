@@ -1,5 +1,5 @@
 ---
-title: From Local Build to Jenkins CI
+title: From Local Build to Jenkins Continuous Integration
 description: In this post we look at how to build a Docker image with a central CI server
 author: matthew.casperson@octopus.com
 visibility: private

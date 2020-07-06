@@ -1,5 +1,5 @@
 ---
-title: From CI to CD
+title: From Contunuous Integration to Continuous Delivery
 description: In this post we link up Jenkins and Octopus to form a CI/CD pipeline
 author: matthew.casperson@octopus.com
 visibility: private
