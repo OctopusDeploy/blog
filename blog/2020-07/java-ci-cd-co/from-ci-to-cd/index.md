@@ -158,8 +158,8 @@ And with that, we have a complete CI/CD pipeline.
 
 In this post we triggering a deployment in Octopus once Jenkins finishes building and pushing the Docker image. This means we have implemented Continuous Integration with Jenkins testing, building, and publishing the Docker image, and Continuous Delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
 
-We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those performing the deployments need no special tools other than a web browser, each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards. This is CI/CD in action.
+We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those performing the deployments need no special tools other than a web browser, and each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards. This is CI/CD in action.
 
 But those that have seen their code put in customer's hands know that nothing inspires more confidence than the first 10 minutes of a production deployment - it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
 
-In the next blog post we'll show some examples of these processes using runbooks to complete the final stage of our pipeline: Continious Operations.
+In the next blog post we'll show examples of these maintaince processes implemented in runbooks to complete the final stage of our pipeline: Continious Operations.
