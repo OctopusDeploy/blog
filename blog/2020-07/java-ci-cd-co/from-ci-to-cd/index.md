@@ -1,5 +1,5 @@
 ---
-title: From Contunuous Integration to Continuous Delivery
+title: From Continuous Integration to Continuous Delivery
 description: In this post we link up Jenkins and Octopus to form a CI/CD pipeline
 author: matthew.casperson@octopus.com
 visibility: private
@@ -126,7 +126,7 @@ With these changes to the pipeline we rerun the project in Jenkins, and from the
 
 ![](jenkinslogs.png "width=500")
 
-Here is the corrosponding deployment in Octopus:
+Here is the corresponding deployment in Octopus:
 
 ![](octopusdeployment.png "width=500")
 
@@ -148,7 +148,7 @@ Promoting the deployment to the **Test** environment, we can see our Kubernetes 
 
 ![](testdeployment.png "width=500")
 
-To prove this we can rerun the runbook **Get Service** in the **Test** environment. We can seet that a new load balancer host name has been created for the new service resource:
+To prove this we can rerun the runbook **Get Service** in the **Test** environment. We can see that a new load balancer host name has been created for the new service resource:
 
 ![](testlb.png "width=500")
 
@@ -162,4 +162,4 @@ We now have the ability to promote a change from the application source code to 
 
 But those that have seen their code put in customer's hands know that nothing inspires more confidence than the first 10 minutes of a production deployment - it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
 
-In the next blog post we'll show examples of these maintaince processes implemented in runbooks to complete the final stage of our pipeline: Continious Operations.
+In the next blog post we'll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: Continuous Operations.

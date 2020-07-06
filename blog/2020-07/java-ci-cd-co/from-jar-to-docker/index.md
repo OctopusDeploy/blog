@@ -12,11 +12,11 @@ tags:
 
 There is perhaps no public project that better captures a long lived Java application than the [Spring Petclinic](https://projects.spring.io/spring-petclinic/) sample application. It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
 
-Our journey from local builds and manual deployments through to a complete Continuous Integration (CI), Continuous Deployment (CD), and Continuous Operation (CO), or CI/CD/CO, lifecycle starts with a local build of Petclinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution.
+Our journey from local builds and manual deployments through to a complete Continuous Integration (CI), Continuous Deployment (CD), and Continuous Operation (CO), or CI/CD/CO, lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution.
 
 ## Starting with a local build
 
-To get started, we clone the Petclinic GIT repository and used the Maven wrapper checked in alongside the application source code to build and run a local JAR file:
+To get started, we clone the pet clinic GIT repository and used the Maven wrapper checked in alongside the application source code to build and run a local JAR file:
 
 ```
 git clone https://github.com/spring-projects/spring-petclinic.git
@@ -46,7 +46,7 @@ This process of testing, build and running locally is were every application sta
 
 To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper) which provides cross platform scripts designed to be checked into source control that download the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self contained JAR files which are easy to version, copy and deploy.
 
-However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. Petclinic relies on a now quite old version of Java, but given that a new version of Java now released every 6 months, it is not hard to imagine developers having to juggle Java installations to perform a local build.
+However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. Pet clinic relies on a now quite old version of Java, but given that a new version of Java now released every 6 months, it is not hard to imagine developers having to juggle Java installations to perform a local build.
 
 To provide a truly self-contained build and execution environment, we'll migrate this application to Docker.
 
@@ -54,7 +54,7 @@ To provide a truly self-contained build and execution environment, we'll migrate
 
 One of the main features of Docker is it's ability to bundle an entire execution environment in a self contained image, and run that image in an isolated environment. What this means for us is we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
 
-A fork of the Petclinic repo has been created in [GitHub](https://github.com/mcasperson/spring-petclinic) with the code below for eacy access.
+A fork of the pet clinic repo has been created in [GitHub](https://github.com/mcasperson/spring-petclinic) with the code below for easy access.
 
 A Docker image is defined by the steps listed in a file called `Dockerfile`. The contents of our `Dockerfile` is shown below:
 
@@ -100,7 +100,7 @@ COPY pom.xml ./
 
 We then run the Maven `dependency:go-offline` goal, which downloads most of the libraries and Maven plugins we need to build the application.
 
-Because of the way Docker caches builds, so long as the `pom.xml` files doesn't change, any subsequent rebuilds of this image will reuse the downloads performed by the Maven call. For the Petclinic application, this can save several minutes and many hundreds of megabytes:
+Because of the way Docker caches builds, so long as the `pom.xml` files doesn't change, any subsequent rebuilds of this image will reuse the downloads performed by the Maven call. For the pet clinic application, this can save several minutes and many hundreds of megabytes:
 
 ```
 RUN mvn dependency:go-offline
@@ -182,7 +182,7 @@ We now have a `Dockerfile` that includes all the steps required to build and run
 
 Docker images can be shared online with a number of Docker registries. The most popular is [DockerHub](https://hub.docker.com/), which provides free accounts for hosting publicly available Docker images.
 
-To share the Petclinic Docker image, we need to sign up for a DockerHub account. My account is called `mcasperson`.
+To share the pet clinic Docker image, we need to sign up for a DockerHub account. My account is called `mcasperson`.
 
 Once you have created an account, sign into DockerHub with the command `docker login`:
 
