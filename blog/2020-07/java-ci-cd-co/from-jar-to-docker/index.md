@@ -12,7 +12,7 @@ tags:
 
 There is perhaps no public project that better captures a long lived Java application than [Spring Petclinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
 
-Our journey from local builds and manual deployments through to a complete [Continuous Integration (CI)](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md), [Continuous Deployment (CD)](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md), and [Continuous Operation (CO)](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md), or CI/CD/CO, lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution.
+Our journey from local builds and manual deployments through to a complete [Continuous Integration (CI)](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md), [Continuous Deployment (CD)](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md), and [Continuous Operation (CO)](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md), or CI/CD/CO, lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution environment.
 
 ## Starting with a local build
 
@@ -29,8 +29,9 @@ This initial build will take some time as Maven downloads the various Spring lib
 To view the application, open http://localhost:8080:
 
 ![](petclinic.png "width=500")
+*Pet clinic running locally.*
 
-To create a distributable JAR file, run:
+To create a distributable JAR file, run the command:
 
 ```
 ./mvnw package
@@ -42,11 +43,11 @@ This runs the unit tests and then creates a single, self contained JAR file unde
 java -jar .\target\petclinic.2.3.1.BUILD-SNAPSHOT.jar
 ```
 
-This process of testing, build and running locally is were every application starts. 
+This process of testing, building and running locally is were every application starts. 
 
-To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper) which provides cross platform scripts designed to be checked into source control that download the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self contained JAR files which are easy to version, copy and deploy.
+To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper) which provides cross platform scripts, designed to be checked into source control, that download the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self contained JAR files which are easy to version, copy and deploy.
 
-However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. Pet clinic relies on a now quite old version of Java, but given that a new version of Java now released every 6 months, it is not hard to imagine developers having to juggle Java installations to perform a local build.
+However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. Pet clinic relies on a now quite old version of Java, but given that a new version of Java is released every 6 months, it is not hard to imagine developers having to juggle Java installations to perform a local build.
 
 To provide a truly self-contained build and execution environment, we'll migrate this application to Docker.
 
@@ -78,7 +79,7 @@ COPY --from=build-env /app/target/petclinic.jar ./petclinic.jar
 CMD ["/usr/bin/java", "-jar", "/app/petclinic.jar"]
 ```
 
-This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools required to build, but not to run, the application.
+This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools required to only to build the application.
 
 We base our build on an existing Docker image provided by the Maven team. This image has the JDK and Maven tools preinstalled:
 
@@ -100,7 +101,7 @@ COPY pom.xml ./
 
 We then run the Maven `dependency:go-offline` goal, which downloads most of the libraries and Maven plugins we need to build the application.
 
-Because of the way Docker caches builds, so long as the `pom.xml` files doesn't change, any subsequent rebuilds of this image will reuse the downloads performed by the Maven call. For the pet clinic application, this can save several minutes and many hundreds of megabytes:
+Because of the way Docker caches builds, so long as the `pom.xml` file doesn't change, any subsequent rebuilds of this image will reuse the downloads performed by this execution of Maven. For the pet clinic application, this can save several minutes and many hundreds of megabytes:
 
 ```
 RUN mvn dependency:go-offline
@@ -124,7 +125,7 @@ Copying source code from a Windows workstation to a Linux Docker image would nor
 RUN mvn spring-javaformat:apply
 ```
 
-We can not build the application with the Maven `package` goal. Note that we have also set the `finalName` variable to `petclinic`. This overrides the default file name of `petclinic.2.3.1.BUILD-SNAPSHOT.jar` to produce a consistent file called `petclinic.jar`:
+We can now build the application with the Maven `package` goal. Note that we have also set the `finalName` variable to `petclinic`. This overrides the default file name of `petclinic.2.3.1.BUILD-SNAPSHOT.jar` to produce a consistent file called `petclinic.jar`:
 
 ```
 RUN mvn package -DfinalName=petclinic
@@ -180,11 +181,11 @@ We now have a `Dockerfile` that includes all the steps required to build and run
 
 ## Distributing Docker images
 
-Docker images can be shared online with a number of Docker registries. The most popular is [DockerHub](https://hub.docker.com/), which provides free accounts for hosting publicly available Docker images.
+Docker images can be shared online with a number of Docker registries. The most popular is [Docker Hub](https://hub.docker.com/), which provides free accounts for hosting publicly available Docker images.
 
-To share the pet clinic Docker image, we need to sign up for a DockerHub account. My account is called `mcasperson`.
+To share the pet clinic Docker image, we need to sign up for a Docker Hub account. My account is called `mcasperson`.
 
-Once you have created an account, sign into DockerHub with the command `docker login`:
+Once you have created an account, sign into Docker Hub with the command `docker login`:
 
 ```
 docker login
@@ -194,7 +195,7 @@ Password:
 Login Succeeded
 ```
 
-To share the image it needs to be tagged with your username. In my case, I need to build an image called `mcasperson/petclinic` (where `mcasperson` is my DockerHub username):
+To share the image it needs to be tagged with your username. In my case, I need to build an image called `mcasperson/petclinic` (where `mcasperson` is my Docker Hub username):
 
 ```
 docker build . -t mcasperson/petclinic
@@ -202,7 +203,7 @@ docker build . -t mcasperson/petclinic
 
 The build should complete quickly, as no files have changed and all steps are cached from before.
 
-To upload the image, run the following command, replacing `mcasperson` with your DockerHub username:
+To upload the image, run the following command, replacing `mcasperson` with your Docker Hub username:
 
 ```
 docker push mcasperson/petclinic
@@ -226,4 +227,4 @@ With these changes we have created a repeatable build and execution process anyo
 
 While the build process may be conveniently encapsulated by Docker, there is no guarantee that the the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the code base is something that needs to be shared by a central "source of truth" so everyone knows the state of the application. This is where a Continuous Integration (CI) server comes in. 
 
-In the next blog post we'll configure our application to be built by the popular and open source CI server Jenkins.
+In the [next blog post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md) we'll configure our application to be built by the popular and open source CI server Jenkins.
