@@ -16,19 +16,19 @@ In this post we'll create an Elastic Kubernetes Service (EKS) instance in AWS fr
 
 ## Getting an Octopus Cloud instance
 
-We'll use Octopus to script the creation of the EKS cluster. The easiest way to get an Octopus instance is to sign up for a [free cloud instance](https://octopus.com/). It only takes a few minutes to get an instance up and running.
+We'll use Octopus to script the creation of the EKS cluster. The easiest way to get access to Octopus is to sign up for a [free cloud instance](https://octopus.com/). It only takes a few minutes to get an instance up and running.
 
 The first step is to create an AWS account in Octopus that will be used to create and then connect to the EKS cluster. AWS accounts consist of an account key and a secret key:
 
 ![](awsaccount.png "width=500")
 *An example AWS account.*
 
-The community step called **eksctl - Create Cluster (bash)** can be added to a runbook to quickly create an EKS cluster and the associated Kubernetes target in Octopus. This script executes the [EKS CLI tool](https://aws.amazon.com/blogs/opensource/eksctl-eks-cli/) to create a EKS cluster.
+The community step called **eksctl - Create Cluster (bash)** can be added to a runbook to quickly create an EKS cluster and the associated Kubernetes target in Octopus. This script executes the [EKS CLI tool](https://aws.amazon.com/blogs/opensource/eksctl-eks-cli/) to create a EKS cluster:
 
 ![](steptile.png "width=500")
 *The community step to create an EKS cluster.*
 
-To make it easy to use the **ekscli** tool, Octopus supported running a step inside a Docker container based on an image, and Octopus [provides images](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide selection of common cloud tools, including **ekscli**.
+To make it easy to use the **ekscli** tool, Octopus supportes running a step inside a Docker container based on an image, and [provides images](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide selection of common cloud tools, including **ekscli**.
 
 TODO: screenshot when we have linux dynamic workers
 
@@ -52,12 +52,12 @@ nodeGroups:
 ![](eksctl.png "width=500")
 *The populated step.*
 
-Before the runbook is executed, we need to allow dynamically created targets to be placed in the destination environment, called *Dev* in this example. Enabling this setting allows script steps, like the community step template we just configured, to create Octopus targets:
+Before the runbook is executed, we need to allow dynamically created targets to be placed in the destination environment, called **Dev** in this example. Enabling this setting allows script steps, like the community step template we just configured, to create Octopus targets:
 
 ![](dynamictargets.png "width=500")
 *Enabling dyanmic infrastrucutre in the Dev environment.*
 
-No execute the runbook. Once the runbook has completed, a new Kubernetes target is created that we can start deploying to:
+Now execute the runbook. Once the runbook has completed, a new Kubernetes target is created that we can deploy our application to:
 
 ![](k8starget.png "width=500")
 *The Octopus Kubernetes target.*
@@ -67,7 +67,7 @@ No execute the runbook. Once the runbook has completed, a new Kubernetes target 
 
 ## Creating the Docker feed
 
-In order to consume DOcker images, we need to create a Docker feed in Octopus. This feed points to https://index.docker.io, which is the URL of the Docker Hub registry:
+In order to consume Docker images, we need to create a Docker feed in Octopus. This feed points to https://index.docker.io, which is the URL of the Docker Hub registry:
 
 ![](dockerfeed.png "width=500")
 *The Docker Hub feed in Octopus.*
@@ -93,7 +93,7 @@ The second way to use the step is to edit the values via the YAML representation
 ![](edityaml.png "width=500")
 *The Edit YAML section.*
 
-We can then edit the deployment resources directly as YAML, which is convenient as copying and pasting exiting YAML populates the step in one operation. By pasting the YAML below into the text box, we create a deployment referencing our Docker image:
+We can then edit the deployment resources directly as YAML, which is convenient as copying and pasting existing YAML populates the step in one operation. By pasting the YAML below into the text box, we create a deployment referencing our Docker image:
 
 ```YAML
 apiVersion: apps/v1
@@ -128,7 +128,7 @@ We want to place our deployments into a separate namespace for each environment.
 
 ![](namespace.png "width=500")
 
-In the same way we configured the deployment, can populate the details of the  with the YAML below. This YAML creates a load balancer service which will result in an Elastic Load Balancer (ELB) being created to expose the deployment. This ELB has a public hostname we can access from our web browser:
+In the same way we configured the deployment, we can populate the details of the service with the YAML below. This YAML creates a load balancer service which will result in an Elastic Load Balancer (ELB) being created to expose the deployment. This ELB has a public hostname we can access from our web browser:
 
 ```YAML
 apiVersion: v1
@@ -147,16 +147,16 @@ spec:
 ![](serviceyaml.png "width=500")
 *The service YAML.*
 
-With these settings in place we can deploy to the EKS cluster. The logs will show that the Kubernetes deployment and service resources were successfully created:
+With these settings in place we can deploy to the EKS cluster. The logs show that the Kubernetes deployment and service resources were successfully created:
 
 ![](deployment.png "width=500")
-*Petclinic has been successfully deployed.*
+*Pet clinic has been successfully deployed.*
 
 So the only question now is *how do we access the application?*
 
 ## Querying the cluster
 
-We'll frequently find ourself in a position of having to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands to resolve the issue and move on.
+We'll frequently need to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands to resolve the issue and move on.
 
 While this works, and indeed is sometimes necessary, executing ad-hoc commands like this ignores the fact that if these commands were necessary to get the initial deployment to succeed, they are likely to also be necessary to resolve issues with the deployment in future.
 
