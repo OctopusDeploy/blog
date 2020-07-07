@@ -158,3 +158,41 @@ spec:
             - name: MYSQL_PASS
               value: Password01!
 ```
+
+We now have MySQL database and have configured pet clinic to use it as a data store.
+
+## Backup the database
+
+Perhaps one of the most obvious tasks to perform in the continuous operations phase of a deployment is backing up the database. 
+
+The documentation provided by the [mysql Docker image](https://hub.docker.com/_/mysql) provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We'll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
+
+The Powershell script below finds the name of the MySQL pod (which, due to the fact that the pod is created as part of a deployment, has a random name), calls `mysqldump` to create a backup of the database, and then calls `aws s3 cp` to upload the backup to S3:
+
+```powershell
+# Get the list of pods in JSON format
+kubectl get pods -o json |
+# Convert the output to an object
+ConvertFrom-Json |
+# Get the items property
+Select -ExpandProperty items |
+# Limit the items to those with the name starting with "mysql"
+? {$_.metadata.name -like "mysql*"} |
+# We only expect to find 1 such pod
+Select -First 1 |
+# Execute mysqldump on the pod to perform a backup
+% {
+	Write-Host "Performing backup on pod $($_.metadata.name)"
+    kubectl exec $_.metadata.name -- /bin/sh -c 'mysqldump -u root -p#{MySQL Password} petclinic > /tmp/dump.sql 2>&1'
+    kubectl exec $_.metadata.name -- /bin/sh -c 'AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID=#{AWS.AccessKey} AWS_SECRET_ACCESS_KEY=#{AWS.SecretKey} aws s3 cp /tmp/dump.sql s3://mattc-deployment-backup/dump.sql'
+    
+}
+```
+
+This script is executed in a **Run a kubectl CLI Script** step added to a runbook:
+
+![](mysqldump.png "width=500")
+
+We don't want to have to remember to manually backup the database, so Octopus allows runbooks to be scheduled. Here we have a trigger to perform a daily backup:
+
+![](backuptrigger.png "width=500")
