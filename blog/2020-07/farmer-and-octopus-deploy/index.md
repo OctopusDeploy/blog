@@ -258,7 +258,7 @@ octo pack --id SimpleAzureWebApp --format Zip --version 1.0.0.0 --basePath outpu
 
 This generates a file named `SimpleAzureWebApp.1.0.0.0.zip` which can either be uploaded to the Octopus [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository) or an external [package repository](https://octopus.com/docs/packaging-applications/package-repositories). 
 
-You can push to the Octopus built-in repository the Octopus CLI command, [push](https://octopus.com/docs/octopus-rest-api/octopus-cli/pack):
+You can push to the Octopus built-in repository using the Octopus CLI command, [push](https://octopus.com/docs/octopus-rest-api/octopus-cli/push):
 
 ```bash
 octo push --package SimpleAzureWebApp.1.0.0.0.zip --server https://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
