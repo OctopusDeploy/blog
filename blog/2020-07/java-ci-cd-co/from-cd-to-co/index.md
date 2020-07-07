@@ -18,11 +18,11 @@ While a traditional CI/CD pipeline ends with a deployment to production, Octopus
 
 Before we can create runbooks for database backups, we first need a database.
 
-In a production setting you would typically use a hosted service like RDS. RDS provides out of the box high availability, backups, maintenance windows, security and more, all of which would require a significant effort to replicate with a local database. However, for the purposes of this blog we'll deploy MySQL to EKS and point our pet clinic application to it. We can then script some common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
+In a production setting you would typically use a hosted service like RDS. RDS provides out of the box high availability, backups, maintenance windows, security and more, all of which would require a significant effort to replicate with a local database. However, for the purposes of this blog we'll deploy MySQL to EKS and point our pet clinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
 
 We'll use the official [MySQL](https://hub.docker.com/_/mysql) Docker image, but we also need some additional tools on the image to allow us to transfer a backup to a second location. Since we are using AWS to host our Kubernetes cluster, we'll backup our database to S3. This means we need the AWS CLI included in the MySQL Docker image to transfer a database backup.
 
-Adding new tools to an image is easy. We take the base **mysql** image and run the commands required to install the AWS CLI. So our [Dockerfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Dockerfile) looks like this:
+Adding new tools to an image is easy. We take the base **mysql** image and run the commands required to install the AWS CLI. Our [Dockerfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Dockerfile) looks like this:
 
 ```dockerfile
 FROM mysql
@@ -128,7 +128,7 @@ To configure pet clinic to use the MySQL database we need to define four environ
 
 * `MYSQL_URL`, which is the JDBC URL to the MySQL database.
 * `MYSQL_USER`, which is the MySQL user to connect as, set to `root`.
-* `MYSQL_PASS`, which is the MySQL password, set to the password we set in the same value as the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
+* `MYSQL_PASS`, which is the MySQL password, set to the password we defined as the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
 * `SPRING_PROFILES_ACTIVE`, which defines the profile file that Spring will use to configure the application, set to mysql to load the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file.
 
 The YAML for our new pet clinic deployment is shown below:
@@ -159,13 +159,13 @@ spec:
               value: Password01!
 ```
 
-We now have MySQL database and have configured pet clinic to use it as a data store.
+We now have a MySQL database and have configured pet clinic to use it as a data store.
 
 ## Backup the database
 
 Perhaps one of the most obvious tasks to perform in the continuous operations phase of a deployment is backing up the database. 
 
-The documentation provided by the [mysql Docker image](https://hub.docker.com/_/mysql) provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We'll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
+The [mysql Docker image](https://hub.docker.com/_/mysql) documentation provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We'll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
 
 The Powershell script below finds the name of the MySQL pod (which, due to the fact that the pod is created as part of a deployment, has a random name), calls `mysqldump` to create a backup of the database, and then calls `aws s3 cp` to upload the backup to S3:
 
@@ -182,10 +182,9 @@ Select -ExpandProperty items |
 Select -First 1 |
 # Execute mysqldump on the pod to perform a backup
 % {
-	Write-Host "Performing backup on pod $($_.metadata.name)"
+    Write-Host "Performing backup on pod $($_.metadata.name)"
     kubectl exec $_.metadata.name -- /bin/sh -c 'mysqldump -u root -p#{MySQL Password} petclinic > /tmp/dump.sql 2>&1'
-    kubectl exec $_.metadata.name -- /bin/sh -c 'AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID=#{AWS.AccessKey} AWS_SECRET_ACCESS_KEY=#{AWS.SecretKey} aws s3 cp /tmp/dump.sql s3://mattc-deployment-backup/dump.sql'
-    
+    kubectl exec $_.metadata.name -- /bin/sh -c 'AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID=#{AWS.AccessKey} AWS_SECRET_ACCESS_KEY=#{AWS.SecretKey} aws s3 cp /tmp/dump.sql s3://mattc-deployment-backup/dump.sql'    
 }
 ```
 
@@ -199,9 +198,9 @@ We don't want to have to remember to manually backup the database, so Octopus al
 
 ![](backuptrigger.png "width=500")
 
-While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script at on a schedule all that ground breaking. So what value have we added here in this continuous operations phase of our CI/CD/CO pipeline?
+While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. So what value have we added here in this continuous operations phase of our CI/CD/CO pipeline?
 
-First, we were able to reuse both the AWS credentials that were used to create the EKS cluster, as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can  manage that same infrastructure without duplicating credentials and other settings like URLs.
+First, we were able to reuse both the AWS credentials used to create the EKS cluster, as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can  manage that same infrastructure without duplicating credentials and other settings like URLs.
 
 Second, this runbook is aware of our multiple environments. Just as our application code must progress through multiple environments before it is deemed ready for a production release, so too our runbooks can be tested and validated in non-production environments to ensure they can be trusted in production.
 
@@ -209,7 +208,7 @@ Third, these runbooks require no additional tools or configuration beyond a web 
 
 Forth, the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs. This is information you quickly loose if operations are running ad-hoc scripts from their own workstations, making it difficult to uncover the root cause of any issues once systems have been restored to an operational state. With Octopus, all the details are saved and easily retrieved.
 
-Fifth, business knowledge required to support production systems is now captured in testable and repeatable runbooks. Support handover is easier as all teams now have share the same toolbox.
+Fifth, business knowledge required to support production systems is now captured in testable and repeatable runbooks. Support handover is easier as all teams now share the same toolbox.
 
 When saved in a runbook, those dozen lines of Powershell represent a shared, verifiable, audited, easily accessed, and centralized unit of business knowledge designed to keep your systems running at their best.
 
@@ -234,11 +233,11 @@ Select -ExpandProperty items |
 
 Commands like `kubectl delete` can be daunting if you are not familiar with Kubernetes. It just so happens that because of the way our application was deployed, this action will restart the pods rather than delete them permanently. But how would a new member of the DevOps team know that this command is safe?
 
-By adding descriptions to runbooks we can provide guidance on when and where runbooks can be run. In the screenshot below you can see the description of the **Restart PerClinic** runbook makes it clear that this is something that can be run in production:
+By adding descriptions to runbooks we can provide guidance on when and where runbooks can be run. In the screenshot below you can see the description of the **Restart PetClinic** runbook makes it clear that this is something that can be run in production:
 
 ![](restartpods.png "width=500")
 
-Going further, we could use permissions in Octopus to restrict access to runbooks that may require a deeper understanding of the infrastructure to run, or use manual interventions to get approval before any action is taken.
+Going further, we could use permissions in Octopus to restrict access to runbooks that may require a deeper understanding of the infrastructure to run safely, or use manual interventions to get approval before any action is taken.
 
 Again, this is an example of encapsulating business knowledge in a runbook to reduce the support burden of your infrastructure.
 
@@ -246,6 +245,6 @@ Again, this is an example of encapsulating business knowledge in a runbook to re
 
 Traditional CI/CD pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Creating a CI/CD/CO pipeline gives your team the tools they need to support applications from the first code commit to weeks, months or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets and environments to implement Continuous Operations.
 
-With this blog post we end our journey from a locally built legacy Java application to a complete CI/CD/CO pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the examples have provided a useful insight into how each of these tools integrates with one another, and this example pipeline provides a useful foundation on which to implement CI/CD/CO in your own organization.
+With this blog post we end our journey from a locally built legacy Java application to a complete CI/CD/CO pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the examples have provided a useful insight into how each of these tools integrates with one another, and that this example pipeline provides a useful foundation on which to implement CI/CD/CO in your own organization.
 
 Happy Deployments!

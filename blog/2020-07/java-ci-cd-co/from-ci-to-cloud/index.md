@@ -124,7 +124,7 @@ spec:
 ![](yaml.png "width=500")
 *Editing the step via YAML.*
 
-We want to place our deployments into a seperate namespace for each environment. This is done by setting the **Namespace** field to **petclinic-#{Octopus.Environment.Name | ToLower}**:
+We want to place our deployments into a separate namespace for each environment. This is done by setting the **Namespace** field to **petclinic-#{Octopus.Environment.Name | ToLower}**:
 
 ![](namespace.png "width=500")
 
