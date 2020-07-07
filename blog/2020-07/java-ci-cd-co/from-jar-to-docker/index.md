@@ -225,6 +225,6 @@ In this blog post we took a typical Java application and containerized it as a D
 
 With these changes we have created a repeatable build and execution process anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
 
-While the build process may be conveniently encapsulated by Docker, there is no guarantee that the the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the code base is something that needs to be shared by a central "source of truth" so everyone knows the state of the application. This is where a Continuous Integration (CI) server comes in. 
+While the build process may be conveniently encapsulated by Docker, there is no guarantee that the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the code base is something that needs to be shared by a central "source of truth" so everyone knows the state of the application. This is where a Continuous Integration (CI) server comes in. 
 
 In the [next blog post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md) we'll configure our application to be built by the popular and open source CI server Jenkins.
