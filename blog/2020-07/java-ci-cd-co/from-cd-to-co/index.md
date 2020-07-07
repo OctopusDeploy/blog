@@ -191,12 +191,15 @@ Select -First 1 |
 This script is executed in a **Run a kubectl CLI Script** step added to a runbook:
 
 ![](mysqldump.png "width=500")
+*The kubectl script performing the database backup.*
 
 ![](backuplogs.png "width=500")
+*The result of executing the database backup.*
 
 We don't want to manually backup the database, so Octopus allows runbooks to be scheduled. Here we have a trigger to perform a daily backup:
 
 ![](backuptrigger.png "width=500")
+*A scheduled backup.*
 
 While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. So what value have we added here in this continuous operations phase of our CI/CD/CO pipeline?
 
@@ -236,6 +239,7 @@ Commands like `kubectl delete` can be daunting if you are not familiar with Kube
 By adding descriptions to runbooks we can provide guidance on when and where runbooks can be run. In the screenshot below you can see the description of the **Restart PetClinic** runbook makes it clear that this is something that can be run in production:
 
 ![](restartpods.png "width=500")
+*Runbooks with descriptions to help the operations team understand when and where to run them.*
 
 Going further, we could use permissions in Octopus to restrict access to runbooks that may require a deeper understanding of the infrastructure to run safely, or use manual interventions to get approval before any action is taken.
 
