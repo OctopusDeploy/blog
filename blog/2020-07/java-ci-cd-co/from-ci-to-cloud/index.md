@@ -156,7 +156,7 @@ So the only question now is *how do we access the application?*
 
 ## Querying the cluster
 
-We'll frequently need to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands to resolve the issue and move on.
+We'll frequently need to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands.
 
 While this works, and indeed is sometimes necessary, executing ad-hoc commands like this ignores the fact that if these commands were necessary to get the initial deployment to succeed, they are likely to also be necessary to resolve issues with the deployment in future.
 
@@ -177,7 +177,7 @@ Running the runbook will query the cluster with kubectl on our behalf, showing t
 ![](servicedetails.png "width=500")
 *The service details.*
 
-This process was slightly less convenient that jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful when working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team once we have implemented it. This is especially true when you consider that the next team only need the appropriate access to Octopus, and do not need kubectl or any credentials, which is welcome when your pager goes off at 3 in the morning.
+This process was slightly less convenient than jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful when working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team. This is especially true when you consider that the next team only need the appropriate access to Octopus, and do not need kubectl or any credentials, which is welcome when your pager goes off at 3 in the morning.
 
 Now that we know the hostname of our ELB, we can access our publicly hosted application:
 
