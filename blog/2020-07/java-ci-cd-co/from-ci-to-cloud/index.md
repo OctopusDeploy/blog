@@ -188,4 +188,4 @@ Now that we know the hostname of our ELB, we can access our publicly hosted appl
 
 In this post we created a Kubernetes cluster in AWS using the EKS service and deployed our pet clinic application to it via Octopus. We also committed ourselves to debugging the cluster via runbooks, which provides a small but important foundation that we can pass to the team that will eventually be responsible for this cluster once we have moved on.
 
-We are not quite at the point of having implemented continuous deployments, since there is no integration between Jenkins and Octopus. In the next post we'll hook up our pipeline to achieve a complete CI/CD pipeline.
+We are not quite at the point of having implemented continuous deployments, since there is no integration between Jenkins and Octopus. In the [next post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we'll hook up our pipeline to achieve a complete CI/CD pipeline.
