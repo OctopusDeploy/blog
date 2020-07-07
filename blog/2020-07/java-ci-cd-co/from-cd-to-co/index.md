@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)  we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added some additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a complete CI/CD pipeline with automated (if not necessarily automatic) deployments to our environments.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)  we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a complete CI/CD pipeline with automated (if not necessarily automatic) deployments to our environments.
 
-While a traditional CI/CD pipeline ends with a deployment to production, Octopus treats deployments as the beginning of a new phase called Continuous Operations (CO). By automating common tasks like database backups, log collection, and service restarts via runbooks, Octopus provides a complete CI/CD/CO pipeline covering the entire lifecycle of an application.
+While a traditional CI/CD pipeline ends with a deployment to production, Octopus treats deployments as the beginning of a new phase called Continuous Operations (CO). By automating common tasks like database backups, log collection, and service restarts via runbooks, the combination of Jenkins and Octopus provides a complete CI/CD/CO pipeline covering the entire lifecycle of an application.
 
 ## Adding a database
 
@@ -30,7 +30,7 @@ RUN apt-get update; apt-get install python python-pip -y
 RUN pip install awscli
 ```
 
-We then build this image, push it to Docker Hub, and create and deploy a release in Octopus with the following [Jenkinsfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Jenkinsfile). You will note that this `Jenkinsfile` is almost an exact copy of the previous one, with some changes to the name of the Docker image and the Octopus project that is deployed:
+We then build this image, push it to Docker Hub, and create and deploy a release in Octopus with the following [Jenkinsfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Jenkinsfile). You will note that this `Jenkinsfile` is almost an exact copy of the [previous one](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md), with changes to the name of the Docker image and the Octopus project that is deployed:
 
 ```groovy
 pipeline {
@@ -81,7 +81,7 @@ pipeline {
 }
 ```
 
-The MySQL Kubernetes deployment YAML is also very similar to our previous example, with a new image name and the addition of two environment variables to configure the database credentials and create an initial database:
+The MySQL Kubernetes deployment YAML is also very similar to our [previous example](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md), with a new image name and the addition of two environment variables to configure the database credentials and create an initial database:
 
 ```YAML
 apiVersion: apps/v1
@@ -122,14 +122,14 @@ spec:
       protocol: TCP
 ```
 
-Deploying the resources created by the YAML above results in a MySQL instance that can be accessed from other pods in the cluster using the hostname `mysql`.
+Deploying the resources created by the YAML above results in a MySQL instance accessible from other pods in the cluster using the hostname `mysql`.
 
 To configure pet clinic to use the MySQL database we need to define four environment variables. These variables are used to configure the settings in the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file:
 
 * `MYSQL_URL`, which is the JDBC URL to the MySQL database.
 * `MYSQL_USER`, which is the MySQL user to connect as, set to `root`.
-* `MYSQL_PASS`, which is the MySQL password, set to the password we defined as the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
-* `SPRING_PROFILES_ACTIVE`, which defines the profile file that Spring will use to configure the application, set to mysql to load the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file.
+* `MYSQL_PASS`, which is the MySQL password, set to the password we defined in the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
+* `SPRING_PROFILES_ACTIVE`, which defines the profile that Spring will use to configure the application, set to mysql to load the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file.
 
 The YAML for our new pet clinic deployment is shown below:
 
@@ -163,7 +163,7 @@ We now have a MySQL database and have configured pet clinic to use it as a data 
 
 ## Backup the database
 
-Perhaps one of the most obvious tasks to perform in the continuous operations phase of a deployment is backing up the database. 
+Perhaps one of the most obvious tasks to perform in the continuous operations phase of a CI/CD/CO pipeline is backing up the database. 
 
 The [mysql Docker image](https://hub.docker.com/_/mysql) documentation provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We'll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
 
@@ -194,13 +194,13 @@ This script is executed in a **Run a kubectl CLI Script** step added to a runboo
 
 ![](backuplogs.png "width=500")
 
-We don't want to have to remember to manually backup the database, so Octopus allows runbooks to be scheduled. Here we have a trigger to perform a daily backup:
+We don't want to manually backup the database, so Octopus allows runbooks to be scheduled. Here we have a trigger to perform a daily backup:
 
 ![](backuptrigger.png "width=500")
 
 While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. So what value have we added here in this continuous operations phase of our CI/CD/CO pipeline?
 
-First, we were able to reuse both the AWS credentials used to create the EKS cluster, as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can  manage that same infrastructure without duplicating credentials and other settings like URLs.
+First, we were able to reuse both the existing AWS credentials as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can  manage that same infrastructure without duplicating credentials and other settings like URLs.
 
 Second, this runbook is aware of our multiple environments. Just as our application code must progress through multiple environments before it is deemed ready for a production release, so too our runbooks can be tested and validated in non-production environments to ensure they can be trusted in production.
 
@@ -244,6 +244,8 @@ Again, this is an example of encapsulating business knowledge in a runbook to re
 ## Conclusion
 
 Traditional CI/CD pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Creating a CI/CD/CO pipeline gives your team the tools they need to support applications from the first code commit to weeks, months or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets and environments to implement Continuous Operations.
+
+Fundamentally, the practice of continuous operations treats the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the best practices from continuous delivery and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
 
 With this blog post we end our journey from a locally built legacy Java application to a complete CI/CD/CO pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the examples have provided a useful insight into how each of these tools integrates with one another, and that this example pipeline provides a useful foundation on which to implement CI/CD/CO in your own organization.
 
