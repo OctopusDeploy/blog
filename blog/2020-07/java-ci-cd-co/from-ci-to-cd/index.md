@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-In the previous blog post we used Octopus to build a Kubernetes in AWS with the EKS service and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)  we used Octopus to build a Kubernetes in AWS with the EKS service and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
 
 However, we still don't have a complete CI/CD solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
 

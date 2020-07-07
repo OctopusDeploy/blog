@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-In the previous blog post we configured a CI server with Jenkins that provided a central location from which to build and publish our Docker image. The image is now publicly available from Docker Hub, and the next step is to create infrastructure that can host our Docker container.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)  we configured a CI server with Jenkins that provided a central location from which to build and publish our Docker image. The image is now publicly available from Docker Hub, and the next step is to create infrastructure that can host our Docker container.
 
 In this post we'll create an Elastic Kubernetes Service (EKS) instance in AWS from Octopus.
 
