@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-There is perhaps no public project that better captures a long lived Java application than the [Spring Petclinic](https://projects.spring.io/spring-petclinic/) sample application. It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
+There is perhaps no public project that better captures a long lived Java application than [Spring Petclinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
 
-Our journey from local builds and manual deployments through to a complete Continuous Integration (CI), Continuous Deployment (CD), and Continuous Operation (CO), or CI/CD/CO, lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution.
+Our journey from local builds and manual deployments through to a complete [Continuous Integration (CI)](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md), [Continuous Deployment (CD)](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md), and [Continuous Operation (CO)](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md), or CI/CD/CO, lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution.
 
 ## Starting with a local build
 
