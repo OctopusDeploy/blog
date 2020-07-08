@@ -1,5 +1,5 @@
 ---
-title: From Continuous Integration to Cloud Deployments
+title: From Continuous Integration to Kubernetes Deployments
 description: In this post we create a Kubernetes cluster in AWS
 author: matthew.casperson@octopus.com
 visibility: private
