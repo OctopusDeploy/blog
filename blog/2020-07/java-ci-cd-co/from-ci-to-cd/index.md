@@ -10,6 +10,14 @@ tags:
  - Octopus
 ---
 
+This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
+
+* [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
+* [From local builds to CI](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
+* [From CI to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
+* [From CI to CD](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
+* [From CD to CO](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+
 [In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)  we used Octopus to build a Kubernetes cluster in AWS with the EKS service and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
 
 However, we still don't have a complete CI/CD solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
