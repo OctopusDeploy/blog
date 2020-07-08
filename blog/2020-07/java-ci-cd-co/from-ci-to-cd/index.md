@@ -21,24 +21,29 @@ In this blog post we'll extend our Jenkins build to call Octopus and initiate a 
 Octopus provides a plugin for Jenkins that exposes integration steps both in freestyle projects and in pipeline scripts. This plugin can be installed via {{ Manage Jenkins, Manage Plugins }}:
 
 ![](octopusplugin.png "width=500")
+*Installing the Octopus Deploy plugin.*
 
 The Octopus plugin uses the Octopus CLI to execute the actions. We can install the CLI manually on the agent, but for this example we'll use the **Custom Tools** plugin to download the Octopus CLI and push it to the agent:
 
 ![](customtoolsplugin.png "width=500")
+*Installing the custom tools plugin.*
 
 ## Configuring the Octopus server and tools
 
 The details of the Octopus server that our pipeline will connect to is defined under {{ Manage Jenkins, Configure System }}:
 
 ![](octopusserver.png "width=500")
+*Defining the Octopus server.*
 
 We then need to define a custom tool under {{ Manage Jenkins, Global Tool Configuration }}. The custom tool has the name of **OctoCLI**, and because in my case the agent is running on Windows, the Octopus CLI will be downloaded from https://download.octopusdeploy.com/octopus-tools/7.4.1/OctopusTools.7.4.1.win-x64.zip. The CLI is available for other operating systems from the [Octopus download page](https://octopus.com/downloads/octopuscli):
 
 ![](octocli.png "width=500")
+*Defining the Octopus CLI custom tool.*
 
 Further down in the **Global Tool Configuration** page is where we define the path to the Octopus CLI. The custom tools plugin install the Octopus CLI to the directory `<jenkins home>/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/OctoCLI`, where `<jenkins home>` is the home directory of the Jenkins server or the agent performing the build. In my case, the agent home directory is `C:\JenkinsAgent`, so the Octopus CLI will be available from `C:\JenkinsAgent\tools\com.cloudbees.jenkins.plugins.customtools.CustomTool\OctoCLI\octo`. The name of the tool is left as **Default**:
 
 ![](octopuscli.png "width=500")
+*Defining the Octopus CLI path.*
 
 With these tools configured we can update the pipeline script to initiate a deployment in Octopus once the Docker image has been pushed to Docker Hub.
 
@@ -125,32 +130,39 @@ The final stage makes a call to `octopusCreateRelease` to both create a release 
 With these changes to the pipeline we rerun the project in Jenkins, and from the console logs we can see that Jenkins has successfully triggered a deployment in Octopus:
 
 ![](jenkinslogs.png "width=500")
+*Jenkins project build logs showing the Octopus deployment output.*
 
 Here is the corresponding deployment in Octopus:
 
 ![](octopusdeployment.png "width=500")
+*The Octopus deployment.*
 
 ## Adding new environments
 
 We only have the one environment in Octopus called **Dev**. However a typical workflow will promote a deployment through multiple environments on the way to production. To implement this, we need to create more environments in Octopus which we will call **Test** and **Prod**:
 
 ![](testandprod.png "width=500")
+*Adding the Test and Prod environments.*
 
 We need to ensure our Kubernetes target is placed within these new environments as well:
 
 ![](k8starget.png "width=500")
+*Adding the Kubernetes target to the new environments.*
 
 We now have the ability to promote deployments from the **Dev** environment to the **Test** environment:
 
 ![](progression.png "width=500")
+*The Octopus dashboard showing the next environment to deploy to.*
 
 Promoting the deployment to the **Test** environment, we can see our Kubernetes resources being created in the **petclinic-test** namespace. If you recall from the previous blog post, we configured our Kubernetes steps to deploy to a namespace called **petclinic-#{Octopus.Environment.Name | ToLower}**, which is why deployments to a new environment have been placed in a new namespace:
 
 ![](testdeployment.png "width=500")
+*A deployment to the Test environment.*
 
 To prove this we can rerun the runbook **Get Service** in the **Test** environment. We can see that a new load balancer host name has been created for the new service resource:
 
 ![](testlb.png "width=500")
+*The details of the load balancer service created in the Test environment.*
 
 And with that, we have a complete CI/CD pipeline.
 
