@@ -1,5 +1,5 @@
 ---
-title: From Continuous Integration to Continuous Delivery
+title: From Continuous Integration to Release Management
 description: In this post we link up Jenkins and Octopus to form a CI/CD pipeline
 author: matthew.casperson@octopus.com
 visibility: private
@@ -18,9 +18,9 @@ This post is part of a series demonstrating a sample deployment pipeline with Je
 * [From Continuous Integration to Continuous Delivery](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
 * [From Continuous Deployment to Continuous Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)  we used Octopus to build a Kubernetes cluster in AWS with the EKS service and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md) we used Octopus to build a Kubernetes cluster in AWS with the EKS service and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
 
-However, we still don't have a complete CI/CD solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
+However, we still don't have a complete deployment pipeline solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
 
 In this blog post we'll extend our Jenkins build to call Octopus and initiate a deployment once our Docker image has been pushed to Docker Hub.
 
@@ -145,7 +145,22 @@ Here is the corresponding deployment in Octopus:
 ![](octopusdeployment.png "width=500")
 *The Octopus deployment.*
 
-## Adding new environments
+## Continuous deployment vs continuous delivery
+
+Over the years the CD half of the acronym CI/CD has settled on two definitions:
+
+* Continuous Deployment, which means a completely automatic deployment pipeline where each commit goes to production, assuming all tests and other automated requirements are met.
+* Continuous Delivery, which means each commit *could* go to production through an automated, but not necessarily automatic, deployment pipeline. The decision to promote through environments (or not) is still made by a human.
+
+While continuous deployment, by its very definition, removes all the friction from a deployment process, there are many valid reasons to implement continuous delivery. For example, you may need to orchestrate deployments with other teams, product owners may need to sign off new features, regulatory requirements may demand that production infrastructure not be modified by developers without some review process, or you may simply want to retain the ability to manually test and verify a release before it goes to production.
+
+:::hint
+If you read blog posts on best practices concerning CI/CD, you may be left with the impression that continuous deployment is something that you *must* strive to implement. While the practices that allow for a true continuous deployment pipeline will have value, most of the development teams we talk to report that continuous delivery works for them.
+:::
+
+For this blog we will create a continuous delivery pipeline, which manages releases to multiple environments through the Octopus dashboard.
+
+## Adding the environments
 
 We only have the one environment in Octopus called **Dev**. However a typical workflow will promote a deployment through multiple environments on the way to production. To implement this, we need to create more environments in Octopus which we will call **Test** and **Prod**:
 
@@ -157,7 +172,7 @@ We need to ensure our Kubernetes target is placed within these new environments 
 ![](k8starget.png "width=500")
 *Adding the Kubernetes target to the new environments.*
 
-We now have the ability to promote deployments from the **Dev** environment to the **Test** environment:
+We now have the ability to promote deployments from the **Dev** environment to the **Test** environment through the Octopus dashboard:
 
 ![](progression.png "width=500")
 *The Octopus dashboard showing the next environment to deploy to.*
@@ -172,14 +187,14 @@ To prove this we can rerun the runbook **Get Service** in the **Test** environme
 ![](testlb.png "width=500")
 *The details of the load balancer service created in the Test environment.*
 
-And with that, we have a complete CI/CD pipeline.
+And with that, we have a complete deployment pipeline.
 
 ## Conclusion
 
-In this post we triggered a deployment in Octopus once Jenkins finishes building and pushing the Docker image. This means we have implemented Continuous Integration with Jenkins testing, building, and publishing the Docker image, and Continuous Delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
+In this post we triggered a deployment in Octopus once Jenkins finishes building and pushing the Docker image. This means we have implemented continuous integration with Jenkins testing, building, and publishing the Docker image, and continuous delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
 
-We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those performing the deployments need no special tools other than a web browser, and each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards. This is CI/CD in action.
+We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those responsible for this release management need no special tools other than a web browser, and each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
 
 But those that have seen their code put in customer's hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
 
-In the [next blog post](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md) we'll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: Continuous Operations.
+In the [next blog post](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md) we'll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: operations.
