@@ -15,8 +15,8 @@ This post is part of a series demonstrating a sample deployment pipeline with Je
 * [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
 * [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
 * [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From Continuous Integration to Continuous Delivery](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From Continuous Deployment to Continuous Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+* [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
+* [From Release Management to Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
 [In the previous blog post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)  we configured a CI server with Jenkins that provided a central location from which to build and publish our Docker image. The image is now publicly available from Docker Hub, and the next step is to create infrastructure that can host our Docker container.
 

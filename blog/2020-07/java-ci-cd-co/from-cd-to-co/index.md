@@ -16,11 +16,11 @@ This post is part of a series demonstrating a sample deployment pipeline with Je
 * [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
 * [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
 * [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From Continuous Deployment to Continuous Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+* [From Release Management to Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a continuous delivery pipeline with automated (if not necessarily automatic) release management between environments.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
 
-While a traditional deployment pipeline ends with a deployment to production, Octopus treats deployments as the beginning of a new phase called operations. By automating common tasks like database backups, log collection, and service restarts via runbooks, the combination of Jenkins and Octopus provides a complete deployment and operations pipeline covering the entire lifecycle of an application.
+While a traditional deployment pipeline ends with a deployment to production, Octopus provides a solution for the operate phase of the DevOps lifecycle with runbooks. By automating common tasks like database backups, log collection, and service restarts via runbooks, the combination of Jenkins and Octopus provides a complete deployment and operations pipeline covering the entire lifecycle of an application.
 
 ## Adding a database
 
