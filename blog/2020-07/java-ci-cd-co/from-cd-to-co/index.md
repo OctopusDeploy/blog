@@ -1,6 +1,6 @@
 ---
-title: From Continuous Delivery to Continuous Operations
-description: In this post we create example runbooks to implement Continuous Operations
+title: From Release Management to Operations
+description: In this post we create example runbooks to implement operations tasks
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -15,12 +15,12 @@ This post is part of a series demonstrating a sample deployment pipeline with Je
 * [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
 * [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
 * [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From Continuous Integration to Continuous Delivery](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
+* [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
 * [From Continuous Deployment to Continuous Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)  we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a complete CI/CD pipeline with automated (if not necessarily automatic) deployments to our environments.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a continuous delivery pipeline with automated (if not necessarily automatic) release management between environments.
 
-While a traditional CI/CD pipeline ends with a deployment to production, Octopus treats deployments as the beginning of a new phase called Continuous Operations (CO). By automating common tasks like database backups, log collection, and service restarts via runbooks, the combination of Jenkins and Octopus provides a complete CI/CD/CO pipeline covering the entire lifecycle of an application.
+While a traditional deployment pipeline ends with a deployment to production, Octopus treats deployments as the beginning of a new phase called operations. By automating common tasks like database backups, log collection, and service restarts via runbooks, the combination of Jenkins and Octopus provides a complete deployment and operations pipeline covering the entire lifecycle of an application.
 
 ## Adding a database
 
@@ -171,7 +171,7 @@ We now have a MySQL database and have configured pet clinic to use it as a data 
 
 ## Backup the database
 
-Perhaps one of the most obvious tasks to perform in the continuous operations phase of a CI/CD/CO pipeline is backing up the database. 
+Perhaps one of the most obvious tasks to perform in the continuous operations phase of a DevOps lifecycle is backing up the database. 
 
 The [mysql Docker image](https://hub.docker.com/_/mysql) documentation provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We'll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
 
@@ -209,7 +209,7 @@ We don't want to manually backup the database, so Octopus allows runbooks to be 
 ![](backuptrigger.png "width=500")
 *A scheduled backup.*
 
-While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. So what value have we added here in this continuous operations phase of our CI/CD/CO pipeline?
+While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. So what value have we added here in this operations phase of our DevOps lifecycle?
 
 First, we were able to reuse both the existing AWS credentials as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can  manage that same infrastructure without duplicating credentials and other settings like URLs.
 
@@ -255,10 +255,10 @@ Again, this is an example of encapsulating business knowledge in a runbook to re
 
 ## Conclusion
 
-Traditional CI/CD pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Creating a CI/CD/CO pipeline gives your team the tools they need to support applications from the first code commit to weeks, months or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets and environments to implement Continuous Operations.
+Traditional deployment pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Runbooks gives your team the tools they need to support applications from the first code commit to weeks, months or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets and environments to implement the operations stage of the DevOps lifecycle.
 
-Fundamentally, the practice of continuous operations treats the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the best practices from continuous delivery and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
+Fundamentally, runbooks treat the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the best practices from continuous delivery and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
 
-With this blog post we end our journey from a locally built legacy Java application to a complete CI/CD/CO pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the examples have provided a useful insight into how each of these tools integrates with one another, and that this example pipeline provides a useful foundation on which to implement CI/CD/CO in your own organization.
+With this blog post we end our journey from a locally built legacy Java application to a complete deployment pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the examples have provided a useful insight into how each of these tools integrates with one another, and that this example pipeline provides a useful foundation on which to implement CI, release management, and operations in your own organization.
 
 Happy Deployments!
