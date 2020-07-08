@@ -167,7 +167,7 @@ Click the **Add Credentials** link:
 Enter the Docker Hub credentials, set the **ID** to **dockerhub**, and click the **OK** button:
 
 ![](newcredentials.png "width=500")
-*Defining the DOcker Hub credentials.*
+*Defining the Docker Hub credentials.*
 
 We now have everything we need to build Docker images in Jenkins. The next step is to define the Jenkins project.
 
