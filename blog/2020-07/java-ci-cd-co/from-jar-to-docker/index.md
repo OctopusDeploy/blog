@@ -13,10 +13,10 @@ tags:
 This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
 
 * [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
-* [From local builds to CI](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
-* [From CI to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From CI to CD](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From CD to CO](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+* [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
+* [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
+* [From Continuous Integration to Continuous Deployment](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
+* [From Continuous Deployment to Continuous Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
 There is perhaps no public project that better captures a long lived Java application than [Spring Petclinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
 

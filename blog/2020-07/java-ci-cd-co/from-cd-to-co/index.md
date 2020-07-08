@@ -13,10 +13,10 @@ tags:
 This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
 
 * [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
-* [From local builds to CI](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
-* [From CI to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From CI to CD](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From CD to CO](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+* [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
+* [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
+* [From Continuous Integration to Continuous Deployment](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
+* [From Continuous Deployment to Continuous Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
 [In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)  we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a complete CI/CD pipeline with automated (if not necessarily automatic) deployments to our environments.
 
