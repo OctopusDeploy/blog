@@ -18,37 +18,37 @@ This post is part of a series demonstrating a sample deployment pipeline with Je
 * [From Continuous Integration to Continuous Delivery](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
 * [From Continuous Deployment to Continuous Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md) we used Octopus to build a Kubernetes cluster in AWS with the EKS service and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md) we used Octopus to build a Kubernetes cluster in AWS using EKS, and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
 
 However, we still don't have a complete deployment pipeline solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
 
-In this blog post we'll extend our Jenkins build to call Octopus and initiate a deployment once our Docker image has been pushed to Docker Hub.
+In this blog post we'll extend our Jenkins build to call Octopus and initiate a deployment once our Docker image has been pushed to Docker Hub. We will also create additional environments, and manage the release from a local development environment to the final production environment.
 
 ## Installing the Jenkins plugins
 
-Octopus provides a plugin for Jenkins that exposes integration steps both in freestyle projects and in pipeline scripts. This plugin can be installed via {{ Manage Jenkins, Manage Plugins }}:
+Octopus provides a plugin for Jenkins that exposes integration steps both in freestyle projects and in pipeline scripts. This plugin is installed via {{ Manage Jenkins, Manage Plugins }}:
 
 ![](octopusplugin.png "width=500")
 *Installing the Octopus Deploy plugin.*
 
-The Octopus plugin uses the Octopus CLI to execute the actions. We can install the CLI manually on the agent, but for this example we'll use the **Custom Tools** plugin to download the Octopus CLI and push it to the agent:
+The Octopus plugin uses the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli) to integrate with the Octopus server. We can install the CLI manually on the agent, but for this example we'll use the **Custom Tools** plugin to download the Octopus CLI and push it to the agent:
 
 ![](customtoolsplugin.png "width=500")
 *Installing the custom tools plugin.*
 
 ## Configuring the Octopus server and tools
 
-The details of the Octopus server that our pipeline will connect to is defined under {{ Manage Jenkins, Configure System }}:
+The Octopus server details that our pipeline will connect with to is defined under {{ Manage Jenkins, Configure System }}:
 
 ![](octopusserver.png "width=500")
 *Defining the Octopus server.*
 
-We then need to define a custom tool under {{ Manage Jenkins, Global Tool Configuration }}. The custom tool has the name of **OctoCLI**, and because in my case the agent is running on Windows, the Octopus CLI will be downloaded from https://download.octopusdeploy.com/octopus-tools/7.4.1/OctopusTools.7.4.1.win-x64.zip. The CLI is available for other operating systems from the [Octopus download page](https://octopus.com/downloads/octopuscli):
+We then need to define a custom tool under {{ Manage Jenkins, Global Tool Configuration }}. The custom tool has the name of **OctoCLI**, and because in my case the agent is running on Windows, the Octopus CLI will be downloaded from https://download.octopusdeploy.com/octopus-tools/7.4.1/OctopusTools.7.4.1.win-x64.zip. For the latest version of the CLI, and for binaries supporting other operating systems, see the [Octopus download page](https://octopus.com/downloads/octopuscli):
 
 ![](octocli.png "width=500")
 *Defining the Octopus CLI custom tool.*
 
-Further down in the **Global Tool Configuration** page is where we define the path to the Octopus CLI. The custom tools plugin install the Octopus CLI to the directory `<jenkins home>/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/OctoCLI`, where `<jenkins home>` is the home directory of the Jenkins server or the agent performing the build. In my case, the agent home directory is `C:\JenkinsAgent`, so the Octopus CLI will be available from `C:\JenkinsAgent\tools\com.cloudbees.jenkins.plugins.customtools.CustomTool\OctoCLI\octo`. The name of the tool is left as **Default**:
+Further down in the **Global Tool Configuration** page is where we define the path to the Octopus CLI. The custom tools plugin installs the Octopus CLI to the directory `<jenkins home>/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/OctoCLI`, where `<jenkins home>` is the home directory of the Jenkins server or the agent performing the build. In my case, the agent home directory is `C:\JenkinsAgent`, so the Octopus CLI will be available from `C:\JenkinsAgent\tools\com.cloudbees.jenkins.plugins.customtools.CustomTool\OctoCLI\octo`. The name of the tool is left as **Default**:
 
 ![](octopuscli.png "width=500")
 *Defining the Octopus CLI path.*
@@ -172,12 +172,12 @@ We need to ensure our Kubernetes target is placed within these new environments 
 ![](k8starget.png "width=500")
 *Adding the Kubernetes target to the new environments.*
 
-We now have the ability to promote deployments from the **Dev** environment to the **Test** environment through the Octopus dashboard:
+We now have the ability to promote releases from the **Dev** environment to the **Test** environment through the Octopus dashboard:
 
 ![](progression.png "width=500")
 *The Octopus dashboard showing the next environment to deploy to.*
 
-Promoting the deployment to the **Test** environment, we can see our Kubernetes resources being created in the **petclinic-test** namespace. If you recall from the previous blog post, we configured our Kubernetes steps to deploy to a namespace called **petclinic-#{Octopus.Environment.Name | ToLower}**, which is why deployments to a new environment have been placed in a new namespace:
+Promoting the release to the **Test** environment, we can see our Kubernetes resources being created in the **petclinic-test** namespace. If you recall from the previous blog post, we configured our Kubernetes steps to deploy to a namespace called **petclinic-#{Octopus.Environment.Name | ToLower}**, which is why deployments to a new environment have been placed in a new namespace:
 
 ![](testdeployment.png "width=500")
 *A deployment to the Test environment.*
@@ -191,7 +191,7 @@ And with that, we have a complete deployment pipeline.
 
 ## Conclusion
 
-In this post we triggered a deployment in Octopus once Jenkins finishes building and pushing the Docker image. This means we have implemented continuous integration with Jenkins testing, building, and publishing the Docker image, and continuous delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
+In this post we triggered a deployment in Octopus once Jenkins finished building and pushing the Docker image. This means we have implemented continuous integration with Jenkins testing, building, and publishing the Docker image, and continuous delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
 
 We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those responsible for this release management need no special tools other than a web browser, and each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
 
