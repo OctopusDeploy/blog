@@ -60,6 +60,11 @@ nodeGroups:
 ![](eksctl.png "width=500")
 *The populated step.*
 
+:::hint
+If you get a `UnsupportedAvailabilityZoneException` error in `us-east-1`, try another availability zone. The [eksctl documentation](https://eksctl.io/usage/creating-and-managing-clusters/) notes that `us-east-1` is susceptible to this error.
+:::
+
+
 Before the runbook is executed, we need to allow dynamically created targets to be placed in the destination environment, called **Dev** in this example. Enabling this setting allows script steps, like the community step template we just configured, to create Octopus targets:
 
 ![](dynamictargets.png "width=500")
