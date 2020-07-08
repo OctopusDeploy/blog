@@ -20,7 +20,7 @@ This post is part of a series demonstrating a sample deployment pipeline with Je
 
 ![](code.svg "width=300")
 
-There is perhaps no public project that better captures a long lived Java application than [Spring Petclinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
+There is perhaps no public project that better exemplifies a long lived Java application than [Spring Petclinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
 
 Our journey through the DevOps lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution environment.
 
@@ -55,7 +55,7 @@ java -jar .\target\petclinic.2.3.1.BUILD-SNAPSHOT.jar
 
 This process of testing, building and running locally is were every application starts. 
 
-To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper) which provides cross platform scripts, designed to be checked into source control, that download the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self contained JAR files which are easy to version, copy and deploy.
+To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper), which provides cross platform scripts designed to be checked into source control that download the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self contained JAR files which are easy to version, copy and deploy.
 
 However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. Pet clinic relies on a now quite old version of Java, but given that a new version of Java is released every 6 months, it is not hard to imagine developers having to juggle Java installations to perform a local build.
 
@@ -63,7 +63,7 @@ To provide a truly self-contained build and execution environment, we'll migrate
 
 ## Self contained builds and execution with Docker
 
-One of the main features of Docker is it's ability to bundle an entire execution environment in a self contained image, and run that image in an isolated environment. What this means for us is we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
+One of the main features of Docker is it's ability to bundle an entire application ecosystem in a self contained image, and run that image in an isolated environment. What this means for us is we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
 
 A fork of the pet clinic repo has been created in [GitHub](https://github.com/mcasperson/spring-petclinic) with the code below for easy access.
 
@@ -89,7 +89,7 @@ COPY --from=build-env /app/target/petclinic.jar ./petclinic.jar
 CMD ["/usr/bin/java", "-jar", "/app/petclinic.jar"]
 ```
 
-This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools required to only to build the application.
+This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools required only to build the application.
 
 We base our build on an existing Docker image provided by the Maven team. This image has the JDK and Maven tools preinstalled:
 
