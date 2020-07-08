@@ -10,6 +10,14 @@ tags:
  - Octopus
 ---
 
+This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
+
+* [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
+* [From local builds to CI](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
+* [From CI to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
+* [From CI to CD](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
+* [From CD to CO](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+
 [In the previous post](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that took care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself we created a repeatable and self contained build process, with the resulting Docker image that can be executed by anyone with only Docker installed.
 
 This is a solid foundation for our build process. However, as more developers start working on a shared code base, testing requirements expand, and the resulting packages grow in size, teams require a central, shared server to manage builds. This is the role of a Continuous Integration (CI) server.
