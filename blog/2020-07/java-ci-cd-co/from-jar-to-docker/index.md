@@ -18,9 +18,11 @@ This post is part of a series demonstrating a sample deployment pipeline with Je
 * [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
 * [From Release Management to Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
 
+![](code.svg "width=300")
+
 There is perhaps no public project that better captures a long lived Java application than [Spring Petclinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
 
-Our journey from local builds and manual deployments through to a complete [Continuous Integration (CI)](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md), [Continuous Deployment (CD)](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md), and [Continuous Operation (CO)](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md), or CI/CD/CO, lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution environment.
+Our journey through the DevOps lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution environment.
 
 ## Starting with a local build
 
