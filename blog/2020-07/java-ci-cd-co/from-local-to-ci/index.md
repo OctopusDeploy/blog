@@ -58,26 +58,32 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 When you open http://localhost:8081 you will be prompted to enter this password to unlock Jenkins:
 
 ![](unlock.png "width=500")
+*Unlock Jenkins with the generated password.*
 
 Jenkins will prompt you to either install a list of common plugins or just those that you select. The **Install suggested plugins** option contains most of the plugins we'll need:
 
 ![](customize.png "width=500")
+*Installing the suggested plugins.*
 
 It will take a minute or so for the plugins to download:
 
 ![](downloading.png "width=500")
+*Waiting for the plugins to install.*
 
 The Jenkins administrator is configured:
 
 ![](admin.png "width=500")
+*Configuring the admin user.*
 
 Finally the Jenkins URL is defined:
 
 ![](url.png "width=500")
+*Configuring the Jenkins URL.*
 
 Jenkins is now configured and ready for use:
 
 ![](finished.png "width=500")
+*Jenkins configuration is compete.*
 
 ## Creating an agent
 
@@ -90,30 +96,37 @@ An easier solution is to run a Jenkins agent outside of the Jenkins Docker conta
 To create an agent, click {{ Manage Jenkins, Manage Nodes and Clouds }}:
 
 ![](nodes.png "width=500")
+*Jenkins Management options.*
 
 Click the **New Node** link:
 
 ![](newnode.png "width=500")
+*The Jenkins instance itself is the only node.*
 
 Give the new node a name and click **OK**:
 
 ![](newnodedetails.png "width=500")
+*Adding a new node.*
 
 Enter a path for the **Remote root directory**. Because I am running the node on Windows, the path is something like `C:\JenkinsAgent`. Then enter `docker` as the node label and click **Save**:
 
 ![](newnodewithlabel.png "width=500")
+*Configuring the new node.*
 
 The node is now configured in Jenkins, but since there is no node running it is shown as disconnected:
 
 ![](disconnectednode.png "width=500")
+*The new node is disconnected.*
 
 Clicking the new node provides a screen with details on how to run the agent. Click the **agent.jar** link to download agent file and run the command shown on the screen to connect the agent to Jenkins:
 
 ![](agentdownload.png "width=500")
+*Instructions for connecting a node.*
 
 Once the node is connected, it will be displayed without the error icon:
 
 ![](connectednode.png "width=500")
+*New node is connected.*
 
 We now have an agent connected to Jenkins that has the ability to build Docker images.
 
@@ -122,32 +135,39 @@ We now have an agent connected to Jenkins that has the ability to build Docker i
 The initial configuration of Jenkins installed a number of common plugins. However, to build Docker images we need one more plugin called **Docker Pipeline**. This is done via {{ Manage Jenkins, Manage Plugins }} and serching for the plugin in the **Available** tab:
 
 ![](dockerpipeline.png "width=500")
+*Installing the Docker Pipeline plugin.*
 
 The plugin will take a few seconds to download and install:
 
 ![](plugindownload.png "width=500")
+*Downloading the plugin.*
 
 ## Adding the DockerHub credentials
 
 To allow our project to publish the Docker image to Docker Hub, we need to define the Docker Hub credentials in Jenkins. This is done through the credentials section accessed via {{ Manage Jenkins, Manage Credentials }}:
 
 ![](managecredentials.png "width=500")
+*Jenkins management options.*
 
 Click the **Jenkins** link:
 
 ![](jenkinscredentials.png "width=500")
+*Credentials management page.*
 
 Click the **Global credentials** link:
 
 ![](globalcredentials.png "width=500")
+*System credentials.*
 
 Click the **Add Credentials** link:
 
 ![](addcredentials.png "width=500")
+*Global credentials.*
 
 Enter the Docker Hub credentials, set the **ID** to **dockerhub**, and click the **OK** button:
 
 ![](newcredentials.png "width=500")
+*Defining the DOcker Hub credentials.*
 
 We now have everything we need to build Docker images in Jenkins. The next step is to define the Jenkins project.
 
@@ -155,7 +175,7 @@ We now have everything we need to build Docker images in Jenkins. The next step 
 
 At a high level, Jenkins provides two types of projects. 
 
-The first format, known as a FreeStyle project, is defined in the Jenkins UI. While it is possible to export and share a FreeStyle project, it is tricky to do as the underlying data format is not designed to be edited by hand.
+The first format, known as a freestyle project, is defined in the Jenkins UI. While it is possible to export and share a freestyle project, it is tricky to do as the underlying data format is not designed to be edited by hand.
 
 The second format, known as a pipeline, is essentially a script that is designed to be created and managed much like the code in your applications. The pipeline can be saved alongside your project code in a file called `Jenkinsfile`, which keeps your application code and the build definition in the same place.
 
@@ -244,30 +264,37 @@ This file is [committed alongside our application code](https://github.com/mcasp
 From the Jenkins dashboard, click the **New Item** link:
 
 ![](dashboard.png "width=500")
+*Jenkins dashboard.*
 
 Enter **Petclinic** as the item name and select the **Pipeline** option:
 
 ![](newitem.png "width=500")
+*New project creation.*
 
 Under the **Pipeline** section, select **Pipeline script from SCM**, enter the Git repository URL (https://github.com/mcasperson/spring-petclinic.git in this example), and select the branch to build (**main** in this example). Then click **Save**:
 
 ![](itemconfig.png "width=500")
+*Defining the pipeline GIT repository.*
 
 From the project dashboard, click the **Build Now** link to manually run a build:
 
 ![](runnow.png "width=500")
+*Jenkins project dashboard.*
 
 Click the build link icon:
 
 ![](build.png "width=500")
+*A Jenkins project build.*
 
 Click the **Console Output** link to view the build output:
 
 ![](console.png "width=500")
+*Jenkins project build console output.*
 
 Once the build completes, the Docker image is built on the Jenkins node and pushed to [Docker Hub](https://hub.docker.com/r/mcasperson/petclinic/tags) with a tag based on the build number:
 
 ![](dockerhubtags.png "width=500")
+*The resulting image in Docker Hub.*
 
 With this we have successfully configured Jenkins to compile and test the application code, and then build and push the Docker image to Docker Hub.
 
