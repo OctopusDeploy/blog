@@ -99,7 +99,7 @@ Running [Docker in Docker](https://hub.docker.com/_/docker) is possible, but is 
 
 An easier solution is to run a Jenkins agent outside of the Jenkins Docker container. This agent will run on the host operating system and have access to the Docker daemon to create Docker images.
 
-To create an agent, click {{ Manage Jenkins, Manage Nodes and Clouds }}:
+To create an agent, click **{{ Manage Jenkins, Manage Nodes and Clouds }}**:
 
 ![](nodes.png "width=500")
 *Jenkins Management options.*
@@ -138,7 +138,7 @@ We now have an agent connected to Jenkins that has the ability to build Docker i
 
 ## Installing the Docker Pipeline plugin
 
-The initial configuration of Jenkins installed a number of common plugins. However, to build Docker images we need one more plugin called **Docker Pipeline**. This is done via {{ Manage Jenkins, Manage Plugins }} and serching for the plugin in the **Available** tab:
+The initial configuration of Jenkins installed a number of common plugins. However, to build Docker images we need one more plugin called **Docker Pipeline**. This is done via {{ Manage Jenkins, Manage Plugins }} and searching for the plugin in the **Available** tab:
 
 ![](dockerpipeline.png "width=500")
 *Installing the Docker Pipeline plugin.*
