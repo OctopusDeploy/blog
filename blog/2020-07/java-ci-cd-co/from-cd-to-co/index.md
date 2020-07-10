@@ -10,13 +10,9 @@ tags:
  - Octopus
 ---
 
-This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
+This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
-* [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
-* [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
-* [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From Release Management to Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+!include <java-ci-cd-toc>
 
 ![](operate.svg "width=300")
 
@@ -28,7 +24,7 @@ While a traditional deployment pipeline ends with a deployment to production, Oc
 
 Before we can create runbooks for database backups, we first need a database.
 
-In a production setting you would typically use a hosted service like RDS. RDS provides out of the box high availability, backups, maintenance windows, security and more, all of which would require a significant effort to replicate with a local database. However, for the purposes of this blog we'll deploy MySQL to EKS and point our pet clinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
+In a production setting you would typically use a hosted service like RDS. RDS provides out of the box high availability, backups, maintenance windows, security and more, all of which would require a significant effort to replicate with a local database. However, for the purposes of this blog we'll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
 
 We'll use the official [MySQL](https://hub.docker.com/_/mysql) Docker image, but we also need some additional tools on the image to allow us to transfer a backup to a second location. Since we are using AWS to host our Kubernetes cluster, we'll backup our database to S3. This means we need the AWS CLI included in the MySQL Docker image to transfer a database backup.
 
@@ -134,14 +130,14 @@ spec:
 
 Deploying the resources created by the YAML above results in a MySQL instance accessible from other pods in the cluster using the hostname `mysql`.
 
-To configure pet clinic to use the MySQL database we need to define four environment variables. These variables are used to configure the settings in the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file:
+To configure PetClinic to use the MySQL database we need to define four environment variables. These variables are used to configure the settings in the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file:
 
 * `MYSQL_URL`, which is the JDBC URL to the MySQL database.
 * `MYSQL_USER`, which is the MySQL user to connect as, set to `root`.
 * `MYSQL_PASS`, which is the MySQL password, set to the password we defined in the `MYSQL_ROOT_PASSWORD` environment variable on the MySQL pod.
 * `SPRING_PROFILES_ACTIVE`, which defines the profile that Spring will use to configure the application, set to mysql to load the [application-mysql.properties](https://github.com/mcasperson/spring-petclinic/blob/main/src/main/resources/application-mysql.properties) configuration file.
 
-The YAML for our new pet clinic deployment is shown below:
+The YAML for our new PetClinic deployment is shown below:
 
 ```YAML
 apiVersion: apps/v1
@@ -169,7 +165,7 @@ spec:
               value: Password01!
 ```
 
-We now have a MySQL database and have configured pet clinic to use it as a data store.
+We now have a MySQL database and have configured PetClinic to use it as a data store.
 
 ## Backup the database
 
@@ -227,7 +223,7 @@ When saved in a runbook, those dozen lines of Powershell represent a shared, ver
 
 ## Restarting pods
 
-Let's take a look at another example, this time restarting the pet clinic application.
+Let's take a look at another example, this time restarting the PetClinic application.
 
 The script below finds pods whose names start with **petclinic** and deletes them. Because these pods were created by a Kubernetes deployment, they will be recreated automatically, essentially performing a pod restart:
 

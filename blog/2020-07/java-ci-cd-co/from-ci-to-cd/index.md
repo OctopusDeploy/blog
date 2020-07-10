@@ -10,13 +10,9 @@ tags:
  - Octopus
 ---
 
-This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
+This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
-* [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
-* [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
-* [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From Release Management to Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+!include <java-ci-cd-toc>
 
 ![](releasedeploy.svg "width=300")
 

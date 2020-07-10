@@ -10,23 +10,19 @@ tags:
  - Octopus
 ---
 
-This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
+This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
-* [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
-* [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
-* [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From Release Management to Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+!include <java-ci-cd-toc>
 
 ![](code.svg "width=300")
 
-There is perhaps no public project that better exemplifies a long lived Java application than [Spring Petclinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
+There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
 
-Our journey through the DevOps lifecycle starts with a local build of pet clinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution environment.
+Our journey through the DevOps lifecycle starts with a local build of PetClinic on a local workstation. At the end of this blog post we'll have containerized this application with Docker to provide a repeatable build and execution environment.
 
-## Starting with a local build
+## Start with a local build
 
-To get started, we clone the pet clinic GIT repository and used the Maven wrapper checked in alongside the application source code to build and run a local JAR file:
+To get started, we clone the PetClinic GIT repository and use the Maven wrapper checked in alongside the application source code to build and run a local JAR file:
 
 ```
 git clone https://github.com/spring-projects/spring-petclinic.git
@@ -39,7 +35,7 @@ This initial build will take some time as Maven downloads the various Spring lib
 To view the application, open http://localhost:8080:
 
 ![](petclinic.png "width=500")
-*Pet clinic running locally.*
+*PetClinic running locally.*
 
 To create a distributable JAR file, run the command:
 
@@ -47,7 +43,7 @@ To create a distributable JAR file, run the command:
 ./mvnw package
 ```
 
-This runs the unit tests and then creates a single, self contained JAR file under the `target` directory called something like `petclinic.2.3.1.BUILD-SNAPSHOT.jar`. We can run this file with the command:
+This runs the unit tests and then creates a single, self-contained JAR file under the `target` directory called something like `petclinic.2.3.1.BUILD-SNAPSHOT.jar`. We can run this file with the command:
 
 ```
 java -jar .\target\petclinic.2.3.1.BUILD-SNAPSHOT.jar
@@ -55,17 +51,17 @@ java -jar .\target\petclinic.2.3.1.BUILD-SNAPSHOT.jar
 
 This process of testing, building and running locally is were every application starts. 
 
-To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper), which provides cross platform scripts designed to be checked into source control that download the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self contained JAR files which are easy to version, copy and deploy.
+To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper), which provides cross platform scripts designed to be checked into source control that download the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self-contained JAR files which are easy to version, copy, and deploy.
 
-However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. Pet clinic relies on a now quite old version of Java, but given that a new version of Java is released every 6 months, it is not hard to imagine developers having to juggle Java installations to perform a local build.
+However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. PetClinic relies on a now quite old version of Java, but given that a new version of Java is released every 6 months, it is not hard to imagine developers having to juggle Java installations to perform a local build.
 
 To provide a truly self-contained build and execution environment, we'll migrate this application to Docker.
 
-## Self contained builds and execution with Docker
+## Self-contained builds and execution with Docker
 
-One of the main features of Docker is it's ability to bundle an entire application ecosystem in a self contained image, and run that image in an isolated environment. What this means for us is we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
+One of the main features of Docker is its ability to bundle an entire application ecosystem in a self-contained image, and run that image in an isolated environment. What this means for us is we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
 
-A fork of the pet clinic repo has been created in [GitHub](https://github.com/mcasperson/spring-petclinic) with the code below for easy access.
+A fork of the PetClinic repo has been created in [GitHub](https://github.com/mcasperson/spring-petclinic) with the code below for easy access.
 
 A Docker image is defined by the steps listed in a file called `Dockerfile`. The contents of our `Dockerfile` is shown below:
 
@@ -111,7 +107,7 @@ COPY pom.xml ./
 
 We then run the Maven `dependency:go-offline` goal, which downloads most of the libraries and Maven plugins we need to build the application.
 
-Because of the way Docker caches builds, so long as the `pom.xml` file doesn't change, any subsequent rebuilds of this image will reuse the downloads performed by this execution of Maven. For the pet clinic application, this can save several minutes and many hundreds of megabytes:
+Because of the way Docker caches builds, so long as the `pom.xml` file doesn't change, any subsequent rebuilds of this image will reuse the downloads performed by this execution of Maven. For the PetClinic application, this can save several minutes and many hundreds of megabytes:
 
 ```
 RUN mvn dependency:go-offline
@@ -187,15 +183,15 @@ docker run petclinic
 
 As before, the application is available at http://localhost:8080.
 
-We now have a `Dockerfile` that includes all the steps required to build and run our application. This application can now be built from source without any tools besides Docker. We now have a truly self contained build process.
+We now have a `Dockerfile` that includes all the steps required to build and run our application. This application can now be built from source without any tools besides Docker. We now have a truly self-contained build process.
 
 ## Distributing Docker images
 
 Docker images can be shared online with a number of Docker registries. The most popular is [Docker Hub](https://hub.docker.com/), which provides free accounts for hosting publicly available Docker images.
 
-To share the pet clinic Docker image, we need to sign up for a Docker Hub account. My account is called `mcasperson`.
+To share the PetClinic Docker image, we need to sign up for a Docker Hub account. My account is called `mcasperson`.
 
-Once you have created an account, sign into Docker Hub with the command `docker login`:
+After you have created an account, sign into Docker Hub with the command `docker login`:
 
 ```
 docker login
@@ -227,14 +223,14 @@ To run the public image, execute the command:
 docker run -p 8080:8080 mcasperson/petclinic
 ```
 
-Docker will download the image if it is not available locally, and then run it as we did before. The option `-p 8080:8080` explicitly maps the local port 8080to the container port 8080.
+Docker will download the image if it is not available locally, and then run it as we did before. The option `-p 8080:8080` explicitly maps the local port 8080 to the container port 8080.
 
 ## Conclusion
 
-In this blog post we took a typical Java application and containerized it as a Docker Image. This image was uploaded to a Docker registry making it publicly available.
+In this post we took a typical Java application and containerized it as a Docker image. This image was uploaded to a Docker registry making it publicly available.
 
 With these changes we have created a repeatable build and execution process anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
 
 While the build process may be conveniently encapsulated by Docker, there is no guarantee that the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the code base is something that needs to be shared by a central "source of truth" so everyone knows the state of the application. This is where a Continuous Integration (CI) server comes in. 
 
-In the [next blog post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md) we'll configure our application to be built by the popular and open source CI server Jenkins.
+In the [next post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md) we'll configure our application to be built by the popular and open source CI server Jenkins.

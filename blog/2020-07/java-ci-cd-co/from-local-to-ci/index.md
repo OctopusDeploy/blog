@@ -10,17 +10,13 @@ tags:
  - Octopus
 ---
 
-This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker and Octopus.
+This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
-* [From JAR to Docker](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md)
-* [From local builds to Continuous Integration](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)
-* [From Continuous Integration to Kubernetes](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md)
-* [From Continuous Integration to Release Management](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md)
-* [From Release Management to Operations](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md)
+!include <java-ci-cd-toc>
 
 ![](buildtest.svg "width=300")
 
-[In the previous post](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that took care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself we created a repeatable and self contained build process, with the resulting Docker image that can be executed by anyone with only Docker installed.
+[In the previous post](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that took care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself we created a repeatable and self-contained build process, with the resulting Docker image that can be executed by anyone with only Docker installed.
 
 This is a solid foundation for our build process. However, as more developers start working on a shared code base, testing requirements expand, and the resulting packages grow in size, teams require a central, shared server to manage builds. This is the role of a Continuous Integration (CI) server.
 
@@ -28,9 +24,9 @@ There are many CI servers available. One of the most popular is [Jenkins](https:
 
 ## Getting started with Jenkins
 
-The easiest way to get started with Jenkins is to use their [Docker image](https://hub.docker.com/r/jenkins/jenkins/). Just as we created a self contained image for our own application in the previous blog post, the Jenkins Docker image provides us with the ability to launch Jenkins in a preconfigured and self contained environment with just a few commands.
+The easiest way to get started with Jenkins is to use their [Docker image](https://hub.docker.com/r/jenkins/jenkins/). Just as we created a self-contained image for our own application in the previous blog post, the Jenkins Docker image provides us with the ability to launch Jenkins in a preconfigured and self-contained environment with just a few commands.
 
-To start we download the latest long term support (LTS) version of the Jenkins Docker image with the command:
+To start, we download the latest long term support (LTS) version of the Jenkins Docker image with the command:
 
 ```
 docker pull jenkins/jenkins:lts
@@ -42,7 +38,7 @@ We then launch Jenkins with the command:
 docker run -p 8081:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 ```
 
-The `-p` argument binds a port from the local workstation to a port exposed by the image. Here we use the argument `-p 8081:8080` to bind local port 8081 to the container port 8080. Note that because our own pet clinic application also listens to port 8080 by default, we have chosen the next available port of 8081 for Jenkins. It is entirely up to you which local port is mapped to the container port. The argument `-p 50000:50000` exposes a port used by Jenkins agents, which we will set up to perform our build later in the post.
+The `-p` argument binds a port from the local workstation to a port exposed by the image. Here we use the argument `-p 8081:8080` to bind local port 8081 to the container port 8080. Note that because our own PetClinic application also listens to port 8080 by default, we have chosen the next available port of 8081 for Jenkins. It is entirely up to you which local port is mapped to the container port. The argument `-p 50000:50000` exposes a port used by Jenkins agents, which we will set up to perform our build later in the post.
 
 The `-v` argument mounts a [Docker volume](https://docs.docker.com/storage/volumes/) to a path in the container. While a Docker container can modify data while it runs, it is best to assume that you will not be able to retain those changes. For example, each time you call `docker run` (which you may do to use an updated version of the Jenkins Docker image), a new container is created without any of the data that was modified by a previous container. Docker volumes allow us to retain modified data by exposing a persistent file system that can be shared between containers. In this example we have created a volume called `jenkins_home` and mounted it to the directory `/var/jenkins_home`. This means that all of the Jenkins data is captured in a persistent volume.
 
@@ -70,7 +66,7 @@ When you open http://localhost:8081 you will be prompted to enter this password 
 ![](unlock.png "width=500")
 *Unlock Jenkins with the generated password.*
 
-Jenkins will prompt you to either install a list of common plugins or just those that you select. The **Install suggested plugins** option contains most of the plugins we'll need:
+Jenkins will prompt you to either install a list of common plugins or just those that you select. The **Install suggested plugins** option contains most of the plugins we need:
 
 ![](customize.png "width=500")
 *Installing the suggested plugins.*
@@ -85,7 +81,7 @@ The Jenkins administrator is configured:
 ![](admin.png "width=500")
 *Configuring the admin user.*
 
-Finally the Jenkins URL is defined:
+Finally, the Jenkins URL is defined:
 
 ![](url.png "width=500")
 *Configuring the Jenkins URL.*
@@ -95,7 +91,7 @@ Jenkins is now configured and ready for use:
 ![](finished.png "width=500")
 *Jenkins configuration is compete.*
 
-## Creating an agent
+## Create an agent
 
 An issue we need to address is the fact that we are running Jenkins in a Docker container, while also wanting Jenkins to itself use Docker to build a Docker image. This creates a scenario where we want to use Docker in Docker.
 
