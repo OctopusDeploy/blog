@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Managing credentials for cloud providers is a challenge, especially when you consider that you won't have the luxury of physical security, meaning one leaked admin key could grant access to your entire account from anywhere in the world. Nor are cloud accounts immune from the preverbal "rf -rf" scenario where an admin account accidentally deletes resources they shouldn't.
+Managing credentials for cloud providers is a challenge, especially when you consider that you won't have the luxury of physical security, meaning one leaked admin key could grant access to your entire account from anywhere in the world. Nor are cloud accounts immune from the proverbial "rf -rf" scenario where an admin account accidentally deletes resources they shouldn't.
 
 IAM roles can be used to provide task specific authorization, and when a role is assigned to an EC2 instance, users with access to that VM can inherit the role.
 
@@ -18,7 +18,7 @@ In this blog post we'll take a look at IAM roles in AWS and learn how they can b
 
 ## Creating a role
 
-Roles are created in the AWS  IAM console. When you create a new role, you will be presented with a list of services that the role will apply to. With the default selection of **AWS service** selected, click the **EC2** link:
+Roles can be created in the AWS  IAM console. When you create a new role, you will be presented with a list of services that the role will apply to. With the default selection of **AWS service** selected, click the **EC2** link:
 
 ![](createrole.png "width=500")
 
@@ -53,13 +53,13 @@ The role can be assigned to a new EC2 instance when it is created:
 
 ![](ec2role.png "width=500")
 
-When you log into this instance, the name of the role assigned to the VM is available from the instance metadata HTTP interface with the command:
+When you log into this instance, the name of the role assigned to the VM is available from the [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) HTTP interface with the command:
 
 ```
 curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
 ```
 
-We can also verify the role that commands issued through tools like the AWS CLI assume with the command:
+We can also verify the role that through tools like the AWS CLI assume with the command:
 
 ```
 aws sts get-caller-identity
@@ -71,7 +71,7 @@ In both cases we see the role **mytestrole**:
 
 What this means is that tools that are aware of the instance metadata HTTP interface can operate with the role assigned to the EC2 instance. So long as you have access to the VM, you can interact with AWS with the associated IAM role.
 
-The AWS CLI is one example of a tool that is aware of the instance metadata, and Octopus tentacles are another. We can take advantage of the EC2 IAM roles and Octopus workers to run commands against AWS services without any AWS credentials.
+The AWS CLI is one example of a tool that is aware of the instance metadata, and Octopus tentacles and workers are another. We can take advantage of the EC2 IAM roles and Octopus workers to run commands against AWS services without any AWS credentials.
 
 ## EC2 as Octopus worker
 
@@ -99,7 +99,7 @@ With Octopus 2020.4.0 it is also possible to interact with an EKS cluster using 
 
 However, for an IAM role to have any permissions inside the Kubernetes cluster, we need to map the IAM role to a Kubernetes role. This mapping is done in the `aws-auth` config map in the `kube-system` namespace.
 
-The default contents of this file will look something like this eample. Note however that the existing role mapping is specific to each EKS cluster, as it allows the roles assigned to the nodes to access the cluster. You will need to modify the config map from your cluster rather than copy and paste the one shown below, as using this example directly will cause errors in your cluster:
+The default contents of this file will look something like this example. Note however that the existing role mapping is specific to each EKS cluster, as it allows the roles assigned to the nodes to access the cluster. You will need to modify the config map from your cluster rather than copy and paste the one shown below, as using this example directly will cause errors:
 
 ```YAML
 apiVersion: v1
@@ -118,7 +118,7 @@ metadata:
   namespace: kube-system
 ```
 
-In my example, I add a new role mapping between the `mytestrole` IAM role and the Kubernetes `system:master` role:
+In my example, I add a new role mapping between the `mytestrole` IAM role and the Kubernetes `system:masters` role:
 
 ```YAML
 apiVersion: v1
