@@ -140,3 +140,21 @@ metadata:
   name: aws-auth
   namespace: kube-system
 ```
+
+Once this config map is applied, we can configure our Kubernetes target to **Execute using the AWS service role for an EC2 instance**:
+
+![](eksiamrole.png "width=500")
+
+We also need to ensure that the target uses the worker connecting to the EC2 instance with the IAM role applied:
+
+![](eksworker.png "width=500")
+
+Our Kubernetes target will now complete a health check without any AWS credentials, and instead using the IAM role assigned to the VM the worker connects to:
+
+![](ekshealth.png "width=500")
+
+## Conclusion
+
+In this post we created an IAM role that can be assigned to an EC2 instance. We logged into the EC2 instance and verified that the AWS CLI showed the local user as having the EC2 role. We then connected a worker to the EC2 instance and run both AWS CLI scripts and a Kubernetes health check from Octopus that also assumed the role assigned to the EC2 instance.
+
+Assigning roles to EC2 instances is a convenient way to remove the need to share AWS credentials, and with Octopus 2020.4, full support for assuming those roles is available in steps and Kubernetes targets.
