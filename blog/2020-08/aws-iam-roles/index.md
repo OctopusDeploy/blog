@@ -82,3 +82,61 @@ To connect to the Linux VM we need to create a **SSH Key Pair** account with the
 We can then create a SSH worker and connect to the VM:
 
 ![](worker.png "width=500")
+
+Now we can add a **Run an AWS CLI Script** step, set the script to run on the worker pool containing the worker we just created, and select the option to **Execute using the AWS service role for an EC2 instance**:
+
+![](awsscriptstepauth.png "width=500")
+
+Now if we run the command `aws sts get-caller-identity` in this script, we see the same results as before:
+
+![](awscriptresult.png "width=500")
+
+We now have the ability to perform deployments and execute scripts without needing to share AWS credentials via the worker and the IAM role it assumes from the underlying VM.
+
+## Assuming roles for Kubernetes targets
+
+With Octopus 2020.4.0 it is also possible to interact with an EKS cluster using an IAM role associated with a VM.
+
+However, for an IAM role to have any permissions inside the Kubernetes cluster, we need to map the IAM role to a Kubernetes role. This mapping is done in the `aws-auth` config map in the `kube-system` namespace.
+
+The default contents of this file will look something like this eample. Note however that the existing role mapping is specific to each EKS cluster, as it allows the roles assigned to the nodes to access the cluster. You will need to modify the config map from your cluster rather than copy and paste the one shown below, as using this example directly will cause errors in your cluster:
+
+```YAML
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::968802670493:role/eksctl-k8s-cluster-nodegroup-ng-1-NodeInstanceRole-1FI6JXPS9MDWK
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |
+    []
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+```
+
+In my example, I add a new role mapping between the `mytestrole` IAM role and the Kubernetes `system:master` role:
+
+```YAML
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::968802670493:role/eksctl-k8s-cluster-nodegroup-ng-1-NodeInstanceRole-1FI6JXPS9MDWK
+      username: system:node:{{EC2PrivateDNSName}}
+    - rolearn: arn:aws:iam::968802670493:role/mytestrole
+      username: admin
+      groups:
+        - system:masters
+  mapUsers: |
+    []
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+```
