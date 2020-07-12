@@ -194,7 +194,7 @@ spec:
             claimName: mssql-data
       containers:
         - name: mssql
-          image: mssql/server
+          image: mcr.microsoft.com/mssql/server:2019-latest
           ports:
             - containerPort: 1433
           env:
