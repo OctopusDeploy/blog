@@ -11,6 +11,8 @@ tags:
  - Java
 ---
 
+![Using the WildFly CLI](java-octopus.png)
+
 The WildFly CLI is a powerful administration tool that exposes both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this post, I take a high level look at how to use the CLI.
 
 ## Logging in
