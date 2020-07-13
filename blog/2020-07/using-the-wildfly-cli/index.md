@@ -3,11 +3,12 @@ title: Using the WildFly CLI
 description: Learn how to use the WildFly CLI to query and configure a WildFly application server.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2017-11-10
+published: 2020-07-13
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
  - DevOps
+ - Java
 ---
 
 The WildFly CLI is a powerful administration tool that exposes both an interactive console and scripting capabilities. The CLI can be used to query and configure all aspects of the WildFly application server, and in this post, I take a high level look at how to use the CLI.
