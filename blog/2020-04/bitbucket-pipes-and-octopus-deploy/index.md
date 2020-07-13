@@ -61,7 +61,7 @@ pipe: docker://<Docker_Account_Name>/<Image_Name>:<tag>
 pipe: <Bitbucket_account>/<Bitbucket_repo>:<tag>
 ```
 
-    This method looks for the location of the Docker image from the `pipe.yml` file within the referenced `<Bitbucket_account>/<Bitbucket_repo>` Pipe repository.
+This method looks for the location of the Docker image from the `pipe.yml` file within the referenced `<Bitbucket_account>/<Bitbucket_repo>` Pipe repository.
 
 ## Why are Pipes useful?
 

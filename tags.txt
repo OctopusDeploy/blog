@@ -17,6 +17,7 @@ Kubernetes
 Linux
 Octopus Cloud
 PowerShell
+Reporting
 Runbooks
 Variables
 Workers

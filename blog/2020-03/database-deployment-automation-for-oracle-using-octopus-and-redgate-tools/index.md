@@ -17,7 +17,7 @@ Prior to joining Octopus Deploy, I worked on a .NET application with Oracle as i
 
 Thankfully, those days are over.  The tooling available today is light-years ahead of where it was.  In this post, I’ll cover deploying changes to Oracle databases.  The goal of this article is to build up entire CI/CD pipeline using TeamCity as the build server (though the core concepts do transfer over to Jenkins, Bamboo, TFS/VSTS/Azure DevOps), Octopus Deploy as the deployment tool, with the Redgate Oracle toolset doing the heavy lifting on the database side.  
 
-_Disclaimer:_ I used Oracle between 2010 and 2013.  The Oracle instance was 10g, and I used Benthic and SQL Developer to query Oracle.  A lot has changed since that time.  I’m an SQL Server guy, and without question, I did some goofy things in this article, which are no longer best practice.  
+_Disclaimer:_ I used Oracle between 2010 and 2013.  The Oracle instance was 10g, and I used Benthic and SQL Developer to query Oracle.  A lot has changed since that time.  I’m a SQL Server guy, and without question, I did some goofy things in this article, which are no longer best practice.  
 
 !toc
 

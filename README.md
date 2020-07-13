@@ -11,25 +11,13 @@ See the [Octopus style guide](https://style.octopus.com) for the following infor
 - [Markdown quick reference](https://style.octopus.com/markdown)
 - [Writing tips for the blog](https://style.octopus.com/writing-tips-for-the-blog) 
 
-## Snippets
-
-The blog includes snippets from the [snippets repo](https://github.com/OctopusDeploy/snippets). For more information see [Octopus snippets](https://style.octopus.com/octopus-snippets).
-
-If the latest snippets do not appear in the output, use the following to update the snippets:
-
-```
-cd blog/blog/snippets/
-git fetch
-git merge
-```
-
-And merge the blog repo.
-
 # How to submit a blog post 
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
 Posts are organized in year-month directories (i.e., 2020-01/), find or create the directory that is roughly when your post is going out and add your files there. 
+
+If you'd like feedback on a work in progress, create a draft PR and tag @robpearson or @wordlee with your request.
 
 When you're happy with your post and think it's ready to be reviewed, create a PR and assign @robpearson and @wordlee as reviewers.
 
