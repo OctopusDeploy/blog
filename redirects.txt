@@ -8,4 +8,3 @@ blog/2018-11/oracle-database-using-redgate-part-2/index.md -> blog/2020-03/datab
 blog/2019-02/dbup-database-deployments/index.md -> blog/2020-03/dbup-database-deployment-automation/index.md
 blog/2017-11/maven-versions-explained.md -> blog/2020-06/maven-versioning-explained/index.md
 blog/2018-02/deploy-maven-zip-files.md -> blog/2020-05/deploy-and-consume-zip-files-from-maven/index.md
-blog/2017-11/using-the-wildfly-cli.md -> blog/2020-07/using-the-wildfly-cli/index.md
