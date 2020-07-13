@@ -1,5 +1,5 @@
 ---
-title: From Release Management to Operations
+title: "Java CI/CD: From Release Management to Operations"
 description: In this post we create example runbooks to implement operations tasks
 author: matthew.casperson@octopus.com
 visibility: private
@@ -10,23 +10,23 @@ tags:
  - Octopus
 ---
 
-This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker, and Octopus:
+This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
 !include <java-ci-cd-toc>
 
 ![](operate.svg "width=300")
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes once the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical Dev -> Test -> Prod progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
+[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes after the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical {{ Dev, Test, Prod }} progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
 
 While a traditional deployment pipeline ends with a deployment to production, Octopus provides a solution for the operate phase of the DevOps lifecycle with runbooks. By automating common tasks like database backups, log collection, and service restarts via runbooks, the combination of Jenkins and Octopus provides a complete deployment and operations pipeline covering the entire lifecycle of an application.
 
-## Adding a database
+## Add a database
 
 Before we can create runbooks for database backups, we first need a database.
 
-In a production setting you would typically use a hosted service like RDS. RDS provides out of the box high availability, backups, maintenance windows, security and more, all of which would require a significant effort to replicate with a local database. However, for the purposes of this blog we'll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
+In a production setting you would typically use a hosted service like RDS. RDS provides out-of-the-box high availability, backups, maintenance windows, security, and more, all of which requires a significant effort to replicate with a local database. However, for the purposes of this blog, we’ll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
 
-We'll use the official [MySQL](https://hub.docker.com/_/mysql) Docker image, but we also need some additional tools on the image to allow us to transfer a backup to a second location. Since we are using AWS to host our Kubernetes cluster, we'll backup our database to S3. This means we need the AWS CLI included in the MySQL Docker image to transfer a database backup.
+We’ll use the official [MySQL](https://hub.docker.com/_/mysql) Docker image, but we also need some additional tools on the image to allow us to transfer a backup to a second location. Since we are using AWS to host our Kubernetes cluster, we’ll backup our database to S3. This means we need the AWS CLI included in the MySQL Docker image to transfer a database backup.
 
 Adding new tools to an image is easy. We take the base **mysql** image and run the commands required to install the AWS CLI. Our [Dockerfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Dockerfile) looks like this:
 
@@ -113,7 +113,7 @@ spec:
               value: petclinic
 ```
 
-Because we don't need to access the database publicly, we expose the MySQL instance with a cluster IP service, which allows other pods to access the database, but will not create a public load balancer:
+Because we don’t need to access the database publicly, we expose the MySQL instance with a cluster IP service, which allows other pods to access the database, but will not create a public load balancer:
 
 ```YAML
 apiVersion: v1
@@ -171,9 +171,9 @@ We now have a MySQL database and have configured PetClinic to use it as a data s
 
 Perhaps one of the most obvious tasks to perform in the continuous operations phase of a DevOps lifecycle is backing up the database. 
 
-The [mysql Docker image](https://hub.docker.com/_/mysql) documentation provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We'll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
+The [MySQL Docker image](https://hub.docker.com/_/mysql) documentation provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We’ll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
 
-The Powershell script below finds the name of the MySQL pod (which, due to the fact that the pod is created as part of a deployment, has a random name), calls `mysqldump` to create a backup of the database, and then calls `aws s3 cp` to upload the backup to S3:
+The PowerShell script below finds the name of the MySQL pod (which, due to the fact the pod is created as part of a deployment, has a random name), calls `mysqldump` to create a backup of the database, and then calls `aws s3 cp` to upload the backup to S3:
 
 ```powershell
 # Get the list of pods in JSON format
@@ -202,28 +202,28 @@ This script is executed in a **Run a kubectl CLI Script** step added to a runboo
 ![](backuplogs.png "width=500")
 *The result of executing the database backup.*
 
-We don't want to manually backup the database, so Octopus allows runbooks to be scheduled. Here we have a trigger to perform a daily backup:
+We don’t want to manually backup the database, so Octopus allows runbooks to be scheduled. Here we have a trigger to perform a daily backup:
 
 ![](backuptrigger.png "width=500")
 *A scheduled backup.*
 
 While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. So what value have we added here in this operations phase of our DevOps lifecycle?
 
-First, we were able to reuse both the existing AWS credentials as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can  manage that same infrastructure without duplicating credentials and other settings like URLs.
+First, we were able to reuse both the existing AWS credentials as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can manage that same infrastructure without duplicating credentials and other settings like URLs.
 
 Second, this runbook is aware of our multiple environments. Just as our application code must progress through multiple environments before it is deemed ready for a production release, so too our runbooks can be tested and validated in non-production environments to ensure they can be trusted in production.
 
 Third, these runbooks require no additional tools or configuration beyond a web browser and access to Octopus. On call support personnel can execute these runbooks from their phone with a click of a button. This removes the need to maintain a specialized support laptop and share credentials.
 
-Forth, the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs. This is information you quickly loose if operations are running ad-hoc scripts from their own workstations, making it difficult to uncover the root cause of any issues once systems have been restored to an operational state. With Octopus, all the details are saved and easily retrieved.
+Forth, the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs. This is information you quickly loose if operations are running ad-hoc scripts from their own workstations, making it difficult to uncover the root cause of any issues after systems have been restored to an operational state. With Octopus, all the details are saved and easily retrieved.
 
 Fifth, business knowledge required to support production systems is now captured in testable and repeatable runbooks. Support handover is easier as all teams now share the same toolbox.
 
-When saved in a runbook, those dozen lines of Powershell represent a shared, verifiable, audited, easily accessed, and centralized unit of business knowledge designed to keep your systems running at their best.
+When saved in a runbook, those dozen lines of PowerShell represent a shared, verifiable, audited, easily accessed, and centralized unit of business knowledge designed to keep your systems running at their best.
 
 ## Restarting pods
 
-Let's take a look at another example, this time restarting the PetClinic application.
+Let’s take a look at another example, this time restarting the PetClinic application.
 
 The script below finds pods whose names start with **petclinic** and deletes them. Because these pods were created by a Kubernetes deployment, they will be recreated automatically, essentially performing a pod restart:
 
@@ -240,7 +240,7 @@ Select -ExpandProperty items |
 % { kubectl delete pod $_.metadata.name}
 ```
 
-Commands like `kubectl delete` can be daunting if you are not familiar with Kubernetes. It just so happens that because of the way our application was deployed, this action will restart the pods rather than delete them permanently. But how would a new member of the DevOps team know that this command is safe?
+Commands like `kubectl delete` can be daunting if you’re not familiar with Kubernetes. It just so happens that because of the way our application was deployed, this action will restart the pods rather than delete them permanently. But how would a new member of the DevOps team know that this command is safe?
 
 By adding descriptions to runbooks we can provide guidance on when and where runbooks can be run. In the screenshot below you can see the description of the **Restart PetClinic** runbook makes it clear that this is something that can be run in production:
 
@@ -253,7 +253,7 @@ Again, this is an example of encapsulating business knowledge in a runbook to re
 
 ## Conclusion
 
-Traditional deployment pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Runbooks gives your team the tools they need to support applications from the first code commit to weeks, months or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets and environments to implement the operations stage of the DevOps lifecycle.
+Traditional deployment pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Runbooks gives your team the tools they need to support applications from the first code commit to weeks, months, or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets and environments to implement the operations stage of the DevOps lifecycle.
 
 Fundamentally, runbooks treat the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the best practices from continuous delivery and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
 

@@ -1,6 +1,6 @@
 ---
-title: From Local Build to Jenkins Continuous Integration
-description: In this post we look at how to build a Docker image with a central CI server
+title: "Java CI/CD: From Local build to Jenkins Continuous Integration"
+description: Learn how to build a Docker image with a central CI server.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -10,21 +10,21 @@ tags:
  - Octopus
 ---
 
-This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker, and Octopus:
+This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
 !include <java-ci-cd-toc>
 
 ![](buildtest.svg "width=300")
 
-[In the previous post](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that took care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself we created a repeatable and self-contained build process, with the resulting Docker image that can be executed by anyone with only Docker installed.
+[In the previous post](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that takes care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself, we created a repeatable and self-contained build process, and the resulting Docker image can be executed by anyone with only Docker installed.
 
-This is a solid foundation for our build process. However, as more developers start working on a shared code base, testing requirements expand, and the resulting packages grow in size, teams require a central, shared server to manage builds. This is the role of a Continuous Integration (CI) server.
+This is a solid foundation for our build process. However, as more developers start working on a shared codebase, testing requirements expand, and the resulting packages grow in size, teams require a central, shared server to manage builds. This is the role of a Continuous Integration (CI) server.
 
-There are many CI servers available. One of the most popular is [Jenkins](https://www.jenkins.io/), which is free and open source. In this blog post we'll learn how to configure Jenkins to build and publish our Docker image.
+There are many CI servers available. One of the most popular is [Jenkins](https://www.jenkins.io/), which is free and open source. In this blog post we’ll learn how to configure Jenkins to build and publish our Docker image.
 
 ## Getting started with Jenkins
 
-The easiest way to get started with Jenkins is to use their [Docker image](https://hub.docker.com/r/jenkins/jenkins/). Just as we created a self-contained image for our own application in the previous blog post, the Jenkins Docker image provides us with the ability to launch Jenkins in a preconfigured and self-contained environment with just a few commands.
+The easiest way to get started with Jenkins is to use their [Docker image](https://hub.docker.com/r/jenkins/jenkins/). Just as we created a self-contained image for our own application in the previous blog post, the Jenkins Docker image provides us with the ability to launch Jenkins in a pre-configured and self-contained environment with just a few commands.
 
 To start, we download the latest long term support (LTS) version of the Jenkins Docker image with the command:
 
@@ -38,9 +38,9 @@ We then launch Jenkins with the command:
 docker run -p 8081:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 ```
 
-The `-p` argument binds a port from the local workstation to a port exposed by the image. Here we use the argument `-p 8081:8080` to bind local port 8081 to the container port 8080. Note that because our own PetClinic application also listens to port 8080 by default, we have chosen the next available port of 8081 for Jenkins. It is entirely up to you which local port is mapped to the container port. The argument `-p 50000:50000` exposes a port used by Jenkins agents, which we will set up to perform our build later in the post.
+The `-p` argument binds a port from the local workstation to a port exposed by the image. Here we use the argument `-p 8081:8080` to bind local port 8081 to the container port `8080`. Note that because our own PetClinic application also listens to port `8080` by default, we’ve chosen the next available port of `8081` for Jenkins. It is entirely up to you which local port is mapped to the container port. The argument `-p 50000:50000` exposes a port used by Jenkins agents, which we will configure to perform our build later in the post.
 
-The `-v` argument mounts a [Docker volume](https://docs.docker.com/storage/volumes/) to a path in the container. While a Docker container can modify data while it runs, it is best to assume that you will not be able to retain those changes. For example, each time you call `docker run` (which you may do to use an updated version of the Jenkins Docker image), a new container is created without any of the data that was modified by a previous container. Docker volumes allow us to retain modified data by exposing a persistent file system that can be shared between containers. In this example we have created a volume called `jenkins_home` and mounted it to the directory `/var/jenkins_home`. This means that all of the Jenkins data is captured in a persistent volume.
+The `-v` argument mounts a [Docker volume](https://docs.docker.com/storage/volumes/) to a path in the container. While a Docker container can modify data while it runs, it is best to assume that you will not be able to retain those changes. For example, each time you call `docker run` (which you may do to use an updated version of the Jenkins Docker image), a new container is created without any of the data that was modified by a previous container. Docker volumes allow us to retain modified data by exposing a persistent file system that can be shared between containers. In this example, we have created a volume called `jenkins_home` and mounted it to the directory `/var/jenkins_home`. This means that all of the Jenkins data is captured in a persistent volume.
 
 When the Docker image is run you will be presented with the log output. As part of the initial boot, Jenkins generates a random password and displays it in the logs like this:
 
@@ -61,7 +61,7 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 *************************************************************
 ```
 
-When you open http://localhost:8081 you will be prompted to enter this password to unlock Jenkins:
+When you open `http://localhost:8081` you will be prompted to enter this password to unlock Jenkins:
 
 ![](unlock.png "width=500")
 *Unlock Jenkins with the generated password.*
@@ -129,14 +129,14 @@ Clicking the new node provides a screen with details on how to run the agent. Cl
 ![](agentdownload.png "width=500")
 *Instructions for connecting a node.*
 
-Once the node is connected, it will be displayed without the error icon:
+When the node is connected, it will be displayed without the error icon:
 
 ![](connectednode.png "width=500")
 *New node is connected.*
 
 We now have an agent connected to Jenkins that has the ability to build Docker images.
 
-## Installing the Docker Pipeline plugin
+## Install the Docker Pipeline plugin
 
 The initial configuration of Jenkins installed a number of common plugins. However, to build Docker images we need one more plugin called **Docker Pipeline**. This is done via {{ Manage Jenkins, Manage Plugins }} and searching for the plugin in the **Available** tab:
 
@@ -148,9 +148,9 @@ The plugin will take a few seconds to download and install:
 ![](plugindownload.png "width=500")
 *Downloading the plugin.*
 
-## Adding the DockerHub credentials
+## Add the DockerHub credentials
 
-To allow our project to publish the Docker image to Docker Hub, we need to define the Docker Hub credentials in Jenkins. This is done through the credentials section accessed via {{ Manage Jenkins, Manage Credentials }}:
+To allow our project to publish the Docker image to Docker Hub, we need to define the Docker Hub credentials in Jenkins. This is done through the credentials section accessed via **{{ Manage Jenkins, Manage Credentials }}**:
 
 ![](managecredentials.png "width=500")
 *Jenkins management options.*
@@ -173,19 +173,19 @@ Click the **Add Credentials** link:
 Enter the Docker Hub credentials, set the **ID** to **dockerhub**, and click the **OK** button:
 
 ![](newcredentials.png "width=500")
-*Defining the Docker Hub credentials.*
+*Define the Docker Hub credentials.*
 
 We now have everything we need to build Docker images in Jenkins. The next step is to define the Jenkins project.
 
-## Defining the Jenkins project
+## Define the Jenkins project
 
-At a high level, Jenkins provides two types of projects. 
+At a high-level, Jenkins provides two types of projects. 
 
 The first format, known as a freestyle project, is defined in the Jenkins UI. While it is possible to export and share a freestyle project, it is tricky to do as the underlying data format is not designed to be edited by hand.
 
 The second format, known as a pipeline, is essentially a script that is designed to be created and managed much like the code in your applications. The pipeline can be saved alongside your project code in a file called `Jenkinsfile`, which keeps your application code and the build definition in the same place.
 
-We'll create a `Jenkinsfile` for our project to build and publish our Docker image with the following code:
+We’ll create a `Jenkinsfile` for our project to build and publish our Docker image with the following code:
 
 ```
 pipeline {
@@ -214,7 +214,7 @@ pipeline {
 }
 ```
 
-Let's break this file down.
+Let’s break this file down.
 
 All declarative pipelines start with `pipeline`:
 
@@ -265,7 +265,7 @@ The second stage pushes the newly created image to Docker Hub. The `withRegistry
 
 This file is [committed alongside our application code](https://github.com/mcasperson/spring-petclinic/blob/main/Jenkinsfile). The next step is to create a Jenkins project to checkout this code and run the pipeline.
 
-## Creating a pipeline project
+## Create a pipeline project
 
 From the Jenkins dashboard, click the **New Item** link:
 
@@ -280,7 +280,7 @@ Enter **Petclinic** as the item name and select the **Pipeline** option:
 Under the **Pipeline** section, select **Pipeline script from SCM**, enter the Git repository URL (https://github.com/mcasperson/spring-petclinic.git in this example), and select the branch to build (**main** in this example). Then click **Save**:
 
 ![](itemconfig.png "width=500")
-*Defining the pipeline GIT repository.*
+*Define the pipeline GIT repository.*
 
 From the project dashboard, click the **Build Now** link to manually run a build:
 
@@ -297,7 +297,7 @@ Click the **Console Output** link to view the build output:
 ![](console.png "width=500")
 *Jenkins project build console output.*
 
-Once the build completes, the Docker image is built on the Jenkins node and pushed to [Docker Hub](https://hub.docker.com/r/mcasperson/petclinic/tags) with a tag based on the build number:
+When the build completes, the Docker image is built on the Jenkins node and pushed to [Docker Hub](https://hub.docker.com/r/mcasperson/petclinic/tags) with a tag based on the build number:
 
 ![](dockerhubtags.png "width=500")
 *The resulting image in Docker Hub.*
@@ -306,7 +306,7 @@ With this we have successfully configured Jenkins to compile and test the applic
 
 ## Conclusion
 
-Jenkins provides a central platform through which multiple developers can have their code built, tested and distributed. Jenkins maintains a history of the changes and whether they resulted in successful builds, maintains the credentials required to distribute Docker images, and removes the need for individuals to upload what could be potentially large Docker images with each build.
+Jenkins provides a central platform through which multiple developers can have their code built, tested, and distributed. Jenkins maintains a history of the changes and whether they resulted in successful builds, maintains the credentials required to distribute Docker images, and removes the need for individuals to upload what could be potentially large Docker images with each build.
 
 In this post we stepped through the process of running Jenkins as a Docker container, connecting a node to perform the builds, and wrote a Jenkins pipeline to define how Jenkins will build and push the Docker image. The end result of this is a continuous integration system that can automatically build and publish our application, removing the need for individual developers to manually manage this process. We have achieved continuous integration.
 

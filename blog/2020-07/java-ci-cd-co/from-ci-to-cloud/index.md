@@ -1,5 +1,5 @@
 ---
-title: From Continuous Integration to Kubernetes Deployments
+title: "Java CI/CD: From Continuous Integration to Kubernetes Deployments"
 description: In this post we create a Kubernetes cluster in AWS
 author: matthew.casperson@octopus.com
 visibility: private
@@ -10,17 +10,17 @@ tags:
  - Octopus
 ---
 
-This post is part of a series demonstrating a sample deployment pipeline with Jenkins, Docker, and Octopus:
+This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
 !include <java-ci-cd-toc>
 
 [In the previous blog post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)  we configured a CI server with Jenkins that provided a central location from which to build and publish our Docker image. The image is now publicly available from Docker Hub, and the next step is to create infrastructure that can host our Docker container.
 
-In this post we'll create an Elastic Kubernetes Service (EKS) instance in AWS from Octopus.
+In this post, we’ll create an Elastic Kubernetes Service (EKS) instance in AWS from Octopus.
 
 ## Getting an Octopus Cloud instance
 
-We'll use Octopus to script the creation of the EKS cluster. The easiest way to get access to Octopus is to sign up for a [free cloud instance](https://octopus.com/). It only takes a few minutes to get an instance up and running.
+We’ll use Octopus to script the creation of the EKS cluster. The easiest way to get access to Octopus is to sign up for a [free cloud instance](https://octopus.com/free). It only takes a few minutes to get an instance up and running.
 
 The first step is to create an AWS account in Octopus that will be used to create and then connect to the EKS cluster. AWS accounts consist of an account key and a secret key:
 
@@ -32,11 +32,11 @@ The community step called **eksctl - Create Cluster (bash)** can be added to a r
 ![](steptile.png "width=500")
 *The community step to create an EKS cluster.*
 
-To make it easy to use the **ekscli** tool, Octopus supportes running a step inside a Docker container based on an image, and [provides images](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide selection of common cloud tools, including **ekscli**.
+To make it easy to use the **ekscli** tool, Octopus supports running a step inside a Docker container based on an image, and [provides images](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide selection of common cloud tools, including **ekscli**.
 
-TODO: screenshot when we have linux dynamic workers
+<!-- TODO: screenshot when we have linux dynamic workers -->
 
-Populate the step with the details of the EKS cluster to create. For this example the following **eksctl config** YAML creates a cluster with 2 t3a.small nodes:
+Populate the step with the details of the EKS cluster to create. For this example, the following **eksctl config** YAML creates a cluster with 2 t3a.small nodes:
 
 ```YAML
 apiVersion: eksctl.io/v1alpha5
@@ -60,13 +60,12 @@ nodeGroups:
 If you get a `UnsupportedAvailabilityZoneException` error in `us-east-1`, try another availability zone. The [eksctl documentation](https://eksctl.io/usage/creating-and-managing-clusters/) notes that `us-east-1` is susceptible to this error.
 :::
 
-
 Before the runbook is executed, we need to allow dynamically created targets to be placed in the destination environment, called **Dev** in this example. Enabling this setting allows script steps, like the community step template we just configured, to create Octopus targets:
 
 ![](dynamictargets.png "width=500")
-*Enabling dyanmic infrastrucutre in the Dev environment.*
+*Enabling dynamic infrastructure in the Dev environment.*
 
-Now execute the runbook. Once the runbook has completed, a new Kubernetes target is created that we can deploy our application to:
+Now execute the runbook. When the runbook has completed, a new Kubernetes target is created that we can deploy our application to:
 
 ![](k8starget.png "width=500")
 *The Octopus Kubernetes target.*
@@ -74,7 +73,7 @@ Now execute the runbook. Once the runbook has completed, a new Kubernetes target
 ![](eks.png "width=500")
 *The EKS cluster.*
 
-## Creating the Docker feed
+## Create the Docker feed
 
 In order to consume Docker images, we need to create a Docker feed in Octopus. This feed points to https://index.docker.io, which is the URL of the Docker Hub registry:
 
@@ -84,11 +83,11 @@ In order to consume Docker images, we need to create a Docker feed in Octopus. T
 We can then test the feed to ensure that Octopus can find our **Petclinic** image:
 
 ![](testfeed.png "width=500")
-*Testing the Docker feed.*
+*Test the Docker feed.*
 
-## Deploying the image to Kubernetes
+## Deploy the image to Kubernetes
 
-We now have all the configuration in place to deploy to the Kubernetes cluster. We'll use the **Deploy Kubernetes containers** step to configure a Kubernetes deployment resource and expose it through a load balancer service:
+We now have all the configuration in place to deploy to the Kubernetes cluster. We’ll use the **Deploy Kubernetes containers** step to configure a Kubernetes deployment resource and expose it through a load balancer service:
 
 ![](deployk8scontainers.png "width=500")
 *The Deploy Kubernetes containers step.*
@@ -102,7 +101,7 @@ The second way to use the step is to edit the values via the YAML representation
 ![](edityaml.png "width=500")
 *The Edit YAML section.*
 
-We can then edit the deployment resources directly as YAML, which is convenient as copying and pasting existing YAML populates the step in one operation. By pasting the YAML below into the text box, we create a deployment referencing our Docker image:
+You can then edit the deployment resources directly as YAML, which is convenient as copying and pasting existing YAML populates the step in one operation. By pasting the YAML below into the text box, we create a deployment referencing our Docker image:
 
 ```YAML
 apiVersion: apps/v1
@@ -163,13 +162,13 @@ With these settings in place we can deploy to the EKS cluster. The logs show tha
 
 So the only question now is *how do we access the application?*
 
-## Querying the cluster
+## Query the cluster
 
-We'll frequently need to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands.
+We’ll frequently need to query the cluster to find the information we need to move forward, or to debug a problem. Normally whoever is setting up the deployment will configure kubectl locally and quickly query the state of the cluster with ad-hoc commands.
 
 While this works, and indeed is sometimes necessary, executing ad-hoc commands like this ignores the fact that if these commands were necessary to get the initial deployment to succeed, they are likely to also be necessary to resolve issues with the deployment in future.
 
-Finding the hostname of the load balancer we just created is a perfect example. We could get this information any number of ways, either from the AWS console or with a call to kubectl. However, for the benefit of those who will be maintaining this cluster once we are done, we'll instead find this information through another runbook.
+Finding the hostname of the load balancer we just created is a perfect example. We could get this information any number of ways, either from the AWS console or with a call to kubectl. However, for the benefit of those who will be maintaining this cluster when we are done, we’ll instead find this information through another runbook.
 
 To get the service information create a runbook with the community step template called **Kubernetes - Inspect Resources**:
 
@@ -186,7 +185,7 @@ Running the runbook will query the cluster with kubectl on our behalf, showing t
 ![](servicedetails.png "width=500")
 *The service details.*
 
-This process was slightly less convenient than jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful when working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team. This is especially true when you consider that the next team only need the appropriate access to Octopus, and do not need kubectl or any credentials, which is welcome when your pager goes off at 3 in the morning.
+This process was slightly less convenient than jumping into a console and running kubectl directly, but the benefit is that we have started a runbook library including steps that we know were useful for working with our cluster. This library will be incredibly valuable as we look to hand support of this infrastructure to another team. This is especially true when you consider that the next team only need the appropriate access to Octopus, and do not need kubectl or any credentials, which is welcome when your pager goes off at 3 in the morning.
 
 Now that we know the hostname of our ELB, we can access our publicly hosted application:
 
@@ -195,6 +194,6 @@ Now that we know the hostname of our ELB, we can access our publicly hosted appl
 
 ## Conclusion
 
-In this post we created a Kubernetes cluster in AWS using the EKS service and deployed our PetClinic application to it via Octopus. We also committed ourselves to debugging the cluster via runbooks, which provides a small but important foundation that we can pass to the team that will eventually be responsible for this cluster once we have moved on.
+In this post, we created a Kubernetes cluster in AWS using the EKS service and deployed our PetClinic application to it via Octopus. We also committed ourselves to debugging the cluster via runbooks, which provides a small but important foundation that we can pass to the team that will eventually be responsible for this cluster after we have moved on.
 
-We are not quite at the point of having implemented continuous deployments, since there is no integration between Jenkins and Octopus. In the [next post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we'll hook up our pipeline to achieve a complete CI/CD pipeline.
+We are not quite at the point of having implemented continuous deployments, since there is no integration between Jenkins and Octopus. In the [next post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we’ll hook up our pipeline to achieve a complete CI/CD pipeline.
