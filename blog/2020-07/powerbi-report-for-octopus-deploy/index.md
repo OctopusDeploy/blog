@@ -2,7 +2,7 @@
 title: How to build a PowerBI report for Octopus Deploy
 description: Learn how to build PowerBI reports for Octopus Deploy that will show you deployment and runbook history in Octopus Deploy.
 author: Jeff@ReviewMyDB.com
-visibility: public
+visibility: private
 published: 2020-07-15
 metaImage: octopus-power-bi-report.png
 bannerImage: octopus-power-bi-report.png
