@@ -1,6 +1,6 @@
 ---
 title: "Java CI/CD: From JAR to Docker"
-description: In this post we look at how to convert a Java application to a Docker image
+description: In this post, we learn how to convert a Java application to a Docker image.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -16,9 +16,9 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](code.svg "width=300")
 
-There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, is still proudly featured on the Spring website.
+There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, it is still proudly featured on the Spring website.
 
-Our journey through the DevOps lifecycle starts with a local build of PetClinic on a local workstation. At the end of this blog post we’ll have containerized this application with Docker to provide a repeatable build and execution environment.
+Our journey through the DevOps lifecycle starts with a local build of PetClinic on a local workstation. At the end of this blog post, we’ll have containerized this application with Docker to provide a repeatable build and execution environment.
 
 ## Start with a local build
 
@@ -32,7 +32,7 @@ cd spring-petclinic
 
 This initial build will take some time as Maven downloads the various Spring libraries that make up the application. Thankfully these libraries are cached, so subsequent builds will complete much faster.
 
-To view the application, open `http://localhost:8080`:
+To view the application, open http://localhost:8080:
 
 ![](petclinic.png "width=500")
 *PetClinic running locally.*
@@ -51,7 +51,7 @@ java -jar .\target\petclinic.2.3.1.BUILD-SNAPSHOT.jar
 
 This process of testing, building, and running locally is where every application starts. 
 
-To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper), which provides cross platform scripts designed to be checked into source control that downloads the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self-contained JAR files which are easy to version, copy, and deploy.
+To be fair, PetClinic implements a number of features to make these builds repeatable and the results easily distributable. The `mvnw` script is the [Maven Wrapper](https://github.com/takari/maven-wrapper), which provides cross platform scripts designed to be checked into source control that downloads the appropriate version of Maven if the local machine does not have it installed. Spring boot then creates self-contained JAR files that are easy to version, copy, and deploy.
 
 However, you still need the Java Developer Kit (JDK) to build the application, and either the JDK or Java Runtime Environment (JRE) to run it. PetClinic relies on a quite old version of Java, and given that a new version of Java is released every six months, it’s not hard to imagine developers having to juggle Java installations to perform a local build.
 
@@ -59,11 +59,11 @@ To provide a truly self-contained build and execution environment, we’ll migra
 
 ## Self-contained builds and execution with Docker
 
-One of the main features of Docker is its ability to bundle an entire application ecosystem in a self-contained image, and run that image in an isolated environment. For us, this means we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
+One of the main features of Docker is its ability to bundle an entire application ecosystem in a self-contained image that can be run in an isolated environment. For us, this means we can build and distribute a Docker image with the required version of Java and our compiled application, and anyone with Docker installed will be able to run it.
 
 A fork of the PetClinic repo has been created in [GitHub](https://github.com/mcasperson/spring-petclinic) with the code below for easy access.
 
-A Docker image is defined by the steps listed in a file called `Dockerfile`. The contents of our `Dockerfile` is shown below:
+A Docker image is defined by the steps listed in a file called `Dockerfile`. The contents of our `Dockerfile` are shown below:
 
 ```
 FROM maven:3.6.3-jdk-8 AS build-env
@@ -85,7 +85,7 @@ COPY --from=build-env /app/target/petclinic.jar ./petclinic.jar
 CMD ["/usr/bin/java", "-jar", "/app/petclinic.jar"]
 ```
 
-This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools required only to build the application.
+This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools that are only required to build the application.
 
 We base our build on an existing Docker image provided by the Maven team. This image has the JDK and Maven tools preinstalled:
 
@@ -113,7 +113,7 @@ Because of the way Docker caches builds, so long as the `pom.xml` file doesn’t
 RUN mvn dependency:go-offline
 ```
 
-Spring includes a source code formatting tool that ensures all the code has a consistent style. We’ll call the help function to ensure that Maven downloads the plugin, which means Docker in turn will cache the download. This will save us one more download with subsequent rebuilds of the Docker image:
+Spring includes a source code formatting tool that ensures all the code has a consistent style. We’ll call the help function to ensure that Maven downloads the plugin, which means Docker, in turn, will cache the download. This will save us one more download with subsequent rebuilds of the Docker image:
 
 ```
 RUN mvn spring-javaformat:help
@@ -140,7 +140,7 @@ RUN mvn package -DfinalName=petclinic
 Our application is now built, and we move to the next stage of the multistage build to produce the Docker image that we want to distribute. This image is based on the OpenJDK JRE. 
 
 :::warning
-The JRE can run a compiled application, but does not include the tools required to compile applications itself. This reduces the size of the final image.
+The JRE can run a compiled application but does not include the tools required to compile applications. This reduces the size of the final image.
 :::
 
 ```
@@ -185,7 +185,7 @@ Finally, run the Docker image with the command:
 docker run petclinic
 ```
 
-As before, the application is available at `http://localhost:8080`.
+As before, the application is available at http://localhost:8080.
 
 We now have a `Dockerfile` that includes all the steps required to build and run our application. This application can now be built from source without any other tools than Docker. We now have a truly self-contained build process.
 
@@ -195,7 +195,7 @@ Docker images can be shared online with a number of Docker registries. The most 
 
 To share the PetClinic Docker image, we need to sign up for a Docker Hub account. My account is called `mcasperson`.
 
-After you have created an account, sign into Docker Hub with the command `docker login`:
+After you have created an account, sign in to Docker Hub with the command `docker login`:
 
 ```
 docker login
@@ -231,9 +231,9 @@ Docker will download the image if it is not available locally, and then run it a
 
 ## Conclusion
 
-In this post we took a typical Java application and containerized it as a Docker image. This image was uploaded to a Docker registry making it publicly available.
+In this post, we took a typical Java application and containerized it as a Docker image. This image was uploaded to a Docker registry making it publicly available.
 
-With these changes we have created a repeatable build and execution process anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
+With these changes, we have created a repeatable build and execution process anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
 
 While the build process may be conveniently encapsulated by Docker, there is no guarantee that the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the codebase is something that needs to be shared by a central _source of truth_ so everyone knows the state of the application. This is where a Continuous Integration (CI) server comes in. 
 

@@ -1,6 +1,6 @@
 ---
 title: "Java CI/CD: From Continuous Integration to Kubernetes Deployments"
-description: In this post we create a Kubernetes cluster in AWS
+description: In this post, we create a Kubernetes cluster in AWS.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
