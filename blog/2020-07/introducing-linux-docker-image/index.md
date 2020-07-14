@@ -450,6 +450,31 @@ The `octopus-0` service is used to point Polling Tentacles to the first node, an
 
 For a greater degree of reliability, pod [anti-affinity rules](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity) could be used to ensure Octopus pods are not placed onto the same node. This ensures the loss of a node does not bring down the Octopus cluster.
 
+## Octopus Helm chart
+
+For convenience, the Kubernetes resources described above have been bundled into a Helm chart. To add the Helm repository, run the following commands:
+
+```
+helm repo add octopus https://octopus-helm-charts.s3.amazonaws.com
+helm repo update
+```
+
+Then install the chart with the command:
+
+```
+helm install octopus octopus/octopusdeploy --set octopus.licenseKeyBase64=>your Octopus license key base64 encoded> --set octopus.acceptEula=Y --set mssql-linux.acceptEula.value=Y
+```
+
+The default values of the chart are configured to create a single node Octopus cluster with `ReadWriteOnce` volumes. These values are well supported by default in Kubernetes clusters.
+
+To deploy a HA cluster, you will need to define some additional values specific to the cluster you are deploying to. For example, when deploying to Azure ASK, the following values are used to create `ReadWriteMany` volumes shared between 3 Octopus HA nodes:
+
+```
+helm install octopus octopus/octopusdeploy --set octopus.replicaCount=3 --set octopus.storageClassName=azurefile --set octopus.licenseKeyBase64=>your Octopus license key base64 encoded> --set octopus.acceptEula=Y --set mssql-linux.acceptEula.value=Y
+```
+
+The chart source code is available on [GitHub](https://github.com/OctopusSamples/OctopusHelmChart).
+
 ## Adding deployment targets
 
 In addition to cloud deployments, self-hosted deployments are supported through the [Linux versions of Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle). Both DEB and RPM packages are provided or you can download Tentacle as a standalone archive.
