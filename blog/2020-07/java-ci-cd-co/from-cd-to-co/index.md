@@ -207,17 +207,17 @@ We don’t want to manually backup the database, so Octopus allows runbooks to b
 ![](backuptrigger.png "width=500")
 *A scheduled backup.*
 
-While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated. Seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. So what value have we added here in this operations phase of our DevOps lifecycle?
+While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated, and seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. 
 
-First, we were able to reuse both the existing AWS credentials as well as the Kubernetes target configured with the EKS cluster details. Because Octopus already knows how to deploy to our infrastructure, we can manage that same infrastructure without duplicating credentials and other settings like URLs.
+The real advantage of this approach becomes clear when you consider the different teams who will need to interact with this infrastructure over the lifecyle of the application.
 
-Second, this runbook is aware of our multiple environments. Just as our application code must progress through multiple environments before it is deemed ready for a production release, so too our runbooks can be tested and validated in non-production environments to ensure they can be trusted in production.
+Because Octopus has already deployed to our infrastructure, we don't need to duplicate credentials or other settings like URLS to manage the infrastructure. It's all already in Octopus.
 
-Third, these runbooks require no additional tools or configuration beyond a web browser and access to Octopus. On call support personnel can execute these runbooks from their phone with a click of a button. This removes the need to maintain a specialized support laptop and share credentials.
+Runbooks eliminate the need for additional tools and configuration settings that might be otherwise maintained on a specialized support laptop, so that on call support personnel can execute these runbooks from a web browser (on their phone if necessary) with a click of a button. Because the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs, you don't experience the same difficulties uncovering the root cause of issues, the way you would if the operations team had to run ad-hoc scripts from their own workstations.
 
-Forth, the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs. This is information you quickly loose if operations are running ad-hoc scripts from their own workstations, making it difficult to uncover the root cause of any issues after systems have been restored to an operational state. With Octopus, all the details are saved and easily retrieved.
+An added benefit is that runbooks are aware of our multiple environments, so just as our application code must progress through multiple environments before it is deemed ready for a production release, so too our runbooks can be tested and validated in non-production environments to ensure they can be trusted in production.
 
-Fifth, business knowledge required to support production systems is now captured in testable and repeatable runbooks. Support handover is easier as all teams now share the same toolbox.
+All this means the business knowledge required to support production systems is now captured in testable and repeatable runbooks, making support handover easier as all teams share the same toolbox.
 
 When saved in a runbook, those dozen lines of PowerShell represent a shared, verifiable, audited, easily accessed, and centralized unit of business knowledge designed to keep your systems running at their best.
 
