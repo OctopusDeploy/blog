@@ -39,6 +39,13 @@ RUN  echo "deb [arch=amd64] https://packages.microsoft.com/debian/8/prod jessie 
   apt-get -y install -f
 
 ```
+
+Here are the highlights in the file: 
+
+- It's based on the image `octopusdeploy/worker-tools` with tag `1.0-ubuntu.18.04`.
+- Once the package manager is updated - `apt-get -y update`
+- It installs the "mssql-cli" - `apt-get -y install mssql-cli`
+
 Using it in a basic Octopus step that writes out the version, we can see `mssql-cli` there and available to be used:
 
 ![](octo-worker-extend-add-mssql-cli-highlight.png "width=500")
@@ -179,7 +186,7 @@ The size reduction is significant, the newly created `octocrock/minimumcli-az` i
 
 ![](az-cli-only-size.png "width=300")
 
-Using this container we can execute an Azure script step and see we get the same result from `az version` as against the step that using the `octopusdeploy/worker-tools` image:
+Using this container we can execute an Azure script step and see the same result from `az version` as against the step that using the `octopusdeploy/worker-tools` image:
 
 ![](az-cli-only-octopus.png "width=300")
 
