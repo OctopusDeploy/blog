@@ -94,6 +94,10 @@ While this may not be 100% accurate, you could pull in some data and create a re
 
 ![](report09.png "width=500")
 
+**Applications with most Canceled/Timed Out Deployments**: The chart below shows which project has had the most canceled or timed out deployments. This could be an indication of a script or process taking too long if it timed out. This might be a large database change script or perhaps large file transfers:
+
+![](report10.png "width=500")
+
 **Applications with most Failed Deployments**: The chart below shows which project/application has had the most failed deployments. This could be for any number of reasons, such as misconfigured variables, changed servers, third-party component changes or upgrades, servers being down, failed scripts, etc. If there is a high number, this may be something to look into:
 
 ![](report11.png "width=500")
@@ -102,9 +106,21 @@ While this may not be 100% accurate, you could pull in some data and create a re
 
 ![](report13.png "width=500")
 
+**Max Duration of Seconds by Project and Environment**: The chart below shows the max duration in seconds for each environment for each project. This allows you to compare how long it takes to deploy your code for each project:
+
+![](report14.png "width=500")
+
 **Average Days from Dev to Prod by Project**: The chart below shows the average duration in days from the time a release has been deployed to Dev and to when it is promoted to Production:
 
 ![](report15.png "width=500")
+
+**Minimum Days To Release To Prod**: The chart below shows the minimum time in days for a release to make it from Dev to Production. In our case, we have deployed releases from Dev to Production on the same day:
+
+![](report16.png "width=500")
+
+**Maximum Days To Release To Prod**: The chart below shows the maximum time in days for a release to make it from Dev to Production:
+
+![](report17.png "width=500")
 
 ## Runbooks history charts {#runbooks-history-charts}
 
@@ -134,6 +150,18 @@ These reports are currently only available on an on-premises instance of Octopus
 
 ![](report20.png "width=500")
 
+**Runbook Success Rates**: The chart below shows the count of runbook executions based on their task status, filtered by `IsPublished` `true`. We had some failures when we were testing, but we only want to know if these failed after they have been published and used by our end users:
+
+![](report21.png "width=500")
+
+**Users Executing Runbooks**: The chart below shows which users are executing the runbooks and how many times each user has initiated an execution:
+
+![](report22.png "width=500")
+
+**Average Duration in Second by Runbook**: The chart below shows the number of times each runbook has been executed. This chart is also filtered by `IsPublished` `true`:
+
+![](report23.png "width=500")
+
 ## Reports
 
 It might seem like a lot of work to create these reports, and it is. But I have a treat for you! I have copied my PowerBI reports and created a template for both the SQL Server and Octopus Cloud instances. Below are links to each template and links to my blog, which covers setting up the connection string, API URL, and API key so that you can access your data.
@@ -148,10 +176,27 @@ Now that we have our data, we can view all of the charts we created. I have orga
 3. Durations
 4. Runbooks
 
-This is a preview of the first page with a sample of the data from my local instance of Octopus Deploy for the last five years. The other pages contain the data I summarized above as well as additional useful charts.
+---
+
+The first page is called **Deployments**. Here is a screenshot with a sample of the data from my local instance of Octopus Deploy for the last five years:
 
 ![Local instance: Deployments page](dashboard04.png "width=500")
 *Local instance: Deployments page*
+
+The second page is **Issues**. This is a screenshot of my report with all of the charts relating to potential issues:
+
+![Local instance: Issues page](dashboard05.png "width=500")
+*Local instance: Issues page*
+
+The third page is called **Durations** and contains all charts relating to execution duration:
+
+![Local instance: Durations page](dashboard06.png "width=500")
+*Local instance: Durations page*
+
+The final page is called **Runbooks**, this is currently only an option for on-premises instances of Octopus Deploy because there is no `RunbookHistory` API call on Octopus Cloud instance.
+
+![On-premises instance: Runbooks page](dashboard07.png "width=500")
+*On-premises instance: Runbooks page*
 
 ## ROI
 
