@@ -11,11 +11,11 @@ tags:
  - Product
 ---
 
-There are a good number of reasons to use the new execution container functionality in Octopus, and I'm going to take a look at how you can extend the Octopus worker-tool image and also when you might want to use a different image entirely. 
+There are a good number of reasons to use the new [execution container](https://g.octopushq.com/ExecutionContainersForWorkers) functionality in Octopus.  I'm going to take a look at how you can extend the Octopus worker-tool image and also when you might want to use a different image entirely. 
 
 :::hint
 
-Take a look at this [Execution Containers for Workers](https://octopus.com/blog/execution-containers) article for an overview of Execution Containers.
+ This article assumes you have a working knowledge of Execution Containers in Octopus. If you don't why not take a look at this article: [Execution Containers for Workers](https://octopus.com/blog/execution-containers) article for an overview of Execution Containers.
 
 :::
 
@@ -23,11 +23,11 @@ Octopus provides a [Docker image](https://hub.docker.com/r/octopusdeploy/worker-
 
 ## From `octopusdeploy/worker-tool`
 
-Imagine I have a project step that needs to interact with a SQL Server database, there are no SQL tools included in the `worker-tool` image.  I'd like to use the [mssql-cli](https://github.com/dbcli/mssql-cli/).  This is one of the great things about Docker; we can take the `octopusdeploy/worker-tools` image and extend it to include the additional tools.   
+Let's take a look at an example where we need something in addition to the octopus supplied docker image.  Imagine I have a project step that needs to interact with a SQL Server database, there are no SQL tools included in the `worker-tool` image.  I'd like to use the [mssql-cli](https://github.com/dbcli/mssql-cli/).  This is one of the great things about Docker; we can take the `octopusdeploy/worker-tools` image and extend it to include the additional tools.   
 
-Here's our Dockerfile YAML:
+Here's our Dockerfile:
 
-```YAML
+```dockerfile
 FROM octopusdeploy/worker-tools:1.0-ubuntu.18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -43,7 +43,7 @@ Using it in a basic Octopus step that writes out the version, we can see `mssql-
 
 ![](octo-worker-extend-add-mssql-cli-highlight.png "width=500")
 
-By extending the octopusdeploy/worker-tools` image and adding just a few lines, we're able to use all the tools available in the base image _and_ have the extra tooling we want.
+By extending the `octopusdeploy/worker-tools` image and adding just a few lines, we're able to use all the tools available in the base image _and_ have the extra tooling we want.
 
 ### But we really need version 7.0.2 of Powershell
 
@@ -51,7 +51,7 @@ The versions of software specified in a Dockerfile are fixed at build time; when
 
 One way is to add the version update into our extended Dockerfile:
 
-```YAML
+```dockerfile
 FROM octopusdeploy/worker-tools:1.0-ubuntu.18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -67,7 +67,7 @@ RUN  echo "deb [arch=amd64] https://packages.microsoft.com/debian/8/prod jessie 
 
 ```
 
-I've added this into my [octocrock/extend-octoworker-sql-cli](https://hub.docker.com/repository/docker/octocrock/extend-octoworker-sql-cli/general) Dockerfile YAML and also tagged the compiled image with a new version, 1.0.1, before pushing to Dockerhub.  There are now two tagged versions of the image:
+I've added this into my [octocrock/extend-octoworker-sql-cli](https://hub.docker.com/repository/docker/octocrock/extend-octoworker-sql-cli/general) Dockerfile and also tagged the compiled image with a new version, 1.0.1, before pushing to Dockerhub.  There are now two tagged versions of the image:
 
 - 1.0.0 - This was the first version of the image to extend the `octopusdeploy/worker-tools` image, by adding `mssql-cli`
 - 1.0.1 - This version extended the image further to set a different version of Powershell.
@@ -76,9 +76,9 @@ By using the image tagged with 1.0.1, we can see the different versions of Power
 
 ![](octo-worker-extend-upgrade-pwsh-highlight.png "width=500")
 
-An alternative way to specify different versions is to take the [YAML](https://github.com/OctopusDeploy/WorkerTools/blob/master/ubuntu.18.04/Dockerfile) from the [Octopus Worker Tools Github repository](https://github.com/OctopusDeploy/WorkerTools) and use it to create your own Dockerfile, setting the version number `ARG` values to those which suit your deployment process best:
+An alternative way to specify different versions is to take the [Dockerfile](https://github.com/OctopusDeploy/WorkerTools/blob/master/ubuntu.18.04/Dockerfile) from the [Octopus Worker Tools Github repository](https://github.com/OctopusDeploy/WorkerTools) and use it to create your own Dockerfile, setting the version number `ARG` values to those which suit your deployment process best:
 
-```YAML
+```dockerfile
 FROM ubuntu:18.04
 
 ARG Powershell_Version=7.0.2\*      # UPDATED Powershell Version
@@ -126,7 +126,7 @@ At the time of writing, the following is on the `octopusdeploy/worker-tools` ima
 - AWS CLI
 - EKS CLI
 - ECS CLI
-- AWS IAM Authneticator
+- AWS IAM Autheticator
 - Istio CLI
 - Linkerd CLI
 - Tools for working with Docker images without the Docker daemon
@@ -154,7 +154,7 @@ Let's take things in the other direction.  What if I have a deployment step that
 
 The tools required on a Linux container here are minimal, essentially just the Ubuntu base and the Azure CLI.  I also need `wget`, `apt-utils`, and `software-properties-common`, the base utilities required to install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest).  With this in mind, I can take the Dockerfile down to very few lines:
 
-```yaml
+```Dockerfile
 FROM ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -179,13 +179,13 @@ The size reduction is significant, the newly created `octocrock/minimumcli-az` i
 
 ![](az-cli-only-size.png "width=300")
 
-Using this container we can execute an Azure script step and see we get the same result from `az version` as against the step that using the `octopusdeploy\worker-tools` image:
+Using this container we can execute an Azure script step and see we get the same result from `az version` as against the step that using the `octopusdeploy/worker-tools` image:
 
 ![](az-cli-only-octopus.png "width=300")
 
 ## Conclusion
 
-This was my first time taking a look at the execution container functionality within Octopus, and I've got to say, I can see its benefits.  More than anything, it takes away the configuration of server software and means you can have a version-controlled way of specifying deployment software dependencies.  Sure, you could use a script to install the required software with a package manager of your choice, but by using containers you remove the risk of software installation conflicts, can use multiple versions of tools, and keep a "clean" worker with the [minimal installation requirements](https://help.octopus.com/t/what-do-i-need-to-be-installed-for-my-octopus-deployment-process-to-use-execution-containers/25388).  This has the potential to reduce the number of worker machines you require.  
+This was my first time taking a look at the execution container functionality within Octopus, and I've got to say, I can see its benefits.  More than anything, it takes away the configuration of server software and means you can have a version-controlled way of specifying deployment software dependencies.  Sure, you could use a script to install the required software with a package manager of your choice, but by using containers you remove the risk of software installation conflicts, can use multiple versions of tools, and keep a "clean" worker with the [minimal installation requirements](https://help.octopus.com/t/what-do-i-need-to-be-installed-for-my-octopus-deployment-process-to-use-execution-containers/25388).  This has the potential to reduce the number of worker machines you require, and in turn costs.  
 
-In addition to this, if you roll your own images, you can add further flexibility to your deployment process and have the potential to reduce deployment times. 
+The `octopusdeploy/worker-tools` image means you can get started straight away, with most tools required for deployments available within it.  In addition to this, if you roll your own images, you can add further flexibility to your deployment process and have the potential to reduce deployment times. 
 
