@@ -3,7 +3,7 @@ title: "Change Advisory Boards Don’t Work"
 description: Proper scrutiny is important, but CABs are an inefficient and ineffective way to scrutinize.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-07-10
+published: 2020-07-15
 metaImage: 
 bannerImage: 
 tags:
