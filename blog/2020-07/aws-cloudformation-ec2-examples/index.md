@@ -231,6 +231,8 @@ Parameters:
 
 The next section of the template defines the resources to be created.
 
+We start with a [VPC](https://aws.amazon.com/vpc/), which is essentially a isolated network segment that holds our resources. This VPC will hold private IP addresses in the 10.0.0.0/16 range:
+
 ```YAML
 Resources:
   VPC:
@@ -243,4 +245,11 @@ Resources:
       Tags:
         - Key: Name
           Value: Windows Target VPC
+```
+
+To give our EC2 access to the internet, we need an [internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html):
+
+```
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
 ```
