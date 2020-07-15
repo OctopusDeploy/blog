@@ -211,9 +211,9 @@ While it took some processing to find the name of the pod to perform the backup,
 
 The real advantage of this approach becomes clear when you consider the different teams who will need to interact with this infrastructure over the lifecyle of the application.
 
-Because Octopus has already deployed to our infrastructure, we don't need to duplicate credentials or other settings like URLS to manage the infrastructure. It's all already in Octopus.
+Because Octopus has already deployed to our infrastructure, we don't need to duplicate credentials or other settings like URLs to manage the infrastructure. It's all already in Octopus.
 
-Runbooks eliminate the need for additional tools and configuration settings that might be otherwise maintained on a specialized support laptop, so that on call support personnel can execute these runbooks from a web browser (on their phone if necessary) with a click of a button. Because the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs, you don't experience the same difficulties uncovering the root cause of issues, the way you would if the operations team had to run ad-hoc scripts from their own workstations.
+Runbooks eliminate the need for additional tools and configuration settings that might be otherwise maintained on a specialized support laptop, meaning on call support personnel can execute these runbooks from a web browser (on their phone if necessary) with a click of a button. Because the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs, you don't experience the same difficulties uncovering the root cause of issues, the way you would if the operations team had to run ad-hoc scripts from their own workstations.
 
 An added benefit is that runbooks are aware of our multiple environments, so just as our application code must progress through multiple environments before it is deemed ready for a production release, so too our runbooks can be tested and validated in non-production environments to ensure they can be trusted in production.
 

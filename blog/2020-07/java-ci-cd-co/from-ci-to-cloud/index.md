@@ -10,6 +10,7 @@ tags:
  - Octopus
 ---
 
+
 This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
 !include <java-ci-cd-toc>
@@ -27,7 +28,7 @@ The first step is to create an AWS account in Octopus that will be used to creat
 ![](awsaccount.png "width=500")
 *An example AWS account.*
 
-The community step called **eksctl - Create Cluster (bash)** can be added to a runbook to quickly create an EKS cluster and the associated Kubernetes target in Octopus. This script executes the [EKS CLI tool](https://aws.amazon.com/blogs/opensource/eksctl-eks-cli/) to create a EKS cluster:
+The community step called **eksctl - Create Cluster (bash)** can be added to a runbook to quickly create an EKS cluster and the associated Kubernetes target in Octopus. This script executes the [EKS CLI tool](https://aws.amazon.com/blogs/opensource/eksctl-eks-cli/) to create an EKS cluster:
 
 ![](steptile.png "width=500")
 *The community step to create an EKS cluster.*
@@ -170,7 +171,7 @@ While this works, and indeed is sometimes necessary, executing ad-hoc commands l
 
 Finding the hostname of the load balancer we just created is a perfect example. We could get this information any number of ways, either from the AWS console or with a call to kubectl. However, for the benefit of those who will be maintaining this cluster when we are done, we’ll instead find this information through another runbook.
 
-To get the service information create a runbook with the community step template called **Kubernetes - Inspect Resources**:
+To get the service information, create a runbook with the community step template called **Kubernetes - Inspect Resources**:
 
 ![](inspectresources.png "width=500")
 *The Kubernetes - Inspect Resources community step template.*

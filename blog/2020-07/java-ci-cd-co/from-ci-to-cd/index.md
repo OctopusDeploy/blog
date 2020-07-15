@@ -24,24 +24,21 @@ In this blog post, we’ll extend our Jenkins build to call Octopus and initiate
 
 ## Install the Jenkins plugins
 
-Octopus provides a plugin for Jenkins that exposes integration steps in both freestyle projects and pipeline scripts. This plugin is installed via **{{ Manage Jenkins, Manage Plugins }}**:
+Octopus provides a plugin for Jenkins that exposes integration steps in both freestyle projects and pipeline scripts. This plugin is installed by navigating to **{{ Manage Jenkins, Manage Plugins }}**. From here you can search for "Octopus" and install the plugin.
 
-![](octopusplugin.png "width=500")
-*Install the Octopus Deploy plugin.*
-
-The Octopus plugin uses the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli) to integrate with the Octopus server. We can install the CLI manually on the agent, but for this example we’ll use the **Custom Tools** plugin to download the Octopus CLI and push it to the agent:
+The Octopus plugin uses the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli) to integrate with the Octopus Server. We can install the CLI manually on the agent, but for this example we’ll use the **Custom Tools** plugin to download the Octopus CLI and push it to the agent:
 
 ![](customtoolsplugin.png "width=500")
 *Install the custom tools plugin.*
 
 ## Configure the Octopus server and tools
 
-The Octopus server details that our pipeline will connect with to is defined under **{{ Manage Jenkins, Configure System }}**:
+We add the Octopus Server our pipeline will connect with, by navigating to **{{ Manage Jenkins, Configure System }}**:
 
 ![](octopusserver.png "width=500")
 *Define the Octopus server.*
 
-We then need to define a custom tool under **{{ Manage Jenkins, Global Tool Configuration }}**. The custom tool has the name of **OctoCLI**, and because in my case the agent is running on Windows, the Octopus CLI will be downloaded from https://download.octopusdeploy.com/octopus-tools/7.4.1/OctopusTools.7.4.1.win-x64.zip. For the latest version of the CLI, and for binaries supporting other operating systems, see the [Octopus download page](https://octopus.com/downloads/octopuscli):
+We then need to define a custom tool under **{{ Manage Jenkins, Global Tool Configuration }}**. The custom tool has the name **OctoCLI**, and because in my case the agent is running on Windows, the Octopus CLI will be downloaded from https://download.octopusdeploy.com/octopus-tools/7.4.1/OctopusTools.7.4.1.win-x64.zip. For the latest version of the CLI, and for binaries supporting other operating systems, see the [Octopus download page](https://octopus.com/downloads/octopuscli):
 
 ![](octocli.png "width=500")
 *Define the Octopus CLI custom tool.*
@@ -102,7 +99,7 @@ pipeline {
 
 This pipeline has some new settings to support integration with Octopus.
 
-We start by defining common parameters. These parameters will be referenced when we create and deploy a release in Octopus, and provide a nice way to decouple the Octopus details from any specific instance, while also providing sensible default values:
+We start by defining common parameters. These parameters will be referenced when we create and deploy a release in Octopus, and they provide a nice way to decouple the Octopus details from any specific instance, while also providing sensible default values:
 
 ```groovy
     parameters {
@@ -160,7 +157,7 @@ For this blog we will create a continuous delivery pipeline, which manages relea
 
 ## Add the environments
 
-We only have the one environment in Octopus called **Dev**. However a typical workflow will promote a deployment through multiple environments on the way to production. To implement this, we need to create more environments in Octopus which we will call **Test** and **Prod**:
+We only have the one environment in Octopus called **Dev**. However, a typical workflow will promote a deployment through multiple environments on the way to production. To implement this, we need to create more environments in Octopus which we will call **Test** and **Prod**:
 
 ![](testandprod.png "width=500")
 *Add the Test and Prod environments.*
@@ -191,7 +188,7 @@ And with that, we have a complete deployment pipeline.
 
 In this post we triggered a deployment in Octopus after Jenkins finished building and pushing the Docker image. This means we have implemented continuous integration with Jenkins testing, building, and publishing the Docker image, and continuous delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
 
-We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those responsible for this release management need no special tools other than a web browser, and each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
+We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those responsible for release management need no special tools other than a web browser. Each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
 
 But those that have seen their code put in customer’s hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
 
