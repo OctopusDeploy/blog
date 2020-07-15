@@ -181,21 +181,25 @@ Now that we have our data, we can view all of the charts we created. I have orga
 The first page is called **Deployments**. Here is a screenshot with a sample of the data from my local instance of Octopus Deploy for the last five years:
 
 ![Local instance: Deployments page](dashboard04.png "width=500")
+
 *Local instance: Deployments page*
 
 The second page is **Issues**. This is a screenshot of my report with all of the charts relating to potential issues:
 
 ![Local instance: Issues page](dashboard05.png "width=500")
+
 *Local instance: Issues page*
 
 The third page is called **Durations** and contains all charts relating to execution duration:
 
 ![Local instance: Durations page](dashboard06.png "width=500")
+
 *Local instance: Durations page*
 
 The final page is called **Runbooks**, this is currently only an option for on-premises instances of Octopus Deploy because there is no `RunbookHistory` API call on Octopus Cloud instance.
 
 ![On-premises instance: Runbooks page](dashboard07.png "width=500")
+
 *On-premises instance: Runbooks page*
 
 ## ROI
