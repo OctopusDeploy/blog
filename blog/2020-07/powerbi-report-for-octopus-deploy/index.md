@@ -40,9 +40,9 @@ There are a couple of prerequisites you need to have in place:
 
 ## Deployment history charts {#deployment-history-charts}
 
-Deployment history yields some very interesting patterns and results. From raw deployment counts with different groupings (project, environment, etc.,), to deployment execution time and success and failure rates.
+Deployment history yields some very interesting patterns and results. From raw deployment counts with different groupings (project, environment, etc.), to deployment execution time and success and failure rates.
 
-**Count of Deployments By Date and Project**: This is the first chart I put together, and I was kind of shocked to see how many deployments we’ve done each year over the last five years. This report breaks down each year and stacks the projects. In this chart, you can drill down to see the count of deployments by quarters, month, and day. You drill down by clicking the _double down arrow_ and then click on the _up arrow_ to go back:
+**Count of Deployments By Date and Project**: This is the first chart I put together, and I was shocked to see how many deployments we’ve done each year over the last five years. This report breaks down each year and stacks the projects. In this chart, you can drill down to see the count of deployments by quarters, month, and day. You drill down by clicking the _double down arrow_ and then click on the _up arrow_ to go back:
 
 ![](report01.png "width=500")
 
@@ -94,11 +94,11 @@ While this may not be 100% accurate, you could pull in some data and create a re
 
 ![](report09.png "width=500")
 
-**Applications with most Canceled/Timed Out Deployments**: The chart below shows which project has had the most canceled or timed out deployments. This could be an indication of a script or process taking too long if it timed out. This might be a large database change script or perhaps large file transfers:
+**Applications with the most Canceled/Timed Out Deployments**: The chart below shows which project has had the most canceled or timed out deployments. This could be an indication of a script or process taking too long if it timed out. This might be a large database change script or perhaps large file transfers:
 
 ![](report10.png "width=500")
 
-**Applications with most Failed Deployments**: The chart below shows which project/application has had the most failed deployments. This could be for any number of reasons, such as misconfigured variables, changed servers, third-party component changes or upgrades, servers being down, failed scripts, etc. If there is a high number, this may be something to look into:
+**Applications with the most Failed Deployments**: The chart below shows which project/application has had the most failed deployments. This could be for any number of reasons, such as misconfigured variables, changed servers, third-party component changes or upgrades, servers being down, failed scripts, etc. If there is a high number, this may be something to look into:
 
 ![](report11.png "width=500")
 
@@ -110,27 +110,27 @@ While this may not be 100% accurate, you could pull in some data and create a re
 
 ![](report14.png "width=500")
 
-**Average Days from Dev to Prod by Project**: The chart below shows the average duration in days from the time a release has been deployed to Dev and to when it is promoted to Production:
+**Average Days from Dev to Prod by Project**: The chart below shows the average duration in days from the time a release has been deployed to Dev to when it is promoted to Production:
 
 ![](report15.png "width=500")
 
-**Minimum Days To Release To Prod**: The chart below shows the minimum time in days for a release to make it from Dev to Production. In our case, we have deployed releases from Dev to Production on the same day:
+**Minimum Days to Release to Prod**: The chart below shows the minimum time in days for a release to make it from Dev to Production. In our case, we have deployed releases from Dev to Production on the same day:
 
 ![](report16.png "width=500")
 
-**Maximum Days To Release To Prod**: The chart below shows the maximum time in days for a release to make it from Dev to Production:
+**Maximum Days to Release to Prod**: The chart below shows the maximum time in days for a release to make it from Dev to Production:
 
 ![](report17.png "width=500")
 
 ## Runbooks history charts {#runbooks-history-charts}
 
-Runbooks were introduced in late 2019, and I’ve recently started using them for some basic operations tasks. These charts summarize runbook execution by date, execution time, and success vs failures.
+Runbooks were introduced in late 2019, and I’ve recently started using them for some basic operations tasks. These charts summarize runbook execution by date, execution time, and successes vs failures.
 
 :::warning
-These reports are currently only available on an on-premises instance of Octopus Deploy because there is no `RunbookHistory` API call on Octopus Cloud instances.
+These reports are currently only available for on-premises instances of Octopus Deploy because there is no `RunbookHistory` API call on Octopus Cloud instances.
 :::
 
-**Frequency of Runbooks by Date**: The chart below shows the frequency of executions by date. Since we have only recently started using runbooks, I have drilled down to the day to see how many we have run this month:
+**Frequency of Runbooks by Date**: The chart below shows the frequency of executions by date. Since we have only recently started using runbooks, I drilled down to the day to see how many we have run this month:
 
 ![](report18.png "width=500")
 
@@ -158,7 +158,7 @@ These reports are currently only available on an on-premises instance of Octopus
 
 ![](report22.png "width=500")
 
-**Average Duration in Second by Runbook**: The chart below shows the number of times each runbook has been executed. This chart is also filtered by `IsPublished` `true`:
+**Average Duration in Seconds by Runbook**: The chart below shows the number of times each runbook has been executed. This chart is also filtered by `IsPublished` `true`:
 
 ![](report23.png "width=500")
 
@@ -214,4 +214,4 @@ Now, if I could convince my company to give me a small bonus out of the $267,360
 
 ## Conclusion
 
-Now that you can see your data, I hope that you find some of these reports and charts useful, and perhaps you will even think up of new reports and charts to add to this. If you do, comment and share your ideas, and perhaps I can incorporate them into my next version.
+Now that you can see your data, I hope you find some of these reports and charts useful, and perhaps you will even think up of new reports and charts to add to this. If you do, comment and share your ideas, and perhaps I can incorporate them into my next version.
