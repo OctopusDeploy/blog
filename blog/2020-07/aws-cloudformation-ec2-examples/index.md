@@ -643,4 +643,4 @@ Most of this template is the same as the Windows one. There are some small diffe
 
 ## Conclusion
 
-These templates have served me well over the years as a way of self servicing Windows and Linux VMs in AWS. By creating a VPC to hold the VMs, we get access to the newer instance types, which [do not support the EC2-Classic environment](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-classic-platform.html).
+These templates have served me well over the years as a way of self servicing Windows and Linux VMs in AWS. By creating a VPC to hold the VMs, we get access to the newer instance types, which [do not support the EC2-Classic environment](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-classic-platform.html). VPCs also allow us to create two or more VMs that can communicate with each other but are still isolated from any other VMs.
