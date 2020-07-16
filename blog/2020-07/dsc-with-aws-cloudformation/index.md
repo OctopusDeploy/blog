@@ -352,6 +352,12 @@ With all the prerequisites in place, we dot source the DSC configuration, which 
 . c:\dsc.ps1
 ```
 
+## Verifying the Installation
+
+The log files for the user data script are found in `C:\ProgramData\Amazon\EC2-Windows\Launch\Log\UserdataExecution.log`. If we view the contents of this file in the newly created EC2 instance, we'll see the Tentacle being installed:
+
+![](logs.png "width=500")
+
 ## Installing a worker
 
 The template for installing a worker is very similar:
