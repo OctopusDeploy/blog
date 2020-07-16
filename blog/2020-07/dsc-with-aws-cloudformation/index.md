@@ -210,7 +210,7 @@ Resources:
           
           # Need .NET 4.8 to work around a bug in 4.7
           Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-          choco install dotnetfx
+          choco install dotnetfx -y
 
           # Dot source the DSC config to install the tentacle
           . c:\dsc.ps1
@@ -343,7 +343,7 @@ Due to a bug with the version of .NET installed on the VM by default, we need to
 
 ```
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-choco install dotnetfx
+choco install dotnetfx -y
 ```
 
 With all the prerequisites in place, we dot source the DSC configuration, which will now complete successfully:
