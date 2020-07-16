@@ -15,9 +15,9 @@ Cloud platforms have ushered in some extraordinarily useful workflows for develo
 
 In the good old days, "classic" AWS created EC2 virtual machines in a single, shared network space. This made it very easy to create a virtual machine, as there was almost no network configuration required.
 
-These days best practice demands even a single VM also requires a VPC, internet gateways, security groups, subnets and route tables.
+These days best practice demands even a single VM also requires a VPC, Internet gateways, security groups, subnets, and route tables.
 
-In this blog post we'll look at two CloudFormation templates to create Windows and Linux EC2 instances in their own VPC.
+In this blog post, we'll look at two CloudFormation templates to create Windows and Linux EC2 instances in their own VPC.
 
 ## The Windows CloudFormation template
 
@@ -207,7 +207,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Any values that might be customized by the end user are defined as parameters. Here we expose 4 parameters:
 
 * The [instance type](https://aws.amazon.com/ec2/instance-types/), which defines the hardware associated with our VM.
-* The IP address of a workstation that can connect to the instance via remote desktop. Having this IP means we can limit access from just one workstation, instead of the entire internet.
+* The IP address of a workstation that can connect to the instance via remote desktop. Having this IP means we can limit access from just one workstation, instead of the entire Internet.
 * The AMI used to create the VM. AMIs can be found in the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b).
 * The [key pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) used to secure the instance. We expect a key pair to already be created in the account.
 
@@ -231,7 +231,7 @@ Parameters:
 
 The next section of the template defines the resources to be created.
 
-We start with a [VPC](https://aws.amazon.com/vpc/), which is essentially an isolated network segment that holds our resources. This VPC will hold private IP addresses in the 10.0.0.0/16 range:
+We start with a [VPC](https://aws.amazon.com/vpc/), which is essentially an isolated network segment that holds our resources. This VPC will hold private IP addresses in the `10.0.0.0/16` range:
 
 ```YAML
 Resources:
@@ -247,14 +247,14 @@ Resources:
           Value: Windows Target VPC
 ```
 
-To give our EC2 access to the internet, we need an [internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html):
+To give our EC2 access to the Internet, we need an [Internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html):
 
 ```YAML
   InternetGateway:
     Type: AWS::EC2::InternetGateway
 ```
 
-The internet gateway is then attached to the VPC:
+The Internet gateway is then attached to the VPC:
 
 ```YAML
   VPCGatewayAttachment:
@@ -285,7 +285,7 @@ Traffic routing is handled by a [route table](https://docs.aws.amazon.com/vpc/la
       VpcId: !Ref VPC
 ```
 
-We then route any external traffic to the internet gateway. This will give our EC2 instance internet access:
+We then route any external traffic to the Internet gateway. This will give our EC2 instance Internet access:
 
 ```YAML
   InternetRoute:
@@ -297,7 +297,7 @@ We then route any external traffic to the internet gateway. This will give our E
       RouteTableId: !Ref RouteTable
 ```
 
-The route table is then associated with the subnet. Any subnet whose traffic is routed through an internet gateway is known as a [public subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html):
+The route table is then associated with the subnet. Any subnet whose traffic is routed through an Internet gateway is known as a [public subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html):
 
 ```YAML
   SubnetARouteTableAssociation:
@@ -307,14 +307,14 @@ The route table is then associated with the subnet. Any subnet whose traffic is 
       SubnetId: !Ref SubnetA
 ```
 
-Traffic in and out of the EC2 instance is controlled by a [security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html). The rules below allow access on port 10933, the listening tentacle port, to all the [static IPs](https://octopus.com/docs/octopus-cloud/static-ip) that could be used by my hosted Octopus instance.
+Traffic in and out of the EC2 instance is controlled by a [security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html). The rules below allow access on port 10933, the Listening Tentacle port, to all the [static IPs](https://octopus.com/docs/octopus-cloud/static-ip) that could be used by my hosted Octopus instance.
 
 Remote desktop access is allowed in from one specific workstation via port 3389. This means only one workstation can log in remotely.
 
 We also allow all outbound traffic:
 
 :::hint
-These IP addresses will change depending on your specific Octopus cloud instance, so refer to the [documentation](https://octopus.com/docs/octopus-cloud/static-ip) for the list that would apply to you.
+These IP addresses will change depending on your specific Octopus Cloud instance, so refer to the [documentation](https://octopus.com/docs/octopus-cloud/static-ip) for the list that would apply to you.
 :::
 
 ```YAML
@@ -374,7 +374,7 @@ These IP addresses will change depending on your specific Octopus cloud instance
           CidrIp: 0.0.0.0/0
 ```
 
-Listening tentacles require a static hostname or IP address. While our EC2 instance will get a public IP address when it is created, this address will change if the instance is stopped and started again. To ensure the instance always has a static IP address, we create an [elastic IP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html):
+Listening Tentacles require a static hostname or IP address. While our EC2 instance will get a public IP address when it is created, this address will change if the instance is stopped and started again. To ensure the instance always has a static IP address, we create an [elastic IP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html):
 
 ```YAML
   ElasticIP:
@@ -384,7 +384,7 @@ Listening tentacles require a static hostname or IP address. While our EC2 insta
       InstanceId: !Ref Windows
 ```
 
-We have now created all the networking required to host an EC2 instance with internet access and a static IP. Now we create the EC2 instance.
+We have now created all the networking required to host an EC2 instance with Internet access and a static IP. Now we create the EC2 instance.
 
 We have given this EC2 instance a larger hard disk through the `BlockDeviceMappings` section, while the `UserData` section holds a [script to be run on startup](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). This example script doesn't do anything, but can be replaced if needed:
 
@@ -639,7 +639,7 @@ Most of this template is the same as the Windows one. There are some small diffe
 
 * `InstanceSecurityGroup` now defines a rule allowing a workstation in on port 22 (SSH) instead of port 3389 (RDP).
 * The `BlockDeviceMappings` in the EC2 instance changes the path that it maps to for a Linux host.
-* The `UserData` script is now a Bash script instead of Powershell.
+* The `UserData` script is now a Bash script instead of PowerShell.
 
 ## Conclusion
 
