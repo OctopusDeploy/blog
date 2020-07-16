@@ -135,6 +135,11 @@ Resources:
       SecurityGroupEgress:
         - IpProtocol: -1
           CidrIp: 0.0.0.0/0
+  ElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      InstanceId: !Ref Windows
   Windows:
     Type: 'AWS::EC2::Instance'
     Properties:
@@ -152,7 +157,7 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
           <powershell>
-          
+          Write-Host "Hello World!"
           </powershell>
       Tags:
         -
@@ -182,11 +187,6 @@ Resources:
         -
           Key: Source
           Value: CloudForation Script in Octopus Deploy
-  ElasticIP:
-    Type: AWS::EC2::EIP
-    Properties:
-      Domain: vpc
-      InstanceId: !Ref Windows
 Outputs:
   PublicIp:
     Value:
@@ -249,7 +249,211 @@ Resources:
 
 To give our EC2 access to the internet, we need an [internet gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html):
 
-```
+```YAML
   InternetGateway:
     Type: AWS::EC2::InternetGateway
 ```
+
+The internet gateway is then attached to the VPC:
+
+```YAML
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+```
+
+Inside the VPC we can have one or more [subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html). While a VPC can span multiple availability zones, a subnet is a network address range in a single AZ. We are creating one EC2 instance, and so we only create one subnet to hold it:
+
+```YAML
+  SubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.0.0/24
+      MapPublicIpOnLaunch: true
+```
+
+Traffic routing is handled by a [route table](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html):
+
+```YAML
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+```
+
+We then route any external traffic to the internet gateway. This will give our EC2 instance internet access:
+
+```YAML
+  InternetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGateway
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+      RouteTableId: !Ref RouteTable
+```
+
+The route table is then placed into the subnet:
+
+```YAML
+  SubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTable
+      SubnetId: !Ref SubnetA
+```
+
+Traffic in and out of the EC2 instance is controlled by a [security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html). The rules below allow access on port 10933, the listening tentacle port, to all the [static IPs](https://octopus.com/docs/octopus-cloud/static-ip) that could be used by my hosted Octopus instance.
+
+Remote desktop access is allowed in from one specific workstation via port 3389. This means only one workstation can log in remotely.
+
+We also allow all outbound traffic:
+
+:::hint
+These IP address will change depending on you Octopus cloud instance, so refer to the [documentation](https://octopus.com/docs/octopus-cloud/static-ip) for the list that would apply to you.
+:::
+
+```YAML
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: "Octopus Target Group"
+      GroupDescription: "Tentacle traffic in from hosted static ips, and RDP in from a personal workstation"
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  20.188.245.156/32
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  52.147.25.42/32 
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  52.147.31.180/32 
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  20.188.244.132/32 
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  52.147.25.94/32 
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  52.147.25.173/32 
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  20.188.245.171/32 
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  20.188.245.7/32
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  20.188.244.147/32
+        - IpProtocol: tcp
+          FromPort: '10933'
+          ToPort: '10933'
+          CidrIp:  20.188.244.240/32
+        - IpProtocol: tcp
+          FromPort: '3389'
+          ToPort: '3389'
+          CidrIp:  !Sub ${WorkstationIp}/32
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+```
+
+Listening tentacles require a static hostname or IP address. While our EC2 instance will get a public IP address when it is created, this address will change if the instance is stopped and started again. To ensure the instance always has a static IP address, we create an [elastic IP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html):
+
+```YAML
+  ElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      InstanceId: !Ref Windows
+```
+
+We have no created all the networking required to host an EC2 instance with internet access and a static IP. Now we create the EC2 instance.
+
+We have given this EC2 instance a larger hard disk through the `BlockDeviceMappings` section, while the `UserData` section holds a [script to be run on startup](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). This example script doesn't do anything, but can be replaced if needed:
+
+```YAML
+  Windows:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !Ref AMI
+      InstanceType:
+        Ref: InstanceTypeParameter
+      KeyName: !Ref Key
+      SubnetId: !Ref SubnetA
+      SecurityGroupIds:
+        - Ref: InstanceSecurityGroup
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 250
+      UserData:
+        Fn::Base64: !Sub |
+          <powershell>
+          
+          </powershell>
+      Tags:
+        -
+          Key: Appplication
+          Value:  Windows Server
+        -
+          Key: Domain
+          Value: None
+        -
+          Key: Environment
+          Value: Test
+        -
+          Key: LifeTime
+          Value: Transient
+        -
+          Key: Name
+          Value:  Windows Server Worker
+        -
+          Key: OS
+          Value: Windows
+        -
+          Key: OwnerContact
+          Value: "@matthewcasperson"
+        -
+          Key: Purpose
+          Value: MattC Test Worker
+        -
+          Key: Source
+          Value: CloudForation Script in Octopus Deploy
+```
+
+The outputs capture the instance ID and elastic public IP that the instance is available on:
+
+```YAML
+Outputs:
+  PublicIp:
+    Value:
+      Fn::GetAtt:
+        - Windows
+        - PublicIp
+    Description: Server's PublicIp Address
+```
+
+We can now deploy this template with a **Deploy an AWS CloudFormation template** step in Octopus:
+
+![](deploy-cf.png "width=500")
+
+And the result is a new EC2 instance in an isolated VPC:
+
+![](windows-ec2.png "width=500")
