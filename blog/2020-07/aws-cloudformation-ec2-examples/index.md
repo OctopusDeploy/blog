@@ -186,7 +186,7 @@ Resources:
           Value: MattC Test Worker
         -
           Key: Source
-          Value: CloudForation Script in Octopus Deploy
+          Value: CloudFormation Script in Octopus Deploy
 Outputs:
   PublicIp:
     Value:
@@ -435,7 +435,7 @@ We have given this EC2 instance a larger hard disk through the `BlockDeviceMappi
           Value: MattC Test Worker
         -
           Key: Source
-          Value: CloudForation Script in Octopus Deploy
+          Value: CloudFormation Script in Octopus Deploy
 ```
 
 The outputs capture the instance ID and elastic public IP that the instance is available on:
