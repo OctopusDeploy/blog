@@ -11,7 +11,7 @@ tags:
  - DevOps
 ---
 
-Cloud platforms have ushered in some extraordinarily useful workflows for developers and operations. The ability to spin up temporary infrastructure for testing removes the burden to maintain local virtual machines, and means you can scale testing up to include many machines of different capacities safe in the knowledge that you won't be flooding the corporate network with a deluge of traffic.
+Cloud platforms have ushered in some extraordinarily useful workflows for developers and operations. The ability to spin up temporary infrastructure for testing removes the burden to maintain local virtual machines, and means you can scale testing up to include many machines of different capacities, safe in the knowledge that you won't be flooding the corporate network with a deluge of traffic.
 
 In the good old days, "classic" AWS created EC2 virtual machines in a single, shared network space. This made it very easy to create a virtual machine, as there was almost no network configuration required.
 
@@ -231,7 +231,7 @@ Parameters:
 
 The next section of the template defines the resources to be created.
 
-We start with a [VPC](https://aws.amazon.com/vpc/), which is essentially a isolated network segment that holds our resources. This VPC will hold private IP addresses in the 10.0.0.0/16 range:
+We start with a [VPC](https://aws.amazon.com/vpc/), which is essentially an isolated network segment that holds our resources. This VPC will hold private IP addresses in the 10.0.0.0/16 range:
 
 ```YAML
 Resources:
@@ -297,7 +297,7 @@ We then route any external traffic to the internet gateway. This will give our E
       RouteTableId: !Ref RouteTable
 ```
 
-The route table is then placed into the subnet:
+The route table is then associated with the subnet. Any subnet whose traffic is routed through an internet gateway is known as a [public subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html):
 
 ```YAML
   SubnetARouteTableAssociation:
@@ -314,7 +314,7 @@ Remote desktop access is allowed in from one specific workstation via port 3389.
 We also allow all outbound traffic:
 
 :::hint
-These IP address will change depending on you Octopus cloud instance, so refer to the [documentation](https://octopus.com/docs/octopus-cloud/static-ip) for the list that would apply to you.
+These IP addresses will change depending on your specific Octopus cloud instance, so refer to the [documentation](https://octopus.com/docs/octopus-cloud/static-ip) for the list that would apply to you.
 :::
 
 ```YAML
@@ -384,7 +384,7 @@ Listening tentacles require a static hostname or IP address. While our EC2 insta
       InstanceId: !Ref Windows
 ```
 
-We have no created all the networking required to host an EC2 instance with internet access and a static IP. Now we create the EC2 instance.
+We have now created all the networking required to host an EC2 instance with internet access and a static IP. Now we create the EC2 instance.
 
 We have given this EC2 instance a larger hard disk through the `BlockDeviceMappings` section, while the `UserData` section holds a [script to be run on startup](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). This example script doesn't do anything, but can be replaced if needed:
 
@@ -459,6 +459,8 @@ And the result is a new EC2 instance in an isolated VPC:
 ![](windows-ec2.png "width=500")
 
 ## The Linux CloudFormation template
+
+The template to create a Linux VM is very similar:
 
 ```YAML
 AWSTemplateFormatVersion: 2010-09-09
