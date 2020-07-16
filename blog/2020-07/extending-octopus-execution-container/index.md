@@ -104,7 +104,7 @@ The Octopus image covers many deployment scenarios, and it’s a solid choice as
 
 ![](octo-worker-tools-size.png "width=500")
 
-It’s big, 3.44 GB.  And that’s the Linux flavor; the Windows image is larger, but in comparison to some images, it isn’t that big, but when you consider that you’re unlikely to use all the tools on that image, there’s a clear space saving to be made.
+It’s big, 3.44 GB.  And that’s the Linux flavor; the Windows image is larger, but in comparison to some images, it isn’t that big, and when you consider that you’re unlikely to use all the tools on that image, there’s a clear space saving to be made.
 
 At the time of writing, the following is on the `octopusdeploy/worker-tools` image:
 
