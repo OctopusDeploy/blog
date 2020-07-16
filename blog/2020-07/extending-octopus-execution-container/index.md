@@ -11,10 +11,9 @@ tags:
  - Product
 ---
 
+We recently released [Execution Containers for Workers](https://octopus.com/blog/execution-containers), and we think there are a good number of reasons to use this new functionality. If you're not familiar with Execution containers, Michael does a great of introducing the concept in the post linked above, and you could also take a look at the [execution container documentation](https://g.octopushq.com/ExecutionContainersForWorkers).
 
-We recently released [Execution Containers for Workers](https://octopus.com/blog/execution-containers), and we think there are a good number of reasons to use the new [execution container](https://g.octopushq.com/ExecutionContainersForWorkers) functionality in Octopus.
-
-In this post, I'm going to take a look at how you can extend the Octopus worker-tool image and also when you might want to use a different image entirely. 
+In this post, I'm going to take a look at how you can extend the Octopus worker-tool image, and when you might want to use a different image entirely. 
 
 Octopus provides a [Docker image](https://hub.docker.com/r/octopusdeploy/worker-tools) that can be used as the [execution container](https://g.octopushq.com/ExecutionContainersForWorkers) for a step to use in a deployment process or runbook.   The image has most of the tools that you'll require for deployments included.  However, what if you need a tool that's not included in the image, or perhaps you require a different version of one of the tools that are included.  
 
