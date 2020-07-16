@@ -36,7 +36,7 @@ RUN  echo "deb [arch=amd64] https://packages.microsoft.com/debian/8/prod jessie 
 
 ```
 
-This file is based on the image `octopusdeploy/worker-tools` with tag `1.0-ubuntu.18.04`, and when the package manager is updated: `apt-get -y update` it installs the `mssql-cli` with `apt-get -y install mssql-cli`
+This file is based on the image `octopusdeploy/worker-tools` with tag `1.0-ubuntu.18.04`, and after the package manager is updated: `apt-get -y update` it installs the `mssql-cli` with `apt-get -y install mssql-cli`
 
 Using it in a basic Octopus step that writes out the version, we can see `mssql-cli` is there and available:
 
