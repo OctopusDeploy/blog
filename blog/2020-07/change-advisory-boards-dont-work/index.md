@@ -2,13 +2,15 @@
 title: "Change Advisory Boards Don’t Work"
 description: Proper scrutiny is important, but CABs are an inefficient and ineffective way to scrutinize.
 author: alex.yates@dlmconsultants.com
-visibility: private
-published: 2020-07-15
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-07-16
+metaImage: change-advisory-boards-dont-work.png
+bannerImage: change-advisory-boards-dont-work.png
 tags:
  - DevOps
 ---
+
+![Change Advisory Boards Don’t Work](change-advisory-boards-dont-work.png)
 
 In the name of quality, many organizations have a Change Advisory Board or Change Approval Board (CAB) who review changes before they are executed against production. They are sometimes set up to comply with some regulation, such as the 2002 Sarbanes-Oxley Act (SOX), and/or to enforce “separation of duties”. Other times CABs are introduced following a series of deployment failures in an effort to improve reliability.
 
