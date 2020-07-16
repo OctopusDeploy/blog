@@ -611,4 +611,4 @@ Space = `$Space # This is for versions 2019.1 and above.  If null or not specifi
 
 ## Conclusion
 
-By taking advantage of the user data scripts and the Octopus DSC module, we can quickly spin up new VMs that automatically install and register either targets or workers in Octopus. There is some work required to install the DSC module before PowerShell attempts to parse the DSC configuration, but once you understand the quirks of DSC and the workarounds, the process is relatively easy to implement.
+By taking advantage of user data scripts and the Octopus DSC module, we can quickly spin up new VMs that automatically install and register either targets or workers in Octopus. There is some work required to install the DSC module before PowerShell attempts to parse the DSC configuration, but once you understand the quirks of DSC and the workarounds, the process is relatively easy to implement.
