@@ -1,5 +1,5 @@
 ---
-title: Execution containers for workers - Extending the Octopus worker-tools Docker image
+title: "Execution containers for workers: Extending the Octopus worker-tools Docker image"
 description: Unsure what image to use with the Execution containers for workers feature in Octopus? This post covers what the octopus/worker-tools image is, how to extend it,  and why you might create your own image entirely.
 author: lianne.crocker@octopus.com
 visibility: private
