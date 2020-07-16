@@ -12,7 +12,7 @@ tags:
 
 In the name of quality, many organizations have a Change Advisory Board or Change Approval Board (CAB) who review changes before they are executed against production. They are sometimes set up to comply with some regulation, such as the 2002 Sarbanes-Oxley Act (SOX), and/or to enforce “separation of duties”. Other times CABs are introduced following a series of deployment failures in an effort to improve reliability.
 
-The idea is to provide additional scrutiny, often in an effort to catch mistakes, poor code or fraudulent changes.
+The idea is to provide additional scrutiny, often in an effort to catch mistakes, poor code or fraudulent changes. It’s a noble goal but, unfortunately, CABs mostly do more harm than good.
 
 This was articulately demonstrated in 2018 by Nicole Forsgren, Gene Kim, and Jez Humble in [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339). They analyzed the data from the 2014 – 2017 State of DevOps Reports and they:
 
