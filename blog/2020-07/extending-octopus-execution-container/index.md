@@ -11,7 +11,7 @@ tags:
  - Product
 ---
 
-We recently released [Execution Containers for Workers](https://octopus.com/blog/execution-containers), and we think there are a good number of reasons to use this new functionality. If you’re not familiar with execution containers, Michael does a great of introducing the concept in the post linked above, and you could also take a look at the [execution container documentation](https://g.octopushq.com/ExecutionContainersForWorkers).
+We recently released [Execution Containers for Workers](https://octopus.com/blog/execution-containers), and we think there are a good number of reasons to use this new functionality. If you’re not familiar with execution containers, Michael does a great job of introducing the concept in the post linked above, and you could also take a look at the [execution container documentation](https://g.octopushq.com/ExecutionContainersForWorkers).
 
 In this post, I’m going to take a look at how you can extend the Octopus worker-tool image, and when you might want to use a different image entirely. 
 
