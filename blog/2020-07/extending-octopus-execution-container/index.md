@@ -44,7 +44,7 @@ Using it in a basic Octopus step that writes out the version, we can see `mssql-
 
 By extending the `octopusdeploy/worker-tools` image and adding just a few lines, we can use all the tools available in the base image _and_ have the extra tooling we want.
 
-### Specify a specific version of PowerShell
+### Select a specific version of PowerShell
 
 The software versions specified in a Dockerfile are fixed at build time; when you use the Docker image, you can’t change them.  Let’s say that you need a later version of PowerShell because of a bug fix critical to your deployment process.  There are a couple of ways you can achieve this.
 
