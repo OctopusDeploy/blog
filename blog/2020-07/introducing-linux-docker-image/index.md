@@ -467,7 +467,7 @@ helm install octopus octopus/octopusdeploy --set octopus.licenseKeyBase64=<your 
 
 The default values of the chart are configured to create a single node Octopus cluster with `ReadWriteOnce` volumes. These values are well supported by default in Kubernetes clusters.
 
-To deploy a HA cluster, you will need to define some additional values specific to the cluster you are deploying to. For example, when deploying to Azure ASK, the following values are used to create `ReadWriteMany` volumes shared between 3 Octopus HA nodes:
+To deploy a HA cluster, you need to define some additional values specific to the cluster you are deploying to. For example, when deploying to Azure ASK, the following values are used to create `ReadWriteMany` volumes shared between three Octopus HA nodes:
 
 ```
 helm install octopus octopus/octopusdeploy --set octopus.replicaCount=3 --set octopus.storageClassName=azurefile --set octopus.licenseKeyBase64=<your Octopus license key base64 encoded> --set octopus.acceptEula=Y --set mssql-linux.acceptEula.value=Y
