@@ -19,5 +19,6 @@ Octopus Cloud
 PowerShell
 Reporting
 Runbooks
+Testing
 Variables
 Workers
