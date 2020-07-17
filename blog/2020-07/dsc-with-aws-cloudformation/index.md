@@ -1,6 +1,6 @@
 ---
 title: Installing Tentacles with DSC in AWS CloudFormation templates
-description: Learn how to configure a target work worker Tentacle when creating an new EC2 instance with CloudFormation
+description: Learn how to configure a target work Worker Tentacle when creating a new EC2 instance with CloudFormation.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-In a previous blog post we looked at some sample CloudFormation templates that created a new EC2 virtual machine in a VPC.
+In a previous blog post, we looked at some sample CloudFormation templates that created a new EC2 virtual machine in a VPC.
 
-These templates had placeholder scripts in the [instance user data](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). In this blog post we'll look at how these user data scripts can be configured to install a Tentacle, either as a target or a worker, via the [Octopus DSC module](https://github.com/OctopusDeploy/OctopusDSC).
+These templates had placeholder scripts in the [instance user data](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). In this blog post, we’ll look at how these user data scripts can be configured to install a Tentacle, either as a target or a Worker through the [Octopus DSC module](https://github.com/OctopusDeploy/OctopusDSC).
 
-## Installing a target
+## Install a target
 
-Here is the complete CloudFormation template used to build an EC2 instance in a VPC and configure a Tentacle as a target:
+Here is the complete CloudFormation template we use to build an EC2 instance in a VPC and configure a Tentacle as a target:
 
 ```YAML
 AWSTemplateFormatVersion: 2010-09-09
@@ -279,13 +279,13 @@ Additional parameters have been added:
     Description: The tentacle space.  
 ```
 
-These parameters define the API key used to connect to Octopus, the Octopus server URL, and the role, environment and space for the new target.
+These parameters define the API key used to connect to Octopus, the Octopus Server URL, and the role, environment, and space for the new target.
 
-To configure the target, we have expanded the script in the user data section. Let's break this script down.
+To configure the target, we have expanded the script in the user data section. Let’s break this script down.
 
 We start by saving the DSC configuration into a second PowerShell script. We need to do this because PowerShell will parse any `Configuration` block before running other script commands. The command `Import-DscResource -Module OctopusDSC` in the `Configuration` block will then fail because the DSC module has not been installed.
 
-The workaround used here is to save the `Configuration` block to a second file, and dot source it after the DSC module has been installed.
+The workaround used here is to save the `Configuration` block to a second file, and dot source it after the DSC module has been installed:
 
 ```
 Set-Content -Path c:\dsc.ps1 -Value @"
@@ -352,15 +352,15 @@ With all the prerequisites in place, we dot source the DSC configuration, which 
 . c:\dsc.ps1
 ```
 
-## Verifying the Installation
+## Verify the Installation
 
-The log files for the user data script are found in `C:\ProgramData\Amazon\EC2-Windows\Launch\Log\UserdataExecution.log`. If we view the contents of this file in the newly created EC2 instance, we'll see the Tentacle being installed:
+The log files for the user data script are found in `C:\ProgramData\Amazon\EC2-Windows\Launch\Log\UserdataExecution.log`. If we view the contents of this file in the newly created EC2 instance, we’ll see the Tentacle being installed:
 
 ![](logs.png "width=500")
 
-## Installing a worker
+## Install a Worker
 
-The template for installing a worker is very similar:
+The template for installing a Worker is very similar:
 
 ```YAML
 AWSTemplateFormatVersion: 2010-09-09
@@ -597,7 +597,7 @@ Outputs:
     Description: Server's PublicIp Address
 ```
 
-To install a worker, we remove the role and environment, and define a worker pool parameter:
+To install a Worker, we remove the role and environment and define a worker pool parameter:
 
 ```YAML
   WorkerPools:
@@ -605,7 +605,7 @@ To install a worker, we remove the role and environment, and define a worker poo
     Description: The worker pools to add the tentacle to. 
 ```
 
-We then remove the role and environment from the DSC configuration, and define the worker pool:
+We then remove the role and environment from the DSC configuration and define the worker pool:
 
 ```Powershell
 # Required parameters. See full properties list below
@@ -617,4 +617,4 @@ Space = `$Space # This is for versions 2019.1 and above.  If null or not specifi
 
 ## Conclusion
 
-By taking advantage of user data scripts and the Octopus DSC module, we can quickly spin up new VMs that automatically install and register either targets or workers in Octopus. There is some work required to install the DSC module before PowerShell attempts to parse the DSC configuration, but once you understand the quirks of DSC and the workarounds, the process is relatively easy to implement.
+By taking advantage of user data scripts and the Octopus DSC module, we can quickly spin up new VMs that automatically install and register either targets or Workers in Octopus. There is some work required to install the DSC module before PowerShell attempts to parse the DSC configuration, but once you understand the quirks of DSC and the workarounds, the process is relatively easy to implement.
