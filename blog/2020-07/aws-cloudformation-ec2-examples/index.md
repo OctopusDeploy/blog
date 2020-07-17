@@ -5,19 +5,19 @@ description: Learn how to create Windows and Linux EC2 instances in AWS with exa
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - DevOps
 ---
 
-Cloud platforms have ushered in some extraordinarily useful workflows for developers and operations. The ability to spin up temporary infrastructure for testing removes the burden to maintain local virtual machines, and means you can scale testing up to include many machines of different capacities, safe in the knowledge that you won't be flooding the corporate network with a deluge of traffic.
+Cloud platforms have ushered in some extraordinarily useful workflows for developers and operations. The ability to spin up temporary infrastructure for testing removes the burden to maintain local virtual machines means you can scale testing up to include many machines of different capacities, safe in the knowledge that you won’t be flooding the corporate network with a deluge of traffic.
 
 In the good old days, "classic" AWS created EC2 virtual machines in a single, shared network space. This made it very easy to create a virtual machine, as there was almost no network configuration required.
 
 These days best practice demands even a single VM also requires a VPC, Internet gateways, security groups, subnets, and route tables.
 
-In this blog post, we'll look at two CloudFormation templates to create Windows and Linux EC2 instances in their own VPC.
+In this blog post, we’ll look at two CloudFormation templates to create Windows and Linux EC2 instances in their own VPC.
 
 ## The Windows CloudFormation template
 
@@ -196,7 +196,7 @@ Outputs:
     Description: Server's PublicIp Address
 ```
 
-Lets break this code down.
+Let’s break this code down.
 
 The [template version](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html) is defined:
 
@@ -204,7 +204,7 @@ The [template version](https://docs.aws.amazon.com/AWSCloudFormation/latest/User
 AWSTemplateFormatVersion: 2010-09-09
 ```
 
-Any values that might be customized by the end user are defined as parameters. Here we expose 4 parameters:
+Any values that might be customized by the end user are defined as parameters. Here we expose four parameters:
 
 * The [instance type](https://aws.amazon.com/ec2/instance-types/), which defines the hardware associated with our VM.
 * The IP address of a workstation that can connect to the instance via remote desktop. Having this IP means we can limit access from just one workstation, instead of the entire Internet.
@@ -386,7 +386,7 @@ Listening Tentacles require a static hostname or IP address. While our EC2 insta
 
 We have now created all the networking required to host an EC2 instance with Internet access and a static IP. Now we create the EC2 instance.
 
-We have given this EC2 instance a larger hard disk through the `BlockDeviceMappings` section, while the `UserData` section holds a [script to be run on startup](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). This example script doesn't do anything, but can be replaced if needed:
+We have given this EC2 instance a larger hard disk through the `BlockDeviceMappings` section, while the `UserData` section holds a [script to be run on startup](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html). This example script doesn’t do anything, but can be replaced if needed:
 
 ```YAML
   Windows:
@@ -643,4 +643,4 @@ Most of this template is the same as the Windows one. There are some small diffe
 
 ## Conclusion
 
-These templates have served me well over the years as a way of self servicing Windows and Linux VMs in AWS. By creating a VPC to hold the VMs, we get access to the newer instance types, which [do not support the EC2-Classic environment](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-classic-platform.html). VPCs also allow us to create two or more VMs that can communicate with each other but are still isolated from any other VMs.
+These templates have served me well over the years as a way of self-servicing Windows and Linux VMs in AWS. By creating a VPC to hold the VMs, we get access to the newer instance types, which [do not support the EC2-Classic environment](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-classic-platform.html). VPCs also allow us to create two or more VMs that can communicate with each other but are still isolated from any other VMs.
