@@ -2,7 +2,7 @@
 title: Convert an existing application to use rolling deployments
 description: Learn how to convert an existing application to use the rolling deployments deployment pattern in Octopus with child Steps.
 author: mark.harrison@octopus.com
-visibility: private
+visibility: public
 published: 2020-07-20
 metaImage: rolling-deployments.png
 bannerImage: rolling-deployments.png
