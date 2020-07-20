@@ -66,7 +66,7 @@ Be sure to change the `ACCEPT_EULA` and `ACCEPT_OCTOPUS_EULA` values!
 SA_PASSWORD=N0tS3cr3t!
 
 # Tag for the Octopus Server image. See https://hub.docker.com/repository/docker/octopusdeploy/octopusdeploy for the tags.
-OCTOPUS_SERVER_TAG=2020.3.0
+OCTOPUS_SERVER_TAG=2020.3.1
 
 # Sql Server image. Set this variable to the version you wish to use. Default is to use the latest.
 SQL_IMAGE=mcr.microsoft.com/mssql/server
@@ -354,7 +354,7 @@ spec:
           claimName: task-logs-claim
       containers:
       - name: octopus        
-        image: octopusdeploy/octopusdeploy:2020.3.0.linux
+        image: octopusdeploy/octopusdeploy:2020.3.1.linux
         securityContext:
           privileged: true
         env:
