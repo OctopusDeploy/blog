@@ -1,6 +1,6 @@
 ---
 title: Convert an existing application to use rolling deployments
-description: Learn how to convert an existing application to use the rolling deployments deployment pattern in Octopus with child Steps.
+description: Learn how to convert an existing application to use the rolling deployments deployment pattern in Octopus with child steps.
 author: mark.harrison@octopus.com
 visibility: public
 published: 2020-07-20
@@ -24,7 +24,7 @@ In this post, I show you how to convert an existing application to use the rolli
 
 ## The application
 
-I am going to use [PetClinic](https://github.com/spring-projects/spring-petclinic) as an example and convert the deployment process for the application from one that runs deployment steps sequentially in Octopus to a rolling deployment process. PetClinic is a sample Spring Boot application written in Java that has 2 main components:
+I am going to use [PetClinic](https://github.com/spring-projects/spring-petclinic) as an example and convert the deployment process for the application from one that runs deployment steps sequentially in Octopus to a rolling deployment process. PetClinic is a sample Spring Boot application written in Java that has two main components:
 
 - A web front-end.
 - A database.
