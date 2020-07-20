@@ -354,7 +354,7 @@ spec:
           claimName: task-logs-claim
       containers:
       - name: octopus        
-        image: octopusdeploy/octopusdeploy:2020.3.1.linux
+        image: octopusdeploy/octopusdeploy:2020.3.1
         securityContext:
           privileged: true
         env:
