@@ -3,7 +3,7 @@ title: Fast track code promotion in your CI/CD pipeline
 description: Learn how to use pre-approved deployment pipelines to rapidly promote code into production
 author: tj.blogumas@codeblogkc.com
 visibility: private
-published: 2020-06-07
+published: 2020-07-22
 metaImage: cicd-pipeline-promotion.png
 bannerImage: cicd-pipeline-promotion.png
 tags:
