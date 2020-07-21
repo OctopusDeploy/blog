@@ -4,13 +4,15 @@ description: Learn how to use pre-approved deployment pipelines to rapidly promo
 author: tj.blogumas@codeblogkc.com
 visibility: private
 published: 2020-06-07
-metaImage: banner.png
-bannerImage: banner.png
+metaImage: cicd-pipeline-promotion.png
+bannerImage: cicd-pipeline-promotion.png
 tags:
  - Octopus
  - CICD
  - DevOps
 ---
+
+![Fast track code promotion in your CI/CD pipeline](cicd-pipeline-promotion.png)
 
 One of the biggest challenges software development teams face in 2020 is the need to deliver code to production faster. To do this seamlessly, we must have a completely automated deployment process, and it must be repeatable through multiple environments. Also, to confidently deploy to production without service interruption, we must have successful tests pass in each layer of the testing pyramid.
 
