@@ -8,13 +8,12 @@ metaImage: cicd-pipeline-promotion.png
 bannerImage: cicd-pipeline-promotion.png
 tags:
  - Octopus
- - CICD
  - DevOps
 ---
 
 ![Fast track code promotion in your CI/CD pipeline](cicd-pipeline-promotion.png)
 
-One of the biggest challenges software development teams face in 2020 is the need to deliver code to production faster. To do this seamlessly, we must have a completely automated deployment process, and it must be repeatable through multiple environments. Also, to confidently deploy to production without service interruption, we must have successful tests pass in each layer of the testing pyramid.
+One of the biggest challenges software development teams face in 2020 is the need to deliver code to production faster. To do this seamlessly, we need a completely automated deployment process, and it must be repeatable through multiple environments. Also, to confidently deploy to production without service interruption, we must have successful tests pass in each layer of the testing pyramid.
 
 Defining this process can be challenging, and visualizing it can be even more difficult, thankfully, Octopus Deploy makes both easy for us! In this post, I define a _pre-approved_ production-ready deployment pipeline as well as discuss the details of each step involved.
 
@@ -28,10 +27,10 @@ Source: https://blog.octo.com/wp-content/uploads/2018/10/integration-tests-1024x
 
 As you can see from the diagram, the four layers of tests are:
 
-- Unit tests: These need to be successful during the continuous integration stages of our pipeline.
-- Component tests: These need to be successful during the continuous integration stages of our pipeline.
-- Integration tests: These need to be successful during the continuous delivery stages of our pipeline.
-- End-to-end tests: These need to be successful during the continuous delivery stages of our pipeline.
+- **Unit tests**: These need to be successful during the continuous integration stages of our pipeline.
+- **Component tests**: These need to be successful during the continuous integration stages of our pipeline.
+- **Integration tests**: These need to be successful during the continuous delivery stages of our pipeline.
+- **End-to-end tests**: These need to be successful during the continuous delivery stages of our pipeline.
 
 ## Scenario
 
@@ -67,7 +66,7 @@ Our goal with any code promotion is to build once, deploy everywhere. Building t
 3. Pre-build: Component tests
 4. Pre-build: Static code analysis
 5. Pre-build: Third-party library security analysis
-6. Build: Binary builds and packaged
+6. Build: Binary builds and packaging
 7. Post-build: Push binary to an artifact repository
 
 These are the smallest definable units or stages that must happen during our pre-approved deployment pipeline. Each stage must pass successfully based upon pre-defined rules configured by our tooling administrators, information security, and software architects. After continuous integration stages pass successfully, we are ready for the continuous delivery stages.
@@ -103,13 +102,13 @@ One of the great things about Octopus Deploy is that it has a built-in artifact 
 - CD at integration testing.
 - CD at end-to-end testing.
 
-It’s important to have the CD binary validate stage to ensure we not only get the binary where it needed to go, but that it actually executed as intended. In that case, if we had a bad binary (due to corruption or bad code logic, etc.), we could save a lot of time in our pipeline by failing early and getting that feedback back to the developer quickly.
+It’s important to have the CD binary validate stage to ensure we not only get the binary where it needs to go, but that it actually executed as intended. In that case, if we had a bad binary (due to corruption or bad code logic, etc.), we could save a lot of time in our pipeline by failing early and getting that feedback back to the developer quickly.
 
 ## Which tests when?
 
-One of the conflicting aspects of code promotion is trying to ensure code is deployed in every environment the same way while only running the necessary tests to ensure a new deployment works as intended. An example of this would be running a _load test_ in our QA environment but not other environments. Running a load test in every environment would be time consuming and extend the time to deploy (which is the opposite of the goal we are trying to achieve). In addition, we probably wouldn’t run load tests in production as we don’t want to take unnecessary risks with our service reliability for live services. 
+One of the conflicting aspects of code promotion is trying to ensure code is deployed in every environment the same way while only running the necessary tests to ensure a new deployment works as intended. An example of this is running a _load test_ in our QA environment but not in other environments. Running a load test in every environment would be time consuming and extend the time to deploy (which is the opposite of the goal we are trying to achieve). In addition, we probably wouldn’t run load tests in production as we don’t want to take unnecessary risks with our service reliability for live services. 
 
-This begs the question, which tests need to run, when do they need to run, how to differentiate the test that ran, and in which environments should they run?
+This begs the question, which tests need to run, when do they need to run, how to differentiate the tests that run, and in which environments should they run?
 
 Those are excellent questions and can be broken down by framing them into one of two categories:
 
@@ -125,7 +124,7 @@ All pipeline events should be triggered from source control. To ensure changes w
 `feature-pa-eado-4287-add_status_response`
 
 - `feature`: This means the new branch is adding new functionality to the codebase.
-- `pa`: This means this is pre-approved change and will run through the fast-tracked pipeline.
+- `pa`: This is a pre-approved change and will run through the fast-tracked pipeline.
 - `eado`: This is my JIRA project.
 - `<number>`: This is for a JIRA ticket from my project.
 - `add_status_response`: This is a quick description of the change.
@@ -192,4 +191,4 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
 
 ## Conclusion
 
-Deploying code to production quickly, is the greatest challenge facing modern development teams. Code promotion and deployment is all about having confidence. In order to have that confidence, our CI/CD pipeline must contain the four layers of the testing pyramid. Determining when each layer of the testing pyramid is executed in which deployment environment becomes the next challenge, but defining a pre-approved deployment pipeline for small, low-risk changes helps balance speed with quality, and using GIT branches and tags to trigger your pre-approved pipeline helps give deployment responsibility to those who know the code best, the developers.
+Deploying code to production quickly is the greatest challenge facing development teams. Code promotion and deployment is all about having confidence. In order to have that confidence, our CI/CD pipeline must contain the four layers of the testing pyramid. Determining when each layer of the testing pyramid is executed in which deployment environment becomes the next challenge, but defining a pre-approved deployment pipeline for small, low-risk changes helps balance speed with quality, and using GIT branches and tags to trigger your pre-approved pipeline helps give deployment responsibility to those who know the code best, the developers.
