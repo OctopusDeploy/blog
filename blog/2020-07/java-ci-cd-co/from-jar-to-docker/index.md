@@ -16,7 +16,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](code.svg "width=300")
 
-There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and despite being based on an old release of Spring Boot, it is still proudly featured on the Spring website.
+There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and is still proudly featured on the Spring website.
 
 Our journey through the DevOps lifecycle starts with a local build of PetClinic on a local workstation. At the end of this blog post, we’ll have containerized this application with Docker to provide a repeatable build and execution environment.
 
