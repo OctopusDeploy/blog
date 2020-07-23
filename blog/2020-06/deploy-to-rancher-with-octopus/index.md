@@ -2,14 +2,16 @@
 title: Deploy to Rancher with Octopus Deploy
 description: Learn how to deploy to a Kubernetes cluster managed by Rancher
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2020-12-31
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-07-29
+metaImage: rancher-octopus.png
+bannerImage: rancher-octopus.png
 tags:
  - Kubernetes
  - DevOps
 ---
+
+![Deploy to Rancher with Octopus Deploy](rancher-octopus.png)
 
 Managing Kubernetes from the command-line can be cumbersome and tedious, especially when you have multiple clusters to manage.  To ease this burden, a number of tools have been developed to easily create and manage Kubernetes clusters. [Rancher](http://www.rancher.com) is one example, and in this post, I’ll show you how to add your Kubernetes cluster that is managed by Rancher as a deployment target in Octopus Deploy and deploy to it.
 
