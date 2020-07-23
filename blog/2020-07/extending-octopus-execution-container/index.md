@@ -2,14 +2,16 @@
 title: "Execution containers for workers: Extending the Octopus worker-tools Docker image"
 description: Unsure what image to use with the Execution containers for workers feature in Octopus? This post covers what the octopus/worker-tools image is, how to extend it,  and why you might create your own image entirely.
 author: lianne.crocker@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-07-27
+metaImage: execution-workers.png
+bannerImage: execution-workers.png
 tags:
- - Octopus
- - Product
+  - DevOps
+  - Containers
 ---
+
+![Extending the Octopus worker-tools Docker image](execution-workers.png)
 
 We recently released [Execution Containers for Workers](https://octopus.com/blog/execution-containers), and we think there are a good number of reasons to use this new functionality. If you’re not familiar with execution containers, Michael does a great job of introducing the concept in the post linked above, and you could also take a look at the [execution container documentation](https://g.octopushq.com/ExecutionContainersForWorkers).
 
