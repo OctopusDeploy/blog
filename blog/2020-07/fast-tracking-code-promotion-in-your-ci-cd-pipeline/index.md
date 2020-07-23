@@ -7,7 +7,7 @@ published: 2020-07-22
 metaImage: cicd-pipeline-promotion.png
 bannerImage: cicd-pipeline-promotion.png
 tags:
-  - DevOps
+ - DevOps
 ---
 
 ![Fast track code promotion in your CI/CD pipeline](cicd-pipeline-promotion.png)
