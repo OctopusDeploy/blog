@@ -15,7 +15,7 @@ tags:
 
 Following on from taking a look at execution containers [here](https://octopus.com/blog/extending-octopus-execution-container), I want to change a runbook from running the steps directly on a worker to using [execution containers](https://g.octopushq.com/ExecutionContainersForWorkers).   Once I have done this, I can have the minimum installed on my worker machine and instead maintain software versions in the Docker images I'll use as execution containers.
 
-The project I'm looking at is [PetClinic Infrastructure](https://g.octopushq.com/PatternRollingSamplePetClinicIacRunbooks), this project spins up Google Cloud infrastructure for other projects to deploy to in the "Pattern - Rolling" space on our samples instance.
+The project I'm looking at is [PetClinic Infrastructure](https://g.octopushq.com/PatternRollingSamplePetClinicIacRunbooks), this project spins up Google Cloud (GCP) infrastructure for other projects to deploy to in the "Pattern - Rolling" space on our samples instance.
 
 :::hint 
 
@@ -82,7 +82,7 @@ I've built this and published it to my Docker repository on Docker hub - `octocr
 
 ## Update the Runbook to use execution containers 
 
-The first runbook I'm going to convert to using execution containers is "Destroy the GCP Kraken", this runbook removes all the deployment target infrastructure.  
+The runbook I'm going to convert to using execution containers is "Destroy the GCP Kraken", this runbook removes all the deployment target infrastructure.  
 
 ![Initial runbook state](initial-runbook-state.png)
 
