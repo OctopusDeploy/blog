@@ -72,7 +72,9 @@ Try it yourself and I think you'll find it's a far more natural editing experien
 
 Last year, we shifted our Octopus Cloud service from Windows-based virtual machines to  [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months and we're very happy with the result. 
 
-We made this shift for ourselves but we also envisioned our customers using them to self-host Octopus with our Docker images. That said, we're very pleased to announce early access of this solution which is based on the same code that powers our cloud solution. These images allow Linux users to host Octopus on their operating system of choice.
+We made this shift for ourselves but we also envisioned our customers using them to self-host Octopus with our Docker images. Therefore, we're very pleased to announce early access to our Octopus Deploy docker images, which are based on the same code that powers our cloud solution. These images allow Linux users to host Octopus on their operating system of choice.
+
+Checkout our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started and I highly recommend the detailed article linked below with more detailed instructions. 
 
 NOTE: Our Docker images are available as an early release therefore we do expect a few bugs and rough edges, and we do not support this version for production deployments. That said, 
 
@@ -83,7 +85,7 @@ NOTE: Our Docker images are available as an early release therefore we do expect
 This release includes two broken changes.
 
 * We have deprecated our Azure VM extensions, and we recommend using PowerShell DSC as a replacement. Our documentation covers this decision and links to further articles on how to achieve this with PowerShell DSC. See our [related posts]() for instructions on how to achieve this with Amazon Web Services as well.
-* We also have updated our [Deploy to IIS step](https://octopus.com/docs/deployment-examples/iis-websites-and-application-pools) to remove support to deploy to Azure App Services. This coincidentally worked however it is no longer supported. We recommend using our [Azure support](https://octopus.com/docs/deployment-examples/azure-deployments) instead.
+* We have updated our [Deploy to IIS step](https://octopus.com/docs/deployment-examples/iis-websites-and-application-pools) to remove support to deploy to Azure App Services. This coincidentally worked however it is no longer supported. We recommend using our [Azure support](https://octopus.com/docs/deployment-examples/azure-deployments) instead.
 
 ## Upgrading
 
@@ -105,6 +107,6 @@ Feel free to leave us a comment, and let us know what you think! Happy deploymen
 
 * [Using Jenkins Pipelines with Octopus](/blog/2020-07/using-jenkins-pipelines/index.md)
 * [Introducing the Octopus Server Linux Docker image](/blog/2020-07/introducing-linux-docker-image/index.md)
-* [Getting started with PowerShell Desired State Configuration (DSC)](https://octopus.com/blog/getting-started-with-powershell-dsc)
+* [Getting started with PowerShell Desired State Configuration (DSC)](/blog/2019-10/getting-started-with-powershell-dsc/index.md)
 * [Installing Tentacles with DSC in AWS CloudFormation templates](/blog/2020-07/dsc-with-aws-cloudformation/index.md)
 * [Creating EC2 instance in AWS with CloudFormation](/blog/2020-07/aws-cloudformation-ec2-examples/index.md)
