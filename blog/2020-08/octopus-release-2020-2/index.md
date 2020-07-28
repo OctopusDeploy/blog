@@ -14,11 +14,11 @@ tags:
 
 We’re delighted to ship Octopus 2020.3, our third release of the year. This release includes some great updates to improve your day to day Octopus experience.
 
-* [Runbooks++](blog/2020-08/octopus-release-2020-3/index.md#runbooks) is a batch of customer-driven improvements including CLI support, environment scoping, guided failure mode per runbook and Runbook Retention Policies.
+* [Runbooks++](blog/2020-08/octopus-release-2020-3/index.md#runbooks) is a batch of customer-driven improvements including Octopus CLI support, environment scoping, guided failure mode per runbook and the addition of Runbook retention policies.
 * [Jenkins Pipelines](blog/2020-08/octopus-release-2020-3/index.md#jenkins-pipelines) support enables you to integrate with Octopus from your `Jenkinsfile`.
-* [Streamlined process editor](blog/2020-08/octopus-release-2020-3/index.md#streamlined-process-editor) enable you to make edit your automated process and jump between steps without saving them in a single update.
+* [Streamlined process editor](blog/2020-08/octopus-release-2020-3/index.md#streamlined-process-editor) enables you to make edit your automated process and jump between steps without saving them in a single update.
 * [Octopus Linux Docker image](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) is now available in early access which enables teams to run Octopus in a Linux Docker container. 
-* [Shields.io badge](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) support enables you to share the status of your Octopus projects on your deployed websites.
+* [Shields.io badge](blog/2020-08/octopus-release-2020-3/index.md#shieldsio) support enables you to share the status of your Octopus projects on your deployed websites.
 
 This release is the [third of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long term support. The following table shows our current releases with long term support.
 
@@ -34,15 +34,35 @@ Keep reading to learn more about the updates.
 
 ## Runbooks++ {#runbooks}
 
-is a batch of customer-driven improvements including CLI support, environment scoping, guided failure mode per runbook and Runbook Retention Policies.
+![Runbooks++ screenshot](runbook-automation.png)
+
+We first shipped Runbook automation support in Octopus 2020.11 and it has been one of our fastest growing features ever! We've also received some great feedback which is fantasticsince then we've received some great feedback from our customers. 
+
+In this release, we're shipping a number of improvements to make using runbooks even better.
+
+**Octopus CLI support** - We have updated the Octopus CLI to add a `run-runbook` command so that you can now execute your runbooks from the command line and scripts on your platform of choice.
+
+**Environment scoping** - It's now possible to choose which environments a runbook can be run in by selecting the appropriate environments in your Runbook Settings. 
+
+* Guided failure per runbook - 
+
+* Runbook retention policies
+
+[Learn more](https://octopus.com/docs/runbooks)
 
 ## Jenkins Pipelines
 
-support enables you to integrate with Octopus from your `Jenkinsfile`.
+![Jenkins pipelines support](jenkins-pipelines.png)
+
+We have updated our Jenkins plugin to add support integrate with Octopus from your `Jenkinsfile`. Previously, you needed to do this yourself via calls to the Octopus CLI but this is now supported out of the box. 
+
+[Learn more]()
 
 ## Streamlined process editor
 
-enable you to make edit your automated process and jump between steps without saving them in a single update.
+
+
+As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) work, we have updated our process editor to makes it easier than ever to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps, and save all your changes with a single click. Previously, you needed to save your changes to each step over and over which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
 
 ## Octopus Linux Docker image
 
@@ -50,8 +70,8 @@ support enables you to share the status of your Octopus projects on your deploye
 
 ## Breaking changes
 
-TODO
-- Identify breaking changes.
+
+
 - Add note about deprecating the Azure VM extensions as per https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/azure-virtual-machines
 
 ## Upgrading
@@ -72,4 +92,12 @@ Feel free to leave us a comment, and let us know what you think! Happy deploymen
 
 ## Related posts
 
-TODO: Lookup Matt's giant list of related posts for this release. :)
+Using Jenkins Pipelines with Octopus
+Custom kubectl scripting in Octopus
+Deploy your first container to Kubernetes via Octopus
+Importing Kubernetes YAML in Octopus
+Deploy a Helm chart with Octopus
+Introducing the Octopus Server Linux Docker image
+
+Installing Tentacles with DSC in AWS CloudFormation templates
+Creating EC2 instance in AWS with CloudFormation
