@@ -2,13 +2,16 @@
 title: Using Jenkins Pipelines with Octopus
 description: Learn how to trigger Octopus deployments with Jenkins Pipelines
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-07-28
+metaImage: jenkins-plugin.png
+bannerImage: jenkins-plugin.png
 tags:
- - Octopus
+ - Product
+ - Jenkins
 ---
+
+![Using Jenkins Pipelines with Octopus](jenkins-plugin.png)
 
 A recent update to the Octopus Jenkins plugin has added support for pipelines, allowing packages to be created and pushed to Octopus, releases to be created and deployed, and metadata like commit messages to be associated with packages.
 
