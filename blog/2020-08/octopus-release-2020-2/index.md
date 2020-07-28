@@ -44,9 +44,9 @@ In this release, we're shipping a number of improvements to make using runbooks 
 
 **Environment scoping** - It's now possible to choose which environments a runbook can be run in by selecting the appropriate environments in your Runbook Settings. 
 
-* Guided failure per runbook - 
+**Guided failure per runbook** - asdf
 
-* Runbook retention policies
+**Runbook retention policies** - asdf
 
 [Learn more](https://octopus.com/docs/runbooks)
 
@@ -64,7 +64,7 @@ We have updated our Jenkins plugin to add support integrate with Octopus from yo
 
 As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) work, we have updated our process editor to makes it easier than ever to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps, and save all your changes with a single click. Previously, you needed to save your changes to each step over and over which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
 
-Try it yourself and you'll see immediately how much more natural it feels. 
+Try it yourself and I think you'll find it's a far more natural editing experience.
 
 ## Octopus Linux Docker image (Early access) {#octopus-linux-docker-image}
 
@@ -80,7 +80,10 @@ NOTE: Our Docker images are available as an early release therefore we do expect
 
 ## Breaking changes
 
-- Add note about deprecating the Azure VM extensions as per https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/azure-virtual-machines
+This release includes two broken changes.
+
+* We have deprecated our Azure VM extensions, and we recommend using PowerShell DSC as a replacement. Our documentation covers this decision and links to further articles on how to achieve this with PowerShell DSC. See our [related posts]() for instructions on how to achieve this with Amazon Web Services as well.
+* We also have updated our [Deploy to IIS step](https://octopus.com/docs/deployment-examples/iis-websites-and-application-pools) to remove support to deploy to Azure App Services. This coincidentally worked however it is no longer supported. We recommend using our [Azure support](https://octopus.com/docs/deployment-examples/azure-deployments) instead.
 
 ## Upgrading
 
@@ -100,12 +103,8 @@ Feel free to leave us a comment, and let us know what you think! Happy deploymen
 
 ## Related posts
 
-Using Jenkins Pipelines with Octopus
-Custom kubectl scripting in Octopus
-Deploy your first container to Kubernetes via Octopus
-Importing Kubernetes YAML in Octopus
-Deploy a Helm chart with Octopus
-Introducing the Octopus Server Linux Docker image
-
-Installing Tentacles with DSC in AWS CloudFormation templates
-Creating EC2 instance in AWS with CloudFormation
+* [Using Jenkins Pipelines with Octopus](/blog/2020-07/using-jenkins-pipelines/index.md)
+* [Introducing the Octopus Server Linux Docker image](/blog/2020-07/introducing-linux-docker-image/index.md)
+* [Getting started with PowerShell Desired State Configuration (DSC)](https://octopus.com/blog/getting-started-with-powershell-dsc)
+* [Installing Tentacles with DSC in AWS CloudFormation templates](/blog/2020-07/dsc-with-aws-cloudformation/index.md)
+* [Creating EC2 instance in AWS with CloudFormation](/blog/2020-07/aws-cloudformation-ec2-examples/index.md)
