@@ -17,7 +17,7 @@ We’re delighted to ship Octopus 2020.3, our third release of the year. This re
 * [Runbooks++](blog/2020-08/octopus-release-2020-3/index.md#runbooks) is a batch of customer-driven improvements including Octopus CLI support, environment scoping, guided failure mode per runbook and the addition of Runbook retention policies.
 * [Jenkins Pipelines](blog/2020-08/octopus-release-2020-3/index.md#jenkins-pipelines) support enables you to integrate with Octopus from your `Jenkinsfile`.
 * [Streamlined process editor](blog/2020-08/octopus-release-2020-3/index.md#streamlined-process-editor) enables you to make edit your automated process and jump between steps without saving them in a single update.
-* [Octopus Linux Docker image](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) is now available in early access which enables teams to run Octopus in a Linux Docker container. 
+* [Octopus Linux Docker image (Early access)](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) is now available in early access which enables teams to run Octopus in a Linux Docker container. 
 * [Shields.io badge](blog/2020-08/octopus-release-2020-3/index.md#shieldsio) support enables you to share the status of your Octopus projects on your deployed websites.
 
 This release is the [third of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long term support. The following table shows our current releases with long term support.
@@ -52,25 +52,33 @@ In this release, we're shipping a number of improvements to make using runbooks 
 
 ## Jenkins Pipelines
 
-![Jenkins pipelines support](jenkins-pipelines.png)
+![Jenkins pipelines support](jenkins-pipelines.png "width=500")
 
 We have updated our Jenkins plugin to add support integrate with Octopus from your `Jenkinsfile`. Previously, you needed to do this yourself via calls to the Octopus CLI but this is now supported out of the box. 
 
-[Learn more]()
+[Learn more](/blog/2020-07/using-jenkins-pipelines/index.md)
 
 ## Streamlined process editor
 
-
+![Streamlined process editor](streamlined-process-editor.png "width=500")
 
 As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) work, we have updated our process editor to makes it easier than ever to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps, and save all your changes with a single click. Previously, you needed to save your changes to each step over and over which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
 
-## Octopus Linux Docker image
+Try it yourself and you'll see immediately how much more natural it feels. 
 
-support enables you to share the status of your Octopus projects on your deployed websites.
+## Octopus Linux Docker image (Early access) {#octopus-linux-docker-image}
+
+![Octopus Linux Docker image](octopus-linux-image.png "width=500")
+
+Last year, we shifted our Octopus Cloud service from Windows-based virtual machines to  [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months and we're very happy with the result. 
+
+We made this shift for ourselves but we also envisioned our customers using them to self-host Octopus with our Docker images. That said, we're very pleased to announce early access of this solution which is based on the same code that powers our cloud solution. These images allow Linux users to host Octopus on their operating system of choice.
+
+NOTE: Our Docker images are available as an early release therefore we do expect a few bugs and rough edges, and we do not support this version for production deployments. That said, 
+
+[Learn more](/blog/2020-08/introducing-linux-docker-image/index.md)
 
 ## Breaking changes
-
-
 
 - Add note about deprecating the Azure VM extensions as per https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/azure-virtual-machines
 
