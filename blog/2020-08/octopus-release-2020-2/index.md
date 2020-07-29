@@ -1,5 +1,5 @@
 ---
-title: "Octopus 2020.3: Runbooks++, Improved automated process editing"
+title: "Octopus 2020.3: Runbooks++, Jenkins Pipelines and streamlined process editing"
 description: "Octopus 2020.3 includes TODO."
 author: rob.pearson@octopus.com
 visibility: private
