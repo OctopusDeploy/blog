@@ -14,12 +14,12 @@ tags:
 
 We’re delighted to ship Octopus 2020.3, our third release of the year. This release includes some great updates to improve your day to day Octopus experience.
 
-* [Runbooks++](blog/2020-08/octopus-release-2020-3/index.md#runbooks) is a batch of customer-driven improvements, including Octopus CLI support, environment scoping, guided failure mode per runbook, and the addition of Runbook retention policies.
+* [Runbooks++](blog/2020-08/octopus-release-2020-3/index.md#runbooks) is a batch of customer-driven improvements, including Octopus CLI support, environment scoping, guided failure mode per runbook, and the addition of runbook retention policies.
 * [Jenkins Pipelines](blog/2020-08/octopus-release-2020-3/index.md#jenkins-pipelines) support enables you to integrate with Octopus from your `Jenkinsfile`.
-* [Streamlined process editor](blog/2020-08/octopus-release-2020-3/index.md#streamlined-process-editor) allows you to edit your automated process and jump between steps without saving them in a single update.
-* [Octopus Linux Docker image (Early access)](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) is now available in early access, enabling teams to run Octopus in a Linux Docker container. 
+* [Streamlined process editor](blog/2020-08/octopus-release-2020-3/index.md#streamlined-process-editor) allows you to edit multiple steps in your automated process and jump between steps without saving them in a single update.
+* [Octopus Linux Docker image (Early access)](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) is now available, making it possible to run Octopus in a Linux Docker container. 
 
-This release is the [third of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long term support. The following table shows our current versions with long term support.
+This release is the [third of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long term support. The following table shows our current versions with long term support:
 
 | Release               | Long term support           |
 | --------------------- | --------------------------- |
@@ -33,7 +33,7 @@ Keep reading to learn more about the updates.
 
 ## Runbooks++ {#runbooks}
 
-We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We're thrilled with this usage but we've also received some constructive feedback from our customers. In this release, we're shipping several customer-driven improvements driven to make using runbooks even better.
+We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We're thrilled with this usage, but we've also received some constructive feedback from our customers. In this release, we're shipping several customer-driven improvements to make using runbooks even better.
 
 ### Runbook only projects
 
@@ -45,17 +45,17 @@ Octopus now supports a cleaner runbook-only project style, and the UI reflects t
 
 ![Octopus CLI run-runbook command in a terminal](octopus-cli-run-runbook.png "width=500")
 
-We have updated the Octopus CLI to add a `run-runbook` command to execute your runbooks from the command line and scripts on your platform of choice.
+We have updated the Octopus CLI to add a `run-runbook` command to execute your runbooks from the command-line and scripts on your platform of choice.
 
 ### Runbook run settings
 
-![New Runbook run settings](runbook-run-settings.png "width=500") 
+![New runbook run settings](runbook-run-settings.png "width=500") 
 
-We've added some new Runbook run settings to enable you to control runbook execution better.
+We've added some new runbook run settings for better control of runbook execution.
 
-* Environment scoping - You can choose which environments a runbook can be run in.
-* Guided failure per runbook - You can customize your guided failure settings per runbook. This enables you to select not to use guided failure mode, use the default setting from the target environment, or to always use guided failure mode.
-* Runbook retention policies - You can also control your runbook retention to better manage their execution artifacts and clean-up.
+* Environment scoping: You can choose which environments a runbook can be run in.
+* Guided failure per runbook: You can customize your guided failure settings per runbook. This means you can choose whether to use guided failure mode or not, use the default setting from the target environment, or to always use guided failure mode.
+* Runbook retention policies: You can also control your runbook retention to better manage their execution artifacts and clean-up.
 
 [Learn more](https://octopus.com/docs/runbooks)
 
@@ -63,7 +63,7 @@ We've added some new Runbook run settings to enable you to control runbook execu
 
 ![Jenkins pipelines support](jenkins-pipelines.png "width=500")
 
-We have updated our Jenkins plugin to add support to integrate with Octopus from your `Jenkinsfile`. Previously, you needed to automate this yourself with the Octopus CLI, but this is now supported out-of-the-box. The syntax is much cleaner and more concise.
+We have updated our Jenkins plug-in to add support for integrating with Octopus from your `Jenkinsfile`. Previously, you needed to automate this yourself with the Octopus CLI, but this is now supported out-of-the-box. The syntax is much cleaner and more concise.
 
 [Learn more](/blog/2020-07/using-jenkins-pipelines/index.md)
 
@@ -71,7 +71,7 @@ We have updated our Jenkins plugin to add support to integrate with Octopus from
 
 ![Streamlined process editor](streamlined-process-editor.png "width=500")
 
-As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) feature, we have updated our process editor to makes it easier to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes to each step over and over, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
+As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) feature, we've updated our process editor to makes it easier to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes for each step over and over, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
 
 Try it yourself, and I think you'll find it's a far more natural editing experience.
 
@@ -81,11 +81,11 @@ Try it yourself, and I think you'll find it's a far more natural editing experie
 
 Last year, we shifted our Octopus Cloud service from Windows-based virtual machines to [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months, and we're very happy with the result. 
 
-We made this shift for ourselves, but we also envisioned our customers using them to self-host Octopus with our Docker images. Therefore, we're excited to announce early access to our Octopus Deploy docker images, which are based on the same code that powers our Octopus Cloud. These images allow Linux users to self-host Octopus on their operating system of choice.
+We made this shift for ourselves, but we also envisioned our customers self-hosting Octopus with our Docker images. Therefore, we're excited to announce early access to our Octopus Deploy docker images, which are based on the same code that powers our Octopus Cloud. These images allow Linux users to self-host Octopus on their operating system of choice.
 
 Checkout our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and I highly recommend following the **Learn More** link to find more detailed instructions and a thorough example.
 
-**NOTE**: Our Docker images are available as an early release; therefore, we do expect a few bugs and rough edges, and we do not support this version for production deployments. That said, we're keen for feedback so please kick the tires and contact our [support team](https://octopus.com/support) with any comments or issues.
+**NOTE**: Our Docker images are available as an early release; we expect a few bugs and rough edges, and we do not support this version for production deployments. That said, we're keen for feedback so please kick the tires and contact our [support team](https://octopus.com/support) with any comments or issues.
 
 [Learn more](/blog/2020-08/introducing-linux-docker-image/index.md)
 
@@ -93,8 +93,8 @@ Checkout our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octop
 
 This release includes two breaking changes.
 
-* We have deprecated our Azure VM extensions, and we recommend using PowerShell DSC as a replacement. Our documentation covers this decision and links to further articles on how to achieve this with PowerShell DSC. See the [related posts](blog/2020-08/octopus-release-2020-3/index.md#related-posts) below for instructions on how to accomplish this with Amazon Web Services as well.
-* We have updated our [Deploy to IIS step](https://octopus.com/docs/deployment-examples/iis-websites-and-application-pools) to remove support to deploy to Azure App Services. This coincidentally worked; however, it is no longer supported. We recommend using our [Azure support](https://octopus.com/docs/deployment-examples/azure-deployments) instead.
+* We have deprecated our Azure VM extensions, and we recommend using PowerShell DSC as a replacement. Our documentation covers this decision and links to further articles on how to achieve this with PowerShell DSC. See the [related posts](blog/2020-08/octopus-release-2020-3/index.md#related-posts) below for instructions to accomplish this with Amazon Web Services as well.
+* We have updated our [Deploy to IIS step](https://octopus.com/docs/deployment-examples/iis-websites-and-application-pools) to remove support to deploy to Azure App Services. This is no longer supported, and we recommend using our [Azure support](https://octopus.com/docs/deployment-examples/azure-deployments) instead.
 
 ## Upgrading
 
