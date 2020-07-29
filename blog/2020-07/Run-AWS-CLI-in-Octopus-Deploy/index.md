@@ -126,7 +126,7 @@ To save the release, click the green **SAVE** button.
 
 Choose which environment you want to deploy to. For example, Dev as shown in the screenshot below.
 
-![](images/20.png)
+![](images/21.png)
 
 Click the green **DEPLOY** button and the deployment will begin.
 
