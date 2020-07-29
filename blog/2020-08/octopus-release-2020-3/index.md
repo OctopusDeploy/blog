@@ -33,7 +33,7 @@ Keep reading to learn more about the updates.
 
 ## Runbooks++ {#runbooks}
 
-We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We’re thrilled with this usage, but we’ve also received some constructive feedback from our customers. In this release, we’re shipping several customer-driven improvements to make using runbooks even better.
+We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We're thrilled with the usage level and actively listening to your feedback. In this release, we're shipping several customer-driven improvements to make using runbooks even better.
 
 ### Runbook only projects
 
@@ -51,7 +51,7 @@ We have updated the Octopus CLI to add a `run-runbook` command to execute your r
 
 ![New runbook run settings](runbook-run-settings.png "width=500") 
 
-We’ve added some new runbook run settings for better control of runbook execution.
+We've added new Runbook run settings to enable even more advanced control of runbook execution:
 
 * Environment scoping: You can choose which environments a runbook can be run in.
 * Guided failure per runbook: You can customize your guided failure settings per runbook. This means you can choose whether to use guided failure mode or not, use the default setting from the target environment, or to always use guided failure mode.
