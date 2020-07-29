@@ -33,15 +33,13 @@ Keep reading to learn more about the updates.
 
 ## Runbooks++ {#runbooks}
 
-We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We've also received some great feedback, which is fantastic since then we've received some great feedback from our customers. 
-
-In this release, we're shipping several improvements to make using runbooks even better.
+We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We're thrilled with this usage but we've also received some constructive feedback from our customers. In this release, we're shipping several customer-driven improvements driven to make using runbooks even better.
 
 ### Runbook only projects
 
 ![Runbook only projects](runbook-only-projects.png "width=500")
 
-Octopus now supports a cleaner runbook only style project, and the UI reflects this. It's still possible to add deployments to a project at a later date, but this makes it easier to have more operations focused projects.
+Octopus now supports a cleaner runbook-only project style, and the UI reflects this. It's still possible to add deployments to a project at a later date, but this makes it easier to have more operations focused projects. This style is applied if you have a project with only runbooks in it.
 
 ### Octopus CLI support
 
@@ -65,7 +63,7 @@ We've added some new Runbook run settings to enable you to control runbook execu
 
 ![Jenkins pipelines support](jenkins-pipelines.png "width=500")
 
-We have updated our Jenkins plugin to add support to integrate with Octopus from your `Jenkinsfile`. Previously, you needed to automate this yourself with the Octopus CLI, but this is now supported out-of-the-box.
+We have updated our Jenkins plugin to add support to integrate with Octopus from your `Jenkinsfile`. Previously, you needed to automate this yourself with the Octopus CLI, but this is now supported out-of-the-box. The syntax is much cleaner and more concise.
 
 [Learn more](/blog/2020-07/using-jenkins-pipelines/index.md)
 
@@ -73,7 +71,7 @@ We have updated our Jenkins plugin to add support to integrate with Octopus from
 
 ![Streamlined process editor](streamlined-process-editor.png "width=500")
 
-As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) work, we have updated our process editor to makes it easier than ever to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes to each step over and over, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
+As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) feature, we have updated our process editor to makes it easier to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes to each step over and over, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
 
 Try it yourself, and I think you'll find it's a far more natural editing experience.
 
@@ -81,21 +79,21 @@ Try it yourself, and I think you'll find it's a far more natural editing experie
 
 ![Octopus Linux Docker image](octopus-linux-image.png "width=500")
 
-Last year, we shifted our Octopus Cloud service from Windows-based virtual machines to  [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months, and we're thrilled with the result. 
+Last year, we shifted our Octopus Cloud service from Windows-based virtual machines to [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months, and we're very happy with the result. 
 
-We made this shift for ourselves, but we also envisioned our customers using them to self-host Octopus with our Docker images. Therefore, we're happy to announce early access to our Octopus Deploy docker images, which are based on the same code that powers our Octopus Cloud. These images allow Linux users to host Octopus on their operating system of choice.
+We made this shift for ourselves, but we also envisioned our customers using them to self-host Octopus with our Docker images. Therefore, we're excited to announce early access to our Octopus Deploy docker images, which are based on the same code that powers our Octopus Cloud. These images allow Linux users to self-host Octopus on their operating system of choice.
 
-Checkout our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and I highly recommend the detailed article linked below with more detailed instructions. 
+Checkout our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and I highly recommend following the **Learn More** link to find more detailed instructions and a thorough example.
 
-**NOTE**: Our Docker images are available as an early release; therefore, we do expect a few bugs and rough edges, and we do not support this version for production deployments. That said, 
+**NOTE**: Our Docker images are available as an early release; therefore, we do expect a few bugs and rough edges, and we do not support this version for production deployments. That said, we're keen for feedback so please kick the tires and contact our [support team](https://octopus.com/support) with any comments or issues.
 
 [Learn more](/blog/2020-08/introducing-linux-docker-image/index.md)
 
 ## Breaking changes
 
-This release includes two broken changes.
+This release includes two breaking changes.
 
-* We have deprecated our Azure VM extensions, and we recommend using PowerShell DSC as a replacement. Our documentation covers this decision and links to further articles on how to achieve this with PowerShell DSC. See our [related posts]() for instructions on how to accomplish this with Amazon Web Services as well.
+* We have deprecated our Azure VM extensions, and we recommend using PowerShell DSC as a replacement. Our documentation covers this decision and links to further articles on how to achieve this with PowerShell DSC. See the [related posts](blog/2020-08/octopus-release-2020-3/index.md#related-posts) below for instructions on how to accomplish this with Amazon Web Services as well.
 * We have updated our [Deploy to IIS step](https://octopus.com/docs/deployment-examples/iis-websites-and-application-pools) to remove support to deploy to Azure App Services. This coincidentally worked; however, it is no longer supported. We recommend using our [Azure support](https://octopus.com/docs/deployment-examples/azure-deployments) instead.
 
 ## Upgrading
