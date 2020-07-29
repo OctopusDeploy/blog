@@ -17,23 +17,23 @@ Before deploying from Octopus Deploy to AWS, there needs to be an authentication
 
 To create an IAM user in the AWS UI, open up a web browser and go the [AWS console](https://aws.amazon.com/console/)
 
-![](1.png)
+![](images/1.png)
 
 Under **Find Services** in the search bar, type in **IAM**.
 
-![](2.png)
+![](images/2.png)
 
 To access the place to create a new user, click on the **Users** option under **Access management**.
 
-![](3.png)
+![](images/3.png)
 
 To create the new user that will have access to AWS from Octopus Deploy, click on the blue **Add user** button.
 
-![](4.png)
+![](images/4.png)
 
 Under Set user details, create an appropriate name for the user name. For example - OctopusDeployAccount as shown in the screenshot below.
 
-![](5.png)
+![](images/5.png)
 
 In the **Select AWS access type** section, you'll see two options:
 
@@ -44,25 +44,25 @@ You will want to select **Programmatic access** option because Octopus Deploy wi
 
 Once you choose **Programmatic access**, click the blue **Next: Permissions** button.
 
-![](6.png)
+![](images/6.png)
 
 Permissions for the user are going to depend on what AWS services you want Octopus Deploy to have permissions to. For example, let's say you want Octopus Deploy to just deploy EC2 instances. In that case, you would give the IAM user access to something like `AmazonEC2FullAccess`. 
 
 For the purposes of this blog post, since we want Octopus to have the ability to communicate with all services for AWS, we'll choose the `AdministratorAccess` policy under **Attach existing policies directly**. Once you choose the `AdministratorAccess` option, click the blue Next: Tags button as shown in the screenshot below.
 
-![](7.png)
+![](images/7.png)
 
 Tags aren't necessary for the purposes of this blog post, so you can click the blue **Next: Review** button.
 
-![](8.png)
+![](images/8.png)
 
 Finally, to create the new IAM user, click the blue **Create user** button.
 
-![](9.png)
+![](images/9.png)
 
 You will be shown a screen that contains the Access key ID and the Secret access key. Ensure to save the Secret access key in a secure location because you will not be able to access it again. However, you can create a new secret access key if you lose this one. The Access key id and Secret access key will be used for the Octopus Deploy authentication.
 
-![](10.png)
+![](images/10.png)
 
 ### IAM User on the CLI
 
@@ -70,25 +70,25 @@ As you saw in the previous section, creating an IAM user and adding them to the 
 
 The first piece of code will be to create the new IAM user:
 
-```jsx
+```
 aws iam create-user --user-name OctopusDeployAWSAccount
 ```
 
 The output should be similar to the screenshot below.
 
-![](11.png)
+![](images/11.png)
 
 Next, you'll need to create the Secret access key like we saw in the previous section. The Secret access key acts as a *password* of sorts.
 
 To create the Secret access key, run the code below:
 
-```jsx
+```
 aws iam create-access-key --user-name OctopusDeployAccount
 ```
 
 The output should look similar to the screenshot below.
 
-![](12.png)
+![](images/12.png)
 
 You are now ready to connect the AWS IAM account to Octopus Deploy.
 
@@ -98,31 +98,31 @@ In the previous section you learned about creating the ability to have Octopus D
 
 Open up a web browser and go to the Octopus Deploy server.
 
-![](13.png)
+![](images/13.png)
 
 Go to Infrastructure —> Accounts to set up the new AWS account.
 
-![](14.png)
+![](images/14.png)
 
 Under Accounts, click the green **ADD ACCOUNT** button and choose **AWS Account**.
 
-![](15.png)
+![](images/15.png)
 
 Under Details, you can add in some metadata about your account - the name and description as shown in the screenshot below.
 
-![](16.png)
+![](images/16.png)
 
 Next, under Credentials, you can add in the AWS access key and secret key, like in the screenshot below.
 
-![](17.png)
+![](images/17.png)
 
 Finally, you can set restrictions under the Restrictions section. For example, I've chosen to allow this account for my Dev environment only.
 
-![](18.png)
+![](images/18.png)
 
 Once complete, click the green **SAVE** button on the top of the page.
 
-![](19.png)
+![](images/19.png)
 
 Congrats! You have successfully set up an AWS account in Octopus Deploy.
 
