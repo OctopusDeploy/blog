@@ -93,7 +93,7 @@ The first task is the AWS Tools task. Ideally, you want to use the AWS tools bun
 
 The second task for AWS specific tasks is under Amazon Web Services, which is where you can select the account variable and specify a region. For example, in the screenshot below, the AWSAccount account variable and **us-east-1** region are specified.
 
-![](images/4.png)
+![](images/14.png)
 
 The final task-specific for AWS is going to be the Script section, where you can add in what AWS CLI command you want to use. You have two primary options:
 
