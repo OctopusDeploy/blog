@@ -126,15 +126,15 @@ To save the release, click the green **SAVE** button.
 
 Choose which environment you want to deploy to. For example, Dev as shown in the screenshot below.
 
-![](images/18.png)
+![](images/20.png)
 
 Click the green **DEPLOY** button and the deployment will begin.
 
-![](images/19.png)
+![](images/18.png)
 
 Once complete, you will see the task summary in which creating the S3 bucket was complete.
 
-![](images/20.png)
+![](images/19.png)
 
 Congrats! You have successfully used the AWS CLI to create an S3 bucket in AWS.
 
