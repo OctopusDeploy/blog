@@ -18,7 +18,6 @@ We’re delighted to ship Octopus 2020.3, our third release of the year. This re
 * [Jenkins Pipelines](blog/2020-08/octopus-release-2020-3/index.md#jenkins-pipelines) support enables you to integrate with Octopus from your `Jenkinsfile`.
 * [Streamlined process editor](blog/2020-08/octopus-release-2020-3/index.md#streamlined-process-editor) enables you to make edit your automated process and jump between steps without saving them in a single update.
 * [Octopus Linux Docker image (Early access)](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) is now available in early access which enables teams to run Octopus in a Linux Docker container. 
-* [Shields.io badge](blog/2020-08/octopus-release-2020-3/index.md#shieldsio) support enables you to share the status of your Octopus projects on your deployed websites.
 
 This release is the [third of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long term support. The following table shows our current releases with long term support.
 
