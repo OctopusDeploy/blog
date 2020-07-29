@@ -33,13 +33,13 @@ Keep reading to learn more about the updates.
 
 ## Runbooks++ {#runbooks}
 
-We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We're thrilled with this usage, but we've also received some constructive feedback from our customers. In this release, we're shipping several customer-driven improvements to make using runbooks even better.
+We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We’re thrilled with this usage, but we’ve also received some constructive feedback from our customers. In this release, we’re shipping several customer-driven improvements to make using runbooks even better.
 
 ### Runbook only projects
 
 ![Runbook only projects](runbook-only-projects.png "width=500")
 
-Octopus now supports a cleaner runbook-only project style, and the UI reflects this. It's still possible to add deployments to a project at a later date, but this makes it easier to have more operations focused projects. This style is applied if you have a project with only runbooks in it.
+Octopus now supports a cleaner runbook-only project style, and the UI reflects this. It’s still possible to add deployments to a project at a later date, but this makes it easier to have more operations focused projects. This style is applied if you have a project with only runbooks in it.
 
 ### Octopus CLI support
 
@@ -51,7 +51,7 @@ We have updated the Octopus CLI to add a `run-runbook` command to execute your r
 
 ![New runbook run settings](runbook-run-settings.png "width=500") 
 
-We've added some new runbook run settings for better control of runbook execution.
+We’ve added some new runbook run settings for better control of runbook execution.
 
 * Environment scoping: You can choose which environments a runbook can be run in.
 * Guided failure per runbook: You can customize your guided failure settings per runbook. This means you can choose whether to use guided failure mode or not, use the default setting from the target environment, or to always use guided failure mode.
@@ -71,21 +71,21 @@ We have updated our Jenkins plug-in to add support for integrating with Octopus 
 
 ![Streamlined process editor](streamlined-process-editor.png "width=500")
 
-As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) feature, we've updated our process editor to makes it easier to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes for each step over and over, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
+As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) feature, we’ve updated our process editor to makes it easier to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes for each step over and over, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save once. 
 
-Try it yourself, and I think you'll find it's a far more natural editing experience.
+Try it yourself, and I think you’ll find it’s a far more natural editing experience.
 
 ## Octopus Linux Docker image (Early access) {#octopus-linux-docker-image}
 
 ![Octopus Linux Docker image](octopus-linux-image.png "width=500")
 
-Last year, we shifted our Octopus Cloud service from Windows-based virtual machines to [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months, and we're very happy with the result. 
+Last year, we shifted our Octopus Cloud service from Windows-based virtual machines to [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months, and we’re very happy with the result. 
 
-We made this shift for ourselves, but we also envisioned our customers self-hosting Octopus with our Docker images. Therefore, we're excited to announce early access to our Octopus Deploy docker images, which are based on the same code that powers our Octopus Cloud. These images allow Linux users to self-host Octopus on their operating system of choice.
+We made this shift for ourselves, but we also envisioned our customers self-hosting Octopus with our Docker images. Therefore, we’re excited to announce early access to our Octopus Deploy docker images, which are based on the same code that powers our Octopus Cloud. These images allow Linux users to self-host Octopus on their operating system of choice.
 
 Checkout our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and I highly recommend following the **Learn More** link to find more detailed instructions and a thorough example.
 
-**NOTE**: Our Docker images are available as an early release; we expect a few bugs and rough edges, and we do not support this version for production deployments. That said, we're keen for feedback so please kick the tires and contact our [support team](https://octopus.com/support) with any comments or issues.
+**NOTE**: Our Docker images are available as an early release; we expect a few bugs and rough edges, and we do not support this version for production deployments. That said, we’re keen for feedback so please kick the tires and contact our [support team](https://octopus.com/support) with any comments or issues.
 
 [Learn more](/blog/2020-08/introducing-linux-docker-image/index.md)
 
@@ -104,7 +104,7 @@ As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/admi
 
 ## What’s coming in Octopus 2020.4?
 
-Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates. Config as Code is progressing well, we're adding better support for YAML, XML, and application.properties config file updates, and we're adding support for built-in Linux Workers on Octopus Cloud.
+Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates. Config as Code is progressing well, we’re adding better support for YAML, XML, and application.properties config file updates, and we’re adding support for built-in Linux Workers on Octopus Cloud.
 
 ## Conclusion
 
