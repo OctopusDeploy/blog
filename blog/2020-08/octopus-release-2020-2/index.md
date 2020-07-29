@@ -1,8 +1,8 @@
 ---
-title: "Octopus 2020.3: Runbooks++, Jenkins Pipelines and streamlined process editing"
-description: "Octopus 2020.3 includes TODO."
+title: "Octopus 2020.3: Runbooks++, Jenkins Pipelines and Octopus Linux Docker image"
+description: "Octopus 2020.3 includes our improve Runbooks support, Jenkins Pipelines, our streamlined process editor and early access to our Octopus Linux Docker image."
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: release-2020.3.png
 metaImage: release-2020.3.png
 published: 2020-08-03
