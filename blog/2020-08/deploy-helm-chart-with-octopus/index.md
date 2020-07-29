@@ -13,7 +13,7 @@ tags:
 
 Helm has emerged as the de facto Kubernetes package manager. It offers rich templates, a powerful CLI tool, centralized repositories for sharing charts, and the recently released Helm 3, addresses security concerns that overshadowed previous Helm versions.
 
-Octopus provides native support for deploying Helm charts, and in this blog post, we’ll look at how to manage Helm deployments in Octopus to a Kubernetes cluster created in a [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md).
+Octopus provides native support for deploying Helm charts, and in this blog post, we’ll look at how to manage Helm deployments in Octopus to a Kubernetes cluster created in a [previous blog post](/blog/2020-08/getting-started-with-kind-and-octopus/index.md).
 
 ## The sample chart
 

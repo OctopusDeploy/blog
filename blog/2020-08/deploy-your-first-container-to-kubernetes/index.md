@@ -12,7 +12,7 @@ tags:
  - Runbooks
 ---
 
-In the [previous post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md), we saw how to create a local test Kubernetes cluster with Kind and configure it in Octopus. In this post, we learn how to deploy and expose a single Docker container to the local Kubernetes cluster using the steps in Octopus.
+In the [previous post](/blog/2020-08/getting-started-with-kind-and-octopus/index.md), we saw how to create a local test Kubernetes cluster with Kind and configure it in Octopus. In this post, we learn how to deploy and expose a single Docker container to the local Kubernetes cluster using the steps in Octopus.
 
 ## Create and push the Docker image
 
@@ -181,7 +181,7 @@ With this, we have created a runbook that can be run by support staff as a first
 
 ## Conclusion
 
-In this post, we compiled and pushed a new Docker image to Docker Hub, added Docker Hub as a feed in Octopus, and then deployed the image as a Kubernetes deployment exposed by a service to the test cluster we created with Kind in a [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md).
+In this post, we compiled and pushed a new Docker image to Docker Hub, added Docker Hub as a feed in Octopus, and then deployed the image as a Kubernetes deployment exposed by a service to the test cluster we created with Kind in a [previous blog post](/blog/2020-08/getting-started-with-kind-and-octopus/index.md).
 
 It has been said that *Kubernetes makes simple things hard, and hard things possible*. It can seem like there are many moving parts to even a simple Kubernetes deployment, but if you have reached this point, you have implemented a solid foundation on which to build more complex and production ready infrastructure with Kubernetes. In fact, even with this simple example, you have created:
 
