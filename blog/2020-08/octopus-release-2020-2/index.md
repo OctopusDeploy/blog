@@ -34,19 +34,31 @@ Keep reading to learn more about the updates.
 
 ## Runbooks++ {#runbooks}
 
-![Runbooks++ screenshot](runbook-automation.png)
-
 We first shipped Runbook automation support in Octopus 2020.11 and it has been one of our fastest growing features ever! We've also received some great feedback which is fantasticsince then we've received some great feedback from our customers. 
 
 In this release, we're shipping a number of improvements to make using runbooks even better.
 
-**Octopus CLI support** - We have updated the Octopus CLI to add a `run-runbook` command so that you can now execute your runbooks from the command line and scripts on your platform of choice.
+### Runbook only projects
 
-**Environment scoping** - It's now possible to choose which environments a runbook can be run in by selecting the appropriate environments in your Runbook Settings. 
+![Runbook only projects](runbook-only-projects.png)
 
-**Guided failure per runbook** - asdf
+Octopus now supports a cleaner runbook only style project and the UI reflects this. It's still possible to add deployments to a project at a later date but this makes it easier to have more operations focused projects.
 
-**Runbook retention policies** - asdf
+### Octopus CLI support
+
+![Octopus CLI run-runbook command in a terminal](octopus-cli-run-runbook.png)
+
+We have updated the Octopus CLI to add a `run-runbook` command so that you can now execute your runbooks from the command line and scripts on your platform of choice.
+
+### Runbook run settings
+
+![](runbook-run-settings.png)
+
+We've added a number of new Runbook run settings to enable you to control runbook execution better.
+
+* Environment scoping - You can choose which environments a runbook can be run in.
+* Guided failure per runbook - You can customize your guided failure settings per runbook. This enables you to select not to use guided failure mode, use the default setting from the target environment or to always use guided failure mode.
+* Runbook retention policies - You can also control your runbook retention to better manage their execution artifacts and clean-up.
 
 [Learn more](https://octopus.com/docs/runbooks)
 
