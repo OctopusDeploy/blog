@@ -21,20 +21,20 @@ Out of the box, Octopus Deploy provides a robust auditing mechanism for runbooks
 Using these roles, you can give a developer the ability to execute a runbook in Development and Test, but not Staging or Production.
 
 ## Examples of self-service tasks
-Below is a list of some of the types of activities that could be implemented for self-service.  This is my no means an exhaustive list, it is meant to give you a starting point of what is possible.
+Below is a list of some of the types of activities that could be implemented for self-service.  This is my no means an exhaustive list, it is meant to give you a starting point for what is possible.
 
 ### Restarting web applications
-Developers typically have elevated or even administrator rights to their development environment.  Once their application has been deployed to a server, permissions are usually restricted to simulate what a production-like environment would be like.  IIS has the ability to grant [remote administrative permissions](https://docs.microsoft.com/en-us/iis/manage/remote-administration/remote-administration-for-iis-manager), however, this is to the whole IIS instance and not granular to a specific site/application.  Using a runbook, you could create project specific processes that only start/stop the applications that are related to the specific Octopus project.
+Developers typically have elevated or even administrator rights to their development environment.  Once their application has been deployed to a server, permissions are usually restricted to simulate a production-like environment.  IIS has the ability to grant [remote administrative permissions](https://docs.microsoft.com/en-us/iis/manage/remote-administration/remote-administration-for-iis-manager), however, this is to the whole IIS instance and not granular to a specific site/application.  Using a runbook, you could create project specific processes that only start/stop the applications that are related to the Octopus project.
 - [Example for IIS](https://octopus.com/docs/runbooks/runbook-examples/routine/iis-maintenance)
 - [Example for Tomcat](https://octopus.com/docs/runbooks/runbook-examples/routine/restarting-tomcat)
 
 ### Restarting services
-Bugs discovered during testing can lead to services becomming unresponsive.  The ability to restart a service usually requires a rather high level of permission.  Using a runbook, it is possible to give a developer the ability to restart a service on a server without having any additional permissions assigned to them.  This could help elminate the need to submit a support ticket and wait for an operations staff perform the task for them.
+Bugs discovered during testing can lead to services becomming unresponsive.  The ability to restart a service usually requires a rather high level of permission.  Using a runbook, it is possible to give a developer the ability to restart a service on a server without having any additional permissions assigned to them.  This could help elminate the need to submit a support ticket and wait for an operations staff perform the task.
 - [Example for Windows](https://octopus.com/docs/runbooks/runbook-examples/services/windows-services)
 - [Example for Ubuntu](https://octopus.com/docs/runbooks/runbook-examples/services/restart-linux-service)
 
 ### Backing up a database
-Testing database updates is usually a one way trip.  Unless you execute everything within the same transaction and roll it back, the changes are permenant and often difficult to revert.  The path of least resistance is to back up the database before starting so you have something to go back to.  Backup operations on database servers often require elevated database server permissions.  Database Administrators (DBA) usually established backup procedures, sometimes involving third-party tools to help manage them.  Using a runbook, the DBA could create or at least provide input into how a database backup should be done and give the developer the ability to backup the database whenever they need to.
+Testing database updates is usually a one way trip.  Unless you execute everything within the same transaction and roll it back, the changes are permenant and often difficult to revert.  The path of least resistance is to back up the database before starting so you have something to go back to.  Backup operations on database servers often require elevated database server permissions.  Database Administrators (DBA) usually have established backup procedures, sometimes involving third-party tools to help manage them.  Using a runbook, the DBA could create or at least provide input into how a database backup should be done and give the developer the ability to backup the database whenever they need to.
 - [Example for SQL Server](https://octopus.com/docs/runbooks/runbook-examples/databases/backup-mssql-database)
 - [Example for MySQL](TBD)
 - [Blog post using runbooks with Redgate SQL Clone](https://octopus.com/blog/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone)
@@ -60,4 +60,4 @@ Restarting a server is a good way to make sure the OS has come up cleanly.  Like
 - [Example of restarting a Linux or Windows server](https://octopus.com/docs/runbooks/runbook-examples/emergency/restart-server)
 
 ## Conclusion
-Implementing these types of self-service runbooks could reduce your time to market and give you an edge over the competition.
+Runbooks provide a mechanism for automating operational tasks.  Giving developers the ability to perform these tasks in a self-service manner could potentially reduce lead times and foster collaboration between development and operations staff.
