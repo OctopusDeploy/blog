@@ -8,6 +8,7 @@ metaImage: octopus-linux-docker-image.png
 bannerImage: octopus-linux-docker-image.png
 tags:
  - Product
+ - Docker
 ---
 
 ![Introducing the Octopus Server Linux Docker image](octopus-linux-docker-image.png)
