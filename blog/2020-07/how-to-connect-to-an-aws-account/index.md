@@ -1,3 +1,17 @@
+---
+title: Connect an AWS Account in Octopus Deploy
+description: This post provides a step by step guide on how to connect an AWS account in Octopus Deploy
+author: michael.levan@octopus.com
+visibility: public
+published: 2020-03-09
+metaImage: runbooks-best-practices.png
+bannerImage: runbooks-best-practices.png
+tags:
+ - Product
+ - AWS
+ - Accounts
+---
+
 When you're working with any cloud provider, you want an easy way to connect to the cloud. You don't want to have to worry about creating custom scripts, API calls, and duct-tape workarounds just to deploy code or build infrastructure with Continuous Delivery.
 
 Octopus Deploy has a clean and straight-forward way to connect to many cloud providers. In this blog post, you will learn how to connect Octopus Deploy to AWS
@@ -80,31 +94,21 @@ You are now ready to connect the AWS IAM account to Octopus Deploy.
 
 In the previous section you learned about creating the ability to have Octopus Deploy interact with AWS at a programmatic level. Now that you understand the purpose of the access and secret keys, it's time to set up the AWS account in Octopus Deploy.
 
-Open up a web browser and go to the Octopus Deploy server.
+1. Open up a web browser and go to the Octopus Deploy server.
 
 ![](images/13.png)
 
-Go to Infrastructure —> Accounts to set up the new AWS account.
+2. Go to Infrastructure —> Accounts to set up the new AWS account.
 
-![](images/14.png)
+3. Under Accounts, click the green **ADD ACCOUNT** button and choose **AWS Account**.
 
-Under Accounts, click the green **ADD ACCOUNT** button and choose **AWS Account**.
+4. Under Details, you can add in some metadata about your account - the name and description as shown in the screenshot below.
 
-![](images/15.png)
+5. Next, under Credentials, you can add in the AWS access key and secret key, like in the screenshot below.
 
-Under Details, you can add in some metadata about your account - the name and description as shown in the screenshot below.
+6. Finally, you can set restrictions under the Restrictions section. For example, I've chosen to allow this account for my Dev environment only.
 
-![](images/16.png)
-
-Next, under Credentials, you can add in the AWS access key and secret key, like in the screenshot below.
-
-![](images/17.png)
-
-Finally, you can set restrictions under the Restrictions section. For example, I've chosen to allow this account for my Dev environment only.
-
-![](images/18.png)
-
-Once complete, click the green **SAVE** button on the top of the page.
+7. Once complete, click the green **SAVE** button on the top of the page.
 
 ![](images/19.png)
 
