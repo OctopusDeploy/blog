@@ -44,8 +44,8 @@ Along with the ability to backup a database, having the ability to restore a dat
 In a previous blog post, we talked about [feature branching](https://octopus.com/blog/rethinking-feature-branch-deployments).  Within this post, we spoke about implementing dynamic environments whenever a new feature branch is created, then tearing it down when the branch is deleted.  This type of self-service allows the developers to provision production-like environments to test their code on, then remove them when they're no longer necessary.
 - [Example of deploying Azure ARM](https://octopus.com/docs/runbooks/runbook-examples/azure/resource-groups)
 - [Example of provisioning an Azure App Service](https://octopus.com/docs/runbooks/runbook-examples/azure/provision-app-service)
-- [Example with AWS CloudFormation](TBD)
-- [Example using Terraform](TBD)
+- [Example of provisioning an AWS RDS instance with CloudFormation](https://octopus.com/docs/runbooks/runbook-examples/aws/create-rds)
+- [Example using Terraform](https://octopus.com/docs/runbooks/runbook-examples/terraform/provision-aws-with-terraform)
 
 
 ## Conclusion
