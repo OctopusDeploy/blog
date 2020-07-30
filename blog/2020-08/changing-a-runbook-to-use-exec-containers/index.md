@@ -8,7 +8,7 @@ metaImage: execution-workers.png
 bannerImage: execution-workers.png
 tags:
   - DevOps
-  - Containers
+  - Docker
 ---
 
 ![Changing a runbook process to use execution containers](execution-workers.png)
