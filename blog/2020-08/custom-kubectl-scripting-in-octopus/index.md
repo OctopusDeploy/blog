@@ -2,12 +2,12 @@
 title: Custom kubectl scripting in Octopus
 description: Learn some of the tricks for scripting against kubectl in Octopus
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-08-12
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
 ---
 
