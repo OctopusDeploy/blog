@@ -2,12 +2,12 @@
 title: Deploy your first container to Kubernetes via Octopus
 description: Learn how to perform your first container deployment
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-08-10
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
  - Runbooks
 ---

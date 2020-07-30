@@ -2,12 +2,12 @@
 title: Getting started with Kind and Octopus
 description: Learn how to perform your first Kubernetes deployment with Kind and Octopus
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-08-10
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
 ---
 
