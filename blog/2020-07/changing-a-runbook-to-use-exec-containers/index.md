@@ -1,5 +1,5 @@
 ---
-title: Changing a runbook process to use execution containers
+title: Change a runbook process to use execution containers
 description: Learn how to change a runbook from running on a worker machine directly to using execution containers.
 author: lianne.crocker@octopus.com
 visibility: private
@@ -13,7 +13,7 @@ tags:
 
 ![Changing a runbook process to use execution containers](execution-workers.png)
 
-Following on from my previous post, [Execution containers for workers]](https://octopus.com/blog/extending-octopus-execution-container), I want to change a runbook from running the steps directly on a worker to using [execution containers](https://g.octopushq.com/ExecutionContainersForWorkers). Doing this will mean I can have the minimum installed on my worker machine, and instead maintain software versions in the Docker images I’ll use as execution containers.
+Following on from my previous post, [Execution containers for workers]](https://octopus.com/blog/extending-octopus-execution-container), I want to change a runbook from running the steps directly on a worker to using [execution containers](https://g.octopushq.com/ExecutionContainersForWorkers). Doing this will mean I can have the minimum installed on my worker machine, and instead maintain software versions in the Docker images I use as execution containers.
 
 I’m using the project [PetClinic Infrastructure](https://g.octopushq.com/PatternRollingSamplePetClinicIacRunbooks), which spins up Google Cloud (GCP) infrastructure for other projects to deploy to in the **Pattern - Rolling** space on our samples instance.
 
@@ -37,13 +37,13 @@ apt-get -y install docker-ce docker-ce-cli containerd.io
 
 ```
 
-The complete script is [here](https://github.com/OctopusSamples/IaC/blob/master/gcp/bootstrap/gcp-linux-listening-worker-install-and-register-docker.sh).
+The complete script is available on [GitHub](https://github.com/OctopusSamples/IaC/blob/master/gcp/bootstrap/gcp-linux-listening-worker-install-and-register-docker.sh).
 
 Then, for the runbook to use the new script, I updated the `Project.GCP.Targets.StartupScriptUrl` project variable to point to the raw version: https://raw.githubusercontent.com/OctopusSamples/IaC/master/gcp/bootstrap/gcp-linux-listening-tentacle-wildfly.sh.  This variable is used by the `Create Compute Engine Instance Worker` step. 
 
 ![Create worker](create-worker-step.png)
 
-## Create Docker Image
+## Create Docker image
 
 The bulk of the work in the project I’m working on uses [Google Cloud](https://cloud.google.com/) (GCP).  All of the scripts in this project are in PowerShell, for this first pass of updates, I’m going to stick with that.  This means I need an image with the [Google SDK](https://cloud.google.com/sdk/install) and [PowerShell](https://github.com/powershell/powershell).  Here’s my Dockerfile:
 
@@ -79,13 +79,13 @@ RUN apt-get clean
 
 I’ve built this and published it to my Docker repository on Docker hub: `octocrock/gcp-tools`.
 
-## Update the Runbook to use execution containers 
+## Update the runbook to use execution containers 
 
 The runbook I’m going to convert to use execution containers is **Destroy the GCP Kraken**. This runbook removes all the deployment target infrastructure.  
 
 ![Initial runbook state](initial-runbook-state.png)
 
-This runbook also de-registers and deletes the worker machine.  Part of this refactoring is to extract those steps to a separate runbook. I’ve created a new runbook, **Destroy Ubuntu worker**, to use for this; I can copy any steps across that are of use.
+This runbook also de-registers and deletes the worker machine.  Part of this refactoring is to extract those steps to a separate runbook. I’ve created a new runbook, **Destroy Ubuntu worker**, to use for this, and I can copy any steps across that are of use.
 
 ### The Google Cloud SDK
 
@@ -93,7 +93,7 @@ In the Dockerfile above, I installed the `google-cloud-sdk`.  In the runbook, th
 
 ### Authentication
 
-The runbook has a step that sets the authentication scope; this needs to change as we need to set the authentication scope on each step.  We can refactor this out to a reusable [script module](http://g.octopushq.com/ScriptModules).
+The runbook has a step that sets the authentication scope. This needs to change as we need to set the authentication scope on each step.  We can refactor this out to a reusable [script module](http://g.octopushq.com/ScriptModules).
 
 I’ll go to {{ Library, Script Modules, Add Script Module }, and add the following PowerShell code I copied from the **Activate GCloud Service Account** step:
 
@@ -132,7 +132,7 @@ Then I just need to go into my runbook, include the newly created script module 
 
 Now, after I’ve copied the step to my **Destroy Ubuntu worker** runbook, I can delete the step **Activate GCloud Service Account**.
 
-### Specifying the execution container
+### Specify the execution container
 
 The first step in the runbook that I’m going to change to use an execution container is **Get GCP NLB IP**. Before using a container, I have to set up an [external feed](http://g.octopushq.com/DockerRegistries) for [DockerHub](https://hub.docker.com/).  To do this, navigate to {{ Library, External Feeds, Add Feed }}.
 
@@ -143,7 +143,7 @@ In the runbook, most steps are running GCP scripts, but one uses the Azure CLI t
 - `Project.Default.Worker.DockerImage`: This has a value of `octopusdeploy/worker-tools:1.0-ubuntu.18.04`. The default image I’m going to use is the Octopus [worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools/) image. This will run the Azure CLI step.  The image doesn’t have the GCP CLI installed though.
 - `Project.GCP.Worker.DockerImage`: This has a value of `octocrock/gcp-tools:1.0.0` and points to the image created from the Dockerfile created above.
 
-The **Get GCP NLB IP** runbook step runs a script that uses GCloud.  I can set the step to use the Worker Pool that contains the machine I’ve configured with Docker installed. I’ll select **Linux Worker Pool**.  I’ll also set the container image to use by specifying the `Project.GCP.Worker.DockerImage` variable.
+The **Get GCP NLB IP** runbook step runs a script that uses GCloud.  I can set the step to use the Worker Pool that contains the machine I’ve configured with Docker installed. I select **Linux Worker Pool**.  I also set the container image to use by specifying the `Project.GCP.Worker.DockerImage` variable.
 
 ![set exec container](set-exec-container.png)
 
@@ -210,7 +210,7 @@ This Docker image can be used for the Slack message steps as well.
 
 ### Extracting the destruction of the worker machine to a new runbook
 
-As I mentioned above, there is a new runbook **Destroy Ubuntu worker**, which will tear down the worker machine.  In addition to the steps mentioned above, I’ve copied across the notification steps and moved the **De-register worker from Worker Pool** step from the **Destroy the Kraken** runbook.
+As I mentioned above, there is a new runbook **Destroy Ubuntu worker**, which will tear down the worker machine.  In addition to the previous steps, I’ve copied across the notification steps and moved the **De-register worker from Worker Pool** step from the **Destroy the Kraken** runbook.
 
 ![worker runbook](destroy-worker.png)
 
@@ -224,7 +224,7 @@ $instanceList=(& gcloud compute instances list --project=$gcpProjectName --filte
 
 By adding the clause of `AND -tags.items=$workerTag` the query has changed so that items with our worker machine tag will not be selected.
 
-Conversely, in the **Destroy Ubuntu worker** runbook, the line in the step to delete the worker compute instances selects just those resources with the `$workerTag`.
+Conversely, in the **Destroy Ubuntu worker** runbook, the line in the step to delete the worker compute instances selects just those resources with the `$workerTag`:
 
 ```powershell
 
