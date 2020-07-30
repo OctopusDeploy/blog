@@ -1,15 +1,16 @@
-
 ---
 title: Creating EC2 instance in AWS with CloudFormation
 description: Learn how to create Windows and Linux EC2 instances in AWS with example CloudFormation templates
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-08-04
+metaImage: aws-cloudformation-ec2.png
+bannerImage: aws-cloudformation-ec2.png
 tags:
  - DevOps
 ---
+
+![Creating EC2 instance in AWS with CloudFormation](aws-cloudformation-ec2.png)
 
 Cloud platforms have ushered in some extraordinarily useful workflows for developers and operations. The ability to spin up temporary infrastructure for testing removes the burden to maintain local virtual machines means you can scale testing up to include many machines of different capacities, safe in the knowledge that you won’t be flooding the corporate network with a deluge of traffic.
 

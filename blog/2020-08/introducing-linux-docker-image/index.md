@@ -2,13 +2,15 @@
 title: Introducing the Octopus Server Linux Docker image
 description: Octopus 2020.3 introduces the Octopus Server Linux Docker image
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-08-03
+metaImage: octopus-linux-docker-image.png
+bannerImage: octopus-linux-docker-image.png
 tags:
- - Octopus
+ - Product
 ---
+
+![Introducing the Octopus Server Linux Docker image](octopus-linux-docker-image.png)
 
 As part of our efforts to provide a scalable, cost-effective hosted solution for Octopus Cloud, we migrated all the V1 hosted instances to our new V2 infrastructure running Octopus in Linux containers inside Kubernetes, and we’re really please with the result.
 

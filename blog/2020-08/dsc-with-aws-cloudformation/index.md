@@ -2,13 +2,15 @@
 title: Installing Tentacles with DSC in AWS CloudFormation templates
 description: Learn how to configure a target work Worker Tentacle when creating a new EC2 instance with CloudFormation.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-08-04
+metaImage: dsc-with-aws-cloudformation.png
+bannerImage: dsc-with-aws-cloudformation.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Installing Tentacles with DSC in AWS CloudFormation templates](dsc-with-aws-cloudformation.png)
 
 In a previous blog post, we looked at some sample CloudFormation templates that created a new EC2 virtual machine in a VPC.
 
