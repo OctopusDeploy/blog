@@ -8,6 +8,7 @@ metaImage: dsc-with-aws-cloudformation.png
 bannerImage: dsc-with-aws-cloudformation.png
 tags:
  - DevOps
+ - AWS
 ---
 
 ![Installing Tentacles with DSC in AWS CloudFormation templates](dsc-with-aws-cloudformation.png)

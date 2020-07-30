@@ -8,6 +8,7 @@ metaImage: aws-cloudformation-ec2.png
 bannerImage: aws-cloudformation-ec2.png
 tags:
  - DevOps
+ - AWS
 ---
 
 ![Creating EC2 instance in AWS with CloudFormation](aws-cloudformation-ec2.png)
