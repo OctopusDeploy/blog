@@ -10,7 +10,7 @@ tags:
  - 
 ---
 
-Breaking down the barriers between developers and operations is the cornerstone of the DevOps philosophy.  Developers want to be able to deliver their code quickly and safely and need the ability to perform common administrative tasks which are often firmly in the realm of operations.  Security, auditing, and knowledge of how to properly perform the operation are the most common reasons which prevent a developer from having the ability to do these tasks.  In this post, I'll go over some examples of how you can use [runbooks](https://octopus.com/docs/runbooks) to empower developers to do tasks that would enable them to move faster without granting additional permissions and auditing the activity.
+Breaking down the barriers between developers and operations is the cornerstone of the DevOps philosophy.  Developers want to be able to deliver their code quickly and safely.  In order to do so they need the ability to perform common administrative tasks which are often firmly in the realm of operations.  Security, auditing, and knowledge of how to properly perform the operation are the most common reasons which prevent a developer from having the ability to do these tasks.  In this post, I'll go over some examples of how you can use [runbooks](https://octopus.com/docs/runbooks) to empower developers to do tasks that would enable them to move faster without granting additional permissions and auditing the activity.
 
 ## Auditing and security
 Out of the box, Octopus Deploy provides a robust auditing mechanism for runbooks, capturing who did what and when.  Along with auditing, there are runbook specific user roles that can be assigned and scoped to environments.  
