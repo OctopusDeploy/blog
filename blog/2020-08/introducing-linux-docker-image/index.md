@@ -119,7 +119,7 @@ If you have a keen eye, you may have noticed that we launched the Octopus contai
 
 As Octopus has grown, one of the challenges we’ve faced, is the number, combination, and versions of the supporting tooling that’s required to interact with cloud services and platforms like Kubernetes. To address this, deployments and the health checks for targets like Kubernetes can be executed inside a Docker container. Octopus supplies [images for Windows and Linux](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide range of common tools and end-users can create their own images too.
 
-To run these images from the container hosting Octopus, the Docker daemon is run in the background, which requires the `privileged` flag. This allows full access to the execution containers, meaning Linux users have out of the box support to deploy to cloud services and Kubernetes (although Service Fabric still requires a Windows Worker for deployments).
+To run these images from the container hosting Octopus, the Docker daemon is run in the background, which requires the `privileged` flag. This allows full access to the execution containers, meaning Linux users have out-of-the-box support to deploy to cloud services and Kubernetes (although Service Fabric still requires a Windows Worker for deployments).
 
 :::hint
 To disable Docker-in-Docker, set the `DISABLE_DIND` environment variable to `Y`.
@@ -127,13 +127,13 @@ To disable Docker-in-Docker, set the `DISABLE_DIND` environment variable to `Y`.
 
 This means end-users no longer need to manage separate Workers with tools like `kubectl`, and instead, they can leverage the provided Worker tools images:
 
-![](k8s-health-check.png "width=500")
+![Kubernetes health checks require kubectl, which is provided by the Worker tools image](k8s-health-check.png "width=500")
 
 *Kubernetes health checks require kubectl, which is provided by the Worker tools image.*
 
 ## Running Octopus in Kubernetes
 
-As the introduction to this post mentioned, the driving force behind running Octopus on Linux was to allow it to run in Kubernetes, and this option is available now to those who want to host Octopus in their own Kubernetes clusters.
+As the introduction of this post mentioned, the driving force behind running Octopus on Linux was to allow it to run in Kubernetes, and this option is available now to those who want to host Octopus in their own Kubernetes clusters.
 
 Since high availability (HA) and Kubernetes go hand in hand, the solution presented here supports scaling Octopus Server instances with multiple HA nodes.
 
