@@ -2,12 +2,12 @@
 title: Importing Kubernetes YAML in Octopus
 description: Learn how to import existing Kubernetes YAML into Octopus steps
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-08-11
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
 ---
 

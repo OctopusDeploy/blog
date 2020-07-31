@@ -2,12 +2,12 @@
 title: Custom kubectl scripting in Octopus
 description: Learn some of the tricks for scripting against kubectl in Octopus
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-08-12
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
 ---
 
@@ -145,7 +145,7 @@ However, because we are using a Kubernetes cluster hosted in Docker with Kind, w
 
 First, we need to ensure that the Kubernetes cluster control plane is running on the default Docker network called `bridge`. Since [version 0.8.0](https://github.com/kubernetes-sigs/kind/releases/tag/v0.8.0), Kind will create the Kubernetes cluster in a special network called `kind`, which isolates the cluster control plane from the container running our deployment. To resolve this, set the `KIND_EXPERIMENTAL_DOCKER_NETWORK` environment variable to `bridge` to force Kind to use the default network.
 
-You may need to delete the existing cluster with `kind cluster delete`. Then recreate it with the instructions from the [previous blog post](/blog/2020-06/getting-started-with-kind-and-octopus/index.md), remembering to extract the certificates and re-upload them in Octopus as they will have changed.
+You may need to delete the existing cluster with `kind cluster delete`. Then recreate it with the instructions from the [previous blog post](/blog/2020-08/getting-started-with-kind-and-octopus/index.md), remembering to extract the certificates and re-upload them in Octopus as they will have changed.
 
 We also need to point our Kubernetes target to a new IP address and port. The command `docker container ls` shows us the Kind container hosting the Kubernetes control plane:
 

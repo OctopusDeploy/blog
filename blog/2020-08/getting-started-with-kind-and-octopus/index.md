@@ -2,12 +2,12 @@
 title: Getting started with Kind and Octopus
 description: Learn how to perform your first Kubernetes deployment with Kind and Octopus
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-08-10
 metaImage:
 bannerImage:
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
 ---
 
@@ -144,7 +144,7 @@ We have now successfully created a local Kubernetes cluster with Kind, extracted
 
 From here, we can learn how to use Octopus to deploy Kubernetes resources. The blog posts below show you how to:
 
-* [Deploy your first container to Kubernetes via Octopus](/blog/2020-06/deploy-your-first-container-to-kubernetes/index.md).
-* [Import an existing Kubernetes YAML file into Octopus](/blog/2020-06/importing-kubernetes-yaml-in-octopus/index.md).
-* [Deploy a Helm chart via Octopus](/blog/2020-06/deploy-helm-chart-with-octopus/index.md).
-* [Perform custom Kubernetes scripting in Octopus](/blog/2020-06/custom-kubectl-scripting-in-octopus/index.md).
+* [Deploy your first container to Kubernetes via Octopus](/blog/2020-08/deploy-your-first-container-to-kubernetes/index.md).
+* [Import an existing Kubernetes YAML file into Octopus](/blog/2020-08/importing-kubernetes-yaml-in-octopus/index.md).
+* [Deploy a Helm chart via Octopus](/blog/2020-08/deploy-helm-chart-with-octopus/index.md).
+* [Perform custom Kubernetes scripting in Octopus](/blog/2020-08/custom-kubectl-scripting-in-octopus/index.md).
