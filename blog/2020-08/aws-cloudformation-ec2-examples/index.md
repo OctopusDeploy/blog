@@ -13,7 +13,7 @@ tags:
 
 ![Creating EC2 instance in AWS with CloudFormation](aws-cloudformation-ec2.png)
 
-Cloud platforms have ushered in some extraordinarily useful workflows for developers and operations. The ability to spin up temporary infrastructure for testing removes the burden to maintain local virtual machines means you can scale testing up to include many machines of different capacities, safe in the knowledge that you won’t be flooding the corporate network with a deluge of traffic.
+Cloud platforms have ushered in some extraordinarily useful workflows for developers and operations. The ability to spin up temporary infrastructure for testing removes the burden to maintain local virtual machines and means you can scale testing up to include many machines of different capacities, safe in the knowledge that you won’t be flooding the corporate network with a deluge of traffic.
 
 In the good old days, "classic" AWS created EC2 virtual machines in a single, shared network space. This made it very easy to create a virtual machine, as there was almost no network configuration required.
 
@@ -211,7 +211,7 @@ Any values that might be customized by the end user are defined as parameters. H
 * The [instance type](https://aws.amazon.com/ec2/instance-types/), which defines the hardware associated with our VM.
 * The IP address of a workstation that can connect to the instance via remote desktop. Having this IP means we can limit access from just one workstation, instead of the entire Internet.
 * The AMI used to create the VM. AMIs can be found in the [AWS Marketplace](https://aws.amazon.com/marketplace/search/?filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b).
-* The [key pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) used to secure the instance. We expect a key pair to already be created in the account.
+* The [key pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) used to secure the instance. We expect a key pair to already be created in the account:
 
 ```YAML
 Parameters:
@@ -309,9 +309,9 @@ The route table is then associated with the subnet. Any subnet whose traffic is 
       SubnetId: !Ref SubnetA
 ```
 
-Traffic in and out of the EC2 instance is controlled by a [security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html). The rules below allow access on port 10933, the Listening Tentacle port, to all the [static IPs](https://octopus.com/docs/octopus-cloud/static-ip) that could be used by my hosted Octopus instance.
+Traffic in and out of the EC2 instance is controlled by a [security group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html). The rules below allow access on port `10933`, the Listening Tentacle port, to all the [static IPs](https://octopus.com/docs/octopus-cloud/static-ip) that could be used by my hosted Octopus instance.
 
-Remote desktop access is allowed in from one specific workstation via port 3389. This means only one workstation can log in remotely.
+Remote desktop access is allowed in from one specific workstation via port `3389`. This means only one workstation can log in remotely.
 
 We also allow all outbound traffic:
 
@@ -639,7 +639,7 @@ Outputs:
 
 Most of this template is the same as the Windows one. There are some small differences worth calling out:
 
-* `InstanceSecurityGroup` now defines a rule allowing a workstation in on port 22 (SSH) instead of port 3389 (RDP).
+* `InstanceSecurityGroup` now defines a rule allowing a workstation in on port `22` (SSH) instead of port `3389` (RDP).
 * The `BlockDeviceMappings` in the EC2 instance changes the path that it maps to for a Linux host.
 * The `UserData` script is now a Bash script instead of PowerShell.
 
