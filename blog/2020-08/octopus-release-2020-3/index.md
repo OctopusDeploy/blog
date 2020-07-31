@@ -10,7 +10,7 @@ tags:
 - Product
 ---
 
-![Octopus 2020.3: TODO](release-2020.3.png)
+![Octopus 2020.3: Runbooks++, Jenkins Pipelines, and Octopus Linux Docker image](release-2020.3.png)
 
 We’re delighted to ship Octopus 2020.3, our third release of the year. This release includes some great updates to improve your day to day Octopus experience.
 
@@ -33,7 +33,7 @@ Keep reading to learn more about the updates.
 
 ## Runbooks {#runbooks}
 
-We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We're thrilled with the usage level and actively listening to your feedback. In this release, we're shipping several customer-driven improvements to make using runbooks even better.
+We first shipped Runbook Automation support in Octopus 2019.11, and it has been one of our fastest-growing features ever! We’re thrilled with the usage level and actively listening to your feedback. In this release, we’re shipping several customer-driven improvements to make using runbooks even better.
 
 ### Runbook only projects
 
@@ -51,7 +51,7 @@ We have updated the Octopus CLI to add a `run-runbook` command to execute your r
 
 ![New runbook run settings](runbook-run-settings.png "width=500") 
 
-We've added new runbook run settings to enable even more advanced control of runbook execution:
+We’ve added new runbook run settings to enable even more advanced control of runbook execution:
 
 * Environment scoping: You can choose which environments a runbook can be run in.
 * Guided failure per runbook: You can customize your guided failure settings per runbook. This means you can choose whether to use guided failure mode or not, use the default setting from the target environment, or to always use guided failure mode.
@@ -61,7 +61,7 @@ We've added new runbook run settings to enable even more advanced control of run
 
 ## Jenkins Pipelines
 
-![Jenkins pipelines support](jenkins-pipelines.png "width=500")
+![Jenkins Pipelines support](jenkins-pipelines.png "width=500")
 
 We have updated our Jenkins plug-in to add support for integrating with Octopus from your `Jenkinsfile`. Previously, you needed to automate this yourself with the Octopus CLI, but this is now supported out-of-the-box. The syntax is much cleaner and more concise.
 
@@ -71,7 +71,7 @@ We have updated our Jenkins plug-in to add support for integrating with Octopus 
 
 ![Streamlined process editor](streamlined-process-editor.png "width=500")
 
-As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) feature, we’ve updated our process editor to makes it easier to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes for each step over and over, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save just once. 
+As a part of our [Config as Code](https://octopus.com/roadmap#pipeline-as-code) feature, we’ve updated our process editor to makes it easier to automate your deployments and runbooks. You can now edit your entire process, including updating multiple steps and save all your changes with a single click. Previously, you needed to save your changes one at a time, which could be frustrating for larger updates. This is no longer required as Octopus now tracks all your changes and allows you to save just once. 
 
 Try it yourself, and I think you’ll find it’s a far more natural editing experience.
 
@@ -81,7 +81,7 @@ Try it yourself, and I think you’ll find it’s a far more natural editing exp
 
 Last year, we moved our Octopus Cloud service from Windows-based virtual machines to [Linux-based containers running in Kubernetes](https://octopus.com/blog/octopus-cloud-v2-why-kubernetes). We undertook this change to reduce our running costs and increase the performance and scalability of the service. This solution has been running for almost 12 months, and we’re very happy with the result. 
 
-We made this shift for ourselves, but we also envisioned our customers self-hosting Octopus with our Docker images. Therefore, we’re excited to announce early access to our Octopus Deploy docker images, which are based on the same code that powers Octopus Cloud. These images allow Linux users to self-host Octopus on their operating system of choice.
+We made this shift for ourselves, but we also envisioned our customers self-hosting Octopus with our Docker images. Therefore, we’re excited to announce early access to our Octopus Deploy Docker images, which are based on the same code that powers Octopus Cloud. These images allow Linux users to self-host Octopus on their operating system of choice.
 
 Checkout our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and I highly recommend following the **Learn More** link to find more detailed instructions and a thorough example.
 
@@ -110,7 +110,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 Octopus 2020.3 is now generally available, and it includes improvements to make it easier for teams to build automated deployment and runbook processes, Jenkins Pipeline support, and more. We hope you enjoy it! 
 
-Feel free to leave us a comment, and let us know what you think! Happy deployments!
+Feel free to leave  a comment, and let us know what you think! Happy deployments!
 
 ## Related posts
 
