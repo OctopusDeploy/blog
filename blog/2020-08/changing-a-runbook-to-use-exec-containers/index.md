@@ -2,7 +2,7 @@
 title: Change a runbook process to use execution containers
 description: Learn how to change a runbook from running on a worker machine directly to using execution containers.
 author: lianne.crocker@octopus.com
-visibility: private
+visibility: public
 published: 2020-08-05
 metaImage: execution-workers.png
 bannerImage: execution-workers.png
