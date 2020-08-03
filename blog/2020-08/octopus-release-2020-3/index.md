@@ -116,6 +116,6 @@ Feel free to leave  a comment, and let us know what you think! Happy deployments
 
 * [Using Jenkins Pipelines with Octopus](/blog/2020-07/using-jenkins-pipelines/index.md)
 * [Introducing the Octopus Server Linux Docker image](/blog/2020-08/introducing-linux-docker-image/index.md)
+* [Creating EC2 instance in AWS with CloudFormation](/blog/2020-08/aws-cloudformation-ec2-examples/index.md)
 * [Getting started with PowerShell Desired State Configuration (DSC)](/blog/2019-10/getting-started-with-powershell-dsc/index.md)
 * [Installing Tentacles with DSC in AWS CloudFormation templates](/blog/2020-08/dsc-with-aws-cloudformation/index.md)
-* [Creating EC2 instance in AWS with CloudFormation](/blog/2020-08/aws-cloudformation-ec2-examples/index.md)
