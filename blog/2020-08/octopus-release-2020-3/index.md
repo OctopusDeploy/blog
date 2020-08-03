@@ -21,13 +21,12 @@ We’re delighted to ship Octopus 2020.3, our third release of the year. This re
 
 This release is the [third of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
 
-| Release               | Long-term support           |
-| --------------------- | --------------------------- |
-| Octopus 2020.3        | Yes                         |
-| Octopus 2020.2        | Yes                         |
-| Octopus 2020.1        | Yes                         |
-| Octopus 2019.12       | Expired                     |
-| Octopus 2019.9        | Expired                     |
+| Release               | Long-term support  | LTS end date |
+| --------------------- | ------------------ | ------------ |
+| Octopus 2020.3        | Yes                | 2021-01-20   |
+| Octopus 2020.2        | Yes                | 2020-09-31   |
+| Octopus 2020.1        | Yes                | 2020-08-24   |
+| Octopus 2019.12       | Expired            | 2020-07-14   |
 
 Keep reading to learn more about the updates.
 
