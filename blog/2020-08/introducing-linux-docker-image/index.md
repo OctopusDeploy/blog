@@ -13,7 +13,7 @@ tags:
 
 ![Introducing the Octopus Server Linux Docker image](octopus-linux-docker-image.png)
 
-As part of our efforts to provide a scalable, cost-effective hosted solution for Octopus Cloud, we migrated all the V1 hosted instances to our new V2 infrastructure running Octopus in Linux containers inside Kubernetes, and we’re really please with the result.
+As part of our efforts to provide a scalable, cost-effective hosted solution for Octopus Cloud, we migrated all the V1 hosted instances to our new V2 infrastructure running Octopus in Linux containers inside Kubernetes, and we’re really pleased with the result.
 
 Today, I’d like to announce early access to the Octopus Server Linux Docker image. The image is based on the same code that powers our hosted solution. These images allow Linux users to host Octopus on their operating system of choice.
 
@@ -470,7 +470,7 @@ helm install octopus octopus/octopusdeploy --set octopus.licenseKeyBase64=<your 
 
 The default values of the chart are configured to create a single node Octopus cluster with `ReadWriteOnce` volumes. These values are well supported by default in Kubernetes clusters.
 
-To deploy a HA cluster, you need to define some additional values specific to the cluster you are deploying to. For example, when deploying to Azure ASK, the following values are used to create `ReadWriteMany` volumes shared between three Octopus HA nodes:
+To deploy a HA cluster, you need to define some additional values specific to the cluster you are deploying to. For example, when deploying to Azure AKS, the following values are used to create `ReadWriteMany` volumes shared between three Octopus HA nodes:
 
 ```
 helm install octopus octopus/octopusdeploy --set octopus.replicaCount=3 --set octopus.storageClassName=azurefile --set octopus.licenseKeyBase64=<your Octopus license key base64 encoded> --set octopus.acceptEula=Y --set mssql-linux.acceptEula.value=Y
