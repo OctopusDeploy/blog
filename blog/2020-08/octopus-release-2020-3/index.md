@@ -40,6 +40,8 @@ We first shipped Runbook Automation support in Octopus 2019.11, and it has been 
 
 Octopus now supports a cleaner runbook-only project style, and the UI reflects this. It’s still possible to add deployments to a project at a later date, but this makes it easier to have more operations focused projects. This style is applied if you have a project that only contains runbooks.
 
+To activate the runbook-only project style, create a new project, and add a runbook with at least one step. Then the project's deployments section will collapse.
+
 ### Octopus CLI support
 
 ![Octopus CLI run-runbook command in a terminal](octopus-cli-run-runbook.png "width=500")
