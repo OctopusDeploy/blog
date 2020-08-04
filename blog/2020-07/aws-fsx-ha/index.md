@@ -11,14 +11,14 @@ tags:
  - AWS
 ---
 
-When you configure [High Availability on AWS](https://octopus.com/docs/administration/high-availability/configuring-octopus-for-high-availability#shared-storage-in-amazon-aws) for Octopus, you need something like Microsoft DFS for shared storage (as the documentation states) or you can Amazon's FSx. In this post, I demonstrate how to FSx with Octopus Deploy installed on an EC2 instance.
+When you configure [High Availability on AWS](https://octopus.com/docs/administration/high-availability/configuring-octopus-for-high-availability#shared-storage-in-amazon-aws) for Octopus, you need something like Microsoft DFS for shared storage (as the documentation states) or you can use Amazon’s FSx. In this post, I demonstrate how to FSx with Octopus Deploy installed on an EC2 instance.
 
 ## Amazon FSx
 FSx is a network file system that comes in two flavors:
 - [FSx for Windows File Server](https://aws.amazon.com/fsx/windows/)
 - [FSx for Lustre](https://aws.amazon.com/fsx/lustre/)
 
-In this post we use FSx for Windows File Server.
+In this post, we use FSx for Windows File Server.
 
 ## Configuring FSx
 Like many of the other Amazon AWS offerings, FSx comes with a convenient, easy to use wizard for configuration.  To start, open your [AWS Management Console](https://aws.amazon.com/console) and click on FSx, located under the Storage category.
@@ -29,13 +29,13 @@ Unlike the other file storage options that AWS has, the FSx for Windows File Ser
 
 ### Step 1: Select file system type
 
-The first step in this process is to select the file system type that you're going to use.  As stated previously, your selections are:
+The first step in this process is to select the file system type that you’re going to use.  As stated previously, your selections are:
 - FSx for Windows File Server
 - FSx for Lustre
 This post uses FSx for Windows File Server.
 
 ### Step 2: Specify file system details
-Next, you'll define the file system details which consists of several sections
+Next, you’ll define the file system details which consists of several sections.
 
 #### File system details
 
@@ -90,14 +90,14 @@ Locate the file system you created and click on the name link:
 
 ![](aws-fsx-filesystem.png)
 
-Copy the DNS name of the of the file system share:
+Copy the DNS name of the file system share:
 
 ![](aws-fsx-dns.png)
 
 ### Connect to FSx
 Now that we have the DNS name of the FSx file system, we can connect to it using the DNS name.
 
-RDP to the Octopus Server. When you're logged in, open a command prompt and make sure the FSx file system can be reached by pinging the DNS name:
+RDP to the Octopus Server. When you’re logged in, open a command prompt and make sure the FSx file system can be reached by pinging the DNS name:
 
 ![](aws-ec2-ping.png)
 
@@ -131,7 +131,7 @@ Octopus.Server.exe path --telemetry \\fs-01d557023313c0f5a.octo.fsx\share\Teleme
 If your Octopus Server is not a brand new instance, you will need to copy the contents from the artifacts, tasklogs, and packages folders to the new locations for them to show up in Octopus.
 :::
 
-With your Octopus Server now using the share locations, you're in a good position to add new nodes to configure HA!
+With your Octopus Server now using the share locations, you’re in a good position to add new nodes to configure HA!
 
 ## Conclusion
-In this post I showed you how to create and configure AWS FSx and connect it with Octopus Deploy.  Happy Deployments!
+In this post, I showed you how to create and configure AWS FSx and connect it with Octopus Deploy.  Happy Deployments!
