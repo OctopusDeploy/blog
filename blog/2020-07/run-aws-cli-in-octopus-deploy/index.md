@@ -13,7 +13,7 @@ tags:
 
 Have you ever found yourself in a situation where you knew you wanted to automate the creation of an object or perhaps even list out objects and get a report, but you didn't want to jump around between programming languages? CLI's give you a way to have the full usability of an SDK and they typically always run the same on every system, which means you don't have to create a wrapper around some API.
 
-In this blog post, we take a look at how to use the AWS CLI in Octopus Deploy. The demonstration is around creating an S3 bucket with the **Run an AWS CLI Script** step template.
+In this blog post, we take a look at how to use the AWS CLI in Octopus Deploy. The demonstration focuses on creating an S3 bucket with the **Run an AWS CLI Script** step template in Octopus Deploy.
 
 ## Prerequisites
 
@@ -23,15 +23,13 @@ To follow along with this blog post, you should have the following:
 - An AWS account set up with an IAM user in Octopus Deploy.
 - Experience with the AWS CLI.
 - At least one environment set up in Octopus Deploy.
-- Octopus CLI installed. If you don't have it installed, you can download and install it from the [Octopus CLI download page](https://octopus.com/downloads/octopuscli).
+- The Octopus CLI installed. If you don't have it installed, you can download and install it from the [Octopus CLI download page](https://octopus.com/downloads/octopuscli).
 
-## Create a new Project
+## Create a new project
 
-Before running any AWS CLI commands or creating steps, 
+Before running any AWS CLI commands or creating steps, you need to configure a project so you have somewhere to create the AWS CLI process and steps. To do this, we'll use the power of the Octopus CLI.
 
-you need to configure a project so that you have somewhere to create the AWS CLI process and steps. To do this, we'll use the power of another CLI, the Octopus CLI.
-
-Open up a terminal and run the following command to create a new project with the appropriate switch values added:
+Open a terminal and run the following command to create a new project with the appropriate switch values added:
 
 ```
 octo create-project --name AWSCLIDeployments --server=octopus_server_url --apiKey=octopus_server_api_key --projectGroup project_group --lifecycle=lifecycle_name
@@ -43,54 +41,36 @@ Open a web browser and log into the Octopus Web Portal. You should now see the n
 
 ## Configure the variables
 
-Now that the project is created, you can start the configuration process of the project itself. The first configuration that you'll take a look at is variables. For the AWS CLI step template to work, it needs the AWS account to be a variable.
+Now that the project is created, you can the configure the project itself. First, we'll configure the variables. For the AWS CLI step template to work, it needs the AWS account to be a variable.
 
-1. In the Octopus Web Portal, go to **{{Projects,AWSCLIDeployments}}** to start configuring the variables.
-
-![](images/3.png)
-
+1. In the Octopus Web Portal, go to navigate to the project you just created, **{{Projects,AWSCLIDeployments}}**.
 2. Under the project pane, click on **Variables**.
 3. Within the project variables under **value**, choose the drop down and select **CHANGE TYPE**.
 4. Under the type options, choose **AWS Account**.
-5. Choose an existing AWS Account setup and give it a name. When complete, click the green **DONE** button**.
-6. Click the green **SAVE** button to save the variable into the project.
+5. Choose an existing AWS Account setup and give it a name. When complete, click the green **DONE** button.
+6. Click the green **SAVE** button to save the variable in the project.
 
 The variable for the AWS account has now been configured.
 
-## Add the AWS CLI Step
+## Add the AWS CLI step
 
-In the previous section, you set an AWS account as a variable. Now you're ready to start configuring the actual AWS CLI step itself to run AWS CLI commands. To do that, you're going to create a new process.
+Now that the AWS account variable has been configured, you're ready to start configuring the AWS CLI step itself to run AWS CLI commands. To do that, you're going to create a new process:
 
-1. Under the project pane, choose **Process**.
+1. On the project's overview page, choose **Process**.
 
 ![](images/9.png)
 
-2. On the Process page you can start adding new steps, specifically, the AWS CLI step. Click the **ADD STEP** button.
-3. Under **Choose Step Template**, choose AWS.
-
-Under AWS you'll see a few options under two categories:
-
-- Installed Step Templates
-- Community Contributed Step Templates
-
-4. The AWS CLI step is under the Installed Step Templates and is called **Run an AWS CLI Script**. After you find it, click the step.
-
-Under the **Run an AWS CLI Script** step, there are several options that are based on your needs. For example, which environment to run in and worker pools. Because of that, this blog post will outline the specific tasks in the step that are specified to the AWS CLI.
-
-5. The first task is the AWS Tools task. That has everything we need so we select it.
+2. On the process page you can start adding new steps, specifically, the AWS CLI step. Click the **ADD STEP** button.
+3. Under **Choose Step Template**, choose AWS, and under the installed steps templates, select the step template called **Run an AWS CLI Script**. After you find it, click the step.
+4. In the **AWS Tools** section, select **Use AWS tools bundled with Octopus** as this option has everything we need:
 
 ![](images/13.png)
 
-6. The second task for AWS specific tasks is under Amazon Web Services, which is where you can select the account variable and specify a region. For example, in the screenshot below, the `AWSAccount` account variable and **us-east-1** region are specified.
+5. In the **Amazon Web Services** section, selext the `AWSAccount` variable you created earlier and choose the **us-east-1** region:
 
 ![](images/14.png)
 
-The final task-specific for AWS is the Script section, where you can add in the AWS CLI command you want to use. You have two primary options:
-
-- Inline source code
-- Script in a package
-
-For the purposes of this blog post, the inline source code was used. Under the Inline **Source Code option**, type in the following code which will be used to create an S3 bucket. You can also change the name of the bucket for an environment you're in instead. Remember, the S3 bucket names must be unique.
+6. In the **Script section** of the step, select the inline source code option and type in the following code which will be used to create an S3 bucket. You can also change the name of the bucket for an environment you're in instead. Remember, the S3 bucket names must be unique.
 
 ```
 aws s3api create-bucket --bucket octopusdeploys392 --region us-east-1
