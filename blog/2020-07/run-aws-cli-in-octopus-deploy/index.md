@@ -37,7 +37,7 @@ octo create-project --name AWSCLIDeployments --server=octopus_server_url --apiKe
 
 Open a web browser and log into the Octopus Web Portal. You should now see the new project available.
 
-![AWS CLI Project](images/2.png)
+![AWS CLI Project](images/1.png)
 
 ## Configure the variables
 
@@ -58,17 +58,17 @@ Now that the AWS account variable has been configured, you're ready to start con
 
 1. On the project's overview page, choose **Process**.
 
-![](images/9.png)
+![](images/2.png)
 
 2. On the process page you can start adding new steps, specifically, the AWS CLI step. Click the **ADD STEP** button.
 3. Under **Choose Step Template**, choose AWS, and under the installed steps templates, select the step template called **Run an AWS CLI Script**. After you find it, click the step.
 4. In the **AWS Tools** section, select **Use AWS tools bundled with Octopus** as this option has everything we need:
 
-![](images/13.png)
+![](images/3.png)
 
 5. In the **Amazon Web Services** section, selext the `AWSAccount` variable you created earlier and choose the **us-east-1** region:
 
-![](images/14.png)
+![](images/4.png)
 
 6. In the **Script section** of the step, select the inline source code option and type in the following code which will be used to create an S3 bucket. You can also change the name of the bucket for an environment you're in instead. Remember, the S3 bucket names must be unique.
 
@@ -89,8 +89,6 @@ The step is now created to use the AWS CLI, the inline code has been added, and 
 3. Choose which environment you want to deploy to. For example, Dev.
 4. Click the green **DEPLOY** button and the deployment will begin.
 5. When complete, you will see the task summary in which creating the S3 bucket was complete.
-
-![](images/19.png)
 
 Congrats! You have successfully used the AWS CLI to create an S3 bucket in AWS.
 
