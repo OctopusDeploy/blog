@@ -1,6 +1,6 @@
 ---
 title: Run the AWS CLI in Octopus Deploy
-description: This post provides a step by step guide on how to run AWS CLI commands inside of Octopus Deploy.
+description: This post provides a step by step guide about running AWS CLI commands inside Octopus Deploy.
 author: michael.levan@octopus.com
 visibility: private
 published: 3020-03-09
@@ -11,7 +11,7 @@ tags:
  - DevOps
 ---
 
-Have you ever found yourself in a situation where you knew you wanted to automate the creation of an object or perhaps even list out objects and get a report, but you didn't want to jump around between programming languages? CLI's give you a way to have the full usability of an SDK and they typically always run the same on every system, which means you don't have to create a wrapper around some API.
+Have you ever found yourself in a situation where you knew you wanted to automate the creation of an object or perhaps even list out objects and get a report, but you didn’t want to jump around between programming languages? CLI’s give you a way to have the full usability of an SDK and they typically always run the same on every system, which means you don’t have to create a wrapper around some API.
 
 In this blog post, we take a look at how to use the AWS CLI in Octopus Deploy. The demonstration focuses on creating an S3 bucket with the **Run an AWS CLI Script** step template in Octopus Deploy.
 
@@ -23,11 +23,11 @@ To follow along with this blog post, you should have the following:
 - [An AWS account set up with an IAM user in Octopus Deploy](blog/2020-08/connect-an-aws-account-to-octopus).
 - Experience with the AWS CLI.
 - At least one environment set up in Octopus Deploy.
-- The Octopus CLI installed. If you don't have it installed, you can download and install it from the [Octopus CLI download page](https://octopus.com/downloads/octopuscli).
+- The Octopus CLI installed. If you don’t have it installed, you can download and install it from the [Octopus CLI download page](https://octopus.com/downloads/octopuscli).
 
 ## Create a new project
 
-Before running any AWS CLI commands or creating steps, you need to configure a project so you have somewhere to create the AWS CLI process and steps. To do this, we'll use the power of the Octopus CLI.
+Before running any AWS CLI commands or creating steps, you need to configure a project so you have somewhere to create the AWS CLI process and steps. To do this, we’ll use the power of the Octopus CLI.
 
 Open a terminal and run the following command to create a new project with the appropriate switch values added:
 
@@ -41,9 +41,9 @@ Open a web browser and log into the Octopus Web Portal. You should now see the n
 
 ## Configure the variables
 
-Now that the project is created, you can the configure the project itself. First, we'll configure the variables. For the AWS CLI step template to work, it needs the AWS account to be a variable.
+Now that the project is created, you can the configure the project itself. First, we’ll configure the variables. For the AWS CLI step template to work, it needs the AWS account to be a variable.
 
-1. In the Octopus Web Portal, go to navigate to the project you just created, **{{Projects,AWSCLIDeployments}}**.
+1. In the Octopus Web Portal, navigate to the project you just created, **{{Projects,AWSCLIDeployments}}**.
 2. Under the project pane, click on **Variables**.
 3. Within the project variables under **value**, choose the drop down and select **CHANGE TYPE**.
 4. Under the type options, choose **AWS Account**.
@@ -54,9 +54,9 @@ The variable for the AWS account has now been configured.
 
 ## Add the AWS CLI step
 
-Now that the AWS account variable has been configured, you're ready to start configuring the AWS CLI step itself to run AWS CLI commands. To do that, you're going to create a new process:
+Now that the AWS account variable has been configured, you’re ready to start configuring the AWS CLI step itself to run AWS CLI commands. To do that, you’re going to create a new process:
 
-1. On the project's overview page, choose **Process**.
+1. On the project’s overview page, choose **Process**.
 
 ![](images/2.png)
 
@@ -66,11 +66,11 @@ Now that the AWS account variable has been configured, you're ready to start con
 
 ![](images/3.png)
 
-5. In the **Amazon Web Services** section, selext the `AWSAccount` variable you created earlier and choose the **us-east-1** region:
+5. In the **Amazon Web Services** section, select the `AWSAccount` variable you created earlier and choose the **us-east-1** region:
 
 ![](images/4.png)
 
-6. In the **Script section** of the step, select the inline source code option and type in the following code which will be used to create an S3 bucket. You can also change the name of the bucket for an environment you're in instead. Remember, the S3 bucket names must be unique.
+6. In the **Script section** of the step, select the inline source code option and type in the following code which will be used to create an S3 bucket. You can also change the name of the bucket to the environment you’re in instead. Remember, the S3 bucket names must be unique.
 
 ```
 aws s3api create-bucket --bucket octopusdeploys392 --region us-east-1
@@ -82,7 +82,7 @@ You are now ready to run the pipeline.
 
 ## Run the Pipeline
 
-The step is now created to use the AWS CLI, the inline code has been added, and you're ready to start the deployment process of the pipeline. 
+The step is now created to use the AWS CLI, the inline code has been added, and you’re ready to start the deployment process of the pipeline. 
 
 1. Under the project, click the blue **CREATE RELEASE** button.
 2. To save the release, click the green **SAVE** button.
@@ -94,6 +94,8 @@ Congrats! You have successfully used the AWS CLI to create an S3 bucket in AWS.
 
 ## Conclusion
 
-Many CLI's give you the ability to perform simple actions around tasks that may be complex or cumbersome in the UI. With a CLI, you can still interact directly with a platform from a programmatic perspective to ensure you have the ability to automate tasks.
+Many CLIs give you the ability to perform simple actions around tasks that may be complex or cumbersome in the UI. With a CLI, you can still interact directly with a platform from a programmatic perspective to ensure you have the ability to automate tasks.
 
 In this blog post you learned not only how to get a project up and running in Octopus Deploy, but also how to configure the AWS CLI task to create an S3 bucket in AWS.
+
+Happy deployments!
