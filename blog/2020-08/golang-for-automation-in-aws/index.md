@@ -12,18 +12,18 @@ tags:
  - Engineering
 ---
 
-When we think of automation, one of the first things that come to mind is code. A few questions that may be asked are:
+When we think of automation, one of the first things that come to mind is code. A few questions we may be asked are:
 
 1. What programming language is best for automation?
 2. What’s a straight-forward language for a team to learn?
 
-Golang, by default, is a procedural based language. That means it’s primarily based on writing functions. When you think of automation code, for example, PowerShell or Python, chances are you’re writing some function for a script. Because of that, Golang is a natural fit.
+Golang, by default, is a procedural based language. That means it’s primarily based on writing functions. When you think of automation code, for example, PowerShell or Python, chances are you’re thinking of writing some function for a script. Because of that, Golang is a natural fit.
 
 In this blog post, you’re going to learn how to use Golang for AWS automation, much like you’d use PowerShell or Python.
 
 ## Prerequisites
 
-To follow along with this blog post, you should have the following:
+To follow along with this blog post, you need the following:
 
 1. A beginner-level knowledge of GoLang.
 2. A beginner-level knowledge of AWS.
@@ -76,7 +76,7 @@ func listInstances(instanceID string) {
 }
 ```
 
-2. In the function, the first piece of code that will be set up is the connection to AWS with an existing AWS configuration on localhost. The variable will be called `awsConnect` and have error handling. The `session` package will be used to call the `aws` package to point to the existing AWS configuration on localhost. Then, you will specify a specific region (feel free to change this if needed):
+2. In the function, the first piece of code that will be set up is the connection to AWS with an existing AWS configuration on localhost. The variable will be called `awsConnect` and includes error handling. The `session` package is used to call the `aws` package to point to the existing AWS configuration on localhost. Then, you specify a specific region (feel free to change this if needed):
 
 ```go
 awsConnect, err := session.NewSession(&aws.Config{
@@ -86,7 +86,7 @@ awsConnect, err := session.NewSession(&aws.Config{
 
 ### Error handling
 
-Next, add in error handling for the `err` that was configured in the variable. It will be a simple output to the screen if an error occurs:
+Next, add in the error handling for the `err` that was configured in the variable. It is a simple output to the screen if an error occurs:
 
 ```go
 if err != nil {
@@ -108,8 +108,8 @@ To output the EC2 instance metadata, the `ec2` package is used with the `Describ
 
 After the Instance ID is passed in, there are two print statements:
 
-1. Letting the user know the EC2 info is printing.
-2. Printing out the instance info using the `DescribeInstances` method:
+1. Let the user know the EC2 info is printing.
+2. Print out the instance info using the `DescribeInstances` method:
 
 ```go
 instanceInfo := &ec2.DescribeInstancesInput{
@@ -123,12 +123,12 @@ instanceInfo := &ec2.DescribeInstancesInput{
 
 ## Configure the Main function
 
-In the previous section, you configured the primary function that will do all the legwork. In this section, it’s time to configure the main function. The main function will do the following:
+In the previous section, you configured the primary function that does all the legwork. In this section, it’s time to configure the main function. The main function does the following:
 
 1. Run the `listInstances` function.
-2. Set up the `instanceID` variable that is being used as a parameter in the `listInstances` function.
+2. Set up the `instanceID` variable that is used as a parameter in the `listInstances` function.
 
-The `instanceID` variable in the main function uses the `os.Args` package so you can pass in values at runtime. This makes the code reusable and does not have any hard-coded EC2 instance IDs:
+The `instanceID` variable in the main function uses the `os.Args` package so you can pass in values at runtime. This makes the code reusable because it does not have any hard-coded EC2 instance IDs:
 
 ```go
 func main() {
@@ -181,7 +181,7 @@ func listInstances(instanceID string) {
 
 After the program is correctly written, it’s time to run it:
 
-1. Open a terminal and change directory (`cd`) to where the `main.go` program exists.
+1. Open a terminal and change into the directory (`cd`) where the `main.go` program exists.
 2. Run the following command to run the Golang program:
 
 ```go
