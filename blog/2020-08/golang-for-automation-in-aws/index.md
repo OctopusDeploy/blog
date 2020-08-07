@@ -15,11 +15,11 @@ tags:
 When we think of automation, one of the first things that come to mind is code. A few questions that may be asked are:
 
 1. What programming language is best for automation?
-2. What's a straight-forward language for a team to learn?
+2. What’s a straight-forward language for a team to learn?
 
-Golang, by default, is a procedural based language. That means it's primarily based on writing functions. When you think of automation code, for example, PowerShell or Python, chances are you're writing some function for a script. Because of that, Golang is a natural fit.
+Golang, by default, is a procedural based language. That means it’s primarily based on writing functions. When you think of automation code, for example, PowerShell or Python, chances are you’re writing some function for a script. Because of that, Golang is a natural fit.
 
-In this blog post, you're going to learn how to use Golang for AWS automation, much like you'd use PowerShell or Python.
+In this blog post, you’re going to learn how to use Golang for AWS automation, much like you’d use PowerShell or Python.
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ import (
 
 The three packages specific to AWS are:
 
-1. [github.com/aws/aws-sdk-go/aws](http://github.com/aws/aws-sdk-go/aws): Allows you to connect to the AWS package, specifically, to authenticate and specify a region that you want to work with in AWS.
+1. [github.com/aws/aws-sdk-go/aws](http://github.com/aws/aws-sdk-go/aws): Allows you to connect to the AWS package, specifically, to authenticate and specify a region that you want to work within AWS.
 2. [github.com/aws/aws-sdk-go/aws/session](http://github.com/aws/aws-sdk-go/aws/session): Allows you to create a new session to connect to AWS.
 3. [github.com/aws/aws-sdk-go/service/ec2](http://github.com/aws/aws-sdk-go/service/ec2): Allows you to work with specific EC2 service data, like EC2 status, load balancers, public IPs, etc.
 
@@ -64,7 +64,7 @@ With the packages above, you can connect to AWS and start using the Golang EC2 f
 
 ## Set up a function
 
-The previous section showed you how to set up the main package and the AWS-specific package that needs to be imported to interact with AWS at the programmatic level. Now that the AWS packages are imported, it's time to start writing the `ListInstances` function, which will list metadata from a specific instance ID that you can pass in at runtime.
+The previous section showed you how to set up the main package and the AWS-specific package that needs to be imported to interact with AWS at the programmatic level. Now that the AWS packages are imported, it’s time to start writing the `ListInstances` function, which will list metadata from a specific instance ID that you can pass in at runtime.
 
 ### The AWS connection
 
@@ -123,7 +123,7 @@ instanceInfo := &ec2.DescribeInstancesInput{
 
 ## Configure the Main function
 
-In the previous section, you configured the primary function that will do all the legwork. In this section, it's time to configure the main function. The main function will do the following:
+In the previous section, you configured the primary function that will do all the legwork. In this section, it’s time to configure the main function. The main function will do the following:
 
 1. Run the `listInstances` function.
 2. Set up the `instanceID` variable that is being used as a parameter in the `listInstances` function.
@@ -179,7 +179,7 @@ func listInstances(instanceID string) {
 }
 ```
 
-After the program is correctly written, it's time to run it:
+After the program is correctly written, it’s time to run it:
 
 1. Open a terminal and change directory (`cd`) to where the `main.go` program exists.
 2. Run the following command to run the Golang program:
@@ -196,6 +196,6 @@ Congrats! You have successfully used Golang to retrieve EC2 information from AWS
 
 ## Conclusion
 
-There are several ways to automate and many different programming languages to do so, but that doesn't mean all programming languages are the best for automation. When you're scripting for automation, you need a programming language that's easily readable, straight-forward, and built for writing small functions.
+There are several ways to automate, and many different programming languages to do so, but that doesn’t mean all programming languages are the best for automation. When you’re scripting for automation, you need a programming language that’s easily readable, straight-forward, and built for writing small functions.
 
 In this blog post, you learned how to write a small function to retrieve metadata on an EC2 instance and how you can automate the tasks in AWS.
