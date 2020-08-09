@@ -91,7 +91,7 @@ A little empathy can go a long way.
 
 I’ve been that “rock star” before. I didn’t understand the gatekeepers. I saw them as bottlenecks. I might have tried to be a little politer than the characters above, and I’ve never had any time for politics (sometimes to my detriment), but I admit that I probably came across as young, naïve and cocky. At some level, I probably did see those gatekeepers as dinosaurs. I probably did feel like I knew better. And they probably had a point.
 
-I see a lot of people with “DevOps” or “SRE” in their job title behaving in the same way. This comes across as patronising and is more likely to stoke divisions than unify silos. Especially when speaking to veteran engineers, who have spent their lives bravely battling to keep those fragile servers running without ever having had either a boss that understood the problems nor the resources they needed to fix things properly.
+I see a lot of people with “DevOps” or “SRE” in their job title behaving in the same way. This comes across as patronising and is more likely to stoke divisions than unify silos. This is especially true when speaking to veteran engineers, who have spent their lives bravely battling to keep those fragile servers running without ever having had either a boss that understood the problems nor the resources they needed to fix things properly.
 
 The truth is, I’d read different books, I’d been to different conferences, and I’d worked in companies with different values. The gatekeepers didn’t even have Twitter accounts…
 
