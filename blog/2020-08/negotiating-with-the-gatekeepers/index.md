@@ -39,7 +39,7 @@ The irritating “pitter-patter, wish-wash” of the weather and your wipers is 
 
 Pitter-patter. Wish-wash. 
 
-You’ve been up half the night because some “rock star” ran a script on production at 6pm last night without telling you – and they made a stupid mistake. You were sat in the traffic on the other side of the road when your phone notified you that something was seriously wrong, and you’ve been dealing with the fallout ever since.
+You’ve been up half the night because some “rock star” ran a script on production last night without telling you – and they made a stupid mistake. You were sat in the traffic on the other side of the road when your phone notified you that something was seriously wrong, and you’ve been dealing with the fallout ever since.
 
 This isn’t the first time, but your boss still expects you back in the office at 9am, sharp.
 
