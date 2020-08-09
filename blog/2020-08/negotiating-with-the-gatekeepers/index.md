@@ -97,7 +97,7 @@ The truth is, I’d read different books, I’d been to different conferences, a
 
 I’m a big fan of Simon Sinek’s “Start with Why”. If you haven’t watched his TED talk, [bookmark this 18 minute video](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) for your next coffee break.
 
-Sinek’s basic idea is that before suggesting specific plans, such as automating the production deployments or scaling back the CAB, you need to show people, sincerely, that you believe in the same things. 
+Sinek’s basic idea is that "people don't buy what you do, they buy why you do it". Before you start suggesting specific plans, such as automating the production deployments or scaling back the CAB, you need to show people, sincerely, that you believe in the same things.
 
 Sinek jokes about how Martin Luther King Jnr never gave the “I have a plan” speech. It wouldn’t have had anything like the same appeal. Folks might disagree on the best plan of action, but if they believe you share their dreams, they might be willing to give you half a chance.
 
