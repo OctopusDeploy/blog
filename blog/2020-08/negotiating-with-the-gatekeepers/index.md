@@ -1,9 +1,9 @@
 ---
 title: "Negotiating with the gatekeepers"
-description: Proper scrutiny is important, but CABs are an inefficient and ineffective way to scrutinize.
+description: Because building trust relationships between humans is rarely as simple as comparing thumbprints.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-07-15
+published: 2020-08-17
 metaImage: 
 bannerImage: 
 tags:
