@@ -67,7 +67,7 @@ Rain. Brakelights. Bad coffee.
 
 You glance at your watch. You realise that you might be late and feel a spasm of panic shoot up your spine. No-one is even working in those pointless looking holes in the tarmac!
 
-You pull yourself together. You are respected at work for your calm diligence and professionalism. You’ve got this.
+Pull yourself together. You are respected at work for your calm diligence and professionalism. You’ve got this.
 
 Breathe. Count to ten.
 
