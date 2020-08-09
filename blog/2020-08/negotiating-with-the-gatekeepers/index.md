@@ -79,7 +79,7 @@ One… Two…
 
 This retrospective could have gone better.
 
-“Be reasonable!” says the rock star. Patronisingly. “We never have these issues with app deployments because we do them through Octopus. If we could release on demand, I wouldn’t need to go behind your back.”
+“Be reasonable,” says the rock star. Patronisingly. “We never have these issues with app deployments because we do them through Octopus. If we could release on demand, I wouldn’t need to go behind your back.”
 
 Rock star was smiling as the words came out. They were directed at you, but designed for the VIP spectators. Conniving little…
 
