@@ -93,7 +93,7 @@ I’ve been that “rock star” before. I didn’t understand the gatekeepers. 
 
 I see a lot of people with “DevOps” or “SRE” in their job title behaving in the same way. This comes across as patronizing and is more likely to stoke divisions than unify silos. This is especially true when speaking to veteran engineers, who have spent their lives bravely battling to keep those fragile servers running without ever having had either a boss that understood the problems nor the resources they needed to fix things properly.
 
-The truth is, I’d read different books, I’d been to different conferences, and I’d worked in companies with different values. The gatekeepers didn’t even have Twitter accounts…
+The truth is, I’d been to different conferences, I’d read different books, and I’d worked in companies with different values. The gatekeepers didn’t even have Twitter accounts…
 
 I’m a big fan of Simon Sinek’s “Start with Why”. If you haven’t watched his TED talk, [bookmark this 18 minute video](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) for your next coffee break.
 
