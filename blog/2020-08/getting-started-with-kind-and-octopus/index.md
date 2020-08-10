@@ -4,12 +4,14 @@ description: Learn how to perform your first Kubernetes deployment with Kind and
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-08-10
-metaImage:
-bannerImage:
+metaImage: octopus-kind.png
+bannerImage: octopus-kind.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![Getting started with Kind and Octopus](octopus-kind.png)
 
 When you first get started with Kubernetes, the sheer number of tools and options available can present a significant hurdle before deploying even the simplest example application. Unlike most other platforms, Kubernetes does not provide a standard package that you can download and install onto your local development PC. The community has filled this void with many options like [Minikube](https://github.com/kubernetes/minikube), [MicroK8s](https://microk8s.io/), [k3s](https://k3s.io/), and [Docker Desktop with Kubernetes](https://www.docker.com/blog/docker-windows-desktop-now-kubernetes/).
 

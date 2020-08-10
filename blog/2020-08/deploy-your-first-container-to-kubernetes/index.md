@@ -4,13 +4,15 @@ description: Learn how to perform your first container deployment
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-08-10
-metaImage:
-bannerImage:
+metaImage: octopus-kubernetes.png
+bannerImage: octopus-kubernetes.png
 tags:
  - DevOps
  - Kubernetes
  - Runbooks
 ---
+
+![Deploy your first container to Kubernetes via Octopus](octopus-kubernetes.png)
 
 In the [previous post](/blog/2020-08/getting-started-with-kind-and-octopus/index.md), we saw how to create a local test Kubernetes cluster with Kind and configure it in Octopus. In this post, we learn how to deploy and expose a single Docker container to the local Kubernetes cluster using the steps in Octopus.
 
