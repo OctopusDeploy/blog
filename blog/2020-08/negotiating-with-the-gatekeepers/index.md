@@ -75,7 +75,7 @@ One… Two…
 
 9.05am.
 
-“OVER MY DEAD BODY!” you hear yourself scream. Your last thread of patience snapped and you’re no longer in control.
+“OVER MY DEAD BODY!” you hear yourself scream. Your last thread of patience just snapped and you’re no longer in control.
 
 This retrospective could have gone better.
 
