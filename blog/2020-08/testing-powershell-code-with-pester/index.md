@@ -1,3 +1,16 @@
+---
+title: Testing PowerShell Code with Pester
+description: Learn how to test PowerShell code for any scenario with the PowerShell testing framework, Pester.
+author: michael.levan@octopus.com
+visibility: private
+published: 2030-08-04
+metaImage: 
+bannerImage: 
+tags:
+ - DevOps
+ - PowerShell
+---
+
 When you're working with any code, whether it's automation/scripting code or application/software code, it should be treated the same way. After-all, functions are still functions and variables are still variables. One of the many things that don't come up as often when you're automating/scripting vs when you're building application code is testing.
 
 Unit testing and mock testing are extremely important in scripting and automation. Think about this scenario: *I tested the PowerShell function locally and it works! It did the exact thing I need it to do and now I'm going to store it in GitHub so it can be used later.*
