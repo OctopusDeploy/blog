@@ -53,7 +53,7 @@ You try to put that to the back of your mind. It’s not professional.
 
 Pitter-patter. Wish-wash. 
 
-Your boss is seething. You were offline for several hours and you’ve lost a small amount of data. A few dependent services were also affected so your boss is getting heat from various other managers who possess more political power than technical ability. 
+Your boss is seething. The system was offline for several hours and you’ve lost a small amount of data. A few dependent services were also affected so your boss is getting heat from various other managers who possess more political power than technical ability. 
 
 It’s time to face the music. “How did YOU let this happen?” “Why did YOU take so long to bring everything back online?” Folks are out for blood.
 
