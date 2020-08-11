@@ -190,7 +190,7 @@ This may get us the result we need, but the `h2` settings are still defined. We 
 
 ## Templates and script hooks
 
-Given that our environment specific configuration requires a mix of adding and removing content, we'll create a second template file to represent this new strucutre called `application-postgres.yml`. This file contains the structure that we expect, but defines 
+Given that our environment specific configuration requires a mix of adding and removing content, we'll create a second template file to represent this new structure called `postgres-application.yml`. This file contains the structure that we expect, but has placeholder values for anything sensitive:
 
 ```YAML
 server:
@@ -211,3 +211,14 @@ spring:
   flyway:
     locations: classpath:db/migration/{vendor}
 ```
+
+We can copy this template over the original `application.yml` file using a custom deployment script, which is enabled as a feature:
+
+![](custom-deployment-script.png "width=500")
+
+The Pre-deployment script of `cp WEB-INF\classes\postgres-application.yml WEB-INF\classes\application.yml` then copies the environment specific template over the default:
+
+![](pre-deployment-script.png "width=500")
+
+The variables are then injected into `application.yml` like normal, and the result is the environment specific configuration file with only the values we wanted.
+
