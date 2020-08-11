@@ -188,7 +188,7 @@ spring:
 
 This may get us the result we need, but the `h2` settings are still defined. We could of course replace the entire contents of the `spring` property to remove the unwanted properties, but for more radical transformations a better solution may be to have a second file that we use to replace the `application.yml` file with during deployment.
 
-## Templates and script hooks
+## Configuration files and script hooks
 
 Given that our environment specific configuration requires a mix of adding and removing content, we'll create a second template file to represent this new structure called `postgres-application.yml`. This file contains the structure that we expect, but has placeholder values for anything sensitive:
 
@@ -221,4 +221,50 @@ The Pre-deployment script of `cp WEB-INF\classes\postgres-application.yml WEB-IN
 ![](pre-deployment-script.png "width=500")
 
 The variables are then injected into `application.yml` like normal, and the result is the environment specific configuration file with only the values we wanted.
+
+## Templates
+
+To this point we have been pushing variables into configuration files. This allows us to have a configuration file used for local development, and then replace it inline with any environment specific variables.
+
+Having now seen how custom deployment scripts can be used to replace configuration files at deployment, we now have the option to create templates that make use of the Octopus variable substitution to pull variables into a file. For example, we may have an environment specific configuration file that looks like this:
+
+```YAML
+server:
+  port : 5555
+
+spring:
+  profiles:
+    active: Dev
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: randomquotes
+  datasource:
+    url: jdbc:postgresql://#{DatabaseServer}:5432/postgres
+    username: '#{DatabaseUsername | YamlSingleQuoteEscape}'
+    password: "#{DatabasePassword | YamlDoubleQuoteEscape}"
+  flyway:
+    locations: classpath:db/migration/{vendor}
+```
+
+This template expects the `DatabaseServer`, `DatabaseUsername` and `DatabasePassword` variables to be defined in Octopus. These values are embedded into the YAML using the new [filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-Providedfilters) of `YamlSingleQuoteEscape` and `YamlDoubleQuoteEscape` to ensure that they are properly escaped given their context.
+
+We then enable the `Substitute Variables in Templates` feature to allow the variables to be processed:
+
+![](substitute-vars-in-templates.png "width=500")
+
+Instead of matching the file in the **Structured Configuration Variables** section, we now match it in the **Structured Configuration Variables** section:
+
+![](substitute-vars.png "width=500")
+
+## Conclusion
+
+Creating environment agnostic application packages that support local development with no special tooling provides developers with a straight forward clone, build, run workflow, while also allowing a single compiled application to be deployed in many environments with any specific configuration needed. In this post we looked at a typical example pushing variables into XML and YAML files, and pulling variables into a YAML template. We also saw how the custom deployment scripts can be used to replace a local development configuration file with an environment specific one.
+
+With the ability in Octopus 2020.4 to push variables into XML, YAML and Properties files, it is easier than ever to create environment agnostic Java packages. Meanwhile the new [Octostache filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-Providedfilters) of `YamlSingleQuoteEscape`, `YamlDoubleQuoteEscape`, `PropertiesKeyEscape` and `PropertiesValueEscape` allow variables to be pulled into templates taking care of and format specific escaping that is required.
+
+We hope this new functionality will enhance you Java deployments by making deployments to multiple environments smooth and painless.
+
+Happy deployments!
 
