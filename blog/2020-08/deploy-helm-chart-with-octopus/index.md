@@ -4,12 +4,14 @@ description: Learn how to deploy a sample Helm chart to Kubernetes with Octopus
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-08-12
-metaImage:
-bannerImage:
+metaImage: octopus-helm.png
+bannerImage: octopus-helm.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![Deploy a Helm chart with Octopus](octopus-helm.png)
 
 Helm has emerged as the de facto Kubernetes package manager. It offers rich templates, a powerful CLI tool, centralized repositories for sharing charts, and the recently released Helm 3, addresses security concerns that overshadowed previous Helm versions.
 
