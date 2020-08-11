@@ -110,4 +110,4 @@ To modify this file, we add it to the **Structured Configuration Variables** fea
 
 ## Complex configuration changes
 
-So far we have injected variables into exiting values in our configuration files in a one-to-one fashion. This is nice for simple configuration changes, but there will be cases.
+So far we have injected variables into exiting values in our configuration files in a one-to-one fashion. This is nice for simple configuration changes, but there will be cases
