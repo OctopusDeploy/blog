@@ -4,12 +4,14 @@ description: Learn some of the tricks for scripting against kubectl in Octopus
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-08-12
-metaImage: 
-bannerImage: 
+metaImage: k8s-devops-runbook.png
+bannerImage: k8s-devops-runbook.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![Custom kubectl scripting in Octopus](k8s-devops-runbook.png)
 
 The previous blogs in this series have all focused on how to use the opinionated steps in Octopus to perform Kubernetes deployments. But there are times when you need to jump into a script. Maybe you want to take advantage of a custom scripting tool like [istioctl ](https://istio.io/docs/ops/diagnostic-tools/istioctl/) or use some advanced or uncommon properties exposed by Kubernetes resources. For these situations, Octopus allows you to write custom scripts against kubectl.
 
