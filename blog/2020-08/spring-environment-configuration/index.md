@@ -24,7 +24,7 @@ Typically though Java and Spring applications have defined configuration in YAML
 
 In this blog post we'll look at some common strategies for deploying generic Spring applications to specific environments.
 
-## Changing the active profile
+## Modifying the Spring application.yml file
 
 Let's start with a simple example where we change the name of the active profile to match the environment. The code shown below comes from the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application.
 
@@ -79,4 +79,36 @@ Finally we define a variable called `spring:profiles:active` with the value `#{O
 
 ![](variables.png "width=500")
 
-During deployment, Octopus will extract the application archive (usually a JAR or WAR file), inject the value of the variable called `spring:profiles:active` into the YAML file, repackage the application and upload the resulting archive to either an application server or save it on disk depending on the particular step that was used.
+During deployment, Octopus will extract the application archive (usually a JAR or WAR file), inject the value of the variable called `spring:profiles:active` into the YAML file, repackage the application and upload the resulting archive to either an application server or save it on disk depending on the particular step that was used. We can see the application now reports that it is running in the **Dev** environment:
+
+![](dev-environment.png "width=500")
+
+## Modifying the web.xml file
+
+While Spring may be flexible in it's ability to define configuration file, the traditional Java XML configuration files are quite limited in their ability to reference external data (like environment variables) or assume different file names. For example, the `web.xml` file, which is used in traditional Java web application to define application settings, can only be called `web.xml` and does not include any expression language to load external values or conditionally define settings.
+
+In the past this has made the `web.xml` file a particularly difficult way to define environment specific configurations. But, with the new ability to inject values into XML files, Octopus now makes it trivial to modify this file during deployment with environment specific values.
+
+Here is the `web.xml` file from our sample application:
+
+```xml
+<web-app
+        version="3.0"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <distributable />
+    <display-name>Random Quotes</display-name>
+
+</web-app>
+```
+
+To modify this file, we add it to the **Structured Configuration Variables** feature with the glob `**/web.xml`:
+
+![]()
+
+We then define a variable with the name `` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus deployment ID into the display name of the application:
+
+![]()
+
