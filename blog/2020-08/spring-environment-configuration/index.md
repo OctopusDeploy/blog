@@ -108,7 +108,7 @@ To modify this file, we add it to the **Structured Configuration Variables** fea
 
 ![]()
 
-We then define a variable with the name `` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus deployment ID into the display name of the application:
+We then define a variable with the name ` ` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus deployment ID into the display name of the application:
 
 ![]()
 
