@@ -106,8 +106,108 @@ Here is the `web.xml` file from our sample application:
 
 To modify this file, we add it to the **Structured Configuration Variables** feature with the glob `**/web.xml`, and then define a variable with the name `//*:display-name` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus deployment ID into the display name of the application. We can see this application name in the Tomcat manager:
 
+:::note
+The XPath of `//*:display-name` uses the version 2 style of namespace selection. This is by far more convenient than the version 1 selector which would usually look like `//*[local-name()='display-name']`, but both styles can be used.
+:::
+
 ![](tomcat.png "width=500")
 
 ## Complex configuration changes
 
-So far we have injected variables into exiting values in our configuration files in a one-to-one fashion. This is nice for simple configuration changes, but there will be cases
+So far we have injected variables into exiting values in our configuration files in a one-to-one fashion. This is nice for simple configuration changes, but there will be cases where environment specific configuration will result in some significant changes with entirely new fields and old settings removed. For example, here is an `application.yml` file that configures an external Postgres database instead of the in memory H2 database used when developing locally:
+
+```yaml
+server:
+  port : 5555
+
+spring:
+  profiles:
+    active: Dev
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: randomquotes
+  datasource:
+    url: jdbc:postgresql://databaseserver:5432/postgres
+    username: postgres
+    password: docker
+  flyway:
+    locations: classpath:db/migration/{vendor}
+```
+
+All H2 configuration has been removed, and the JPA configuration includes new nested properties. So how do we create this new configuration file?
+
+We can get close enough by replacing the body of the `jpa` and `datasource` properties with new YAML objects.
+
+Here is the value of the variable called `spring:datasource`:
+
+```YAML
+url: jdbc:postgresql://databaseserver:5432/postgres
+username: postgres
+password: docker
+```
+
+And here is the value of the variable called `spring:jpa`:
+
+```YAML
+database-platform: org.hibernate.dialect.PostgreSQLDialect
+properties:
+  hibernate:
+    default_schema: randomquotes
+```
+
+![](yaml-variables.png "width=500")
+
+Note that the variable values are standalone YAML documents. These documents are then used to replace the children of the `spring.datasource` and `spring.jpa` properties during deployment. The end result is an `application.yml` file that looks like this:
+
+```YAML
+# The configuration defines the settings used in a local development environment
+# to give developers the ability to clone, develop and build without any
+# additional configuration.
+server:
+  port: 5555
+spring:
+  profiles:
+    active: Dev
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: randomquotes
+  datasource:
+    url: jdbc:postgresql://databaseserver:5432/postgres
+    username: postgres
+    password: docker
+  flyway:
+    locations: classpath:db/migration/{vendor}
+```
+
+This may get us the result we need, but the `h2` settings are still defined. We could of course replace the entire contents of the `spring` property to remove the unwanted properties, but for more radical transformations a better solution may be to have a second file that we use to replace the `application.yml` file with during deployment.
+
+## Templates and script hooks
+
+Given that our environment specific configuration requires a mix of adding and removing content, we'll create a second template file to represent this new strucutre called `application-postgres.yml`. This file contains the structure that we expect, but defines 
+
+```YAML
+server:
+  port : 5555
+
+spring:
+  profiles:
+    active: Dev
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: randomquotes
+  datasource:
+    url: jdbc:postgresql://replaceme:5432/postgres
+    username: replaceme
+    password: replaceme
+  flyway:
+    locations: classpath:db/migration/{vendor}
+```
