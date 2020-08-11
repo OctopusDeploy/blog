@@ -4,12 +4,14 @@ description: Learn how to import existing Kubernetes YAML into Octopus steps
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-08-11
-metaImage: 
-bannerImage: 
+metaImage: kubernetes-yaml-octopus.png
+bannerImage: kubernetes-yaml-octopus.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![Importing Kubernetes YAML in Octopus](kubernetes-yaml-octopus.png)
 
 If you have been using Kubernetes for some time outside of Octopus, you likely have existing YAML resource definitions. Migrating this YAML into Octopus is easy thanks to a new feature introduced in Octopus 2020.2, giving you the best of both worlds with the ability to import, export, and edit raw YAML while having your Kubernetes resources managed in an opinionated way by Octopus.
 
