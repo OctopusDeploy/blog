@@ -85,7 +85,7 @@ During deployment, Octopus will extract the application archive (usually a JAR o
 
 ## Modifying the web.xml file
 
-While Spring may be flexible in it's ability to define configuration file, the traditional Java XML configuration files are quite limited in their ability to reference external data (like environment variables) or assume different file names. For example, the `web.xml` file, which is used in traditional Java web application to define application settings, can only be called `web.xml` and does not include any expression language to load external values or conditionally define settings.
+While Spring may be flexible in it's ability to define configuration files, the traditional Java XML configuration files are quite limited in their ability to reference external data (like environment variables) or assume different file names. For example, the `web.xml` file, which is used in traditional Java web application to define application settings, can only be called `web.xml` and does not include any expression language to load external values or conditionally define settings.
 
 In the past this has made the `web.xml` file a particularly difficult way to define environment specific configurations. But, with the new ability to inject values into XML files, Octopus now makes it trivial to modify this file during deployment with environment specific values.
 
@@ -104,11 +104,10 @@ Here is the `web.xml` file from our sample application:
 </web-app>
 ```
 
-To modify this file, we add it to the **Structured Configuration Variables** feature with the glob `**/web.xml`:
+To modify this file, we add it to the **Structured Configuration Variables** feature with the glob `**/web.xml`, and then define a variable with the name `//*:display-name` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus deployment ID into the display name of the application. We can see this application name in the Tomcat manager:
 
-![]()
+![](tomcat.png "width=500")
 
-We then define a variable with the name ` ` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus deployment ID into the display name of the application:
+## Complex configuration changes
 
-![]()
-
+So far we have injected variables into exiting values in our configuration files in a one-to-one fashion. This is nice for simple configuration changes, but there will be cases.
