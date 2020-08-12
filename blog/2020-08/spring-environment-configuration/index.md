@@ -85,7 +85,7 @@ During deployment, Octopus will extract the application archive (usually a JAR o
 
 ## Modifying the web.xml file
 
-While Spring may be flexible in it's ability to define configuration files, the traditional Java XML configuration files are quite limited in their ability to reference external data (like environment variables) or assume different file names. For example, the `web.xml` file, which is used in traditional Java web application to define application settings, can only be called `web.xml` and does not include any expression language to load external values or conditionally define settings.
+While Spring may be flexible in it's ability to define configuration files, the traditional Java XML configuration files are quite limited in their ability to reference external data (like environment variables) or assume different file names. For example, the `web.xml` file, which is used in traditional Java web applications to define application settings, can only be called `web.xml` and does not include any expression language to load external values or conditionally define settings.
 
 In the past this has made the `web.xml` file a particularly difficult way to define environment specific configurations. But, with the new ability to inject values into XML files, Octopus now makes it trivial to modify this file during deployment with environment specific values.
 
@@ -104,7 +104,7 @@ Here is the `web.xml` file from our sample application:
 </web-app>
 ```
 
-To modify this file, we add it to the **Structured Configuration Variables** feature with the glob `**/web.xml`, and then define a variable with the name `//*:display-name` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus deployment ID into the display name of the application. We can see this application name in the Tomcat manager:
+To modify this file, we add it to the **Structured Configuration Variables** feature with the glob `**/web.xml`, and then define a variable with the name `//*:display-name` and a value of `Random Quotes #{Octopus.Environment.Name}`, which will embed the Octopus environment into the display name of the application. We can see this application name in the Tomcat manager:
 
 :::note
 The XPath of `//*:display-name` uses the version 2 style of namespace selection. This is by far more convenient than the version 1 selector which would usually look like `//*[local-name()='display-name']`, but both styles can be used.
@@ -114,7 +114,7 @@ The XPath of `//*:display-name` uses the version 2 style of namespace selection.
 
 ## Complex configuration changes
 
-So far we have injected variables into exiting values in our configuration files in a one-to-one fashion. This is nice for simple configuration changes, but there will be cases where environment specific configuration will result in some significant changes with entirely new fields and old settings removed. For example, here is an `application.yml` file that configures an external Postgres database instead of the in memory H2 database used when developing locally:
+So far we have injected variables into existing values in our configuration files in a one-to-one fashion. This is nice for simple configuration changes, but there will be cases where environment specific configuration will result in some significant changes with entirely new fields and old settings removed. For example, here is an `application.yml` file that configures an external Postgres database instead of the in memory H2 database used when developing locally:
 
 ```yaml
 server:
@@ -216,7 +216,7 @@ We can copy this template over the original `application.yml` file using a custo
 
 ![](custom-deployment-script.png "width=500")
 
-The Pre-deployment script of `cp WEB-INF\classes\postgres-application.yml WEB-INF\classes\application.yml` then copies the environment specific template over the default:
+The **Pre-deployment script** of `cp WEB-INF\classes\postgres-application.yml WEB-INF\classes\application.yml` then copies the environment specific template over the default:
 
 ![](pre-deployment-script.png "width=500")
 
@@ -226,7 +226,7 @@ The variables are then injected into `application.yml` like normal, and the resu
 
 To this point we have been pushing variables into configuration files. This allows us to have a configuration file used for local development, and then replace it inline with any environment specific variables.
 
-Having now seen how custom deployment scripts can be used to replace configuration files at deployment, we now have the option to create templates that make use of the Octopus variable substitution to pull variables into a file. For example, we may have an environment specific configuration file that looks like this:
+Having now seen how custom deployment scripts can be used to replace configuration files at deployment, we now have the option to create templates that make use of Octopus variable substitution to pull variables into a file. For example, we may have an environment specific configuration file that looks like this:
 
 ```YAML
 server:
