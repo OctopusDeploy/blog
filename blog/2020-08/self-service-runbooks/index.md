@@ -18,7 +18,7 @@ Out of the box, Octopus Deploy provides a robust auditing mechanism for runbooks
 - Runbook consumer - Runbook consumers can view and execute runbooks.
 - Runbook producer - Runbook producers can edit and execute runbooks.
 
-Using these roles, you can give a developer the ability to execute a runbook in Development and Test, but not Staging or Production.
+Using these roles with scoping, you can give a developer the ability to execute a runbook in Development and Test, but not Staging or Production.
 
 ## Examples of self-service tasks
 Below is a list of some of the types of activities that could be implemented for self-service.  This is my no means an exhaustive list, it is meant to give you a starting point for what is possible.
@@ -36,7 +36,7 @@ Bugs discovered during testing can lead to services becomming unresponsive.  The
 ### Backing up a database
 Testing database updates is usually a one way trip.  Unless you execute everything within the same transaction and roll it back, the changes are permenant and often difficult to revert.  The path of least resistance is to back up the database before starting so you have something to go back to.  Backup operations on database servers often require elevated database server permissions.  Database Administrators (DBA) usually have established backup procedures, sometimes involving third-party tools to help manage them.  Using a runbook, the DBA could create or at least provide input into how a database backup should be done and give the developer the ability to backup the database whenever they need to.
 - [Example for SQL Server](https://octopus.com/docs/runbooks/runbook-examples/databases/backup-mssql-database)
-- [Example for MySQL](TBD)
+- [Example for MySQL](https://octopus.com/docs/runbooks/runbook-examples/databases/backup-mysql-database)
 - [Blog post using runbooks with Redgate SQL Clone](https://octopus.com/blog/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone)
 
 ### Restoring a database
