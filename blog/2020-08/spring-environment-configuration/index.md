@@ -22,13 +22,13 @@ Octopus has long supported this kind of configuration file modification for .NET
 
 Typically though Java and Spring applications have defined configuration in YAML, XML or Properties files. With Octopus 2020.4.0, support has been added to push variables into XML, YAML and Properties files, giving Java and Spring developers the ability to create environment specific deployments from generic application archives.
 
-In this blog post we'll look at some common strategies for deploying generic Spring applications to specific environments.
+In this blog post we'll look at some common strategies for deploying environment agnostic Spring applications to specific environments.
 
 ## Modifying the Spring application.yml file
 
 Let's start with a simple example where we change the name of the active profile to match the environment. The code shown below comes from the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application.
 
-In the example `application.yml` file below we have set the `spring.profiles.active` property to `local` to indicate that we are working in a local development environment:
+In the `application.yml` file below we have set the `spring.profiles.active` property to `local` to indicate that we are working in a local development environment:
 
 ```YAML
 # The configuration defines the settings used in a local development environment
@@ -254,7 +254,7 @@ We then enable the `Substitute Variables in Templates` feature to allow the vari
 
 ![](substitute-vars-in-templates.png "width=500")
 
-Instead of matching the file in the **Structured Configuration Variables** section, we now match it in the **Structured Configuration Variables** section:
+Instead of matching the file in the **Structured Configuration Variables** section, we now match it in the **Substitute Variables in Templates** section:
 
 ![](substitute-vars.png "width=500")
 
@@ -262,9 +262,9 @@ Instead of matching the file in the **Structured Configuration Variables** secti
 
 Creating environment agnostic application packages that support local development with no special tooling provides developers with a straight forward clone, build, run workflow, while also allowing a single compiled application to be deployed in many environments with any specific configuration needed. In this post we looked at a typical example pushing variables into XML and YAML files, and pulling variables into a YAML template. We also saw how the custom deployment scripts can be used to replace a local development configuration file with an environment specific one.
 
-With the ability in Octopus 2020.4 to push variables into XML, YAML and Properties files, it is easier than ever to create environment agnostic Java packages. Meanwhile the new [Octostache filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-Providedfilters) of `YamlSingleQuoteEscape`, `YamlDoubleQuoteEscape`, `PropertiesKeyEscape` and `PropertiesValueEscape` allow variables to be pulled into templates taking care of and format specific escaping that is required.
+With the ability in Octopus 2020.4 to push variables into XML, YAML and Properties files, it is easier than ever to create environment agnostic Java packages. Meanwhile the new [Octostache filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-Providedfilters) of `YamlSingleQuoteEscape`, `YamlDoubleQuoteEscape`, `PropertiesKeyEscape` and `PropertiesValueEscape` allow variables to be pulled into templates taking care of any format specific escaping that is required.
 
-We hope this new functionality will enhance you Java deployments by making deployments to multiple environments smooth and painless.
+We hope this new functionality will enhance your Java deployments by making deployments to multiple environments smooth and painless.
 
 Happy deployments!
 
