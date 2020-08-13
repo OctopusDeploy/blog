@@ -35,7 +35,13 @@ The community step called **eksctl - Create Cluster (bash)** can be added to a r
 
 To make it easy to use the **ekscli** tool, Octopus supports running a step inside a Docker container based on an image, and [provides images](https://hub.docker.com/r/octopusdeploy/worker-tools) with a wide selection of common cloud tools, including **ekscli**.
 
-<!-- TODO: screenshot when we have linux dynamic workers -->
+To use the Docker image from Octopus cloud, we first need to select the Ubuntu dynamic workers:
+
+![](ubuntu-dynamic-workers.png "width=500")
+
+We can then select the Linux container image to run our step inside:
+
+![](worker-tools.png "width=500")
 
 Populate the step with the details of the EKS cluster to create. For this example, the following **eksctl config** YAML creates a cluster with 2 t3a.small nodes:
 
