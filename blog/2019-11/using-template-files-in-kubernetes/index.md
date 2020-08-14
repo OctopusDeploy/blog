@@ -12,6 +12,8 @@ tags:
  - Docker
 ---
 
+![Using template files in Kubernetes](kubernetes-template-files.png)
+
 If you have ever deployed an application in Octopus before, you have probably made use of variable substitution in files as a way of taking a generic application package and injecting environment specific configuration during deployment. This process is convenient because you can produce a single application artifact, and each environment is then responsible for customizing it to match the local infrastructure.
 
 Replacing files in application packages like ZIPs or NUPKGs is straight forward because theses files are standard archives, and can be easily modified after they are downloaded from the artifact repository but before they are deployed to their final target.
