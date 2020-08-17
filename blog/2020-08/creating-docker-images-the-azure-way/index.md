@@ -20,7 +20,7 @@ Azure CLI has a specific command that allows you to take a Dockerfile, build a D
 To follow along with this blog post, you'll need:
 
 1. An Azure account. If you don't already have one, you can sign up for a 30-day free trial [here](https://azure.microsoft.com/en-us/free/).
-2. Azure CLI installed. If you don't already have Azure CLI, you can install it [here](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli?view=azure-cli-latest).
+2. Azure CLI installed and logged into via `az login`. If you don't already have Azure CLI, you can install it [here](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli?view=azure-cli-latest).
 3. Visual Studio Code (VS Code) installed. Although not required, VS Code is the text editor/IDE that will be used in this blog post. You can find it [here](https://code.visualstudio.com/download).
 
 ## Creating the Dockerfile
