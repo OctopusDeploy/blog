@@ -2,8 +2,8 @@
 title: Using a Nexus Docker registry with Octopus Deploy
 description: Learn how to connect a Nexus Docker registry as an external feed to Octopus Deploy
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2021-07-01
+visibility: public
+published: 2028-08-18
 metaImage: 
 bannerImage: 
 tags:
