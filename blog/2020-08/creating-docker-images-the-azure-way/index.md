@@ -3,7 +3,7 @@ title: Creating Docker Images the Azure Way
 description: Creating Dockerfiles is typically done in one way, but how about the Azure way? Learn how to use the Azure CLI to create Docker images
 author: michael.levan@octopus.com
 visibility: private
-published: 2030-08-12
+published: 2030-08-17
 metaImage:
 bannerImage:
 tags:
