@@ -3,7 +3,7 @@ title: "Negotiating with the gatekeepers"
 description: Building trust relationships between humans is rarely as simple as comparing thumbprints.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-08-17
+published: 2020-08-19
 metaImage: 
 bannerImage: 
 tags:
