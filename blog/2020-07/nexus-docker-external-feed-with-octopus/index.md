@@ -3,13 +3,15 @@ title: Using a Nexus Docker registry with Octopus Deploy
 description: Learn how to connect a Nexus Docker registry as an external feed to Octopus Deploy
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2028-08-18
-metaImage: 
-bannerImage: 
+published: 2020-08-18
+metaImage: octopus-docker.png
+bannerImage: octopus-docker.png
 tags:
  - DevOps
  - Docker
 ---
+
+![Using a Nexus Docker registry with Octopus Deploy](octopus-docker.png)
 
 Connecting [Docker Hub](https://hub.docker.com) to Octopus Deploy is pretty straight forward, however, not everyone wants to use a publicly available Docker registry.  In these cases, you can use repository software such as [JFrog Artifactory](https://jfrog.com/artifactory) or [Sonatype Nexus](https://www.sonatype.com/product-nexus-repository).  Both JFrog and Sonatype have Open-Source Software (OSS) versions, however, JFrog does not include the Docker registry repository type in their OSS flavor.  In this post, I demonstrate how to create a Docker registry in Nexus and connect it to Octopus Deploy.
 
