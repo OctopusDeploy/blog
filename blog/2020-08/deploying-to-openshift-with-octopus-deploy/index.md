@@ -11,7 +11,7 @@ tags:
  - Kubernetes
 ---
 
-![openshift-octopus.png](Deploying to Red Hat OpenShift with Octopus Deploy)
+![Deploying to Red Hat OpenShift with Octopus Deploy](openshift-octopus.png)
 
 In a [previous post](/blog/2020-07/deploy-to-rancher-with-octopus/index.md), I wrote about using Octopus Deploy to deploy to Kubernetes (K8s) clusters that are managed by Rancher.  In this post, I cover a similar topic, how to deploy to Red Hat OpenShift.
 
