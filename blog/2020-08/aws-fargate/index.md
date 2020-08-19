@@ -11,7 +11,7 @@ tags:
  - AWS
 ---
 
-[Amazon Web Services (AWS) Fargate](https://aws.amazon.com/fargate/) has become a popular technology for deploying containerized applications without having to worry about back-end infrastructure management.  A question my team encounters quite often is can you use Octopus Deploy with AWS Fargate?  YES!  Not only can you use Fargate, you can also house your images in the AWS Elastic Container Registry (ECR).  In this post, I'll demonstrate an entire CI/CD pipeline using TeamCity, ECR, Octopus Deploy, and Elastic Container Services (ECS) Fargate.
+[Amazon Web Services (AWS) Fargate](https://aws.amazon.com/fargate/) has become a popular technology for deploying containerized applications without having to worry about back-end infrastructure management.  A question my team encounters quite often is can you use Octopus Deploy with AWS Fargate?  YES!  Not only can you use Fargate, you can use the AWS Elastic Container Registry (ECR) as an External Feed to Octopus Deploy.  In this post, I'll demonstrate an entire CI/CD pipeline using TeamCity, ECR, Octopus Deploy, and Elastic Container Services (ECS) Fargate.
 
 ## Create AWS resources
 For this post, we'll need to create some resources within AWS to work with:
@@ -31,17 +31,17 @@ Both TeamCity and Octopus Deploy are going to need some credentials to work with
 Once the Access Key has been created, be sure to save the `Secret Key` as you will only be shown the value *once*.  The `Access Key` and `Secret Key` combination are what is used to authenticate with AWS.
 
 :::hint
-It is possible to use AWS IAM Roles for both TeamCity and Octopus Deploy for everything except the Octopus Deploy External Feed to ECR.  This post uses the Access Key/Secret Key method for simplicity.
+It is possible to use AWS IAM Roles for both TeamCity and Octopus Deploy for everything except the Octopus Deploy External Feed to ECR.  This post uses the Access Key/Secret Key method for simplicity and the ECR External Feed.
 :::
 
-### Retrieve AWS ECR repo information
+### Retrieve AWS ECR registry information
 Each container that you create will end up in it's own ECR repo and is region specific.  The URI for the repo consists of the following parts:
 ```text
 <RegistryId>.dkr.ecr.<RegionName>.amazonaws.com/<RepoName>
 ```
 The `RegistryId` and `RegionName` will be used for the connection that we'll create in TeamCity and the entire URI will be used when we tag our images.
 
-To get what these values are, navigate to Elastic Container Registry in the AWS console
+To get what these values are, navigate to `Elastic Container Registry` in the AWS console
 
 :::hint
 Typing in `ecr` in the **Find Services** box is a quick shortcut to this
@@ -56,17 +56,17 @@ If you have existing ECR repositiories, either click on the **Create repository*
 ![](aws-ecr-create-repo.png)
 
 ### Create or use an existing VPC
-Fargate does not require a Virtual Private Cloud (VPC) so it is not necessary to create a VPC for ECS, however using an existing VPC will work just fine.  This post assumes that you already have some knowledge in AWS and know how to create VPC if needed.
+Fargate does not require a Virtual Private Cloud (VPC) so it is not necessary to create a VPC, however using an existing VPC will work just fine.  This post assumes that you already have some knowledge in AWS and know how to create VPC if needed.
 
 ### Create or use existing Subnets
-Along with the VPC, Fargate does not require subnets to be defined. Just like the Fargate is perfectly capable of using existings items.  Again, this post assumes you already know how to create subnets if needed.
+Along with the VPC, Fargate does not require subnets to be defined. Just like the VPC, Fargate is perfectly capable of using existings items.  Again, this post assumes you already know how to create subnets if needed.
 
 ### Create or use existing Security Groups
 Security groups are the one item that you may consider creating a new one for.  The reason for this is that in order to access your containers, you may need to define ports that aren't necessary for other AWS resources.  
 
 The Octo Pet Shop application is a .NET Core application where the web front-end is using the built-in Kestrel web server, which uses the default port of 5000.  The Octo Pet Shop front-end is configured to automatically redirect HTTP traffic to HTTPS and is configured to use port 5001.  Those two ports aren't used by any other resources so I created a new Security Group for Octo Pet Shop.
 
-To create a new Security Group, navigate to the VPC service within AWS Console and click on Security Groups on the left-hand side.  If you're following along with this post, create two Inbound rules for ports 5000 and 5001
+To create a new Security Group, navigate to the `VPC` service within AWS Console and click on `Security Groups` on the left-hand side.  If you're following along with this post, create two Inbound rules for ports 5000 and 5001
 
 ![](aws-vpc-securitygroup.png)
 
@@ -75,7 +75,7 @@ The final resource we'll need is an ECS cluster to host our containers.  Navigat
 
 ![](aws-ecs-fargate.png)
 
-Click **Next step**.  On the next screen, give your cluster a name then click **Create**
+Click **Next step**.  On the next screen, give your cluster a name then click **Create**.  The process is pretty quick, so it should only take at most a minute to complete.
 
 With our AWS resources created, we can proceed to the build.
 
@@ -99,7 +99,7 @@ In order to push our container images to ECR, we first need to configure the Tea
 
 ![](teamcity-ecr-connection.png)
 
-### Enable to build feature
+### Enable Build Feature
 Once you have created a build definition for your Docker containers, you'll need to enable the Docker Support Build Feature.  To do so, navigate to your build definition and click on the **Build Features** tab.  Click the **Add build feature** button and choose `Docker Support`.  Choose the registry that you created for ECR and click **Save**
 
 ![](teamcity-build-feature.png)
@@ -111,7 +111,7 @@ The Octo Pet Shop application consists of four major components:
 - Shopping Cart service
 - DBUp database migrator
 
-The entire build consists of only 6 steps
+My build consists of only 6 steps
 1. Set version number
 1. Build Web
 1. Build Product service
@@ -200,7 +200,7 @@ Step 6/6: Push OctoPetShop-Web (Docker)
 15:59:24
   b701a024aaa5: Pushed
 ```
-With the images pushed to ECR, we can hop over to Octopus Deploy to create a deployment process.
+With the images pushed to ECR, we can hop over to Octopus Deploy to create the deployment process.
 
 ## Octopus Deploy
 In order to use the images that were pushed to ECR in our deployment process, we must first configure an External Feed within Octopus Deploy pointing to our ECR registry.
