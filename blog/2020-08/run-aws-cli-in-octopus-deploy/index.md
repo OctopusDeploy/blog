@@ -20,7 +20,7 @@ In this blog post, we take a look at how to use the AWS CLI in Octopus Deploy. T
 To follow along with this blog post, you should have the following:
 
 - An Octopus Deploy server, on-premises or Octopus Cloud.
-- [An AWS account set up with an IAM user in Octopus Deploy](blog/2020-08/connect-an-aws-account-to-octopus).
+- [An AWS account set up with an IAM user in Octopus Deploy](/blog/2020-08/connect-an-aws-account-to-octopus/index.md).
 - Experience with the AWS CLI.
 - At least one environment set up in Octopus Deploy.
 - The Octopus CLI installed. If you don’t have it installed, you can download and install it from the [Octopus CLI download page](https://octopus.com/downloads/octopuscli).
