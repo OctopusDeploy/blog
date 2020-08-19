@@ -1,3 +1,16 @@
+---
+title: Interacting With the Octopus Deploy API using PowerShell
+description: Learn how to leverage your existing skills with PowerShell to make API related calls to Octopus Deploy
+author: michael.levan@octopus.com
+visibility: private
+published: 2030-08-04
+metaImage:
+bannerImage:
+tags:
+ - PowerShell
+ - Programming
+---
+
 Any platform or solution that you want to use without having to click a million buttons through a UI needs an Application Program Interface (API) to interact with. An API is the engine under the hood. It's the way you can interact with an application, platform, and even Internet-of-Things (IoT) devices at the programmatic level. 
 
 In this blog post, you're going to learn how to interact with the Octopus Deploy API using one of the most popular programming languages in the Microsoft and Azure realm, PowerShell.
