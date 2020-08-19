@@ -1,18 +1,21 @@
 ---
 title: Self-service runbooks
-description: Learn to provide common adminstrative tasks as self-service runbooks
+description: Learn to provide common administrative tasks as self-service runbooks.
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2999-01-01
 metaImage:
 bannerImage:
 tags:
- - 
+ - Runbooks
 ---
 
-Breaking down the barriers between developers and operations is the cornerstone of the DevOps philosophy.  Developers want to be able to deliver their code quickly and safely.  In order to do so they need the ability to perform common administrative tasks which are often firmly in the realm of operations.  Security, auditing, and knowledge of how to properly perform the operation are the most common reasons which prevent a developer from having the ability to do these tasks.  In this post, I'll go over some examples of how you can use [runbooks](https://octopus.com/docs/runbooks) to empower developers to do tasks that would enable them to move faster without granting additional permissions and auditing the activity.
+Breaking down the barriers between developers and operations is the cornerstone of the DevOps philosophy.  Developers want to deliver their code quickly and safely, and in order to do so, they need to perform common administrative tasks which are often firmly in the realm of operations.  Security, auditing, and knowledge of how to properly perform the operation are the most common reasons which prevent a developer from having the ability to do these tasks.  
+
+In this post, I cover some example [runbooks](https://octopus.com/docs/runbooks) that empower developers to do tasks that let them move faster without granting additional permissions and auditing the activity.
 
 ## Auditing and security
+
 Out of the box, Octopus Deploy provides a robust auditing mechanism for runbooks, capturing who did what and when.  Along with auditing, there are runbook specific user roles that can be assigned and scoped to environments.  
 
 - Runbook consumer - Runbook consumers can view and execute runbooks.
@@ -29,17 +32,18 @@ Developers typically have elevated or even administrator rights to their develop
 - [Example for Tomcat](https://octopus.com/docs/runbooks/runbook-examples/routine/restarting-tomcat)
 
 ### Restarting services
-Bugs discovered during testing can lead to services becomming unresponsive.  The ability to restart a service usually requires a rather high level of permission.  Using a runbook, it is possible to give a developer the ability to restart a service on a server without having any additional permissions assigned to them.  This could help elminate the need to submit a support ticket and wait for an operations staff perform the task.
+Bugs discovered during testing can lead to services becoming unresponsive.  The ability to restart a service usually requires a rather high level of permission.  Using a runbook, it is possible to give a developer the ability to restart a service on a server without having any additional permissions assigned to them.  This could help eliminate the need to submit a support ticket and wait for an operations staff perform the task.
 - [Example for Windows](https://octopus.com/docs/runbooks/runbook-examples/services/windows-services)
 - [Example for Ubuntu](https://octopus.com/docs/runbooks/runbook-examples/services/restart-linux-service)
 
 ### Backing up a database
-Testing database updates is usually a one way trip.  Unless you execute everything within the same transaction and roll it back, the changes are permenant and often difficult to revert.  The path of least resistance is to back up the database before starting so you have something to go back to.  Backup operations on database servers often require elevated database server permissions.  Database Administrators (DBA) usually have established backup procedures, sometimes involving third-party tools to help manage them.  Using a runbook, the DBA could create or at least provide input into how a database backup should be done and give the developer the ability to backup the database whenever they need to.
+Testing database updates is usually a one way trip.  Unless you execute everything within the same transaction and roll it back, the changes are permanent and often difficult to revert.  The path of least resistance is to back up the database before starting so you have something to go back to.  Backup operations on database servers often require elevated database server permissions.  Database Administrators (DBA) usually have established backup procedures, sometimes involving third-party tools to help manage them.  Using a runbook, the DBA could create or at least provide input into how a database backup should be done and give the developer the ability to backup the database whenever they need to.
 - [Example for SQL Server](https://octopus.com/docs/runbooks/runbook-examples/databases/backup-mssql-database)
 - [Example for MySQL](https://octopus.com/docs/runbooks/runbook-examples/databases/backup-mysql-database)
 - [Blog post using runbooks with Redgate SQL Clone](https://octopus.com/blog/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone)
 
 ### Restoring a database
+
 Along with the ability to backup a database, having the ability to restore a database without needing to wait for a DBA or filling out a support ticket could drastically reduce development lead times.  Using a runbook, you could not only restore a backup taken previously, you could also provide a method for restoring a database from a different environment, such as restoring a production copy to test.
 - [Example for SQL Server](https://octopus.com/docs/runbooks/runbook-examples/databases/restore-mssql-database)
 - [Example for SQL Server, restoring to different environment](https://octopus.com/docs/runbooks/runbook-examples/databases/restore-mssql-database-to-environment)
