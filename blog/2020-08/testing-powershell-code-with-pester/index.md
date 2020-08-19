@@ -3,7 +3,7 @@ title: Testing PowerShell code with Pester
 description: Learn how to test PowerShell code for any scenario with the PowerShell testing framework Pester.
 author: michael.levan@octopus.com
 visibility: private
-published: 2030-08-04
+published: 2020-08-26
 metaImage: 
 bannerImage: 
 tags:
@@ -13,9 +13,11 @@ tags:
 
 When you’re working with any code, whether it’s automation or software code, it should be treated the same way. After-all, functions are still functions and variables are still variables. One of the many things that doesn’t come up as often when you’re automating vs when you’re building application code is testing.
 
-Unit testing and mock testing are extremely important in scripting and automation. Think about this scenario: *I tested the PowerShell function locally and it works! It did the exact thing I need it to do, and now I’m going to store it in GitHub so it can be used later.*
+Unit testing and mock testing are extremely important in scripting and automation. 
 
-It’s good that it was tested locally, but the test you ran is now in the past. A few things can happen:
+Think about this scenario: *I tested the PowerShell function locally and it works! It did the exact thing I need it to do, and now I’m going to store it in GitHub so it can be used later.*
+
+It’s good that it was tested locally, but the test you ran is now in the past, and a few things can happen:
 
 - New versions of the code can be created.
 - Bugs can be introduced by changing the code.
@@ -24,7 +26,7 @@ It’s good that it was tested locally, but the test you ran is now in the past.
 - The PowerShell module that you are using gets updated or changed.
 - The API call the PowerShell module is making gets changed.
 
-With the bullet points above, the test you ran locally is no longer valid. 
+With the above points, the test you ran locally is no longer valid. 
 
 In this blog post, you’re going to learn how to use the most popular testing framework for PowerShell called [Pester](https://github.com/pester/Pester).
 
@@ -64,7 +66,7 @@ The PowerShell function below is doing the following:
 - Creates a new function called `Create-Dir`
 - Sets up a `cmdletbinding()[]` to turn the function into an advanced function. The advanced function gives you the ability to use Verbose, ErrorAction, etc.
 - The param block sets up two parameters, the path where you want to create the new directory and the new directory name.
-- The cmdlet used to create the path is `New-Item`
+- The cmdlet used to create the path is `New-Item`.
 
 If you run the code below and specify a directory name and path, you will see that a new directory has been created:
 
@@ -79,8 +81,6 @@ function Create-Dir {
     New-Item -Name $dirName -Path $path
 }
 ```
-
-If you run the code above, specifying a directory name and path, you will see a new directory has been created.
 
 The screenshot below shows an example of creating a directory called **TestPath** in the **/Users/michaellevan/** directory:
 
@@ -113,9 +113,9 @@ Describe "Directory Creation" {
 
 Before you run the test, let’s go over it.
 
-- You’ll first start out with the `Describe` block. The Describe block defines a group of PowerShell tests. All Pester files have to contain at least one Describe block.
+- You start out with the `Describe` block. The Describe block defines a group of PowerShell tests. All Pester files have to contain at least one Describe block.
 - The second block you’ll see is `Context`. The Context block defines subgroup tests inside of the Describe block. Context is handy because it allows you to write multiple blocks of tests.
-- Within the Context block, you’ll see a keyword called `It`. `It` is used to define a single test case. `It` is really great because you can make the code sound like a natural language sentence. For example, a `It` test could say **It 'should contain: /Users/michaellevan'**.
+- Within the Context block, you’ll see a keyword called `It`. `It` is used to define a single test case. `It` is really great because you can make the code sound like a natural language sentence. For example, an `It` test could say **It 'should contain: /Users/michaellevan'**.
 - Where you define the test, you will see `Should`. The `Should` command is used to define assertions, AKA, what you want the test to do with the information you give it.
 
 Once the test is in the `Tests.ps1` file, you will see some options to run the test, as shown in the screenshot below.
@@ -124,7 +124,7 @@ Once the test is in the `Tests.ps1` file, you will see some options to run the t
 
 ## Run a Unit Test
 
-In the previous section, you defined exactly what the test should look like. The test should have two individual tests; one to test the path and the other to test if the new directory is called **TestDir**. Defining the test before running it is crucial because you need the test to perform in the way you’re expecting.
+In the previous section, you defined exactly what the test should look like. The test should have two individual tests; one to test the path and the other to test if the new directory is called **TestDir**.
 
 In this section, you’ll learn how to run the test and what the output should look like.
 
@@ -138,8 +138,8 @@ Congrats! You have officially created and run a test using Pester, the PowerShel
 
 ## Conclusion
 
-When you’re writing any type of code, you could know what it looks like and how it functions, but in a day, a week, a month, or a year the code could change, and if that happens there’s the possibility of a functionality difference or even bugs being introduced. When you fit testing into any code, you run fewer risk of these things happening.
+When you’re writing any type of code, you know what it looks like and how it functions, but in a day, a week, a month, or a year the code could change, and if that happens there’s the possibility of a functionality difference or even bugs being introduced. When you fit testing into any code, you run fewer risk of these things happening.
 
-In this blog post, you learned first-hand what Pester is, why you should use it, and how to use it. If you want to dive more into Pester, I recommend this book by Adam Bertram: [The Pester Book](https://leanpub.com/pesterbook)
+In this blog post, you learned first-hand what Pester is, why you should use it, and how to use it. If you want to dive more into Pester, I recommend this book by Adam Bertram: [The Pester Book](https://leanpub.com/pesterbook).
 
 If you would like to find the code used in this blog post, check out the [GitHub repo](https://github.com/AdminTurnedDevOps/Octopus-Deploy-Code/tree/master/PesterBlog).
