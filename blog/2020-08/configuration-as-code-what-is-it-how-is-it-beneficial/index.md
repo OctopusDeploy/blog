@@ -1,3 +1,16 @@
+---
+title: "Configuration as Code: What is it and how-is-it-beneficial?"
+description: TODO
+author: adbertram@gmail.com
+visibility: private
+published: 2029-09-01
+metaImage: 
+bannerImage: 
+tags:
+ - DevOps
+ - Config as Code
+---
+
 Versioning and controlling application configuration settings specifically is becoming an increasingly important aspect of modern application development. Typically, configurations would be stored with their associated application code repositories and any changes would necessitate a new version of that code to be deployed. This would be true, even if a single configuration setting is changed!
 
 Configuration as Code (CaC) treats your application settings as first class citizens. Often, this implies that the configurations are stored in their own repository and managed in a different process then the primary codebase.
