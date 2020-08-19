@@ -96,6 +96,6 @@ Congrats! You have successfully used the AWS CLI to create an S3 bucket in AWS.
 
 Many CLIs give you the ability to perform simple actions around tasks that may be complex or cumbersome in the UI. With a CLI, you can still interact directly with a platform from a programmatic perspective to ensure you have the ability to automate tasks.
 
-In this blog post you learned not only how to get a project up and running in Octopus Deploy, but also how to configure the AWS CLI task to create an S3 bucket in AWS.
+In this blog post, you learned not only how to get a project up and running in Octopus Deploy, but also how to configure the AWS CLI task to create an S3 bucket in AWS.
 
 Happy deployments!
