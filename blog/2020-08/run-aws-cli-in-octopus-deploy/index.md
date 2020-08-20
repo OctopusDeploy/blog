@@ -2,7 +2,7 @@
 title: Run the AWS CLI in Octopus Deploy
 description: Learn how to run AWS CLI commands inside Octopus Deploy.
 author: michael.levan@octopus.com
-visibility: private
+visibility: public
 published: 2020-08-25
 metaImage: 
 bannerImage: 
