@@ -4,10 +4,10 @@ description: We're maturing as a business and that means our security posture is
 author: jim.burger@octopus.com
 visibility: public
 published: 2999-08-10
-metaImage: 
-bannerImage: 
+metaImage: blogimage-security.png
+bannerImage: blogimage-security.png
 tags:
- 
+ - Security
 ---
 
 ![A stylized Octopus & Shield icon](blogimage-security.png)
