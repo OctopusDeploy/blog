@@ -4,13 +4,14 @@ description: This post provides a step by step guide for connecting an AWS accou
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-08-24
-metaImage: 
-bannerImage: 
+metaImage: aws-octopus.png
+bannerImage: aws-octopus.png
 tags:
- - Product
- - AWS
  - DevOps
+ - AWS
 ---
+
+![Connect an AWS Account to Octopus Deploy](aws-octopus.png)
 
 When you’re working with any cloud provider, you want an easy way to connect to the cloud. You don’t want to worry about creating custom scripts, API calls, and duct-tape workarounds just to deploy code or build infrastructure with Continuous Delivery.
 
