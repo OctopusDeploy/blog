@@ -2,7 +2,7 @@
 title: Testing PowerShell code with Pester
 description: Learn how to test PowerShell code for any scenario with the PowerShell testing framework Pester.
 author: michael.levan@octopus.com
-visibility: private
+visibility: public
 published: 2020-08-26
 metaImage: 
 bannerImage: 
