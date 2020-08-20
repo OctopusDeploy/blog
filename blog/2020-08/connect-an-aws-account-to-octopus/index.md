@@ -2,7 +2,7 @@
 title: Connect an AWS Account to Octopus Deploy
 description: This post provides a step by step guide for connecting an AWS account to Octopus Deploy.
 author: michael.levan@octopus.com
-visibility: private
+visibility: public
 published: 2020-08-24
 metaImage: 
 bannerImage: 
