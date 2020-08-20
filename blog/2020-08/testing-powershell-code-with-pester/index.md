@@ -4,12 +4,14 @@ description: Learn how to test PowerShell code for any scenario with the PowerSh
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-08-26
-metaImage: 
-bannerImage: 
+metaImage: powershell-testing-with-pester.png
+bannerImage: powershell-testing-with-pester.png
 tags:
  - DevOps
  - PowerShell
 ---
+
+![Testing PowerShell code with Pester](powershell-testing-with-pester.png)
 
 When you’re working with any code, whether it’s automation or software code, it should be treated the same way. After-all, functions are still functions and variables are still variables. One of the many things that doesn’t come up as often when you’re automating vs when you’re building application code is testing.
 

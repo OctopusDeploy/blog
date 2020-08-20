@@ -4,12 +4,14 @@ description: Learn how to run AWS CLI commands inside Octopus Deploy.
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-08-25
-metaImage: 
-bannerImage: 
+metaImage: octopus-aws-cli.png
+bannerImage: octopus-aws-cli.png
 tags:
- - Product
  - DevOps
+ - AWS
 ---
+
+![Run the AWS CLI in Octopus Deploy](octopus-aws-cli.png)
 
 Have you ever found yourself in a situation where you knew you wanted to automate the creation of an object or perhaps even list out objects and generate a report, but you didn’t want to jump around between programming languages? CLI’s give you a way to have the full usability of an SDK and they typically run the same on every system, which means you don’t have to create a wrapper around an API.
 
