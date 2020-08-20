@@ -215,9 +215,211 @@ Creating an Exteranl Feed in Octopus Deploy is quite easy.  First, navigate to *
 
 Then click **SAVE**
 
+### Create AWS Account
+Because I'm using the Access Key/Secret Key combination method for authenticating to AWS, I will need to create an AWS Account to reference.  To do this, navigate to **Infrastructure** then click on **Accounts**.  Once on the Accounts screen, simply click on the **ADD ACCOUNT** button and choose `AWS Account`.  Fill in the required values
+
+- Name
+- Access Key
+- Secret Key
+
+Then click **SAVE**
+
 ### Define deployment process
 This post assumes you are familiar enough with Octopus Deploy to be able to create a project and will focus on the AWS Farget specific components of the deployment.
 
-Before we get started adding steps, we need to first add some variables that we'll use in our process
+#### Variables
+Before we get started adding steps, we need to first add some variables that we'll use in our process.  I first created a Library Variable Set to hold common variables for AWS:
+- AWS.Account - This references the AWS account we created in the Create AWS Account section.
+- AWS.Region.name - Name of the region we're using
+- AWS.SecurityGroup.Id - Id of the security group we created for Octo Pet Shop
+- (Optional) AWS.Subnet1.Id - Id of subnet 1 to use
+- (Optional) AWS.Subnet.Id - Id of subnet 2 to use
 
-There are just a couple of steps that are required to deploy the Octo Pet Shop application to Fargate.  For simplicity, I'll be configuring the Docker containers to be run within the same ECS Service.  This makes it easier for the containers to be able to talk to each other without having to navigate over networks.
+The remainder of the variables are Project variables
+- Project.AWS.ECS.Cluster.Name - Name of cluster (ex: OctpousSamples-ECS)
+- Project.AWS.ECS.Service.Name - Name of the service to create or update (ex: octopetshop)
+- Project.AWS.Task.Database.Name - Name of database container for the task definition (ex: octopetshop-database)
+- Project.AWS.Task.ProductService.Name - Name of the product service container for the task definition (ex: octopetshop-productservice)
+- Project.AWS.Task.ShoppingCartService.Name - Name of the shopping cart service container for the task definition (ex: octopetshop-shoppingcartservice)
+- Project.AWS.Task.Web.Name - Name of the web container for the task definition (ex: octopetshop-web)
+- Project.Container.Environment.ConnectionString - Database connection string to be used as container environment variables (ex: Data Source=localhost;Initial Catalog=OctoPetShop; User ID=#{Project.Database.User.Name}; Password=#{Project.Database.User.Password})
+- Project.Database.User.Name - Username for the database connection (ex: sa)
+- Project.Database.User.Password - Password for the database connection (ex: My$uper$3cretPassw0rd!)
+
+#### Steps
+This deployment will consist of two steps, both using the `Run an AWS CLI script`.  At the time of this writing, there aren't any ECS or Fargate specic templates available.
+- Create task definition
+- Run task
+
+##### Creat task definition
+This step creates the task definition for ECS to run.  It references the images from ECR and includes them in the Container Definition collection.  If the service that is referenced doesn't exist, it will create it, otherwise it updates the existing service.  Once the task definition has been registered, it saves the TaskDefinitionArn to an output variable to be used in the next step
+
+:::hint
+When using Fargate, the HostPort and ContainerPort values *must* match, it will report an error otherwise.
+:::
+
+```PowerShell
+$Region = $OctopusParameters["Octopus.Action.Amazon.RegionName"]
+$TaskName = $OctopusParameters["Project.AWS.Task.Web.Name"]
+$ExecutionRole = $(Get-IAMRole -RoleName "ecsTaskExecutionRole").Arn
+
+# Add web settings
+$webPortMappings = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.PortMapping]"
+$webPortMappings.Add($(New-Object -TypeName "Amazon.ECS.Model.PortMapping" -Property @{ HostPort=5000; ContainerPort=5000; Protocol=[Amazon.ECS.TransportProtocol]::Tcp}))
+$webPortMappings.Add($(New-Object -TypeName "Amazon.ECS.Model.PortMapping" -Property @{ HostPort=5001; ContainerPort=5001; Protocol=[Amazon.ECS.TransportProtocol]::Tcp}))
+
+$webEnvironmentVariables = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.KeyValuePair]"
+$webEnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="ProductServiceBaseUrl"; Value="http://localhost:5011"}))
+$webEnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="ShoppingCartServiceBaseUrl"; Value="http://localhost:5012"}))
+
+$ContainerDefinitions = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.ContainerDefinition]"
+$ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefinition" -Property @{ `
+Name=$OctopusParameters['Project.AWS.Task.Web.Name'];`
+Image=$OctopusParameters["Octopus.Action.Package[octopetshop-web].Image"]; `
+PortMappings=$webPortMappings; `
+Environment=$webEnvironmentVariables;}))
+
+# Add product service settings
+$productServicePortMappings = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.PortMapping]"
+$productServicePortMappings.Add($(New-Object -TypeName "Amazon.ECS.Model.PortMapping" -Property @{ ContainerPort=5011; Protocol=[Amazon.ECS.TransportProtocol]::Tcp}))
+
+$serviceEnvironmentVariables = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.KeyValuePair]"
+$serviceEnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="OPSConnectionString"; Value=$OctopusParameters['Project.Container.Environment.ConnectionString']}))
+
+$ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefinition" -Property @{ `
+Name=$OctopusParameters['Project.AWS.Task.ProductService.Name']; `
+Image=$OctopusParameters["Octopus.Action.Package[octopetshop-productservice].Image"]; `
+PortMappings=$productServicePortMappings; `
+Environment=$serviceEnvironmentVariables;}))
+
+# Add shopping cart service settings
+$shoppingCartServicePortMappings = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.PortMapping]"
+$shoppingCartServicePortMappings.Add($(New-Object -TypeName "Amazon.ECS.Model.PortMapping" -Property @{ ContainerPort=5012; Protocol=[Amazon.ECS.TransportProtocol]::Tcp}))
+
+$ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefinition" -Property @{ `
+Name=$OctopusParameters['Project.AWS.Task.ShoppingCartService.Name']; `
+Image=$OctopusParameters["Octopus.Action.Package[octopetshop-shoppingcartservice].Image"]; `
+PortMappings=$shoppingCartServicePortMappings; `
+Environment=$serviceEnvironmentVariables;}))
+
+# Add sql server settings
+$sqlPortMappings = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.PortMapping]"
+$sqlPortMappings.Add($(New-Object -TypeName "Amazon.ECS.Model.PortMapping" -Property @{ HostPort=1433; ContainerPort=1433; Protocol=[Amazon.ECS.TransportProtocol]::Tcp}))
+
+$sqlEnvironmentVariables = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.KeyValuePair]"
+$sqlEnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="ACCEPT_EULA"; Value="Y"}))
+$sqlEnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="SA_PASSWORD"; Value=$OctopusParameters['Project.Database.User.Password']}))
+
+$ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefinition" -Property @{ `
+Name="sqlserver"; `
+Image=$OctopusParameters["Octopus.Action.Package[mssql-server-linux].Image"]; `
+PortMappings=$sqlPortMappings; `
+Environment=$sqlEnvironmentVariables;}))
+
+# Add DBUp project
+$dbupEnvironmentVariables = New-Object "System.Collections.Generic.List[Amazon.ECS.Model.KeyValuePair]"
+$dbupEnvironmentVariables.Add($(New-Object -TypeName "Amazon.ECS.Model.KeyValuePair" -Property @{ Name="DbUpConnectionString"; Value=$OctopusParameters['Project.Container.Environment.ConnectionString']}))
+
+$ContainerDefinitions.Add($(New-Object -TypeName "Amazon.ECS.Model.ContainerDefinition" -Property @{ `
+Name="octopetshop-database"; `
+Image=$OctopusParameters["Octopus.Action.Package[octopetshop-database].Image"]; `
+Essential=$false; `
+Environment=$dbupEnvironmentVariables;}))
+
+$TaskDefinition = Register-ECSTaskDefinition `
+-ContainerDefinition $ContainerDefinitions `
+-Cpu 512 `
+-Family $TaskName `
+-TaskRoleArn $ExecutionRole `
+-ExecutionRoleArn $ExecutionRole `
+-Memory 4096 `
+-NetworkMode awsvpc `
+-Region $Region `
+-RequiresCompatibility "FARGATE" 
+
+if(!$?)
+{
+	Write-Error "Failed to register new task definition"
+    Exit 0
+}
+
+$ClusterName = $OctopusParameters["Project.AWS.ECS.Cluster.Name"]
+$ServiceName = $OctopusParameters["Project.AWS.ECS.Service.Name"]
+
+# Check to see if there is a service already
+$service = (Get-ECSService -Cluster $ClusterName -Service $ServiceName)
+
+if ($service.Services.Count -eq 0)
+{
+	Write-Host "Service $ServiceName doesn't exist, creating ..."
+    $ServiceCreate = New-ECSService `
+    	-Cluster $ClusterName `
+        -ServiceName $ServiceName `
+        -TaskDefinition $TaskDefinition.TaskDefinitionArn `
+        -DesiredCount 1 `
+        -AwsvpcConfiguration_Subnet @($OctopusParameters['AWS.Subnet1.Id'], $OctopusParameters['AWS.Subnet2.Id']) `
+        -AwsvpcConfiguration_SecurityGroup @($OctopusParameters['AWS.SecurityGroup.Id'])
+}
+else
+{
+    $ServiceUpdate = Update-ECSService `
+        -Cluster $ClusterName `
+        -ForceNewDeployment $true `
+        -Service $ServiceName `
+        -TaskDefinition $TaskDefinition.TaskDefinitionArn `
+}
+
+if(!$?)
+{
+	Write-Error "Failed to register new task definition"
+    Exit 0
+}
+
+# Save task definition to output variable
+Set-OctopusVariable -Name "TaskDefinitionArn" -Value $TaskDefinition.TaskDefinitionArn
+```
+
+##### Run task
+With the task definition registered, we use another `Run an AWS CLI script` step to create the task to run in Fargate
+
+```PowerShell
+# Assign local variables
+$clusterName = $OctopusParameters['Project.AWS.ECS.Cluster.Name']
+$securityGroups = @($OctopusParameters['AWS.SecurityGroup.Id'])
+$subnets = @($OctopusParameters['AWS.Subnet1.Id'], $OctopusParameters['AWS.Subnet2.Id'])
+$taskDefinitionArn = $OctopusParameters['Octopus.Action[Create task definition].Output.TaskDefinitionArn']
+
+# Create launch type object
+$launchType = $(New-Object -TypeName "Amazon.ECS.Launchtype" -ArgumentList "FARGATE")
+
+# Create Public IP object
+$assignPublicIp = $(New-Object -TypeName "Amazon.ECS.AssignPublicIp" -ArgumentList "ENABLED")
+
+# Create new task
+New-ECSTask -Cluster $clusterName `
+	-AwsvpcConfiguration_SecurityGroup $securityGroups `
+    -AwsvpcConfiguration_Subnet $subnets `
+    -TaskDefinition $taskDefinitionArn `
+    -LaunchType $launchType `
+    -AwsvpcConfiguration_AssignPublicIp $assignPublicIp
+```
+
+![](octopus-project-steps.png)
+
+#### Deployment
+When the deployment has finished, you should receive something like this:
+
+![](octopus-deployment-complete.png)
+
+## Fargate
+When the deployment has completed the Task will show a Pending state, give the task some time to reach the running state.  Once the database container has reached a Stopped state, the Octo Pet Shop application should be available.
+
+![](aws-ecs-fargate-running-task.png)
+
+At this point we can open a browser and go http://[PublicIP]:5000.  Navigating here should automatically redirect us to https://[PublicIP]:5001.  You'll be presented with a warning about an invalid certificate.  Octo Pet Shop uses a self-signed certificate so this warning is normal and is safe to proceed.  Once you proceed, you should see Octo Pet Shop!
+
+![](aws-ecs-fargate-octopetshop.png)
+
+## Conclusion
+In this post I walked you through how to create a CI/CD process that deploys the Octo Pet Shop application to AWS Fargate.  Happy deployments!
+
