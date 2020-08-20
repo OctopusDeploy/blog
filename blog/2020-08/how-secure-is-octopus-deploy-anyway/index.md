@@ -20,7 +20,7 @@ Customers ask about our security posture all the time, particularly for Octopus 
 
 It’s something that we’ve thought about and done a lot of work on over the years. To name a few highlights, we have a great [RBAC system](https://octopus.com/docs/security/users-and-teams), support for [many popular authentication providers](https://octopus.com/docs/security/authentication), and [solid auditing features](https://octopus.com/docs/security/users-and-teams/auditing) to help you secure your instance and keep it that way when you’re implementing our product. We've done our homework on things like [GDPR compliance](https://octopus.com/legal/gdpr), our use of [open source licenses](https://octopus.com/docs/credits), and calling out incidents on our [status page](https://status.octopus.com/).
 
-When new features are created we usually have an [internal bug bash](https://octopus.com/blog/how-we-work-some-lessons#deadlines-bug-bashes-swarms-and-kanban) and we run annual penetration tests performed by accredited members of [CREST](https://www.crestaustralia.org/). We even ask select security researchers to investigate our platform security through an invite only bounty program (more to come on this soon!).
+When new features are created we usually have an [internal bug bash](https://octopus.com/blog/how-we-work-some-lessons#deadlines-bug-bashes-swarms-and-kanban) and we run regularly penetration testing exercises performed by respected companies in that space, and by ourselves.
 
 **Our attitude has always been that it is more important to do material things towards our products’ security, than it is to tick some compliance boxes.**
 
@@ -30,7 +30,7 @@ Having said that, asking people to trust us at our word only gets us so far, and
 
 In order to help you verify our posture, we are working toward an ISO 27001 compliance certification for our products and the things that support their development. In the short term, we’ll share our self assessment questionnaire from the Cloud Security Alliance (CAIQ Lite v3.1) to give potential cloud customers an idea of where we’re at right now. Ultimately, achieving ISO 27001 compliance will benefit not only the cloud customers, but our self hosted customers as well.
 
-By all accounts it will be a tough journey but we think we’re ready for it. We’ve defined the high level roadmap that we’d like to take [over here](link pending) so you can see what our plans are in finer detail.
+By all accounts it will be a tough journey but we think we’re ready for it. We’ve defined the high level roadmap that we’d like to take [over here](https://github.com/OctopusDeploy/Issues/issues/6523) so you can see what our plans are in finer detail.
 
 ## Trust, but verify us
 
