@@ -1,5 +1,5 @@
 ---
-title: How secure is Octopus Deploy, Anyway?
+title: How secure is Octopus Deploy, anyway?
 description: We're maturing as a business and that means our security posture is maturing too.
 author: jim.burger@octopus.com
 visibility: public
