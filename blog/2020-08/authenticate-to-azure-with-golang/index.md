@@ -1,6 +1,6 @@
 ---
 title: Authenticate to Azure with Golang
-description: Authenticating to a cloud platform with each SDK can be extremely different. Learn how to authenticate with Go
+description: Authenticating to a cloud platform with each SDK can be extremely different. In this post, you learn how to authenticate to Azure with Go.
 author: michael.levan@octopus.com
 visibility: private
 published: 2030-08-12
@@ -14,7 +14,7 @@ tags:
 
 When you’re working with any programming or automation language, chances are, one of the first things you need to figure out is *How do I authenticate from the SDK to the cloud platform?* The process can vary a lot depending on which SDK you’re using. 
 
-For example, PowerShell authenticates via the `Connect-AZAccount` cmdlet, whereas Python can authenticate with app registration or by using the Azure CLI profile. The point is, it’s different for each language and SDK, so how about [Golang (Go)](https://golang.org/)? If you’re a developer in today’s world, you’ve probably heard of Golang (it’s what Terraform, Docker, and Kubernetes are written in). It’s one of the fastest-growing and popular languages in the tooling space today.
+For example, PowerShell authenticates via the `Connect-AZAccount` cmdlet, whereas Python can authenticate with app registration or by using the Azure CLI profile. The point is, it’s different for each language and SDK, so how about [Golang (Go)](https://golang.org/)? If you’re a developer in today’s world, you’ve probably heard of Golang (it’s what Terraform, Docker, and Kubernetes are written in), and it’s one of the fastest-growing and popular languages in the tooling space today.
 
 In this blog post, you’ll take a hands-on approach to learn how to authenticate to Azure to use the virtual machine client.
 
@@ -26,15 +26,13 @@ To follow along with this blog post, you need:
 2. An Azure account. If you don’t have one, you can sign up for a [free 30-day trial](https://azure.microsoft.com/en-us/free/).
 3. An IDE or script editor, like [GoLand](https://www.jetbrains.com/go/) or [VS Code](https://code.visualstudio.com/).
 
-## Figuring out which packages to use
+## Which packages to use
 
-The first step for Azure authentication with Go is figuring out which libraries/packages you need in the program. For the purposes of this blog post, besides the standard `os` and `fmt` packages, there will be two Azure packages.
-
-But first, before you start adding in Golang code, you need somewhere to save the code. 
+The first step for Azure authentication with Go is figuring out which libraries/packages you need in the program. For the purposes of this blog post, besides the standard `os` and `fmt` packages, there are two Azure packages.
 
 1. Create a directory on your Desktop and open it in VS Code.
 1. Create a `main.go` file in the directory.
-1. Add in the following code to start the `main.go` file with the primary package and the package you need to connect to Azure:
+1. Add the following code to start the `main.go` file with the standard packages and the packages you need to connect to and authenticate with Azure:
 
 ```go
 package main
@@ -49,7 +47,7 @@ import (
 ```
 
 - [github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2020-06-01/compute](http://github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2020-06-01/compute) is used to connect to any virtual machine on Azure, whether it’s to retrieve virtual machine information, create a virtual machine, or view metadata.
-- [github.com/Azure/go-autorest/autorest/azure/auth](http://github.com/Azure/go-autorest/autorest/azure/auth) is the authentication package that this blog post is using to authenticating to Azure from Go.
+- [github.com/Azure/go-autorest/autorest/azure/auth](http://github.com/Azure/go-autorest/autorest/azure/auth) is the authentication package that this blog post uses to authenticate to Azure from Go.
 
 ## The Azure connection
 
@@ -151,6 +149,6 @@ Congrats! You have successfully authenticated to Azure with Golang.
 
 ## Conclusion
 
-Authentication to any platform, whether it’s in the cloud or on-premises, is of course the most important first step. Without authentication, the code is essentially rendered useless if you’re planning on using it to connect to a platform.
+Authentication to any platform, whether it’s in the cloud or on-premises, is an important first step. Without authentication, the code is essentially rendered useless if you’re planning on using it to connect to a platform.
 
 In this blog post, you took a first look at how to authenticate to Azure using Go for virtual machines.
