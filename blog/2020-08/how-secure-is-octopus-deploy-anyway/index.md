@@ -3,7 +3,7 @@ title: How secure is Octopus Deploy, anyway?
 description: Octopus Deploy is maturing as a business, and that means our security posture is maturing too.
 author: jim.burger@octopus.com
 visibility: public
-published: 2999-08-10
+published: 2020-08-31
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
 tags:
