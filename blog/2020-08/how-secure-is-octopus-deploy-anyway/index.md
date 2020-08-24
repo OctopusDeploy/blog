@@ -12,7 +12,7 @@ tags:
 
 ![A stylized Octopus & Shield icon](blogimage-security.png)
 
-It doesn’t take much research to conclude that most IT departments out there really care about the security of the tools they use. Using SaaS products is usually an exercise in trust, and Octopus Cloud is no different. You trust us to keep your data safe, and we trust you to use our platform [fairly](https://octopus.com/legal/acceptable-usage). So it’s a fair question, just how secure are we?
+It doesn’t take much research to conclude that most IT departments out there really care about the security of the tools they use. Using SaaS products is usually an exercise in trust, and Octopus Cloud is no different. You trust us to keep your data safe, and we trust you to use our platform [fairly](https://octopus.com/legal/acceptable-usage). So it’s a reasonable question, just how secure are we?
 
 Customers ask about our security posture all the time, particularly for Octopus Cloud. Right now, we ask them to read our documentation online, and we answer a few ad-hoc questions for them.
 
