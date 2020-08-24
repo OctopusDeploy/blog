@@ -12,7 +12,7 @@ tags:
 
 ![A stylized Octopus & Shield icon](blogimage-security.png)
 
-It doesn’t take much research to conclude that most IT departments really care about the security of the tools they use. Using SaaS products is usually an exercise in trust, and Octopus Cloud is no different. You trust us to keep your data safe, and we trust you to use our platform [fairly](https://octopus.com/legal/acceptable-usage). So it’s a reasonable question, just how secure are we?
+It doesn’t take much research to conclude that most IT departments really care about the security of the tools they use. Using SaaS products is usually an exercise in trust, and Octopus Cloud is no different. You trust us to keep your data safe, and we trust you to use our platform [fairly](https://octopus.com/legal/acceptable-usage), so it’s a reasonable question, just how secure are we?
 
 Customers ask about our security posture all the time, particularly for Octopus Cloud. Right now, we ask them to read our documentation online, and we answer a few ad-hoc questions for them.
 
@@ -20,7 +20,7 @@ Customers ask about our security posture all the time, particularly for Octopus 
 
 It’s something that we think about constantly and have done a lot of work on over the years. To name a few highlights, we have a great [RBAC system](https://octopus.com/docs/security/users-and-teams), support for [many popular authentication providers](https://octopus.com/docs/security/authentication), and we have [solid auditing features](https://octopus.com/docs/security/users-and-teams/auditing) to help you secure your instance and keep it that way when you’re implementing our product. We’ve done our homework on things like [GDPR compliance](https://octopus.com/legal/gdpr), our use of [open source licenses](https://octopus.com/docs/credits), and calling out incidents on our [status page](https://status.octopus.com/).
 
-When new features are created, we usually have an [internal bug bash](https://octopus.com/blog/how-we-work-some-lessons#deadlines-bug-bashes-swarms-and-kanban), and we run regularly penetration testing exercises which are are performed by respected companies in that space, and by ourselves.
+When new features are created, we usually have an [internal bug bash](https://octopus.com/blog/how-we-work-some-lessons#deadlines-bug-bashes-swarms-and-kanban), and we run regular penetration testing exercises which are are performed by respected companies in that space, and by ourselves.
 
 :::success
 Our attitude has always been that it is more important to do material things towards our product’s security than it is to tick some compliance boxes.
@@ -40,9 +40,9 @@ As much as we’ve dedicated ourselves to achieving ISO 27001 compliance, we’r
 
 > _**Certificates don’t make you secure**, but our aim is for the process of attaining one to help affirm our worthiness of your trust and help us to improve our security along the way._
 
-We recognize that security is not a state; it is a lifestyle choice. I personally think being able to answer the question “What is your security posture?” in common language that other businesses can interpret, has a lot of value. 
+We recognize that security is not a state; it is a lifestyle choice. I personally think being able to answer the question “What is your security posture?” in common language that other businesses can interpret has a lot of value. 
 
-It forces us to think about our security in a more holistic way. Certification will give us a well trodden roadmap for analyzing our current position and making further improvements, but it will also force us to think about risk management in a more systematic way.
+It forces us to think about our security in a more holistic way. Certification will give us a well-trodden roadmap for analyzing our current position and making further improvements, but it will also force us to think about risk management in a more systematic way.
 
 ## Over to you
 
