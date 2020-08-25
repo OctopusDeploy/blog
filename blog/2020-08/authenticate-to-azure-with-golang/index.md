@@ -2,7 +2,7 @@
 title: Authenticate to Azure with Golang
 description: Authenticating to a cloud platform with the different SDK can be extremely different. In this post, you learn how to authenticate to Azure with Go.
 author: michael.levan@octopus.com
-visibility: private
+visibility: public
 published: 2020-09-01
 metaImage:
 bannerImage:
