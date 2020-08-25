@@ -21,10 +21,10 @@ However it is possible to mix these two types of resources. For example, what ha
 To start well create a number of namespaces that we'll grant access to via the Kubernetes Role Based Access Control (RBAC) resources:
 
 ```
-kubectl create namespace test
-kubectl create namespace test2
-kubectl create namespace test3
-kubectl create namespace test4
+$ kubectl create namespace test
+$ kubectl create namespace test2
+$ kubectl create namespace test3
+$ kubectl create namespace test4
 ```
 
 We'll then create a service account in the `test` namespace:
@@ -110,13 +110,19 @@ roleRef:
   apiGroup: ""
 ```
 
-This works, granting a service account access to resources outside of the namespace it was created in:
+This works, granting the service account access to resources outside of the namespace the service account was created in:
 
 ```
-kubectl get roles -n test2
+$ kubectl get roles -n test2
 NAME        CREATED AT
 testadmin   2020-08-24T23:35:16Z
 ```
+
+Note that the `roleRef` property does not have a `namespace` field. This is the `RoleRef` [API documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#roleref-v1-rbac-authorization-k8s-io):
+
+![](roleref.png "width=500")
+
+The implication here is that a role binding can only reference a role in the same namespace.
 
 ## Scenario 3: ClusterRole and RoleBinding
 
@@ -146,7 +152,7 @@ roleRef:
 Our service account now has access to the resources in the `test3` namespace:
 
 ```
-kubectl get rolebindings -n test3
+$ kubectl get rolebindings -n test3
 NAME               ROLE                        AGE
 testadminbinding   ClusterRole/cluster-admin   21m
 ```
@@ -154,7 +160,7 @@ testadminbinding   ClusterRole/cluster-admin   21m
 But does not have access to other namespaces:
 
 ```
-kubectl get roles -n test4
+$ kubectl get roles -n test4
 Error from server (Forbidden): roles.rbac.authorization.k8s.io is forbidden: User "system:serviceaccount:test:myaccount" cannot list resource "roles" in API group "rbac.authorization.k8s.io" in the namespace "test4"
 ```
 
@@ -177,3 +183,27 @@ roleRef:
   name: cluster-admin
   apiGroup: ""
 ```
+
+Note again the lack of a `namespace` field on the `roleRef`. This implies that a cluster role binding can not identify a role to link to, because roles belong in namespaces, and cluster role bindings are not namespaced.
+
+Despite the fact that neither the cluster role nor the cluster role binding defined any namespaces, our service account now has access to everything:
+
+```
+$ kubectl get namespace test4
+NAME    STATUS   AGE
+test4   Active   26m
+```
+
+## Summary
+
+From these examples we can observe some behaviors and limitations with RBAC resources:
+
+* Roles and role bindings must exist in the same namespace.
+* Role bindings can exist in separate namespaces to service accounts.
+* Role bindings can link cluster roles, but they only grant access to the namespace of the role binding.
+* Cluster role bindings link accounts to cluster roles, and grant access across all resources.
+* Cluster role bindings can not reference roles.
+
+Perhaps the most interesting implication here is that a cluster role can define common permissions that are expressed in a single namespace when referenced by a role binding. This removes the need to have duplicated roles in many namespaces.
+
+Happy deployments!
