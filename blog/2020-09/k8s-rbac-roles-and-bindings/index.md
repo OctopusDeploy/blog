@@ -157,3 +157,23 @@ But does not have access to other namespaces:
 kubectl get roles -n test4
 Error from server (Forbidden): roles.rbac.authorization.k8s.io is forbidden: User "system:serviceaccount:test:myaccount" cannot list resource "roles" in API group "rbac.authorization.k8s.io" in the namespace "test4"
 ```
+
+## Scenario 4: ClusterRole and ClusterRoleBinding
+
+In our final scenario we'll create a cluster role binding to link the cluster role to our service account:
+
+```YAML
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: testadminclusterbinding
+subjects:
+- kind: ServiceAccount
+  name: myaccount
+  apiGroup: ""
+  namespace: test
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: ""
+```
