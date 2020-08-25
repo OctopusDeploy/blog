@@ -17,7 +17,7 @@ When we think of automation, one of the first things that come to mind is code. 
 1. What programming language is best for automation?
 2. What’s a straight-forward language for a team to learn?
 
-Golang, by default, is a procedural based language. That means it’s primarily based on writing functions. When you think of automation code, for example, PowerShell or Python, chances are you’re thinking of writing some function for a script. Because of that, Golang is a natural fit.
+Golang, by default, is a procedural-based language. That means it’s primarily based on writing functions. When you think of automation code, for example, PowerShell or Python, chances are you’re thinking of writing some function for a script. Because of that, Golang is a natural fit.
 
 In this blog post, you’re going to learn how to use Golang for AWS automation, much like you’d use PowerShell or Python.
 
@@ -104,7 +104,7 @@ ec2sess := ec2.New(awsConnect)
 
 ### Output the EC2 information
 
-To output the EC2 instance metadata, the `ec2` package is used with the `DescribeInstancesInput`method. Within the `DescribeInstancesInput` method, the `instanceID` variable is passed in (the `instanceID` parameter will be explained more in the next section for the `main` function).
+To output the EC2 instance metadata, the `ec2` package is used with the `DescribeInstancesInput` method. Within the `DescribeInstancesInput` method, the `instanceID` variable is passed in (the `instanceID` parameter will be explained more in the next section for the `main` function).
 
 After the Instance ID is passed in, there are two print statements:
 
@@ -123,7 +123,7 @@ instanceInfo := &ec2.DescribeInstancesInput{
 
 ## Configure the Main function
 
-In the previous section, you configured the primary function that does all the legwork. In this section, it’s time to configure the main function. The main function does the following:
+In the previous section, you configured the primary function that does all the legwork. In this section, you’ll configure the main function. The main function does the following:
 
 1. Run the `listInstances` function.
 2. Set up the `instanceID` variable that is used as a parameter in the `listInstances` function.
@@ -140,7 +140,7 @@ func main() {
 
 ## Running the code
 
-In the three previous sections, you set up all of the code needed to retrieve the EC2 metadata information. The entire program should look like the below:
+In the three previous sections, you set up all of the code needed to retrieve the EC2 metadata information. The entire program should look like this:
 
 ```go
 package main
@@ -190,7 +190,7 @@ go run main.go instance_id
 
 After the program has completed successfully, you should see output similar to the screenshot below:
 
-![](images/1.png)
+![Terminal output](images/1.png)
 
 Congrats! You have successfully used Golang to retrieve EC2 information from AWS.
 
