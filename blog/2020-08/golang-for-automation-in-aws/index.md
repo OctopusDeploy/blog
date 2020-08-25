@@ -2,7 +2,7 @@
 title: Golang for Automation in AWS
 description: Learn how to use Golang, a popular programming language created by Google, to automate AWS.
 author: michael.levan@octopus.com
-visibility: private
+visibility: public
 published: 2020-09-02
 metaImage: 
 bannerImage: 
