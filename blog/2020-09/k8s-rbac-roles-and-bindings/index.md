@@ -12,13 +12,13 @@ tags:
 
 At some point as your Kubernetes cluster grows in complexity the question of role based security will become important. Typically this means breaking the cluster up into namespaces, and limiting access to namespaced resources to specific accounts.
 
-To support this, Kubernetes includes a number of resources including Roles, ClusterRoles, RoleBindings and ClusterRoleBindings. At a high level, Roles and RoleBindings are placed inside and grant access to a specific namespace, while ClusteRoles and ClusterRoleBindings are do not belong to a namespace and grant access across the entire cluster.
+To support this, Kubernetes includes a number of resources including roles, cluster roles, role bindings and cluster role bindings. At a high level, roles and role bindings are placed inside of and grant access to a specific namespace, while cluster roles and cluster role bindings do not belong to a namespace and grant access across the entire cluster.
 
-However it is possible to mix these two types of resources. For example, what happens when a RoleBinding links an account to a ClusterRole? This blog post will look at some of these scenarios to gain a better insight into how Kubernetes implements role based security.
+However it is possible to mix these two types of resources. For example, what happens when a role binding links an account to a cluster role? This blog post will look at some of these scenarios to gain a better insight into how Kubernetes implements role based security.
 
 ## Preparing the cluster
 
-To start well create a number of namespaces that we'll grant access to via the Kubernetes Role Based Access Control (RBAC) resources:
+To start we'll create a number of namespaces that we'll grant access to via the Kubernetes Role Based Access Control (RBAC) resources:
 
 ```
 $ kubectl create namespace test
@@ -126,7 +126,7 @@ The implication here is that a role binding can only reference a role in the sam
 
 ## Scenario 3: ClusterRole and RoleBinding
 
-As we noted earlier, cluster roles do not belong to a namespace. This means the role itself does not scope permission to a single namespace.
+As we noted earlier, cluster roles do not belong to a namespace. This means the cluster role does not scope permission to a single namespace.
 
 However, when a cluster role is linked to a service account via a role binding, the cluster role permissions only apply to the namespace in which the role binding has been created.
 
@@ -184,7 +184,7 @@ roleRef:
   apiGroup: ""
 ```
 
-Note again the lack of a `namespace` field on the `roleRef`. This implies that a cluster role binding can not identify a role to link to, because roles belong in namespaces, and cluster role bindings are not namespaced.
+Note again the lack of a `namespace` field on the `roleRef`. This implies that a cluster role binding can not identify a role to link to, because roles belong in namespaces, and cluster role bindings (along with cluster roles they reference) are not namespaced.
 
 Despite the fact that neither the cluster role nor the cluster role binding defined any namespaces, our service account now has access to everything:
 
