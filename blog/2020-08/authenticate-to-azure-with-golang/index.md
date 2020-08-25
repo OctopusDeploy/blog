@@ -1,6 +1,6 @@
 ---
 title: Authenticate to Azure with Golang
-description: Authenticating to a cloud platform with each SDK can be extremely different. In this post, you learn how to authenticate to Azure with Go.
+description: Authenticating to a cloud platform with the different SDK can be extremely different. In this post, you learn how to authenticate to Azure with Go.
 author: michael.levan@octopus.com
 visibility: private
 published: 2020-09-01
@@ -28,7 +28,7 @@ To follow along with this blog post, you need:
 
 ## Which packages to use
 
-The first step for Azure authentication with Go is figuring out which libraries/packages you need in the program. For the purposes of this blog post, besides the standard `os` and `fmt` packages, there are two Azure packages.
+The first step for Azure authentication with Go is figuring out which libraries/packages you need in the program. For the purposes of this post, besides the standard `os` and `fmt` packages, there are two Azure packages.
 
 1. Create a directory on your Desktop and open it in VS Code.
 1. Create a `main.go` file in the directory.
@@ -53,7 +53,7 @@ import (
 
 Next, you’re going to set up the `AzureAuth` function:
 
-1. Under `import` in the `main.go` file, create the new function as shown below. The function uses an `os.Arg` for `subscriptionID` which you will define in the `main` function later and the `compute.VirtualMachinesClient` type to use the authentication method to Azure:
+1. Under `import` in the `main.go` file, create the new function shown below. The function uses an `os.Arg` for `subscriptionID` which you will define in the `main` function later and the `compute.VirtualMachinesClient` type to use the authentication method to Azure:
 
 ```go
 func AzureAuth(subscriptionID string) compute.VirtualMachinesClient {
