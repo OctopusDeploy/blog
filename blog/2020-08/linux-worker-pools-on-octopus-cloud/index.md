@@ -16,7 +16,7 @@ The omission of support for Linux workers on Octopus Cloud has made us a little 
 
 ## Ubuntu 18.04 workers now available
 
-As of today, I'm happy to announce that we now support Ubuntu workers on Octopus Cloud. :tada: This is a step forward for us on our journey to not only be the best deployment tool for your Windows workloads, but also for your Linux workloads too.
+As of today, I'm happy to announce that we now support Ubuntu workers on Octopus Cloud. This is a step forward for us on our journey to not only be the best deployment tool for your Windows workloads, but also for your Linux workloads too.
 
 ![Worker Pool Configuration with Ubuntu 18.04 selected](images/worker-pool-configuration.png)
 
@@ -90,7 +90,7 @@ Hitting `Save` then `Run` will execute the script:
 
 ![Runbook execution log](images/terraform-run-log.png)
 
-This script doesn't exactly do much (it `echo`'s out "hello"), but it highlights how easy is is to run a bash script and use the latest terraform version.
+While this script doesn't exactly do much (it `echo`'s out "hello"), it highlights how easy is is to run a bash script and use the latest terraform version.
 
 ## Conclusion
 
