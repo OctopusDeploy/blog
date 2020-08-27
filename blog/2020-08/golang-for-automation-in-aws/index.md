@@ -4,13 +4,15 @@ description: Learn how to use Golang, a popular programming language created by 
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-09-02
-metaImage: 
-bannerImage: 
+metaImage: go-aws-automation.png
+bannerImage: go-aws-automation.png
 tags:
- - Product
  - DevOps
- - Engineering
+ - golang
+ - aws
 ---
+
+![Golang for Automation in AWS](go-aws-automation.png)
 
 When we think of automation, one of the first things that come to mind is code. A few questions we may be asked are:
 

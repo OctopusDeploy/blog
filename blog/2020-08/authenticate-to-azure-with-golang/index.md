@@ -4,13 +4,15 @@ description: Authenticating to a cloud platform with the different SDK can be ex
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-09-01
-metaImage:
-bannerImage:
+metaImage: go-auth-with-azure.png
+bannerImage: go-auth-with-azure.png
 tags:
  - DevOps
+ - golang
  - Azure
- - Platform
 ---
+
+![Authenticate to Azure with Golang](go-auth-with-azure.png)
 
 When you’re working with any programming or automation language, chances are, one of the first things you need to figure out is *How do I authenticate from the SDK to the cloud platform?* The process can vary a lot depending on which SDK you’re using. 
 
