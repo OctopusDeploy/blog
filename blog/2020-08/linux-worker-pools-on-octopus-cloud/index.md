@@ -35,7 +35,7 @@ One thing we're really excited about here is that adding support for Docker real
 
 ## New worker tools container version
 
-The [worker tools containers](https://hub.docker.com/r/octopusdeploy/worker-tools) have also been updated with the latest tooling ready to unblock lots of goodness, such as the brand new shiny [Terraform 0.13](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-13/) version that just got released. Check out [PR #20](https://github.com/OctopusDeploy/WorkerTools/pull/20) for full details of the available versions.
+One last thing, we've updated our [worker tools containers](https://hub.docker.com/r/octopusdeploy/worker-tools) have also been updated with the latest tooling ready to unblock lots of goodness, such as the brand new shiny [Terraform 0.13](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-13/) version that just got released. Check out [PR #20](https://github.com/OctopusDeploy/WorkerTools/pull/20) for full details of the available versions.
 
 ## Walkthough
 
