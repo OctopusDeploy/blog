@@ -23,7 +23,7 @@ As of today, I'm happy to announce we now support Ubuntu workers on Octopus Clou
 
 ## Windows 2019 workers now available
 
-I'm also happy to share, we've also launched Windows 2019 workers. We've still in the process of switching everyone over, but you can opt-in to using the new worker images with your instance by navigating to **{{Infrastructure > Worker Pools}}**.
+I'm also happy to share, we've launched Windows 2019 workers. We've still in the process of switching everyone over, but you can opt-in to using the new worker images with your instance by navigating to **{{Infrastructure > Worker Pools}}**.
 
 ## Docker now pre-installed
 
