@@ -31,7 +31,7 @@ Taking the time to plan a Configuration as Code approach that ensures the config
 
 ## Infrastructure as Code vs. Configuration as Code
 
-Infrastructure as Code (IaC) concerns itself with the deployment of the underlying infrastructure necessary to support an application's environment. This can lead to confusion as it looks similar to managing configurations. Configuration as Code is about managing the specific application configuration settings themselves, which is separated from your infrastructure code and managed in its own unique process.
+Infrastructure as Code (IaC) concerns itself with the deployment of the underlying infrastructure necessary to support an application’s environment. This can lead to confusion as it looks similar to managing configurations. Configuration as Code is about managing the specific application configuration settings themselves, which is separated from your infrastructure code and managed in its own unique process.
 
 That is not to say that both Infrastructure as Code and Configuration as Code do not complement each other and are often used hand in hand. For example, certain configurations can, and should, be managed in the configuration process that will later be consumed by the infrastructure processes. By using each approach in this way, an organization can quickly get a handle on complex configurations and how they are managed.
 
@@ -65,7 +65,7 @@ This may also mean that independent changes can happen at the same time. Applica
 
 ### Ensuring approval and quality assurance processes exist
 
-Perhaps changing an API key or endpoint URI will need a different team's input and sign-off. This approval process would not typically exist if the configurations themselves were buried within the application codebase. By dovetailing the tailored build and deployment process, both approvals and quality assurance can be integrated to ensure that just the right configurations are deployed where they should be.
+Perhaps changing an API key or endpoint URI will need a different team’s input and sign-off. This approval process would not typically exist if the configurations themselves were buried within the application codebase. By dovetailing the tailored build and deployment process, both approvals and quality assurance can be integrated to ensure that just the right configurations are deployed where they should be.
 
 ### Secrets management within configurations
 
@@ -75,4 +75,4 @@ Most configurations will include secrets necessary to access databases, key stor
 
 Though there are many different ways to integrate DevOps and all of its associated processes into your environment, Configuration as Code makes a great starting point to work towards a more managed and controlled application environment.
 
-The gain in security, auditibility, manageability, and control afforded to organizations integrating Configuration as Code into their workflows make managing complex configurations easier and more secure than with the typical approach to bundling configuration within an application's codebase.
+The gain in security, auditibility, manageability, and control afforded to organizations integrating Configuration as Code into their workflows make managing complex configurations easier and more secure than with the typical approach to bundling configuration within an application’s codebase.
