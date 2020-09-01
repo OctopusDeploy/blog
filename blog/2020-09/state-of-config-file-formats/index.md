@@ -31,7 +31,7 @@ Despite XML's ubiquity in the world of computing, newer configuration languages 
 ### When should you not use XML?
 
 - The XML language is verbose and often contains redundant syntax.
-- With the higher verbosity, comes increased storage capacity and bandwidth needs.
+- With the higher verbosity comes increased storage capacity and bandwidth needs.
 - Not considered easily human-readable due to the descriptive nature of elements.
 
 ## [JavaScript Object Notation (JSON)](https://www.json.org/)
@@ -68,8 +68,8 @@ Despite the differences in how YAML may look to JSON, YAML is a superset of JSON
 ### When should you not use YAML?
 
 - Indentation format is prone to syntax and validation errors.
-- Portability with certain types may not exist due to lack of features across all languages.
-- Due to the declarative nature of YAML debugging is difficult. Breakpoints and similar functionality does not exist.
+- Portability with certain types may not exist due to a lack of features across all languages.
+- Due to the declarative nature of YAML, debugging is difficult. Breakpoints and similar functionality does not exist.
 
 ## [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md)
 
