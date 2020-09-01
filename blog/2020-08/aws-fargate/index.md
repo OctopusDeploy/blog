@@ -61,7 +61,7 @@ If you have existing ECR repositories, either click on the **Create repository**
 
 ### Create or use an existing VPC
 
-Fargate does not require a Virtual Private Cloud (VPC), so it is not necessary to create a new VPC; however, using an existing VPC will work just fine.  This post assumes that you already have some knowledge of AWS and know how to create VPC if needed.
+Fargate does not require a unique Virtual Private Cloud (VPC), so it is not necessary to create a new VPC; however, using an existing VPC will work just fine.  This post assumes that you already have some knowledge of AWS and know how to create VPC if needed.
 
 ### Create or use existing Subnets
 
