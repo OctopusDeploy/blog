@@ -1,3 +1,17 @@
+
+---
+title: "The state of config file formats: XML vs. YAML vs. JSON vs. HCL"
+description: 
+author: adbertram@gmail.com
+visibility: private
+published: 2029-09-01
+metaImage: 
+bannerImage: 
+tags:
+ - DevOps
+ - Config as Code
+---
+
 Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so did the configuration complexity and structure needed.
 
 Today a multitude of configuration formats exist, but some have taken center stage in modern cloud environments. XML, JSON, YAML, and HCL support complex configurations, each with their advantages and disadvantages.
