@@ -11,7 +11,7 @@ tags:
  - AWS
 ---
 
-[Amazon Web Services (AWS) Fargate](https://aws.amazon.com/fargate/) has become a popular technology for deploying containerized applications without having to worry about back-end infrastructure management.  My team is often asked, can you use Octopus Deploy with AWS Fargate? The answer is, YES!  Not only can you use Fargate, you can use the AWS Elastic Container Registry (ECR) as an external feed to Octopus Deploy.  In this post, I demonstrate an entire CI/CD pipeline using TeamCity, ECR, Octopus Deploy, and Elastic Container Services (ECS) Fargate.
+[Amazon Web Services (AWS) Fargate](https://aws.amazon.com/fargate/) has become a popular technology for deploying containerized applications without having to worry about back-end infrastructure management.  My team is often asked, can you use Octopus Deploy with AWS Fargate? The answer is, YES!  Not only can you use Fargate, but you can also use the AWS Elastic Container Registry (ECR) as an external feed to Octopus Deploy.  In this post, I demonstrate an entire CI/CD pipeline using TeamCity, ECR, Octopus Deploy, and Elastic Container Services (ECS) Fargate.
 
 ## Create AWS resources
 
@@ -29,7 +29,7 @@ Both TeamCity and Octopus Deploy need credentials to work with the AWS services.
 
 ![AWS user access key](aws-iam-user-access-key.png "width=500")
 
-After the access key has been created, save the `Secret Key` as you will only be shown the value *once*.  The `Access Key` and `Secret Key` combination are used to authenticate with AWS.
+After the access key has been created, save the `Secret Key` as you will only be shown the value *once*.  The `Access Key` and `Secret Key` combination is used to authenticate with AWS.
 
 :::hint
 It is possible to use AWS IAM Roles for both TeamCity and Octopus Deploy for everything except the Octopus Deploy external feed to ECR.  This post uses the access key/secret key method for simplicity and the ECR external feed.
@@ -43,7 +43,7 @@ Each container that you create will end up in its own region-specific ECR repo. 
 <RegistryId>.dkr.ecr.<RegionName>.amazonaws.com/<RepoName>
 ```
 
-The `RegistryId` and `RegionName` will be used for the connection that we’ll create in TeamCity and the entire URI will be used when we tag our images.
+The `RegistryId` and `RegionName` will be used for the connection that we’ll create in TeamCity, and the entire URI will be used when we tag our images.
 
 To retrieve these values, navigate to **Elastic Container Registry** in the AWS console.
 
@@ -61,7 +61,7 @@ If you have existing ECR repositories, either click on the **Create repository**
 
 ### Create or use an existing VPC
 
-Fargate does not require a Virtual Private Cloud (VPC) so it is not necessary to create a new VPC, however using an existing VPC will work just fine.  This post assumes that you already have some knowledge of AWS and know how to create VPC if needed.
+Fargate does not require a Virtual Private Cloud (VPC), so it is not necessary to create a new VPC; however, using an existing VPC will work just fine.  This post assumes that you already have some knowledge of AWS and know how to create VPC if needed.
 
 ### Create or use existing Subnets
 
@@ -71,7 +71,7 @@ Along with the VPC, Fargate does not require subnets to be defined. Just like th
 
 You might want to consider creating new security groups because you might need to define ports to access your containers that aren’t necessary for other AWS resources.
 
-The Octo Pet Shop application is a .NET Core application where the web front-end uses the built-in Kestrel web server, which uses the default port `5000`.  The Octo Pet Shop front-end is configured to automatically redirect HTTP traffic to HTTPS and on port `5001`.  Those two ports aren’t used by any other resources so I created a new Security Group for Octo Pet Shop.
+The Octo Pet Shop application is a .NET Core application where the web front-end uses the built-in Kestrel web server, which uses the default port `5000`.  The Octo Pet Shop front-end is configured to automatically redirect HTTP traffic to HTTPS and on port `5001`.  Those two ports aren’t used by any other resources, so I created a new Security Group for Octo Pet Shop.
 
 To create a new Security Group, navigate to the **VPC** service within AWS Console and click on **Security Groups** on the left-hand side.  If you’re following along with this post, create two Inbound rules for ports `5000` and `5001`.
 
@@ -83,7 +83,7 @@ The final resource we need is an ECS cluster to host our containers.
 
 1. Navigate to ECS in the AWS Console.  
 1. Select **Create cluster**.  
-1. On the next screen choose the **Networking only** template.
+1. On the next screen, choose the **Networking only** template.
 1. Click **Next step**.  
 1. Give your cluster a name, then click **Create**.  
 
@@ -278,18 +278,18 @@ The remainder of the variables are project variables:
 
 #### Steps
 
-This deployment will consist of two steps, both use the **Run an AWS CLI script**.  At the time of this writing, there aren’t any ECS or Fargate specific templates available.
+This deployment will consist of two steps, and they both use the **Run an AWS CLI script**.  At the time of this writing, there aren’t any ECS or Fargate specific templates available.
 - Create task definition
 - Run task
 
 ##### Create task definition
 
-This step creates the task definition for ECS to run.  To deploy the images we uploaded to ECR, this step adds all of the images as package references.  This allows the images from ECR to be added to the Fargate Container Definition collection.  If the service that is referenced doesn’t exist, it will create it, otherwise it updates the existing service.  After the task definition has been registered, it saves the `TaskDefinitionArn` to an output variable to be used in the next step:
+This step creates the task definition for ECS to run.  To deploy the images we uploaded to ECR, this step adds all of the images as package references.  This allows the images from ECR to be added to the Fargate Container Definition collection.  If the service that is referenced doesn’t exist, it will create it, but if it does exist, it updates the existing service.  After the task definition has been registered, it saves the `TaskDefinitionArn` to an output variable to be used in the next step:
 
 ![Package References](octopus-project-referenced-packages.png "width=500")
 
 :::hint
-When using Fargate, the HostPort and ContainerPort values *must* match, otherwise an error will be reported.
+When using Fargate, the HostPort and ContainerPort values *must* match, or an error will be reported.
 
 When referencing the packages in the step, be sure to mark them as `The package will not be acquired`.
 :::
@@ -450,15 +450,15 @@ When the deployment has finished, you will see the task summary of the deploymen
 
 ## Fargate
 
-When the deployment has completed the task will show a pending state. Give the task some time to reach the running state.  After the database container has reached a stopped state, the Octo Pet Shop application will be available.
+When the deployment has completed, the task will show a pending state. Give the task some time to reach the running state.  After the database container has reached a stopped state, the Octo Pet Shop application will be available.
 
 ![AWS ECS Fargate running task](aws-ecs-fargate-running-task.png "width=500")
 
-At this point we can open a browser and go `http://[PublicIP]:5000`.  Navigating here will automatically redirect us to `https://[PublicIP]:5001`.  You’ll be presented with a warning about an invalid certificate, but Octo Pet Shop uses a self-signed certificate so this warning is normal, and it is safe to proceed to the Octo Pet Shop!
+At this point, we can open a browser and go `http://[PublicIP]:5000`.  Navigating here will automatically redirect us to `https://[PublicIP]:5001`.  You’ll be presented with a warning about an invalid certificate, but Octo Pet Shop uses a self-signed certificate, so this warning is normal, and it is safe to proceed to the Octo Pet Shop!
 
 ![Octo Pet Shop](aws-ecs-fargate-octopetshop.png)
 
 ## Conclusion
 
-In this post I walked you through creating a CI/CD process that deploys the Octo Pet Shop application to AWS Fargate.  
+In this post, I walked you through creating a CI/CD process that deploys the Octo Pet Shop application to AWS Fargate.  
 Happy deployments!
