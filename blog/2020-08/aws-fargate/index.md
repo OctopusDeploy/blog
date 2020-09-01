@@ -32,7 +32,7 @@ Both TeamCity and Octopus Deploy need credentials to work with the AWS services.
 After the access key has been created, save the `Secret Key` as you will only be shown the value *once*.  The `Access Key` and `Secret Key` combination is used to authenticate with AWS.
 
 :::hint
-It is possible to use AWS IAM Roles for both TeamCity and Octopus Deploy for everything except the Octopus Deploy external feed to ECR.  This post uses the access key/secret key method for simplicity and the ECR external feed.
+It is possible to use AWS IAM Roles for both TeamCity and Octopus Deploy for everything except the Octopus Deploy external feed to ECR.  For this reason, this post uses the access key/secret key method.
 :::
 
 ### Retrieve the AWS ECR registry information
