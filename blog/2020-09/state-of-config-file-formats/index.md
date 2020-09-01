@@ -1,4 +1,3 @@
-
 ---
 title: "The state of config file formats: XML vs. YAML vs. JSON vs. HCL"
 description: 
