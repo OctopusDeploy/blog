@@ -252,10 +252,14 @@ This deployment will consist of two steps, both using the `Run an AWS CLI script
 - Run task
 
 ##### Creat task definition
-This step creates the task definition for ECS to run.  It references the images from ECR and includes them in the Container Definition collection.  If the service that is referenced doesn't exist, it will create it, otherwise it updates the existing service.  Once the task definition has been registered, it saves the TaskDefinitionArn to an output variable to be used in the next step
+This step creates the task definition for ECS to run.  To deploy the images we uploaded to ECR, this step will add all of the images as Package References.  This allows the images from ECR can be added to the Fargate Container Definition collection.  If the service that is referenced doesn't exist, it will create it, otherwise it updates the existing service.  Once the task definition has been registered, it saves the TaskDefinitionArn to an output variable to be used in the next step
+
+![](octopus-project-referenced-packages.png)
 
 :::hint
 When using Fargate, the HostPort and ContainerPort values *must* match, it will report an error otherwise.
+
+When referencing the packages in the step, be sure to mark them as `The package will not be acquired`.
 :::
 
 ```PowerShell
