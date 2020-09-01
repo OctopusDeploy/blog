@@ -12,7 +12,7 @@ tags:
  - Config as Code
 ---
 
-Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so did the configuration complexity and structure needed.
+Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so did the configuration complexity and structure that's needed.
 
 Today a multitude of configuration formats exist, but some have taken center stage in modern cloud environments. XML, JSON, YAML, and HCL support complex configurations, each with their advantages and disadvantages.
 
@@ -36,7 +36,7 @@ Despite XML's ubiquity in the world of computing, newer configuration languages 
 
 ## [JavaScript Object Notation (JSON)](https://www.json.org/)
 
-Recognized as a formal specification in 2013, JSON has been around since the early 2000s. Used in a multitude of different applications, JSON emphasizes readability and simple syntax. Derived from JavaScript, JSON is language independent. JSON parser's exist for many different programming languages and tooling.
+Recognized as a formal specification in 2013, JSON has been around since the early 2000s. Used in a multitude of different applications, JSON emphasizes readability and simple syntax. Derived from JavaScript, JSON is language independent. JSON parsers exist for many different programming languages and tooling.
 
 In contrast to XML, JSON offers a simpler alternative. With a clean and easy to use syntax, JSON has taken over many configuration setups. Developers appreciate the simplicity and speed of processing that JSON offers. One of the most common languages in use today, JSON is popular despite the drawbacks inherent in its design.
 
@@ -79,18 +79,20 @@ Are other toolsets and languages able to use HCL? Parsers exist for other langua
 
 ### When should you use HCL?
 
-- Using Terraform is far easier when utilizing HCL.
+- Using Terraform is far easier when using HCL.
 - Visually and functionality similar to JSON in addition to being compatible.
 - With features such as attributes and templates, HCL is more full-featured than competing languages, such as JSON.
 
 ### When should you not use HCL?
 
 - As evidenced by Hashicorp being in the name, HCL was developed primarily for its products, and development is geared towards those ends.
-- Despite stated compatibility with JSON, a strict conversion between the two languages is not straightforward due to ambiguity in mapping certain language constructs
-- As a relatively new language, many features are still being developed and toolkit maturity is still growing
+- Despite stated compatibility with JSON, a strict conversion between the two languages is not straightforward due to ambiguity in mapping certain language constructs.
+- As a relatively new language, many features are still being developed and toolkit maturity is still growing.
 
 ## Conclusion
 
 There are many configuration languages, each with its advantages and disadvantages. XML, JSON, YAML, and HCL are somewhat interoperable, but depending on the language chosen, trade-offs are necessary.
-Simple applications and environments will benefit from a structured configuration. As configuration complexity increases, so do the disadvantages of one language over another. Deciding configuration goals early in the application lifecycle will aide in choosing the right language.
-As configuration itself becomes a first-class citizen within the DevOps environment and cloud computing, the importance of choosing the right language for your application becomes critical to ensuring success. Although any of these configuration languages will work well, weighing the advantages and disadvantages to each will ultimately lead to a successful configuration framework.
+
+Simple applications and environments will benefit from a structured configuration. As configuration complexity increases, so do the disadvantages of one language over another. Deciding configuration goals early in the application lifecycle will help in choosing the right language.
+
+As configuration itself becomes a first-class citizen within the DevOps environment and cloud computing, the importance of choosing the right language for your application becomes critical to ensuring success. Although any of these configuration languages will work well, weighing the advantages and disadvantages of each will ultimately lead to a successful configuration framework.
