@@ -11,7 +11,7 @@ tags:
  - Config as Code
 ---
 
-Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so did the configuration complexity and structure that's needed.
+Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so has the configuration complexity and structure that's required.
 
 Today a multitude of configuration formats exist, but some have taken center stage in modern cloud environments. XML, JSON, YAML, and HCL support complex configurations, each with their advantages and disadvantages.
 
@@ -72,8 +72,10 @@ Despite the differences in how YAML may look to JSON, YAML is a superset of JSON
 
 ## [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md)
 
-The only specific configuration language listed, HCL is not intended to replace languages such as YAML or JSON. HCL is a tool specific language intended for use with the Terraform toolset. HCL looks visually similar to JSON, with unique data structures added.
+The only specific configuration language listed, HCL is not intended to replace languages such as YAML or JSON. HCL is a tool-specific language intended for use with the Terraform toolset. HCL looks visually similar to JSON, with unique data structures added.
+
 HCL is a combination of three sub-languages, structural, expression, and template languages. Taken together, these sub-languages combine to create an HCL configuration. This schema efficiently describes environmental configurations, the primary purpose of Terraform.
+
 Are other toolsets and languages able to use HCL? Parsers exist for other languages such as Go, Java, and Python. In that context, it is possible to use HCL as a configuration language. These parsers are typically not native packages.
 
 ### When should you use HCL?
@@ -92,6 +94,6 @@ Are other toolsets and languages able to use HCL? Parsers exist for other langua
 
 There are many configuration languages, each with its advantages and disadvantages. XML, JSON, YAML, and HCL are somewhat interoperable, but depending on the language chosen, trade-offs are necessary.
 
-Simple applications and environments will benefit from a structured configuration. As configuration complexity increases, so do the disadvantages of one language over another. Deciding configuration goals early in the application lifecycle will help in choosing the right language.
+Simple applications and environments will benefit from a structured configuration. As configuration complexity increases, so do the disadvantages of one language over another. Deciding configuration goals early in the application lifecycle will help choose the right language.
 
 As configuration itself becomes a first-class citizen within the DevOps environment and cloud computing, the importance of choosing the right language for your application becomes critical to ensuring success. Although any of these configuration languages will work well, weighing the advantages and disadvantages of each will ultimately lead to a successful configuration framework.
