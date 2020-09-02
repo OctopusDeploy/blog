@@ -4,22 +4,22 @@ description: Learn about the different configuration file formats that are avail
 author: adbertram@gmail.com
 visibility: private
 published: 2029-09-01
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - DevOps
  - Config as Code
 ---
 
-Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so has the configuration complexity and structure that's required.
+Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so has the configuration complexity and structure that’s required.
 
 Today a multitude of configuration formats exist, but some have taken center stage in modern cloud environments. XML, JSON, YAML, and HCL support complex configurations, each with their advantages and disadvantages.
 
 ## [Extensible Markup Language (XML)](https://www.w3.org/XML/)
 
-Among the first structured configuration languages, XML has been around for decades. XML first entered the scene in 1998 with W3C's version 1.0 specification. Designed for general use and simplicity, XML became the underpinning of many transport languages, services, and configuration formats.
+Among the first structured configuration languages, XML has been around for decades. XML first entered the scene in 1998 with W3C’s version 1.0 specification. Designed for general use and simplicity, XML became the underpinning of many transport languages, services, and configuration formats.
 
-Despite XML's ubiquity in the world of computing, newer configuration languages are overtaking XML's dominance. There are still many situations where the structured nature of XML and its flexibility works best for complex configurations. Simple configuration languages, such as JSON, work for many applications, but when you need proper validation, schema, and namespace support, XML is often best.
+Despite XML’s ubiquity in the world of computing, newer configuration languages are overtaking XML’s dominance. There are still many situations where the structured nature of XML and its flexibility works best for complex configurations. Simple configuration languages, such as JSON, work for many applications, but when you need proper validation, schema, and namespace support, XML is often best.
 
 ### When should you use XML?
 
@@ -52,11 +52,11 @@ In contrast to XML, JSON offers a simpler alternative. With a clean and easy to 
 - No namespace, comment, or attribute support.
 - Simple structures may not support complex configurations.
 
-## [YAML Ain't Markup Language (YAML)](https://yaml.org/)
+## [YAML Ain’t Markup Language (YAML)](https://yaml.org/)
 
 First known as Yet Another Markup Language, the official definition changed to express a data focus over a document focus. Created in 2001, YAML does not have a formal W3C specification. The latest YAML 1.2 specifications have been stable since 2009. Intended for defining configurations instead of as a data transport language, YAML is very human-readable.
 
-Despite the differences in how YAML may look to JSON, YAML is a superset of JSON. As a superset of JSON, a valid YAML file can contain JSON. Additionally, JSON can transform into YAML as well. YAML itself can also contain JSON within its configuration files. 
+Despite the differences in how YAML may look to JSON, YAML is a superset of JSON. As a superset of JSON, a valid YAML file can contain JSON. Additionally, JSON can transform into YAML as well. YAML itself can also contain JSON within its configuration files.
 
 ### When should you use YAML?
 
