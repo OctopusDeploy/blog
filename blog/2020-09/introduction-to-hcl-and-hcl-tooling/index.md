@@ -1,6 +1,6 @@
 ---
 title: Introduction to HCL and HCL tooling
-description: 
+description: Learn about the different tooling you can use with HCL.
 author: adbertram@gmail.com
 visibility: private
 published: 2029-09-01
