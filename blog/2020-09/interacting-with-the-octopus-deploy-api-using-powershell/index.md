@@ -2,8 +2,8 @@
 title: Interacting with the Octopus Deploy API using PowerShell
 description: Learn how to use your PowerShell skills to make API related calls to Octopus Deploy.
 author: michael.levan@octopus.com
-visibility: private
-published: 2030-08-04
+visibility: public
+published: 2020-09-08
 metaImage:
 bannerImage:
 tags:
