@@ -2,8 +2,8 @@
 title: Deploying containers to AWS Fargate
 description: Learn how to deploy containers in the Elastic Container Registry to Elastic Container Services Fargate
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2021-08-04
+visibility: public
+published: 2020-09-07
 metaImage:
 bannerImage:
 tags:
