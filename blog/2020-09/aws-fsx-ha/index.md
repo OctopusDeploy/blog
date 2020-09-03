@@ -2,7 +2,7 @@
 title: Configuring Octopus Server High Availability using AWS FSx
 description: Learn how to create an Octopus Server High Availability cluster using AWS FSx.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2020-09-07
 metaImage: 
 bannerImage: 
