@@ -140,22 +140,38 @@ Set-TimeZone "GMT Standard Time"
 
 The next step I used, was a community contributed step template called [Chocolatey - Ensure Installed](https://library.octopus.com/step-templates/c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3/actiontemplate-chocolatey-ensure-installed). This step has a single purpose, and it's to check if Chocolatey is installed, and to install if it's not.
 
-
 ![](images/chocolateyinstallstep.png "width=500")
 
-### Install Chocolatey Step
+### Install Chocolatey Package Step
 
 If you do browse the webinar, you will see we had different steps for different packages. Paul Broadwith has updated our Chocolatey community step template that installs all of your chocolatey packages in a single step and you can see it on our [Community Step Template Library](https://library.octopus.com/step-templates/b2385b12-e5b5-440f-bed8-6598c29b2528/actiontemplate-chocolatey-install-package)
 
-:::hint
-**Specifying versions**
-When you require software other than the latest version, you will need to use a second step. The step assumes that you are installing the latest version of the package. You can specify the version required as part of an Octopus Parameter, but it only works on a single package.
-:::
-
 I made a list of all of the packages I needed to install on my new laptop, and not all of this you will find useful as I do some webinars, and I can often be found in [Camtasia](https://www.techsmith.com/video-editor.html), [OBS](https://obsproject.com/) as much as I can be found in [VSCode](https://code.visualstudio.com/), SQL and so forth.
 
-The applications I found I needed on my new laptop is below: 
+The applications I found I needed on my new laptop is below:
 
 ```
 git vscode sql-server-management-studio slack sql-server-2019 github-desktop obs-studio rdmfree googlechrome firefox spotify octopusdeploy octopusdeploy.tentacle dotnet4.7.2 dotnetfx dotnetcore 7zip visualstudio2019professional nordvpn lastpass-chrome lastpass docker-desktop chromium googledrive google-drive-file-stream helm kubernetes-cli minikube zoom streamdeck notepadplusplus nugetpackageexplorer sdio virtualbox jre8 vlc python foxitreader putty.install sysinternals camtasia snagit vagrant packer terraform vmwareworkstation
 ```
+
+![](images/chocoinstall.png "width=500")
+
+#### Install Chocolatey Package step parameters
+
+As you've saw, there are a few paramters which can be set, and I wanted to explain these so you get the full picture.
+
+In the **(Optional) Version** Parameter selection, you can specify a specific version of the software you want to install. If you're using more than one package per step, and want to specify specific versions of software, you will need to configure that Chocolatey Install and add the version in an additional step.
+
+In the **(Optional) Cache Location** Parameter selection, you can specify a non default location for the cache. I found this useful when installing SQL without having the tentacle run as an administrator. I found that SQL can be a little tricky to install without running the Tentacle Service as a local administrator and you can specify a folder such as **C:\Octopus\Applications** as the cache which the Local System User has full access to.
+
+The **(Optional) Package source** Parameter is probably the single most important parameter in this step. If you're doing this at home, then you might be fine to use the Chocolatey Package Repository which is the default setting. However, if you're doing this for a company, please consider using your own package source repository such as [Nexus](https://www.sonatype.com/nexus/repository-pro), [Artifactory](https://jfrog.com/artifactory/) or [MyGet](https://www.myget.org/).
+
+The Chocolatey package resource is built by the community, for the community and if you're using the community respository for Enterprise or large scale package installation, you are likely to be [rate limited](https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting). Be careful, and be kind to the community.
+
+The last two options cover whether you want to see the download progress in your logs, and generally I turn them off as you can land up with hundreds of thousands of log files. The other is to allow for additional parameters.
+
+![](images/chocoparams.png "width=500")
+
+## Running the Runbook
+
+
