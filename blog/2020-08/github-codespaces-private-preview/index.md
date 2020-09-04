@@ -1,6 +1,6 @@
 ---
 title: A look at GitHub Codespaces private preview
-description:
+description: An early look at GitHub Codespace.
 author: michael.levan@octopus.com
 visibility: public
 published: 3020-08-24
