@@ -16,7 +16,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](buildtest.svg "width=300")
 
-[In the previous post](/blog/2020-07/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that takes care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself, we created a repeatable and self-contained build process, and the resulting Docker image can be executed by anyone with only Docker installed.
+[In the previous post](/blog/2020-09/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that takes care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself, we created a repeatable and self-contained build process, and the resulting Docker image can be executed by anyone with only Docker installed.
 
 This is a solid foundation for our build process. However, as more developers start working on a shared codebase, testing requirements expand, and the resulting packages grow in size, teams require a central shared server to manage builds. This is the role of a Continuous Integration (CI) server.
 
@@ -253,4 +253,4 @@ Jenkins provides a central platform through which multiple developers can have t
 
 In this post, we stepped through the process of running Jenkins as a Docker container, connecting a node to perform the builds, and wrote a Jenkins pipeline to define how Jenkins will build and push the Docker image. The end result of this is a continuous integration system that can automatically build and publish our application, removing the need for individual developers to manually manage this process. We have achieved continuous integration.
 
-The [next step](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md) is to deploy our newly created Docker images somewhere. To do this we will configure a Kubernetes cluster in AWS.
+The [next step](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md) is to deploy our newly created Docker images somewhere. To do this we will configure a Kubernetes cluster in AWS.

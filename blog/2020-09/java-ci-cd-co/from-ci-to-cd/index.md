@@ -16,7 +16,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](releasedeploy.svg "width=300")
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md) we used Octopus to build a Kubernetes cluster in AWS using EKS, and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
+[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md) we used Octopus to build a Kubernetes cluster in AWS using EKS, and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
 
 However, we still don’t have a complete deployment pipeline solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
 
@@ -192,4 +192,4 @@ We now have the ability to promote a change from the application source code to 
 
 But those that have seen their code put in customer’s hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
 
-In the [next blog post](/blog/2020-07/java-ci-cd-co/from-cd-to-co/index.md) we’ll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: operations.
+In the [next blog post](/blog/2020-09/java-ci-cd-co/from-cd-to-co/index.md) we’ll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: operations.

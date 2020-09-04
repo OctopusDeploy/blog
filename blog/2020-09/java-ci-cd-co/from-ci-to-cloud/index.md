@@ -15,7 +15,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 !include <java-ci-cd-toc>
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-local-to-ci/index.md)  we configured a CI server with Jenkins that provided a central location from which to build and publish our Docker image. The image is now publicly available from Docker Hub, and the next step is to create infrastructure that can host our Docker container.
+[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-local-to-ci/index.md)  we configured a CI server with Jenkins that provided a central location from which to build and publish our Docker image. The image is now publicly available from Docker Hub, and the next step is to create infrastructure that can host our Docker container.
 
 In this post, we’ll create an Elastic Kubernetes Service (EKS) instance in AWS from Octopus.
 
@@ -205,4 +205,4 @@ Now that we know the hostname of our ELB, we can access our publicly hosted appl
 
 In this post, we created a Kubernetes cluster in AWS using the EKS service and deployed our PetClinic application to it via Octopus. We also committed ourselves to debugging the cluster via runbooks, which provides a small but important foundation that we can pass to the team that will eventually be responsible for this cluster after we have moved on.
 
-We are not quite at the point of having implemented continuous deployments, since there is no integration between Jenkins and Octopus. In the [next post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we’ll hook up our pipeline to achieve a complete CI/CD pipeline.
+We are not quite at the point of having implemented continuous deployments, since there is no integration between Jenkins and Octopus. In the [next post](/blog/2020-09/java-ci-cd-co/from-ci-to-cd/index.md) we’ll hook up our pipeline to achieve a complete CI/CD pipeline.

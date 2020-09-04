@@ -16,7 +16,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](operate.svg "width=300")
 
-[In the previous blog post](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes after the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical {{ Dev, Test, Prod }} progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
+[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes after the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical {{ Dev, Test, Prod }} progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
 
 While a traditional deployment pipeline ends with a deployment to production, Octopus provides a solution for the operate phase of the DevOps lifecycle with runbooks. By automating common tasks like database backups, log collection, and service restarts with runbooks, the combination of Jenkins and Octopus provides a complete deployment and operations pipeline covering the entire lifecycle of an application.
 
@@ -36,7 +36,7 @@ RUN apt-get update; apt-get install python python-pip -y
 RUN pip install awscli
 ```
 
-We then build this image, push it to Docker Hub, and create and deploy a release in Octopus with the following [Jenkinsfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Jenkinsfile). You will note that this `Jenkinsfile` is almost an exact copy of the [previous one](/blog/2020-07/java-ci-cd-co/from-ci-to-cd/index.md), with changes to the name of the Docker image and the Octopus project that is deployed:
+We then build this image, push it to Docker Hub, and create and deploy a release in Octopus with the following [Jenkinsfile](https://github.com/mcasperson/mysqlwithawscli/blob/master/Jenkinsfile). You will note that this `Jenkinsfile` is almost an exact copy of the [previous one](/blog/2020-09/java-ci-cd-co/from-ci-to-cd/index.md), with changes to the name of the Docker image and the Octopus project that is deployed:
 
 ```groovy
 pipeline {
@@ -87,7 +87,7 @@ pipeline {
 }
 ```
 
-The MySQL Kubernetes deployment YAML is also very similar to our [previous example](/blog/2020-07/java-ci-cd-co/from-ci-to-cloud/index.md), with a new image name and the addition of two environment variables to configure the database credentials and create an initial database:
+The MySQL Kubernetes deployment YAML is also very similar to our [previous example](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md), with a new image name and the addition of two environment variables to configure the database credentials and create an initial database:
 
 ```YAML
 apiVersion: apps/v1
