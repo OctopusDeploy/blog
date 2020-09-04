@@ -11,9 +11,9 @@ tags:
  - Kubernetes
 ---
 
-At some point as your Kubernetes cluster grows in complexity the question of role-based security will become important. Typically, this means breaking the cluster up into namespaces and limiting access to namespaced resources to specific accounts.
+At some point, as your Kubernetes cluster grows in complexity, the question of role-based security will become important. Typically, this means breaking the cluster up into namespaces and limiting access to namespaced resources to specific accounts.
 
-To support this, Kubernetes includes a number of resources including roles, cluster roles, role bindings and cluster role bindings. At a high level, roles and role bindings are placed inside of and grant access to a specific namespace, while cluster roles and cluster role bindings do not belong to a namespace and grant access across the entire cluster.
+To support this, Kubernetes includes a number of resources, including roles, cluster roles, role bindings, and cluster role bindings. At a high level, roles and role bindings are placed inside of and grant access to a specific namespace, while cluster roles and cluster role bindings do not belong to a namespace and grant access across the entire cluster.
 
 However, it is possible to mix these two types of resources. For example, what happens when a role binding links an account to a cluster role? This post looks at some of these scenarios to gain a better insight into how Kubernetes implements role-based security.
 
@@ -70,7 +70,7 @@ roleRef:
   apiGroup: ""
 ```
 
-This example is easy to understand. All of our resources (the service account, role, and role binding) are in the `test` namespace. The role grants access to all resources, and the role binding links the service account and the role together. As you would expect, requests made by the service account against resources in the `test` namespace work:
+This example is easy to understand. All of our resources (the service account, role, and role binding) are in the `test` namespace. The role grants access to all resources and the role binding links the service account and the role together. As you would expect, requests made by the service account against resources in the `test` namespace work:
 
 ```
 $ kubectl get roles -n test
@@ -167,7 +167,7 @@ Error from server (Forbidden): roles.rbac.authorization.k8s.io is forbidden: Use
 
 ## Scenario 4: ClusterRole and ClusterRoleBinding
 
-In our final scenario we’ll create a cluster role binding to link the cluster role to our service account:
+In our final scenario, we’ll create a cluster role binding to link the cluster role to our service account:
 
 ```YAML
 apiVersion: rbac.authorization.k8s.io/v1
@@ -197,7 +197,7 @@ test4   Active   26m
 
 ## Summary
 
-From these examples we can observe some behaviors and limitations with RBAC resources:
+From these examples, we can observe some behaviors and limitations with RBAC resources:
 
 * Roles and role bindings must exist in the same namespace.
 * Role bindings can exist in separate namespaces to service accounts.
