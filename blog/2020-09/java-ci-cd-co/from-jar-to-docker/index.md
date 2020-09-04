@@ -18,7 +18,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and is still proudly featured on the Spring website.
 
-Our journey through the DevOps lifecycle starts with a local build of PetClinic on a local workstation. At the end of this blog post, we’ll have containerized this application with Docker to provide a repeatable build and execution environment.
+Our journey through the DevOps lifecycle starts with a local build of PetClinic on a local workstation. By the end of this blog post, we’ll have containerized this application with Docker to provide a repeatable build and execution environment.
 
 ## Start with a local build
 
@@ -34,7 +34,7 @@ This initial build will take some time as Maven downloads the various Spring lib
 
 To view the application, open http://localhost:8080:
 
-![](petclinic.png "width=500")
+![PetClinic running locally](petclinic.png "width=500")
 *PetClinic running locally.*
 
 To create a distributable JAR file, run the command:
@@ -85,7 +85,7 @@ COPY --from=build-env /app/target/petclinic.jar ./petclinic.jar
 CMD ["/usr/bin/java", "-jar", "/app/petclinic.jar"]
 ```
 
-This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including tools that are only required to build the application.
+This `Dockerfile` makes use of a feature called [multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/). This allows us to create a smaller final Docker image for distribution by not including the tools that are only required to build the application.
 
 We base our build on an existing Docker image provided by the Maven team. This image has the JDK and Maven tools preinstalled:
 
