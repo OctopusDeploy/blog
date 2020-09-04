@@ -12,13 +12,15 @@ tags:
  - Chocolatey
 ---
 
-I recently picked up a new Dell XPS 15" laptop after being on a Macbook Pro for the last 2 years. I looked back at Bob Walkers [Automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey) blog, and it got me thinking about how I could automate it with [Chocolatey](chocolatey.org/) and [Runbooks](https://octopus.com/docs/runbooks).
+I recently picked up a new Dell XPS 15" laptop after being on a Macbook Pro for the last 2 years. I looked back at Bob Walkers [Automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey) blog, and it got me thinking about how I could automate it with [Chocolatey](chocolatey.org/) and [Runbooks](https://octopus.com/docs/runbooks). I would recommend spending time going through Bob's blog before or after reading this blog as it may help if you're new to Chocolatey.
 
-I use Chocolatey a lot when provisioning Cloud and On-Premises servers and, in the past when I was working in Operations and using Infrastructure as Code I used Chocolatey to install a range of tools on Servers, Laptops and Desktops. I recently presented a Webinar with Paul Broadwith from Chocolatey about [Operations Automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg) which displayed how easy this was to do with Runbooks on Cloud infrastructure.
+I use Chocolatey a lot when provisioning Cloud and On-Premises servers and, in the past when I was working in Operations and using Infrastructure as Code I used Chocolatey to install a range of tools on Servers, Laptops and Desktops. I recently presented a Webinar with Paul Broadwith from Chocolatey about [Operations Automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg) which displayed how easy this was to do with Runbooks on Cloud infrastructure. In the webinar, we focus on using ARM Templates, Octopus Runbooks and Chocolatey to provision Developer machines and Server on [Azure](https://azure.microsoft.com/en-gb/overview/what-is-azure/).
+
+The problem I am trying to solve here, is to automate all of my packages in a single Octopus Runbook using Chocolatey to install every application I use in my day to day role. Also, everyone loves a fresh install of Windows, and I am no different. There's something fresh about a brand new install, and I may look at refreshing my laptop every so often, and I wanted a way to automate that and make it as painless as possible. I'd also like to share this with other members of my team so they can use this script whenever they want to re-prep their windows laptop or even a server.
 
 !toc
 
-## What is Chocolatey?
+## What is Chocolatey
 
 Chocolatey is a Package Manager for Windows. It's an open source project that provides Developers, Operations and everything in between a way to manage, install and upgrade software across their Windows estate. Chocolatey is focussed on helping making managing Windows software easier, more streamlined and accessible to everyone using a Windows computer. If you want to find out more about installing Chocolatey without Runbooks then check out the Chocolatey Install [doc](https://chocolatey.org/install).
 
@@ -55,11 +57,13 @@ If you are writing your own package, consider sharing it to the Chocolatey commu
 
 You can install Octopus from a chocolatey package, and we publish each new version as soon as it's available which
 
-## Why use Runbooks?
+## Why use Runbooks and Chocolatey
 
 [Runbooks](https://octopus.com/docs/runbooks) is my favourite feature of Octopus Deploy. I think it's due to my Operations background and I can see how it automate all those tasks that take up so much time in Operations that will allow Admins, DevOps Engineers and similar to automate the mundane away from your day. Being in Operations can be a hard position to be. It can be a little thankless at times, and it reminds me of times where people wondering what you're doing as everything "just works", and then they come to you and complain what we're even doing "when everything breaks".
 
-Let's be honest, how many times can you install [IIS](https://www.iis.net/) or [SQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) before it becomes boring, repetitive and error prone? You can use [Runbooks](https://octopus.com/docs/runbooks) to automate this part away to allow you to focus on more interesting problems:
+Let's be honest, how many times can you install [IIS](https://www.iis.net/) or [SQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) before it becomes boring, repetitive and error prone?
+
+You can use [Runbooks](https://octopus.com/docs/runbooks) to automate this part away to allow you to focus on more interesting problems:
 
 - [Routine Operations](https://octopus.com/docs/runbooks/runbook-examples/routine)
 - [Emergency Operations](https://octopus.com/docs/runbooks/runbook-examples/emergency)
@@ -68,3 +72,90 @@ Let's be honest, how many times can you install [IIS](https://www.iis.net/) or [
 - [Azure Operations](https://octopus.com/docs/runbooks/runbook-examples/azure)
 - [GCP Operations](https://octopus.com/docs/runbooks/runbook-examples/gcp)
 - [Terraform](https://octopus.com/docs/runbooks/runbook-examples/terraform)
+
+## Let's get going
+
+This blog will not deal with installing the Operating System on your developer machine. There are loads of great tools out there that you can use for load the latest Windows Desktop and Server Operating Systems, and I am going to assume you've added the [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) as part of this process. Some tools I've used in the past when prepping Servers, Laptops and Desktops are:
+
+- [Microsoft System Centre Configuration Manager](https://en.wikipedia.org/wiki/Microsoft_System_Center_Configuration_Manager)
+- [Windows Deployment Services](https://docs.microsoft.com/en-us/windows/deployment/windows-deployment-scenarios-and-tools)
+- [Packer](https://www.packer.io/)
+
+Generally, public cloud providers also provide tools to allow you to do Infrastructure as Code such as:
+
+- [Azure Resource Manager Templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview)
+- [AWS Cloudformation](https://aws.amazon.com/cloudformation/)
+- [Google Deployment Manager](https://cloud.google.com/deployment-manager/docs)
+- [Terraform](https://www.terraform.io/)
+
+## Preparation
+
+The first thing I did here, was setup a brand new [Space](https://octopus.com/docs/administration/spaces) in Octopus called **LaptopPrep**. As part of the new Space configuration I created:
+
+- A single Octopus [environment](https://octopus.com/docs/infrastructure/environments) named **Prep**
+
+![](images/environment.png "width=500")
+
+- Added my laptop as a [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) and assigned it the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) or **Laptop**.
+
+![](images/deploymenttarget.png "width=500")
+
+- Checked the Infrastructure tab had my new laptop as healthy.
+
+![](images/healthy.png "width=500")
+
+- Last thing I had to do, was create a [Project](https://octopus.com/docs/projects) called **Laptop Provisioning**
+
+![](images/project.png "width=500")
+
+## Runbook Configuration
+
+I want to do more than just install Chocolatey packages and I'll touch on these briefly as part of this blog.
+
+First thing you will want to do is browse to the Project, and add the Runbook named **Install Laptop Dependencies**
+
+### Set Timezone, Input & Region
+
+One thing that bugs me about setting up Windows, is having to configure my non-default regions which isn't the US. So, as part of this I use a PowerShell script to set this for all my laptops, desktops and so forth. The below works for me, and you can tweak it to your requirements.
+
+```PowerShell
+#Set home location to United Kingdom
+Set-WinHomeLocation 0xf2
+
+#override language list with just English GB
+$1 = New-WinUserLanguageList en-GB
+$1[0].Handwriting = 1
+Set-WinUserLanguageList $1 -force
+
+#Set system local
+Set-WinSystemLocale en-GB
+
+#Set the timezone
+Set-TimeZone "GMT Standard Time"
+```
+
+![](images/addrunbook.png "width=500")
+
+### Checking if Chocolatey is installed
+
+The next step I used, was a community contributed step template called [Chocolatey - Ensure Installed](https://library.octopus.com/step-templates/c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3/actiontemplate-chocolatey-ensure-installed). This step has a single purpose, and it's to check if Chocolatey is installed, and to install if it's not.
+
+
+![](images/chocolateyinstallstep.png "width=500")
+
+### Install Chocolatey Step
+
+If you do browse the webinar, you will see we had different steps for different packages. Paul Broadwith has updated our Chocolatey community step template that installs all of your chocolatey packages in a single step and you can see it on our [Community Step Template Library](https://library.octopus.com/step-templates/b2385b12-e5b5-440f-bed8-6598c29b2528/actiontemplate-chocolatey-install-package)
+
+:::hint
+**Specifying versions**
+When you require software other than the latest version, you will need to use a second step. The step assumes that you are installing the latest version of the package. You can specify the version required as part of an Octopus Parameter, but it only works on a single package.
+:::
+
+I made a list of all of the packages I needed to install on my new laptop, and not all of this you will find useful as I do some webinars, and I can often be found in [Camtasia](https://www.techsmith.com/video-editor.html), [OBS](https://obsproject.com/) as much as I can be found in [VSCode](https://code.visualstudio.com/), SQL and so forth.
+
+The applications I found I needed on my new laptop is below: 
+
+```
+git vscode sql-server-management-studio slack sql-server-2019 github-desktop obs-studio rdmfree googlechrome firefox spotify octopusdeploy octopusdeploy.tentacle dotnet4.7.2 dotnetfx dotnetcore 7zip visualstudio2019professional nordvpn lastpass-chrome lastpass docker-desktop chromium googledrive google-drive-file-stream helm kubernetes-cli minikube zoom streamdeck notepadplusplus nugetpackageexplorer sdio virtualbox jre8 vlc python foxitreader putty.install sysinternals camtasia snagit vagrant packer terraform vmwareworkstation
+```
