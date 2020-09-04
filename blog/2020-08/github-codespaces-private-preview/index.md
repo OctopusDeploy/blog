@@ -7,14 +7,14 @@ published: 3020-08-24
 metaImage:
 bannerImage:
 tags:
- -
+ - DevOps
 ---
 
 There are many source control systems, but let’s face it, GitHub is arguably the most popular.
 
 GitHub recently stepped their game up in the CI/CD space by introducing GitHub Actions, and at Microsoft Build 2020, they introduced [GitHub Codespaces](https://github.com/features/codespaces).
 
-GitHub Codespaces is like Visual Studio Codespaces, which is VS Code in a UI, except with GitHub Codespaces it’s built into GitHub. This of course provides a one-stop-shop for all your development needs.
+GitHub Codespaces is like Visual Studio Codespaces, which is VS Code in a UI, except with GitHub Codespaces, it’s built into GitHub, which provides a one-stop-shop for all your development needs.
 
 In this blog post, I’ll walk through the private beta and how to use it if you’ve been accepted into the beta program.
 
@@ -45,7 +45,7 @@ Codespaces provides the centralized location for your specific development needs
 
 ## Setting up Codespaces
 
-If the private beta is active, you’ll see a new icon on the top taskbar called **Codespaces**. It should be added in automatically, but you may have to log out of GitHub and back in again.
+If the private beta is active, you’ll see a new icon on the top taskbar called **Codespaces**. It should be added automatically, but you may have to log out of GitHub and back in again.
 
 1. Log into GitHub and click on the **Codespaces** icon.
 2. Click on the green **New Codespace** button.
@@ -58,7 +58,7 @@ Choose a repository that you’d like to open in Codespaces. The code will show 
 
 4. Click the green **Create codespace** button.
 
-The codespace will open and you’ll be able to see the code from the repository like you would when using VS Code on the desktop:
+The codespace will open, and you’ll be able to see the code from the repository like you would when using VS Code on the desktop:
 
 ![Am open repository in Codespaces](images/2.png)
 
