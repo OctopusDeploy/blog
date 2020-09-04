@@ -1,85 +1,85 @@
-There are many source control systems, but let's face it, GitHub is arguably the most popular. 
+---
+title: A look at GitHub Codespaces private preview
+description:
+author: michael.levan@octopus.com
+visibility: public
+published: 3020-08-24
+metaImage:
+bannerImage:
+tags:
+ -
+---
 
-GitHub recently stepped their game up in the CICD space by introducing GitHub Actions and at Microsoft Build 2020, GitHub Codespaces was introduced.
+There are many source control systems, but let’s face it, GitHub is arguably the most popular.
 
-GitHub Codespaces is like Visual Studio Codespaces, which is VS Code in a UI, except with GitHub Codespaces it's built into GitHub. This of course provides a one-stop-shop to all of your development needs. 
+GitHub recently stepped their game up in the CI/CD space by introducing GitHub Actions, and at Microsoft Build 2020, they introduced [GitHub Codespaces](https://github.com/features/codespaces).
 
-In this blog post, you'll be walked through the private beta and how to use it if you've been accepted into the beta program.
+GitHub Codespaces is like Visual Studio Codespaces, which is VS Code in a UI, except with GitHub Codespaces it’s built into GitHub. This of course provides a one-stop-shop for all your development needs.
+
+In this blog post, I’ll walk through the private beta and how to use it if you’ve been accepted into the beta program.
 
 ## Prerequisites
 
-To follow along with this blog post, you'll need:
+To follow along, you need:
 
-- The private beta invitation to GitHub Codespaces. If you don't already have that, you can request early access [here](https://github.com/features/codespaces).
-- A GitHub account
-- At least one repository
+- The private beta invitation to GitHub Codespaces. If you don’t already have that, you can [request early access](https://github.com/features/codespaces).
+- A GitHub account.
+- At least one repository.
 
 ## Why GitHub Codespaces?
 
-There's one big problem with having so many development tools and ways to write code - there's simply no centralized place to store specific configurations that you want. Let's take VS Code for example. Let's say you have a few different machines you work on, or you're pair-programming with a teammate. To have the ability to work on the same code across the board and have it look identical, you need a few things:
+There’s one big problem with having so many development tools and ways to write code; there’s simply no centralized place to store the specific configurations that you want. Take VS Code for example, let’s say you have a few different machines you work on, or you’re pair-programming with a teammate, to work on the same code across the board and have it look identical, you need a few things:
 
 - Extensions.
-- Logged into services, for example, logging into Azure from VS Code
+- Logged into services, for example, logging into Azure from VS Code.
 - Themes.
-- Settings in the `settings.json`
-- Runtimes
-- Linters
+- Settings in the `settings.json`.
+- Runtimes.
+- Linters.
 
 You see where this is going. It can be cumbersome to manage.
 
-With something like Codespaces, you don't have to worry about this anymore. All settings and configurations are in one place, regardless of where you log in from.
+With something like Codespaces, you don’t have to worry about this. All settings and configurations are in one place, regardless of where you log in from.
 
 Codespaces provides the centralized location for your specific development needs.
 
 ## Setting up Codespaces
 
-If the private beta is active, you'll see a new icon on the top taskbar called **Codespaces**. It should be added in automatically, but you may have to log out and log back into GitHub.
+If the private beta is active, you’ll see a new icon on the top taskbar called **Codespaces**. It should be added in automatically, but you may have to log out of GitHub and back in again.
 
 1. Log into GitHub and click on the **Codespaces** icon.
-
-![](images/1.png)
-
-  2. Click on the green **New codespace** button.
-
-  3. You will see two options:
+2. Click on the green **New Codespace** button.
+3. You will see two options:
 
 - Repository
 - Branch
 
-Choose a repository that you'd like to open in Codespaces. The code will show in Codespaces, so anything will work.
+Choose a repository that you’d like to open in Codespaces. The code will show in Codespaces, so anything will work.
 
-  4. Click the green **Create codespace** button.
+4. Click the green **Create codespace** button.
 
-The codespace will now open and you'll be able to see the code from the repository like you would in using VS Code on the desktop. Below is a screenshot of a repository that was used for this example.
+The codespace will open and you’ll be able to see the code from the repository like you would when using VS Code on the desktop:
 
-![](images/2.png)
+![Am open repository in Codespaces](images/2.png)
 
-## First Look at Extensions
+## First look at extensions
 
-You'll be pleasantly surprised to see from an extensions perspective, nothing has changed. You can use any extension you typically would in VS Code while using codespaces.
+From an extensions perspective, nothing has changed. Any extensions you could normally use in VS Code can be used in Codespaces.
 
-1. Open up the extensions tab
+1. Open the extensions tab:
+2. Search for an extension, for example, Golang:
 
-![](images/3.png)
-
-  2. Search for an extension, for example, Golang.
-
-       Just like in VS Code, you can see the extensions ready to install.
-
-![](images/4.png)
+![Go extensions in Codespaces](images/4.png)
 
 ## Settings in GitHub Codespaces
 
-Surprisingly, even the settings are pretty much the same in codespaces. The idea was for the UI itself of VS Code to not change too much in codepsaces. That way, it's a familiar and smooth transition.
+Surprisingly, even the settings are pretty much the same in Codespaces as they are in VS Code, which makes it a familiar and smooth transition:
 
 1. Click on the **Settings** icon on the bottom left corner.
+2. From there, you can configure the environment, user environment, and remote Codespaces environment:
 
-![](images/5.png)
-
-  2. Within the settings, you can configure the environment, user environment, and remote codespaces environment.
-
-![](images/6.png)
+![Codespace settings](images/6.png)
 
 ## Conclusion
 
-Although GitHub Codespaces is still in private preview, it's very apparent that it's certainly the tool of the future. There's simply no need for a developer to leave GitHub. They can now store code and write it all under one roof.
+Although GitHub Codespaces is still in private preview, it’s very apparent that it’s the tool of the future. There’s just no need for a developer to leave GitHub. They can now store code and write it all in one place.
