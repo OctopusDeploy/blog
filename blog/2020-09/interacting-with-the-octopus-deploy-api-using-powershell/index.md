@@ -4,11 +4,13 @@ description: Learn how to use your PowerShell skills to make API related calls t
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-09-08
-metaImage:
-bannerImage:
+metaImage: octopus-api-powershell.png
+bannerImage: octopus-api-powershell.png
 tags:
  - PowerShell
 ---
+
+![Interacting with the Octopus Deploy API using PowerShell](octopus-api-powershell.png)
 
 Any platform or solution that you want to use without having to click a million buttons through a UI needs an Application Programming Interface (API) to interact with. An API is the engine under the hood. It’s the way you can interact with an application, platform, and even Internet-of-Things (IoT) devices at the programmatic level.
 
