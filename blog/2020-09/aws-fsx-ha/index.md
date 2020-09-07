@@ -11,7 +11,7 @@ tags:
  - AWS
 ---
 
-When you configure [High Availability on AWS](https://octopus.com/docs/administration/high-availability/configuring-octopus-for-high-availability#shared-storage-in-amazon-aws) for Octopus, you need something like Microsoft DFS for shared storage (as the documentation states) or you can use Amazon’s FSx. In this post, I demonstrate how to FSx with Octopus Deploy installed on an EC2 instance.
+When you configure [High Availability on AWS](https://octopus.com/docs/administration/high-availability/configuring-octopus-for-high-availability#shared-storage-in-amazon-aws) for Octopus, you need something like Microsoft DFS for shared storage (as the documentation states) or you can use Amazon’s FSx. In this post, I demonstrate how to use FSx with Octopus Deploy installed on an EC2 instance.
 
 ## Amazon FSx
 FSx is a network file system that comes in two flavors:
