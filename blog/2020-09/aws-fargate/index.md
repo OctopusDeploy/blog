@@ -4,12 +4,14 @@ description: Learn how to deploy containers in the Elastic Container Registry to
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2020-09-07
-metaImage:
-bannerImage:
+metaImage: fargate-octopus.png
+bannerImage: fargate-octopus.png
 tags:
  - DevOps
  - AWS
 ---
+
+![Deploying containers to AWS Fargate](fargate-octopus.png)
 
 [Amazon Web Services (AWS) Fargate](https://aws.amazon.com/fargate/) has become a popular technology for deploying containerized applications without having to worry about back-end infrastructure management.  My team is often asked, can you use Octopus Deploy with AWS Fargate? The answer is, YES!  Not only can you use Fargate, but you can also use the AWS Elastic Container Registry (ECR) as an external feed to Octopus Deploy.  In this post, I demonstrate an entire CI/CD pipeline using TeamCity, ECR, Octopus Deploy, and Elastic Container Services (ECS) Fargate.
 
