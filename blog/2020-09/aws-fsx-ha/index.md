@@ -4,12 +4,14 @@ description: Learn how to create an Octopus Server High Availability cluster usi
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2020-09-09
-metaImage: 
-bannerImage: 
+metaImage: aws-ha-file-share.png
+bannerImage: aws-ha-file-share.png
 tags:
  - Product
  - AWS
 ---
+
+![Configuring Octopus Server High Availability using AWS FSx](aws-ha-file-share.png)
 
 When you configure [High Availability on AWS](https://octopus.com/docs/administration/high-availability/configuring-octopus-for-high-availability#shared-storage-in-amazon-aws) for Octopus, you need something like Microsoft DFS for shared storage (as the documentation states) or you can use Amazon’s FSx. In this post, I demonstrate how to use FSx with Octopus Deploy installed on an EC2 instance.
 
