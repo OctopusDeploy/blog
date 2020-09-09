@@ -82,7 +82,7 @@ The final step in the process is to review the options you have chosen for your 
 
 After the FSx file system has been created, it will be available on the Active Directory network.
 
-### Get the DSN name
+### Get the DNS name
 
 In order to connect to the share, we need to know what the endpoint is.  After the file system has been created, click on `FSx` under the `Storage` category:
 
