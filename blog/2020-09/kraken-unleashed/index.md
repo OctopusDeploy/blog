@@ -22,7 +22,7 @@ The primary objective of Octopus Deploy is to make deployments easier, more reli
 
 1.	**More reliable deployments:** Many deployments fail due to human error. When folks switch to automated deployments, most see an order of magnitude improvement with respect to change failure rates and “Mean Time To Recovery” (MTTR).
 1.	**Lock down production:** Once regular deployments are going through Octopus, it may well be possible to conduct a cull of production database users. 
-1.	**Separation of duties:** If separation of duties is important for you, you can configure your Octopus Deploy users such that it is impossible (for example) for the same user to create a release and deploy it to production, or for any production deployment to be executed without an audited approval from a specific group or person. (Before going down this road, please read Change Advisory Boards Don’t Work.)
+1.	**Separation of duties:** If separation of duties is important for you, you can configure your Octopus Deploy users such that it is impossible (for example) for the same user to create a release and deploy it to production, or for any production deployment to be executed without an audited approval from a specific group or person. (Before going down this road, please read [Change Advisory Boards Don’t Work](https://octopus.com/blog/change-advisory-boards-dont-work).)
 1.	**Audit:** Every task completed by Octopus Deploy is effectively version controlled and logged. Auditors love this.
 
 That said, any tool is only as good as the person using it. Octopus Deploy is a powerful beast, but it will be most effective when its handlers understand it and control its power effectively.
@@ -37,21 +37,23 @@ In order to contribute to the safe implementation of Octopus Deploy, it’s impo
 
 Octopus Deploy gets its name because its architecture resembles that of an octopus, with a “Server” at the centre, which sends packages and deployment scripts to various targets where files are deployed, and commands are executed.
 
-Octopus users can interact with the server either through a web portal or with scripts, typically using PowerShell, a REST API or a command line utility called octo.exe.
+Octopus users can interact with the server either through a web portal or with scripts, typically using PowerShell, a [REST API](https://octopus.com/blog/change-advisory-boards-dont-work) or a command line utility called [octo.exe](https://octopus.com/docs/octopus-rest-api/octopus-cli).
+
+
  
-There are various sorts of deployment targets. The most common is an Octopus “Tentacle” (or Agent) which is a service that runs on some target Machine. (For example, on a server, VM, or container etc.) Tentacles can run on Windows or Linux on your own infrastructure or your preferred cloud provider.
+There are various sorts of [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets). The most common is an Octopus “Tentacle” (or Agent) which is a service that runs on some target Machine. (For example, on a server, VM, or container etc.) Tentacles can run on [Windows](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) or [Linux](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) on your own infrastructure or your preferred cloud provider.
 
-The communication between the Octopus Server and Tentacle uses a secure TLS connection on a specific port, using public-key cryptography. (More detail available here.) This avoids the need to use passwords. As long as the private keys are kept safe, it should be impossible for another system to impersonate either the Server or Tentacle.
+The communication between the Octopus Server and Tentacle uses a secure TLS connection on a specific port, using public-key cryptography. ([More detail available here](https://octopus.com/docs/security/octopus-tentacle-communication).) This avoids the need to use passwords. As long as the private keys are kept safe, it should be impossible for another system to impersonate either the Server or Tentacle.
 
-The Octopus Server probably lives outside your production security perimeter, because it is likely to also be responsible for deployments to lower environments (Dev, Test etc). More information about where to install your Octopus Server can be found here.
+The Octopus Server probably lives outside your production security perimeter, because it is likely to also be responsible for deployments to lower environments (Dev, Test etc). [More information about where to install your Octopus Server can be found here](https://octopus.com/docs/security/exposing-octopus).
 
 However, the Tentacles need to live within the security perimeter of each environment (Dev, Test, Prod etc) so that they can communicate freely with your target database(s). Hence, you will probably need to set a firewall rule on a specific port to allow traffic between the Octopus Server and the Octopus Tentacle(s).
 
 If at any time you are concerned that the security of your Server or Agent has been compromised, you can cut off the communication between them by deleting the firewall rule.
 
-The Octopus Deploy Server also needs its own SQL Server database. This database should be considered a production database and it should be administered as you would any other production database that contains critical administration data. More information about this database can be found here.
+The Octopus Deploy Server also needs its own SQL Server database. This database should be considered a production database and it should be administered as you would any other production database that contains critical administration data. [More information about this database can be found here](https://octopus.com/docs/administration/data/octopus-database).
 
-Most of the Octopus Deploy configuration data is stored in the Octopus Deploy database in plain text, but sensitive data is encrypted using a “Master Key” which is available on the Octopus Deploy Server itself. (It will be impossible to restore backups of the Octopus Deploy backup without this master key.) Hence, it’s important to:
+Most of the Octopus Deploy configuration data is stored in the Octopus Deploy database in plain text, but sensitive data is [encrypted using a “Master Key”](https://octopus.com/docs/security/data-encryption) which is available on the Octopus Deploy Server itself. (It will be impossible to restore backups of the Octopus Deploy backup without this master key.) Hence, it’s important to:
 
 - Save the master key in a secure password manager in case your Octopus Server dies.
 - Manage who has access to the Octopus Deploy database as if it was one of your production databases.
@@ -77,10 +79,10 @@ This raises a couple of points that need to be addressed.
 
 - **Octopus Deploy is neither solely a “Dev tool”, nor is it solely an “Ops tool”**
   DevOps, by definition, is about the collaboration between different functional groups. It’s about “optimising for the whole”, rather than any specific functional silo. It is therefore necessary for this blog post’s hero, the data guardian, to take an active role in the security of the Octopus Deploy Server, and to collaborate with folks that they might not often work closely with to ensure that it’s set up such that it’s both secure and practical for folks to make regular deployments.
-- **The push for over-isolation of environments is a harmful and immature symptom of Zero-Risk Bias**
+- **The push for over-isolation of environments is a harmful and immature symptom of [Zero-Risk Bias](https://en.wikipedia.org/wiki/Zero-risk_bias)**
   While isolating your environments from each other is undoubtedly a wise security step, sometimes over-zealous security folks make the mistake of denying the Server/Tentacle communication over the firewall. This makes it impossible to transfer and execute a consistent set of deployment resources to each environment. This leads to inconsistency, headaches and failures. It also makes it much more likely that deployments will be handled manually, by individuals who have the appropriate access to the isolated environments, increasing the risk of human error and creating deployment bottlenecks/delays. Rather than seeing the uniform deployment service as a risk factor, it should be seen as a risk mitigator.
 
-You will need to manage who has the rights to make those changes using the Octopus Deploy Users and Roles functionality. (More information here.) These roles can be mapped to Active Directory user accounts and groups. For example, you could configure it so that different users are granted permissions to deploy to different environments, enforcing separation of duty.
+You will need to manage who has the rights to make those changes using the Octopus Deploy Users and Roles functionality. ([More information here](https://octopus.com/docs/security/users-and-teams/user-roles).) These roles can be [mapped to Active Directory user accounts and groups](https://octopus.com/docs/security/authentication/active-directory#:~:text=Octopus%20Deploy%20can%20use%20Windows,or%20can%20be%20configured%20later.&text=When%20you%20go%20through%20the,Windows%20as%20a%20domain%20user.). For example, you could configure it so that different users are granted permissions to deploy to different environments, enforcing separation of duty.
 
 While in some ways Octopus is opening doors and allowing new people to make changes to your databases in new ways, it also provides an opportunity to close doors. Once all/most deployments are going through Octopus Deploy, there should be far less need for folks to have direct access to the production database. A common step in the roll-out of Octopus Deploy is to perform a massive cull of users on production.
 
@@ -91,22 +93,22 @@ We are creating an environment where the “lazy path” for developers is to do
 # Step 4: Understand the Deployment Process
 Octopus Deploy does not have the smarts to deploy databases out of the box. Instead, Octopus Deploy acts as an orchestrator, transferring all the required files to the jump-box and running whatever commands are required to instruct your preferred database deployment tool to perform the database update.
 
-There are several tools and techniques that can be used to perform the deployment. Back in March I reviewed the most popular options among Octopus Deploy users for deploying SQL Server databases. For SQL Server there are a selection of Microsoft, third-party and open source options that can generally be categorised as “migrations-based” or “model-based” solutions.
+There are several tools and techniques that can be used to perform the deployment. Back in March [I reviewed the most popular options among Octopus Deploy users for deploying SQL Server databases](https://octopus.com/blog/sql-server-deployment-options-for-octopus-deploy). For SQL Server there are a selection of Microsoft, third-party and open source options that can generally be categorised as “migrations-based” or “model-based” solutions.
 
-Whichever tool you use, it’s likely that you’ll either want to pre-install your database tooling on the jump-box or that you’ll want to automate the install/update as part of the deployment process. Pre-installing the tools might be easier in the short term and can speed up your deployments, but it also comes with an administrative overhead and makes your deployment process less portable. Hence, I generally advocate for installing/updating whatever database deployment tools you are using as part of the deployment or on a regular schedule using an Octopus Runbook. (Note, this may well require some level of internet access on the jump-box.)
+Whichever tool you use, it’s likely that you’ll either want to pre-install your database tooling on the jump-box or that you’ll want to automate the install/update as part of the deployment process. Pre-installing the tools might be easier in the short term and can speed up your deployments, but it also comes with an administrative overhead and makes your deployment process less portable. Hence, I generally advocate for installing/updating whatever database deployment tools you are using as part of the deployment or on a regular schedule using an [Octopus Runbook](https://octopus.com/docs/runbooks). (Note, this may well require some level of internet access on the jump-box.)
 
-If you often need to deploy to multiple databases at the same time within a single environment, you might want to consider using workers for your jump-boxes. For example, if you run many copies of the production database within the same security perimeter, you might find it beneficial to have a pool of workers within each environment. This allows for the efficient scaling out of database deployments across multiple deployment jump-boxes. However, in this scenario the each jump-box would require access to each target database.
+If you often need to deploy to multiple databases at the same time within a single environment, you might want to consider using [workers](https://octopus.com/docs/infrastructure/workers) for your jump-boxes. For example, if you run many copies of the production database within the same security perimeter, you might find it beneficial to have a pool of workers within each environment. This allows for the efficient scaling out of database deployments across multiple deployment jump-boxes. However, in this scenario the each jump-box would require access to each target database.
 
 # Step 5: Reviewing deployments
 Last month I told a story about a DBA who got the blame whenever problems occurred with the production database. In order to keep it running the DBA wanted to be consulted about each deployment. Since this turned the DBA into a bottleneck, the “rock star” developers grew frustrated with the slow process and tried to sneak around the DBA. At the same time the developers weren’t interested in “DBA stuff” and they lacked the DBAs knowledge and experience.
 
 It was a train wreck. But it’s a train wreck that a lot of folks recognise. Many of us have either been that DBA or that “rock star” developer at some point in our past.
 
-The fact is, that when folks start performing manual approvals and eyeballing scripts on a regular basis they will find that most of the time they are simply working through a mental checklist of tests and checks. For example, check out the responses to this tweet.
+The fact is, that when folks start performing manual approvals and eyeballing scripts on a regular basis they will find that most of the time they are simply working through a mental checklist of tests and checks. For example, [check out the responses to this tweet](https://twitter.com/_AlexYates_/status/1298940180418752512).
 
-I also encourage you to listen to Jeffery Smith talking about Change Management Anti-Patterns with Corey Quinn earlier this year on Screaming in the Cloud where he describes the manual change review process as a mental playbook (6:30-9:30) that is probably easier to automate than you think. (This prompts and excellent debate with the snarky host!)
+I also encourage you to listen to [Jeffery Smith talking about Change Management Anti-Patterns with Corey Quinn earlier this year on Screaming in the Cloud](https://www.lastweekinaws.com/podcast/screaming-in-the-cloud/overcoming-change-management-anti-patterns-through-automation-with-jeffery-smith/) where he describes the manual change review process as a mental playbook (6:30-9:30) that is probably easier to automate than you think. (This prompts and excellent debate with the snarky host!)
 
-When you’ve explored the twitter responses or listened to Jeffery and Corey “fight” about DevOps, have a read of Bob Walker’s March blog post about automating approvals. Many of the things that data guardians tend to be looking for (such as the word “DROP”, “TRUNCATE”, “CURSOR” or “NOLOCK”, or the ability to successfully roll the deployment back) could be checked and verified automatically (by performing dry runs or code analysis within the deployment pipeline). If any of those checks fail the automated process could either be set to fail or to request a manual review.
+When you’ve explored the twitter responses or listened to Jeffery and Corey “fight” about DevOps, [have a read of Bob Walker’s March blog post about automating approvals](https://octopus.com/blog/autoapprove-database-deployments). Many of the things that data guardians tend to be looking for (such as the word “DROP”, “TRUNCATE”, “CURSOR” or “NOLOCK”, or the ability to successfully roll the deployment back) could be checked and verified automatically (by performing dry runs or code analysis within the deployment pipeline). If any of those checks fail the automated process could either be set to fail or to request a manual review.
 
 This approach is simultaneously a more reliable way of consistently catching those common issues and a more efficient route to production for daily changes. It also might prove an efficient way for teaching the developers about the sorts of things that are safe to deploy and the sorts of things that are dangerous.
 
@@ -135,5 +137,5 @@ A well-trained kraken makes a powerful ally.
 
 *
 
-To learn more about DLM Consultants’ DLM Health Check: http://dlmconsultants.com/dlm-health-check/
-To learn more about security in Octopus Deploy: https://octopus.com/docs/security
+To learn more about DLM Consultants’ DLM Health Check: [http://dlmconsultants.com/dlm-health-check/](http://dlmconsultants.com/dlm-health-check/)
+To learn more about security in Octopus Deploy: [https://octopus.com/docs/security](https://octopus.com/docs/security)
