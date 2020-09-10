@@ -39,7 +39,7 @@ Octopus Deploy gets its name because its architecture resembles that of an octop
 
 Octopus users can interact with the server either through a web portal or with scripts, typically using PowerShell, a [REST API](https://octopus.com/blog/change-advisory-boards-dont-work) or a command line utility called [octo.exe](https://octopus.com/docs/octopus-rest-api/octopus-cli).
 
-
+![](OctopusDiagram.png)
  
 There are various sorts of [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets). The most common is an Octopus “Tentacle” (or Agent) which is a service that runs on some target Machine. (For example, on a server, VM, or container etc.) Tentacles can run on [Windows](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) or [Linux](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) on your own infrastructure or your preferred cloud provider.
 
@@ -71,6 +71,8 @@ Jump-boxes are useful for database deployments because database deployments are 
 You will need to grant access for the Tentacle to update your databases. Typically, this is done by creating an “octopus” user (or similar) which has the appropriate credentials to deploy your databases. For SQL Server, running on Windows, this would probably be an Active Directory user with db_owner permissions against the appropriate target databases and it would authenticate using Windows Authentication. (However, if you can get away with fewer permissions for your use case, great.)
 
 The whole process might look like this:
+
+![](DeploymentDiagram.png)
  
 # Step 3: Lock it down
 I mentioned before that the Octopus Deploy Server probably lives outside your Production security perimeter, but the eagle-eyed reader will have noticed that the diagram above lists it within it’s own “PROD” security perimeter. The Octopus Server necessarily needs to be able to deploy to all environments, so it cannot live wholly within just one. However, since it can be used to update production it should also be considered a production asset and secured as such.
@@ -121,6 +123,8 @@ I’d like to finish with a case study to demonstrate the relative safety of aut
 
 Back in 2017 Farm Credit Mid-America were looking for improved governance and stability with their database deployments. I worked with a cross-functional team that included (from left to right) a DBA, DevOps Engineer, Data Architect and .NET Dev Lead.
  
+![](DLMHealthCheck.jpg)
+
 Within a week we produced three separate proof of concepts, each using Octopus Deploy and a different deployment tool running on the jump-box. The team had unanimously agreed on their preferred option and we created a plan to roll it out. We even managed to get our proposal (which included a not insignificant financial investment) approved by a frugal senior leadership committee. One significant reason why this approval was granted was that folks from different silos, who often disagreed, were united and enthusiastic that the solution would benefit everyone.
 
 A few months later, one of the initially more sceptical team members sent me the following progress report. Given their error rates and governance issues before Octopus, the 100% successful deployment record through the pipeline, combined with the significantly improved collaboration and productivity benefits, stand out as one of the single most satisfying achievements of my career.
