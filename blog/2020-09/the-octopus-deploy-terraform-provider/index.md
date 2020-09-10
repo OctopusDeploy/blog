@@ -44,7 +44,7 @@ The provider communicates with the client via calls based on packages, types, an
 
 For example, let's say you want to create a new project group in Octopus Deploy. There's a resource inside of the Terraform provider that's used to create a project that. That resource in the Terraform provider makes a call to the `ProjectGroup` type, which then calls a function to create a new project group.
 
-![](1.png)
+![](images/1.png)
 
 ## Why IaS?
 
