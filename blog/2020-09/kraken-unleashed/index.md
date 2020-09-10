@@ -20,10 +20,10 @@ In this post, I’m going to address the data guardians directly and explain wha
 
 The primary objective of Octopus Deploy is to make deployments easier, more reliable, and more secure. By using Octopus Deploy to make changes you get a few significant security benefits:
 
-1.	More reliable deployments: Many deployments fail due to human error. When folks switch to automated deployments, most see an order of magnitude improvement with respect to change failure rates and “Mean Time To Recovery” (MTTR).
-1.	Lock down production: Once regular deployments are going through Octopus, it may well be possible to conduct a cull of production database users. 
-1.	Separation of duties: If separation of duties is important for you, you can configure your Octopus Deploy users such that it is impossible (for example) for the same user to create a release and deploy it to production, or for any production deployment to be executed without an audited approval from a specific group or person. (Before going down this road, please read Change Advisory Boards Don’t Work.)
-1.	Audit: Every task completed by Octopus Deploy is effectively version controlled and logged. Auditors love this.
+1.	**More reliable deployments:** Many deployments fail due to human error. When folks switch to automated deployments, most see an order of magnitude improvement with respect to change failure rates and “Mean Time To Recovery” (MTTR).
+1.	**Lock down production:** Once regular deployments are going through Octopus, it may well be possible to conduct a cull of production database users. 
+1.	**Separation of duties:** If separation of duties is important for you, you can configure your Octopus Deploy users such that it is impossible (for example) for the same user to create a release and deploy it to production, or for any production deployment to be executed without an audited approval from a specific group or person. (Before going down this road, please read Change Advisory Boards Don’t Work.)
+1.	**Audit:** Every task completed by Octopus Deploy is effectively version controlled and logged. Auditors love this.
 
 That said, any tool is only as good as the person using it. Octopus Deploy is a powerful beast, but it will be most effective when its handlers understand it and control its power effectively.
 
@@ -63,8 +63,8 @@ For most stuff, folks tend to install the Tentacle on the server that’s hostin
 
 Jump-boxes are useful for database deployments because database deployments are typically driven by executing deployment scripts, rather than copying files. Since those deployment scripts don’t need to be executed from the database server itself, there isn’t an advantage to running the Tentacles on the database servers. In contrast, there are some benefits to using jump-boxes:
 
-1.	An extra layer of security: The user that the Tentacle runs as on the jump-box will need access to run scripts against the target database in order to execute the deployment. However, by using a jump-box, none of the Octopus components (Server or Tentacle) need any access to the database server’s host machine. This allows DB admins more granularity with the permissions granted to Octopus Deploy, and it allows admins to revoke that access with a simple setting on the database server itself, without needing to deal with firewalls or Octopus directly.
-1.	Improved database performance and protection: Complicated, risky or resource intensive operations (such as schema comparisons) can be executed on the jump-box, rather the database server. This avoids hogging system resources on the database host server and protects the database from failures. (If something goes wrong, it’s much better to crash the jump-box than the database server!)
+1.	**An extra layer of security:** The user that the Tentacle runs as on the jump-box will need access to run scripts against the target database in order to execute the deployment. However, by using a jump-box, none of the Octopus components (Server or Tentacle) need any access to the database server’s host machine. This allows DB admins more granularity with the permissions granted to Octopus Deploy, and it allows admins to revoke that access with a simple setting on the database server itself, without needing to deal with firewalls or Octopus directly.
+1.	**Improved database performance and protection:** Complicated, risky or resource intensive operations (such as schema comparisons) can be executed on the jump-box, rather the database server. This avoids hogging system resources on the database host server and protects the database from failures. (If something goes wrong, it’s much better to crash the jump-box than the database server!)
 
 You will need to grant access for the Tentacle to update your databases. Typically, this is done by creating an “octopus” user (or similar) which has the appropriate credentials to deploy your databases. For SQL Server, running on Windows, this would probably be an Active Directory user with db_owner permissions against the appropriate target databases and it would authenticate using Windows Authentication. (However, if you can get away with fewer permissions for your use case, great.)
 
@@ -75,9 +75,9 @@ I mentioned before that the Octopus Deploy Server probably lives outside your Pr
 
 This raises a couple of points that need to be addressed.
 
-- Octopus Deploy is neither solely a “Dev tool”, nor is it solely an “Ops tool”
+- **Octopus Deploy is neither solely a “Dev tool”, nor is it solely an “Ops tool”**
   DevOps, by definition, is about the collaboration between different functional groups. It’s about “optimising for the whole”, rather than any specific functional silo. It is therefore necessary for this blog post’s hero, the data guardian, to take an active role in the security of the Octopus Deploy Server, and to collaborate with folks that they might not often work closely with to ensure that it’s set up such that it’s both secure and practical for folks to make regular deployments.
-- The push for over-isolation of environments is a harmful and immature symptom of Zero-Risk Bias
+- **The push for over-isolation of environments is a harmful and immature symptom of Zero-Risk Bias**
   While isolating your environments from each other is undoubtedly a wise security step, sometimes over-zealous security folks make the mistake of denying the Server/Tentacle communication over the firewall. This makes it impossible to transfer and execute a consistent set of deployment resources to each environment. This leads to inconsistency, headaches and failures. It also makes it much more likely that deployments will be handled manually, by individuals who have the appropriate access to the isolated environments, increasing the risk of human error and creating deployment bottlenecks/delays. Rather than seeing the uniform deployment service as a risk factor, it should be seen as a risk mitigator.
 
 You will need to manage who has the rights to make those changes using the Octopus Deploy Users and Roles functionality. (More information here.) These roles can be mapped to Active Directory user accounts and groups. For example, you could configure it so that different users are granted permissions to deploy to different environments, enforcing separation of duty.
@@ -125,13 +125,13 @@ A few months later, one of the initially more sceptical team members sent me the
 
 A well-trained kraken makes a powerful ally.
 
-“In September 2017, as part of a wider DevOps transformation, DLM Consultants ran a Database Lifecycle Management (DLM) Health Check with us where we tested out three database source control and deployment proof of concept (POC) solutions that would enable us to deliver database updates more regularly and more reliably. This made it easy for us to select the best strategy for our databases. Over the following months DLM Consultants helped us to roll it out.
+*“In September 2017, as part of a wider DevOps transformation, DLM Consultants ran a Database Lifecycle Management (DLM) Health Check with us where we tested out three database source control and deployment proof of concept (POC) solutions that would enable us to deliver database updates more regularly and more reliably. This made it easy for us to select the best strategy for our databases. Over the following months DLM Consultants helped us to roll it out.*
 
-It’s now working really well and delivering enormous value for us. We now deploy our database updates at the click of a button and we’ve not had a single failed deployment through the new process.
+*It’s now working really well and delivering enormous value for us. We now deploy our database updates at the click of a button and we’ve not had a single failed deployment through the new process.*
 
-Our implementation of DLM ranks as the most beneficial infrastructure project that I’ve witnessed in my 26-year IT career. Database deployments no longer represent a bottleneck in our software delivery process. The process improvements realized by this technology touch all team members. Developers, QAs & DBAs communicate as releases move through the pipeline. DLM makes us more productive.”
+*Our implementation of DLM ranks as the most beneficial infrastructure project that I’ve witnessed in my 26-year IT career. Database deployments no longer represent a bottleneck in our software delivery process. The process improvements realized by this technology touch all team members. Developers, QAs & DBAs communicate as releases move through the pipeline. DLM makes us more productive.”*
 
-Steve Cornwell, Enterprise Database Developer at Farm Credit Mid-America, ex-Microsoft employee
+***Steve Cornwell****, Enterprise Database Developer at Farm Credit Mid-America, ex-Microsoft employee*
 
 *
 
