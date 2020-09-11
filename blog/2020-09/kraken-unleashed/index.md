@@ -19,7 +19,7 @@ Perhaps you were on board with the idea, perhaps not, but that ship has sailed. 
 
 In this post, I’m going to address the data guardians directly and explain what they need to know to ensure the data is safe. My hope is that while those data guardians may have initially read this title and imagined Octopus Deploy as a threatening monster hellbent on attacking your data, by the end of this post they will instead imagine the kraken as a powerful yet faithful servant, vigilantly protecting your treasured data and using it’s awesome power to unlock previously unimagined riches.
 
-# Before we start: Breathe. Everything is going to be OK.
+## Before we start: Breathe. Everything is going to be OK.
 
 The primary objective of Octopus Deploy is to make deployments easier, more reliable, and more secure. By using Octopus Deploy to make changes you get a few significant security benefits:
 
@@ -34,7 +34,7 @@ Dear data guardian, whether you are a DBA, Developer, Architect, SysAdmin, CISO,
 
 As the data guardian, you understand more than anyone why deployments fail and how your data can be compromised. Your team needs your expertise to ensure those mistakes are avoided, not just within a single deployment – but within every deployment.
 
-# Step 1: Understand how Octopus Deploy works
+## Step 1: Understand how Octopus Deploy works
 
 In order to contribute to the safe implementation of Octopus Deploy, it’s important to first understand how it works – with a special focus on security.
 
@@ -62,7 +62,7 @@ Most of the Octopus Deploy configuration data is stored in the Octopus Deploy da
 - Manage who has access to the Octopus Deploy database as if it was one of your production databases.
 - Strictly manage access to the machine that the Octopus Deploy software is running on, since this is where the master key is stored. (Note, this is different from managing who is registered as a regular Octopus Deploy user who can access the Web Portal etc.)
 
-# Step 2: Use jump-boxes
+## Step 2: Use jump-boxes
 
 For most stuff, folks tend to install the Tentacle on the server that’s hosting your stuff. This makes the transferring of files and the execution of scripts much simpler, which is ideal for deploying web application etc. However, for databases it’s common to use “jump-boxes”. A jump-box is a separate machine that lives close to your target database and has all the necessary tooling installed to execute the deployment.
 
@@ -77,7 +77,7 @@ The whole process might look like this:
 
 ![](deploymentdiagram.png)
  
-# Step 3: Lock it down
+## Step 3: Lock it down
 I mentioned before that the Octopus Deploy Server probably lives outside your Production security perimeter, but the eagle-eyed reader will have noticed that the diagram above lists it within it’s own “PROD” security perimeter. The Octopus Server necessarily needs to be able to deploy to all environments, so it cannot live wholly within just one. However, since it can be used to update production it should also be considered a production asset and secured as such.
 
 This raises a couple of points that need to be addressed.
@@ -95,7 +95,7 @@ This is a trade-off. On the one hand, we are granting users more freedom to depl
 
 We are creating an environment where the “lazy path” for developers is to do the right things rather than the wrong things. The new world is much safer than the old.
 
-# Step 4: Understand the Deployment Process
+## Step 4: Understand the Deployment Process
 Octopus Deploy does not have the smarts to deploy databases out of the box. Instead, Octopus Deploy acts as an orchestrator, transferring all the required files to the jump-box and running whatever commands are required to instruct your preferred database deployment tool to perform the database update.
 
 There are several tools and techniques that can be used to perform the deployment. Back in March [I reviewed the most popular options among Octopus Deploy users for deploying SQL Server databases](https://octopus.com/blog/sql-server-deployment-options-for-octopus-deploy). For SQL Server there are a selection of Microsoft, third-party and open source options that can generally be categorised as “migrations-based” or “model-based” solutions.
@@ -110,7 +110,7 @@ See [our documentation](https://octopus.com/docs/infrastructure/workers) for mor
 
 If you often need to deploy to multiple databases at the same time within a single environment, you might want to consider using [workers](https://octopus.com/docs/infrastructure/workers) for your jump-boxes. For example, if you run many copies of the production database within the same security perimeter, you might find it beneficial to have a pool of workers within each environment. This allows for the efficient scaling out of database deployments across multiple deployment jump-boxes. However, in this scenario the each jump-box would require access to each target database.
 
-# Step 5: Reviewing deployments
+## Step 5: Reviewing deployments
 Last month I told a story about a DBA who got the blame whenever problems occurred with the production database. In order to keep it running the DBA wanted to be consulted about each deployment. Since this turned the DBA into a bottleneck, the “rock star” developers grew frustrated with the slow process and tried to sneak around the DBA. At the same time the developers weren’t interested in “DBA stuff” and they lacked the DBAs knowledge and experience.
 
 It was a train wreck. But it’s a train wreck that a lot of folks recognise. Many of us have either been that DBA or that “rock star” developer at some point in our past.
@@ -127,7 +127,7 @@ This approach is actually better aligned with ITIL than many ITIL practitioners 
 
 However, it takes the expertise of the data guardians to do this effectively. Consider this a call to arms to all data guardians to stop thinking about trying to manually eyeball every individual deployment and to start thinking about how to more efficiently and more thoroughly validate *ALL* deployments. This will save you time in the long run which you can dedicate to adding more tests to your deployment pipeline, further hardening it, or conducting more thorough manual reviews of the most risky deployments.
 
-# A case study: A Reason for Hope 
+## A case study: A Reason for Hope 
 I’d like to finish with a case study to demonstrate the relative safety of automated database deployments and cross-functional collaboration.
 
 Back in 2017 Farm Credit Mid-America were looking for improved governance and stability with their database deployments. I worked with a cross-functional team that included (from left to right) a DBA, DevOps Engineer, Data Architect and .NET Dev Lead.
