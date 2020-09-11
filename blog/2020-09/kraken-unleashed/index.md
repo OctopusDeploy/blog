@@ -102,6 +102,12 @@ There are several tools and techniques that can be used to perform the deploymen
 
 Whichever tool you use, it’s likely that you’ll either want to pre-install your database tooling on the jump-box or that you’ll want to automate the install/update as part of the deployment process. Pre-installing the tools might be easier in the short term and can speed up your deployments, but it also comes with an administrative overhead and makes your deployment process less portable. Hence, I generally advocate for installing/updating whatever database deployment tools you are using as part of the deployment or on a regular schedule using an [Octopus Runbook](https://octopus.com/docs/runbooks). (Note, this may well require some level of internet access on the jump-box.)
 
+:::hint
+Workers enable you to move deployment work onto other machines running in pools and database deployments are a common usecase for this. You can create a pool of dedicated workers that can be utilized for database deployments by multiple projects and teams. 
+
+See [our documentation](https://octopus.com/docs/infrastructure/workers) for more information.
+:::
+
 If you often need to deploy to multiple databases at the same time within a single environment, you might want to consider using [workers](https://octopus.com/docs/infrastructure/workers) for your jump-boxes. For example, if you run many copies of the production database within the same security perimeter, you might find it beneficial to have a pool of workers within each environment. This allows for the efficient scaling out of database deployments across multiple deployment jump-boxes. However, in this scenario the each jump-box would require access to each target database.
 
 # Step 5: Reviewing deployments
