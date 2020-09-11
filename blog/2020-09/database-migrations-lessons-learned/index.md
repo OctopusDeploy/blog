@@ -1,15 +1,14 @@
 ---
 title: "Database migrations lessons learned"
-description: Learn TODO
+description: Learn about database migrations and some lessons learned from using them in the Octopus Deploy code base. 
 author: frank.lin@octopus.com
-visibility: private
-published: 2029-07-30
+visibility: public
+published: 2020-09-15
 metaImage: refactoring-octopus.png
 bannerImage: refactoring-octopus.png
 tags:
  - Engineering
 ---
-
 
 ![Database migrations lessons learned](refactoring-octopus.png)
 
