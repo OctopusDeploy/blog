@@ -1,6 +1,6 @@
 ---
 title: "Database migrations lessons learned"
-description: Learn about database migrations and some lessons learned from using them in the Octopus Deploy code base. 
+description: Learn about database migrations and some lessons learned from using them in the Octopus Deploy codebase. 
 author: frank.lin@octopus.com
 visibility: public
 published: 2020-09-15
@@ -12,9 +12,9 @@ tags:
 
 ![Database migrations lessons learned](refactoring-octopus.png)
 
-Database migrations are a popular way to update application databases in a controlled way that reduces the risk. This approach is also known as schema migrations, database upgrade scripts, change driven, or script based updates. Octopus Deploy has used database migrations since the beginning of the product, and we’ve learned a lot as Octopus has grown in size and complexity. 
+Database migrations are a popular way to update application databases in a controlled way that keeps the risk to a minimum. This approach is also known as schema migrations, database upgrade scripts, change driven, or script based updates. Octopus Deploy has used database migrations since the beginning of the product, and we’ve learned a lot as Octopus has grown in size and complexity. 
 
-In this post, I’ll introduce database migrations, share some common frameworks and cover our lessons learned from nearly ten years of working with them. 
+In this post, I’ll introduce database migrations, share some common frameworks and cover our lessons learned from nearly ten years of experience. 
 
 ## What are database migrations?
 
@@ -22,7 +22,7 @@ Most applications need to persist information about the state of the application
 
 Most frameworks support this concept by providing a way for you to supply migration scripts to manipulate the database. Some even let you specify a rollback action. Typically, they keep track of the scripts that have been applied in a table.
 
-There are numerous options for almost every platform and each one generally has some unique attributes.
+There are numerous options for almost every platform and each one generally has some unique attributes:
 
 **NodeJS**
 
@@ -72,12 +72,12 @@ _But will it work later?_
 ### Lesson 2: Keep it low-tech, don’t deserialize {#keep-it-low-tech}
 
 :::hint
-This step applies to teams using object relational mappers (ORM) and/or document databases (i.e. NoSQL). Octopus uses a micro-ORM called [Nevermore](https://github.com/OctopusDeploy/Nevermore) that treats SQL Server as a document store. This lesson learned is based on this experience.
+This step applies to teams using object relational mappers (ORM) or document databases (i.e., NoSQL). Octopus uses a micro-ORM called [Nevermore](https://github.com/OctopusDeploy/Nevermore) that treats SQL Server as a document store.
 :::
 
 You might be tempted to deserialize database records so that you can work with objects where code completion (i.e., IntelliSense) or type safety are available. In reality, you’re exposing yourself to complexities around serialization and type converters.
 
-The upgrade script will be simpler if you work directly with the text or document model. This often means that you need to work with abstractions for different formats. For example, Octopus is written using .NET Core and this means we work directly with `JObject` for `JSON` documents or `XElement` for `XML` documents. Other platforms use the equivalent concepts and frameworks.
+The upgrade script will be simpler if you work directly with the text or document model. This often means you need to work with abstractions for different formats. For example, Octopus is written using .NET Core and this means we work directly with `JObject` for `JSON` documents or `XElement` for `XML` documents. Other platforms use the equivalent concepts and frameworks.
 
 ### Lesson 3: Write tests to exercise each migration script individually {#write-tests}
 
@@ -108,7 +108,8 @@ Although it’s convenient to use migration scripts to update database schema ch
 
 The crucial takeaway from these lessons is to isolate your upgrade scripts from the main production code so that its behavior is _snapshotted in time_.
 
-In summary, our database migration lessons learned are as follows:
+In summary, our database migration lessons learned are:
+
 * Keep your migration scripts away from your production code.
 * Keep it low-tech, don’t deserialize.
 * Write tests to exercise each migration script individually.
