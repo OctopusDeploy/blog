@@ -9,7 +9,6 @@ bannerImage:
 tags:
  - DevOps
  - Terraform
- - Hashicorp
 ---
 
 There was a time where when you thought about infrastructure, you thought *okay, it's time to click a bunch of buttons and manually create resources*. That has all changed with a key concept called Infrastructure-as-code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)), which is a way to define infrastructure with code and development practices.
