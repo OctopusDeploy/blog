@@ -96,10 +96,10 @@ We have started experimenting with running large migration jobs asynchronously i
 
 This is something we don’t have concrete advice on yet but we’re continuing to evaluate.
 
-### 5. Consider versioning your documents {#consider-running-long-migrations-online}
+### 5. Consider versioning your documents {#consider-versioning-your-documents}
 
 :::hint
-Similar to [Lesson 2 (Keep it low-tech)](/blog/2020-09/database-migrations-lessons-learned/index.md#keep-it-low-tech), this step applies to teams using object relational mappers (ORM) or document databases (i.e., NoSQL).
+Similar to [Lesson 2 (Keep it low-tech)](/blog/2020-09/database-migrations-lessons-learned/index.md#keep-it-low-tech), this step applies to teams using object relational mappers (ORM) or document databases.
 :::
 
 Although it’s convenient to use migration scripts to update database schema changes as well as document properties, you will gain some flexibility if you separate the two concerns. For example, if you versioned your documents and upgraded the document structure separately, then you can reuse that same upgrade code to import those same documents from a file.
@@ -109,7 +109,7 @@ Although it’s convenient to use migration scripts to update database schema ch
 The crucial takeaway from these lessons is to isolate your upgrade scripts from the main production code so that its behavior is _snapshotted in time_.
 
 In summary, our database migration lessons learned are as follows:
-* Keep your migration scripts away from your normal production code.
+* Keep your migration scripts away from your production code.
 * Keep it low-tech, don’t deserialize.
 * Write tests to exercise each migration script individually.
 * Consider running long migrations online.
