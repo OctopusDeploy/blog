@@ -1,6 +1,6 @@
 ---
 title: "Java CI/CD: From release management to operations"
-description: In this post, we create example runbooks to implement operations tasks.
+description: In this post, we create example runbook to implement operations tasks.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2030-10-01
@@ -8,6 +8,7 @@ metaImage:
 bannerImage: 
 tags:
  - Octopus
+ - Runbooks
 ---
 
 This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
@@ -22,7 +23,7 @@ While a traditional deployment pipeline ends with a deployment to production, Oc
 
 ## Add a database
 
-Before we can create runbooks for database backups, we first need a database.
+Before we can create runbooks for database backups, we need a database.
 
 In a production setting you would typically use a hosted service like RDS. RDS provides out-of-the-box high availability, backups, maintenance windows, security, and more, all of which requires a significant effort to replicate with a local database. However, for the demonstration purposes of this blog, we’ll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
 
@@ -196,15 +197,15 @@ Select -First 1 |
 
 This script is executed in a **Run a kubectl CLI Script** step added to a runbook:
 
-![](mysqldump.png "width=500")
+![The kubectl script performing the database backup](mysqldump.png "width=500")
 *The kubectl script performing the database backup.*
 
-![](backuplogs.png "width=500")
+![The result of executing the database backup](backuplogs.png "width=500")
 *The result of executing the database backup.*
 
 We don’t want to manually backup the database, so Octopus allows runbooks to be scheduled. Here we have a trigger to perform a daily backup:
 
-![](backuptrigger.png "width=500")
+![A scheduled backup](backuptrigger.png "width=500")
 *A scheduled backup.*
 
 While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated, and seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. 
@@ -213,7 +214,7 @@ The real advantage of this approach becomes clear when you consider the differen
 
 Because Octopus has already deployed to our infrastructure, we don't need to duplicate credentials or other settings like URLs to manage the infrastructure. It's all already in Octopus.
 
-Runbooks eliminate the need for additional tools and configuration settings that might be otherwise maintained on a specialized support laptop, meaning on call support personnel can execute these runbooks from a web browser (on their phone if necessary) with a click of a button. Because the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs, you don't experience the same difficulties uncovering the root cause of issues, the way you would if the operations team had to run ad-hoc scripts from their own workstations.
+Runbooks eliminate the need for additional tools and configuration settings that might be otherwise maintained on a specialized support laptop, meaning on call support personnel can execute these runbooks from a web browser (on their phone if necessary) with a click of a button. Because the execution of these runbooks is captured in audit logs, and the output of the steps is captured in the history of the runbook runs, you don't experience the same difficulties uncovering the root cause of issues, that you would if the operations team had to run ad-hoc scripts from their own workstations.
 
 An added benefit is that runbooks are aware of our multiple environments, so just as our application code must progress through multiple environments before it is deemed ready for a production release, so too our runbooks can be tested and validated in non-production environments to ensure they can be trusted in production.
 
@@ -244,7 +245,7 @@ Commands like `kubectl delete` can be daunting if you’re not familiar with Kub
 
 By adding descriptions to runbooks we can provide guidance on when and where runbooks can be run. In the screenshot below you can see the description of the **Restart PetClinic** runbook makes it clear that this is something that can be run in production:
 
-![](restartpods.png "width=500")
+![Runbooks with a description](restartpods.png "width=500")
 *Runbooks with descriptions to help the operations team understand when and where to run them.*
 
 Going further, we could use permissions in Octopus to restrict access to runbooks that may require a deeper understanding of the infrastructure to run safely, or use manual interventions to get approval before any action is taken.
@@ -253,7 +254,7 @@ Again, this is an example of encapsulating business knowledge in a runbook to re
 
 ## Conclusion
 
-Traditional deployment pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Runbooks gives your team the tools they need to support applications from the first code commit to weeks, months, or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets and environments to implement the operations stage of the DevOps lifecycle.
+Traditional deployment pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Runbooks gives your team the tools they need to support applications from the first code commit to weeks, months, or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets, and environments to implement the operations stage of the DevOps lifecycle.
 
 Fundamentally, runbooks treat the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the best practices from continuous delivery and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
 
