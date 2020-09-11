@@ -12,9 +12,9 @@ tags:
  - Hashicorp
 ---
 
-There was a time where when you thought about infrastructure, you thought *okay, it's time to click a bunch of buttons and manually create resources*. That has all changed with a key concept called Infrastructure-as-code ([IaS](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)), which is a way to define infrastructure with code and development practices.
+There was a time where when you thought about infrastructure, you thought *okay, it's time to click a bunch of buttons and manually create resources*. That has all changed with a key concept called Infrastructure-as-code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)), which is a way to define infrastructure with code and development practices.
 
-Lately, there has been one victor to rule them all, which is Terraform. Terraform is an open-source IaS solution that allows you to define your infrastructure using a fast growing functional-based programming language called Hashicorp Configuration Language (HCL).
+Lately, there has been one victor to rule them all, which is Terraform. Terraform is an open-source IaC solution that allows you to define your infrastructure using a fast growing functional-based programming language called Hashicorp Configuration Language (HCL).
 
 In this blog post, you'll get a first look into the Terraform provider and what it has to offer.
 
@@ -46,11 +46,11 @@ For example, let's say you want to create a new project group in Octopus Deploy.
 
 ![](images/1.png)
 
-## Why IaS?
+## Why IaC?
 
 The further the world goes down the cloud engineering and development route, the more it's clear that we simply cannot continue creating infrastructure manually. Not only does it take a long time, but it's prone to failures. There's no one person in the world that can say they've never done *something* by mistake by creating a resource manually. Whether it was something as small as a typo, as humans, we're prone to mistakes.
 
-When it comes to IaS, mistakes can still be made in code, but they're much less. When you're writing code and storing it in source control, you can do things to prevent mistakes as much as possible such as:
+When it comes to IaC, mistakes can still be made in code, but they're much less. When you're writing code and storing it in source control, you can do things to prevent mistakes as much as possible such as:
 
 - Code reviews
 - Automated testing to ensure the code works as expected
@@ -59,7 +59,7 @@ When it comes to IaS, mistakes can still be made in code, but they're much less.
 
 ## What Can the Provider Do?
 
-So, at this point you have a bit of background on the client, the provider, and why you would want to use IaS, but how about the actions that the provider can actually do?
+So, at this point you have a bit of background on the client, the provider, and why you would want to use IaC, but how about the actions that the provider can actually do?
 
 The idea is, the provider can create, update, replace, or delete anything until you're at the project level. This includes:
 
