@@ -3,7 +3,7 @@ title: A look at GitHub Codespaces private preview
 description: An early look at GitHub Codespace.
 author: michael.levan@octopus.com
 visibility: public
-published: 3020-08-24
+published: 2020-09-14
 metaImage:
 bannerImage:
 tags:
@@ -12,7 +12,7 @@ tags:
 
 There are many source control systems, but let’s face it, GitHub is arguably the most popular.
 
-GitHub recently stepped their game up in the CI/CD space by introducing GitHub Actions, and at Microsoft Build 2020, they introduced [GitHub Codespaces](https://github.com/features/codespaces).
+GitHub recently stepped up their game in the CI/CD space by introducing GitHub Actions, and at Microsoft Build 2020, they introduced [GitHub Codespaces](https://github.com/features/codespaces).
 
 GitHub Codespaces is like Visual Studio Codespaces, which is VS Code in a UI, except with GitHub Codespaces, it’s built into GitHub, which provides a one-stop-shop for all your development needs.
 
@@ -28,7 +28,7 @@ To follow along, you need:
 
 ## Why GitHub Codespaces?
 
-There’s one big problem with having so many development tools and ways to write code; there’s simply no centralized place to store the specific configurations that you want. Take VS Code for example, let’s say you have a few different machines you work on, or you’re pair-programming with a teammate, to work on the same code across the board and have it look identical, you need a few things:
+There’s one big problem with having so many development tools and ways to write code; there’s simply no centralized place to store the specific configurations that you want. Take VS Code as an example, let’s say you have a few different machines you work on, or you’re pair-programming with a teammate, to work on the same code across the board and have it look identical, you need a few things:
 
 - Extensions.
 - Logged into services, for example, logging into Azure from VS Code.
@@ -64,7 +64,7 @@ The codespace will open, and you’ll be able to see the code from the repositor
 
 ## First look at extensions
 
-From an extensions perspective, nothing has changed. Any extensions you could normally use in VS Code can be used in Codespaces.
+From an extensions perspective, nothing has changed. Any extensions you would normally use in VS Code can be used in Codespaces.
 
 1. Open the extensions tab:
 2. Search for an extension, for example, Golang:
@@ -82,4 +82,4 @@ Surprisingly, even the settings are pretty much the same in Codespaces as they a
 
 ## Conclusion
 
-Although GitHub Codespaces is still in private preview, it’s very apparent that it’s the tool of the future. There’s just no need for a developer to leave GitHub. They can now store code and write it all in one place.
+Although GitHub Codespaces is still in private preview, it’s very apparent that it’s a tool of the future. There’s just no need for a developer to leave GitHub. They can now store code and write it all in one place.
