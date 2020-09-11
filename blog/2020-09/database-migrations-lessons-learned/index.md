@@ -45,7 +45,7 @@ There are numerous options for almost every platform and each one generally has 
 
 * [DbUp](https://github.com/dbup/dbup)
 * [Dapper](https://github.com/StackExchange/Dapper)
-* [Entity Framework Code First](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
+* [Entity Framework Code First](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/)
 * [Fluent Migrator](https://github.com/fluentmigrator/fluentmigrator)
 
 **Java**
