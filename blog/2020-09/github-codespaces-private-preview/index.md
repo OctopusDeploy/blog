@@ -4,11 +4,13 @@ description: An early look at GitHub Codespace.
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-09-14
-metaImage:
-bannerImage:
+metaImage: github-codespaces.png
+bannerImage: github-codespaces.png
 tags:
  - DevOps
 ---
+
+![A look at GitHub Codespaces private preview](github-codespaces.png)
 
 There are many source control systems, but let’s face it, GitHub is arguably the most popular.
 
