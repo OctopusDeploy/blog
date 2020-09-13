@@ -1,5 +1,5 @@
 ---
-title: "Tame the Kraken: How to protect your data"
+title: "Taming the Kraken: How to protect your data"
 description: Octopus is going to deploy your database updates... How will you keep the data safe?
 author: alex.yates@dlmconsultants.com
 visibility: public
