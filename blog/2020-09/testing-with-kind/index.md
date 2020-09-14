@@ -18,6 +18,8 @@ In this blog post and the associated screencast I'll show you how to quickly get
 
 ## Screencast
 
+The video below demonstrates the process of deploying a web application to a development Kubernetes cluster created by Kind. The remainder of the blog post provides links to additional resources and copies of the scripts used in this demo:
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/sMt2-enODC0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Enable WSL2 Docker integration
@@ -102,6 +104,32 @@ rm client.crt
 rm client.key
 
 echo ${CLUSTER_CA} | base64 -d > cluster.crt
+```
+
+Here is a similar script in PowerShell:
+
+```Powershell
+param($username="kind-kind")
+
+kubectl config view --raw -o json |
+  ConvertFrom-JSON |
+  Select-Object -ExpandProperty users |
+  ? {$_.name -eq $username} |
+  % {
+  	[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($_.user.'client-certificate-data')) | Out-File -Encoding "ASCII" client.crt
+  	[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($_.user.'client-key-data')) | Out-File -Encoding "ASCII" client.key
+    & "C:\Program Files\OpenSSL-Win64\bin\openssl" pkcs12 -export -in client.crt -inkey client.key -out client.pfx -passout pass:
+    rm client.crt
+    rm client.key
+  }
+  
+  kubectl config view --raw -o json |
+  ConvertFrom-JSON |
+  Select-Object -ExpandProperty clusters |
+  ? {$_.name -eq $username} |
+  % {
+  	[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($_.cluster.'certificate-authority-data')) | Out-File -Encoding "ASCII" cluster.crt
+  }
 ```
 
 ## Installing the Octopus worker
