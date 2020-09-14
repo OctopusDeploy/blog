@@ -4,13 +4,13 @@ description: Learn about database migrations and some lessons learned from using
 author: frank.lin@octopus.com
 visibility: public
 published: 2020-09-15
-metaImage: refactoring-octopus.png
-bannerImage: refactoring-octopus.png
+metaImage: database-migrations_2020.png
+bannerImage: database-migrations_2020.png
 tags:
  - Engineering
 ---
 
-![Database migrations lessons learned](refactoring-octopus.png)
+![Database migrations lessons learned](database-migrations_2020.png)
 
 Database migrations are a popular way to update application databases in a controlled way that keeps the risk to a minimum. This approach is also known as schema migrations, database upgrade scripts, change driven, or script based updates. Octopus Deploy has used database migrations since the beginning of the product, and we’ve learned a lot as Octopus has grown in size and complexity. 
 
