@@ -4,14 +4,14 @@ description: Octopus is going to deploy your database updates... How will you ke
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2020-09-16
-metaImage: sql-server-security-with-dbatools.png
-bannerImage: sql-server-security-with-dbatools.png
+metaImage: data-guardian-protect-your-data.png
+bannerImage: data-guardian-protect-your-data.png
 tags:
  - DevOps
  - Database Deployments
 ---
 
-![How to protect your data in a modern DevOps environment](sql-server-security-with-dbatools.png)
+![How to protect your data in a modern DevOps environment](data-guardian-protect-your-data.png)
 
 It’s been decided: your company is going to start using Octopus Deploy for database deployments.
 
