@@ -18,6 +18,8 @@ In this blog post and the associated screencast I'll show you how to quickly get
 
 ## Screencast
 
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/sMt2-enODC0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Enable WSL2 Docker integration
 
 To use Kind from a WSL2 instance, Docker Desktop needs to enable WSL2 integration. This is done by selecting the **Use the WSL2 based engine** option:
