@@ -4,11 +4,13 @@ description: Building trust relationships between humans is rarely as simple as 
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2020-08-19
-metaImage: 
-bannerImage: 
+metaImage: negotiating-with-gatekeepers.png
+bannerImage: negotiating-with-gatekeepers.png
 tags:
  - DevOps
 ---
+
+![Negotiating with the gatekeepers](negotiating-with-gatekeepers.png)
 
 “No matter what they tell you, it’s always a people problem.”
 Gerald Weinberg
@@ -85,7 +87,7 @@ Rock star was smiling as the words came out. They were directed at you, but desi
 
 You can feel the anger boiling over. The next few minutes don’t go well.
 
-~ END SCENE ~
+---
 
 A little empathy can go a long way.
 

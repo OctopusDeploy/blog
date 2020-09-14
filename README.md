@@ -17,6 +17,8 @@ Internal authors can create a branch for their work, external authors need to fo
 
 Posts are organized in year-month directories (i.e., 2020-01/), find or create the directory that is roughly when your post is going out and add your files there. 
 
+If you'd like feedback on a work in progress, create a draft PR and tag @robpearson or @wordlee with your request.
+
 When you're happy with your post and think it's ready to be reviewed, create a PR and assign @robpearson and @wordlee as reviewers.
 
 If you're drafting a post that you'd like to keep private until it's published, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts).

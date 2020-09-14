@@ -6,7 +6,9 @@ Events and Webinars
 Company
 
 # Optional tags to help with discoverability and internal links (Don't over do it with these, apply the one or two tags that are the best fit)
+AWS
 Azure
+AWS
 Continuous Integration
 Deployment Patterns
 Docker
@@ -17,6 +19,9 @@ Kubernetes
 Linux
 Octopus Cloud
 PowerShell
+Reporting
 Runbooks
+Security
+Testing
 Variables
 Workers
