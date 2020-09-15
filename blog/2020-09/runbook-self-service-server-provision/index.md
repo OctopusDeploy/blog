@@ -17,9 +17,9 @@ In this blog post, I'll show you how to create Runbooks to create & destroy appl
 
 ### Setup Infrastructure Release Team
 
-Create team that has access to edit and view Runbooks for particular projects 
+Firstly, if we're enabling self service access to server poviosning we want to get some control around when the servers should be provsioned. Using manaual intervention steps in Octopus we can request approval from other teams before Runbooks steps are triggered. The step will require a team to approve the Runbook run so first we need to create a team of octopus users that will be responsable for aproving server provisoning.
 
-Team will be used for approvals 
+
 
 ### Creating infrastrcutre 
 
@@ -29,15 +29,20 @@ Team will be used for approvals
 * Step 2 Deploy Iac Step
 * Step 4 Notification 
 
+1. To create a runbook, navigate to **{{Project, Operations, Runbooks, Add Runbook}}**.
+2. Give the runbook a name and click **SAVE**.
+3. Click **DEFINE YOUR RUNBOOK PROCESS**, then click **ADD STEP**.
+4. 
 ### Destorying infrastucture 
 
 
 ### Destorying infrastucture on a schedule 
 
+Using Runbook to destory infrastcuture is great for saving costs on 
 
 ### Setting up teams to run Runbooks 
 
-
+Lastly, I want to control who can Run the new Runbooks I've created. 
 
 ## Conclusion
 
