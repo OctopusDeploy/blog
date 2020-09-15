@@ -131,6 +131,21 @@ Set-Content -Path data.json -Value '{"content":"#{IP Address}"}'
   "https://api.dnsimple.com/v2/36730/zones/octopus.tech/records/20067854"
 ```
 
+Most Linux distributions will come will curl installed or available through the included package manager, so this script in bash is:
+
+```bash
+echo "#{IP Address}" > data.json
+
+curl \
+  --silent \
+  -H "Authorization: Bearer #{SimpleDNS Token}" \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -X "PATCH" \
+  --data-binary '@data.json' \
+  "https://api.dnsimple.com/v2/36730/zones/octopus.tech/records/20067854"
+```
+
 ## Conclusion
 
 Multiple environments are a common deployment pattern, and Octopus provides first class support for progressing Kubernetes deployments through multiple environments. By creating Kubernetes targets for each environment, and authenticating those targets with service accounts that only have permission to access a single namespace, Octopus ensures that deployments are created in the correct namespace and can not affect resources they should not have access to.
