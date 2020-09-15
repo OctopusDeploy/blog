@@ -94,6 +94,14 @@ The easiest way to install the NGINX ingress controller is via the `nginx-ingres
 
 ![](nginx-ingress.png "width=500")
 
+To ensure that the worker running the helm deployment has access to the helm v3 executable, the archive from the [helm releases page](https://github.com/helm/helm/releases) was uploaded to the built in feed and referenced in the **Connection** section of the step. For Windows workers, the path to the `helm.exe` file is `windows-amd64\helm.exe`:
+
+![](helm-windows.png "width=500")
+
+For Linux workers, the path is `linux-amd64/helm`:
+
+![](helm-linux.png "width=500")
+
 ## Inspecting the ingress controller load balancer public IP
 
 The installation of the NGINX ingress controller created a load balancer with a public IP. We need to know this public IP in order to map it to a DNS hostname.
