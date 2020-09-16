@@ -42,7 +42,7 @@ We then need to create a user that can access the manager application by modifyi
 </tomcat-users>
 ```
 
-If you run into issues access the manager application, it may be because of a security setting restricting access from only the localhost IP address. This setting is defined in the file `/usr/share/tomcat9-admin/manager/META-INF/context.xml`. Below is an example where the **Valve** implementing the filtering has been commented out:
+If you run into issues accessing the manager application, it may be because of a security setting restricting access from only the localhost IP address. This restriction is defined in the file `/usr/share/tomcat9-admin/manager/META-INF/context.xml` file. Below is an example where the **Valve** implementing the filtering has been commented out:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -72,7 +72,7 @@ The application we are deploying is called Random Quotes, and the source code is
 
 Specifically we will set the active Spring profile in the YAML file, and the application display name in the XML file.
 
-To build the application, run:
+To build the application, run the command:
 
 ```
 mvn package
@@ -82,7 +82,9 @@ Then upload the WAR file in the `target` directory to the Octopus built-in feed.
 
 ## Deploying the application with a file copy
 
-Java applications can be deployed two different ways with Octopus. The generic solution is to copy the WAR file to a directory of the target machine. Most application servers have a directory that they monitor for new files, and then deploy the application automatically. For Tomcat, that directory is `/var/lib/tomcat9/webapps`.
+Java applications can be deployed two different ways with Octopus. 
+
+The generic solution is to copy the WAR file to a directory on the target machine. Most application servers have a directory that they monitor for new files, and then deploy the application automatically. For Tomcat, that directory is `/var/lib/tomcat9/webapps`.
 
 To deploy a Java archive to a directory, use the **Deploy Java Archive** step.
 
@@ -100,7 +102,7 @@ The `application.yml` and `web.xml` files are then defined as targets for proper
 
 ## Deploying the application via the manager
 
-The second way to deploy applications to Tomcat is via the **Deploy to Tomcat via Manager** step. This step takes advantage of the API exposed by the manager application.
+The second way to deploy applications to Tomcat is with the **Deploy to Tomcat via Manager** step. This step takes advantage of the API exposed by the manager application.
 
 To configure the step, we need to point it to the manager API of http://localhost:8080/manager, and define the credentials we added to the `tomcat-users.xml` file:
 
@@ -118,7 +120,7 @@ For YAML files, the syntax is a colon separated property hierarchy, resulting in
 
 Configuring a HTTPS certificate is done with the **Deploy a certificate to Tomcat** step.
 
-It requires that the CATALINA_HOME and CATALINA_BASE directories be defined. These are easily found in the system service file at `/lib/systemd/system/tomcat9.service`, and in our case are defined as `/usr/share/tomcat9` and `/var/lib/tomcat9`:
+It requires that the CATALINA_HOME and CATALINA_BASE directories be defined. These are defined in the system service file at `/lib/systemd/system/tomcat9.service`, and in our case are defined as `/usr/share/tomcat9` and `/var/lib/tomcat9`:
 
 ![](catalina.png "width=500")
 
@@ -128,7 +130,7 @@ We then expose HTTPS access via port 8443:
 
 ## Conclusion
 
-In this blog post we deployed a web application with generic configuration files that support local development, and injected variables defined in Octopus during deployment to configure the resulting application for a specific environment. This demonstrates how you can take an application archive created with no environment specific settings and customize it when being deployed to shared and restricted environments.
+In this example we deployed a web application with generic configuration files that support local development, and injected variables defined in Octopus during deployment to configure the resulting application for a specific environment. This demonstrates how you can take an application archive created with no environment specific settings and customize it when being deployed to shared and restricted environments.
 
 We also deployed a certificate to configure HTTPS access on our Tomcat server.
 
