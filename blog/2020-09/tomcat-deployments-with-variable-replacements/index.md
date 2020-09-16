@@ -18,6 +18,8 @@ In this post and screencast I'll show you how to deploy a Spring application to 
 
 ## Screencast
 
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/x1u2iAr_BQ4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Preparing the Linux web server
 
 For this example I am using Ubuntu 20.04, and to install Tomcat and the manager application we need to run:
