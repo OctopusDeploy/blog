@@ -41,8 +41,6 @@ In order to contribute to the safe implementation of Octopus Deploy, it’s impo
 Octopus Deploy gets its name because its architecture resembles that of an octopus, with a “Server” at the center, which sends packages and deployment scripts to various targets where files are deployed and commands are executed.
 
 Octopus users can interact with the server through the Octopus Web Portal or with scripts, typically using PowerShell, a [REST API](https://octopus.com/blog/change-advisory-boards-dont-work) or the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli).
-
-![Octopus Diagram](octopusdiagram.png "width=500")
  
 There are various types of [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets). The most common is an Octopus “Tentacle” (or Agent), which is a service that runs on a target Machine. For example, on a server, VM, or container, etc. Tentacles can run on [Windows](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) or [Linux](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) on your own infrastructure or your preferred cloud provider.
 
