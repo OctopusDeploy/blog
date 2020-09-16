@@ -50,9 +50,52 @@ This makes it far easier to configure automated deployments for Java application
 
 [Learn more](TODO: Add Matt's spring blog post)
 
-## Octopus Cloud Windows and Linux Workers {#cross-platform-dynamic-workers}
+## Octopus Cloud: Better cross-platform Workers and Worker pools  {#cross-platform-dynamic-workers}
 
-Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure. This update adds better cross-platform support with images for Windows 2019 and Ubuntu 20.04. All worker images support Execution Containers thus providing the ability to simplify dependency management and streamline automation tooling.
+:::hint
+Workers enable you to shift DevOps automation work onto other machines running in pools for specific purposes like deploying to Kubernetes, cloud platforms like Azure and AWS as well as database deployments. You can create a pool of dedicated workers that can be utilized by multiple projects and teams. They're a great tool for scaling your deployments and runbooks.
+
+See [our documentation](https://octopus.com/docs/infrastructure/workers) for more information.
+:::
+
+Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure without the need to manage your own virtual machines or other compute resources. This greatly simplifies the ability to execute automation scripts, deployment or runbook related, against cloud services, database servers or Kubernetes clusters. 
+
+With Octopus 2020.4, we have improved the cross platform support for dynamic workers by rounding out our support for modern Windows and Linux operation systems:
+* Windows 2019
+* Ubuntu 20.04
+
+NOTE: Windows 2016 is still supported and this is explained futher in the learn more link below.
+
+These are Virtual Machien iamges and they are bootstrapped with basic tooling including the following: 
+
+* Docker
+* Bash
+* PowerShell Core
+* Python
+* Octopus CLI
+
+If you need additional tools, you could always install them as a part of the script or build yoru own customer worker pools with your own machines. 
+
+It's also important to note that these updated worker images is that they fully support Execution Containers. Execution containers enable you to execute automation work in isolated containers on workers. 
+
+Previously, you needed to ensure the machines in your worker pools (including dynamic workers) had the necessary tools required for your deployments, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don’t install side by side. Also, Octopus bundled some tools, but it was still a challenge to keep them up to date.
+
+
+
+We ship and maintain a colleciton of official container images bootstrapped with common tooling however it's also possible to extend and customize these images to suit your team's needs. 
+
+With this update, this feature is now generally avialable and we're removing the early access program feature flag. 
+
+
+
+
+[Learn more](link to MattR's great blog post)
+
+Blurb about reduced dependencies with 
+
+This update adds better cross-platform support with images for Windows 2019 and Ubuntu 20.04. All worker images support Execution Containers thus providing the ability to simplify dependency management and streamline automation tooling.
+
+
 
 ## Breaking changes
 
