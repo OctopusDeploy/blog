@@ -18,7 +18,7 @@ I'm thrilled to share that we've shipped Octopus 2020.4. This release focuses on
 
 * **[Better configuration variable replacement](/blog/2020-09/octopus-release-2020-4/index.md#variables)**: is an update to our JSON configuration variable replacement support to make far more useful. It now supports JSON, YAML, XML and Java Properties files. This is a huge improvement for numerous platforms but it's especially valuable for Java teams.
 
-* **[Improved Octopus Cloud cross platform support with Linux Workers](/blog/2020-09/octopus-release-2020-4/index.md#cross-platform-dynamic-workers))**. Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure. This update adds better cross-platform support with images for Windows 2019 and Ubuntu 20.04. All worker images support Execution Containers thus providing the ability to simplify dependency management and streamline automation tooling.
+* **[Improved Octopus Cloud cross platform support with Linux Workers](/blog/2020-09/octopus-release-2020-4/index.md#cross-platform-dynamic-workers)**. Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure. This update adds better cross-platform support with images for Windows 2019 and Ubuntu 20.04. All worker images support Execution Containers thus providing the ability to simplify dependency management and streamline automation tooling.
 
 This release is the [fourth of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
 
@@ -95,13 +95,9 @@ Blurb about reduced dependencies with
 
 This update adds better cross-platform support with images for Windows 2019 and Ubuntu 20.04. All worker images support Execution Containers thus providing the ability to simplify dependency management and streamline automation tooling.
 
-
-
 ## Breaking changes
 
-This release includes 
-
-
+This release doesn't include any breaking changes.
 
 ## Upgrading
 
@@ -115,7 +111,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 ## Conclusion
 
-Octopus 2020.4 is now generally available, and it includes improvements TODO. We hope you enjoy it! 
+Octopus 2020.4 is now generally available, and it includes improved configuration file updates, better Octopus Cloud cross-platform support and modern kubernetes updates. We hope you enjoy it! 
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
