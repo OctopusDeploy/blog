@@ -42,6 +42,8 @@ Octopus Deploy gets its name because its architecture resembles that of an octop
 
 Octopus users can interact with the server through the Octopus Web Portal or with scripts, typically using PowerShell, a [REST API](https://octopus.com/blog/change-advisory-boards-dont-work) or the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli).
  
+![Octopus Diagram](octopusdiagram.png "width=500")
+
 There are various types of [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets). The most common is an Octopus “Tentacle” (or Agent), which is a service that runs on a target Machine. For example, on a server, VM, or container, etc. Tentacles can run on [Windows](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) or [Linux](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) on your own infrastructure or your preferred cloud provider.
 
 The communication between the Octopus Server and Tentacle uses a secure TLS connection on a specific port, using public-key cryptography. [More detail available here](https://octopus.com/docs/security/octopus-tentacle-communication). This avoids the need to use passwords. As long as the private keys are kept safe, it should be impossible for another system to impersonate either the Server or Tentacle.
