@@ -11,7 +11,10 @@ tags:
 ---
 
 ![Raising the minimum requirements for hosting and using Octopus Server](minimum_requirements_octopus_2020.png)
-## September 2020 Update
+
+:::success
+**September 2020 Update**
+
 We have listened to our customers and have revised our SQL Server requirement to SQL Server 2016+, down from SQL Server 2017+
 
 This has taken affect from the following versions
@@ -23,8 +26,7 @@ This has taken affect from the following versions
 Any versions that are in the following version ranges still have the SQL Server 2017+ version requirement enforced
 2020.2.0 ➜ 2020.2.17 
 2020.3.0 ➜ 2020.3.5
-
-The original post follows.
+:::
 
 ## Original post
 
