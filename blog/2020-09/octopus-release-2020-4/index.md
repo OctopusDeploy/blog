@@ -12,13 +12,13 @@ tags:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xJqjn4s2VCI" frameborder="0" allowfullscreen></iframe>
 
-I'm thrilled to share that we've shipped Octopus 2020.4. This release focuses on making non-Windows deployments better including greatly improved support for configuration variable and better Octopus Cloud cross-platform deployment support. 
+I'm thrilled to share that we've shipped Octopus 2020.4. This release bring together a couple of features that have been in development for a while. Together, they make it easier for teams to deploy and maintain web applications and services written in Java, NodeJS, Python and Ruby and more.
 
 //Lee: These titles are boring as a sack of hammers. I need something to spice up Better configuration variable replacement. I used this instead of the featuer name (Structured variable replacement) to communicate the value/benefit but it doesn't feel right. Any suggestions.
 
-* **[Better configuration variable replacement](/blog/2020-09/octopus-release-2020-4/index.md#variables)**: is an update to our JSON configuration variable replacement support to make far more useful. It now supports JSON, YAML, XML and Java Properties files. This is a huge improvement for numerous platforms but it's especially valuable for Java teams.
+* **[Better configuration file updates with structure variable replacement](/blog/2020-09/octopus-release-2020-4/index.md#variables)**: is an update to our JSON configuration variable replacement support to make far more useful. It now supports JSON, YAML, XML and Java Properties files. This is a huge improvement for numerous platforms but it's especially valuable for Java teams.
 
-* **[Improved Octopus Cloud cross platform support with Linux Workers](/blog/2020-09/octopus-release-2020-4/index.md#cross-platform-dynamic-workers)**. Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure. This update adds better cross-platform support with images for Windows 2019 and Ubuntu 20.04. All worker images support Execution Containers thus providing the ability to simplify dependency management and streamline automation tooling.
+* **[Octopus Cloud: Cross-platform Worker Pools and simpler dependency management](/blog/2020-09/octopus-release-2020-4/index.md#cross-platform-dynamic-workers)**. Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure. This update adds better cross-platform support with images for Windows 2019 and Ubuntu 18.04. All Worker support execution containers which let you execute deployment work in isolation without the need to manage dependencies and containers.
 
 This release is the [fourth of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
 
@@ -31,32 +31,38 @@ This release is the [fourth of six in 2020](/blog/2020-03/releases-and-lts/index
 
 Keep reading to learn more about the updates.
 
-## Better configuration file updates {#variables}
+## Better configuration file updates with structure variable replacement {#variables}
 
-One of Octopus' magical features is how it can automatically update your configuration files as you promote your applications to production. Historically, this supported a number of Microsoft configuration file formats, primarily XML based, as well as some general approaches like JSON support and token replacement. This was fantastic however if you weren't using XML or JSON files, you needed to insert and maintain tokens in your configuration files which can be time consuming. 
+// TODO: Screenshot
 
-This is no longer a issue because we're introducing support for strutured variable replacement. This supports all modern configuration file formats including:
+One of Octopus' magical features is how it can automatically update your configuration files as you promote your applications to production. Historically, this supported a number of Microsoft configuration file formats, primarily XML based, as well as some general approaches like JSON support and token replacement. This was fantastic however if you weren't using XML or JSON files, you needed to insert and maintain tokens in your configuration files which can be awkward and time consuming. 
+
+This is no longer a problem because we're introducing support for strutured variable replacement. Structured variable replacement support modern configuration file formats including:
 
 * YAML
 * JSON 
 * XML 
-* Java Property files
+* Java Properties files
 
-For any other files, our token replacement support, via our Substitute variables in files feature, has you covered. 
+For other configuration files formats, our token replacement support, via the Substitute variables in files feature, has you covered. 
 
-This new feature is an evolution of our JSON configuration variable replacement feature and it now support all common file formats. The benefit of this support is that it's automatic and convention based. This means that if configured, it will automatically udpate configuration values that match configure project variables. The magic of this feature is that you can scope your variables to environment so deploying releases to Dev, Test, Staging and Production environments is fast and seamless.
+This new feature is an evolution of our JSON configuration variable replacement feature. The benefit of this support is that it's automatic and convention based. If this featuer is turned on, Octopus will automatically update configuration settings with names that many that your project variables. The magic of this feature is that you can scope your variables to environments so deploying releases to Dev, Test, Staging and Production environments is repeatable and reliable.
 
-This makes it far easier to configure automated deployments for Java applications like Spring web apps and services, NodeJS services, Ruby on Rails web apps and more.
+This update makes it far easier to configure automated deployments for Java applications like Spring web apps and services, web apps written in Python, NodeJS services, Ruby on Rails web apps and more.
 
-[Learn more](TODO: Add Matt's spring blog post)
+[Learn more](/blog/2020-08/spring-environment-configuration/index.md)
 
-## Octopus Cloud: Better cross-platform Workers and Worker pools  {#cross-platform-dynamic-workers}
+## Octopus Cloud: Cross-platform Worker Pools and simpler dependency management {#cross-platform-dynamic-workers}
+
+Octopus 2020.2 includes better cross-platform support for dynamic workers including full support for Execution Containers.
 
 :::hint
 Workers enable you to shift DevOps automation work onto other machines running in pools for specific purposes like deploying to Kubernetes, cloud platforms like Azure and AWS as well as database deployments. You can create a pool of dedicated workers that can be utilized by multiple projects and teams. They're a great tool for scaling your deployments and runbooks.
 
 See [our documentation](https://octopus.com/docs/infrastructure/workers) for more information.
 :::
+
+## Built-in Windows and Linux Worker Pools
 
 Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure without the need to manage your own virtual machines or other compute resources. This greatly simplifies the ability to execute automation scripts, deployment or runbook related, against cloud services, database servers or Kubernetes clusters. 
 
@@ -76,7 +82,11 @@ These are Virtual Machien iamges and they are bootstrapped with basic tooling in
 
 If you need additional tools, you could always install them as a part of the script or build yoru own customer worker pools with your own machines. 
 
-It's also important to note that these updated worker images is that they fully support Execution Containers. Execution containers enable you to execute automation work in isolated containers on workers. 
+[Learn more](/blog/2020-09/linux-worker-pools-on-octopus-cloud/index.md)
+
+## Execution Containes for Workers
+
+With this update, Execution Containes for Workers is now generally avialable and we're removing the early access program feature flag. This feature enable you to execute automation work in isolated containers on workers and reduces the need to manage automation tooling and dependencies.
 
 Previously, you needed to ensure the machines in your worker pools (including dynamic workers) had the necessary tools required for your deployments, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don’t install side by side. Also, Octopus bundled some tools, but it was still a challenge to keep them up to date.
 
@@ -84,16 +94,7 @@ Previously, you needed to ensure the machines in your worker pools (including dy
 
 We ship and maintain a colleciton of official container images bootstrapped with common tooling however it's also possible to extend and customize these images to suit your team's needs. 
 
-With this update, this feature is now generally avialable and we're removing the early access program feature flag. 
-
-
-
-
-[Learn more](link to MattR's great blog post)
-
-Blurb about reduced dependencies with 
-
-This update adds better cross-platform support with images for Windows 2019 and Ubuntu 20.04. All worker images support Execution Containers thus providing the ability to simplify dependency management and streamline automation tooling.
+[Learn more](/blog/2020-06/execution-containers/index.md)
 
 ## Breaking changes
 
@@ -111,10 +112,10 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 ## Conclusion
 
-Octopus 2020.4 is now generally available, and it includes improved configuration file updates, better Octopus Cloud cross-platform support and modern kubernetes updates. We hope you enjoy it! 
+Octopus 2020.4 is now generally available, and it includes improved configuration file updates, better cross-platform support for Octopus Cloud including support for execution container for workers. We hope you enjoy it! 
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
 ## Related posts
 
-* [](/blog/2020-07/using-jenkins-pipelines/index.md)
+* [](TODO)
