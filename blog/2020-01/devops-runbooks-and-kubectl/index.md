@@ -3,12 +3,13 @@ title: DevOps, runbooks, and kubectl
 description: The top reasons to use Octopus Runbooks to manage your Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-01-28
+published: 2020-09-23
 metaImage: k8s-devops-runbook.png
 bannerImage: k8s-devops-runbook.png
 tags:
  - DevOps
  - Runbooks
+ - Kubernetes
 ---
 
 ![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
