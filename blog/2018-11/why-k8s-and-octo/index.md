@@ -11,6 +11,8 @@ tags:
 - Kubernetes
 ---
 
+![Why use Octopus for Kubernetes deployments?](blogimage-kubernetes.png)
+
 With the release of 2018.9, Kubernetes is now a first class citizen in Octopus. But you may be asking why you would use Octopus to manage your Kubernetes deployments. Kubernetes already has a rich declarative model for all of its resources, a fully functional command line tool, and more dashboards than you can poke a stick at.
 
 So what advantages does Octopus bring to your Kubernetes deployments?
