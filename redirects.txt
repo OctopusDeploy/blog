@@ -10,3 +10,4 @@ blog/2017-11/maven-versions-explained.md -> blog/2020-06/maven-versioning-explai
 blog/2018-02/deploy-maven-zip-files.md -> blog/2020-05/deploy-and-consume-zip-files-from-maven/index.md
 blog/2018-11/why-k8s-and-octo/index.md -> blog/2020-09/why-k8s-and-octo/index.md
 blog/2020-03/alternative-kubernetes-dashboards/index.md -> blog/2020-09/alternative-kubernetes-dashboards/index.md
+blog/2020-01/devops-runbooks-and-kubectl/index.md -> blog/2020-09/devops-runbooks-and-kubectl/index.md
