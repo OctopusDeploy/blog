@@ -14,7 +14,7 @@ tags:
 
 ![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
 
-Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
+Runbook automation in Octopus put the Ops in DevOps. This post is part of a series:
 
 - [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
 - **DevOps, runbooks and kubectl**
@@ -29,7 +29,7 @@ Let’s be honest, Kubernetes isn’t easy. But there are ways to make supportin
 
 In this blog post, we’ll look at a simple runbook and highlight the advantages of creating reusable runbooks over manual scripting and ad-hoc debugging.
 
-## A simple runbook example
+## A simple Kubernetes runbook example
 
 Listing Kubernetes pods to see their status is a common first step when supporting a Kubernetes cluster. This sounds easy enough, and it’s tempting to think this process is nothing more than running `kubectl get pods`. But with a runbook it is possible to enrich this diagnostic procedure. Below is an example of a **Get Pods** script you might create as part of a runbook:
 
@@ -89,7 +89,7 @@ But how do you share these credentials with your support team?
 
 Using a runbook removes the burden from the end user to maintain infrastructure credentials. Each Kubernetes target can have as much or as little access to the cluster as needed, and Octopus permissions can limit who can run which runbook on which targets.
 
-## Enrich scripts with business intelligence
+## Enrich Kubernetes scripts with business intelligence
 
 `kubectl` is a big hammer that can do almost anything on a Kubernetes cluster if you have the required permissions. But it will never have the business intelligence that is specific to your use case.
 
@@ -97,7 +97,7 @@ In the example script above, we have specifically queried Kubernetes for pods th
 
 This kind of business knowledge is all too often hard won during long nights on support, and then shared through war stories between individuals. But with a runbook it can be baked into a standard process for anyone to see.
 
-## Detailed audit trails
+## Detailed Kubernetes audit trails
 
 Priority number one during an outage is getting a cluster back online. But the next day is then spent trying to reverse engineer the root cause of the issue.
 
