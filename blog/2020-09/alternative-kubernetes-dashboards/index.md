@@ -17,7 +17,7 @@ In the beginning there was *the* [Kubernetes Dashboard](https://github.com/kuber
 
 In this blog we'll take a look at some of these alternative Kubernetes dashboards.
 
-## The sample cluster
+## The sample Kubernetes cluster
 
 For this post I've run minikube locally, populated with the [Bookinfo](https://istio.io/docs/examples/bookinfo/) application provided by Istio.
 
