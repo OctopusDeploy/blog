@@ -15,9 +15,11 @@ tags:
 
 With the release of 2018.9, Kubernetes is now a first class citizen in Octopus. But you may be asking why you would use Octopus to manage your Kubernetes deployments. Kubernetes already has a rich declarative model for all of its resources, a fully functional command line tool, and more dashboards than you can poke a stick at.
 
-So what advantages does Octopus bring to your Kubernetes deployments?
+So what advantages does Octopus bring to your Kubernetes deployments? In this post, I'll explore why you should use Octopus for Kubernetes deployments. 
 
-## Modelling your Environments
+To be clear, it's not a question of Octopus vs Kuberentes but it's why you should use Octopus and Kubernetes together.
+
+## Modelling your development environments
 
 A common practice in most development teams is to progress code through different environments. Although no two teams are the same, every team I have ever worked with has adopted some variation of the Development -> Test -> Production environment lifecycle.
 
@@ -33,7 +35,7 @@ The Kubernetes dashboard on the other hand is concerned with displaying informat
 
 Octopus allows you to model the environments your team are already using, while the Kubernetes dashboard provides a low level resource view for debugging and other administration tasks. Combining Octopus and Kubernetes gives you a top to bottom view of your infrastructure.
 
-## Managing your Variables
+## Managing your application variables
 
 Helm provides an expressive templating language and allows variables to be supplied from multiple sources including a variables YAML file or from the command line. This functionality allows complex and customizable deployments to be defined, making Helm the defacto Kubernetes package manager.
 
@@ -45,7 +47,7 @@ Octopus provides a solution with comprehensive variable management features that
 
 By taking advantage of Octopus to manage variables, complex Helm and Kubernetes deployments can be coordinated across multiple environments and clusters with ease.
 
-## Versioning your Containers
+## Versioning your Docker containers
 
 Once a deployment process has been created, it will not typically change all that much. What will change between deployments are container versions.
 
@@ -61,11 +63,11 @@ Then during the deployment you can select a specific container version, or simpl
 
 Octopus makes it easy to manage repeatable deployments by separating design and deploy time concerns, meaning you only need to worry about what version of a container you wish to deploy when rolling out a new deployment.
 
-## Iterate Individually or Progress Collectively
+## Iterate individually or progress collectively
 
 Microservices are an increasingly popular development strategy that allows focused teams to deliver small changes quickly within larger ecosystem.
 
-However it is not an uncommon requirement to progress a set of individual microservices with known versions to the next environment. While such dependencies are discouraged in microservice architectures, company testing or external regulations may  demand that your environments be in a well known state at any point in time.
+However it is not an uncommon requirement to progress a set of individual microservices with known versions to the next environment. While such dependencies are discouraged in microservice architectures, company testing or external regulations may demand that your environments be in a well known state at any point in time.
 
 Octopus can model these development strategies, whether your teams will promote individual microservices through environments independently, or sets of microservices are promoted together.
 
@@ -81,7 +83,7 @@ In the screenshot below you can see an example of an Octopus project that includ
 
 Using Octopus to manage your Kubernetes deployments gives you the freedom to iterate quickly during development while promoting between environments in a predictable manner.
 
-## Managing the Cloud and Migrating From On-Premises
+## Managing the cloud and migrating from on-premises
 
 Kubernetes is an excellent tool to have in your toolbox, but it is likely not the only tool you will choose to use. Is Kubernetes really the best choice for hosting static files, or is S3 or Azure Storage more suitable? Do you still have to work with your on premises database? Is RDS a better option that a containerized database?
 
@@ -89,7 +91,7 @@ Incremental migrations, legacy systems and robust PaaS offerings often mean your
 
 And if your deployments do span multiple technology stacks, you can be assured that all of the benefits above apply equally to your on premises and cloud deployments to create a cohesive deployment process.
 
-## Model Deployments With Best Practice
+## Model Kubernetes deployments with best practices
 
 The [Center for Internet Security](https://www.cisecurity.org/benchmark/kubernetes/) offers guideless on how to secure your Kubernetes infrastructure. In particular, two recommendations are particularly relevant to your deployment strategy:
 
@@ -104,7 +106,7 @@ Typically a Kubernetes target will have a unique namespace for each environment 
 
 Through the use of targets, Octopus encourages you to model your Kubernetes deployments in a way that is secure and manageable.
 
-## Centralized and Audited Cluster Administration
+## Centralized and audited Kuberentes cluster administration
 
 Have you ever sent a config file via email or Slack? Have you ever been asked to report on a production outage only to have no idea what changed because undocumented modifications were made from people's desktops?
 
