@@ -17,7 +17,7 @@ Back in Octopus 2018.9, we introduced a raft of features that made Kubernetes a 
 
 ## Modeling your development environments
 
-A common practice in most development teams is to progress code through different environments. Although no two teams are the same, every team I have ever worked with has adopted some variation of the **{{ Development -> Test -> Production }}** environment lifecycle.
+A common practice in most development teams is to progress code through different environments. Although no two teams are the same, every team I have ever worked with has adopted some variation of the **{{ Development > Test > Production }}** environment lifecycle.
 
 And it’s no coincidence that environmental progression is a core concept in Octopus. Environments are first class entities in Octopus, and managing deployments through to the production environment is baked into every part of the product. From lifecycles to channels to the dashboards, Octopus makes it easy to model how your teams work and to promote releases in a reliable and visible manner.
 
