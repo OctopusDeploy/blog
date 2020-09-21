@@ -12,26 +12,17 @@ tags:
  - Kubernetes
 ---
 
-![Kuberentes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
-
-Runbook automation in Octopus put the Ops in DevOps. This post is part of a series:
-
-- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
-- **DevOps, runbooks and kubectl**
-- [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
-- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
-
----
+![Kubernetes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
 
 It is safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something more than a few of us agree with.
 
-Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The new Operations Runbooks feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
+Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The runbook feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
 
 In this blog post, we’ll look at a simple runbook and highlight the advantages of creating reusable runbooks over manual scripting and ad-hoc debugging.
 
 ## A simple Kubernetes runbook example
 
-Listing Kubernetes pods to see their status is a common first step when supporting a Kubernetes cluster. This sounds easy enough, and it’s tempting to think this process is nothing more than running `kubectl get pods`. But with a runbook it is possible to enrich this diagnostic procedure. Below is an example of a **Get Pods** script you might create as part of a runbook:
+Listing Kubernetes pods to see their status is a common first step when supporting a Kubernetes cluster. This sounds easy enough, and it’s tempting to think this process is nothing more than running `kubectl get pods`. But with a runbook it’s possible to enrich this diagnostic procedure. Below is an example of a **Get Pods** script you might create as part of a runbook:
 
 ```PowerShell
 $arguments = @("get", "pods")
@@ -107,7 +98,7 @@ With runbooks, the result of each query is captured in a log file, and the histo
 
 ## A common context
 
-Best practice for continuous deployments involves pushing changes through environments. High availability means spreading your production infrastructure across availability zones or regions, deploying across multiple cloud providers, or having hybrid on-premises/cloud infrastructure.
+Best practice for continuous deployments involves pushing changes through environments. High availability means spreading your production infrastructure across availability zones or regions, deploying across multiple cloud providers, or having hybrid on-premises and cloud infrastructure.
 
 Octopus has long supported multiple cloud providers and on-premises deployments, capturing that topology with targets and environments. Runbooks leverage that same context, allowing tasks to be executed across your existing infrastructure without redefining it.
 

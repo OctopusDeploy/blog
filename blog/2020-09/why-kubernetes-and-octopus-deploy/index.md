@@ -13,13 +13,13 @@ tags:
 
 ![Why use Octopus for Kubernetes deployments?](blogimage-kubernetes.png)
 
-Back in Octopus 2018.9, we introduced a raft of features that made Kubernetes a first-class citizen in Octopus. In this post, I'll go through some of the benefits of using Octopus to manager your Kubernetes deployments. After all, Kubernetes already has a rich declarative model for all of its resources, a fully functional command-line tool, and more dashboards than you can poke a stick at.
+Back in Octopus 2018.9, we introduced a raft of features that made Kubernetes a first-class citizen in Octopus. In this post, I’ll go through some of the benefits of using Octopus to manager your Kubernetes deployments. After all, Kubernetes already has a rich declarative model for all of its resources, a fully functional command-line tool, and more dashboards than you can poke a stick at.
 
 ## Modeling your development environments
 
 A common practice in most development teams is to progress code through different environments. Although no two teams are the same, every team I have ever worked with has adopted some variation of the **{{ Development -> Test -> Production }}** environment lifecycle.
 
-And it's no coincidence that environmental progression is a core concept in Octopus. Environments are first class entities in Octopus, and managing deployments through to the production environment is baked into every part of the product. From lifecycles to channels to the dashboards, Octopus makes it easy to model how your teams work and to promote releases in a reliable and visible manner.
+And it’s no coincidence that environmental progression is a core concept in Octopus. Environments are first class entities in Octopus, and managing deployments through to the production environment is baked into every part of the product. From lifecycles to channels to the dashboards, Octopus makes it easy to model how your teams work and to promote releases in a reliable and visible manner.
 
 Take this overview of an Octopus project as an example. The table clearly shows what release was made to which environment and at what time. And with a few clicks you can get more detailed information such as who performed the deployment and what versions of the packages were included.
 
@@ -45,7 +45,7 @@ By taking advantage of Octopus to manage variables, complex Helm and Kubernetes 
 
 ## Versioning your Docker containers
 
-After a deployment process has been created, it won't typically change all that much. What will change between deployments are container versions.
+After a deployment process has been created, it won’t typically change all that much. What will change between deployments are container versions.
 
 Octopus separates the design time process of building a deployment from the deploy time process of selecting package versions. What this means is that as you roll out new versions of your containers, Octopus will select those versions during deployment and incorporate them into the generated YAML file.
 
@@ -83,7 +83,7 @@ Using Octopus to manage your Kubernetes deployments gives you the freedom to ite
 
 Kubernetes is an excellent tool to have in your toolbox, but it is likely not the only tool you will choose to use. Is Kubernetes really the best choice for hosting static files, or is S3 or Azure Storage more suitable? Do you still have to work with your on-premises database? Is RDS a better option that a containerized database?
 
-Incremental migrations, legacy systems and robust PaaS offerings often mean your deployment strategy won't be limited to your Kubernetes cluster. Because Octopus already supports a wide range of cloud and on-premises platforms, you can seamlessly integrate deployment processes across Kubernetes and existing services.
+Incremental migrations, legacy systems and robust PaaS offerings often mean your deployment strategy won’t be limited to your Kubernetes cluster. Because Octopus already supports a wide range of cloud and on-premises platforms, you can seamlessly integrate deployment processes across Kubernetes and existing services.
 
 And if your deployments do span multiple technology stacks, you can be assured that all of the benefits above apply equally to your on-premises and cloud deployments to create a cohesive deployment process.
 
@@ -104,7 +104,7 @@ Through the use of targets, Octopus encourages you to model your Kubernetes depl
 
 ## Centralized and audited Kubernetes cluster administration
 
-Have you ever sent a config file via email or Slack? Have you ever been asked to report on a production outage only to have no idea what changed because undocumented modifications were made from people's desktops?
+Have you ever sent a config file via email or Slack? Have you ever been asked to report on a production outage only to have no idea what changed because undocumented modifications were made from people’s desktops?
 
 These scenarios are unfortunately quite common. As your Kubernetes cluster grows in complexity, it can become increasingly difficult to manage credentials and understand the impact of changes.
 
