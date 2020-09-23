@@ -10,14 +10,14 @@ tags:
  - Product 
 ---
 
-We have been busy recently building configuration-as-code support for Octopus Deploy.  In this post we'll talk about some of the factors that affected the shaping of this feature. We'll look at: 
+We have been busy recently building _configuration-as-code_ support for Octopus Deploy.  In this post we'll talk about some of the factors that affected the shaping of this feature. We'll look at: 
 
 - Why we're building configuration-as-code 
 - Anti-patterns we wanted to avoid 
 - Challenges
-- Decisions
+- Design decisions
 
-But before we do, we should define what we mean by "configuration-as-code". We are referring to a version-controlled, text representation of an Octopus project. Today, when you configure a project in Octopus the configuration is stored as records in a relational database. This feature is basically taking some of that data and persisting it as files in a git repository rather than the database.  
+But before we do, we should define what we mean by "configuration-as-code". We are referring to a version-controlled (aka git), text representation of an Octopus project. Today when you configure a project in Octopus the configuration is stored as records in a relational database. This feature is basically taking some of that data and persisting it as files in a git repository rather than the database.  
 
 ## Why config-as-code?
 
@@ -34,7 +34,7 @@ And finally, we want this! We use Octopus Deploy to deliver Octopus Deploy, and 
 
 ## Anti-patterns 
 
-We are certainly not the first product to implement this feature. Many of the tools we integrate with, and compete with, have git integration. This gave us the opportunity to play with various implementations and to develop a sense of what made the difference between an enjoyable, and not so enjoyable, experience. 
+We are certainly not the first product to implement this feature. Many of the tools in our ecosystem have git integration. This gave us the opportunity to play with various implementations and to develop a sense of what made the difference between an enjoyable, and not so enjoyable, experience. 
 
 In particular there were a few patterns we wanted to avoid if possible.
 
@@ -109,7 +109,7 @@ An obvious question was _which configuration language will we use_? Over the pas
 
 We accepted that we were never going to make everyone happy, whichever we chose. 
 
-## Decisions
+## Design decisions
 
 Having explored some of the factors in the shaping process, let's have a look at some of the decisions.
 
@@ -117,21 +117,39 @@ Having explored some of the factors in the shaping process, let's have a look at
 
 Branches are git's superpower, and we want to leverage them as fully as possible. We are exposing the ability to switch branches in the Octopus UI: 
 
-TODO: Image
+![Switching branches](branch-switcher.png "width=500")
 
 This allows easily switching to a new branch to make changes to a deployment process, without impacting the main branch.
 
+### Commit messages when saving
+
+Keeping with the _expose git concepts_ principle, when configuration-as-code is enabled for a project we have relabelled the `Save` buttons as `Commit`. 
+
+![Commit button](commit-button.png "width=500")
+
+We also observed there are two types of changes. Examples of these are: 
+1. Making a surgical change to an existing deployment process 
+2. Making the forty-eight tweak to a process you have been trying to get working for the past three hours 
+
+In situation #1, we felt it was likely you wanted to enter a meaningul commit message. In situation #2, being prompted for _another_ commit message was unlikely to result in a meaningful description, and may result in you cursing us.  
+
+We want to cater for both these scenarios, so we have introduced a split-button that when clicked will use a default message without prompting, but the `...` provides the ability to enter a commit message. 
+
+![Commit dialog](commit-dialog.png "width=500")
+
 ### Releases and git: A perfect match 
 
-xxxx
+Configuration-as-code fits perfectly with the concept of a [release](https://octopus.com/docs/releases) in Octopus.
 
-TODO: Image
+Today, when you create a release it takes a snapshot of the current deployment process, variables, and a few other things. With configuration-as-code, when creating a release will allow selecting the git ref (branch, tag, or commit). From this point, your release doesn't change as it progresses through your project's environment lifecycle, just as today. 
+
+![Creating release from gitref](create-release-gitref.png "width=500")
 
 ### Not YAML, not JSON, not XML
 
 For our configuration language, we are using a language based on Hashicorp's HCL.  
 
-TODO: Image
+![OCL sample](hcl-sample.png "width=500")
 
 Our primary considerations were:
 - Human readability: The whole point of storing configuration in git is so that humans can read and compare it. 
@@ -145,5 +163,5 @@ To be honest, we feel like the choice of configuration language is far from the 
 
 ## What's next?
 
-We are aiming for November for the first public release, and we will talk more about the specifics of what is included as we get closer.   
+We are aiming at November for the first public release. We will talk more about the specifics of what is included as we get closer.   
 In the meantime, if you have any questions or comments, please enter them below or join the conversation in the Octopus community Slack. 
