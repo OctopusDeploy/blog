@@ -23,10 +23,11 @@ But before we do, we should define what we mean by "configuration-as-code". We a
 
 Over the past few years, version-controlling Octopus configuration has been comfortably our most commonly requested feature.  
 
-Often prioritizing features is a trade-off between addressing requests from existing users, and building something to appeal to new users. Configuration-as-code was commonly requested by both groups. And we understand why.  The benefits are compelling, and include:
-- History: TODO
-- Branching: TODO   
-- One source of truth: TODO 
+Often prioritizing features is a trade-off between addressing requests from existing users, and building something to appeal to new users. Configuration-as-code was commonly requested by both groups, and we understand why.  The benefits are compelling, and include:
+- History
+- Branching  
+- One source of truth 
+- Cloning
 
 There are two highly voted UserVoice suggestions ([1](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration), [2](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/35362726-allow-variables-to-be-version-controlled)), but even more convincing were the many customer conversations. 
 
