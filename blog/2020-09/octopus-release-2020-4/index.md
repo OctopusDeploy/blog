@@ -1,35 +1,37 @@
 ---
-title: "Octopus 2020.4: TODO"
-description: "Octopus 2020.4 includes "
+title: "Octopus 2020.4: Better configuration file updates for Java, NodeJS, Ruby, and Octopus Cloud: Built-in Windows and Linux Worker Pools"
+description: "Octopus 2020.4 includes for Java, NodeJS, Ruby and more, and Octopus Cloud now includes built-in Worker Pools for both Windows and Linux."
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: release-2020.4.png
 metaImage: release-2020.4.png
-published: 2021-09-07
+published: 2020-09-28
 tags:
 - Product
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xJqjn4s2VCI" frameborder="0" allowfullscreen></iframe>
+//Lee: Title descriptoin needs your review. :) 
+
+![Octopus 2020.4](release-2020.4.png)
 
 I'm thrilled to share that we've shipped Octopus 2020.4. This release bring together a couple of features that have been in development for a while. Together, they make it easier for teams to deploy and maintain web applications and services on Windows and Linux written in Java, NodeJS, Python and Ruby and more.
 
-* **[Better configuration file updates with structure variable replacement](/blog/2020-09/octopus-release-2020-4/index.md#variables)**: is an update to our JSON configuration variable replacement support to make far more useful. It now supports JSON, YAML, XML and Java Properties files. This is a huge improvement for numerous platforms but it's especially valuable for teams building apps with Java.
+* **[Better configuration file updates for Java, NodeJS, Ruby and more](/blog/2020-09/octopus-release-2020-4/index.md#variables)**: is an update to our JSON configuration variable replacement support to make far more useful. It now supports JSON, YAML, XML and Java Properties files. This is a huge improvement for numerous platforms but it's especially valuable for teams building apps with Java.
 
-* **[Octopus Cloud: Cross-platform Worker Pools and simpler dependency management](/blog/2020-09/octopus-release-2020-4/index.md#cross-platform-dynamic-workers)**. Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure. This update adds better cross-platform support with images for modern Windows and Linux operating systems. All Worker images support execution containers which let you execute deployment work in isolation without the need to manage dependencies and containers.
+* **[Octopus Cloud: Built-in Windows and Linux Worker Pools, and simpler dependency management](/blog/2020-09/octopus-release-2020-4/index.md#cross-platform-worker-pools)**. Octopus Cloud provides dynamic workers to execute scripts against your services and infrastructure. This update adds better cross-platform support with images for modern Windows and Linux operating systems. All Worker images support execution containers which let you execute deployment work in isolation without the need to manage dependencies and containers.
 
 This release is the [fourth of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
 
 | Release               | Long-term support  | LTS end date |
 | --------------------- | ------------------ | ------------ |
-| Octopus 2020.4        | Yes                | CONFIRM: 2022-03-20 |
+| Octopus 2020.4        | Yes                | 2022-03-21   |
 | Octopus 2020.3        | Yes                | 2021-01-20   |
-| Octopus 2020.2        | Yes                | 2020-09-31   |
+| Octopus 2020.2        | Yes                | 2020-09-30   |
 | Octopus 2020.1        | Expired            | 2020-08-24   |
 
 Keep reading to learn more about the updates.
 
-## Better configuration file updates with structure variable replacement {#variables}
+## Better configuration file updates for Java, NodeJS, Ruby and more {#variables}
 
 // TODO: Screenshot
 
@@ -50,7 +52,7 @@ This update makes it far easier to configure automated deployments for Java appl
 
 [Learn more](/blog/2020-08/spring-environment-configuration/index.md)
 
-## Octopus Cloud: Cross-platform Worker Pools and simpler dependency management {#cross-platform-dynamic-workers}
+## Octopus Cloud: Built-in Windows and Linux Worker Pools, and simpler dependency management {#cross-platform-worker-pools}
 
 Octopus 2020.4 now includes built-in Worker Pools with dynamic workers running modern Windows and Linux images including full support for Execution Containers.
 
@@ -61,6 +63,8 @@ See [our documentation](https://octopus.com/docs/infrastructure/workers) for mor
 :::
 
 ## Built-in Windows and Linux Worker Pools
+
+// TODO: Screenshot
 
 Octopus Cloud provides built-in Worker Pools which allow you to execute scripts against your services and infrastructure without the need to manage your own virtual machines or other compute resources. This greatly simplifies the ability to execute automation scripts, deployment or runbook, against cloud platforms, databases or Kubernetes clusters. 
 
@@ -83,6 +87,8 @@ If you need additional tools, you could always install them as a part of the scr
 [Learn more](/blog/2020-09/linux-worker-pools-on-octopus-cloud/index.md)
 
 ## Execution Containes for Workers
+
+// TODO: Screenshot
 
 With this update, our Execution Containers for workers feature is now available for everyone and we're removing the early access feature flag. This feature enable you to execute automation work in isolated containers on workers and reduces the need to manage automation tooling and dependencies.
 
