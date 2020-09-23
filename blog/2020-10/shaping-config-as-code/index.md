@@ -141,9 +141,11 @@ We want to cater for both these scenarios, so we have introduced a split-button 
 
 Configuration-as-code fits perfectly with the concept of a [release](https://octopus.com/docs/releases) in Octopus.
 
-Today, when you create a release it takes a snapshot of the current deployment process, variables, and a few other things. With configuration-as-code, when creating a release will allow selecting the git ref (branch, tag, or commit). From this point, your release doesn't change as it progresses through your project's environment lifecycle, just as today. 
+Today, when you create a release it takes a snapshot of the current deployment process, variables, and a few other things. With configuration-as-code enabled, when creating a release it will allow selecting the git ref (branch, tag, or commit) containing the deployment process and variables:  
 
 ![Creating release from gitref](create-release-gitref.png "width=500")
+
+From this point, your release doesn't change as it progresses through your project's environment lifecycle, just as today.
 
 ### Not YAML, not JSON, not XML
 
