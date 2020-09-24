@@ -88,7 +88,7 @@ If you need additional tools, you can install them as a part of the script or bu
 
 // TODO: Screenshot
 
-With this update, our Execution Containers for workers feature is now available for everyone, and we’re removing the early access feature flag. This feature lets you execute automation work in isolated containers on workers and reduces the need to manage automation tooling and dependencies.
+With this update, our Execution Containers for workers feature is now available for everyone. This feature lets you execute automation work in isolated containers on workers and reduces the need to manage automation tooling and dependencies.
 
 Previously, you needed to ensure the machines in your worker pools, including dynamic workers, had the necessary tools required for your automated processes, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don’t install side by side. Octopus bundled some tools, but it was still a challenge to keep them up to date.
 
@@ -125,4 +125,4 @@ Feel free to leave a comment, and let us know what you think! Happy deployments!
 
 * [Spring configuration strategies across environments](/blog/2020-09/spring-environment-configuration/index.md)
 * [Announcing Linux worker pools on Octopus Cloud](/blog/2020-09/octopus-cloud-built-in-linux-worker-pools/index.md)
-* TODO: Add link to MattC's Java CI/CD/CO series
+* [Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle](/blog/2020-09/java-ci-cd-co/index.md)
