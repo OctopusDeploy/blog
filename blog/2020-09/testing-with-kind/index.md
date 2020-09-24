@@ -4,7 +4,7 @@ description: Learn how to integrate a test cluster created with Kind with Octopu
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-09-28
-metaImage:
+metaImage: kubernetes-in-docker.png
 bannerImage:
 tags:
  - Octopus
