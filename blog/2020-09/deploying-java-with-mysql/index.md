@@ -5,7 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: deploy-java-and-mysql.png
 metaImage: deploy-java-and-mysql.png
-published: 2020-01-22
+published: 2020-09-28
 tags:
  - DevOps
  - Java
