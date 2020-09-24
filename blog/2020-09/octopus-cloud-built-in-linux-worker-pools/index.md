@@ -21,7 +21,7 @@ The lack of support for Linux workers on Octopus Cloud has made us a little sad 
 
 As of today, I'm happy to announce we support Ubuntu workers on Octopus Cloud. This is a step forward for us on our journey to being the best deployment tool for your Windows workloads and for your Linux workloads.
 
-![Worker Pool Configuration with Ubuntu 18.04 selected](images/worker-pool-configuration.png)
+![Worker Pool Configuration with Ubuntu 18.04 selected](images/worker-pool-configuration.png "width=500")
 
 ## Windows 2019 workers now available
 
@@ -51,7 +51,7 @@ After you've created your new worker pool, go to the projects tab, and create a 
 
 On the process tab, add a new **Run a Script** step. Choosing **Run once on a worker** will let you choose your new worker pool and expose a new section called **Container Image**.
 
-![Runbook step with worker pool and Container Image](images/runbook-step-worker-pool-container.png)
+![Runbook step with worker pool and Container Image](images/runbook-step-worker-pool-container.png "width=500")
 
 Choose your Docker Hub feed, and then click the `Use latest Linux-based image` link at the bottom. This will populate the field with the latest version automatically.
 
@@ -75,7 +75,7 @@ terraform apply -no-color -auto-approve
 
 Hitting **Save** then **Run** will execute the script:
 
-![Runbook execution log](images/terraform-run-log.png)
+![Runbook execution log](images/terraform-run-log.png "width=500")
 
 While this script doesn't exactly do much (it `echo`'s out "hello"), it highlights how easy it is to run a bash script and use the latest Terraform version.
 
