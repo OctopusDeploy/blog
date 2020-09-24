@@ -4,14 +4,14 @@ description: Octopus Cloud now supports Ubuntu worker pools and Windows 2019 wor
 author: matt.richardson@octopus.com
 visibility: private
 published: 2020-09-30
-metaImage: blogimage-powershellLinux.png
-bannerImage: blogimage-powershellLinux.png
+metaImage: octopus-linux-workers.png
+bannerImage: octopus-linux-workers.png
 tags:
  - Octopus Cloud
  - Workers
 ---
 
-![Announcing Linux worker pools on Octopus Cloud](blogimage-powershellLinux.png)
+![Announcing Linux worker pools on Octopus Cloud](octopus-linux-workers.png)
 
 With Octopus-hosted [dynamic worker pools](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools), you can spin up an [Octopus Cloud](https://octopus.com/pricing/cloud) instance and run PowerShell deployment or runbook steps on a Windows machine in minutes. Unfortunately, running a bash script on a Linux machine wasn't always as easy.
 
