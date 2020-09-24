@@ -61,7 +61,7 @@ It’s tempting to simply disable them, and convince yourself it's the user's ch
 
 In this pattern git concepts are abstracted in the application.  An example might be branching exposed as a “draft” metaphor.
 
-There’s nothing necessarily wrong with this, and done right it can be very powerful. But its risky for an application like Octopus, where users are likely to have an understandingg of git concepts. 
+There’s nothing necessarily wrong with this, and done right it can be very powerful. But its risky for an application like Octopus, where users are likely to have an understanding of git concepts. 
 
 Where possible we've used git terminology and concepts, rather than trying to hide them under abstractions. 
 
