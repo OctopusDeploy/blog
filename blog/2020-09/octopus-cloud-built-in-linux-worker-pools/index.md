@@ -31,9 +31,7 @@ I'm also happy to share, we've launched Windows 2019 workers. We're still in the
 
 A big positive of switching to the Windows 2019 workers is that Docker is installed as well, so you can make your builds sparkle with your own custom docker images; the only limit is your imagination (oh, and the DockerHub download times).
 
-One thing we're really excited about is that adding support for Docker really opens up our [execution containers feature](https://octopus.com/blog/execution-containers) which has been behind a feature flag for a while. We'll be removing the feature flag very soon to make it generally available, but you can opt in right now by going to **{{Configuration > Features}}**.
-
-<!-- todo: make sure this :point_up: is updated when feature flag is removed -->
+One thing we're really excited about is that adding support for Docker really opens up our [execution containers feature](https://octopus.com/blog/execution-containers) which has been behind a feature flag for a while. This feature is now available for everyone, and we’re removing the early access feature flag.
 
 ## New worker tools container version
 
@@ -42,20 +40,6 @@ One last thing, our [worker tools containers](https://hub.docker.com/r/octopusde
 ## Walk though
 
 The next section provides a walk through of running a bash script on a Linux worker. For added points, we'll execute Terraform from inside a container to show how easy it is to use the newest version.
-
-### Enable the feature
-
-<!-- todo: make sure this is updated once 2020.4.0 is GA on cloud (the feature flag is going away) -->
-
-Go to the **{{Configuration -> Features}}** menu, and make sure **Execution containers for workers** is set to enabled.
-
-### Configuring the worker pool
-
-<!-- todo: make sure this is updated once 2020.4.0 is GA on cloud (the worker pool will be auto-created -->
-
-As of today, most customers on Octopus Cloud are on 2020.3.3. This doesn't yet include a Linux worker pool created by default; this will happen when 2020.4.0 is made available.
-
-In the meantime, you can navigate to **{{Infrastructure > Worker Pools}}**, and hit the **Add Worker Pool** button. Selecting **Dynamic** for the Worker Pool Type will use a virtual machine hosted in Octopus Cloud for your deployments.
 
 ### Configure an external feed for DockerHub
 
