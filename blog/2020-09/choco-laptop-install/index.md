@@ -3,7 +3,7 @@ title: Configuring a developer machine with Chocolatey and Octopus Runbooks
 description: Learn how to automate your development machine setup with Chocolatey and Octopus Runbooks
 author: derek.campbell@octopus.com
 visibility: public
-published: 2020-09-30
+published: 2020-10-10
 metaImage: 
 bannerImage: 
 tags:
@@ -14,7 +14,7 @@ tags:
 
 I recently picked up a new Dell XPS 15" laptop after being on a Macbook Pro for the last 2 years. I looked back at Bob Walkers [Automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey) blog, and it got me thinking about how I could automate it with [Chocolatey](chocolatey.org/) and [Runbooks](https://octopus.com/docs/runbooks). I would recommend spending time going through Bob's blog before or after reading this blog as it may help if you're new to Chocolatey.
 
-I use Chocolatey a lot when provisioning Cloud and On-Premises servers and, in the past when I was working in Operations and using Infrastructure as Code I used Chocolatey to install a range of tools on Servers, Laptops and Desktops. I recently presented a Webinar with Paul Broadwith from Chocolatey about [Operations Automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg) which displayed how easy this was to do with Runbooks on Cloud infrastructure. In the webinar, we focus on using ARM Templates, Octopus Runbooks and Chocolatey to provision Developer machines and Server on [Azure](https://azure.microsoft.com/en-gb/overview/what-is-azure/).
+I use Chocolatey a lot when provisioning Cloud and On-Premises servers and, in the past when I was working in Operations and using Infrastructure as Code I used Chocolatey to install a range of tools on Servers, Laptops and Desktops. I recently presented a Webinar with [Paul Broadwith](twitter.com/pauby) from Chocolatey about [Operations Automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg) which showed how easy this was to do with Runbooks on Cloud infrastructure. In the webinar, we focus on using ARM Templates, Octopus Runbooks and Chocolatey to provision Developer machines and Server on [Azure](https://azure.microsoft.com/en-gb/overview/what-is-azure/).
 
 The problem I am trying to solve here, is to automate all of my packages in a single Octopus Runbook using Chocolatey to install every application I use in my day to day role. Also, everyone loves a fresh install of Windows, and I am no different. There's something fresh about a brand new install, and I may look at refreshing my laptop every so often, and I wanted a way to automate that and make it as painless as possible. I'd also like to share this with other members of my team so they can use this script whenever they want to re-prep their windows laptop or even a server.
 
@@ -55,13 +55,23 @@ Chocolatey is an open source tool and you can get lots of pre-configured package
 
 If you are writing your own package, consider sharing it to the Chocolatey community and you can read more about that on the [Chocolatey site](https://chocolatey.org/docs/create-packages).
 
-You can install Octopus from a chocolatey package, and we publish each new version as soon as it's available which
+You can install Octopus from a chocolatey package, and we publish each new version as soon as it's available which happens automatically from our [TeamCity](https://www.jetbrains.com/teamcity/) build server once it's available on our website. You can see and read more about the Octopus Deploy Chocolatey Package [here](https://chocolatey.org/packages/OctopusDeploy)
+
+To install Octopus Deploy as a chocolatey package you can run the following:
+
+```PowerShell
+choco install OctopusDeploy -y
+```
+
+:::hint
+You will still need to configure Octopus after using Chocolatey to install and you can automate this part as well and you can see more information on [Automating Octopus Installation](https://octopus.com/docs/installation/automating-installation).
+:::
 
 ## Why use Runbooks and Chocolatey
 
 [Runbooks](https://octopus.com/docs/runbooks) is my favourite feature of Octopus Deploy. I think it's due to my Operations background and I can see how it automate all those tasks that take up so much time in Operations that will allow Admins, DevOps Engineers and similar to automate the mundane away from your day. Being in Operations can be a hard position to be. It can be a little thankless at times, and it reminds me of times where people wondering what you're doing as everything "just works", and then they come to you and complain what we're even doing "when everything breaks".
 
-Let's be honest, how many times can you install [IIS](https://www.iis.net/) or [SQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) before it becomes boring, repetitive and error prone?
+Let's be honest, how many times can you install [IIS](https://www.iis.net/) or [SQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) before it becomes boring, repetitive and error prone? Another benefit of using Chocolatey in Octopus Runbooks is that it helps enable Self-Service when it comes to applications. You can grant people access to the Octopus Project and the Runbook so they can run their own installation of Chocolatey packages.
 
 You can use [Runbooks](https://octopus.com/docs/runbooks) to automate this part away to allow you to focus on more interesting problems:
 
@@ -90,13 +100,13 @@ Generally, public cloud providers also provide tools to allow you to do Infrastr
 
 ## Preparation
 
-The first thing I did here, was setup a brand new [Space](https://octopus.com/docs/administration/spaces) in Octopus called **LaptopPrep**. As part of the new Space configuration I created:
+The first thing I did here, was to see what [Space](https://octopus.com/docs/administration/spaces) I already had in Octopus that could match what I am after. I added this into our [Samples instance](https://samples.octopus.app) called **Target - Windows**. As part of the new Space configuration I created:
 
-- A single Octopus [environment](https://octopus.com/docs/infrastructure/environments) named **Prep**
+- An Octopus [environment](https://octopus.com/docs/infrastructure/environments) named **Provisioning**
 
 ![](images/environment.png "width=500")
 
-- Added my laptop as a [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) and assigned it the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) or **Laptop**.
+- Added my laptop as a [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) and assigned it the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) of **Computer**. I used a [Polling Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles) as my laptop was on my local network, but I was using [Octopus Cloud](https://octopus.com/docs/octopus-cloud) and didn't want to open my firewall.
 
 ![](images/deploymenttarget.png "width=500")
 
@@ -104,15 +114,17 @@ The first thing I did here, was setup a brand new [Space](https://octopus.com/do
 
 ![](images/healthy.png "width=500")
 
-- Last thing I had to do, was create a [Project](https://octopus.com/docs/projects) called **Laptop Provisioning**
+- The next thing I did was create a [Project](https://octopus.com/docs/projects) called **Computer Provisioning**
 
 ![](images/project.png "width=500")
+
+- Created a [Lifecycle](https://octopus.com/docs/getting-started-guides/lifecycle) called **Computer Lifeycle** and added just the Provisioning environment into it, and then assigned it to the Project.
 
 ## Runbook Configuration
 
 I want to do more than just install Chocolatey packages and I'll touch on these briefly as part of this blog.
 
-First thing you will want to do is browse to the Project, and add the Runbook named **Install Laptop Dependencies**
+First thing you will want to do is browse to the Project, and add the Runbook named **Install Developer Machine Dependencies**
 
 ### Set Timezone, Input & Region
 
@@ -150,15 +162,15 @@ I made a list of all of the packages I needed to install on my new laptop, and n
 
 The applications I found I needed on my new laptop is below:
 
-```
-git vscode sql-server-management-studio slack sql-server-2019 github-desktop obs-studio rdmfree googlechrome firefox spotify octopusdeploy octopusdeploy.tentacle dotnet4.7.2 dotnetfx dotnetcore 7zip visualstudio2019professional nordvpn lastpass-chrome lastpass docker-desktop chromium googledrive google-drive-file-stream helm kubernetes-cli minikube zoom streamdeck notepadplusplus nugetpackageexplorer sdio virtualbox jre8 vlc python foxitreader putty.install sysinternals camtasia snagit vagrant packer terraform vmwareworkstation
+```PowerShell
+git vscode sql-server-management-studio slack github-desktop rdmfree googlechrome firefox dotnetfx dotnetcore 7zip visualstudio2019professional nordvpn lastpass-chrome lastpass docker-desktop chromium googledrive google-drive-file-stream kubernetes-helm kubernetes-cli minikube zoom notepadplusplus nugetpackageexplorer sdio virtualbox jre8 vlc python foxitreader putty.install sysinternals snagit vagrant packer terraform
 ```
 
 ![](images/chocoinstall.png "width=500")
 
-#### Install Chocolatey Package step parameters
+### Install Chocolatey Package step parameters
 
-As you've saw, there are a few paramters which can be set, and I wanted to explain these so you get the full picture.
+As you've saw, there are a few parameters which can be set, and I wanted to explain these so you get the full picture.
 
 In the **(Optional) Version** Parameter selection, you can specify a specific version of the software you want to install. If you're using more than one package per step, and want to specify specific versions of software, you will need to configure that Chocolatey Install and add the version in an additional step.
 
@@ -172,6 +184,48 @@ The last two options cover whether you want to see the download progress in your
 
 ![](images/chocoparams.png "width=500")
 
+### Installing IIS & Dependencies
+
+The next step was to configure IIS and it's dependencies. I used our [IIS Runbooks](https://octopus.com/docs/runbooks/runbook-examples/routine/iis-runbooks) examples and ran this to install IIS and all of it's features.
+
+### Optional Steps
+
+I'm personally not a fan of the Default Website in IIS, so by default I like to remove it. I used the community step template called [IIS Website - Delete](https://library.octopus.com/step-templates/a032159b-0742-4982-95f4-59877a31fba3/actiontemplate-iis-website-delete) and then specified Default Web Site and it will now remove the Default Web Site as part of this provisioning Runbook in Octopus.
+
+I use [HyperV](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview) as my laptop and server Hypervisor when I can, and I wanted to enable it as part of the laptop provisioning process. I used the **Run a Script** built-in template for this task and used PowerShell to enable HyperV
+
+```PowerShell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+```
+
+The last thing I wanted to do was to avoid installing all of the Windows Updates that had been released since my laptop had been prepped. I used a community step template called [Windows - Apply Windows Updates](https://library.octopus.com/step-templates/3472f207-3934-44db-a4ac-1390167cf7ed/actiontemplate-windows-apply-windows-updates) which will automatically install, and reboot your machine as long as you set the parameter to True.
+
+## Publishing the Runbook
+
+Octopus Deploy deployments use Snapshots as a way to store the [Variables](https://octopus.com/docs/runbooks/runbook-variables) and step configuration when the release your deploying has been created. This is maintained as you push your release through your environments.
+
+Runbooks has [Publishing](https://octopus.com/docs/runbooks/runbook-publishing) as a similar concept to the snapshotting of deployments and releases. With Runbooks, you have the concept of Draft and Published. A draft snapshot of a runbook is exactly what it sounds like, a draft version of the currently published version. Drafts are meant to give you a place to work and save a runbook that is a work in progress or has not yet been approved for general use. Draft Snapshots can't be used to create [Scheduled Runbook triggers](https://octopus.com/docs/runbooks/scheduled-runbook-trigger)
+
+The concept of a published snapshot is designed to help avoid confusion when selecting a version of the runbook you're supposed to run if you're not the author. You can think of it as the "Production" ready version of the runbook, which has been approved for general use. The published snapshot contains the process, variables, and packages. This allows editing and testing the runbook without impacting the published version and once published, the Runbook can be used by Runbook triggers.
+
 ## Running the Runbook
 
+So, you have the space, the project, the lifecycle, the environment, the laptop and the Runbook in Octopus. The next step, is to run the Runbook to give it a test and ensure it does what you want it to do.
 
+To run the Runbook:
+
+- Open the Runbook project
+- Select Operations -> Runbooks
+- Select the Runbook you created
+
+![](images/run-runbook.png "width=500")
+
+- Select Run
+- Select the Environment you want to run it under
+- Hit the Run button
+
+![](images/run-runbook-run.png "width=500")
+
+The runbook will now run to completion. 
+
+![](images/completedrunbook.png "width=500")
