@@ -3,12 +3,15 @@ title: "Java CI/CD: From JAR to Docker"
 description: In this post, we learn how to convert a Java application to a Docker image.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-09-24
-metaImage: 
-bannerImage: 
+published: 2020-10-05
+metaImage: blogimage-java-blog-series-2.png
+bannerImage: blogimage-java-blog-series-2.png
 tags:
- - Octopus
+ - DevOps
+ - Java
 ---
+
+![Java CI/CD: From JAR to Docker](blogimage-java-blog-series-1.png)
 
 This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 

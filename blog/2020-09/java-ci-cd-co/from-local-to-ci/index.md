@@ -3,12 +3,16 @@ title: "Java CI/CD: From local build to Jenkins Continuous Integration"
 description: Learn how to build a Docker image with a central CI server.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-09-28
-metaImage: 
-bannerImage: 
+published: 2020-10-05
+metaImage: blogimage-java-blog-series-3.png
+bannerImage: blogimage-java-blog-series-3.png
 tags:
- - Octopus
+ - DevOps
+ - Java
+ - Jenkins
 ---
+
+![Java CI/CD: From local build to Jenkins Continuous Integration](blogimage-java-blog-series-3.png)
 
 This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 

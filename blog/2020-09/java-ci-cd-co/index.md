@@ -3,11 +3,12 @@ title: "Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle
 description: A blog series with practical examples on how Jenkins, Octopus, and Kubernetes fit into the DevOps lifecycle.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-09-24
-metaImage: 
-bannerImage: 
+published: 2020-10-05
+metaImage: blogimage-java-blog-series-1.png
+bannerImage: blogimage-java-blog-series-1.png
 tags:
- - Octopus
+ - DevOps
+ - Java
 ---
 
 ![](devops.svg "width=300")

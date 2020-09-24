@@ -3,13 +3,16 @@ title: "Java CI/CD: From release management to operations"
 description: In this post, we create example runbook to implement operations tasks.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2030-10-01
-metaImage: 
-bannerImage: 
+published: 2020-10-05
+metaImage: blogimage-java-blog-series-6.png
+bannerImage: blogimage-java-blog-series-6.png
 tags:
- - Octopus
+ - DevOps
+ - Java
  - Runbooks
 ---
+
+![Java CI/CD: From release management to operations](blogimage-java-blog-series-6.png)
 
 This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
