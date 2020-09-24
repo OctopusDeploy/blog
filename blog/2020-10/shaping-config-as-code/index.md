@@ -168,4 +168,4 @@ To be honest, we feel like the choice of configuration language is far from the 
 ## What's next?
 
 We are aiming at November for the first public release. We will talk more about the specifics of what is included as we get closer.   
-In the meantime, if you have any questions or comments, please enter them below or join the conversation in the Octopus community Slack. 
+In the meantime, if you have any questions or comments, please enter them below or join the conversation in the [Octopus community Slack](https://octopus.com/slack). 
