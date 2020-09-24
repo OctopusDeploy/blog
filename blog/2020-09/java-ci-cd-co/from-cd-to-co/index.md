@@ -3,7 +3,7 @@ title: "Java CI/CD: From release management to operations"
 description: In this post, we create example runbook to implement operations tasks.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2020-10-05
+published: 2020-10-09
 metaImage: blogimage-java-blog-series-6.png
 bannerImage: blogimage-java-blog-series-6.png
 tags:
