@@ -2,7 +2,7 @@
 title: "Octopus 2020.4: Better configuration file updates for Java, NodeJS, Ruby, and Octopus Cloud: Built-in Windows and Linux Worker Pools"
 description: "Octopus 2020.4 introduces better config file updates for Java, NodeJS, and Ruby, and adds built-in Worker Pools on Octopus Cloud for both Windows and Linux."
 author: rob.pearson@octopus.com
-visibility: public
+visibility: private
 bannerImage: release-2020.4.png
 metaImage: release-2020.4.png
 published: 2020-09-28
@@ -66,11 +66,11 @@ See [our documentation](https://octopus.com/docs/infrastructure/workers) for mor
 
 Octopus Cloud provides built-in Worker Pools that allow you to execute scripts against your services and infrastructure without the need to manage your own virtual machines or other compute resources. This simplifies the ability to execute automation scripts, deployment or runbook, against cloud platforms, databases, or Kubernetes clusters. 
 
-With Octopus 2020.4, we have improved the cross-platform support for dynamic workers by providing built-in Worker Pools running modern Windows and Linux operation systems:
+With Octopus 2020.4, we have improved the cross-platform support for dynamic workers by providing built-in Worker Pools running modern Windows and Linux operating systems:
 * Windows 2019
 * Ubuntu 18.04
 
-Octopus Cloud launched with support for Windows 2016 that is still available, and our focus now is on supporting more modern operations moving forward.
+Octopus Cloud launched with support for Windows 2016 that is still available, and our focus now is on supporting more modern operating systems moving forward.
 
 The workers are virtual machines which are bootstrapped with basic tooling, including the following: 
 
@@ -90,7 +90,7 @@ If you need additional tools, you can install them as a part of the script or bu
 
 With this update, our Execution Containers for workers feature is now available for everyone, and we’re removing the early access feature flag. This feature lets you execute automation work in isolated containers on workers and reduces the need to manage automation tooling and dependencies.
 
-Previously, you needed to ensure the machines in your worker pools, including dynamic workers, had the necessary tools required for your deployments, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don’t install side by side. Octopus bundled some tools, but it was still a challenge to keep them up to date.
+Previously, you needed to ensure the machines in your worker pools, including dynamic workers, had the necessary tools required for your automated processes, and you needed to maintain their OS and tool versions. This approach could also be problematic if different teams required different versions of specific tools that don’t install side by side. Octopus bundled some tools, but it was still a challenge to keep them up to date.
 
 Execution containers for workers make this easier.
 
@@ -107,9 +107,9 @@ This release doesn’t include any breaking changes.
 
 ## Upgrading
 
-Octopus Cloud users are already running this release, and self-hosted Octopus customers can [download](https://octopus.com/downloads/2020.3.0) the latest version now.  
+Octopus Cloud users are already running this release, and self-hosted Octopus customers can [download](https://octopus.com/downloads/2020.4.0) the latest version now.  
 
-As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2020.3.0) for further information.
+As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading) apply. Please see the [release notes](https://octopus.com/downloads/compare?to=2020.4.0) for further information.
 
 ## What’s coming in Octopus 2020.5?
 
