@@ -62,7 +62,7 @@ See [our documentation](https://octopus.com/docs/infrastructure/workers) for mor
 
 ## Built-in Windows and Linux Worker Pools
 
-// TODO: Screenshot
+![Built-in Windows and Linux Worker Pools](worker-pool-configuration.png "width=500")
 
 Octopus Cloud provides built-in Worker Pools that allow you to execute scripts against your services and infrastructure without the need to manage your own virtual machines or other compute resources. This simplifies the ability to execute automation scripts, deployment or runbook, against cloud platforms, databases, or Kubernetes clusters. 
 
@@ -86,7 +86,7 @@ If you need additional tools, you can install them as a part of the script or bu
 
 ## Execution Containers for Workers
 
-// TODO: Screenshot
+![Execution Containers for Workers](execution-containers.png "width=500")
 
 With this update, our Execution Containers for workers feature is now available for everyone. This feature lets you execute automation work in isolated containers on workers and reduces the need to manage automation tooling and dependencies.
 
