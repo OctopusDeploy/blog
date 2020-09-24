@@ -3,12 +3,15 @@ title: Spring configuration strategies across environments
 description: Learn how Octopus helps you customize your Spring applications as they are deployed across multiple environments
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+published: 2020-09-29
+metaImage: spring-configuration-strategies_2020.png
+bannerImage: spring-configuration-strategies_2020.png
 tags:
- - Octopus
+ - DevOps
+ - Java
 ---
+
+![Spring configuration strategies across environments](spring-configuration-strategies_2020.png)
 
 Spring has rich support for complex configurations. The built-in support for profiles and [externalized configuration](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config) gives you a good degree of freedom to construct environment specific configuration that can be bundled into a single, self-contained application archive.
 
