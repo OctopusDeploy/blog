@@ -3,7 +3,7 @@ title: Hosting a Maven repo in Amazon S3
 description: Learn how to host a fully functional Maven repository in Amazon S3
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-05-20
+published: 2020-09-30
 metaImage: maven-repo-s3.png
 bannerImage: maven-repo-s3.png
 tags:
