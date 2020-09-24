@@ -24,10 +24,11 @@ But before we do, we should define what we mean by "configuration-as-code". We a
 Over the past few years, version-controlling Octopus configuration has been comfortably our most commonly requested feature.  
 
 Often prioritizing features is a trade-off between addressing requests from existing users, and building something to appeal to new users. Configuration-as-code was commonly requested by both groups, and we understand why.  The benefits are compelling, and include:
-- History
-- Branching  
-- One source of truth 
-- Cloning
+
+- **History:** Git is a time-machine for code, and being able to view the what, when, and who, for your Octopus configuration alongside application code is undeniably useful. 
+- **Branching:** Today there is a single instance of the deployment process. This makes testing changes difficult, as when a release is created it will use the current deployment process. Git branches give the ability to have as many versions of the deployment process as you like, allowing iterating on changes without impacting stability.   
+- **Single source of truth**: Having application code, build scripts, and deployment configuration all living together makes everyone feel warm and fuzzy.  
+- **Cloning:** Imagine being able to copy a `.octopus` folder to a brand new git repository (maybe change a few variables) and use that as the Octopus project template.
 
 There are two highly voted UserVoice suggestions ([1](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration), [2](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/35362726-allow-variables-to-be-version-controlled)), but even more convincing were the many customer conversations. 
 
