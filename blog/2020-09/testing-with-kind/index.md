@@ -4,21 +4,21 @@ description: Learn how to integrate a test cluster created with Kind with Octopu
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 tags:
  - Octopus
 ---
 
 Getting started with Kubernetes can be a little overwhelming. With so many tools like [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/), [K3s](https://k3s.io/), [Docker Desktop](https://docs.docker.com/docker-for-windows/kubernetes/), [MicroK8s](https://microk8s.io/), and [Kind](https://kind.sigs.k8s.io/), even knowing which test distribution to use is not an easy choice.
 
-For my local development I find myself using Kind. It is quick to boot, and integrates well with WSL2 allowing me to quickly switch between Windows and Linux development.
+For local development, I find myself using Kind. It is quick to boot, and integrates well with WSL2 allowing me to quickly switch between Windows and Linux development.
 
-In this blog post and the associated screencast I'll show you how to quickly get up and running with a local development Kubernetes cluster using Kind and a hosted instance of Octopus.
+In this blog post and the associated screencast, I show you how to quickly get up and running with a local development Kubernetes cluster using Kind and a hosted instance of Octopus.
 
 ## Screencast
 
-The video below demonstrates the process of deploying a web application to a development Kubernetes cluster created by Kind. The remainder of the blog post provides links to additional resources and copies of the scripts used in this demo:
+The video below demonstrates the process of deploying a web application to a development Kubernetes cluster created by Kind. The remainder of the post provides links to additional resources and copies of the scripts used in this demo:
 
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/sMt2-enODC0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -36,15 +36,15 @@ Docker is then exposed in the target WSL2 instances:
 
 Kind is a self contained Linux executable that is downloaded and placed into the PATH for easy access. The [Kind quick start docs](https://kind.sigs.k8s.io/docs/user/quick-start/) provide instructions on installing Kind, which in my WSL2 Ubuntu instance was achieved by running:
 
-:::hint
-The Kind documentation has links to the latest release, which will likely have been updated from the URL shown below.
-:::
-
 ```
 curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin
 ```
+
+:::hint
+The Kind documentation has links to the latest release, which will likely have been updated from the URL above.
+:::
 
 ## Creating the cluster
 
@@ -80,7 +80,7 @@ users:
 
 ## Extracting the certificates
 
-The script below extracts the `client-certificate-data` and `client-key-data` fields into a single PFX file, and the `certificate-authority-data` field into a plain text file:
+The script below extracts the `client-certificate-data` and `client-key-data` fields into a single PFX file, and the `certificate-authority-data` field into a plain text file.
 
 :::hint
 Note that you will need the `jq` and `openssl` applications installed for this script to work.
@@ -122,7 +122,7 @@ kubectl config view --raw -o json |
     rm client.crt
     rm client.key
   }
-  
+
   kubectl config view --raw -o json |
   ConvertFrom-JSON |
   Select-Object -ExpandProperty clusters |
@@ -134,9 +134,9 @@ kubectl config view --raw -o json |
 
 ## Installing the Octopus worker
 
-To connect a local development machine to an Octopus instance, a polling worker needs to be installed. A polling worker reaches out to the Octopus server, and allows communication when the target machine does not have a static IP address.
+To connect a local development machine to an Octopus instance, a polling worker needs to be installed. A polling worker reaches out to the Octopus Server and allows communication when the target machine does not have a static IP address.
 
-The tentacle is installed using [these instructions from the Octopus website](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle#installing-and-configuring-linux-tentacle). For my Ubuntu based WSL2 instance, the installation was done with the commands:
+The Tentacle is installed using [these instructions from the Octopus website](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle#installing-and-configuring-linux-tentacle). For my Ubuntu based WSL2 instance, the installation was done with the commands:
 
 ```
 sudo apt-key adv --fetch-keys https://apt.octopus.com/public.key
@@ -145,13 +145,13 @@ sudo apt-get update
 sudo apt-get install tentacle
 ```
 
-The tentacle instance is then configured with the command:
+The Tentacle instance is then configured with the command:
 
 ```
 sudo /opt/octopus/tentacle/configure-tentacle.sh
 ```
 
-Because WSL2 doesn't support systemd, we need to run the tentacle manually with the command:
+Because WSL2 doesn’t support systemd, we need to run the Tentacle manually with the command:
 
 ```
 sudo /opt/octopus/tentacle/Tentacle run --instance Tentacle
@@ -165,7 +165,7 @@ The two certificate files created from the Kind Kubernetes configuration file ar
 
 ## Creating the target
 
-Once the certificates are uploaded, a new Kubernetes target is created using the **Kind User** certificate for authentication, and the **Kind CA** certificate to trust the HTTPS API endpoint:
+After the certificates are uploaded, a new Kubernetes target is created using the **Kind User** certificate for authentication, and the **Kind CA** certificate to trust the HTTPS API endpoint:
 
 ![](k8s-target.png "width=500")
 
@@ -201,8 +201,8 @@ NGINX is then available on the URL http://localhost:8081. Here is the welcome pa
 
 ## Conclusion
 
-The combination of Kind and WSL2 provides a convenient way to create a local development Kubernetes cluster that can be exposed to Octopus via a polling worker. 
+The combination of Kind and WSL2 provides a convenient way to create a local development Kubernetes cluster that can be exposed to Octopus via a polling worker.
 
-In this post and screencast we saw how to configure a development Kubernetes cluster in WSL2, extract the certificates used by the HTTPS endpoint and user authentication, connect to the cluster via a polling tentacle, and create a Kubernetes target that can be used to perform deployments.
+In this post and screencast we saw how to configure a development Kubernetes cluster in WSL2, extract the certificates used by the HTTPS endpoint and user authentication, connect to the cluster via a polling Tentacle, and create a Kubernetes target that can be used to perform deployments.
 
 Happy deployments!
