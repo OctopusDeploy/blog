@@ -11,7 +11,7 @@ tags:
  - Java
 ---
 
-![Java CI/CD: From JAR to Docker](blogimage-java-blog-series-1.png)
+![Java CI/CD: From JAR to Docker](blogimage-java-blog-series-2.png)
 
 This post is part of a series that demonstrates a sample deployment pipeline with Jenkins, Docker, and Octopus:
 
