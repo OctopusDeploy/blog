@@ -3,7 +3,7 @@ title: Creating test Kubernetes clusters with Kind
 description: Learn how to integrate a test cluster created with Kind with Octopus
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2020-09-28
 metaImage:
 bannerImage:
 tags:
