@@ -12,7 +12,7 @@ tags:
 
 Getting started with Kubernetes can be a little overwhelming. With so many tools like [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/), [K3s](https://k3s.io/), [Docker Desktop](https://docs.docker.com/docker-for-windows/kubernetes/), [MicroK8s](https://microk8s.io/), and [Kind](https://kind.sigs.k8s.io/), even knowing which test distribution to use is not an easy choice.
 
-For local development, I find myself using Kind. It is quick to boot, and integrates well with WSL2 allowing me to quickly switch between Windows and Linux development.
+For local development, I find myself using Kind. It is quick to boot and integrates well with WSL2 allowing me to quickly switch between Windows and Linux development.
 
 In this blog post and the associated screencast, I show you how to quickly get up and running with a local development Kubernetes cluster using Kind and a hosted instance of Octopus.
 
@@ -34,7 +34,7 @@ Docker is then exposed in the target WSL2 instances:
 
 ## Install Kind
 
-Kind is a self contained Linux executable that is downloaded and placed into the PATH for easy access. The [Kind quick start docs](https://kind.sigs.k8s.io/docs/user/quick-start/) provide instructions on installing Kind, which in my WSL2 Ubuntu instance was achieved by running:
+Kind is a self-contained Linux executable that is downloaded and placed into the PATH for easy access. The [Kind quick start docs](https://kind.sigs.k8s.io/docs/user/quick-start/) provide instructions on installing Kind, which in my WSL2 Ubuntu instance was achieved by running:
 
 ```
 curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
@@ -80,7 +80,7 @@ users:
 
 ## Extracting the certificates
 
-The script below extracts the `client-certificate-data` and `client-key-data` fields into a single PFX file, and the `certificate-authority-data` field into a plain text file.
+The script below extracts the `client-certificate-data` and `client-key-data` fields into a single PFX file and the `certificate-authority-data` field into a plain text file.
 
 :::hint
 Note that you will need the `jq` and `openssl` applications installed for this script to work.
@@ -189,7 +189,7 @@ The pods created by the deployment are exposed with a service accessed on port 8
 
 ## Accessing the service
 
-Kind only exposes the Kubernetes API endpoint, and so the service is not accessible outside of the cluster. To open NGINX from our browser we need to use `kubectl` to forward traffic from a local port into the cluster. This is done with the command:
+Kind only exposes the Kubernetes API endpoint, and so the service is not accessible outside of the cluster. To open NGINX from our browser, we need to use `kubectl` to forward traffic from a local port into the cluster. This is done with the command:
 
 ```
 kubectl port-forward svc/myservice 8081:80
@@ -203,6 +203,6 @@ NGINX is then available on the URL http://localhost:8081. Here is the welcome pa
 
 The combination of Kind and WSL2 provides a convenient way to create a local development Kubernetes cluster that can be exposed to Octopus via a polling worker.
 
-In this post and screencast we saw how to configure a development Kubernetes cluster in WSL2, extract the certificates used by the HTTPS endpoint and user authentication, connect to the cluster via a polling Tentacle, and create a Kubernetes target that can be used to perform deployments.
+In this post and screencast, we saw how to configure a development Kubernetes cluster in WSL2, extract the certificates used by the HTTPS endpoint and user authentication, connect to the cluster via a polling Tentacle, and create a Kubernetes target that can be used to perform deployments.
 
 Happy deployments!
