@@ -7,7 +7,8 @@ published: 2020-09-28
 metaImage: kubernetes-in-docker.png
 bannerImage: kubernetes-in-docker.png
 tags:
- - Octopus
+ - DevOps
+ - Kubernetes
 ---
 
 Getting started with Kubernetes can be a little overwhelming. With so many tools like [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/), [K3s](https://k3s.io/), [Docker Desktop](https://docs.docker.com/docker-for-windows/kubernetes/), [MicroK8s](https://microk8s.io/), and [Kind](https://kind.sigs.k8s.io/), even knowing which test distribution to use is not an easy choice.
