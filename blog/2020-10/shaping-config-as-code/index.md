@@ -131,7 +131,7 @@ Keeping with the _expose git concepts_ principle, when configuration-as-code is 
 
 We also observed there are two types of changes. Examples of these are: 
 1. Making a surgical change to an existing deployment process 
-2. Making the forty-eight tweak to a process you have been trying to get working for the past three hours 
+2. Making the forty-ninth tweak to a process you have been trying to get working for the past three hours 
 
 In situation #1, we felt it was likely you wanted to enter a meaningul commit message. In situation #2, being prompted for _another_ commit message was unlikely to result in a meaningful description, and may result in you cursing us.  
 
