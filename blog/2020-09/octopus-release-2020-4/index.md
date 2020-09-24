@@ -33,7 +33,7 @@ Keep reading to learn more about the updates.
 
 // TODO: Screenshot
 
-One of Octopus’s most powerful features is how it can automatically update your configuration files as you promote your applications to production. Historically, this supported a number of Microsoft configuration file formats, primarily XML based, as well as some general approaches like JSON support and token replacement. This was fantastic; however, if you weren’t using XML or JSON files, you needed to insert and maintain tokens in your configuration files. 
+One of Octopus’s most powerful features is how it can automatically update your configuration files as you promote your applications to production. Historically, this supported a number of Microsoft configuration file formats, primarily Microsoft specific XML transformations and .NET configuration files, as well as some general approaches like JSON support and token replacement. This was fantastic; however, if you weren’t using XML or JSON files, you needed to insert and maintain tokens in your configuration files. 
 
 With this release, we’re introducing structured variable replacement which supports nearly all modern configuration file formats, including:
 
