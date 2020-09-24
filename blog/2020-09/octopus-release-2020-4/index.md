@@ -82,7 +82,7 @@ The workers are virtual machines which are bootstrapped with basic tooling, incl
 
 If you need additional tools, you can install them as a part of the script or build your own customer worker pools with your own machines. 
 
-[Learn more](/blog/2020-09/linux-worker-pools-on-octopus-cloud/index.md)
+[Learn more](/blog/2020-09/octopus-cloud-built-in-linux-worker-pools/index.md)
 
 ## Execution Containers for Workers
 
@@ -124,5 +124,5 @@ Feel free to leave a comment, and let us know what you think! Happy deployments!
 ## Related posts
 
 * [Spring configuration strategies across environments](/blog/2020-09/spring-environment-configuration/index.md)
-* TODO: Add link to MattR's linux workers post
+* [Announcing Linux worker pools on Octopus Cloud](/blog/2020-09/octopus-cloud-built-in-linux-worker-pools/index.md)
 * TODO: Add link to MattC's Java CI/CD/CO series
