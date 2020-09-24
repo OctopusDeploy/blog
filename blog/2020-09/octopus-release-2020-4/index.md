@@ -31,7 +31,7 @@ Keep reading to learn more about the updates.
 
 ## Better configuration file updates for Java, NodeJS, Ruby, and more {#variables}
 
-// TODO: Screenshot
+![Better configuration file updates for Java, NodeJS, Ruby, and more](config-file-updates.png "width=500")
 
 One of Octopus’s most powerful features is how it can automatically update your configuration files as you promote your applications to production. Historically, this supported a number of Microsoft configuration file formats, primarily Microsoft specific XML transformations and .NET configuration files, as well as some general approaches like JSON support and token replacement. This was fantastic; however, if you weren’t using XML or JSON files, you needed to insert and maintain tokens in your configuration files. 
 
