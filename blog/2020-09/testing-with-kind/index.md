@@ -5,7 +5,7 @@ author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-09-28
 metaImage: kubernetes-in-docker.png
-bannerImage:
+bannerImage: kubernetes-in-docker.png
 tags:
  - Octopus
 ---
