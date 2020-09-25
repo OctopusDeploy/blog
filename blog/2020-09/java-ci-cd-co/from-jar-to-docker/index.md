@@ -2,8 +2,8 @@
 title: "Java CI/CD: From JAR to Docker"
 description: In this post, we learn how to convert a Java application to a Docker image.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2020-10-05
+visibility: public
+published: 2020-10-12
 metaImage: blogimage-java-blog-series-2.png
 bannerImage: blogimage-java-blog-series-2.png
 tags:

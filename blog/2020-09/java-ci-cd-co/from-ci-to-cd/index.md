@@ -2,8 +2,8 @@
 title: "Java CI/CD: From Continuous Integration to release management"
 description: In this post, we link up Jenkins and Octopus to form a CI/CD pipeline.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2020-10-08
+visibility: public
+published: 2020-10-15
 metaImage: blogimage-java-blog-series-5.png
 bannerImage: blogimage-java-blog-series-5.png
 tags:
