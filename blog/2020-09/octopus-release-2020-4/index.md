@@ -2,10 +2,10 @@
 title: "Octopus 2020.4: Better configuration file updates for Java, NodeJS, Ruby, and Octopus Cloud: Built-in Windows and Linux Worker Pools"
 description: "Octopus 2020.4 introduces better config file updates for Java, NodeJS, and Ruby, and adds built-in Worker Pools on Octopus Cloud for both Windows and Linux."
 author: rob.pearson@octopus.com
-visibility: private
+visibility: public
 bannerImage: release-2020.4.png
 metaImage: release-2020.4.png
-published: 2020-09-28
+published: 2020-10-05
 tags:
 - Product
 ---

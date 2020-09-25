@@ -2,8 +2,8 @@
 title: Spring configuration strategies across environments
 description: Learn how Octopus helps you customize your Spring applications as they are deployed across multiple environments
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2020-09-29
+visibility: public
+published: 2020-10-06
 metaImage: spring-configuration-strategies_2020.png
 bannerImage: spring-configuration-strategies_2020.png
 tags:

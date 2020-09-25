@@ -2,8 +2,8 @@
 title: Announcing Linux worker pools on Octopus Cloud
 description: Octopus Cloud now supports Ubuntu worker pools and Windows 2019 worker pools.
 author: matt.richardson@octopus.com
-visibility: private
-published: 2020-09-30
+visibility: public
+published: 2020-10-07
 metaImage: octopus-linux-workers.png
 bannerImage: octopus-linux-workers.png
 tags:
@@ -31,7 +31,7 @@ I'm also happy to share, we've launched Windows 2019 workers. We're still in the
 
 A big positive of switching to the Windows 2019 workers is that Docker is installed as well, so you can make your builds sparkle with your own custom docker images; the only limit is your imagination (oh, and the DockerHub download times).
 
-One thing we're really excited about is that adding support for Docker really opens up our [execution containers feature](https://octopus.com/blog/execution-containers) which has been behind a feature flag for a while. This feature is now available for everyone, and we’re removing the early access feature flag.
+One thing we're really excited about is that adding support for Docker really opens up our [execution containers feature](https://octopus.com/blog/execution-containers) which has been behind a feature flag for a while. This feature is now available for everyone as a part of our early access program.
 
 ## New worker tools container version
 
