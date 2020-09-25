@@ -10,3 +10,4 @@ blog/2017-11/maven-versions-explained.md -> blog/2020-09/maven-versioning-explai
 blog/2020-06/maven-versioning-explained/index.md -> blog/2020-09/maven-versioning-explained/index.md
 blog/2018-02/deploy-maven-zip-files.md -> blog/2020-05/deploy-and-consume-zip-files-from-maven/index.md
 blog/2018-11/why-k8s-and-octo/index.md -> blog/2020-09/why-kubernetes-and-octopus-deploy/index.md
+blog/2020-05/hosting-maven-in-s3/index.md -> blog/2020-09/hosting-maven-in-s3/index.md
