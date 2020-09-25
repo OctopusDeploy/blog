@@ -161,10 +161,10 @@ Set-TimeZone "GMT Standard Time"
 A US equivalent, on the East Coast would look something like:
 
 ```PowerShell
-#Set home location to the United Kingdom
+#Set home location to the United States
 Set-WinHomeLocation 0xf4
 
-#override language list with just English GB
+#override language list with just English US
 $1 = New-WinUserLanguageList en-US
 $1[0].Handwriting = 1
 Set-WinUserLanguageList $1 -force
