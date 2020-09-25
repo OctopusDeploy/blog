@@ -24,6 +24,8 @@ The problem I am trying to solve here is to automate all of my packages in a sin
 
 [Chocolatey](https://chocolatey.org/) is a package manager for Windows. It's an open-source project that provides Developers, Operations, and everything in between a way to manage, install, and upgrade software across their Windows estate. Chocolatey focuses on making managing Windows software more straightforward, streamlined, and accessible to everyone using a Windows computer. If you want to find out more about installing Chocolatey without Runbooks, check out the Chocolatey Install [doc](https://chocolatey.org/install).
 
+### Using Chocolatey
+
 You don't need Runbooks to use Chocolatey, and it's as simple as opening an Administrator Windows PowerShell window and running a script to install something like google chrome:
 
 ```PowerShell
