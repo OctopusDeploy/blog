@@ -14,7 +14,7 @@ tags:
 
 I recently picked up a new Dell XPS 15" laptop after being on a Macbook Pro for 2 years. I looked back at [Bob Walkers](https://twitter.com/DevOpsWalker) [Automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey) blog, and it got me thinking about how I could automate it with [Chocolatey](https://chocolatey.org/) and [Runbooks](https://octopus.com/docs/runbooks). I would recommend spending time going through Bob's blog before or after reading this blog as it may help if you're new to Chocolatey.
 
-I use Chocolatey when provisioning Cloud and On-Premises servers. When working in Operations and using Infrastructure as Code, I used Chocolatey to install a range of tools on servers, laptops, and desktops. I recently presented a webinar with [Paul Broadwith](twitter.com/pauby) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which showed how easy this was to do with Runbooks on cloud infrastructure. In the webinar, we focus on using ARM Templates, Octopus Runbooks, and Chocolatey to provision developer machines and servers on [Azure](https://azure.microsoft.com/en-gb/overview/what-is-azure/).
+I use Chocolatey when provisioning Cloud and On-Premises servers. When working in Operations and using Infrastructure as Code, I used Chocolatey to install a range of tools on servers, laptops, and desktops. I recently presented a webinar with [Paul Broadwith](https://twitter.com/pauby) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which showed how easy this was to do with Runbooks on cloud infrastructure. In the webinar, we focus on using ARM Templates, Octopus Runbooks, and Chocolatey to provision developer machines and servers on [Azure](https://azure.microsoft.com/en-gb/overview/what-is-azure/).
 
 The problem I am trying to solve here is to automate all of my packages in a single Octopus Runbook using Chocolatey to install every application I use in my day to day role. Everyone loves a fresh install of Windows, and I am no different. There's something beautiful about a brand new install, and I may look at refreshing my laptop every so often, and I wanted a way to automate that and make it as painless as possible. I'd also like to share this with other team members so they can use this script whenever they want to re-prep their windows laptop or even a server.
 
@@ -43,7 +43,7 @@ Write-Host "Installing Github Desktop"
 choco install github-desktop -y
 ```
 
-You could extend this out to all of your required applications, and source control the script to somewhere like [Github](Github.com) and allows read access, so the script can be run by users or during machine provisioning and this will automate almost all of your application installation.
+You could extend this out to all of your required applications, and source control the script to somewhere like [Github](https://github.com) and allows read access, so the script can be run by users or during machine provisioning and this will automate almost all of your application installation.
 
 ### Chocolatey Packages
 
@@ -128,7 +128,13 @@ The first thing I did was see what [Space](https://octopus.com/docs/administrati
 
 I want to do more than just install Chocolatey packages, and I'll touch on these briefly as part of this blog.
 
-The first thing you will want to do is browse to the project and add the Runbook named **Install Developer Machine Dependencies**
+The first thing you will want to do is browse to the project and add the Runbook.
+
+![Adding a Runbook](images/addrunbook.png "width=500")
+
+I created a Runbook called **Install Developer Machine Dependencies**
+
+![Naming the Runbook](images/namedrunbook.png "width=500")
 
 ### Set Timezone, Input & Region
 
@@ -167,8 +173,6 @@ Set-WinSystemLocale en-US
 #Set the timezone
 Set-TimeZone "Eastern Time Zone"
 ```
-
-![Adding a Runbook](images/addrunbook.png "width=500")
 
 ### Checking if Chocolatey is installed
 
