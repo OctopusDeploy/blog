@@ -3,7 +3,7 @@ title: Maven versions explained
 description: There is more than meets the eye when it comes to Maven versions. Learn how Maven treats different version strings.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-06-30
+published: 2020-09-29
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
 tags:
