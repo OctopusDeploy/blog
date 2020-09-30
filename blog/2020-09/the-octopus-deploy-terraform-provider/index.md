@@ -101,6 +101,22 @@ The client itself is an SDK that makes API calls to the platform that you're wor
 
 You can find the client SDK [here](https://github.com/OctopusDeploy/go-octopusdeploy).
 
+## Testing
+
+We care about testing, like....a lot. The only way anyone can know if code is supposed to do what it's actually supposed to do is by testing. Not only at the moment of writing it, but 3 or 6 or 12 months down the line when new implementations are added. 
+
+The Terraform provider is a moving target, and it should be. With all of the constant implementations of Terraform and HCL, for the provider to stay useful, it needs to change as Terraform changes. Because of that, automated testing for almost every bit of the code is **key**.
+
+We first started off with implementing unit tests for each function in not only the Terraform provider, but the client SDK (go-octopusdeploy). The idea behind so many unit tests was, no matter what we changed (even upgrading to a new Terraform SDK), we would know what broke right away. *Fail fast* is a good way to think about it.
+
+After that, we started thinking about mock tests with Terratest by Gruntwork. Terratest allows you to unit test and mock test the Terraform HCL code. By doing this, we could write Terraform examples and confirm that they actually work. Taking it a step further, after we confirmed they worked, we could continue to confirm they worked with the new implementations to the client SDK and the provider. No matter what changed, we could always run our tests on the examples.
+
+Once we were comfortable with the unit and mock tests implemented, we started thinking about all of the edge cases. We used a practice called Defense In-Depth, which essentially means *test everything, twice. Even if it's not yours*. What I mean by that is, we went as far as testing the SDKs and packages we were using in our code. Even though they weren't written by us, we still wanted to test them to ensure they were doing what they were supposed to be doing. Remember, *fail fast*.
+
+Once the standard tests were complete, we implemented linting. We used a package called `golangci-lint`, which takes **all** of the popular linters (gosec, staticcheck, gofmt, etc.) and ties them into one linter (golangci-lint). 
+
+Finally, after all of the tests were written, we needed a way to run them automatically. This is where the power of GitHub Actions Workflows came into play. We set up multiple workflows for unit testing, linting, integration testing, and mock testing. We took it a step further and for each test, we spun up an instance of Octopus Deploy in a Docker container for each time we ran the GitHub Actions workflow so we could literally test the code against a **real** environment in real-time.
+
 ### Contributing
 
 If you would like to contribute, you absolutely can! It's 100% open source and we're welcoming all contributions via pull requests.
