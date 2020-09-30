@@ -111,7 +111,7 @@ We first started off with implementing unit tests for each function in not only 
 
 After that, we started thinking about mock tests with Terratest by Gruntwork. Terratest allows you to unit test and mock test the Terraform HCL code. By doing this, we could write Terraform examples and confirm that they actually work. Taking it a step further, after we confirmed they worked, we could continue to confirm they worked with the new implementations to the client SDK and the provider. No matter what changed, we could always run our tests on the examples.
 
-Once we were comfortable with the unit and mock tests implemented, we started thinking about all of the edge cases. We used a practice called Defense In-Depth, which essentially means *test everything, twice. Even if it's not yours*. What I mean by that is, we went as far as testing the SDKs and packages we were using in our code. Even though they weren't written by us, we still wanted to test them to ensure they were doing what they were supposed to be doing. Remember, *fail fast*.
+Once we were comfortable with the unit and mock tests implemented, we started thinking about all of the edge cases. We used a practice called Defense In-Depth, which essentially means *Validate everything, assume nothing*. What I mean by that is, we went as far as testing the SDKs and packages we were using in our code. Even though they weren't written by us, we still wanted to test them to ensure they were doing what they were supposed to be doing. Remember, *fail fast*.
 
 Once the standard tests were complete, we implemented linting. We used a package called `golangci-lint`, which takes **all** of the popular linters (gosec, staticcheck, gofmt, etc.) and ties them into one linter (golangci-lint). 
 
