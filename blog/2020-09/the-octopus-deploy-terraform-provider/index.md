@@ -75,6 +75,25 @@ All backend code for Terraform is written in Golang (Go), a procedural based pro
 
 When you're thinking about the backend, there are two parts - the client and the provider.
 
+## Terraform SDK 2.0
+
+When the journey first started to build the Octopus Deploy Terraform provider, the Terraform SDK was on version 1.0. As we were building up the Terraform provider for beta, we noticed that version 2.0 of the Terraform SDK was out.
+
+The Terraform SDK gives us a few key capabilities:
+
+- The `schema` needed to create/read/update/delete a resource
+- Schema validation
+- Types to specify (strings, ints, etc.)
+- Resource datasets that give us new functions to use for things like `Get()` on names and IDs, setting names, setting IDs, etc..
+
+Essentially, anything that you can do in the Terraform HCL (create resources, update resources, etc.) is because of the `schema`.
+
+Because the schema is so important, it made sense to upgrade to the newest version of the Terraform SDK.
+
+2.0 has a lot of features and deprecations of old functionality, but the biggest implementation it gave us personally is better diagnostics. In Go, there is a default `error` type that you can use to return errors for functions. With the 2.0 SDK, there are diagnostics built-in by default, which we really wanted to take advantage of.
+
+We're all about testing and ensuring code quality at Octopus Deploy, and with the Terraform provider, it's no different. Because of that, implementing a new SDK for better diagnostics was a no-brainer.
+
 ### The Client
 
 The client itself is an SDK that makes API calls to the platform that you're working in, in this case, Octopus Deploy. The client is the way you're able with the platform at a client/service level. 
