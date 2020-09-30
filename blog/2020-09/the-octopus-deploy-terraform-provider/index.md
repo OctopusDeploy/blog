@@ -11,15 +11,16 @@ tags:
  - Terraform
 ---
 
-There was a time where when you thought about infrastructure, you thought *okay, it's time to click a bunch of buttons and manually create resources*. That has all changed with a key concept called Infrastructure-as-code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)), which is a way to define infrastructure with code and development practices.
 
-Lately, there has been one victor to rule them all, which is Terraform. Terraform is an open-source IaC solution that allows you to define your infrastructure using a fast growing functional-based programming language called Hashicorp Configuration Language (HCL).
+Infrastructure-as-code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)) has made it possible to move past *manually clicking a bunch of buttons to create infrastructure resources*.
 
-In this blog post, you'll get a first look into the Terraform provider and what it has to offer.
+Terraform is quickly becoming the go to IaC solution. Terraform is an open-source IaC solution that allows you to define your infrastructure using a fast growing functional-based programming language called Hashicorp Configuration Language (HCL).
+
+In this blog post, you get a first look at the Octopus Deploy Terraform provider and what it has to offer.
 
 ## Why IaC?
 
-The further the world goes down the cloud engineering and development route, the more it's clear that we simply cannot continue creating infrastructure manually. Not only does it take a long time, but it's prone to failures. There's no one person in the world that can say they've never done *something* by mistake by creating a resource manually. Whether it was something as small as a typo, as humans, we're prone to mistakes.
+The further the world goes down the cloud engineering and development route, the clearer it is that we cannot continue creating infrastructure manually. Not only does it take a long time, but it's prone to failures. There's no one person in the world that can say they've never done *something* by mistake when creating a resource manually. Whether it was something as small as a typo, as humans, we're prone to mistakes.
 
 When it comes to IaC, mistakes can still be made in code, but they're much less. When you're writing code and storing it in source control, you can do things to prevent mistakes as much as possible such as:
 
@@ -38,11 +39,11 @@ For example, let's say you want to create a new project group in Octopus Deploy.
 
 ![](images/1.png)
 
-## What Can the Provider Do?
+## What can the provider do?
 
-So, at this point you have a bit of background on the client, the provider, and why you would want to use IaC, but how about the actions that the provider can actually do?
+At this point you have a bit of background on the client, the provider, and why you would want to use IaC, but how about the actions that the provider can actually do?
 
-The idea is, the provider can create, update, replace, or delete anything until you're at the project level. This includes:
+The provider can create, update, replace, or delete anything until you're at the project level. This includes:
 
 - AWS accounts
 - Azure accounts
@@ -59,11 +60,11 @@ The idea is, the provider can create, update, replace, or delete anything until 
 - Projects
 - Deployment targets
 
-Keep in mind that the Terraform provider is still in beta, so we're still adding different functionality to it.
+Keep in mind that the Terraform provider is still in beta, and we're still adding functionality to it.
 
-The only thing that the provider cannot do is, for example, create the underlying infrastructure in say, Azure or AWS. That's because you would need to use the Azure or AWS provider to for example, create a virtual machine/EC2 instance.
+The only thing that the provider cannot do is, for example, create the underlying infrastructure in say, Azure or AWS. That's because you would need to use the Azure or AWS provider to, for example, create a virtual machine/EC2 instance.
 
-### The Backend
+### The backend
 
 First and foremost, what is a Terraform provider even made of? It's most likely not a question you typically ask yourself. When you're writing a Terraform application, you're writing in HCL, but what is the provider itself made out of?
 
@@ -102,7 +103,7 @@ You can find the client SDK [here](https://github.com/OctopusDeploy/go-octopusde
 
 ### Contributing
 
-If you would like to contribute, you absolutely can! It's 100% open source and we're welcoming all contributions via a pull request.
+If you would like to contribute, you absolutely can! It's 100% open source and we're welcoming all contributions via pull requests.
 
 ## How is this different to Config as Code?
 
@@ -113,4 +114,5 @@ Config as Code picks up where the Terraform provider leaves off and gives you th
 The idea of the Terraform provider is to fill the part of the automated deployments before reaching the project.
 
 ## Conclusion
+
 Infrastructure-as-code using Terraform and the power of a fully functional-based programming language under the hood is an ideal scenario for software-defined infrastructure. It gives you the ability to not only automate the work you're doing, but ensure quality and value for everyone using the code.
