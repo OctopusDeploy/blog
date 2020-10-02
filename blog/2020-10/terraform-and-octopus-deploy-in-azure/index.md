@@ -1,3 +1,17 @@
+---
+title: Terraform and Octopus Deploy for Azure
+description:  In this blog post, you take a look at combining the power of Infrastructure-as-code using Terraform and Octopus Deploy to create resources and services in Azure
+author: michael.levan@octopus.com
+visibility: private
+published: 2199-10-10 
+metaImage: 
+bannerImage: 
+tags:
+ - Automation
+ - DevOps
+ -Azure
+---
+
 When you think of continuous deployment and continuous delivery, the first thing that typically comes to mind is application code. Ya know, that code that gets deployed to some cloud service or container to run an application. 
 
 When it comes to Octopus Deploy, sure, we do focus on those types of deployments. We also really focus on not only the software developers, but the infrastructure developers. The idea of wanting to help both sides of the fence for automated deployments is why [Runbooks](https://octopus.com/docs/runbooks) exist.
