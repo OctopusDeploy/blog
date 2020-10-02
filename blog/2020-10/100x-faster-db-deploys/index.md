@@ -76,6 +76,8 @@ With the data about previous deployments now stored safely on the database itsel
 The consequence was that rather than missing a production deployment window with a single, painfully long, deployment attempt, the team could try the deployment multiple times, with plenty of time in between to investigate any issues. Within the dev and test domain there was a massive boost to productivity. Developers could run a deployment against the test servers and see the result in minutes, rather than hours. Apart from significantly improving the feedback loop for developers, it also significantly reduced resource hogging issues on shared environments.
 
 And on top of all this, that __DeployLog table proved popular with both internal and customer operations folks who had a neat and reliable audit log in the database itself. 
+
+![__DeployLog](__DeployLog.png "width=500")
  
 ## The code
 
@@ -103,7 +105,9 @@ Else {
 Assuming you have created a separate step to read the __DeployLog, your existing database deployment steps should be updated to use the following [Variable Expression](https://octopus.com/docs/projects/variables/variable-substitutions#VariableSubstitutionSyntax-Conditionalsconditionals) as a [Run Condition](https://octopus.com/docs/deployment-process/conditions). This reads the Output Variable and uses it to decide whether to execute the database deployment:
 
 #{if Octopus.Action[Read __DeployLog].Output.Deploy:sql01-db== "True"}true#{/if}
- 
+
+![Run Condition](RunCondition.png "width=500")
+
 (Remember to replace “sql01” and “db” with your own SQL Server instance and database names.)
 
 Following your database deployment, you’ll want to add the following script to update the __DeployLog with the package number and deployment status. If you simply copy the code you’re your database deployment script, you’ll want to wrap it into the same if condition. If you’re running it as a separate step, you’ll want to use the same run condition as above. You don’t want to update the __DeployLog unless the database deployment actually executed.
@@ -119,8 +123,12 @@ https://library.octopus.com/listing (Update with proper links once published)
 <ADD SCREENSHOT OF STEP TEMPLATES IN LIBRARY>
 
 The final process might look something like this:
+
+![Full Deployment Process](DeployProcess.png "width=500")
  
 Now, if the package number has not changed since the last successful deployment, it won’t be redeployed:
+
+![Skipped Deployment](SkippedDeploy.png "width=500")
  
 ## Treating the underlying problem
 
