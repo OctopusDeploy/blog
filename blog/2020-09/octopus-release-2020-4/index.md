@@ -1,5 +1,5 @@
 ---
-title: "Octopus 2020.4: Configuration file updates, and built-in Worker Pools for Windows and Linux on Octopus Cloud"
+title: "Octopus 2020.4 now available"
 description: "Octopus 2020.4 introduces better config file updates for Java, NodeJS, and Ruby, and adds built-in Worker Pools on Octopus Cloud for both Windows and Linux."
 author: rob.pearson@octopus.com
 visibility: public
