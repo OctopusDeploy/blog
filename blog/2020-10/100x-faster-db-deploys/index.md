@@ -116,11 +116,10 @@ Following your database deployment, you’ll want to add the following script to
 
 And finally, to make all this as easy as I can, I’ve just published a couple of Octopus Deploy Step Templates to the community library:
 
-https://github.com/OctopusDeploy/Library/pull/1015 (This will have to make do until step templates published)
+- [SQL Server __DeployLog: Read](https://library.octopus.com/step-templates/8a446e55-6554-40fa-bbd9-70bd2a69a13e/actiontemplate-sql-server-__deploylog:-read)
+- [SQL Server __DeployLog: Update](https://library.octopus.com/step-templates/a9f7644c-3e27-4e46-a591-eee7f3542032/actiontemplate-sql-server-__deploylog:-update)
 
-https://library.octopus.com/listing (Update with proper links once published)
-
-<ADD SCREENSHOT OF STEP TEMPLATES IN LIBRARY>
+![Library Step Templates](LibraryStepTemplates.png "width=500")
 
 The final process might look something like this:
 
