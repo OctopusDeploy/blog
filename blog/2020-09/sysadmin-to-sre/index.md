@@ -4,8 +4,8 @@ description: Infrastructure as Code, the Sysadmin's portal into DevOps
 author: josh@duffney.io 
 visibility: public
 published: 2999-10-30
-metaImage: 
-bannerImage: 
+metaImage: blogimage-sysadmin-to-sre.png
+bannerImage: blogimage-sysadmin-to-sre.png
 tags:
  - DevOps
  - SRE
