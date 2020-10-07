@@ -8,11 +8,11 @@ tags:
  - DevOps
 ---
 
-A customer recently asked if it is possible to deploy to an Oracle database with Liquibase using Octopus Deploy. In this post, I'll demonstrate how to do it.
+A customer recently asked if it's possible to deploy to an Oracle database with Liquibase using Octopus Deploy. In this post, I'll demonstrate how to do it.
 
 ## Liquibase
 
-[Liquibase](https://www.liquibase.org/) is a migrations-based database deployment tool similar to [Flyway](https://flywaydb.org/), [Dbup](https://dbup.readthedocs.io/en/latest/), or [RoundhousE](https://github.com/chucknorris/roundhouse).  The differentiating feature of Liquibase is how you define your migrations.  Whereas Flyway, Dbup, and RoundhousE rely on the user writing the SQL scripts themselves, Liquibase allows the user to define migrations in XML, JSON, YAML, as well as SQL in what is called a `changelog`.  Liquibase will convert the changelog to SQL statements during the deployment process.
+[Liquibase](https://www.liquibase.org/) is a migrations-based database deployment tool similar to [Flyway](https://flywaydb.org/), [DbUp](https://dbup.readthedocs.io/en/latest/), and [RoundhousE](https://github.com/chucknorris/roundhouse).  The differentiating feature of Liquibase is how you define your migrations.  Whereas Flyway, DbUp, and RoundhousE rely on the user writing the SQL scripts themselves, Liquibase allows the user to define migrations in XML, JSON, YAML, as well as SQL in what is called a `changelog`.  Liquibase will convert the changelog to SQL statements during the deployment process.
 
 ### Sample project: Sakila
 
@@ -25,6 +25,7 @@ The [step template for Liquibase](https://library.octopus.com/step-templates/6a2
 - With only the changelog file.
 
 For this post, we package the change log file:
+
 <details>
   <summary>dbchangelog.xml</summary>
   
@@ -706,7 +707,7 @@ FROM customer cu JOIN address a ON cu.address_id = a.address_id JOIN city ON a.c
 
 ## Octopus Deploy
 
-Using Octopus Deploy, you can include the Liquibase step template to automate your deployments to Oracle.  This post assumes you are already familiar with creating a project in Octopus Deploy and will cover the steps specific to Liquibase.
+Using Octopus Deploy, you can include the Liquibase step template to automate your deployments to Oracle.  This post assumes you're already familiar with creating a project in Octopus Deploy and will cover the steps specific to Liquibase.
 
 ### Liquibase step template
 
@@ -718,7 +719,7 @@ Then filter by `liquibase`.  The template will appear in the Community Contribut
 
 ![](octopus-liquibase-template.png)
 
-The Liquibase template is specifically designed to support running on a `worker` with the capability to download everything it needs to run, including Java.  With the template added, fill in the fields for the template.
+The Liquibase template is specifically designed to support running on a Worker with the capability to download everything it needs to run, including Java.  With the template added, fill in the fields for the template.
 
 #### Database type
 
@@ -731,7 +732,7 @@ Select the database type that you are deploying to.  The currently supported typ
 
 Liqbuibase itself supports [more types](https://www.liquibase.org/get-started/databases), but they have not been included in the template yet.
 
-#### Change Log file name
+#### Changelog file name
 
 This is the name and or relative location within the package of the changelog file.  For example:
 - dbchangelog.xml
@@ -759,13 +760,13 @@ Specify any additional query string parameters for the connection string.  For e
 Path to the database driver jar file within the package to use for connecting to the database server.  Not used when the **Download Liquibase** option is checked.
 
 #### Executable file path
-Path to the liquibase executable within the package.  Not used when `Download Liquibase` option is checked.
+Path to the Liquibase executable within the package.  Not used when `Download Liquibase` option is checked.
 
 #### Report only?
-This checkbox is used when you only want to see the SQL that is going to be used for the deployment.  When using this option, the step template will automatically attach the .sql file as an artifact of the deployment.  This option is useful for when you require someone to review the changes prior to deployment.
+This checkbox is used when you only want to see the SQL that is going to be used for the deployment.  When using this option, the step template will automatically attach the .sql file as an artifact of the deployment.  This option is useful when you require someone to review the changes prior to deployment.
 
 #### Download Liquibase?
-Use this option when not including Liquibase itself in your deployment package.  This option will download the Community version of Liquibase, Java, and the databased type .jar file necessary to perform the deployment.  This post uses this option.
+Use this option when not including Liquibase itself in your deployment package.  This option will download the community version of Liquibase, Java, and the databased type .jar file necessary to perform the deployment.  This post uses this option.
 
 #### Liquibase version
 This option is only used with the `Download Liquibase` option.  This specifies the version of Liquibase to download. Leave blank to use the latest.
@@ -773,7 +774,7 @@ This option is only used with the `Download Liquibase` option.  This specifies t
 #### Changeset package
 This is the package selector for deployment.
 
-When done, it should look something like this
+When done, it should look something like this:
 
 ![](octopus-step-liquibase-report.png)
 
@@ -785,7 +786,7 @@ For this post, I added a few other steps to the process to mimic what a real-wor
 - **Add connect role**: Adds the CONNECT role to the above user.
 - **Add resource role**: Adds the RESOURCE role to the above user.
 - **Add DBA role**: Adds the DBA role to the above user.
-- Generate change script: Liquibase step with Report Only checked to generate what will be run.
+- **Generate change script**: Liquibase step with Report Only checked to generate what will be run.
 - **DBA Approval**: Requests DBA approval only in production.
 - **Apply change set**: Liquibase step that applies the changes.
 
@@ -808,4 +809,4 @@ If we log into Oracle, we can see that our database updates have been applied:
 
 ## Conclusion
 
-Octopus Deploy supports deploying to many database technologies (Microsoft SQL Server, MariaDB, MySQL, Oracle, PostgreSQL, etc.) as well as many different deployment methods (DACPAC, DbUp, Flyway, Liquibase, RoundhousE, etc.).  In this post, I demonstrated how Octopus Deploy can deploy to an Oracle database using Liquibase.
+Octopus Deploy supports deploying to many database technologies (Microsoft SQL Server, MariaDB, MySQL, Oracle, PostgreSQL, etc.) as well as many different deployment methods (DACPAC, DbUp, Flyway, Liquibase, RoundhousE, etc.).  I hope this post has helped you understand how you can use Octopus Deploy to deploy to an Oracle database using Liquibase.
