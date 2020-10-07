@@ -16,13 +16,13 @@ A customer recently asked if it is possible to deploy to an Oracle database with
 
 ### Sample project: Sakila
 
-[Sakila](https://dev.mysql.com/doc/sakila/en/) is a sample database originally developed for MySQL.  This project contains a number of different database objects including tables, views, stored procedures, and functions making it a well rounded example.  To support other database technologies, I created a repo in our [Samples BitBucket instance](https://bitbucket.org/octopussamples/sakila/src/master/), which contains the Sakila project in a number of different database technologies and methods.
+[Sakila](https://dev.mysql.com/doc/sakila/en/) is a sample database originally developed for MySQL.  This project contains a number of different database objects, including tables, views, stored procedures, and functions making it a well-rounded example.  To support other database technologies, I created a repo in our [Samples BitBucket instance](https://bitbucket.org/octopussamples/sakila/src/master/), which contains the Sakila project in a number of different database technologies and methods.
 
 ### Changelog
 
 The [step template for Liquibase](https://library.octopus.com/step-templates/6a276a58-d082-425f-a77a-ff7b3979ce2e/actiontemplate-liquibase-apply-changeset) in Octopus Deploy works in one of two ways:
 - With Liquibase included in the package.
-- With only the change log file.
+- With only the changelog file.
 
 For this post, we package the change log file:
 <details>
@@ -718,7 +718,7 @@ Then filter by `liquibase`.  The template will appear in the Community Contribut
 
 ![](octopus-liquibase-template.png)
 
-The Liquibase template is specifically designed to support running on a `worker` with the capability to download everything it needs to run, including Java.  With the template added, fill in the fields for the template
+The Liquibase template is specifically designed to support running on a `worker` with the capability to download everything it needs to run, including Java.  With the template added, fill in the fields for the template.
 
 #### Database type
 
@@ -729,11 +729,11 @@ Select the database type that you are deploying to.  The currently supported typ
 - PostgreSQL
 - SqlServer
 
-Liqbuibase itself supports [more types](https://www.liquibase.org/get-started/databases), however, they have not been included into the template yet.
+Liqbuibase itself supports [more types](https://www.liquibase.org/get-started/databases), but they have not been included in the template yet.
 
 #### Change Log file name
 
-This is the name and or relative location within the package of the change log file.  For example:
+This is the name and or relative location within the package of the changelog file.  For example:
 - dbchangelog.xml
 - /subfolder/mychangelog.JSON
 
@@ -756,7 +756,7 @@ Password of the account with permissions to the database.
 Specify any additional query string parameters for the connection string.  For example: `?useUnicode=true`.
 
 #### Database driver path
-Path to the database driver jar file within the package to use for connecting to the database server.  Not used when **Download Liquibase** option is checked.
+Path to the database driver jar file within the package to use for connecting to the database server.  Not used when the **Download Liquibase** option is checked.
 
 #### Executable file path
 Path to the liquibase executable within the package.  Not used when `Download Liquibase` option is checked.
@@ -768,7 +768,7 @@ This checkbox is used when you only want to see the SQL that is going to be used
 Use this option when not including Liquibase itself in your deployment package.  This option will download the Community version of Liquibase, Java, and the databased type .jar file necessary to perform the deployment.  This post uses this option.
 
 #### Liquibase version
-This option is only used with the `Download Liquibase` option.  This specifies the version of Liquibase to download. Leave blank to use latest.
+This option is only used with the `Download Liquibase` option.  This specifies the version of Liquibase to download. Leave blank to use the latest.
 
 #### Changeset package
 This is the package selector for deployment.
@@ -796,7 +796,7 @@ When executed, the deployment results will look something like this:
 
 ![](octopus-deployment-complete.png)
 
-As you can see, the Report Only step attached the `ChangeSet.sql` file as an artifact which can be reviewed prior to approval.  Expanding the `Apply changeset` step shows:
+As you can see, the Report Only step attached the `ChangeSet.sql` file as an artifact, which can be reviewed prior to approval.  Expanding the `Apply changeset` step shows:
 
 ![](octopus-liquibase-step.png)
 
