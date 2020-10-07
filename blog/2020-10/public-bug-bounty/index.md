@@ -3,7 +3,7 @@ title: "Public bug bounty program with Bugcrowd"
 description: At Octopus Deploy, we’ve been running a private bug bounty program with Bugcrowd for over 12 months now, and we’re pleased to make it public.
 author: jim.burger@octopus.com
 visibility: public
-published: 2020-10-07
+published: 2020-10-09
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
 tags:
@@ -16,7 +16,7 @@ We’ve been running a private bug bounty program with Bugcrowd for over 12 mont
 
 Most teams with any online presence are familiar with security researchers stopping by to report something that isn’t quite right. Naturally, when they find important problems, we want to say “thanks!” for helping to make our website a safer place for everyone. 
 
-We’ve always had a policy on [responsible disclosure](link-pending) to support this, and personally, I have a lot of time for bounty hunters and researchers, as I consider myself one!
+We’ve always had a policy on [responsible disclosure](https://octopus.com/docs/security#disclosure-policy) to support this, and personally, I have a lot of time for bounty hunters and researchers, as I consider myself one!
 
 Rewarding people fairly can be tricky to manage, though, and as traffic to your site increases, so can the number of people looking for that “thank you” feeling. We weren’t really set up to manage payments and the policies & procedures that are necessary for that. 
 
@@ -30,9 +30,13 @@ Our private program kicked off in Q2 2019, and as of this writing, we’ve been 
 
 ## Our current bug bounty statistics
 
+![Technical severity breakdown](technical-severity.png)
+
 Critical issues averaged at under 2 days to fix, with an overall average of 18 days when you include the low severity findings. Not bad, but room to improve!
 
 We’ve rewarded over $16,000 in that time, and as you can see, it rises and falls a bit, mainly due to the number of researchers that get involved. 
+
+![Rewards over time](rewards-over-time.png)
 
 ## Join our bug bounty program today
 
@@ -44,11 +48,11 @@ If you’d like to join in the fun, you can head on over to Bugcrowd and find us
 
 Our scope is strictly limited to our dedicated security testing environment: https://bc.octopus.com. Any testing outside of this scope will not be rewarded. We’ve kept our product (including the cloud product) out of this scope for now, but we’re considering how we can manage including it in the future. For now, we have regular external audits for the product.
 
-For the full list of inclusions and exclusions [check the full brief on our Bugcrowd page](link-pending).
+For the full list of inclusions and exclusions [check the full brief on our Bugcrowd page](https://bugcrowd.com/octopus-og?preview=90742a4edd959f68642cdef699a4f491).
 
 ### Rewards
 
-Rewards range from $250-$3000 depending on the severity of the findings, and we use the Bugcrowd VRT and CVSS scoring to help us make consistent judgments about that.
+Rewards range from $150-$3000 depending on the severity of the findings, and we use the Bugcrowd VRT and CVSS scoring to help us make consistent judgments about that.
 
 ## Come and join us keep Octopus safer
 
