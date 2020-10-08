@@ -1,31 +1,21 @@
 ---
-title: Title
-description: A brief summary of the announcement.
+title: Octopus Deploy joins the .NET Foundation
+description: 
 author: Joan Smith
-visibility: private
-published: 3020-01-01
+visibility: public
+published: 2020-10-12
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 tags:
-  - DevOps
   - Company
-  - Product
-  - Events and Webinars
-  - Engineering
 ---
 
-State the subject of the announcement as plainly and directly as you can.
+Octopus Deploy is now a corporate sponsor for the [.NET Foundation](https://dotnetfoundation.org/), the non-profit organization established to support the open-source ecosystem around the .NET platform. 
 
-## Body
+As an independent software vendor, we use a number of open source projects to build Octopus Deploy. We donate to some of these directly where we can - as sponsors of [Material UI](https://material-ui.com/), [Cake](https://cakebuild.net/blog/2020/10/octopus-deploy), [JUnit](https://junit.org/), and a few others. 
 
-Body and Conclusion headings might be unnecessary for short posts.
+More generally though, we also rely on a vibrant, sustainable open source ecosystem, particularly around .NET. Not all open source projects want direct sponsorship, but many projects can benefit from the .NET Foundation's efforts in championing .NET OSS adoption and contribution.  
 
-If the announcement is likely to be controversial, acknowledge that and explain the reasons that helped inform the decision.
+We think the .NET Foundation can have a bigger impact if it isn't wholly reliant on Microsoft for funding, and that with a growing variety of corporate sponsors, it will be able to achieve some important things. So we're putting our money where our mouth is and chipping in. 
 
-## Conclusion
-
-Close of the post by stating what the reader should expect next and invite feedback.
-
-## Learn more
-
-- [link](https://www.example.com/resource)
+As a corporate sponsor, we also get a seat on the Advisory Council. While we could have sent somebody from Octopus with a commercial focus, we thought hard about who would best serve the .NET community's interests. We've asked [Nicholas Blumhardt](https://nblumhardt.com/) the creator of Serilog and Autofac - two of the most popular open source .NET projects - to take our seat instead. I've had the pleasure of knowing Nick for the last decade and working with him occasionally, and I think Nick's presence on the advisory council will be a very positive one for the whole community. 
