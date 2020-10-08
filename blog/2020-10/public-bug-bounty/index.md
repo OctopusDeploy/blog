@@ -48,7 +48,7 @@ If you’d like to join in the fun, you can head on over to Bugcrowd and find us
 
 Our scope is strictly limited to our dedicated security testing environment: https://bc.octopus.com. Any testing outside of this scope will not be rewarded. We’ve kept our product (including the cloud product) out of this scope for now, but we’re considering how we can manage including it in the future. For now, we have regular external audits for the product.
 
-For the full list of inclusions and exclusions [check the full brief on our Bugcrowd page](https://bugcrowd.com/octopus-og?preview=90742a4edd959f68642cdef699a4f491).
+For the full list of inclusions and exclusions [check the full brief on our Bugcrowd page](https://bugcrowd.com/octopus-og).
 
 ### Rewards
 
