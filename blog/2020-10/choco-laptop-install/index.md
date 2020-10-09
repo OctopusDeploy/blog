@@ -12,7 +12,7 @@ tags:
  - Chocolatey
 ---
 
-Last year, [Bob Walkers](https://twitter.com/DevOpsWalker) shared a post about [automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey), in this post, I show you how I created an Octopus Runbook that uses Chocolatey to install every application I use in my day to day role, but you can use this approach to install and configure pre-approved software for different job types across your organization, making it as easy as possible for new people, or people who need a fresh install or who have upgraded their hardware, to install and configure the software they need as quickly as possible.
+Last year, [Bob Walker](https://twitter.com/DevOpsWalker) shared a post about [automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey), in this post, I show you how I created an Octopus Runbook that uses Chocolatey to install every application I use in my day to day role. You can use this approach to install and configure pre-approved software for different job types across your organization, making it as easy as possible for new people, or people who need a fresh install or who have upgraded their hardware, to install and configure the software they need as quickly as possible.
 
 !toc
 
