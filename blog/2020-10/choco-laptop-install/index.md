@@ -1,6 +1,6 @@
 ---
-title: Configure team member's machines with Chocolatey, PowerShell, and Octopus Runbooks
-description: This blog post, shows you how to automate your development machine setup with Chocolatey, PowerShell, and Octopus Runbooks
+title: Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks
+description: This blog post shows you how to automate your development machine setup with Chocolatey, PowerShell, and Octopus Runbooks
 author: derek.campbell@octopus.com
 visibility: public
 published: 2020-10-10
@@ -12,17 +12,17 @@ tags:
  - Chocolatey
 ---
 
-Last year, [Bob Walker](https://twitter.com/DevOpsWalker) shared a post about [automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey), in this post, I show you how I created an Octopus Runbook that uses Chocolatey to install every application I use in my day to day role. You can use this approach to install and configure pre-approved software for different job types across your organization, making it as easy as possible for new people, or people who need a fresh install or who have upgraded their hardware, to install and configure the software they need as quickly as possible.
+Last year, [Bob Walker](https://twitter.com/DevOpsWalker) shared a post about [automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey). In this post, I show you how I created an Octopus Runbook that uses Chocolatey to install every application I use in my day to day role. You can use this approach to install and configure pre-approved software for different job types across your organization, making it as easy as possible for new people, or people who need a fresh install or who have upgraded their hardware, to install and configure the software they need as quickly as possible.
 
 !toc
 
 ## What is Chocolatey
 
-[Chocolatey](https://chocolatey.org/) is a package manager for Windows. It's an open-source project that provides Developers, Operations, and everything in between a way to manage, install, and upgrade software across their Windows estate. Chocolatey focuses on making managing Windows software more straightforward, streamlined, and accessible to everyone using a Windows computer. If you want to find out more about installing Chocolatey without Runbooks, check out the Chocolatey Install [doc](https://chocolatey.org/install).
+[Chocolatey](https://chocolatey.org/) is a package manager for Windows. It’s an open-source project that provides Developers, Operations, and everybody in between a way to manage, install, and upgrade software across their Windows estate. Chocolatey focuses on making managing Windows software more straightforward, streamlined, and accessible to everyone using a Windows computer. If you want to find out more about installing Chocolatey without runbooks, check out the Chocolatey Install [doc](https://chocolatey.org/install).
 
 ### Using Chocolatey
 
-You don't need Runbooks to use Chocolatey, and it's as simple as opening an Administrator Windows PowerShell window and running a script to install something like google chrome:
+You don’t need Runbooks to use Chocolatey, and it’s as simple as opening an Administrator Windows PowerShell window and running a script to install something like google chrome:
 
 ```PowerShell
 choco install googlechrome -y
@@ -35,19 +35,19 @@ Write-Host "Installing Chocolatey Apps"
 choco install sql-server-management-studio sql-server-2019 github-desktop git firefox -y
 ```
 
-You could extend this out to all of your required applications, and source control the script to somewhere with read access so the script can be run by users or during machine provisioning. This would automate almost all of your application installation.
+You could extend this out to all of your required applications, and source control the script somewhere with read access so the script can be run by users or during machine provisioning. This would automate almost all of your application installation.
 
 ### Chocolatey Packages
 
-Chocolatey is an open-source tool, and you can get lots of pre-configured packages from the site. In my experience, though, most organizations write their own packages, and you can do this too, and you can see more about this on the [Create Chocolatey Package page](https://chocolatey.org/blog/create-chocolatey-packages). The main reason for writing your own package is because:
+Chocolatey is an open-source tool, and you can get lots of pre-configured packages from the site. In my experience, though, most organizations write their own packages, and you can do this too, and you learn more about this on the [Create Chocolatey Package page](https://chocolatey.org/blog/create-chocolatey-packages). The main reasons for writing your own package are:
 
-- Company purchased licenses that needs to be contained in the package.
+- Company purchased licenses that need to be contained in the package.
 - Custom configuration, such as a backup agent that needs to replicate to SiteA from SiteB.
 - Community package may not exist.
 
-If you are writing your own package, consider sharing it with the Chocolatey community, and you can read more about that on the [Chocolatey site](https://chocolatey.org/docs/create-packages).
+If you are writing your own package, consider sharing it with the Chocolatey community. You can read more about that on the [Chocolatey site](https://chocolatey.org/docs/create-packages).
 
-You can install Octopus from a Chocolatey package. We publish each new version as soon as it's available, which happens automatically from our [TeamCity](https://www.jetbrains.com/teamcity/) build server once it's available on our website. You can see and read more about the Octopus Deploy Chocolatey Package [here](https://chocolatey.org/packages/OctopusDeploy)
+You can install Octopus from a Chocolatey package. We publish each new version as soon as it’s available, which happens automatically from our [TeamCity](https://www.jetbrains.com/teamcity/) build server once it’s available on our website. You can see and read more about the Octopus Deploy Chocolatey Package [here](https://chocolatey.org/packages/OctopusDeploy).
 
 To install Octopus Deploy as a Chocolatey package, you can run the following:
 
@@ -56,18 +56,18 @@ choco install OctopusDeploy -y
 ```
 
 :::hint
-You still need to configure Octopus after using Chocolatey to install, you can automate this, and there's more information on [Automating Octopus Installation](https://octopus.com/docs/installation/automating-installation).
+You still need to configure Octopus after using Chocolatey to install, you can automate this, and there‘s more information on [Automating Octopus Installation](https://octopus.com/docs/installation/automating-installation).
 :::
 
-## Why use Runbooks and Chocolatey
+## Why use runbooks and Chocolatey
 
-[Runbooks](https://octopus.com/docs/runbooks) is my favorite feature of Octopus Deploy. Due to my Operations background, I can see how it could automate all those mundane time-consuming tasks that take up so much time in Operations.
+[Runbooks](https://octopus.com/docs/runbooks) is my favorite feature of Octopus Deploy. Due to my Operations background, I see how it can automate all those mundane, time-consuming tasks that take up so much time in Operations.
 
-Let's be honest, how many times can you install [IIS](https://www.iis.net/) or [SQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) before it becomes tedious, repetitive, and error-prone?
+Let’s be honest, how many times can you install [IIS](https://www.iis.net/) or [SQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) before it becomes tedious, repetitive, and error-prone?
 
 Another benefit of using Chocolatey in Octopus Runbooks is that it helps enable self-service when it comes to applications. You can grant people access to the Octopus project and the runbook so they can run their own installation of Chocolatey packages.
 
-You can use [runbooks](https://octopus.com/docs/runbooks) to automate this part away to allow you to focus on more interesting problems:
+You can use [runbooks](https://octopus.com/docs/runbooks) to automate this part so you can focus on more interesting problems:
 
 - [Routine Operations](https://octopus.com/docs/runbooks/runbook-examples/routine)
 - [Emergency Operations](https://octopus.com/docs/runbooks/runbook-examples/emergency)
@@ -77,11 +77,11 @@ You can use [runbooks](https://octopus.com/docs/runbooks) to automate this part 
 - [GCP Operations](https://octopus.com/docs/runbooks/runbook-examples/gcp)
 - [Terraform](https://octopus.com/docs/runbooks/runbook-examples/terraform)
 
-## Let's get going
+## Tools to install the OS
 
-This blog will not deal with installing the Operating System on your developer machine. There are loads of great tools out there that you can use to load the latest Windows Desktop and Server Operating Systems, and I am going to assume you've added the [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) as part of this process. Some tools I've used in the past when prepping servers, laptops, and desktops are:
+This blog will not deal with installing the Operating System on your developer machine. There are loads of great tools out there that you can use to load the latest Windows Desktop and Server Operating Systems, and I am going to assume you’ve added the [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) as part of this process. Some tools I’ve used in the past when prepping servers, laptops, and desktops are:
 
-- [Microsoft System Centre Configuration Manager](https://en.wikipedia.org/wiki/Microsoft_System_Center_Configuration_Manager)
+- [Microsoft System Center Configuration Manager](https://en.wikipedia.org/wiki/Microsoft_System_Center_Configuration_Manager)
 - [Windows Deployment Services](https://docs.microsoft.com/en-us/windows/deployment/windows-deployment-scenarios-and-tools)
 - [Packer](https://www.packer.io/)
 
@@ -94,23 +94,25 @@ Generally, public cloud providers also provide tools to allow you to do Infrastr
 
 ### Preparation
 
-Before you start, you'll need to install an [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) on your laptop.
+Before you start, you need to install an [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) on your laptop.
 
-With the Tentacle installed, the next thing I did was add a new space to our [Samples instance](https://samples.octopus.app) called **Target - Windows**. As part of the new space configuration, I created:
+With the Tentacle installed, the next thing I did was add a new space to our [Samples instance](https://samples.octopus.app) called **Target - Windows**. 
+
+As part of the new space configuration, I created:
 
 - An Octopus [environment](https://octopus.com/docs/infrastructure/environments) named **Provisioning**
 
 ![Adding an Octopus environment](images/environment.png "width=500")
 
-- Added my laptop as a [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) and assigned it the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) **Computer**. I used a [Polling Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles) as my laptop was on my local network, but I was using [Octopus Cloud](https://octopus.com/docs/octopus-cloud) and didn't want to open my firewall.
+- Added my laptop as a [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) and assigned it the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) **Computer**. I used a [Polling Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles) as my laptop was on my local network, but I was using [Octopus Cloud](https://octopus.com/docs/octopus-cloud) and didn’t want to open my firewall.
 
 ![Adding a deployment target](images/deploymenttarget.png "width=500")
 
-- Checked the Infrastructure tab had my new laptop as healthy.
+- Checked the Infrastructure tab showed my new laptop and that it’s healthy.
 
 ![A Healthy deployment target](images/healthy.png "width=500")
 
-- Create a [project](https://octopus.com/docs/projects) called **Computer Provisioning**
+- Created a [project](https://octopus.com/docs/projects) called **Computer Provisioning**
 
 ![Adding an Octopus project](images/project.png "width=500")
 
@@ -119,8 +121,6 @@ With the Tentacle installed, the next thing I did was add a new space to our [Sa
 ![Adding a Provisioning lifecycle](images/lifecycle.png "width=500")
 
 ## Runbook configuration
-
-I want to do more than just install Chocolatey packages, and I'll touch on these briefly as part of this blog.
 
 The first thing you need to do is browse to the project and add the runbook.
 
@@ -132,7 +132,7 @@ I created a runbook called **Install Developer Machine Dependencies**
 
 ### Set timezone, input & region
 
-One thing that annoys me about setting up Windows is having to configure my non-default regions, which isn't the US. I use a PowerShell script to set this for all my laptops, desktops, and servers. The below works for me, and you can tweak it to your requirements:
+One thing that annoys me about setting up Windows is having to configure my non-default regions, which isn’t the US. I use a PowerShell script to set this for all my laptops, desktops, and servers. The below works for me, and you can tweak it to your requirements:
 
 ```PowerShell
 #Set home location to the United Kingdom
@@ -150,7 +150,7 @@ Set-WinSystemLocale en-GB
 Set-TimeZone "GMT Standard Time"
 ```
 
-A US equivalent, on the East Coast would look something like:
+A US equivalent, on the East Coast, would look something like:
 
 ```PowerShell
 #Set home location to the United States
@@ -168,15 +168,15 @@ Set-WinSystemLocale en-US
 Set-TimeZone "Eastern Time Zone"
 ```
 
-### Checking if Chocolatey is installed
+### Check if Chocolatey is installed
 
-Next, I used was a community-contributed step template called [Chocolatey - Ensure Installed](https://library.octopus.com/step-templates/c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3/actiontemplate-chocolatey-ensure-installed). This step's only purpose is to check if Chocolatey is installed and to install if it's not.
+Next, I used was a community-contributed step template called [Chocolatey - Ensure Installed](https://library.octopus.com/step-templates/c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3/actiontemplate-chocolatey-ensure-installed). This step’s only purpose is to check if Chocolatey is installed and to install if it’s not.
 
 ![Installing Chocolatey](images/chocolateyinstallstep.png "width=500")
 
 ### Install Chocolatey package step
 
-Paul Broadwith of Chocolatey recently update the [Chocolatey community step template](https://library.octopus.com/step-templates/b2385b12-e5b5-440f-bed8-6598c29b2528/actiontemplate-chocolatey-install-package) to install all of the Chocolatey packages in a single step.
+Paul Broadwith of Chocolatey recently updated the [Chocolatey community step template](https://library.octopus.com/step-templates/b2385b12-e5b5-440f-bed8-6598c29b2528/actiontemplate-chocolatey-install-package) to install all of the Chocolatey packages in a single step.
 
 The applications I needed on my new laptop are below:
 
@@ -190,23 +190,23 @@ git vscode sql-server-management-studio slack github-desktop rdmfree googlechrom
 
 The following parameters are available:
 
-- **(Optional) Version**: You can use this to specify a specific version of the software you want to install. If you're using more than one package per step and want to set particular software versions, you will need to configure that Chocolatey Install and add the version in an additional step.
-- **(Optional) Cache Location**: You can use this to specify a cache's non-default location. I found this useful when installing SQL without having the Tentacle run as an administrator. I found that SQL can be a little tricky to install without running the Tentacle Service as a local administrator. You can specify a folder such as **C:\Octopus\Applications** as the cache which the Local System User has full access to.
-- **(Optional) Package source**: This is probably the *single most crucial parameter in this step*. If you're doing this at home,  it might be acceptable to use the Chocolatey Package Repository, which is the default setting. However, if you're doing this for a company, please consider using your own package source repositories, such as [Nexus](https://www.sonatype.com/nexus/repository-pro), [Artifactory](https://jfrog.com/artifactory/), or [MyGet](https://www.myget.org/).
+- **(Optional) Version**: You can use this to specify a specific version of the software you want to install. If you’re using more than one package per step and want to set particular software versions, you will need to configure that Chocolatey install and add the version in an additional step.
+- **(Optional) Cache Location**: You can use this to specify a cache’s non-default location. I found this useful when installing SQL without having the Tentacle run as an administrator. I found SQL can be a little tricky to install without running the Tentacle Service as a local administrator. You can specify a folder such as `C:\Octopus\Applications` as the cache, which the Local System User has full access to.
+- **(Optional) Package source**: This is probably the *single most crucial parameter in this step*. If you’re doing this at home,  it might be acceptable to use the Chocolatey Package Repository, which is the default setting. However, if you’re doing this for a company, please consider using your own package source repositories, such as [Nexus](https://www.sonatype.com/nexus/repository-pro), [Artifactory](https://jfrog.com/artifactory/), or [MyGet](https://www.myget.org/).
 
-The Chocolatey package resource is built by the community for the community. If you're using the community repository for Enterprise or large scale package installation, you will likely be [rate limited](https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting). Be careful, and be kind to the community.
+The Chocolatey Package resource is built by the community for the community. If you’re using the community repository for Enterprise or large scale package installation, you will likely be [rate limited](https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting). Be careful, and be kind to the community.
 
-The last two options cover whether you want to see the download progress in your logs, and generally, I turn them off as this can result in hundreds of thousands of log files. The other is to allow for additional parameters.
+The last two options cover whether you want to see the download progress in your logs. Generally, I turn them off as this can result in hundreds of thousands of log files. The other is to allow for additional parameters.
 
 ![Specifying Chocolatey Parameters](images/chocoparams.png "width=500")
 
 ### Installing IIS & dependencies
 
-The next step was to configure IIS, and its dependencies. I used our [IIS Runbooks](https://octopus.com/docs/runbooks/runbook-examples/routine/iis-runbooks) examples and ran this install IIS, and all of its features.
+The next step was to configure IIS and its dependencies. I used our [IIS Runbooks](https://octopus.com/docs/runbooks/runbook-examples/routine/iis-runbooks) examples and ran this install IIS, and all of its features.
 
-### Optional Steps
+### Optional steps
 
-I'm not a fan of the default website in IIS, so I like to remove it by default. I used the community step template called [IIS Website - Delete](https://library.octopus.com/step-templates/a032159b-0742-4982-95f4-59877a31fba3/actiontemplate-iis-website-delete) and then specified Default Web Site, and it will now remove the Default Web Site as part of this provisioning runbook in Octopus.
+I’m not a fan of the default website in IIS, so I like to remove it by default. I used the community step template called [IIS Website - Delete](https://library.octopus.com/step-templates/a032159b-0742-4982-95f4-59877a31fba3/actiontemplate-iis-website-delete) and then specified Default Web Site, and it will now remove the Default Web Site as part of this provisioning runbook in Octopus.
 
 I use [HyperV](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview) as my laptop and server hypervisor when I can, and I wanted to enable it as part of the laptop provisioning process. I used the **Run a Script** built-in template for this task and used PowerShell to enable HyperV:
 
@@ -226,19 +226,19 @@ You have the space, the project, the lifecycle, the environment, the laptop, and
 
 To run the Runbook:
 
-- Open the runbook project.
-- Select {{Operations,Runbooks}}.
-- Select the runbook you created.
+1. Open the runbook project.
+2. Select {{Operations,Runbooks}}.
+3. Select the runbook you created.
 
 ![Running the runbook](images/run-runbook.png "width=500")
 
-- Select **Run**.
-- Select the environment.
-- Hit the **Run** button
+4. Select **Run**.
+5. Select the environment.
+6. Hit the **Run** button
 
 ![Running runbook](images/run-runbook-run.png "width=500")
 
-At this point, you can grab a coffee as it will take a little while to install all of the applications and dependencies. After your coffee run, the runbook should have completed. Your computer should now be fully configured and ready to go instead of going through the pain of next, next, finish installs and application configuration.
+At this point, you can grab a coffee as it will take a little while to install all of the applications and dependencies. After your coffee run, the runbook should have completed. Your computer should now be fully configured and ready instead of going through the pain of next, next, finish installs and application configuration.
 
 ![Completed runbook](images/completedrunbook.png "width=500")
 
@@ -246,37 +246,37 @@ At this point, you should see all of the new applications installed on your comp
 
 ## Other scenarios
 
-You can see that this is useful for installing applications not just for Ops, DevOps, and Developers but other job types. You could create additional Runbooks for other job types that need different applications. For instance, a Business Analyst may want [PowerBI](https://powerbi.microsoft.com/en-us/), and a DBA might wish to install [SQL Toolbelt](https://chocolatey.org/packages/SqlToolbelt). You could create different Runbooks for different job descriptions or even allow people access to Runbooks to install and configure pre-approved software.
+You can see that this is useful for installing applications not just for Ops, DevOps, and Developers but other job types. You could create additional runbooks for other job types that need different applications. For instance, a Business Analyst may want [PowerBI](https://powerbi.microsoft.com/en-us/), and a DBA might wish to install [SQL Toolbelt](https://chocolatey.org/packages/SqlToolbelt). You could create different runbooks for different job descriptions or even allow people access to runbooks to install and configure pre-approved software.
 
-You can also use this approach for all of your Servers so you can install [SQL](https://chocolatey.org/packages/sql-server-2019) on a database server, or [Tomcat](https://chocolatey.org/packages/Tomcat) on a web server.
+You can also use this approach for all of your servers, so you can install [SQL](https://chocolatey.org/packages/sql-server-2019) on a database server, or [Tomcat](https://chocolatey.org/packages/Tomcat) on a web server.
 
 :::hint
-When installing SQL, you will probably want to create your own Chocolatey Package. SQL is a little tricker than some to install as it requires an Administrator account to install quickly, and you will also want to configure things such as default users, groups, and locations of the database and log files.
+When installing SQL, you will probably want to create your own Chocolatey Package. SQL is a little tricker than some to install as it requires an administrator account to install quickly, and you will also want to configure things such as default users, groups, and locations of the database and log files.
 
-When using Octopus to install SQL Developer Edition or SQL express, you can do it without the Tentacle running as a local administrator. Still, you will need to use the optional location for the files. Another gotcha is that if you run the install under a Service account with a named service account, by default, that will use that user as the default SQL Administrator. You will need to connect with that account to give yourself access.
+When using Octopus to install SQL Developer Edition or SQL Express, you can do it without the Tentacle running as a local administrator. Still, you will need to use the optional location for the files. Another gotcha is that if you run the install under a Service account with a named service account, by default, that will use that user as the default SQL administrator. You will need to connect with that account to give yourself access.
 :::
 
 ## Upgrading Chocolatey packages
 
-As you can see, you can use Octopus to install applications via Chocolatey, but software gets patched, new features added to it, and security enhancements added all of the time. What happens when you want or need the latest version of the software you installed using Runbooks and Chocolatey?
+As you can see, you can use Octopus to install applications via Chocolatey, but software gets patched, new features and security enhancements are added all of the time. What happens when you want or need the latest version of the software you installed using runbooks and Chocolatey?
 
-You [upgrade](https://chocolatey.org/docs/commandsupgrade) it with Chocolatey and Runbooks. This is easy to do, and one of my favorite commands on logging in to a server, or for running using a Runbook is:
+You [upgrade](https://chocolatey.org/docs/commandsupgrade) it with Chocolatey and runbooks. This is easy to do, and one of my favorite commands on logging in to a server, or for running using a runbook is:
 
 ```PowerShell
 choco upgrade all -y
 ```
 
-This command will run on the computer, check against the latest version against the Chocolatey repository you have set, download the new package, and install it. Think of this as almost a Windows Update but for your Chocolatey package. You can set this up using Runbooks and using the Deploy a Script step template and using the upgrade command.
+This command will run on the computer, check against the latest version against the Chocolatey repository you have set, download the new package, and install it. Think of this as almost a Windows Update but for your Chocolatey package. You can set this up using runbooks and using the Deploy a Script step template and using the upgrade command.
 
-![Upgrading Chocolatey apps Runbook](images/upgradechocolateyapps.png "width=500")
+![Upgrading Chocolatey apps runbook](images/upgradechocolateyapps.png "width=500")
 
-After you've create the runbook, select **Run**, and it will run the Chocolatey script and upgrade all of your applications.
+After you’ve created the runbook, select **Run**, and it will run the Chocolatey script and upgrade all of your applications.
 
 ![Upgraded Chocolatey apps](images/upgradechoco.png "width=500")
 
-### Upgrading Chocolatey packages on a scheduled trigger
+### Upgrading Chocolatey Packages on a scheduled trigger
 
-As you now have the upgrade Chocolatey runbook, and you know that it's working, you can publish the runbook and set a schedule to execute the script, much like a [CRON JOB](https://en.wikipedia.org/wiki/Cron) or a [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler).
+As you now have the upgrade Chocolatey runbook, and you know that it’s working, you can publish the runbook and set a schedule to execute the script, much like a [CRON JOB](https://en.wikipedia.org/wiki/Cron) or a [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler).
 
 To set this up, select the triggers option under Operations, and select **Add scheduled trigger**.
 
@@ -294,10 +294,10 @@ This will take you to add a **New scheduled trigger** page, and you will need to
 
 ![Scheduled Trigger](images/scheduledtrigger.png "width=500")
 
-This should now trigger daily at the time you set, and in this instance, I selected 12.30pm as it's when most people go on lunch.
+This will trigger daily at the time you set. I selected 12.30 pm as that’s when most people go on lunch.
 
-You can see all of the configuration in this blog on our [samples instance](https://samples.octopus.app) by logging in as Guest, and selecting the **Target - Windows** Space.
+You can see all of the configuration in this blog on our [samples instance](https://samples.octopus.app) by logging in as Guest, and selecting the **Target - Windows** space.
 
 ## Conclusion
 
-Octopus Runbooks and Chocolatey work well together and give you a lot of flexibility to help you automate the installation and configuration of laptops, desktops, and servers both on-premises and in the cloud. They take away the need to install thousands or potentially tens of thousands of applications across your organizations infrastructure. If you want to see this in action we recently presented a webinar with [Paul Broadwith](https://blog.pauby.com) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which showed how easy this was to do with Runbooks on cloud infrastructure.
+Octopus Runbooks and Chocolatey work well together and give you a lot of flexibility to help you automate the installation and configuration of laptops, desktops, and servers both on-premises and in the cloud. They take away the need to install thousands or potentially tens of thousands of applications across your organization’s infrastructure. If you want to see this in action, I recently presented a webinar with [Paul Broadwith](https://blog.pauby.com) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which showed how easy this was to do with runbooks on cloud infrastructure.
