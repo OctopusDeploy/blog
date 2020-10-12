@@ -4,8 +4,8 @@ description: Octopus Deploy announces corporate sponsorship for the .NET Foundat
 author: paul.stovell@octopus.com
 visibility: public
 published: 2020-10-14
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
+metaImage: blogimage-net-foundation_2020.png
+bannerImage: blogimage-net-foundation_2020.png
 tags:
   - Company
 ---
