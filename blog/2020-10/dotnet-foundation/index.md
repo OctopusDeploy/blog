@@ -3,7 +3,7 @@ title: Octopus Deploy sponsors the .NET Foundation
 description: Octopus Deploy announces corporate sponsorship for the .NET Foundation
 author: paul.stovell@octopus.com
 visibility: public
-published: 2020-10-14
+published: 2020-10-12
 metaImage: blogimage-net-foundation_2020.png
 bannerImage: blogimage-net-foundation_2020.png
 tags:
