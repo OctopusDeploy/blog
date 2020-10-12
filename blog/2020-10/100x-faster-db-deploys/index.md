@@ -17,7 +17,7 @@ tags:
 
 One question I’m often asked is whether all the databases on a server should go into one repo/Octopus Deploy project, or if they should go into separate repos/projects. Another related question is whether the DB and application should go into the same repo/project or not. These questions don’t have simple answers. As a consultant, I begin my response with “it depends”.
 
-Next I’ll ask whether they use a distributed source control system (git) or a centralized source control system (TFS, SVN etc). It’s important to understand this so that I can calibrate my answer. (Git is generally better suited to many small repos than a giant monolith, but the same cannot be said for many centralized source control systems.)
+Next I’ll ask whether they use a distributed source control system (git) or a centralized source control system (TFS, SVN, etc). It’s important to understand this so that I can calibrate my answer. Git is generally better suited to many small repos than a giant monolith, but the same cannot be said for many centralized source control systems.
 
 Then I’ll ask the more important question: “How tightly coupled are the databases/applications?” If they ask for clarification I’ll ask questions like:
 
@@ -28,11 +28,11 @@ Then I’ll ask the more important question: “How tightly coupled are the data
 -	What would be the consequences if one database got out of sync with another by a few versions?
 -	When someone “deploys the database”, are they typically referring to a single database, or might they need to deploy changes to multiple databases?
 
-In an ideal world, an architecture would be loosely coupled. This would allow folks to split up the databases into separate smaller repos that can be managed independently. The more granularity the better. While this might impose some strict architectural rules and introduce some local complexities, it would significantly reduce the global complexity and reduce the risk of each deployment. This could significantly reduce the technical and bureaucratic challenges associated with getting work done.
+In an ideal world, architecture would be loosely coupled. This would allow folks to split up the databases into separate smaller repos that can be managed independently. The more granularity the better. While this might impose some strict architectural rules and introduce some local complexities, it would significantly reduce the global complexity and reduce the risk of each deployment. This could significantly reduce the technical and bureaucratic challenges associated with getting work done.
 
 Essentially, loosely coupled systems allow folks to scale out development efforts much more linearly, rather than scaling them up, which comes with astronomical and often under-appreciated managerial costs and challenges. Attempts to scale up development efforts tend to collapse into a cesspit of politics, delays and problems. Read [The Phoenix Project](https://www.amazon.com/Phoenix-Project-Devops-Helping-Business/dp/1942788290/) and most folks will recognize that they already work for a classic case study of this phenomenon.
 
-hat’s all well and good, folks might say, but it doesn’t help me. I already have a monolith. I didn’t build it and I can’t change it quickly. Perhaps there are other reasons that are too long or complicated to cover here that have resulted in tightly coupled systems.
+That’s all well and good, folks might say, but it doesn’t help me. I already have a monolith. I didn’t build it and I can’t change it quickly. Perhaps there are other reasons that are too long or complicated to cover here that have resulted in tightly coupled systems.
 
 In this scenario, while I might advocate for taking steps to decouple the systems, I would recognize that’s unlikely to be a quick or cheap fix. In the meantime, it’s important to effectively source control and deploy the thing, even if it is a monolith. And in those situations, it’s possible to end up with giant source control repos and deployment projects that need to coordinate the deployment of many related parts.
 
@@ -44,13 +44,13 @@ In general, the databases can be deployed in a certain order. The data warehouse
 
 However, the real world isn’t always that simple. For various reasons there are a few dependencies that don’t fit that model and refactoring them would be very difficult. While we can generally deploy in a specified order, there are some cross-database dependencies that sometimes mean the order needs to change. The Octopus Deploy projects are not smart enough to figure this out in advance.
 
-One customer uses a bit of a hack to get around this. The last step in their deployment is a “[Deploy a Release](https://octopus.com/docs/projects/coordinating-multiple-projects/deploy-release-step)” step which is set to re-run the deployment if any of the database deployment steps fail as a result of a broken dependency. This process will potentially re-run the deployment as many times as there are databases (the max number of re-runs is controlled using [Output Variables](https://octopus.com/docs/projects/variables/output-variables)). As long as at least one database is successfully deployed during each iteration, Octopus keeps trying until they are all deployed so if there is any order in which that databases can be deployed Octopus will eventually find it. It’s ugly but it works.
+One customer uses a bit of a hack to get around this. The last step in their deployment is a [Deploy a Release](https://octopus.com/docs/projects/coordinating-multiple-projects/deploy-release-step) step which is set to re-run the deployment if any of the database deployment steps fail as a result of a broken dependency. This process will potentially re-run the deployment as many times as there are databases (the max number of re-runs is controlled using [output variables](https://octopus.com/docs/projects/variables/output-variables)). As long as at least one database is successfully deployed during each iteration, Octopus keeps trying until they are all deployed so if there is any order in which that databases can be deployed Octopus will eventually find it. It’s ugly but it works.
 
-The biggest practical problem with this is how long it all takes. The customer uses a state-based deployment process. This means that each time a database is deployed, the database comparison software (either Redgate or SSDT) is performing a full compare. This typically takes a minute or two per database, but it varies. For the largest databases it can be over 5 minutes. 12 databases, times 12 attempts, can routinely 
+The biggest practical problem with this is how long it all takes. The customer uses a state-based deployment process. This means each time a database is deployed, the database comparison software (either Redgate or SSDT) is performing a full compare. This typically takes a minute or two per database, but it varies. For the largest databases it can be over 5 minutes. 12 databases, times 12 attempts, can routinely add up.
 
-But it’s even worse than that. This BI system isn’t an in-house system, it’s a service that my customer sells to their customers. They maintain an instance of this set of databases per customer. When they deploy to production they aren’t just deploying once, they are deploying many times, often during strict deployment windows. If the deployment takes too long and they miss their window the customers won’t be happy. Some customers are deployed in bulk, other have their own unique contracts that require more complicated and less frequent deploys. (Less frequent deploys result in bigger deploys which are more likely to require many re-runs.)
+But it’s even worse than that. This BI system isn’t an in-house system, it’s a service that my customer sells to their customers. They maintain an instance of this set of databases per customer. When they deploy to production they aren’t just deploying once, they are deploying many times, often during strict deployment windows. If the deployment takes too long and they miss their window the customers won’t be happy. Some customers are deployed in bulk, other have their own unique contracts that require more complicated and less frequent deploys. Less frequent deploys result in bigger deploys which are more likely to require many re-runs.
 
-The duration, risk and complexity is multiplying across multiple axes.
+The duration, risk and complexity is multiplying across multiple axis.
 
 The team is also resource constrained. A lot of the processing is being forced through a small number of [workers](https://octopus.com/docs/infrastructure/workers) which are often bottlenecks. It’s a perfect storm. Did I mention that monolithic systems really are horrible?
 
@@ -62,28 +62,28 @@ There is an argument that running the compares, even when nothing has changed, i
 
 In general, I agree with this principle, but for my customer the cost of running all these compares was crippling them. It’s also especially difficult to justify redeploying databases at the 2nd or 3rd attempt if they were already successfully deployed at the first attempt. While redeploying all the databases might be valuable, short deployment times are also valuable, so ultimately folks need to make a trade off.
 
-My proposition to my customer was that they should design their deployment process to only deploy the database if the package number had incremented. This meant two things:
+I proposed to my customer was that they should design their deployment process to only deploy the database if the package number had incremented. This meant two things:
 
-1.	We needed to change our build process in order to ensure that new NuGet packages were only created if the DB schema had actually changed. (All the DBs were in a single git repo. The build process originally built and packaged all the databases for each commit, verifying all the dependencies. However, this resulted in painfully long (1hr+) build times. It wasn’t as straightforward as you might think to only build the databases that had been updated because, due to the dependencies, when two databases were updated at the same time, they needed to be built in the correct order. I wrote more about how we solved that problem last year on my personal blog: [http://workingwithdevs.com/azure-devops-services-api-powershell-hosted-build-agents/](http://workingwithdevs.com/azure-devops-services-api-powershell-hosted-build-agents/))
-1.	We needed to change our deployment process to recognize whether the current package had already been deployed. This was also harder than you might expect and I’m grateful to Bob Walker for taking some time to discuss various options and pitfalls with me. It’s this part that I’m going to focus on for the rest of this blog post.
+1.	We needed to change the build process in order to ensure that new NuGet packages were only created if the DB schema had actually changed. (All the DBs were in a single git repo. The build process originally built and packaged all the databases for each commit, verifying all the dependencies. However, this resulted in painfully long (1hr+) build times. It wasn’t as straightforward as you might think to only build the databases that had been updated because, due to the dependencies, when two databases were updated at the same time, they needed to be built in the correct order. I wrote more about how we solved that problem last year on my personal blog: [http://workingwithdevs.com/azure-devops-services-api-powershell-hosted-build-agents/](http://workingwithdevs.com/azure-devops-services-api-powershell-hosted-build-agents/)).
+1.	We needed to change our deployment process to recognize whether the current package had already been deployed. This was also harder than you might expect, and I’m grateful to Bob Walker for taking some time to discuss various options and pitfalls with me. It’s this part that I’m going to focus on for the rest of this blog post.
 
-At first I underestimated the complexity of this task. I planned to use the Octopus.Tentacle.PreviousInstallation.PackageVersion [System Variable](https://octopus.com/docs/projects/variables/system-variables) to determine the previously deployed package. I could write a simple PowerShell script to compare the previous package number to the current package number and if they were the same I could skip the deployment.
+At first I underestimated the complexity of this task. I planned to use the Octopus.Tentacle.PreviousInstallation.PackageVersion [system variable](https://octopus.com/docs/projects/variables/system-variables) to determine the previously deployed package. I could write a simple PowerShell script to compare the previous package number to the current package number and if they were the same I could skip the deployment.
 
-However, this was problematic. What if the previous deployment had failed? What if the package had been deployed to the tentacle, but the subsequent database schema comparison step which read the files from the package hadn’t executed?  What if I was running the task on a worker from a pool? What if I was running this on a [Dynamic Worker](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools)? Before I knew it I was making a lot more API calls than I had originally anticipated and the code was beginning to look annoyingly complicated.
+However, this was problematic. What if the previous deployment had failed? What if the package had been deployed to the Tentacle, but the subsequent database schema comparison step which read the files from the package hadn’t executed?  What if I was running the task on a worker from a pool? What if I was running this on a [dynamic worker](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools)? Before I knew it, I was making a lot more API calls than I had originally anticipated and the code was beginning to look annoyingly complicated.
 
-After some reflection I decided to borrow a trick from [migrations-based deployment tools](http://workingwithdevs.com/delivering-databases-migrations-vs-state/). I created   a __DeployLog table on each target database. Following each deployment, I logged the package and release numbers to that table, along with a timestamp, the user ID, deployment status and any error messages.
+After some reflection I decided to borrow a trick from [migrations-based deployment tools](http://workingwithdevs.com/delivering-databases-migrations-vs-state/). I created a \__DeployLog table on each target database. Following each deployment, I logged the package and release numbers to that table, along with a timestamp, the user ID, deployment status, and any error messages.
 
 With the data about previous deployments now stored safely on the database itself, it becomes possible to wrap all the long database deployment steps with a few quick SQL commands to verify if the package in the current release is already deployed to the target database. These additional queries will increase the total duration of the deployment slightly, but each skipped deployment will reduce the overall deployment time significantly. Hence, for projects with many state-based database deploy steps, the net result is likely to be significantly reduced deployment times. For my customer, this slashed regular deployment times by roughly a factor of 10, and thanks to the re-runs issue the most challenging deployments were reduced by a factor of around 100.
 
 The consequence was that rather than missing a production deployment window with a single, painfully long, deployment attempt, the team could try the deployment multiple times, with plenty of time in between to investigate any issues. Within the dev and test domain there was a massive boost to productivity. Developers could run a deployment against the test servers and see the result in minutes, rather than hours. Apart from significantly improving the feedback loop for developers, it also significantly reduced resource hogging issues on shared environments.
 
-And on top of all this, that __DeployLog table proved popular with both internal and customer operations folks who had a neat and reliable audit log in the database itself. 
+And on top of all this, that \__DeployLog table proved popular with both internal and customer operations folks who had a neat and reliable audit log in the database itself. 
 
-![__DeployLog](__deploylog.png "width=500")
+![\__DeployLog](\__deploylog.png "width=500")
  
 ## The code
 
-To do the same thing in your own deployment projects, you’ll want to use some code that looks like this at the beginning of your process to read the \__DeployLog and to determine whether it’s necessary to deploy the database. You could either run it as a separate deployment step for each database, or you could add it to the top of an existing script which deploys your database.
+To do the same thing in your own deployment projects, you’ll want to use some code that looks like this at the beginning of your process to read the \__DeployLog  to determine whether it’s necessary to deploy the database. You could either run it as a separate deployment step for each database, or you could add it to the top of an existing script which deploys your database.
 
 <script src="https://gist.github.com/Alex-Yates/042ebe90f7a1586dd39d9739eca377db.js"></script>
 
@@ -91,49 +91,55 @@ Notice that at the top of the script there are a few variables that need to be d
 
 Also note the final line:
 
+```
 Set-OctopusVariable -name "Deploy:$DLM_ServerInstance-$DLM_Database" -value $deployRequired
+```
 
-This code assumes that the script is running as a separate deployment step from your existing database deployment step and it sets an [Output Variable](https://octopus.com/docs/projects/variables/output-variables) that determines whether the database deployment steps should be executed.
+This code assumes that the script is running as a separate deployment step from your existing database deployment step and it sets an [output variable](https://octopus.com/docs/projects/variables/output-variables) that determines whether the database deployment steps should be executed.
 
 If you are running this as a separate step, you do not need to alter this code. However, if you have copied the code to the top of an existing database deployment script, you’ll want to delete the line above and instead move your database code into an if statement that looks something like this:
 
+```
 If ($deployRequired){
   # put your existing db deploy code here
 }
 Else {
   Write-Output “Skipping database deployment.”
 }
+```
 
-Assuming you have created a separate step to read the __DeployLog, your existing database deployment steps should be updated to use the following [Variable Expression](https://octopus.com/docs/projects/variables/variable-substitutions#VariableSubstitutionSyntax-Conditionalsconditionals) as a [Run Condition](https://octopus.com/docs/deployment-process/conditions). This reads the Output Variable and uses it to decide whether to execute the database deployment:
+Assuming you have created a separate step to read the \__DeployLog, your existing database deployment steps should be updated to use the following [variable expression](https://octopus.com/docs/projects/variables/variable-substitutions#VariableSubstitutionSyntax-Conditionalsconditionals) as a [run condition](https://octopus.com/docs/deployment-process/conditions). This reads the output variable and uses it to decide whether to execute the database deployment:
 
-#{if Octopus.Action[Read __DeployLog].Output.Deploy:sql01-db== "True"}true#{/if}
+```
+#{if Octopus.Action[Read \__DeployLog].Output.Deploy:sql01-db== "True"}true#{/if}
+```
 
-![Run Condition](runcondition.png "width=500")
+![Run condition](runcondition.png "width=500")
 
 (Remember to replace “sql01” and “db” with your own SQL Server instance and database names.)
 
-Following your database deployment, you’ll want to add the following script to update the __DeployLog with the package number and deployment status. If you simply copy the code you’re your database deployment script, you’ll want to wrap it into the same if condition. If you’re running it as a separate step, you’ll want to use the same run condition as above. You don’t want to update the __DeployLog unless the database deployment actually executed.
+Following your database deployment, you’ll want to add the following script to update the \__DeployLog with the package number and deployment status. If you simply copy the code to your database deployment script, you’ll want to wrap it into the same if condition. If you’re running it as a separate step, you’ll want to use the same run condition as above. You don’t want to update the \__DeployLog unless the database deployment actually executed.
 
 <script src="https://gist.github.com/Alex-Yates/04ba6cfde9ebe1e3e40a341f80a5c7c9.js"></script>
 
 And finally, to make all this as easy as I can, I’ve just published a couple of Octopus Deploy Step Templates to the community library:
 
-- [SQL Server __DeployLog: Read](https://library.octopus.com/step-templates/8a446e55-6554-40fa-bbd9-70bd2a69a13e/actiontemplate-sql-server-__deploylog:-read)
-- [SQL Server __DeployLog: Update](https://library.octopus.com/step-templates/a9f7644c-3e27-4e46-a591-eee7f3542032/actiontemplate-sql-server-__deploylog:-update)
+- [SQL Server \__DeployLog: Read](https://library.octopus.com/step-templates/8a446e55-6554-40fa-bbd9-70bd2a69a13e/actiontemplate-sql-server-__deploylog:-read)
+- [SQL Server \__DeployLog: Update](https://library.octopus.com/step-templates/a9f7644c-3e27-4e46-a591-eee7f3542032/actiontemplate-sql-server-__deploylog:-update)
 
 ![Library Step Templates](librarysteptemplates.png "width=500")
 
 The final process might look something like this:
 
-![Full Deployment Process](deployprocess.png "width=500")
+![Full deployment process](deployprocess.png "width=500")
  
 Now, if the package number has not changed since the last successful deployment, it won’t be redeployed:
 
-![Skipped Deployment](skippeddeploy.png "width=500")
+![Skipped deployment](skippeddeploy.png "width=500")
  
 ## Treating the underlying problem
 
-I’m fully aware that this blog post is only a treatment for the symptom, rather than cure underlying problem. And there are side-effects to be aware of.
+I’m fully aware that this blog post is only a treatment for the symptom, rather than a cure for the underlying problem. And there are side-effects to be aware of.
 
 It’s possible that database drift might go longer before being noticed, which is not ideal. It’s also possible that some dependencies might be broken since we aren’t routinely rebuilding/deploying all the databases. It would be healthy to consider running full builds and end to end deployments and integration tests on some test/staging environment, perhaps on a nightly basis, to ensure no dependencies are being missed. 
 
