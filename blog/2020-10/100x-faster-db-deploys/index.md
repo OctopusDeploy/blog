@@ -50,7 +50,7 @@ The biggest practical problem with this is how long it all takes. The customer u
 
 But it’s even worse than that. This BI system isn’t an in-house system, it’s a service that my customer sells to their customers. They maintain an instance of this set of databases per customer. When they deploy to production they aren’t just deploying once, they are deploying many times, often during strict deployment windows. If the deployment takes too long and they miss their window the customers won’t be happy. Some customers are deployed in bulk, other have their own unique contracts that require more complicated and less frequent deploys. Less frequent deploys result in bigger deploys which are more likely to require many re-runs.
 
-The duration, risk and complexity is multiplying across multiple axis.
+The duration, risk and complexity is multiplying across multiple axes.
 
 The team is also resource constrained. A lot of the processing is being forced through a small number of [workers](https://octopus.com/docs/infrastructure/workers) which are often bottlenecks. It’s a perfect storm. Did I mention that monolithic systems really are horrible?
 
