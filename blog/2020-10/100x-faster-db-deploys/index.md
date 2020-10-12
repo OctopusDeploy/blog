@@ -77,7 +77,7 @@ The consequence was that rather than missing a production deployment window with
 
 And on top of all this, that __DeployLog table proved popular with both internal and customer operations folks who had a neat and reliable audit log in the database itself. 
 
-![__DeployLog](__DeployLog.png "width=500")
+![__DeployLog](__deploylog.png "width=500")
  
 ## The code
 
@@ -106,7 +106,7 @@ Assuming you have created a separate step to read the __DeployLog, your existing
 
 #{if Octopus.Action[Read __DeployLog].Output.Deploy:sql01-db== "True"}true#{/if}
 
-![Run Condition](RunCondition.png "width=500")
+![Run Condition](runcondition.png "width=500")
 
 (Remember to replace “sql01” and “db” with your own SQL Server instance and database names.)
 
@@ -119,15 +119,15 @@ And finally, to make all this as easy as I can, I’ve just published a couple o
 - [SQL Server __DeployLog: Read](https://library.octopus.com/step-templates/8a446e55-6554-40fa-bbd9-70bd2a69a13e/actiontemplate-sql-server-__deploylog:-read)
 - [SQL Server __DeployLog: Update](https://library.octopus.com/step-templates/a9f7644c-3e27-4e46-a591-eee7f3542032/actiontemplate-sql-server-__deploylog:-update)
 
-![Library Step Templates](LibraryStepTemplates.png "width=500")
+![Library Step Templates](librarysteptemplates.png "width=500")
 
 The final process might look something like this:
 
-![Full Deployment Process](DeployProcess.png "width=500")
+![Full Deployment Process](deployprocess.png "width=500")
  
 Now, if the package number has not changed since the last successful deployment, it won’t be redeployed:
 
-![Skipped Deployment](SkippedDeploy.png "width=500")
+![Skipped Deployment](skippeddeploy.png "width=500")
  
 ## Treating the underlying problem
 
