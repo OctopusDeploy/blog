@@ -10,6 +10,8 @@ tags:
   - Company
 ---
 
+![Octopus Deploy sponsors the .NET Foundation](blogimage-net-foundation_2020.png)
+
 I am happy to announce that Octopus Deploy is now a corporate sponsor of the [.NET Foundation](https://dotnetfoundation.org/), the non-profit organization established to support the open-source ecosystem around the .NET platform. 
 
 As an independent software vendor, we use a number of open-source projects to build Octopus Deploy. We donate to some of these directly where we can, we’re sponsors of [Material UI](https://material-ui.com/), [Cake](https://cakebuild.net/blog/2020/10/octopus-deploy), [JUnit](https://junit.org/), [Pester](https://github.com/pester/Pester), and a few others. We also make a lot of our own code open-source, including our [communication stack](https://github.com/OctopusDeploy/Halibut), [deployment logic](https://github.com/OctopusDeploy/Calamari), [ORM](https://github.com/OctopusDeploy/Nevermore), all of our build server integrations, and pretty soon our Tentacle deployment agent. Our team members also contribute to a variety of open-source projects in both their professional and personal time. Healthy open-source is essential to our mission and core to who we are. 
