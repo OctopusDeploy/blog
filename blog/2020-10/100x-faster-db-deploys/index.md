@@ -1,6 +1,6 @@
 ---
-title: "100x Faster Db Deploys: Skipping Unnecessary Schema Compares in Tightly Coupled Systems"
-description: 
+title: "100x faster db deploys: skipping unnecessary schema compares in tightly coupled systems"
+description: Learn how to skip unnecessary schema compares in tightly coupled systems for faster database deployments.
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2020-10-14
@@ -11,11 +11,13 @@ tags:
  - Database Deployments
 ---
 [toc]
+
+
 ## The problem: Tightly coupled systems 
 
 One question I’m often asked is whether all the databases on a server should go into one repo/Octopus Deploy project, or if they should go into separate repos/projects. Another related question is whether the DB and application should go into the same repo/project or not. These questions don’t have simple answers. As a consultant, I begin my response with “it depends”.
 
-Next I’ll ask whether they use a distributed source control system (git) or a centralised source control system (TFS, SVN etc). It’s important to understand this so that I can calibrate my answer. (Git is generally better suited to many small repos than a giant monolith, but the same cannot be said for many centralised source control systems.)
+Next I’ll ask whether they use a distributed source control system (git) or a centralized source control system (TFS, SVN etc). It’s important to understand this so that I can calibrate my answer. (Git is generally better suited to many small repos than a giant monolith, but the same cannot be said for many centralized source control systems.)
 
 Then I’ll ask the more important question: “How tightly coupled are the databases/applications?” If they ask for clarification I’ll ask questions like:
 
@@ -28,15 +30,15 @@ Then I’ll ask the more important question: “How tightly coupled are the data
 
 In an ideal world, an architecture would be loosely coupled. This would allow folks to split up the databases into separate smaller repos that can be managed independently. The more granularity the better. While this might impose some strict architectural rules and introduce some local complexities, it would significantly reduce the global complexity and reduce the risk of each deployment. This could significantly reduce the technical and bureaucratic challenges associated with getting work done.
 
-Essentially, loosely coupled systems allow folks to scale out development efforts much more linearly, rather than scaling them up, which comes with astronomical and often-underappreciated managerial costs and challenges. Attempts to scale up development efforts tend to collapse into a cesspit of politics, delays and problems. Read [The Phoenix Project](https://www.amazon.com/Phoenix-Project-Devops-Helping-Business/dp/1942788290/) and most folks will recognise that they already work for a classic case study of this phenomenon.
+Essentially, loosely coupled systems allow folks to scale out development efforts much more linearly, rather than scaling them up, which comes with astronomical and often under-appreciated managerial costs and challenges. Attempts to scale up development efforts tend to collapse into a cesspit of politics, delays and problems. Read [The Phoenix Project](https://www.amazon.com/Phoenix-Project-Devops-Helping-Business/dp/1942788290/) and most folks will recognize that they already work for a classic case study of this phenomenon.
 
 hat’s all well and good, folks might say, but it doesn’t help me. I already have a monolith. I didn’t build it and I can’t change it quickly. Perhaps there are other reasons that are too long or complicated to cover here that have resulted in tightly coupled systems.
 
-In this scenario, while I might advocate for taking steps to decouple the systems, I would recognise that’s unlikely to be a quick or cheap fix. In the meantime, it’s important to effectively source control and deploy the thing, even if it is a monolith. And in those situations, it’s possible to end up with giant source control repos and deployment projects that need to coordinate the deployment of many related parts.
+In this scenario, while I might advocate for taking steps to decouple the systems, I would recognize that’s unlikely to be a quick or cheap fix. In the meantime, it’s important to effectively source control and deploy the thing, even if it is a monolith. And in those situations, it’s possible to end up with giant source control repos and deployment projects that need to coordinate the deployment of many related parts.
 
 ## The symptom: Monolithic repos and deployment projects
 
-I have a couple of customers who work on business intelligence systems. They have up to a dozen databases that read from each other. The first is typically responsible for loading the raw source data from various sources. This is often heavily normalised and optimised for storage and durability. It is followed by various intermediate databases where the data is gradually cleaned up and transformed until it eventually ends up in various data warehouses and data marts which are optimised for analysis.
+I have a couple of customers who work on business intelligence systems. They have up to a dozen databases that read from each other. The first is typically responsible for loading the raw source data from various sources. This is often heavily normalized and optimized for storage and durability. It is followed by various intermediate databases where the data is gradually cleaned up and transformed until it eventually ends up in various data warehouses and data marts which are optimized for analysis.
 
 In general, the databases can be deployed in a certain order. The data warehouses read from the intermediate databases, and those intermediate databases read from the source database. Hence, in theory we can deploy sources first, then the intermediate databases in order, and eventually the data warehouse last.
 
@@ -50,7 +52,7 @@ But it’s even worse than that. This BI system isn’t an in-house system, it�
 
 The duration, risk and complexity is multiplying across multiple axes.
 
-The team is also resource constrained. A lot of the processing is being forced through a small number of [workers](https://octopus.com/docs/infrastructure/workers) which are aften bottlenecks. It’s a perfect storm. Did I mention that monolithic systems really are horrible?
+The team is also resource constrained. A lot of the processing is being forced through a small number of [workers](https://octopus.com/docs/infrastructure/workers) which are often bottlenecks. It’s a perfect storm. Did I mention that monolithic systems really are horrible?
 
 The really frustrating thing about all this is that while we might be doing hundreds of database compares, the vast majority are a waste of time since we know nothing has actually changed. Even when the deployments work first time, the chances are that only one or two of the databases have been updated, but all the databases are compared in sequence anyway. Deployments that only need to take a minute or two can take hours.
 
@@ -63,7 +65,7 @@ In general, I agree with this principle, but for my customer the cost of running
 My proposition to my customer was that they should design their deployment process to only deploy the database if the package number had incremented. This meant two things:
 
 1.	We needed to change our build process in order to ensure that new NuGet packages were only created if the DB schema had actually changed. (All the DBs were in a single git repo. The build process originally built and packaged all the databases for each commit, verifying all the dependencies. However, this resulted in painfully long (1hr+) build times. It wasn’t as straightforward as you might think to only build the databases that had been updated because, due to the dependencies, when two databases were updated at the same time, they needed to be built in the correct order. I wrote more about how we solved that problem last year on my personal blog: [http://workingwithdevs.com/azure-devops-services-api-powershell-hosted-build-agents/](http://workingwithdevs.com/azure-devops-services-api-powershell-hosted-build-agents/))
-1.	We needed to change our deployment process to recognise whether the current package had already been deployed. This was also harder than you might expect and I’m grateful to Bob Walker for taking some time to discuss various options and pitfalls with me. It’s this part that I’m going to focus on for the rest of this blog post.
+1.	We needed to change our deployment process to recognize whether the current package had already been deployed. This was also harder than you might expect and I’m grateful to Bob Walker for taking some time to discuss various options and pitfalls with me. It’s this part that I’m going to focus on for the rest of this blog post.
 
 At first I underestimated the complexity of this task. I planned to use the Octopus.Tentacle.PreviousInstallation.PackageVersion [System Variable](https://octopus.com/docs/projects/variables/system-variables) to determine the previously deployed package. I could write a simple PowerShell script to compare the previous package number to the current package number and if they were the same I could skip the deployment.
 
@@ -81,7 +83,7 @@ And on top of all this, that __DeployLog table proved popular with both internal
  
 ## The code
 
-To do the same thing in your own deployment projects, you’ll want to use some code that looks like this at the beginning of your process to read the __DeployLog and to determine whether it’s necessary to deploy the database. You could either run it as a separate deployment step for each database, or you could add it to the top of an existing script which deploys your database.
+To do the same thing in your own deployment projects, you’ll want to use some code that looks like this at the beginning of your process to read the \__DeployLog and to determine whether it’s necessary to deploy the database. You could either run it as a separate deployment step for each database, or you could add it to the top of an existing script which deploys your database.
 
 <script src="https://gist.github.com/Alex-Yates/042ebe90f7a1586dd39d9739eca377db.js"></script>
 
