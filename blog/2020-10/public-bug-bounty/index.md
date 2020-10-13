@@ -54,6 +54,6 @@ For the full list of inclusions and exclusions [check the full brief on our Bugc
 
 Rewards range from $150-$3000 depending on the severity of the findings, and we use the Bugcrowd VRT and CVSS scoring to help us make consistent judgments about that.
 
-## Come and join us keep Octopus safer
+## Help us make Octopus safer
 
 If you’re interested in helping keep Octopus secure, and you’d want some recognition for that work, I encourage you to check out our bounty program on Bugcrowd and join in! If you have any feedback on how we’re running this program, or if you’d like to report a vulnerability that is out of scope for this bounty program, please drop us a line over at security@octopus.com. 
