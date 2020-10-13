@@ -68,7 +68,7 @@ To reference the secret created as a custom resource, we take the resource name 
 
 ![](env-from-container.png "width=500")
 
-To prove that the environment variables have been configured correctly, we'll deploy the Docker image [mcasperson/printenvironment](https://hub.docker.com/r/mcasperson/printenvironment), which is a simple web app that prints the environment variables to a web page. This image exposes port 8080:
+To prove that the environment variables have been configured correctly, we'll deploy the Docker image [mcasperson/printenvironment](https://hub.docker.com/r/mcasperson/printenvironment) (source code is on [GitHub](https://github.com/mcasperson/PrintEnvironment)), which is a simple web app that prints the environment variables to a web page. This image exposes port 8080:
 
 ![](container.png "width=500")
 
