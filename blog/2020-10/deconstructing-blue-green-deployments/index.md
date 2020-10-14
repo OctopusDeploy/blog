@@ -96,14 +96,7 @@ spec:
       targetPort: ''
       protocol: TCP
   selector:
-    Octopus.Project.Id: '#{Octopus.Project.Id | ToLower}'
-    Octopus.Environment.Id: '#{Octopus.Environment.Id | ToLower}'
-    Octopus.Deployment.Tenant.Id: >-
-      #{unless Octopus.Deployment.Tenant.Id}untenanted#{/unless}#{if
-      Octopus.Deployment.Tenant.Id}#{Octopus.Deployment.Tenant.Id |
-      ToLower}#{/if}
-    FeatureBranch: '#{PackagePreRelease}'
-
+    Octopus.Deployment.Id: '#{Octopus.Deployment.Id}'
 ```
 
 ## Performing a manual health check
@@ -142,14 +135,7 @@ spec:
       targetPort: ''
       protocol: TCP
   selector:
-    Octopus.Project.Id: '#{Octopus.Project.Id | ToLower}'
-    Octopus.Environment.Id: '#{Octopus.Environment.Id | ToLower}'
-    Octopus.Deployment.Tenant.Id: >-
-      #{unless Octopus.Deployment.Tenant.Id}untenanted#{/unless}#{if
-      Octopus.Deployment.Tenant.Id}#{Octopus.Deployment.Tenant.Id |
-      ToLower}#{/if}
-    FeatureBranch: '#{PackagePreRelease}'
-
+    Octopus.Deployment.Id: '#{Octopus.Deployment.Id}'
 ```
 
 ## Cleaning up the resources
