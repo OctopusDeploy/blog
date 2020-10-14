@@ -18,6 +18,8 @@ In this blog post and associated screencast I'll show you how to recreate a blue
 
 ## Screencast
 
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/QSyKg0z6GLo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Creating the initial deployment
 
 For this demo we will deploy the [httpd](https://hub.docker.com/_/httpd) docker image into Kubernetes. This gives us a web server we can point our browser and command line tools at, and we'll make use of the tags like `2.4.46-alpine` as a way of simulating feature branches.
@@ -64,11 +66,11 @@ We need to create two variables to capture the name of a feature branch.
 
 The first variable is called `PackagePreRelease`, and the value is set to `#{Octopus.Action[Deploy HTTPD].Package[httpd].PackageVersion | VersionPreReleasePrefix}`. This template string extracts the version (or image tag) from the container called `httpd` in the step called `Deploy HTTPD`, and extracts the prerelease string via the `VersionPreReleasePrefix` filter (available in Octopus 2020.5).
 
-This means that the `PackagePreRelease` variable will be empty for a mainline deployment, and set to `alpine` for what we were calling feature branch deployments in this demo.
+This means that the `PackagePreRelease` variable will be empty for a mainline deployment, and set to `alpine` for what we are calling feature branch deployments in this demo.
 
 The second variable is called `ServiceSuffix`, and the value is set to `#{if PackagePreRelease}-#{PackagePreRelease}#{/if}`. This template prepends a dash before the value of the `PackagePreRelease` if `PackagePreRelease` is not empty. Otherwise `ServiceSuffix` is left as an empty string.
 
-This means that the `ServiceSuffix` variable will be empty for a mainline deployment, and set to `-alpine` for what we were calling feature branch deployments in this demo.
+This means that the `ServiceSuffix` variable will be empty for a mainline deployment, and set to `-alpine` for what we are calling feature branch deployments in this demo.
 
 ## Creating a temporary service for the green deployment
 
@@ -76,7 +78,7 @@ In order to do anything useful with the newly deployed pods, which we refer to a
 
 For this demo we only need to expose the pods internally in the Kubernetes cluster to perform our tests, so we create a cluster IP service.
 
-The service selector match pods based on the `Octopus.Project.Id`, `Octopus.Environment.Id`, `Octopus.Deployment.Tenant.Id` and `FeatureBranch` labels. The labels prefixed with `Octopus` are added automatically by Octopus during deployment, and the `FeatureBranch` label matches our custom label holding either an empty string for a mainline deployment or the feature branch name.
+The service selector matches pods based on the `Octopus.Project.Id`, `Octopus.Environment.Id`, `Octopus.Deployment.Tenant.Id` and `FeatureBranch` labels. The labels prefixed with `Octopus` are added automatically by Octopus during deployment, and the `FeatureBranch` label matches our custom label holding either an empty string for a mainline deployment or the feature branch name.
 
 The YAML below can be pasted into the **Edit YAML** section of the **Deploy Kubernetes service resource** step to configure the resource:
 
@@ -108,7 +110,7 @@ spec:
 
 One context in which you need to create your own blue/green deployments is to run health checks outside of the liveness probes exposed by Kubernetes. This could be a manual check done by a human, or, as we'll demo here, an automated test with an external tool. In our case we'll use `curl` to check the health of our deployment.
 
-This is done inside a **Run a kubectl CLI Script** step, where we call `kubectl` to run a container with the `curl` installed inside the cluster to complete the check:
+This is done inside a **Run a kubectl CLI Script** step, where we call `kubectl` to run a container with `curl` installed inside the cluster to complete the check:
 
 ```
 echo "Testing http://httpdservice-green#{ServiceSuffix}"
@@ -116,15 +118,15 @@ kubectl run --attach=true --restart=Never test-#{Octopus.Deployment.Id | ToLower
 echo $?
 ```
 
-The image name is built up using the variables exposed by an additional package reference:
+The image name is built up using variables exposed by an additional package reference:
 
 ![](curl-package-reference.png "width=500")
 
 ## Creating the persistent service
 
-Once the health check passes, we then need to either create (if this if the first deployment) or redirect the persistent service that external clients use to access the application we are deploying. Redirecting traffic on this persistent service is how we switch traffic from the old blue deployment to the new green deployment.
+Once the health check passes, we then need to either create (if this is the first deployment), or redirect, the persistent service that external clients use to access the application we are deploying. Redirecting traffic on this persistent service is how we switch traffic from the old blue deployment to the new green deployment.
 
-This service is much the same as the temporary service we created earlier, with the exception that it is a load balancer with a public IP address:
+This service is much the same as the temporary service we created earlier, with the exception that it is a load balancer with a public IP address, and we will not delete it at the end of the deployment:
 
 ```YAML
 apiVersion: v1
@@ -163,6 +165,6 @@ Note that we match old resources based on the fact that their `Octopus.Deploymen
 
 ## Conclusion
 
-The example presented here is the minimum required to implement a blue/green deployment, but by adding new steps into the process you can customize the process however you wish. Manual intervention steps could be added to allow QA staff to verify the new deployment, more complex automated tests could be performed, or multiple resources could be deployed and switched over as a group.
+The example presented here is the minimum required to implement a blue/green deployment, but by adding new steps into the process you can customize the workflow however you wish. Manual intervention steps could be added to allow QA staff to verify the new deployment, more complex automated tests could be performed, or multiple resources could be deployed and switched over as a group.
 
 Happy deployments!
