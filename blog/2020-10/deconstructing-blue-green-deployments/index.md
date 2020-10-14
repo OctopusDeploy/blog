@@ -115,7 +115,7 @@ This is done inside a **Run a kubectl CLI Script** step, where we call `kubectl`
 ```
 echo "Testing http://httpdservice-green#{ServiceSuffix}"
 kubectl run --attach=true --restart=Never test-#{Octopus.Deployment.Id | ToLower} --image=#{Octopus.Action.Package[curl].PackageId}:#{Octopus.Action.Package[curl].PackageVersion} -- --fail http://httpdservice-green#{ServiceSuffix}
-echo $?
+exit $?
 ```
 
 The image name is built up using variables exposed by an additional package reference:
