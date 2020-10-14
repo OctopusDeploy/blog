@@ -78,7 +78,7 @@ In order to do anything useful with the newly deployed pods, which we refer to a
 
 For this demo we only need to expose the pods internally in the Kubernetes cluster to perform our tests, so we create a cluster IP service.
 
-The service selector matches pods based on the `Octopus.Project.Id`, `Octopus.Environment.Id`, `Octopus.Deployment.Tenant.Id` and `FeatureBranch` labels. The labels prefixed with `Octopus` are added automatically by Octopus during deployment, and the `FeatureBranch` label matches our custom label holding either an empty string for a mainline deployment or the feature branch name.
+The service selector matches pods based on the `Octopus.Deployment.Id` label, which matches any pods created during this current deployment.
 
 The YAML below can be pasted into the **Edit YAML** section of the **Deploy Kubernetes service resource** step to configure the resource:
 
