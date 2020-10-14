@@ -16,7 +16,11 @@ DevOps is everywhere! It’s used as hashtags, the name of products, and job tit
 
 Needless to say, DevOps is hot!
 
-In more recent years a new title has emerged from Google, Site Reliability Engineer (SRE). SRE is not yet as popular as its predecessor, but it is often used synonymously by recruiters. With all the hype you have to wonder, are they worth it? And if so, how do you get there? Looking at job postings will likely just confuse you. Everything from 10 years of C# experience to intimate knowledge of Active Directory domain trusts are listed in the job descriptions. With such a broad set of requirements, where do you even begin?
+The job title Site Reliability Engineer(SRE) has emerged in recent years from Google. SRE isn’t yet as popular as its predecessor, but it is often used synonymously by recruiters. 
+
+In this post, I share my thoughts on how somebody new to the industry can aspire to these roles.
+
+Looking at job postings will likely just confuse you. Everything from 10 years of C# experience to intimate knowledge of Active Directory domain trusts are listed in the job descriptions. With such a broad set of requirements, where do you even begin?
 
 Start by understanding that DevOps and SRE are advanced job roles. You can start a career in web development by applying for associate-level positions and system administration at the help desk. DevOps and SRE don’t yet have that entry position. Typically a DevOps practitioner has already spent a few years working in technology. This is because DevOps and SRE roles require an understanding of development and infrastructure. It’s difficult to learn both disciplines at once, which is why most practitioners have an existing background in one or the other.
 
