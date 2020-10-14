@@ -10,11 +10,11 @@ tags:
  - Octopus
 ---
 
-In addition to the standard deployment strategies of recreate or rolling natively implemented by Kubernetes, Octopus exposes the ability to perform blue/green deployments. This tick box option allows individual Kubernetes deployments to be deployed in a blue/green fashion, complete with service cut over and a cleanup of old resources.
+ Octopus exposes the ability to perform blue/green deployments in addition to the standard deployment strategies of recreate or rolling natively implemented by Kubernetes. This tick box option allows individual Kubernetes deployments to be deployed in a blue/green fashion, complete with service cut over and a cleanup of old resources.
 
-But there are times when this checkbox approach doesn't work. If you want to halt the cut over to the new deployment to allow for manual testing, orchestrate multiple deployments (for example a frontend and backend application), or use feature branches, the you need to recreate the blue/green deployment process for yourself.
+But there are times when this checkbox approach is not flexible enough. If you want to halt the cut over to the new deployment to allow for manual testing, orchestrate multiple deployments (for example a frontend and backend application), or use feature branches, then you need to recreate the blue/green deployment process for yourself.
 
-In this blog post and associated screencast I'll show you how to recreate a blue/green deployment, and deploy a mock feature branch as an demonstration of the process.
+In this blog post and associated screencast I'll show you how to recreate a blue/green deployment, and deploy a mock feature branch as a demonstration of the process.
 
 ## Screencast
 
@@ -24,9 +24,9 @@ For this demo we will deploy the [httpd](https://hub.docker.com/_/httpd) docker 
 
 We start by deploying a new Kubernetes deployment resource with the **Deploy Kubernetes containers** step.
 
-The resource must have a unique name, which we create by appending the string `-#{Octopus.Deployment.Id | ToLower}` to the resource name. The `Octopus.Deployment.Id` variable is unique for each deployment, and so we can be sure that each new deployment will create a new Kubernetes resource.
+The deployment resource must have a unique name, which we create by appending the string `-#{Octopus.Deployment.Id | ToLower}` to the resource name. The `Octopus.Deployment.Id` variable is unique for each deployment, and so we can be sure that each new deployment will create a new Kubernetes resource.
 
-We also define a label called `FeatureBranch` set to the value of a variable we'll create in the next section called `PackagePreRelease`.
+We also define a label called `FeatureBranch` set to the value of a variable called `PackagePreRelease` we'll create in the next section.
 
 The YAML below can be pasted into the **Edit YAML** section of the **Deploy Kubernetes containers** step to configure the resource:
 
@@ -62,10 +62,107 @@ spec:
 
 We need to create two variables to capture the name of a feature branch.
 
-The first variable is called `PackagePreRelease`, and the value is set to `#{Octopus.Action[Deploy HTTPD].Package[httpd].PackageVersion | VersionPreReleasePrefix}`. This template string extracts the version (or image tag) from the container called `httpd` in the step called `Deploy HTTPD`, and extracts the prerelease string via the `VersionPreReleasePrefix` filter.
+The first variable is called `PackagePreRelease`, and the value is set to `#{Octopus.Action[Deploy HTTPD].Package[httpd].PackageVersion | VersionPreReleasePrefix}`. This template string extracts the version (or image tag) from the container called `httpd` in the step called `Deploy HTTPD`, and extracts the prerelease string via the `VersionPreReleasePrefix` filter (available in Octopus 2020.5).
 
 This means that the `PackagePreRelease` variable will be empty for a mainline deployment, and set to `alpine` for what we were calling feature branch deployments in this demo.
 
 The second variable is called `ServiceSuffix`, and the value is set to `#{if PackagePreRelease}-#{PackagePreRelease}#{/if}`. This template prepends a dash before the value of the `PackagePreRelease` if `PackagePreRelease` is not empty. Otherwise `ServiceSuffix` is left as an empty string.
 
 This means that the `ServiceSuffix` variable will be empty for a mainline deployment, and set to `-alpine` for what we were calling feature branch deployments in this demo.
+
+## Creating a temporary service for the green deployment
+
+In order to do anything useful with the newly deployed pods, which we refer to as the green half of the blue/green deployment, we need to expose the pods behind a service.
+
+For this demo we only need to expose the pods internally in the Kubernetes cluster to perform our tests, so we create a cluster IP service.
+
+The service selector match pods based on the `Octopus.Project.Id`, `Octopus.Environment.Id`, `Octopus.Deployment.Tenant.Id` and `FeatureBranch` labels. The labels prefixed with `Octopus` are added automatically by Octopus during deployment, and the `FeatureBranch` label matches our custom label holding either an empty string for a mainline deployment or the feature branch name.
+
+The YAML below can be pasted into the **Edit YAML** section of the **Deploy Kubernetes service resource** step to configure the resource:
+
+```YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: 'httpdservice-green#{ServiceSuffix}'
+spec:
+  type: ClusterIP
+  ports:
+    - name: web
+      port: 80
+      nodePort: ''
+      targetPort: ''
+      protocol: TCP
+  selector:
+    Octopus.Project.Id: '#{Octopus.Project.Id | ToLower}'
+    Octopus.Environment.Id: '#{Octopus.Environment.Id | ToLower}'
+    Octopus.Deployment.Tenant.Id: >-
+      #{unless Octopus.Deployment.Tenant.Id}untenanted#{/unless}#{if
+      Octopus.Deployment.Tenant.Id}#{Octopus.Deployment.Tenant.Id |
+      ToLower}#{/if}
+    FeatureBranch: '#{PackagePreRelease}'
+
+```
+
+## Performing a manual health check
+
+One context in which you need to create your own blue/green deployments is to run health checks outside of the liveness probes exposed by Kubernetes. This could be a manual check done by a human, or, as we'll demo here, an automated test with an external tool. In our case we'll use `curl` to check the health of our deployment.
+
+This is done inside a **Run a kubectl CLI Script** step, where we call `kubectl` to run a container with the `curl` installed inside the cluster to complete the check:
+
+```
+echo "Testing http://httpdservice-green#{ServiceSuffix}"
+kubectl run --attach=true --restart=Never test-#{Octopus.Deployment.Id | ToLower} --image=#{Octopus.Action.Package[curl].PackageId}:#{Octopus.Action.Package[curl].PackageVersion} -- --fail http://httpdservice-green#{ServiceSuffix}
+echo $?
+```
+
+The image name is built up using the variables exposed by an additional package reference:
+
+![](curl-package-reference.png "width=500")
+
+## Creating the persistent service
+
+Once the health check passes, we then need to either create (if this if the first deployment) or redirect the persistent service that external clients use to access the application we are deploying. Redirecting traffic on this persistent service is how we switch traffic from the old blue deployment to the new green deployment.
+
+This service is much the same as the temporary service we created earlier, with the exception that it is a load balancer with a public IP address:
+
+```YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: 'httpdservice#{ServiceSuffix}'
+spec:
+  type: LoadBalancer
+  ports:
+    - name: web
+      port: 80
+      nodePort: ''
+      targetPort: ''
+      protocol: TCP
+  selector:
+    Octopus.Project.Id: '#{Octopus.Project.Id | ToLower}'
+    Octopus.Environment.Id: '#{Octopus.Environment.Id | ToLower}'
+    Octopus.Deployment.Tenant.Id: >-
+      #{unless Octopus.Deployment.Tenant.Id}untenanted#{/unless}#{if
+      Octopus.Deployment.Tenant.Id}#{Octopus.Deployment.Tenant.Id |
+      ToLower}#{/if}
+    FeatureBranch: '#{PackagePreRelease}'
+
+```
+
+## Cleaning up the resources
+
+Once traffic has been redirected to our new application, we can clean up the old resources. This is performed with another **Run a kubectl CLI Script** step:
+
+```
+kubectl delete service httpdservice-green#{ServiceSuffix}
+kubectl delete deployment -l Octopus.Project.Id=#{Octopus.Project.Id | ToLower},Octopus.Environment.Id=#{Octopus.Environment.Id | ToLower},Octopus.Deployment.Tenant.Id=#{unless Octopus.Deployment.Tenant.Id}untenanted#{/unless}#{if Octopus.Deployment.Tenant.Id}#{Octopus.Deployment.Tenant.Id | ToLower}#{/if},Octopus.Deployment.Id!=#{Octopus.Deployment.Id | ToLower},FeatureBranch=#{PackagePreRelease}
+```
+
+Note that we match old resources based on the fact that their `Octopus.Deployment.Id` label does not match the ID of the current deployment. Also, because we match on the `FeatureBranch` label, mainline and feature branch deployments can coexist without one cleaning up the other.
+
+## Conclusion
+
+The example presented here is the minimum required to implement a blue/green deployment, but by adding new steps into the process you can customize the process however you wish. Manual intervention steps could be added to allow QA staff to verify the new deployment, more complex automated tests could be performed, or multiple resources could be deployed and switched over as a group.
+
+Happy deployments!
