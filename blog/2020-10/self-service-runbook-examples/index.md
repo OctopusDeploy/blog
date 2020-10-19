@@ -2,13 +2,16 @@
 title: Self-service runbooks examples
 description: Learn to provide common administrative tasks as self-service runbooks.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-10-21
+metaImage: self-service-runbook-examples.png
+bannerImage: self-service-runbook-examples.png
 tags:
+ - DevOps
  - Runbooks
 ---
+
+![Self-service runbooks examples](self-service-runbook-examples.png)
 
 Breaking down the barriers between developers and operations is the cornerstone of the DevOps philosophy.  Developers want to deliver their code quickly and safely, and in order to do so, they need to perform common administrative tasks that are often firmly in the realm of operations.  Security, auditing, and how to properly perform the operation are the most common reasons that prevent a developer from being able to do these tasks.  
 
