@@ -1,5 +1,5 @@
 ---
-title: Self-service runbooks
+title: Self-service runbooks examples
 description: Learn to provide common administrative tasks as self-service runbooks.
 author: shawn.sesna@octopus.com
 visibility: private
