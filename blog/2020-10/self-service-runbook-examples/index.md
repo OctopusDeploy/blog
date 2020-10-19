@@ -15,7 +15,7 @@ tags:
 
 Breaking down the barriers between developers and operations is the cornerstone of the DevOps philosophy.  Developers want to deliver their code quickly and safely, and in order to do so, they need to perform common administrative tasks that are often firmly in the realm of operations.  Security, auditing, and how to properly perform the operation are the most common reasons that prevent a developer from being able to do these tasks.  
 
-In this post, I cover some example [runbooks](https://octopus.com/docs/runbooks) that empower developers to do the tasks that let them move faster without the need to grant them additional permissions but still ensuring the infrastructure changes they make are captured for auditing.
+In this post, I cover some example [runbooks](https://octopus.com/docs/runbooks) that give developers access to self-service tasks that will keep them moving without granting them additional permissions they don't need. Using runbooks means the infrastructure changes they make are captured and auditable.
 
 ## Auditing and security
 
@@ -24,15 +24,15 @@ Out of the box, Octopus Deploy provides a robust auditing mechanism for runbooks
 - **Runbook consumer**: Runbook consumers can view and execute runbooks.
 - **Runbook producer**: Runbook producers can edit and execute runbooks.
 
-Using these roles along with scoping, you can give a developer the ability to execute a runbook, for instance, in Development and Test, but not Staging or Production.
+Using these roles along with scoping, you can give a developer the ability to execute a runbook, for instance, in development and test, but not staging or production.
 
 ## Examples of self-service tasks
 
-Below is a list of some of the types of activities that could be implemented for self-service.  This is by no means an exhaustive list, but I hope it gives you a starting point for what is possible.
+Below is a list of some of the types of activities that can be implemented for self-service.  This is by no means an exhaustive list, but I hope it gives you a starting point for what is possible.
 
 ### Restarting web applications
 
-Developers typically have elevated or even administrator rights to their development environment.  Once their application has been deployed to a server, permissions are usually restricted to simulate a production-like environment.  IIS has the ability to grant [remote administrative permissions](https://docs.microsoft.com/en-us/iis/manage/remote-administration/remote-administration-for-iis-manager); however, this is to the whole IIS instance and not granular to a specific site/application.  Using a runbook, you could create project specific processes that only start/stop the applications that are related to the Octopus project.
+Developers typically have elevated or even administrator rights to their development environment.  Once their application has been deployed to a server, permissions are usually restricted to simulate a production-like environment.  IIS has the ability to grant [remote administrative permissions](https://docs.microsoft.com/en-us/iis/manage/remote-administration/remote-administration-for-iis-manager); however, this is to the whole IIS instance and not granular to a specific site/application.  Using a runbook, you can create project specific processes that only start/stop the applications that are related to the Octopus project.
 - [Example for IIS](https://octopus.com/docs/runbooks/runbook-examples/routine/iis-maintenance).
 - [Example for Tomcat](https://octopus.com/docs/runbooks/runbook-examples/routine/restarting-tomcat).
 
@@ -53,7 +53,7 @@ Testing database updates is usually a one way trip.  Unless you execute everythi
 
 ### Restoring a database
 
-Along with the ability to backup a database, having the ability to restore a database without needing to wait for a DBA, or filling out a support ticket could drastically reduce development lead times.  Using a runbook, you could not only restore a backup, but you could also provide a method for restoring a database from a different environment, such as restoring a production copy to test.
+Along with the ability to backup a database, having the ability to restore a database without needing to wait for a DBA, or filling out a support ticket could drastically reduce development lead times.  Using a runbook, you can not only restore a backup, but you can also provide a method for restoring a database from a different environment, such as restoring a production copy to test.
 
 - [Example for SQL Server](https://octopus.com/docs/runbooks/runbook-examples/databases/restore-mssql-database).
 - [Example for SQL Server, restoring to different environments](https://octopus.com/docs/runbooks/runbook-examples/databases/restore-mssql-database-to-environment).
@@ -62,7 +62,7 @@ Along with the ability to backup a database, having the ability to restore a dat
 
 ### Provisioning entire environments for feature branch development
 
-In a previous blog post, we talked about [feature branching](https://octopus.com/blog/rethinking-feature-branch-deployments) and implementing dynamic environments whenever a new feature branch is created, then tearing it down when the branch is deleted.  This type of self-service allows the developers to provision production-like environments to test their code on, then remove them when they’re no longer necessary.
+In a previous blog post, we talked about [feature branching](https://octopus.com/blog/rethinking-feature-branch-deployments) and implementing dynamic environments whenever a new feature branch is created, then tearing it down when the branch is deleted.  This type of self-service allows developers to provision production-like environments to test their code on, then remove them when they’re no longer necessary.
 
 - [Example of deploying Azure ARM](https://octopus.com/docs/runbooks/runbook-examples/azure/resource-groups).
 - [Example of provisioning an Azure App Service](https://octopus.com/docs/runbooks/runbook-examples/azure/provision-app-service).
