@@ -12,6 +12,8 @@ tags:
  - SRE
 ---
 
+![From Sysadmin to SRE ](blogimage-sysadmin-to-sre.png)
+
 DevOps is everywhere! It’s used as hashtags, the name of products, and job titles. Digital Trends lists DevOps Engineer as the third-best tech job title for 2020. Indeed.com has over 4,000 job postings for the title DevOps engineer, and LinkedIn has over 3 times that number with more than 13,000 job postings. 
 
 Needless to say, DevOps is hot!
