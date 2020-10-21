@@ -79,8 +79,8 @@ To simplify, think of continuous integration as automating the build phase of so
 Everything points back to automation, it’s what makes all of it possible. Without automation the portal would not open. Entering the portal, source control is your stronghold. With a stronghold in place, release pipelines carry you through the fog into the uncharted territory of the developer. Learning the technology and practices listed in this article will open many possible paths on your DevOps skill tree. Where you go next will be up to you. 
 
 Resources:
- - http://download.microsoft.com/download/C/4/A/C4A14099-FEA4-4CB3-8A8F-A0C2BE5A1219/The%20Release%20Pipeline%20Model.pdf
- - https://channel9.msdn.com/Events/WinOps/WinOps-Conf-2016/The-Release-Pipeline-Model
- - https://www.youtube.com/watch?v=ccEO5buASv8
- - https://crate.io/a/infrastructure-as-code-part-one/
- - https://crate.io/a/infrastructure-as-code-part-two-a-closer-look-at-terraform/
+ - [Microsoft release pipeline model operations manual](http://download.microsoft.com/download/C/4/A/C4A14099-FEA4-4CB3-8A8F-A0C2BE5A1219/The%20Release%20Pipeline%20Model.pdf)
+ - [The release pipeline model presentation from WinOps Conf 2016](https://channel9.msdn.com/Events/WinOps/WinOps-Conf-2016/The-Release-Pipeline-Model)
+ - [The build release pipeline Model for mere mortals presentation from PowerShell + DevOps Global Summit 2018](https://www.youtube.com/watch?v=ccEO5buASv8)
+ - [Crate.io - Infrastructure as Code, Part One](https://crate.io/a/infrastructure-as-code-part-one/)
+ - [Crate.io - Infrastructure as Code, Part Two: A Closer Look at Terraform](https://crate.io/a/infrastructure-as-code-part-two-a-closer-look-at-terraform/)
