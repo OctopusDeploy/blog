@@ -8,8 +8,8 @@ metaImage: blogimage-sysadmin-to-sre.png
 bannerImage: blogimage-sysadmin-to-sre.png
 tags:
  - DevOps
- - SRE
  - Sysadmin
+ - SRE
 ---
 
 DevOps is everywhere! It’s used as hashtags, the name of products, and job titles. Digital Trends lists DevOps Engineer as the third-best tech job title for 2020. Indeed.com has over 4,000 job postings for the title DevOps engineer, and LinkedIn has over 3 times that number with more than 13,000 job postings. 
@@ -22,7 +22,7 @@ In this post, I share my thoughts on how somebody new to the industry can aspire
 
 Looking at job postings will likely just confuse you. Everything from 10 years of C# experience to intimate knowledge of Active Directory domain trusts are listed in the job descriptions. With such a broad set of requirements, where do you even begin?
 
-Start by understanding that DevOps and SRE are advanced job roles. You can start a career in web development by applying for associate-level positions and system administration at the help desk. DevOps and SRE don’t yet have that entry position. Typically a DevOps practitioner has already spent a few years working in technology. This is because DevOps and SRE roles require an understanding of development and infrastructure. It’s difficult to learn both disciplines at once, which is why most practitioners have an existing background in one or the other.
+Start by understanding that DevOps and SRE are advanced job roles. You can start a career in web development by applying for entry-level positions and system administration at the help desk. DevOps and SRE don’t yet have that entry position. Typically a DevOps practitioner has already spent a few years working in technology. This is because DevOps and SRE roles require an understanding of development and infrastructure. It’s difficult to learn both disciplines at once, which is why most practitioners have an existing background in one or the other.
 
 I started my career on the help desk. Moved up to a system administrator and eventually landed a gig as a senior systems engineer. When I first started hearing about DevOps through Twitter, blog posts, and conference talks, I thought it was reserved for startups. So, I ignored it until my passion for automation brought me to the DevOps practice of Infrastructure as Code. It was episode 275 of the PowerScripting podcast with guest Steve Murawski where I first heard about DSC (Desired State Configuration). Infrastructure as Code was the single idea that pulled me into the world of DevOps. It’s the portal sysadmins of all operating system variants can use to transition into DevOps.
 
@@ -62,11 +62,11 @@ Tooling that has traditionally been administered by release engineers has become
 
 Yes, scripts are code too. 
 
-Release engineering is a sub-discipline of software engineering which focuses on the compilation, assembly, and delivery of source code. There is a lot you don’t need to know about release engineering, but two types of tools exist that you won’t want to live without; continuous integration and continuous deployment collectively known as CI/CD.
+Release engineering is a sub-discipline of software engineering which focuses on the compilation, assembly, and delivery of source code. There is a lot you don’t need to know about release engineering, but two types of tools exist that you won’t want to live without; continuous integration and continuous delivery collectively known as CI/CD.
 
-TeamCity, Octopus Deploy, Jenkins, Azure DevOps, and GitHub Actions are all tools that live in this space. Focusing on tools is going to confuse you because each of these tools contain features that allow you to build CI/CD systems. But, continuous integration and continuous deployment are actually software engineering practices. 
+TeamCity, Octopus Deploy, Jenkins, Azure DevOps, and GitHub Actions are all tools that live in this space. Focusing on tools is going to confuse you because each of these tools contain features that allow you to build CI/CD systems. But, continuous integration and continuous delivery are actually software engineering practices. 
 
-To simplify, think of continuous integration as automating the build phase of software, and continuous deployment as automating the release and deployment of that software. Continuous integration, continuous deployment, and source control combine to make a release pipeline. A release pipeline is a conceptual process that takes your code from source to production for you. It is through source control and CI/CD that you can get out of the business of clicking buttons.
+To simplify, think of continuous integration as automating the build phase of software, and continuous delivery as automating the release and deployment of that software. Continuous integration, continuous delivery, and source control combine to make a release pipeline. A release pipeline is a conceptual process that takes your code from source to production for you. It is through source control and CI/CD that you can get out of the business of clicking buttons.
 
 **Scenario**: You’ve automated the deployment, provisioning, and configuration of new infrastructure, and all the infrastructure code is stored in source control. You are at the point where you can scale the infrastructure up and down using this automation. However, it has become difficult to identify which version of the code was last deployed, deployments are done manually at the command-line, and typos frequently make it into the codebase.
 
