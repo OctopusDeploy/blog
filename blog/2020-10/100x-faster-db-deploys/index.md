@@ -3,7 +3,7 @@ title: "100x faster db deploys"
 description: Learn how to skip unnecessary schema compares in tightly coupled systems for faster database deployments.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-10-14
+published: 2020-10-27
 metaImage: 
 bannerImage: 
 tags:
