@@ -13,7 +13,7 @@ tags:
 
 ## Skipping unnecessary schema compares in tightly coupled systems
 
-[toc]
+!toc
 
 ## The problem: Tightly coupled systems 
 
