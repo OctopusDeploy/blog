@@ -1,5 +1,5 @@
 ---
-title: "100x faster db deploys: skipping unnecessary schema compares in tightly coupled systems"
+title: "100x faster db deploys"
 description: Learn how to skip unnecessary schema compares in tightly coupled systems for faster database deployments.
 author: alex.yates@dlmconsultants.com
 visibility: public
@@ -10,8 +10,10 @@ tags:
  - DevOps
  - Database Deployments
 ---
-[toc]
 
+## Skipping unnecessary schema compares in tightly coupled systems
+
+[toc]
 
 ## The problem: Tightly coupled systems 
 
