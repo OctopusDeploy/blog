@@ -4,12 +4,14 @@ description: Learn how IAM roles allow users to temporarily assume new permissio
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-10-28
-metaImage: 
-bannerImage: 
+metaImage: blogimage-awsiam.png
+bannerImage: blogimage-awsiam.png
 tags:
- - Octopus
  - DevOps
+ - AWS
 ---
+
+![Using AWS IAM roles in Octopus](blogimage-awsiam.png)
 
 Managing credentials for cloud providers is a challenge, especially when you consider that you don’t have the luxury of physical security, meaning one leaked admin key could grant access to your entire account from anywhere in the world. Nor are cloud accounts immune from the proverbial "rf -rf" scenario where an admin account accidentally deletes resources they shouldn’t.
 
