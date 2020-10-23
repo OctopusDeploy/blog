@@ -2,8 +2,8 @@
 title: Using AWS IAM roles in Octopus
 description: Learn how IAM roles allow users to temporarily assume new permissions or perform work from an EC2 instance without any additional credentials.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2020-10-28
 metaImage: 
 bannerImage: 
 tags:
@@ -21,15 +21,15 @@ In this blog post, we’ll take a look at IAM roles in AWS and learn how they ca
 
 Roles can be created in the AWS IAM console. When you create a new role, you will be presented with a list of services that the role will apply to. With the default selection of **AWS service** selected, click the **EC2** link:
 
-![](createrole.png "width=500")
+![Create role](createrole.png "width=500")
 
 We won’t attach any permissions or tags to this role, so skip to the end, give the role a name and create it:
 
-![](finishcreaterole.png "width=500")
+![Finish creating the role](finishcreaterole.png "width=500")
 
-Open up the newly created role, click the **Trust relationships** tab, and click **Edit trust relationship**:
+Open the newly created role, click the **Trust relationships** tab, and click **Edit trust relationship**:
 
-![](trustrelationships.png "width=500")
+![Trust relationship](trustrelationships.png "width=500")
 
 The trust relationship is a JSON structure that configures which service or user can inherit the role. Because we selected the EC2 service when creating the role, the EC2 service has been granted the ability to assume it:
 
@@ -52,7 +52,7 @@ The trust relationship is a JSON structure that configures which service or user
 
 The role can be assigned to a new EC2 instance when it is created:
 
-![](ec2role.png "width=500")
+![Assign a role to an EC2 instance](ec2role.png "width=500")
 
 When you log in to this instance, the name of the role assigned to the VM is available from the [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) HTTP interface with the command:
 
@@ -68,9 +68,9 @@ aws sts get-caller-identity
 
 In both cases we see the role **mytestrole**:
 
-![](rolename.png "width=500")
+![Terminal output](rolename.png "width=500")
 
-What this means is that tools that are aware of the instance metadata HTTP interface can operate with the role assigned to the EC2 instance. So long as you have access to the VM, you can interact with AWS with the associated IAM role.
+What this means is that tools that are aware of the instance metadata HTTP interface can operate with the role assigned to the EC2 instance. As long as you have access to the VM, you can interact with AWS with the associated IAM role.
 
 The AWS CLI is one example of a tool that is aware of the instance metadata, and Octopus Tentacles and Workers are another. We can take advantage of the EC2 IAM roles and Octopus Workers to run commands against AWS services without any AWS credentials.
 
@@ -78,19 +78,19 @@ The AWS CLI is one example of a tool that is aware of the instance metadata, and
 
 To connect to the Linux VM we need to create an **SSH Key Pair** account with the certificate used when the VM was created. For VMs created with Amazon AMIs, the username is **ec2-user**:
 
-![](keypairaccount.png "width=500")
+![Key pair account](keypairaccount.png "width=500")
 
 We can then create an SSH Worker and connect to the VM:
 
-![](worker.png "width=500")
+![Creating a Worker](worker.png "width=500")
 
 Now we can add a **Run an AWS CLI Script** step, set the script to run on the worker pool containing the Worker we just created, and select the option to **Execute using the AWS service role for an EC2 instance**:
 
-![](awsscriptstepauth.png "width=500")
+![AWS service role](awsscriptstepauth.png "width=500")
 
 Now if we run the command `aws sts get-caller-identity` in this script, we see the same results as before:
 
-![](awscriptresult.png "width=500")
+![Task log](awscriptresult.png "width=500")
 
 We now have the ability to perform deployments and execute scripts without needing to share AWS credentials via the Worker and the IAM role it assumes from the underlying VM.
 
@@ -144,15 +144,15 @@ metadata:
 
 After this config map is applied, we can configure our Kubernetes target to **Execute using the AWS service role for an EC2 instance**:
 
-![](eksiamrole.png "width=500")
+![EKS IAM Role](eksiamrole.png "width=500")
 
 We also need to ensure that the target uses the Worker connecting to the EC2 instance with the IAM role applied:
 
-![](eksworker.png "width=500")
+![EKS Worker](eksworker.png "width=500")
 
 Our Kubernetes target will now complete a health check without any AWS credentials, and instead, using the IAM role assigned to the VM, the Worker connects to:
 
-![](ekshealth.png "width=500")
+![EKS health check](ekshealth.png "width=500")
 
 ## Conclusion
 
