@@ -336,24 +336,23 @@ You can find the AMI for linux and your region [here](https://docs.aws.amazon.co
 :::
 
 
-
 ## Build the tear-down infrastructure process 
 
 We now need to define our Runbook process for our Tear down runbook. 
 
-### Step one Manaul Intervention 
+### Step one Manaul Intervention  TO-DO
 
 Again we will use a manual interention to approval the Runbook however I'm only going to have this step run for the production environment.
 
 When I add the step I can set a run condtion to only run for a particular environment and this case it will be production.
 
-### Step two Delete CloudFormation Template
+### Step two Delete CloudFormation Template TO-DO
 
  Click **ADD STEP**, Search for **CloudFormation**, click **Delete an AWS CloudFormation template** from the list of installed step templates and click **ADD**.
 
 
 
-### Step three Delete Octopus Target 
+### Step three Delete Octopus Target TO-DO
 
 
 ## Publishing our Runbooks
@@ -368,8 +367,20 @@ To publish a snapshot, click the publish button on the task page after executing
 
 ![octopus-runbook-publish](octopus-runbook-publish.png)
 
-## Tear down on a scheduled trigger 
+## Tear down on a scheduled trigger - TO-DO
 
+Often, when people create infrastructure, it can be forgotten about, leading to some pretty hefty bills from their cloud provider. Having a Runbook to automate the teardown of development and testing infrastructure is excellent, but if you forget to run it, it's still going to run up costs with your cloud provider. 
+
+In Octopus, you can schedule runs of your runbook and to ensure infrastructure is powered down when it's not needed. For example, if your test team only work 9AM to 5PM, then typically their infrastructure isn't needed outside those hours.
+
+
+:::warning
+Runbooks are only available to triggers when they have been published.
+:::
+
+To setup a trigger navigate to **{{Project, Operations, Runbooks, Triggers}}** and click **ADD SCHEDULED TRIGGER** 
+
+![octopus-triggers](octopus-triggers.png)
 
 
 
