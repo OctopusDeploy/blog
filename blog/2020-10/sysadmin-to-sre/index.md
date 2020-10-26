@@ -84,3 +84,7 @@ Resources:
  - [The build release pipeline Model for mere mortals presentation from PowerShell + DevOps Global Summit 2018](https://www.youtube.com/watch?v=ccEO5buASv8)
  - [Crate.io - Infrastructure as Code, Part One](https://crate.io/a/infrastructure-as-code-part-one/)
  - [Crate.io - Infrastructure as Code, Part Two: A Closer Look at Terraform](https://crate.io/a/infrastructure-as-code-part-two-a-closer-look-at-terraform/)
+
+ ---
+
+ Josh Duffney is a Site Reliability Engineer. He [writes](https://duffney.io/posts/), presents, [teaches](https://app.pluralsight.com/profile/author/josh-duffney), and [tweets](https://twitter.com/joshduffney) about Automation, DevOps, Cloud, and optimizing output while minimizing input.
