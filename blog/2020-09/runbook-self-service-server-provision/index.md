@@ -72,7 +72,7 @@ It is possible to AWS IAM roles rather than the IAM credentials. If the Octopus 
 
 Now we have all our resources created. We can go ahead and start configuring our Octopus Project and Runbooks to provision our infrastructure.
 
-If your new to Octopus and don't have any projects, you will need to create a new one, and you can find information on how to do this [here](https://octopus.com/docs/projects). If you have an existing project that you want to use, you can skip this step.   
+If you're new to Octopus and don't have any projects, you will need to create a new one, and you can find information on how to do this [here](https://octopus.com/docs/projects). If you have an existing project that you want to use, you can skip this step.   
 
 ### Create Project Variables
 
@@ -340,20 +340,37 @@ You can find the AMI for linux and your region [here](https://docs.aws.amazon.co
 
 We now need to define our Runbook process for our Tear down runbook. 
 
-### Step one Manaul Intervention  TO-DO
+### Step one Manaul Intervention
 
-Again we will use a manual interention to approval the Runbook however I'm only going to have this step run for the production environment.
+Again we will use a manual interention to approve the Runbook run however I'm only going to have this step run for the production environment. The reason for this is so that someone doesn't accidently destory our production infrastcture and have an intervetion prevents that from happening.
 
 When I add the step I can set a run condtion to only run for a particular environment and this case it will be production.
 
-### Step two Delete CloudFormation Template TO-DO
+Click on the Runbook and click **DEFINE YOUR RUNBOOK PROCESS** , Click **ADD STEP**, Search for **manual intervention**, click **Manual Intervention Required** from the list of installed step templates and click **ADD**.
+
+In the condtions environment section, click **Run only for specific environments** and choose production.
+
+![octopus-manual-teardown](octopus-manual-teardown.png)
+
+
+
+### Step two Delete CloudFormation Template
 
  Click **ADD STEP**, Search for **CloudFormation**, click **Delete an AWS CloudFormation template** from the list of installed step templates and click **ADD**.
 
+The steps requires you to fill in the CloudFormation stack name and you can use the same variable we used when deploying the stack.
 
 
-### Step three Delete Octopus Target TO-DO
+![octopus-aws-delete](octopus-aws-delete.png)
 
+
+### Step three Delete Octopus Target
+
+Now that the resources are deleted in AWS we need to delete the target from Octopus. 
+
+ Click **ADD STEP**, Search for **delete target**, click **Delete Target or Worker Registration From Octopus** from the list of installed step templates and click **ADD**.
+
+ ![octopus-target-delete](octopus-target-delete.png)
 
 ## Publishing our Runbooks
 
@@ -367,7 +384,7 @@ To publish a snapshot, click the publish button on the task page after executing
 
 ![octopus-runbook-publish](octopus-runbook-publish.png)
 
-## Tear down on a scheduled trigger - TO-DO
+## Tear down on a scheduled trigger
 
 Often, when people create infrastructure, it can be forgotten about, leading to some pretty hefty bills from their cloud provider. Having a Runbook to automate the teardown of development and testing infrastructure is excellent, but if you forget to run it, it's still going to run up costs with your cloud provider. 
 
@@ -382,7 +399,9 @@ To setup a trigger navigate to **{{Project, Operations, Runbooks, Triggers}}** a
 
 ![octopus-triggers](octopus-triggers.png)
 
+You can then custimize the trigger to run your Runbook.
 
+![octopus-triggers-setup.png](octopus-triggers-setup.png)
 
 ## Conclusion 
 
