@@ -9,7 +9,7 @@ Company
 AWS
 Azure
 Continuous Integration
-Configuration as Code
+Config as Code
 Deployment Patterns
 Docker
 Java
