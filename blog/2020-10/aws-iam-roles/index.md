@@ -13,7 +13,7 @@ tags:
 
 ![Using AWS IAM roles in Octopus](blogimage-awsiam.png)
 
-Managing credentials for cloud providers is a challenge, especially when you consider that you don’t have the luxury of physical security, meaning one leaked admin key could grant access to your entire account from anywhere in the world. Nor are cloud accounts immune from the proverbial "rf -rf" scenario where an admin account accidentally deletes resources they shouldn’t.
+Managing credentials for cloud providers is a challenge, especially when you consider that you don’t have the luxury of physical security, meaning one leaked admin key could grant access to your entire account from anywhere in the world. Nor are cloud accounts immune from the proverbial "rm -rf" scenario where an admin account accidentally deletes resources they shouldn’t.
 
 IAM roles can be used to provide task specific authorization, and when a role is assigned to an EC2 instance, users with access to that VM can inherit the role.
 
