@@ -127,7 +127,7 @@ The implication here is that a role binding can only reference a role in the sam
 
 ## Scenario 3: ClusterRole and RoleBinding
 
-As we noted earlier, cluster roles do not belong to a namespace. This means the cluster role does not scope permission to a single namespace.
+As noted earlier, cluster roles do not belong to a namespace. This means the cluster role does not scope permission to a single namespace.
 
 However, when a cluster role is linked to a service account via a role binding, the cluster role permissions only apply to the namespace in which the role binding has been created.
 
