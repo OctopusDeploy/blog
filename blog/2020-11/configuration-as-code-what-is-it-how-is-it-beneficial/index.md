@@ -11,7 +11,7 @@ tags:
  - Config as Code
 ---
 
-Managing application configuration settings is becoming an increasingly important aspect of modern application development. Typically, configurations are stored with their associated application code repositories, and any changes necessitate a new version of the code to be deployed. This is true, even if only a single configuration setting is changed!
+Managing application configuration settings is becoming an increasingly important aspect of modern application development. Typically, configurations are stored with their associated application code repositories and any changes necessitate a new version of the code to be deployed. This is true, even if only a single configuration setting is changed!
 
 Configuration as Code (CaC) treats your application settings as first-class citizens. Often, this implies that the configurations are stored in their own repository and managed in a different process from the primary codebase.
 
@@ -47,7 +47,7 @@ What does using Configuration as Code in practice actually imply? There are a nu
 
 ### Using unique configuration source control repositories
 
-Typically, application configuration is packaged with the same code that is deployed. When a configuration value is changed, the entire codebase must then be deployed to effect the change. Although this means there is a versioned change, the configuration settings are normally stored in a flat file and it can be difficult to trace the exact change made, especially if done in a larger code commit.
+Typically, application configuration is packaged with the same code that is deployed. When a configuration value is changed, the entire codebase must then be deployed to effect the change. Although this means there is a versioned change, the configuration settings are normally stored in a flat file, and it can be difficult to trace the exact change made, especially if done in a larger code commit.
 
 By storing and versioning configuration in its own repository, you gain the benefit of independent configuration changes, a tailored deployment process, and ease of change audits. Furthermore, additional security controls can be put into place, which are usually used for application secrets that a developer may not need to have access to.
 
