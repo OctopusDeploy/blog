@@ -2,7 +2,7 @@
 title: "Configuration as Code: What is it and how is it beneficial?"
 description: Learn about the benefits of Configuration as Code and some of the considerations to understand when implementing Configuration as Code.
 author: adbertram@gmail.com
-visibility: private
+visibility: public
 published: 2020-11-02
 metaImage: 
 bannerImage: 
