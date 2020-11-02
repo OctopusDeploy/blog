@@ -78,3 +78,7 @@ Most configurations will include secrets necessary to access databases, key stor
 Though there are many different ways to integrate DevOps and all of its associated processes into your environment, Configuration as Code makes a great starting point to work towards a more managed and controlled application environment.
 
 The gain in security, auditibility, manageability, and control afforded to organizations integrating Configuration as Code into their workflows make managing complex configurations easier and more secure than with the typical approach to bundling configuration within an application’s codebase.
+
+---
+
+Adam Bertram is a 20+ year veteran of IT and an experienced online business professional. He’s a consultant, Microsoft MVP, blogger, trainer, published author and content marketer for multiple technology companies. Catch up on Adam’s articles at [adamtheautomator.com](http://adamtheautomator.com/), connect on [LinkedIn](https://www.linkedin.com/in/adbertram), or follow him on Twitter at [@adbertram](https://twitter.com/adbertram).
