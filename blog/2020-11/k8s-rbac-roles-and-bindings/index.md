@@ -4,12 +4,14 @@ description: This post looks at the results of mixing the various roles and bind
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-11-04
-metaImage:
-bannerImage:
+metaImage: blogimage-k8s-roles.png
+bannerImage: blogimage-k8s-roles.png
 tags:
  - Octopus
  - Kubernetes
 ---
+
+![Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings](blogimage-k8s-roles.png)
 
 At some point, as your Kubernetes cluster grows in complexity, the question of role-based security will become important. Typically, this means breaking the cluster up into namespaces and limiting access to namespaced resources to specific accounts.
 
