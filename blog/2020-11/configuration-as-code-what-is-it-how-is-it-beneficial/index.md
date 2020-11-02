@@ -4,12 +4,14 @@ description: Learn about the benefits of Configuration as Code and some of the c
 author: adbertram@gmail.com
 visibility: public
 published: 2020-11-02
-metaImage: 
-bannerImage: 
+metaImage: blogimage-config-as-code-explanation_2020
+bannerImage: blogimage-config-as-code-explanation_2020
 tags:
  - DevOps
  - Config as Code
 ---
+
+![Configuration as Code: What is it and how is it beneficial?](blogimage-config-as-code-explanation_2020)
 
 Managing application configuration settings is becoming an increasingly important aspect of modern application development. Typically, configurations are stored with their associated application code repositories and any changes necessitate a new version of the code to be deployed. This is true, even if only a single configuration setting is changed!
 
