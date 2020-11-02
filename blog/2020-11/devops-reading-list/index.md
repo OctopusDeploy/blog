@@ -75,7 +75,7 @@ A few decades later, the Agile movement recognised that IT in the 1990s was suff
 
 This is one of the hottest debates in the DevOps/SRE world, but it can be confusing because in many ways DevOps and SRE are pretty similar. Both DevOps and SRE promote similar ideas such as continuous delivery, observability, blameless cultures, the reduction of administrative toil and the closer collaboration/alignment between “dev” and “ops” teams. However, there are also some important differences.
 
-Since Google are widely credited with inventing SRE, it’s appropriate to honour their definition. In this blog post and short YouTube video, they describe SRE as a class which implements DevOps. In other words, SRE is a particular working practice that implements many of the most important DevOps principles. Hence, according to Google, DevOps and SRE are not in conflict.
+Since Google are widely credited with inventing SRE, it’s appropriate to honour their definition. In [this blog post and short YouTube video](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends), they describe SRE as a class which implements DevOps. In other words, SRE is a particular working practice that implements many of the most important DevOps principles. Hence, according to Google, DevOps and SRE are not in conflict.
 
 Some of the key components of SRE include the separation of the SRE (re-imagined “Ops”) team from the product (re-imagined “Dev”) teams, the use of Service Level Objectives (SLOs) to ensure that product and SRE teams share the same priorities, and the use of error budgets to encourage a healthy amount of innovation and risk taking.
 
@@ -151,7 +151,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 A book that’s stood up to the test of time.
 
-I wouldn’t like to guess how many software books have “Agile” in the title. Arguably, “Agile” was the original marketing buzzword for software. That’s probably got something to do with a drunken ski trip where a bunch of dudes created a pithy website.
+I wouldn’t like to guess how many software books have “Agile” in the title. Arguably, “Agile” was the original marketing buzzword for software. That’s probably got something to do with a drunken ski trip where a bunch of dudes created [a pithy website](https://agilemanifesto.org/).
 
 However, scepticism aside, I believe these buzzwords work so well for selling software, training and certifications because there is a fundamental truth behind them. These ideas make a lot of technical and commercial sense.
 
@@ -181,9 +181,9 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ![Domain-Driven_Design_Distilled](Domain-Driven_Design_Distilled.jpg "width=500")
 
-Domain-Driven Design (DDD) is an approach that enables folks to create loosely coupled architectures and avoid creating a “big ball of mud” monolithic system which is painful to develop, deploy or maintain. Martin Fowler does a better job of describing it on his blog than I can reasonably expect to achieve in a few paragraphs here.
+Domain-Driven Design (DDD) is an approach that enables folks to create loosely coupled architectures and avoid creating a “big ball of mud” monolithic system which is painful to develop, deploy or maintain. [Martin Fowler does a better job of describing it on his blog](https://martinfowler.com/bliki/DomainDrivenDesign.html) than I can reasonably expect to achieve in a few paragraphs here.
 
-Central to DDD is the idea of “Bounded Contexts”, which can be used to define the scope of any one part of the system. Team members acknowledge that the language used within any one context is consistent, but that it might also vary between different contexts. This allows teams to focus on solving the right problems in the right places and establishing appropriate interfaces between different contexts to avoid complicated dependencies and introducing mistakes due to subtle contextual differences. Again, Fowler does a great job of explaining Bounded Contexts in more detail here.
+Central to DDD is the idea of “Bounded Contexts”, which can be used to define the scope of any one part of the system. Team members acknowledge that the language used within any one context is consistent, but that it might also vary between different contexts. This allows teams to focus on solving the right problems in the right places and establishing appropriate interfaces between different contexts to avoid complicated dependencies and introducing mistakes due to subtle contextual differences. [Again, Fowler does a great job of explaining Bounded Contexts in more detail here.](https://martinfowler.com/bliki/BoundedContext.html)
 
 The great thing about writing a post like this is receiving feedback. As I was compiling my list of titles, I asked Twitter for feedback, and a few folks suggested a book about DDD. For example:
 
@@ -191,7 +191,7 @@ The great thing about writing a post like this is receiving feedback. As I was c
 
 Honestly, this was me discovering a blind spot of my own. DDD was not a topic I’d studied before and I had not appreciated the relationship between DDD and DevOps. I’m grateful to all the folks who encouraged me to take a look. Now I’ve got a new book on my bookshelf and I’ve been learning too.
 
-Most folks recommended Eric Evans’ Domain-Driven Design, but Matthew Skelton (author of [Team Topologies](#tt)) also recommended Vernon’s “distilled” edition to me. After a little research I learned that the Evans book has excellent reviews and is recognised as the gold standard for DDD. However, it’s also perceived as long and complicated. (It’s 560 pages long and it costs over $50, making it longer and more expensive than any of the other books in this post.)
+Most folks recommended [Eric Evans’ Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design), but Matthew Skelton (author of [Team Topologies](#tt)) also recommended Vernon’s “distilled” edition to me. After a little research I learned that the Evans book has excellent reviews and is recognised as the gold standard for DDD. However, it’s also perceived as long and complicated. (It’s 560 pages long and it costs over $50, making it longer and more expensive than any of the other books in this post.)
 
 Since this was to be my first book about DDD I purchased a copy of Vernon’s “distilled” edition instead. Half the price and only 130 diagram-rich pages. Even slow readers (like myself) will probably be able to read it cover to cover in a few hours. I’ve included the Vernon book in my list because I’m uncomfortable recommending a book I haven’t read, but I recognise that many readers may prefer to either go straight for the Evans book.
 
@@ -199,7 +199,7 @@ The Vernon book is a great primer on DDD and it’s relatively easy to digest by
 
 After reading Domain-Driven Design Distilled, you might well like to go deeper on DDD with the Evans book mentioned above. Alternatively, you might like to read more about how loosely coupled architectures are so much easier to work with. This is covered to some extent in both [Accelerate](#accelerate) and [The DevOps Handbook](#handbook). 
 
-You might also like to take a look at Sam Newman’s Building Microservices (which narrowly missed a spot in this blog post) and in [Site Reliability Engineering](#sre) you’ll learn how Google maintain a large, complicated environment with many loosely coupled services.
+You might also like to take a look at [Sam Newman’s Building Microservices](https://www.goodreads.com/book/show/22512931-building-microservices) (which narrowly missed a spot in this blog post) and in [Site Reliability Engineering](#sre) you’ll learn how Google maintain a large, complicated environment with many loosely coupled services.
 
 Finally, I encourage you to take a look at Team Topologies. Software architecture starts with team architecture, and [Team Topologies](#tt) uses Conway’s Law to apply the ideas of bounded contexts and loosely coupled systems to the way we architect the teams in our IT departments. 
 
@@ -221,7 +221,7 @@ The book is generally pretty technical, mostly focussing on the practical implem
 
 In fact, today there is some confusion about the scope of CD. For some it’s simply about the practical implementation of deployment pipelines. For others CD encompasses broader cultural and organizational issues. Some would go as far as to say that DevOps is part of CD, rather than the other way around.
 
-For example, the two authors now seem to be on opposite sides of this debate. Jez Humble went on to co-author [Accelerate](#accelerate), which has the word “DevOps” on the front cover and describes a set of “Continuous Delivery” capabilities that are distinct from other capabilities under the headings “Architecture”, “Product and Process”, “Lean Management and Monitoring” and “Cultural”. At the same time, Dave Farley views CD as a synonym for DevOps (and in the past he claimed that DevOps was but a component of CD), as he expressed on his YouTube channel earlier this year. 
+For example, the two authors now seem to be on opposite sides of this debate. Jez Humble went on to co-author [Accelerate](#accelerate), which has the word “DevOps” on the front cover and describes a set of “Continuous Delivery” capabilities that are distinct from other capabilities under the headings “Architecture”, “Product and Process”, “Lean Management and Monitoring” and “Cultural”. At the same time, Dave Farley views CD as a synonym for DevOps (and in the past he claimed that DevOps was but a component of CD), as [he expressed on his YouTube channel](https://www.youtube.com/watch?v=MnyvgFDh-kw&list=PLwLLcwQlnXBw9jv5tFXQC_ch-VCXwPikM&index=4) earlier this year. 
 
 Personally, I tire of this debate. CD and DevOps grew up alongside each other and are derived from similar Lean, XP and Agile ideas. Through a mixture of independent thought and borrowed ideas they came to similar conclusions. I encourage you to celebrate the way these two movements support each other, rather than to get hung up on the relationship between them. (And I expect that both Jez and Dave would agree.)
 
@@ -352,7 +352,7 @@ If [The DevOps Handbook](#handbook) explains “how” to embrace DevOps, Accele
 
 In many ways, the book is a response to critique that “DevOps” is a buzzword or a cult, full of warm and fluffy ideas that might sound nice and make sense for a small business or start-up, but which do not practically scale for large organizations or which are not compatible with tightly regulated industries like healthcare or finance.
 
-The authors achieve this by analysing the data from the 2014-2017 State of DevOps Reports. Forsgren, a well-respected and published researcher, applies various scientific and statistical methods to the data to see what they can teach us. Her findings are striking.
+The authors achieve this by analysing the data from the 2014-2017 [State of DevOps Reports](https://www.devops-research.com/research.html). Forsgren, [a well-respected and published researcher](https://nicolefv.com/research), applies various scientific and statistical methods to the data to see what they can teach us. Her findings are striking.
 
 Long story short: The business benefits of DevOps are real and predictable.
 
@@ -399,11 +399,11 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ![Team_Topologies](Team_Topologies.jpg "width=500")
 
-Team Topologies uses Conway’s Law to bridge the divide between books about designing effective software architectures (e.g. [Domain-Driven Design: Distilled](#ddd)) and books about creating effective teams (e.g. [The Five Dysfunctions of a Team](#dysfunc)), while optimising for the rapid “flow” of value to end users.
+Team Topologies uses [Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law) to bridge the divide between books about designing effective software architectures (e.g. [Domain-Driven Design: Distilled](#ddd)) and books about creating effective teams (e.g. [The Five Dysfunctions of a Team](#dysfunc)), while optimising for the rapid “flow” of value to end users.
 
-Matthew Skelton is deeply influenced by the Continuous Delivery movement in the UK, and this influence shines through. I know this personally, because for about a year back in 2017 I co-organised the London Continuous Delivery Meetup with him. Attendees would sometimes come with their copy of [Continuous Delivery](#cd) tucked under their arm - and they called it “the Bible”. The spin-off Pipeline Conferences, which Skelton ran, were some of the most welcoming, diverse and intellectually stimulating tech conferences I’ve ever attended/supported.
+Matthew Skelton is deeply influenced by the Continuous Delivery movement in the UK, and this influence shines through. I know this personally, because for about a year back in 2017 I co-organised the [London Continuous Delivery Meetup Group](https://www.meetup.com/London-Continuous-Delivery/) with him. Attendees would sometimes come with their copy of [Continuous Delivery](#cd) tucked under their arm - and they called it “the Bible”. The spin-off [Pipeline Conferences](https://pipelineconf.info/), which Skelton ran, were some of the most welcoming, diverse and intellectually stimulating tech conferences I’ve ever attended/supported.
 
-Team Topologies is a book for the senior managers of IT departments. It takes the view that software architecture starts with team architecture and it provides a blueprint for designing your teams, and the communication/collaboration protocols between them, in such a way that your preferred software architecture emerges organically. This radically reduces both the need for toxic bureaucracy as well as the risk of poor architectural choices that accrue significant technical debt.
+Team Topologies is a book for the senior managers of IT departments. It takes the view that software architecture starts with team architecture and it provides a blueprint for designing your teams, and the communication/collaboration protocols between them, in such a way that your preferred software architecture emerges organically. This radically reduces both the need for toxic bureaucracy as well as the risk of poor architectural choices that accrue significant [technical debt](https://en.wikipedia.org/wiki/Technical_debt).
 
 If you’ve enjoyed Team Topologies and would like to learn more about some of the core concepts it discusses, the three books referenced in the first two paragraphs above are a great start. You might also enjoy [Accelerate](#accelerate), which is another ideal book for senior IT leadership, which uses a scientific, data-driven approach to map various technical and cultural practices to business success. 
 
@@ -417,7 +417,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 “The book absolutely delivers: it’s a 250-page version of the concepts in Google’s [Site Reliability Engineering](#sre) book (which I love) targeted at people who might currently call themselves database administrators, but want to go to work in fast-paced, high-scale companies.”
 
-Those are not my words, they were written by Brent Ozar in his own review of “DRE”.
+Those are not my words, they were written by Brent Ozar in [his own review of “DRE”](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/).
 
 As I was compiling this blog post I came across Brent’s review and, frankly, I love it. He said exactly what I wanted to say, but better. He explains how the reader should approach the book, depending on whether they are a DBA, a manager or a developer/SysAdmin.
 
@@ -429,9 +429,7 @@ Brent signs off with:
 
 “Over time, the brand names and open source tools will change, but the concepts are going to be rock solid for at least a decade. This book is a great waypoint marker set about 5-10 years in the future for most of us, but it’ll be one you’ll be excited to work towards.”
 
-Check out Brent’s full review here (but please come back when you are finished):
-
-https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/ 
+[Check out Brent’s full review here](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/) (but please come back when you are finished):
 
 That pretty much sums it up for “DRE”. Thanks Brent for saving me a little time!
 
@@ -453,8 +451,8 @@ Site Reliability Engineering (SRE) details the way that Google approaches the co
 
 Reading this book is a reasonable time investment, so for those who are new to SRE, I recommend that before you buy it you explore the following links:
 
-1.	This blog post by Google: SRE vs DevOps: Competing standards or close friends?
-1.	Thomas A. Limoncelli’s 2012 session at USENIX NYC: SRE@Google: Thousands of DevOps Since 2004
+1.	This blog post by Google: [SRE vs DevOps: Competing standards or close friends?](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends)
+1.	Thomas A. Limoncelli’s 2012 session at USENIX NYC: [SRE@Google: Thousands of DevOps Since 2004](https://www.youtube.com/watch?v=iIuTnhdTzK0)
 
 That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets and Customer Reliability Engineering.
 
@@ -484,7 +482,7 @@ I was blessed to receive some wonderful feedback. Generally, it was pretty posit
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Only 4 I haven&#39;t read!! Looks like I need to look into those! You have my favourites there for sure!! Accelerate, Phoenix Project, 5 dysfunctions of a team.</p>&mdash; Dinah Davis (@Dinah_Davis) <a href="https://twitter.com/Dinah_Davis/status/1318555085937496070?ref_src=twsrc%5Etfw">October 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-However, this is all very subjective. This is a big and diverse community with a lot of opinions. There were plenty of folks who suggested I add this book or remove that one. I listened to the advice and I did make a few changes. Especially when someone with the credentials of Andrew Clay Shafer gave me some direct advice. (For those who don’t know who he is, let’s just say his twitter handle is a little modest. I was totally fangirling when I saw his reply.)
+However, this is all very subjective. This is a big and diverse community with a lot of opinions. There were plenty of folks who suggested I add this book or remove that one. I listened to the advice and I did make a few changes. Especially when someone with the credentials of Andrew Clay Shafer gave me some direct advice. (For those who don’t know who he is, let’s just say [his twitter handle is a little modest](https://www.youtube.com/watch?v=o7-IuYS0iSE). I was totally fangirling when I saw his reply.)
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">swap ‘Lean Start Up’ for a Poppendieck book</p>&mdash; wear a mask 雷启理 (@littleidea) <a href="https://twitter.com/littleidea/status/1317188423543791616?ref_src=twsrc%5Etfw">October 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -498,7 +496,7 @@ Since 2014 DORA, with the support of various sponsors, has been polling thousand
 
 The data from these reports (2014-2017) were used by Forsgren, Humble and Kim to produce [Accelerate](#accelerate) in 2018, which I believe remains the best evidence our industry possesses for the value of DevOps.
 
-You can review all the State of DevOps Reports here.
+[You can review all the State of DevOps Reports here.](https://www.devops-research.com/research.html)
 
 ### Beyond The Phoenix Project
 
@@ -512,7 +510,7 @@ They finish with a recording from a session at a DevOps Enterprise Summit event 
 
 It’s a fascinating listen from start to finish, and one that many people go back to and repeat over and over.
 
-You can purchase Beyond the Phoenix Project from Audible here.
+[You can purchase Beyond the Phoenix Project from Audible here.](https://www.audible.co.uk/pd/Beyond-the-Phoenix-Project-Audiobook/B07B7CH7FQ)
 
 ### How Complex Systems Fail
 
@@ -526,15 +524,15 @@ By reflecting on Cook’s research and imagining the implications to one fiction
 
 I won’t try to summarise the main points of Safety Culture here because it would take too long and ultimately, I’d just be paraphrasing the same points Cook makes pretty articulately for himself. I encourage you to read the paper – it’s only a 10 minute read:
 
-https://how.complexsystems.fail/  
+[https://how.complexsystems.fail/](https://how.complexsystems.fail/)
 
 ### Other Reputable DevOps Reading Lists
 
 Don’t just take my word for it. I’m just one imperfect human who is fascinated by DevOps and doing my best to share some of the books that have resonated with me. If you’d like to see compilations from other reputable sources, check out the following lists. You’ll see a lot of familiar titles in those lists, as well as a few different ones.
 
--	IT Revolution Press
--	Tech Republic
--	VMWare
+-	[IT Revolution Press](https://itrevolution.com/learn-more-about-concepts-in-phoenix-project/)
+-	[Tech Republic](https://www.techrepublic.com/article/10-books-to-add-to-your-devops-reading-list/)
+-	[VMWare](https://tanzu.vmware.com/content/blog/my-devops-reading-list)
 
 ## Final Thoughts {#final_thoughts}
 
@@ -552,6 +550,6 @@ Deploy often, keep learning, and stay safe folks.
 
 *
 
-If you’d like to work with me (virtually) as a DevOps mentor, coach, consultant or trainer: www.dlmconsultants.com
+If you’d like to work with me (virtually) as a DevOps mentor, coach, consultant or trainer: [www.dlmconsultants.com](www.dlmconsultants.com)
 
-If you are looking for an amazing deployment orchestration tool: www.octopus.com
+If you are looking for an amazing deployment orchestration tool: [www.octopus.com](www.octopus.com)
