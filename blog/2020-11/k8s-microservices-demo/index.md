@@ -142,5 +142,37 @@ For those microservices that don't follow the standard template (for example the
 
 ![](edit-yaml.png "width=500")
 
+## Channel rules
+
+For whatever reason when Google published the Docker images that make up this sample microservice application, they included an imaged tagged with a hash like `31df60f`.
+
+We want our deployments to ignore this hash and instead allow the selection of the more typical versions tags like `v0.2.0`. To do this we need to use a channel rule.
+
+The rule defines a version range of `[0.0,1.0]`, which includes all the zero based point releases published by Google, and ignores the image tagged with a hash:
+
+![](channel-rules.png "width=500")
+
+Docker images with plain text tags, like `redis:alpine`, can also take advantage of channel rules. The tag `alpine` is considered to be the version `0.0.0-alpine`, which can be matched with the version rule `(,0.0)` and a prerelease regular expression of `^alpine$`.
+
 ## Promoting an entire environment
 
+The entire microservice stack is made up of nearly a dozen individual services. These could be promoted from one environment to another individually, and indeed if the microservices are genuinely separate entities managed by different teams and released on their own individual timelines then individually promoting the services may be desirable.
+
+But there are cases where the microservices are still tightly coupled and must be released in a particular order, or situations where it is critical that the state of an environment be well known at any time. For this Octopus offers the **Deploy a release** step. 
+
+The **Deploy a release** step treats an Octopus release as an artifact to be selected during the creation of a release of a kind of "meta-project". In our case the meta-project contains a **Deploy a release** step for each microservice, allowing an entire microservice stack in one environment to be promoted to another environment in the correct sequence and with well know release versions. The ordering of the **Deploy a release** steps in the meta-project captures the dependencies on services on one another, and release managers could use the details of these meta-project releases to understand exactly what combination of applications was deployed at any given time.
+
+Here is an example of our meta-project used to deploy all microservices to a given environment:
+
+![](deploy-release.png "width=500")
+
+## Conclusion
+
+In this demo we took advantage of a number of Octopus features to deploy a microservice application stack:
+
+* We used step templates to abstract away the common boiler plate definitions for the microservices.
+* The raw YAML editing allowed us to quickly define the deployments of those few unique microservices that did not confirm to the patterns used by the majority of the stack.
+* Channel rules allowed us to limit the available Docker image tags to a specific range.
+* The **Deploy a release** step to create a meta-project which deploys all the microservices in the correct order in a new environment.
+
+This meant that, once the initial templates were defined, we could define new microservice deployments quickly and reliably, and populate whole environments with the deployment of a single meta-project.
