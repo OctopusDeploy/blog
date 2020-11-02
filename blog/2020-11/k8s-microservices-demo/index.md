@@ -33,6 +33,7 @@ You will also notice that the deployment definitions are largely similar for the
 The similarities between deployment resources is easy to see using a diff tool:
 
 ![](deployment-diff.png "width=500")
+*A diff of two microservice deployments. They share a common set of properties.*
 
 To remove the boilerplate code required to define a deployment and its associated service, we take advantage of a feature in Octopus called step templates. The YAML below captures the fields used by most of the microservice applications in their deployments, with application specific values replaced with variables:
 
@@ -117,34 +118,41 @@ type: Opaque
 During deployment, Octopus appends the string `-#{Octopus.Deployment.Id | ToLower}` to the name of each custom resource. This ensures that each resource is immutable and tightly coupled to the deployment resource it is paired with. So the final name of this secret will be `mysecret-#{Octopus.Deployment.Id | ToLower}`. This matches the secret name from the deployment `envFrom.secretRef` property.
 
 ![](step-template.png "width=500")
+*The step template with a deployment, service and custom resource.*
 
-The variables take the form `GroupName[VariableName].VariableProperty`, for example `EnvironmentVariables[REDIS_ADDR].Value`, `EnvironmentVariables[PORT].Value`, or `EnvironmentVariables[LISTEN_ADDR].Value`. These variables are expected to be defined by the project using the step template.
+The variables injected into the secret take the form `GroupName[VariableName].VariableProperty`, for example `EnvironmentVariables[REDIS_ADDR].Value`, `EnvironmentVariables[PORT].Value`, or `EnvironmentVariables[LISTEN_ADDR].Value`. These variables are expected to be defined by the project using the step template.
 
 The variables that make up the deployment are then exposed as parameters:
 
 ![](parameters.png "width=500")
+*The step template parameters.*
 
 The container image name is defined as a package, allowing the image version to be selected during release creation:
 
 ![](server-image-parameter.png "width=500")
+*The parameter defining the Docker image to use for the container.*
 
 This parameter is referenced in the container definition with the **Let the project select the package** option for the Docker image field:
 
 ![](container-image-parameter.png "width=500")
+*The definition of the container, allowing the Docker image to be selected by the project.*
 
 ## Deploying the template
 
 With the template deployed we now create those microservices that originally shared a common deployment pattern. Since all the common boilerplate code has been abstracted away, all that is left is to populate the parameters defined by the step template:
 
 ![](deploy-template.png "width=500")
+*A microservice using the step template to define the deployed resources.*
 
 The environment variables are then defined using the group syntax noted above:
 
 ![](environment-variables.png "width=500")
+*The Octopus variables that will be used as environment variables.*
 
 For those microservices that don't follow the standard template (for example the frontend app and the redis database) we can simply copy the deployment and service YAML into the appropriate **Edit YAML** section, which will populate the UI for us:
 
 ![](edit-yaml.png "width=500")
+*Editing raw YAML allows unique resources to quickly populate an Octopus step.*
 
 ## Channel rules
 
@@ -155,6 +163,7 @@ We want our deployments to ignore this hash and instead allow the selection of t
 The rule defines a version range of `[0.0,1.0]`, which includes all the zero based point releases published by Google, and ignores the image tagged with a hash:
 
 ![](channel-rules.png "width=500")
+*Channel rules to select the desired tags.*
 
 Docker images with plain text tags, like `redis:alpine`, can also take advantage of channel rules. The tag `alpine` is considered to be the version `0.0.0-alpine`, which can be matched with the version rule `(,0.0)` and a prerelease regular expression of `^alpine$`.
 
@@ -169,6 +178,7 @@ The **Deploy a release** step treats an Octopus release as an artifact to be sel
 Here is an example of our meta-project used to deploy all microservices to a given environment:
 
 ![](deploy-release.png "width=500")
+*A meta-project deploying a number of child projects in a specific order.*
 
 ## Conclusion
 
