@@ -41,7 +41,7 @@ To find out which book set me on my path, as well as which one I discovered whil
 
 Before you complete this exercise, an important caveat: 
 
-This is not a perfect. It might not work.
+**This is not a perfect. It might not work.**
 
 I cannot stress this enough. Many of the books below overlap. Some of the questions are a little contrived, often deliberately under-stating complexities or over-stating differences to create the illusion of simplicity and a quick recommendation. Please don’t take it too seriously.
 
@@ -415,7 +415,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ![Database_Reliability_Engineering](Database_Reliability_Engineering.jpg "width=500")
 
-“The book absolutely delivers: it’s a 250-page version of the concepts in Google’s [Site Reliability Engineering](#sre) book (which I love) targeted at people who might currently call themselves database administrators, but want to go to work in fast-paced, high-scale companies.”
+*“The book absolutely delivers: it’s a 250-page version of the concepts in Google’s [Site Reliability Engineering](#sre) book (which I love) targeted at people who might currently call themselves database administrators, but want to go to work in fast-paced, high-scale companies.”*
 
 Those are not my words, they were written by Brent Ozar in [his own review of “DRE”](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/).
 
@@ -425,9 +425,9 @@ Personally, my favourite take-aways from DRE were the focus on “resilience ove
 
 Brent signs off with:
 
-“It’s the kind of book that’s easy to read, and hard to implement. Seriously, just implementing the SLOs described in chapter 2 takes most traditional companies months to agree on and monitor.
+*“It’s the kind of book that’s easy to read, and hard to implement. Seriously, just implementing the SLOs described in chapter 2 takes most traditional companies months to agree on and monitor.*
 
-“Over time, the brand names and open source tools will change, but the concepts are going to be rock solid for at least a decade. This book is a great waypoint marker set about 5-10 years in the future for most of us, but it’ll be one you’ll be excited to work towards.”
+*“Over time, the brand names and open source tools will change, but the concepts are going to be rock solid for at least a decade. This book is a great waypoint marker set about 5-10 years in the future for most of us, but it’ll be one you’ll be excited to work towards.”*
 
 [Check out Brent’s full review here](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/) (but please come back when you are finished):
 
