@@ -20,7 +20,7 @@ Octopus has a number of useful features to help streamline and manage microservi
 
 ## Creating the deployment template
 
-If you look at the [YAML containing all the Kubernetes resource definitions](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml) you will notice a pattern where each deployment is exposed by a matching service. Pairing deployments and services like this is a common pattern in Kubernetes deployments, and this pattern is captured by the **Deploy Kubernetes containers** step in Octopus.
+If you look at the [YAML containing all the Kubernetes resource definitions](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml) you will notice a pattern where each deployment is exposed by a matching service. Pairing deployments and services like this is a common practice in Kubernetes deployments, and this pattern is captured by the **Deploy Kubernetes containers** step in Octopus.
 
 You will also notice that the deployment definitions are largely similar for the majority of the microservices. They all define:
 
@@ -36,7 +36,7 @@ The similarities between deployment resources is easy to see using a diff tool:
 
 *A diff of two microservice deployments. They share a common set of properties.*
 
-To remove the boilerplate code required to define a deployment and its associated service, we take advantage of a feature in Octopus called step templates. The YAML below captures the fields used by most of the microservice applications in their deployments, with application specific values replaced with variables:
+To remove the boilerplate code required to define a deployment and its associated service, we take advantage of a feature in Octopus called [step templates](https://octopus.com/docs/deployment-process/steps/custom-step-templates). The YAML below, which can be added to a **Deploy Kubernetes containers** step via the **Edit YAML** option in the deployment section, captures the fields used by most of the microservice applications in their deployments, with application specific values replaced with variables:
 
 ```yaml
 apiVersion: apps/v1
@@ -83,7 +83,7 @@ The `if` syntax (for example `#{if ServiceTerminationGracePeriodSeconds}#{Servic
 
 The list of individual environment variables has been replaced by `envFrom.secretRef`. This allows Kubernetes to inject environment variables based on the values saved in an external secret. The secret we reference here is called `mysecret-#{Octopus.Deployment.Id | ToLower}`, and will be created as a custom resource later in the step.
 
-Next we have the service template. Unlike the deployment template, the service template is the same for all microservices:
+Next we have the service template. Unlike the deployment template, the service template is the same for all microservices. This YAML can also be added to the step via the **Edit YAML** option in the service section:
 
 ```yaml
 apiVersion: v1
