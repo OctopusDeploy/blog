@@ -522,7 +522,7 @@ However, there is a lot we can learn from folks who genuinely have to manage ser
 
 By reflecting on Cook’s research and imagining the implications to one fictional IT organization that embraces DevOps, and another that favours old-fashioned waterfall style project management and bureaucracy, it’s easy to understand why the waterfall organization is far more likely to suffer more frequent and severe disasters.
 
-I won’t try to summarise the main points of Safety Culture here because it would take too long and ultimately, I’d just be paraphrasing the same points Cook makes pretty articulately for himself. I encourage you to read the paper – it’s only a 10 minute read:
+I won’t try to summarise the main points of Safety Culture here because it would take too long and ultimately, I’d just be paraphrasing the same points Cook makes pretty articulately for himself. I encourage you to read the paper – it’s only a 10-minute read:
 
 [https://how.complexsystems.fail/](https://how.complexsystems.fail/)
 
