@@ -4,13 +4,15 @@ description: This blog post shows you how to automate your team's development ma
 author: derek.campbell@octopus.com
 visibility: public
 published: 2020-11-03
-metaImage: 
-bannerImage: 
+metaImage: automate_machine_chocolately.png
+bannerImage: automate_machine_chocolately.png
 tags:
  - Product
  - Runbooks
  - Chocolatey
 ---
+
+![Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks](automate_machine_chocolately.png)
 
 Last year, [Bob Walker](https://twitter.com/DevOpsWalker) shared a post about [automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey). In this post, I show you how I created a runbook that uses Chocolatey to install every application I use in my day to day role. You can use this approach to install and configure pre-approved software for different job types across your organization, making it as easy as possible for new people, or people who need a fresh install or who have upgraded their hardware, to install and configure the software they need as quickly as possible.
 
