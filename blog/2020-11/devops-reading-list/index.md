@@ -141,7 +141,7 @@ Unlike the other books in my list, The Goal makes hardly any references to softw
 
 If you would like to learn more about how these Lean principles can be applied to modern software development, I encourage you to read either [The Phoenix Project](#phoenix) (a modern retelling of The Goal, based in an IT department) or [Lean Software Development: An Agile Toolkit](#lean) (a more formal textbook).
 
-For more reviews, as well as procurement options: Check out this book on GoodReads
+For more reviews, as well as procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/113934.The_Goal)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -173,7 +173,7 @@ This book stands up as one of (if not the) best, articulation of what Agile actu
 
 For those who would like to learn more about Lean principles, within their original manufacturing context, check out [The Goal](#goal). For those who would like to learn how these Agile ideas have evolved with the emergence of DevOps, take a look at [The DevOps Handbook](#handbook). For those who would like to go deeper into software design/architecture, try [Domain-Driven Design: Distilled](#ddd). Finally, for those who are more interested in the human side of Agile/DevOps, you might prefer [The Five Dysfunctions of a Team](#dysfunc) (more personal) or [Team Topologies](#tt) (more strategic).
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/194338.Lean_Software_Development)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -203,7 +203,7 @@ You might also like to take a look at [Sam Newman’s Building Microservices](ht
 
 Finally, I encourage you to take a look at Team Topologies. Software architecture starts with team architecture, and [Team Topologies](#tt) uses Conway’s Law to apply the ideas of bounded contexts and loosely coupled systems to the way we architect the teams in our IT departments. 
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/28602719-domain-driven-design-distilled)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -227,7 +227,7 @@ Personally, I tire of this debate. CD and DevOps grew up alongside each other an
 
 If you enjoyed Continuous Delivery, you might also enjoy [Site Reliability Engineering](#sre). It’s a similar technical book that covers many additional topics from a more production/operations/maintenance perspective. On the other hand, if you found CD a little dry and would like something more accessible, try [The DevOps Handbook](#handbook) or [Accelerate](#accelerate) instead.
 
-For more reviews, as well as procurement options: Check out this book on GoodReads
+For more reviews, as well as procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/8686650-continuous-delivery)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -251,7 +251,7 @@ If your biggest problems are “people problems”, this book should be one of t
 
 After reading “dysfunctions”, if you’d like to learn how to structure multiple teams in your organisation for success, you might like to try reading [Team Topologies](#tt). If you fancy another fable, take a look at [The Phoenix Project](#phoenix), in which some of the exercises from “dysfunctions” are used to bring together warring leadership teams in the midst of a project management disaster. 
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/21343.The_Five_Dysfunctions_of_a_Team)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -277,7 +277,7 @@ In my opinion, the most valuable thing about this book is how well it articulate
 
 If you enjoyed The Phoenix Project, you’ll probably also enjoy [The Unicorn Project](#unicorn), which tells the same story from a very different perspective, and you might be interested to go back and read [The Goal](#goal). If you’d like to learn more about building great teams, check out [The Five Dysfunctions of a Team](#dysfunc). If you want a more formal overview of the topics raised in Phoenix, try [The DevOps Handbook](#handbook) or [Accelerate](#accelerate).
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/17255186-the-phoenix-project)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -305,7 +305,7 @@ While Unicorn is undoubtedly aimed at engineers over managers, and developers ov
 
 If you enjoyed the Unicorn Project, try reading [The Phoenix Project](#phoenix) next. If you’d like to learn more about building great Teams, check out [The Five Dysfunctions of a Team](#dysfunc). If you’d like to learn more about designing your code for DevOps, try [Domain-Driven Design: Distilled](#ddd) or if you are a data specialist, [Database Reliability Engineering](#dre). Finally, if you’d like to learn more about continuous integration and deployment pipelines, check out either [Continuous Delivery](#cd) or [The DevOps Handbook](#handbook).
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -340,7 +340,7 @@ If you haven’t read [The Phoenix Project](#phoenix) yet, it’s a great compan
 
 If you’re in senior management and you are interested in more reading material to help you to structure your IT organisation for success, I recommend you take a look at [Accelerate](#accelerate), which takes a scientific, data-driven approach to analyse the data from the State of DevOps reports to make an empirical case for why many of the practices in the handbook deliver business value. You might also enjoy [Team Topologies](#tt), which explores the various team structures that either enable or inhibit flow.
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/26083308-the-devops-handbook)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -391,7 +391,7 @@ Accelerate provides sound evidence and reasoning which explains why DevOps works
 
 If your role is a technical one, or you are a senior manager with responsibility for technical outcomes, after reading Accelerate you’ll probably want to move on to one of the more practical “how to do DevOps” books, like [The DevOps Handbook](#handbook), [Continuous Delivery](#cd), [Site Reliability Engineering](#sre),[Domain-Driven Design: Distilled](#ddd) or (if you need to tackle people, team or culture issues before addressing the technical issues) [The Five Dysfunctions of a Team](#dysfunc) or [Team Topologies](#tt). 
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/35747076-accelerate)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -407,7 +407,7 @@ Team Topologies is a book for the senior managers of IT departments. It takes th
 
 If you’ve enjoyed Team Topologies and would like to learn more about some of the core concepts it discusses, the three books referenced in the first two paragraphs above are a great start. You might also enjoy [Accelerate](#accelerate), which is another ideal book for senior IT leadership, which uses a scientific, data-driven approach to map various technical and cultural practices to business success. 
 
-For more reviews, as well as procurement options: Check out this book on GoodReads
+For more reviews, as well as procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/44135420-team-topologies)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -437,7 +437,7 @@ If you enjoyed “DRE”, it’s likely that you’ll also enjoy it’s big sist
 
 If you are struggling to break out a monolithic database into a set of smaller, more loosely coupled databases, you may also benefit from reading [Domain-Driven Design: Distilled](#ddd). Finally, if you are an old-school DBA and you remain sceptical about [Accelerate](#accelerate), I encourage you to take a look at Accelerate.
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/36523657-database-reliability-engineering)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
@@ -466,7 +466,7 @@ This concern aside, many of the practices in the book are likely to be broadly a
 
 SRE is a great read for anyone who self-identifies as being toward the “Ops” end of the DevOps spectrum, as well as for anyone looking for ways to improve the relationships between distinct Dev and Ops teams. For folks who want to go deeper on data and databases, check out [Database Reliability Engineering](#dre) as well/instead. For folks who are more interested in Continuous Delivery challenges, rather than operability challenges, consider [Continuous Delivery](#cd). For those who would like to learn more about splitting monolithic systems into a more loosely coupled collection of services, take a look at [Domain-Driven Design: Distilled](#ddd). For those who liked SRE, but don’t understand how it differs from DevOps, buy yourself a copy of [The DevOps Handbook](#handbook) for comparison (and, specifically, take a close look at chapter 7). For folks who are torn about whether to set up a distinct SRE team, you may find some guidance in [Team Topologies](#tt).
 
-For more reviews, as well as a preview and procurement options: Check out this book on GoodReads
+For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/27968891-site-reliability-engineering)
 
 Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
