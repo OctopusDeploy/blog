@@ -1,6 +1,6 @@
 ---
-title: Runbook recommendations and best practices
-description: Recommendations and best practices on how to design and implement runbooks
+title: Runbook lessons learned and recommendations
+description: Recommendations from lessons learned on how to design and implement runbooks
 author: bob.walker@octopus.com
 visibility: public
 published: 2099-12-31
@@ -11,17 +11,17 @@ tags:
  - Runbooks
 ---
 
-Since the release of runbooks, I've had the chance to create a number of them.  In doing so, I've learned some lessons I want to share.  This article will walk through creating a runbook from scratch, and while doing so, I will discuss recommendations and best practices based on those lessons.
+Since the release of runbooks, I've had the chance to create a number of them.  In doing so, I've learned some lessons I want to share.  This article will walk through creating a runbook from scratch, and while doing so, I will discuss recommendations.
 
 ## Defining the problem to solve
 
-At Octopus Deploy, we use AWS and Azure for our infrastructure.  In fact, at the time of this writing, the only infrastructure in Brisbane's home office is a Wifi router and a network switch.  Despite being such heavy cloud users, many of us are running a hypervisor of some kind in our home offices.  As great as it is to have a domain controller running on Windows 2019 already set up,  it is a different experience standing up one from scratch and using it day-to-day.  
+At Octopus Deploy, we use AWS and Azure for our infrastructure.  In fact, at the time of this writing, the only infrastructure in Brisbane's home office is a Wifi router and a network switch.  Despite being such heavy cloud users, many of us are running a hypervisor of some kind in our home offices.  It gives us the opportunity to configure and run permenant VMs such as domain controller and SQL Server to use with Octopus Deploy.  It's one thing to have someone set it up for you, it's another thing to set it up from scratch. 
 
 The problem to solve: I have a couple of SQL Servers running, and I want to back up several databases on each server to my NAS. 
 
 ## Designing the runbook process
 
-Now that I have defined the problem, that doesn't mean it is time to start writing scripts or adding Octopus Deploy steps.  Before doing that, I like to take a moment and answer these questions.
+Defining the problem is the first step.  After I define the problem my default next step is to add script steps to Octopus Deploy.  That has backfired on me a number of times.  Before doing that, I now like to take a moment and answer these questions.
 
 - What are the use cases and requirements?  Any gotchas?
 - Has this been tried before?  If so, what worked and what didn't work?
@@ -38,10 +38,10 @@ Now that I have defined the problem, that doesn't mean it is time to start writi
 
 ## Use cases, gotchas, and requirements
 
-I've used Octopus Deploy to backup databases to my NAS before.  That earlier attempt, I used the library step template, [SQL - Backup Database](https://library.octopus.com/step-templates/34b4fa10-329f-4c50-ab7c-d6b047264b83/actiontemplate-sql-backup-database).  It worked...okay, the main problem was the library step only supports one database.  Backing up multiple databases required multiple steps.  The process required constant tweaking.  It also uses SQL Management Objects [SMO](https://docs.microsoft.com/en-us/sql/relational-databases/server-management-objects-smo/sql-server-management-objects-smo-programming-guide?view=sql-server-ver15), which meant I had to install additional software.
+I've used Octopus Deploy to backup databases to my NAS before using the library step template, [SQL - Backup Database](https://library.octopus.com/step-templates/34b4fa10-329f-4c50-ab7c-d6b047264b83/actiontemplate-sql-backup-database).  It worked okay, the main problem was the library step only supports one database.  Backing up multiple databases required multiple steps.  The process required constant tweaking.  It also uses SQL Management Objects [SMO](https://docs.microsoft.com/en-us/sql/relational-databases/server-management-objects-smo/sql-server-management-objects-smo-programming-guide?view=sql-server-ver15), which meant I had to install additional software.
 
 Based on that experience, my requirements are:
-- Adding a database to a server means it automatically adds that new database to this process.
+- Adding a database to an existing server shouldn't require an update in Octopus Deploy.
 - It should be easy to exclude databases from the process.  
 - Backing up system databases should be optional.
 - Outside of the tentacle, the VM running this process shouldn't require any additional software.
@@ -160,21 +160,21 @@ Set-OctopusVariable -name "NotificationContent" -value $($notificationContent.To
 
 ## Where should the runbook run?
 
-The runbook will invoke `t-sql` commands over port 1433 to back up the database.  Tentacles don't have to be installed directly on the SQL Server (in fact, our [docs](https://octopus.com/docs/deployment-examples/database-deployments/configuration/tentacle-and-worker-installation) recommend NOT installing a tentacle on the same server as SQL Server).  
+The runbook will invoke `t-sql` commands over port 1433 to back up the database.  The good news is tentacles don't have to be installed directly on the SQL Server (in fact, our [docs](https://octopus.com/docs/deployment-examples/database-deployments/configuration/tentacle-and-worker-installation) recommend NOT installing a tentacle on the same server as SQL Server).  
 
 One of the requirements is the user performing the backup should only have permission to do the backup.  Also, several requirements indicate this process should be easy to use and trivial to maintain.  Those requirements are solved by running the tentacle as a [domain account](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/running-tentacle-under-a-specific-user-account).  That domain account will be assigned `db_backupoperator` and `db_datareader` [roles](https://docs.microsoft.com/en-us/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver15#fixed-database-roles).  
 
-And just like the [docs](https://octopus.com/docs/deployment-examples/database-deployments/configuration/tentacle-and-worker-installation recommend, tentacle will be registered with Octopus Deploy as a [worker](https://octopus.com/docs/infrastructure/workers).  To isolate these workers from regular database deployment workers, I'll create a new worker pool `Database Backup Worker Pool`.  
+And just like the [docs](https://octopus.com/docs/deployment-examples/database-deployments/configuration/tentacle-and-worker-installation) recommend, the tentacle will be registered as a [worker](https://octopus.com/docs/infrastructure/workers) in Octopus Deploy.  I'll create a new worker pool `Database Backup Worker Pool` to isolate these workers from other database deployment workers.  
 
 ![](database-backup-worker-pool.png)
 
 :::highlight
-**Recommendation:** Run runbooks on workers as close to the destination as possible.  If you're in Azure, run the worker on an Azure VM.  If you're in AWS, then have an EC2 instance hosting a worker.  If you're running on-premise, then have a worker running on-premise.  Runbooks can be used to perform very low-level tasks.  Configuring workers like this will help you lock them down.
+**Recommendation:** Keep workers as close to the destination as possible.  If you're in Azure, run the worker on an Azure VM.  If you're in AWS, then have an EC2 instance hosting a worker.  If you're running on-premise, then have a worker running on-premise.  Runbooks can be used to perform very low-level tasks.  Not having to jump through firewalls or configure additional permissions adds additional layers of security.  Plus, it keeps latency low.
 :::
 
 ## Invoking the runbook
 
-I don't want to think about backups; they should happen automatically via a trigger.  What does require a bit of thinking is what environment the runbook should run in.  I want this runbook to run across all environments in one run.  To keep it simple, I'll create a new environment `Maintenance` for this runbook.  I could've used `Production,` but that would've been confusing as it would've connected to a SQL Server in the `Test` environment.  
+I don't want to think about backups; they should happen automatically via a trigger.  What does require a bit of thinking is what environment the runbook should run in.  I want this runbook to run across all environments at the same time.  To keep it simple, I'll create a new environment `Maintenance` for this runbook.  I could've used `Production,` but that would've been confusing as it would've connected to a SQL Server in the `Test` environment.  
 
 ![](database-backup-trigger.png)
 
@@ -184,7 +184,7 @@ I don't want to think about backups; they should happen automatically via a trig
 
 ## Approvals and Notifications
 
-I want the runbook to be hands-off, but I want to know what is going on.  Especially if there is an error; the process will always send out an email when it is finished even if it fails.  Setting the run condition to be `Always Run` accomplishes this requirement.
+While being a hands-off process, I want to know when an error occurs.  The process will always send out an email when it is finished even if it fails.  Setting the run condition to be `Always Run` accomplishes this requirement.
 
 ![](database-backup-always-run.png)
 
