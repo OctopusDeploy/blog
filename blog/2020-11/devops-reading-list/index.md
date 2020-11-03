@@ -550,6 +550,6 @@ Deploy often, keep learning, and stay safe folks.
 
 *
 
-If you’d like to work with me (virtually) as a DevOps mentor, coach, consultant or trainer: [www.dlmconsultants.com](www.dlmconsultants.com)
+If you’d like to work with me (virtually) as a DevOps mentor, coach, consultant or trainer: [www.dlmconsultants.com](http://www.dlmconsultants.com)
 
-If you are looking for an amazing deployment orchestration tool: [www.octopus.com](www.octopus.com)
+If you are looking for an amazing deployment orchestration tool: [www.octopus.com](https://www.octopus.com)
