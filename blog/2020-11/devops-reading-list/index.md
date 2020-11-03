@@ -49,7 +49,7 @@ Also, this is not an exhaustive list of titles. I’ve sought as much feedback a
 
 Caveats aside, now it’s time for you to answer the questions for yourself and see where you end up.
 {#decision_tree}
-![decision_tree](DecisionTree.PNG "width=500")
+![decision_tree](decisiontree.png "width=500")
 
 If you want clarification on any of the questions in the decision tree above, you’ll find more guidance below. If you do not need any clarification, skip to my summaries of [The Books](#the-books).
 
@@ -124,7 +124,7 @@ Once you’ve checked out the materials for your chosen books, carry on to the [
 
 ### 1. The Goal (Goldratt: 1984) {#goal}
 
-![The_Goal](The_Goal.jpg "width=500")
+![The_Goal](the_goal.jpg "width=500")
 
 NOTE TO LEE: CAN WE MAKE ALL 12 BOOK COVERS SMALL AND ON THE RIGHT HAND SIDE?
 LIKE HERE: https://itrevolution.com/learn-more-about-concepts-in-phoenix-project/
@@ -147,7 +147,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 2. Lean Software Development: An Agile Toolkit (Poppendieck, Poppendieck: 2003) {#lean}
 
-![Lean_Software_Devlopment](Lean_Software_Devlopment.jpg "width=500")
+![Lean_Software_Devlopment](lean_software_devlopment.jpg "width=500")
 
 A book that’s stood up to the test of time.
 
@@ -179,7 +179,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 3. Domain-Driven Design Distilled (Vernon: 2016)  {#ddd}
 
-![Domain-Driven_Design_Distilled](Domain-Driven_Design_Distilled.jpg "width=500")
+![Domain-Driven_Design_Distilled](domain-driven_design_distilled.jpg "width=500")
 
 Domain-Driven Design (DDD) is an approach that enables folks to create loosely coupled architectures and avoid creating a “big ball of mud” monolithic system which is painful to develop, deploy or maintain. [Martin Fowler does a better job of describing it on his blog](https://martinfowler.com/bliki/DomainDrivenDesign.html) than I can reasonably expect to achieve in a few paragraphs here.
 
@@ -209,7 +209,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 4. Continuous Delivery (Humble, Farley: 2011)  {#cd}
 
-![Continuous_Delivery](Continuous_Delivery.jpg "width=500")
+![Continuous_Delivery](continuous_delivery.jpg "width=500")
 
 The first time I attended the London Continuous Delivery (CD) Meetup group, shortly after this book was published, half the attendees were holding a copy. They called it “The Bible”. While the DevOps movement had already started by 2011, I don’t think I’d heard of it yet. Our community had something very similar called CD instead.
 
@@ -233,7 +233,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 5. The Five Dysfunctions of a Team (Lencioni: 2002) {#dysfunc}
 
-![Five_Dysfunctions](Five_Dysfunctions.jpg "width=500")
+![Five_Dysfunctions](five_dysfunctions.jpg "width=500")
 
 Andrew Clay Shafer’s “wall of confusion” slide at Velocity in 2009 struck a chord because it was such a great articulation of the “core chronic conflict” between dev and ops. It resonated. Painfully.
 
@@ -257,7 +257,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 6. The Phoenix Project (Kim, Behr, Spafford: 2013)  {#phoenix}
 
-![Phoenix_Project](Phoenix_Project.jpg "width=500")
+![Phoenix_Project](phoenix_project.jpg "width=500")
 
 Earlier I mentioned that one of these books changed the course of my career. This was it.
 
@@ -283,7 +283,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 7. The Unicorn Project (Kim: 2019)  {#unicorn}
 
-![Unicorn_Project](Unicorn_Project.jpg "width=500")
+![Unicorn_Project](unicorn_project.jpg "width=500")
 
 The Unicorn Project is a retelling of The Phoenix Project. It’s neither a prequel, nor a sequel. It’s the same story, on the same timeline, but told from a different perspective.
 
@@ -311,7 +311,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 8. The DevOps Handbook (Kim, Humble, Debois, Willis: 2016) {#handbook}
 
-![DevOps_Handbook](DevOps_Handbook.jpg "width=500")
+![DevOps_Handbook](devops_handbook.jpg "width=500")
 
 This book is perhaps the best articulation of what DevOps is. It’s intended as a companion to [The Phoenix Project](#phoenix) and it aims to codify the thoughts and patterns of Phoenix into a more formal and actionable pocket handbook. (Although you’d need pretty big pockets.)
 
@@ -346,7 +346,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 9. Accelerate (Forsgren, Humble, Kim: 2018) {#accelerate}
 
-![Accelerate](Accelerate.jpg "width=500")
+![Accelerate](accelerate.jpg "width=500")
 
 If [The DevOps Handbook](#handbook) explains “how” to embrace DevOps, Accelerate explains “why”. This is the slam dunk argument for anyone who is either sceptical of DevOps, or interested in understanding the relationship between various DevOps practices and business success. It’s a great tool for selling DevOps to senior management.
 
@@ -397,7 +397,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 10. Team Topologies (Skelton, Pais: 2019) {#tt}
 
-![Team_Topologies](Team_Topologies.jpg "width=500")
+![Team_Topologies](team_topologies.jpg "width=500")
 
 Team Topologies uses [Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law) to bridge the divide between books about designing effective software architectures (e.g. [Domain-Driven Design: Distilled](#ddd)) and books about creating effective teams (e.g. [The Five Dysfunctions of a Team](#dysfunc)), while optimising for the rapid “flow” of value to end users.
 
@@ -413,7 +413,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 11. Database Reliability Engineering (Majors, Campbell: 2018) {#dre}
 
-![Database_Reliability_Engineering](Database_Reliability_Engineering.jpg "width=500")
+![Database_Reliability_Engineering](database_reliability_engineering.jpg "width=500")
 
 *“The book absolutely delivers: it’s a 250-page version of the concepts in Google’s [Site Reliability Engineering](#sre) book (which I love) targeted at people who might currently call themselves database administrators, but want to go to work in fast-paced, high-scale companies.”*
 
@@ -443,7 +443,7 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 12. Site Reliability Engineering (Beyer, Jones, Petoff, Murphy: 2016) {#sre}
 
-![Site_Reliability_Engineering](Site_Reliability_Engineering.jpg "width=500")
+![Site_Reliability_Engineering](site_reliability_engineering.jpg "width=500")
 
 You’ve arrived at the heaviest book in this list.
 
