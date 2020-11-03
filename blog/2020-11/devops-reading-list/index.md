@@ -23,7 +23,7 @@ What follows is a list of some of the most widely respected DevOps books and my 
 
 ## How to read this blog post
 
-This blog post is too long for you to read end-to-end. It’s not intended to be read that way. Instead treat this like a “choose your own adventure” story book and I’ll chaperone you to the most appropriate parts you.
+This blog post is too long for you to read end-to-end. It’s not intended to be read that way. Instead, treat this like a “choose your own adventure” story book and I’ll chaperone you to the most appropriate parts you.
 
 What follows is a simple decision tree, designed to point you directly to my personal book recommendation for you. When you get to the decision tree, I encourage you to answer the questions to yourself and see where they lead you. Hopefully, you’ll end up with a book recommendation that piques your interest.
 
@@ -31,7 +31,7 @@ Some of the questions are a little loaded, so immediately below the decision tre
 
 Next, I’ve written a brief summary of each of my recommended DevOps books. Once you’ve done the decision tree exercise, I encourage you to follow the link(s) directly to my description of whichever book(s) you were most interested to read. From there you’ll find links to further information/reviews and purchasing options.
 
-I’ve concluded this post with a couple of additional honourable mentions that didn’t neatly fit into the decision tree and some final thoughts.
+I’ve concluded this post with a couple of additional honorable mentions that didn’t neatly fit into the decision tree and some final thoughts.
 
 It is my hope that by the time you finish reading, you'll feel ready to buy a copy of your preferred book, block out a few hours in your schedule, and start reading. I can say without a hint of exaggeration, that when I did that, one of these books changed my professional career for the better.
 
@@ -67,7 +67,7 @@ Ask yourself, right now, are you more interested in learning about the foundatio
 
 The Agile movement (which pre-dates the DevOps movement) was itself heavily influenced by the Toyota Production System (TPS) and Lean ideas. TPS and Lean are a huge topic in their own right, worthy of their own reading lists. They refer to a revolution in manufacturing and supply chain management which dates back to the 1970s and is heavily influenced by the Japanese automotive industry.
 
-A few decades later, the Agile movement recognised that IT in the 1990s was suffering from similar issues to the pre-1970 automotive industry. Various Lean principles, designed for manufacturing, were reimagined to work in IT. These have since been codified into a set of now near-ubiquitous Agile practices.
+A few decades later, the Agile movement recognized that IT in the 1990s was suffering from similar issues to the pre-1970 automotive industry. Various Lean principles, designed for manufacturing, were reimagined to work in IT. These have since been codified into a set of now near-ubiquitous Agile practices.
 
 [Back to decision tree](#decision_tree)
 
@@ -75,11 +75,11 @@ A few decades later, the Agile movement recognised that IT in the 1990s was suff
 
 This is one of the hottest debates in the DevOps/SRE world, but it can be confusing because in many ways DevOps and SRE are pretty similar. Both DevOps and SRE promote similar ideas such as continuous delivery, observability, blameless cultures, the reduction of administrative toil and the closer collaboration/alignment between “dev” and “ops” teams. However, there are also some important differences.
 
-Since Google are widely credited with inventing SRE, it’s appropriate to honour their definition. In [this blog post and short YouTube video](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends), they describe SRE as a class which implements DevOps. In other words, SRE is a particular working practice that implements many of the most important DevOps principles. Hence, according to Google, DevOps and SRE are not in conflict.
+Since Google are widely credited with inventing SRE, it’s appropriate to honor their definition. In [this blog post and short YouTube video](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends), they describe SRE as a class which implements DevOps. In other words, SRE is a particular working practice that implements many of the most important DevOps principles. Hence, according to Google, DevOps and SRE are not in conflict.
 
 Some of the key components of SRE include the separation of the SRE (re-imagined “Ops”) team from the product (re-imagined “Dev”) teams, the use of Service Level Objectives (SLOs) to ensure that product and SRE teams share the same priorities, and the use of error budgets to encourage a healthy amount of innovation and risk taking.
 
-However, some folks from the DevOps community are uncomfortable with this. They feel that in almost all cases it’s much healthier for product teams, made up of a healthy mix of dev and ops folks, to run their own services. Hence, there is no need for a centralised Ops or SRE team. Some DevOps folks feel that SRE normalises the separation of traditional dev and ops concerns. They sometimes argue that this inevitably leads to the familiar silos and functional stand-offs that DevOps attempts to avoid.
+However, some folks from the DevOps community are uncomfortable with this. They feel that in almost all cases it’s much healthier for product teams, made up of a healthy mix of dev and ops folks, to run their own services. Hence, there is no need for a centralized Ops or SRE team. Some DevOps folks feel that SRE normalizes the separation of traditional dev and ops concerns. They sometimes argue that this inevitably leads to the familiar silos and functional stand-offs that DevOps attempts to avoid.
 
 Ask yourself if you feel it’s more realistic for development and operations concerns for a specific product or service to belong to a separate team (SRE) or do you feel that a small, cross-functional team should own the entire lifecycle, end-to-end (DevOps).
 
@@ -91,9 +91,9 @@ This question is less about subject matter and more about learning style: What s
 
 Most of the books read like textbooks or manuals. They are divided into chapters on different topics and they explain ideas as a teacher might explain them to a student, often referencing other related materials.
 
-However, several of the books are very different. They are written as novels. They will centre around specific characters who are often larger than life satires of many of the stereotypes that most IT folks will be familiar with. Readers will often recognise their colleagues or themselves within these characters, provoking tears of either laughter or pain.
+However, several of the books are very different. They are written as novels. They center around specific characters who are often larger than life satires of many of the stereotypes that most IT folks are familiar with. Readers will often recognize their colleagues or themselves within these characters, provoking tears of either laughter or pain.
 
-Most folks find the novels easier to read and more enjoyable, while others are put off by prose that’s generally written by engineers, rather than arts majors. While the stories may well be eerily familiar and genuinely thought provoking, do not go into these expecting the literary genius of Shakespeare, Austin or Dickens.
+Most folks find the novels easier to read and more enjoyable, while others are put off by prose that’s generally written by engineers, rather than arts majors. While the stories may well be eerily familiar and genuinely thought provoking, do not go into these expecting the literary genius of Shakespeare, Austin, or Dickens.
 
 Other folks find the textbooks easier to digest. They make clear and well-structured arguments but, with the best will in the world, it’s uncommon for folks to get drawn in and emotionally engaged when there are no characters and no plot. For most readers they are less engaging.
 
@@ -105,7 +105,7 @@ The textbooks speak to your brain. The novels speak to your gut.
 
 Hopefully, by now, you’ve picked one or more books that interest you. Follow the links below to read a few of my own comments about each book with links to further reviews and procurement options.
 
-Once you’ve checked out the materials for your chosen books, carry on to the [Honourable Mentions](#hon_mentions) and [Final Thoughts](#final_thoughts) sections.
+After you’ve checked out the materials for your chosen books, carry on to the [Honorable Mentions](#hon_mentions) and [Final Thoughts](#final_thoughts) sections.
 
 ### Book Index {#book-index}
 
