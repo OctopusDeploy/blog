@@ -129,16 +129,15 @@ After you’ve checked out the materials for your chosen books, carry on to the 
 NOTE TO LEE: CAN WE MAKE ALL 12 BOOK COVERS SMALL AND ON THE RIGHT HAND SIDE?
 LIKE HERE: https://itrevolution.com/learn-more-about-concepts-in-phoenix-project/
 
-<div class="row">
-  <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.</div>
-  <div class="col-sm-6"><img src="the_goal.jpg"></div>
-</div>
 
-The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
+<div class="row">
+  <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
+</div>
+  <div class="col-sm-6"><img src="the_goal.jpg"></div>
 
 The Goal is a Novel about Alex Rogo, a senior manager at UniCo, an auto-parts manufacturing company. Business is going badly. In order to avoid a massive restructuring program and many job losses, Rogo needs to simultaneously improve performance, quality and profitability before a seemingly impossible deadline.
 
-His initial efforts don’t go well. He falls into various traps of old-fashioned plant management, focussing on local optimisations and cost-efficiencies. Fortunately, he bumps into Jonah, an eccentric old friend, who gives him some curious advice that seems counter to everything he believed about effective plant management.
+His initial efforts don’t go well. He falls into various traps of old-fashioned plant management, focusing on local optimizations and cost-efficiencies. Fortunately, he bumps into Jonah, an eccentric old friend, who gives him some curious advice that seems counter to everything he believed about effective plant management.
 </div>
 
 The Goal offers a genuinely engaging, personal, accessible and practical approach to learning about fundamental lean principles like value streams, flow, waste, global efficiencies and the theory of constraints.
@@ -153,13 +152,13 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 ### 2. Lean Software Development: An Agile Toolkit (Poppendieck, Poppendieck: 2003) {#lean}
 
-![Lean_Software_Devlopment](lean_software_devlopment.jpg "width=500")
+![Lean_Software_Development](lean_software_devlopment.jpg "width=500")
 
 A book that’s stood up to the test of time.
 
 I wouldn’t like to guess how many software books have “Agile” in the title. Arguably, “Agile” was the original marketing buzzword for software. That’s probably got something to do with a drunken ski trip where a bunch of dudes created [a pithy website](https://agilemanifesto.org/).
 
-However, scepticism aside, I believe these buzzwords work so well for selling software, training and certifications because there is a fundamental truth behind them. These ideas make a lot of technical and commercial sense.
+However, skepticism aside, I believe these buzzwords work so well for selling software, training and certifications because there is a fundamental truth behind them. These ideas make a lot of technical and commercial sense.
 
 I might have mocked it above, but The Agile Manifesto had it’s place. For many, it was an important steppingstone towards articulating Agile. However, a better articulation for Agile is Mary and Tom Poppendieck’s “Lean Software Development: An Agile Toolkit”, which came along two years later.
 
@@ -181,7 +180,7 @@ For those who would like to learn more about Lean principles, within their origi
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/194338.Lean_Software_Development)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 3. Domain-Driven Design Distilled (Vernon: 2016)  {#ddd}
 
@@ -197,9 +196,9 @@ The great thing about writing a post like this is receiving feedback. As I was c
 
 Honestly, this was me discovering a blind spot of my own. DDD was not a topic I’d studied before and I had not appreciated the relationship between DDD and DevOps. I’m grateful to all the folks who encouraged me to take a look. Now I’ve got a new book on my bookshelf and I’ve been learning too.
 
-Most folks recommended [Eric Evans’ Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design), but Matthew Skelton (author of [Team Topologies](#tt)) also recommended Vernon’s “distilled” edition to me. After a little research I learned that the Evans book has excellent reviews and is recognised as the gold standard for DDD. However, it’s also perceived as long and complicated. (It’s 560 pages long and it costs over $50, making it longer and more expensive than any of the other books in this post.)
+Most folks recommended [Eric Evans’ Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design), but Matthew Skelton (author of [Team Topologies](#tt)) also recommended Vernon’s “distilled” edition to me. After a little research I learned that the Evans book has excellent reviews and is recognized as the gold standard for DDD. However, it’s also perceived as long and complicated. (It’s 560 pages long and it costs over $50, making it longer and more expensive than any of the other books in this post.)
 
-Since this was to be my first book about DDD I purchased a copy of Vernon’s “distilled” edition instead. Half the price and only 130 diagram-rich pages. Even slow readers (like myself) will probably be able to read it cover to cover in a few hours. I’ve included the Vernon book in my list because I’m uncomfortable recommending a book I haven’t read, but I recognise that many readers may prefer to either go straight for the Evans book.
+Since this was to be my first book about DDD I purchased a copy of Vernon’s “distilled” edition instead. Half the price and only 130 diagram-rich pages. Even slow readers (like myself) will probably be able to read it cover to cover in a few hours. I’ve included the Vernon book in my list because I’m uncomfortable recommending a book I haven’t read, but I recognize that many readers may prefer to either go straight for the Evans book.
 
 The Vernon book is a great primer on DDD and it’s relatively easy to digest by anyone with a little software development experience. It’s especially relevant for anyone who is either struggling with a monolithic system at the moment, or who would like to avoid their stuff gradually turning into one.
 
@@ -211,7 +210,7 @@ Finally, I encourage you to take a look at Team Topologies. Software architectur
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/28602719-domain-driven-design-distilled)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 4. Continuous Delivery (Humble, Farley: 2011)  {#cd}
 
@@ -219,11 +218,11 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 The first time I attended the London Continuous Delivery (CD) Meetup group, shortly after this book was published, half the attendees were holding a copy. They called it “The Bible”. While the DevOps movement had already started by 2011, I don’t think I’d heard of it yet. Our community had something very similar called CD instead.
 
-This book formalised many of the ideas about deployment pipelines that have since become ubiquitous. It goes into some technical detail about configuration as code, build and deployment automation and effective testing strategies.
+This book formalized many of the ideas about deployment pipelines that have since become ubiquitous. It goes into some technical detail about configuration as code, build and deployment automation and effective testing strategies.
 
 Most folks don’t tend to read this book end too end. (It’s pretty dry and technical.) Instead it’s best used as a reference book. If you intend to adopt new technical practice, it’s well worth reading the associated chapter before you get started to help you understand how to approach it.
 
-The book is generally pretty technical, mostly focussing on the practical implementation of deployment pipelines. However, it also discusses topics such as hand-offs, rapid iterations, experimentation, and learning. In many ways, once you start to see CD through this broader lens, it becomes difficult to differentiate between CD and DevOps.
+The book is generally pretty technical, mostly focusing on the practical implementation of deployment pipelines. However, it also discusses topics such as hand-offs, rapid iterations, experimentation, and learning. In many ways, once you start to see CD through this broader lens, it becomes difficult to differentiate between CD and DevOps.
 
 In fact, today there is some confusion about the scope of CD. For some it’s simply about the practical implementation of deployment pipelines. For others CD encompasses broader cultural and organizational issues. Some would go as far as to say that DevOps is part of CD, rather than the other way around.
 
@@ -235,7 +234,7 @@ If you enjoyed Continuous Delivery, you might also enjoy [Site Reliability Engin
 
 For more reviews, as well as procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/8686650-continuous-delivery)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 5. The Five Dysfunctions of a Team (Lencioni: 2002) {#dysfunc}
 
@@ -243,11 +242,11 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 Andrew Clay Shafer’s “wall of confusion” slide at Velocity in 2009 struck a chord because it was such a great articulation of the “core chronic conflict” between dev and ops. It resonated. Painfully.
 
-Most large organisations have more complex political structures than simply “dev” and “ops”, and it’s a struggle to get all functions working in alignment – yet this is precisely what’s required in order to achieve short lead times, frequent releases and “flow”.
+Most large organizations have more complex political structures than simply “dev” and “ops”, and it’s a struggle to get all functions working in alignment – yet this is precisely what’s required in order to achieve short lead times, frequent releases and “flow”.
 
 Alignment is only possible with teamwork, and teamwork is not possible without well-trained team players. As Gerald Weinberg famously said, “no matter what they tell you, it’s always a people problem”.
 
-This is why the DevOps community has always been deeply focussed on people and culture. However, tech folks are generally far more comfortable talking about software or automation than they are talking about emotions, trust or personal vulnerabilities. This leads to one of DevOps’ problems: Too often it’s boiled down to simply automated deployments, infrastructure as code, or the latest vendor tool. These over-simplifications completely miss the point.
+This is why the DevOps community has always been deeply focused on people and culture. However, tech folks are generally far more comfortable talking about software or automation than they are talking about emotions, trust or personal vulnerabilities. This leads to one of DevOps’ problems: Too often it’s boiled down to simply automated deployments, infrastructure as code, or the latest vendor tool. These over-simplifications completely miss the point.
 
 The Five Dysfunctions of a Team provides a logical framework for addressing “the people problem”. The first 180 pages tell a “Leadership Fable”, similar to [The Goal](#goal), [The Phoenix Project](#phoenix) or [The Unicorn Project](#unicorn). DecisionTech is a start-up with all the raw ingredients for success, but the senior leadership team is a dysfunctional mess. Kathryn Peterson, the new CEO, is tasked with uniting these talented and opinionated individuals and turning the company’s fortunes around.
 
@@ -255,11 +254,11 @@ The final 40 pages formally review the framework Kathryn uses to create an effec
 
 If your biggest problems are “people problems”, this book should be one of the first that you read.
 
-After reading “dysfunctions”, if you’d like to learn how to structure multiple teams in your organisation for success, you might like to try reading [Team Topologies](#tt). If you fancy another fable, take a look at [The Phoenix Project](#phoenix), in which some of the exercises from “dysfunctions” are used to bring together warring leadership teams in the midst of a project management disaster. 
+After reading “dysfunctions”, if you’d like to learn how to structure multiple teams in your organization for success, you might like to try reading [Team Topologies](#tt). If you fancy another fable, take a look at [The Phoenix Project](#phoenix), in which some of the exercises from “dysfunctions” are used to bring together warring leadership teams in the midst of a project management disaster. 
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/21343.The_Five_Dysfunctions_of_a_Team)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 6. The Phoenix Project (Kim, Behr, Spafford: 2013)  {#phoenix}
 
@@ -267,17 +266,17 @@ Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
 
 Earlier I mentioned that one of these books changed the course of my career. This was it.
 
-The Phoenix Project is a satire of every company you’ve ever worked for. It’s full of the larger than life characters that you’ve often worked with in the past. There’s the grumpy DBA, the lone engineer who understands how all the most critical systems work, and the senior leadership characters who don’t understand tech, as well as many others. You’ll read this book and recognise your colleagues. One by one you’ll giggle to yourself. There’s Dave. That’s Susan. Oh wait – that’s me.
+The Phoenix Project is a satire of every company you’ve ever worked for. It’s full of the larger than life characters that you’ve often worked with in the past. There’s the grumpy DBA, the lone engineer who understands how all the most critical systems work, and the senior leadership characters who don’t understand tech, as well as many others. You’ll read this book and recognize your colleagues. One by one you’ll giggle to yourself. There’s Dave. That’s Susan. Oh wait – that’s me.
 
 Gene Kim was so inspired when he read [The Goal](#goal), that he wanted to retell it within the context of software development. The Phoenix Project is an homage. Alex Rogo is replaced by Bill Palmer, a middle manager who’s just been promoted into a senior leadership role after his predecessor was fired. He works for Parts Unlimited, another auto-parts manufacturing company, and business is going badly. Sound familiar?
 
-Parts Unlimited has bet the shop on The Phoenix Project, a giant new software release designed to turn the company’s fortunes around. They’ve promised investors that it will be delivered in a few weeks, but the team are hopelessly behind schedule and the marketing department keep adding to the workload through various unofficial backchannels. At the same time, frequent firefighting is pulling resources away from Phoenix and causing more delays. It’s a vicious cycle from which escape appears to be impossible.
+Parts Unlimited has bet the shop on The Phoenix Project, a giant new software release designed to turn the company’s fortunes around. They’ve promised investors that it will be delivered in a few weeks, but the team are hopelessly behind schedule and the marketing department keep adding to the workload through various unofficial back-channels. At the same time, frequent firefighting is pulling resources away from Phoenix and causing more delays. It’s a vicious cycle from which escape appears to be impossible.
 
 If Phoenix is not delivered on time, Bill knows that he and the majority of his colleagues will lose their jobs.
 
 The Goal’s Jonah is replaced by Eric, a quirky new investor with crazy ideas that challenge Bill’s conventional wisdom. Under Eric’s mentorship, Bill learns the flaws in his old ideas about how to manage IT projects. He embarks on a journey to understand “The Three Ways”: Flow, Feedback and Continual Experimentation and Learning.
 
-Along the way each of those archetypal characters either learns to embrace a new way of working or they get their comeuppance. When I realised that things weren’t likely to end well for the character that I recognised as myself, I personally knew I had to change.
+Along the way each of those archetypal characters either learns to embrace a new way of working or they get their comeuppance. When I realized that things weren’t likely to end well for the character that I recognized as myself, I personally knew I had to change.
 
 In my opinion, the most valuable thing about this book is how well it articulated the harm I was doing, when I thought I was doing my job well. The Phoenix Project helped me to understand my role and the consequences of my actions in a broader and more valuable context. If it wasn’t for this book – I probably would not be writing this blog post.
 
@@ -285,19 +284,19 @@ If you enjoyed The Phoenix Project, you’ll probably also enjoy [The Unicorn Pr
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/17255186-the-phoenix-project)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 7. The Unicorn Project (Kim: 2019)  {#unicorn}
 
 ![Unicorn_Project](unicorn_project.jpg "width=500")
 
-The Unicorn Project is a retelling of The Phoenix Project. It’s neither a prequel, nor a sequel. It’s the same story, on the same timeline, but told from a different perspective.
+The Unicorn Project is a retelling of The Phoenix Project. It’s neither a prequel, nor a sequel. It’s the same story, on the same time-line, but told from a different perspective.
 
 The Phoenix Project is told from Bill Palmer’s perspective, as a senior manager with a background in the operations side of the business. Phoenix talks a lot about lean principles and collaboration and all that’s valuable, but Bill has been promoted far enough that he rarely plays with the code any more, and he lacks development experience. This can make The Phoenix Project an unsatisfying read for developers, sometimes giving them the impression that unless you are in senior management you can’t do much about the underlying problems.
 
 In contrast, The Unicorn Project tells the story of Maxine Chambers. She’s a senior developer who’s just been relegated to The Phoenix Project after getting the blame for a disaster that wasn’t her fault. Well respected by her team, she’s a strong leader who shuns formal management positions because she loves to code.
 
-Alongside some of the organisational themes, such as corporate bureaucracy, blame culture and lengthy approval processes, Unicorn covers more technical topics, including continuous integration, data management and functional programming. (Yeah, I admit I was a little surprised by that last one!)
+Alongside some of the organizational themes, such as corporate bureaucracy, blame culture and lengthy approval processes, Unicorn covers more technical topics, including continuous integration, data management and functional programming. (Yeah, I admit I was a little surprised by that last one!)
 
 The primary focus of Unicorn are “The Five Ideals”:
 
@@ -307,13 +306,13 @@ The primary focus of Unicorn are “The Five Ideals”:
 1.	Psychological safety
 1.	Customer focus
 
-While Unicorn is undoubtedly aimed at engineers over managers, and developers over operations, it’s the pairing of Phoenix and Unicorn that I find so valuable. Frankly, if you like one, you’ll probably enjoy the other, and it’s enlightening to read the same story from two different perspectives. It’s a wonderful exercise for learning to understand and empathise with how the other side sees things.
+While Unicorn is undoubtedly aimed at engineers over managers, and developers over operations, it’s the pairing of Phoenix and Unicorn that I find so valuable. Frankly, if you like one, you’ll probably enjoy the other, and it’s enlightening to read the same story from two different perspectives. It’s a wonderful exercise for learning to understand and empathize with how the other side sees things.
 
 If you enjoyed the Unicorn Project, try reading [The Phoenix Project](#phoenix) next. If you’d like to learn more about building great Teams, check out [The Five Dysfunctions of a Team](#dysfunc). If you’d like to learn more about designing your code for DevOps, try [Domain-Driven Design: Distilled](#ddd) or if you are a data specialist, [Database Reliability Engineering](#dre). Finally, if you’d like to learn more about continuous integration and deployment pipelines, check out either [Continuous Delivery](#cd) or [The DevOps Handbook](#handbook).
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 8. The DevOps Handbook (Kim, Humble, Debois, Willis: 2016) {#handbook}
 
@@ -323,10 +322,10 @@ This book is perhaps the best articulation of what DevOps is. It’s intended as
 
 Before reviewing the contents, it’s worth taking a moment to consider the authors.
 
--	Patrick Debois is affectionately referred to as “the godfather of DevOps”. It was he and Andrew Clay Shafer who started the Agile System Administrators group back in 2008 and in 2009 Debois organised the inaugural “DevOps Days” event, accidentally naming the movement in the process. Love or hate the name “DevOps”, Patrick is responsible for it.
--	John Willis co-organised the first US DevOps Days in 2010, and in the early days of the movement, as the community was struggling to define what DevOps was, he came up with the acronym CAMS: Culture, Automation, Measurements and Sharing. It’s still used regularly to this day.
--	Jez Humble co-authored [Continuous Delivery](#cd) and went on to co-author [Accelerate](#accelerate). As well as contributing to the formalisation and normalisation of the ideas and common architectures of the modern software deployment pipeline, he also extended CAMS to create CALMS, paying tribute to the Lean heritage of the DevOps movement.
--	Gene Kim is a CTO, researcher and author, who studies high performing software organisations. He has a background in ITIL, a love for DevOps, and a deep understanding of the relationship between IT performance and business success. Among other titles, he co-authored or authored [The Phoenix Project](#phoenix), [The Unicorn Project](#unicorn) and [Accelerate](#accelerate), three of the most well-known and popular DevOps books. He is also the founder and organiser of DevOps Enterprise Summit.
+-	Patrick Debois is affectionately referred to as “the godfather of DevOps”. It was he and Andrew Clay Shafer who started the Agile System Administrators group back in 2008 and in 2009 Debois organized the inaugural “DevOps Days” event, accidentally naming the movement in the process. Love or hate the name “DevOps”, Patrick is responsible for it.
+-	John Willis co-organized the first US DevOps Days in 2010, and in the early days of the movement, as the community was struggling to define what DevOps was, he came up with the acronym CAMS: Culture, Automation, Measurements and Sharing. It’s still used regularly to this day.
+-	Jez Humble co-authored [Continuous Delivery](#cd) and went on to co-author [Accelerate](#accelerate). As well as contributing to the formalization and normalization of the ideas and common architectures of the modern software deployment pipeline, he also extended CAMS to create CALMS, paying tribute to the Lean heritage of the DevOps movement.
+-	Gene Kim is a CTO, researcher and author, who studies high performing software organizations. He has a background in ITIL, a love for DevOps, and a deep understanding of the relationship between IT performance and business success. Among other titles, he co-authored or authored [The Phoenix Project](#phoenix), [The Unicorn Project](#unicorn) and [Accelerate](#accelerate), three of the most well-known and popular DevOps books. He is also the founder and organizer of DevOps Enterprise Summit.
 
 I struggle to think of any other book with authors that possess equivalent combined DevOps credentials. These folks have all been at the heart of the movement since the very early days.
 
@@ -344,21 +343,21 @@ The DevOps Handbook is a fantastic read for someone new to DevOps or someone who
 
 If you haven’t read [The Phoenix Project](#phoenix) yet, it’s a great companion to The DevOps Handbook as it tells the story of an IT manager who puts “the three ways” into practice. If you want to go deeper on any of the specific topics, you’ll likely find plenty of references in the Handbook to further reading materials. In fact, most of the books in this post that pre-date the handbook are referenced at some point.
 
-If you’re in senior management and you are interested in more reading material to help you to structure your IT organisation for success, I recommend you take a look at [Accelerate](#accelerate), which takes a scientific, data-driven approach to analyse the data from the State of DevOps reports to make an empirical case for why many of the practices in the handbook deliver business value. You might also enjoy [Team Topologies](#tt), which explores the various team structures that either enable or inhibit flow.
+If you’re in senior management and you are interested in more reading material to help you to structure your IT organization for success, I recommend you take a look at [Accelerate](#accelerate), which takes a scientific, data-driven approach to analyze the data from the State of DevOps reports to make an empirical case for why many of the practices in the handbook deliver business value. You might also enjoy [Team Topologies](#tt), which explores the various team structures that either enable or inhibit flow.
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/26083308-the-devops-handbook)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 9. Accelerate (Forsgren, Humble, Kim: 2018) {#accelerate}
 
 ![Accelerate](accelerate.jpg "width=500")
 
-If [The DevOps Handbook](#handbook) explains “how” to embrace DevOps, Accelerate explains “why”. This is the slam dunk argument for anyone who is either sceptical of DevOps, or interested in understanding the relationship between various DevOps practices and business success. It’s a great tool for selling DevOps to senior management.
+If [The DevOps Handbook](#handbook) explains “how” to embrace DevOps, Accelerate explains “why”. This is the slam dunk argument for anyone who is either skeptical of DevOps, or interested in understanding the relationship between various DevOps practices and business success. It’s a great tool for selling DevOps to senior management.
 
 In many ways, the book is a response to critique that “DevOps” is a buzzword or a cult, full of warm and fluffy ideas that might sound nice and make sense for a small business or start-up, but which do not practically scale for large organizations or which are not compatible with tightly regulated industries like healthcare or finance.
 
-The authors achieve this by analysing the data from the 2014-2017 [State of DevOps Reports](https://www.devops-research.com/research.html). Forsgren, [a well-respected and published researcher](https://nicolefv.com/research), applies various scientific and statistical methods to the data to see what they can teach us. Her findings are striking.
+The authors achieve this by analyzing the data from the 2014-2017 [State of DevOps Reports](https://www.devops-research.com/research.html). Forsgren, [a well-respected and published researcher](https://nicolefv.com/research), applies various scientific and statistical methods to the data to see what they can teach us. Her findings are striking.
 
 Long story short: The business benefits of DevOps are real and predictable.
 
@@ -374,11 +373,11 @@ I was so captivated by what I was hearing that as soon as I got home I ordered m
 
 Accelerate helped me to understand and appreciate many of the issues that I regularly witness with my customers. Previously, I would have gut instincts that certain practices were harmful, but I struggled to authoritatively articulate why. Accelerate gave me the language and evidence to explain my gut reactions to both technical and commercial stakeholders.
 
-While I found part 1 enormously useful, I have never attempted to read part 2. I don’t think it’s designed for me. It’s an academic discussion about the scientific and statistical methods used to deliver the conclusions detailed in part 1. I’m sure that this will be valuable reading to any stats or data geeks who are interested in the methods, or for any sceptics who want to find flaws in the logic. Personally, despite being a database specialist, I’m not sure I fit into either category.
+While I found part 1 enormously useful, I have never attempted to read part 2. I don’t think it’s designed for me. It’s an academic discussion about the scientific and statistical methods used to deliver the conclusions detailed in part 1. I’m sure that this will be valuable reading to any stats or data geeks who are interested in the methods, or for any skeptics who want to find flaws in the logic. Personally, despite being a database specialist, I’m not sure I fit into either category.
 
-I enjoy driving and I enjoy coding, but I couldn’t design a carburettor or a CPU. Similarly, I recognise that I’m more interested in applying the lessons Accelerate teaches, rather than understanding the scientific and statistical models used to come up with them. What matters to me is that the authors methods work. Given the popularity of the book, and the fact that I’ve not heard any serious criticisms of the authors methods, my personal conclusion is that the methods were probably reliable. (And if they weren’t, it’s unlikely that I’d be the one to challenge them anyway. I recognise that Nicole Forsgren is better at research and analysis than I am.)
+I enjoy driving and I enjoy coding, but I couldn’t design a carburettor or a CPU. Similarly, I recognize that I’m more interested in applying the lessons Accelerate teaches, rather than understanding the scientific and statistical models used to come up with them. What matters to me is that the authors methods work. Given the popularity of the book, and the fact that I’ve not heard any serious criticisms of the authors methods, my personal conclusion is that the methods were probably reliable. (And if they weren’t, it’s unlikely that I’d be the one to challenge them anyway. I recognize that Nicole Forsgren is better at research and analysis than I am.)
 
-Despite not reading part 2, I did find part 3 useful. It’s a case study from ING Netherlands. It tells the story of a specific organisation that applied the lessons from part 1. The authors give a clear warning that what matters is ING’s approach to interpreting the lessons, rather than the particular practices that they implemented. It’s a useful way to finish the book, since it demonstrates how to go about putting the theory into practice.
+Despite not reading part 2, I did find part 3 useful. It’s a case study from ING Netherlands. It tells the story of a specific organization that applied the lessons from part 1. The authors give a clear warning that what matters is ING’s approach to interpreting the lessons, rather than the particular practices that they implemented. It’s a useful way to finish the book, since it demonstrates how to go about putting the theory into practice.
 
 So what are the lessons?
 
@@ -399,15 +398,15 @@ If your role is a technical one, or you are a senior manager with responsibility
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/35747076-accelerate)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 10. Team Topologies (Skelton, Pais: 2019) {#tt}
 
 ![Team_Topologies](team_topologies.jpg "width=500")
 
-Team Topologies uses [Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law) to bridge the divide between books about designing effective software architectures (e.g. [Domain-Driven Design: Distilled](#ddd)) and books about creating effective teams (e.g. [The Five Dysfunctions of a Team](#dysfunc)), while optimising for the rapid “flow” of value to end users.
+Team Topologies uses [Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law) to bridge the divide between books about designing effective software architectures (e.g. [Domain-Driven Design: Distilled](#ddd)) and books about creating effective teams (e.g. [The Five Dysfunctions of a Team](#dysfunc)), while optimizing for the rapid “flow” of value to end users.
 
-Matthew Skelton is deeply influenced by the Continuous Delivery movement in the UK, and this influence shines through. I know this personally, because for about a year back in 2017 I co-organised the [London Continuous Delivery Meetup Group](https://www.meetup.com/London-Continuous-Delivery/) with him. Attendees would sometimes come with their copy of [Continuous Delivery](#cd) tucked under their arm - and they called it “the Bible”. The spin-off [Pipeline Conferences](https://pipelineconf.info/), which Skelton ran, were some of the most welcoming, diverse and intellectually stimulating tech conferences I’ve ever attended/supported.
+Matthew Skelton is deeply influenced by the Continuous Delivery movement in the UK, and this influence shines through. I know this personally, because for about a year back in 2017 I co-organized the [London Continuous Delivery Meetup Group](https://www.meetup.com/London-Continuous-Delivery/) with him. Attendees would sometimes come with their copy of [Continuous Delivery](#cd) tucked under their arm - and they called it “the Bible”. The spin-off [Pipeline Conferences](https://pipelineconf.info/), which Skelton ran, were some of the most welcoming, diverse and intellectually stimulating tech conferences I’ve ever attended/supported.
 
 Team Topologies is a book for the senior managers of IT departments. It takes the view that software architecture starts with team architecture and it provides a blueprint for designing your teams, and the communication/collaboration protocols between them, in such a way that your preferred software architecture emerges organically. This radically reduces both the need for toxic bureaucracy as well as the risk of poor architectural choices that accrue significant [technical debt](https://en.wikipedia.org/wiki/Technical_debt).
 
@@ -415,7 +414,7 @@ If you’ve enjoyed Team Topologies and would like to learn more about some of t
 
 For more reviews, as well as procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/44135420-team-topologies)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 11. Database Reliability Engineering (Majors, Campbell: 2018) {#dre}
 
@@ -427,7 +426,7 @@ Those are not my words, they were written by Brent Ozar in [his own review of �
 
 As I was compiling this blog post I came across Brent’s review and, frankly, I love it. He said exactly what I wanted to say, but better. He explains how the reader should approach the book, depending on whether they are a DBA, a manager or a developer/SysAdmin.
 
-Personally, my favourite take-aways from DRE were the focus on “resilience over robustness” and the ubiquitous use of SLOs as a method for aligning objectives and improving collaboration across the “wall of confusion” between dev and ops. I also appreciated the focus on “operational visibility” as opposed to traditional monitoring, which get’s to the heart of the current #observability debate.
+Personally, my favorite take-aways from DRE were the focus on “resilience over robustness” and the ubiquitous use of SLOs as a method for aligning objectives and improving collaboration across the “wall of confusion” between dev and ops. I also appreciated the focus on “operational visibility” as opposed to traditional monitoring, which gets to the heart of the current #observability debate.
 
 Brent signs off with:
 
@@ -441,11 +440,11 @@ That pretty much sums it up for “DRE”. Thanks Brent for saving me a little t
 
 If you enjoyed “DRE”, it’s likely that you’ll also enjoy it’s big sister, [Site Reliability Engineering](#sre), which is bigger in size and broader in scope. However, if you fancy something a little lighter, you might enjoy [The Phoenix Project](#phoenix), in which an operations team learn to work more effectively with developers and the rest of the business to avoid repeated data-centric disasters. You might also like Phoenix’s sister novel, [The Unicorn Project](#unicorn), which tells the same story from the perspective of a senior developer who inherits a monolithic database and is effectively tasked with creating and maintaining a data lake.
 
-If you are struggling to break out a monolithic database into a set of smaller, more loosely coupled databases, you may also benefit from reading [Domain-Driven Design: Distilled](#ddd). Finally, if you are an old-school DBA and you remain sceptical about [Accelerate](#accelerate), I encourage you to take a look at Accelerate.
+If you are struggling to break out a monolithic database into a set of smaller, more loosely coupled databases, you may also benefit from reading [Domain-Driven Design: Distilled](#ddd). Finally, if you are an old-school DBA and you remain skeptical about [Accelerate](#accelerate), I encourage you to take a look at Accelerate.
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/36523657-database-reliability-engineering)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 12. Site Reliability Engineering (Beyer, Jones, Petoff, Murphy: 2016) {#sre}
 
@@ -464,9 +463,9 @@ That 10 minute read / 45 minute watch should give you a great primer on Google�
 
 Then you’ve got 560 pages covering 34 chapters detailing all the incredible technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
 
-While SRE is a fascinating read, it’s worth remembering that most of us do not work for organisations that are anywhere near close to “Google-scale”. With that in mind, SRE is most relevant to folks who work at very large organizations. 
+While SRE is a fascinating read, it’s worth remembering that most of us do not work for organizations that are anywhere near close to “Google-scale”. With that in mind, SRE is most relevant to folks who work at very large organizations. 
 
-One of the criticisms of SRE is the way it effectively normalises and advocates for the existence of a separate SRE (Ops) team. My personal view is that the majority of the DevOps community believe that in the vast majority of cases, and certainly in most small/medium-sized companies, it’s better for a team to own the end to end lifecycle of their product or service, rather than to hand “Ops” concerns over to a separate silo.
+One of the criticisms of SRE is the way it effectively normalizes and advocates for the existence of a separate SRE (Ops) team. My personal view is that the majority of the DevOps community believe that in the vast majority of cases, and certainly in most small/medium-sized companies, it’s better for a team to own the end to end lifecycle of their product or service, rather than to hand “Ops” concerns over to a separate silo.
 
 This concern aside, many of the practices in the book are likely to be broadly applicable and relevant. It may well give you a few ideas about how to solve some of your own challenges.
 
@@ -474,9 +473,9 @@ SRE is a great read for anyone who self-identifies as being toward the “Ops”
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/27968891-site-reliability-engineering)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
-## Honourable Mentions {#hon_mentions}
+## Honorable Mentions {#hon_mentions}
 
 I posted my first attempt to compile this list on Twitter last month:
 
@@ -520,15 +519,15 @@ It’s a fascinating listen from start to finish, and one that many people go ba
 
 ### How Complex Systems Fail
 
-When exploring the historical foundations of DevOps, most folks (including myself) immediately jump to Lean Manufacturing – and that’s well justified. However, many folks fail to recognise that DevOps owes much to the “Safety Culture” or “Safety 2.0” movement as well, which has a totally independent and very different history. Arguably, ideas such as agile infrastructure, chaos engineering, resilience over robustness, observability and blame-free cultures owe more to Safety Culture than they do to Lean Manufacturing.
+When exploring the historical foundations of DevOps, most folks (including myself) immediately jump to Lean Manufacturing – and that’s well justified. However, many folks fail to recognize that DevOps owes much to the “Safety Culture” or “Safety 2.0” movement as well, which has a totally independent and very different history. Arguably, ideas such as agile infrastructure, chaos engineering, resilience over robustness, observability and blame-free cultures owe more to Safety Culture than they do to Lean Manufacturing.
 
 Safety Culture is the study of the cause of disasters in complex and often high-risk environments. In IT we often fall into the trap of believing our regular IT failures should class our work as high risk. That’s normally a mistake and most folks who argue that it isn’t have clearly never worked in the military, a hospital or the aviation industry, where individuals are often making literal life and death decisions on a daily basis. Our deployment screw ups normally matter a lot less than the screw ups of a soldier, surgeon or pilot. It’s often worth reminding ourselves about that. (Imagine how much more difficult a blameless post-mortem would be if someone had actually died.)
 
-However, there is a lot we can learn from folks who genuinely have to manage serious risks on a daily basis. In the 1990s Richard Cook worked in the health care sector and researched patient safety. In 1998 he published a paper called How Complex Systems Fail. It’s a relatively short and easy read that summarises 18 core ideas about the effective management of risk. The crazy thing is that as an IT person, if you didn’t know he was writing about safety in hospitals, you would probably have thought you were reading about IT.
+However, there is a lot we can learn from folks who genuinely have to manage serious risks on a daily basis. In the 1990s Richard Cook worked in the health care sector and researched patient safety. In 1998 he published a paper called How Complex Systems Fail. It’s a relatively short and easy read that summarizes 18 core ideas about the effective management of risk. The crazy thing is that as an IT person, if you didn’t know he was writing about safety in hospitals, you would probably have thought you were reading about IT.
 
-By reflecting on Cook’s research and imagining the implications to one fictional IT organization that embraces DevOps, and another that favours old-fashioned waterfall style project management and bureaucracy, it’s easy to understand why the waterfall organization is far more likely to suffer more frequent and severe disasters.
+By reflecting on Cook’s research and imagining the implications to one fictional IT organization that embraces DevOps, and another that favors old-fashioned waterfall style project management and bureaucracy, it’s easy to understand why the waterfall organization is far more likely to suffer more frequent and severe disasters.
 
-I won’t try to summarise the main points of Safety Culture here because it would take too long and ultimately, I’d just be paraphrasing the same points Cook makes pretty articulately for himself. I encourage you to read the paper – it’s only a 10-minute read:
+I won’t try to summarize the main points of Safety Culture here because it would take too long and ultimately, I’d just be paraphrasing the same points Cook makes pretty articulately for himself. I encourage you to read the paper – it’s only a 10-minute read:
 
 [https://how.complexsystems.fail/](https://how.complexsystems.fail/)
 
@@ -542,7 +541,7 @@ Don’t just take my word for it. I’m just one imperfect human who is fascinat
 
 ## Final Thoughts {#final_thoughts}
 
-Not every book is for everyone. For example, while many people love The Phoenix Project, there are certainly some that don’t like the format. And I’m aware that my decision to include a specialised book about databases reflects my personal experience. Why not a book dedicated to kanban/scrum, testing, product management, chaos engineering or security? These are all fair questions.
+Not every book is for everyone. For example, while many people love The Phoenix Project, there are certainly some that don’t like the format. And I’m aware that my decision to include a specialized book about databases reflects my personal experience. Why not a book dedicated to kanban/scrum, testing, product management, chaos engineering or security? These are all fair questions.
 
 It’s also true that these sorts of posts often age quickly. I’m writing this post in October 2020, and half of the titles above were published since 2016. I’m sure that over the next few years new books will be written, old books will be rediscovered, and books that are popular now will go out of fashion. The technology we use is constantly evolving and the DevOps community has a deep passion for learning and improvement, so it would be a surprise and a shame if things don’t evolve over the coming years.
 
