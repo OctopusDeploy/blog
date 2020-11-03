@@ -56,7 +56,7 @@ The command below maps the two custom XML files we created above (saved to `/tmp
 sudo docker run \
   --name tomcat \
   -it \
-  -p 8081:8080 \
+  -p 8080:8080 \
   -v /tmp/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml \
   -v /tmp/context.xml:/tmp/context.xml \
   tomcat:9.0 \
