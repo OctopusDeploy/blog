@@ -129,10 +129,10 @@ After you’ve checked out the materials for your chosen books, carry on to the 
 NOTE TO LEE: CAN WE MAKE ALL 12 BOOK COVERS SMALL AND ON THE RIGHT HAND SIDE?
 LIKE HERE: https://itrevolution.com/learn-more-about-concepts-in-phoenix-project/
 
-
-
-<div style="width:100%">
-<img style="float:right;width:50%;text-align:right;padding: 0px 0px 10px 10px;" src="the_goal.jpg">
+<div class="row">
+  <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.</div>
+  <div class="col-sm-6"><img src="the_goal.jpg"></div>
+</div>
 
 The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
 
