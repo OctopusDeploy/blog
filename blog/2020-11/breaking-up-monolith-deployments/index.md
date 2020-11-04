@@ -9,15 +9,15 @@ bannerImage:
 tags:
 ---
 
-The term `monolithic deployment` often carries a negetive connotation, however, monolithic deployments are the natural progression of an application that has grown over time.  In this post, I'll demonstrate considerations in breaking apart a monolithic process into smaller deployable components.
+The term `monolithic deployment` often carries a negetive connotation, however, monolithic deployments are the natural progression of an application that has grown over time.  In this post, I'll demonstrate breaking apart a monolithic process into smaller deployable components.
 
 ## Pitstop
-For this post, I chose the [Pitstop](https://github.com/EdwinVW/pitstop) to use as an example.  The reason I chose this application was that it contained multiple moving parts:
+For this post, I chose the [Pitstop](https://github.com/EdwinVW/pitstop) application to use as an example.  The reason I chose this application was that it contained multiple moving parts:
 - Web front end
 - APIs
 - Microservices
 - Databases
-- Third-party docker containers
+- References third-party docker containers
 
 The original version of this application embedded the database and table creation within the C# code itself.  To make a more useful demonstration, I extracted the database activities and placed them into the deployment process.  In addition, the APIs and Web front end were all dockerized.  Again, I modified this so they could be deployed to Azure instead of containers.  The modified version can be found [here](https://github.com/OctopusSamples/PitStop).
 
@@ -63,6 +63,25 @@ Looking at our deployment process, we can identify some of the steps that are re
 
 ![](octopus-project-invoice.png)
 
-Deployment of the Invoice components now takes only a minute versus the 15 minutes in the monolith.  This is a significant time savings especially in cases where the Invoice components are the only pieces that need updating.
+Deployment of the Invoice components now takes only 1 minute versus the 15 minutes in the monolith.  This is a significant time savings especially in cases where the Invoice components are the only pieces that need updating.
 
-## Deploying
+Breaking out the entire process into different projects would yield something similar to this
+
+![](octopus-component-projects.png)
+
+Each component of the application has been broken out into their respective projects and can now be deployed individually.
+
+## Deployment orchestration
+Now that we have our application broken up into separate deployable components, we're faced with the issue of orchestrating several projects when needing to deploy the whole solution.  
+
+### Create an orchestration project
+Octopus Deploy contains a built-in step template called [Deploy a Release](https://octopus.com/docs/projects/coordinating-multiple-projects/deploy-release-step).  This feature allows you to choose a different project and deploy the latest release from it (the community template of [Chain deployment](https://library.octopus.com/step-templates/18392835-d50e-4ce9-9065-8e15a3c30954/actiontemplate-chain-deployment) has similar functionality).  The `Deploy a Release` comes with the ability to pass variables to the child project in the event it has prompted variables.
+
+![](octopus-project-orchestration.png)
+
+Using the `Deploy a Release` template does come with a couple caveats:
+- The child project release must be created prior to the orchestration project release creation.  This can be accompolished by using our build server plugins to create the release from the build or using the CLI.
+- Unable to choose specific release version of child projects.
+
+## Conclusion
+Automating the deployment of an application is a critical step in your DevOps journey.  Once your deployment process has reached monolithic proportions, the next step is to identify which components can be deployed individually, which is often easier said than done.  A side-effect of this exercise is that the same components that can be deployed individually can usually be built indvidually which can drastically cut down on build duration and lead to lower lead times.  With build duration an deployment time lowered, you have the capability to deploy your application faster and more often.
