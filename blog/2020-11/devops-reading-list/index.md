@@ -126,19 +126,17 @@ After you’ve checked out the materials for your chosen books, carry on to the 
 
 ![The_Goal](the_goal.jpg "width=500")
 
-NOTE TO LEE: CAN WE MAKE ALL 12 BOOK COVERS SMALL AND ON THE RIGHT HAND SIDE?
-LIKE HERE: https://itrevolution.com/learn-more-about-concepts-in-phoenix-project/
-
+Test One
 
 <div class="row">
   <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
 </div>
-  <div class="col-sm-6">![The_Goal](the_goal.jpg "width=500")</div>
+  <div class="col-sm-6"><img src="the_goal.jpg"></div>
+ </div>
 
 The Goal is a Novel about Alex Rogo, a senior manager at UniCo, an auto-parts manufacturing company. Business is going badly. In order to avoid a massive restructuring program and many job losses, Rogo needs to simultaneously improve performance, quality and profitability before a seemingly impossible deadline.
 
 His initial efforts don’t go well. He falls into various traps of old-fashioned plant management, focusing on local optimizations and cost-efficiencies. Fortunately, he bumps into Jonah, an eccentric old friend, who gives him some curious advice that seems counter to everything he believed about effective plant management.
-</div>
 
 The Goal offers a genuinely engaging, personal, accessible and practical approach to learning about fundamental lean principles like value streams, flow, waste, global efficiencies and the theory of constraints.
 
