@@ -134,11 +134,11 @@ LIKE HERE: https://itrevolution.com/learn-more-about-concepts-in-phoenix-project
   <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
 </div>
   <div class="col-sm-6"><img src="the_goal.jpg"></div>
+</div>
 
 The Goal is a Novel about Alex Rogo, a senior manager at UniCo, an auto-parts manufacturing company. Business is going badly. In order to avoid a massive restructuring program and many job losses, Rogo needs to simultaneously improve performance, quality and profitability before a seemingly impossible deadline.
 
 His initial efforts don’t go well. He falls into various traps of old-fashioned plant management, focusing on local optimizations and cost-efficiencies. Fortunately, he bumps into Jonah, an eccentric old friend, who gives him some curious advice that seems counter to everything he believed about effective plant management.
-</div>
 
 The Goal offers a genuinely engaging, personal, accessible and practical approach to learning about fundamental lean principles like value streams, flow, waste, global efficiencies and the theory of constraints.
 
@@ -148,7 +148,7 @@ If you would like to learn more about how these Lean principles can be applied t
 
 For more reviews, as well as procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/113934.The_Goal)
 
-Back: [Book Index](#book-index) / Next: [Honourable Mentions](#hon_mentions)
+Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 2. Lean Software Development: An Agile Toolkit (Poppendieck, Poppendieck: 2003) {#lean}
 
@@ -160,7 +160,7 @@ I wouldn’t like to guess how many software books have “Agile” in the title
 
 However, skepticism aside, I believe these buzzwords work so well for selling software, training and certifications because there is a fundamental truth behind them. These ideas make a lot of technical and commercial sense.
 
-I might have mocked it above, but The Agile Manifesto had it’s place. For many, it was an important steppingstone towards articulating Agile. However, a better articulation for Agile is Mary and Tom Poppendieck’s “Lean Software Development: An Agile Toolkit”, which came along two years later.
+I might have mocked it above, but The Agile Manifesto had it’s place. For many, it was an important steppingstone toward articulating Agile. However, a better articulation for Agile is Mary and Tom Poppendieck’s “Lean Software Development: An Agile Toolkit”, which came along two years later.
 
 The Poppendiecks take seven of the core lean principles and talk in practical terms about how they translate from the manufacturing domain into software development:
 
@@ -174,7 +174,7 @@ The Poppendiecks take seven of the core lean principles and talk in practical te
 
 Along the way they cover 20 tools for applying the lean principles into practice, such as Value-Stream Mapping, working in iterations and refactoring.
 
-This book stands up as one of (if not the) best, articulation of what Agile actually is, how it builds on stable Lean foundations, and why specific practices result in better software delivery outcomes. As an “Agile” book, it’s not technically a “DevOps” book (it was written six years before Patrick DeBois accidentally gave us *that* buzzword) but in many ways, this is DevOps’ genesis.
+This book stands up as one of the (if not the) best, articulation of what Agile actually is, how it builds on stable Lean foundations, and why specific practices result in better software delivery outcomes. As an “Agile” book, it’s not technically a “DevOps” book (it was written six years before Patrick DeBois accidentally gave us *that* buzzword) but in many ways, this is the genesis of DevOps.
 
 For those who would like to learn more about Lean principles, within their original manufacturing context, check out [The Goal](#goal). For those who would like to learn how these Agile ideas have evolved with the emergence of DevOps, take a look at [The DevOps Handbook](#handbook). For those who would like to go deeper into software design/architecture, try [Domain-Driven Design: Distilled](#ddd). Finally, for those who are more interested in the human side of Agile/DevOps, you might prefer [The Five Dysfunctions of a Team](#dysfunc) (more personal) or [Team Topologies](#tt) (more strategic).
 
@@ -186,7 +186,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ![Domain-Driven_Design_Distilled](domain-driven_design_distilled.jpg "width=500")
 
-Domain-Driven Design (DDD) is an approach that enables folks to create loosely coupled architectures and avoid creating a “big ball of mud” monolithic system which is painful to develop, deploy or maintain. [Martin Fowler does a better job of describing it on his blog](https://martinfowler.com/bliki/DomainDrivenDesign.html) than I can reasonably expect to achieve in a few paragraphs here.
+Domain-Driven Design (DDD) is an approach that enables folks to create loosely coupled architectures and avoid creating a “big ball of mud” monolithic system which is painful to develop, deploy, or maintain. [Martin Fowler does a better job of describing it on his blog](https://martinfowler.com/bliki/DomainDrivenDesign.html) than I can reasonably expect to achieve in a few paragraphs here.
 
 Central to DDD is the idea of “Bounded Contexts”, which can be used to define the scope of any one part of the system. Team members acknowledge that the language used within any one context is consistent, but that it might also vary between different contexts. This allows teams to focus on solving the right problems in the right places and establishing appropriate interfaces between different contexts to avoid complicated dependencies and introducing mistakes due to subtle contextual differences. [Again, Fowler does a great job of explaining Bounded Contexts in more detail here.](https://martinfowler.com/bliki/BoundedContext.html)
 
@@ -194,11 +194,11 @@ The great thing about writing a post like this is receiving feedback. As I was c
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">The DDD books are important to me. The stuff on Bounded Contexts and a Ubiquitous Language seems relevant in terms of how it can help break down silos and organise teams.</p>&mdash; Yani Lathouris (@Yarnacle) <a href="https://twitter.com/Yarnacle/status/1318511712983683072?ref_src=twsrc%5Etfw">October 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Honestly, this was me discovering a blind spot of my own. DDD was not a topic I’d studied before and I had not appreciated the relationship between DDD and DevOps. I’m grateful to all the folks who encouraged me to take a look. Now I’ve got a new book on my bookshelf and I’ve been learning too.
+Honestly, this was me discovering a blind spot of my own. DDD is not a topic I’d studied before and I had not appreciated the relationship between DDD and DevOps. I’m grateful to all the folks who encouraged me to take a look. Now I’ve got a new book on my bookshelf and I’ve been learning too.
 
 Most folks recommended [Eric Evans’ Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design), but Matthew Skelton (author of [Team Topologies](#tt)) also recommended Vernon’s “distilled” edition to me. After a little research I learned that the Evans book has excellent reviews and is recognized as the gold standard for DDD. However, it’s also perceived as long and complicated. (It’s 560 pages long and it costs over $50, making it longer and more expensive than any of the other books in this post.)
 
-Since this was to be my first book about DDD I purchased a copy of Vernon’s “distilled” edition instead. Half the price and only 130 diagram-rich pages. Even slow readers (like myself) will probably be able to read it cover to cover in a few hours. I’ve included the Vernon book in my list because I’m uncomfortable recommending a book I haven’t read, but I recognize that many readers may prefer to either go straight for the Evans book.
+Since this was to be my first book about DDD, I purchased a copy of Vernon’s “distilled” edition instead. Half the price and only 130 diagram-rich pages. Even slow readers (like myself) will probably be able to read it cover to cover in a few hours. I’ve included the Vernon book in my list because I’m uncomfortable recommending a book I haven’t read, but I recognize that many readers may prefer to go straight for the Evans book.
 
 The Vernon book is a great primer on DDD and it’s relatively easy to digest by anyone with a little software development experience. It’s especially relevant for anyone who is either struggling with a monolithic system at the moment, or who would like to avoid their stuff gradually turning into one.
 
@@ -218,7 +218,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 The first time I attended the London Continuous Delivery (CD) Meetup group, shortly after this book was published, half the attendees were holding a copy. They called it “The Bible”. While the DevOps movement had already started by 2011, I don’t think I’d heard of it yet. Our community had something very similar called CD instead.
 
-This book formalized many of the ideas about deployment pipelines that have since become ubiquitous. It goes into some technical detail about configuration as code, build and deployment automation and effective testing strategies.
+This book formalized many of the ideas about deployment pipelines that have since become ubiquitous. It goes into some technical detail about configuration as code, build and deployment automation, and effective testing strategies.
 
 Most folks don’t tend to read this book end too end. (It’s pretty dry and technical.) Instead it’s best used as a reference book. If you intend to adopt new technical practice, it’s well worth reading the associated chapter before you get started to help you understand how to approach it.
 
@@ -226,9 +226,9 @@ The book is generally pretty technical, mostly focusing on the practical impleme
 
 In fact, today there is some confusion about the scope of CD. For some it’s simply about the practical implementation of deployment pipelines. For others CD encompasses broader cultural and organizational issues. Some would go as far as to say that DevOps is part of CD, rather than the other way around.
 
-For example, the two authors now seem to be on opposite sides of this debate. Jez Humble went on to co-author [Accelerate](#accelerate), which has the word “DevOps” on the front cover and describes a set of “Continuous Delivery” capabilities that are distinct from other capabilities under the headings “Architecture”, “Product and Process”, “Lean Management and Monitoring” and “Cultural”. At the same time, Dave Farley views CD as a synonym for DevOps (and in the past he claimed that DevOps was but a component of CD), as [he expressed on his YouTube channel](https://www.youtube.com/watch?v=MnyvgFDh-kw&list=PLwLLcwQlnXBw9jv5tFXQC_ch-VCXwPikM&index=4) earlier this year. 
+For example, the two authors now seem to be on opposite sides of this debate. Jez Humble went on to co-author [Accelerate](#accelerate), which has the word “DevOps” on the front cover and describes a set of “Continuous Delivery” capabilities that are distinct from other capabilities under the headings “Architecture”, “Product and Process”, “Lean Management and Monitoring”, and “Cultural”. At the same time, Dave Farley views CD as a synonym for DevOps (and in the past he claimed that DevOps was but a component of CD), as [he expressed on his YouTube channel](https://www.youtube.com/watch?v=MnyvgFDh-kw&list=PLwLLcwQlnXBw9jv5tFXQC_ch-VCXwPikM&index=4) earlier this year. 
 
-Personally, I tire of this debate. CD and DevOps grew up alongside each other and are derived from similar Lean, XP and Agile ideas. Through a mixture of independent thought and borrowed ideas they came to similar conclusions. I encourage you to celebrate the way these two movements support each other, rather than to get hung up on the relationship between them. (And I expect that both Jez and Dave would agree.)
+Personally, I tire of this debate. CD and DevOps grew up alongside each other and are derived from similar Lean, XP, and Agile ideas. Through a mixture of independent thought and borrowed ideas they came to similar conclusions. I encourage you to celebrate the way these two movements support each other, rather than to get hung up on the relationship between them. (And I expect that both Jez and Dave would agree.)
 
 If you enjoyed Continuous Delivery, you might also enjoy [Site Reliability Engineering](#sre). It’s a similar technical book that covers many additional topics from a more production/operations/maintenance perspective. On the other hand, if you found CD a little dry and would like something more accessible, try [The DevOps Handbook](#handbook) or [Accelerate](#accelerate) instead.
 
@@ -246,7 +246,7 @@ Most large organizations have more complex political structures than simply “d
 
 Alignment is only possible with teamwork, and teamwork is not possible without well-trained team players. As Gerald Weinberg famously said, “no matter what they tell you, it’s always a people problem”.
 
-This is why the DevOps community has always been deeply focused on people and culture. However, tech folks are generally far more comfortable talking about software or automation than they are talking about emotions, trust or personal vulnerabilities. This leads to one of DevOps’ problems: Too often it’s boiled down to simply automated deployments, infrastructure as code, or the latest vendor tool. These over-simplifications completely miss the point.
+This is why the DevOps community has always been deeply focused on people and culture. However, tech folks are generally far more comfortable talking about software or automation than they are talking about emotions, trust, or personal vulnerabilities. This leads to one of DevOps’ problems: Too often it’s boiled down to simply automated deployments, infrastructure as code, or the latest vendor tool. These over-simplifications completely miss the point.
 
 The Five Dysfunctions of a Team provides a logical framework for addressing “the people problem”. The first 180 pages tell a “Leadership Fable”, similar to [The Goal](#goal), [The Phoenix Project](#phoenix) or [The Unicorn Project](#unicorn). DecisionTech is a start-up with all the raw ingredients for success, but the senior leadership team is a dysfunctional mess. Kathryn Peterson, the new CEO, is tasked with uniting these talented and opinionated individuals and turning the company’s fortunes around.
 
@@ -278,7 +278,7 @@ The Goal’s Jonah is replaced by Eric, a quirky new investor with crazy ideas t
 
 Along the way each of those archetypal characters either learns to embrace a new way of working or they get their comeuppance. When I realized that things weren’t likely to end well for the character that I recognized as myself, I personally knew I had to change.
 
-In my opinion, the most valuable thing about this book is how well it articulated the harm I was doing, when I thought I was doing my job well. The Phoenix Project helped me to understand my role and the consequences of my actions in a broader and more valuable context. If it wasn’t for this book – I probably would not be writing this blog post.
+In my opinion, the most valuable thing about this book is how well it articulated the harm I was doing, when I thought I was doing my job well. The Phoenix Project helped me to understand my role and the consequences of my actions in a broader and more valuable context. If it wasn’t for this book, I probably wouldn’t be writing this blog post.
 
 If you enjoyed The Phoenix Project, you’ll probably also enjoy [The Unicorn Project](#unicorn), which tells the same story from a very different perspective, and you might be interested to go back and read [The Goal](#goal). If you’d like to learn more about building great teams, check out [The Five Dysfunctions of a Team](#dysfunc). If you want a more formal overview of the topics raised in Phoenix, try [The DevOps Handbook](#handbook) or [Accelerate](#accelerate).
 
@@ -308,7 +308,7 @@ The primary focus of Unicorn are “The Five Ideals”:
 
 While Unicorn is undoubtedly aimed at engineers over managers, and developers over operations, it’s the pairing of Phoenix and Unicorn that I find so valuable. Frankly, if you like one, you’ll probably enjoy the other, and it’s enlightening to read the same story from two different perspectives. It’s a wonderful exercise for learning to understand and empathize with how the other side sees things.
 
-If you enjoyed the Unicorn Project, try reading [The Phoenix Project](#phoenix) next. If you’d like to learn more about building great Teams, check out [The Five Dysfunctions of a Team](#dysfunc). If you’d like to learn more about designing your code for DevOps, try [Domain-Driven Design: Distilled](#ddd) or if you are a data specialist, [Database Reliability Engineering](#dre). Finally, if you’d like to learn more about continuous integration and deployment pipelines, check out either [Continuous Delivery](#cd) or [The DevOps Handbook](#handbook).
+If you enjoyed the Unicorn Project, try reading [The Phoenix Project](#phoenix) next. If you’d like to learn more about building great teams, check out [The Five Dysfunctions of a Team](#dysfunc). If you’d like to learn more about designing your code for DevOps, try [Domain-Driven Design: Distilled](#ddd) or if you are a data specialist, [Database Reliability Engineering](#dre). Finally, if you’d like to learn more about continuous integration and deployment pipelines, check out either [Continuous Delivery](#cd) or [The DevOps Handbook](#handbook).
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/44333183-the-unicorn-project)
 
@@ -322,7 +322,7 @@ This book is perhaps the best articulation of what DevOps is. It’s intended as
 
 Before reviewing the contents, it’s worth taking a moment to consider the authors.
 
--	Patrick Debois is affectionately referred to as “the godfather of DevOps”. It was he and Andrew Clay Shafer who started the Agile System Administrators group back in 2008 and in 2009 Debois organized the inaugural “DevOps Days” event, accidentally naming the movement in the process. Love or hate the name “DevOps”, Patrick is responsible for it.
+-	Patrick Debois is affectionately referred to as “the godfather of DevOps”. It was Patrick and Andrew Clay Shafer who started the Agile System Administrators group back in 2008 and in 2009 Debois organized the inaugural “DevOps Days” event, accidentally naming the movement in the process. Love or hate the name “DevOps”, Patrick is responsible for it.
 -	John Willis co-organized the first US DevOps Days in 2010, and in the early days of the movement, as the community was struggling to define what DevOps was, he came up with the acronym CAMS: Culture, Automation, Measurements and Sharing. It’s still used regularly to this day.
 -	Jez Humble co-authored [Continuous Delivery](#cd) and went on to co-author [Accelerate](#accelerate). As well as contributing to the formalization and normalization of the ideas and common architectures of the modern software deployment pipeline, he also extended CAMS to create CALMS, paying tribute to the Lean heritage of the DevOps movement.
 -	Gene Kim is a CTO, researcher and author, who studies high performing software organizations. He has a background in ITIL, a love for DevOps, and a deep understanding of the relationship between IT performance and business success. Among other titles, he co-authored or authored [The Phoenix Project](#phoenix), [The Unicorn Project](#unicorn) and [Accelerate](#accelerate), three of the most well-known and popular DevOps books. He is also the founder and organizer of DevOps Enterprise Summit.
@@ -333,11 +333,17 @@ The DevOps Handbook starts with an account by John Willis called “The Converge
 
 The handbook then uses Kim’s “three ways” from the Phoenix Project as a logical structure through which it articulates many of the key ideas and practices at the heart of DevOps, including value stream mapping, deployment practices, testing, telemetry, experimentation/learning. There’s also a section dedicated to security and compliance.
 
-It’s written well too. It’s easy to understand with many references to other great books, articles and videos. It also includes plenty of real-world case studies to demonstrate the theories in practice.
+It’s well written too. It’s easy to understand with many references to other great books, articles and videos. It also includes plenty of real-world case studies to demonstrate the theories in practice.
 
 One of the key differentiators of The DevOps Handbook relative to [Continuous Delivery](#cd) (CD) or [Site Reliability Engineering](#sre) (SRE) is it’s accessibility. It explains the ideas and concepts in straightforward and logical terms, and it ties them directly to business values that are relatively easy to understand even by folks who aren’t experienced engineers or business leaders. This is one reason why it’s a great read for IT managers or senior leadership who lack recent technical experience.
 
-This accessibility may also be it’s downside. On the topics I was already familiar with, I wanted to go deeper. I was left with questions. “How should you handle this unusual scenario?”, “How would that work in practice?”. If compared with CD or SRE, for example, The DevOps Handbook is less detailed but broader in scope, and it’s an easier read as a result. Unlike CD or SRE (which are pretty dense), you may well find yourself reading handbook cover to cover.
+This accessibility may also be its downside. On the topics I was already familiar with, I wanted to go deeper, but I was left with questions. 
+
+> “How should you handle this unusual scenario?”
+
+> “How would that work in practice?”
+
+If compared with CD or SRE, for example, The DevOps Handbook is less detailed but broader in scope, and it’s an easier read as a result. Unlike CD or SRE (which are pretty dense), you may well find yourself reading handbook cover to cover.
 
 The DevOps Handbook is a fantastic read for someone new to DevOps or someone who wants to better understand how the various strands of DevOps fit together. Once you’ve finished it, you’ll hopefully be inspired to continue your DevOps education by going deeper on the topics that most interest you.
 
@@ -355,7 +361,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 If [The DevOps Handbook](#handbook) explains “how” to embrace DevOps, Accelerate explains “why”. This is the slam dunk argument for anyone who is either skeptical of DevOps, or interested in understanding the relationship between various DevOps practices and business success. It’s a great tool for selling DevOps to senior management.
 
-In many ways, the book is a response to critique that “DevOps” is a buzzword or a cult, full of warm and fluffy ideas that might sound nice and make sense for a small business or start-up, but which do not practically scale for large organizations or which are not compatible with tightly regulated industries like healthcare or finance.
+In many ways, the book is a response to the critique that “DevOps” is a buzzword or a cult, full of warm and fluffy ideas that might sound nice and make sense for a small business or start-up, but which do not practically scale for large organizations or which are not compatible with tightly regulated industries like healthcare or finance.
 
 The authors achieve this by analyzing the data from the 2014-2017 [State of DevOps Reports](https://www.devops-research.com/research.html). Forsgren, [a well-respected and published researcher](https://nicolefv.com/research), applies various scientific and statistical methods to the data to see what they can teach us. Her findings are striking.
 
@@ -388,13 +394,13 @@ Accelerate places a high priority on the simultaneous and continuous improvement
 1.	Mean Time to Restore (MTTR)
 1.	Deployment Failure Percentage
 
-These four metrics reinforce each other, creating a virtuous cycle, and are predictive of business success as measured by profitability, market share and productivity.
+These four metrics reinforce each other, creating a virtuous cycle, and are predictive of business success as measured by profitability, market share, and productivity.
 
 In order to achieve business success, Accelerate highlights 24 practical capabilities (such as automating deployments and supporting learning) that are demonstrated to drive improvement against the four metrics.
 
 Accelerate provides sound evidence and reasoning which explains why DevOps works as a method for delivering enormous business value. This makes it a great first DevOps book or a great gift for a senior leadership team who lack technical experience. For example, if you have read [The Phoenix Project](#phoenix), imagine how much grief Bill Palmer (VP of IT Operations) would have saved himself if he’d managed to persuade Steve Masters (CEO) to read Accelerate in chapter 1.
 
-If your role is a technical one, or you are a senior manager with responsibility for technical outcomes, after reading Accelerate you’ll probably want to move on to one of the more practical “how to do DevOps” books, like [The DevOps Handbook](#handbook), [Continuous Delivery](#cd), [Site Reliability Engineering](#sre),[Domain-Driven Design: Distilled](#ddd) or (if you need to tackle people, team or culture issues before addressing the technical issues) [The Five Dysfunctions of a Team](#dysfunc) or [Team Topologies](#tt). 
+If your role is a technical one, or you are a senior manager with responsibility for technical outcomes, after reading Accelerate you’ll probably want to move on to one of the more practical “how to do DevOps” books, like [The DevOps Handbook](#handbook), [Continuous Delivery](#cd), [Site Reliability Engineering](#sre),[Domain-Driven Design: Distilled](#ddd) or (if you need to tackle people, team, or culture issues before addressing the technical issues) [The Five Dysfunctions of a Team](#dysfunc) or [Team Topologies](#tt). 
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/35747076-accelerate)
 
