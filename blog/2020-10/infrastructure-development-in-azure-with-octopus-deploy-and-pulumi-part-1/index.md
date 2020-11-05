@@ -20,7 +20,7 @@ Welcome to [Pulumi](https://www.pulumi.com/).
 
 Pulumi combines the power of Infrastructure-as-code and general-purpose programming to make Infrastructure-as-software. It's a way to write code as you normally would in Go, Python, JavaScript, etc. and create infrastructure-as-code.
 
-In this blog post, you're going to create a new Go (Golang) Pulumi project and deploy the code via Octopus Deploy to create an Azure resource group.
+In this blog post, you're going to create an Azure resource group using a Pulumi project written in Go (Golang) and deploy it with Octopus Deploy.
 
 ## Prerequisites
 
