@@ -94,12 +94,8 @@ Are other toolsets and languages able to use HCL? Parsers exist for other langua
 
 There are many configuration languages, each with its advantages and disadvantages. XML, JSON, YAML, and HCL are somewhat interoperable, but depending on the language chosen, trade-offs are necessary.
 
-Simple applications and environments will benefit from a structured configuration. As configuration complexity increases, so do the disadvantages of one language over another. Deciding configuration goals early in the application lifecycle will help choose the right language.
+Simple applications and environments will benefit from a structured configuration. As configuration complexity increases, so do the disadvantages of one language over another. Deciding on configuration goals early in the application lifecycle will help choose the right language.
 
 As configuration itself becomes a first-class citizen within the DevOps environment and cloud computing, the importance of choosing the right language for your application becomes critical to ensuring success. Although any of these configuration languages will work well, weighing the advantages and disadvantages of each will ultimately lead to a successful configuration framework.
-
---- 
-
-Editors note, for the Config as Code feature we recently released as part of Octopus 2020.5, we based our Config as Code format on HCL and are including our own parser. We decided on this route because we think the format strikes a nice balance between being designed for humans and machines, it's more readable than JSON, easier to work with than YAML, and less verbose than XML, but as Adam mentions in his post, the right format depends on many factors.
 
 Happy deployments!
