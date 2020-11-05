@@ -18,7 +18,7 @@ That's where [Pulumi](https://www.pulumi.com/) comes into play.
 
 Pulumi combines the power of Infrastructure-as-code and general-purpose programming to make Infrastructure-as-software. It's a way to write code as you normally would in Go, Python, JavaScript, etc. and create infrastructure-as-code.
 
-In this blog post, you're going to learn how to utilize the power of Pulumi and Octopus Deploy to create an Azure Kubernetes Services (AKS) cluster using Python.
+In this blog post, I'll explain how to create an Azure Kubernetes Cluster (AKS) using Pulumi, Python and Octopus Deploy.
 
 ## Prerequisites
 
