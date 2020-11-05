@@ -24,7 +24,7 @@ In this blog post, you'll learn about how to use Terraform and Octopus Deploy to
 
 To follow along with this blog post, you should have the following:
 
-- An Octopus Deploy server, either on-prem or in the cloud
+- An Octopus Deploy server, either [on-prem](https://octopus.com/start/server) or in the [cloud](https://octopus.com/start/cloud)
 - An Azure subscription. If you don't already have one, you can sign up for a 30-day free trial [here](https://azure.microsoft.com/en-us/free/).
 - An Azure Service Principal (app registration) that has access to create resource in the Azure subscription you're using.
 - Knowledge of [Terraform](https://www.terraform.io/intro/index.html) at a beginner-to-intermediate level.
