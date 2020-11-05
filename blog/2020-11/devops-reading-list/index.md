@@ -124,12 +124,6 @@ After you’ve checked out the materials for your chosen books, carry on to the 
 
 ### 1. The Goal (Goldratt: 1984) {#goal}
 
-![The_Goal](the_goal.jpg "width=500")
-
-NOTE TO LEE: CAN WE MAKE ALL 12 BOOK COVERS SMALL AND ON THE RIGHT HAND SIDE?
-LIKE HERE: https://itrevolution.com/learn-more-about-concepts-in-phoenix-project/
-
-
 <div class="row">
   <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
 </div>
@@ -160,7 +154,7 @@ I wouldn’t like to guess how many software books have “Agile” in the title
 
 However, skepticism aside, I believe these buzzwords work so well for selling software, training and certifications because there is a fundamental truth behind them. These ideas make a lot of technical and commercial sense.
 
-I might have mocked it above, but The Agile Manifesto had it’s place. For many, it was an important steppingstone toward articulating Agile. However, a better articulation for Agile is Mary and Tom Poppendieck’s “Lean Software Development: An Agile Toolkit”, which came along two years later.
+I might have mocked it above, but The Agile Manifesto had it’s place. For many, it was an important stepping stone toward articulating Agile. However, a better articulation for Agile is Mary and Tom Poppendieck’s “Lean Software Development: An Agile Toolkit”, which came along two years later.
 
 The Poppendiecks take seven of the core lean principles and talk in practical terms about how they translate from the manufacturing domain into software development:
 
@@ -430,7 +424,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 Those are not my words, they were written by Brent Ozar in [his own review of “DRE”](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/).
 
-As I was compiling this blog post I came across Brent’s review and, frankly, I love it. He said exactly what I wanted to say, but better. He explains how the reader should approach the book, depending on whether they are a DBA, a manager or a developer/SysAdmin.
+As I was compiling this blog post I came across Brent’s review and, frankly, I love it. He said exactly what I wanted to say, but better. He explains how the reader should approach the book, depending on whether they are a DBA, a manager, or a developer/SysAdmin.
 
 Personally, my favorite take-aways from DRE were the focus on “resilience over robustness” and the ubiquitous use of SLOs as a method for aligning objectives and improving collaboration across the “wall of confusion” between dev and ops. I also appreciated the focus on “operational visibility” as opposed to traditional monitoring, which gets to the heart of the current #observability debate.
 
@@ -465,9 +459,9 @@ Reading this book is a reasonable time investment, so for those who are new to S
 1.	This blog post by Google: [SRE vs DevOps: Competing standards or close friends?](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends)
 1.	Thomas A. Limoncelli’s 2012 session at USENIX NYC: [SRE@Google: Thousands of DevOps Since 2004](https://www.youtube.com/watch?v=iIuTnhdTzK0)
 
-That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets and Customer Reliability Engineering.
+That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics, including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets and Customer Reliability Engineering.
 
-Then you’ve got 560 pages covering 34 chapters detailing all the incredible technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
+Then you’ve got 560 pages covering 34 chapters, detailing all the incredible technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
 
 While SRE is a fascinating read, it’s worth remembering that most of us do not work for organizations that are anywhere near close to “Google-scale”. With that in mind, SRE is most relevant to folks who work at very large organizations. 
 
@@ -493,7 +487,7 @@ I was blessed to receive some wonderful feedback. Generally, it was pretty posit
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Only 4 I haven&#39;t read!! Looks like I need to look into those! You have my favourites there for sure!! Accelerate, Phoenix Project, 5 dysfunctions of a team.</p>&mdash; Dinah Davis (@Dinah_Davis) <a href="https://twitter.com/Dinah_Davis/status/1318555085937496070?ref_src=twsrc%5Etfw">October 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-However, this is all very subjective. This is a big and diverse community with a lot of opinions. There were plenty of folks who suggested I add this book or remove that one. I listened to the advice and I did make a few changes. Especially when someone with the credentials of Andrew Clay Shafer gave me some direct advice. (For those who don’t know who he is, let’s just say [his twitter handle is a little modest](https://www.youtube.com/watch?v=o7-IuYS0iSE). I was totally fangirling when I saw his reply.)
+However, this is all very subjective. This is a big and diverse community with a lot of opinions. There were plenty of folks who suggested I add this book or remove that one. I listened to the advice, and I did make a few changes. Especially when someone with the credentials of Andrew Clay Shafer gave me some direct advice. (For those who don’t know who he is, let’s just say [his twitter handle is a little modest](https://www.youtube.com/watch?v=o7-IuYS0iSE). I was totally fangirling when I saw his reply.)
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">swap ‘Lean Start Up’ for a Poppendieck book</p>&mdash; wear a mask 雷启理 (@littleidea) <a href="https://twitter.com/littleidea/status/1317188423543791616?ref_src=twsrc%5Etfw">October 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -503,17 +497,17 @@ There are also a few more reads that aren’t traditional books. Hence, they did
 
 ### The Annual State of DevOps Reports
 
-Since 2014 DORA, with the support of various sponsors, has been polling thousands of IT professionals and analysing the results. This research program has provided the DevOps movement with more data-driven, evidence-based foundations than would be possible by any individual author or speaker sharing their own personal experiences.
+Since 2014 DORA, with the support of various sponsors, has been polling thousands of IT professionals and analyzing the results. This research program has provided the DevOps movement with more data-driven, evidence-based foundations than would be possible by any individual author or speaker sharing their own personal experiences.
 
 The data from these reports (2014-2017) were used by Forsgren, Humble and Kim to produce [Accelerate](#accelerate) in 2018, which I believe remains the best evidence our industry possesses for the value of DevOps.
 
-[You can review all the State of DevOps Reports here.](https://www.devops-research.com/research.html)
+[You can review all the State of DevOps Reports](https://www.devops-research.com/research.html).
 
 ### Beyond The Phoenix Project
 
 Beyond the Phoenix Project is technically an audiobook, but it’s really more like a podcast series. It’s basically a recording of a 7 hour conversation between Gene Kim (Co-author of [The Phoenix Project](#phoenix), as well as other titles in this post) and John Willis (co-author of [The DevOps Handbook](#handbook)). 
 
-Kim and Willis start by exploring the history of DevOps from its earliest origins (which Willis claims go back as far as Charles Darwin in 1859!) and they dig into the life and teachings of various impactful figures along the way, including William Deming, Taiichi Ohno and Eliyahu Goldratt. 
+Kim and Willis start by exploring the history of DevOps from its earliest origins (which Willis claims go back as far as Charles Darwin in 1859!), and they dig into the life and teachings of various impactful figures along the way, including William Deming, Taiichi Ohno, and Eliyahu Goldratt. 
 
 They then review some of the most significant theoretical foundations of modern DevOps, including Lean Manufacturing and Safety Culture, before taking a practical look at the various DevOps ideas that played out in The Phoenix Project.
 
@@ -525,15 +519,15 @@ It’s a fascinating listen from start to finish, and one that many people go ba
 
 ### How Complex Systems Fail
 
-When exploring the historical foundations of DevOps, most folks (including myself) immediately jump to Lean Manufacturing – and that’s well justified. However, many folks fail to recognize that DevOps owes much to the “Safety Culture” or “Safety 2.0” movement as well, which has a totally independent and very different history. Arguably, ideas such as agile infrastructure, chaos engineering, resilience over robustness, observability and blame-free cultures owe more to Safety Culture than they do to Lean Manufacturing.
+When exploring the historical foundations of DevOps, most folks (including myself) immediately jump to Lean Manufacturing, and that’s well justified. However, many folks fail to recognize that DevOps owes much to the “Safety Culture” or “Safety 2.0” movement as well, which has a totally independent and very different history. Arguably, ideas such as agile infrastructure, chaos engineering, resilience over robustness, observability, and blame-free cultures owe more to Safety Culture than they do to Lean Manufacturing.
 
-Safety Culture is the study of the cause of disasters in complex and often high-risk environments. In IT we often fall into the trap of believing our regular IT failures should class our work as high risk. That’s normally a mistake and most folks who argue that it isn’t have clearly never worked in the military, a hospital or the aviation industry, where individuals are often making literal life and death decisions on a daily basis. Our deployment screw ups normally matter a lot less than the screw ups of a soldier, surgeon or pilot. It’s often worth reminding ourselves about that. (Imagine how much more difficult a blameless post-mortem would be if someone had actually died.)
+Safety Culture is the study of the cause of disasters in complex and often high-risk environments. In IT we often fall into the trap of believing our regular IT failures should class our work as high risk. That’s normally a mistake and most folks who argue that it isn’t have clearly never worked in the military, a hospital or the aviation industry, where individuals are often making literal life and death decisions on a daily basis. Our deployment screw ups normally matter a lot less than the screw ups of a soldier, surgeon, or pilot. It’s often worth reminding ourselves about that. (Imagine how much more difficult a blameless post-mortem would be if someone had actually died.)
 
 However, there is a lot we can learn from folks who genuinely have to manage serious risks on a daily basis. In the 1990s Richard Cook worked in the health care sector and researched patient safety. In 1998 he published a paper called How Complex Systems Fail. It’s a relatively short and easy read that summarizes 18 core ideas about the effective management of risk. The crazy thing is that as an IT person, if you didn’t know he was writing about safety in hospitals, you would probably have thought you were reading about IT.
 
 By reflecting on Cook’s research and imagining the implications to one fictional IT organization that embraces DevOps, and another that favors old-fashioned waterfall style project management and bureaucracy, it’s easy to understand why the waterfall organization is far more likely to suffer more frequent and severe disasters.
 
-I won’t try to summarize the main points of Safety Culture here because it would take too long and ultimately, I’d just be paraphrasing the same points Cook makes pretty articulately for himself. I encourage you to read the paper – it’s only a 10-minute read:
+I won’t try to summarize the main points of Safety Culture here because it would take too long and ultimately, I’d just be paraphrasing the same points Cook makes pretty articulately for himself. I encourage you to read the paper, it’s only a 10-minute read:
 
 [https://how.complexsystems.fail/](https://how.complexsystems.fail/)
 
@@ -547,7 +541,7 @@ Don’t just take my word for it. I’m just one imperfect human who is fascinat
 
 ## Final Thoughts {#final_thoughts}
 
-Not every book is for everyone. For example, while many people love The Phoenix Project, there are certainly some that don’t like the format. And I’m aware that my decision to include a specialized book about databases reflects my personal experience. Why not a book dedicated to kanban/scrum, testing, product management, chaos engineering or security? These are all fair questions.
+Not every book is for everyone. For example, while many people love The Phoenix Project, there are certainly some that don’t like the format. And I’m aware that my decision to include a specialized book about databases reflects my personal experience. Why not a book dedicated to kanban/scrum, testing, product management, chaos engineering, or security? These are all fair questions.
 
 It’s also true that these sorts of posts often age quickly. I’m writing this post in October 2020, and half of the titles above were published since 2016. I’m sure that over the next few years new books will be written, old books will be rediscovered, and books that are popular now will go out of fashion. The technology we use is constantly evolving and the DevOps community has a deep passion for learning and improvement, so it would be a surprise and a shame if things don’t evolve over the coming years.
 
@@ -555,11 +549,11 @@ With all this in mind, dear reader, I’d like to turn the tables on you. Did yo
 
 Please do leave a comment. I look forward to seeing your suggestions, and I hope to add a few of them to my personal reading list for the upcoming holiday season.
 
-But more importantly, if you like books, I encourage you to choose one, buy a copy and set aside some time to start reading. In this crazy year more than ever before, I’ve found it especially cathartic and valuable to block out a few hours, pop the kettle on, turn off my devices, and to sit back with a notepad, pen and a good book about how to prosper in the face of unexpected challenges and uncertain market conditions.
+But more importantly, if you like books, I encourage you to choose one, buy a copy and set aside some time to start reading. In this crazy year more than ever before, I’ve found it especially cathartic and valuable to block out a few hours, pop the kettle on, turn off my devices, and to sit back with a notepad, pen, and a good book about how to prosper in the face of unexpected challenges and uncertain market conditions.
 
 Deploy often, keep learning, and stay safe folks.
 
-*
+***
 
 If you’d like to work with me (virtually) as a DevOps mentor, coach, consultant or trainer: [www.dlmconsultants.com](http://www.dlmconsultants.com)
 
