@@ -12,9 +12,9 @@ tags:
  - Azure
 ---
 
-When you think of continuous deployment and continuous delivery, the first thing that typically comes to mind is application code. Ya know, that code that gets deployed to some cloud service or container to run an application. 
+When you think of continuous deployment and continuous delivery, the first thing that typically comes to mind is application code. For example, perhaps you have a web API that you want to deploy to a serverless platform.
 
-When it comes to Octopus Deploy, sure, we do focus on those types of deployments. We also really focus on not only the software developers, but the infrastructure developers. The idea of wanting to help both sides of the fence for automated deployments is why [Runbooks](https://octopus.com/docs/runbooks) exist.
+When it comes to Octopus Deploy, we focus on software deployments, but there's also the infrastructure side. It's not only about the software developers, but the infrastructure developers. The idea of wanting to help both sides of the fence for automated deployments is why [Runbooks](https://octopus.com/docs/runbooks) exist.
 
 As an infrastructure developer, you need to write code to automate the process of configuring cloud and on-prem infrastructure, but you also need a way to automatically deploy it.
 
