@@ -3,7 +3,7 @@ title: Java deployments to Tomcat with YAML and XML configuration file replaceme
 description: Learn how to take advantage of the XML, YAML, and Properties configuration file replacement when deploying Java applications.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2020-11-10
 metaImage: 
 bannerImage: 
 tags:
