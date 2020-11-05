@@ -1,5 +1,5 @@
 ---
-title: Infrastructure Development in Azure with Octopus Deploy and Pulumi - Part 1
+title: Infrastructure as Code in Azure with Octopus Deploy and Pulumi - Part 1
 description:  Infrastructure-as-code and software-defined-infrastructure is shaping the way we think about cloud infrastructure and services. In this blog post, Michael goes into one of the newest ways to define infrastructure as software with Pulumi.
 author: michael.levan@octopus.com
 visibility: private
@@ -14,7 +14,7 @@ tags:
 
 Software-defined infrastructure, or infrastructure-as-code, is a permanent resolution in today's world. There's no reason to go back to the *pointing and clicking* in a portal like you used to. Not only is it time consuming, but it's manual and riddled with issues from hogging everyone's time to manual efforts for large implementations.
 
-The problem is, developers need infrastructure, they want to write it as code, but don't know the standard infrastructure-as-code languages. Better-yet, they're comfortable with the languages they write in. They want a way to take their existing development knowledge and have a simple approach to create cloud services that hits close to home.
+The problem is, developers need infrastructure, they want to write it as code, but they may not be comfortable writing in languages like HCL. Better-yet, they're comfortable with the languages they write in. They want a way to take their existing development knowledge and have a simple approach to create cloud services that hits close to home.
 
 Welcome to [Pulumi](https://www.pulumi.com/).
 
