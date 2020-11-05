@@ -3,7 +3,7 @@ title: "The state of config file formats: XML vs. YAML vs. JSON vs. HCL"
 description: Learn about the different configuration file formats that are available and when your should use them.
 author: adbertram@gmail.com
 visibility: private
-published: 2029-09-01
+published: 2020-11-09
 metaImage:
 bannerImage:
 tags:
