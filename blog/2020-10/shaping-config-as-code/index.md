@@ -23,7 +23,7 @@ But before we do, we should define what we mean by "configuration-as-code". We a
 
 Over the past few years, version-controlling Octopus configuration has been comfortably our most commonly requested feature.  
 
-Often prioritizing features is a trade-off between addressing requests from existing users, and building something to appeal to new users. Configuration-as-code was commonly requested by both groups, and we understand why.  The benefits are compelling, and include:
+Often prioritizing features is a trade-off between addressing requests from existing users, and building something to appeal to new users. Configuration-as-code is commonly requested by both groups, and we understand why.  The benefits are compelling, and include:
 
 - **History:** Git is a time-machine for code, and being able to view the what, when, and who, for your Octopus configuration alongside application code is undeniably useful. 
 - **Branching:** Today there is a single instance of the deployment process. This makes testing changes difficult, as when a release is created it will use the current deployment process. Git branches give the ability to have as many versions of the deployment process as you like, allowing iterating on changes without impacting stability.   
@@ -38,7 +38,7 @@ And finally, we want this! We use Octopus Deploy to deliver Octopus Deploy, and 
 
 We are certainly not the first product to implement this feature. Many of the tools in our ecosystem have git integration. This gave us the opportunity to play with various implementations and to develop a sense of what made the difference between an enjoyable, and not so enjoyable, experience. 
 
-In particular there were a few patterns we wanted to avoid if possible.
+It became clear that there are a few patterns we would like to avoid.
 
 ### Anti-pattern #1: Git DB
 
@@ -53,7 +53,7 @@ Replacing `dbTransaction.Commit()` with `gitRepo.Push()` might be the quickest w
 In this anti-pattern users can opt-in to git integration, but only if they are willing to forfeit other features. 
 
 Having spent the past months building this feature it's very easy to see how this happens, and sometimes it's inevitable. 
-For an application built on a relation database, it’s difficult to ensure all the various features still function once a chunk of the application data is no longer stored in the database, and no longer has a single version.
+For an application built on a relational database, it’s difficult to ensure all the various features still function once a chunk of the application data is no longer stored in the database, and no longer has a single version.
 
 It’s tempting to simply disable them, and convince yourself it's the user's choice. And honestly, in early releases of this feature we will disable some functionality, but wherever possible we are striving hard to ensure the decision to enable git comes with as few compromises as possible. 
 
@@ -107,7 +107,7 @@ In the very early days of thinking about this feature, the referential integrity
 
 ### Configuration languages. Everyone hates them.
 
-An obvious question was _which configuration language will we use_? Over the past few years we have asked many people for their opinion. Our conclusion is that everyone hates all of them. It felt like asking _which cleaning product would you prefer to drink_?  Perhaps this is because the trade-offs each makes are so apparent?  
+An obvious question was _which configuration language will we use_? YAML, JSON, XML? Over the past few years we have asked many people for their opinion. Our conclusion is that everyone hates all of them. It felt like asking _which cleaning product would you prefer to drink_?  Perhaps this is because the trade-offs each makes are so apparent?  
 
 We accepted that we were never going to make everyone happy, whichever we chose. 
 
@@ -121,7 +121,7 @@ Branches are git's superpower, and we want to leverage them as fully as possible
 
 ![Switching branches](branch-switcher.png "width=500")
 
-This allows easily switching to a new branch to make changes to a deployment process, without impacting the main branch.
+This allows easily switching to a new branch to make changes to a deployment process, without impacting the main branch. It allows rapidly switching between branches when viewing a specific step.
 
 ### Commit messages when saving
 
@@ -133,7 +133,7 @@ We also observed there are two types of changes. Examples of these are:
 1. Making a surgical change to an existing deployment process 
 2. Making the forty-ninth tweak to a process you have been trying to get working for the past three hours 
 
-In situation #1, we felt it was likely you wanted to enter a meaningul commit message. In situation #2, being prompted for _another_ commit message was unlikely to result in a meaningful description, and may result in you cursing us.  
+In situation #1, we felt it was likely you wanted to enter a meaningul commit message. In situation #2, being prompted for _another_ commit message was unlikely to result in a meaningful description (or at least one safe for work).  
 
 We want to cater for both these scenarios, so we have introduced a split-button that when clicked will use a default message without prompting, but the `...` provides the ability to enter a commit message. 
 
@@ -147,7 +147,7 @@ Today, when you create a release it takes a snapshot of the current deployment p
 
 ![Creating release from gitref](create-release-gitref.png "width=500")
 
-From this point, your release doesn't change as it progresses through your project's environment lifecycle, just as today.
+From this point, your release doesn't change as it progresses through the environments in your project's lifecycle, just as today.
 
 ### Not YAML, not JSON, not XML
 
