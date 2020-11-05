@@ -127,6 +127,8 @@ In the previous section, you created several components in the Octopus Deploy po
 3. Deploy to the environment of your choosing. To do this, choose the **DEPLOY TO** option and select the environment. 
 4. Once the environment is selected, click the green **DEPLOY** button.
 
+![](images/5.png)
+
 Congrats! You have successfully created an Azure Resource Group using Octopus Deploy and Pulumi.
 
 ## Conclusion
