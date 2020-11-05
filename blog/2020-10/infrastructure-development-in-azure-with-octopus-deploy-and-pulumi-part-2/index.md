@@ -99,13 +99,13 @@ In the process, there will be two deployment steps used:
 In the project you created, go to Process to start adding in the steps.
 
 1. The first step will be Deploy a Package. Under the Deploy a Package step, specify the name, target roles for the deployment target, and package details. Ensure that the package details are pointing to the GitHub feed and the repo where you stored the Pulumi Azure project.
-2. For all of the .NET configurations, ensure you uncheck them. Otherwise, the step template will assume a .NET configuration.
-3. Under .NET Configuration Transforms, click the **CONFIGURE FEATURES** button.
-4. Uncheck the .NET configurations and choose Custom Installation Directory.
-5. For the custom installation directory, choose where you want the Pulumi Azure code to reside. This is also where the Pulumi step will look to create the Azure resource group.
-6. Save the step.
-7. The second step will be Run Pulumi (Linux). Under Run Pulumi (Linux), specify the name and target roles for the deployment target. 
-8. There are a few parameters under the Run Pulumi (Linux) step template that are specific to the step. Let's go over them:
+  - For all of the .NET configurations, ensure you uncheck them. Otherwise, the step template will assume a .NET configuration.
+  - Under .NET Configuration Transforms, click the **CONFIGURE FEATURES** button.
+  - Uncheck the .NET configurations and choose Custom Installation Directory.
+2. For the custom installation directory, choose where you want the Pulumi Azure code to reside. This is also where the Pulumi step will look to create the Azure resource group.
+3. Save the step.
+4. The second step will be Run Pulumi (Linux). Under Run Pulumi (Linux), specify the name and target roles for the deployment target. 
+5. There are a few parameters under the Run Pulumi (Linux) step template that are specific to the step. Let's go over them:
     - Stack Name: The stack name is the full name of the project in Pulumi. It's `OrganizationName/ProjectName/StackName`. For example, mine is `AdminTurnedDevOps/azure-go-new-resource-group/dev`. You can find this information for your stack name in the Pulumi portal.
     - Create Stack: This option is only if you're crate a stack. Because a stack already exists, you don't have to worry about using this option.
     - Command: Pulumi has several commands, but the one you're interested in for this case is `pulumi up`. As you can see, you don't have to type the full command, just type `up`
@@ -114,7 +114,7 @@ In the project you created, go to Process to start adding in the steps.
     - Pulumi Working Directory: The working directory is where you copied the code over to from the previous Octopus Deploy step, **Deploy a Package**.
     - Restore Dependencies: This step is purely for if you're using NodeJS and need to restore dependencies. Because you aren't, you can uncheck the box.
 
-  9. Once complete, save the step.
+6. Once complete, save the step.
 
 Once the step is saved, it's time to create a new release.
 
