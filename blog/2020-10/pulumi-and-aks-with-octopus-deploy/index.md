@@ -203,7 +203,7 @@ For example:
 
   5. Under `.NET Configuration Transforms`, click the **CONFIGURE FEATURES** button.
 
-  6. Uncheck the .NET options and select **Custom Installation Directory.** The Custom Installation Directory is where the Pulumi package will be pushed to and stored so the next step in the process can use it.
+  6. Uncheck all of the .NET options and check/select **Custom Installation Directory.** The Custom Installation Directory is where the Pulumi package will be pushed to and stored so the next step in the process can use it.
 
   7. Save the step.
 
