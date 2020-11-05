@@ -256,6 +256,6 @@ Congrats! You have successfully created an AKS cluster using infrastructure-as-s
 
 ## Conclusion
 
-Infrastructure as software, AKA, what Pulumi does, has been a concept in the making for a while. You can think of SDKs like [Boto3](https://aws.amazon.com/sdk-for-python/), which is AWS's Python SDK to manage AWS services. The problem was that there was no way to store the state of the infrastructure, which made SDKs like Boto3 *hard to sell* to management.
+Infrastructure-as-software, AKA, what Pulumi does, has been a concept in the making for a while. You can think of SDKs like [Boto3](https://aws.amazon.com/sdk-for-python/), which is AWS's Python SDK to manage AWS services when thinking about Infrastructure-as-software. The problem was that there was no way to store the state of the infrastructure, which made SDKs like Boto3 *hard to sell* to management.
 
 With the power of Pulumi allowing you to not only define infrastructure and services with general-purpose programming language, but also giving you the ability to store state and the power of deployments with Octopus Deploy, we're slowly moving into a new age of infrastructure development.
