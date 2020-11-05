@@ -11,7 +11,7 @@ tags:
  - Product
 ---
 
-A common challenge when deploying applications to different environments is ensuring the applications are correctly configured for a specific environment. The typical example of this is configuring database connection strings with the credentials required for each environment. These kinds of sensitive credentials shouldn’t be stored in source control, and so some work has to be done to take an application package created by developers working in their local development environments to create a package that can be deployed to shared, but also restricted, environments.
+A common challenge when deploying applications to different environments is ensuring the applications are correctly configured for a specific environment. The typical example of this is configuring database connection strings with the credentials required for each environment. These kinds of sensitive credentials shouldn’t be stored in source control, and so some work has to be done to take an application package created by developers working in their local development environments to create a package that can be deployed to shared but also restricted, environments.
 
 Octopus has had the ability to inject values into JSON files for many years, but Java applications have not typically embraced JSON as a configuration format. Older Java applications lean heavily on XML, while newer libraries like Spring have embraced YAML and properties files for their configuration.
 
@@ -135,6 +135,6 @@ In this example, we deployed a web application with generic configuration files 
 
 We also deployed a certificate to configure HTTPS access on our Tomcat server.
 
-The end result was a Spring Boot application customized for a shared environment and securely exposed over HTTPS.
+The end result is a Spring Boot application customized for a shared environment and securely exposed over HTTPS.
 
 Happy deployments!
