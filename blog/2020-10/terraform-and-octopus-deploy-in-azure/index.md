@@ -29,7 +29,7 @@ To follow along with this blog post, you should have the following:
 - An Azure Service Principal (app registration) that has access to create resource in the Azure subscription you're using.
 - Knowledge of [Terraform](https://www.terraform.io/intro/index.html) at a beginner-to-intermediate level.
 
-## Octopus and Terraform
+## Why Use Octopus and Terraform Together
 
 Terraform, an open-source [Infrastructure-as-Code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/), is very much supported by default in Octopus Deploy. 
 
