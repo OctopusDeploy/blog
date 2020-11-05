@@ -48,7 +48,7 @@ The benefit of config file updates with our structured variable replacement is t
 
 This update makes it far easier to configure automated deployments for Java applications like Spring web apps and services, web apps written in Python, NodeJS services, Ruby on Rails web apps, and more.
 
-[Learn more](/blog/2020-09/spring-environment-configuration/index.md)
+[Learn more](/blog/2020-11/spring-environment-configuration/index.md)
 
 ## Octopus Cloud: Built-in Windows and Linux Worker Pools, and simpler dependency management {#cross-platform-worker-pools}
 
@@ -123,6 +123,6 @@ Feel free to leave a comment, and let us know what you think! Happy deployments!
 
 ## Related posts
 
-* [Spring configuration strategies across environments](/blog/2020-09/spring-environment-configuration/index.md)
+* [Spring configuration strategies across environments](/blog/2020-11/spring-environment-configuration/index.md)
 * [Announcing Linux worker pools on Octopus Cloud](/blog/2020-09/octopus-cloud-built-in-linux-worker-pools/index.md)
 * [Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle](/blog/2020-09/java-ci-cd-co/index.md)
