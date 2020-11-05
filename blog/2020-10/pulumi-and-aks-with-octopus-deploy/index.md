@@ -160,7 +160,8 @@ Because Octopus Deploy needs to retrieve and pull the Pulumi project from a feed
 For example, below is a screenshot of my GitHub repo that is storing the Pulumi project.
 
 ![](images/1.png)
-Python Code in GitHub
+
+![Python Code in GitHub]
 
 Once you add the Pulumi package to GitHub, you'll want to create a new release of the code in GitHub. Octopus Deploy looks for specific release versions when using external feeds to pull in code.
 
