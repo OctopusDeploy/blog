@@ -215,7 +215,7 @@ Before running any Pulumi package, you need to ensure that the Pulumi SDK exists
 
 ### The Pulumi Step
 
-Next, it's time to add in the first Pulumi step. The Pulumi step is what will be used to create a secret and the AKS cluster. Instead of using a third-party step template, you're going to us the **RUN A SCRIPT** template to utilize the Pulumi commands in Bash.
+Next, it's time to add in the first Pulumi step. The Pulumi step is what will be used to create a secret and the AKS cluster. Instead of using a third-party step template, you're going to use the **RUN A SCRIPT** template to utilize the Pulumi commands in Bash. The reason to use the **RUN A SCRIPT** template is simply because it's built-in and you may not want to install third-party step templates.
 
 For the RUN A SCRIPT step, you'll want to add in the standard parameters - step name, enabled, target roles, etc. The real action occurs when you get to the **Inline Source Code** section under **Script**.
 
