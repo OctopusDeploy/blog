@@ -1,5 +1,5 @@
 ---
-title: "Pulumi and AKS with Octopus Deploy"
+title: "How to Create an AKS Cluster with Pulumi and Octopus Deploy"
 description: Add Python + Pulumi + Octopus Deploy and what do you get? A fun and exciting deploying strategy for Azure Kubernetes Services!
 author: michael.levan@octopus.com
 visibility: public
@@ -12,7 +12,7 @@ tags:
  - Development
 ---
 
-Creating software-defined infrastructure comes in many different shapes and sizes, including popular IaS tools like Terraform and configuration management tools like Ansible. One thing holds true throughout any tool - you want the ability to write the code in a language that you prefer.
+Creating software-defined infrastructure comes in many different shapes and sizes, including popular IaC tools like Terraform and configuration management tools like Ansible. One thing holds true throughout any tool - you want the ability to write the code in a language that you prefer.
 
 That's where [Pulumi](https://www.pulumi.com/) comes into play.
 
