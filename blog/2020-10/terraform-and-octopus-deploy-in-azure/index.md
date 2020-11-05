@@ -31,7 +31,9 @@ To follow along with this blog post, you should have the following:
 
 ## Octopus and Terraform
 
-Terraform, an open-source [Infrastructure-as-Code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/), is very much supported by default in Octopus Deploy. You can deploy Terraform resources to:
+Terraform, an open-source [Infrastructure-as-Code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/), is very much supported by default in Octopus Deploy. 
+
+You can deploy Terraform resources to:
 
 - In Azure
 - In AWS
