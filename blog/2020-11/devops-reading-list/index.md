@@ -131,7 +131,7 @@ Test One
 <div class="row">
   <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
 </div>
-  <div class="col-sm-6"><img src="the_goal.jpg"></div>
+  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devop-reading-list/the_goal.jpg"></div>
  </div>
 
 The Goal is a Novel about Alex Rogo, a senior manager at UniCo, an auto-parts manufacturing company. Business is going badly. In order to avoid a massive restructuring program and many job losses, Rogo needs to simultaneously improve performance, quality and profitability before a seemingly impossible deadline.
