@@ -50,13 +50,12 @@ First, start off by creating a new GitHub repo.
 
 For Octopus Deploy to pull in the external feed from GitHub, the GitHub repo needs a release that's built from the code inside of the repo.
 
-1. In the repo, under **Releases**, click **Create a new release**. 
+3. In the repo, under **Releases**, click **Create a new release**. 
 
 ![](images/3.png)
 
-1. Give the release a name and version number, then click the green **Publish release** button.
+4. Give the release a name and version number, then click the green **Publish release** button.
 
-![](images/4.png)
 
 A release has now been created.
 
