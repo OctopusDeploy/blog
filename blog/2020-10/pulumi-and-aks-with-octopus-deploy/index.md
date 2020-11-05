@@ -32,11 +32,11 @@ To follow along with this blog post, you should have the following:
 - A GitHub account that you can start the Python code in that's shown in the upcoming section **The Code**.
 - An external GitHub feed. If you do not have one set up, you can follow these [instructions](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).
 
-## The Code
+## Creating the Python Code
 
 The first portion of having the ability to deploy code is writing the code and storing it somewhere. Depending on what you're using Pulumi for, there could be many software-defined infrastructure scenarios. The one thing that's always true, regardless of what the code is creating, it must be written and stored somewhere.
 
-### Writing the Constants
+### Writing Python Constants
 
 When you're using Pulumi, you have a few options to pass in arguments at runtime:
 
@@ -62,7 +62,7 @@ auto_scaling = (True)
 clientID = ("azure_app_registration_client_id")
 ```
 
-### Writing the Function
+### Writing Python Functions
 
 The Python code will utilize the Pulumi Azure Python SDK.
 
@@ -167,7 +167,7 @@ Once you add the Pulumi package to GitHub, you'll want to create a new release o
 
 Now that the code is written and stored in GitHub via the Pulumi package, it's time to deploy the package via Octopus Deploy.
 
-### Authentication
+### Authentication in Octopus Deploy
 
 The Pulumi step relies on having either an Azure account or an AWS account in the project variables for authentication to either cloud platform. Because of that, you'll need to add in a project variable of type Azure Account.
 
@@ -178,7 +178,7 @@ If you don't already have an Azure account added in Octopus Deploy, you can lear
 3. Under value, go to CHANGE TYPE —> Azure Account.
 4. Choose an Azure account that you want to use for authentication.
 
-## Pulumi Secret Variable
+## Pulumi Password and Secret Variable
 
 When you authenticate to Azure from the Pulumi code, one of the mandatory parameters you need to pass in for AKS is an Azure app registration and client secret. Because the client secret is sensitive, you want a place to store it where the password will be safe.
 
@@ -187,7 +187,7 @@ When you authenticate to Azure from the Pulumi code, one of the mandatory parame
 3. Ensure that the type is Sensitive.
 4. Add in the value of the Azure app registration client secret. 
 
-### The Package Step
+### The Code Package Step
 
 1. Open up a web browser and go to the Octopus Deploy portal.
 2. Create a new project that you want to use to deploy the Pulumi package.
@@ -241,7 +241,7 @@ sudo /root/.pulumi/bin/pulumi config set --secret clientSecret $secret
 sudo /root/.pulumi/bin/pulumi up --yes
 ```
 
-### Running the Deployment
+### Running the Pulumi Deployment
 
 It's now time to run the deployment.
 
