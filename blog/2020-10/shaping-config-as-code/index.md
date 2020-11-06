@@ -61,7 +61,7 @@ It’s tempting to simply disable them, and convince yourself it's the user's ch
 
 In this pattern Git concepts are abstracted in the application.  An example might be branching exposed as a “draft” metaphor.
 
-There’s nothing necessarily wrong with this, and done right it can be very powerful. But its risky for an application like Octopus, where users are likely to have an understanding of Git concepts. 
+There’s nothing necessarily wrong with this, and done right it can be very powerful. But it's risky for an application like Octopus, where users are likely to have an understanding of Git concepts. 
 
 Where possible we've used Git terminology and concepts, rather than trying to hide them under abstractions. 
 
@@ -151,7 +151,7 @@ From this point, your release doesn't change as it progresses through the enviro
 
 ### Not YAML, not JSON, not XML
 
-For our configuration language, we are using a language based on Hashicorp's HCL.  
+For our configuration language, we are using a language based on [Hashicorp's HCL](https://github.com/hashicorp/hcl).  
 
 ![OCL sample](hcl-sample.png "width=500")
 
@@ -161,7 +161,7 @@ Our primary considerations were:
 
 The other obvious contenders were YAML, JSON, and XML.  We ruled JSON out; it is designed for representing serialized objects and isn't particularly human-friendly (so many quotes!). We ruled XML out; as much fun as it would be to swim against the tide, XML is simply too verbose (so many angle-brackets!). YAML certainly ticks the human-readable box, but is painful for editing complex documents, and we felt it is better suited to simpler documents. 
 
-We like HCL. We feel it is the right tool for the job. Even though we have openly used HCL at the starting point, we are referring to our implemention as Octopus Configuration Language (OCL). We have built our own parser/serializer, and there is no obligation on us to follow any direction Hashicorp takes HCL, and nothing preventing us from making changes. 
+We like HCL. We feel it is the right tool for the job. Even though we have openly used HCL at the starting point, we are referring to our implemention as Octopus Configuration Language (OCL). We have built our own [parser/serializer](https://github.com/OctopusDeploy/Ocl), and there is no obligation on us to follow any direction Hashicorp takes HCL, and nothing preventing us from making changes. 
 
 To be honest, we feel like the choice of configuration language is far from the most important part. The benefits would be similar regardless of which we chose.
 
