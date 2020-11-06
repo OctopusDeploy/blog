@@ -17,7 +17,7 @@ We have been busy recently building _configuration-as-code_ support for Octopus 
 - Challenges
 - Design decisions
 
-But before we do, we should define what we mean by "configuration-as-code". We are referring to a version-controlled (aka git), text representation of an Octopus project. Today when you configure a project in Octopus the configuration is stored as records in a relational database. This feature is basically taking some of that data and persisting it as files in a git repository rather than the database.  
+But before we do, we should define what we mean by "configuration-as-code". We are referring to a version-controlled (aka Git), text representation of an Octopus project. Today when you configure a project in Octopus the configuration is stored as records in a relational database. This feature is basically taking some of that data and persisting it as files in a Git repository rather than the database.  
 
 ## Why config-as-code?
 
@@ -28,7 +28,7 @@ Often prioritizing features is a trade-off between addressing requests from exis
 - **History:** Git is a time-machine for code, and being able to view the what, when, and who, for your Octopus configuration alongside application code is undeniably useful. 
 - **Branching:** Today there is a single instance of the deployment process. This makes testing changes difficult, as when a release is created it will use the current deployment process. Git branches give the ability to have as many versions of the deployment process as you like, allowing iterating on changes without impacting stability.   
 - **Single source of truth**: Having application code, build scripts, and deployment configuration all living together makes everyone feel warm and fuzzy.  
-- **Cloning:** Imagine being able to copy a `.octopus` folder to a brand new git repository (maybe change a few variables) and use that as the Octopus project template.
+- **Cloning:** Imagine being able to copy a `.octopus` folder to a brand new Git repository (maybe change a few variables) and use that as the Octopus project template.
 
 There are two highly voted UserVoice suggestions ([1](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration), [2](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/35362726-allow-variables-to-be-version-controlled)), but even more convincing were the many customer conversations. 
 
@@ -36,38 +36,38 @@ And finally, we want this! We use Octopus Deploy to deliver Octopus Deploy, and 
 
 ## Anti-patterns 
 
-We are certainly not the first product to implement this feature. Many of the tools in our ecosystem have git integration. This gave us the opportunity to play with various implementations and to develop a sense of what made the difference between an enjoyable, and not so enjoyable, experience. 
+We are certainly not the first product to implement this feature. Many of the tools in our ecosystem have Git integration. This gave us the opportunity to play with various implementations and to develop a sense of what made the difference between an enjoyable, and not so enjoyable, experience. 
 
 It became clear that there are a few patterns we would like to avoid.
 
 ### Anti-pattern #1: Git DB
 
-It is tempting to think of git as "just another database", and to simply swap out one persistance layer for another. So changes are persisted in a git repository, but none of the real power of git is enabled. Branches aren't supported, commit messages can't be supplied, text records may not be human-readable, etc.   
+It is tempting to think of Git as "just another database", and to simply swap out one persistance layer for another. So changes are persisted in a Git repository, but none of the real power of Git is enabled. Branches aren't supported, commit messages can't be supplied, text records may not be human-readable, etc.   
 
-The only benefit of git in this scenario is the historical record, which certainly isn't nothing, but even this is compromised.
+The only benefit of Git in this scenario is the historical record, which certainly isn't nothing, but even this is compromised.
 
 Replacing `dbTransaction.Commit()` with `gitRepo.Push()` might be the quickest way, but as a user it is rather disappointing.
 
 ### Anti-pattern #2: Baby with the bathwater 
 
-In this anti-pattern users can opt-in to git integration, but only if they are willing to forfeit other features. 
+In this anti-pattern users can opt-in to Git integration, but only if they are willing to forfeit other features. 
 
 Having spent the past months building this feature it's very easy to see how this happens, and sometimes it's inevitable. 
 For an application built on a relational database, it’s difficult to ensure all the various features still function once a chunk of the application data is no longer stored in the database, and no longer has a single version.
 
-It’s tempting to simply disable them, and convince yourself it's the user's choice. And honestly, in early releases of this feature we will disable some functionality, but wherever possible we are striving hard to ensure the decision to enable git comes with as few compromises as possible. 
+It’s tempting to simply disable them, and convince yourself it's the user's choice. And honestly, in early releases of this feature we will disable some functionality, but wherever possible we are striving hard to ensure the decision to enable Git comes with as few compromises as possible. 
 
 ### Anti-pattern #3: Obfuscation via abstraction
 
-In this pattern git concepts are abstracted in the application.  An example might be branching exposed as a “draft” metaphor.
+In this pattern Git concepts are abstracted in the application.  An example might be branching exposed as a “draft” metaphor.
 
-There’s nothing necessarily wrong with this, and done right it can be very powerful. But its risky for an application like Octopus, where users are likely to have an understanding of git concepts. 
+There’s nothing necessarily wrong with this, and done right it can be very powerful. But its risky for an application like Octopus, where users are likely to have an understanding of Git concepts. 
 
-Where possible we've used git terminology and concepts, rather than trying to hide them under abstractions. 
+Where possible we've used Git terminology and concepts, rather than trying to hide them under abstractions. 
 
 ### Anti-pattern #4: YAMSONXML hell
 
-We firmly believe that wanting git integration does not imply wanting to forgo all UI assistance. We decided early on that we were determined to not force a choice between git integration and a good UX. 
+We firmly believe that wanting Git integration does not imply wanting to forgo all UI assistance. We decided early on that we were determined to not force a choice between Git integration and a good UX. 
 
 Having a human-readable text representation of your config, which you can view history, branch, compare, and merge, is empowering.  Staring at a blinking cursor in an empty text file is not.
 
@@ -81,11 +81,11 @@ There were a few specific challenges when shaping this feature that are interest
 
 ### Authorisation
 
-Octopus has a rich authorisation model. It allows granting fine-grained permissions (including environment and tenant based permissions), some of which become unenforcable once the deployment process is stored in a git repository. Some specific examples:  
+Octopus has a rich authorisation model. It allows granting fine-grained permissions (including environment and tenant based permissions), some of which become unenforcable once the deployment process is stored in a Git repository. Some specific examples:  
 
-- Anyone with write access to the git repository can edit the deployment process 
-- If a step is scoped to an environment/tenant, anyone with read access to the git repository will be able to see the name of that environment/tenant 
-- For variables stored in a git repository, it is not possible to allow/deny editing based on the environment scoping of the values 
+- Anyone with write access to the Git repository can edit the deployment process 
+- If a step is scoped to an environment/tenant, anyone with read access to the Git repository will be able to see the name of that environment/tenant 
+- For variables stored in a Git repository, it is not possible to allow/deny editing based on the environment scoping of the values 
 
 At the risk of violating our own baby-with-the-bathwater principle, forfeiting some fine-grained permissions feels like a fundamental consequence of moving to a config-as-code approach.  This is a key concern for many organizations, and is one of the reasons we will support both database and config-as-code approaches for the foreseeable future. 
 
@@ -95,7 +95,7 @@ Or rather the lack of them.
 
 Projects in Octopus are not self-contained. Resources inside projects can reference resources outside the project (fortunately the inverse is true only in very limited scenarios). e.g. Projects reference environments, tenants, accounts, certificates, etc. 
 
-When everything is stored in a relational database it is relatively easy to find references between resources. Specifically, when deleting resources in Octopus having everything in the database means we can see where the deleted resource is referenced and take the appropriate action (cascading the deletion, blocking it, warning, etc). Moving resources into text files in git repositories, with infinite possible branches, means you simply cannot realistically see everywhere a resource is referenced.  
+When everything is stored in a relational database it is relatively easy to find references between resources. Specifically, when deleting resources in Octopus having everything in the database means we can see where the deleted resource is referenced and take the appropriate action (cascading the deletion, blocking it, warning, etc). Moving resources into text files in Git repositories, with infinite possible branches, means you simply cannot realistically see everywhere a resource is referenced.  
 
 The logical conclusion of this is that we have to accept we can no longer guarantee referential integrity. The best we can do is gracefully handle reference errors. 
 
@@ -117,7 +117,7 @@ Having explored some of the factors in the shaping process, let's have a look at
 
 ### Branches as a first-class concept
 
-Branches are git's superpower, and we want to leverage them as fully as possible. We are exposing the ability to switch branches in the Octopus UI: 
+Branches are Git's superpower, and we want to leverage them as fully as possible. We are exposing the ability to switch branches in the Octopus UI: 
 
 ![Switching branches](branch-switcher.png "width=500")
 
@@ -125,7 +125,7 @@ This allows easily switching to a new branch to make changes to a deployment pro
 
 ### Commit messages when saving
 
-Keeping with the _expose git concepts_ principle, when configuration-as-code is enabled for a project we have relabelled the `Save` buttons as `Commit`. 
+Keeping with the _expose Git concepts_ principle, when configuration-as-code is enabled for a project we have relabelled the `Save` buttons as `Commit`. 
 
 ![Commit button](commit-button.png "width=500")
 
@@ -139,11 +139,11 @@ We want to cater for both these scenarios, so we have introduced a split-button 
 
 ![Commit dialog](commit-dialog.png "width=500")
 
-### Releases and git: A perfect match 
+### Releases and Git: A perfect match 
 
 Configuration-as-code fits perfectly with the concept of a [release](https://octopus.com/docs/releases) in Octopus.
 
-Today, when you create a release it takes a snapshot of the current deployment process, variables, and a few other things. With configuration-as-code enabled, when creating a release it will allow selecting the git ref (branch, tag, or commit) containing the deployment process and variables:  
+Today, when you create a release it takes a snapshot of the current deployment process, variables, and a few other things. With configuration-as-code enabled, when creating a release it will allow selecting the Git ref (branch, tag, or commit) containing the deployment process and variables:  
 
 ![Creating release from gitref](create-release-gitref.png "width=500")
 
@@ -156,7 +156,7 @@ For our configuration language, we are using a language based on Hashicorp's HCL
 ![OCL sample](hcl-sample.png "width=500")
 
 Our primary considerations were:
-- Human readability: The whole point of storing configuration in git is so that humans can read and compare it. 
+- Human readability: The whole point of storing configuration in Git is so that humans can read and compare it. 
 - Complex documents: Deployment processes are not trivial documents.  They often have dozens (or more) of steps, and can be nested quite deeply. We don't envisage people authoring these from scratch, but we do believe people will edit them, copy-pasting steps, adding environment scopes, etc. We want to support these types of edits as much as possible. 
 
 The other obvious contenders were YAML, JSON, and XML.  We ruled JSON out; it is designed for representing serialized objects and isn't particularly human-friendly (so many quotes!). We ruled XML out; as much fun as it would be to swim against the tide, XML is simply too verbose (so many angle-brackets!). YAML certainly ticks the human-readable box, but is painful for editing complex documents, and we felt it is better suited to simpler documents. 
