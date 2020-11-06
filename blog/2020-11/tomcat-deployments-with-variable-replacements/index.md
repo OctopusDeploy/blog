@@ -2,14 +2,16 @@
 title: Java deployments to Tomcat with YAML and XML configuration file replacements
 description: Learn how to take advantage of the XML, YAML, and Properties configuration file replacement when deploying Java applications.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-11-10
-metaImage: 
-bannerImage: 
+metaImage: octopus-java.png
+bannerImage: octopus-java.png
 tags:
  - Java
  - Product
 ---
+
+![Java deployments to Tomcat with YAML and XML configuration file replacements](octopus-java.png)
 
 A common challenge when deploying applications to different environments is ensuring the applications are correctly configured for a specific environment. The typical example of this is configuring database connection strings with the credentials required for each environment. These kinds of sensitive credentials shouldn’t be stored in source control, and so some work has to be done to take an application package created by developers working in their local development environments to create a package that can be deployed to shared but also restricted, environments.
 
