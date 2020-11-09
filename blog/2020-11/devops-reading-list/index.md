@@ -168,7 +168,7 @@ The Poppendiecks take seven of the core lean principles and talk in practical te
 
 Along the way, they cover 20 tools for applying the lean principles into practice, such as Value-Stream Mapping, working in iterations, and refactoring.
 
-This book stands up as one of the (if not the) best articulation of what Agile actually is, how it builds on stable Lean foundations, and why specific practices result in better software delivery outcomes. As an “Agile” book, it’s not technically a “DevOps” book (it was written six years before Patrick DeBois accidentally gave us *that* buzzword), but in many ways, this is the genesis of DevOps.
+This book stands up as one of the (if not the) best articulation of what Agile actually is, how it builds on stable Lean foundations, and why specific practices result in better software delivery outcomes. As an “Agile” book, it’s not technically a “DevOps” book (it was written six years before Patrick DeBois accidentally gave us *that* buzzword), but this book was an important chapter in the genesis of DevOps.
 
 For those who would like to learn more about Lean principles within their original manufacturing context, check out [The Goal](#goal). For those who would like to learn how these Agile ideas have evolved with the emergence of DevOps, take a look at [The DevOps Handbook](#handbook). For those who would like to go deeper into software design/architecture, try [Domain-Driven Design: Distilled](#ddd). Finally, for those who are more interested in the human side of Agile/DevOps, you might prefer [The Five Dysfunctions of a Team](#dysfunc) (more personal) or [Team Topologies](#tt) (more strategic).
 
