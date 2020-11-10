@@ -21,7 +21,7 @@ In this post and screencast, I show you how to deploy a Spring application to To
 
 ## Screencast
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/x1u2iAr_BQ4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/x1u2iAr_BQ4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Preparing the Linux web server
 
