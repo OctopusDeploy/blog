@@ -11,7 +11,7 @@ tags:
  - Database Deployments
 ---
 
-![](liquibase-octopus.png)
+![Deploying to Oracle with Octopus Deploy and Liquibase](liquibase-octopus.png)
 
 A customer recently asked if it's possible to deploy to an Oracle database with Liquibase using Octopus Deploy. In this post, I'll demonstrate how to do it.
 
