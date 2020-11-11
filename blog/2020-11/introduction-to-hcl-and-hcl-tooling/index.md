@@ -4,12 +4,14 @@ description: Learn about the different tooling you can use with HCL.
 author: adbertram@gmail.com
 visibility: public
 published: 2020-11-16
-metaImage:
-bannerImage:
+metaImage: blogimage-config-as-code-explanation_2020.png
+bannerImage: blogimage-config-as-code-explanation_2020.png
 tags:
  - DevOps
  - Config as Code
 ---
+
+![Introduction to HCL and HCL tooling](blogimage-config-as-code-explanation_2020.png)
 
 [Hashicorp Configuration Language (HCL)](https://www.terraform.io/docs/configuration/index.html) is a unique configuration language. Intended for use with the Hashicorp set of tools, notably Terraform, HCL has expanded as a more general configuration language. HCL is visually similar to JSON with additional data structures and capabilities built-in.
 
