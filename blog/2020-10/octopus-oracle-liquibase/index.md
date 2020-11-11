@@ -2,7 +2,7 @@
 title: Deploying to Oracle with Octopus Deploy and Liquibase
 description: Learn how to deploy to Oracle using Octopus Deploy and Liquibase
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2020-11-17
 tags:
  - DevOps
