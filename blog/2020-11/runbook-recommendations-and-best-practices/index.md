@@ -4,12 +4,14 @@ description: Recommendations from lessons learned on how to design and implement
 author: bob.walker@octopus.com
 visibility: public
 published: 2020-11-18
-metaImage: 
-bannerImage: 
+metaImage: blogimage-runbookslaunch.png
+bannerImage: blogimage-runbookslaunch.png
 tags:
  - DevOps
  - Runbooks
 ---
+
+![Runbook lessons learned and recommendations](blogimage-runbookslaunch.png)
 
 Since the release of runbooks, I’ve had the chance to create a number of them, and in doing so, I’ve learned some lessons I want to share.  This article walks through creating a runbook from scratch and includes some recommendations.
 
