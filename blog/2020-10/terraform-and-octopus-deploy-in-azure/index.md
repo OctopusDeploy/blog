@@ -33,7 +33,7 @@ You can deploy Terraform resources to:
 - AWS
 - On-premises (hardware and virtualized environments)
 
-One of the major benefits about using Terraform in a continuous delivery and deployment tool is that you only have to focus on writing the code, not manually deploying it. Combining Octopus and Terraform allows you to automate the entire lifecycle.
+One of the major benefits of using Terraform in a continuous delivery and deployment tool is that you can focus on writing the code, not manually deploying it. Combining Octopus and Terraform allows you to automate the entire lifecycle.
 
 ## The Terraform Code
 
