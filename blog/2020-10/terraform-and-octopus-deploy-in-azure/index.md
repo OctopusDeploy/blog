@@ -54,7 +54,7 @@ For the purposes of this blog post, we're using an Azure Service Principal.
 
 The provider needs the following information:
 
-- Azure subscription ID
+- Azure Subscription ID
 - Client ID
 - Client Secret
 - Tenant ID
