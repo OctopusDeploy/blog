@@ -199,7 +199,7 @@ The configuration of the project, authentication, steps, and code is all complet
 
 ![](images/7.png)
 
-Congrats! You have successfully created a Resource Group in Azure using Octopus Deploy and Terraform.
+You have successfully created a Resource Group in Azure using Octopus Deploy and Terraform.
 
 ## Conclusion
 
