@@ -50,7 +50,7 @@ There are four ways to authenticate to the `azurerm` Terraform provider:
 - [Authenticating to Azure using a Service Principal and a Client Certificate](https://www.terraform.io/docs/providers/azurerm/guides/service_principal_client_certificate.html)
 - [Authenticating to Azure using a Service Principal and a Client Secret](https://www.terraform.io/docs/providers/azurerm/guides/service_principal_client_secret.html)
 
-For the purposes of this blog post, you'll be using an Azure Service Principal.
+For the purposes of this blog post, we're using an Azure Service Principal.
 
 The provider will need the following information:
 
